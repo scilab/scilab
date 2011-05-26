@@ -201,13 +201,3 @@ msgstr "警告：队列中太多回调。\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] 无法与 Tcl/Tk 使用。\n"
-
-
-
-
-
-
-
-
-
-

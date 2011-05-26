@@ -539,10 +539,6 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
 "い.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -643,10 +639,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
@@ -808,12 +800,6 @@ msgid "A non square matrix!\n"
 msgstr "正方行列でありません!\n"
 
 #
-# File: src/c/callinterf.c, line: 149
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: 現在の計算を中止します\n"
-
-#
 # File: src/c/tmpdir.c, line: 63
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Windows 一時ディレクトリ(1) が見つかりません。"
@@ -838,10 +824,6 @@ msgstr "Scilab コンソーシアム (DIGITEO)\n"
 # File: src/c/banier.c, line: 39
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -1123,12 +1105,6 @@ msgstr "警告: %s\n"
 msgid "Warning"
 msgstr "警告"
 
-#
-# File: src/c/loadversion.c, line: 74
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "エラー: ファイル %s の構文解析ができません\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "警告: %s の問題があります。\n"
@@ -1215,46 +1191,3 @@ msgstr "第3"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist は完全には代入されませんでした.\n"
-
-
-
-
-
-
-
-#
-# File: macros/check_versions.sci, line: 31
-
-
-
-
-#
-# File: macros/perl.sci, line: 68
-
-
-#
-# File: macros/perl.sci, line: 47
-
-#
-# File: macros/perl.sci, line: 63
-
-
-#
-# File: macros/edit.sci, line: 24
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: src/c/callinterf.c, line: 176
-
-
-
-

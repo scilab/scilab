@@ -76,8 +76,3 @@ msgstr ""
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr ""
-
-
-
-
-

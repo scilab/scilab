@@ -350,20 +350,3 @@ msgstr "%s: nie można uzyskać wymiaru tej macierzy.\n"
 
 msgid "WARNING : \n"
 msgstr "Uwaga : \n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

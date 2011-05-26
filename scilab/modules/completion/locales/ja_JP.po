@@ -37,10 +37,6 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 msgid "%s: Wrong size for input argument %d.\n"
 msgstr "%s: 入力引数 %d で不正なサイズです。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"

@@ -42,36 +42,3 @@ msgstr "无法播放文件。"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound模块没有被安装。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

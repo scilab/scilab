@@ -440,13 +440,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Zły typ parametru wejściowego #%d: oczekiwano typu mlist.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Musi byc nazwa pakietu atoms.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

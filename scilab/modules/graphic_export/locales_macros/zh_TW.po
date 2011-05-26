@@ -33,10 +33,6 @@ msgstr "%s: 無法建立匯出檔.禁止操作.\n"
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: 不能執行pstoedit.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: 不能執行pstoedit.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

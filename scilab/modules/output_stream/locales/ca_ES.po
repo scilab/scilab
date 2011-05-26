@@ -219,12 +219,6 @@ msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Hi pot haver %d com a "
 "màxim.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Les dades no concorden "
-"amb el format.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -856,10 +850,6 @@ msgstr "No s'ha implementat al Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar cap variable nul·la.\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "Els operants de les operacions / i \\ no poden contenir NaN de inf.\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
 "S'ha aturat l'optimització: S'ha assolit el nombre màxim de crides a f.\n"
@@ -1478,12 +1468,3 @@ msgstr "no s'ha definit el domini temporal de l'argument %d.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar la paraula varargout.\n"
-
-
-
-
-
-
-
-
-

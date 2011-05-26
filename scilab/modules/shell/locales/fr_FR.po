@@ -65,10 +65,6 @@ msgstr "Champ d'un handle graphique"
 msgid "Scilab Command"
 msgstr "Commande Scilab"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Fonction Scilab"
-
 msgid "Scilab Function"
 msgstr "Fonction Scilab"
 

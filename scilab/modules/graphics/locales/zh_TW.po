@@ -478,10 +478,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 給定的範圍有誤.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
-msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該為之有效的字型名稱.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s: 第 #%d 和第 #%d 個輸入參數數值錯誤: 長度不相容.\n"
@@ -927,65 +923,3 @@ msgstr ""
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -278,8 +278,3 @@ msgstr "ripOLE: la decodifica di %s ha portato all'errore %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: la decodifica di %s ha portato all'errore %d.\n"
-
-
-
-
-

@@ -19,12 +19,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can''t go to directory ''%s''.\n"
-msgstr "%s: Não é possível entrar no diretório ""%s"".\n"
+msgstr "%s: Não é possível entrar no diretório %s.\n"
 
 #, c-format
 msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr ""
-"%s: O diretório ""%s"" não existe ou não está acessível para leitura.\n"
+msgstr "%s: O diretório %s não existe ou não está acessível para leitura.\n"
 
 #, c-format
 msgid ""
@@ -36,7 +35,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: O arquivo ""%s"" não existe ou não está acessível para leitura.\n"
+msgstr "%s: O arquivo %s não existe ou não está acessível para leitura.\n"
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
@@ -110,23 +109,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: não pode ir para ''%s''.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: não pode ir para "
+"''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
 "or is not read accessible.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: o diretório ""%s"" não "
+"%s: Valor incorreto para o argumento de entrada #%d: o diretório %s não "
 "existe ou não está acessível para leitura.\n"
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
 msgstr "%s: a documentação não pode ser construída neste modo do Scilab: %s.\n"
-
-#, fuzzy
-msgid "Building blocks...\n"
-msgstr "Construindo os fontes...\n"
 
 msgid "Building gateway...\n"
 msgstr ""

@@ -20,12 +20,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser entre %d i %d.\n"
+"%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Han de ser dues files.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Han de ser dues "
+"files.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -36,20 +38,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu o "
-"un vector.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"o un vector.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
-"%s: Els arguments d''entrada #%d i #%d tenen una mida incorrecta: Ha de tenir "
-"la mateixa mida.\n"
+"%s: Els arguments d''entrada #%d i #%d tenen una mida incorrecta: Ha de "
+"tenir la mateixa mida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de nombres reals.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de nombres reals.\n"
 
 #, c-format
 msgid ""

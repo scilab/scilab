@@ -276,8 +276,3 @@ msgstr "ripOLE: La decodificació de %s ha acabat en error %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: La decodificació de %s ha acabat en error %d.\n"
-
-
-
-
-

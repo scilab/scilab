@@ -21,21 +21,25 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_notify.cpp, line: 58
 # File: sci_gateway/cpp/sci_notify.cpp, line: 72
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/action_binding/utils/ActionBindingMessages.java, line: 23
 msgid "Same command executed again"
 msgstr ""
+
 #
 # File: src/noaction_binding/noaction_binding.c, line: 18
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/action_binding/utils/ActionBindingMessages.java, line: 24
 msgid "Unable to communicate with the interpreter"

@@ -263,4 +263,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "構成ファイルが存在しません:\n"
-

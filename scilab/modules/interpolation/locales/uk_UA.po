@@ -198,12 +198,3 @@ msgstr ""
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати тип «string».\n"
-
-
-
-
-
-
-
-
-

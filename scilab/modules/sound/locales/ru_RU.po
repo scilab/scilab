@@ -44,36 +44,3 @@ msgstr "Не удалось воспроизвести файл."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль «Sound» не установлен.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

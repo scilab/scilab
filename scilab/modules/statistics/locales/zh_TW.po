@@ -135,10 +135,6 @@ msgstr "Pnonc,P,Q,F 及 Dfn"
 msgid "Pr,OMPr,P,Q and S"
 msgstr "Pr,OMPr,P,Q 及 S"
 
-#, fuzzy
-msgid "Rate,P,Q and X"
-msgstr "Scale,P,Q 及 X"
-
 msgid "S and Xlam"
 msgstr "S 及 Xlam"
 
@@ -147,10 +143,6 @@ msgstr "S,XN,PR 及 OMPR"
 
 msgid "S,Xn,Pr and Ompr"
 msgstr "S,Xn,Pr 及 Ompr"
-
-#, fuzzy
-msgid "Shape,Rate,P and Q"
-msgstr "Shape,Scale,P 及 Q"
 
 msgid "Std,P,Q and X"
 msgstr "Std,P,Q 及 X"
@@ -167,10 +159,6 @@ msgstr "X,Df 及 Pnonc"
 msgid "X,Mean and Std"
 msgstr "X,Mean 及 Std"
 
-#, fuzzy
-msgid "X,Shape and Rate"
-msgstr "X,Shape 及 Scale"
-
 msgid "X,Y,A and B"
 msgstr "X,Y,A 及 B"
 
@@ -185,48 +173,3 @@ msgstr "Xn,Pr,Ompr,P 及 Q"
 
 msgid "cdfchi: Error in cumgam\n"
 msgstr "cdfchi: cumgam 中之錯誤\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -19,7 +19,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : %s : Mauvais nombre d''argument(s) d''entrée : %d à %d attendus.\n"
+msgstr ""
+"%s : %s : Mauvais nombre d''argument(s) d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
@@ -55,8 +56,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr ""
-"%s: Mauvaise valeur pour l''argument #%d: erreur de syntaxe pour l''expression "
-"donnée.\n"
+"%s: Mauvaise valeur pour l''argument #%d: erreur de syntaxe pour "
+"l''expression donnée.\n"
 
 msgid ""
 "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"

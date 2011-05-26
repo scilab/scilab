@@ -103,21 +103,9 @@ msgstr "   Выполняется Makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   Ошибки: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: Уже загружена из библиотеки %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Требуется компилятор Fortran или C.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: Неверный размер входного параметра №%d: ожидался %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -249,20 +237,11 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось '''' или «[]».\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть из множества "
 "{%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Требуется компилятор Fortran или C."

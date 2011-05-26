@@ -38,12 +38,6 @@ msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
 "tenir les mateixes dimensions.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
-"de text.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
@@ -132,10 +126,6 @@ msgstr ""
 msgid "Backward"
 msgstr "Enrere"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s és un directori."
-
 msgid "Binary file: read-only mode"
 msgstr "Fitxer binari: mode de només lectura"
 
@@ -156,23 +146,11 @@ msgstr "No s'ha pogut carregar el \"scinotesConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Distingix majúscules i minúscules"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Distingix majúscules i minúscules"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Distingix majúscules i minúscules"
-
 msgid "Change Color"
 msgstr "Canvia el color"
 
 msgid "Change Colors"
 msgstr "Canvia els colors"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s és un directori."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -278,10 +256,6 @@ msgstr "Habilita el format automàtic"
 msgid "Encoding"
 msgstr "Codificació"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "Codificació"
-
 msgid "Enter line number"
 msgstr "Entreu el número de línia"
 
@@ -372,10 +346,6 @@ msgstr "Ajuda a l'escriptura"
 msgid "Highlight current line"
 msgstr "Ressalta la línia actual"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "Divideix horitzontalment"
-
 msgid "Ignore"
 msgstr "Ignora"
 
@@ -431,10 +401,6 @@ msgstr "Pestanya següent"
 
 msgid "No Line Numbering"
 msgstr "Sense números de línia"
-
-#, fuzzy
-msgid "No help"
-msgstr "Ajuda de SciNotes"
 
 msgid "No split"
 msgstr "Sense divisió"
@@ -536,10 +502,6 @@ msgstr "Refés"
 msgid "Regex"
 msgstr ""
 
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Expressions regulars"
-
 msgid "Regular expressions"
 msgstr "Expressions regulars"
 
@@ -620,10 +582,6 @@ msgstr "Cerca"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Fitxers recents"
-
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
@@ -687,14 +645,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"El fitxer %s no existeix\n"
-" El voleu crear?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -703,10 +653,6 @@ msgstr ""
 " El voleu sobreescriure?"
 
 msgid "The file could not be converted."
-msgstr "No s'ha pogut convertir el text."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "No s'ha pogut convertir el text."
 
 msgid "The file could not be saved."
@@ -779,10 +725,6 @@ msgstr "Paraula completa"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
-
-#, fuzzy
-msgid "Word"
-msgstr "Ajust de paraula"
 
 msgid "Word Wrap"
 msgstr "Ajust de paraula"

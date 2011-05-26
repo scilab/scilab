@@ -387,12 +387,6 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个矩阵原始的�
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr "%s：输入参数 #%d 的值出错：必须是一个 atoms 的包名。\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

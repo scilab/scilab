@@ -24,7 +24,8 @@ msgstr "%s : Répertoire ''%s'' non trouvé.\n"
 #, c-format
 msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr ""
-"%s : Le répertoire ''%s'' n''existe pas ou n''est pas accessible en lecture.\n"
+"%s : Le répertoire ''%s'' n''existe pas ou n''est pas accessible en "
+"lecture.\n"
 
 #, c-format
 msgid ""
@@ -70,7 +71,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s : Taille incorrecte de l''argument d''entrée #%d : booléen attendu.\n"
+msgstr ""
+"%s : Taille incorrecte de l''argument d''entrée #%d : booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -124,10 +126,6 @@ msgstr ""
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
 msgstr ""
 "%s : la documentation ne peut être créée dans ce mode de Scilab : %s.\n"
-
-#, fuzzy
-msgid "Building blocks...\n"
-msgstr "Création des sources...\n"
 
 msgid "Building gateway...\n"
 msgstr "Création de la passerelle...\n"

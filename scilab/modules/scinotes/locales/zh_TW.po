@@ -117,10 +117,6 @@ msgstr ""
 msgid "Backward"
 msgstr ""
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%目錄"
-
 msgid "Binary file: read-only mode"
 msgstr ""
 
@@ -154,10 +150,6 @@ msgstr ""
 
 msgid "Change Colors"
 msgstr ""
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%目錄"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318

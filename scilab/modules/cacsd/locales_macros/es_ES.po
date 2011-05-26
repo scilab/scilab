@@ -380,11 +380,6 @@ msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de salida: Se esperaban al menos %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaban %d ó %d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -667,14 +662,6 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: El dominio del tiempo "
 "debe ser ''c'' o ''d''.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
-"{%s}.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -859,11 +846,6 @@ msgstr "No factible (Hy hamiltonian)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "No factible (spectral radius)"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una lista.\n"
 
 msgid "Zeros"
 msgstr "Ceros"

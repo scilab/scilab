@@ -200,12 +200,6 @@ msgid "Pr,OMPr,P,Q and S"
 msgstr "Pr,OMPr,P,Q と S"
 
 #
-# File: sci_gateway/c/sci_cdfgam.c, line: 54
-#, fuzzy
-msgid "Rate,P,Q and X"
-msgstr "形状,P,Q と X"
-
-#
 # File: sci_gateway/c/sci_cdfpoi.c, line: 41
 msgid "S and Xlam"
 msgstr "S と Xlam"
@@ -219,10 +213,6 @@ msgstr "S,XN,PR と OMPR"
 # File: sci_gateway/c/sci_cdfbin.c, line: 44
 msgid "S,Xn,Pr and Ompr"
 msgstr "S,Xn,Pr と Ompr"
-
-#, fuzzy
-msgid "Shape,Rate,P and Q"
-msgstr "形状,スケール, P および Q"
 
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 54
@@ -246,10 +236,6 @@ msgstr "X,Df と Pnonc"
 
 msgid "X,Mean and Std"
 msgstr "X, 平均および標準偏差"
-
-#, fuzzy
-msgid "X,Shape and Rate"
-msgstr "X, 形状およびスケール"
 
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 44
@@ -275,56 +261,3 @@ msgstr "Xn,Pr,Ompr,P と Q"
 # File: sci_gateway/c/sci_cdfchi.c, line: 73
 msgid "cdfchi: Error in cumgam\n"
 msgstr "cdfchi: cumgam の誤り\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/show_pca.sci, line: 53
-
-#
-# File: macros/show_pca.sci, line: 66
-
-
-#
-# File: macros/trimmean.sci, line: 103
-
-#
-# File: macros/trimmean.sci, line: 119
-
-
-
-

@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "Construindo o documento-mestre do manual do Scilab %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Construindo o arquivo de manual do Scilab ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Construindo o arquivo de manual do Scilab ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

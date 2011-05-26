@@ -344,20 +344,3 @@ msgstr "%s: imposible obtener las dimensiones de esta matriz.\n"
 
 msgid "WARNING : \n"
 msgstr "ADVERTENCIA : \n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

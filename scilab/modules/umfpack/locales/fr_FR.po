@@ -167,36 +167,3 @@ msgstr "matrice singulière"
 
 msgid "symbolic factorization"
 msgstr "factorisation symbolique"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

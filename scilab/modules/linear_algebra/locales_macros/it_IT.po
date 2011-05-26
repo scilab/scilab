@@ -94,8 +94,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Requested rank is greater than "
 "matrix dimension."
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: il rango richiesto è "
-"maggiore della dimensione della matrice."
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: il rango richiesto "
+"è maggiore della dimensione della matrice."
 
 #, c-format
 msgid ""

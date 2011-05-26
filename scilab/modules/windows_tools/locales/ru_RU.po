@@ -41,10 +41,6 @@ msgstr "%s: Не осталось доступной памяти.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
@@ -83,9 +79,3 @@ msgstr "Командное окно"
 
 msgid "see help"
 msgstr "см. справку"
-
-
-
-
-
-

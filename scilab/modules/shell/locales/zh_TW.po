@@ -58,10 +58,6 @@ msgstr "圖形控制代碼(handle)欄位"
 msgid "Scilab Command"
 msgstr "Scilab 命令"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Scilab 函數"
-
 msgid "Scilab Function"
 msgstr "Scilab 函數"
 

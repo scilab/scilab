@@ -148,30 +148,30 @@ msgid ""
 "%s: Wrong values for input argument #%d: Distance between Max and Min "
 "elements must be greater than %g.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha dei valori sbagliati: la distanza tra gli "
-"elementi Max e Min deve essere maggiore di %g.\n"
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: la distanza tra "
+"gli elementi Max e Min deve essere maggiore di %g.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
 "order.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere in ordine crescente.\n"
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi "
+"devono essere in ordine crescente.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in the interval "
 "[%s, %s].\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere nell''intervallo [%s, %s].\n"
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi "
+"devono essere nell''intervallo [%s, %s].\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere positivi.\n"
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi "
+"devono essere positivi.\n"
 
 #, c-format
 msgid ""
@@ -201,23 +201,7 @@ msgstr ""
 "%s: L''argomento in ingresso #%d ha dei valori sbagliati: il grado deve "
 "essere nell''insieme {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "valutazione spettrale"
-
 msgid "Arma identification"
-msgstr "Identificazione dello Arma"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Identificazione dello Arma"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "valutazione spettrale"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Identificazione dello Arma"
 
 #
@@ -282,10 +266,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "valutazione spettrale"
 
 msgid "Spectral power"
 msgstr "Energia spettrale"

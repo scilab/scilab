@@ -103,8 +103,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: цю можливість не реалізовано: параметр типу %d.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: цю можливість не реалізовано: підтримка гіперматриць.\n"
 
 #, c-format
@@ -121,8 +120,7 @@ msgstr "%s: у «%s» виявлено невідомий колір -> вста
 
 #, c-format
 msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr ""
-"%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
+msgstr "%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
 
 #, c-format
 msgid "%s: Unknown type ''%s'': IGNORED.\n"

@@ -161,7 +161,3 @@ msgstr "Éditeur de Variables"
 
 msgid "Visibility"
 msgstr "Visibilité"
-
-
-
-

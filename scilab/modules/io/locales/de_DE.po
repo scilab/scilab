@@ -95,9 +95,3 @@ msgstr "undefinierte Umgebungsvariable %s.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "nicht behandelter Fehler durch v2cunit.\n"
-
-
-
-
-
-

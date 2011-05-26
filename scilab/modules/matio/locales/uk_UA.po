@@ -142,27 +142,3 @@ msgstr ""
 
 msgid "Scilab matio module not installed.\n"
 msgstr "Модуль matio Scilab не встановлено.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

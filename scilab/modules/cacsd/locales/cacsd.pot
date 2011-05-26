@@ -20,6 +20,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_contr.c, line: 48
 #, c-format

@@ -40,12 +40,3 @@ msgstr "Помилковий (%d-ий) індекс під час видобув
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Занадто багато параметрів у стеці, збільшіть значення intersiz у stack.h.\n"
-
-
-
-
-
-
-
-
-

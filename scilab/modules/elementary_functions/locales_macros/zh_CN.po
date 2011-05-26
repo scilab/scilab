@@ -17,20 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr "%s：输出参数的数目错误：应该至少%d个。\n"
-
-#, fuzzy, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
-
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
@@ -84,10 +70,6 @@ msgstr "%s：输入参数的数目错误：应该为%d。"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d或%d。\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
@@ -95,10 +77,6 @@ msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
 #, c-format
 msgid ""
@@ -179,10 +157,6 @@ msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s：参数的类型错误#%d：应该为实数。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr "%s：参数的类型错误#%d：应该为实数。\n"
 
 #, c-format
@@ -295,11 +269,6 @@ msgstr "%s：输入参数#%d的值错误：应该介于%d与%d之间。"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
 
 #, c-format

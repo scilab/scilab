@@ -209,10 +209,6 @@ msgstr "%s: Неверный тип входного параметра №1: о
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №4: ожидался скаляр.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr "%s: Неверный тип входного параметра: ожидался скаляр.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: Неверный тип входного параметра: ожидался вектор-столбец.\n"
@@ -448,5 +444,3 @@ msgstr "a и b должны быть целыми, (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 или R <= 0.0\n"
-
-

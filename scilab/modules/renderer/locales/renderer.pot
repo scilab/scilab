@@ -47,19 +47,22 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgid "Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 89
 msgid "Click or press ESCAPE to terminate rotation."
 msgstr ""
+
 #
 # File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
 msgid "Unable to render polyline, memory full.\n"
 msgstr ""
+
 #
 # File: src/cpp/rendererBasicAlgos.cpp, line: 43
 #, c-format

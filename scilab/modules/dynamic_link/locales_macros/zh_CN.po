@@ -98,21 +98,9 @@ msgstr "   运行Makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   错误：%s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s：已经从库 %s 中装载\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s：需要一个 Fortran 或 C 语言编译器。\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s：输入参数#%d的大小错误：应该为%d。\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为%d。\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -237,17 +225,9 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该一个整数。\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该一个整数。\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "需要 Fortran 或 C 语言编译器。"

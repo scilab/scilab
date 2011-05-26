@@ -129,21 +129,9 @@ msgstr "   Makefile を実行中\n"
 msgid "   stderr: %s\n"
 msgstr "   標準エラー: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: ライブラリ %s はロード済みです.\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Fortran または Cコンパイラが必要です.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -282,21 +270,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列を指定してください.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '''' または ''[]'' を指定してくださ"
-"い.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
 "さい.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #
 # File: macros/ilib_compile.sci, line: 20

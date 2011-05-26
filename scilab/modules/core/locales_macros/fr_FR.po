@@ -103,11 +103,6 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s : Nombre d''arguments d''entrée incorrect : %d au moins sont attendus.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : un booléen attendu.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""

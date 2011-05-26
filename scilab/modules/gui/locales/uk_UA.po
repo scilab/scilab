@@ -79,12 +79,6 @@ msgstr "%s: файла з назвою %s не існує.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: невідома властивість: %s для елементів керування «%s».\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: помилковий вхідний параметр №%d: слід використовувати параметр «%s» або "
-"«%s»"
-
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
@@ -119,12 +113,6 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
 "рядків %d x %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
-"керування «%s» або «%s».\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -144,13 +132,6 @@ msgid ""
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
 "рядок 1 x %d дійсних чисел.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати дійсне "
-"число.\n"
 
 #, c-format
 msgid ""
@@ -214,12 +195,6 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
-"ціле число.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -230,11 +205,6 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
 "рядків.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «tree».\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -461,22 +431,6 @@ msgstr "Подяки"
 msgid "All %s files"
 msgstr "Всі файли %s"
 
-#, fuzzy
-msgid "All Encapsulated PS files"
-msgstr "Всі файли Scilab"
-
-#, fuzzy
-msgid "All PDF files"
-msgstr "Всі файли"
-
-#, fuzzy
-msgid "All PNG image files"
-msgstr "Всі файли Scilab"
-
-#, fuzzy
-msgid "All Postscript files"
-msgstr "Всі файли %s"
-
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
@@ -527,10 +481,6 @@ msgstr "Копіювати"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
 
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "© INRIA, 1989-2010"
-
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "
 
@@ -570,10 +520,6 @@ msgstr "Експортувати"
 
 msgid "FIG image"
 msgstr "Зображення FIG"
-
-#, fuzzy
-msgid "Feature not available in this mode..."
-msgstr "%s: У режимі NWNI функція недоступна.\n"
 
 msgid "File already exist"
 msgstr "Файл вже існує"
@@ -1000,11 +946,6 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати рядок або вектор "
 "дійсних значень 1 x %d.\n"
 
-#, fuzzy, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати дійсне значення.\n"
-
 msgid "Xcos files"
 msgstr "Файли Xcos"
 
@@ -1038,193 +979,3 @@ msgstr ""
 "disp(\"ПОПЕРЕДЖЕННЯ: через обмеження вашої графічної картки та драйвера до "
 "неї, які не здатні обробляти команди OpenGL, Scilab не зможе відтворювати "
 "графічні елементи. Будь ласка, оновіть ваш драйвер.\")"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

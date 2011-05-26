@@ -99,11 +99,6 @@ msgstr ""
 "%s: Unerwartete Anzahl von Eingangsargumenten: Zumindest %d werden "
 "erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s: falscher Typ des Eingabewertes #%d: ein boolscher Wert wird erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"

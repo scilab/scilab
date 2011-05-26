@@ -62,10 +62,6 @@ msgstr "Campo de manipulador gráfico"
 msgid "Scilab Command"
 msgstr "Comando do Scilab"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Função do Scilab"
-
 msgid "Scilab Function"
 msgstr "Função do Scilab"
 

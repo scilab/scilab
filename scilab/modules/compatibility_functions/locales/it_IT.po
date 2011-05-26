@@ -109,8 +109,7 @@ msgstr ""
 "%s: Questa caratteristica non è stata sviluppata: argomento di tipo %d:\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: La seguente caratteristica non è stata sviluppata: supporto per le "
 "ipermatrici.\n"
@@ -326,7 +325,3 @@ msgstr "Ott"
 
 msgid "Sep"
 msgstr "Set"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: l'uso con %d argomento/i in ingresso non è ancora sviluppato.\n"

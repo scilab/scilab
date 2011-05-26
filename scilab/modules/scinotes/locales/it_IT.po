@@ -38,12 +38,6 @@ msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
 "erano attese le stesse dimensioni.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
@@ -133,10 +127,6 @@ msgstr "Colore di sfondo"
 msgid "Backward"
 msgstr "_Indietro"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s è una directory."
-
 msgid "Binary file: read-only mode"
 msgstr "File binario: modalità sola lettura"
 
@@ -157,23 +147,11 @@ msgstr "Impossibile caricare !scinotesConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Distinzione maiuscole/minuscole"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Distinzione maiuscole/minuscole"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Distinzione maiuscole/minuscole"
-
 msgid "Change Color"
 msgstr "Cambia il colore"
 
 msgid "Change Colors"
 msgstr "Cambia i colori"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s è una directory."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -277,10 +255,6 @@ msgid "Enable Auto Reformat"
 msgstr "Abilita la riformattazione automatica"
 
 msgid "Encoding"
-msgstr "_Codifica"
-
-#, fuzzy
-msgid "Encoding problems"
 msgstr "_Codifica"
 
 msgid "Enter line number"
@@ -434,10 +408,6 @@ msgstr "Scheda s_uccessiva"
 msgid "No Line Numbering"
 msgstr ""
 
-#, fuzzy
-msgid "No help"
-msgstr "Aiuto di SciNotes"
-
 msgid "No split"
 msgstr ""
 
@@ -525,10 +495,6 @@ msgstr "File _recenti"
 msgid "Recursive"
 msgstr ""
 
-#, fuzzy
-msgid "Recursive search"
-msgstr "Ricerca circolare"
-
 msgid "Redo"
 msgstr "_Ripeti"
 
@@ -536,10 +502,6 @@ msgstr "_Ripeti"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
 msgstr ""
-
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Espressioni regolari"
 
 msgid "Regular expressions"
 msgstr "Espressioni regolari"
@@ -621,10 +583,6 @@ msgstr "_Cerca"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "File _recenti"
-
 msgid "Select All"
 msgstr "_Seleziona tutto"
 
@@ -688,14 +646,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Il file %s non esiste\n"
-" Si vuole crearlo?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -704,10 +654,6 @@ msgstr ""
 " Sovrascriverlo?"
 
 msgid "The file could not be converted."
-msgstr "Il file non può essere convertito."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "Il file non può essere convertito."
 
 msgid "The file could not be saved."
@@ -783,10 +729,6 @@ msgstr "Parola intera"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "A capo automatico"
-
 msgid "Word Wrap"
 msgstr "A capo automatico"
 
@@ -827,9 +769,3 @@ msgstr "Le modifiche saranno perse, cambiare comunque la codifica?"
 
 msgid "close this tab"
 msgstr "chiudi questa scheda"
-
-
-
-
-
-

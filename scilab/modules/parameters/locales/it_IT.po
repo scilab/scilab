@@ -91,8 +91,3 @@ msgstr "%s: valore sbagliato per il parametro %s: valore %f\n"
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: valore sbagliato per il parametro %s: valore %s\n"
-
-
-
-
-

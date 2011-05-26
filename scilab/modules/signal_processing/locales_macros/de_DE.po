@@ -186,23 +186,7 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Winkelwert muß sich im Satz {%s} "
 "befinden.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "spektrale Schätzung"
-
 msgid "Arma identification"
-msgstr "Arma Identifikation"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Arma Identifikation"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "spektrale Schätzung"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Arma Identifikation"
 
 #
@@ -267,10 +251,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "spektrale Schätzung"
 
 msgid "Spectral power"
 msgstr "Spektrale Leistung"

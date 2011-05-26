@@ -116,8 +116,7 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: %s має бути між %d та %d.\n"
 

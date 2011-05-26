@@ -196,10 +196,6 @@ msgstr ""
 "%s: Valores incorretos para o argumento de entrada #%d: o grau deve "
 "pertencer ao conjunto {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "estimativa espectral"
-
 msgid "Arma identification"
 msgstr ""
 
@@ -207,10 +203,6 @@ msgstr ""
 # File: demos/signal.dem.gateway.sce, line: 14
 msgid "Arma simulation and identification"
 msgstr ""
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "estimativa espectral"
 
 #
 # File: demos/signal.dem.gateway.sce, line: 15
@@ -279,10 +271,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "estimativa espectral"
 
 msgid "Spectral power"
 msgstr "Potência espectral"

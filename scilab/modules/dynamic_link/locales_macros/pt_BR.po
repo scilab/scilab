@@ -99,21 +99,9 @@ msgstr "   Executando o makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: Já carregado da biblioteca %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Um compilador de Fortran ou C necessário.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -256,23 +244,11 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '''' ou "
-"''[]''.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Valor errado para o argumento de entrada #%d: Deve pertencer ao conjunto "
 "{%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "É exigido um copilador C ou Fortran."

@@ -84,10 +84,6 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
@@ -95,10 +91,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
@@ -121,39 +113,14 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentów wejściowych nr %d i nr %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
 "całkowitej.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
@@ -357,10 +324,6 @@ msgstr "Kolor"
 
 msgid "Compile"
 msgstr "Skompiluj"
-
-#, fuzzy
-msgid "Connection error"
-msgstr "%s : Błąd przydziału pamięci.\n"
 
 msgid "Context"
 msgstr ""
@@ -890,10 +853,6 @@ msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
 msgstr ""
-
-#, fuzzy
-msgid "Xcos block parameter error"
-msgstr "blok wywołał błąd wewnętrzny"
 
 msgid "Yes"
 msgstr "Tak"

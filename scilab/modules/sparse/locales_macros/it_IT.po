@@ -65,19 +65,6 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
-"stessa dim. dell''arg. in ingr. #%d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -137,38 +124,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa la trasposta "
-"della funzione %s.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
-"''%s''.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
-"''%s''.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
-"trasposta della funzione %s.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa la "
 "trasposta della funzione %s.\n"
 
 #, c-format

@@ -348,10 +348,6 @@ msgstr "%s：输出参数的数目错误：应该介于%d与%d之间。\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s：输出参数的数目错误：至少应有%d个。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为%d或%d。\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
@@ -556,12 +552,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr "%s：输入参数#%d的值错误：时间域必须为''cc''或''d''。\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr "%s：输入参数的#%d和参数#%d的值错误：应该是 %s < %s。\n"
@@ -722,10 +712,6 @@ msgstr "不可行(Hy hamiltonian)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "不可行（谱半径）"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
 
 msgid "Zeros"
 msgstr "零"

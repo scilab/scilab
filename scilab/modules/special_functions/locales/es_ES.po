@@ -64,8 +64,3 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: sobredesbordamiento o subdesbordamiento (over/underflow) de un número de "
 "rango extendido\n"
-
-
-
-
-

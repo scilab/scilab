@@ -33,19 +33,3 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "Real o Compleja.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -47,36 +47,3 @@ msgstr "Не вдалося відтворити файл."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль роботи зі звуком (sound) Scilab не встановлено.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

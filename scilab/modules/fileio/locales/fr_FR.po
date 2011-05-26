@@ -408,20 +408,6 @@ msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne ''w'' ou "
 "''u'' attendue.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d ('%ls'): Un nom de "
-"fichier ou un répertoire valide attendu.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -516,19 +502,3 @@ msgstr "Attention : le fichier '%s' est déjà ouvert dans Scilab.\n"
 
 msgid "unclosed [ directive."
 msgstr "directive [ non fermée."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

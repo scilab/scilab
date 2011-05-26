@@ -199,4 +199,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "però no existeix cap fitxer de configuració:\n"
-

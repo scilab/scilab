@@ -402,20 +402,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''w'' or "
 "''u''.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte ('%ls'): Ha de ser un "
-"nom de fitxer o de directori vàlid.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -512,19 +498,3 @@ msgstr "Avís: El fitxer '%s' ja està obert pel Scilab.\n"
 
 msgid "unclosed [ directive."
 msgstr "No s'ha tancat una directiva [."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

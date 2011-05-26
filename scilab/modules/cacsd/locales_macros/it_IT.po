@@ -399,11 +399,6 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso %d o %d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -433,8 +428,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
-"%s: La dimensione dell''argomento in ingresso #%d è sbagliata: era attesa una "
-"matrice nulla.\n"
+"%s: La dimensione dell''argomento in ingresso #%d è sbagliata: era attesa "
+"una matrice nulla.\n"
 
 #, c-format
 msgid ""
@@ -499,7 +494,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso  #%d è di tipo sbagliato: era attesa una lista.\n"
+"%s: L''argomento in ingresso  #%d è di tipo sbagliato: era attesa una "
+"lista.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -623,12 +619,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso %d o %d.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' .\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"''%s'' .\n"
 
 #, c-format
 msgid ""
@@ -686,16 +684,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: il dominio temporale "
-"deve essere ''c'' o ''d''.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell''insieme {%s}.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: il dominio "
+"temporale deve essere ''c'' o ''d''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
@@ -713,8 +703,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso %d ha un valore sbagliato: era atteso un sistema "
-"idoneo.\n"
+"%s: L''argomento in ingresso %d ha un valore sbagliato: era atteso un "
+"sistema idoneo.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
@@ -883,11 +873,6 @@ msgstr "Non è possibile (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Non è possibile (raggio spettrale)"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso  #%d è di tipo sbagliato: era attesa una lista.\n"
 
 msgid "Zeros"
 msgstr "Zeri"

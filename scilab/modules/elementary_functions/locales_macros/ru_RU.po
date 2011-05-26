@@ -17,22 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr "%s: Неверное количество выходных параметров: ожидалось не больше %d.\n"
-
-#, fuzzy, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Несовместимые входных параметры №%d и №%d: ожидались одинаковые типы.\n"
-
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
@@ -89,10 +73,6 @@ msgstr "%s: Неверное количество входных парамет�
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -101,11 +81,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не больше %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid ""
@@ -201,10 +176,6 @@ msgstr "%s: Неверный размер входных параметров: �
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s: Неверный тип параметра №%d: ожидалось вещественное число.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr "%s: Неверный тип параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
@@ -341,12 +312,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
 

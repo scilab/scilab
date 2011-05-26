@@ -62,8 +62,3 @@ msgstr "%s: ошибка номер %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: переполнение или потеря значимости в расширенном диапазоне чисел\n"
-
-
-
-
-

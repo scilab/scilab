@@ -20,12 +20,6 @@ msgstr ""
 msgid "Allocation problem in spline.\n"
 msgstr "Problème d'allocation dans spline.\n"
 
-#, fuzzy, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-"ERREUR SCOPE : Impossible d'utiliser scoRefreshDataBoundsX() avec ce type "
-"d'objet\n"
-
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "Essayez d'augmenter la longueur du tampon dans le bloc retard \n"
 
@@ -52,12 +46,6 @@ msgstr ""
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Erreur à l'ouverture du fichier '%s'.\n"
-
-#, fuzzy
-msgid "Incorrect value for dimension argument."
-msgstr ""
-"ERREUR SCOPE : scoInitOfWindow, Valeur incorrecte pour la dimension de "
-"l'argument.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr "Type de variable incorrect : erreur dans le code scilab d'hypermat.\n"
@@ -155,138 +143,3 @@ msgstr "temps de retard=%f mais dernier temps stocké=%f \n"
 
 msgid "overflow error"
 msgstr "erreur de dépassement"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

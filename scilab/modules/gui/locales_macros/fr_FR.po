@@ -122,15 +122,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d ou %d : Chaîne de caractères "
-"attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d ou %d : Chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Un handle graphique ou un "
-"réel attendu.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d : Un handle graphique ou "
+"un réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
@@ -151,8 +151,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Une liste à deux éléments "
-"attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une liste à deux "
+"éléments attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"

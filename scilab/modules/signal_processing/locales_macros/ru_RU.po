@@ -188,23 +188,7 @@ msgstr ""
 "%s: Неверные значения входного параметра №%d: степень должна принадлежать "
 "множеству {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "оценка спектральной плотности"
-
 msgid "Arma identification"
-msgstr "Идентификация модели ARMA"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Идентификация модели ARMA"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "оценка спектральной плотности"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Идентификация модели ARMA"
 
 #
@@ -269,10 +253,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "оценка спектральной плотности"
 
 msgid "Spectral power"
 msgstr "Спектральная мощность"

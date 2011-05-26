@@ -33,15 +33,13 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался полином.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась рациональная дробь.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор-строка.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-строка.\n"
 
 #, c-format
 msgid ""

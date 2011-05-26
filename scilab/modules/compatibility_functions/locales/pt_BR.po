@@ -104,8 +104,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: Este recurso não foi implementado: argumento do tipo %d.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Este recurso não foi implementado: suporte a hipermatrizes.\n"
 
 #, c-format
@@ -137,8 +136,7 @@ msgstr "%s: Tipo desconhecido.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr ""
-"%s: Argumento de entrada #%d está incorreto: tamanho inconsistente.\n"
+msgstr "%s: Argumento de entrada #%d está incorreto: tamanho inconsistente.\n"
 
 #, c-format
 msgid ""
@@ -150,8 +148,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
+msgstr "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -231,8 +228,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
+msgstr "%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong value for affectation to ''%s''.\n"
@@ -315,7 +311,3 @@ msgstr "Out"
 
 msgid "Sep"
 msgstr "Set"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: Uso com %d argumento(s) de entrada ainda não foi implementado.\n"

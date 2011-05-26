@@ -180,10 +180,6 @@ msgstr "%s: 第一個輸入參數型態錯誤: 指定一純量.\n"
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s:  第四個輸入參數的型態錯誤: 被指定的純量.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr "%s: 輸入參數資料型態錯誤: 應該是一個純量.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: 輸入參數的型態錯誤: 應該為 行向量.\n"
@@ -403,5 +399,3 @@ msgstr "a 和 b 在 (b-a+1) <= 2147483561 中必須是整數"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A 小於等於 0.0 或 R 小於等於 0.0\n"
-
-

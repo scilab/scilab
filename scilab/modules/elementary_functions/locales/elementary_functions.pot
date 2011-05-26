@@ -23,59 +23,64 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_size.c, line: 114
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 133
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_size.c, line: 120
 # File: sci_gateway/c/sci_gsort.c, line: 326
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_frexp.c, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 109
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix "
-"of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix of strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 279
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 163
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_size.c, line: 108
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgid "%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 121
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_gsort.c, line: 139
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
-"''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""

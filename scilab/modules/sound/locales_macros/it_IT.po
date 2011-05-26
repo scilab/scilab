@@ -144,7 +144,8 @@ msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
 msgid "Incorrect chunk size information in RIFF file."
-msgstr "C''è una informazione sulla grandezza del blocco inesatto nel file RIFF"
+msgstr ""
+"C''è una informazione sulla grandezza del blocco inesatto nel file RIFF"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""

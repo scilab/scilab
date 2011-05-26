@@ -31,10 +31,6 @@ msgstr "%s: Ошибка при сборке документации: %s.\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Выполнение стека Java %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Выполнение стека Java %s.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
@@ -54,54 +50,3 @@ msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» не установлен.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

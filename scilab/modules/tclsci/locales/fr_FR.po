@@ -214,13 +214,3 @@ msgstr "Attention: trop de callbacks dans la queue!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] ne marchent pas avec Tcl/Tk.\n"
-
-
-
-
-
-
-
-
-
-

@@ -44,36 +44,3 @@ msgstr "No se puede interpretar el archivo."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Módulo de sonido de Scilab no instalado.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

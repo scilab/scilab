@@ -145,9 +145,3 @@ msgstr ""
 # File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
-
-#
-# File: sci_gateway/c/sci_createdir.c, line: 50
-#, fuzzy
-msgid "This directory already exists in "
-msgstr "%s: 警告: 目錄 ''%s'' 已存在.\n"

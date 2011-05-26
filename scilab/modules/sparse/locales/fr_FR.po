@@ -182,33 +182,3 @@ msgstr "creuse: panique dans le fichier `%s' à la ligne %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "||| Début d'une nouvelle matrice |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

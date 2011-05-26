@@ -367,7 +367,8 @@ msgid ""
 msgstr ""
 "Se %s è fuori dall''intervallo [-1,1]\n"
 "\n"
-"   la parte complessa del risultato di %s sarà l''opposto di quella di Matlab."
+"   la parte complessa del risultato di %s sarà l''opposto di quella di "
+"Matlab."
 
 #, c-format
 msgid ""

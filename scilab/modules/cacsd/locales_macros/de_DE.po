@@ -372,10 +372,6 @@ msgstr "%s: falsche Anzahl von Ausgangsargumenten: %d zu %d erwartet.\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: falsche Anzahl von Ausgangsargumenten: mindestens %d erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: falscher Wert von Eingangsargumenten #%d: %d oder %d erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Polynom erwartet.\n"
@@ -632,13 +628,6 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Zeitbereich muß in ''c'' oder "
 "''d'' liegen.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: muß sich im Satz {%s} befinden.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -814,10 +803,6 @@ msgstr "Unbestimmt (Hy Hamiltonoperator)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Unbestimmt (spektraler Radius)"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: eine Liste erwartet.\n"
 
 msgid "Zeros"
 msgstr "Nullstellen"

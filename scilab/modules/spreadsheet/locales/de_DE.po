@@ -269,8 +269,3 @@ msgstr "ripOLE: Dekodieren von %s ergab einen Fehler %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: Dekodieren von %s ergab einen Fehler %d.\n"
-
-
-
-
-

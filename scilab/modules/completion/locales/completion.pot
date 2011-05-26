@@ -20,11 +20,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_completeline.c, line: 153
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_getfilepartlevel.c, line: 54
 # File: tests/utilities/sci_completeline.c, line: 44
@@ -38,28 +40,33 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_getcommonpart.c, line: 56
 #, c-format
 msgid "%s: Wrong size for input argument %d.\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_getfields.c, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument: A string expected.\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_getfilepartlevel.c, line: 59
 # File: tests/utilities/sci_getpartlevel.c, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_completion.c, line: 49
 # File: sci_gateway/c/sci_completion.c, line: 127
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: tests/utilities/sci_getcommonpart.c, line: 61
 # File: tests/utilities/sci_completeline.c, line: 50
@@ -67,17 +74,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_completion.c, line: 115
 #, c-format
-msgid ""
-"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/completion/AbstractSciCompletionWindow.java, line: 262
 msgid "File or Directory"
 msgstr ""
+
 #
 # File: src/nocompletion/nocompletion.c, line: 19
 msgid "Scilab completion module not installed.\n"

@@ -285,8 +285,3 @@ msgstr "rozdzielenie OLE: rozkodowanie z %s spowodowało błąd %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: dekodowanie %s zakończyło się błędem %d.\n"
-
-
-
-
-

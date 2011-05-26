@@ -30,10 +30,6 @@ msgstr "%s: помилка під час спроби збирання доку�
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: виконання стосу команд Java %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: виконання стосу команд Java %s.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
@@ -55,54 +51,3 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

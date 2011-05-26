@@ -333,8 +333,3 @@ msgstr "ripOLE: %s のデコード時にエラー %d を発生しました\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"
-
-
-
-
-

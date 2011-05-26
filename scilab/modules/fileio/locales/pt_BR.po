@@ -409,20 +409,6 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''w'' ou "
 "''u''.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d ('%ls'): esperava-se um "
-"nome de arquivo ou de diretório válido.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -519,19 +505,3 @@ msgstr "Aviso: O arquivo '%s' já está aberto no Scilab.\n"
 
 msgid "unclosed [ directive."
 msgstr "A diretiva [ está em aberto."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

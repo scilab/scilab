@@ -263,8 +263,3 @@ msgstr "ripOLE: декодирование %s завершилось ошибк�
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: декодирование %s завершилось ошибкой %d.\n"
-
-
-
-
-

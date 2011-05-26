@@ -29,19 +29,3 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为实数或复数矩阵。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

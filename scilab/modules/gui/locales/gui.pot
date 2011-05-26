@@ -20,6 +20,7 @@ msgstr ""
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 97
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 150
@@ -30,22 +31,26 @@ msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 299
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
+
 #
 # File: src/c/CreateUIControl.c, line: 161
 #, c-format
 msgid "%s: Could not create uicontrol of type %s."
 msgstr ""
+
 #
 # File: src/cpp/DestroyWaitBar.cpp, line: 36
 # File: src/cpp/DestroyJavaUiobject.cpp, line: 40
 #, c-format
 msgid "%s: Could not destroy this object.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 127
 # File: sci_gateway/c/sci_uicontrol.c, line: 395
@@ -53,6 +58,7 @@ msgstr ""
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_delmenu.c, line: 36
 # File: sci_gateway/c/sci_setmenu.c, line: 37
@@ -60,12 +66,14 @@ msgstr ""
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 77
 # File: sci_gateway/c/sci_ClipBoard.c, line: 302
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 119
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 160
@@ -75,6 +83,7 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 229
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 250
@@ -98,63 +107,74 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: src/nogui/nogui.c, line: 61
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 105
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 275
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 414
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_progressionbar.c, line: 106
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setmenu.c, line: 91
 # File: sci_gateway/c/sci_unsetmenu.c, line: 91
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_waitbar.c, line: 156
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 177
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 38
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 128
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 425
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_waitbar.c, line: 116
 # File: sci_gateway/c/sci_waitbar.c, line: 138
@@ -162,33 +182,33 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 203
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgid "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 50
 # File: sci_gateway/c/sci_uigetcolor.c, line: 95
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exportUI.c, line: 43
 # File: sci_gateway/c/sci_exportUI.c, line: 60
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 48
 # File: sci_gateway/c/sci_uigetfont.c, line: 93
@@ -197,11 +217,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 234
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 101
 # File: sci_gateway/c/sci_uicontrol.c, line: 187
@@ -213,6 +235,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 45
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 36
@@ -238,6 +261,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 172
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 196
@@ -246,6 +270,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 55
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 80
@@ -270,35 +295,39 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 108
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 90
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
-"argument #%d.\n"
+msgid "%s: Wrong size for input argument #%d: It must have same dimensions that argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 60
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 165
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 435
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 346
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 70
 # File: sci_gateway/c/sci_x_mdialog.c, line: 96
@@ -307,6 +336,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 170
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 430
@@ -314,47 +344,47 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uiwait.c, line: 64
 # File: sci_gateway/c/sci_waitbar.c, line: 200
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uimenu.c, line: 87
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 179
 # File: sci_gateway/c/sci_uicontrol.c, line: 193
 # File: sci_gateway/c/sci_uicontrol.c, line: 209
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 133
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 101
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exportUI.c, line: 48
 # File: sci_gateway/c/sci_exportUI.c, line: 66
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 40
 # File: sci_gateway/c/sci_uigetfont.c, line: 101
@@ -363,19 +393,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_uimenu.c, line: 72
 # File: sci_gateway/c/sci_uiwait.c, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_progressionbar.c, line: 58
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A graphic handle or a string "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: A graphic handle or a string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 71
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 43
@@ -392,18 +423,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 97
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 89
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_waitbar.c, line: 59
 # File: sci_gateway/c/sci_uigetcolor.c, line: 65
@@ -411,6 +443,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 163
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 187
@@ -450,47 +483,52 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_uigetfile.cpp, line: 124
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 83
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 295
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_messagebox.c, line: 114
 # File: sci_gateway/c/sci_messagebox.c, line: 137
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a string vector "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a string vector expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_mpopup.c, line: 46
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 136
 # File: sci_gateway/c/sci_helpbrowser.c, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_choice.c, line: 63
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 340
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 51
 # File: sci_gateway/c/sci_x_mdialog.c, line: 78
@@ -506,20 +544,21 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/InitUIMenu.cpp, line: 103
 # File: src/cpp/InitUIMenu.cpp, line: 116
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/UnitsConversion.cpp, line: 108
 # File: src/cpp/UnitsConversion.cpp, line: 184
 #, c-format
-msgid ""
-"%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
-"or pixels expected.\n"
+msgid "%s: Wrong value for '%s' property: points, normalized, inches, centimeters or pixels expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 121
 # File: sci_gateway/c/sci_ClipBoard.c, line: 72
@@ -529,18 +568,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 127
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 65
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
-"exist.\n"
+msgid "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not exist.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_waitbar.c, line: 124
 # File: sci_gateway/c/sci_waitbar.c, line: 146
@@ -548,93 +588,112 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 57
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 65
 # File: sci_gateway/c/sci_ClipBoard.c, line: 275
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 134
 # File: sci_gateway/cpp/sci_toprint.cpp, line: 363
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 83
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 252
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 60
 msgid "About Scilab..."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 60
 msgid "Acknowledgements"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
 msgid "All %s files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
 msgid "All Encapsulated PS files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
 msgid "All PDF files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
 msgid "All PNG image files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
 msgid "All Postscript files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 68
 msgid "All Scilab files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 80
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 57
 msgid "All files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/PrinterHelper.java, line: 64
 msgid "An error occured: "
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
 msgid "Attributes"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 550
 msgid "Back"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 162
 msgid "Bold"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
@@ -642,176 +701,216 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 215
 msgid "Cancel"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 53
 msgid "CeCILL License"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 100
 msgid "Clear Console"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 93
 msgid "Clear History"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 101
 msgid "Close"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2352
 msgid "Console Background..."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2333
 msgid "Console Font..."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 572
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 79
 msgid "Copy"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 51
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
 msgid "Copyright (c) 1989-2011 (INRIA)"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
 msgid "Could not open: "
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 72
 msgid "Cut"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 528
 msgid "Edit in the Scilab Text Editor"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 53
 msgid "Encapsulated PostScript image (EPS)"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 52
 msgid "Enhanced Metafile image (EMF)"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 216
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 253
 msgid "Error on export"
 msgstr ""
+
 #
 # File: src/nogui/nogui.c, line: 119
 msgid "Error. A signal has been caught.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 137
 msgid "Evaluate selection with echo"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 150
 msgid "Evaluate selection with no echo"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 508
 msgid "Execute into Scilab"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 104
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 105
 msgid "Export"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 54
 msgid "FIG image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 293
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 373
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 387
 msgid "Feature not available in this mode..."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 160
 msgid "File already exist"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 151
 msgid "File already exists"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
 msgid "Font"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
 msgid "Font Chooser"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 565
 msgid "Forward"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 48
 msgid "GIF image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 89
 msgid "Help Browser"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 609
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 130
 msgid "Help about '"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 603
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 124
 msgid "Help about a selected text"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 115
 msgid "Help on a selected keyword"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 msgid "Impossible to get current look and feel"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
 msgid "Italic"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 49
 msgid "JPEG image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 59
-msgid ""
-"Left click to start selection of the zooming area. Right click to cancel."
+msgid "Left click to start selection of the zooming area. Right click to cancel."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 90
 msgid "Left click to terminate selection. Right click to cancel."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 82
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 98
 msgid "Loading help browser..."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
 msgid "Monospaced"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 msgid "No"
 msgstr ""
+
 #
 # File: src/cpp/SetUiobjectVisible.cpp, line: 72
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 24
@@ -860,82 +959,100 @@ msgstr ""
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolParent.cpp, line: 126
 # File: src/cpp/SetUicontrolParent.cpp, line: 168
 #, c-format
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2487
 msgid "No print service found."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 502
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 521
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 593
 msgid "No text selected"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 165
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 168
 msgid "OK"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 204
 msgid "Ok"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 55
 msgid "PDF image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 50
 msgid "PNG image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 51
 msgid "PPM image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 86
 msgid "Paste"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 215
 msgid "Please specify a file format"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 125
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 189
 msgid "Preview"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 150
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 159
 msgid "Replace existing file?"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 56
 msgid "SVG image"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
 msgid "Save and execute"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 177
 msgid "SciNotes compatible"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 58
 msgid "Scicos files"
 msgstr ""
+
 #
 # File: sci_gateway/c/gw_gui.c, line: 71
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
+
 #
 # File: src/nogui/nogui.c, line: 33
 # File: src/nogui/nogui.c, line: 153
@@ -943,78 +1060,96 @@ msgstr ""
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_choice.c, line: 82
 msgid "Scilab Choices Request"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 64
 # File: sci_gateway/c/sci_x_choose.c, line: 63
 msgid "Scilab Choose Message"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 66
 msgid "Scilab Demo files"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_dialog.c, line: 54
 msgid "Scilab Input Value Request"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_messagebox.c, line: 173
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 71
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 83
 msgid "Scilab Message"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_x_mdialog.c, line: 59
 msgid "Scilab Multiple Values Request"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
 msgid "Scilab Quit files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 50
 msgid "Scilab SCE files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 48
 msgid "Scilab SCI files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "Scilab Start files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 52
 msgid "Scilab binary files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 582
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 107
 msgid "Select All"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 msgid "Test files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 49
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/tree/SwingScilabTree.java, line: 173
 msgid "Tree Overview"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 251
 msgid "Unrecognized extension '"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 106
 msgid "Untitled-export"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolMin.cpp, line: 79
 # File: src/cpp/SetUicontrolMin.cpp, line: 99
@@ -1023,64 +1158,67 @@ msgstr ""
 # File: src/cpp/SetUicontrolValue.cpp, line: 125
 # File: src/cpp/SetUicontrolValue.cpp, line: 138
 #, c-format
-msgid ""
-"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
-"property value.\n"
+msgid "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 47
 msgid "Windows BMP image"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 35
 # File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolUnits.cpp, line: 35
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 29
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolRelief.cpp, line: 35
 #, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 80
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 32
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 82
 #, c-format
-msgid ""
-"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
+msgid "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 33
 #, c-format
 msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolParent.cpp, line: 32
 #, c-format
 msgid "Wrong size for '%s' property: A graphic handle expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolMin.cpp, line: 26
 # File: src/cpp/SetUicontrolMax.cpp, line: 26
@@ -1092,11 +1230,13 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolValue.cpp, line: 29
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontName.cpp, line: 26
 # File: src/cpp/SetUicontrolValue.cpp, line: 60
@@ -1110,69 +1250,72 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: A string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolPosition.cpp, line: 48
 # File: src/cpp/SetUicontrolPosition.cpp, line: 70
 #, c-format
-msgid ""
-"Wrong size for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+msgid "Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolString.cpp, line: 46
 # File: src/cpp/SetUicontrolString.cpp, line: 61
 #, c-format
-msgid ""
-"Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgid "Wrong size for '%s' property: A string or a vector of strings expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUiobjectCallback.cpp, line: 42
 #, c-format
 msgid "Wrong size for '%s' property: a 2-item list expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 73
 # File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 75
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 81
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolUnits.cpp, line: 73
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 67
 #, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolRelief.cpp, line: 91
 #, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 76
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 108
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 124
 #, c-format
-msgid ""
-"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
+msgid "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 66
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolMin.cpp, line: 118
 # File: src/cpp/SetUicontrolMax.cpp, line: 118
@@ -1181,11 +1324,13 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolValue.cpp, line: 80
 #, c-format
 msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontName.cpp, line: 22
 # File: src/cpp/SetUimenuLabel.cpp, line: 22
@@ -1193,13 +1338,13 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolPosition.cpp, line: 83
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+msgid "Wrong type for '%s' property: A string or a 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUiobjectVisible.cpp, line: 26
 # File: src/cpp/SetUiobjectVisible.cpp, line: 34
@@ -1213,6 +1358,7 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 31
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 56
@@ -1221,49 +1367,49 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 60
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolUnits.cpp, line: 64
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 58
 # File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
 # File: src/cpp/GetUicontrolUnits.cpp, line: 36
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgid "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/GetUicontrolRelief.cpp, line: 37
 # File: src/cpp/SetUicontrolRelief.cpp, line: 68
 #, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 56
 # File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/GetUicontrolFontWeight.cpp, line: 34
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
-"expected.\n"
+msgid "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 52
 # File: src/cpp/SetUiobjectForegroundColor.cpp, line: 40
 #, c-format
-msgid ""
-"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
+msgid "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolParent.cpp, line: 63
 # File: src/cpp/SetUicontrolParent.cpp, line: 199
@@ -1271,30 +1417,31 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolValue.cpp, line: 69
 #, c-format
-msgid ""
-"Wrong value for '%s' property: A String containing a numeric value "
-"expected.\n"
+msgid "Wrong value for '%s' property: A String containing a numeric value expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 49
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUiobjectTag.cpp, line: 22
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolPosition.cpp, line: 56
 #, c-format
-msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+msgid "Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n"
 msgstr ""
+
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
@@ -1303,34 +1450,30 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 56
 msgid "Xcos files"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 171
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 174
 msgid "Yes"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 198
-msgid ""
-"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
-"with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
-"information.\")"
+msgid "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more information.\")"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 91
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 169
-msgid ""
-"disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
-"mode where mixing uicontrols and graphics is not available. Type \"\"help "
-"usecanvas\"\" for more information.\")"
+msgid "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 177
-msgid ""
-"disp(\"WARNING: Due to your video card drivers limitations, that are not "
-"able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
-"update your driver.\")"
+msgid "disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")"
 msgstr ""

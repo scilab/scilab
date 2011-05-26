@@ -29,8 +29,8 @@ msgstr "%s : Cette fonctionnalité n''a pas été implémentée : %s.\n"
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
 msgstr ""
-"%s : Cette fonctionnalité n''a pas encore été implémentée : Traduction d''une "
-"variable du type %s.\n"
+"%s : Cette fonctionnalité n''a pas encore été implémentée : Traduction "
+"d''une variable du type %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -63,7 +63,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un entier attendu.\n"
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un entier "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
@@ -83,20 +84,22 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s : Mauvais type pour l''argument d''entrée n°%d : Un entier attendu.\n"
+msgstr ""
+"%s : Mauvais type pour l''argument d''entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Matrice réelle ou complexe, "
-"matrice de chaîne de caractères ou list attendue.\n"
+"%s: Mauvais type pour l''argument d''entrée n° %d: Matrice réelle ou "
+"complexe, matrice de chaîne de caractères ou list attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée : Chaîne de caractère attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée : Chaîne de caractère "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

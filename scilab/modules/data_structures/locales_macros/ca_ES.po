@@ -42,14 +42,14 @@ msgstr "%s: Nombre incorrecte d''arguments d''entrada: Han de ser %d"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"d''estructura.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector d''estructura.\n"
 
 #, c-format
 msgid ""

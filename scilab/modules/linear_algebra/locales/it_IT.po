@@ -33,19 +33,3 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "reale o complessa.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

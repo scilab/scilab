@@ -285,24 +285,3 @@ msgstr "警告: 待ち行列内のコールバックの数が多すぎます!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] は Tcl/Tk では使用できません.\n"
-
-#
-# File: macros/TCL_CreateSlave.sci, line: 38
-
-
-
-
-
-#
-# File: demos/tk/uicontrol.sci, line: 31
-
-#
-# File: demos/tk/uicontrol.sci, line: 30
-
-# File: demos/tk/uicontrol.sci, line: 28
-
-#
-# File: demos/tk/uicontrol.sci, line: 29
-
-#
-# File: macros/gettklib.sci, line: 45

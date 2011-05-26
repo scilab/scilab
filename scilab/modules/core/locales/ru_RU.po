@@ -472,11 +472,6 @@ msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась строка или скаляр.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -565,10 +560,6 @@ msgstr "%s: Неверное значение входного параметр�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
@@ -704,10 +695,6 @@ msgstr "&Модули"
 msgid "A non square matrix!\n"
 msgstr "Матрица не является квадратной!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: отменяется текущее вычисление\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не удалось найти каталог хранения временных файлов Windows (1)."
 
@@ -723,10 +710,6 @@ msgstr "Консорциум Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Авторское право (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -936,10 +919,6 @@ msgstr "ВНИМАНИЕ: %s\n"
 msgid "Warning"
 msgstr "Внимание"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Ошибка: не удалось сделать грамматический разбор файла  %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Внимание: Проблема с %s.\n"
@@ -1009,34 +988,3 @@ msgstr "третий"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist заполнен не до конца.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

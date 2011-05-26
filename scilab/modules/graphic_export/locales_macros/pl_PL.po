@@ -33,10 +33,6 @@ msgstr "%s: Nie można utworzyć pliku eksportu, brak uprawnień do zapisu.\n"
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: Nie można wykonać polecenia pstoedit.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: Nie można wykonać polecenia pstoedit.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

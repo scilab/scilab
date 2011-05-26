@@ -20,7 +20,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
 msgstr ""
-"%s: Nombre d''arguments d''entrée incorrecte : Un nombre est encore attendu.\n"
+"%s: Nombre d''arguments d''entrée incorrecte : Un nombre est encore "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"

@@ -38,10 +38,6 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d und #%d. Gleiche Dimensionen "
 "erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: falscher Typ für Argument %d: Matrix von Zeichenketten erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s: falscher Typ für Argument %d: reelle Matrix erwartet.\n"
@@ -125,10 +121,6 @@ msgstr ""
 msgid "Backward"
 msgstr "Rückwärts"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "»%s« ist ein Ordner."
-
 msgid "Binary file: read-only mode"
 msgstr ""
 
@@ -149,23 +141,11 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Groß-/Kleinschreibung beachten"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Groß-/Kleinschreibung beachten"
-
 msgid "Change Color"
 msgstr "Farbe ändern"
 
 msgid "Change Colors"
 msgstr "Farben ändern"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "»%s« ist ein Ordner."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -269,10 +249,6 @@ msgid "Enable Auto Reformat"
 msgstr "schalte automatische Formatierung ein"
 
 msgid "Encoding"
-msgstr "Zeichenkodierung"
-
-#, fuzzy
-msgid "Encoding problems"
 msgstr "Zeichenkodierung"
 
 msgid "Enter line number"
@@ -531,10 +507,6 @@ msgstr "Wiederholen"
 msgid "Regex"
 msgstr ""
 
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Reguläre Ausdrücke"
-
 msgid "Regular expressions"
 msgstr "Reguläre Ausdrücke"
 
@@ -614,10 +586,6 @@ msgstr "Suchen"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Zuletzt geöffnete Dateien"
-
 msgid "Select All"
 msgstr "Alle auswählen"
 
@@ -681,14 +649,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Die Datei %s existiert nicht\n"
-"Wollen Sie diese erzeugen"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -697,10 +657,6 @@ msgstr ""
 " Überschreiben?"
 
 msgid "The file could not be converted."
-msgstr "Die Datei konnte nicht konvertiert werden."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "Die Datei konnte nicht konvertiert werden."
 
 msgid "The file could not be saved."
@@ -774,10 +730,6 @@ msgstr "Ganzes Wort"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
-
-#, fuzzy
-msgid "Word"
-msgstr "Zeilenumbruch"
 
 msgid "Word Wrap"
 msgstr "Zeilenumbruch"

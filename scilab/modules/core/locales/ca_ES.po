@@ -508,12 +508,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser una cadena "
 "de text o un escalar.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -620,11 +614,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -763,10 +752,6 @@ msgstr "&Barres d'eines"
 msgid "A non square matrix!\n"
 msgstr "La matriu no és quadrada!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: s'està avortant el càlcul actual\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No s'ha trobat el directori temporal de Windows (1)."
 
@@ -782,10 +767,6 @@ msgstr "Consorci Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -997,10 +978,6 @@ msgstr "AVÍS: %s\n"
 msgid "Warning"
 msgstr "Avís"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Error: No s'ha pogut analitzar el fitxer %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Avís: Problemes amb %s.\n"
@@ -1070,29 +1047,3 @@ msgstr "tercer"
 
 msgid "tlist not completely filled.\n"
 msgstr "No s'ha omplert completament el tlist.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

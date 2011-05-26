@@ -506,11 +506,6 @@ msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un chaîne de caractères ou "
 "un scalaire attendu.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Un réel est attendu.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -612,11 +607,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -756,10 +746,6 @@ msgstr "Boites à ou&tils"
 msgid "A non square matrix!\n"
 msgstr "Une matrice non carrée !\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP : Arrêt du calcul en cours\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Ne trouve pas le répertoire temporaire de Windows (1)."
 
@@ -775,10 +761,6 @@ msgstr "Consortium Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -1018,10 +1000,6 @@ msgstr "AVERTISSEMENT : %s\n"
 msgid "Warning"
 msgstr "Attention"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Erreur : Impossible d'analyser le fichier %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Attention : Problèmes avec %s.\n"
@@ -1111,84 +1089,3 @@ msgstr "troisième"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist partiellement remplie.\n"
-
-
-
-
-#
-# File: macros/whereami.sci, line: 21
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: src/c/callinterf.c, line: 85
-
-
-
-
-
-
-#
-# File: sci_gateway/c/sci_who.c, line: 303
-
-
-
-#
-# File: macros/toolboxes.sci, line: 42
-
-#
-# File: macros/powershell.sci, line: 7
-
-#
-# File: src/c/scicurdir.c, line: 49
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

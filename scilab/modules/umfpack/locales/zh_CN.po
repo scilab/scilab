@@ -154,35 +154,3 @@ msgstr "奇异矩阵"
 
 msgid "symbolic factorization"
 msgstr "对称因式分解"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

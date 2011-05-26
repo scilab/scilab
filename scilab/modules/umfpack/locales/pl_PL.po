@@ -171,36 +171,3 @@ msgstr "pojedyncza macierz"
 
 msgid "symbolic factorization"
 msgstr "symboliczny rozkład na czynniki"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -206,10 +206,6 @@ msgstr ""
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr "%s: В задаче нет ограничений, но алгоритм Box разработан для них."
 
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: Порядок должен быть 1, 2 или 4.\n"
-
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: Случайные границы начального симплекса недоступны без границ."
@@ -539,19 +535,9 @@ msgstr "%s: Весовая матрица должна быть квадратн
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr "%s: Неверное количество параметров: ожидалось %d, а задано %d"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество входных параметров.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -565,16 +551,6 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
@@ -582,10 +558,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -598,50 +570,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: Неверный размер входного параметра №%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr "%s: Неверный тип входного параметра №%s: ожидалась внешняя функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr "%s: Неверный тип входного параметра №%s: ожидалась внешняя функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: Неверный размер входного параметра №%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr "%s: Неверный тип входного параметра №%s: ожидалась внешняя функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось количество столбцов "
-"%d.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -659,10 +587,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: Неверное максимальное количество оценок функции %s."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -939,10 +863,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: Неверное максимальное количество оценок функции %s."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

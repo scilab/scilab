@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "Tworzenie dokumentu głównego pliku pomocy Scilab dla %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Budowanie pliku pomocy Scilab ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Budowanie pliku pomocy Scilab ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

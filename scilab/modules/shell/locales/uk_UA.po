@@ -63,10 +63,6 @@ msgstr "Поле елемента керування графіки"
 msgid "Scilab Command"
 msgstr "Команда Scilab"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Функція Scilab"
-
 msgid "Scilab Function"
 msgstr "Функція Scilab"
 

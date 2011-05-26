@@ -28,8 +28,8 @@ msgstr "%s: Une erreur est survenue: %s n''est pas supporté.\n"
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr ""
-"%s: Une erreur est survenue: Le format de compression de donnée %s n''est pas "
-"supporté.\n"
+"%s: Une erreur est survenue: Le format de compression de donnée %s n''est "
+"pas supporté.\n"
 
 #, c-format
 msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"

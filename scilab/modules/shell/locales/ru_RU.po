@@ -58,10 +58,6 @@ msgstr "Поле графического дескриптора"
 msgid "Scilab Command"
 msgstr "Команда Scilab"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Функция Scilab"
-
 msgid "Scilab Function"
 msgstr "Функция Scilab"
 

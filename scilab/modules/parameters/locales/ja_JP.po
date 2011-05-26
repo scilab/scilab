@@ -86,12 +86,3 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %f\n"
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"
-
-
-
-
-#
-# File: macros/get_param.sci, line: 28
-
-#
-# File: macros/set_param.sci, line: 19

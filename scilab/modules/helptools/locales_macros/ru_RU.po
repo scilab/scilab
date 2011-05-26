@@ -42,18 +42,6 @@ msgstr ""
 "\n"
 "Собирается основной документ руководства Scilab для %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Формируется файл руководства Scilab ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Формируется файл руководства Scilab ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

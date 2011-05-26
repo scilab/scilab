@@ -197,12 +197,3 @@ msgstr ""
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "Mauvais type pour l'argument d'entrée n° %d: Chaîne de caractères attendue.\n"
-
-
-
-
-
-
-
-
-

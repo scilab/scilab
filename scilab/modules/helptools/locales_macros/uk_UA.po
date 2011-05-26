@@ -41,18 +41,6 @@ msgstr ""
 "\n"
 "Збирання основного документа підручника Scilab для %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Збирання файла підручника зі scilab ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Збирання файла підручника зі scilab ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

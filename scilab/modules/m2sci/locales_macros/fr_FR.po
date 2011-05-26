@@ -246,7 +246,8 @@ msgstr ""
 #, c-format
 msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"Au moins une opérande de %s est une matrice vide, l''équivalent Scilab est []."
+"Au moins une opérande de %s est une matrice vide, l''équivalent Scilab est "
+"[]."
 
 #, c-format
 msgid "Bad use of isdefinedvar() with input: %s."
@@ -320,7 +321,8 @@ msgstr ""
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
 msgstr ""
-"L''extraction de %s à partir de la tlist ''%s'' n''est pas encore implémentée."
+"L''extraction de %s à partir de la tlist ''%s'' n''est pas encore "
+"implémentée."
 
 msgid "File"
 msgstr "Fichier"
@@ -344,8 +346,8 @@ msgid ""
 "For Scilab sparse(), input values must have the same size, not sure they "
 "have."
 msgstr ""
-"Pour la fonction Scilab sparse(), les valeurs d''entrée doivent avoir la même "
-"dimension, par sur que ce soit le cas."
+"Pour la fonction Scilab sparse(), les valeurs d''entrée doivent avoir la "
+"même dimension, par sur que ce soit le cas."
 
 msgid "Generate formated code:"
 msgstr "Génère du code formaté :"
@@ -646,7 +648,8 @@ msgid "Verbose mode: "
 msgstr "Mode verbeux : "
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
-msgstr "Vérifiez que l''expression évaluée par execstr() est compatible Scilab."
+msgstr ""
+"Vérifiez que l''expression évaluée par execstr() est compatible Scilab."
 
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
@@ -835,7 +838,8 @@ msgstr "extraction récursive à partir d''une variable %s de type %s."
 #, c-format
 msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
-"l''extraction récursive avec un index de type %s n''est pas encore implémentée."
+"l''extraction récursive avec un index de type %s n''est pas encore "
+"implémentée."
 
 #, c-format
 msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."

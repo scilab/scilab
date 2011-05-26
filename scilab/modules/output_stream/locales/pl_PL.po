@@ -214,11 +214,6 @@ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr ""
-"%s: Niewłaściwa liczba argumentów wejściowych: dane nie pasują do formatu.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -847,10 +842,6 @@ msgstr "Nie realizowane w Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Zmienna zero nie może być tutaj użyta.\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "Operator z / i \\ operacje nie mogą zawierać NaN z Inf.\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim zatrzymane: osiągnięto maksymalną liczbę połączeń do f.\n"
 
@@ -1456,12 +1447,3 @@ msgstr "czas domeny z argumentu %d nie jest zdefiniowany.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "słowo kluczowe varargout nie może być tu użyte.\n"
-
-
-
-
-
-
-
-
-

@@ -39,10 +39,3 @@ msgstr "L'índex número %d de l'extracció d'hipermatriu és incorrecte. "
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Massa arguments a la pila, editeu el stack.h i augmenteu el intersiz.\n"
-
-
-
-
-
-
-

@@ -94,8 +94,7 @@ msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr "%s: 輸入參數型態錯誤: 應為純量.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: %s 應介於 %d 及 %d 之間.\n"
 
 #, c-format

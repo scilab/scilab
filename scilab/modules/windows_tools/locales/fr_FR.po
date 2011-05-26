@@ -43,12 +43,6 @@ msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -92,9 +86,3 @@ msgstr "Console Scilab"
 
 msgid "see help"
 msgstr "voir l'aide"
-
-
-
-
-
-

@@ -21,10 +21,6 @@ msgstr ""
 msgid "%s : Invalid entity %s\n"
 msgstr "%s : Entitat invàlida %s\n"
 
-#, fuzzy, c-format
-msgid "%s: ''%s'' cannot be used with ''%s''.\n"
-msgstr "No es pot definir el %s per a aquest cas.\n"
-
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
 msgstr "%s: Error : No s''ha pogut avaluar la funció d''entrada ''%s''."
@@ -32,19 +28,6 @@ msgstr "%s: Error : No s''ha pogut avaluar la funció d''entrada ''%s''."
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr "%s: Error : No s''ha pogut avaluar la funció d''entrada."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
-"%s: Els arguments d''entrada #%d i #%d són incompatibles: Han de tenir el "
-"mateix nombre d''elements.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Els arguments d''entrada #%d i #%d són incompatibles: Han de tenir el "
-"mateix nombre d''elements.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
@@ -68,11 +51,13 @@ msgstr "%s: Nombre incorrecte d''arguments d''entrada: Han de ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser %d o %d."
+msgstr ""
+"%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser %d o %d."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Nombre d''arguments d''entrada incorrecte: Hi ha d''haver %d o %d.\n"
+msgstr ""
+"%s: Nombre d''arguments d''entrada incorrecte: Hi ha d''haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
@@ -86,7 +71,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a mínim.\n"
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a "
+"mínim.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -110,23 +96,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d."
-msgstr "%s: L''argument d''entrada #%d és d''un tipus incorrecte.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mida %dx%d o %dx%d.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mida %dx%d o %dx%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
@@ -139,8 +118,8 @@ msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
 "%d expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mida major que %dx%d.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mida major que %dx%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -151,7 +130,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta. Ha de ser un "
+"escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
@@ -162,8 +142,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -179,23 +159,23 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
 msgstr ""
-"%s: L''argument d''entrada %d té una mida incorrecta: Ha de ser un tractament "
-"''Axes''.\n"
+"%s: L''argument d''entrada %d té una mida incorrecta: Ha de ser un "
+"tractament ''Axes''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
 "by-%d expected.\n"
 msgstr ""
-"%s: L''argument d''entrada ''%s'' té una mida incorrecta: Ha de ser una matriu "
-"major que %dx%d.\n"
+"%s: L''argument d''entrada ''%s'' té una mida incorrecta: Ha de ser una "
+"matriu major que %dx%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada ''%s'' té una mida incorrecta: Ha de ser una matriu "
-"no buida.\n"
+"%s: L''argument d''entrada ''%s'' té una mida incorrecta: Ha de ser una "
+"matriu no buida.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
@@ -233,18 +213,6 @@ msgstr ""
 "%s: Els arguments d''entrada ''%s'' tenen una mida incorrecta: Han de ser "
 "vectors de mida %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un escalar "
-"real.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"fila real.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L''argument d''entrada #%d és d''un tipus incorrecte.\n"
@@ -255,42 +223,37 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
 "estructura de dades %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
-"tractament ''Axes''.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"nombre real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un "
+"nombre real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: L''argument d''entrada %d és d''un tipus incorrecte: Ha de ser un vector.\n"
+"%s: L''argument d''entrada %d és d''un tipus incorrecte: Ha de ser un "
+"vector.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
 "expected."
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de ''Figure''."
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de ''Figure''."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
@@ -304,25 +267,13 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
 "tractament gràfic.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"matriu.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un nombre "
-"real.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real array or graphic handle array "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"real o de tractaments gràfics.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector real o de tractaments gràfics.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -333,8 +284,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de cadenes de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de cadenes de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: function expected.\n"
@@ -381,18 +332,12 @@ msgstr ""
 "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "enter major o igual que %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser a l''interval "
-"[%s, %s].\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser a l''interval "
-"[%s, %s].\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser a "
+"l''interval [%s, %s].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -400,32 +345,10 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
 "d''aquests {%s}.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte. Ha de ser ''%s'' o ''%s''.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte. Ha de ser ''%s'' o ''%s''.\n"
-
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 "%s: L''argument d''entrada #%d té valors incorrectes: Han de ser ''%s''.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
-"d''aquests {%s}.\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -638,7 +561,8 @@ msgstr "La funció seleccionada ha de tenir un paràmetre de sortida (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
-"La funció seleccionada ha de tenir tres paràmetres d''entrada (curve,pt,index)"
+"La funció seleccionada ha de tenir tres paràmetres d''entrada (curve,pt,"
+"index)"
 
 msgid "Unique datatip mode"
 msgstr "Mode de datatip únic"

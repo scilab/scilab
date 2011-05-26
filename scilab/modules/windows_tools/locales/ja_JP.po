@@ -63,17 +63,6 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
 # File: sci_gateway/c/sci_oemtochar.c, line: 48
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
-
-# File: sci_gateway/c/sci_chartooem.c, line: 48
-# File: sci_gateway/c/sci_dos.c, line: 50
-# File: sci_gateway/c/sci_dos.c, line: 62
-# File: sci_gateway/c/sci_findfileassociation.c, line: 38
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
-# File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
@@ -134,12 +123,3 @@ msgstr "Scilabコンソール"
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"
 msgstr "ヘルプを見てください。"
-
-
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 37
-# File: sci_gateway/c/sci_winqueryreg.c, line: 45
-
-
-
-

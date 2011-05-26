@@ -105,12 +105,14 @@ msgstr "%s: El nombre d''arguments d''entrada és incorrecte.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a mínim.\n"
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a "
+"mínim.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
@@ -121,19 +123,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"dispersa quadrada.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu dispersa quadrada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"dispersa.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu dispersa.\n"
 
 #, c-format
 msgid "%s: currently don''t read unassembled (elemental) sparse matrix."

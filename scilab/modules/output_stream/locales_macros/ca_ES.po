@@ -41,7 +41,8 @@ msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un booleà.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid ""

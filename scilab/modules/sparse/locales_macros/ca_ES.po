@@ -44,7 +44,8 @@ msgstr "%s: No convergeix.\n"
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
-"%s: L''argument d''entrada té un número incorrecte: Ha de ser com a mínim %d.\n"
+"%s: L''argument d''entrada té un número incorrecte: Ha de ser com a mínim "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -53,25 +54,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: El nombre d''arguments d''entrada és incorrecte: Han de ser com a mínim "
 "%d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser de la mateixa "
-"mida que l''argument d''entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
@@ -84,13 +74,14 @@ msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser de la mateixa "
-"mida que l''argument d''entrada #%d.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser de la "
+"mateixa mida que l''argument d''entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un "
+"escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
@@ -109,8 +100,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"columna.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector columna.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -121,8 +112,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"quadrada.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu quadrada.\n"
 
 #, c-format
 msgid ""
@@ -130,36 +121,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser la "
-"transposada de la funció %s.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser un vector.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser la "
-"transposada de la funció %s.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser la "
-"transposada de la funció %s.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser la "
 "transposada de la funció %s.\n"
 
 #, c-format

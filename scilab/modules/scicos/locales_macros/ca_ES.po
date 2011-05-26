@@ -84,10 +84,6 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
@@ -95,10 +91,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 #, c-format
@@ -119,32 +111,12 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Mida incorrecta per als arguments d''entrada #%d i #%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un enter.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 msgid "&?"
@@ -353,10 +325,6 @@ msgstr "Color"
 
 msgid "Compile"
 msgstr "Compila"
-
-#, fuzzy
-msgid "Connection error"
-msgstr "%s : Error d''al·locació.\n"
 
 msgid "Context"
 msgstr "Context"
@@ -648,7 +616,8 @@ msgstr ""
 
 msgid "Problem saving a backup; I cannot activate Scilab\n"
 msgstr ""
-"S''ha produït un error en la còpia de seguretat. No es pot activar l''Scilab\n"
+"S''ha produït un error en la còpia de seguretat. No es pot activar "
+"l''Scilab\n"
 
 #, c-format
 msgid "Problem while building library %s\n"
@@ -781,10 +750,6 @@ msgstr "Simula"
 msgid "Simulation parameters not set:"
 msgstr ""
 
-#, fuzzy
-msgid "Simulation problem: "
-msgstr "problema de planificació"
-
 msgid "Smart"
 msgstr "Intel·ligent"
 
@@ -851,7 +816,8 @@ msgid "To avoid this message, please update the %s.scicos_pal file."
 msgstr "Per evitar aquest missatge, actualitzeu el fitxer %s.scicos_pal."
 
 msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-msgstr "Per reactivar l''Scicos, feu clic en un diagrama o escriviu scicos();\n"
+msgstr ""
+"Per reactivar l''Scicos, feu clic en un diagrama o escriviu scicos();\n"
 
 msgid "Toggle grid"
 msgstr "Intercanvia la reixa"
@@ -888,10 +854,6 @@ msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
 msgstr ""
-
-#, fuzzy
-msgid "Xcos block parameter error"
-msgstr "el bloc produeix un error intern"
 
 msgid "Yes"
 msgstr "Sí"

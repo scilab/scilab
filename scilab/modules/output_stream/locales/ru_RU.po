@@ -213,12 +213,6 @@ msgstr "%s: Неверное количество входных парамет�
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: данные не соответствуют "
-"формату.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -831,10 +825,6 @@ msgstr "Не реализовано в scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Здесь не может использоваться пустая переменная.\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "Параметры команд / и \\ не могут содержать NaN или Inf.\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Оптимизация остановилась: достигнут максимум вызовов функции f.\n"
 
@@ -1426,12 +1416,3 @@ msgstr "Временной интервал аргумента %d не зада�
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Ключевое слово varargout не может быть использовано здесь.\n"
-
-
-
-
-
-
-
-
-

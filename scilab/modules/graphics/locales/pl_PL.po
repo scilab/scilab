@@ -597,12 +597,6 @@ msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: określone granice są "
 "nieprawidłowe.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwana prawidłowa "
-"nazwa fontu.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
@@ -1111,96 +1105,3 @@ msgstr "Nie używasz obiektu legendy.\n"
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

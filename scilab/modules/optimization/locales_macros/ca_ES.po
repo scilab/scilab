@@ -92,8 +92,8 @@ msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
-"%s: S''esperava una cadena de text per a la variable %s a l''entrada #%d, però "
-"s''ha trobat %s."
+"%s: S''esperava una cadena de text per a la variable %s a l''entrada #%d, "
+"però s''ha trobat %s."
 
 #
 # File: macros/derivative.sci, line: 125
@@ -198,21 +198,19 @@ msgstr "%s: L''ordre ha de ser 1, 2 o 4.\n"
 
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
-msgstr "%s: El problema té restriccions, però l''algoritme arreglat les ignora."
+msgstr ""
+"%s: El problema té restriccions, però l''algoritme arreglat les ignora."
 
 #, c-format
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
-msgstr "%s: El problema té restriccions, però l''algoritme variable les ignora."
+msgstr ""
+"%s: El problema té restriccions, però l''algoritme variable les ignora."
 
 #, c-format
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: El problema no té restriccions, però el mètode Box està dissenyat per a "
 "tenir-ne."
-
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: L''ordre ha de ser 1, 2 o 4.\n"
 
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
@@ -430,63 +428,63 @@ msgid ""
 "%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però haurien "
-"de ser de 0 a 7."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però "
+"haurien de ser de 0 a 7."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han de "
-"ser d''1 a 3."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han "
+"de ser d''1 a 3."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: S''han donat %d, però se "
-"n''esperen 2."
+"%s: El nombre d''arguments d''entrada és incorrecte: S''han donat %d, però "
+"se n''esperen 2."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han de "
-"ser de 2 a 4."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han "
+"de ser de 2 a 4."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han de "
-"ser de 2 a 5."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han "
+"de ser de 2 a 5."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han de "
-"ser de 2 a 6."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han "
+"de ser de 2 a 6."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han de "
-"ser 6 o 7."
+"%s: El nombre d''arguments d''entrada és incorrecte: N''hi ha %d, però han "
+"de ser 6 o 7."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
 "expected."
 msgstr ""
-"%s: El nombre d''arguments d''entrada és incorrecte: S''han donat %d, però se "
-"n''esperen de 3 a 5."
+"%s: El nombre d''arguments d''entrada és incorrecte: S''han donat %d, però "
+"se n''esperen de 3 a 5."
 
 #, c-format
 msgid ""
@@ -555,28 +553,18 @@ msgstr "%s: La matriu ha de ser quadrada.\n"
 #, c-format
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
-"%s: El nombre d''arguments és incorrecte: Han de ser %d, però se n''ha donat %d"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: El nombre d''arguments és incorrecte: Han de ser %d, però se n''ha donat "
+"%d"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: El nombre d''arguments d''entrada és incorrecte.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -588,20 +576,6 @@ msgstr ""
 "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un vector "
 "columna.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
@@ -611,19 +585,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector n-"
-"dimensional.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector n-dimensional.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%s són d''un tipus incorrecte: Han de ser externs.\n"
+"%s: L''argument d''entrada #%s són d''un tipus incorrecte: Han de ser "
+"externs.\n"
 
 #
 # File: macros/karmarkar.sci, line: 211
@@ -632,59 +601,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: L''argument d''entrada #%d té una mida incorrecta."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr ""
-"%s: L''argument d''entrada #%s són d''un tipus incorrecte: Han de ser externs.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr ""
-"%s: L''argument d''entrada #%s són d''un tipus incorrecte: Han de ser externs.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: L''argument d''entrada #%d té una mida incorrecta."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr ""
-"%s: L''argument d''entrada #%s són d''un tipus incorrecte: Han de ser externs.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"funció.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de tenir %d "
-"columnes.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -702,10 +618,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: Nombre màxim d''avaluacions de funcions %s inesperat."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -982,10 +894,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: Nombre màxim d''avaluacions de funcions %s inesperat."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

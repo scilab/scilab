@@ -34,10 +34,3 @@ msgstr "在超矩陣擷取運算中的第 %d 個索引有問題. "
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr "堆疊中太多的參數, 編輯 stack.h 檔案並且加大 intersiz. 變數的數值.\n"
-
-
-
-
-
-
-

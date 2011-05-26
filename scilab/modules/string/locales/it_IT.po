@@ -360,20 +360,3 @@ msgstr "%s: è impossibile ottenere le dimensioni di questa matrice.\n"
 
 msgid "WARNING : \n"
 msgstr "ATTENZIONE : \n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

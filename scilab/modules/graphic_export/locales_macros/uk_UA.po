@@ -38,10 +38,6 @@ msgstr ""
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: не вдалося виконати pstoedit.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: не вдалося виконати pstoedit.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

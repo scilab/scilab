@@ -94,8 +94,8 @@ msgstr "%s: Avís: Hi ha un error al fitxer %s : %s. S''ha ignorat el fitxer\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -104,40 +104,40 @@ msgstr "%s: L''argument d''entrada #%d és d''un tipus incorrecte.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una funció "
-"de Scilab.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"funció de Scilab.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser el nom d''una "
-"funció de Scilab.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser el nom "
+"d''una funció de Scilab.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser el nom d''una "
-"funció de Scilab.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser el nom "
+"d''una funció de Scilab.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
-"%s: L''argument d''entrada té un valor incorrecte: No hi ha dades del perfil a "
-"la funció\n"
+"%s: L''argument d''entrada té un valor incorrecte: No hi ha dades del perfil "
+"a la funció\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"

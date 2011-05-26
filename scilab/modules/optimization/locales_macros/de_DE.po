@@ -213,10 +213,6 @@ msgstr ""
 "%s: Problem hat keine Bedingungen, aber Box Algorithmus ist für diesen "
 "designet."
 
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: Ordnung muß 1,2 oder 4 sein.\n"
-
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
@@ -561,19 +557,9 @@ msgstr "%s: Gewichtungs-Matrix muß quadratisch sein.\n"
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr "%s: falscher Wert für Argumente: %d erwartet, aber %d gegeben."
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Falsche Anzahl an Eingangsargument(en).\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -588,16 +574,6 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
@@ -607,10 +583,6 @@ msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: N-dimensionales Datenfeld "
 "erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -623,49 +595,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: falsche Größe für Eingangsargument #%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr "%s: falscher Typ für Eingangsargument #%s: externer erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr "%s: falscher Typ für Eingangsargument #%s: externer erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: falsche Größe für Eingangsargument #%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr "%s: falscher Typ für Eingangsargument #%s: externer erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: Anzahl an Spalten %d erwartet.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -683,10 +612,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: nicht erwartete maximale Anzahl an Funktion Evaluierungen %s:"
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -963,10 +888,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: nicht erwartete maximale Anzahl an Funktion Evaluierungen %s:"
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

@@ -66,13 +66,6 @@ msgstr "Scilabコマンド"
 #
 # File: src/c/others/zzledt.c, line: 940
 # File: src/c/windows/TermCompletion.c, line: 222
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Scilab関数"
-
-#
-# File: src/c/others/zzledt.c, line: 940
-# File: src/c/windows/TermCompletion.c, line: 222
 msgid "Scilab Function"
 msgstr "Scilab関数"
 

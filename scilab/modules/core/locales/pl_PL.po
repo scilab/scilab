@@ -497,12 +497,6 @@ msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub skalara.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana jest wartość "
-"typu real.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -600,12 +594,6 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego #%d:oczekiwano wartości "
 "całkowitej (int).\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano "
-"wartości całkowitej.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -741,10 +729,6 @@ msgstr "&Przyborniki"
 msgid "A non square matrix!\n"
 msgstr "Macierz nie kwadratowa!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: przerywanie bieżących obliczeń\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Nieodnaleziono katalogu tymczasowego systemu Windows (1)."
 
@@ -760,10 +744,6 @@ msgstr "Scilab Consortium (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -974,10 +954,6 @@ msgstr "OSTRZEŻENIE: %s\n"
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Błąd: nie udało się przeprowadzić analizę gramatyczną pliku %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Ostrzeżenie: Problemy z %s.\n"
@@ -1047,33 +1023,3 @@ msgstr "trzeci"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist'a nie w pełni wypełniona.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

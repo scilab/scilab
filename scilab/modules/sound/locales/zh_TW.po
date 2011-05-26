@@ -42,36 +42,3 @@ msgstr "無法使用檔案."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "未安裝　Scilab sound  模組\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

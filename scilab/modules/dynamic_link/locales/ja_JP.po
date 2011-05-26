@@ -60,13 +60,6 @@ msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: 共有ライブラリ %s が存在しません.\n"
 
-#
-# File: macros/dllinfo.sci, line: 110
-# File: src/c/dynamic_link.c, line: 104
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: ファイル %s は存在しません。\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: 共有アーカイブがロードされていません: %s\n"
@@ -211,84 +204,3 @@ msgstr "] : %d ライブラリ。\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : %d ライブラリ。\n"
-
-#
-# File: macros/ilib_compile.sci, line: 120
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 102
-# File: macros/ilib_gen_Make_unix.sci, line: 116
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 58
-
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 123
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 157
-
-
-
-
-
-
-#
-# File: macros/ilib_compile.sci, line: 120
-
-#
-# File: macros/ilib_compile.sci, line: 57
-
-#
-# File: macros/ilib_build.sci, line: 54
-# File: macros/ilib_for_link.sci, line: 38
-
-#
-# File: macros/ilib_build.sci, line: 52
-
-#
-# File: macros/ilib_build.sci, line: 41
-# File: macros/ilib_for_link.sci, line: 34
-
-
-#
-# File: macros/ilib_build.sci, line: 41
-# File: macros/ilib_for_link.sci, line: 34
-
-
-
-
-
-
-
-
-#
-# File: macros/ilib_compile.sci, line: 120
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/ilib_compile.sci, line: 20
-
-# File: etc/dynamic_link.start, line: 43
-
-
-

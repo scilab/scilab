@@ -177,12 +177,3 @@ msgstr "第 %d 個輸入參數型別有誤:實數hypermatrix 才對.\n"
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "第#%d個輸入參數型別有誤:字串才對.\n"
-
-
-
-
-
-
-
-
-

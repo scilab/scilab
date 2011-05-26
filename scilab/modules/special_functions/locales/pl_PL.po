@@ -64,6 +64,3 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: Przepełnienie lub niedomiar dla liczb o rozszerzonym zakresie "
 "dokładności\n"
-
-
-

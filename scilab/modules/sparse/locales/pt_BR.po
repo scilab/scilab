@@ -182,30 +182,3 @@ msgstr "Sparse: pânico no arquivo '%s' na linha %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  Iniciando nova matriz  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

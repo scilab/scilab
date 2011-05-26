@@ -42,12 +42,3 @@ msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてくださ"
 "い.\n"
-
-
-
-
-
-
-
-
-

@@ -20,22 +20,25 @@ msgstr ""
 #, c-format
 msgid "%s: %s module is not installed.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_parallel_run.cpp, line: 887
 #, c-format
 msgid "%s: This function is forbidden in a concurrent execution context.\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_parallel_run.cpp, line: 920
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_parallel_run.cpp, line: 541
 #, c-format
-msgid ""
-"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+msgid "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 msgstr ""
+
 #
 # File: sci_gateway/cpp/sci_parallel_run.cpp, line: 710
 #, c-format

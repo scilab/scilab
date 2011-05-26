@@ -119,7 +119,3 @@ msgstr ""
 # File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
-
-#, fuzzy
-msgid "This directory already exists in "
-msgstr "%s: Внимание: каталог «%s» уже существует.\n"

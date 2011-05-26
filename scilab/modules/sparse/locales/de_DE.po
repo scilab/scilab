@@ -184,28 +184,3 @@ msgstr ""
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||Starte neue Matrix|||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

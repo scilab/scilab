@@ -34,10 +34,6 @@ msgstr "%s : Incapable de créer un fichier d''export, permission refusée.\n"
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s : Incapable d''exécuter pstoedit.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s : Incapable d''exécuter pstoedit.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
@@ -63,8 +59,8 @@ msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s : Mauvais nombre d''arguments d''entrée : La fonction n''a pas d''argument "
-"d''entrée avec les drivers ''%s'' ou ''%s''.\n"
+"%s : Mauvais nombre d''arguments d''entrée : La fonction n''a pas "
+"d''argument d''entrée avec les drivers ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"

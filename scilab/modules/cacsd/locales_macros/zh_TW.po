@@ -482,12 +482,6 @@ msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 最少應為 %d.\n"
 
-#
-# File: macros/findx0BD.sci, line: 77
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %d 或 %d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一多項式.\n"
@@ -715,12 +709,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -901,15 +889,6 @@ msgstr ""
 
 msgid "Unfeasible (spectral radius)"
 msgstr ""
-
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
 
 #
 # File: macros/plzr.sci, line: 56

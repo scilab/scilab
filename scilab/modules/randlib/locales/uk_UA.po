@@ -216,11 +216,6 @@ msgstr ""
 "%s: помилковий тип четвертого вхідного параметра: слід використовувати "
 "число.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати дійсне число.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
@@ -479,5 +474,3 @@ msgstr "a і b мають бути цілими числами, такими, щ
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
-
-

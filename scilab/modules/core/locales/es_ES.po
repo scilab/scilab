@@ -509,11 +509,6 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
 "una cadena de caracteres.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -615,11 +610,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
@@ -760,10 +750,6 @@ msgstr "Herramien&tas"
 msgid "A non square matrix!\n"
 msgstr "No es una matriz cuadrada!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: abortando el cálculo actual\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "No se pudo encontrar el directorio temporal de Windows (1)."
 
@@ -779,10 +765,6 @@ msgstr "Consorcio Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -991,10 +973,6 @@ msgstr "ADVERTENCIA: %s\n"
 msgid "Warning"
 msgstr "Advertencia"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Error: No se pudo analizar el archivo %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Advertencia: Problemas con %s.\n"
@@ -1064,34 +1042,3 @@ msgstr "tercero"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist no está completamente llena.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

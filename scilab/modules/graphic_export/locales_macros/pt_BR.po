@@ -34,10 +34,6 @@ msgstr "%s: Não é possível criar o rquivo de exportação: permissão negada.
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: Não é possível executar pstoedit.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: Não é possível executar pstoedit.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

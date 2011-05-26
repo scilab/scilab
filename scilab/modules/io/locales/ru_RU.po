@@ -96,9 +96,3 @@ msgstr "Переменная окружения не определена %s.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "неуправляемая ошибка при v2cunit.\n"
-
-
-
-
-
-

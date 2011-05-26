@@ -102,8 +102,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: 此特性尚未實作: 型態 %d 之參數.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: 此特性尚未實作: 支援超矩陣 (hypermatrices).\n"
 
 #, c-format
@@ -212,7 +211,8 @@ msgstr "%s: ''%s'' 之修飾 (affectation) 數值錯誤.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
-msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 %s, %s, %s, ''%s'', ''%s'' 或 ''%s''\n"
+msgstr ""
+"%s: 第 %d 輸入參數數值錯誤: 應為 %s, %s, %s, ''%s'', ''%s'' 或 ''%s''\n"
 
 #, c-format
 msgid ""
@@ -275,7 +275,3 @@ msgstr "十月"
 
 msgid "Sep"
 msgstr "九月"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: 使用 %d 個參數之功能尚未實作.\n"

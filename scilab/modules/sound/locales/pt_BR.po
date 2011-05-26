@@ -45,36 +45,3 @@ msgstr "Não foi possível reproduzir o arquivo."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "O módulo de som do Scilab não está instalado.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

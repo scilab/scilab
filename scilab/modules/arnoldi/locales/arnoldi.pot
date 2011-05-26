@@ -26,9 +26,9 @@ msgstr ""
 # File: sci_gateway/c/sci_zneupd.c, line: 125
 # File: sci_gateway/c/sci_zneupd.c, line: 137
 #, c-format
-msgid ""
-"%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
+msgid "%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_znaupd.c, line: 82
 # File: sci_gateway/c/sci_znaupd.c, line: 88
@@ -73,6 +73,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument %s: An array of size %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_znaupd.c, line: 75
 # File: sci_gateway/c/sci_dnaupd.c, line: 75

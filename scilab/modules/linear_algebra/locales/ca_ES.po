@@ -33,19 +33,3 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de nombres reals o complexos.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

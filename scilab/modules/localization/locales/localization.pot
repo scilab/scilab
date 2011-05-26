@@ -20,36 +20,43 @@ msgstr ""
 #, c-format
 msgid "%s: This feature is only used on Windows.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setlanguage.c, line: 48
 # File: sci_gateway/c/sci_setlanguage.c, line: 52
 #, c-format
 msgid "%s: Unsupported language '%s'.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 125
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setlanguage.c, line: 104
 # File: sci_gateway/c/sci_gettext.c, line: 128
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 106
 msgid "Restart Scilab to apply to menus.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setlanguage.c, line: 92
 #, c-format
 msgid "Switching to default language : '%s'.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 105
 msgid "The language for menus cannot be changed on a running console.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_setlanguage.c, line: 91
 # File: sci_gateway/c/sci_setdefaultlanguage.c, line: 62

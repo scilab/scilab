@@ -33,19 +33,3 @@ msgid ""
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Matrice réelle ou complexe "
 "attendue.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

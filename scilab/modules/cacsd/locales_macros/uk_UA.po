@@ -385,12 +385,6 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
-"#%s: помилкове значення вхідного параметра №%d: слід використовувати %d або "
-"%d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -676,14 +670,6 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: параметр часового діапазону "
 "повинен мати значення «c» (неперервний) або «d» (дискретний).\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"з набору {%s}.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -864,11 +850,6 @@ msgstr "Неможливий (Гамільтоніан Hy)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Неможливий (спектральний радіус)"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
 
 msgid "Zeros"
 msgstr "Нулі"

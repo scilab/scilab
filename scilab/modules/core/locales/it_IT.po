@@ -539,12 +539,6 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
 "o uno scalare.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
-"reale .\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -655,12 +649,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
-"intero.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -803,10 +791,6 @@ msgstr "&Toolbox"
 msgid "A non square matrix!\n"
 msgstr "La matrice non è quadrata!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: interruzione in corso del calcolo corrente.\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Non è possibile trovare la directory temporanea Windows (1)."
 
@@ -822,10 +806,6 @@ msgstr "Consorzio Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -1039,10 +1019,6 @@ msgstr "ATTENZIONE: %s\n"
 msgid "Warning"
 msgstr "Attenzione"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Errore: non è possibile analizzare il file %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Attenzione: ci sono dei problemi con %s.\n"
@@ -1112,34 +1088,3 @@ msgstr "terzo"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist non è riempita completamente.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

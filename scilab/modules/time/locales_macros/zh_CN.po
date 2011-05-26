@@ -94,8 +94,7 @@ msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr "%s：输入参数值错误：应该为标量。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：%s必须介于%d与%d之间。\n"
 
 #, c-format

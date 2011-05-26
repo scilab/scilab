@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "Construit le manuel de documentation principal Scilab pour %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Construit le fichier du manuel Scilab ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Construit le fichier du manuel Scilab ["
-
 msgid ""
 "\n"
 "Building the master document:\n"
@@ -185,7 +173,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: Un entier attendu.\n"
+msgstr ""
+"%s: Mauvais type pour l''argument d''entrée n° %d: Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -209,16 +198,16 @@ msgid ""
 "%s: Wrong value for input argument #%d: A string that end with ."
 "last_successful_build expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de caractères "
-"terminant par .last_successful_build attendue.\n"
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
+"caractères terminant par .last_successful_build attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A string that end with CHAPTER "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de caractères "
-"finissant par CHAPTER attendue.\n"
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de "
+"caractères finissant par CHAPTER attendue.\n"
 
 #, c-format
 msgid ""

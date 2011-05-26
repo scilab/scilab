@@ -475,16 +475,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr "%s: 第#%d個參數值有誤:   ''w'' or ''u'' 字串才對.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr "%s: 第#%d個參數值有誤 ('%ls'):有效的檔名或目錄才對.\n"
-
 #
 # File: src/c/mget.c, line: 181
 #, c-format
@@ -600,32 +590,3 @@ msgstr "警告: 檔案 '%s' 已經在 Scialb 中開啟.\n"
 # File: src/c/do_xxscanf.c, line: 147
 msgid "unclosed [ directive."
 msgstr "未結束之 [ 指示 (directives) ."
-
-
-
-#
-# File: macros/ls.sci, line: 28
-
-#
-# File: macros/mkdir.sci, line: 25
-# File: macros/mkdir.sci, line: 47
-# File: macros/rmdir.sci, line: 22
-# File: macros/rmdir.sci, line: 37
-
-
-
-
-
-
-
-
-#
-# File: macros/mdelete.sci, line: 30
-
-
-#
-# File: macros/rmdir.sci, line: 33
-
-#
-# File: macros/listvarinfile.sci, line: 53
-

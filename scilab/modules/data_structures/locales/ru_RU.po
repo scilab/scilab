@@ -40,12 +40,3 @@ msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Слишком много параметров в стеке, отредактируйте stack.h и увеличьте "
 "intersiz.\n"
-
-
-
-
-
-
-
-
-

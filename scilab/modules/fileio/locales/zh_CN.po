@@ -332,16 +332,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为 ''w'' 或 ''u'' 字符串。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr "%s：输入参数#%d的值错误 ('%ls')：应该为一个正确的文件名或目录。\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
@@ -434,18 +424,3 @@ msgstr "警告：文件 '%s' 已经在Scilab中被打开。\n"
 
 msgid "unclosed [ directive."
 msgstr "未关闭的 [ 标志。"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

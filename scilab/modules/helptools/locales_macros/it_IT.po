@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "Creazione in corso del documento principale del manuale di Scilab per %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Creazione del file [ del manuale di Scilab in corso"
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Creazione del file [ del manuale di Scilab in corso"
-
 msgid ""
 "\n"
 "Building the master document:\n"
@@ -242,8 +230,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un valido "
-"file esistente.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"valido file esistente.\n"
 
 #, c-format
 msgid ""

@@ -26,8 +26,7 @@ msgstr "%s: nicht unterstützte Sprache '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr ""
-"%s: falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
+msgstr "%s: falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

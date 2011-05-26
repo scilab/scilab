@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "Erzeuge das Scilab Handbuch Ursprungsdocument für %s.\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "Erzeuge die Scilab Handbuchdatei ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "Erzeuge die Scilab Handbuchdatei ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

@@ -221,13 +221,3 @@ msgstr "Avís: Hi ha massa crides encuades!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] no funciona amb Tcl/Tk.\n"
-
-
-
-
-
-
-
-
-
-

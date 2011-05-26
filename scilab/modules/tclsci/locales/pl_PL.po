@@ -215,13 +215,3 @@ msgstr ""
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] Nie działa z Tcl / TK.\n"
-
-
-
-
-
-
-
-
-
-

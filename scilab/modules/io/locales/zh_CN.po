@@ -94,8 +94,3 @@ msgstr "未定义的环境变量%s。\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr ""
-
-
-
-
-

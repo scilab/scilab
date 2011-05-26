@@ -20,34 +20,38 @@ msgstr ""
 #, c-format
 msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr ""
+
 #
 # File: src/c/GetCharVariable.c, line: 172
 #, c-format
-msgid ""
-"%s: Column array of strings with different lengths saving is not "
-"implemented.\n"
+msgid "%s: Column array of strings with different lengths saving is not implemented.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 77
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 73
 #, c-format
 msgid "%s: Invalid file identifier.\n"
 msgstr ""
+
 #
 # File: src/c/GetMlistVariable.c, line: 84
 # File: src/c/GetMlistVariable.c, line: 90
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
 msgstr ""
+
 #
 # File: src/c/CreateCharVariable.c, line: 106
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 88
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 95
@@ -106,11 +110,13 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: src/c/GetCharVariable.c, line: 157
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 60
 # File: sci_gateway/c/sci_matfile_close.c, line: 55
@@ -119,22 +125,26 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 58
 #, c-format
 msgid "%s: Wrong size for first input argument: Single string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 115
 #, c-format
 msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 87
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 86
 #, c-format
 msgid "%s: Wrong size for second input argument: Single string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 67
 # File: sci_gateway/c/sci_matfile_close.c, line: 62
@@ -143,53 +153,63 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
+
 #
 # File: src/c/GetDoubleVariable.c, line: 105
 #, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
+
 #
 # File: src/c/GetIntegerVariable.c, line: 149
 #, c-format
 msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
 msgstr ""
+
 #
 # File: src/c/GetMlistVariable.c, line: 97
 # File: src/c/GetCellVariable.c, line: 54
 #, c-format
 msgid "%s: Wrong type for first input argument: Mlist expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 67
 #, c-format
 msgid "%s: Wrong type for first input argument: Single string expected.\n"
 msgstr ""
+
 #
 # File: src/c/GetSparseVariable.c, line: 305
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
+
 #
 # File: src/c/GetCharVariable.c, line: 217
 #, c-format
 msgid "%s: Wrong type for first input argument: String matrix expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 124
 #, c-format
 msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 115
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 95
 #, c-format
 msgid "%s: Wrong type for second input argument: Single string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 105
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
 msgstr ""
+
 #
 # File: src/nomatio/nomatio.c, line: 20
 msgid "Scilab matio module not installed.\n"

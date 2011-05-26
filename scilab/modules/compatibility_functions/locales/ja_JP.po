@@ -110,8 +110,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: この機能は実装されていません: %d 型の引数.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: この機能は実装されていません: ハイパー行列のサポート.\n"
 
 #, c-format
@@ -152,7 +151,9 @@ msgstr "%s: 入力引数 #%d が間違っています: 大きさに一貫性が�
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
-msgstr "%s: 入力引数が間違っています: 最初の引数に指定された次元が指定されたセルの内容に一致しません.\n"
+msgstr ""
+"%s: 入力引数が間違っています: 最初の引数に指定された次元が指定されたセルの内"
+"容に一致しません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -160,11 +161,13 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -176,22 +179,28 @@ msgstr "%s: ''%s''の大きさが間違っています: ベクトルを指定し
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列のMatlabベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列のMatlabベクトルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数,整数または文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数,整数または文字列の行列を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -199,7 +208,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 列ベクトルを�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
@@ -208,7 +218,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr "%s: 入力引数の型が間違っています: セル要素は文字列配列としてください.\n"
+msgstr ""
+"%s: 入力引数の型が間違っています: セル要素は文字列配列としてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
@@ -227,26 +238,34 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s, %s, ''%s'', ''%s'' または ''%s'' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: %s, %s, %s, ''%s'', ''%s'' または "
+"''%s'' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s,''%s'' または ''%s'' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s, %s,''%s'' または ''%s'' を指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s''  または ''%s'' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s''  または ''%s'' を指定し"
+"てください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 正の整数の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
@@ -316,9 +335,3 @@ msgstr "10月"
 # File: macros/mtlb_dir.sci, line: 53
 msgid "Sep"
 msgstr "9月"
-
-#
-# File: macros/mtlb_eig.sci, line: 25
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: %d 入力引数をもつ使用は、まだ装備されていません。\n"

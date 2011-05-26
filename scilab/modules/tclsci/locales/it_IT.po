@@ -220,13 +220,3 @@ msgstr "Attenzione: troppe callback in coda!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] non funziona con Tck/Tk.\n"
-
-
-
-
-
-
-
-
-
-

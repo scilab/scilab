@@ -59,10 +59,6 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: не виявлено бібліотеки спільного використання %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: файла з назвою %s не існує.\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: архів спільного використання не було завантажено: %s\n"
@@ -206,53 +202,3 @@ msgstr "] : %d бібліотек.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : %d бібліотека.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

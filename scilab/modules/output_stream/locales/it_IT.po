@@ -220,12 +220,6 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: i dati non concordano "
-"con il formato.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -879,11 +873,6 @@ msgstr "Non è sviluppato in Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Una variabile nulla non può essere usata qui.\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr ""
-"L'argomento %d ha un valore sbagliato: non deve contenere un Nan o un Inf.\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
 "L'ottimizzazione si ferma: raggiunto il numero massimo di chiamate a f.\n"
@@ -1505,12 +1494,3 @@ msgstr "il dominio temporale dell'argomento %d non è definito.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "la parola-chiave varargout non può essere usata qui.\n"
-
-
-
-
-
-
-
-
-

@@ -199,4 +199,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "но конфигурационный файл не существует в:\n"
-

@@ -41,8 +41,7 @@ msgstr "%s: falsche Anzahl von Eingangsargumenten.\\n\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
+msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -82,8 +81,7 @@ msgstr "%s: falscher Typ für Eingangsargument ''%d: reelle Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument ''%d: reeller Vektor erwartet.\n"
+msgstr "%s: falscher Typ für Eingangsargument ''%d: reeller Vektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments.\n"
@@ -102,8 +100,7 @@ msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument: skalare Werte erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: %s muß zwischen %d und %d "
 "liegen.\n"

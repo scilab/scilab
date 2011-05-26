@@ -596,22 +596,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: ''w'' または ''u'' 文字を想定します。\n"
 
 #
-# File: sci_gateway/c/sci_isdir.c, line: 56
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
-
-#
-# File: macros/copyfile.sci, line: 36
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値 ('%ls'): 適切なファイル名、または、ディレクトリ "
-"を想定します。\n"
-
-#
 # File: src/c/mget.c, line: 193
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
@@ -749,70 +733,3 @@ msgstr "警告: ファイル '%s' は既に Scilabで開かれています。\n"
 # File: src/c/do_xxscanf.c, line: 147
 msgid "unclosed [ directive."
 msgstr "閉じられません [ 指令"
-
-#
-# File: src/c/mgeti.c, line: 214
-
-#
-# File: src/c/do_xxprintf.c, line: 442
-# File: src/c/do_xxprintf.c, line: 464
-# File: src/c/do_xxscanf.c, line: 187
-# File: src/c/do_xxscanf.c, line: 207
-# File: src/c/do_xxscanf.c, line: 273
-# File: src/c/do_xxscanf.c, line: 289
-
-#
-# File: macros/ls.sci, line: 31
-
-#
-# File: macros/mkdir.sci, line: 25
-# File: macros/mkdir.sci, line: 47
-# File: macros/mputl.sci, line: 21
-# File: macros/rmdir.sci, line: 22
-# File: macros/rmdir.sci, line: 37
-
-#
-# File: macros/mputl.sci, line: 16
-
-#
-# File: sci_gateway/c/sci_isdir.c, line: 56
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 44
-# File: sci_gateway/c/sci_mscanf.c, line: 49
-# File: sci_gateway/c/sci_msscanf.c, line: 43
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 44
-# File: sci_gateway/c/sci_mscanf.c, line: 49
-# File: sci_gateway/c/sci_msscanf.c, line: 43
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-
-
-#
-# File: macros/mdelete.sci, line: 30
-
-#
-# File: macros/copyfile.sci, line: 36
-
-#
-# File: macros/rmdir.sci, line: 33
-
-#
-# File: macros/listvarinfile.sci, line: 63
-

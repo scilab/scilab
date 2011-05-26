@@ -195,4 +195,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "但是那裏並不存在定義檔案:\n"
-

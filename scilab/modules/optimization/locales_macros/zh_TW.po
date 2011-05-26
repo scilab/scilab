@@ -189,12 +189,6 @@ msgstr ""
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
-#
-# File: macros/derivative.sci, line: 41
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: Order 應  1, 2 or 4.\n"
-
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
@@ -483,24 +477,10 @@ msgstr "%s: 權重矩陣 (Weighting matrix) 應為方陣.\n"
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
 
-#
-# File: macros/derivative.sci, line: 29
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
 # File: macros/fit_dat.sci, line: 78
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 輸入參數之數目錯誤(s).\n"
-
-#
-# File: macros/derivative.sci, line: 29
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #
 # File: macros/derivative.sci, line: 29
@@ -524,20 +504,6 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為列向量.\n"
 
 #
 # File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
@@ -547,12 +513,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤:  應為 N-維 診陣列.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -565,70 +525,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: 第 %d 個輸入參數長度錯誤."
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: 第 %d 個輸入參數長度錯誤."
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 127
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
-
-#
-# File: macros/derivative.sci, line: 36
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為列向量.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61

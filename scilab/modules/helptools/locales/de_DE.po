@@ -29,10 +29,6 @@ msgstr "%s: Fehler während des Erzeugens der Dokumentation: %s.\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: führe Java Stapel aus %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: führe Java Stapel aus %s.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
@@ -53,54 +49,3 @@ msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

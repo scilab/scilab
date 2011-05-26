@@ -200,4 +200,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "ale nie istnieje plik konfiguracyjny:\n"
-

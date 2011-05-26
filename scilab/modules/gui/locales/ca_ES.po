@@ -79,10 +79,6 @@ msgstr "%s: El fitxer %s no existeix.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: Propietat desconeguda: %s per a tractaments '%s'.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' or '%s'"
-
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
@@ -113,12 +109,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text de (%d x %d).\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un tractament "
-"'%s', o '%s'.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -138,13 +128,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
 "real de (1 x %d).\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
-"real.\n"
 
 #, c-format
 msgid ""
@@ -209,12 +192,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Han de ser nombres "
-"enters no-negatius.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -226,11 +203,6 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "cadenes de text.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un arbre.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -452,22 +424,6 @@ msgstr "Reconeixements"
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
 
-#, fuzzy
-msgid "All Encapsulated PS files"
-msgstr "Tots els fitxers d'Scilab"
-
-#, fuzzy
-msgid "All PDF files"
-msgstr "Tots els fitxers"
-
-#, fuzzy
-msgid "All PNG image files"
-msgstr "Tots els fitxers d'Scilab"
-
-#, fuzzy
-msgid "All Postscript files"
-msgstr "Tots els fitxers %s"
-
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
@@ -518,10 +474,6 @@ msgstr "Copia"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
-
 msgid "Could not open: "
 msgstr ""
 
@@ -561,10 +513,6 @@ msgstr "Exporta"
 
 msgid "FIG image"
 msgstr "Imatge FIG"
-
-#, fuzzy
-msgid "Feature not available in this mode..."
-msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
 
 msgid "File already exist"
 msgstr "El fitxer ja existeix"
@@ -986,10 +934,6 @@ msgstr ""
 "La propietat '%s' té un valor incorrecte: Ha de ser una cadena de text o un "
 "vector de nombres reals de (1 x %d).\n"
 
-#, fuzzy, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
-
 msgid "Xcos files"
 msgstr "Fitxers d'Xcos"
 
@@ -1022,185 +966,3 @@ msgstr ""
 "disp(\"Avís: Degut a limitacions en els controladors de la vostra targeta de "
 "vídeo, que no poden utilitzar OpenGL, el Scilab no podrà dibuixar cap "
 "gràfic. Actualitzeu els vostres controladors.\")"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

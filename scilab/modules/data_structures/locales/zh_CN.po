@@ -38,7 +38,3 @@ msgstr "超矩阵提取是第%d维索引错误。 "
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr "栈内参数太多，请编辑stack.h并增大intersiz。\n"
-
-
-
-

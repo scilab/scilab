@@ -46,36 +46,3 @@ msgstr "No s'ha pogut reproduir el fitxer."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "El mòdul de so del Scilab no està instal·lat.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

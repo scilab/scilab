@@ -210,13 +210,3 @@ msgstr "Warnung: zu viele Rückrufe in der Warteschlange!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] funktioniert mit Tcl/Tk nicht.\n"
-
-
-
-
-
-
-
-
-
-

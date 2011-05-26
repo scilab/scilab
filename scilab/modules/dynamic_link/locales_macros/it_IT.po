@@ -101,23 +101,9 @@ msgstr "   esegue il makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: È già caricato dalla libreria %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: È richiesto un compilatore per il Fortran o per il C.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -230,7 +216,8 @@ msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa %d.\n"
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
+"%d.\n"
 
 #, c-format
 msgid ""
@@ -263,22 +250,11 @@ msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso '''' o "
-"''[]''.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
 "nell''insieme {%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "È richiesto un compilatore per il Fortran o per il C."

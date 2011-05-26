@@ -203,12 +203,3 @@ msgstr ""
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa.\n"
-
-
-
-
-
-
-
-
-

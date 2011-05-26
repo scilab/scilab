@@ -160,7 +160,3 @@ msgstr "Редактор змінних"
 
 msgid "Visibility"
 msgstr "Видимість"
-
-
-
-

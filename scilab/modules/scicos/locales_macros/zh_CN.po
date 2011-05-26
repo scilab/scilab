@@ -82,20 +82,12 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为%d个。\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr "%s：输入参数的数目错误：数目应该介于 %d 与 %d 之间。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为%d个。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
 #, c-format
@@ -114,32 +106,12 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s：输入参数#%d和#%d的大小错误。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
 msgid "&?"

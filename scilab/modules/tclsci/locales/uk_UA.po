@@ -219,13 +219,3 @@ msgstr "Попередження: у черзі занадто багато зв
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] не працює у Tcl/Tk.\n"
-
-
-
-
-
-
-
-
-
-

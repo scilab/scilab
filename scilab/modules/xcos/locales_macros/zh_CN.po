@@ -79,10 +79,6 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d。\n"
@@ -176,12 +172,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个布尔值。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
@@ -374,10 +364,6 @@ msgstr ""
 # File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
 msgstr ""
-
-#, fuzzy
-msgid "Simulation problem"
-msgstr "模拟"
 
 #
 # File: demos/xcos.dem.gateway.sce, line: 7

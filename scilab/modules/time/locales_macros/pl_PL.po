@@ -112,8 +112,7 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentów wejściowych: oczekiwane wartości skalarne.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: %s musi być pomiędzy "
 "%d a %d.\n"

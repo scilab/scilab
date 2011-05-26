@@ -190,10 +190,6 @@ msgstr "%s: falscher Typ für erstes Eingangsargument: Skalar erwartet.\n"
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: falscher Typ für viertes Eingangsargument: Skalar erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument: Skalar erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument: Spaltenvektor erwartet.\n"
@@ -427,5 +423,3 @@ msgstr "A und B müssen Integer mit (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 oder R <= 0.0\n"
-
-

@@ -322,20 +322,3 @@ msgstr "%s: unmöglich die Dimension dieser Matrix zu ermitteln.\n"
 
 msgid "WARNING : \n"
 msgstr "Warnung: \n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

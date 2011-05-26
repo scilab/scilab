@@ -38,11 +38,6 @@ msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
 "as mesmas dimensões.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se uma matriz de textos.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
@@ -131,10 +126,6 @@ msgstr "Cor do plano de fundo"
 msgid "Backward"
 msgstr "Para trás"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s é um diretório."
-
 msgid "Binary file: read-only mode"
 msgstr "Arquivo binário: modo de somente leitura"
 
@@ -155,23 +146,11 @@ msgstr "Não é possível carregar \"scinotesConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Diferenciar maiúsculas de minúsculas"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Diferenciar maiúsculas de minúsculas"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Diferenciar maiúsculas de minúsculas"
-
 msgid "Change Color"
 msgstr "Alterar cor"
 
 msgid "Change Colors"
 msgstr "Alterar cores"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s é um diretório."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -278,10 +257,6 @@ msgstr "Habilitar reformatação automática"
 msgid "Encoding"
 msgstr "Codificação"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "Codificação"
-
 msgid "Enter line number"
 msgstr "Insira o número da linha"
 
@@ -372,10 +347,6 @@ msgstr "Ajuda durante digitação"
 msgid "Highlight current line"
 msgstr "Realçar a linha atual"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "Dividir horizontalmente"
-
 msgid "Ignore"
 msgstr "Ignorar"
 
@@ -431,10 +402,6 @@ msgstr "Próxima aba"
 
 msgid "No Line Numbering"
 msgstr "Sem numeração de linha"
-
-#, fuzzy
-msgid "No help"
-msgstr "Ajuda do SciNotes"
 
 msgid "No split"
 msgstr "Sem dividir"
@@ -523,10 +490,6 @@ msgstr "Arquivos recentes"
 msgid "Recursive"
 msgstr ""
 
-#, fuzzy
-msgid "Recursive search"
-msgstr "Busca circular"
-
 msgid "Redo"
 msgstr "Refazer"
 
@@ -534,10 +497,6 @@ msgstr "Refazer"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
 msgstr ""
-
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Expressões regulares"
 
 msgid "Regular expressions"
 msgstr "Expressões regulares"
@@ -618,10 +577,6 @@ msgstr "Buscar"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Arquivos recentes"
-
 msgid "Select All"
 msgstr "Selecionar tudo"
 
@@ -685,14 +640,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"O arquivo %s não existe\n"
-" Você deseja criá-lo?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -701,10 +648,6 @@ msgstr ""
 " Sobrescrevê-lo?"
 
 msgid "The file could not be converted."
-msgstr "O arquivo não pôde ser convertido."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "O arquivo não pôde ser convertido."
 
 msgid "The file could not be saved."
@@ -777,10 +720,6 @@ msgstr "Palavra toda"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "Quebra de linhas"
-
 msgid "Word Wrap"
 msgstr "Quebra de linhas"
 
@@ -821,10 +760,3 @@ msgstr "Suas modificações serão perdidas. Alterar a codificação mesmo assim
 
 msgid "close this tab"
 msgstr "fecha esta aba"
-
-
-
-
-
-
-

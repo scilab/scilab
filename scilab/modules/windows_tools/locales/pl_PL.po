@@ -43,12 +43,6 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
-"znaków.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -90,9 +84,3 @@ msgstr "Konsola Scilab"
 
 msgid "see help"
 msgstr "zobacz pomoc"
-
-
-
-
-
-

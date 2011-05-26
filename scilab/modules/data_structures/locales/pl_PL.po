@@ -38,12 +38,3 @@ msgstr "Niepoprawny (%d) indeks w wyjmowaniu hipermacierzy. "
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr "Zbyt wiele parametrów w stosie, edytuj stack.k i zwiększ intersiz.\n"
-
-
-
-
-
-
-
-
-

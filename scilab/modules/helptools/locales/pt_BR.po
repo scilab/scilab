@@ -29,10 +29,6 @@ msgstr "%s: Erro ao construir a documentação: %s.\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Pilha da execução do Java %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Pilha da execução do Java %s.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
@@ -54,54 +50,3 @@ msgstr "O módulo '%s' do Scilab é desabilitado em modo -nogui ou -nwni.\n"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "O módulo '%s' do Scilab não está instalado.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -163,30 +163,3 @@ msgstr "環境変数 %s は定義されていません。\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunitによる管理外のエラー.\n"
-
-#
-# File: macros/unix_g.sci, line: 82
-# File: macros/unix_g.sci, line: 84
-# File: macros/unix_s.sci, line: 52
-# File: macros/unix_w.sci, line: 55
-# File: macros/unix_x.sci, line: 61
-
-#
-# File: macros/unix_g.sci, line: 32
-# File: macros/unix_s.sci, line: 29
-# File: macros/unix_w.sci, line: 30
-# File: macros/unix_x.sci, line: 30
-
-#
-# File: macros/halt.sci, line: 22
-
-# File: macros/fscanf.sci, line: 21
-# File: macros/sscanf.sci, line: 19
-# File: macros/unix_g.sci, line: 44
-
-
-#
-# File: macros/unix_s.sci, line: 44
-# File: macros/unix_s.sci, line: 56
-# File: macros/unix_w.sci, line: 44
-# File: macros/unix_x.sci, line: 47

@@ -101,21 +101,9 @@ msgstr "   Виконання makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: вже завантажено з бібліотеки %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: потрібен компілятор Fortran або C.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -257,23 +245,11 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати '''' або "
-"«[]».\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "з набору {%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-"число.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Потрібен компілятор Fortran або C."

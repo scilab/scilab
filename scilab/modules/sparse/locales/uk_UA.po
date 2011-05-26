@@ -183,33 +183,3 @@ msgstr "sparse: помилка у файлі «%s», рядок %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  Початок нової матриці  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

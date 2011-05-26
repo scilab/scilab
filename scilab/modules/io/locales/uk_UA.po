@@ -110,9 +110,3 @@ msgstr "Невизначена змінна середовища %s.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "непридатна до обробки помилка v2cunit.\n"
-
-
-
-
-
-

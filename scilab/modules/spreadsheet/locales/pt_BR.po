@@ -271,8 +271,3 @@ msgstr "ripOLE: A decodificação de %s resultou no erro %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: A decodificação de %s resultou no erro %d.\n"
-
-
-
-
-

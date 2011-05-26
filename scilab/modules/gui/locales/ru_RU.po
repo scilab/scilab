@@ -81,10 +81,6 @@ msgstr "%s: Файл %s не существует.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: Неизвестное свойство: %s для дескрипторов «%s».\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s»"
-
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: Неверные входные параметры: ожидались «%s».\n"
@@ -112,12 +108,6 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась (%d x %d)-матрица "
 "строк.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался дескриптор «%s» или "
-"«%s».\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -136,12 +126,6 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: Ожидался (1 x %d)-вектор-строка "
 "вещественных чисел.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid ""
@@ -196,12 +180,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался неотрицательное целое "
-"число.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
@@ -209,10 +187,6 @@ msgstr "%s: Неверный размер входного параметра �
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалось дерево.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -413,22 +387,6 @@ msgstr "Благодарности"
 msgid "All %s files"
 msgstr "Все файлы %s"
 
-#, fuzzy
-msgid "All Encapsulated PS files"
-msgstr "Все файлы Scilab"
-
-#, fuzzy
-msgid "All PDF files"
-msgstr "Все файлы"
-
-#, fuzzy
-msgid "All PNG image files"
-msgstr "Все файлы Scilab"
-
-#, fuzzy
-msgid "All Postscript files"
-msgstr "Все файлы %s"
-
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
@@ -479,10 +437,6 @@ msgstr "Копировать"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторское право (c) 1989-2007 (ENPC)"
 
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Авторское право (c) 1989-2010 (INRIA)"
-
 msgid "Could not open: "
 msgstr "Не удалось открыть: "
 
@@ -522,10 +476,6 @@ msgstr "Экспортировать"
 
 msgid "FIG image"
 msgstr "Изображение FIG"
-
-#, fuzzy
-msgid "Feature not available in this mode..."
-msgstr "%s: Функция недоступна в режиме NWNI.\n"
 
 msgid "File already exist"
 msgstr "Файл уже существует"
@@ -917,10 +867,6 @@ msgstr ""
 "Неверное значение свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
 "вещественных чисел.\n"
 
-#, fuzzy, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось вещественное число.\n"
-
 msgid "Xcos files"
 msgstr "Файлы Xcos"
 
@@ -953,191 +899,3 @@ msgstr ""
 "disp(\"ВНИМАНИЕ: Из-за ограничений драйвера видеокарты, который не "
 "поддерживает OpenGL, Scilab не сможет отображать любую графическую "
 "информацию. Обновите драйвер.\")"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

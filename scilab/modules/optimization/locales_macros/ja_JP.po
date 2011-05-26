@@ -210,12 +210,6 @@ msgstr ""
 "%s: 問題は制約を持っていません、しかし、ボックスアルゴリズムは、それらのため"
 "にデザインされます。"
 
-#
-# File: macros/derivative.sci, line: 49
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s:順序が１、２ または、４ でなくてはなりません。\n"
-
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: 離散界の初期シンプレックスは界なしで利用できません。"
@@ -563,24 +557,10 @@ msgstr ""
 "%1$s: 入力引数の数が不正です: %3$d が与えられるので %2$d を想定します。"
 
 #
-# File: macros/derivative.sci, line: 37
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
-
-#
 # File: macros/fit_dat.sci, line: 78
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が不正です。\n"
-
-#
-# File: macros/derivative.sci, line: 37
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -604,20 +584,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します�
 
 #
 # File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
@@ -627,12 +593,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: N-次元配列 を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
 
 #
 # File: macros/derivative.sci, line: 135
@@ -647,70 +607,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: 入力引数 #%d で不正なサイズです。"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr "%s: 入力引数 #%s で不正な型: 外部を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr "%s: 入力引数 #%s で不正な型: 外部を想定します。\n"
-
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: 入力引数 #%d で不正なサイズです。"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr "%s: 入力引数 #%s で不正な型: 外部を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_qld.c, line: 62
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr "%s: 入力引数 #%d で不正なサイズ: 列 %d の数を想定します。\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -728,10 +624,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: 関数評価 %s の思いがけない最大数です。"
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -1008,10 +900,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: 関数評価 %s の思いがけない最大数です。"
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

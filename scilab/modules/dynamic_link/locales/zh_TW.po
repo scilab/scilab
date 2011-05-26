@@ -70,10 +70,6 @@ msgstr "%s: 無法開啟共用程式庫. 已到達最大進入點(Entry point)�
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: 公用程式庫 %s 不存在.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
 #
 # File: src/c/dl_genErrorMessage.c, line: 25
 #, c-format
@@ -235,69 +231,3 @@ msgstr "] :  %d 程式庫.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : %d 函式庫.\n"
-
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 90
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 49
-
-
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 127
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/gencompilationflags_unix.sci, line: 14
-
-#
-# File: macros/ilib_compile.sci, line: 85
-
-
-
-
-
-
-
-
-
-#
-# File: macros/ilib_gen_Make.sci, line: 33
-# File: macros/ilib_gen_loader.sci, line: 24
-
-# File: macros/ilib_gen_gateway.sci, line: 54
-
-
-
-
-
-
-#
-# File: macros/ilib_compile.sci, line: 20
-
-
-
-

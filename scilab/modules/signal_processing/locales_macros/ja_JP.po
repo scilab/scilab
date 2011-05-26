@@ -218,23 +218,7 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "スペクトル推定法"
-
 msgid "Arma identification"
-msgstr "ARMA同定"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "ARMA同定"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "スペクトル推定法"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "ARMA同定"
 
 #
@@ -299,10 +283,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "スペクトル推定法"
 
 msgid "Spectral power"
 msgstr "パワースペクトル"

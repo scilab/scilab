@@ -56,4 +56,3 @@ msgstr "%s：错误代码 %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s：一个扩展范围数字上溢或下溢。\n"
-

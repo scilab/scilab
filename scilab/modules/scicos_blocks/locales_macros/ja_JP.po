@@ -72,8 +72,8 @@ msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
 "[Start, End]"
 msgstr ""
-"&nbsp;&nbsp;&nbsp;&nbsp;""展開するビット""を""ビットの範囲""に設定するかどう"
-"か: [開始,終了]"
+"&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開"
+"始,終了]"
 
 msgid "&nbsp;- Bits to Extract:"
 msgstr "&nbsp;- 展開するビット:"
@@ -102,10 +102,6 @@ msgstr "''Start'' は ''End''よりも小さくする必要があります."
 msgid "(Read Audio File)"
 msgstr ""
 
-#, fuzzy
-msgid "Accepts Inherited Events"
-msgstr "継承されたイベントを受け入れる (0: はい, 1: いいえ)"
-
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "継承されたイベントを受け入れる (0: はい, 1: いいえ)"
 
@@ -117,10 +113,6 @@ msgstr "自動"
 
 msgid "Bits Extraction"
 msgstr "ビットの展開"
-
-#, fuzzy
-msgid "Bits to Extract"
-msgstr "展開するビット"
 
 msgid "Bits to extract"
 msgstr "展開するビット"
@@ -162,16 +154,8 @@ msgstr "ビットをクリア"
 msgid "Combinatorial logic"
 msgstr "複合論理"
 
-#, fuzzy
-msgid "Constant Value"
-msgstr "初期値"
-
 msgid "Constant discriminant"
 msgstr "定数判別式"
-
-#, fuzzy
-msgid "Constant value generator"
-msgstr "サイン波ジェネレータ"
 
 #
 # File: macros/Sources/CONST_m.sci, line: 46
@@ -180,14 +164,6 @@ msgstr ""
 
 msgid "Data Type"
 msgstr "データ型"
-
-#, fuzzy, c-format
-msgid "Data Type %s"
-msgstr "データ型"
-
-#, fuzzy, c-format
-msgid "Directory ''%s'' does not exist"
-msgstr "変数''%s''が存在しません.\n"
 
 msgid "Discriminant type:"
 msgstr "判別式の型:"
@@ -207,10 +183,6 @@ msgstr "オーバーフロー時の動作 (0:何もしない, 1:飽和, 2:エラ
 msgid "Domain"
 msgstr "領域"
 
-#, fuzzy, c-format
-msgid "Elements must be in the interval %s."
-msgstr "添字は %s の範囲とする必要があります."
-
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 68
 # File: macros/Sinks/WRITEAU_f.sci, line: 54
@@ -225,10 +197,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
 msgstr ""
-
-#, fuzzy
-msgid "Event clock generator"
-msgstr "整数カウンタ生成器"
 
 msgid "Event input port"
 msgstr "入力ポートのイベント"
@@ -285,10 +253,6 @@ msgstr "初期値"
 msgid "Initial conditions"
 msgstr "初期条件"
 
-#, fuzzy
-msgid "Initialisation Time"
-msgstr "初期条件"
-
 #
 # File: macros/Sources/READAU_f.sci, line: 50
 # File: macros/Sources/READAU_f.sci, line: 63
@@ -309,10 +273,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
 msgstr ""
-
-#, fuzzy
-msgid "Input Type"
-msgstr "データ型"
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "入力型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -346,14 +306,6 @@ msgstr "剰余カウンタ (0 から Nのカウンタ)"
 
 msgid "Must be a single value."
 msgstr "単一の値とする必要があります."
-
-#, fuzzy, c-format
-msgid "Must be greater than %d."
-msgstr "範囲 %s とする必要があります."
-
-#, fuzzy
-msgid "Must be greater than 1."
-msgstr "整数とする必要があります."
 
 #, c-format
 msgid "Must be in the interval %s."
@@ -391,14 +343,6 @@ msgstr "順序付け:"
 # File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
 msgstr ""
-
-#, fuzzy
-msgid "Output Format"
-msgstr "出力ポートのイベント"
-
-#, fuzzy
-msgid "Output Type"
-msgstr "データ型"
 
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "出力の型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -457,10 +401,6 @@ msgstr "%s ブロックパラメータを設定"
 msgid "Set a bit"
 msgstr "ビットをセット"
 
-#, fuzzy
-msgid "Shift Type"
-msgstr "データ型"
-
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "シフトの型 (0: 算術, 1:環状)"
 
@@ -500,10 +440,6 @@ msgstr "ステップ時間"
 msgid "Strictly positive integer expected."
 msgstr "厳密に正の整数を指定してください."
 
-#, fuzzy
-msgid "Strictly positive number expected."
-msgstr "厳密に正の整数を指定してください."
-
 #
 # File: macros/Sources/READAU_f.sci, line: 69
 # File: macros/Sinks/WRITEC_f.sci, line: 89
@@ -523,10 +459,6 @@ msgstr "''初期値''はint8型の0または1とする必要があります"
 
 msgid "The measurement points"
 msgstr "観測点"
-
-#, fuzzy
-msgid "Treat Bit Field as an Integer"
-msgstr "ビットフィールドを整数として扱う (0: いいえ, 1:はい)"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "ビットフィールドを整数として扱う (0: いいえ, 1:はい)"
@@ -575,46 +507,10 @@ msgstr ""
 msgid "Write is done on:"
 msgstr ""
 
-#, fuzzy
-msgid "Write to C binary file"
-msgstr "ファイル ''%s''への書込みエラー.\n"
-
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
 msgid "Write to output file"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter"
-msgstr "''真理値表''パラメータの大きさが間違っています: %s."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %d."
-msgstr "''真理値表''パラメータの大きさが間違っています: %d."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %s."
-msgstr "''真理値表''パラメータの大きさが間違っています: %d."
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter"
-msgstr "''規則''パラメータの値が間違っています: %d"
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter: %5.1f."
-msgstr "''ビット添字''パラメータの型が間違っています: %5.1f."
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter."
-msgstr "''規則''パラメータの値が間違っています: %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %d."
-msgstr "''規則''パラメータの値が間違っています: %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %s."
-msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
@@ -624,33 +520,17 @@ msgstr "''周波数''パラメータに間違った値が使用されました %
 msgid "Wrong value for ''Initial State'' parameter: %d."
 msgstr "''初期値状態量''パラメータの値が間違っています: %d."
 
-#, fuzzy
-msgid "Wrong value for ''Output File Name'' parameter"
-msgstr "''出力型''パラメータの値が間違っています: %d."
-
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr "''ポート番号''パラメータの値が間違っています: %d."
-
-#, fuzzy, c-format
-msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "''開始時刻''パラメータの値が間違っています: %e."
 
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %5.1e."
-msgstr "''規則''パラメータの値が間違っています: %d"
-
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %s."
-msgstr "''規則''パラメータの値が間違っています: %d"
-
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-msgstr "''最大''および""最初""パラメータの値が間違っています: %d &lt; %d"
+msgstr "''最大''および最初パラメータの値が間違っています: %d &lt; %d"
 
 #, c-format
 msgid "Wrong values for ''Port Number'' parameter: %d."

@@ -53,10 +53,6 @@ msgstr "%s：无法打开共享文件。已经达到最大入口数 %d。\n"
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s：共享库 %s 不存在。\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s：文件%s不存在。\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s：共享档没有装载：%s\n"
@@ -180,46 +176,3 @@ msgstr "]：%d个库。\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "]：%d 库。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

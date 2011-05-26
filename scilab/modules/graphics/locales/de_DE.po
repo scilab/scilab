@@ -549,12 +549,6 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: spezifizierte Grenzen sind nicht "
 "korrekt.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ein gültiger Zeichensatzname "
-"erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
@@ -1051,81 +1045,3 @@ msgstr "Sie verwenden kein beschriftetes Objekt.\n"
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Sie müssen zuerst ein %s für dieses Objekt spezifizieren.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

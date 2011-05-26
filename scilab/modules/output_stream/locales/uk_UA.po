@@ -217,11 +217,6 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: дані не відповідають формату.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -846,10 +841,6 @@ msgstr "Не реалізовано у Scilab…\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Тут не можна використовувати порожню змінну.\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
 "Зупинка оптимізації: перевищено граничну кількість викликів функції f.\n"
@@ -1466,12 +1457,3 @@ msgstr "Часову область параметра №%d не визначе
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Тут не можна використовувати ключове слово varargout.\n"
-
-
-
-
-
-
-
-
-

@@ -58,22 +58,6 @@ msgstr ""
 "%sのScilabマニュアル マスタードキュメントを構築。\n"
 
 #
-# File: macros/xmltoformat.sci, line: 439
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "scilabマニュアル・ファイルの構築 ["
-
-#
-# File: macros/xmltoformat.sci, line: 439
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "scilabマニュアル・ファイルの構築 ["
-
-#
 # File: macros/xmltoformat.sci, line: 391
 msgid ""
 "\n"

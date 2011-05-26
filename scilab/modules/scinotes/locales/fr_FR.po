@@ -38,12 +38,6 @@ msgstr ""
 "%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument n°%d : Matrice de chaînes de caractères "
-"attendue.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s : type invalide pour l'argument %d : matrice réelle attendue.\n"
@@ -262,12 +256,6 @@ msgstr "Double chevrons"
 msgid "Edit"
 msgstr "Edition"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
-#, fuzzy
-msgid "Elapsed time: %s sec."
-msgstr "Temps écoulé: %s seconde."
-
 msgid "Enable Auto Reformat"
 msgstr "Activez la mise en forme automatique"
 
@@ -423,10 +411,6 @@ msgstr "Onglet suivant"
 
 msgid "No Line Numbering"
 msgstr "Non numérotation des lignes"
-
-#, fuzzy
-msgid "No help"
-msgstr "Aide SciNotes"
 
 msgid "No split"
 msgstr "Pas de décomposition"
@@ -674,14 +658,6 @@ msgstr "Tab representation"
 msgid "Tab style"
 msgstr "Tab style"
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Le fichier %s n'existe pas\n"
-"Voulez vous le créer ?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -808,50 +784,3 @@ msgstr "Vos modifications seront perdues, changer quand même l'encodage ?"
 
 msgid "close this tab"
 msgstr "fermer cet onglet"
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
-
-
-#
-# File: scilab_fake_localization_file.c, line: 52
-
-#
-# File: scilab_fake_localization_file.c, line: 51
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 84
-
-
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 45
-
-
-

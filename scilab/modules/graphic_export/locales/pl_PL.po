@@ -22,37 +22,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany pojedynczy "
-"ciąg znaków.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
-"całkowitej.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
-"całkowitej.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
@@ -71,19 +40,3 @@ msgstr "Scilab nie zainstalowany moduł eksportu grafiki.\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Moduł graficzny Scilab niedostępny w trybie -nogui lub  -nwni.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

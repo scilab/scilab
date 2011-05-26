@@ -92,7 +92,7 @@ msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
 msgstr ""
 
 msgid "''Minimum'' must be less than ''Maximum''."
-msgstr "''Mínimo'' debe ser menor que ""Máximo""."
+msgstr "''Mínimo'' debe ser menor que Máximo."
 
 msgid "''Start'' must be less than ''End''."
 msgstr "''Inicio'' debe ser menor que ''Final''."
@@ -101,10 +101,6 @@ msgstr "''Inicio'' debe ser menor que ''Final''."
 # File: macros/Sources/READAU_f.sci, line: 49
 msgid "(Read Audio File)"
 msgstr ""
-
-#, fuzzy
-msgid "Accepts Inherited Events"
-msgstr "Acepta eventos heredados (0:No, 1:Sí)"
 
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "Acepta eventos heredados (0:No, 1:Sí)"
@@ -117,10 +113,6 @@ msgstr "Automático"
 
 msgid "Bits Extraction"
 msgstr "Extracción de bits"
-
-#, fuzzy
-msgid "Bits to Extract"
-msgstr "Bits a extraer"
 
 msgid "Bits to extract"
 msgstr "Bits a extraer"
@@ -162,16 +154,8 @@ msgstr "Limpiar un bit"
 msgid "Combinatorial logic"
 msgstr "Lógica combinatoria"
 
-#, fuzzy
-msgid "Constant Value"
-msgstr "Valor inicial"
-
 msgid "Constant discriminant"
 msgstr "Discriminante contanste"
-
-#, fuzzy
-msgid "Constant value generator"
-msgstr "Generador de contadores enteros"
 
 #
 # File: macros/Sources/CONST_m.sci, line: 46
@@ -180,14 +164,6 @@ msgstr ""
 
 msgid "Data Type"
 msgstr "Tipo de dato"
-
-#, fuzzy, c-format
-msgid "Data Type %s"
-msgstr "Tipo de dato"
-
-#, fuzzy, c-format
-msgid "Directory ''%s'' does not exist"
-msgstr "La variable ''%s'' no existe.\n"
 
 msgid "Discriminant type:"
 msgstr "Tipo de discriminante:"
@@ -207,10 +183,6 @@ msgstr "Hacer en desbordamiento (0:Nada, 1:Saturar, 2:Error)"
 msgid "Domain"
 msgstr "Dominio"
 
-#, fuzzy, c-format
-msgid "Elements must be in the interval %s."
-msgstr "Los índices deben estar en el intervalo %s."
-
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 68
 # File: macros/Sinks/WRITEAU_f.sci, line: 54
@@ -225,10 +197,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
 msgstr ""
-
-#, fuzzy
-msgid "Event clock generator"
-msgstr "Generador de contadores enteros"
 
 msgid "Event input port"
 msgstr "Puerto de entrada de eventos"
@@ -285,10 +253,6 @@ msgstr "Valor inicial"
 msgid "Initial conditions"
 msgstr "Condiciones iniciales"
 
-#, fuzzy
-msgid "Initialisation Time"
-msgstr "Condiciones iniciales"
-
 #
 # File: macros/Sources/READAU_f.sci, line: 50
 # File: macros/Sources/READAU_f.sci, line: 63
@@ -309,10 +273,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
 msgstr ""
-
-#, fuzzy
-msgid "Input Type"
-msgstr "Tipo de dato"
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Tipo de entrada (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -346,14 +306,6 @@ msgstr ""
 
 msgid "Must be a single value."
 msgstr "Debe ser un solo valor."
-
-#, fuzzy, c-format
-msgid "Must be greater than %d."
-msgstr "Debe estar en el intervalo %s."
-
-#, fuzzy
-msgid "Must be greater than 1."
-msgstr "Debe ser un entero."
 
 #, c-format
 msgid "Must be in the interval %s."
@@ -393,14 +345,6 @@ msgstr "Orden:"
 # File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
 msgstr ""
-
-#, fuzzy
-msgid "Output Format"
-msgstr "Puerto de salida de eventos"
-
-#, fuzzy
-msgid "Output Type"
-msgstr "Tipo de dato"
 
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Tipo de salida (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -459,10 +403,6 @@ msgstr "Asignar %s parámetros de bloque"
 msgid "Set a bit"
 msgstr "Asignar un bit"
 
-#, fuzzy
-msgid "Shift Type"
-msgstr "Tipo de dato"
-
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Tipo de desplazamiento (0:Aritmético, 1:Circular)"
 
@@ -502,10 +442,6 @@ msgstr ""
 msgid "Strictly positive integer expected."
 msgstr "Se esperaba un entero estrictamente positivo."
 
-#, fuzzy
-msgid "Strictly positive number expected."
-msgstr "Se esperaba un entero estrictamente positivo."
-
 #
 # File: macros/Sources/READAU_f.sci, line: 69
 # File: macros/Sinks/WRITEC_f.sci, line: 89
@@ -525,10 +461,6 @@ msgstr "El ''Valor inicial'' debe ser 0 o 1 del tipo int8"
 
 msgid "The measurement points"
 msgstr "Los puntos de medida"
-
-#, fuzzy
-msgid "Treat Bit Field as an Integer"
-msgstr "Tratar al campo del bit como a un entero (0:No, 1:Sí)"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Tratar al campo del bit como a un entero (0:No, 1:Sí)"
@@ -577,46 +509,10 @@ msgstr ""
 msgid "Write is done on:"
 msgstr ""
 
-#, fuzzy
-msgid "Write to C binary file"
-msgstr "Error escribiendo el archivo ''%s''.\n"
-
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
 msgid "Write to output file"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter"
-msgstr "Tamaño incorrecto para el parámetro ''Tabla de verdad'': %d."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %d."
-msgstr "Tamaño incorrecto para el parámetro ''Tabla de verdad'': %d."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %s."
-msgstr "Tamaño incorrecto para el parámetro ''Tabla de verdad'': %d."
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter"
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter: %5.1f."
-msgstr "Tipo incorrecto para el parámetro ''Índice de bit'': %5.1f."
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter."
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %s."
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
@@ -624,44 +520,27 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for ''Initial State'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro ""Estado inicial"": %d."
-
-#, fuzzy
-msgid "Wrong value for ''Output File Name'' parameter"
-msgstr "Valor incorrecto para el parámetro ''Tipo de salida'': %d."
+msgstr "Valor incorrecto para el parámetro Estado inicial: %d."
 
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro ""Puerto número"": %d."
-
-#, fuzzy, c-format
-msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
+msgstr "Valor incorrecto para el parámetro Puerto número: %d."
 
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
-msgstr "Valor incorrecto para el parámetro ""Tiempo inicial"": %e."
-
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %5.1e."
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
-
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %s."
-msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
+msgstr "Valor incorrecto para el parámetro Tiempo inicial: %e."
 
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-msgstr ""
-"Valores incorrectos para los parámetros ""Máximo"" y ""Mínimo"": %d &lt; %d"
+msgstr "Valores incorrectos para los parámetros Máximo y Mínimo: %d &lt; %d"
 
 #, c-format
 msgid "Wrong values for ''Port Number'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro ""Puerto número"": %d."
+msgstr "Valor incorrecto para el parámetro Puerto número: %d."
 
 #, c-format
 msgid "Wrong values for ''Upper Limit'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro "": %d."
+msgstr "Valor incorrecto para el parámetro : %d."
 
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 63

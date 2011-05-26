@@ -33,8 +33,7 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Polynom erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein reell-wertiger Bruch "
 "erwartet.\n"

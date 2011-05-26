@@ -42,8 +42,8 @@ msgstr ""
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
-"%d funcions de barres d''eina de Matlab, s''ha utilitzat la seqüència original "
-"de crida:"
+"%d funcions de barres d''eina de Matlab, s''ha utilitzat la seqüència "
+"original de crida:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
@@ -248,8 +248,8 @@ msgstr "S''eliminaran totes les finestres."
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
 msgstr ""
-"Com a mínim un operand és una matriu buida a l''operador: %s, s''ha definit el "
-"resultat com a []."
+"Com a mínim un operand és una matriu buida a l''operador: %s, s''ha definit "
+"el resultat com a []."
 
 #, c-format
 msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
@@ -451,15 +451,15 @@ msgstr "Eina de conversió de Matlab a Scilab"
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used"
 msgstr ""
-"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà la "
-"seqüència original de crida"
+"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà "
+"la seqüència original de crida"
 
 #, c-format
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used."
 msgstr ""
-"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà la "
-"seqüència original de crida."
+"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà "
+"la seqüència original de crida."
 
 msgid "Mfile2sci help page"
 msgstr "Pàgina d''ajuda del Mfile2sci"

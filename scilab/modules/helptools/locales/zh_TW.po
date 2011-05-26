@@ -29,10 +29,6 @@ msgstr "%s:  製作文件時有誤: %s.\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Execution Java 堆積 %s.\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Execution Java 堆積 %s.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
@@ -52,54 +48,3 @@ msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' 模組未安裝.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -62,8 +62,3 @@ msgstr "%s: numéro d'erreur %d\n"
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: débordement d'un nombre à précision étendu\n"
-
-
-
-
-

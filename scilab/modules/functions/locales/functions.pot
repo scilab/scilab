@@ -20,11 +20,13 @@ msgstr ""
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 100
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 188
 # File: sci_gateway/c/sci_execstr.c, line: 162
@@ -35,17 +37,20 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 112
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 141
 # File: sci_gateway/c/sci_exec.c, line: 220
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_execstr.c, line: 135
 # File: sci_gateway/c/sci_execstr.c, line: 204
@@ -53,16 +58,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 43
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_whereis.c, line: 146
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 121
 # File: sci_gateway/c/sci_exec.c, line: 200
@@ -70,6 +78,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_execstr.c, line: 87
 # File: sci_gateway/c/sci_execstr.c, line: 94
@@ -79,11 +88,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_libraryinfo.c, line: 121
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 177
 # File: sci_gateway/c/sci_exec.c, line: 256
@@ -91,17 +102,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_execstr.c, line: 220
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 148
 # File: sci_gateway/c/sci_exec.c, line: 227
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_exec.c, line: 278
 #, c-format

@@ -183,12 +183,3 @@ msgstr "Falscher Typ für Eingangsargument #%d: reelle Hypermatrix erwartet.\n"
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "Falscher Typ für Eingansgargument #%d: Zeichenkette erwartet.\n"
-
-
-
-
-
-
-
-
-

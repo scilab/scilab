@@ -249,12 +249,6 @@ msgstr "%s: 入力引数の数が不正です: 最大で %d を想定します�
 
 #
 # File: src/c/errmsg.c, line: 559
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr "%s: 入力引数の数が不正です: データはフォーマットに適合しません。\n"
-
-#
-# File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: 入力引数の数が不正です: データはフォーマットに適合しません。\n"
@@ -1050,10 +1044,6 @@ msgstr "Scilab で実施されませんでした...\n"
 # File: src/c/errmsg.c, line: 1214
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL 変数は、ここで使うことはできません。\n"
-
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "/ のオペランドと \\ の操作 で Inf の NaN を含んではいけません。\n"
 
 #
 # File: src/c/msgs.c, line: 638
@@ -1927,12 +1917,3 @@ msgstr "引数 %d の時間領域は、定義されていません。\n"
 # File: src/c/errmsg.c, line: 1516
 msgid "varargout keyword cannot be used here.\n"
 msgstr "可変の入力引数キーワードはここで使うことはできません。\n"
-
-
-
-
-
-
-
-
-

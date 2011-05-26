@@ -38,11 +38,6 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje "
 "takich samych wymiarów.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
@@ -131,10 +126,6 @@ msgstr "Kolor tła"
 msgid "Backward"
 msgstr "Wstecz"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s jest katalogiem."
-
 msgid "Binary file: read-only mode"
 msgstr "Plik binarny (tryb tylko do odczytu)"
 
@@ -155,23 +146,11 @@ msgstr "Nie można załadować \"scinotesConfiguration.xml\""
 msgid "Case sensitive"
 msgstr "Rozróżniaj wielkość liter"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Rozróżniaj wielkość liter"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Rozróżniaj wielkość liter"
-
 msgid "Change Color"
 msgstr "Zmień kolor"
 
 msgid "Change Colors"
 msgstr "Zmienić kolory"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s jest katalogiem."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -277,10 +256,6 @@ msgstr "Włącz autoformatowanie"
 msgid "Encoding"
 msgstr "Kodowanie"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "Kodowanie"
-
 msgid "Enter line number"
 msgstr "Wprowadź numer linii"
 
@@ -371,10 +346,6 @@ msgstr "Pomoc w czasie pisania"
 msgid "Highlight current line"
 msgstr "Podświetl bierzącą linię"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "Podziel poziomo"
-
 msgid "Ignore"
 msgstr "Ignoruj"
 
@@ -430,10 +401,6 @@ msgstr "Następna karta"
 
 msgid "No Line Numbering"
 msgstr "Brak numeracji wierszy"
-
-#, fuzzy
-msgid "No help"
-msgstr "Pomoc SciNotes"
 
 msgid "No split"
 msgstr "Nie dziel"
@@ -535,10 +502,6 @@ msgstr "Powtórz"
 msgid "Regex"
 msgstr ""
 
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Wyrażenia regularne"
-
 msgid "Regular expressions"
 msgstr "Wyrażenia regularne"
 
@@ -618,10 +581,6 @@ msgstr "Znajdź"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Poprzednie pliki"
-
 msgid "Select All"
 msgstr "Zaznacz wszystko"
 
@@ -685,14 +644,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Plik %s nie istnieje\n"
-" Czy chcesz go utworzyć?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -701,10 +652,6 @@ msgstr ""
 " Zastąpić istniejący plik ?"
 
 msgid "The file could not be converted."
-msgstr "Plik nie może być przekonwertowany"
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "Plik nie może być przekonwertowany"
 
 msgid "The file could not be saved."
@@ -777,10 +724,6 @@ msgstr "Całe słowo"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "Zawijanie wierszy"
-
 msgid "Word Wrap"
 msgstr "Zawijanie wierszy"
 
@@ -820,24 +763,3 @@ msgstr "Twoje zmiany zostaną utracone, należy zmienić kodowanie."
 
 msgid "close this tab"
 msgstr "zamknij kartę"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

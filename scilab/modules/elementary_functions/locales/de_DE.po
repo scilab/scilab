@@ -55,12 +55,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: unbekannter Typ.\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: falsche Wert von Eingangsargument #%d.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -73,77 +67,3 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', ''%s'' "
 "oder ''%s'' erwartet.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

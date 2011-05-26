@@ -20,12 +20,6 @@ msgstr ""
 msgid "Allocation problem in spline.\n"
 msgstr "スプラインでメモリ確保の問題が発生しました.\n"
 
-#, fuzzy, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-"スコープエラー: scoRefreshDataBoundsX() をこのオブジェクト型に使用できませ"
-"ん.\n"
-
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "遅延ブロックのバッファ長を増やしてみてください \n"
 
@@ -51,10 +45,6 @@ msgstr ""
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "ファイル '%s'をオープンする際にエラー発生\n"
-
-#, fuzzy
-msgid "Incorrect value for dimension argument."
-msgstr "スコープエラー:  scoInitOfWindowのdimension引数の値が間違っています.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
@@ -153,139 +143,3 @@ msgstr "遅延後の時間は %f ですが、最後に保存された時間は %
 
 msgid "overflow error"
 msgstr "オーバーフローエラー"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

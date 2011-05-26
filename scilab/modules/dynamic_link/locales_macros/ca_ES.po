@@ -101,21 +101,9 @@ msgstr "   S''està executant el makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   Sortida d''error: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: Ja s''ha carregat de la llibreria %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Es necessita un compilador de Fortran o de C.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -233,49 +221,38 @@ msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"caràcters < 999.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de caràcters < 999.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"de cadenes de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu de cadenes de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"de text.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser '''' o "
-"''[]''.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu de text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
 "d''aquests {%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Es necessita un compilador de Fortran o de C."

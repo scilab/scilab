@@ -60,10 +60,6 @@ msgstr "Okno graficzne"
 msgid "Scilab Command"
 msgstr "Polecenie programu Scilab"
 
-#, fuzzy
-msgid "Scilab Fields"
-msgstr "Funkcia programu Scilab"
-
 msgid "Scilab Function"
 msgstr "Funkcia programu Scilab"
 

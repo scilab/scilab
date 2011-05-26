@@ -58,17 +58,6 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: gleiche Größe wie das "
-"Eingangsargument #%d erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -115,35 +104,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Transponent der Funktion %s "
-"erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: Vektor erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Transponent der Funktion %s "
-"erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Transponent der Funktion %s "
-"erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Transponent der Funktion %s "
 "erwartet.\n"
 
 #, c-format

@@ -86,10 +86,6 @@ msgstr ""
 "%s: Imposible cargar el bloque desde %s: no se encontró la variable "
 "`scs_m'' .\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: Argumento de entrada %s inválido: Se esperaba svg o gif.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
@@ -212,14 +208,6 @@ msgstr ""
 "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un vector de "
 "strings.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada %s: Se esperaba un archivo "
-"existente.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
@@ -279,10 +267,6 @@ msgstr ""
 msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
-#, fuzzy
-msgid "Control Systems"
-msgstr "Sistemas de tiempo continuo"
-
 #
 # File: demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
@@ -302,14 +286,6 @@ msgstr ""
 # File: demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
 msgstr ""
-
-#, fuzzy
-msgid "Discrete Kalman Filter"
-msgstr "Sistemas de tiempo discreto"
-
-#, fuzzy
-msgid "Electrical Systems"
-msgstr "Eléctrica"
 
 #
 # File: demos/standard.dem.gateway.sce, line: 12
@@ -357,14 +333,6 @@ msgstr ""
 msgid "Mechanical Systems"
 msgstr ""
 
-#, fuzzy
-msgid "Modelica demos"
-msgstr "Preferencias de Modelica"
-
-#, fuzzy
-msgid "Old Gain Block"
-msgstr "Alinear Bloques"
-
 #
 # File: demos/xcos.dem.gateway.sce, line: 18
 # File: demos/scicos.dem.gateway.sce, line: 12
@@ -386,14 +354,6 @@ msgstr ""
 msgid "RLC circuit"
 msgstr ""
 
-#, fuzzy
-msgid "Scilab block"
-msgstr "Archivo de Scilab"
-
-#, fuzzy
-msgid "Signal Builder"
-msgstr "Enrutamiento de Señal"
-
 #
 # File: demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
@@ -403,10 +363,6 @@ msgstr ""
 # File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
 msgstr ""
-
-#, fuzzy
-msgid "Simulation problem"
-msgstr "Simulación en progreso"
 
 #
 # File: demos/xcos.dem.gateway.sce, line: 7
@@ -457,10 +413,6 @@ msgstr "Xcos"
 # File: demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
 msgstr ""
-
-#, fuzzy
-msgid "Zero Crossing"
-msgstr "Detección de cruce por cero"
 
 #
 # File: demos/standard.dem.gateway.sce, line: 16

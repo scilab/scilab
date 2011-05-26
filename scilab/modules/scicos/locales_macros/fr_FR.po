@@ -85,20 +85,12 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr "%s: Mauvais nombre d''arguments d''entrée. Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
@@ -121,37 +113,12 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s : Mauvaise dimension pour les arguments d''entrée n°%d et n°%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s : Mauvais type pour l''argument d''entrée n°%d : Entier attendu.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 "%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
@@ -364,10 +331,6 @@ msgstr "Couleur"
 
 msgid "Compile"
 msgstr "Compiler"
-
-#, fuzzy
-msgid "Connection error"
-msgstr "%s : Erreur d''allocation.\n"
 
 msgid "Context"
 msgstr "Contexte"
@@ -796,10 +759,6 @@ msgstr "Simuler"
 msgid "Simulation parameters not set:"
 msgstr ""
 
-#, fuzzy
-msgid "Simulation problem: "
-msgstr "problème d''ordonnancement"
-
 msgid "Smart"
 msgstr "Rapide"
 
@@ -904,10 +863,6 @@ msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
 msgstr ""
-
-#, fuzzy
-msgid "Xcos block parameter error"
-msgstr "le bloc produit une erreur interne"
 
 msgid "Yes"
 msgstr "Oui"

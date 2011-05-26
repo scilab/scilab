@@ -194,23 +194,7 @@ msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід встановити значення "
 "степеня з набору {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "оцінка спектральної щільності"
-
 msgid "Arma identification"
-msgstr "Визначення за ARMA"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Визначення за ARMA"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "оцінка спектральної щільності"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Визначення за ARMA"
 
 #
@@ -275,10 +259,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "оцінка спектральної щільності"
 
 msgid "Spectral power"
 msgstr "Спектральна потужність"

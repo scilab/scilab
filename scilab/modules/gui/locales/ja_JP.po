@@ -107,10 +107,6 @@ msgstr "%s: ファイル %s は存在しません。\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d が間違っています: '%s'または'%s'を指定してください."
-
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: 入力引数が間違っています: '%s' を指定してください.\n"
@@ -140,12 +136,6 @@ msgstr ""
 "%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してくだ"
 "さい.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの大きさが間違っています: '%s'または'%s'ハンドルを指定してく"
-"ださい.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -164,11 +154,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してく"
 "ださい.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -223,11 +208,6 @@ msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 負ではない整数を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -238,10 +218,6 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
 "い.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -454,22 +430,6 @@ msgstr "謝辞"
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
-#, fuzzy
-msgid "All Encapsulated PS files"
-msgstr "全てのScilabファイル"
-
-#, fuzzy
-msgid "All PDF files"
-msgstr "全てのファイル"
-
-#, fuzzy
-msgid "All PNG image files"
-msgstr "全てのScilabファイル"
-
-#, fuzzy
-msgid "All Postscript files"
-msgstr "全ての %s ファイル"
-
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
@@ -530,10 +490,6 @@ msgstr "コピー"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
-
 msgid "Could not open: "
 msgstr "オープンできません: "
 
@@ -577,13 +533,6 @@ msgstr "エクスポート"
 
 msgid "FIG image"
 msgstr "FIG イメージ"
-
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 296
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 77
-#, fuzzy
-msgid "Feature not available in this mode..."
-msgstr "%s: NWNIモードで関数は利用できません。\n"
 
 msgid "File already exist"
 msgstr "ファイルは既にあります"
@@ -1167,12 +1116,6 @@ msgid ""
 msgstr ""
 "'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
-#
-# File: src/cpp/SetUicontrolListboxTop.cpp, line: 47
-#, fuzzy, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "'%s' プロパティで不正な値: 実を想定します。\n"
-
 msgid "Xcos files"
 msgstr "Xcosファイル"
 
@@ -1208,428 +1151,3 @@ msgstr ""
 "disp(\"警告: ビデオ・カード・ドライバーの制限です、OpenGLを操作できないので、"
 "Scilabはグラフィックを描くことができません。どうぞドライバを更新して下さ"
 "い。\")"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/figure.sci, line: 26
-# File: macros/figure.sci, line: 53
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/clipboard.sci, line: 51
-
-#
-# File: macros/clipboard.sci, line: 51
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 73
-
-
-#
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 40
-# File: scilab_fake_localization_file.c, line: 81
-
-#
-# File: scilab_fake_localization_file.c, line: 69
-
-#
-# File: scilab_fake_localization_file.c, line: 31
-
-#
-# File: scilab_fake_localization_file.c, line: 6
-
-#
-# File: scilab_fake_localization_file.c, line: 79
-
-#
-# File: scilab_fake_localization_file.c, line: 46
-
-#
-# File: scilab_fake_localization_file.c, line: 29
-
-#
-# File: scilab_fake_localization_file.c, line: 38
-
-#
-# File: scilab_fake_localization_file.c, line: 58
-
-
-#
-# File: scilab_fake_localization_file.c, line: 78
-
-#
-# File: scilab_fake_localization_file.c, line: 65
-
-#
-# File: scilab_fake_localization_file.c, line: 53
-
-#
-# File: scilab_fake_localization_file.c, line: 17
-
-#
-# File: scilab_fake_localization_file.c, line: 47
-
-#
-# File: scilab_fake_localization_file.c, line: 12
-
-#
-# File: scilab_fake_localization_file.c, line: 13
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
-
-#
-# File: scilab_fake_localization_file.c, line: 55
-
-#
-# File: scilab_fake_localization_file.c, line: 42
-
-#
-# File: scilab_fake_localization_file.c, line: 5
-
-#
-# File: scilab_fake_localization_file.c, line: 14
-
-#
-# File: scilab_fake_localization_file.c, line: 30
-
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 37
-# File: scilab_fake_localization_file.c, line: 41
-
-#
-# File: scilab_fake_localization_file.c, line: 61
-
-#
-# File: scilab_fake_localization_file.c, line: 7
-
-#
-# File: scilab_fake_localization_file.c, line: 68
-
-#
-# File: scilab_fake_localization_file.c, line: 8
-
-#
-# File: scilab_fake_localization_file.c, line: 44
-
-#
-# File: scilab_fake_localization_file.c, line: 3
-
-
-#
-# File: scilab_fake_localization_file.c, line: 72
-
-#
-# File: scilab_fake_localization_file.c, line: 2
-
-#
-# File: scilab_fake_localization_file.c, line: 43
-
-#
-# File: scilab_fake_localization_file.c, line: 15
-
-#
-# File: scilab_fake_localization_file.c, line: 10
-
-#
-# File: scilab_fake_localization_file.c, line: 54
-
-
-#
-# File: scilab_fake_localization_file.c, line: 19
-# File: scilab_fake_localization_file.c, line: 49
-
-#
-# File: scilab_fake_localization_file.c, line: 50
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 16
-
-#
-# File: scilab_fake_localization_file.c, line: 45
-
-#
-# File: scilab_fake_localization_file.c, line: 4
-
-
-#
-# File: scilab_fake_localization_file.c, line: 35
-
-#
-# File: scilab_fake_localization_file.c, line: 56
-
-#
-# File: scilab_fake_localization_file.c, line: 27
-
-
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
-# File: scilab_fake_localization_file.c, line: 21
-
-#
-# File: scilab_fake_localization_file.c, line: 24
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 76
-
-#
-# File: scilab_fake_localization_file.c, line: 71
-
-#
-# File: scilab_fake_localization_file.c, line: 23
-
-
-
-
-#
-# File: macros/getvalue.sci, line: 193
-
-#
-# File: macros/getvalue.sci, line: 189
-
-#
-# File: macros/getvalue.sci, line: 195
-
-#
-# File: scilab_fake_localization_file.c, line: 69
-
-#
-# File: macros/about.sci, line: 18
-
-#
-# File: scilab_fake_localization_file.c, line: 20
-
-#
-# File: scilab_fake_localization_file.c, line: 52
-
-#
-# File: scilab_fake_localization_file.c, line: 91
-
-#
-# File: scilab_fake_localization_file.c, line: 92
-
-#
-# File: scilab_fake_localization_file.c, line: 63
-
-#
-# File: scilab_fake_localization_file.c, line: 64
-
-
-#
-# File: scilab_fake_localization_file.c, line: 59
-
-#
-# File: scilab_fake_localization_file.c, line: 60
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
-
-#
-# File: scilab_fake_localization_file.c, line: 47
-
-
-#
-# File: etc/main_menubar.xml, line: 36
-
-#
-# File: etc/main_menubar.xml, line: 50
-
-
-#
-# File: etc/main_menubar.xml, line: 14
-
-
-#
-# File: etc/graphics_menubar.xml, line: 15
-
-#
-# File: etc/graphics_menubar.xml, line: 29
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
-
-#
-# File: etc/gui.start, line: 13
-
-
-
-
-
-
-
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 87
-
-#
-# File: scilab_fake_localization_file.c, line: 84
-
-#
-# File: scilab_fake_localization_file.c, line: 9
-
-#
-# File: scilab_fake_localization_file.c, line: 18
-# File: scilab_fake_localization_file.c, line: 48
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 93
-
-#
-# File: macros/about.sci, line: 20
-
-#
-# File: scilab_fake_localization_file.c, line: 75
-
-#
-# File: scilab_fake_localization_file.c, line: 82
-
-#
-# File: scilab_fake_localization_file.c, line: 33
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 74
-
-
-#
-# File: macros/about.sci, line: 16
-
-#
-# File: macros/about.sci, line: 30
-
-#
-# File: scilab_fake_localization_file.c, line: 75
-
-
-#
-# File: etc/main_menubar.xml, line: 59
-# File: etc/main_toolbar.xml, line: 39
-
-#
-# File: etc/graphics_menubar.xml, line: 41
-# File: etc/graphics_menubar.xml, line: 52
-# File: etc/graphics_menubar.xml, line: 63
-# File: etc/graphics_menubar.xml, line: 74
-# File: etc/graphics_menubar.xml, line: 85
-# File: etc/graphics_menubar.xml, line: 98
-# File: etc/graphics_menubar.xml, line: 109
-# File: etc/graphics_menubar.xml, line: 120
-# File: etc/graphics_menubar.xml, line: 131
-# File: etc/graphics_menubar.xml, line: 142
-
-#
-# File: etc/main_menubar.xml, line: 11
-
-#
-# File: etc/graphics_menubar.xml, line: 12
-# File: etc/main_menubar.xml, line: 33
-
-
-#
-# File: etc/graphics_menubar.xml, line: 23
-# File: etc/main_menubar.xml, line: 44
-
-#
-# File: scilab_fake_localization_file.c, line: 56
-
-
-#
-# File: etc/graphics_menubar.xml, line: 41
-# File: etc/graphics_menubar.xml, line: 52
-# File: etc/graphics_menubar.xml, line: 63
-# File: etc/graphics_menubar.xml, line: 74
-# File: etc/graphics_menubar.xml, line: 85
-# File: etc/graphics_menubar.xml, line: 98
-# File: etc/graphics_menubar.xml, line: 109
-# File: etc/graphics_menubar.xml, line: 120
-# File: etc/graphics_menubar.xml, line: 131
-# File: etc/graphics_menubar.xml, line: 142
-
-#
-# File: scilab_fake_localization_file.c, line: 22
-# File: scilab_fake_localization_file.c, line: 62
-
-
-
-#
-# File: macros/about.sci, line: 17
-
-
-
-
-
-
-
-
-#
-# File: macros/about.sci, line: 19
-
-
-
-
-#
-# File: scilab_fake_localization_file.c, line: 83
-
-
-
-#
-# File: macros/createpopup.sci, line: 50
-
-
-#
-# File: macros/about.sci, line: 20
-
-
-
-
-

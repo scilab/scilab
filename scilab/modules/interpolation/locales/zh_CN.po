@@ -159,12 +159,3 @@ msgstr "输入参数#%d的类型错误：应该为实数超矩阵。\n"
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "输入参数#%d的类型错误：应该为字符串。\n"
-
-
-
-
-
-
-
-
-

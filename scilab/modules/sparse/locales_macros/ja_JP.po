@@ -73,28 +73,6 @@ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します�
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
 
-#
-# File: macros/gmres.sci, line: 152
-# File: macros/pcg.sci, line: 48
-# File: macros/pcg.sci, line: 51
-# File: macros/qmr.sci, line: 261
-#, fuzzy, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 128
-# File: macros/pcg.sci, line: 112
-# File: macros/pcg.sci, line: 145
-# File: macros/pcg.sci, line: 171
-# File: macros/pcg.sci, line: 179
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定しま"
-"す。\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -182,37 +160,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
-"い.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
-"い.\n"
-
-#
-# File: macros/qmr.sci, line: 97
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定します。\n"
-
-#
-# File: macros/qmr.sci, line: 97
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

@@ -99,23 +99,9 @@ msgstr "   Uruchamianie makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s: Już załadowano z biblioteki %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Wymagany jest kompilator C lub Fortran''a.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -256,23 +242,11 @@ msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano macierz "
 "łańcuchów\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '''' albo "
-"''[]''\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
 "{%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d:oczekiwano wartości "
-"całkowitej (int).\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Wymagany jest kompilator jezyka C lub Frotran."

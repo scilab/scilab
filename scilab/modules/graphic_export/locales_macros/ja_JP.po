@@ -35,10 +35,6 @@ msgstr "%s: エクスポートファイルを生成できません、権限が�
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: pstoeditを実行できません。\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: pstoeditを実行できません。\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

@@ -38,11 +38,6 @@ msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
 "збігатися.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
@@ -131,10 +126,6 @@ msgstr "Колір тла"
 msgid "Backward"
 msgstr "Назад"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s — це каталог."
-
 msgid "Binary file: read-only mode"
 msgstr "Бінарний файл: режим лише читання"
 
@@ -155,23 +146,11 @@ msgstr "Не вдалося завантажити «scinotesConfiguration.xml»
 msgid "Case sensitive"
 msgstr "З врахуванням регістру"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "З врахуванням регістру"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "З врахуванням регістру"
-
 msgid "Change Color"
 msgstr "Змінити колір"
 
 msgid "Change Colors"
 msgstr "Змінити кольори"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s — це каталог."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -277,10 +256,6 @@ msgstr "Увімкнути автоматичну зміну формату"
 msgid "Encoding"
 msgstr "Кодування"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "Кодування"
-
 msgid "Enter line number"
 msgstr "Введіть номер рядка"
 
@@ -371,10 +346,6 @@ msgstr "Довідка при введенні"
 msgid "Highlight current line"
 msgstr "Підсвічувати поточний рядок"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "Розділити горизонтально"
-
 msgid "Ignore"
 msgstr "Ігнорувати"
 
@@ -431,10 +402,6 @@ msgstr "Наступна вкладка"
 msgid "No Line Numbering"
 msgstr "Без нумерації рядків"
 
-#, fuzzy
-msgid "No help"
-msgstr "Довідка SciNotes"
-
 msgid "No split"
 msgstr "Без поділу"
 
@@ -446,10 +413,6 @@ msgstr "Немає тексту для обробки."
 
 msgid "Normal Line Numbering"
 msgstr "Звичайна нумерація рядків"
-
-#, fuzzy
-msgid "Numeration"
-msgstr "Нумерація"
 
 msgid "Ok"
 msgstr "Гаразд"
@@ -523,10 +486,6 @@ msgstr "Нещодавні файли"
 msgid "Recursive"
 msgstr ""
 
-#, fuzzy
-msgid "Recursive search"
-msgstr "Циклічний пошук"
-
 msgid "Redo"
 msgstr "Повторити"
 
@@ -534,10 +493,6 @@ msgstr "Повторити"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
 msgstr ""
-
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Формальні вирази"
 
 msgid "Regular expressions"
 msgstr "Формальні вирази"
@@ -618,10 +573,6 @@ msgstr "Пошук"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Нещодавні файли"
-
 msgid "Select All"
 msgstr "Вибрати все"
 
@@ -685,14 +636,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Файла з назвою %s не існує.\n"
-" Бажаєте його створити?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -701,10 +644,6 @@ msgstr ""
 " Перезаписати його?"
 
 msgid "The file could not be converted."
-msgstr "Перетворити файл не вдалося."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "Перетворити файл не вдалося."
 
 msgid "The file could not be saved."
@@ -778,10 +717,6 @@ msgstr "Цілі слова"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "Перенесення слів"
-
 msgid "Word Wrap"
 msgstr "Перенесення слів"
 
@@ -821,25 +756,3 @@ msgstr "Внесені вами зміни буде втрачено. Попри
 
 msgid "close this tab"
 msgstr "закрити цю вкладку"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -31,7 +31,8 @@ msgstr "%s : Mauvais nombre d''argument(s) de sortie : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: Un booléen attendu.\n"
+msgstr ""
+"%s: Mauvais type pour l''argument d''entrée n° %d: Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"

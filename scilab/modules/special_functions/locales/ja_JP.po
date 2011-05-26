@@ -65,8 +65,3 @@ msgstr "%s: エラー番号 %d\n"
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
-
-
-
-
-

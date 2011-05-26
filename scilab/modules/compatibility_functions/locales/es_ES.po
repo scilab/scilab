@@ -106,8 +106,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: Esta función aun no a sido implementada: Argumento de tipo %d.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Esta función no a sido implementada: Soporte para hiper-matrices.\n"
 
@@ -222,13 +221,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada: Se esperaba una celda.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada: Se esperaba una celda.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
+msgstr "%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
 
 #, c-format
 msgid "%s: Wrong value for affectation to ''%s''.\n"
@@ -311,7 +308,3 @@ msgstr "Oct"
 
 msgid "Sep"
 msgstr "Sep"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: uso con %d argumentos de entrada aun no fue implementado.\n"

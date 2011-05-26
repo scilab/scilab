@@ -40,18 +40,6 @@ msgstr ""
 "\n"
 "建立Scilab %s 主要的文件:\n"
 
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s] in %s.\n"
-msgstr "產生 scilab 手冊檔 ["
-
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Building the manual file [%s].\n"
-msgstr "產生 scilab 手冊檔 ["
-
 msgid ""
 "\n"
 "Building the master document:\n"

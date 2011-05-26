@@ -38,12 +38,3 @@ msgstr "Mauvais (%d ième) index dans l'extraction d'une hypermatrice. "
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr "Trop d'arguments sur la pile, éditez stack.h et augmentez intersiz.\n"
-
-
-
-
-
-
-
-
-

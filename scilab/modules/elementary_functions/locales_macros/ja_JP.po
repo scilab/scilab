@@ -19,22 +19,6 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#, fuzzy, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s:入力引数  #%d および #%d には互換性がありません: 同じ型を指定してくださ"
-"い.\n"
-
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
@@ -101,11 +85,6 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -114,11 +93,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -210,12 +184,6 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 # File: macros/ndgrid.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"
-
-#
-# File: macros/ndgrid.sci, line: 45
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"
 
 #, c-format
@@ -350,13 +318,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: %dおよび%dの間
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
-"さい.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
 "さい.\n"

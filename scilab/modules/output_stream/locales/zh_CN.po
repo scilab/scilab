@@ -206,10 +206,6 @@ msgstr "%s：输入参数的数目错误。\n"
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该做多为%d个。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
@@ -780,10 +776,6 @@ msgstr "在Scilab中尚未实现...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "此处不可使用空变量（null）。\n"
 
-#, fuzzy
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "参数%d的值错误：不能包含NaN和Inf。\n"
-
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "优化停止：已经达到了调用f的最大次数。\n"
 
@@ -1340,4 +1332,3 @@ msgstr "第%d个参数的时间域未定义。\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "varargout关键词在此处不能使用。\n"
-

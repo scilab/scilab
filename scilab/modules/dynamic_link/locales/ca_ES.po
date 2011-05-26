@@ -59,10 +59,6 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: La llibreria compartida %s no existeix.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: El fitxer %s no existeix.\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: No s'ha pogut carregar el fitxer compartit: %s\n"
@@ -205,53 +201,3 @@ msgstr "] : %d llibreries.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : %d llibreria.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

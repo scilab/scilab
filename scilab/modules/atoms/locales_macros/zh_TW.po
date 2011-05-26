@@ -387,12 +387,6 @@ msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 須為  atmos 套件名稱 .\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

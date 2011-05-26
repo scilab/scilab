@@ -81,10 +81,6 @@ msgstr "%s: 不能載入(load )block 從 %s: hdf5 file 才對.\n"
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: Wrong input argument %s: svg or gif expected.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 輸入參數的個數錯誤: 應該有  %d 個.\n"
@@ -181,12 +177,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr "%s: Wrong type for input argument %s: handle type expected.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
@@ -244,10 +234,6 @@ msgstr ""
 msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
-#, fuzzy
-msgid "Control Systems"
-msgstr "連續的 time systems"
-
 #
 # File: demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
@@ -267,14 +253,6 @@ msgstr ""
 # File: demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
 msgstr ""
-
-#, fuzzy
-msgid "Discrete Kalman Filter"
-msgstr "離散時間系統"
-
-#, fuzzy
-msgid "Electrical Systems"
-msgstr "電力"
 
 #
 # File: demos/standard.dem.gateway.sce, line: 12
@@ -328,10 +306,6 @@ msgstr ""
 msgid "Modelica demos"
 msgstr ""
 
-#, fuzzy
-msgid "Old Gain Block"
-msgstr "對齊區塊"
-
 #
 # File: demos/xcos.dem.gateway.sce, line: 18
 # File: demos/scicos.dem.gateway.sce, line: 12
@@ -353,14 +327,6 @@ msgstr ""
 msgid "RLC circuit"
 msgstr ""
 
-#, fuzzy
-msgid "Scilab block"
-msgstr "Scilab 檔"
-
-#, fuzzy
-msgid "Signal Builder"
-msgstr "訊回迴路"
-
 #
 # File: demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
@@ -370,10 +336,6 @@ msgstr ""
 # File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
 msgstr ""
-
-#, fuzzy
-msgid "Simulation problem"
-msgstr "模擬處理中"
 
 #
 # File: demos/xcos.dem.gateway.sce, line: 7
@@ -424,10 +386,6 @@ msgstr "Xcos"
 # File: demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
 msgstr ""
-
-#, fuzzy
-msgid "Zero Crossing"
-msgstr "Zero crossing 偵測"
 
 #
 # File: demos/standard.dem.gateway.sce, line: 16

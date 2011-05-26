@@ -77,10 +77,6 @@ msgstr "%s：文件%s不存在。\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s：未知属性：句柄'%s'的'%s'属性。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。"
-
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s：输入参数错误：应该为'%s'。\n"
@@ -106,10 +102,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个'%s'或一个'%s'句柄。\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为'%s'句柄。\n"
@@ -123,11 +115,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个'%s'或一个'%s'�
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个 1x%d 的实数行向量。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
 
 #, c-format
 msgid ""
@@ -173,10 +160,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串矩阵。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为非负整数。\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
@@ -184,10 +167,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为Tree。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -352,22 +331,6 @@ msgstr "致谢"
 msgid "All %s files"
 msgstr "所有 %s 文件"
 
-#, fuzzy
-msgid "All Encapsulated PS files"
-msgstr "所有Scilab文件"
-
-#, fuzzy
-msgid "All PDF files"
-msgstr "全部文件"
-
-#, fuzzy
-msgid "All PNG image files"
-msgstr "所有Scilab文件"
-
-#, fuzzy
-msgid "All Postscript files"
-msgstr "所有 %s 文件"
-
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
@@ -418,10 +381,6 @@ msgstr "复制"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "版权所有 (c) 1989-2007 (ENPC)"
 
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr "版权所有 (c) 1989-2010 (INRIA)"
-
 msgid "Could not open: "
 msgstr ""
 
@@ -461,10 +420,6 @@ msgstr "导出"
 
 msgid "FIG image"
 msgstr "FIG图像"
-
-#, fuzzy
-msgid "Feature not available in this mode..."
-msgstr "%s：函数在无窗口非交互模式（NWNI）下不可用。\n"
 
 msgid "File already exist"
 msgstr "文件已经存在"
@@ -820,10 +775,6 @@ msgid ""
 "expected.\n"
 msgstr "属性'%s'的值错误：应该为一个字符串或者 1x%d 的实数行向量。\n"
 
-#, fuzzy, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "属性'%s'的值错误：应该为一个实数。\n"
-
 msgid "Xcos files"
 msgstr "Xcos文件"
 
@@ -851,160 +802,3 @@ msgid ""
 msgstr ""
 "disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的"
 "驱动程序。\")"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

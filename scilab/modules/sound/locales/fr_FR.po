@@ -46,36 +46,3 @@ msgstr "Ne peux pas jouer le fichier."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Le module Scilab sound n'est pas installé.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

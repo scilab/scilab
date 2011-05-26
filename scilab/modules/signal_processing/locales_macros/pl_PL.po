@@ -196,23 +196,7 @@ msgstr ""
 "%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Stopień musi być w "
 "zestawie {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "szacowanie widma"
-
 msgid "Arma identification"
-msgstr "identyfikacja Arma"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "identyfikacja Arma"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "szacowanie widma"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "identyfikacja Arma"
 
 #
@@ -277,10 +261,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "szacowanie widma"
 
 msgid "Spectral power"
 msgstr "Moc widma"

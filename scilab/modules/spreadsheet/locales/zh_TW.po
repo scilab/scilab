@@ -243,8 +243,3 @@ msgstr "ripOLE: 進行 %s 之解碼時發生錯誤  %d.\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: 進行 %s 之解碼時發生錯誤  %d.\n"
-
-
-
-
-

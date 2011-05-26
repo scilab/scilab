@@ -56,10 +56,6 @@ msgstr "%s: Не удалось открыть разделяемые файлы
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: Разделяемая библиотека %s не существует.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: Файл %s не существует.\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: Разделяемый архив не был загружен: %s\n"
@@ -186,53 +182,3 @@ msgstr "] : %d библиотек.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : библиотека %d.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

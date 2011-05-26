@@ -438,10 +438,6 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串。\n"
 msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串或标量。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为实的。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为已编译的宏。\n"
@@ -526,10 +522,6 @@ msgstr "%s：输入参数 #%d 的值出错：应该是1，2或3。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该是一个整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -651,10 +643,6 @@ msgstr "&工具箱"
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP：正在中断当前计算\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "没有找到 Windows 的临时路径（1）。"
 
@@ -669,10 +657,6 @@ msgid "Consortium Scilab (DIGITEO)\n"
 msgstr "Scilab协会 (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "版权所有 (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
 msgstr "版权所有 (c) 1989-2007 (ENPC)\n"
 
 #
@@ -873,10 +857,6 @@ msgstr "警告：%s\n"
 msgid "Warning"
 msgstr "警告"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "出错：不能分析文件 %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "警告：%s 发生问题。\n"
@@ -946,29 +926,3 @@ msgstr "第三"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist 没有被完全填充。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

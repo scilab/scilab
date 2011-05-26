@@ -472,10 +472,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s：输入参数 #%d 的值错误：指定的范围不正确。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
-msgstr "%s：输入参数 #%d 的值错误：应该为正确的字体名称。\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s：输入参数 #%d 和 #%d 的值错误：长度不一致。\n"
@@ -928,83 +924,3 @@ msgstr "您没有使用 Legend 对象。\n"
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

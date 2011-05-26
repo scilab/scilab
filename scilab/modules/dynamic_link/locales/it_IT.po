@@ -58,10 +58,6 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: La libreria condivisa %s non esiste.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: Il file %s non esiste.\n"
-
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: Il seg. archivio condiviso non era caricato: %s\n"
@@ -206,53 +202,3 @@ msgstr "] : %d librerie.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : libreria %d.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

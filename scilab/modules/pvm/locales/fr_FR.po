@@ -197,4 +197,3 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "mais aucun fichier de configuration n'existe:\n"
-

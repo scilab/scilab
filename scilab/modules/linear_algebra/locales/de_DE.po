@@ -31,19 +31,3 @@ msgid ""
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: reale oder komplexe Matrix "
 "erwartet.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

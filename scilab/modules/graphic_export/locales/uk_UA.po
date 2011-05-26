@@ -23,35 +23,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
-"одного символу.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
@@ -70,19 +41,3 @@ msgstr "Модуль експорту графічних даних Scilab не 
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Графічний модуль Scilab у режимах -nogui і -nwni вимкнено.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

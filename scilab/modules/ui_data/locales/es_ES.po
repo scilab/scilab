@@ -160,7 +160,3 @@ msgstr "Editor de variables"
 
 msgid "Visibility"
 msgstr "Visibilidad"
-
-
-
-

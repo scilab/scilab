@@ -123,31 +123,3 @@ msgstr "nu deve ser pelo menos 1.0.\n"
 
 msgid "x0 is not strictly primal feasible.\n"
 msgstr "x0 não é estritamente primal viável.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

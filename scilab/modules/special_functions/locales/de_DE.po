@@ -62,8 +62,3 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: Bereichsüberschreitung oder Bereichsunterschreitung einer Zahl mit "
 "erweitertem Bereich\n"
-
-
-
-
-

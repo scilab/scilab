@@ -19,42 +19,52 @@ msgstr ""
 # File: src/java/org/scilab/modules/console/SciConsole.java, line: 505
 msgid "Could not change the Console Font."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciConsole.java, line: 568
 msgid "Could not change the Console Foreground."
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
 msgid "Field"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 115
 msgid "No help"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciConsole.java, line: 305
 msgid "Out of Screen"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"

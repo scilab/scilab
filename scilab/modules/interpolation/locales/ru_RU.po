@@ -185,12 +185,3 @@ msgstr ""
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-
-
-
-
-
-
-
-

@@ -205,8 +205,8 @@ msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
 "the %s field\n"
 msgstr ""
-"%s: El fitxer %s no té un format correcte, la caixa d''eines %s - %s no conté "
-"el camp %s\n"
+"%s: El fitxer %s no té un format correcte, la caixa d''eines %s - %s no "
+"conté el camp %s\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -306,7 +306,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -318,21 +319,21 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"cadenes de caràcters de 1x1 o 1x2.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de cadenes de caràcters de 1x1 o 1x2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"1x2.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de 1x2.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"text de 1x1 o 1x2.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de text de 1x1 o 1x2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -342,8 +343,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -354,83 +355,86 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx1 o de mx2.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx1 o de mx2.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx1, mx2 o mx3.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx1, mx2 o mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx1, mx2 o mx3.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx1, mx2 o mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx2 o mx3.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx2 o mx3.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx2.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"mx3.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"de mx3.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un booleà.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"booleà.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un booleà.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"booleà.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un booleà o "
-"una cadena de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"booleà o una cadena de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de text simple.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de text simple.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de cadenes de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de cadenes de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -442,21 +446,14 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
-"orientada.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu orientada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una mlist.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser un nom de "
-"paquet d''Atoms.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"mlist.\n"
 
 #, c-format
 msgid ""
@@ -505,8 +502,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ''system'' o "
-"''install''.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ''system'' "
+"o ''install''.\n"
 
 #, c-format
 msgid ""
@@ -542,13 +539,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una categoria "
-"vàlida.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una "
+"categoria vàlida.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ASC o DESC.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ASC o "
+"DESC.\n"
 
 #, c-format
 msgid ""
@@ -562,8 +560,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named "
 "''%s''.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Hauria de tenir un camp "
-"anomenat ''%s''.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Hauria de tenir un "
+"camp anomenat ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -583,32 +581,32 @@ msgid ""
 "%s: Wrong value for input argument #%d: Single string that ends with .tar."
 "gz, .tgz or .zip expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena de "
-"text acabada en .tar.gz, .tgz o .zip.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena "
+"de text acabada en .tar.gz, .tgz o .zip.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
 "or ''DESCRIPTION'' expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena de "
-"text que contingui ''TOOLBOXES'' o ''DESCRIPTION''.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena "
+"de text que contingui ''TOOLBOXES'' o ''DESCRIPTION''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena de "
-"text que acabi amb DESCRIPTION.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena "
+"de text que acabi amb DESCRIPTION.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena de "
-"text que comenci amb ''http://'',''ftp://'' o ''file://''.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una cadena "
+"de text que comenci amb ''http://'',''ftp://'' o ''file://''.\n"
 
 #, c-format
 msgid ""
@@ -813,8 +811,8 @@ msgstr "Actualitza"
 
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr ""
-"S''ha realitzat l''actualització. Reinicieu l''Scilab perquè els canvis tinguin "
-"efecte."
+"S''ha realitzat l''actualització. Reinicieu l''Scilab perquè els canvis "
+"tinguin efecte."
 
 msgid "Update failed!"
 msgstr "L''actualització ha anat malament."

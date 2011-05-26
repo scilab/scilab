@@ -44,36 +44,3 @@ msgstr "Kann Datei nicht wiedergeben."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab Audio Modul nicht installiert.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -35,7 +35,8 @@ msgstr "%s: 最初の入力引数の型が間違っています: 文字列を指
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 msgid "Restart Scilab to apply to menus.\n"
 msgstr "メニューに適用するためにScilabを再起動してください.\n"

@@ -46,7 +46,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
-msgstr "%s : Mauvaise valeur pour l''argument d''entrée #%d : ''%s'' attendu.\n"
+msgstr ""
+"%s : Mauvaise valeur pour l''argument d''entrée #%d : ''%s'' attendu.\n"
 
 #, c-format
 msgid "%s: error during %s execution"

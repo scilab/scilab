@@ -182,22 +182,3 @@ msgstr "sparse：致命错误发生于文件`%s'的第%d行。\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  开始新矩阵  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

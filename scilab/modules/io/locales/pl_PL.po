@@ -107,9 +107,3 @@ msgstr "Niezdefiniowana zmienna środowiskowa %s.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "Nieobsługiwany błąd v2cunit.\n"
-
-
-
-
-
-

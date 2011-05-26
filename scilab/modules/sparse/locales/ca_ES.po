@@ -182,30 +182,3 @@ msgstr "sparse: Pànic al fitxer `%s' a la línia %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  Començant una matriu nova  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

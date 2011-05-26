@@ -102,8 +102,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s：该特点尚未实现：类型为 %d 的参数。\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s：该特点还没有实现：对高维矩阵的支持。\n"
 
 #, c-format
@@ -177,7 +176,8 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 Matlab 字符串向量
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
+msgstr ""
+"%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -275,7 +275,3 @@ msgstr "10月"
 
 msgid "Sep"
 msgstr "9月"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s：使用%d个输入参数的用法尚未实现。\n"

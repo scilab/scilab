@@ -183,30 +183,3 @@ msgstr "Moduł macierze rzadkie (sparse): błąd w pliku `%s' w linii %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  Rozpoczęto nową macierz  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -112,7 +112,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere ''%s''.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"''%s''.\n"
 
 #, c-format
 msgid ""
@@ -137,7 +138,3 @@ msgstr ""
 # File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
-
-#, fuzzy
-msgid "This directory already exists in "
-msgstr "%s: Attenzione: la directory ''%s'' già esiste.\n"

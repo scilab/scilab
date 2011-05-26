@@ -453,14 +453,6 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma mlist.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser um nome de "
-"pacote atoms.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

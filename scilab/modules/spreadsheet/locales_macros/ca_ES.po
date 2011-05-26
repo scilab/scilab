@@ -20,7 +20,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''una mida incorrecta: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''una mida incorrecta: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -31,7 +32,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

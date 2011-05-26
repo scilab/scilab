@@ -36,10 +36,6 @@ msgstr ""
 "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してくだ"
 "さい.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
@@ -125,10 +121,6 @@ msgstr "背景色"
 msgid "Backward"
 msgstr "戻る"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s はディレクトリです"
-
 msgid "Binary file: read-only mode"
 msgstr "バイナリファイル: 読み出し専用モード"
 
@@ -149,23 +141,11 @@ msgstr "\"scinotesConfiguration.xml\"を読み込めません"
 msgid "Case sensitive"
 msgstr "大文字/小文字を区別"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "大文字/小文字を区別"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "大文字/小文字を区別"
-
 msgid "Change Color"
 msgstr "色を変更"
 
 msgid "Change Colors"
 msgstr "色を変更"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s はディレクトリです"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -271,10 +251,6 @@ msgstr "自動再フォーマットを有効"
 msgid "Encoding"
 msgstr "エンコーディング"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "エンコーディング"
-
 msgid "Enter line number"
 msgstr "行番号を入力してください"
 
@@ -365,10 +341,6 @@ msgstr "入力に関するヘルプ"
 msgid "Highlight current line"
 msgstr "現在行をハイライト"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "水平方向に分割"
-
 msgid "Ignore"
 msgstr "無視する"
 
@@ -425,10 +397,6 @@ msgstr "次のタブ"
 msgid "No Line Numbering"
 msgstr "行番号を付けない"
 
-#, fuzzy
-msgid "No help"
-msgstr "SciNotesヘルプ"
-
 msgid "No split"
 msgstr "分割しない"
 
@@ -440,10 +408,6 @@ msgstr "実行するテキストがありません."
 
 msgid "Normal Line Numbering"
 msgstr "通常の行番号付け"
-
-#, fuzzy
-msgid "Numeration"
-msgstr "数値循環"
 
 msgid "Ok"
 msgstr "OK"
@@ -516,10 +480,6 @@ msgstr "最近使ったファイル"
 msgid "Recursive"
 msgstr ""
 
-#, fuzzy
-msgid "Recursive search"
-msgstr "環状探索"
-
 msgid "Redo"
 msgstr "やり直す"
 
@@ -527,10 +487,6 @@ msgstr "やり直す"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
 msgstr ""
-
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "正規表現"
 
 msgid "Regular expressions"
 msgstr "正規表現"
@@ -611,10 +567,6 @@ msgstr "検索"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "最近使ったファイル"
-
 msgid "Select All"
 msgstr "全て選択"
 
@@ -678,14 +630,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"ファイル %s は存在しません\n"
-"作成しますか?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -694,10 +638,6 @@ msgstr ""
 "上書きしますか?"
 
 msgid "The file could not be converted."
-msgstr "ファイルは変換できませんでした."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "ファイルは変換できませんでした."
 
 msgid "The file could not be saved."
@@ -773,10 +713,6 @@ msgstr "単語全体"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "ワードラップ"
-
 msgid "Word Wrap"
 msgstr "ワードラップ"
 
@@ -817,25 +753,3 @@ msgstr "変更内容を失うかもしれません, それでもエンコーデ�
 
 msgid "close this tab"
 msgstr "このタブを閉じる"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

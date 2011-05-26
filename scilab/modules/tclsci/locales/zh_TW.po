@@ -201,13 +201,3 @@ msgstr "警告: 序列中已有太多回呼 (callback)在等待中!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] 無法在 Tcl/Tl 中使用.\n"
-
-
-
-
-
-
-
-
-
-

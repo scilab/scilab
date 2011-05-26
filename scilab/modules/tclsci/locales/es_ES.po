@@ -214,13 +214,3 @@ msgstr "Advertencia: Demasiadas devoluciones en cola!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] no funciona con Tcl/Tk.\n"
-
-
-
-
-
-
-
-
-
-

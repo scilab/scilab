@@ -476,10 +476,6 @@ msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Text oder ein Skalar wird "
 "erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: eine Realzahl erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -570,10 +566,6 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: 1, 2 oder 3 erwartet.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -707,10 +699,6 @@ msgstr "&Werkzeugboxen"
 msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
-#, fuzzy
-msgid "Aborting current computation\n"
-msgstr "SIGSTP: breche Berechnung ab\n"
-
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
 
@@ -726,10 +714,6 @@ msgstr "Consortium Scilab (DIGITEO)\n"
 
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, fuzzy
-msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
 
 #
 # File: src/c/signal_mgmt.c, line: 117
@@ -939,10 +923,6 @@ msgstr "Warnung: %s\n"
 msgid "Warning"
 msgstr "Warnung"
 
-#, fuzzy, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Fehler: Kann Datei nicht einlesen %s\n"
-
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Warnung: Problem mit %s.\n"
@@ -1012,33 +992,3 @@ msgstr "dritte"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist nicht vollständig gefüllt.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

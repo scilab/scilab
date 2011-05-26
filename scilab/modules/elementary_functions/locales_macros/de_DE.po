@@ -17,21 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr "%s: falsche Anzahl von Ausgangsargumenten: höchstens %d erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Inkompatible Eingabeargumente #%d und #%d: gleicher Typ erwartet.\n"
-
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
@@ -89,10 +74,6 @@ msgstr "%s: falsche Anzahl an Eingangsargumenten: %d erwartet."
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Falsche Anzahl von Eingabeargumenten: %d oder %d erwartet.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Falsche Anzahl von Eingabeargumenten: %d oder %d erwartet.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -101,11 +82,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: höchstens %d erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
 
 #, c-format
 msgid ""
@@ -196,10 +172,6 @@ msgstr "%s: falsche Größe für Eingangsargument: gleiche Größe erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s: falscher Typ für Argument #%d: reelle Zahl erwartet.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr "%s: falscher Typ für Argument #%d: reelle Zahl erwartet.\n"
 
 #, c-format
@@ -335,12 +307,6 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: muß %d und %d liegen."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: muß zwischen %d und %d liegen.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß zwischen %d und %d liegen.\n"
 

@@ -182,33 +182,3 @@ msgstr "Pánico en '%s' en la línea %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  Iniciando nueva matriz  |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -104,8 +104,7 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: Właściwość ta (parametr typu %d) nie została zrealizowana.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Wsparcie dla hipermacierzy nie zostało zrealizowane.\n"
 
 #, c-format
@@ -150,8 +149,7 @@ msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano od %d do%d\n"
+msgstr "%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano od %d do%d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -224,8 +222,7 @@ msgstr "%s: Zły typ parametru wejściowego: Oczekiwano komórki.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong value for affectation to ''%s''.\n"

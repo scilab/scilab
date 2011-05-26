@@ -107,9 +107,3 @@ msgstr "A variável de ambiente %s não foi definida.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "Erro não gerenciado por v2cunit.\n"
-
-
-
-
-
-

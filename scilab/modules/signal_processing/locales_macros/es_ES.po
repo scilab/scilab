@@ -195,23 +195,7 @@ msgstr ""
 "%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
 "el conjunto {%s}.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "espectro estimado"
-
 msgid "Arma identification"
-msgstr "Identificación Arma"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Identificación Arma"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "espectro estimado"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Identificación Arma"
 
 #
@@ -276,10 +260,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "espectro estimado"
 
 msgid "Spectral power"
 msgstr "Potencia del espectro"

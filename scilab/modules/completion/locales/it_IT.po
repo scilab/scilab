@@ -37,12 +37,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument %d.\n"
 msgstr "%s: L'argomento in ingresso %d ha una dimensione sbagliata.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""

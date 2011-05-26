@@ -57,13 +57,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входного параметра: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid ""
@@ -106,8 +104,7 @@ msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr "%s: Неверный тип входных параметров: ожидалось скалярное значение.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: %s должно быть между %d и %d.\n"
 
@@ -131,8 +128,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра: должно быть между %d и %d.\n"
+msgstr "%s: Неверное значение входного параметра: должно быть между %d и %d.\n"
 
 #, c-format
 msgid ""

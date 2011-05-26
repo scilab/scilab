@@ -446,13 +446,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d: mlist erwartet.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: muß Atoms Paketname sein.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
@@ -491,8 +484,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: ''filter:all'', ''filter:main'' oder "
-"eine gültige Hauptkategorie erwartet.\n"
+"%s: Falscher Wert für Eingangsargument #%d: ''filter:all'', ''filter:main'' "
+"oder eine gültige Hauptkategorie erwartet.\n"
 
 #, c-format
 msgid ""

@@ -123,7 +123,8 @@ msgstr "%s: Modes controlables i observables de %s prop de l''eix imaginari.\n"
 
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
-msgstr "%s: Els modes controlable i observable d''A són prop de l''eix imaginari"
+msgstr ""
+"%s: Els modes controlable i observable d''A són prop de l''eix imaginari"
 
 #, c-format
 msgid "%s: Curve truncated to the first %d discretization points.\n"
@@ -344,7 +345,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -377,34 +379,31 @@ msgstr ""
 "%s: El nombre d''arguments de sortida és incorrecte: Han de ser com a mínim "
 "%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser %d o %d.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un "
+"polinomi.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row vector with length>%d "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un vector de "
-"longitud %d.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un vector "
+"de longitud %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta. Ha de ser un "
+"escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
@@ -436,8 +435,8 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: La dimensió de la fila "
-"ha de ser %d.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: La dimensió de la "
+"fila ha de ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for link from block %s.\n"
@@ -467,8 +466,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: A linear dynamical system or a "
 "polynomial expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"dinàmic lineal o un polinomi.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema dinàmic lineal o un polinomi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
@@ -479,46 +478,46 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un "
+"nombre real.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de decimals amb coma flotant.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de decimals amb coma flotant.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Continuous-time linear system "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"lineal de temps continu.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema lineal de temps continu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"lineal dinàmic.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema lineal dinàmic.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"dinàmic lineal.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema dinàmic lineal.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"lineal dinàmic o un vector de nombres decimals.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema lineal dinàmic o un vector de nombres decimals.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
@@ -544,42 +543,42 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de polinomis.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de polinomis.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser una forma "
-"d''estat espacial.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser una "
+"forma d''estat espacial.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"lineal d''estat espacial.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema lineal d''estat espacial.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de cadenes de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de cadenes de text.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de text, un escalar o una matriu buida.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de text, un escalar o una matriu buida.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un vector "
-"de fraccions racionals.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"vector de fraccions racionals.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
@@ -592,8 +591,8 @@ msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un vector "
-"de nombres decimals amb coma flotant.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un "
+"vector de nombres decimals amb coma flotant.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
@@ -664,19 +663,11 @@ msgstr ""
 "%s: L''argument d''entrada #%d té un valor incorrecte: El domini temporal ha "
 "de ser ''c'' o ''d''.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
-"d''aquests {%s}.\n"
-
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
-"%s: Els arguments d''entrada #%d i #%d són d''un tipus incorrecte: Han de ser "
-"%s < %s.\n"
+"%s: Els arguments d''entrada #%d i #%d són d''un tipus incorrecte: Han de "
+"ser %s < %s.\n"
 
 #, c-format
 msgid ""
@@ -701,8 +692,8 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té valors incorrectes: Ha de ser un sistema de "
-"temps discret.\n"
+"%s: L''argument d''entrada #%d té valors incorrectes: Ha de ser un sistema "
+"de temps discret.\n"
 
 #, c-format
 msgid ""
@@ -714,15 +705,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un sistema "
-"estable.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"sistema estable.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: La matriu d''estat - eye "
-"és singular.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: La matriu d''estat - "
+"eye és singular.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
@@ -739,7 +730,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té valors incorrectes: Heu d''escollir rk<nout.\n"
+"%s: L''argument d''entrada #%d té valors incorrectes: Heu d''escollir "
+"rk<nout.\n"
 
 #, c-format
 msgid "%s: gamma too small.\n"
@@ -855,12 +847,6 @@ msgstr "No factible (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "No factible (radi espectral)"
-
-#, fuzzy, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
 msgid "Zeros"
 msgstr "Zeros"

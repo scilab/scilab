@@ -154,10 +154,6 @@ msgstr "%s：第一个输入参数的类型错误：应该为一个标量。\n"
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr "%s：输入参数的类型错误：应该为标量。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""

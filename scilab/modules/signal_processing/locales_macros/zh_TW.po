@@ -151,23 +151,7 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 第#%d個輸入參數值有誤 :度數要在集合{%s}中.\n"
 
-#, fuzzy
-msgid "Arma Spectral power estimation:"
-msgstr "光譜的估算"
-
 msgid "Arma identification"
-msgstr "Arma  識別"
-
-#, fuzzy
-msgid "Arma simulation and identification"
-msgstr "Arma  識別"
-
-#, fuzzy
-msgid "Arma, Spectral power estimation"
-msgstr "光譜的估算"
-
-#, fuzzy
-msgid "Arma, bidimensional version"
 msgstr "Arma  識別"
 
 #
@@ -232,10 +216,6 @@ msgstr ""
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
-
-#, fuzzy
-msgid "Spectral Estimation"
-msgstr "光譜的估算"
 
 msgid "Spectral power"
 msgstr "波譜倍數"

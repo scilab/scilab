@@ -33,13 +33,14 @@ msgstr "%s: Nombre d''arguments de sortida incorrecte: Hi ha d''haver %d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un booleà.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"booleà.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de text.\n"
 
 #
 # File: demos/tk/tcltk.dem.gateway.sce, line: 8

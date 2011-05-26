@@ -364,18 +364,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: ожидалось «w» или «u».\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d ('%ls'): ожидалось допустимое "
-"имя файла или каталога.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: Неверное значение входного параметра №%d: формат не распознан.\n"
@@ -468,19 +456,3 @@ msgstr "Внимание: файл «%s» уже открыт в Scilab.\n"
 
 msgid "unclosed [ directive."
 msgstr "незакрытое указание «[»."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

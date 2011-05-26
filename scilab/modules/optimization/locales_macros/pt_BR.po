@@ -191,10 +191,6 @@ msgstr ""
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: A ordem deve ser 1, 2 ou 4.\n"
-
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
@@ -481,21 +477,9 @@ msgstr "%s: A matriz de ponderação deve ser quadrada.\n"
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade errada de argumento(s) de entrada.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -512,18 +496,6 @@ msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor "
 "coluna.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
@@ -534,11 +506,6 @@ msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de N "
 "dimensões.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -551,56 +518,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: Tamanho errado para o argumento de entrada #%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: Tamanho errado para o argumento de entrada #%d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: Esperava-se %d "
-"colunas.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61

@@ -34,10 +34,6 @@ msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该是实数矩阵。\n"
@@ -121,10 +117,6 @@ msgstr ""
 msgid "Backward"
 msgstr "向后"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "%s 是目录。"
-
 msgid "Binary file: read-only mode"
 msgstr ""
 
@@ -145,23 +137,11 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "区分大小写"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "区分大小写"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "区分大小写"
-
 msgid "Change Color"
 msgstr ""
 
 msgid "Change Colors"
 msgstr ""
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "%s 是目录。"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -528,10 +508,6 @@ msgstr "重做"
 msgid "Regex"
 msgstr ""
 
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "正则表达式"
-
 msgid "Regular expressions"
 msgstr "正则表达式"
 
@@ -611,10 +587,6 @@ msgstr "搜索"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "最近的文件"
-
 msgid "Select All"
 msgstr "全选"
 
@@ -677,14 +649,6 @@ msgstr ""
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 290
 msgid "Tab style"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"文件 %s 不存在\n"
-" 你希望创建它么？"
 
 msgid ""
 "The file %s has been modified by another program !\n"
@@ -768,10 +732,6 @@ msgstr "全词匹配"
 
 msgid "Windows/DOS (CR + LF)"
 msgstr ""
-
-#, fuzzy
-msgid "Word"
-msgstr "文字换行"
 
 msgid "Word Wrap"
 msgstr "文字换行"

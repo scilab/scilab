@@ -59,8 +59,8 @@ msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
-"essere interi non negativi.\n"
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi "
+"devono essere interi non negativi.\n"
 
 #, c-format
 msgid "%s: field name ''%s'' defined twice.\n"

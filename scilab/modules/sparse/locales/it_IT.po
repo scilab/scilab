@@ -183,33 +183,3 @@ msgstr "scarso: panico nel file '%s' alla riga %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "||| Avvio della nuova matrice |||\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

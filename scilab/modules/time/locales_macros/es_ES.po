@@ -114,8 +114,7 @@ msgstr ""
 "escalares.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: %s debe ser entre %d y "
 "%d.\n"

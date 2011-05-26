@@ -22,29 +22,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为单字符字符串。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
@@ -59,19 +36,3 @@ msgstr "Scilab的图形导出模块没有被安装。\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "在-nogui或-nwni模式下Scilab的图形模块被禁用。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

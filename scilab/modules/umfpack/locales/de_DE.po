@@ -166,36 +166,3 @@ msgstr "singuläre Matrix"
 
 msgid "symbolic factorization"
 msgstr "symbolische Faktorisierung"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

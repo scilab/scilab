@@ -39,12 +39,3 @@ msgstr "Índice inválido (%d) na extração da hipermatriz. "
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Muitos argumentos na pilha. Edite stack.h e aumente o valor de intersiz.\n"
-
-
-
-
-
-
-
-
-

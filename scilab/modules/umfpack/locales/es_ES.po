@@ -168,36 +168,3 @@ msgstr "matriz singular"
 
 msgid "symbolic factorization"
 msgstr "factorización simbólica"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

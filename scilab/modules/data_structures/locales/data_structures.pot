@@ -19,30 +19,36 @@ msgstr ""
 # File: src/c/hmops.c, line: 651
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
+
 #
 # File: src/c/hmops.c, line: 825
 msgid " An hypermatrix insertion must have at least 3 arguments. "
 msgstr ""
+
 #
 # File: src/c/hmops.c, line: 657
 # File: src/c/hmops.c, line: 832
 msgid " Argument is not an hypermatrix. "
 msgstr ""
+
 #
 # File: src/c/hmops.c, line: 888
 # File: src/c/hmops.c, line: 903
 # File: src/c/hmops.c, line: 913
 msgid " Bad hypermatrix insertion. "
 msgstr ""
+
 #
 # File: src/c/hmops.c, line: 670
 msgid " Incompatible hypermatrix extraction. "
 msgstr ""
+
 #
 # File: src/c/hmops.c, line: 696
 #, c-format
 msgid "Bad (%d th) index in hypermatrix extraction. "
 msgstr ""
+
 #
 # File: src/c/stcreate.c, line: 42
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"

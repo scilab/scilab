@@ -33,19 +33,3 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano macierzy "
 "liczb rzeczywistych lub zespolonych.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

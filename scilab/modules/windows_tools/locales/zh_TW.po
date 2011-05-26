@@ -37,10 +37,6 @@ msgstr "%s: 記憶體空間不足.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
@@ -79,9 +75,3 @@ msgstr ""
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"
 msgstr "參考線上文件 (help)"
-
-
-
-
-
-

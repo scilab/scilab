@@ -19,17 +19,19 @@ msgstr ""
 # File: sci_gateway/c/sci_cdfnor.c, line: 93
 msgid " Std must not be zero\n"
 msgstr ""
+
 #
 # File: src/c/CdfBase.c, line: 37
 #, c-format
 msgid "%s and %s must have same size.\n"
 msgstr ""
+
 #
 # File: src/c/CdfBase.c, line: 26
 #, c-format
-msgid ""
-"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgid "%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 61
 # File: sci_gateway/c/sci_cdfpoi.c, line: 59
@@ -37,6 +39,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 66
 # File: sci_gateway/c/sci_cdfgam.c, line: 67
@@ -46,197 +49,240 @@ msgstr ""
 # File: sci_gateway/c/sci_cdfchn.c, line: 63
 # File: sci_gateway/c/sci_cdfbin.c, line: 68
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 71
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 51
 msgid "A,B,P and Q"
 msgstr ""
+
 #
 # File: src/c/CdfBase.c, line: 138
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
+
 #
 # File: src/c/CdfBase.c, line: 134
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
+
 #
 # File: src/c/CdfBase.c, line: 122
 # File: src/c/CdfBase.c, line: 126
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 57
 msgid "B,P,Q,X and Y"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 50
 # File: sci_gateway/c/sci_cdft.c, line: 47
 msgid "Df, P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchn.c, line: 46
 msgid "Df,Pnonc,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdff.c, line: 54
 msgid "Dfd,P,Q and F"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 54
 msgid "Dfd,Pnonc,P,Q and F"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdff.c, line: 48
 msgid "Dfn,Dfd,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 48
 msgid "Dfn,Dfd,Pnonc,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdff.c, line: 42
 msgid "F,Dfn and Dfd"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 42
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 49
 msgid "Mean,Std,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 54
 msgid "P,Q and S"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdft.c, line: 53
 msgid "P,Q and T"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 56
 msgid "P,Q and X"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdff.c, line: 60
 msgid "P,Q,F and Dfn"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 66
 msgid "P,Q,F,Dfn and Dfd"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 63
 msgid "P,Q,S  and Xn"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 63
 msgid "P,Q,S and Xn"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchn.c, line: 58
 msgid "P,Q,X and Df"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 61
 msgid "P,Q,X and Mean"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 62
 msgid "P,Q,X and Shape"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 63
 msgid "P,Q,X,Y and A"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 56
 msgid "PR,OMPR,P,Q and S"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchn.c, line: 52
 msgid "Pnonc,P,Q and X"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdffnc.c, line: 60
 msgid "Pnonc,P,Q,F and Dfn"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 57
 msgid "Pr,OMPr,P,Q and S"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 56
 msgid "Rate,P,Q and X"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 42
 msgid "S and Xlam"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 44
 msgid "S,XN,PR and OMPR"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 45
 msgid "S,Xn,Pr and Ompr"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 50
 msgid "Shape,Rate,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 55
 msgid "Std,P,Q and X"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdft.c, line: 41
 msgid "T and Df"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 44
 msgid "X and Df"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchn.c, line: 40
 msgid "X,Df and Pnonc"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 43
 msgid "X,Mean and Std"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfgam.c, line: 44
 msgid "X,Shape and Rate"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfnbn.c, line: 50
 msgid "XN,PR,OMPR,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 48
 msgid "Xlam,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfbin.c, line: 51
 msgid "Xn,Pr,Ompr,P and Q"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 88
 msgid "cdfchi: Error in cumgam\n"

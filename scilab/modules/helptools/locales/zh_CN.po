@@ -29,10 +29,6 @@ msgstr "%s：生成文档时发生错误：%s。\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s：执行Java stack %s。\n"
 
-#, fuzzy, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s：执行Java stack %s。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
@@ -52,43 +48,3 @@ msgstr ""
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

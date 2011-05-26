@@ -104,10 +104,6 @@ msgstr "Значення «Початок» має бути меншим за з
 msgid "(Read Audio File)"
 msgstr ""
 
-#, fuzzy
-msgid "Accepts Inherited Events"
-msgstr "Приймає успадковані події (0: Ні, 1: Так)"
-
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "Приймає успадковані події (0: Ні, 1: Так)"
 
@@ -119,10 +115,6 @@ msgstr "Автоматично"
 
 msgid "Bits Extraction"
 msgstr "Видобування бітів"
-
-#, fuzzy
-msgid "Bits to Extract"
-msgstr "Біти для видобування"
 
 msgid "Bits to extract"
 msgstr "Біти для видобування"
@@ -164,16 +156,8 @@ msgstr "Спорожнити біт"
 msgid "Combinatorial logic"
 msgstr "Комбінаторна логіка"
 
-#, fuzzy
-msgid "Constant Value"
-msgstr "Початкове значення"
-
 msgid "Constant discriminant"
 msgstr "Сталий дискримінант"
-
-#, fuzzy
-msgid "Constant value generator"
-msgstr "Генератор синусоїдальної хвилі"
 
 #
 # File: macros/Sources/CONST_m.sci, line: 46
@@ -182,14 +166,6 @@ msgstr ""
 
 msgid "Data Type"
 msgstr "Тип даних"
-
-#, fuzzy, c-format
-msgid "Data Type %s"
-msgstr "Тип даних"
-
-#, fuzzy, c-format
-msgid "Directory ''%s'' does not exist"
-msgstr "Змінної «%s» не існує.\n"
 
 msgid "Discriminant type:"
 msgstr "Тип дискримінанта:"
@@ -210,10 +186,6 @@ msgstr ""
 msgid "Domain"
 msgstr "Область"
 
-#, fuzzy, c-format
-msgid "Elements must be in the interval %s."
-msgstr "Позиції мають належати діапазону %s."
-
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 68
 # File: macros/Sinks/WRITEAU_f.sci, line: 54
@@ -228,10 +200,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
 msgstr ""
-
-#, fuzzy
-msgid "Event clock generator"
-msgstr "Породжувач цілого лічильника"
 
 msgid "Event input port"
 msgstr "Порт введення даних подій"
@@ -288,10 +256,6 @@ msgstr "Початкове значення"
 msgid "Initial conditions"
 msgstr "Початкові умови"
 
-#, fuzzy
-msgid "Initialisation Time"
-msgstr "Початкові умови"
-
 #
 # File: macros/Sources/READAU_f.sci, line: 50
 # File: macros/Sources/READAU_f.sci, line: 63
@@ -312,10 +276,6 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
 msgstr ""
-
-#, fuzzy
-msgid "Input Type"
-msgstr "Тип даних"
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Тип вхідних даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
@@ -349,14 +309,6 @@ msgstr "Модульний лічильник (лічильник від 0 до 
 
 msgid "Must be a single value."
 msgstr "Має бути однобітовим значенням."
-
-#, fuzzy, c-format
-msgid "Must be greater than %d."
-msgstr "Має належати проміжку %s."
-
-#, fuzzy
-msgid "Must be greater than 1."
-msgstr "Має бути цілим значенням."
 
 #, c-format
 msgid "Must be in the interval %s."
@@ -395,14 +347,6 @@ msgstr "Впорядкування:"
 # File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
 msgstr ""
-
-#, fuzzy
-msgid "Output Format"
-msgstr "Порт виведення даних подій"
-
-#, fuzzy
-msgid "Output Type"
-msgstr "Тип даних"
 
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
@@ -461,10 +405,6 @@ msgstr "Визначити параметри блоку %s"
 msgid "Set a bit"
 msgstr "Визначити біт"
 
-#, fuzzy
-msgid "Shift Type"
-msgstr "Тип даних"
-
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Тип зсуву (0: арифметичний, 1: циклічний)"
 
@@ -504,10 +444,6 @@ msgstr "Час сходинки"
 msgid "Strictly positive integer expected."
 msgstr "Слід вказати додатне ціле число."
 
-#, fuzzy
-msgid "Strictly positive number expected."
-msgstr "Слід вказати додатне ціле число."
-
 #
 # File: macros/Sources/READAU_f.sci, line: 69
 # File: macros/Sinks/WRITEC_f.sci, line: 89
@@ -527,10 +463,6 @@ msgstr "«Початкове значення» має бути рівним 0 �
 
 msgid "The measurement points"
 msgstr "Точки вимірювання"
-
-#, fuzzy
-msgid "Treat Bit Field as an Integer"
-msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
@@ -579,46 +511,10 @@ msgstr ""
 msgid "Write is done on:"
 msgstr ""
 
-#, fuzzy
-msgid "Write to C binary file"
-msgstr "Помилка під час спроби запису до файла «%s».\n"
-
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
 msgid "Write to output file"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter"
-msgstr "Помилкова розмірність параметра «Таблиця істинності»: %d."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %d."
-msgstr "Помилкова розмірність параметра «Таблиця істинності»: %d."
-
-#, fuzzy, c-format
-msgid "Wrong size for ''%s'' parameter: %s."
-msgstr "Помилкова розмірність параметра «Таблиця істинності»: %d."
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter"
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, fuzzy, c-format
-msgid "Wrong type for ''%s'' parameter: %5.1f."
-msgstr "Помилковий тип параметра «Позиція біта»: %5.1f."
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter."
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %d."
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, fuzzy, c-format
-msgid "Wrong value for ''%s'' parameter: %s."
-msgstr "Помилкове значення параметра «Правило»: %d"
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
@@ -628,29 +524,13 @@ msgstr "Помилкове значення параметра «Частота�
 msgid "Wrong value for ''Initial State'' parameter: %d."
 msgstr "Помилкове значення параметра «Початковий стан»: %d."
 
-#, fuzzy
-msgid "Wrong value for ''Output File Name'' parameter"
-msgstr "Помилкове значення параметра «Тип виведених даних»: %d."
-
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr "Помилкове значення параметра «Номер порту»: %d."
 
-#, fuzzy, c-format
-msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr "Помилкове значення параметра «Правило»: %d"
-
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "Помилкове значення параметра «Час початку»: %e."
-
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %5.1e."
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, fuzzy, c-format
-msgid "Wrong values for ''%s'' parameter: %s."
-msgstr "Помилкове значення параметра «Правило»: %d"
 
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"

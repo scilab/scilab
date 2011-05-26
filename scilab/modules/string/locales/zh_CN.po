@@ -283,17 +283,3 @@ msgstr "%s：无法得到这个矩阵的维数。\n"
 
 msgid "WARNING : \n"
 msgstr "警告： \n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -139,14 +139,14 @@ msgid ""
 "%s: Several versions of a package (%s) cannot be loaded at the same scilab "
 "session :\n"
 msgstr ""
-"%s: Plusieurs version d''un package (%s) ne peuvent pas être chargées dans la "
-"même session Scilab :\n"
+"%s: Plusieurs version d''un package (%s) ne peuvent pas être chargées dans "
+"la même session Scilab :\n"
 
 #, c-format
 msgid "%s: The config file (''%s'') is not well formated at line %d\n"
 msgstr ""
-"%s: Le fichier de configuration (''%s'') n''est pas correctement formaté à la "
-"ligne %d\n"
+"%s: Le fichier de configuration (''%s'') n''est pas correctement formaté à "
+"la ligne %d\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -210,8 +210,8 @@ msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
 "the %s field\n"
 msgstr ""
-"%s : Le fichier %s n''est pas correctement formaté, la boîte à outils %s - %s "
-"ne contient pas le %s champ\n"
+"%s : Le fichier %s n''est pas correctement formaté, la boîte à outils %s - "
+"%s ne contient pas le %s champ\n"
 
 #, c-format
 msgid "%s: The file ''%s'' cannot be written.\n"
@@ -332,13 +332,14 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s : Taille incorrecte pour l''argument d''entrée #%d : Une matrice de chaîne "
-"1x1 ou 1x2 est attendue.\n"
+"%s : Taille incorrecte pour l''argument d''entrée #%d : Une matrice de "
+"chaîne 1x1 ou 1x2 est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un booléen attendu.\n"
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un booléen "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -413,8 +414,8 @@ msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: Booléen attendu.\n
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Booléen ou simple chaîne de "
-"caractères attendus.\n"
+"%s: Mauvais type pour l''argument d''entrée n° %d: Booléen ou simple chaîne "
+"de caractères attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -446,20 +447,12 @@ msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: mlist attendu.\n"
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: mlist attendue.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Doit être un nom de "
-"package Atoms.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
 msgstr ""
-"%s : Valeur incorrecte pour l''argument d''entrée #%d : ''%s'' n''est pas une "
-"catégorie enregistrée."
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : ''%s'' n''est pas "
+"une catégorie enregistrée."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
@@ -550,8 +543,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n°%d : Toutes les versions des "
-"modules devrait etre present.\n"
+"%s: Mauvaise valeur pour l''argument d''entrée n°%d : Toutes les versions "
+"des modules devrait etre present.\n"
 
 #, c-format
 msgid ""

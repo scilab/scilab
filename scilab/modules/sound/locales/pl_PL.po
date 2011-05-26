@@ -45,36 +45,3 @@ msgstr "Nie można odtworzyć pliku."
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Moduł dźwiękowy nie jest zainstalowany.\n"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

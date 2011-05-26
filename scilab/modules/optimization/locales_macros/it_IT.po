@@ -85,16 +85,16 @@ msgstr ""
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
-"%s: Era attesa variabile reale, ma per la variabile %s all''ingresso #%d si è "
-"ottenuto %s invece."
+"%s: Era attesa variabile reale, ma per la variabile %s all''ingresso #%d si "
+"è ottenuto %s invece."
 
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
-"%s: Era attesa variabile stringa, ma per la variabile %s all''ingresso #%d si "
-"è ottenuto %s invece."
+"%s: Era attesa variabile stringa, ma per la variabile %s all''ingresso #%d "
+"si è ottenuto %s invece."
 
 #
 # File: macros/derivative.sci, line: 125
@@ -210,10 +210,6 @@ msgstr "%s: Il problema ha dei vincoli, ma l''algoritmo variabile li ignora."
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Il problema non ha vincoli, ma l''algoritmo Box è pensato per quelli."
-
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: L''ordine deve essere 1,2 o 4.\n"
 
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
@@ -360,8 +356,8 @@ msgid ""
 "%s: The restarteps option is expected to be a scalar, but current shape is "
 "%d x %d"
 msgstr ""
-"%s:L''opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale è "
-"%d x %d"
+"%s:L''opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale "
+"è %d x %d"
 
 #, c-format
 msgid "%s: The restarteps option is expected to be positive"
@@ -560,23 +556,9 @@ msgstr ""
 "%s: Il numero degli argomenti forniti è sbagliato : attesi %d, invece "
 "forniti %d"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -594,20 +576,6 @@ msgstr ""
 "%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore colonna.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
@@ -619,12 +587,6 @@ msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un array n-"
 "dimensionale.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -639,62 +601,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr ""
-"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
-"esterno\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr ""
-"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
-"esterno\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr ""
-"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
-"esterno\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"numero %d di colonne.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -712,10 +618,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: %s è inatteso come numero massimo di valutazioni di funzione."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -992,10 +894,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: %s è inatteso come numero massimo di valutazioni di funzione."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

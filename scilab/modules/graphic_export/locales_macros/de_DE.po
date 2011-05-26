@@ -33,10 +33,6 @@ msgstr "%s: kann keine Datei zum Exportieren erzeugen, Vorgang abgelehnt.\n"
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: kann pstoedit nicht ausführen.\n"
 
-#, fuzzy, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: kann pstoedit nicht ausführen.\n"
-
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

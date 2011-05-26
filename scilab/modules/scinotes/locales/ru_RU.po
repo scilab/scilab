@@ -36,10 +36,6 @@ msgstr ""
 "%s: Неверный размер входных параметров №%d и №%d: ожидались одинаковые "
 "размерности.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
-
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
@@ -125,10 +121,6 @@ msgstr "Цвет фона"
 msgid "Backward"
 msgstr "Назад"
 
-#, fuzzy
-msgid "Base directory:"
-msgstr "«%s» является каталогом."
-
 msgid "Binary file: read-only mode"
 msgstr "Бинарный файл: режим только для чтения"
 
@@ -149,23 +141,11 @@ msgstr "Не удалось загрузить «scinotesConfiguration.xml»"
 msgid "Case sensitive"
 msgstr "Учитывать регистр"
 
-#, fuzzy
-msgid "Case-sensitivity (File name)"
-msgstr "Учитывать регистр"
-
-#, fuzzy
-msgid "Case-sensitivity (Word)"
-msgstr "Учитывать регистр"
-
 msgid "Change Color"
 msgstr "Изменить"
 
 msgid "Change Colors"
 msgstr "Настройка цветов"
-
-#, fuzzy
-msgid "Choose the search base directory"
-msgstr "«%s» является каталогом."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -271,10 +251,6 @@ msgstr "Автоматический отступ"
 msgid "Encoding"
 msgstr "Кодировка"
 
-#, fuzzy
-msgid "Encoding problems"
-msgstr "Кодировка"
-
 msgid "Enter line number"
 msgstr "Введите номер строки"
 
@@ -365,10 +341,6 @@ msgstr "Помощь при наборе"
 msgid "Highlight current line"
 msgstr "Подсвечивать текущую строку"
 
-#, fuzzy
-msgid "Horizontal rule"
-msgstr "Горизонтальное разделение"
-
 msgid "Ignore"
 msgstr "Пропускать"
 
@@ -425,10 +397,6 @@ msgstr "Следующая вкладка"
 msgid "No Line Numbering"
 msgstr "Без нумерации строк"
 
-#, fuzzy
-msgid "No help"
-msgstr "Справка по SciNotes"
-
 msgid "No split"
 msgstr "Без разделения"
 
@@ -440,10 +408,6 @@ msgstr "Нет текста для выполнения."
 
 msgid "Normal Line Numbering"
 msgstr "Общая нумерация строк"
-
-#, fuzzy
-msgid "Numeration"
-msgstr "Нумерация"
 
 msgid "Ok"
 msgstr "ОК"
@@ -516,10 +480,6 @@ msgstr "Недавние файлы"
 msgid "Recursive"
 msgstr ""
 
-#, fuzzy
-msgid "Recursive search"
-msgstr "Круговой поиск"
-
 msgid "Redo"
 msgstr "Повторить"
 
@@ -527,10 +487,6 @@ msgstr "Повторить"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
 msgstr ""
-
-#, fuzzy
-msgid "Regular expression (Word)"
-msgstr "Регулярные выражения"
 
 msgid "Regular expressions"
 msgstr "Регулярные выражения"
@@ -611,10 +567,6 @@ msgstr "Поиск"
 msgid "Search Files..."
 msgstr ""
 
-#, fuzzy
-msgid "Search in Files..."
-msgstr "Недавние файлы"
-
 msgid "Select All"
 msgstr "Выделить всё"
 
@@ -678,14 +630,6 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Файл %s не существует.\n"
-"Создать файл?"
-
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -694,10 +638,6 @@ msgstr ""
 "Перезаписать файл?"
 
 msgid "The file could not be converted."
-msgstr "Не удалось преобразовать файл."
-
-#, fuzzy
-msgid "The file could not be created, check the path"
 msgstr "Не удалось преобразовать файл."
 
 msgid "The file could not be saved."
@@ -768,10 +708,6 @@ msgstr "Только полные слова"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#, fuzzy
-msgid "Word"
-msgstr "Автоматический переход на новую строку"
-
 msgid "Word Wrap"
 msgstr "Автоматический переход на новую строку"
 
@@ -812,25 +748,3 @@ msgstr "Изменения будут потеряны, всё равно изм
 
 msgid "close this tab"
 msgstr "Закрыть эту вкладку"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

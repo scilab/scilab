@@ -189,12 +189,3 @@ msgstr ""
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-
-
-
-
-
-
-
-

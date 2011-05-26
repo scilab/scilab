@@ -200,8 +200,8 @@ msgstr "%s: L''ordre doit être 1, 2 ou 4.\n"
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
 msgstr ""
-"%s: Le problème d''optimisation a des contraintes, mais l''algorithme fixe les "
-"ignore."
+"%s: Le problème d''optimisation a des contraintes, mais l''algorithme fixe "
+"les ignore."
 
 #, c-format
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
@@ -214,10 +214,6 @@ msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Le problème n''a pas de contraintes, mais l''algorithme de Box est conçu "
 "pour elles."
-
-#, fuzzy, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: L''ordre doit être 1, 2 ou 4.\n"
 
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
@@ -268,7 +264,8 @@ msgstr ""
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
 msgstr ""
-"%s: Les éléments de l''argument #%d doivent être dans l''intervalle [%d %d].\n"
+"%s: Les éléments de l''argument #%d doivent être dans l''intervalle [%d "
+"%d].\n"
 
 #, c-format
 msgid "%s: The exclusion index vector has %d rows instead of 1."
@@ -363,8 +360,9 @@ msgid ""
 "%s: The oriented simplex can be computed only with a simplex made of n+1 "
 "points, but the dimension is %d and the number of vertices is %d"
 msgstr ""
-"%s: Le simplex orienté peut être calculé sur la base d''un simplexe constitué "
-"de n+1 points, mais la dimension est %d et le nombre de vertex est %d"
+"%s: Le simplex orienté peut être calculé sur la base d''un simplexe "
+"constitué de n+1 points, mais la dimension est %d et le nombre de vertex est "
+"%d"
 
 #, c-format
 msgid ""
@@ -443,55 +441,55 @@ msgid ""
 "%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 0 à 7 sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 0 à 7 sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 1 à 3 arguments sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 1 à 3 arguments sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 2 sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 2 sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 2 à 4 arguments sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 2 à 4 arguments sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 2 à 5 arguments sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 2 à 5 arguments sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 2 à 6 arguments sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 2 à 6 arguments sont attendus."
 
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
 "expected."
 msgstr ""
-"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis tandis "
-"que 6 à 7 arguments sont attendus."
+"%s: Nombre d''arguments d''entrée inattendu : %d arguments sont fournis "
+"tandis que 6 à 7 arguments sont attendus."
 
 #, c-format
 msgid ""
@@ -569,19 +567,9 @@ msgstr "%s: La matrice de pondération doit être carrée.\n"
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr "%s: Mauvais nombre d''arguments: %d attendus alors que %d donnés"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -597,33 +585,17 @@ msgstr ""
 "%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un vecteur colonne "
 "attendu.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
+"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s : Mauvais type pour l''argument d''entrée n°%d : une table de dimension N "
 "attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -637,56 +609,6 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: Mauvaise dimension pour l''argument d''entrée n° %d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be a floating point "
-"integer."
-msgstr ""
-"%s: Mauvais type pour l''argument #%s: une fonction externe est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
-msgstr ""
-"%s: Mauvais type pour l''argument #%s: une fonction externe est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: Mauvaise dimension pour l''argument d''entrée n° %d."
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
-"constraints."
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
-"constraints."
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
-msgstr ""
-"%s: Mauvais type pour l''argument #%s: une fonction externe est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 is not positive."
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une fonction est attendue.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
-msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: nombre de colonnes %d "
-"attendu.\n"
 
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 61
@@ -704,10 +626,6 @@ msgstr ""
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
 msgstr ""
-
-#, fuzzy
-msgid "Column #2: number of function evaluations\n"
-msgstr "%s: Nombre maximum d''évaluation de la fonction %s inattendu."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 62
@@ -984,10 +902,6 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
-
-#, fuzzy
-msgid "Number of function evaluations"
-msgstr "%s: Nombre maximum d''évaluation de la fonction %s inattendu."
 
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 75

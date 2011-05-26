@@ -57,13 +57,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 未知の型です.
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
-"い.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -77,93 +70,3 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s'', ''%s'', ''%s'' または "
 "''%s'' を指定してください.\n"
-
-
-#
-# File: macros/logm.sci, line: 34
-# File: macros/logm.sci, line: 59
-
-#
-# File: macros/atanm.sci, line: 39
-
-#
-# File: macros/logm.sci, line: 52
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/ndgrid.sci, line: 45
-
-
-
-
-
-
-#
-# File: macros/binomial.sci, line: 31
-# File: macros/factor.sci, line: 26
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# File: macros/cothm.sci, line: 28
-# File: macros/tanhm.sci, line: 29
-# File: macros/tanm.sci, line: 30
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,12 +20,6 @@ msgstr ""
 msgid "Allocation problem in spline.\n"
 msgstr "Проблема розподілу у сплайні.\n"
 
-#, fuzzy, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: Не можна використовувати scoRefreshDataBoundsX() з цим "
-"типом об’єктів\n"
-
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
 
@@ -51,12 +45,6 @@ msgstr ""
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Помилка під час спроби відкриття файла «%s».\n"
-
-#, fuzzy
-msgid "Incorrect value for dimension argument."
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: помилкове значення scoInitOfWindow для параметра "
-"розмірності.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr "Некоректний тип змінної: помилка у коді функції hypermat scilab.\n"
@@ -158,139 +146,3 @@ msgstr "час затримки=%f, останній збережений час
 
 msgid "overflow error"
 msgstr "помилка переповнення"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

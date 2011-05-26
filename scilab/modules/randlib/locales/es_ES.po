@@ -216,11 +216,6 @@ msgstr ""
 "%s: Tipo incorrecto para el cuarto argumento de entrada: se esperaba un "
 "escalar.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para el argumento de entrada: Se esperaba un escalar.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
@@ -469,5 +464,3 @@ msgstr "a y b deben ser enteros con (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 o R <= 0.0\n"
-
-

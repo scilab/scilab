@@ -20,16 +20,19 @@ msgstr ""
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_winopen.c, line: 34
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 225
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 65
 # File: sci_gateway/c/sci_winqueryreg.c, line: 115
@@ -39,18 +42,21 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_dos.c, line: 113
 # File: sci_gateway/c/sci_dos.c, line: 292
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_dos.c, line: 86
 # File: sci_gateway/c/sci_dos.c, line: 147
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 59
 # File: sci_gateway/c/sci_winqueryreg.c, line: 85
@@ -58,12 +64,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_dos.c, line: 73
 # File: sci_gateway/c/sci_dos.c, line: 134
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_winqueryreg.c, line: 53
@@ -76,42 +84,50 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_createGUID.c, line: 66
 # File: sci_gateway/c/sci_createGUID.c, line: 71
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_findfileassociation.c, line: 56
 # File: sci_gateway/c/sci_winhttpdownload.c, line: 67
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_dos.c, line: 103
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_createGUID.c, line: 61
 #, c-format
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_consolebox.c, line: 45
 # File: sci_gateway/c/sci_consolebox.c, line: 82
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr ""
+
 #
 # File: src/c/scilab_windows/splashScreen.c, line: 73
 msgid "Scilab Console"
 msgstr ""
+
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"

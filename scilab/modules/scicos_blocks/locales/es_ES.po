@@ -20,12 +20,6 @@ msgstr ""
 msgid "Allocation problem in spline.\n"
 msgstr "Problema de asignacion en spline.\n"
 
-#, fuzzy, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-"ERROR DE ENTORNO : No puede utilizar scoRefreshDataBoundsX() con este tipo "
-"de objeto\n"
-
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
@@ -51,12 +45,6 @@ msgstr ""
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Error abriendo el archivo '%s'.\n"
-
-#, fuzzy
-msgid "Incorrect value for dimension argument."
-msgstr ""
-"ERROR DE ENTORNO : scoInitOfWindow valor incorrecto de dimensión "
-"incorrecto.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
@@ -156,127 +144,3 @@ msgstr ""
 
 msgid "overflow error"
 msgstr "error de desbordamiento"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -105,8 +105,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Diese Funktionalität wurde noch nicht implementiert: Unterstützung für "
 "Hypermatrizen.\n"
@@ -302,8 +301,3 @@ msgstr "Oktober"
 
 msgid "Sep"
 msgstr "September"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr ""
-#~ "%s: Verwendung mit %d Eingangsargument(en) wird noch nicht unterstützt.\n"

@@ -44,14 +44,14 @@ msgstr "%s: El nombre d''arguments de sortida és incorrecte.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"caràcters.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un descriptor "
-"de fitxer.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un "
+"descriptor de fitxer.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
@@ -62,14 +62,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
@@ -82,32 +82,33 @@ msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
 "expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un nom o un "
-"descriptor de fitxer.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un nom o "
+"un descriptor de fitxer.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s: L''argument d''entrada és d''un tipus incorrecte: Ha de ser una cadena de "
-"caràcters.\n"
+"%s: L''argument d''entrada és d''un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
 msgstr ""
-"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser un descriptor "
-"de fitxer vàlid.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser un "
+"descriptor de fitxer vàlid.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
@@ -124,7 +125,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: S''ha arribat al final de l''entrada abans d''acabar la conversió.\n"
+msgstr ""
+"%s: S''ha arribat al final de l''entrada abans d''acabar la conversió.\n"
 
 #
 # File: macros/mkdir.sci, line: 132
@@ -136,7 +138,3 @@ msgstr ""
 # File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
-
-#, fuzzy
-msgid "This directory already exists in "
-msgstr "%s: Avís: El directori ''%s'' ja existeix.\n"

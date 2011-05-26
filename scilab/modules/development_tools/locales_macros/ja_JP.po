@@ -102,19 +102,6 @@ msgstr ""
 msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 
-#, fuzzy, c-format
-msgid ""
-"%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
 #
 # File: macros/assert/assert_checkerror.sci, line: 66
 #, c-format
@@ -128,10 +115,6 @@ msgid ""
 "%s: The content of computed file %s is different from the content of "
 "reference file %s."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "参照先ファイル (%s) が存在しません"
 
 #
 # File: macros/assert/assert_cond2reqdigits.sci, line: 48
@@ -148,58 +131,9 @@ msgstr ""
 "%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してく"
 "ださい."
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected."
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s: 入力引数の大きさが間違っています."
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
 
 #
 # File: macros/testexamples.sci, line: 17

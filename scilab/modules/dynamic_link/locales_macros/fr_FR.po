@@ -103,21 +103,9 @@ msgstr "   Exécute le makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#, fuzzy, c-format
-msgid "%s: %s already loaded in scilab."
-msgstr "%s : Déjà chargé à partir de la bibliothèque %s\n"
-
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s : Un compilateur fortran ou C est requis.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
-
-#, fuzzy, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -191,8 +179,8 @@ msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
 msgstr ""
-"%s : Attention : Pas de code d''erreur retourné par la compilation, mais il y "
-"a des erreurs en sortie :\n"
+"%s : Attention : Pas de code d''erreur retourné par la compilation, mais il "
+"y a des erreurs en sortie :\n"
 
 #, c-format
 msgid ""
@@ -200,7 +188,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: Attention: Scilab n''a pas été capble de trouver où sont les sources de "
-"Scilab. Soumettez un rapport de bug à l''adresse http://bugzilla.scilab.org/\n"
+"Scilab. Soumettez un rapport de bug à l''adresse http://bugzilla.scilab."
+"org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -212,7 +201,8 @@ msgstr "%s: Mauvais nombre d''argument(s) d''entrée: %d,%d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s: Mauvais nombre d''arguments d''entré(s): au moins %d d''attendu(s).\n"
+msgstr ""
+"%s: Mauvais nombre d''arguments d''entré(s): au moins %d d''attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -224,7 +214,8 @@ msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid ""
@@ -257,21 +248,11 @@ msgstr ""
 "%s : Type inapproprié pour l''argument d''entrée #%d : Matrice de chaînes de "
 "caractères attendue.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
-"%s: Valeur inappropriée pour l''argument d''entrée #%d: '''' or ''[]'' "
-"attendu.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être dans "
 "l''ensemble {%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s : Mauvaise valeur pour l''argument d''entrée n°%d : Un int attendu.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Un compilateur Fortran ou C est nécessaire."
