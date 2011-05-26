@@ -91,6 +91,9 @@ Documentation:
 * Management of the revhistory / revision tag to provide information about
   the history of the function.
 
+* Bug 9299 fixed - Fix a typo in the cspect, pspect and window help pages
+                   (Hanning changed to Hann)
+
 
 Removed functions (previously declared as obsolete):
 ====================================================

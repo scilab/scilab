@@ -109,7 +109,7 @@
             </listitem>
 
             <listitem>
-              <para><literal>'hn'</literal> : Hanning</para>
+              <para><literal>'hn'</literal>: Hann</para>
             </listitem>
 
             <listitem>
