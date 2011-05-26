@@ -1053,7 +1053,7 @@ public class XcosDiagram extends ScilabGraph {
 					connection = findTerminals(inLink, out2Link, removedCells);
 					points = getDirectPoints(splitBlock, inLink, out2Link);
 				} else if (inRemoved && !out1Removed && !out2Removed) {
-					// only implicit case, log otherwise
+					// only implicit or event case, log otherwise
 					if (out1Link instanceof ExplicitLink || out2Link instanceof ExplicitLink) {
 						LOG.error("Reconnection failed for explicit links");
 						connection = null;
@@ -1079,7 +1079,10 @@ public class XcosDiagram extends ScilabGraph {
 			for (int i = 0; i < connectedCells.size(); i++) {
 				final BasicPort[] connection = connectedCells.get(i);
 				final List<mxPoint> points = connectedPoints.get(i);
-				connect(connection[0], connection[1], points, new mxPoint());
+				if (!removedCells.contains(connection[0].getParent())
+						&& !removedCells.contains(connection[1].getParent())) {
+					connect(connection[0], connection[1], points, new mxPoint());
+				}
 			}
 		} finally {
 			getModel().endUpdate();
