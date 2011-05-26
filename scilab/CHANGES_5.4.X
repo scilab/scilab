@@ -25,6 +25,7 @@ Xcos:
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
+* Bug 9547 fixed - The about box was not localized due to a multi-line string.
 
 File input/output:
 ==================

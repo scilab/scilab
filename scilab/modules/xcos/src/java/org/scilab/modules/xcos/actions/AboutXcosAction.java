@@ -63,7 +63,7 @@ public class AboutXcosAction extends DefaultAction {
 		String[] contents = {
 				Xcos.TRADENAME,
 				"",
-				XcosMessages.DIGITEO,
+				XcosMessages.CONSORTIUM,
 				XcosMessages.COPYRIGHT_INRIA,
 				"",
 				XcosMessages.SCICOS_BASED};
