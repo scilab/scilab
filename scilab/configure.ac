@@ -852,7 +852,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
-                # Named differently under ArchLinux
+                # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
                     AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
@@ -914,7 +914,7 @@ the the JNI libraries."])],
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
                 JHALL=$PACKAGE_JAR_FILE
 
-                # Named differently under Mandriva
+                # Named differently under Mandriva or Fedora
                 if test -z "$JHALL"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
                     JHALL=$PACKAGE_JAR_FILE
