@@ -211,6 +211,8 @@ Bug fixes:
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
+* bug 9354 fixed - 'savematfile' could not save imbricated structures.
+
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
                    a wrong error message on Windows.
 
