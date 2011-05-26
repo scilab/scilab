@@ -58,6 +58,12 @@ msgstr "Scilab句柄域"
 msgid "Scilab Command"
 msgstr "Scilab命令"
 
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+
 msgid "Scilab Function"
 msgstr "Scilab函数"
 

@@ -447,6 +447,14 @@ msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: mlist attendu.\n"
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: mlist attendue.\n"
 
+#
+# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

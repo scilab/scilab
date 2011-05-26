@@ -37,6 +37,14 @@ msgstr "%s: 記憶體空間不足.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 85
+# File: sci_gateway/c/sci_winqueryreg.c, line: 104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
@@ -68,6 +76,8 @@ msgstr "%s: 輸入參數的數值錯誤: 應該是非負號的整數值.\n"
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "僅可在視窗模式下使用,不可在主控模式下使用.\n"
 
+#
+# File: src/c/scilab_windows/splashScreen.c, line: 73
 msgid "Scilab Console"
 msgstr ""
 

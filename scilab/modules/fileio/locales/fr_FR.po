@@ -373,6 +373,14 @@ msgstr ""
 "'%s' attendu.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d ('%ls'): Un nom de "
+"fichier ou un répertoire valide attendu.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d ('%s') : Format non "
@@ -407,6 +415,21 @@ msgid ""
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne ''w'' ou "
 "''u'' attendue.\n"
+
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"

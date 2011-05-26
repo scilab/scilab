@@ -373,6 +373,12 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: Zła liczba parametrów wyjściowych: Oczekiwano przynajmniej %d.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano wielomian.\n"
@@ -647,6 +653,14 @@ msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Dziedzina czasu musi być ''c'' "
 "lub ''d''.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -825,6 +839,12 @@ msgstr "Niewykonalne (Hx Hamiltona)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Niewykonalne (promień spektralny)"
+
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr ""
 
 msgid "Zeros"
 msgstr "Zera"

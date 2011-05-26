@@ -182,6 +182,8 @@ msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "O diagrama foi modificado desde que foi salvo.<br/> Você quer salvá-lo?"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -269,15 +271,23 @@ msgstr "Tempo final de integração"
 msgid "Fit diagram to view"
 msgstr "Adaptar o diagrama à visão"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
 msgid "Fix derivatives"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 38
 msgid "Fix states"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
 msgid "Fixed parameters"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
 msgid "Fixed variables"
 msgstr ""
 
@@ -296,6 +306,7 @@ msgstr "Estilo da fonte"
 msgid "Format"
 msgstr "Formatar"
 
+#, c-format
 msgid "From %s"
 msgstr "De %s"
 
@@ -314,6 +325,7 @@ msgstr "Obter informações"
 msgid "Global"
 msgstr "Global"
 
+#, c-format
 msgid "Goto %s"
 msgstr "Ir para %s"
 
@@ -424,6 +436,8 @@ msgstr "Espelhar verticalmente"
 msgid "Modelica initialize"
 msgstr "Iniciar Modelica"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 23
 msgid "Modelica settings"
 msgstr ""
 
@@ -466,6 +480,8 @@ msgstr "Nome da paleta"
 msgid "Palettes"
 msgstr "Paletas"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
@@ -511,15 +527,21 @@ msgstr "Escala em tempo real"
 msgid "Recent Files"
 msgstr "Arquivos recentes"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 57
 msgid "Reduced"
 msgstr ""
 
 msgid "Region to superblock"
 msgstr "Região para superbloco"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
 msgid "Relaxed parameters"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Relaxed variables"
 msgstr ""
 
@@ -644,6 +666,7 @@ msgstr "Configurações do texto"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "O Consórcio Scilab (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -679,23 +702,28 @@ msgstr "Topo"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "Não é possível excluir "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "Não é possível importar %s.\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "Não é possível de carregar bloco de %s."
 
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -703,11 +731,15 @@ msgstr ""
 "Não é possível de carregar a biblioteca Batik.\n"
 "Esperava-se a versão %s; mas obteve-se a %s."
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 70
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -715,15 +747,21 @@ msgstr ""
 "Não é possível carregar a biblioteca jgraphx.\n"
 "Esperava-se a versão %s; mas obteve-se a %s."
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 72
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 msgid "Unknown Diagram Version : "
 msgstr "Versão de diagrama desconhecida : "
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 56
 msgid "Unknowns"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
 msgid "Unknowns not equals to Equations"
 msgstr ""
 
@@ -769,10 +807,14 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Título da janela"
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 "Argumento de entrada inválido para \"%s\": o caminho de árvore é inválido.\n"
@@ -797,63 +839,83 @@ msgstr "Erro do Xcos"
 msgid "Xcos file"
 msgstr "Arquivo Xcos"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"Você pode inserir instruções scilab para definir parâmetros simbólicos "
-"usados em definições de bloco usando instruções Scilab.<br/>Estas instruções "
-"são avaliadas uma vez que confirmadas (p.ex. você clica em OK, por Eval e "
-"toda vez que um diagrama é carregado.)"
 
 msgid "Zero crossing detection"
 msgstr "Detecção de cruzamento no zero"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 34
 msgid "comment"
 msgstr ""
 
 msgid "control port must be connected to command port"
 msgstr "a porta de controle deve ser conectada à porta de comando"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
 msgid "fixed"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
 msgid "id"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 29
 msgid "initial"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 27
 msgid "kind"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 52
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 31
 msgid "max"
 msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "tamanho máximo de passo (0 significa ilimitado)"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 32
 msgid "min"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 41
 msgid "model is not valid"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 25
 msgid "name"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 33
 msgid "nominal"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 35
 msgid "selected"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 30
 msgid "weight"
 msgstr ""

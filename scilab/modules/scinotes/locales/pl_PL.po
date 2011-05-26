@@ -24,6 +24,7 @@ msgstr ""
 " został zmieniony.\n"
 "Czy chcesz go zapisać?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s jest katalogiem."
 
@@ -37,6 +38,13 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje "
 "takich samych wymiarów.\n"
+
+#
+# File: sci_gateway/cpp/sci_scinotes.cpp, line: 344
+# File: sci_gateway/cpp/sci_scinotes.cpp, line: 356
+#, c-format
+msgid "%s: Wrong type for argument %d: A single string.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -56,22 +64,28 @@ msgstr ""
 "%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
 
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
 msgid "(* for any string and ? for any character)"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
-msgid "(~ for user home dir. and SCI for Scilab base dir.)"
-msgstr ""
+msgid "... file with echo"
+msgstr "... plik, z echem"
+
+msgid "... file with no echo"
+msgstr "... plik, bez echa"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ".. zaznaczenie z echem;... do kursoru, z echem"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
@@ -120,11 +134,22 @@ msgstr "Jesteś pewny, że chcesz zamknąć SciNotes?"
 msgid "Auto (Default)"
 msgstr "Automatycznie (domyślnie)"
 
+msgid "Auto-completion on (,&quot;,..."
+msgstr "Auto-uzupełnianie dla (,&quot;,..."
+
+msgid "Auto-completion on if,function,..."
+msgstr "Auto-uzupełnianie dla if,function,..."
+
 msgid "Background Color"
 msgstr "Kolor tła"
 
 msgid "Backward"
 msgstr "Wstecz"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+msgid "Base directory:"
+msgstr ""
 
 msgid "Binary file: read-only mode"
 msgstr "Plik binarny (tryb tylko do odczytu)"
@@ -143,14 +168,34 @@ msgstr ""
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "Nie można załadować \"scinotesConfiguration.xml\""
 
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "Capitalize Selection;Capitalize character"
+msgstr ""
+
 msgid "Case sensitive"
 msgstr "Rozróżniaj wielkość liter"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 323
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 322
+msgid "Case-sensitivity (Word)"
+msgstr ""
 
 msgid "Change Color"
 msgstr "Zmień kolor"
 
 msgid "Change Colors"
 msgstr "Zmienić kolory"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
+msgid "Choose the search base directory"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
@@ -187,6 +232,11 @@ msgstr "Koloryzacja anulowana"
 msgid "Colorize"
 msgstr "Koloryzacja"
 
+#
+# File: scilab_fake_localization_file.c, line: 30
+msgid "Columns actions"
+msgstr ""
+
 msgid "Comment Selection"
 msgstr "Zakomentuj zaznaczenie"
 
@@ -195,6 +245,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 289
+# File: scilab_fake_localization_file.c, line: 73
 msgid "Configure Tabulation"
 msgstr ""
 
@@ -204,8 +255,17 @@ msgstr "Kontunuować?"
 msgid "Copy"
 msgstr "Kopiuj"
 
+#
+# File: scilab_fake_localization_file.c, line: 29
+# File: scilab_fake_localization_file.c, line: 98
+msgid "Copy as HTML with line number"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr "Skopiuj zaznaczenie do nowej zakładki"
+
+msgid "Copy tab in new window"
+msgstr "Skopiuj zaznaczenie do nowego okna"
 
 msgid "Copyright (c)"
 msgstr "Copyright (c)"
@@ -219,6 +279,11 @@ msgstr "Nie udało się znaleść ani konsoli ani InterpreterManagement"
 msgid "Could not find the temporary file."
 msgstr "Nie można znaleźć pliku tymczasowego"
 
+#
+# File: scilab_fake_localization_file.c, line: 60
+msgid "Current file encoding"
+msgstr ""
+
 msgid "Cursor Color"
 msgstr "Kolor kursora"
 
@@ -228,8 +293,16 @@ msgstr "Wytnij"
 msgid "Default"
 msgstr "Domyślne"
 
+#
+# File: scilab_fake_localization_file.c, line: 61
+msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+msgstr ""
+
 msgid "Delete"
 msgstr "Usuń"
+
+msgid "Detach tab in new window"
+msgstr ""
 
 msgid "Direction"
 msgstr "Kierunek"
@@ -246,8 +319,15 @@ msgid "Edit"
 msgstr "Edycja"
 
 #
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
+#, c-format
+msgid "Elapsed time: %s second."
+msgstr ""
+
+#
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
-msgid "Elapsed time: %s sec."
+#, c-format
+msgid "Elapsed time: %s seconds."
 msgstr ""
 
 msgid "Enable Auto Reformat"
@@ -255,6 +335,11 @@ msgstr "Włącz autoformatowanie"
 
 msgid "Encoding"
 msgstr "Kodowanie"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 226
+msgid "Encoding problems"
+msgstr ""
 
 msgid "Enter line number"
 msgstr "Wprowadź numer linii"
@@ -264,6 +349,9 @@ msgstr "Błąd przy odczytywaniu łańcucha"
 
 msgid "Evaluate Selection"
 msgstr "Oblicz zaznaczone"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr "Oblicz zaznaczenie z echem;Oblicz do pozycji kursora, z echem"
 
 msgid "Evaluate from beginning..."
 msgstr "Oblicz od początku..."
@@ -282,6 +370,11 @@ msgstr "Wykonaj plik w Scilab"
 msgid "Exit"
 msgstr "Wyjście"
 
+#
+# File: scilab_fake_localization_file.c, line: 17
+msgid "Export"
+msgstr ""
+
 msgid "File"
 msgstr "Plik"
 
@@ -289,7 +382,7 @@ msgid "File already exists"
 msgstr "Plik już istnieje"
 
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
 msgid "File pattern"
 msgstr ""
 
@@ -301,6 +394,16 @@ msgstr "Znajdź następny"
 
 msgid "Find Previous"
 msgstr "Znajdź poprzedni"
+
+#
+# File: scilab_fake_localization_file.c, line: 52
+msgid "Find files"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 51
+msgid "Find word in files"
+msgstr ""
 
 msgid "Find/Replace"
 msgstr "Znajdź/Zamień"
@@ -314,22 +417,29 @@ msgstr "Do przodu"
 msgid "Functions"
 msgstr "Funkcje"
 
+msgid "Generate comments for help_from_sci"
+msgstr "Generuj komentarz dla pliku pomocy Scilab"
+
 msgid "Generate help from function"
 msgstr "Generuj plik pomocy dla funkcji"
 
 msgid "Go to line: "
 msgstr "Idź do linii: "
 
+msgid "Go to next anchor"
+msgstr "Do następnej kotwicy"
+
+msgid "Go to previous anchor"
+msgstr "Do poprzedniej kotwicy"
+
 msgid "Goto line"
 msgstr "Idź do linii"
 
-#
-# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 312
-msgid "Graphics handle field"
-msgstr ""
-
 msgid "Help about '"
 msgstr "Pomoc o '"
+
+msgid "Help on ;Help on selection"
+msgstr "Pomoc dla ;Pomoc dla zaznaczenia"
 
 msgid "Help on selected text or keyword"
 msgstr "Pomoc dla zaznaczonego tekstu lub słowa kluczowego"
@@ -346,9 +456,25 @@ msgstr "Pomoc w czasie pisania"
 msgid "Highlight current line"
 msgstr "Podświetl bierzącą linię"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 294
+msgid "Horizontal rule"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 64
+msgid "Horizontal wrapping"
+msgstr ""
+
 msgid "Ignore"
 msgstr "Ignoruj"
 
+#
+# File: scilab_fake_localization_file.c, line: 50
+msgid "Incremental Search"
+msgstr ""
+
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Błędne wyrażenie regularne : %s"
 
@@ -362,11 +488,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 203
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 202
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
@@ -377,6 +505,9 @@ msgstr "Zakończenie linii"
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 325
 msgid "Line by line"
 msgstr ""
+
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr "Numeracja wierszy:Brak;Zwykła;Whereami compatible"
 
 msgid "Load Into Scilab"
 msgstr "Załaduj do Scilab"
@@ -389,6 +520,16 @@ msgstr "Klasyczny Mac (CR)"
 
 msgid "Mail to "
 msgstr "E-mail do "
+
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "Make Selection Lowercase"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "Make Selection Uppercase"
+msgstr ""
 
 msgid "Natural order"
 msgstr ""
@@ -428,6 +569,11 @@ msgstr "Otwórz"
 msgid "Open URL"
 msgstr "Otwórz URL"
 
+#
+# File: scilab_fake_localization_file.c, line: 6
+msgid "Open file in ..."
+msgstr ""
+
 msgid "Open function source file"
 msgstr "Otwórz plik źródłowy funkcji"
 
@@ -458,6 +604,15 @@ msgstr "Ustawienia strony"
 msgid "Paste"
 msgstr "Wklej"
 
+#
+# File: scilab_fake_localization_file.c, line: 31
+# File: scilab_fake_localization_file.c, line: 97
+msgid "Paste Column"
+msgstr ""
+
+msgid "Preferences"
+msgstr "Ustawienia"
+
 msgid "Press CTRL and move the mouse over the link to activate it"
 msgstr ""
 
@@ -485,7 +640,7 @@ msgid "Recent Files"
 msgstr "Poprzednie pliki"
 
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
 msgid "Recursive"
 msgstr ""
 
@@ -502,6 +657,11 @@ msgstr "Powtórz"
 msgid "Regex"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 326
+msgid "Regular expression (Word)"
+msgstr ""
+
 msgid "Regular expressions"
 msgstr "Wyrażenia regularne"
 
@@ -511,8 +671,19 @@ msgstr "Względny"
 msgid "Reload"
 msgstr "Załaduj ponownie"
 
+msgid "Remove anchor"
+msgstr "Usuń kotwicę"
+
+msgid "Remove trailing spaces"
+msgstr "Usuń końcowe spacje"
+
 msgid "Remove trailing whitespaces"
 msgstr "Usuń spacje na końcu"
+
+#
+# File: scilab_fake_localization_file.c, line: 32
+msgid "Repeat on the Column"
+msgstr ""
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -538,6 +709,9 @@ msgstr "Zacznij wyszukiwanie od początku"
 msgid "Restore files from your last SciNotes session ?"
 msgstr "Odczytać pliki z ostatniej sesji SciNotes?"
 
+msgid "Restore opened files on start-up"
+msgstr "Odczytaj edytowane pliki po starcie"
+
 msgid "Restore the last sessions"
 msgstr "Wznów ostatnie sesje"
 
@@ -547,8 +721,18 @@ msgstr "Zapisz"
 msgid "Save All"
 msgstr "Zapisz wszystko"
 
+#
+# File: scilab_fake_localization_file.c, line: 84
+msgid "Save and execute"
+msgstr ""
+
 msgid "Save as"
 msgstr "Zapisz jako"
+
+#
+# File: scilab_fake_localization_file.c, line: 7
+msgid "Save file in ..."
+msgstr ""
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -581,8 +765,16 @@ msgstr "Znajdź"
 msgid "Search Files..."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 307
+msgid "Search in Files..."
+msgstr ""
+
 msgid "Select All"
 msgstr "Zaznacz wszystko"
+
+msgid "Select current block"
+msgstr "Zaznacz bierzący blok"
 
 msgid "Selected lines"
 msgstr "Zaznaczone linie"
@@ -590,10 +782,18 @@ msgstr "Zaznaczone linie"
 msgid "Set Colors"
 msgstr "Ustaw kolory"
 
+#
+# File: scilab_fake_localization_file.c, line: 70
+msgid "Set Colors ..."
+msgstr ""
+
 msgid "Set Font"
 msgstr "Ustaw czcionkę"
 
 msgid "Set an anchor"
+msgstr "Ustaw kotwicę"
+
+msgid "Set anchor"
 msgstr "Ustaw kotwicę"
 
 msgid "Settings"
@@ -611,8 +811,16 @@ msgstr "Pokaż definicję makra "
 msgid "Show/Hide ToolBar"
 msgstr "Pokaż/ukryj pasek narzędzi"
 
+#
+# File: scilab_fake_localization_file.c, line: 45
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Źródło '"
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr "Podział okna;Brak;Poziomo;Pionowo"
 
 msgid "Split horizontally"
 msgstr "Podziel poziomo"
@@ -628,8 +836,14 @@ msgstr ""
 msgid "Strike Through"
 msgstr "Przekreślenie"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
+
+#
+# File: scilab_fake_localization_file.c, line: 67
+msgid "Suppress comments when executing selection"
+msgstr ""
 
 msgid "Syntax Type"
 msgstr "Rodzaj składni"
@@ -644,6 +858,15 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 167
+#, c-format
+msgid ""
+"The file %s does not exist\n"
+"Do you want to create it?"
+msgstr ""
+
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -654,11 +877,17 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "Plik nie może być przekonwertowany"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 43
+msgid "The file could not be created, check the path"
+msgstr ""
+
 msgid "The file could not be saved."
 msgstr "Plik nie może być zapisany"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 225
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -721,8 +950,16 @@ msgstr ""
 msgid "Whole word"
 msgstr "Całe słowo"
 
+msgid "Window"
+msgstr "Okno"
+
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 321
+msgid "Word"
+msgstr ""
 
 msgid "Word Wrap"
 msgstr "Zawijanie wierszy"
@@ -730,6 +967,11 @@ msgstr "Zawijanie wierszy"
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 316
 msgid "Word pattern"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 5
+msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
 
 #

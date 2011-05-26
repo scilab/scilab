@@ -107,6 +107,12 @@ msgstr "%s: ファイル %s は存在しません。\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: 入力引数が間違っています: '%s' を指定してください.\n"
@@ -136,6 +142,12 @@ msgstr ""
 "%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してくだ"
 "さい.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -154,6 +166,13 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してく"
 "ださい.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -208,6 +227,13 @@ msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -218,6 +244,14 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
 "い.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -410,12 +444,317 @@ msgstr "%s: 入力引数 #%d で不正な値: 負でない整数を想定しま�
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr "%s: 入力引数 #%d で不正な値: このハンドルは存在しません。\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&?"
+msgstr ""
+
+msgid "&Abort"
+msgstr "中断(&A)"
+
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 40
+# File: scilab_fake_localization_file.c, line: 81
+msgid "&About Scilab..."
+msgstr "Scilabバージョン情報(&A)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 69
+msgid "&Applications"
+msgstr "アプリケーション(&A)"
+
+#
+# File: scilab_fake_localization_file.c, line: 31
+msgid "&Axes properties"
+msgstr "軸プロパティ(&A)"
+
+#
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&BMP"
+msgstr "BMP(&B)"
+
+#
+# File: scilab_fake_localization_file.c, line: 79
+msgid "&Bugs And Requests"
+msgstr "バグと要求のデータベース(&B)"
+
+#
+# File: scilab_fake_localization_file.c, line: 46
+msgid "&Change current directory..."
+msgstr "現在のディレクトリを変更(&C)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 29
+msgid "&Clear figure"
+msgstr "構成クリア(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 38
+msgid "&Close"
+msgstr "閉じる(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 58
+msgid "&Colors"
+msgstr "色(&C)"
+
+msgid "&Command History"
+msgstr "コマンドヒストリ (&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 65
+msgid "&Control"
+msgstr "コントロール(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 53
+msgid "&Copy"
+msgstr "コピー(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 17
+msgid "&Copy to clipboard"
+msgstr "クリップボードへコピー"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Decrease font size"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&Display current directory"
+msgstr "現在のディレクトリを表示(&D)"
+
+#
+# File: scilab_fake_localization_file.c, line: 12
+msgid "&EMF"
+msgstr "EMF(&E)"
+
+#
+# File: scilab_fake_localization_file.c, line: 13
+msgid "&EPS"
+msgstr "EPS(&E)"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 57
+msgid "&Edit"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 55
+msgid "&Empty clipboard"
+msgstr "クリップボードを空(&E)"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Execute..."
+msgstr "実行(&E)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 5
+msgid "&Export to..."
+msgstr "エクスポート(&E)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 14
+msgid "&FIG"
+msgstr "FIG(&F)"
+
+#
+# File: scilab_fake_localization_file.c, line: 30
+msgid "&Figure properties"
+msgstr "構成プロパティ(&F)"
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "&File Exchange"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 61
+msgid "&Font..."
+msgstr "フォント(&F)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "&Forge"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&GIF"
+msgstr "GIF(&G)"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Incremental Search"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 68
+msgid "&Interrupt"
+msgstr "割り込み(&I)"
+
+#
+# File: scilab_fake_localization_file.c, line: 8
+msgid "&JPG"
+msgstr "JPG(&J)"
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&Links"
+msgstr "ウエブリンク(&W)"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Load environment..."
+msgstr "環境をロード(&L)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 3
+msgid "&Load..."
+msgstr "ロード(&L)..."
+
+msgid "&Mailing lists"
+msgstr "メーリング・リスト(&M)"
+
+#
+# File: scilab_fake_localization_file.c, line: 72
+msgid "&Matlab to Scilab translator"
+msgstr "MatlabからScilabへ変換(&M)"
+
+#
+# File: scilab_fake_localization_file.c, line: 2
+msgid "&New figure..."
+msgstr "新しい構成(&N)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "&Open a file..."
+msgstr "ファイルを開く(&O)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 15
+msgid "&PDF"
+msgstr "PDF(&P)"
+
+#
+# File: scilab_fake_localization_file.c, line: 10
+msgid "&PPM"
+msgstr "PPM(&P)"
+
+#
+# File: scilab_fake_localization_file.c, line: 54
+msgid "&Paste"
+msgstr "貼り付け(&P)"
+
+msgid "&Preferences"
+msgstr "設定(&P)"
+
+#
+# File: scilab_fake_localization_file.c, line: 19
+# File: scilab_fake_localization_file.c, line: 49
+msgid "&Print..."
+msgstr "印刷(&P)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 50
+msgid "&Quit"
+msgstr "終了(&Q)"
+
+msgid "&Redraw figure"
+msgstr "構成の再描画(&R)"
+
+msgid "&Resume"
+msgstr "再開(&R)"
+
+#
+# File: scilab_fake_localization_file.c, line: 16
+msgid "&SVG"
+msgstr "SVG(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 45
+msgid "&Save environment..."
+msgstr "環境を保存(&S)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 4
+msgid "&Save..."
+msgstr "保存(&S)..."
+
+msgid "&SciNotes"
+msgstr "&SciNotes"
+
+#
+# File: scilab_fake_localization_file.c, line: 35
+msgid "&Scilab Help"
+msgstr "Scilab ヘルプ(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+msgid "&Select all"
+msgstr "全て選択(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 27
+msgid "&Select as current figure"
+msgstr "現在の構成として選択(&S)"
+
+msgid "&Start datatip manager"
+msgstr "データtip マネージャwo(&S)  tart datatip manager"
+
+msgid "&Start entity picker"
+msgstr "エンティティ選択を開始(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&Tools"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 24
+msgid "&UnZoom"
+msgstr "ズームしない(&U)"
+
+msgid "&Variable Browser"
+msgstr "変数ブラウザ(&V)"
+
+msgid "&Vectorial export"
+msgstr "ベクトル形式でエクスポート(&V)"
+
+#
+# File: scilab_fake_localization_file.c, line: 71
+msgid "&Xcos"
+msgstr "Xcos(&X)"
+
+#
+# File: scilab_fake_localization_file.c, line: 23
+msgid "&Zoom"
+msgstr "ズーム(&Z)"
+
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
 "'.\n"
 "有効なファイル形式を指定してください."
+
+msgid "2D/3D &Rotation"
+msgstr "2D/3D回転(&R)"
 
 #
 # File: macros/about.sci, line: 20
@@ -429,6 +768,26 @@ msgstr "謝辞"
 
 msgid "All %s files"
 msgstr "全ての %s ファイル"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
+msgid "All Encapsulated PS files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
+msgid "All PDF files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
+msgid "All PNG image files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
+msgid "All Postscript files"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
@@ -453,11 +812,41 @@ msgstr "戻る"
 msgid "Bold"
 msgstr "ボールド体"
 
+#
+# File: scilab_fake_localization_file.c, line: 20
+msgid "C&lose"
+msgstr "閉じる(&l)"
+
+#
+# File: scilab_fake_localization_file.c, line: 52
+msgid "C&ut"
+msgstr "切り取り(&u)"
+
 msgid "Cancel"
 msgstr "キャンセル"
 
 msgid "CeCILL License"
 msgstr "CeCILL ライセンス"
+
+#
+# File: scilab_fake_localization_file.c, line: 91
+msgid "Change Current Directory"
+msgstr "現在のディレクトリを変更"
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "Choose Font..."
+msgstr "フォント選択..."
+
+#
+# File: scilab_fake_localization_file.c, line: 63
+msgid "Clear &History"
+msgstr "ヒストリークリア(&H)"
+
+#
+# File: scilab_fake_localization_file.c, line: 64
+msgid "Clear C&onsole"
+msgstr "コンソールクリア(&C)"
 
 #
 # File: scilab_fake_localization_file.c, line: 64
@@ -475,6 +864,16 @@ msgid "Close"
 msgstr "閉じる"
 
 #
+# File: scilab_fake_localization_file.c, line: 59
+msgid "Console &Background..."
+msgstr "バックグランド・コンソール(&B)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 60
+msgid "Console &Font..."
+msgstr "コンソールフォント(&F)..."
+
+#
 # File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2200
 msgid "Console Background..."
 msgstr "バックグランド・コンソール..."
@@ -490,6 +889,11 @@ msgstr "コピー"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
 msgid "Could not open: "
 msgstr "オープンできません: "
 
@@ -504,6 +908,16 @@ msgstr "カプセル化なしのポストスクリプト・イメージ(EPS)"
 
 msgid "Enhanced Metafile image (EMF)"
 msgstr "機能強化したMetafileイメージ(EMF)"
+
+#
+# File: etc/main_menubar.xml, line: 36
+msgid "Environment loaded.\n"
+msgstr "環境をロードしました。\n"
+
+#
+# File: etc/main_menubar.xml, line: 50
+msgid "Environment saved.\n"
+msgstr "環境を保存しました。\n"
 
 msgid "Error on export"
 msgstr "エクスポートエラー"
@@ -527,12 +941,34 @@ msgid "Execute into Scilab"
 msgstr "Scilabで実行"
 
 #
+# File: etc/main_menubar.xml, line: 14
+msgid "Execution done.\n"
+msgstr "実行は完了しました。\n"
+
+#
 # File: scilab_fake_localization_file.c, line: 5
 msgid "Export"
 msgstr "エクスポート"
 
 msgid "FIG image"
 msgstr "FIG イメージ"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+msgid "Feature not available in this mode..."
+msgstr ""
+
+#
+# File: etc/graphics_menubar.xml, line: 15
+msgid "Figure loaded.\n"
+msgstr "構成をロードしました。\n"
+
+#
+# File: etc/graphics_menubar.xml, line: 29
+msgid "Figure saved.\n"
+msgstr "構成を保存しました。\n"
 
 msgid "File already exist"
 msgstr "ファイルは既にあります"
@@ -572,11 +1008,19 @@ msgstr "選択したキーワードのヘルプ"
 msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
 
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "In&crease font size"
+msgstr ""
+
 msgid "Italic"
 msgstr "イタリック"
 
 msgid "JPEG image"
 msgstr "JPEG イメージ"
+
+msgid "Launch SciNotes"
+msgstr "SciNotesを起動"
 
 #
 # File: src/java/org/scilab/modules/gui/events/ZoomRubberBox.java, line: 59
@@ -593,6 +1037,12 @@ msgstr "左クリックで選択終了、右クリックでキャンセル。"
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
 msgid "Loading help browser..."
 msgstr "ヘルプブラウザーのロード..."
+
+msgid "M&odule manager - ATOMS"
+msgstr "モジュール管理(&o) - ATOMS"
+
+msgid "Module manager - ATOMS"
+msgstr "モジュール管理 - ATOMS"
 
 msgid "Monospaced"
 msgstr "モノスペース"
@@ -667,6 +1117,27 @@ msgstr "OK"
 msgid "Ok"
 msgstr "OK"
 
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Open a file"
+msgstr "ファイルを開く"
+
+#
+# File: scilab_fake_localization_file.c, line: 84
+msgid "Original View"
+msgstr "デフォルトビュー"
+
+#
+# File: scilab_fake_localization_file.c, line: 9
+msgid "P&NG"
+msgstr "PNG(&N)"
+
+#
+# File: scilab_fake_localization_file.c, line: 18
+# File: scilab_fake_localization_file.c, line: 48
+msgid "P&age setup..."
+msgstr "ページ設定(&a)..."
+
 msgid "PDF image"
 msgstr "PDF イメージ"
 
@@ -685,8 +1156,23 @@ msgstr "ファイルフォーマットを明確にしてください"
 msgid "Preview"
 msgstr "プレビュー"
 
+#
+# File: scilab_fake_localization_file.c, line: 93
+msgid "Print..."
+msgstr "印刷..."
+
 msgid "Replace existing file?"
 msgstr "既存ファイルを取り替えますか?"
+
+#
+# File: scilab_fake_localization_file.c, line: 82
+msgid "Rotate"
+msgstr "循環"
+
+#
+# File: scilab_fake_localization_file.c, line: 33
+msgid "S&top entity picker"
+msgstr "実体摘出の中止(&t)"
 
 msgid "SVG image"
 msgstr "SVG イメージ"
@@ -701,6 +1187,30 @@ msgstr "SciNotes互換"
 
 msgid "Scicos files"
 msgstr "Scicos ファイル"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Scilab と ATOMS の Web サイト(&A)"
+
+msgid "Scilab &Demonstrations"
+msgstr "Scilab デモ(&D)"
+
+#
+# File: scilab_fake_localization_file.c, line: 74
+msgid "Scilab &Help"
+msgstr "Scilab ヘルプ(&H)"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Scilab &Online Help"
+msgstr ""
+
+msgid "Scilab &Web Site"
+msgstr "Scilab ウエブサイト(&W)"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Scilab &Wiki"
+msgstr ""
 
 #
 # File: sci_gateway/c/gw_gui.c, line: 68
@@ -724,6 +1234,11 @@ msgstr "Scilab メッセージ選択"
 
 msgid "Scilab Demo files"
 msgstr "Scilabデモファイル"
+
+#
+# File: scilab_fake_localization_file.c, line: 75
+msgid "Scilab Demonstrations"
+msgstr "Scilab デモ(&D)"
 
 msgid "Scilab Input Value Request"
 msgstr "Scilab 入力値要求"
@@ -753,6 +1268,55 @@ msgstr "Scilabライブラリファイル"
 # File: scilab_fake_localization_file.c, line: 56
 msgid "Select All"
 msgstr "全て選択"
+
+#
+# File: etc/main_menubar.xml, line: 59
+# File: etc/main_toolbar.xml, line: 39
+msgid "Select a directory"
+msgstr "ディレクトリを選択"
+
+#
+# File: etc/graphics_menubar.xml, line: 41
+# File: etc/graphics_menubar.xml, line: 52
+# File: etc/graphics_menubar.xml, line: 63
+# File: etc/graphics_menubar.xml, line: 74
+# File: etc/graphics_menubar.xml, line: 85
+# File: etc/graphics_menubar.xml, line: 98
+# File: etc/graphics_menubar.xml, line: 109
+# File: etc/graphics_menubar.xml, line: 120
+# File: etc/graphics_menubar.xml, line: 131
+# File: etc/graphics_menubar.xml, line: 142
+msgid "Select a file name"
+msgstr "ファイル名を選択"
+
+#
+# File: etc/main_menubar.xml, line: 11
+msgid "Select a file to execute"
+msgstr "ファイルを選択して実行"
+
+#
+# File: etc/graphics_menubar.xml, line: 12
+# File: etc/main_menubar.xml, line: 33
+msgid "Select a file to load"
+msgstr "ファイルを選択してロード"
+
+msgid "Select a file to open with SciNotes"
+msgstr "SciNotesでオープンするファイルを選択"
+
+#
+# File: etc/graphics_menubar.xml, line: 23
+# File: etc/main_menubar.xml, line: 44
+msgid "Select a file to write"
+msgstr "ファイルを選択して出力"
+
+#
+# File: scilab_fake_localization_file.c, line: 22
+# File: scilab_fake_localization_file.c, line: 62
+msgid "Show/Hide &Toolbar"
+msgstr "ツールバーの表示/非表示"
+
+msgid "Stop datatip manager"
+msgstr "データtipマネージャを停止"
 
 msgid "Test files"
 msgstr "テスト用ファイル"
@@ -1116,11 +1680,28 @@ msgid ""
 msgstr ""
 "'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos files"
 msgstr "Xcosファイル"
 
 msgid "Yes"
 msgstr "はい"
+
+#
+# File: scilab_fake_localization_file.c, line: 83
+msgid "Zoom Area"
+msgstr "ズームエリア"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -1151,3 +1732,6 @@ msgstr ""
 "disp(\"警告: ビデオ・カード・ドライバーの制限です、OpenGLを操作できないので、"
 "Scilabはグラフィックを描くことができません。どうぞドライバを更新して下さ"
 "い。\")"
+
+msgid "toggle datatip mode"
+msgstr "データtipモードを切替"

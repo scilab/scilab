@@ -57,6 +57,13 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 未知の型です.
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
+#
+# File: sci_gateway/c/sci_size.c, line: 108
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""

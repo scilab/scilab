@@ -476,6 +476,12 @@ msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Text oder ein Skalar wird "
 "erwartet.\n"
 
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -566,6 +572,12 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: 1, 2 oder 3 erwartet.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -699,6 +711,11 @@ msgstr "&Werkzeugboxen"
 msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
 
@@ -716,6 +733,11 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 #
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
 # File: src/c/signal_mgmt.c, line: 117
 #, c-format
 msgid ""
@@ -728,6 +750,13 @@ msgstr "Fehler"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Fehler beim Zurückgeben der tlist, Speicher voll.\n"
+
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -904,10 +933,14 @@ msgstr "Nicht definierte Variable %s.\n"
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
 
+#
+# File: src/c/storeCommand.c, line: 205
 #, c-format
 msgid "Unqueuing %s - No option.\n"
 msgstr ""
 
+#
+# File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr ""
@@ -922,6 +955,12 @@ msgstr "Warnung: %s\n"
 
 msgid "Warning"
 msgstr "Warnung"
+
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: Problems with %s.\n"

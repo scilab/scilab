@@ -29,6 +29,12 @@ msgstr "%s: Fehler während des Erzeugens der Dokumentation: %s.\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: führe Java Stapel aus %s.\n"
 
+#
+# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 242
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""

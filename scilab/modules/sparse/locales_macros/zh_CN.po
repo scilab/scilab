@@ -57,6 +57,20 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
+#
+# File: macros/sp2adj.sci, line: 23
+# File: macros/adj2sp.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -99,6 +113,39 @@ msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 63
+# File: macros/adj2sp.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 83
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 71
+# File: macros/adj2sp.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
 msgstr ""
 
 #, c-format

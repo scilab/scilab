@@ -110,6 +110,9 @@ msgstr "%s: S'ha produït un error en obrir, llegir o escriure.\n"
 msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: No s'ha pogut recuperar el nom del directori actual.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 362
+# File: sci_gateway/c/sci_fscanfMat.c, line: 286
 #, c-format
 msgid "%s: Invalid format.\n"
 msgstr ""
@@ -203,6 +206,8 @@ msgstr ""
 "%s: L'argument d'entrada #%d (%s) té una mida incorrecta: Ha de ser una "
 "cadena de text no-buida.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 140
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -259,6 +264,8 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -338,6 +345,8 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
 "una unitat lògica.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
@@ -365,6 +374,14 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d (%s) té un valor incorrecte: Ha de ser '%s', "
 "'%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte ('%ls'): Ha de ser un "
+"nom de fitxer o de directori vàlid.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
@@ -402,6 +419,21 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''w'' or "
 "''u''.\n"
 
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -418,10 +450,15 @@ msgstr ""
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Els arguments d'entrada tenen valors incorrectes.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 357
+# File: sci_gateway/c/sci_fscanfMat.c, line: 276
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 281
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""

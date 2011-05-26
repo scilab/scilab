@@ -291,6 +291,7 @@ msgstr "Стиль шрифту"
 msgid "Format"
 msgstr "Формат"
 
+#, c-format
 msgid "From %s"
 msgstr "З %s"
 
@@ -309,6 +310,7 @@ msgstr "Отримати відомості"
 msgid "Global"
 msgstr "Загальний"
 
+#, c-format
 msgid "Goto %s"
 msgstr "Перейти до %s"
 
@@ -639,6 +641,7 @@ msgstr "Параметри тексту"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорціум Scilab (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -674,23 +677,28 @@ msgstr "Вгорі"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "Не вдалося вилучити "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "Не вдалося імпортувати %s .\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "Не вдалося завантажити блок з %s ."
 
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -698,6 +706,7 @@ msgstr ""
 "Не вдалося завантажити бібліотеку Batik. \n"
 "Потрібна версія — %s; Поточна версія — %s."
 
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -705,6 +714,7 @@ msgstr ""
 "Не вдалося завантажити бібліотеку hdf5-java (jhdf5). \n"
 "Потрібна версія — %s; Поточна версія — %s."
 
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -766,12 +776,14 @@ msgstr "Заголовок вікна"
 msgid "Window title"
 msgstr "Заголовок вікна"
 
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "Помилковий вхідний параметр «%s»: некоректний вузол, замість нього буде "
 "використано «xcosPalDisable».\n"
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "Помилковий вхідний параметр «%s»: некоректна ієрархія каталогів.\n"
 
@@ -795,16 +807,10 @@ msgstr "Помилка Xcos"
 msgid "Xcos file"
 msgstr "Файл Xcos"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"Тут ви можете вказати команди scilab для визначення символічних параметрів, "
-"які використовуються у визначеннях блоків.<br/>Ці команди буде виконано "
-"одразу після підтвердження (тобто натискання кнопки «Гаразд» або "
-"«Обчислити», а також під час кожного завантаження діаграми)."
 
 msgid "Zero crossing detection"
 msgstr "Визначення переходів через нуль"

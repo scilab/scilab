@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,14 +19,6 @@ msgstr ""
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "   L Ma M Je V Sam Dim"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: Une erreur est survenue.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s''est produite : %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -76,12 +69,6 @@ msgstr ""
 "réelles attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Entier ou ''%s'' "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s : Mauvais type pour l''argument d''entrée n°%d : Une matrice réelle "
@@ -107,11 +94,6 @@ msgstr ""
 "scalaires.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
-msgstr ""
-"%s: Mauvais type pour les arguments d''entrée: Valeurs scalaires attendues.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée n° %d: %s doit être entre %d "
@@ -124,16 +106,6 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Doit être < %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être > %d.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être entre %d et "
@@ -144,13 +116,6 @@ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l''argument d''entrée: Il doit être compris entre "
 "%d et %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s : Mauvaise valeurs pour l''argument d''entrée n°%d : Un entier non-"
-"négatif attendu.\n"
 
 msgid "Apr"
 msgstr "Avr"

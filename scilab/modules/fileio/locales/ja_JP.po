@@ -556,6 +556,16 @@ msgstr ""
 "%s: 入力引数 #%d (%s) で不正な値: '%s' または '%s' また '%s' を想定します。\n"
 
 #
+# File: macros/copyfile.sci, line: 36
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値 ('%ls'): 適切なファイル名、または、ディレクトリ "
+"を想定します。\n"
+
+#
 # File: src/c/mput.c, line: 217
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
@@ -594,6 +604,21 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s' または '%s' を想�
 msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''w'' または ''u'' 文字を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
 
 #
 # File: src/c/mget.c, line: 193

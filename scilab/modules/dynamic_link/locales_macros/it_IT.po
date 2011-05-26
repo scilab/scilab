@@ -101,6 +101,12 @@ msgstr "   esegue il makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
+#
+# File: macros/ilib_build.sci, line: 84
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: È richiesto un compilatore per il Fortran o per il C.\n"
@@ -250,14 +256,39 @@ msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
+#
+# File: macros/ilib_build.sci, line: 60
+# File: macros/ilib_mex_build.sci, line: 26
+# File: macros/ilib_for_link.sci, line: 32
+#, c-format
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
 "nell''insieme {%s}.\n"
 
+#
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
+# File: macros/ilib_gen_Make_unix.sci, line: 153
+# File: macros/ilib_gen_Make_unix.sci, line: 169
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+
 msgid "A Fortran or C compiler is required."
 msgstr "È richiesto un compilatore per il Fortran o per il C."
+
+#
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 44
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
+msgstr ""
 
 msgid "Dynamic link"
 msgstr "Collegamento dinamico"

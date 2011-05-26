@@ -42,6 +42,14 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 85
+# File: sci_gateway/c/sci_winqueryreg.c, line: 104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""

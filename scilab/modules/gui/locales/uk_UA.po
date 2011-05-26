@@ -79,6 +79,12 @@ msgstr "%s: файла з назвою %s не існує.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: невідома властивість: %s для елементів керування «%s».\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
@@ -113,6 +119,12 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
 "рядків %d x %d.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -132,6 +144,13 @@ msgid ""
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
 "рядок 1 x %d дійсних чисел.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -195,6 +214,13 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -205,6 +231,14 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
 "рядків.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -415,12 +449,226 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: такого елемента керування не "
 "існує.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&?"
+msgstr ""
+
+msgid "&Abort"
+msgstr "П&ерервати"
+
+msgid "&About Scilab..."
+msgstr "П&ро Scilab..."
+
+msgid "&Applications"
+msgstr "П&рограми"
+
+msgid "&Axes properties"
+msgstr "Властивості &осей"
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Bugs And Requests"
+msgstr "&База даних вад і запитів"
+
+msgid "&Change current directory..."
+msgstr "З&мінити поточний каталог…"
+
+msgid "&Clear figure"
+msgstr "С&порожнити рисунок"
+
+msgid "&Close"
+msgstr "&Закрити"
+
+msgid "&Colors"
+msgstr "&Кольори"
+
+msgid "&Command History"
+msgstr "Журнал ко&манд"
+
+msgid "&Control"
+msgstr "&Керування"
+
+msgid "&Copy"
+msgstr "&Копіювати"
+
+msgid "&Copy to clipboard"
+msgstr "&Копіювати до буфера"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Decrease font size"
+msgstr ""
+
+msgid "&Display current directory"
+msgstr "П&оказати поточний каталог"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 57
+msgid "&Edit"
+msgstr ""
+
+msgid "&Empty clipboard"
+msgstr "Спо&рожнити буфер обміну даними"
+
+msgid "&Execute..."
+msgstr "&Виконати…"
+
+msgid "&Export to..."
+msgstr "&Експортувати..."
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&Figure properties"
+msgstr "&Властивості рисунка"
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "&File Exchange"
+msgstr ""
+
+msgid "&Font..."
+msgstr "&Шрифт…"
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "&Forge"
+msgstr ""
+
+msgid "&GIF"
+msgstr "&GIF"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Incremental Search"
+msgstr ""
+
+msgid "&Interrupt"
+msgstr "П&ризупинити"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Веб-посилання"
+
+msgid "&Load environment..."
+msgstr "&Завантажити середовище..."
+
+msgid "&Load..."
+msgstr "&Завантажити…"
+
+msgid "&Mailing lists"
+msgstr "Списки &листування"
+
+msgid "&Matlab to Scilab translator"
+msgstr "І&нструмент перетворення з Matlab у Scilab"
+
+msgid "&New figure..."
+msgstr "С&творити рисунок…"
+
+msgid "&Open a file..."
+msgstr "Ві&дкрити файл…"
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Paste"
+msgstr "&Вставити"
+
+msgid "&Preferences"
+msgstr "П&араметри"
+
+msgid "&Print..."
+msgstr "На&друкувати..."
+
+msgid "&Quit"
+msgstr "Ви&йти"
+
+msgid "&Redraw figure"
+msgstr "&Накреслити повторно"
+
+msgid "&Resume"
+msgstr "&Поновити"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Save environment..."
+msgstr "З&берегти середовище…"
+
+msgid "&Save..."
+msgstr "&Зберегти…"
+
+msgid "&SciNotes"
+msgstr "&SciNotes"
+
+msgid "&Scilab Help"
+msgstr "&Довідка Scilab"
+
+msgid "&Select all"
+msgstr "&Вибрати все"
+
+msgid "&Select as current figure"
+msgstr "В&ибрати поточним рисунком"
+
+msgid "&Start datatip manager"
+msgstr "&Керування позначками даних"
+
+msgid "&Start entity picker"
+msgstr "&Дозволити вибір об’єктів"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&Tools"
+msgstr ""
+
+msgid "&UnZoom"
+msgstr "З&меншити"
+
+msgid "&Variable Browser"
+msgstr "Перегляд з&мінних"
+
+msgid "&Vectorial export"
+msgstr "Е&кспорт у векторному форматі"
+
+msgid "&Xcos"
+msgstr "&Xcos"
+
+msgid "&Zoom"
+msgstr "З&більшити"
+
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
 "».\n"
 " Будь ласка, вкажіть коректний формат файлів."
+
+msgid "2D/3D &Rotation"
+msgstr "&Обертання на площині/у просторі"
 
 msgid "About Scilab..."
 msgstr "Про Scilab..."
@@ -430,6 +678,26 @@ msgstr "Подяки"
 
 msgid "All %s files"
 msgstr "Всі файли %s"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
+msgid "All Encapsulated PS files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
+msgid "All PDF files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
+msgid "All PNG image files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
+msgid "All Postscript files"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
@@ -454,11 +722,29 @@ msgstr "Назад"
 msgid "Bold"
 msgstr "Жирний"
 
+msgid "C&lose"
+msgstr "&Закрити"
+
+msgid "C&ut"
+msgstr "В&ирізати"
+
 msgid "Cancel"
 msgstr "Скасувати"
 
 msgid "CeCILL License"
 msgstr "Ліцензія CeCILL"
+
+msgid "Change Current Directory"
+msgstr "Змінити поточний каталог"
+
+msgid "Choose Font..."
+msgstr "Вибрати шрифт…"
+
+msgid "Clear &History"
+msgstr "Спорожнити &журнал"
+
+msgid "Clear C&onsole"
+msgstr "Спорожнити &консоль"
 
 msgid "Clear Console"
 msgstr "Спорожнити консоль"
@@ -468,6 +754,12 @@ msgstr "Спорожнити журнал"
 
 msgid "Close"
 msgstr "Закрити"
+
+msgid "Console &Background..."
+msgstr "&Тло консолі…"
+
+msgid "Console &Font..."
+msgstr "&Шрифт консолі…"
 
 msgid "Console Background..."
 msgstr "Тло консолі…"
@@ -480,6 +772,11 @@ msgstr "Копіювати"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
 
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "
@@ -495,6 +792,12 @@ msgstr "Вбудоване зображення PostScript (EPS)"
 
 msgid "Enhanced Metafile image (EMF)"
 msgstr "Зображення Enhanced Metafile (EMF)"
+
+msgid "Environment loaded.\n"
+msgstr "Середовище завантажено.\n"
+
+msgid "Environment saved.\n"
+msgstr "Середовище збережено.\n"
 
 msgid "Error on export"
 msgstr "Помилка під час спроби експортування"
@@ -515,11 +818,27 @@ msgstr ""
 msgid "Execute into Scilab"
 msgstr "Виконати у Scilab"
 
+msgid "Execution done.\n"
+msgstr "Виконання завершено.\n"
+
 msgid "Export"
 msgstr "Експортувати"
 
 msgid "FIG image"
 msgstr "Зображення FIG"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+msgid "Feature not available in this mode..."
+msgstr ""
+
+msgid "Figure loaded.\n"
+msgstr "Рисунок завантажено.\n"
+
+msgid "Figure saved.\n"
+msgstr "Рисунок збережено.\n"
 
 msgid "File already exist"
 msgstr "Файл вже існує"
@@ -554,11 +873,19 @@ msgstr "Довідка щодо позначеного ключового сло
 msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
 
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "In&crease font size"
+msgstr ""
+
 msgid "Italic"
 msgstr "Курсив"
 
 msgid "JPEG image"
 msgstr "Зображення JPEG"
+
+msgid "Launch SciNotes"
+msgstr "Запустити SciNotes"
 
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -573,6 +900,12 @@ msgstr ""
 
 msgid "Loading help browser..."
 msgstr "Завантаження засобу перегляду довідки…"
+
+msgid "M&odule manager - ATOMS"
+msgstr "Ке&рування модулями — ATOMS"
+
+msgid "Module manager - ATOMS"
+msgstr "Керування модулями — ATOMS"
 
 msgid "Monospaced"
 msgstr "Моноширинний"
@@ -600,6 +933,18 @@ msgstr "Гаразд"
 msgid "Ok"
 msgstr "Гаразд"
 
+msgid "Open a file"
+msgstr "Відкрити файл"
+
+msgid "Original View"
+msgstr "Початковий масштаб"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "P&age setup..."
+msgstr "&Компонування сторінки..."
+
 msgid "PDF image"
 msgstr "Зображення PDF"
 
@@ -618,8 +963,17 @@ msgstr "Будь ласка, вкажіть формат файлів"
 msgid "Preview"
 msgstr "Перегляд"
 
+msgid "Print..."
+msgstr "Надрукувати…"
+
 msgid "Replace existing file?"
 msgstr "Замінити файл?"
+
+msgid "Rotate"
+msgstr "Обернути"
+
+msgid "S&top entity picker"
+msgstr "&Заборонити вибір об’єктів"
 
 msgid "SVG image"
 msgstr "Зображення SVG"
@@ -632,6 +986,28 @@ msgstr "Сумісний зі SciNotes"
 
 msgid "Scicos files"
 msgstr "Файли Scicos"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "В&еб-сайт ATOMS Scilab"
+
+msgid "Scilab &Demonstrations"
+msgstr "Де&монстрації Scilab"
+
+msgid "Scilab &Help"
+msgstr "&Довідка Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Scilab &Online Help"
+msgstr ""
+
+msgid "Scilab &Web Site"
+msgstr "&Веб-сайт Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -649,6 +1025,9 @@ msgstr "Повідомлення про вибір Scilab"
 
 msgid "Scilab Demo files"
 msgstr "Файли прикладів Scilab"
+
+msgid "Scilab Demonstrations"
+msgstr "Демонстрації Scilab"
 
 msgid "Scilab Input Value Request"
 msgstr "Запит Scilab на вхідне значення"
@@ -676,6 +1055,30 @@ msgstr "Бінарні файли Scilab"
 
 msgid "Select All"
 msgstr "Позначити все"
+
+msgid "Select a directory"
+msgstr "Вкажіть каталог"
+
+msgid "Select a file name"
+msgstr "Вкажіть назву файла"
+
+msgid "Select a file to execute"
+msgstr "Вкажіть файл для виконання"
+
+msgid "Select a file to load"
+msgstr "Вкажіть файл для завантаження"
+
+msgid "Select a file to open with SciNotes"
+msgstr "Виберіть файл, який слід відкрити у SciNotes"
+
+msgid "Select a file to write"
+msgstr "Вкажіть файл для запису"
+
+msgid "Show/Hide &Toolbar"
+msgstr "Показати/Сховати п&анель інструментів"
+
+msgid "Stop datatip manager"
+msgstr "Завершити роботу керування позначками даних"
 
 msgid "Test files"
 msgstr "Тестові файли"
@@ -946,11 +1349,26 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати рядок або вектор "
 "дійсних значень 1 x %d.\n"
 
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos files"
 msgstr "Файли Xcos"
 
 msgid "Yes"
 msgstr "Так"
+
+msgid "Zoom Area"
+msgstr "Збільшити ділянку"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -979,3 +1397,6 @@ msgstr ""
 "disp(\"ПОПЕРЕДЖЕННЯ: через обмеження вашої графічної картки та драйвера до "
 "неї, які не здатні обробляти команди OpenGL, Scilab не зможе відтворювати "
 "графічні елементи. Будь ласка, оновіть ваш драйвер.\")"
+
+msgid "toggle datatip mode"
+msgstr "перемкнути режим позначок даних"

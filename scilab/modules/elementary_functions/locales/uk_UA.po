@@ -57,6 +57,13 @@ msgstr "%s: помилковий тип вхідного параметра №%
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
+#
+# File: sci_gateway/c/sci_size.c, line: 108
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""

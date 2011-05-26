@@ -497,6 +497,12 @@ msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub skalara.\n"
 
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -530,6 +536,8 @@ msgstr ""
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Złe typy parametrów wejściowych\n"
 
+#
+# File: tests/nonreg_tests/bug_7974.c, line: 84
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
@@ -594,6 +602,12 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego #%d:oczekiwano wartości "
 "całkowitej (int).\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -729,6 +743,11 @@ msgstr "&Przyborniki"
 msgid "A non square matrix!\n"
 msgstr "Macierz nie kwadratowa!\n"
 
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Nieodnaleziono katalogu tymczasowego systemu Windows (1)."
 
@@ -746,6 +765,11 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 #
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
 # File: src/c/signal_mgmt.c, line: 117
 #, c-format
 msgid ""
@@ -758,6 +782,13 @@ msgstr "Błąd"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Błąd przy zwracaniu tlist, pamięć pełna.\n"
+
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -953,6 +984,12 @@ msgstr "OSTRZEŻENIE: %s\n"
 
 msgid "Warning"
 msgstr "Ostrzeżenie"
+
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: Problems with %s.\n"

@@ -523,6 +523,12 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
 
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
@@ -636,6 +642,12 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "число.\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -776,6 +788,11 @@ msgstr "&Набори інструментів"
 msgid "A non square matrix!\n"
 msgstr "Матриця не є квадратною!\n"
 
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не вдалося визначити тимчасовий каталог Windows (1)."
 
@@ -793,6 +810,11 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Авторські права належать ENPC, ©1989–2007\n"
 
 #
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
 # File: src/c/signal_mgmt.c, line: 117
 #, c-format
 msgid ""
@@ -807,6 +829,13 @@ msgid "Error returning tlist, memory full.\n"
 msgstr ""
 "Помилка під час спроби повернути tlist, перевищено обмеження на розміри "
 "пам’яті.\n"
+
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -1004,6 +1033,12 @@ msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
 
 msgid "Warning"
 msgstr "Попередження"
+
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: Problems with %s.\n"

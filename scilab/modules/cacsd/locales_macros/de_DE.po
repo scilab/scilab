@@ -372,6 +372,12 @@ msgstr "%s: falsche Anzahl von Ausgangsargumenten: %d zu %d erwartet.\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: falsche Anzahl von Ausgangsargumenten: mindestens %d erwartet.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Polynom erwartet.\n"
@@ -628,6 +634,14 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Zeitbereich muß in ''c'' oder "
 "''d'' liegen.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -803,6 +817,12 @@ msgstr "Unbestimmt (Hy Hamiltonoperator)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Unbestimmt (spektraler Radius)"
+
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr ""
 
 msgid "Zeros"
 msgstr "Nullstellen"

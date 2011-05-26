@@ -84,6 +84,8 @@ msgid ""
 "Cholesky factorisation"
 msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
 
+#
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be symmetric positive definite "

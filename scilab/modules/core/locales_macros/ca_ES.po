@@ -102,6 +102,12 @@ msgstr ""
 "%s: El nombre d''arguments d''entrada és incorrecte: Han de ser com a mínim "
 "%d.\n"
 
+#
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""

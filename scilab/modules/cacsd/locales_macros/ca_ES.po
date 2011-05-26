@@ -379,6 +379,12 @@ msgstr ""
 "%s: El nombre d''arguments de sortida és incorrecte: Han de ser com a mínim "
 "%d.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -663,6 +669,14 @@ msgstr ""
 "%s: L''argument d''entrada #%d té un valor incorrecte: El domini temporal ha "
 "de ser ''c'' o ''d''.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -847,6 +861,12 @@ msgstr "No factible (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "No factible (radi espectral)"
+
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr ""
 
 msgid "Zeros"
 msgstr "Zeros"

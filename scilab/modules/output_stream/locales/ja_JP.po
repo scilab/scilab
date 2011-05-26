@@ -241,11 +241,22 @@ msgstr "%s: 入力引数が不正です。\n"
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 入力引数の数が不正です。\n"
 
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d  個以上の引数を指定してください.\n"
+
 #
 # File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: 最大で %d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 559
@@ -1044,6 +1055,11 @@ msgstr "Scilab で実施されませんでした...\n"
 # File: src/c/errmsg.c, line: 1214
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL 変数は、ここで使うことはできません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 638

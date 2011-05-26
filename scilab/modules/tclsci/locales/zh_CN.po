@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# File: src/c/ScilabEval.c, line: 104
 msgid " Flushing starts for queued commands.\n"
 msgstr ""
 
@@ -99,18 +100,26 @@ msgstr "开始执行 %s"
 msgid "Final Release"
 msgstr "最终版本"
 
+#
+# File: src/c/ScilabEval.c, line: 145
 #, c-format
 msgid "Flushed execution ends for %s"
 msgstr ""
 
+#
+# File: src/c/ScilabEval.c, line: 125
 #, c-format
 msgid "Flushed execution starts for %s - No option"
 msgstr ""
 
+#
+# File: src/c/ScilabEval.c, line: 131
 #, c-format
 msgid "Flushed execution starts for %s - seq"
 msgstr ""
 
+#
+# File: src/c/ScilabEval.c, line: 154
 msgid "Flushing ends\n"
 msgstr ""
 

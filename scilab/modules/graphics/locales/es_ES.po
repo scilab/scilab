@@ -135,6 +135,8 @@ msgstr "%s: Dimensión incompatible de los argumentos #%d y #%d.\n"
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
 msgstr "%s: El argumento de entrada #%d debe ser un manejador '%s'.\n"
 
+#
+# File: src/c/getHandleProperty/set_links_property.c, line: 59
 #, c-format
 msgid "%s: Input argument and the legend must have the same parent axes.\n"
 msgstr ""
@@ -576,6 +578,12 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Los límites especificados "
 "no son correctos.\n"
 
+#
+# File: sci_gateway/c/sci_set.c, line: 303
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
@@ -981,6 +989,8 @@ msgstr ""
 "Tipo incorrecto para la propiedad '%s': Se esperaba un manejador '%s' o un "
 "manejador '%s'.\n"
 
+#
+# File: src/c/getHandleProperty/set_links_property.c, line: 42
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
 msgstr ""

@@ -200,6 +200,8 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d (%s): Oczekiwano "
 "niepustego ciągu znaków.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 140
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -259,6 +261,8 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano skalara.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -340,6 +344,8 @@ msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano łańcuch lub "
 "jednostkę logiczną (logical unit).\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
@@ -363,6 +369,14 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy wartość parametru wejściowego nr %d (%s): oczekiwano '%s' "
 "lub '%s' lub '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d ('%ls'): oczekiwano "
+"prawidłowej nazwy pliku lub katalogu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
@@ -400,6 +414,21 @@ msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków ''w'' lub ''u''.\n"
 
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -416,10 +445,15 @@ msgstr ""
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Nieprawidłowe wartości dla argumentów wejściowych.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 357
+# File: sci_gateway/c/sci_fscanfMat.c, line: 276
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 281
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""

@@ -41,6 +41,8 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 43
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""

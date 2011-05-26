@@ -210,8 +210,18 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Неверное количество входных параметров.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -824,6 +834,11 @@ msgstr "Не реализовано в scilab...\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "Здесь не может использоваться пустая переменная.\n"
+
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Оптимизация остановилась: достигнут максимум вызовов функции f.\n"

@@ -56,6 +56,12 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: gemeinsame Bibliothek %s existiert nicht.\n"
 
+#
+# File: src/c/dynamic_link.c, line: 110
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: das gemeinsame Archiv wurde nicht geladen: %s\n"
@@ -109,18 +115,6 @@ msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich im Satz {%s} befinden.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 126
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
-
-#
-# File: src/c/dynamic_link.c, line: 117
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"

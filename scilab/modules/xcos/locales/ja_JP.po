@@ -286,6 +286,7 @@ msgstr "フォントの種類"
 msgid "Format"
 msgstr "書式"
 
+#, c-format
 msgid "From %s"
 msgstr "%s から"
 
@@ -304,6 +305,7 @@ msgstr "情報を取得"
 msgid "Global"
 msgstr "グローバル"
 
+#, c-format
 msgid "Goto %s"
 msgstr "%s へ"
 
@@ -633,6 +635,7 @@ msgstr "テキスト設定"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab コンソーシアム (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -668,28 +671,34 @@ msgstr "上位"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "削除できません "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "%s をインポートできません.\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "%s からブロックを読み込めません."
 
+#, fuzzy, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr "Batikライブラリを読み込めません."
 
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -697,6 +706,7 @@ msgstr ""
 "hdf5-java (jhdf5) ライブラリをロードできません.\n"
 "バージョン %s が必要です;　バージョン %s 取得中."
 
+#, fuzzy, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -756,12 +766,14 @@ msgstr "ウインドウ・タイトル"
 msgid "Window title"
 msgstr "ウインドウ・タイトル"
 
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "入力引数 \"%s\" が間違っています: ノードが不正です, 代わりに "
 "'xcosPalDisable' を使用してください.\n"
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "入力引数 \"%s\" が間違っています: ツリーパスが間違っています.\n"
 
@@ -785,15 +797,10 @@ msgstr "Xcos エラー"
 msgid "Xcos file"
 msgstr "Xcosファイル"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"Scilab命令を利用するブロック定義で使用される数式パラメータを定義するための"
-"Scilab命令をここに入力することができます.<br/> これらの命令は検証された後,評"
-"価されます. (すなわち, EvalでOKをクリックすると,図形が毎回読み込まれます.)"
 
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"

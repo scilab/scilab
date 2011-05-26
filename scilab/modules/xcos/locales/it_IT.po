@@ -155,6 +155,8 @@ msgstr "Crea una categoria"
 msgid "Customize"
 msgstr "Personalizza"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 241
 msgid "Debug block calls without trace"
 msgstr ""
 
@@ -184,6 +186,8 @@ msgstr ""
 "Il diagramma è stato modificato dall'ultimo salvataggio.<br/> Salvarlo "
 "adesso?"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -231,6 +235,8 @@ msgstr ""
 msgid "Event handling"
 msgstr "Gestione dell'evento"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 202
 msgid "Execution trace and Debug"
 msgstr ""
 
@@ -271,6 +277,8 @@ msgstr "Tempo di integrazione finale"
 msgid "Fit diagram to view"
 msgstr "Riempi il diagramma da visualizzare"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
 msgid "Fix derivatives"
 msgstr ""
 
@@ -298,6 +306,7 @@ msgstr "Stile del tipo di carattere"
 msgid "Format"
 msgstr "Formatta"
 
+#, c-format
 msgid "From %s"
 msgstr "Da %s"
 
@@ -316,6 +325,7 @@ msgstr "Ottieni informazioni"
 msgid "Global"
 msgstr "GLobale"
 
+#, c-format
 msgid "Goto %s"
 msgstr "Vai a %s"
 
@@ -381,6 +391,8 @@ msgstr "Corsivo"
 msgid "Left"
 msgstr "A sinistra"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
@@ -405,6 +417,8 @@ msgstr "Caricamento in corso dei pannelli definiti dall'utente"
 msgid "Lookup Tables"
 msgstr "Tabelle di controllo"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 250
 msgid "Masked SuperBlock editor"
 msgstr ""
 
@@ -420,6 +434,8 @@ msgstr "Intervallo di tempo di integraione massima"
 msgid "Middle"
 msgstr "Al centro"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 96
 msgid "Mirror"
 msgstr ""
 
@@ -447,6 +463,8 @@ msgstr "Nuova tavolozza"
 msgid "No block selected"
 msgstr "Nessun blocco selezionato"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 238
 msgid "No trace nor debug printing"
 msgstr ""
 
@@ -468,9 +486,13 @@ msgstr "Nome della tavolozza"
 msgid "Palettes"
 msgstr "Pannelli"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 240
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
@@ -487,6 +509,8 @@ msgstr ""
 msgid "Please take a look into the Scilab console"
 msgstr "Controllare la console di Scilab"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 134
 msgid "Port & Subsystem"
 msgstr ""
 
@@ -516,6 +540,8 @@ msgstr "File _recenti"
 msgid "Reduced"
 msgstr "Ridotto"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 54
 msgid "Region to superblock"
 msgstr ""
 
@@ -578,9 +604,13 @@ msgstr "Imposta i _parametri"
 msgid "Set block parameters"
 msgstr "Impostare i parametri del blocco"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 201
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 271
 msgid "Setting up Modelica Compiler."
 msgstr ""
 
@@ -608,6 +638,8 @@ msgstr "Simulazione in corso"
 msgid "Sinks"
 msgstr "Stabilizzatori"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 40
 msgid "Solve"
 msgstr ""
 
@@ -646,6 +678,7 @@ msgstr "Impostazioni del testo"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Il Consorzio Scilab (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -670,6 +703,8 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr "Termo-Idraulica"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 209
 msgid "Tolerance on time"
 msgstr ""
 
@@ -681,23 +716,28 @@ msgstr "In alto"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "Impossibile eliminare "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "Impossibile importare %s .\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "Impossibile caricare un blocco da %s."
 
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -705,6 +745,7 @@ msgstr ""
 "Impossibile caricare la libreria Batik. \n"
 "Versione attesa %s ; versione ottenuta %s."
 
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -712,6 +753,7 @@ msgstr ""
 "Impossibile caricare la libreria hdf5-java (jhdf5). \n"
 "Versione attesa %s ; versione ottenuta %s."
 
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -767,18 +809,22 @@ msgstr "Area visibile"
 msgid "Will try to continue..."
 msgstr "Si tenterà di proseguire..."
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
 msgid "WinTitle"
 msgstr ""
 
 msgid "Window title"
 msgstr "Titolo della finestra"
 
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "L'argomento in ingresso \"%s\" è sbagliato: nodo non valido, usare "
 "'xcosPalDisable' invece.\n"
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 "L'argomento in ingresso \"%s\" è sbagliato: percorso dell'albero non "
@@ -804,25 +850,31 @@ msgstr "Errore di Xcos"
 msgid "Xcos file"
 msgstr "Un file di Xcos"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 129
 msgid "Zero crossing detection"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 34
 msgid "comment"
 msgstr ""
 
 msgid "control port must be connected to command port"
 msgstr "una porta di controllo deve essere connessa a una porta di comando"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
 msgid "fixed"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
 msgid "id"
 msgstr ""
 
@@ -851,6 +903,8 @@ msgstr "minimo"
 msgid "model is not valid"
 msgstr "il modello non è valido"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 25
 msgid "name"
 msgstr ""
 

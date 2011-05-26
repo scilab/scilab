@@ -399,6 +399,12 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -687,6 +693,14 @@ msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: il dominio "
 "temporale deve essere ''c'' o ''d''.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -873,6 +887,12 @@ msgstr "Non è possibile (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Non è possibile (raggio spettrale)"
+
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr ""
 
 msgid "Zeros"
 msgstr "Zeri"

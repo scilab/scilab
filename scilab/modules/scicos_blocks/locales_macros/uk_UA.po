@@ -104,6 +104,11 @@ msgstr "Значення «Початок» має бути меншим за з
 msgid "(Read Audio File)"
 msgstr ""
 
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 59
+msgid "Accepts Inherited Events"
+msgstr ""
+
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "Приймає успадковані події (0: Ні, 1: Так)"
 
@@ -115,6 +120,11 @@ msgstr "Автоматично"
 
 msgid "Bits Extraction"
 msgstr "Видобування бітів"
+
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
+msgid "Bits to Extract"
+msgstr ""
 
 msgid "Bits to extract"
 msgstr "Біти для видобування"
@@ -156,8 +166,20 @@ msgstr "Спорожнити біт"
 msgid "Combinatorial logic"
 msgstr "Комбінаторна логіка"
 
+#
+# File: macros/Sources/CONST_m.sci, line: 41
+# File: macros/Sources/CONST_m.sci, line: 46
+# File: macros/Sources/CONST_m.sci, line: 69
+msgid "Constant Value"
+msgstr ""
+
 msgid "Constant discriminant"
 msgstr "Сталий дискримінант"
+
+#
+# File: macros/Sources/CONST_m.sci, line: 41
+msgid "Constant value generator"
+msgstr ""
 
 #
 # File: macros/Sources/CONST_m.sci, line: 46
@@ -166,6 +188,23 @@ msgstr ""
 
 msgid "Data Type"
 msgstr "Тип даних"
+
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 43
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
+# File: macros/IntegerOp/BITCLEAR.sci, line: 42
+# File: macros/IntegerOp/SHIFT.sci, line: 44
+# File: macros/IntegerOp/BITSET.sci, line: 40
+#, c-format
+msgid "Data Type %s"
+msgstr ""
+
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 77
+# File: macros/Sinks/WFILE_f.sci, line: 70
+#, c-format
+msgid "Directory ''%s'' does not exist"
+msgstr ""
 
 msgid "Discriminant type:"
 msgstr "Тип дискримінанта:"
@@ -187,6 +226,12 @@ msgid "Domain"
 msgstr "Область"
 
 #
+# File: macros/IntegerOp/LOGIC.sci, line: 56
+#, c-format
+msgid "Elements must be in the interval %s."
+msgstr ""
+
+#
 # File: macros/Sinks/WRITEC_f.sci, line: 68
 # File: macros/Sinks/WRITEAU_f.sci, line: 54
 msgid "End current simulation first"
@@ -199,6 +244,11 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 57
 # File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
+msgstr ""
+
+#
+# File: macros/Sources/CLOCK_c.sci, line: 44
+msgid "Event clock generator"
 msgstr ""
 
 msgid "Event input port"
@@ -257,6 +307,11 @@ msgid "Initial conditions"
 msgstr "Початкові умови"
 
 #
+# File: macros/Sources/CLOCK_c.sci, line: 45
+msgid "Initialisation Time"
+msgstr ""
+
+#
 # File: macros/Sources/READAU_f.sci, line: 50
 # File: macros/Sources/READAU_f.sci, line: 63
 msgid "Input File Name"
@@ -275,6 +330,11 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 45
 # File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
+msgstr ""
+
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 57
+msgid "Input Type"
 msgstr ""
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -309,6 +369,17 @@ msgstr "Модульний лічильник (лічильник від 0 до 
 
 msgid "Must be a single value."
 msgstr "Має бути однобітовим значенням."
+
+#
+# File: macros/Sources/READAU_f.sci, line: 65
+#, c-format
+msgid "Must be greater than %d."
+msgstr ""
+
+#
+# File: macros/Sinks/WFILE_f.sci, line: 80
+msgid "Must be greater than 1."
+msgstr ""
 
 #, c-format
 msgid "Must be in the interval %s."
@@ -346,6 +417,17 @@ msgstr "Впорядкування:"
 # File: macros/Sinks/WFILE_f.sci, line: 45
 # File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
+msgstr ""
+
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WFILE_f.sci, line: 46
+msgid "Output Format"
+msgstr ""
+
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 61
+msgid "Output Type"
 msgstr ""
 
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
@@ -405,6 +487,11 @@ msgstr "Визначити параметри блоку %s"
 msgid "Set a bit"
 msgstr "Визначити біт"
 
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+msgid "Shift Type"
+msgstr ""
+
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Тип зсуву (0: арифметичний, 1: циклічний)"
 
@@ -445,10 +532,20 @@ msgid "Strictly positive integer expected."
 msgstr "Слід вказати додатне ціле число."
 
 #
+# File: macros/Sources/CLOCK_c.sci, line: 49
+msgid "Strictly positive number expected."
+msgstr ""
+
+#
 # File: macros/Sources/READAU_f.sci, line: 69
 # File: macros/Sinks/WRITEC_f.sci, line: 89
 # File: macros/Sinks/WRITEAU_f.sci, line: 62
 msgid "Swap Mode"
+msgstr ""
+
+#
+# File: macros/Sources/READAU_f.sci, line: 50
+msgid "Swap Mode (0:No 1:Yes)"
 msgstr ""
 
 #
@@ -463,6 +560,11 @@ msgstr "«Початкове значення» має бути рівним 0 �
 
 msgid "The measurement points"
 msgstr "Точки вимірювання"
+
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
+msgid "Treat Bit Field as an Integer"
+msgstr ""
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
@@ -512,8 +614,118 @@ msgid "Write is done on:"
 msgstr ""
 
 #
+# File: macros/Sinks/WRITEC_f.sci, line: 45
+msgid "Write to C binary file"
+msgstr ""
+
+#
 # File: macros/Sinks/WFILE_f.sci, line: 43
 msgid "Write to output file"
+msgstr ""
+
+#
+# File: macros/Sources/CONST_m.sci, line: 46
+#, c-format
+msgid "Wrong size for ''%s'' parameter"
+msgstr ""
+
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 51
+#, c-format
+msgid "Wrong size for ''%s'' parameter: %d."
+msgstr ""
+
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 71
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 78
+#, c-format
+msgid "Wrong size for ''%s'' parameter: %s."
+msgstr ""
+
+#
+# File: macros/Sources/CONST_m.sci, line: 69
+#, c-format
+msgid "Wrong type for ''%s'' parameter"
+msgstr ""
+
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 49
+# File: macros/IntegerOp/BITSET.sci, line: 47
+#, c-format
+msgid "Wrong type for ''%s'' parameter: %5.1f."
+msgstr ""
+
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''%s'' parameter: %d."
+msgstr ""
+
+#
+# File: macros/Sources/Counter.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''Rule'' parameter: %d"
+msgstr ""
+
+#
+# File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+#, c-format
+msgid "Wrong value for ''%s'' parameter"
+msgstr ""
+
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 76
+# File: macros/Sinks/WFILE_f.sci, line: 69
+#, c-format
+msgid "Wrong value for ''%s'' parameter."
+msgstr ""
+
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d"
+msgstr ""
+
+#
+# File: macros/Sources/READAU_f.sci, line: 65
+# File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/IntegerOp/INTMUL.sci, line: 50
+# File: macros/IntegerOp/INTMUL.sci, line: 102
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
+# File: macros/IntegerOp/BITCLEAR.sci, line: 55
+# File: macros/IntegerOp/BITCLEAR.sci, line: 66
+# File: macros/IntegerOp/BITCLEAR.sci, line: 77
+# File: macros/IntegerOp/BITCLEAR.sci, line: 87
+# File: macros/IntegerOp/CONVERT.sci, line: 53
+# File: macros/IntegerOp/CONVERT.sci, line: 57
+# File: macros/IntegerOp/CONVERT.sci, line: 61
+# File: macros/IntegerOp/SHIFT.sci, line: 106
+# File: macros/IntegerOp/LOGIC.sci, line: 59
+# File: macros/IntegerOp/BITSET.sci, line: 53
+# File: macros/IntegerOp/BITSET.sci, line: 63
+# File: macros/IntegerOp/BITSET.sci, line: 74
+# File: macros/IntegerOp/BITSET.sci, line: 83
+# File: macros/Sinks/WRITEC_f.sci, line: 81
+# File: macros/Sinks/WRITEC_f.sci, line: 85
+# File: macros/Sinks/WRITEAU_f.sci, line: 57
+# File: macros/Sinks/WFILE_f.sci, line: 79
+# File: macros/Sinks/WFILE_f.sci, line: 83
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d."
+msgstr ""
+
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 95
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 134
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 173
+# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sinks/WFILE_f.sci, line: 75
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %s."
 msgstr ""
 
 #, c-format
@@ -524,6 +736,11 @@ msgstr "Помилкове значення параметра «Частота�
 msgid "Wrong value for ''Initial State'' parameter: %d."
 msgstr "Помилкове значення параметра «Початковий стан»: %d."
 
+#
+# File: macros/Sinks/WFILE_f.sci, line: 63
+msgid "Wrong value for ''Output File Name'' parameter"
+msgstr ""
+
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr "Помилкове значення параметра «Номер порту»: %d."
@@ -531,6 +748,24 @@ msgstr "Помилкове значення параметра «Номер по
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "Помилкове значення параметра «Час початку»: %e."
+
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+#, c-format
+msgid "Wrong value for of ''%s'' parameter."
+msgstr ""
+
+#
+# File: macros/Sources/CLOCK_c.sci, line: 49
+#, c-format
+msgid "Wrong values for ''%s'' parameter: %5.1e."
+msgstr ""
+
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 82
+#, c-format
+msgid "Wrong values for ''%s'' parameter: %s."
+msgstr ""
 
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"

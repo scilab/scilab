@@ -191,6 +191,12 @@ msgstr ""
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
+#
+# File: macros/derivative.sci, line: 62
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
@@ -381,6 +387,14 @@ msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
 
+#
+# File: macros/neldermead/fminsearch.sci, line: 26
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
+"expected."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
@@ -477,6 +491,14 @@ msgstr "%s: A matriz de ponderação deve ser quadrada.\n"
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr ""
 
+#
+# File: macros/derivative.sci, line: 166
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade errada de argumento(s) de entrada.\n"
@@ -496,6 +518,21 @@ msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor "
 "coluna.\n"
 
+#
+# File: macros/derivative.sci, line: 170
+#, c-format
+msgid ""
+"%s: Wrong type for element #%d in input argument #%d: A function is "
+"expected, but current type is %s.\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 98
+# File: macros/karmarkar.sci, line: 102
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
@@ -507,6 +544,22 @@ msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de N "
 "dimensões.\n"
 
+#
+# File: macros/karmarkar.sci, line: 76
+# File: macros/karmarkar.sci, line: 79
+# File: macros/karmarkar.sci, line: 82
+# File: macros/karmarkar.sci, line: 85
+# File: macros/karmarkar.sci, line: 88
+# File: macros/karmarkar.sci, line: 91
+# File: macros/karmarkar.sci, line: 94
+# File: macros/karmarkar.sci, line: 107
+# File: macros/karmarkar.sci, line: 110
+# File: macros/karmarkar.sci, line: 113
+# File: macros/karmarkar.sci, line: 116
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
@@ -517,6 +570,66 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 194
+#, c-format
+msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 200
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be a floating point "
+"integer."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 191
+#, c-format
+msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 513
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 379
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 221
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 205
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 is not positive."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 216
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #

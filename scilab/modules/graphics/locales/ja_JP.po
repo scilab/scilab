@@ -659,6 +659,12 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: 明確に界は正しくありません。\n"
 
 #
+# File: sci_gateway/c/sci_set.c, line: 303
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_plot3d.c, line: 133
 # File: sci_gateway/c/sci_plot3d.c, line: 137
 #, c-format

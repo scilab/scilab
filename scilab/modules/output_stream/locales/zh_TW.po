@@ -149,7 +149,7 @@ msgid "%s: Bounds and initial guess are incompatible.\n"
 msgstr "%s: 初始猜值及邊界限制不匹配.\n"
 
 #
-# File: src/c/msgs.c, line: 931
+# File: src/c/msgs.c, line: 983
 #, c-format
 msgid ""
 "%s: Failure when looking for the intersection with domains boundaries.\n"
@@ -202,6 +202,8 @@ msgstr "%s: 記憶體耗盡.\n"
 msgid "%s: Not enough arguments.\n"
 msgstr "%s: 參數不夠.\n"
 
+#
+# File: src/c/msgs.c, line: 1380
 #, c-format
 msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
@@ -224,6 +226,8 @@ msgstr "%s: 模擬時之初始常數發生問題.\n"
 msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: 模擬器要求停止 (ind=0)\n"
 
+#
+# File: src/c/errmsg.c, line: 1464
 #, c-format
 msgid "%s: The colocation matrix is singular.\n"
 msgstr ""
@@ -251,8 +255,18 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 輸入參數數目錯誤.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Wrong number of input arguments: at least %d expected.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 最多應為 %d.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -284,6 +298,10 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 680
+# File: sci_gateway/cpp/sci_diary.cpp, line: 781
+# File: sci_gateway/cpp/sci_diary.cpp, line: 949
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
@@ -360,67 +378,113 @@ msgstr "%s: 參數 %d 型態錯誤: 應為實數純量.\n"
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
 msgstr "%s: 參數 %d 之型態錯誤: 應為向量.\n"
 
+#
+# File: src/c/errmsg.c, line: 1184
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 308
+# File: sci_gateway/cpp/sci_diary.cpp, line: 371
+# File: sci_gateway/cpp/sci_diary.cpp, line: 396
+# File: sci_gateway/cpp/sci_diary.cpp, line: 421
+# File: sci_gateway/cpp/sci_diary.cpp, line: 443
+# File: sci_gateway/cpp/sci_diary.cpp, line: 465
+# File: sci_gateway/cpp/sci_diary.cpp, line: 489
+# File: sci_gateway/cpp/sci_diary.cpp, line: 591
+# File: sci_gateway/cpp/sci_diary.cpp, line: 612
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 686
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 787
+# File: sci_gateway/cpp/sci_diary.cpp, line: 860
+# File: sci_gateway/cpp/sci_diary.cpp, line: 955
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 348
+# File: sci_gateway/cpp/sci_diary.cpp, line: 495
+# File: sci_gateway/cpp/sci_diary.cpp, line: 501
+# File: sci_gateway/cpp/sci_diary.cpp, line: 556
+# File: sci_gateway/cpp/sci_diary.cpp, line: 619
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 228
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 969
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 986
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1050
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1016
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1106
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1079
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1164
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1136
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_msprintf.c, line: 123
 #, c-format
 msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
 msgstr ""
 
+#
+# File: src/c/msgs.c, line: 1362
 #, c-format
 msgid ""
 "%s: both actual and predicted relative reductions in the criterion at most "
@@ -433,14 +497,24 @@ msgstr ""
 msgid "%s: df0 must be positive !\n"
 msgstr "%s: df0 須為正值 !\n"
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 290
 #, c-format
 msgid "%s: error can not close diary.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 253
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1286
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1359
 #, c-format
 msgid "%s: error can not create diary.\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 248
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1281
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1354
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
 msgstr ""
@@ -505,10 +579,14 @@ msgstr "%s: 次區間 (subintervals)數目已超過容量限制.\n"
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
 
+#
+# File: src/c/msgs.c, line: 1368
 #, c-format
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 662
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
 msgstr ""
@@ -543,6 +621,8 @@ msgstr "%s: 結束: 因相對誤差 < (5.0*%eps) .\n"
 msgid "%s: termination: function evaluations > MEVALS.\n"
 msgstr "%s: 結束: 函數計算數 > MEVALS.\n"
 
+#
+# File: src/c/msgs.c, line: 1374
 #, c-format
 msgid ""
 "%s: the cosine of the angle between %s and any column of the jacobian is at "
@@ -561,6 +641,8 @@ msgstr "%s: 共用 archive 未載入.\n"
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: window 尺寸限制小於 2^16.\n"
 
+#
+# File: src/c/errmsg.c, line: 1241
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 
@@ -575,6 +657,8 @@ msgstr "參數型態須為  boolean.\n"
 msgid "Arguments are :\n"
 msgstr "參數為 :\n"
 
+#
+# File: src/c/msgs.c, line: 1098
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
@@ -585,9 +669,14 @@ msgstr ""
 msgid "Bad call to primitive: %s\n"
 msgstr "錯誤的呼叫基本函數 (primitive): %s\n"
 
+#
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 465
 msgid "Bad conversion."
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 1372
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
 
@@ -597,6 +686,8 @@ msgstr ""
 msgid "Breakpoints of function : %s\n"
 msgstr "函數之中斷點 : %s\n"
 
+#
+# File: src/c/do_xxprintf.c, line: 258
 msgid "Buffer too small."
 msgstr ""
 
@@ -688,6 +779,8 @@ msgstr "輸入名稱找不到.\n"
 msgid "Error while linking.\n"
 msgstr "聯結 (linking) 時錯誤.\n"
 
+#
+# File: src/c/errmsg.c, line: 1480
 msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
 
@@ -696,6 +789,8 @@ msgstr ""
 msgid "Eye variable undefined in this context.\n"
 msgstr "此語境中 Eye 變數(單位元素)未定義.\n"
 
+#
+# File: src/c/errmsg.c, line: 516
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
@@ -703,10 +798,14 @@ msgid ""
 "                                   Otherwise, send a bug report to :\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 1352
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 1364
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
 msgstr ""
@@ -862,6 +961,8 @@ msgstr "函數不正確  (參數 n: %d).\n"
 msgid "Incorrect function at line %d.\n"
 msgstr "第 %d 行出現不正確之函數 .\n"
 
+#
+# File: src/c/errmsg.c, line: 323
 msgid "Incorrect function.\n"
 msgstr ""
 
@@ -880,6 +981,8 @@ msgstr "字串錯誤.\n"
 msgid "Incorrect syntax.\n"
 msgstr "不正確之語法.\n"
 
+#
+# File: src/c/errmsg.c, line: 592
 msgid "Indexing not allowed for output arguments of resume.\n"
 msgstr ""
 
@@ -893,6 +996,8 @@ msgstr "非零元素必須以 2 列之矩陣作為指標\n"
 msgid "Inequality comparison with empty matrix.\n"
 msgstr "空矩陣之不等式比較.\n"
 
+#
+# File: src/c/errmsg.c, line: 1565
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 
@@ -916,6 +1021,8 @@ msgstr "積分失敗.\n"
 msgid "Interface property table is full.\n"
 msgstr "介面特性表已滿.\n"
 
+#
+# File: src/c/errmsg.c, line: 180
 #, c-format
 msgid "Intermediate memory needed: %d\n"
 msgstr ""
@@ -925,6 +1032,8 @@ msgstr ""
 msgid "Invalid exponent.\n"
 msgstr "指數項錯誤.\n"
 
+#
+# File: src/c/errmsg.c, line: 77
 msgid "Invalid factor.\n"
 msgstr ""
 
@@ -995,6 +1104,8 @@ msgstr "已達動態聯結數目之上限.\n"
 msgid "Maximum size of buffer : %d characters.\n"
 msgstr "緩衝區最大長度 : %d 字元.\n"
 
+#
+# File: src/c/errmsg.c, line: 179
 #, c-format
 msgid "Memory used for variables: %d\n"
 msgstr ""
@@ -1068,6 +1179,11 @@ msgid "Null variable cannot be used here.\n"
 msgstr "此處不能使用空 (Null) 變數 .\n"
 
 #
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
+
+#
 # File: src/c/msgs.c, line: 603
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "最佳化停止: f 呼叫次數超過限制.\n"
@@ -1125,6 +1241,8 @@ msgstr "Quapro 在退化點上遇到 cycles.\n"
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "矩陣秩缺陷 (Rank deficient) : rank = %s  - tol = %s .\n"
 
+#
+# File: src/c/msgs.c, line: 596
 #, c-format
 msgid "Rank deficient. rank = %d\n"
 msgstr ""
@@ -1304,6 +1422,8 @@ msgstr "fort 之參數過多(最多 30).\n"
 msgid "Too many commands defined.\n"
 msgstr "已定義指令過多.\n"
 
+#
+# File: src/c/errmsg.c, line: 506
 msgid "Too many files opened!\n"
 msgstr ""
 
@@ -1313,13 +1433,19 @@ msgstr ""
 msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "定義過多函數 (最多 #:%d).\n"
 
+#
+# File: src/c/errmsg.c, line: 1475
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
 msgstr ""
 
+#
+# File: src/c/msgs.c, line: 1224
 msgid "Too many input/output entries for highlighted block.\n"
 msgstr ""
 
+#
+# File: src/c/msgs.c, line: 1218
 msgid "Too many input/output ports for highlighted block.\n"
 msgstr ""
 
@@ -1338,6 +1464,8 @@ msgstr "變數過多!\n"
 msgid "Too small memory.\n"
 msgstr "記憶體過小.\n"
 
+#
+# File: src/c/errmsg.c, line: 181
 #, c-format
 msgid "Total memory available: %d\n"
 msgstr ""
@@ -1373,6 +1501,8 @@ msgstr "未定義函數.\n"
 msgid "Undefined operation for the given operands.\n"
 msgstr "運算元 (operands) 未定義之運算.\n"
 
+#
+# File: src/c/errmsg.c, line: 104
 msgid "Undefined variable.\n"
 msgstr ""
 
@@ -1421,6 +1551,8 @@ msgstr "變數 %s 不是一有效之有理函數.\n"
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr "變數 %s 不是一有效之狀態函數表示.\n"
 
+#
+# File: src/c/errmsg.c, line: 982
 #, c-format
 msgid "Variable : %s must be a list\n"
 msgstr ""
@@ -1454,6 +1586,8 @@ msgstr "警告 :\n"
 msgid "Warning : division by zero...\n"
 msgstr "警告 : 除已零...\n"
 
+#
+# File: src/c/msgs.c, line: 895
 #, c-format
 msgid ""
 "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
@@ -1475,13 +1609,15 @@ msgstr "警告:\n"
 msgid "Warning:  Result may be inaccurate.\n"
 msgstr "警告:  計算結果可能不正確.\n"
 
+#
+# File: src/c/msgs.c, line: 1128
 msgid ""
 "Warning: Jacobian external is given, but\n"
 " not used! See %ODEOPTIONS(6).\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 1081
+# File: src/c/msgs.c, line: 1134
 msgid ""
 "Warning: No Jacobian external given but\n"
 " one is required by %ODEOPTIONS(6) value !\n"
@@ -1497,17 +1633,19 @@ msgstr ""
 "          已過時。請用 Use tlist.\n"
 
 #
-# File: src/c/msgs.c, line: 1105
+# File: src/c/msgs.c, line: 1158
 msgid "Warning: function is already compiled.\n"
 msgstr ""
 
+#
+# File: src/c/msgs.c, line: 1122
 msgid ""
 "Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 1063
+# File: src/c/msgs.c, line: 1116
 msgid "Warning: integration up to tcrit.\n"
 msgstr ""
 
@@ -1521,11 +1659,13 @@ msgstr "警告: 載入之檔案為舊版 Scilab 或不同硬體架構之 Scilab 
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "警告: 用法 '=' 已廢棄，改用 '=='.\n"
 
+#
+# File: src/c/msgs.c, line: 589
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 1093
+# File: src/c/msgs.c, line: 1146
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"
 " tcrit.\n"
@@ -1543,14 +1683,18 @@ msgstr "警告: 基本函數 (primitive function) %s 已移除.\n"
 msgid "Warning: primitive function %s is now a Scilab function.\n"
 msgstr "警告: 基本函數 (primitive function) %s 現在已是 Scilab 函數.\n"
 
+#
+# File: src/c/msgs.c, line: 763
 msgid "Warning: recursion problem..., cleared.\n"
 msgstr ""
 
+#
+# File: src/c/msgs.c, line: 770
 msgid "Warning: stack problem..., cleared.\n"
 msgstr ""
 
 #
-# File: src/c/msgs.c, line: 1057
+# File: src/c/msgs.c, line: 1110
 #, c-format
 msgid "Warning: variable %%ODEOPTIONS not found.\n"
 msgstr ""
@@ -1578,15 +1722,23 @@ msgstr "第一參數錯誤.\n"
 msgid "Wrong input argument %d.\n"
 msgstr "參數 %d 錯誤.\n"
 
+#
+# File: src/c/errmsg.c, line: 451
 msgid "Wrong number of input arguments:\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 447
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 467
 msgid "Wrong number of output arguments\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 463
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
 msgstr ""
@@ -1761,6 +1913,8 @@ msgid ""
 "Wrong value for argument %d: eigenvalues must have negative real parts.\n"
 msgstr "參數 %d 數值錯誤 : 特徵值之實部應為負.\n"
 
+#
+# File: src/c/errmsg.c, line: 1404
 #, c-format
 msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
 msgstr ""
@@ -1814,7 +1968,7 @@ msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
 msgstr "for x=val 其中 type(val)=%d  尚未於 Scilab 中實作 (implemented).\n"
 
 #
-# File: src/c/msgs.c, line: 1087
+# File: src/c/msgs.c, line: 1140
 msgid ""
 "itask=2,3 or 5: At most one value of t\n"
 " is allowed, the last element of t is used.\n"
@@ -1832,6 +1986,8 @@ msgstr "矩陣近於奇異 (singular) 或者各方向尺度調整 (scaled) 不�
 msgid "null matrix (argument # %d).\n"
 msgstr "空 (null) 矩陣  (第 # %d 參數).\n"
 
+#
+# File: src/c/msgs.c, line: 1404
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""
 
@@ -1864,7 +2020,7 @@ msgid "stack size exceeded!\n"
 msgstr "堆疊長度超過!\n"
 
 #
-# File: src/c/msgs.c, line: 1051
+# File: src/c/msgs.c, line: 1104
 msgid "stepsize not significant in rkqc.\n"
 msgstr ""
 

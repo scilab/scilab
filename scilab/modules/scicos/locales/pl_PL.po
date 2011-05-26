@@ -42,6 +42,8 @@ msgstr ""
 " Proszę sprawdzić model:\n"
 " niektóre funkcje mogą mieć nieprawidłowe dane wejściowe."
 
+#
+# File: src/c/scicos.c, line: 3060
 #, c-format
 msgid ""
 "\n"
@@ -101,24 +103,32 @@ msgstr ""
 "\n"
 "Ostrzeżenie: Incjalizacja układu nr%d zwraca NaN/Inf"
 
+#
+# File: src/c/scicos.c, line: 5144
 #, c-format
 msgid ""
 "\n"
 "Warning: The residual function #%d returns a NaN/Inf"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 3026
 #, c-format
 msgid ""
 "\n"
 "Warning: The zero-crossing function #%d returns a NaN"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 2937
 #, c-format
 msgid ""
 "\n"
 "Warning: The zero_crossing function #%d returns a NaN/Inf"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_getscicosvars.c, line: 141
 msgid ""
 "\n"
 "getscicosvars : utility function to retrieve\n"
@@ -131,6 +141,8 @@ msgstr ""
 "                tablicy Scicos w czasie symulacji.\n"
 "\n"
 
+#
+# File: sci_gateway/c/sci_getscicosvars.c, line: 146
 msgid "  that must be informed with the following values :\n"
 msgstr ""
 
@@ -166,10 +178,14 @@ msgstr ""
 msgid "%s : First argument must be a scicos model.\n"
 msgstr "%s : Pierwszy parametr musi być modelem scicos.\n"
 
+#
+# File: sci_gateway/c/sci_sig2data.c, line: 118
 #, c-format
 msgid "%s : First argument must be a scicos signal structure.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_callblk.c, line: 76
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
 msgstr ""
@@ -182,6 +198,11 @@ msgstr "%s : Pierwszy parametr musi być łańcuchem.\n"
 msgid "%s : First argument must be a structure.\n"
 msgstr "%s : Pierwszy parametr musi być strukturą.\n"
 
+#
+# File: sci_gateway/c/sci_callblk.c, line: 85
+# File: sci_gateway/c/sci_callblk.c, line: 102
+# File: sci_gateway/c/sci_callblk.c, line: 108
+# File: sci_gateway/c/sci_callblk.c, line: 121
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
 msgstr ""
@@ -194,6 +215,8 @@ msgstr "%s : Czwarty parametr ma być typu Tlist.\n"
 msgid "%s : Function not found\n"
 msgstr "%s : Nie znaleziono funkcji\n"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1052
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
 msgstr ""
@@ -210,6 +233,8 @@ msgstr "%s : Brak pamięci.\n"
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
 msgstr "%s : Dopuszcza się tylko hipermacierz o wymiarze 3.\n"
 
+#
+# File: sci_gateway/c/sci_data2sig.c, line: 157
 #, c-format
 msgid "%s : Second argument must be a real.\n"
 msgstr ""
@@ -289,6 +314,8 @@ msgstr "%s : Zły wymiar dla parametru lnktyp.\n"
 msgid "%s : error\n"
 msgstr "%s : błąd\n"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1323
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
 msgstr ""
@@ -342,6 +369,8 @@ msgstr "%s : sim.opar musi być listą.\n"
 msgid "%s : type 1 function not allowed for scilab blocks\n"
 msgstr "%s : Funkcje typu 1 nie są dozwolone w blokach Scilab\n"
 
+#
+# File: sci_gateway/c/sci_model2blk.c, line: 216
 #, c-format
 msgid "%s : type 2 function not allowed for scilab blocks\n"
 msgstr ""
@@ -350,6 +379,9 @@ msgstr ""
 msgid "%s : unknown block : %s\n"
 msgstr "%s : nieznany blok : %s\n"
 
+#
+# File: sci_gateway/c/sci_permutobj.c, line: 75
+# File: sci_gateway/c/sci_permutobj.c, line: 91
 #, c-format
 msgid "%s :the handle is not or no more valid.\n"
 msgstr ""
@@ -366,10 +398,14 @@ msgstr "%s: Błąd przedzielania pamięci\n"
 msgid "%s: error %d. A type of a scilab object has changed.\n"
 msgstr "%s: Błąd %d. Typ obiektu Scilab został zmieniony.\n"
 
+#
+# File: src/c/sciblk4.c, line: 528
 #, c-format
 msgid "%s: error %d. Bad double object sub_type.\n"
 msgstr ""
 
+#
+# File: src/c/sciblk4.c, line: 531
 #, c-format
 msgid "%s: error %d. Bad int object sub_type.\n"
 msgstr ""
@@ -378,6 +414,8 @@ msgstr ""
 msgid "%s: error %d. No more space on the stack for new data.\n"
 msgstr "%s: Błąd %d. Brak miejsca w stosie na nowe dane.\n"
 
+#
+# File: src/c/sciblk4.c, line: 525
 #, c-format
 msgid "%s: error %d. Only int or double object are accepted.\n"
 msgstr ""
@@ -398,6 +436,8 @@ msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 "**** Nie powiodła się inicjalizacja SUNDIAL.IDA -> spróbuj ponownie *****\n"
 
+#
+# File: src/c/scicos.c, line: 2121
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
@@ -409,24 +449,34 @@ msgstr ""
 "**** SUNDIALS.Ida: zbyt dużo pracy dla  momentu czasowego t=%g (układ w tym "
 "zakresie jest sztywny, zmień RTOL i ATOL)\n"
 
+#
+# File: src/c/scicos.c, line: 1387
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 1425
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 1430
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 2218
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 2191
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
@@ -445,6 +495,8 @@ msgstr ""
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "CV_BAD_ABSTOL: abstol ma ujemne komponenty (niedopuszczalne)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2139
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
 "[((d/dt)^k)y](t)."
@@ -453,6 +505,8 @@ msgstr ""
 msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
 msgstr "CV_BAD_EWT: Początkowy ewt ma zerowe komponenty (niedopuszczalne)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2151
 msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
 msgstr ""
 
@@ -462,6 +516,8 @@ msgstr "CV_BAD_INIT_ROOT: Pierwiastek znajduje się w lub obok początkowego t."
 msgid "CV_BAD_ITASK: Illegal value for itask."
 msgstr "CV_BAD_ITASK: niepoprawna wartość itask."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2167
 msgid ""
 "CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
@@ -484,6 +540,8 @@ msgstr "CV_BAD_RELTOL: Niedopuszczalna względna dokładność reltol < 0."
 msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
 msgstr "CV_BAD_T: t nie jest w zakresie [tn-hu,tn]."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2181
 msgid ""
 "CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
 "integration"
@@ -501,27 +559,39 @@ msgstr ""
 "CV_CLOSE_ROOTS: Pierwiastki znaleziono bardzo blisko początkowego momentu "
 "czasu."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2102
 msgid ""
 "CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
 "= 10) during one internal time step or occurred with |h| = hmin."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2185
 msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2099
 msgid ""
 "CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
 "during one internal step or occurred with |h|=h_min "
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2159
 msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2117
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error at the first call"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2131
 msgid ""
 "CV_ILL_INPUT: indicating an input argument was illegal. This include the "
 "situation where a component of the error weight vector becomes negative "
@@ -535,16 +605,22 @@ msgstr ""
 msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
 msgstr "CV_LINIT_FAIL: Nie powiodła się inicjalizacja liniowego solver'a."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2108
 msgid ""
 "CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
 "unrecoverable manner."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2111
 msgid ""
 "CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
 "unrecoverable manner."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2163
 msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
 msgstr ""
 
@@ -555,34 +631,50 @@ msgstr ""
 "CV_MEM_FAIL: nie powiodła sie próba przydzielenia pamięci włącznie z próbą "
 "zwiększenia maxord"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2129
 msgid "CV_MEM_NULL: the cvode memory was NULL"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2157
 msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2149
 msgid ""
 "CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
 "was not set"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2133
 msgid ""
 "CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
 "CVodeMalloc has not been called)."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2173
 msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2169
 msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2179
 msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
 msgstr ""
 
 msgid "CV_NULL_Y0: y0 = NULL illegal."
 msgstr "CV_NULL_Y0: y0 = NULL jest niedopuszczalne."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2120
 msgid ""
 "CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
 "repeated recoverable errors in the right-hand side function (user supplied "
@@ -590,11 +682,15 @@ msgid ""
 "the estimation of an initial step size."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2114
 msgid ""
 "CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
 "an unrecoverable manner"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2125
 msgid ""
 "CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
@@ -624,6 +720,8 @@ msgstr ""
 msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
 msgstr "CV_TRET_NULL: ''tret'' = NULL jest niedopuszczalne."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2123
 msgid ""
 "CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error, but no recovery was possible."
@@ -632,6 +730,8 @@ msgstr ""
 msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
 msgstr "CV_YOUT_NULL: ''yout'' = NULL jest niedopuszczalne."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1958
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
@@ -674,11 +774,15 @@ msgstr ""
 msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "IDA_BAD_ABSTOL: abstol ma ujemne komponenty (niedopuszczalne)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2014
 msgid ""
 "IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
 "either for the input value of y0 or a corrected value."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2037
 msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
 msgstr ""
 
@@ -693,6 +797,8 @@ msgstr ""
 msgid "IDA_BAD_ITASK: Illegal value for itask."
 msgstr "IDA_BAD_ITASK: Niedopuszczalna wartość dla itask."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2053
 msgid ""
 "IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
@@ -709,11 +815,15 @@ msgstr ""
 msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
 msgstr "IDA_BAD_T: t nie jest w zakresie [tn-hu,tn]."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2067
 msgid ""
 "IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
 "integration"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2039
 msgid ""
 "IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
 "integration."
@@ -740,6 +850,8 @@ msgstr ""
 "iteracji albo IDA_solve->Sprawdzenie zbieżności nie powiodło się zbyt dużo "
 "razy (= MXNCF = 10) w czasie jednego kroku wewnętrznego. "
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1984
 msgid ""
 "IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
 "during one internal step or occurred with |h|=h_min"
@@ -748,11 +860,15 @@ msgstr ""
 msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr "IDA_EWT_FAIL: Błąd w dostarczonej przez uzytkownika funkcji EwtSet."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2017
 msgid ""
 "IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
 "error flag on the first call, but IDACalcIC was unable to recover."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1972
 msgid ""
 "IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
 "may be returned if the linear solver function initialization (called by the "
@@ -772,16 +888,22 @@ msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
 msgstr ""
 "IDA_LINIT_FAIL: Procedura inicjalizacji solwera liniowego nie powiodła się."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1993
 msgid ""
 "IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
 "error."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1996
 msgid ""
 "IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
 "error."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2049
 msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
 msgstr ""
 
@@ -791,6 +913,8 @@ msgstr "IDA_MEM_FAIL: Błąd przydziału pamięci."
 msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
 msgstr "IDA_MEM_NULL: Argumentem ida_mem był NULL"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2079
 msgid ""
 "IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
 "but suppressalg option on."
@@ -810,6 +934,8 @@ msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
 msgstr ""
 "IDA_NO_MALLOC: wskazuje na to, że pamięć ida_mem nie została przydzielona."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2023
 msgid ""
 "IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
 "or solve routine had a  recoverable error, but IDACalcIC was unable to "
@@ -825,28 +951,38 @@ msgstr ""
 "IDA_NULL_F: funkcja użytkownika do rozwiązywania równania różniczkowego ma "
 "niedopuszczalną nazwę (wskaźnik) (NULL)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2065
 msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
 msgstr ""
 
 msgid "IDA_NULL_Y0: y0 = NULL illegal."
 msgstr "IDA_NULL_Y0: y0 = NULL jest niedopuszczalne."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2005
 msgid ""
 "IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
 "recoverable error flag, but the solver was unable to recover."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1999
 msgid ""
 "IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
 "flag."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2071
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 
 msgid "IDA_RTFUNC_FAIL: The root founding function failed."
 msgstr "IDA_RTFUNC_FAIL: Bląd funkcji poszukiwania pierwiastka."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2087
 msgid "IDA_Residual_NAN: The residual function returns NAN."
 msgstr ""
 
@@ -904,6 +1040,8 @@ msgstr ""
 "KIN_ILL_INPUT: Wprowadzono niewłaściwy parametr (sprawdź komunikat o "
 "błędzie)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2203
 msgid ""
 "KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
 "KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
@@ -911,6 +1049,8 @@ msgid ""
 "algorithm is making  poor progress "
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2197
 msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
@@ -927,16 +1067,22 @@ msgstr ""
 "KIN_LINIT_FAIL: Procedura inicjalizacji liniowego solvera (linit) napotkała "
 "błąd."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2205
 msgid ""
 "KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
 "recoverable error, but the preconditioner is already current"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2209
 msgid ""
 "KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
 "preconditioner) encountered an unrecoverable error ."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2211
 msgid ""
 "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
 "preconditioned linear system) encountered an unrecoverable error, or the "
@@ -962,6 +1108,8 @@ msgid ""
 "KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
 msgstr "KIN_MEM_NULL: Błąd przydzielania pamięci w KINCreate lub KINMalloc."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2201
 msgid ""
 "KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
 "the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
@@ -970,16 +1118,22 @@ msgid ""
 "above to a finite value, or the real scalar mxnewtstep is too small "
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2219
 msgid ""
 "KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
 "some functions might be called with illegal inputs."
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2193
 msgid ""
 "KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
 "vector storage (forgot to call the  KINMalloc routine)"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2217
 msgid ""
 "KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
 "your model. There might be an error in the computing function, for example a "
@@ -991,6 +1145,8 @@ msgid ""
 msgstr ""
 "KIN_SYSFUNC_FAIL: Błąd w funkcji obliczeniowej. Proszę sprawdzić swój model."
 
+#
+# File: src/c/scicos.c, line: 2839
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
@@ -1035,6 +1191,8 @@ msgstr ""
 "skompilować swój schemat Scicos od nowa, albo regenerować XML z nowymi "
 "parametrami poprzez uruchomienie interfejsu inicjalizacji."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1929
 msgid "algebraic loop detected"
 msgstr ""
 
@@ -1062,13 +1220,19 @@ msgstr "konflikt zdarzeń"
 msgid "initial conditions not converging"
 msgstr "Brak zbiezności warunków początkowych"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1921
 msgid "input to zero-crossing stuck on zero"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2227
 #, c-format
 msgid "integration problem istate=%d"
 msgstr ""
 
+#
+# File: src/c/scicos.c, line: 1563
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
@@ -1077,9 +1241,13 @@ msgstr ""
 msgid "root found at t=: %f\n"
 msgstr "znaleziono pierwiastek dla t: %f\n"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1917
 msgid "scheduling problem"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2232
 msgid "scicos unexpected error, please report..."
 msgstr ""
 
@@ -1089,6 +1257,8 @@ msgstr "osobliwość w bloku"
 msgid "sliding mode condition, cannot integrate"
 msgstr "tryb poślizgu, nie ma możliwości całkowania"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1937
 #, c-format
 msgid "the block %d has been called with input out of its domain"
 msgstr ""

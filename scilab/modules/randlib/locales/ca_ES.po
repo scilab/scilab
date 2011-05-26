@@ -210,6 +210,13 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 "%s: El quart argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
 
+#
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""

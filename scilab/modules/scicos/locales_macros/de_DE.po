@@ -82,6 +82,13 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
+#
+# File: macros/scicos_auto/steadycos.sci, line: 82
+# File: macros/scicos_auto/lincos.sci, line: 95
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
@@ -90,6 +97,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 104
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -109,13 +122,47 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d und #%d.\n"
 
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 85
+# File: macros/scicos_auto/lincos.sci, line: 98
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 119
+# File: macros/scicos_auto/scicos_simulate.sci, line: 123
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
 
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 131
+# File: macros/scicos_utils/block_parameter_error.sci, line: 24
+# File: macros/scicos_utils/block_parameter_error.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 127
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 msgid "&?"
 msgstr "&?"

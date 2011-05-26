@@ -63,6 +63,12 @@ msgstr "Поле елемента керування графіки"
 msgid "Scilab Command"
 msgstr "Команда Scilab"
 
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+
 msgid "Scilab Function"
 msgstr "Функція Scilab"
 

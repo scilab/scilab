@@ -215,10 +215,22 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: IL numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -668,6 +680,8 @@ msgstr "Il file d'aiuto è incoerente...\n"
 msgid "Host does not answer...\n"
 msgstr "Lo host non risponde...\n"
 
+#
+# File: src/c/errmsg.c, line: 996
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
@@ -744,6 +758,8 @@ msgstr "Stringa sbagliata.\n"
 msgid "Incorrect syntax.\n"
 msgstr "Sintassi sbagliata.\n"
 
+#
+# File: src/c/errmsg.c, line: 592
 msgid "Indexing not allowed for output arguments of resume.\n"
 msgstr ""
 
@@ -760,6 +776,8 @@ msgstr ""
 "Gli argomenti in ingresso devono avere lo stesso nome della variabile "
 "formale.\n"
 
+#
+# File: src/c/errmsg.c, line: 1530
 msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 
@@ -872,6 +890,11 @@ msgstr "Non è sviluppato in Scilab...\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "Una variabile nulla non può essere usata qui.\n"
+
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -1073,12 +1096,16 @@ msgstr "Memoria totale disponibile: %d\n"
 msgid "Trying to re-define function %s.\n"
 msgstr "Tentativo in corso di ridefinire la funzione %s.\n"
 
+#
+# File: src/c/errmsg.c, line: 1262
 msgid "Type data base is full.\n"
 msgstr ""
 
 msgid "Uncontrollable system.\n"
 msgstr "Il sistema non è controllabile.\n"
 
+#
+# File: src/c/msgs.c, line: 1278
 msgid "Undefined display for this data type.\n"
 msgstr ""
 
@@ -1108,6 +1135,8 @@ msgstr "Il sistema non è osservabile.\n"
 msgid "Use stacksize function to increase it.\n"
 msgstr "Usare la funzione stacksize per aumentarla.\n"
 
+#
+# File: src/c/msgs.c, line: 860
 #, c-format
 msgid "Using %s elements out of %s.\n"
 msgstr ""
@@ -1281,6 +1310,8 @@ msgstr ""
 "L'argomento %d è di tipo sbagliato: era attesa una matrice sparsa o "
 "totalmente scalare.\n"
 
+#
+# File: src/c/errmsg.c, line: 707
 #, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
@@ -1298,10 +1329,14 @@ msgstr ""
 "L'argomento %d è di tipo sbagliato: era atteso un gestore per fattori lu "
 "sparsi.\n"
 
+#
+# File: src/c/errmsg.c, line: 687
 #, c-format
 msgid "Wrong type for argument %d: In continuous time expected.\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 692
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
 msgstr ""
@@ -1474,6 +1509,8 @@ msgstr "i risultati possono essere inaccurati. rcond = %s\n"
 msgid "semi def fails.\n"
 msgstr "semi def fallisce.\n"
 
+#
+# File: src/c/msgs.c, line: 688
 #, c-format
 msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""

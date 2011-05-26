@@ -539,6 +539,11 @@ msgstr ""
 
 #
 # File: macros/Sources/READAU_f.sci, line: 50
+msgid "Swap Mode (0:No 1:Yes)"
+msgstr ""
+
+#
+# File: macros/Sources/READAU_f.sci, line: 50
 # File: macros/Sinks/WRITEC_f.sci, line: 46
 # File: macros/Sinks/WRITEAU_f.sci, line: 43
 msgid "Swap Mode (0:No, 1:Yes)"
@@ -645,6 +650,26 @@ msgid "Wrong type for ''%s'' parameter: %5.1f."
 msgstr ""
 
 #
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''%s'' parameter: %d."
+msgstr ""
+
+#
+# File: macros/Sources/Counter.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''Rule'' parameter: %d"
+msgstr ""
+
+#
+# File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+#, c-format
+msgid "Wrong value for ''%s'' parameter"
+msgstr ""
+
+#
 # File: macros/Sources/READAU_f.sci, line: 63
 # File: macros/IntegerOp/LOGIC.sci, line: 55
 # File: macros/Sinks/WRITEC_f.sci, line: 71
@@ -652,6 +677,12 @@ msgstr ""
 # File: macros/Sinks/WFILE_f.sci, line: 69
 #, c-format
 msgid "Wrong value for ''%s'' parameter."
+msgstr ""
+
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d"
 msgstr ""
 
 #
@@ -714,14 +745,14 @@ msgstr ""
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr ""
 
-#
-# File: macros/Sources/Counter.sci, line: 62
-#, c-format
-msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr ""
-
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
+msgstr ""
+
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+#, c-format
+msgid "Wrong value for of ''%s'' parameter."
 msgstr ""
 
 #

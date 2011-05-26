@@ -17,6 +17,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# File: macros/repmat.sci, line: 44
+#, c-format
+msgid ""
+"%s : Wrong number of output matrix dimensions required: %d expected for "
+"sparse matrices"
+msgstr ""
+
+#
+# File: macros/repmat.sci, line: 34
+#, c-format
+msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/complex.sci, line: 43
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
@@ -82,6 +101,12 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
+#
+# File: macros/complex.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -92,6 +117,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: najwyżej oczekiwano %d.\n"
+
+#
+# File: macros/repmat.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -203,6 +234,13 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu real.\n"
+
+#
+# File: macros/complex.sci, line: 35
+# File: macros/complex.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -360,6 +398,14 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
 "i %d.\n"
+
+#
+# File: macros/asind.sci, line: 16
+# File: macros/acosd.sci, line: 16
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"

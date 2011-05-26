@@ -20,6 +20,8 @@ msgstr ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 
+#
+# File: sci_gateway/c/sci_qld.c, line: 150
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
@@ -68,6 +70,8 @@ msgstr "%s: 此最小化問題無解.\n"
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr "%s:迭代次數過多(超過 %d).\n"
 
+#
+# File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
 msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
@@ -133,7 +137,7 @@ msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr "工作空間過小.  最少需  %d*sizeof(double).\n"
 
 #
-# File: src/c/sp.c, line: 311
+# File: src/c/sp.c, line: 338
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr ""
 

@@ -25,6 +25,13 @@ msgstr "%s：内存申请错误。\n"
 msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
 
+#
+# File: sci_gateway/c/sci_exec.c, line: 188
+# File: sci_gateway/c/sci_execstr.c, line: 162
+# File: sci_gateway/c/sci_execstr.c, line: 231
+# File: sci_gateway/c/sci_libraryinfo.c, line: 111
+# File: sci_gateway/c/sci_libraryinfo.c, line: 116
+# File: sci_gateway/c/sci_whereis.c, line: 101
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -41,6 +48,8 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 43
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""

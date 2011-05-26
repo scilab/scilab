@@ -64,6 +64,12 @@ msgid "Scilab Command"
 msgstr "Scilabコマンド"
 
 #
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+
+#
 # File: src/c/others/zzledt.c, line: 940
 # File: src/c/windows/TermCompletion.c, line: 222
 msgid "Scilab Function"

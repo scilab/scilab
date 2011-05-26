@@ -98,10 +98,69 @@ msgstr "%s：打开文件，读文件或写文件时发生错误。\n"
 msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s：当尝试获取当前目录名时发生错误。\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 362
+# File: sci_gateway/c/sci_fscanfMat.c, line: 286
 #, c-format
 msgid "%s: Invalid format.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 80
+# File: sci_gateway/c/sci_mputl.c, line: 149
+# File: sci_gateway/c/sci_isdir.c, line: 77
+# File: sci_gateway/c/sci_isdir.c, line: 86
+# File: sci_gateway/c/sci_isdir.c, line: 101
+# File: sci_gateway/c/sci_isdir.c, line: 112
+# File: sci_gateway/c/sci_fprintfMat.c, line: 90
+# File: sci_gateway/c/sci_fprintfMat.c, line: 148
+# File: sci_gateway/c/sci_fprintfMat.c, line: 167
+# File: sci_gateway/c/sci_fprintfMat.c, line: 179
+# File: sci_gateway/c/sci_fprintfMat.c, line: 234
+# File: sci_gateway/c/sci_fprintfMat.c, line: 336
+# File: sci_gateway/c/sci_pathconvert.c, line: 95
+# File: sci_gateway/c/sci_pathconvert.c, line: 280
+# File: sci_gateway/c/sci_pathconvert.c, line: 290
+# File: sci_gateway/c/sci_pathconvert.c, line: 305
+# File: sci_gateway/c/sci_pathconvert.c, line: 316
+# File: sci_gateway/c/sci_mgetl.c, line: 64
+# File: sci_gateway/c/sci_mgetl.c, line: 169
+# File: sci_gateway/c/sci_mgetl.c, line: 196
+# File: sci_gateway/c/sci_mgetl.c, line: 218
+# File: sci_gateway/c/sci_mgetl.c, line: 246
+# File: sci_gateway/c/sci_mgetl.c, line: 274
+# File: sci_gateway/c/sci_fileparts.c, line: 159
+# File: sci_gateway/c/sci_copyfile.c, line: 90
+# File: sci_gateway/c/sci_copyfile.c, line: 149
+# File: sci_gateway/c/sci_copyfile.c, line: 206
+# File: sci_gateway/c/sci_copyfile.c, line: 279
+# File: sci_gateway/c/sci_copyfile.c, line: 303
+# File: sci_gateway/c/sci_copyfile.c, line: 315
+# File: sci_gateway/c/sci_copyfile.c, line: 329
+# File: sci_gateway/c/sci_copyfile.c, line: 339
+# File: sci_gateway/c/sci_isfile.c, line: 73
+# File: sci_gateway/c/sci_isfile.c, line: 82
+# File: sci_gateway/c/sci_isfile.c, line: 97
+# File: sci_gateway/c/sci_isfile.c, line: 108
+# File: sci_gateway/c/sci_fscanfMat.c, line: 84
+# File: sci_gateway/c/sci_fscanfMat.c, line: 135
+# File: sci_gateway/c/sci_fscanfMat.c, line: 184
+# File: sci_gateway/c/sci_fscanfMat.c, line: 291
+# File: sci_gateway/c/sci_fscanfMat.c, line: 304
+# File: sci_gateway/c/sci_movefile.c, line: 96
+# File: sci_gateway/c/sci_movefile.c, line: 154
+# File: sci_gateway/c/sci_movefile.c, line: 209
+# File: sci_gateway/c/sci_movefile.c, line: 274
+# File: sci_gateway/c/sci_movefile.c, line: 298
+# File: sci_gateway/c/sci_movefile.c, line: 310
+# File: sci_gateway/c/sci_movefile.c, line: 325
+# File: sci_gateway/c/sci_movefile.c, line: 335
+# File: sci_gateway/c/sci_basename.c, line: 191
+# File: sci_gateway/c/sci_basename.c, line: 209
+# File: sci_gateway/c/sci_basename.c, line: 220
+# File: sci_gateway/c/sci_basename.c, line: 240
+# File: sci_gateway/c/sci_chdir.c, line: 87
+# File: sci_gateway/c/sci_chdir.c, line: 207
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -138,6 +197,9 @@ msgstr "%s：不能在Scilab中打开文件 %s 。\n"
 msgid "%s: Too many directives in scanf.\n"
 msgstr "%s：在scanf中的标志太多。\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 111
+# File: sci_gateway/c/sci_mgetl.c, line: 131
 #, c-format
 msgid "%s: Too many files opened!\n"
 msgstr ""
@@ -183,6 +245,8 @@ msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串。\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 140
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -208,6 +272,9 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 70
+# File: sci_gateway/c/sci_mgetl.c, line: 54
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
@@ -225,10 +292,14 @@ msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为标量。\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 92
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
@@ -258,6 +329,8 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数或字符串。\n"
 
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
@@ -280,11 +353,15 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 297
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
@@ -305,6 +382,12 @@ msgstr "%s：输入参数的类型错误：应该为字符串。\n"
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr "%s：输入参数#%d的值错误 ('%ls')：应该为一个正确的文件名或目录。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
@@ -332,6 +415,21 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为 ''w'' 或 ''u'' 字符串。\n"
 
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s：输入参数#%d的值错误：格式无法识别。\n"
@@ -344,14 +442,23 @@ msgstr "%s：输入参数的值错误：不可为空字符串。\n"
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s：输入参数的值错误。\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 357
+# File: sci_gateway/c/sci_fscanfMat.c, line: 276
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 281
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 368
+# File: sci_gateway/c/sci_mgetl.c, line: 286
+# File: sci_gateway/c/sci_fscanfMat.c, line: 297
 #, c-format
 msgid "%s: error.\n"
 msgstr ""
@@ -360,6 +467,9 @@ msgstr ""
 msgid "%s: format is of 0 length.\n"
 msgstr "%s：格式长度为 0。\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 131
+# File: sci_gateway/c/sci_mgetl.c, line: 152
 #, c-format
 msgid "%s: invalid filename %s.\n"
 msgstr ""
@@ -386,6 +496,8 @@ msgstr "无法得到当前目录。\n"
 msgid "Can't go to directory %s.\n"
 msgstr "无法进入目录%s。\n"
 
+#
+# File: src/c/scicurdir.c, line: 49
 #, c-format
 msgid "Can't go to directory %s: %s\n"
 msgstr ""

@@ -95,6 +95,12 @@ msgstr "%s：输入参数数目出错：应该为 %d 个或 %d 个。\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目出错：至少应该输入 %d 个。\n"
 
+#
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"

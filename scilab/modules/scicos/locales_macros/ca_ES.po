@@ -84,6 +84,13 @@ msgstr ""
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
+#
+# File: macros/scicos_auto/steadycos.sci, line: 82
+# File: macros/scicos_auto/lincos.sci, line: 95
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
@@ -92,6 +99,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 104
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -111,13 +124,47 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Mida incorrecta per als arguments d''entrada #%d i #%d.\n"
 
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 85
+# File: macros/scicos_auto/lincos.sci, line: 98
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 119
+# File: macros/scicos_auto/scicos_simulate.sci, line: 123
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un enter.\n"
 
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 131
+# File: macros/scicos_utils/block_parameter_error.sci, line: 24
+# File: macros/scicos_utils/block_parameter_error.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un text.\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 127
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 msgid "&?"
 msgstr "&?"
@@ -325,6 +372,16 @@ msgstr "Color"
 
 msgid "Compile"
 msgstr "Compila"
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 82
+# File: macros/scicos_scicos/bad_connection.sci, line: 85
+# File: macros/scicos_scicos/bad_connection.sci, line: 110
+# File: macros/scicos_scicos/bad_connection.sci, line: 114
+# File: macros/scicos_scicos/bad_connection.sci, line: 140
+# File: macros/scicos_scicos/bad_connection.sci, line: 144
+msgid "Connection error"
+msgstr ""
 
 msgid "Context"
 msgstr "Context"
@@ -750,6 +807,11 @@ msgstr "Simula"
 msgid "Simulation parameters not set:"
 msgstr ""
 
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 336
+msgid "Simulation problem: "
+msgstr ""
+
 msgid "Smart"
 msgstr "Intel·ligent"
 
@@ -853,6 +915,11 @@ msgstr "Avís: %d menús tenen el mateix nom %s\n"
 msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
+msgstr ""
+
+#
+# File: macros/scicos_utils/block_parameter_error.sci, line: 31
+msgid "Xcos block parameter error"
 msgstr ""
 
 msgid "Yes"

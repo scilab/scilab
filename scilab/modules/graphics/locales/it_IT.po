@@ -609,6 +609,12 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: i margini "
 "specificati non sono corretti.\n"
 
+#
+# File: sci_gateway/c/sci_set.c, line: 303
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""

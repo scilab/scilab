@@ -1,16 +1,17 @@
-# Polish translation for scilab
-# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the scilab package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:05+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2009-02-12 11:35+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,288 +21,289 @@ msgstr ""
 msgid ""
 "%s: %s Scilab function does not work with more than one row variables.\n"
 msgstr ""
-"%s: %s Funkcja programu Scilab nie działa ze zmiennymi o długości większej "
-"niż jeden wiersz.\n"
+"%s: La funció %s de Scilab no funciona amb més d'una línia de variables.\n"
 
 #, c-format
 msgid "%s: %s is not implemented.\n"
-msgstr "%s: %s nie został(a) zrealizowany(a).\n"
+msgstr "%s: %s no s'ha implementat.\n"
 
 #, c-format
 msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: ''%s'' zignorowano.\n"
+msgstr "%s: ''%s'' ignorat.\n"
 
 #, c-format
 msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: ''%s'' nie został(a) zrealizowany(a).\n"
+msgstr "%s: No s'ha implementat ''%s''.\n"
 
 #, c-format
 msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: ''%s'' stosowany tylko w trybie 3d."
+msgstr "%s: ''%s'' només s'utilitza en mode 3D."
 
 #, c-format
 msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: ''%s'' opcja ignorowana.\n"
+msgstr "%s: S'ha ignorat l'opció ''%s''.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
-msgstr "%s: Wszystkie okna zostały usunięte.\n"
+msgstr "%s: S'ha eliminat totes les finestres.\n"
 
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: Nie można otworzyć pliku ''%s''.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer ''%s''.\n"
 
 #, c-format
 msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: Nie można otworzyć ''%s'' ani ''%s'' ani ''%s''.\n"
+msgstr "%s: No s'ha pogut obrir ni ''%s'', ni ''%s'', ni''%s''.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
-msgstr "%s: Osiągnięto koniec pliku przed odczytaniem macierzy w całości.\n"
+msgstr ""
+"%s: S'ha arribat al final de fitxer abans que s'hagi llegit tota la matriu.\n"
 
 #, c-format
 msgid "%s: End of string reached before data has been read.\n"
-msgstr "%s: Osiągnięto koniec ciągu zanim odczytano dane.\n"
+msgstr ""
+"%s: S'ha arribat al final de la cadena abans d'acabar de llegir les dades.\n"
 
 #, c-format
 msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: Nie ma odpowiednika własności ''%s''.\n"
+msgstr "%s: No hi ha equivalent per a la propietat ''%s''.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
-msgstr "%s: Nie ma siatki podrzędnej w programie Scilab.\n"
+msgstr "%s: No hi ha reixa menor a Scilab.\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
-msgstr "%s: Jeszcze nie realizowane.\n"
+msgstr "%s: Encara no s'ha implementat.\n"
 
 #, c-format
 msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: Format ''%s'' nie jest jeszcze obsługiwany.\n"
+msgstr "%s: El format ''%s'' encara no està suportat.\n"
 
 #, c-format
 msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: Format ''%s'' jest nieznany.\n"
+msgstr "%s: El format ''%s'' és desconegut.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
-msgstr "%s: Współczynnik normalizacji m - 1 wynosi zero.\n"
+msgstr "%s: El factor de normalització m - 1 és zero.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
-msgstr "%s: Współczynnik normalizacji n - 1 wynosi zero.\n"
+msgstr "%s: El factor de normalització n - 1 és zero.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Ta funkcja nie została zrealizowana.\n"
+msgstr "%s: Aquesta característica no està implementada.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Funkcja ta nie została zrealizowana: %s.\n"
+msgstr "%s: Aquesta característica no està implementada: %s.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: Argument of type %d.\n"
-msgstr "%s: Właściwość ta (parametr typu %d) nie została zrealizowana.\n"
+msgstr ""
+"%s: Aquesta característica no està implementada: Argument del tipus %d.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
-msgstr "%s: Wsparcie dla hipermacierzy nie zostało zrealizowane.\n"
+msgstr ""
+"%s: Aquesta característica no està implementada: Suport per hipermatrius.\n"
 
 #, c-format
 msgid "%s: This particular case is not implemented.\n"
-msgstr "%s: Ten konkretny przypadek nie został zrealizowany.\n"
+msgstr "%s: No s'ha implementat aquest cas particular.\n"
 
 #, c-format
 msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: Nieobsługiwana klasa ''%s''.\n"
+msgstr "%s: No es pot tractar la classe ''%s''.\n"
 
 #, c-format
 msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: Odnaleziono nieznany kolor w ''%s'' -> zmieniono na czarny.\n"
+msgstr "%s: Color desconegut a ''%s'' -> S'ha posat a negre.\n"
 
 #, c-format
 msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: Odnaleziono nieznany typ linii w ''%s'' -> zmieniono na 6.\n"
+msgstr "%s: Estil de línia desconegut a ''%s'' -> S'ha deixat com a 6.\n"
 
 #, c-format
 msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Nieznany typ ''%s'': ZIGNOROWANY.\n"
+msgstr "%s: Tipus ''%s'' desconegut: S'ha ignorat.\n"
 
 #, c-format
 msgid "%s: Unknown type.\n"
-msgstr "%s: Nieznany typ.\n"
+msgstr "%s: Tipus desconegut.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s: Nieprawidłowy parametr wejściowy #%d: Niezgodny rozmiar.\n"
+msgstr "%s: L'argument d'entrada #%d és incorrecte: Mida inconsistent.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
-"%s: Nieprawidłowy parametr wejściowy: Wymiary podane jako pierwszy parametr "
-"nie odpowiadają określonej zawartości komórki.\n"
+"%s: Els arguments d'entrada són incorrectes: La dimensió especificada com a "
+"primer argument no concorda amb el contingut especificat per a les cel·les.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano od %d do%d\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
+msgstr "%s: Nombre d'arguments de sortida incorrecte: Hi ha d'haver %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar ''%s'': Oczekiwany jest wektor.\n"
+msgstr "%s: Mida incorrecta per a ''%s'': Ha de ser un vector.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
-"skalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
-"znaków.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr ""
-"%s: Zły rozmiar dla parametru wejściowego  #%d: Oczekiwano wektora programu "
-"Matlab dla ciągów.\n"
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"cadenes de text de Matlab.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano macierzy "
-"rzeczywistej, całkowitej lub składającej się z łańcuchów.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de nombres reals, enters o cadenes de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano wektora "
-"kolumnowego.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"columna.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana macierz ciągów "
-"znaków.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano macierzy "
-"kwadratowej.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"quadrada.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
 msgstr ""
-"%s: Zły typ parametru wejściowego: Elementy komórek muszą być tablicami "
-"znaków.\n"
+"%s: L'argument d'entrada és d'un tipus incorrecte: Els elements de la cel·la "
+"han de ser un vector de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
-msgstr "%s: Zły typ parametru wejściowego: Oczekiwano komórki.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cel·la.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: Zła wartość dla wymuszenia do ''%s''.\n"
+msgstr "%s: El valor que afecta a ''%s'' és incorrecte.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s, %s, ''%s'', "
-"''%s'' lub ''%s''.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s, %s, %s, "
+"''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s,''%s'' lub "
-"''%s''.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s, %s,''%s'' "
+"o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''%s'', "
-"''%s'' lub ''%s''.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Oczekiwana dodatnia wartość "
-"całkowita.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter "
+"positiu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
-"{%s}.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
-msgstr "%s: macierzy typu pencil nie da się zdiagonalizować\n"
+msgstr "%s: No es pot diagonalitzar el llàpis.\n"
 
 msgid "Apr"
-msgstr "Kwi"
+msgstr "Abr"
 
 msgid "Aug"
-msgstr "Sie"
+msgstr "Ago"
 
 msgid "Close"
-msgstr "Zamknij"
+msgstr "Tanca"
 
 msgid "Dec"
-msgstr "Gru"
+msgstr "Des"
 
 msgid "Feb"
-msgstr "Lut"
+msgstr "Feb"
 
 msgid "Jan"
-msgstr "Sty"
+msgstr "Gen"
 
 msgid "Jul"
-msgstr "Lip"
+msgstr "Jul"
 
 msgid "Jun"
-msgstr "Cze"
+msgstr "Jun"
 
 msgid "Mar"
 msgstr "Mar"
 
 msgid "May"
-msgstr "Maj"
+msgstr "Mai"
 
 msgid "Nov"
-msgstr "Lis"
+msgstr "Nov"
 
 msgid "Oct"
-msgstr "Paź"
+msgstr "Oct"
 
 msgid "Sep"
-msgstr "Wrz"
+msgstr "Set"

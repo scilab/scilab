@@ -294,6 +294,7 @@ msgstr "Style de police"
 msgid "Format"
 msgstr "Format"
 
+#, c-format
 msgid "From %s"
 msgstr "De %s"
 
@@ -312,6 +313,7 @@ msgstr "Récupérer les informations"
 msgid "Global"
 msgstr "Global"
 
+#, c-format
 msgid "Goto %s"
 msgstr "Aller à %s"
 
@@ -644,6 +646,7 @@ msgstr "Paramétrage du texte"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab Consortium (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -679,23 +682,28 @@ msgstr "Haut"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "Impossible de supprimer "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "Impossible d'importer %s.\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "Impossible de charger le bloc depuis %s."
 
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -703,6 +711,7 @@ msgstr ""
 "Incapable de charger la bibliothèque Batik. \n"
 "Version attendue %s ; Obtention de la version %s."
 
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -710,6 +719,7 @@ msgstr ""
 "Impossible de charger la librairie hdf5-java (jhdf5).\n"
 "Version attendue %s ; Version obtenue %s."
 
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -771,12 +781,14 @@ msgstr "TitreFenêtre"
 msgid "Window title"
 msgstr "Titre de la fenêtre"
 
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "Mauvais argument d'entrée \"%s\": Noeud invalue, utiliser 'xcosPalDisable' à "
 "la place.\n"
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "Argument d'entrée \"%s\" incorrect  : chemin d'arbre non valide.\n"
 
@@ -800,16 +812,10 @@ msgstr "Erreur Xcos"
 msgid "Xcos file"
 msgstr "Fichier Xcos"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"Vous pouvez entrer ici des instruction Scilab pour définir des paramètres "
-"symboliques utilisés dans la définition des blocs.<br/>Ces instructions sont "
-"évaluées une fois confirmées (i.e. à chaque fois que vous cliquez sur OK, à "
-"chaque évaluation, à chaque fois que le schéma est chargé)."
 
 msgid "Zero crossing detection"
 msgstr "Détection de passage à zéro"

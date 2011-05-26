@@ -60,6 +60,12 @@ msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: 共有ライブラリ %s が存在しません.\n"
 
+#
+# File: src/c/dynamic_link.c, line: 110
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr "%s: 共有アーカイブがロードされていません: %s\n"
@@ -114,18 +120,6 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
 "さい.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 126
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
-
-#
-# File: src/c/dynamic_link.c, line: 117
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"

@@ -153,6 +153,9 @@ msgstr "%s: 開啟, 讀取 或寫入中發生錯誤.\n"
 msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: 嘗試取得目前目錄名稱時發生錯誤.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 362
+# File: sci_gateway/c/sci_fscanfMat.c, line: 286
 #, c-format
 msgid "%s: Invalid format.\n"
 msgstr ""
@@ -286,6 +289,8 @@ msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤 ('%s'): 應為非空字串.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 140
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -334,6 +339,8 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為非空字串.\n"
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -405,6 +412,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
 msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 155
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
@@ -441,6 +450,12 @@ msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤 (%s): 應為 '%s' or '%s' 或 '%s' .\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr "%s: 第#%d個參數值有誤 ('%ls'):有效的檔名或目錄才對.\n"
+
 #
 # File: src/c/mput.c, line: 189
 #, c-format
@@ -476,6 +491,21 @@ msgid ""
 msgstr "%s: 第#%d個參數值有誤:   ''w'' or ''u'' 字串才對.\n"
 
 #
+# File: sci_gateway/c/sci_fileparts.c, line: 74
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
+
+#
 # File: src/c/mget.c, line: 181
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
@@ -489,10 +519,15 @@ msgstr "%s: 輸入參數數值錯誤: 不應有空字串.\n"
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: 參數值有誤.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 357
+# File: sci_gateway/c/sci_fscanfMat.c, line: 276
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 281
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""

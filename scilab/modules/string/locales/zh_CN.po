@@ -61,6 +61,19 @@ msgstr "%s：匹配限制跟DFA匹配无关：忽略。\n"
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr "%s：已匹配的文本超出了缓存限制。\n"
 
+#
+# File: sci_gateway/c/sci_isdigit.c, line: 73
+# File: sci_gateway/c/sci_tokens.c, line: 98
+# File: sci_gateway/c/sci_isascii.c, line: 125
+# File: sci_gateway/c/sci_isascii.c, line: 199
+# File: sci_gateway/c/sci_isascii.c, line: 278
+# File: sci_gateway/c/sci_isascii.c, line: 283
+# File: sci_gateway/c/sci_strsplit.c, line: 213
+# File: sci_gateway/c/sci_strsplit.c, line: 272
+# File: sci_gateway/c/sci_strsplit.c, line: 316
+# File: sci_gateway/c/sci_strsplit.c, line: 332
+# File: sci_gateway/c/sci_strsplit.c, line: 342
+# File: sci_gateway/c/sci_isalphanum.c, line: 73
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -245,6 +258,8 @@ msgid ""
 "expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'u'（大写）或'l'（小写）。\n"
 
+#
+# File: sci_gateway/c/sci_strindex.c, line: 158
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "

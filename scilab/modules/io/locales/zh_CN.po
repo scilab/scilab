@@ -17,10 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# File: src/c/v2cuniterror.c, line: 38
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_setenv.c, line: 127
+# File: sci_gateway/c/sci_setenv.c, line: 145
+# File: sci_gateway/c/sci_getenv.c, line: 97
+# File: sci_gateway/c/sci_getenv.c, line: 150
+# File: sci_gateway/c/sci_file.c, line: 170
+# File: sci_gateway/c/sci_file.c, line: 198
+# File: sci_gateway/c/sci_file.c, line: 226
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -29,10 +38,14 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
+#
+# File: sci_gateway/c/sci_file.c, line: 268
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_file.c, line: 274
 #, c-format
 msgid "%s: The file does not exist.\n"
 msgstr ""
@@ -53,6 +66,8 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
+#
+# File: sci_gateway/c/sci_file.c, line: 440
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -69,22 +84,32 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该一个整数。\n"
 
+#
+# File: sci_gateway/c/sci_file.c, line: 461
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 
+#
+# File: src/c/v2cuniterror.c, line: 34
 #, c-format
 msgid "File \"%s\" already exists.\n"
 msgstr ""
 
+#
+# File: src/c/v2cuniterror.c, line: 47
 #, c-format
 msgid "File \"%s\" does not exist.\n"
 msgstr ""
 
+#
+# File: src/c/v2cuniterror.c, line: 51
 #, c-format
 msgid "File \"%s\" read access denied.\n"
 msgstr ""
 
+#
+# File: src/c/v2cuniterror.c, line: 26
 msgid "Too many files opened!\n"
 msgstr ""
 
@@ -92,5 +117,7 @@ msgstr ""
 msgid "Undefined environment variable %s.\n"
 msgstr "未定义的环境变量%s。\n"
 
+#
+# File: src/c/v2cuniterror.c, line: 59
 msgid "unmanaged error by v2cunit.\n"
 msgstr ""

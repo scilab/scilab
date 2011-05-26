@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# File: src/c/sp.c, line: 468
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
@@ -96,6 +97,8 @@ msgstr "矩阵 F_i, i=1,...,m 线性相关（或初始点为病态数据）\n"
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr "工作空间太小，需要至少 %d*sizeof(double)。\n"
 
+#
+# File: src/c/sp.c, line: 338
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr ""
 
@@ -112,5 +115,7 @@ msgstr "m必须至少为1。\n"
 msgid "nu must be at least 1.0.\n"
 msgstr "nu必须至少为1.0。\n"
 
+#
+# File: src/c/sp.c, line: 430
 msgid "x0 is not strictly primal feasible.\n"
 msgstr ""

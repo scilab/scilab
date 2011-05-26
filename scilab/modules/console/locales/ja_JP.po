@@ -26,7 +26,7 @@ msgid "Could not change the Console Foreground."
 msgstr "コンソールの表示を変更できません."
 
 #
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 67
 msgid "Field"
 msgstr ""
 

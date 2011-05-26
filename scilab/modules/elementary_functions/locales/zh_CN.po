@@ -52,6 +52,13 @@ msgstr "%s：输入参数#%d的类型错误：未知的类型。\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
 
+#
+# File: sci_gateway/c/sci_size.c, line: 108
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为''%s''或者''%s''。\n"

@@ -26,101 +26,9 @@ msgid "%s is not an installed module or toolbox"
 msgstr "%s ist kein installiertes Modul und keine installierte Werkzeugleiste"
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 109
-# File: macros/assert/assert_checkequal.sci, line: 110
+# File: macros/test_run.sci, line: 877
 #, c-format
-msgid "%s: Assertion failed: expected = %s while computed = %s"
-msgstr ""
-
-#
-# File: macros/assert/assert_checkerror.sci, line: 94
-#, c-format
-msgid ""
-"%s: Assertion failed: expected error message = %s while computed error "
-"message = %s."
-msgstr ""
-
-#
-# File: macros/assert/assert_checkerror.sci, line: 108
-#, c-format
-msgid ""
-"%s: Assertion failed: expected error number = %d while computed error number "
-"= %d."
-msgstr ""
-
-#
-# File: macros/assert/assert_checktrue.sci, line: 35
-# File: macros/assert/assert_checkfalse.sci, line: 35
-#, c-format
-msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr ""
-
-#
-# File: macros/assert/assert_checkfilesequal.sci, line: 126
-# File: macros/assert/assert_checkfilesequal.sci, line: 133
-#, c-format
-msgid "%s: Cannot close file %s.\n"
-msgstr ""
-
-#
-# File: macros/assert/assert_checkfilesequal.sci, line: 78
-# File: macros/assert/assert_checkfilesequal.sci, line: 88
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr ""
-
-#
-# File: macros/assert/assert_checkequal.sci, line: 75
-#, c-format
-msgid "%s: Computed is complex, but expected is real."
-msgstr ""
-
-#
-# File: macros/assert/assert_checkequal.sci, line: 71
-#, c-format
-msgid "%s: Computed is real, but expected is complex."
-msgstr ""
-
-#
-# File: macros/assert/assert_checkerror.sci, line: 85
-#, c-format
-msgid "%s: Error while formatting the error message: %s"
-msgstr ""
-
-#
-# File: macros/assert/assert_cond2reqdigits.sci, line: 85
-#, c-format
-msgid ""
-"%s: Expected %d columns in input argument #%d, but found %d columns instead."
-msgstr ""
-
-#
-# File: macros/assert/assert_cond2reqdigits.sci, line: 81
-#, c-format
-msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr ""
-
-#
-# File: macros/assert/assert_checkerror.sci, line: 66
-#, c-format
-msgid "%s: No error was produced while evaluating %s."
-msgstr ""
-
-#
-# File: macros/assert/assert_checkfilesequal.sci, line: 117
-#, c-format
-msgid ""
-"%s: The content of computed file %s is different from the content of "
-"reference file %s."
-msgstr ""
-
-#
-# File: macros/assert/assert_cond2reqdigits.sci, line: 48
-# File: macros/assert/assert_cond2reltol.sci, line: 47
-#, c-format
-msgid ""
-"%s: The number of output arguments %d do not match the number of input "
-"arguments %d."
+msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
 msgstr ""
 
 #, c-format
@@ -130,6 +38,12 @@ msgstr "%s: falsches erstes Eingangsargument: Datei mit .dia Suffix erwartet."
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s: Falsche Größe des Eingabe-Arguments."
+
+#
+# File: macros/test_run.sci, line: 873
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "No variable %s_ref in reference file"

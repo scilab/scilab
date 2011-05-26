@@ -33,6 +33,9 @@ msgstr "%s: kein weiterer Speicher.\n"
 msgid "%s: No such file or directory.\n"
 msgstr "%s: keine solche Datei oder Verzeichnis.\n"
 
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
+# File: sci_gateway/c/sci_pvm_send.c, line: 53
 #, c-format
 msgid "%s: Unknown or not yet implemented type.\n"
 msgstr ""
@@ -41,6 +44,9 @@ msgstr ""
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr "%s: falsches erstes Eingangsargument: '%s' oder '%s' erwartet.\n"
 
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
+# File: sci_gateway/c/sci_pvm_send.c, line: 51
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
 msgstr ""

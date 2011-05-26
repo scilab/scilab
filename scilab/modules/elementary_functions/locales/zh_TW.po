@@ -53,6 +53,13 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 未知型態.\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 第 %d 輸入參數的數值錯誤.\n"
 
+#
+# File: sci_gateway/c/sci_size.c, line: 108
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s''.\n"

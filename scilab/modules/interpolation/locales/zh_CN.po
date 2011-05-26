@@ -21,10 +21,14 @@ msgstr ""
 msgid "%s: %s must be a real %d-dim hypermatrix.\n"
 msgstr "%s：%s必须为一个实数%d维超矩阵。\n"
 
+#
+# File: sci_gateway/c/sci_cshep2d.c, line: 81
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_splin.c, line: 83
 #, c-format
 msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
 msgstr ""
@@ -33,6 +37,8 @@ msgstr ""
 msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr "%s：第%d维的网格横坐标不是严格递增排序。\n"
 
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 83
 #, c-format
 msgid "%s: Not enough points for the fit.\n"
 msgstr ""
@@ -47,6 +53,8 @@ msgid ""
 "%d.\n"
 msgstr "%s：在维度%d的网格点和网格值的大小不兼容。\n"
 
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 120
 #, c-format
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d or "
@@ -58,6 +66,8 @@ msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d.\n"
 msgstr "%s：在维度%d的网格点和值的大小不兼容。\n"
 
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 87
 #, c-format
 msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
 msgstr ""
@@ -76,6 +86,8 @@ msgid ""
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个三维实数多维矩阵。\n"
 
+#
+# File: sci_gateway/c/sci_splin.c, line: 89
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
 msgstr ""
@@ -128,6 +140,8 @@ msgstr "%s：输入参数#%d的值错误：应该为有%d个元素的向量。\n
 msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和#%d的值错误：应该为同样大小。\n"
 
+#
+# File: sci_gateway/c/sci_splin.c, line: 103
 #, c-format
 msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
 msgstr ""

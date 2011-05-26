@@ -131,3 +131,8 @@ msgstr ""
 # File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
+
+#
+# File: macros/mkdir.sci, line: 128
+msgid "This directory already exists in "
+msgstr ""

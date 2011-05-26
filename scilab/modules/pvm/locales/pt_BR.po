@@ -60,6 +60,8 @@ msgstr "ID de mensagem ruim"
 msgid "Bad parameter"
 msgstr "Parâmetro ruim"
 
+#
+# File: src/c/pvm_proc_ctrl.c, line: 209
 msgid "Barrier count mismatch"
 msgstr ""
 

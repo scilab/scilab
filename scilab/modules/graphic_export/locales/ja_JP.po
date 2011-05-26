@@ -24,6 +24,40 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr ""
 
+#
+# File: src/c/xs2file.c, line: 100
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 78
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 173
+# File: src/c/xs2file.c, line: 215
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 184
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 53
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"

@@ -210,9 +210,21 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Niewłaściwa liczba argumentów wejściowych.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwane jest "
+"przynajmniej %d.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -592,6 +604,8 @@ msgstr "Błąd podczas zapisu pliku. Dysk jest pełny lub plik został usunięty
 msgid "Eye variable undefined in this context.\n"
 msgstr "Zmienna Eye nie jest zdefiniowana w tym kontekście.\n"
 
+#
+# File: src/c/errmsg.c, line: 516
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
@@ -842,6 +856,11 @@ msgstr "Nie realizowane w Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Zmienna zero nie może być tutaj użyta.\n"
 
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
+
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim zatrzymane: osiągnięto maksymalną liczbę połączeń do f.\n"
 
@@ -1045,6 +1064,8 @@ msgstr "Niezdefiniowa funkcja.\n"
 msgid "Undefined operation for the given operands.\n"
 msgstr "Niezdefiniowana operacja dla podanych argumentów.\n"
 
+#
+# File: src/c/errmsg.c, line: 104
 msgid "Undefined variable.\n"
 msgstr ""
 

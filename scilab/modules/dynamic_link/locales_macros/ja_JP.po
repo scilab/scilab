@@ -129,6 +129,12 @@ msgstr "   Makefile を実行中\n"
 msgid "   stderr: %s\n"
 msgstr "   標準エラー: %s\n"
 
+#
+# File: macros/ilib_build.sci, line: 84
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Fortran または Cコンパイラが必要です.\n"
@@ -270,6 +276,14 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列を指定してください.\n"
 
+#
+# File: macros/ilib_build.sci, line: 60
+# File: macros/ilib_mex_build.sci, line: 26
+# File: macros/ilib_for_link.sci, line: 32
+#, c-format
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
@@ -277,9 +291,26 @@ msgstr ""
 "さい.\n"
 
 #
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
+# File: macros/ilib_gen_Make_unix.sci, line: 153
+# File: macros/ilib_gen_Make_unix.sci, line: 169
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+
+#
 # File: macros/ilib_compile.sci, line: 20
 msgid "A Fortran or C compiler is required."
 msgstr "Fortran または C コンパイラが必要です。"
+
+#
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 44
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
+msgstr ""
 
 # File: etc/dynamic_link.start, line: 43
 msgid "Dynamic link"

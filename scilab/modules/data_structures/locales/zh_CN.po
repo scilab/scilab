@@ -20,6 +20,8 @@ msgstr ""
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " 超矩阵提取必须至少有2个参数。 "
 
+#
+# File: src/c/hmops.c, line: 825
 msgid " An hypermatrix insertion must have at least 3 arguments. "
 msgstr ""
 

@@ -41,6 +41,14 @@ msgstr "%s: Не осталось доступной памяти.\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 85
+# File: sci_gateway/c/sci_winqueryreg.c, line: 104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"

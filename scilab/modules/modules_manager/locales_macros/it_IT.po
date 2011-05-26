@@ -128,6 +128,11 @@ msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
 msgstr ""
 "%s: la documentazione non può essere creata in questo modulo di Scilab: %s.\n"
 
+#
+# File: macros/tbx_build_blocks.sci, line: 40
+msgid "Building blocks...\n"
+msgstr ""
+
 msgid "Building gateway...\n"
 msgstr "Creazione del gateway...\n"
 

@@ -482,6 +482,12 @@ msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 最少應為 %d.\n"
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一多項式.\n"
@@ -709,6 +715,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
 
+#
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
@@ -888,6 +902,12 @@ msgid "Unfeasible (Hy hamiltonian)"
 msgstr ""
 
 msgid "Unfeasible (spectral radius)"
+msgstr ""
+
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
 msgstr ""
 
 #

@@ -179,6 +179,8 @@ msgstr "Explorador de diagramas"
 msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "El diagrama fue modificado desde la última vez.<br/> ¿Desea guardarlo?"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -293,6 +295,7 @@ msgstr "Estilo de la tipografía"
 msgid "Format"
 msgstr "Formato"
 
+#, c-format
 msgid "From %s"
 msgstr "Desde %s"
 
@@ -311,6 +314,7 @@ msgstr "Obtener información"
 msgid "Global"
 msgstr "Global"
 
+#, c-format
 msgid "Goto %s"
 msgstr "Ir a %s"
 
@@ -463,6 +467,8 @@ msgstr "Nombre de la paleta"
 msgid "Palettes"
 msgstr "Paletas"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
@@ -514,9 +520,13 @@ msgstr "Reducido"
 msgid "Region to superblock"
 msgstr "Región al superbloque"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
 msgid "Relaxed parameters"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Relaxed variables"
 msgstr ""
 
@@ -642,6 +652,7 @@ msgstr "Configuración de texto"
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "The Scilab Consortium (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -677,23 +688,28 @@ msgstr "Superior"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
 msgid "Unable to delete "
 msgstr "Imposible de eliminar "
 
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr "Imposible importar %s .\n"
 
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr "Imposible cargar el bloque desde %s ."
 
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -701,6 +717,7 @@ msgstr ""
 "Imposible cargar la biblioteca Batik. \n"
 "Se esperaba la versión %s ; pero se obtuvo la %s ."
 
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
@@ -708,6 +725,7 @@ msgstr ""
 "Imposible cargar la biblioteca hdf5-java (jhdf5). \n"
 "Se esperaba la versión %s ; se obtuvo la versión %s ."
 
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -769,12 +787,14 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Título de la ventana"
 
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 "Argumento de entrada \"%s\" incorrecto: nodo inválido, use 'xcosPalDisable' "
 "en su lugar.\n"
 
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "Argumento de entrada \"%s\" incorrecto: Ruta inválida de árbol.\n"
 
@@ -798,16 +818,10 @@ msgstr "Error de Xcos"
 msgid "Xcos file"
 msgstr "Archivo de Xcos"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"Puede ingresar aquí instrucciones de Scilab para definir parámetros "
-"simbólicos que serán usados en definiciones de bloque usando instrucciones "
-"de Scilab.<br/>Estas instrucciones son evaluadas una vez confirmadas.(i.e. "
-"hace click en OK, por Eval y cada vez se carga un diagrama.)"
 
 msgid "Zero crossing detection"
 msgstr "Detección de cruce por cero"

@@ -24,7 +24,7 @@ msgid "Could not change the Console Foreground."
 msgstr "No se ha podido cambiar el primer plano de la consola."
 
 #
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 67
 msgid "Field"
 msgstr ""
 

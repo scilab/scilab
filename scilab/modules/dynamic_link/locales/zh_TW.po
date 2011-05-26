@@ -71,6 +71,12 @@ msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: 公用程式庫 %s 不存在.\n"
 
 #
+# File: src/c/dynamic_link.c, line: 110
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+
+#
 # File: src/c/dl_genErrorMessage.c, line: 25
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
@@ -129,18 +135,6 @@ msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 126
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
-
-#
-# File: src/c/dynamic_link.c, line: 117
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"

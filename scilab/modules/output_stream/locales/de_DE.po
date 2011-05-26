@@ -156,6 +156,19 @@ msgstr ""
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: Schleife bei zwei Anordnungen erkannt.\n"
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 135
+# File: sci_gateway/cpp/sci_diary.cpp, line: 179
+# File: sci_gateway/cpp/sci_diary.cpp, line: 625
+# File: sci_gateway/cpp/sci_diary.cpp, line: 630
+# File: sci_gateway/cpp/sci_diary.cpp, line: 738
+# File: sci_gateway/cpp/sci_diary.cpp, line: 753
+# File: sci_gateway/cpp/sci_diary.cpp, line: 763
+# File: sci_gateway/cpp/sci_diary.cpp, line: 846
+# File: sci_gateway/cpp/sci_diary.cpp, line: 911
+# File: sci_gateway/cpp/sci_diary.cpp, line: 926
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1186
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1229
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -207,8 +220,18 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: falsche Anzahl von EIngangsargumenten.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: falsche Anzahl von Eingangsargumenten: höchstens %d erwartet.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -576,6 +599,8 @@ msgstr ""
 msgid "Eye variable undefined in this context.\n"
 msgstr "Augen-Variable für diesen Kontext definiert.\n"
 
+#
+# File: src/c/errmsg.c, line: 516
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
@@ -827,6 +852,11 @@ msgstr "Nicht in Scilab Implementiert...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Eine Null-Variable kann hier nicht verwendet werden.\n"
 
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
+
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
 
@@ -1036,6 +1066,8 @@ msgstr "Undefinierte Funktion.\n"
 msgid "Undefined operation for the given operands.\n"
 msgstr "Undefinierte Operation für die gegebenen Operanden.\n"
 
+#
+# File: src/c/errmsg.c, line: 104
 msgid "Undefined variable.\n"
 msgstr ""
 

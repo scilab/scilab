@@ -198,6 +198,13 @@ msgstr "%s: 最初の入力引数の型が間違っています: スカラーを
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: 4番目の入力引数の型が間違っています: スカラーを指定してください.\n"
 
+#
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 列ベクトルを指定してください.\n"

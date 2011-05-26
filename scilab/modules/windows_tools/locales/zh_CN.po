@@ -29,6 +29,12 @@ msgstr "%s：无法打开文件%s。\n"
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s：无法查询此类型的值。\n"
 
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 65
+# File: sci_gateway/c/sci_winqueryreg.c, line: 115
+# File: sci_gateway/c/sci_winqueryreg.c, line: 133
+# File: sci_gateway/c/sci_winqueryreg.c, line: 233
+# File: sci_gateway/c/sci_createGUID.c, line: 56
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -40,6 +46,14 @@ msgstr "%s: 内存不足。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 85
+# File: sci_gateway/c/sci_winqueryreg.c, line: 104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -72,6 +86,8 @@ msgstr "%s：输入参数的值错误：应该为非负整数。\n"
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "只可在窗口模式下，不可在控制台模式下。\n"
 
+#
+# File: src/c/scilab_windows/splashScreen.c, line: 73
 msgid "Scilab Console"
 msgstr ""
 

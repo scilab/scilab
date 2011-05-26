@@ -79,6 +79,12 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
 
+#
+# File: macros/generateBlockImage.sci, line: 50
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d。\n"
@@ -171,6 +177,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+
+#
+# File: macros/xcosPalAddBlock.sci, line: 145
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
 msgstr ""
 
 #, c-format
@@ -363,6 +377,11 @@ msgstr ""
 #
 # File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
+msgstr ""
+
+#
+# File: macros/xcos_simulate.sci, line: 374
+msgid "Simulation problem"
 msgstr ""
 
 #

@@ -58,6 +58,12 @@ msgstr "圖形控制代碼(handle)欄位"
 msgid "Scilab Command"
 msgstr "Scilab 命令"
 
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+
 msgid "Scilab Function"
 msgstr "Scilab 函數"
 

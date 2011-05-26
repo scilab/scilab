@@ -455,6 +455,14 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
 "mlist.\n"
 
+#
+# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

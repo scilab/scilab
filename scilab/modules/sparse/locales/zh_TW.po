@@ -99,6 +99,8 @@ msgstr ""
 msgid "     Total number of elements = %d\n"
 msgstr "     elements的總數 = %d\n"
 
+#
+# File: src/c/lu.c, line: 121
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""
@@ -139,46 +141,68 @@ msgstr "Matrix 是複數(complex).\n"
 msgid "Matrix is real.\n"
 msgstr "Matrix 是實數(real).\n"
 
+#
+# File: src/c/spOutput.c, line: 335
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
 msgstr ""
 
+#
+# File: src/c/spFactor.c, line: 711
 #, c-format
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr ""
 
+#
+# File: src/c/spFactor.c, line: 3011
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
 
+#
+# File: src/c/spFactor.c, line: 233
 #, c-format
 msgid "Reordering,  Step = %1d\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 178
 #, c-format
 msgid "Size of matrix = %1u x %1u.\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 324
 #, c-format
 msgid "Smallest diagonal element = %-1.4lg.\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 310
 #, c-format
 msgid "Smallest element in matrix = %-1.4lg.\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 328
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 419
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"
 msgstr ""
 
+#
+# File: includes/spDefs.h, line: 379
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
 msgstr ""
 
+#
+# File: src/c/spOutput.c, line: 687
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr ""

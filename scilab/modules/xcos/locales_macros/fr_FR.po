@@ -84,6 +84,12 @@ msgstr ""
 "%s : Impossible de charger le bloc depuis %s : aucune variable  `scs_m'' "
 "trouvée.\n"
 
+#
+# File: macros/generateBlockImage.sci, line: 50
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s : Mauvais nombre d''argument(s) en entrée : %d attendu.\n"
@@ -204,6 +210,14 @@ msgstr ""
 "%s : Type incorrect pour l''argument d''entrée %s : vecteur de chaîne "
 "attendu.\n"
 
+#
+# File: macros/xcosPalAddBlock.sci, line: 145
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
@@ -264,6 +278,12 @@ msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
 #
+# File: demos/xcos.dem.gateway.sce, line: 8
+# File: demos/scicos.dem.gateway.sce, line: 8
+msgid "Control Systems"
+msgstr ""
+
+#
 # File: demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
 msgstr ""
@@ -281,6 +301,17 @@ msgstr ""
 #
 # File: demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 11
+msgid "Discrete Kalman Filter"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 9
+# File: demos/scicos.dem.gateway.sce, line: 9
+msgid "Electrical Systems"
 msgstr ""
 
 #
@@ -330,6 +361,17 @@ msgid "Mechanical Systems"
 msgstr ""
 
 #
+# File: demos/xcos.dem.gateway.sce, line: 14
+# File: demos/scicos.dem.gateway.sce, line: 11
+msgid "Modelica demos"
+msgstr ""
+
+#
+# File: demos/old_demos.dem.gateway.sce, line: 7
+msgid "Old Gain Block"
+msgstr ""
+
+#
 # File: demos/xcos.dem.gateway.sce, line: 18
 # File: demos/scicos.dem.gateway.sce, line: 12
 msgid "Old demos"
@@ -351,6 +393,16 @@ msgid "RLC circuit"
 msgstr ""
 
 #
+# File: demos/standard.dem.gateway.sce, line: 13
+msgid "Scilab block"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 11
+msgid "Signal Builder"
+msgstr ""
+
+#
 # File: demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
 msgstr ""
@@ -358,6 +410,11 @@ msgstr ""
 #
 # File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
+msgstr ""
+
+#
+# File: macros/xcos_simulate.sci, line: 374
+msgid "Simulation problem"
 msgstr ""
 
 #
@@ -408,6 +465,11 @@ msgstr "Xcos"
 #
 # File: demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 15
+msgid "Zero Crossing"
 msgstr ""
 
 #

@@ -21,6 +21,12 @@ msgstr ""
 msgid "%s : Invalid entity %s\n"
 msgstr "%s：无效的实体 %s\n"
 
+#
+# File: macros/polarplot.sci, line: 152
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
 msgstr "%s：错误：无法估计输入函数“%s”。"
@@ -28,6 +34,23 @@ msgstr "%s：错误：无法估计输入函数“%s”。"
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr "%s：错误：无法估计输入的函数。"
+
+#
+# File: macros/comet.sci, line: 86
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 71
+# File: macros/comet3d.sci, line: 96
+# File: macros/comet3d.sci, line: 107
+# File: macros/comet.sci, line: 79
+# File: macros/comet.sci, line: 94
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
@@ -88,6 +111,21 @@ msgstr "%s：输入参数的数目不正确：应该为 %d 个，或 %d 到 %d �
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个参数。\n"
+
+#
+# File: macros/comet3d.sci, line: 91
+# File: macros/comet3d.sci, line: 102
+# File: macros/comet3d.sci, line: 125
+# File: macros/comet.sci, line: 102
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/legend.sci, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -170,6 +208,25 @@ msgid ""
 "%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
 msgstr "%s：输入参数“%s”的大小不对：应该是大小为 %d 的向量。\n"
 
+#
+# File: macros/comet3d.sci, line: 115
+# File: macros/comet.sci, line: 68
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 27
+# File: macros/comet3d.sci, line: 55
+# File: macros/comet3d.sci, line: 58
+# File: macros/comet3d.sci, line: 62
+# File: macros/comet.sci, line: 29
+# File: macros/comet.sci, line: 53
+# File: macros/comet.sci, line: 65
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数 #%d 类型错误。\n"
@@ -177,6 +234,22 @@ msgstr "%s：输入参数 #%d 类型错误。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为 %s 的数据结构。\n"
+
+#
+# File: macros/datatips/datatipToggle.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 26
+# File: macros/datatips/datatipSetInterp.sci, line: 20
+# File: macros/datatips/datatipRemove.sci, line: 18
+# File: macros/datatips/datatipRemove.sci, line: 37
+# File: macros/datatips/datatipSetOrientation.sci, line: 17
+# File: macros/datatips/datatipEventhandler.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 287
+# File: macros/datatips/datatipCreate.sci, line: 22
+# File: macros/datatips/datatipCreate.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -207,6 +280,19 @@ msgstr "%s:输入参数 #%d 类型有误：应为“Axes”句柄。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr "%s：输入参数 #%d 类型错误：应该为图像句柄。\n"
+
+#
+# File: macros/histplot.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 67
+# File: macros/histplot.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -255,6 +341,14 @@ msgid ""
 "expected.\n"
 msgstr "%s：输入参数 #%d 的值错误：应该为一个大于或等于 %d 的整数。\n"
 
+#
+# File: macros/comet3d.sci, line: 118
+# File: macros/histplot.sci, line: 87
+# File: macros/comet.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -264,9 +358,34 @@ msgstr "%s：输入参数 #%d 的值错误：必须在区间 [%s, %s] 中。\n"
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：输入参数 #%d 的值错误：必须在集合 ｛%s｝中。\n"
 
+#
+# File: macros/plot3d2.sci, line: 61
+# File: macros/polarplot.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/fplot2d.sci, line: 42
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr "%s：输入参数 #%d 的值错误：应该为“%s”。\n"
+
+#
+# File: macros/histplot.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"

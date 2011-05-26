@@ -56,6 +56,14 @@ msgstr "%s: これ以上のメモリはありません。\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
 
+#
+# File: sci_gateway/c/sci_winqueryreg.c, line: 59
+# File: sci_gateway/c/sci_winqueryreg.c, line: 85
+# File: sci_gateway/c/sci_winqueryreg.c, line: 104
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
 # File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
 # File: sci_gateway/c/sci_dos.c, line: 62

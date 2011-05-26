@@ -79,6 +79,12 @@ msgstr "%s: 檔案 %s 不存在.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: 未知屬性 : %s , 不屬於 '%s' 代碼 (handle).\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: 輸入參數錯誤: 應為 '%s'.\n"
@@ -104,6 +110,12 @@ msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一 '%s' 代碼 (handle).\n"
@@ -117,6 +129,13 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 '%s' 或  '%s' 代碼 (ha
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 應為  1 x %d 之實數行向量.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -163,6 +182,13 @@ msgstr "%s: 輸入參數的大小有誤#%d: 必須和參數#%d有相同的維度
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串矩陣.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
@@ -170,6 +196,14 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -322,10 +356,230 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 此代碼 (handle ) 不存在.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&?"
+msgstr ""
+
+msgid "&Abort"
+msgstr "中止(&A)"
+
+msgid "&About Scilab..."
+msgstr "有關 Scilab(&A)"
+
+msgid "&Applications"
+msgstr "應用程式(&A)"
+
+msgid "&Axes properties"
+msgstr "座標軸特性(&A)"
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Bugs And Requests"
+msgstr "臭蟲及開發需求資料庫(&B)"
+
+msgid "&Change current directory..."
+msgstr "改變目前目錄(&C)"
+
+msgid "&Clear figure"
+msgstr "清除圖形(&C)"
+
+msgid "&Close"
+msgstr "關閉(&C)"
+
+msgid "&Colors"
+msgstr "顏色"
+
+#
+# File: scilab_fake_localization_file.c, line: 81
+msgid "&Command History"
+msgstr ""
+
+msgid "&Control"
+msgstr "控制(&C)"
+
+msgid "&Copy"
+msgstr "複製(&C)"
+
+msgid "&Copy to clipboard"
+msgstr "複製到剪貼簿(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Decrease font size"
+msgstr ""
+
+msgid "&Display current directory"
+msgstr "顯示目前目錄(&D)"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 57
+msgid "&Edit"
+msgstr ""
+
+msgid "&Empty clipboard"
+msgstr "清空剪貼簿(&E)"
+
+msgid "&Execute..."
+msgstr "執行(&E)"
+
+msgid "&Export to..."
+msgstr "匯出到...(&E)"
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&Figure properties"
+msgstr "圖形特性(&F)"
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "&File Exchange"
+msgstr ""
+
+msgid "&Font..."
+msgstr "字體 (&F)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "&Forge"
+msgstr ""
+
+msgid "&GIF"
+msgstr "&GIF"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Incremental Search"
+msgstr ""
+
+msgid "&Interrupt"
+msgstr "中斷(&I)"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "&Links"
+msgstr "網站連結 (&W)"
+
+msgid "&Load environment..."
+msgstr "將軟體環境載入(&L)...."
+
+msgid "&Load..."
+msgstr "載入(&L)"
+
+msgid "&Mailing lists"
+msgstr "郵件(&M) 列表"
+
+msgid "&Matlab to Scilab translator"
+msgstr "Matlab 轉 Scilab 工具(&M)"
+
+msgid "&New figure..."
+msgstr "新圖(&F)"
+
+msgid "&Open a file..."
+msgstr "開啟檔案(&O)..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Paste"
+msgstr "貼上(&P)"
+
+msgid "&Preferences"
+msgstr "喜好設定(&P)"
+
+msgid "&Print..."
+msgstr "列印(&P)..."
+
+msgid "&Quit"
+msgstr "退出(&Q)"
+
+msgid "&Redraw figure"
+msgstr "重繪圖形(&R)"
+
+msgid "&Resume"
+msgstr "回復(&R)"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Save environment..."
+msgstr "將軟體環境存起(&S)...."
+
+msgid "&Save..."
+msgstr "儲存(&S)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&SciNotes"
+msgstr ""
+
+msgid "&Scilab Help"
+msgstr "&Scilab 協助"
+
+msgid "&Select all"
+msgstr "全選 (&S)"
+
+msgid "&Select as current figure"
+msgstr "選為目前圖形(&S)"
+
+msgid "&Start datatip manager"
+msgstr "&Start datatip 管理員"
+
+msgid "&Start entity picker"
+msgstr "開始挑選實體(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&Tools"
+msgstr ""
+
+msgid "&UnZoom"
+msgstr "&UnZoom (回復正常)"
+
+#
+# File: scilab_fake_localization_file.c, line: 80
+msgid "&Variable Browser"
+msgstr ""
+
+msgid "&Vectorial export"
+msgstr "向量圖檔輸出(&V)"
+
+msgid "&Xcos"
+msgstr "&Xcos"
+
+msgid "&Zoom"
+msgstr "&Zoom (對焦)"
+
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr "'."
+
+msgid "2D/3D &Rotation"
+msgstr "2維/3維旋轉(&R)"
 
 msgid "About Scilab..."
 msgstr "有關 Scilab ..."
@@ -335,6 +589,26 @@ msgstr "致謝"
 
 msgid "All %s files"
 msgstr "所有 %s 檔案"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
+msgid "All Encapsulated PS files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
+msgid "All PDF files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
+msgid "All PNG image files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
+msgid "All Postscript files"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
@@ -350,20 +624,42 @@ msgstr "所有檔案"
 msgid "An error occured: "
 msgstr "錯誤發生了: "
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
 msgid "Attributes"
 msgstr ""
 
 msgid "Back"
 msgstr "返回"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 162
 msgid "Bold"
 msgstr ""
+
+msgid "C&lose"
+msgstr "關閉(&L)"
+
+msgid "C&ut"
+msgstr "剪下(&u)"
 
 msgid "Cancel"
 msgstr "取消"
 
 msgid "CeCILL License"
 msgstr "CeCILL 授權"
+
+msgid "Change Current Directory"
+msgstr "改變目前目錄"
+
+msgid "Choose Font..."
+msgstr "選擇字型..."
+
+msgid "Clear &History"
+msgstr "清除歷史紀錄(&H)"
+
+msgid "Clear C&onsole"
+msgstr "清除控制台(&o)"
 
 msgid "Clear Console"
 msgstr "清除主控台畫面"
@@ -373,6 +669,12 @@ msgstr "清除歷史紀錄"
 
 msgid "Close"
 msgstr "關閉"
+
+msgid "Console &Background..."
+msgstr "控制台背景...(&B)"
+
+msgid "Console &Font..."
+msgstr "控制台字型...(&B)"
 
 msgid "Console Background..."
 msgstr "控制台背景..."
@@ -386,6 +688,13 @@ msgstr "複製"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "版權所有 (c) 1989-2007 (ENPC)"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
 msgid "Could not open: "
 msgstr ""
 
@@ -400,6 +709,12 @@ msgstr "封裝 PostScript(EPS) 影像"
 
 msgid "Enhanced Metafile image (EMF)"
 msgstr "增強中繼檔型(EMF) 影像"
+
+msgid "Environment loaded.\n"
+msgstr "將軟體環境載入.\n"
+
+msgid "Environment saved.\n"
+msgstr "將軟體環境存起.\n"
 
 msgid "Error on export"
 msgstr "匯出時發生錯誤"
@@ -420,11 +735,27 @@ msgstr ""
 msgid "Execute into Scilab"
 msgstr "在 Scilab 中執行"
 
+msgid "Execution done.\n"
+msgstr "結束執行.\n"
+
 msgid "Export"
 msgstr "匯出"
 
 msgid "FIG image"
 msgstr "FIG 影像"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+msgid "Feature not available in this mode..."
+msgstr ""
+
+msgid "Figure loaded.\n"
+msgstr "圖形已載入.\n"
+
+msgid "Figure saved.\n"
+msgstr "圖形已存起\n"
 
 msgid "File already exist"
 msgstr "檔案已經存在"
@@ -432,9 +763,13 @@ msgstr "檔案已經存在"
 msgid "File already exists"
 msgstr "檔案已經存在"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
 msgid "Font"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
 msgid "Font Chooser"
 msgstr ""
 
@@ -459,11 +794,23 @@ msgstr "所選的關鍵字說明"
 msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
 
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "In&crease font size"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
 msgid "Italic"
 msgstr ""
 
 msgid "JPEG image"
 msgstr "JPEG 影像"
+
+#
+# File: scilab_fake_localization_file.c, line: 100
+msgid "Launch SciNotes"
+msgstr ""
 
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -475,6 +822,14 @@ msgstr "點擊滑鼠左鍵中斷選擇. 按滑鼠右鍵取消."
 msgid "Loading help browser..."
 msgstr "載入線上手冊瀏覽器..."
 
+msgid "M&odule manager - ATOMS"
+msgstr "&M.模組管理器 - ATOMS"
+
+msgid "Module manager - ATOMS"
+msgstr "模組管理器 - ATOMS"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
 msgid "Monospaced"
 msgstr ""
 
@@ -501,6 +856,18 @@ msgstr "確定"
 msgid "Ok"
 msgstr "確定"
 
+msgid "Open a file"
+msgstr "開啟檔案"
+
+msgid "Original View"
+msgstr "原始視野"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "P&age setup..."
+msgstr "頁面設定(&a)"
+
 msgid "PDF image"
 msgstr "PDF 影像"
 
@@ -519,8 +886,17 @@ msgstr "請指定檔案格式"
 msgid "Preview"
 msgstr "預覽"
 
+msgid "Print..."
+msgstr "列印..."
+
 msgid "Replace existing file?"
 msgstr "要覆蓋已存在的檔案嗎?"
+
+msgid "Rotate"
+msgstr "旋轉"
+
+msgid "S&top entity picker"
+msgstr "停止選取實體項目(&t)"
 
 msgid "SVG image"
 msgstr "SVG 影像"
@@ -528,11 +904,35 @@ msgstr "SVG 影像"
 msgid "Save and execute"
 msgstr "儲存和執行"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 177
 msgid "SciNotes compatible"
 msgstr ""
 
 msgid "Scicos files"
 msgstr "Scicos檔案"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Scilab &ATOMS 網站"
+
+msgid "Scilab &Demonstrations"
+msgstr "Scilab 範例(&D)"
+
+msgid "Scilab &Help"
+msgstr "Scilab 線上手冊(&H)"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Scilab &Online Help"
+msgstr ""
+
+msgid "Scilab &Web Site"
+msgstr "Scilab 網站(&w)"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -548,8 +948,13 @@ msgstr "Scilab 選取選單"
 msgid "Scilab Choose Message"
 msgstr "Scilab 選擇訊息"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 66
 msgid "Scilab Demo files"
 msgstr ""
+
+msgid "Scilab Demonstrations"
+msgstr "Scilab 展示"
 
 msgid "Scilab Input Value Request"
 msgstr "要求 Scilab 輸入數值"
@@ -560,6 +965,8 @@ msgstr "Scilab 訊息"
 msgid "Scilab Multiple Values Request"
 msgstr "Scilab 多值選單"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
 msgid "Scilab Quit files"
 msgstr ""
 
@@ -569,6 +976,8 @@ msgstr "Scilab SCE 檔案"
 msgid "Scilab SCI files"
 msgstr "Scilab SCI 檔案"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "Scilab Start files"
 msgstr ""
 
@@ -578,6 +987,35 @@ msgstr "Scilab 二進位檔案"
 msgid "Select All"
 msgstr "全選"
 
+msgid "Select a directory"
+msgstr "選擇一目錄"
+
+msgid "Select a file name"
+msgstr "選擇一檔案名稱"
+
+msgid "Select a file to execute"
+msgstr "選擇執行之檔案"
+
+msgid "Select a file to load"
+msgstr "選擇一檔案以載入系統"
+
+#
+# File: etc/main_menubar.xml, line: 25
+# File: etc/main_toolbar.xml, line: 11
+msgid "Select a file to open with SciNotes"
+msgstr ""
+
+msgid "Select a file to write"
+msgstr "選擇一檔案以寫入"
+
+msgid "Show/Hide &Toolbar"
+msgstr "顯示/隱藏工具列(&T)"
+
+msgid "Stop datatip manager"
+msgstr "停止 datatip 管理員"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 msgid "Test files"
 msgstr ""
 
@@ -780,11 +1218,26 @@ msgid ""
 "expected.\n"
 msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
 
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos files"
 msgstr "Xcos 檔案"
 
 msgid "Yes"
 msgstr "是"
+
+msgid "Zoom Area"
+msgstr "對焦區域"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -809,3 +1262,6 @@ msgid ""
 msgstr ""
 "disp(\"警告: 在您執行限制顯示卡驅動程式時,無法管理 OpenGL, Scilab 的繪圖功能"
 "將不會有作用. 請更新您顯示卡的驅動程式.\")"
+
+msgid "toggle datatip mode"
+msgstr "切換datatip 模式"

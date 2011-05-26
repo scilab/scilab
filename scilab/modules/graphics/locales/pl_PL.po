@@ -597,6 +597,12 @@ msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: określone granice są "
 "nieprawidłowe.\n"
 
+#
+# File: sci_gateway/c/sci_set.c, line: 303
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
@@ -1000,6 +1006,8 @@ msgstr ""
 "Nieprawidłowy typ dla własności '%s': oczekiwano uchwytu (handle) '%s' lub "
 "'%s'.\n"
 
+#
+# File: src/c/getHandleProperty/set_links_property.c, line: 42
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
 msgstr ""
@@ -1102,6 +1110,8 @@ msgstr ""
 msgid "You are not using a legend object.\n"
 msgstr "Nie używasz obiektu legendy.\n"
 
+#
+# File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 48
 #, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr ""

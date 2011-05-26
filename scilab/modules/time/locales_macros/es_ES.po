@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,14 +19,6 @@ msgstr ""
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "   L M X J V S D"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: Ha ocurrido un error.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Ha ocurrido un error: %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -76,12 +69,6 @@ msgstr ""
 "constante.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero ó "
-"''%s''.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s:Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
@@ -108,12 +95,6 @@ msgstr ""
 "%s: Tipos incorrectos para los argumentos de entrada: Deben ser escalares.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
-msgstr ""
-"%s: Tipos de argumentos de entrada incorrectos: Se esperan valores "
-"escalares.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: %s debe ser entre %d y "
@@ -126,14 +107,6 @@ msgstr ""
 "''%s''.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s: Valor incorrecto del argumento de entrada #%d: Debe ser < %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: Valor incorrecto del argumento de entrada #%d: Debe ser > %d.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Debe estar entre %d y "
@@ -144,13 +117,6 @@ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada: Debe estar entre %d y "
 "%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaban enteros "
-"positivos.\n"
 
 msgid "Apr"
 msgstr "Abr"

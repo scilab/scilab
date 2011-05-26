@@ -120,6 +120,19 @@ msgstr "%s：大小不一致。\n"
 msgid "%s: Invalid module name : %s.\n"
 msgstr "%s：无效的模块名 %s。\n"
 
+#
+# File: tests/nonreg_tests/bug_7974.c, line: 47
+# File: tests/nonreg_tests/bug_7974.c, line: 76
+# File: sci_gateway/c/sci_newfun.c, line: 133
+# File: sci_gateway/c/sci_getversion.c, line: 68
+# File: sci_gateway/c/sci_getversion.c, line: 95
+# File: sci_gateway/c/sci_getversion.c, line: 169
+# File: sci_gateway/c/sci_getversion.c, line: 197
+# File: sci_gateway/c/sci_getversion.c, line: 203
+# File: sci_gateway/c/sci_getversion.c, line: 310
+# File: sci_gateway/c/sci_getversion.c, line: 316
+# File: sci_gateway/c/sci_getmd5.c, line: 100
+# File: sci_gateway/c/sci_getmd5.c, line: 150
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -184,6 +197,9 @@ msgstr "%s：变量 %s 不存在。\n"
 msgid "%s: Wrong %s value %d instead of %d.\n"
 msgstr "%s：%s的值 %d 出错，应该为 %d。\n"
 
+#
+# File: sci_gateway/c/sci_getversion.c, line: 175
+# File: sci_gateway/c/sci_getversion.c, line: 275
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr ""
@@ -236,6 +252,8 @@ msgstr "%s：参数 %d 的大小出错：应该为 （%d，%d）。\n"
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
 msgstr "%s：参数 %d 的大小出错：应该至少为 %d。\n"
 
+#
+# File: sci_gateway/c/sci_lasterror.c, line: 54
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -248,14 +266,24 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为一个比例。\n"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
 
+#
+# File: tests/nonreg_tests/bug_7974.c, line: 69
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 147
+# File: sci_gateway/c/sci_gstacksize.c, line: 154
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
+#
+# File: tests/nonreg_tests/bug_7974.c, line: 41
+# File: sci_gateway/c/sci_getversion.c, line: 123
+# File: sci_gateway/c/sci_getversion.c, line: 242
+# File: sci_gateway/c/sci_getversion.c, line: 248
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -410,6 +438,8 @@ msgstr "%s：参数的类型出错：应该为复的。\n"
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数 #%d 的类型出错。\n"
 
+#
+# File: sci_gateway/c/sci_lasterror.c, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -437,6 +467,12 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串或标量。\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
@@ -466,6 +502,8 @@ msgstr "%s：输入参数 #%d 或 #%d 的类型出错：应该为字符串。\n"
 msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s：输入参数的类型出错。\n"
 
+#
+# File: tests/nonreg_tests/bug_7974.c, line: 84
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
@@ -478,6 +516,8 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
 msgid "%s: Wrong type value.\n"
 msgstr "%s：错误的类型值。\n"
 
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 155
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
@@ -522,6 +562,12 @@ msgstr "%s：输入参数 #%d 的值出错：应该是1，2或3。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该一个整数。\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -643,6 +689,11 @@ msgstr "&工具箱"
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
 
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
+
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "没有找到 Windows 的临时路径（1）。"
 
@@ -660,6 +711,11 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "版权所有 (c) 1989-2007 (ENPC)\n"
 
 #
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
 # File: src/c/signal_mgmt.c, line: 117
 #, c-format
 msgid ""
@@ -673,6 +729,15 @@ msgstr "出错"
 msgid "Error returning tlist, memory full.\n"
 msgstr "返回 tlist 出错，内存已用尽。\n"
 
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+
+#
+# File: src/c/tmpdir.c, line: 139
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""
@@ -726,6 +791,8 @@ msgid ""
 "found\n"
 msgstr "出错：未找到有效的以“%s”编码的版本文件 %s（未以“utf-8”编码）\n"
 
+#
+# File: src/c/loadversion.c, line: 140
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
@@ -804,6 +871,8 @@ msgstr "未定义 SCI 环境变量。\n"
 msgid "SCIHOME not defined.\n"
 msgstr "未定义 SCIHOME。\n"
 
+#
+# File: src/java/org/scilab/modules/core/Scilab.java, line: 183
 msgid "Scilab Console"
 msgstr ""
 
@@ -838,10 +907,14 @@ msgstr "未定义的变量 %s。\n"
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "意外的操作码，请报告给 Scilab bug tracker。"
 
+#
+# File: src/c/storeCommand.c, line: 205
 #, c-format
 msgid "Unqueuing %s - No option.\n"
 msgstr ""
 
+#
+# File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr ""
@@ -856,6 +929,12 @@ msgstr "警告：%s\n"
 
 msgid "Warning"
 msgstr "警告"
+
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: Problems with %s.\n"

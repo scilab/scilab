@@ -40,6 +40,23 @@ msgstr ""
 "\n"
 "Construindo o documento-mestre do manual do Scilab %s.\n"
 
+#
+# File: macros/xmltoformat.sci, line: 562
+# File: macros/xmltoformat.sci, line: 679
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s.\n"
+msgstr ""
+
+#
+# File: macros/xmltoformat.sci, line: 674
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s].\n"
+msgstr ""
+
 msgid ""
 "\n"
 "Building the master document:\n"

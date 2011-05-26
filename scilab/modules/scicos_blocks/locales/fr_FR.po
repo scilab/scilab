@@ -20,6 +20,19 @@ msgstr ""
 msgid "Allocation problem in spline.\n"
 msgstr "Problème d'allocation dans spline.\n"
 
+#
+# File: src/c/scoWindowScope.c, line: 287
+# File: src/c/scoWindowScope.c, line: 389
+# File: src/c/scoWindowScope.c, line: 422
+# File: src/c/scoWindowScope.c, line: 441
+# File: src/c/scoWindowScope.c, line: 500
+# File: src/c/scoWindowScope.c, line: 516
+# File: src/c/scoWindowScope.c, line: 548
+# File: src/c/scoWindowScope.c, line: 579
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr ""
+
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "Essayez d'augmenter la longueur du tampon dans le bloc retard \n"
 
@@ -46,6 +59,11 @@ msgstr ""
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Erreur à l'ouverture du fichier '%s'.\n"
+
+#
+# File: src/c/scoWindowScope.c, line: 172
+msgid "Incorrect value for dimension argument."
+msgstr ""
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr "Type de variable incorrect : erreur dans le code scilab d'hypermat.\n"

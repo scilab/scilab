@@ -51,6 +51,8 @@ msgstr "A、B、P和Q"
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr "答案好像比最高搜索边界%f还高\n"
 
+#
+# File: src/c/CdfBase.c, line: 134
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
@@ -134,6 +136,11 @@ msgstr "Pnonc、P、Q、F和Dfn"
 msgid "Pr,OMPr,P,Q and S"
 msgstr "Pr、OMPr、P、Q和S"
 
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 56
+msgid "Rate,P,Q and X"
+msgstr ""
+
 msgid "S and Xlam"
 msgstr "S和Xlam"
 
@@ -142,6 +149,11 @@ msgstr "S、XN、PR和OMPR"
 
 msgid "S,Xn,Pr and Ompr"
 msgstr "S、Xn、Pr和Ompr"
+
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 50
+msgid "Shape,Rate,P and Q"
+msgstr ""
 
 msgid "Std,P,Q and X"
 msgstr "Std、P、Q和X"
@@ -157,6 +169,11 @@ msgstr "X、Df和Pnonc"
 
 msgid "X,Mean and Std"
 msgstr "X、Mean和Std"
+
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 44
+msgid "X,Shape and Rate"
+msgstr ""
 
 msgid "X,Y,A and B"
 msgstr "X、Y、A和B"

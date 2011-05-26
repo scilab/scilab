@@ -45,6 +45,30 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: ans cannot be edited.\n"
 msgstr "%s: Переменная «ans» не может быть изменена.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 3
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&?"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 4
+# File: scilab_fake_localization_file.c, line: 8
+msgid "&About Scilab..."
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 2
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&Close"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 5
+msgid "&File"
+msgstr ""
+
 msgid "Boolean"
 msgstr "Логические значения"
 

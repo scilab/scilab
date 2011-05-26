@@ -29,6 +29,8 @@ msgstr "%s: Parametr nie znaleziono. Zwracana jest wartość domyślna %d.\n"
 msgid "%s: parameter not found. Return default value %f.\n"
 msgstr "%s: Parametr nie znaleziono. Zwracana jest wartość domyślna %f.\n"
 
+#
+# File: src/c/parameters.c, line: 460
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"
 msgstr ""

@@ -54,6 +54,8 @@ msgstr "關於 Xcos"
 msgid "Add to"
 msgstr "加入到"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 66
 msgid "Add to a new category"
 msgstr ""
 
@@ -75,6 +77,8 @@ msgstr "區塊說明"
 msgid "Block Parameters"
 msgstr "區塊參數"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 102
 msgid "Bold"
 msgstr ""
 
@@ -90,6 +94,8 @@ msgstr "CVODE 常微分方程"
 msgid "Cancel"
 msgstr "取消"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 67
 msgid "Category"
 msgstr ""
 
@@ -118,9 +124,13 @@ msgstr "編譯執行中, 結果將存在 'scicos_cpr' 變數"
 msgid "Compile"
 msgstr "編譯"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 42
 msgid "Compiling"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 43
 msgid "Computing"
 msgstr ""
 
@@ -136,6 +146,8 @@ msgstr "無法儲存圖框"
 msgid "Create"
 msgstr "建立"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 65
 msgid "Create a category"
 msgstr ""
 
@@ -169,6 +181,8 @@ msgstr "圖框瀏覽器"
 msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -199,12 +213,18 @@ msgstr "可編輯的"
 msgid "Electrical"
 msgstr "電力"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 145
 msgid "Enable"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 46
 msgid "Equations"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 54
 msgid "Error"
 msgstr ""
 
@@ -228,12 +248,16 @@ msgstr "明確資料輸出埠必須連接到明確資料輸入埠"
 msgid "Export"
 msgstr "匯出"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 170
 msgid "Export in progress"
 msgstr ""
 
 msgid "Export to XML"
 msgstr "匯出至 XML 檔案"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 58
 msgid "Extended"
 msgstr ""
 
@@ -252,36 +276,53 @@ msgstr "最後的整合時間"
 msgid "Fit diagram to view"
 msgstr "將圖框展成全景"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
 msgid "Fix derivatives"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 38
 msgid "Fix states"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
 msgid "Fixed parameters"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
 msgid "Fixed variables"
 msgstr ""
 
 msgid "Flip"
 msgstr "翻轉"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 105
 msgid "Font name"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 104
 msgid "Font size"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 106
 msgid "Font style"
 msgstr ""
 
 msgid "Format"
 msgstr "格式"
 
+#, c-format
 msgid "From %s"
 msgstr "寄件者 %s"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 53
 msgid "Generate Jacobian"
 msgstr ""
 
@@ -294,9 +335,12 @@ msgstr "轉 SuperBlock 成 C 程式碼"
 msgid "Get infos"
 msgstr "取得資訊"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 45
 msgid "Global"
 msgstr ""
 
+#, c-format
 msgid "Goto %s"
 msgstr "Goto %s"
 
@@ -334,9 +378,13 @@ msgstr "從 XML 檔案匯入"
 msgid "Incompatibility detected"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 50
 msgid "Initial computing method"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 48
 msgid "Input"
 msgstr ""
 
@@ -352,6 +400,8 @@ msgstr "絶對容錯積分器"
 msgid "Integrator relative tolerance"
 msgstr "相對容錯積分器"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 103
 msgid "Italic"
 msgstr ""
 
@@ -373,6 +423,8 @@ msgstr "圖框載入中"
 msgid "Loading palettes"
 msgstr "載入調色盤"
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 54
 msgid "Loading the block"
 msgstr ""
 
@@ -400,9 +452,13 @@ msgstr "中間"
 msgid "Mirror"
 msgstr "鏡象"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 272
 msgid "Modelica initialize"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 23
 msgid "Modelica settings"
 msgstr ""
 
@@ -439,12 +495,16 @@ msgstr "開啟"
 msgid "Palette browser"
 msgstr "調色盤瀏覽器"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 146
 msgid "Palette name"
 msgstr ""
 
 msgid "Palettes"
 msgstr "調色盤"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
@@ -461,6 +521,8 @@ msgstr ""
 msgid "Please specify a file format"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
 msgid "Please take a look into the Scilab console"
 msgstr ""
 
@@ -488,15 +550,21 @@ msgstr "即時延展"
 msgid "Recent Files"
 msgstr "最近存取的檔案"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 57
 msgid "Reduced"
 msgstr ""
 
 msgid "Region to superblock"
 msgstr "邊界定至 superblock"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
 msgid "Relaxed parameters"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Relaxed variables"
 msgstr ""
 
@@ -556,6 +624,8 @@ msgstr "設定 block 參數"
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "設定 debugging level (0,1,2,3) <br/> 假如執行 scicos_debug(n)"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 271
 msgid "Setting up Modelica Compiler."
 msgstr ""
 
@@ -583,9 +653,13 @@ msgstr "模擬處理中"
 msgid "Sinks"
 msgstr "下陷"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 40
 msgid "Solve"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 49
 msgid "Solver"
 msgstr ""
 
@@ -612,25 +686,34 @@ msgstr "直線"
 msgid "Superblock mask"
 msgstr "Superblock 遮罩"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 194
 msgid "Text Color"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 107
 msgid "Text settings"
 msgstr ""
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab 集團組織 (DIGITEO)"
 
+#, c-format
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
 msgstr "檔案 %s 不存在"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 268
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
 "default one."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 267
 msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
@@ -650,47 +733,72 @@ msgstr "頂部"
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
+#, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
+#, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 166
 msgid "Unable to delete "
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 63
+#, c-format
 msgid "Unable to import %s .\n"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 53
+#, c-format
 msgid "Unable to load block from %s ."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 74
+#, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 70
+#, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 68
+#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 72
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 msgid "Unknown Diagram Version : "
 msgstr "未知的 Diagram版本 : "
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 56
 msgid "Unknowns"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
 msgid "Unknowns not equals to Equations"
 msgstr ""
 
@@ -736,10 +844,16 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "視窗標題"
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
+#, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 58
+#, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
@@ -763,61 +877,83 @@ msgstr "Xcos 錯誤"
 msgid "Xcos file"
 msgstr "Xcos 檔"
 
-msgid ""
-"You may enter here scilab instructions to define symbolic parameters used in "
-"block definitions using Scilab instructions.<br/>These instructions are "
-"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-"diagram is loaded.)"
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+msgid "You may enter here scilab instructions to define "
 msgstr ""
-"你應該在scilab 指令處使用 Scilab 指令去定義區塊中的符號式參數.<br/>這些指令已"
-"被證實過.(換言之, 當你按 OK, 則圖框就被 Eval 載入一次.)"
 
 msgid "Zero crossing detection"
 msgstr "Zero crossing 偵測"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 34
 msgid "comment"
 msgstr ""
 
 msgid "control port must be connected to command port"
 msgstr "控制埠必須連接到命令埠"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
 msgid "fixed"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
 msgid "id"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 29
 msgid "initial"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 27
 msgid "kind"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 52
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 31
 msgid "max"
 msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "最大步階數 (0 表示無限)"
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 32
 msgid "min"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 41
 msgid "model is not valid"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 25
 msgid "name"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 33
 msgid "nominal"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 35
 msgid "selected"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 30
 msgid "weight"
 msgstr ""

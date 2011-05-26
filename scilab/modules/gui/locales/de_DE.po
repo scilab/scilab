@@ -21,6 +21,11 @@ msgstr ""
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ein Fehler ist aufgetreten: %s.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 97
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 150
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 312
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 403
 #, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
@@ -77,6 +82,12 @@ msgstr "%s: Die Datei %s existiert nicht.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: unbekannte Eigenschaft: %s für '%s' Handhabung.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: falsches Eingangsargument: '%s' erwartet.\n"
@@ -104,6 +115,12 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: %d x %d Matrix mit Zeichenketten "
 "erwartet.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -122,6 +139,13 @@ msgid ""
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein 1x %d reeller Reihen-Vektor "
 "erwartet.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -180,6 +204,13 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: Matrix mit Zeichenketten "
 "erwartet.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: Zeichenkette erwartet.\n"
@@ -189,6 +220,14 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: falscher Größe für Eingangsargument #%d: Vektor mit Zeichenketten "
 "erwartet.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -383,12 +422,236 @@ msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: dieses Alias existiert nicht.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&?"
+msgstr ""
+
+msgid "&Abort"
+msgstr "&Abbrechen"
+
+msgid "&About Scilab..."
+msgstr "&Über Scilab"
+
+msgid "&Applications"
+msgstr "&Anwendungen"
+
+msgid "&Axes properties"
+msgstr "&Voreinstellungen der Achsen"
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Bugs And Requests"
+msgstr "&Fehler und Anfrage Datenbank"
+
+msgid "&Change current directory..."
+msgstr "&Aktuelles Verzeichnis ändern..."
+
+msgid "&Clear figure"
+msgstr "&Darstellung löschen"
+
+msgid "&Close"
+msgstr "&Schließen"
+
+msgid "&Colors"
+msgstr "&Farben"
+
+#
+# File: scilab_fake_localization_file.c, line: 81
+msgid "&Command History"
+msgstr ""
+
+msgid "&Control"
+msgstr "&Kontrolle"
+
+#
+# File: scilab_fake_localization_file.c, line: 59
+msgid "&Copy"
+msgstr ""
+
+msgid "&Copy to clipboard"
+msgstr "&In die Zwischenablage kopieren"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Decrease font size"
+msgstr ""
+
+msgid "&Display current directory"
+msgstr "&Aktuelles Verzeichnis anzeigen"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 57
+msgid "&Edit"
+msgstr ""
+
+msgid "&Empty clipboard"
+msgstr "&Zwischenablage leeren"
+
+msgid "&Execute..."
+msgstr "&Ausführen..."
+
+msgid "&Export to..."
+msgstr "&Exportieren nach..."
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&Figure properties"
+msgstr "&Voreinstellungen der Darstellung"
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "&File Exchange"
+msgstr ""
+
+msgid "&Font..."
+msgstr "&Zeichensatz ..."
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "&Forge"
+msgstr ""
+
+msgid "&GIF"
+msgstr "&GIF"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Incremental Search"
+msgstr ""
+
+msgid "&Interrupt"
+msgstr "&Unterbrechen"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Web Verweise"
+
+msgid "&Load environment..."
+msgstr "&Umgebung laden..."
+
+msgid "&Load..."
+msgstr "&Laden..."
+
+msgid "&Mailing lists"
+msgstr "Mailing Listen"
+
+msgid "&Matlab to Scilab translator"
+msgstr "&Matlab nach Scilab Übersetzer"
+
+msgid "&New figure..."
+msgstr "&Neues Diagramm..."
+
+msgid "&Open a file..."
+msgstr "&Eine Datei öffnen..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Paste"
+msgstr "&Einfügen"
+
+msgid "&Preferences"
+msgstr "&Voreinstellungen"
+
+msgid "&Print..."
+msgstr "&Drucken..."
+
+msgid "&Quit"
+msgstr "&Beenden"
+
+msgid "&Redraw figure"
+msgstr "&Darstellung neu zeichnen"
+
+msgid "&Resume"
+msgstr "&Fortsetzen"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Save environment..."
+msgstr "&Umgebung speichern..."
+
+msgid "&Save..."
+msgstr "&Speichern"
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&SciNotes"
+msgstr ""
+
+msgid "&Scilab Help"
+msgstr "&Hilfe Scilab"
+
+msgid "&Select all"
+msgstr "&Alles auswählen"
+
+msgid "&Select as current figure"
+msgstr "&Als aktuelle Darstellung auswählen"
+
+#
+# File: scilab_fake_localization_file.c, line: 34
+msgid "&Start datatip manager"
+msgstr ""
+
+msgid "&Start entity picker"
+msgstr "&Einheitswähler starten"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&Tools"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 24
+msgid "&UnZoom"
+msgstr ""
+
+msgid "&Variable Browser"
+msgstr "&Variablen-Browser"
+
+msgid "&Vectorial export"
+msgstr "&Vektorielles Exportieren"
+
+msgid "&Xcos"
+msgstr "&Xcos"
+
+msgid "&Zoom"
+msgstr "&Vergrößern"
+
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
 "'.\n"
 " Bitte geben Sie ein gültiges Dateiformat an."
+
+msgid "2D/3D &Rotation"
+msgstr "2D/3D &Rotation"
 
 msgid "About Scilab..."
 msgstr "Über Scliab..."
@@ -398,6 +661,26 @@ msgstr "Danksagungen"
 
 msgid "All %s files"
 msgstr "Alle %s Dateien"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
+msgid "All Encapsulated PS files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
+msgid "All PDF files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
+msgid "All PNG image files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
+msgid "All Postscript files"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
@@ -410,9 +693,13 @@ msgstr "Alle Scilab Dateien"
 msgid "All files"
 msgstr "Alle Dateien"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/PrinterHelper.java, line: 64
 msgid "An error occured: "
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
 msgid "Attributes"
 msgstr ""
 
@@ -422,11 +709,29 @@ msgstr "Zurück"
 msgid "Bold"
 msgstr "Fett"
 
+msgid "C&lose"
+msgstr "&Schließen"
+
+msgid "C&ut"
+msgstr "&Ausschneiden"
+
 msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "CeCILL License"
 msgstr "CeCILL Lizenz"
+
+msgid "Change Current Directory"
+msgstr "Aktuelles Verzeichnis wechseln"
+
+msgid "Choose Font..."
+msgstr "Schriftart auswählen ..."
+
+msgid "Clear &History"
+msgstr "Verlaufsspeicher &leeren"
+
+msgid "Clear C&onsole"
+msgstr "&Konsole leeren"
 
 msgid "Clear Console"
 msgstr "Konsole leeren"
@@ -436,6 +741,12 @@ msgstr "Verlauf löschen"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Console &Background..."
+msgstr "Konsole &Hintergrund"
+
+msgid "Console &Font..."
+msgstr "Konsole &Zeichensatz"
 
 msgid "Console Background..."
 msgstr "Hintergrund der Konsole..."
@@ -449,6 +760,13 @@ msgstr "Kopieren"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
 msgid "Could not open: "
 msgstr ""
 
@@ -463,6 +781,12 @@ msgstr "Encapsulated PostScript image (EPS)"
 
 msgid "Enhanced Metafile image (EMF)"
 msgstr "Enhanced Metafile image (EMF)"
+
+msgid "Environment loaded.\n"
+msgstr "Umgebung geladen.\n"
+
+msgid "Environment saved.\n"
+msgstr "Umgebung gespeichert.\n"
 
 msgid "Error on export"
 msgstr "Fehler beim Exportieren"
@@ -483,11 +807,27 @@ msgstr ""
 msgid "Execute into Scilab"
 msgstr "In Scilab ausführen"
 
+msgid "Execution done.\n"
+msgstr "Ausführen beendet.\n"
+
 msgid "Export"
 msgstr "Exportieren"
 
 msgid "FIG image"
 msgstr "FIG Bild"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+msgid "Feature not available in this mode..."
+msgstr ""
+
+msgid "Figure loaded.\n"
+msgstr "Diagramm geladen.\n"
+
+msgid "Figure saved.\n"
+msgstr "Diagramm gespeichert.\n"
 
 msgid "File already exist"
 msgstr "Datei existiert bereits"
@@ -495,9 +835,13 @@ msgstr "Datei existiert bereits"
 msgid "File already exists"
 msgstr "Datei existiert bereits"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
 msgid "Font"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
 msgid "Font Chooser"
 msgstr ""
 
@@ -522,11 +866,21 @@ msgstr "Hilfe zum ausgewählten Stichwort"
 msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "In&crease font size"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
 msgid "Italic"
 msgstr ""
 
 msgid "JPEG image"
 msgstr "JPEG-Bild"
+
+msgid "Launch SciNotes"
+msgstr "Starte SciNotes"
 
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -541,6 +895,14 @@ msgstr ""
 msgid "Loading help browser..."
 msgstr "Lade den Hilfe Browswer..."
 
+msgid "M&odule manager - ATOMS"
+msgstr "Modul Manager ATOMS"
+
+msgid "Module manager - ATOMS"
+msgstr "Modulmanager - ATOMS"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
 msgid "Monospaced"
 msgstr ""
 
@@ -555,6 +917,8 @@ msgstr "Keine Eigenschaft '%s' für dieses Objekt.\n"
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr "Keine '%s' Eigenschaft für Uicontrol des Designs: %s.\n"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2487
 msgid "No print service found."
 msgstr ""
 
@@ -566,6 +930,18 @@ msgstr "OK"
 
 msgid "Ok"
 msgstr "Ok"
+
+msgid "Open a file"
+msgstr "Eine Datei öffnen"
+
+msgid "Original View"
+msgstr "Originale Ansicht"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "P&age setup..."
+msgstr "&Einstellen der Seite"
 
 msgid "PDF image"
 msgstr "PDF Datei"
@@ -585,8 +961,17 @@ msgstr "Geben Sie ein Dateiformat an"
 msgid "Preview"
 msgstr "Vorschau"
 
+msgid "Print..."
+msgstr "Drucken ..."
+
 msgid "Replace existing file?"
 msgstr "Existierende Datei ersetzen?"
+
+msgid "Rotate"
+msgstr "Rotieren"
+
+msgid "S&top entity picker"
+msgstr "&Einheitswähler stoppen"
 
 msgid "SVG image"
 msgstr "SVG-Bild"
@@ -594,11 +979,35 @@ msgstr "SVG-Bild"
 msgid "Save and execute"
 msgstr "Speichern und ausführen"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 177
 msgid "SciNotes compatible"
 msgstr ""
 
 msgid "Scicos files"
 msgstr "Scicos Dateien"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Webseite zu Scilab & Atoms"
+
+msgid "Scilab &Demonstrations"
+msgstr "Sciliab &Demonstrationen"
+
+msgid "Scilab &Help"
+msgstr "Scilab &Help"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Scilab &Online Help"
+msgstr ""
+
+msgid "Scilab &Web Site"
+msgstr "Scilab &Web Seite"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -617,6 +1026,9 @@ msgstr "von Scilab ausgewählte Nachricht"
 msgid "Scilab Demo files"
 msgstr "Scilab Demo-Dateien"
 
+msgid "Scilab Demonstrations"
+msgstr "Scilab Demos"
+
 msgid "Scilab Input Value Request"
 msgstr "nachgefragter Eingabewert von Scilab"
 
@@ -626,6 +1038,8 @@ msgstr "Scilab Nachricht"
 msgid "Scilab Multiple Values Request"
 msgstr "Mehrfachwert Anfragen von Scilab"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
 msgid "Scilab Quit files"
 msgstr ""
 
@@ -635,6 +1049,8 @@ msgstr "Scilab SCE Dateien"
 msgid "Scilab SCI files"
 msgstr "Scilab SCI Dateien"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "Scilab Start files"
 msgstr ""
 
@@ -644,6 +1060,37 @@ msgstr "Scilab Binärdateien"
 msgid "Select All"
 msgstr "Alle auswählen"
 
+msgid "Select a directory"
+msgstr "Verzeichnis auswählen"
+
+msgid "Select a file name"
+msgstr "Dateinamen auswählen"
+
+msgid "Select a file to execute"
+msgstr "Eine Datei zum Ausführen auswählen"
+
+msgid "Select a file to load"
+msgstr "Wählen Sie eine Datei zum importieren aus"
+
+#
+# File: etc/main_menubar.xml, line: 25
+# File: etc/main_toolbar.xml, line: 11
+msgid "Select a file to open with SciNotes"
+msgstr ""
+
+msgid "Select a file to write"
+msgstr "Eine Datei zum Schreiben auswählen."
+
+msgid "Show/Hide &Toolbar"
+msgstr "Anzeigen/Verstecken der Werkzeugleiste"
+
+#
+# File: scilab_fake_localization_file.c, line: 35
+msgid "Stop datatip manager"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 msgid "Test files"
 msgstr ""
 
@@ -866,6 +1313,8 @@ msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
 "Falscher Wert für Eigenschaft '%s': ein '%s' oder '%s' Handle erwartet.\n"
 
+#
+# File: src/cpp/SetUicontrolValue.cpp, line: 69
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A String containing a numeric value "
@@ -888,11 +1337,26 @@ msgstr ""
 "Falscher Wert für Eigenschaft '%s': eine Zeichenkette oder ein 1 x %d "
 "reeller Zeilenvektor erwartet.\n"
 
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos files"
 msgstr "Xcos Dateien"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Zoom Area"
+msgstr "Vergrößerungsbereich"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -921,3 +1385,8 @@ msgstr ""
 "disp(\"Warnung: Aufgrund von Beschränkungen der Grafikkarte können Sie "
 "OpenGL nicht einstellen, Scilab wird keine Grafik ausgeben. Bitte "
 "aktualisieren Sie die Treiber.\")"
+
+#
+# File: scilab_fake_localization_file.c, line: 98
+msgid "toggle datatip mode"
+msgstr ""

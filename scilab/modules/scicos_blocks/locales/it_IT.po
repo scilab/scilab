@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 12981)\n"
 
+# File: src/c/fromws_c.c, line: 539
 msgid "Allocation problem in spline.\n"
 msgstr ""
 
@@ -33,18 +34,30 @@ msgstr ""
 msgid "Cannot use %s with this type of object."
 msgstr ""
 
+#
+# File: src/c/time_delay.c, line: 87
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
+#
+# File: src/c/variable_delay.c, line: 65
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 
+#
+# File: src/c/writeau.c, line: 110
 msgid "Could not open /dev/audio!\n"
 msgstr ""
 
+#
+# File: src/c/readau.c, line: 159
+# File: src/c/writec.c, line: 90
+# File: src/c/readc.c, line: 149
 msgid "Could not open the file!\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 219
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
@@ -52,6 +65,8 @@ msgid ""
 "Block output size=[%d,%d].\n"
 msgstr ""
 
+#
+# File: src/c/tows_c.c, line: 692
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr ""
@@ -61,60 +76,104 @@ msgstr ""
 msgid "Incorrect value for dimension argument."
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 1486
+# File: src/c/fromws_c.c, line: 1498
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 183
+# File: src/c/fromws_c.c, line: 191
+# File: src/c/fromws_c.c, line: 209
 msgid "Invalid variable type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 233
 msgid "Output should be of Real type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 243
 msgid "Output should be of complex type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 269
 msgid "Output should be of int16 type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 279
 msgid "Output should be of int32 type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 259
 msgid "Output should be of int8 type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 299
 msgid "Output should be of uint16 type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 309
 msgid "Output should be of uint32 type.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 289
 msgid "Output should be of uint8 type.\n"
 msgstr ""
 
+#
+# File: src/c/readau.c, line: 177
+# File: src/c/readc.c, line: 164
 msgid "Read error\n"
 msgstr ""
 
+#
+# File: src/c/readau.c, line: 131
+# File: src/c/readau.c, line: 195
+# File: src/c/readc.c, line: 102
+# File: src/c/readc.c, line: 182
 msgid "Read error!\n"
 msgstr ""
 
+#
+# File: src/c/scoMisc.c, line: 52
 msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
 msgstr ""
 
+#
+# File: src/c/scoMemoryScope.c, line: 280
 msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
 msgstr ""
 
+#
+# File: src/c/scoMisc.c, line: 55
 msgid "SCOPE ERROR : Unknown code error !\n"
 msgstr ""
 
+#
+# File: src/c/scoMisc.c, line: 49
 msgid ""
 "SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
 "reason !\n"
 " Maybe you have destroyed the windows or any parent of curves\n"
 msgstr ""
 
+#
+# File: src/c/tows_c.c, line: 1532
+# File: src/c/tows_c.c, line: 1541
 msgid "Size of buffer or input size have changed!\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 172
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr ""
@@ -126,9 +185,13 @@ msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 469
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
+#
+# File: src/c/fromws_c.c, line: 499
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 
@@ -137,20 +200,105 @@ msgstr ""
 msgid "This scope has the same window id than another."
 msgstr ""
 
+#
+# File: src/c/edgetrig.c, line: 52
 msgid "Trigger block must have discrete time input."
 msgstr ""
 
+#
+# File: src/c/tows_c.c, line: 1323
+# File: src/c/tows_c.c, line: 1333
+# File: src/c/tows_c.c, line: 1357
+# File: src/c/tows_c.c, line: 1454
+# File: src/c/tows_c.c, line: 1468
+# File: src/c/tows_c.c, line: 1478
+# File: src/c/tows_c.c, line: 1488
+# File: src/c/tows_c.c, line: 1500
 #, c-format
 msgid "Write error in file '%s'.\n"
 msgstr ""
 
+#
+# File: src/c/variable_delay.c, line: 64
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
 msgstr ""
 
+#
+# File: src/c/time_delay.c, line: 86
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
 msgstr ""
 
+#
+# File: src/c/summation_ui32e.c, line: 61
+# File: src/c/summation_ui32e.c, line: 85
+# File: src/c/gainblk_i16e.c, line: 51
+# File: src/c/gainblk_i16e.c, line: 68
+# File: src/c/gainblk_ui16e.c, line: 53
+# File: src/c/gainblk_ui16e.c, line: 70
+# File: src/c/matmul_i32e.c, line: 63
+# File: src/c/matmul_ui8e.c, line: 61
+# File: src/c/matbyscal_e.c, line: 50
+# File: src/c/matbyscal_e.c, line: 64
+# File: src/c/matbyscal_e.c, line: 78
+# File: src/c/matbyscal_e.c, line: 92
+# File: src/c/matbyscal_e.c, line: 106
+# File: src/c/matbyscal_e.c, line: 120
+# File: src/c/gainblk_i32e.c, line: 53
+# File: src/c/gainblk_i32e.c, line: 70
+# File: src/c/summation_i16e.c, line: 55
+# File: src/c/summation_i16e.c, line: 80
+# File: src/c/matmul_ui16e.c, line: 58
+# File: src/c/gainblk_i8e.c, line: 53
+# File: src/c/gainblk_i8e.c, line: 70
+# File: src/c/matmul2_e.c, line: 50
+# File: src/c/matmul2_e.c, line: 64
+# File: src/c/matmul2_e.c, line: 78
+# File: src/c/matmul2_e.c, line: 92
+# File: src/c/matmul2_e.c, line: 106
+# File: src/c/matmul2_e.c, line: 120
+# File: src/c/summation_ui16e.c, line: 61
+# File: src/c/summation_ui16e.c, line: 85
+# File: src/c/summation_i32e.c, line: 61
+# File: src/c/summation_i32e.c, line: 85
+# File: src/c/gainblk_ui32e.c, line: 53
+# File: src/c/gainblk_ui32e.c, line: 70
+# File: src/c/convert.c, line: 769
+# File: src/c/convert.c, line: 784
+# File: src/c/convert.c, line: 799
+# File: src/c/convert.c, line: 814
+# File: src/c/convert.c, line: 829
+# File: src/c/convert.c, line: 844
+# File: src/c/convert.c, line: 859
+# File: src/c/convert.c, line: 874
+# File: src/c/convert.c, line: 888
+# File: src/c/convert.c, line: 903
+# File: src/c/convert.c, line: 918
+# File: src/c/convert.c, line: 933
+# File: src/c/convert.c, line: 947
+# File: src/c/convert.c, line: 960
+# File: src/c/convert.c, line: 975
+# File: src/c/convert.c, line: 989
+# File: src/c/convert.c, line: 1002
+# File: src/c/convert.c, line: 1016
+# File: src/c/convert.c, line: 1031
+# File: src/c/convert.c, line: 1046
+# File: src/c/convert.c, line: 1061
+# File: src/c/convert.c, line: 1076
+# File: src/c/convert.c, line: 1091
+# File: src/c/convert.c, line: 1106
+# File: src/c/convert.c, line: 1121
+# File: src/c/convert.c, line: 1136
+# File: src/c/convert.c, line: 1151
+# File: src/c/matmul_i16e.c, line: 62
+# File: src/c/summation_ui8e.c, line: 61
+# File: src/c/summation_ui8e.c, line: 85
+# File: src/c/summation_i8e.c, line: 60
+# File: src/c/summation_i8e.c, line: 85
+# File: src/c/matmul_ui32e.c, line: 58
+# File: src/c/matmul_i8e.c, line: 58
+# File: src/c/gainblk_ui8e.c, line: 53
+# File: src/c/gainblk_ui8e.c, line: 70
 msgid "overflow error"
 msgstr ""

@@ -21,6 +21,9 @@ msgstr ""
 msgid "%s: An error occurred: %s\n"
 msgstr "%s：出现错误：%s\n"
 
+#
+# File: sci_gateway/c/sci_beep.c, line: 92
+# File: sci_gateway/c/sci_PlaySound.c, line: 81
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""

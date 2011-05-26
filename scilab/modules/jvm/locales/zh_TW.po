@@ -67,6 +67,7 @@ msgstr ""
 "\n"
 "JVM 錯誤，連結上目前的執行緒:不能連結到目前的執行緒。\n"
 
+#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -154,13 +155,6 @@ msgstr "錯誤:不是一個有效的設定檔%s (不是用 '%s' 編碼) 目前�
 #, c-format
 msgid "Error: could not parse file %s\n"
 msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
-
-#
-# File: src/c/InitializeJVM.c, line: 60
-msgid ""
-"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
-"not adding extra dependencies which could not be found at runtime.\n"
-msgstr ""
 
 #, c-format
 msgid ""

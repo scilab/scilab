@@ -180,6 +180,13 @@ msgstr "%s: 第一個輸入參數型態錯誤: 指定一純量.\n"
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s:  第四個輸入參數的型態錯誤: 被指定的純量.\n"
 
+#
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: 輸入參數的型態錯誤: 應該為 行向量.\n"

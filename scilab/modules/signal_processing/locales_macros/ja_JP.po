@@ -218,8 +218,28 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
 
+#
+# File: demos/arma/arma3.dem.sce, line: 10
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
 msgid "Arma identification"
 msgstr "ARMA同定"
+
+#
+# File: demos/signal.dem.gateway.sce, line: 14
+msgid "Arma simulation and identification"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 16
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 15
+msgid "Arma, bidimensional version"
+msgstr ""
 
 #
 # File: demos/signal.dem.gateway.sce, line: 12
@@ -282,6 +302,11 @@ msgstr ""
 #
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 7
+msgid "Spectral Estimation"
 msgstr ""
 
 msgid "Spectral power"

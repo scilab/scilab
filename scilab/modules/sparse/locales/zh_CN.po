@@ -69,6 +69,8 @@ msgstr "     密度= %lf%%\n"
 msgid "     Fill-ins = %d\n"
 msgstr "     填充项= %d\n"
 
+#
+# File: src/c/spOutput.c, line: 719
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
 msgstr ""
@@ -139,6 +141,8 @@ msgstr "矩阵是复数矩阵。\n"
 msgid "Matrix is real.\n"
 msgstr "矩阵是实数矩阵。\n"
 
+#
+# File: src/c/spOutput.c, line: 335
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
 msgstr ""
@@ -147,6 +151,8 @@ msgstr ""
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr "操作数的分解内循环= %d。\n"
 
+#
+# File: src/c/spFactor.c, line: 3011
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
@@ -167,6 +173,8 @@ msgstr "最小对角线元素 = %-1.4lg。\n"
 msgid "Smallest element in matrix = %-1.4lg.\n"
 msgstr "矩阵中的最小元素 = %-1.4lg。\n"
 
+#
+# File: src/c/spOutput.c, line: 328
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr ""

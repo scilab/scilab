@@ -29,6 +29,12 @@ msgstr "%s：生成文档时发生错误：%s。\n"
 msgid "%s: Execution Java stack %s.\n"
 msgstr "%s：执行Java stack %s。\n"
 
+#
+# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 242
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
@@ -41,6 +47,8 @@ msgid ""
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/gw_helptools.c, line: 38
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""

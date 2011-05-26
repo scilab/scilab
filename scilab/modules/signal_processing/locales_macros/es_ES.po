@@ -195,8 +195,28 @@ msgstr ""
 "%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
 "el conjunto {%s}.\n"
 
+#
+# File: demos/arma/arma3.dem.sce, line: 10
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
 msgid "Arma identification"
 msgstr "Identificación Arma"
+
+#
+# File: demos/signal.dem.gateway.sce, line: 14
+msgid "Arma simulation and identification"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 16
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 15
+msgid "Arma, bidimensional version"
+msgstr ""
 
 #
 # File: demos/signal.dem.gateway.sce, line: 12
@@ -259,6 +279,11 @@ msgstr ""
 #
 # File: demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 7
+msgid "Spectral Estimation"
 msgstr ""
 
 msgid "Spectral power"

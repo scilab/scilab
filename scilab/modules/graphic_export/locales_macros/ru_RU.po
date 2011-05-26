@@ -33,6 +33,12 @@ msgstr "%s: Не удалось создать файл для экспорта,
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: Не удалось выполнить команду pstoedit.\n"
 
+#
+# File: macros/xs2emf.sci, line: 72
+#, c-format
+msgid "%s: Unable to find pstoedit.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "

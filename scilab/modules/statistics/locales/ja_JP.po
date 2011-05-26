@@ -200,6 +200,11 @@ msgid "Pr,OMPr,P,Q and S"
 msgstr "Pr,OMPr,P,Q と S"
 
 #
+# File: sci_gateway/c/sci_cdfgam.c, line: 56
+msgid "Rate,P,Q and X"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_cdfpoi.c, line: 41
 msgid "S and Xlam"
 msgstr "S と Xlam"
@@ -213,6 +218,11 @@ msgstr "S,XN,PR と OMPR"
 # File: sci_gateway/c/sci_cdfbin.c, line: 44
 msgid "S,Xn,Pr and Ompr"
 msgstr "S,Xn,Pr と Ompr"
+
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 50
+msgid "Shape,Rate,P and Q"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_cdfnor.c, line: 54
@@ -236,6 +246,11 @@ msgstr "X,Df と Pnonc"
 
 msgid "X,Mean and Std"
 msgstr "X, 平均および標準偏差"
+
+#
+# File: sci_gateway/c/sci_cdfgam.c, line: 44
+msgid "X,Shape and Rate"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 44

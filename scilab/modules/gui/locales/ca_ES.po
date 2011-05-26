@@ -79,6 +79,12 @@ msgstr "%s: El fitxer %s no existeix.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: Propietat desconeguda: %s per a tractaments '%s'.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
 msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
@@ -109,6 +115,12 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text de (%d x %d).\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
@@ -128,6 +140,13 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
 "real de (1 x %d).\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -192,6 +211,13 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text.\n"
 
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -203,6 +229,14 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "cadenes de text.\n"
+
+#
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -408,12 +442,232 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: No existeix aquest "
 "tractament.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 36
+# File: scilab_fake_localization_file.c, line: 45
+# File: scilab_fake_localization_file.c, line: 82
+msgid "&?"
+msgstr ""
+
+msgid "&Abort"
+msgstr "&Cancel·la"
+
+msgid "&About Scilab..."
+msgstr "&Quant al Scilab..."
+
+msgid "&Applications"
+msgstr "&Aplicacions"
+
+msgid "&Axes properties"
+msgstr "Propietats dels &eixos"
+
+msgid "&BMP"
+msgstr "&BMP"
+
+msgid "&Bugs And Requests"
+msgstr "&Base de dades d'errors i consultes"
+
+msgid "&Change current directory..."
+msgstr "C&anvia el directori actual..."
+
+msgid "&Clear figure"
+msgstr "&Neteja la figura"
+
+msgid "&Close"
+msgstr "&Tanca"
+
+msgid "&Colors"
+msgstr "&Colors"
+
+#
+# File: scilab_fake_localization_file.c, line: 81
+msgid "&Command History"
+msgstr ""
+
+msgid "&Control"
+msgstr "&Control"
+
+msgid "&Copy"
+msgstr "&Copia"
+
+msgid "&Copy to clipboard"
+msgstr "&Copia al porta-retalls"
+
+#
+# File: scilab_fake_localization_file.c, line: 44
+msgid "&Decrease font size"
+msgstr ""
+
+msgid "&Display current directory"
+msgstr "Mostra el &directori actual"
+
+msgid "&EMF"
+msgstr "&EMF"
+
+msgid "&EPS"
+msgstr "&EPS"
+
+#
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 57
+msgid "&Edit"
+msgstr ""
+
+msgid "&Empty clipboard"
+msgstr "&Buida el porta-retalls"
+
+msgid "&Execute..."
+msgstr "&Executa..."
+
+msgid "&Export to..."
+msgstr "&Exporta a..."
+
+msgid "&FIG"
+msgstr "&FIG"
+
+msgid "&Figure properties"
+msgstr "Propietats de la &figura"
+
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 47
+msgid "&File"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 90
+msgid "&File Exchange"
+msgstr ""
+
+msgid "&Font..."
+msgstr "&Lletra..."
+
+#
+# File: scilab_fake_localization_file.c, line: 92
+msgid "&Forge"
+msgstr ""
+
+msgid "&GIF"
+msgstr "&GIF"
+
+#
+# File: scilab_fake_localization_file.c, line: 42
+msgid "&Incremental Search"
+msgstr ""
+
+msgid "&Interrupt"
+msgstr "&Interromp"
+
+msgid "&JPG"
+msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Enllaços"
+
+msgid "&Load environment..."
+msgstr "&Carrega l'entorn..."
+
+msgid "&Load..."
+msgstr "&Carrega..."
+
+msgid "&Mailing lists"
+msgstr "&Llistes de correu"
+
+msgid "&Matlab to Scilab translator"
+msgstr "Traductor de &Matlab a Scilab"
+
+msgid "&New figure..."
+msgstr "&Nova figura..."
+
+msgid "&Open a file..."
+msgstr "&Obre un fitxer..."
+
+msgid "&PDF"
+msgstr "&PDF"
+
+msgid "&PPM"
+msgstr "&PPM"
+
+msgid "&Paste"
+msgstr "&Enganxa"
+
+msgid "&Preferences"
+msgstr "&Preferències"
+
+msgid "&Print..."
+msgstr "&Imprimeix..."
+
+msgid "&Quit"
+msgstr "&Surt"
+
+msgid "&Redraw figure"
+msgstr "&Redibuixa la figura"
+
+msgid "&Resume"
+msgstr "&Reprèn"
+
+msgid "&SVG"
+msgstr "&SVG"
+
+msgid "&Save environment..."
+msgstr "&Desa l'entorn..."
+
+msgid "&Save..."
+msgstr "&Desa..."
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&SciNotes"
+msgstr ""
+
+msgid "&Scilab Help"
+msgstr "Ajuda del &Scilab"
+
+msgid "&Select all"
+msgstr "&Selecciona-ho tot"
+
+msgid "&Select as current figure"
+msgstr "&Selecciona com a figura actual"
+
+msgid "&Start datatip manager"
+msgstr "&Arranca el gestor de datatip"
+
+msgid "&Start entity picker"
+msgstr "&Arranca el capturador d'entitats"
+
+#
+# File: scilab_fake_localization_file.c, line: 21
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&Tools"
+msgstr ""
+
+msgid "&UnZoom"
+msgstr "R&edueix"
+
+#
+# File: scilab_fake_localization_file.c, line: 80
+msgid "&Variable Browser"
+msgstr ""
+
+msgid "&Vectorial export"
+msgstr "Exportació &vectorial"
+
+msgid "&Xcos"
+msgstr "&Xcos"
+
+msgid "&Zoom"
+msgstr "A&mplia"
+
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
 "'.\n"
 " Especifiqueu un format de fitxer vàlid."
+
+msgid "2D/3D &Rotation"
+msgstr "&Rotació 2D/3D"
 
 msgid "About Scilab..."
 msgstr "Quant al Scilab..."
@@ -423,6 +677,26 @@ msgstr "Reconeixements"
 
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
+msgid "All Encapsulated PS files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
+msgid "All PDF files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
+msgid "All PNG image files"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
+msgid "All Postscript files"
+msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
@@ -438,20 +712,42 @@ msgstr "Tots els fitxers"
 msgid "An error occured: "
 msgstr "S'ha produït un error: "
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
 msgid "Attributes"
 msgstr ""
 
 msgid "Back"
 msgstr "Enrere"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 162
 msgid "Bold"
 msgstr ""
+
+msgid "C&lose"
+msgstr "&Tanca"
+
+msgid "C&ut"
+msgstr "&Retalla"
 
 msgid "Cancel"
 msgstr "Cancel·la"
 
 msgid "CeCILL License"
 msgstr "Llicència CeCILL"
+
+msgid "Change Current Directory"
+msgstr "Canvia el directori actual"
+
+msgid "Choose Font..."
+msgstr "Tria un tipus de lletra..."
+
+msgid "Clear &History"
+msgstr "Neteja l'&historial"
+
+msgid "Clear C&onsole"
+msgstr "Neteja la C&onsola"
 
 msgid "Clear Console"
 msgstr "Neteja la consola"
@@ -461,6 +757,12 @@ msgstr "Neteja la història"
 
 msgid "Close"
 msgstr "Tanca"
+
+msgid "Console &Background..."
+msgstr "Color de &fons..."
+
+msgid "Console &Font..."
+msgstr "Lle&tra de la consola..."
 
 msgid "Console Background..."
 msgstr "Color de fons de la consola..."
@@ -474,6 +776,13 @@ msgstr "Copia"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
 msgid "Could not open: "
 msgstr ""
 
@@ -488,6 +797,12 @@ msgstr "Imatge Encapsulated PostScript (EPS)"
 
 msgid "Enhanced Metafile image (EMF)"
 msgstr "Imatge Enhanced Metafile (EMF)"
+
+msgid "Environment loaded.\n"
+msgstr "Entorn carregat.\n"
+
+msgid "Environment saved.\n"
+msgstr "Entorn desat.\n"
 
 msgid "Error on export"
 msgstr "Error a l'exportació"
@@ -508,11 +823,27 @@ msgstr ""
 msgid "Execute into Scilab"
 msgstr "Executa a l'Scilab"
 
+msgid "Execution done.\n"
+msgstr "Execució realitzada.\n"
+
 msgid "Export"
 msgstr "Exporta"
 
 msgid "FIG image"
 msgstr "Imatge FIG"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+msgid "Feature not available in this mode..."
+msgstr ""
+
+msgid "Figure loaded.\n"
+msgstr "Figura carregada.\n"
+
+msgid "Figure saved.\n"
+msgstr "Figura desada.\n"
 
 msgid "File already exist"
 msgstr "El fitxer ja existeix"
@@ -520,9 +851,13 @@ msgstr "El fitxer ja existeix"
 msgid "File already exists"
 msgstr "El fitxer ja existeix"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
 msgid "Font"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
 msgid "Font Chooser"
 msgstr ""
 
@@ -547,11 +882,23 @@ msgstr "Ajuda sobre una paraula seleccionada"
 msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
 
+#
+# File: scilab_fake_localization_file.c, line: 43
+msgid "In&crease font size"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
 msgid "Italic"
 msgstr ""
 
 msgid "JPEG image"
 msgstr "Imatge JPEG"
+
+#
+# File: scilab_fake_localization_file.c, line: 100
+msgid "Launch SciNotes"
+msgstr ""
 
 msgid ""
 "Left click to start selection of the zooming area. Right click to cancel."
@@ -567,6 +914,14 @@ msgstr ""
 msgid "Loading help browser..."
 msgstr "S'està carregant el navegador de l'ajuda..."
 
+msgid "M&odule manager - ATOMS"
+msgstr "Gest&or de mòduls - ATOMS"
+
+msgid "Module manager - ATOMS"
+msgstr "Gestor de mòduls - ATOMS"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
 msgid "Monospaced"
 msgstr ""
 
@@ -593,6 +948,18 @@ msgstr "D'acord"
 msgid "Ok"
 msgstr "Accepta"
 
+msgid "Open a file"
+msgstr "Obre un fitxer"
+
+msgid "Original View"
+msgstr "Vista Original"
+
+msgid "P&NG"
+msgstr "P&NG"
+
+msgid "P&age setup..."
+msgstr "Configur&ació de la pàgina..."
+
 msgid "PDF image"
 msgstr "Imatge PDF"
 
@@ -611,8 +978,17 @@ msgstr "Especifiqueu un format de fitxer"
 msgid "Preview"
 msgstr "Previsualitza"
 
+msgid "Print..."
+msgstr "Imprimeix..."
+
 msgid "Replace existing file?"
 msgstr "S'ha de sobreescriure el fitxer existent?"
+
+msgid "Rotate"
+msgstr "Rota"
+
+msgid "S&top entity picker"
+msgstr "A&tura el capturador d'entitats"
 
 msgid "SVG image"
 msgstr "Imatge SVG"
@@ -620,11 +996,35 @@ msgstr "Imatge SVG"
 msgid "Save and execute"
 msgstr "Desa i executa"
 
+#
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 177
 msgid "SciNotes compatible"
 msgstr ""
 
 msgid "Scicos files"
 msgstr "Fitxers de Scicos"
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Pàgina web de l'&ATOMS d'Scilab"
+
+msgid "Scilab &Demonstrations"
+msgstr "&Demonstracions de Scilab"
+
+msgid "Scilab &Help"
+msgstr "A&juda de Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 87
+msgid "Scilab &Online Help"
+msgstr ""
+
+msgid "Scilab &Web Site"
+msgstr "Pàgina &Web de Scilab"
+
+#
+# File: scilab_fake_localization_file.c, line: 88
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -641,8 +1041,13 @@ msgstr "Petició d'opcions d'Scilab"
 msgid "Scilab Choose Message"
 msgstr "Missatge d'elecció d'Scilab"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 66
 msgid "Scilab Demo files"
 msgstr ""
+
+msgid "Scilab Demonstrations"
+msgstr "Demostracions d'Scilab"
 
 msgid "Scilab Input Value Request"
 msgstr "Petició d'entrada de valors d'Scilab"
@@ -653,6 +1058,8 @@ msgstr "Missatge del Scilab"
 msgid "Scilab Multiple Values Request"
 msgstr "Petició de valors múltiples d'Scilab"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
 msgid "Scilab Quit files"
 msgstr ""
 
@@ -662,6 +1069,8 @@ msgstr "Fitsers SCE d'Scilab"
 msgid "Scilab SCI files"
 msgstr "Fitxers SCI d'Scilab"
 
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "Scilab Start files"
 msgstr ""
 
@@ -671,6 +1080,35 @@ msgstr "Fitxers binaris d'Scilab"
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
+msgid "Select a directory"
+msgstr "Seleccioneu un directori"
+
+msgid "Select a file name"
+msgstr "Seleccioneu un nom de fitxer"
+
+msgid "Select a file to execute"
+msgstr "Seleccioneu un fitxer a executar"
+
+msgid "Select a file to load"
+msgstr "Seleccioneu un fitxer a carregar"
+
+#
+# File: etc/main_menubar.xml, line: 25
+# File: etc/main_toolbar.xml, line: 11
+msgid "Select a file to open with SciNotes"
+msgstr ""
+
+msgid "Select a file to write"
+msgstr "Seleccioneu un fitxer a escriure"
+
+msgid "Show/Hide &Toolbar"
+msgstr "Mostra/Amaga la &barra d'eines"
+
+msgid "Stop datatip manager"
+msgstr "Atura el gestor de datatip"
+
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 msgid "Test files"
 msgstr ""
 
@@ -934,11 +1372,26 @@ msgstr ""
 "La propietat '%s' té un valor incorrecte: Ha de ser una cadena de text o un "
 "vector de nombres reals de (1 x %d).\n"
 
+#
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
+# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
+# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos files"
 msgstr "Fitxers d'Xcos"
 
 msgid "Yes"
 msgstr "Sí"
+
+msgid "Zoom Area"
+msgstr "Am&plia l'àrea"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
@@ -966,3 +1419,6 @@ msgstr ""
 "disp(\"Avís: Degut a limitacions en els controladors de la vostra targeta de "
 "vídeo, que no poden utilitzar OpenGL, el Scilab no podrà dibuixar cap "
 "gràfic. Actualitzeu els vostres controladors.\")"
+
+msgid "toggle datatip mode"
+msgstr "intercanvia el mode de datatip"

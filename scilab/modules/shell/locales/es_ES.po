@@ -61,6 +61,12 @@ msgstr "Campo del manejador gráfico"
 msgid "Scilab Command"
 msgstr "Comando de Scilab"
 
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+
 msgid "Scilab Function"
 msgstr "Función de Scilab"
 

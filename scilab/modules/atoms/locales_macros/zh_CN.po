@@ -387,6 +387,14 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个矩阵原始的�
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
+#
+# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"

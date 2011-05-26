@@ -206,6 +206,12 @@ msgstr ""
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr "%s: В задаче нет ограничений, но алгоритм Box разработан для них."
 
+#
+# File: macros/derivative.sci, line: 62
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: Случайные границы начального симплекса недоступны без границ."
@@ -431,6 +437,14 @@ msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr "%s: Неверное количество входных параметров: задано %d, а ожидалось 2."
 
+#
+# File: macros/neldermead/fminsearch.sci, line: 26
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
+"expected."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
@@ -535,6 +549,14 @@ msgstr "%s: Весовая матрица должна быть квадратн
 msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr "%s: Неверное количество параметров: ожидалось %d, а задано %d"
 
+#
+# File: macros/derivative.sci, line: 166
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество входных параметров.\n"
@@ -551,6 +573,21 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
+#
+# File: macros/derivative.sci, line: 170
+#, c-format
+msgid ""
+"%s: Wrong type for element #%d in input argument #%d: A function is "
+"expected, but current type is %s.\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 98
+# File: macros/karmarkar.sci, line: 102
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
@@ -558,6 +595,22 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
+
+#
+# File: macros/karmarkar.sci, line: 76
+# File: macros/karmarkar.sci, line: 79
+# File: macros/karmarkar.sci, line: 82
+# File: macros/karmarkar.sci, line: 85
+# File: macros/karmarkar.sci, line: 88
+# File: macros/karmarkar.sci, line: 91
+# File: macros/karmarkar.sci, line: 94
+# File: macros/karmarkar.sci, line: 107
+# File: macros/karmarkar.sci, line: 110
+# File: macros/karmarkar.sci, line: 113
+# File: macros/karmarkar.sci, line: 116
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -569,6 +622,66 @@ msgstr "%s: Неверный тип входного параметра №%s: �
 msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 194
+#, c-format
+msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 200
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be a floating point "
+"integer."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 191
+#, c-format
+msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 513
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 379
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 221
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 205
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 is not positive."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 216
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #
@@ -586,6 +699,11 @@ msgstr ""
 #
 # File: demos/neldermead/neldermead_dimension.sce, line: 60
 msgid "Column #1: number of dimensions\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 61
+msgid "Column #2: number of function evaluations\n"
 msgstr ""
 
 #
@@ -862,6 +980,11 @@ msgstr ""
 # File: demos/optimization.dem.gateway.sce, line: 7
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 85
+msgid "Number of function evaluations"
 msgstr ""
 
 #

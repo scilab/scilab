@@ -59,6 +59,13 @@ msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Type inconnu.\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Mauvaise valeur pour l'argument d'entrée #%d.\n"
 
+#
+# File: sci_gateway/c/sci_size.c, line: 108
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""

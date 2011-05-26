@@ -42,6 +42,8 @@ msgstr ""
 " Verifiqueu el vostre model:\n"
 " pot ser que crideu algunes funcions amb entrades incorrectes."
 
+#
+# File: src/c/scicos.c, line: 3060
 #, c-format
 msgid ""
 "\n"
@@ -219,6 +221,8 @@ msgstr "%s : No hi ha més memòria.\n"
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
 msgstr "%s : Només estan permeses les hipermatrius de 3 dimensions.\n"
 
+#
+# File: sci_gateway/c/sci_data2sig.c, line: 157
 #, c-format
 msgid "%s : Second argument must be a real.\n"
 msgstr ""
@@ -404,6 +408,8 @@ msgstr ""
 "**** No s'ha pogut inicialitzar el SUNDIALS.IDA  ->torneu-ho a intentar "
 "*****\n"
 
+#
+# File: src/c/scicos.c, line: 2121
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
@@ -423,6 +429,8 @@ msgstr "****SUNDIALS.Cvode de: %f a%f hot= %d  \n"
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr "****SUNDIALS.Cvode assolits: %f\n"
 
+#
+# File: src/c/scicos.c, line: 1430
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -449,6 +457,8 @@ msgstr "- myvar : una matriu d'enters, de decimals o una Tlist.\n"
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "CV_BAD_ABSTOL: abstol té components negatius (il·legal)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2139
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
 "[((d/dt)^k)y](t)."
@@ -466,6 +476,8 @@ msgstr "CV_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
 msgid "CV_BAD_ITASK: Illegal value for itask."
 msgstr "CV_BAD_ITASK: El valor d'itask és il·legal."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2167
 msgid ""
 "CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
@@ -525,6 +537,8 @@ msgstr ""
 msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr "CV_EWT_FAIL: Ha fallat la funció EwtSet proporcionada per l'usuari."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2117
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error at the first call"
@@ -628,6 +642,8 @@ msgstr ""
 "CV_RHSFUNC_FAIL: La funció de mà dreta (ODE proporcionada per l'usuari) ha "
 "fallat de manera irrecuperable"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2125
 msgid ""
 "CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
@@ -728,6 +744,8 @@ msgstr "IDA_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
 msgid "IDA_BAD_ITASK: Illegal value for itask."
 msgstr "IDA_BAD_ITASK: Valor il·legal per a itask."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2053
 msgid ""
 "IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
@@ -901,6 +919,8 @@ msgstr ""
 "IDA_RES_FAIL: La rutina residual d'usuari ha retornat un senyal d'error "
 "irrecuperable."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2071
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 
@@ -1010,6 +1030,8 @@ msgstr ""
 "KIN_LSETUP_FAIL: La rutina pset proporcionada per l'usuari (utilitzada per "
 "calcular la precondició) ha trobat un error irrecuperable."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2211
 msgid ""
 "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
 "preconditioned linear system) encountered an unrecoverable error, or the "
@@ -1121,6 +1143,8 @@ msgstr ""
 "Heu de recompilar el diagram o reiniciar la interfície d'inicialització per "
 "a regenerar el fitxer XML amb els nous paràmetres."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1929
 msgid "algebraic loop detected"
 msgstr ""
 
@@ -1166,6 +1190,8 @@ msgstr "s'ha trobat una arrel a t=: %f\n"
 msgid "scheduling problem"
 msgstr "problema de planificació"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2232
 msgid "scicos unexpected error, please report..."
 msgstr ""
 
