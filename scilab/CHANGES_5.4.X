@@ -163,3 +163,6 @@ Bug fixes:
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
+
+* bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
+
