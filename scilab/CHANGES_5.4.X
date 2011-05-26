@@ -11,6 +11,9 @@ SciNotes:
 * bug 9334 fixed - Extra lines was added when code was exported into PDF under
                    Windows.
 
+* Bug 9358 fixed - A simple quoted string was not always correctly convert
+                   into double quoted one.
+
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
                    'seconds'.
 
