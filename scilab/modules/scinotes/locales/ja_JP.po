@@ -502,7 +502,7 @@ msgid "Line by line"
 msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "行番号付け; オフ;通常; whereami 互換"
+msgstr "行番号付け;オフ;通常;whereami 互換"
 
 msgid "Load Into Scilab"
 msgstr "Scilabへロード"
@@ -816,7 +816,7 @@ msgid "Source of '"
 msgstr "ソースコード '"
 
 msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割ビュー;ofu"
+msgstr ""
 
 msgid "Split horizontally"
 msgstr "水平方向に分割"

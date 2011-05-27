@@ -507,7 +507,7 @@ msgid "Line by line"
 msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numeracja wierszy:Brak;Zwykła;Whereami compatible"
+msgstr "Numeracja wierszy;Brak;Zwykła;Whereami compatible"
 
 msgid "Load Into Scilab"
 msgstr "Załaduj do Scilab"
