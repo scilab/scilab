@@ -52,10 +52,9 @@ public class PasteAction extends DefaultAction {
                 getEditor().getTextPane().replaceSelection(str);
                 doc.mergeEditsEnd();
             }
-        } catch (UnsupportedFlavorException ex1) {
-            System.err.println(ex1);
-        } catch (IOException ex2) {
-            System.err.println(ex2);
+        } catch (UnsupportedFlavorException e) {
+        } catch (IOException e) {
+            System.err.println(e);
         }
     }
 
