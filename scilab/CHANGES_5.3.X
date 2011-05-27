@@ -1,3 +1,14 @@
+            Changes between versions 5.3.2 and 5.3.3 of Scilab
+            =================================================
+
+Bug fixes:
+==========
+
+* Bug 9545 fixed - contrib/loader.sce was no longer installed under GNU/Linux
+                   and Mac OS X.
+
+
+
             Changes between versions 5.3.1 and 5.3.2 of Scilab
             =================================================
 
