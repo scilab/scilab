@@ -177,5 +177,8 @@ Bug fixes:
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
+* bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
+                   to parse XML configuration files.
+
 * bug 9555 fixed - Typo in the 'deff' help page.
 

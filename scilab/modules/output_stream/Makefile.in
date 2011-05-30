@@ -116,29 +116,29 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscioutput_stream_la_LIBADD =
-am__objects_1 = libscioutput_stream_la-erro.lo \
-	libscioutput_stream_la-cerro.lo \
-	libscioutput_stream_la-Scierror.lo \
-	libscioutput_stream_la-msgstore.lo \
-	libscioutput_stream_la-msgout.lo \
-	libscioutput_stream_la-msgs.lo \
-	libscioutput_stream_la-msgstxt.lo \
-	libscioutput_stream_la-basout.lo \
-	libscioutput_stream_la-sciprint.lo \
-	libscioutput_stream_la-sciprint_full.lo \
-	libscioutput_stream_la-errmds.lo \
-	libscioutput_stream_la-errorTable.lo \
-	libscioutput_stream_la-error.lo \
-	libscioutput_stream_la-error_internal.lo \
-	libscioutput_stream_la-do_xxprintf.lo \
-	libscioutput_stream_la-set_xxprintf.lo \
-	libscioutput_stream_la-lasterror.lo
-am__objects_2 = libscioutput_stream_la-Diary.lo \
-	libscioutput_stream_la-DiaryList.lo \
-	libscioutput_stream_la-diary_manager.lo \
-	libscioutput_stream_la-getDiaryDate.lo \
-	libscioutput_stream_la-getFullFilename.lo
+libscioutput_stream_algo_la_LIBADD =
+am__objects_1 = libscioutput_stream_algo_la-erro.lo \
+	libscioutput_stream_algo_la-cerro.lo \
+	libscioutput_stream_algo_la-Scierror.lo \
+	libscioutput_stream_algo_la-msgstore.lo \
+	libscioutput_stream_algo_la-msgout.lo \
+	libscioutput_stream_algo_la-msgs.lo \
+	libscioutput_stream_algo_la-msgstxt.lo \
+	libscioutput_stream_algo_la-basout.lo \
+	libscioutput_stream_algo_la-sciprint.lo \
+	libscioutput_stream_algo_la-sciprint_full.lo \
+	libscioutput_stream_algo_la-errmds.lo \
+	libscioutput_stream_algo_la-errorTable.lo \
+	libscioutput_stream_algo_la-error.lo \
+	libscioutput_stream_algo_la-error_internal.lo \
+	libscioutput_stream_algo_la-do_xxprintf.lo \
+	libscioutput_stream_algo_la-set_xxprintf.lo \
+	libscioutput_stream_algo_la-lasterror.lo
+am__objects_2 = libscioutput_stream_algo_la-Diary.lo \
+	libscioutput_stream_algo_la-DiaryList.lo \
+	libscioutput_stream_algo_la-diary_manager.lo \
+	libscioutput_stream_algo_la-getDiaryDate.lo \
+	libscioutput_stream_algo_la-getFullFilename.lo
 am__objects_3 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
 	lspdsp.lo fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo \
 	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
@@ -704,20 +704,28 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Diary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-DiaryList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Scierror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-basout.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-cerro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-diary_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-do_xxprintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errmds.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errorTable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-erro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error_internal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getDiaryDate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getFullFilename.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-Diary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-Scierror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-basout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-cerro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errmds.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-erro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errorTable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error_internal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-lasterror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstore.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-gw_output_stream.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_diary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_disp.Plo@am__quote@
@@ -823,12 +831,12 @@ libscioutput_stream_algo_la-errmds.lo: src/c/errmds.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
 
-libscioutput_stream_la-errorTable.lo: src/c/errorTable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-errorTable.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-errorTable.Tpo -c -o libscioutput_stream_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-errorTable.Tpo $(DEPDIR)/libscioutput_stream_la-errorTable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errorTable.c' object='libscioutput_stream_la-errorTable.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-errorTable.lo: src/c/errorTable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-errorTable.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Tpo -c -o libscioutput_stream_algo_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Tpo $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errorTable.c' object='libscioutput_stream_algo_la-errorTable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
 
 libscioutput_stream_algo_la-error.lo: src/c/error.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-error.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-error.Tpo -c -o libscioutput_stream_algo_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c

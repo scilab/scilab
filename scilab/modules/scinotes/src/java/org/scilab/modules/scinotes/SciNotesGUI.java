@@ -31,6 +31,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -233,7 +234,7 @@ public final class SciNotesGUI {
 
         try {
             if (menuConf == null) {
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
                 docBuilder = factory.newDocumentBuilder();
                 xml = new File(MENU_CONF);
                 menuConf = docBuilder.parse(xml);
