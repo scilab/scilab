@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -28,6 +28,5 @@ function newobj = nmplot_new ()
   // Create and configure parent class
   //
   newobj.nmbase = neldermead_new();
-  newobj.nmbase = neldermead_configure ( newobj.nmbase , "-outputcommand" , nmplot_outputcmd );
 endfunction
 

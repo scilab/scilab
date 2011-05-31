@@ -1,0 +1,55 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s : Le type %s n''est pas géré : Veuillez définir la fonction %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s : Mauvais format d''export : %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s : Mauvais nombre d''argument(s) d''entrée : %d à %d attendus."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "% s: Mauvais nombre d''arguments d''entrée : De %d à %d attendu."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s : Mauvais type d''argument pour #%d: Booleen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s : Mauvaise valeur pour le paramètre d''entrée #%d : ''%s'', ''%s'', "
+"''%s'', ''%s'', ''%s'' ou ''%s'' attendue.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: Le système ne peut pas s''afficher dans cette page.\n"

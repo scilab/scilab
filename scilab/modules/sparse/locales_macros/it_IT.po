@@ -1,0 +1,225 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  Iterazione #%s/%s residuo : %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr "  Nuovo residuo = %s < tol =%s => interruzione\n"
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  Tipo di precondizionamento #1 : %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  Tipo di precondizionamento #2 : %d\n"
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: Errore di convergenza.\n"
+
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: Non è converso.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#
+# File: macros/sp2adj.sci, line: 23
+# File: macros/adj2sp.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"vettore colonna.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
+"stessa dim. dell''arg. in ingr. #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"scalare.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice quadrata.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: L''argomento in ingresso #%d è di tipo sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"colonna.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+"scalare.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"quadrata.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa la "
+"trasposta della funzione %s.\n"
+
+#
+# File: macros/adj2sp.sci, line: 63
+# File: macros/adj2sp.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 83
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 71
+# File: macros/adj2sp.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"vettore colonna.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
+"trasposta della funzione %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"vettore.\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "L''algoritmo fallisce\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "Passo dell''algoritmo\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "Argomenti:\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "Residuo finale = %s > tol = %s\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr "La norma della parte destra : %s\n"
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr "Elaborazione speciale quando la parte destra è zero.\n"

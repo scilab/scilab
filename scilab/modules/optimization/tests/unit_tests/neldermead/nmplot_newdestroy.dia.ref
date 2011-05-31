@@ -25,28 +25,28 @@ nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","axes");
 nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
-nm = nmplot_configure(nm,"-simplexfn",fullfile(TMPDIR,"rosenbrock.history.simplex.txt"));
-nm = nmplot_configure(nm,"-fbarfn",fullfile(TMPDIR,"rosenbrock.history.fbar.txt"));
-nm = nmplot_configure(nm,"-foptfn",fullfile(TMPDIR,"rosenbrock.history.fopt.txt"));
-nm = nmplot_configure(nm,"-sigmafn",fullfile(TMPDIR,"rosenbrock.history.sigma.txt"));
+nm = nmplot_configure(nm,"-simplexfn","simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn","fbar.txt");
+nm = nmplot_configure(nm,"-foptfn","fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn","sigma.txt");
 sfn = nmplot_cget ( nm , "-simplexfn" );
-assert_checkequal ( sfn , fullfile(TMPDIR,"rosenbrock.history.simplex.txt") );
+assert_checkequal ( sfn , "simplex.txt" );
 sfn = nmplot_cget ( nm , "-fbarfn" );
-assert_checkequal ( sfn , fullfile(TMPDIR,"rosenbrock.history.fbar.txt") );
+assert_checkequal ( sfn , "fbar.txt" );
 sfn = nmplot_cget ( nm , "-foptfn" );
-assert_checkequal ( sfn , fullfile(TMPDIR,"rosenbrock.history.fopt.txt") );
+assert_checkequal ( sfn , "fopt.txt" );
 sfn = nmplot_cget ( nm , "-sigmafn" );
-assert_checkequal ( sfn , fullfile(TMPDIR,"rosenbrock.history.sigma.txt") );
+assert_checkequal ( sfn , "sigma.txt" );
 // Check the display
 disp(nm);
  
 Nelder-Mead Plot Object:
 ======================
 
-Simplex data file : TMPDIR\rosenbrock.history.simplex.txt
-Fbar data file : TMPDIR\rosenbrock.history.fbar.txt
-Fopt data file : TMPDIR\rosenbrock.history.fopt.txt
-Sigma data file : TMPDIR\rosenbrock.history.sigma.txt
+Simplex data file : simplex.txt
+Fbar data file : fbar.txt
+Fopt data file : fopt.txt
+Sigma data file : sigma.txt
 
 Nelder-Mead Object:
 ======================
@@ -85,7 +85,7 @@ Expansion Factor (chi) : 2
 Contraction Factor (gamma) : 0.5
 Shrinkage Factor (sigma) : 0.5
 Kelley Stagnation : F
-Restart Epsilon : 2.220446e-016
+Restart Epsilon : 2.220D-16
 Restart Step : 1
 Restart Maximum : 3
 Restart Simplex Method : oriented
@@ -111,7 +111,7 @@ Number of Inequality Constraints :0
 Bounds Mininimum : []
 Bounds Maxinimum :[]
 Optimum Parameters : [0]
-Optimum Function Value :0.000000e+000
+Optimum Function Value :0
 Number of iterations : 0
 Maximum number of iterations : 10
 Number function evaluations : 0

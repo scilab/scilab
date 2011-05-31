@@ -24,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -182,7 +183,7 @@ public final class FileUtils {
 	 * @return opened document
 	 */
 	public static Document loadXcosDocument(String xcosFile) {
-		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+		DocumentBuilderFactory docBuilderFactory = ScilabDocumentBuilderFactory
 				.newInstance();
 		DocumentBuilder docBuilder;
 		

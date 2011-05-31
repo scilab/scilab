@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 17:16+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,10 +38,6 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Wert erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument '%d: reelle Matrix erwartet.\n"
 
@@ -65,18 +62,3 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: Bereichsüberschreitung oder Bereichsunterschreitung einer Zahl mit "
 "erweitertem Bereich\n"
-
-#, c-format
-msgid "Function %s is obsolete."
-msgstr "Funktion %s ist obsolet."
-
-#, c-format
-msgid "Please use %s instead."
-msgstr "Bitte benutzen Sie %s stattdessen."
-
-#, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "Diese Funktion wird dauerhaft in Scilab %s entfernt."
-
-msgid "Warning: "
-msgstr "Warnung: "

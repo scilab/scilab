@@ -1,0 +1,158 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" (lM,vM) aproximat amb el mètode de potència iterativa \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" (lm,vm) aproximat amb el mètode invers de potència iterativa \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               FEU CLIC PER A CONTINUAR                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr ""
+"           no s''ha assolit després de %d iteracions (només s''ha obtingut "
+"%e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           torneu a entrar el scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   després feu clic a Accepta   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " La pila és massa petita per a aquesta demostració "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Avís: per a convergència lM a rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Avís: per a convergència lm a rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " Entreu el següent a la línia de comandes del Scilab:          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " iteració %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " iteració %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s: El tipus i/o la mida i/o el valor del segon argument és invàlid.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: Aquesta matriu no té valors (només patrons diferents de zero) : poseu "
+"algun 1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: El fitxer conté un rhs però no es llegirà !"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: La matriu i els factors LU no tenen la mateixa dimensió.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: El nombre d''arguments d''entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a "
+"mínim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"dispersa quadrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu dispersa quadrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
+"matriu dispersa.\n"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s: actualment no es llegeix una matriu dispersa elemental."
+
+msgid "Choose a sparse matrix"
+msgstr "Escolliu una matriu dispersa"
+
+msgid "Click to choose a demo"
+msgstr "Feu clic per a escollir una demostració"
+
+msgid "display a speed comparison test"
+msgstr "mostra un test de comparació de velocitat"
+
+msgid "how to use this stuff"
+msgstr "Com s''utilitza"
+
+msgid "small tests for condestsp"
+msgstr "petits tests per a condestsp"

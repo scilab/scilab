@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -191,19 +191,6 @@ function this = neldermead_configure (this,key,value)
   case "-mymethod" then
     assert_typefunction ( value , "value" , 3 );
     this.mymethod = value
-  case "-myterminate" then
-    assert_typefunction ( value , "value" , 3 );
-    this.myterminate = value
-  case "-myterminateflag" then
-    assert_typeboolean ( value , "value" , 3 );
-    select value
-    case %f then
-      this.myterminateflag = value;
-    case %t then
-      this.myterminateflag = value;
-    else
-      unknownValueForOption ( value , "-myterminateflag" )
-    end
   case "-tolvarianceflag" then
     assert_typeboolean ( value , "value" , 3 )
     this.tolvarianceflag = value
@@ -216,6 +203,24 @@ function this = neldermead_configure (this,key,value)
   case "-greedy" then
     assert_typeboolean ( value , "value" , 3 )
     this.greedy = value
+//
+// Obsolete options.
+//
+  case "-myterminate" then
+    neldmead_warnoptobs ( "-myterminate" , "-outputcommand" , "5.4.1" )
+    assert_typefunction ( value , "value" , 3 );
+    this.myterminate = value
+  case "-myterminateflag" then
+    neldmead_warnoptobs ( "-myterminateflag" , "-outputcommand" , "5.4.1" )
+    assert_typeboolean ( value , "value" , 3 );
+    select value
+    case %f then
+      this.myterminateflag = value;
+    case %t then
+      this.myterminateflag = value;
+    else
+      unknownValueForOption ( value , "-myterminateflag" )
+    end
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
@@ -258,6 +263,14 @@ function unknownValueForOption ( value , optionname )
       errmsg = msprintf(gettext("%s: Unknown value %s for %s option"),"unknownValueForOption",value , optionname );
       error(errmsg);
 endfunction
+
+function neldmead_warnoptobs ( oldoption , newoption , removedVersion )
+    warnMessage = msprintf(_("Option %s is obsolete."),oldoption)
+    warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newoption)]
+    warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), removedVersion)]
+    warning(warnMessage);
+endfunction
+
 
 
 

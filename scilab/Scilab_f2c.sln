@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "modules\functions\scripts\buildmacros\BuildMacros.vcxproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
@@ -16,6 +16,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab\LibScilab_f2c.vcxproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E6552427-01DD-4C12-823C-09AD46F77FAD} = {E6552427-01DD-4C12-823C-09AD46F77FAD}
+		{142D643B-A9EC-49DB-9D48-A925A20F63B1} = {142D643B-A9EC-49DB-9D48-A925A20F63B1}
 		{53A01263-92BE-4C87-AA9A-79297F882310} = {53A01263-92BE-4C87-AA9A-79297F882310}
 	EndProjectSection
 EndProject

@@ -718,6 +718,14 @@
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/GOTOMO.h5"/>
                 <icon variable="SCI" path="/modules/xcos/images/palettes/GOTOMO.png"/>
             </block>
+            <block name="CLKFROM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKFROM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKFROM.png"/>
+            </block>
+            <block name="CLKGOTO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKGOTO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKGOTO.png"/>
+            </block>
             <block name="GotoTagVisibility">
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/GotoTagVisibility.h5"/>
                 <icon variable="SCI" path="/modules/xcos/images/palettes/GotoTagVisibility.png"/>

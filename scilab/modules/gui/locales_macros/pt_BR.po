@@ -1,0 +1,452 @@
+# translation of _gui-pt_BR.po to Brazilian Portuguese
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Rodolfo Ribeiro Gomes <rodolforg@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: _gui-pt_BR\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s:  #%d nós coincidentes.\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s:  #%d nós pais coincidentes.\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: Nó inválido.\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: Nó pai inválido.\n"
+
+#, c-format
+msgid "%s: Invalid position ''%s''.\n"
+msgstr "%s: Posição inválida ''%s''.\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: Nenhum nó coincidente.\n"
+
+#, c-format
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: O tipo %s não foi implementado.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: Argumentos de entrada incorretos: esperava-se %s ou %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: Argumentos de entrada incorretos: esperava-se %s, %s ou %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr "%s: Tamanho incorreto para %s: esperava-se um vetor linha de textos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador de ''Figura'' ou um número real.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: Tipo incorreto para %s: esperava-se uma lista.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: Tipo incorreto para %s: esperava-se um vetor linha de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: Tipo incorreto para %s: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr "%s: Tipo incorreto para a propriedade ''%s'': esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d ou #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador gráfico ou um número real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma lista.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma lista "
+"com dois itens.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d:  esperava-se um valor "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
+"uma árvore.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma árvore.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
+"uma árvore.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
+"''callback''.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: deve ser ''label'', "
+"''icon'' ou ''callback''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma árvore.\n"
+
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr ""
+"%s: Valor incorreto para a propriedade ''%s'': esperava-se %d, %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'' ou "
+"''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'' ou ''%s''.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: não é possível adicionar um menu em console neste modo: %s.\n"
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: não é possível adicionar um menu neste modo: %s.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: esta função não está disponível no modo NWNI.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editar"
+
+msgid "&File"
+msgstr "&Arquivo"
+
+msgid "&Tools"
+msgstr "Ferramen&tas"
+
+msgid "<Enter color name here>"
+msgstr "<Informe o nome da cor aqui>"
+
+msgid "About Scilab..."
+msgstr "Sobre o Scilab..."
+
+msgid "Acknowledgements"
+msgstr "Agradecimentos"
+
+msgid "Add color in listbox"
+msgstr "Adicionar cor à lista"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"A resposta fornecida para %s \n"
+" é de tipo incorreto %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"A resposta fornecida para %s \n"
+" tem uma dimensão inválida: \n"
+" esperava-se uma dimensão %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+"A resposta fornecida para %s \n"
+" é incorreta. Veja a mensagem de erro na janela do Scilab.\n"
+
+msgid "Application"
+msgstr "Aplicativo"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Autores:\n"
+"Scilab Consortium / INRIA / ENPC / Contribuidores\n"
+"\n"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Colors list edition"
+msgstr "Edição da lista de cores"
+
+msgid "Control Plot3d"
+msgstr "Controlar Plot3d"
+
+msgid "Display selection"
+msgstr "Exibir seleção"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Deseja mesmo sair do Scilab?"
+
+msgid "Error"
+msgstr "Erro"
+
+msgid "Exit figure"
+msgstr "Sair da figura"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "GUI"
+msgstr "Interface Gráfica do Usuário"
+
+msgid "Launch plot2d"
+msgstr "Lançar plot2d"
+
+msgid "Launch plot3d"
+msgstr "Lançar plot3d"
+
+msgid "Menu"
+msgstr "Menu"
+
+#, c-format
+msgid "Menu ''%s'' is %s."
+msgstr "O menu ''%s'' está %s."
+
+msgid "Menu status"
+msgstr "Estado do menu"
+
+msgid "No"
+msgstr "Não"
+
+msgid "No color selected."
+msgstr "Nenhuma cor está selecionada."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Please enter a color name first."
+msgstr "Informe um nome de cor primeiro."
+
+msgid "Popupmenu selection"
+msgstr "Seleção do menu popup"
+
+msgid "Quit Scilab"
+msgstr "Sair do Scilab"
+
+msgid "Quit demonstration"
+msgstr "Sair da demonstração"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"O Scilab 5.0 e versões futuras serão lançados sob os termos da licença "
+"CeCILL.\n"
+
+msgid "Scilab Contributors..."
+msgstr "Colaboradores do Scilab..."
+
+msgid "Scilab Graphics"
+msgstr "Gráficos do Scilab"
+
+msgid "Selected colors"
+msgstr "Cores selecionadas"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "As cores selecionadas são: %s."
+
+msgid "Selected menu"
+msgstr "Menu selecionado"
+
+msgid "Slider demo"
+msgstr "Demonstração do deslizador"
+
+msgid "Slider value: "
+msgstr "Valor do deslizador: "
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Alguns módulos do Scilab são lançados sob a licença GPLv2.\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "Submenu 1"
+
+msgid "Sub-menu 2"
+msgstr "Submenu 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Submenu 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Submenu 2-2"
+
+msgid "Uicontrols demo"
+msgstr "Demonstração de Uicontrols"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Demonstração dos Uicontrols com LaTeX"
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Versão %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "Sim"
+
+#, c-format
+msgid "You clicked on menu ''%s''."
+msgstr "Você clicou no menu ''%s''."
+
+#, c-format
+msgid "You selected ''%s''."
+msgstr "Você selecionou ''%s''."
+
+msgid "blue"
+msgstr "azul"
+
+msgid "checked"
+msgstr "marcado"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: encontrado um menu de cascata vazio."
+
+msgid "green"
+msgstr "verde"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "red"
+msgstr "vermelho"
+
+msgid "unchecked"
+msgstr "desmarcado"
+
+msgid "yellow"
+msgstr "amarelo"

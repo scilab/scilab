@@ -1,0 +1,310 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: команда: %s\n"
+
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: копіювання %s до TMPDIR\n"
+
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr "   %s: копіювання файлів збирання (Makefile*, libtool...) до TMPDIR\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: не скопійовано %s: каталоги джерела і призначення збігаються (%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: файл %s проігноровано.\n"
+
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: зміна Makefile у TMPDIR.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr ""
+"   %s: потрібно запустити інструмент визначення параметрів компілятора "
+"(configure).\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: заміна посилання самим файлом.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: використання попереднього визначення параметрів компілятора.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configure: створення Makefile.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   побудова спільної бібліотеки (зачекайте)\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   Команда: %s\n"
+
+msgid "   Compilation of "
+msgstr "   Збирання "
+
+msgid "   Generate a Makefile\n"
+msgstr "   Створення Makefile\n"
+
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Створення Makefile: %s\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   Створення файла чищення\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   Створення файла шлюзу\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   Створення файла завантаження\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   Вивід: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Виконання Makefile\n"
+
+msgid "   Running the makefile\n"
+msgstr "   Виконання makefile\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   stderr: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 84
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: потрібен компілятор Fortran або C.\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: під час спроби збирання сталася помилка:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: під час визначення компіляторів сталася помилка. Щоб дізнатися більше, "
+"встановіть рівень докладності ilib_verbose(2).\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: команда збирання: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 184
+#, c-format
+msgid "%s: Could not find the built library ''%s''.\n"
+msgstr ""
+
+#
+# File: macros/ilib_compile.sci, line: 84
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: помилка під час спроби змінити еталонний Makefile:\n"
+
+#
+# File: macros/ilib_include_flag.sci, line: 21
+#, c-format
+msgid "%s: Failed to add include path : %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: цією можливість не можна скористатися у Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: команда:\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: цю можливість було реалізовано для Windows.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+"%s: щоб скористатися цією можливістю, вам слід встановити компілятор C "
+"Microsoft visual studio.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: попередження: інструментами збирання не було повернуто коду помилки, але "
+"буфер помилок не є порожнім:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: попередження: Scilab не вдалося виявити місце зберігання вихідних кодів "
+"Scilab. Будь ласка, повідомте про це на сторінці http://bugzilla.scilab."
+"org/\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"< 999 рядків.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#
+# File: macros/ilib_build.sci, line: 60
+# File: macros/ilib_mex_build.sci, line: 26
+# File: macros/ilib_for_link.sci, line: 32
+#, c-format
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
+
+#
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
+# File: macros/ilib_gen_Make_unix.sci, line: 153
+# File: macros/ilib_gen_Make_unix.sci, line: 169
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+
+msgid "A Fortran or C compiler is required."
+msgstr "Потрібен компілятор Fortran або C."
+
+#
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 44
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
+msgstr ""
+
+msgid "Dynamic link"
+msgstr "Динамічне з’єднання"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C не може збирати файли fortran 90"
+
+#
+# File: macros/detectmsifort64tools.sci, line: 34
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "Вивід: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 90
+msgid "You need to unload this library before."
+msgstr ""
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "stderr: %s\n"

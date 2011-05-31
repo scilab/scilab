@@ -170,11 +170,15 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
       <member>Serge Steer</member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>History</title>
-    <simplelist type="vert">
-      <member>First version April 2011, for Scilab-5.3.2</member>
-    </simplelist>
-  </refsection>
 
+ <revhistory>
+  <revision>
+   <revnumber>5.3.2</revnumber>
+   <revremark>Function comet introduced.</revremark>
+  </revision>
+ </revhistory>
+  </refsection>
 </refentry>

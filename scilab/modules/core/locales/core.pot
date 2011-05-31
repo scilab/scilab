@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 11:48+0100\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
 
 # File: src/c/signal_mgmt.c, line: 75
 #, c-format
@@ -23,17 +23,13 @@ msgid ""
 "Call stack:\n"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 69
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 238
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
-msgstr ""
-#
-# File: macros/whos.sci, line: 53
-msgid " by "
 msgstr ""
 #
 # File: includes/stack-c.h, line: 280
@@ -67,26 +63,6 @@ msgstr ""
 msgid "%s argument and argument %d"
 msgstr ""
 #
-# File: macros/whereami.sci, line: 20
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr ""
-#
-# File: macros/whereami.sci, line: 23
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr ""
-#
-# File: macros/whereami.sci, line: 29
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr ""
-#
-# File: macros/whereami.sci, line: 26
-#, c-format
-msgid "%s called under %s"
-msgstr ""
-#
 # File: src/c/getmodules.c, line: 229
 #, c-format
 msgid "%s module not found.\n"
@@ -115,11 +91,6 @@ msgstr ""
 # File: src/c/stack2.c, line: 3085
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
-msgstr ""
-#
-# File: macros/edit.sci, line: 46
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 2107
@@ -169,8 +140,7 @@ msgstr ""
 # File: src/c/stack2.c, line: 1665
 # File: src/c/stack2.c, line: 3148
 #, c-format
-msgid ""
-"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
+msgid "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 124
@@ -185,11 +155,6 @@ msgstr ""
 # File: sci_gateway/c/sci_gstacksize.c, line: 271
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
-msgstr ""
-#
-# File: macros/check_versions.sci, line: 31
-#, c-format
-msgid "%s: File doesn''t exist: %s"
 msgstr ""
 #
 # File: sci_gateway/c/sci_readgateway.c, line: 114
@@ -282,11 +247,6 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 40
-#, c-format
-msgid "%s: No perl command specified."
-msgstr ""
-#
 # File: src/c/intmacr2tree.c, line: 830
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -315,11 +275,6 @@ msgstr ""
 msgid "%s: Out of code.\n"
 msgstr ""
 #
-# File: macros/check_versions.sci, line: 28
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr ""
-#
 # File: src/c/stack2.c, line: 1971
 # File: src/c/stack2.c, line: 1990
 # File: src/c/stack2.c, line: 2228
@@ -328,17 +283,6 @@ msgstr ""
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 17
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr ""
-#
-# File: macros/perl.sci, line: 67
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr ""
-#
-# File: macros/add_demo.sci, line: 21
 # File: sci_gateway/c/sci_getmd5.c, line: 67
 # File: sci_gateway/c/sci_getmd5.c, line: 87
 #, c-format
@@ -371,21 +315,6 @@ msgstr ""
 # File: src/c/stack2.c, line: 2232
 #, c-format
 msgid "%s: Too many names.\n"
-msgstr ""
-#
-# File: macros/perl.sci, line: 20
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr ""
-#
-# File: macros/perl.sci, line: 46
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr ""
-#
-# File: macros/perl.sci, line: 62
-#, c-format
-msgid "%s: Unable to find Perl.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_typename.c, line: 168
@@ -430,11 +359,6 @@ msgstr ""
 msgid "%s: Wrong fromwhat value %s.\n"
 msgstr ""
 #
-# File: macros/add_demo.sci, line: 25
-#, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_getversion.c, line: 185
 # File: sci_gateway/c/sci_getversion.c, line: 298
 #, c-format
@@ -451,25 +375,14 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 23
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_where.c, line: 23
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr ""
 #
-# File: macros/whos.sci, line: 84
 # File: sci_gateway/c/sci_typename.c, line: 38
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-#
-# File: macros/perl.sci, line: 71
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 107
@@ -574,47 +487,37 @@ msgstr ""
 #
 # File: src/c/stack1.c, line: 627
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 2541
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 458
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 3183
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
-"expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Matrix of handle expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 1193
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
-"expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Matrix of strings expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 174
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
-"expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Real or complex matrix expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 2382
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 1043
@@ -624,14 +527,12 @@ msgstr ""
 #
 # File: src/c/stack1.c, line: 821
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 1216
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+msgid "%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 948
@@ -661,9 +562,7 @@ msgstr ""
 #
 # File: src/c/stack1.c, line: 2949
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
-"expected.\n"
+msgid "%s: Wrong type for argument %d: Function or string (external function) expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 1970
@@ -807,11 +706,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_stacksize.c, line: 166
 # File: sci_gateway/c/sci_stacksize.c, line: 171
 # File: sci_gateway/c/sci_gstacksize.c, line: 173
@@ -820,7 +714,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 #
-# File: macros/edit.sci, line: 27
 # File: sci_gateway/c/sci_warning.c, line: 100
 # File: sci_gateway/c/sci_readgateway.c, line: 124
 # File: sci_gateway/c/sci_funptr.c, line: 49
@@ -830,11 +723,6 @@ msgstr ""
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: macros/perl.sci, line: 25
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_error.c, line: 239
@@ -897,25 +785,17 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 186
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
-"argument #%d must be '%s'.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input argument #%d must be '%s'.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 107
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 116
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-#
-# File: macros/whos.sci, line: 90
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_format.c, line: 214
@@ -947,11 +827,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 #
-# File: macros/typeof.sci, line: 12
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_newfun.c, line: 168
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -960,8 +835,7 @@ msgstr ""
 # File: sci_gateway/c/sci_format.c, line: 226
 # File: sci_gateway/c/sci_format.c, line: 311
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgid "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_error.c, line: 81
@@ -969,8 +843,7 @@ msgstr ""
 # File: sci_gateway/c/sci_error.c, line: 179
 # File: sci_gateway/c/sci_error.c, line: 220
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgid "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_format.c, line: 134
@@ -988,8 +861,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_format.c, line: 166
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
+msgid "%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 1584
@@ -1054,8 +926,7 @@ msgstr ""
 #
 # File: src/c/stack2.c, line: 1779
 #, c-format
-msgid ""
-"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
+msgid "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 2943
@@ -1105,38 +976,35 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 181
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 181
 msgid "&?"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 168
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 170
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 173
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 176
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 179
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 168
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 173
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 176
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 179
 msgid "&Applications"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 167
 msgid "&Control"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 165
 msgid "&Edit"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 164
 msgid "&File"
 msgstr ""
 #
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 166
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 166
 msgid "&Preferences"
 msgstr ""
 #
-# File: macros/toolboxes.sci, line: 43
-# File: macros/toolboxes.sci, line: 44
-# File: macros/toolboxes.sci, line: 48
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 182
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 182
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -1148,10 +1016,6 @@ msgstr ""
 msgid "Aborting current computation\n"
 msgstr ""
 #
-# File: macros/whos.sci, line: 98
-msgid "Bytes"
-msgstr ""
-#
 # File: src/c/tmpdir.c, line: 56
 msgid "Cannot find Windows temporary directory (1)."
 msgstr ""
@@ -1159,11 +1023,6 @@ msgstr ""
 # File: src/c/getmodules.c, line: 101
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
-#
-# File: macros/check_versions.sci, line: 18
-#, c-format
-msgid "Checking: %s\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_what.c, line: 99
@@ -1198,12 +1057,16 @@ msgstr ""
 msgid "Error returning tlist, memory full.\n"
 msgstr ""
 #
+# File: includes/stack-c.h, line: 195
+msgid "Error(x) is deprecated and will be removed in Scilab 5.4. Please consider SciError(x).\n"
+msgstr ""
+#
 # File: src/c/tmpdir.c, line: 139
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 86
+# File: src/c/loadversion.c, line: 84
 #, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr ""
@@ -1230,22 +1093,17 @@ msgstr ""
 #
 # File: src/c/readGateway.c, line: 222
 #, c-format
-msgid ""
-"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
+msgid "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
 #
 # File: src/c/readGateway.c, line: 213
 #, c-format
-msgid ""
-"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
-"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgid "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
 #
 # File: src/c/getmodules.c, line: 245
 #, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
+msgid "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
 #
 # File: src/c/callFunctionFromGateway.c, line: 26
@@ -1253,18 +1111,14 @@ msgstr ""
 msgid "Error: Not a valid primitive ID %d.\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 151
+# File: src/c/loadversion.c, line: 149
 #, c-format
-msgid ""
-"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
+msgid "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 142
+# File: src/c/loadversion.c, line: 140
 #, c-format
-msgid ""
-"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgid "Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
 #
 # File: src/c/readGateway.c, line: 106
@@ -1309,10 +1163,6 @@ msgstr ""
 msgid "Internal Functions:\n"
 msgstr ""
 #
-# File: etc/core.start, line: 20
-msgid "Introduction"
-msgstr ""
-#
 # File: src/c/stack2.c, line: 2429
 # File: src/c/stack2.c, line: 2433
 # File: src/c/stack2.c, line: 2437
@@ -1335,10 +1185,6 @@ msgstr ""
 # File: src/c/returnPropertyList.c, line: 101
 # File: src/c/returnPropertyList.c, line: 118
 msgid "List full.\n"
-msgstr ""
-#
-# File: macros/whos.sci, line: 95
-msgid "Name"
 msgstr ""
 #
 # File: src/c/scimem.c, line: 55
@@ -1396,11 +1242,7 @@ msgid ""
 "%s\n"
 msgstr ""
 #
-# File: macros/whos.sci, line: 97
-msgid "Size"
-msgstr ""
-#
-# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 68
+# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 68
 msgid "Startup execution:"
 msgstr ""
 #
@@ -1412,10 +1254,6 @@ msgstr ""
 # File: src/c/getmodules.c, line: 84
 # File: src/c/getmodules.c, line: 119
 msgid "The SCI environment variable is not set.\n"
-msgstr ""
-#
-# File: macros/whos.sci, line: 96
-msgid "Type"
 msgstr ""
 #
 # File: src/c/stack3.c, line: 89
@@ -1446,15 +1284,6 @@ msgstr ""
 # File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - seq.\n"
-msgstr ""
-#
-# File: macros/who_user.sci, line: 45
-msgid "User variables are:"
-msgstr ""
-#
-# File: macros/who_user.sci, line: 49
-#, c-format
-msgid "Using %s elements ouf of %s"
 msgstr ""
 #
 # File: sci_gateway/c/sci_warning.c, line: 78

@@ -1,0 +1,297 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-08-18 19:38+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr ""
+"%s: Функция Scilab %s не работает для переменных с более чем одной строкой.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s не реализован(а).\n"
+
+#, c-format
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: «%s» проигнорирован.\n"
+
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: «%s» не реализовано.\n"
+
+#, c-format
+msgid "%s: ''%s'' only used in 3d mode."
+msgstr "%s: «%s» используется только в режиме 3d."
+
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: параметр «%s» проигнорирован.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: Все окна удалены.\n"
+
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: Не удалось открыть файл ''%s''.\n"
+
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: Не удалось открыть ни «%s», ни «%s», ни «%s».\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr "%s: Достигнут конец файла до того, как вся матрица была прочитана.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: Конец строки был достигнут раньше, чем данные были прочитаны.\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr "%s: Нет эквивалента для свойства «%s».\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: В Scilab нет второстепенной сетки.\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Пока не реализовано.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: Формат «%s» пока не поддерживается.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: Формат «%s» неизвестен.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: Фактор нормирования m - 1 равен нулю.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: Фактор нормирования n - 1 равен нулю.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Эта функциональность не реализована.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Следующая функциональность не реализована: %s.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: Следующая функционалность не реализована: аргумент типа %d.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr ""
+"%s: Следующая функциональность не реализована: поддержка гиперматриц.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: Этот частный случай не реализован.\n"
+
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: Неподдерживаемый класс «%s».\n"
+
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s: В «%s» найден неизвестный цвет -> выбран чёрный.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr "%s: В «%s» найден неизвестный стиль линии -> установлен 6.\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: Неизвестный тип «%s»: ПРОИГНОРИРОВАН.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: Неизвестный тип.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s: Неверный входной параметр №%d: несовместимый размер.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: Неверные входные параметра: заданные первым параметром размерности не "
+"соответствуют содержимому ячеек.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s: Неверный размер «%s»: ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался вектор строк Matlab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица строк, "
+"вещественных или целых чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор-столбец.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: Неверный тип входного параметра: элементы ячеек должны быть массивами "
+"символов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидалась ячейка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr "%s: Неверное значение для воздействия на «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось %s, %s, %s, «%s», "
+"«%s» или «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось %s, %s, «%s» или "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое положительное "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: пучок не может быть диаганолизирован.\n"
+
+msgid "Apr"
+msgstr "Апр"
+
+msgid "Aug"
+msgstr "Авг"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Dec"
+msgstr "Дек"
+
+msgid "Feb"
+msgstr "Фев"
+
+msgid "Jan"
+msgstr "Янв"
+
+msgid "Jul"
+msgstr "Июл"
+
+msgid "Jun"
+msgstr "Июн"
+
+msgid "Mar"
+msgstr "Мар"
+
+msgid "May"
+msgstr "Май"
+
+msgid "Nov"
+msgstr "Ноя"
+
+msgid "Oct"
+msgstr "Окт"
+
+msgid "Sep"
+msgstr "Сен"

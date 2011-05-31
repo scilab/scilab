@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,7 +45,8 @@ msgstr "%s: 未知または未実装の型です.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
-msgstr "%s: 最初の入力引数が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
@@ -186,9 +188,6 @@ msgstr "PVMは存在します"
 msgid "PVM not found"
 msgstr "PVMが見つかりません"
 
-msgid "PVM parallel Toolbox"
-msgstr "PVM  パラレル ツールボックス"
-
 #
 # File: src/c/pvm_proc_ctrl.c, line: 226
 msgid "Pvmd system error"
@@ -233,7 +232,9 @@ msgstr ""
 msgid ""
 "The standard configuration file $SCI%s%s needs the environment variables %s, "
 "%s, %s to be set. PVM can not be started.\n"
-msgstr "標準構成ファイル $SCI%s%s は、環境変数 %s、%s、%s のセットを必要とします。PVMは開始できません。\n"
+msgstr ""
+"標準構成ファイル $SCI%s%s は、環境変数 %s、%s、%s のセットを必要とします。PVM"
+"は開始できません。\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 200

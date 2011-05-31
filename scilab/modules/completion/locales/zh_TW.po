@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,6 +33,12 @@ msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 msgid "%s: Wrong size for input argument %d.\n"
 msgstr "%s: 輸入參數 %d 的資料長度錯誤.\n"
 
+#
+# File: tests/utilities/sci_getfields.c, line: 52
+#, c-format
+msgid "%s: Wrong size for input argument: A string expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是字串.\n"
@@ -49,6 +56,11 @@ msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr "%s: 輸入參數數值錯誤: 應為'%s', '%s', '%s', '%s', '%s 或 '%s' .\n"
+
+#
+# File: src/java/org/scilab/modules/completion/AbstractSciCompletionWindow.java, line: 262
+msgid "File or Directory"
+msgstr ""
 
 msgid "Scilab completion module not installed.\n"
 msgstr "未安裝　Scilab completion 模組.\n"

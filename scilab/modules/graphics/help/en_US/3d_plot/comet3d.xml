@@ -169,11 +169,14 @@ clf();comet3d(cos(t),sin(t),traj)
     </simplelist>
   </refsection>
 
- <refsection>
-   <title>History</title>
-   <simplelist type="vert">
-     <member>First version April 2011, for Scilab-5.3.2</member>
-   </simplelist>
- </refsection>
+  <refsection>
+    <title>History</title>
 
+ <revhistory>
+  <revision>
+   <revnumber>5.3.2</revnumber>
+   <revremark>Function comet3d introduced.</revremark>
+  </revision>
+ </revhistory>
+</refsection>
 </refentry>

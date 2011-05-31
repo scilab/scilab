@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -166,16 +167,16 @@ msgstr "Ошибка: не удалось сделать грамматичес�
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 "Если вы используете бинарную версию Scilab, просьба сообщить об ошибке на "
 "http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 "Если вы используете самостоятельно собранную версию Scilab, обновите "
 "сценарий bin/scilab для указания пути к JVM.\n"
@@ -191,6 +192,20 @@ msgstr "JNI: недостаточно памяти"
 
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
+
+#
+# File: src/c/JVM.c, line: 207
+#, c-format
+msgid "Options:\n"
+msgstr ""
+
+#
+# File: src/c/JVM.c, line: 125
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Модуль Java не установлен.\n"

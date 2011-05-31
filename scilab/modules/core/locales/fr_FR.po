@@ -7,24 +7,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Eliovir <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Consortium Scilab (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+# File: src/c/signal_mgmt.c, line: 75
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
 
 #
 # File: etc/scilab.start, line: 40
@@ -34,9 +33,6 @@ msgstr "  Chargement de l'environnement de travail"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " et %10d variables parmi %10d.\n"
-
-msgid " by "
-msgstr " par "
 
 #
 # File: includes/stack-c.h, line: 305
@@ -68,24 +64,6 @@ msgid "%s argument and argument %d"
 msgstr "Le paramètre %s et le paramètre %d"
 
 #, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s appelé à la ligne %s de %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s appelé à la ligne %s de l'instruction %s."
-
-#
-# File: macros/whereami.sci, line: 21
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s appellé à la ligne %s de la macro %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s appelé sous %s"
-
-#, c-format
 msgid "%s module not found.\n"
 msgstr "module %s introuvable.\n"
 
@@ -108,10 +86,6 @@ msgstr "%s : %s ont des dimensions incompatibles (%dx%d) # (%dx%d)\n"
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s : %s ont des dimensions incompatibles.\n"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s : %s est une fonction non éditable.\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -145,10 +119,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: Ne peut allouer de la mémoire.\n"
 
 #, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s : Le fichier n''existe pas : %s"
-
-#, c-format
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr "%s : Impossible de lire la gateway %s.\n"
 
@@ -167,10 +137,6 @@ msgstr "%s : Erreur d'allocation de mémoire.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s : Commande perl non fournie."
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -195,20 +161,8 @@ msgid "%s: Out of code.\n"
 msgstr "%s : Plus de code.\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s : Merci de vérifier : %s.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s : Problèmes de récursion. Désolé ...\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Nécessite l'éditeur Scilab.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s : Erreur système : Commande exécutée : %s."
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -217,18 +171,6 @@ msgstr "%s : Le fichier %s n'existe pas.\n"
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s : Trop de noms.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s : Impossible de trouver le fichier Perl : %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s : Impossible de trouver Perl dans ''%s''"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s : Impossible de trouver Perl.\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
@@ -263,13 +205,6 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s : Mauvaise valeur fromwhat %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s : Mauvais argument d'entrée n°%d : Un chemin vers un script Scilab "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s : Mauvais nom de module %s.\n"
 
@@ -282,22 +217,12 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s : Mauvais nombre d'arguments d'entrée : %d ou %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s : Nombre d'arguments d'entrée incorrect : %d au moins sont attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -489,8 +414,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument %d : Matrice polynomiale attendue.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Matrice polynomiale attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -559,8 +483,7 @@ msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire ou une chaîne "
 "de caractères attendu.\n"
@@ -578,11 +501,16 @@ msgstr ""
 "est attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un chaîne de caractères ou "
 "un scalaire attendu.\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
@@ -598,10 +526,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée %d : Chaîne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -625,8 +549,7 @@ msgstr "%s : Mauvais type pour les arguments d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : un entier attendu.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -678,12 +601,6 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : ''%s'' ou ''%s'' "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : '0' ou '1' attendu.\n"
@@ -695,19 +612,18 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un entier attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Une variable définie "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -842,8 +758,10 @@ msgstr "Boites à ou&tils"
 msgid "A non square matrix!\n"
 msgstr "Une matrice non carrée !\n"
 
-msgid "Bytes"
-msgstr "Octets"
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Ne trouve pas le répertoire temporaire de Windows (1)."
@@ -852,17 +770,27 @@ msgstr "Ne trouve pas le répertoire temporaire de Windows (1)."
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "Impossible de charger le fichier de déclaration de module : %s.\n"
 
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Vérification : %s\n"
-
 msgid "Commands:\n"
 msgstr "Commandes :\n"
 
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
 #
-# File: src/c/callinterf.c, line: 85
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Voulez-vous vraiment arrêter le calcul (y ou n ?) \n"
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
+# File: src/c/signal_mgmt.c, line: 117
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
 
 #
 # File: src/c/tmpdir.c, line: 52
@@ -873,6 +801,13 @@ msgstr "Erreur"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Erreur en retournant un tlist, mémoire pleine.\n"
+
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -979,9 +914,6 @@ msgstr "Impossible de charger la bibliothèque %s : %s\n"
 msgid "Internal Functions:\n"
 msgstr "Fonctions internes :\n"
 
-msgid "Introduction"
-msgstr "Introduction"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "Matrices %c,%c invalides.\n"
@@ -995,9 +927,6 @@ msgstr "Domaine de temps invalide.\n"
 msgid "List full.\n"
 msgstr "Liste pleine.\n"
 
-msgid "Name"
-msgstr "Nom"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Pas assez de mémoire pour allouer le coeur (stack) de Scilab.\n"
 
@@ -1007,6 +936,17 @@ msgstr "La liste d'arguments optionnels est vide.\n"
 msgid "Optional arguments list: \n"
 msgstr "Liste d'arguments optionnels : \n"
 
+#
+# File: src/c/signal_mgmt.c, line: 479
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+
 msgid "SCI environment variable not defined.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
 
@@ -1014,9 +954,6 @@ msgstr "La variable d'environnement SCI n'est pas définie.\n"
 # File: src/c/inisci-c.c, line: 152
 msgid "SCIHOME not defined.\n"
 msgstr "Variable SCIHOME non définie.\n"
-
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP : Arrêt du calcul en cours\n"
 
 msgid "Scilab Console"
 msgstr "Console Scilab"
@@ -1038,9 +975,6 @@ msgstr ""
 "Scilab version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-msgid "Size"
-msgstr "Taille"
-
 msgid "Startup execution:"
 msgstr "Initialisation :"
 
@@ -1051,12 +985,6 @@ msgstr "Variable TMPDIR non définie.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
-
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Tentative d'arrêt de Scilab au milieu d'une interface.\n"
-
-msgid "Type"
-msgstr "Type"
 
 #
 # File: src/c/stack3.c, line: 74
@@ -1086,15 +1014,6 @@ msgstr "Retire %s de la queue - Pas d'option.\n"
 msgid "Unqueuing %s - seq.\n"
 msgstr "Retire %s de la queue - seq.\n"
 
-#
-# File: sci_gateway/c/sci_who.c, line: 303
-msgid "User variables are:"
-msgstr "Vos variables sont :"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "Utilise %s éléments sur %s"
-
 #, c-format
 msgid "WARNING: %s"
 msgstr "ATTENTION : %s"
@@ -1110,17 +1029,15 @@ msgstr "AVERTISSEMENT : %s\n"
 msgid "Warning"
 msgstr "Attention"
 
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Attention : Problèmes avec %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Attention : l'équipe opérationnelle du Consortium Scilab\n"
-"ne fournit et ne supporte pas la version Scilab compilée avec des\n"
-"anciennes versions des compilateurs Microsoft.\n"
 
 msgid "Your global variables are:"
 msgstr "Vos variables globales sont :"
@@ -1207,170 +1124,3 @@ msgstr "troisième"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist partiellement remplie.\n"
-
-#
-# File: macros/toolboxes.sci, line: 42
-#~ msgid " is already compiled.\n"
-#~ msgstr " est déjà compilé.\n"
-
-#
-# File: macros/powershell.sci, line: 7
-#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
-#~ msgstr ""
-#~ "Erreur(s) : voir help powershell'';''vérifiez votre script sans Scilab."
-
-#
-# File: src/c/scicurdir.c, line: 49
-#~ msgid "Can't get current directory.\n"
-#~ msgstr "Impossible d'obtenir le répertoire courant.\n"
-
-#, c-format
-#~ msgid "%s: Invalid '%s' value.\n"
-#~ msgstr "%s : Valeur '%s' incorrecte.\n"
-
-#, c-format
-#~ msgid "Compilation date: %s"
-#~ msgstr "Date de compilation : %s"
-
-#, c-format
-#~ msgid "Version: %s"
-#~ msgstr "Version : %s"
-
-#, c-format
-#~ msgid "XML version: %s"
-#~ msgstr "Version de la bibliothèque XML : %s"
-
-#, c-format
-#~ msgid "Directory separator: %s"
-#~ msgstr "Séparateur de répertoire : %s"
-
-#, c-format
-#~ msgid "Compiler Architecture: %s"
-#~ msgstr "Architecture de compilation : %s"
-
-#, c-format
-#~ msgid "Compiled with %s"
-#~ msgstr "Compilé avec %s"
-
-#, c-format
-#~ msgid "Tcl/Tk: %s"
-#~ msgstr "Tcl/Tk : %s"
-
-#~ msgid "Enable"
-#~ msgstr "Activé"
-
-#, c-format
-#~ msgid "TCL version: %s"
-#~ msgstr "Version de Tcl : %s"
-
-#, c-format
-#~ msgid "TK version: %s"
-#~ msgstr "Version de Tk : %s"
-
-#, c-format
-#~ msgid "Path separator: %s"
-#~ msgstr "Séparateur de path : %s"
-
-#, c-format
-#~ msgid "Compilation time: %s"
-#~ msgstr "Heure de compilation : %s"
-
-#, c-format
-#~ msgid "PCRE Version: %d.%d"
-#~ msgstr "Version de PCRE : %d.%d"
-
-#, c-format
-#~ msgid "Video card: %s"
-#~ msgstr "Carte graphique : %s"
-
-#~ msgid "Operating System: "
-#~ msgstr "Système d'exploitation : "
-
-#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-#~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Cannot alloc more memory.\n"
-#~ "Try gstacksize('max').\n"
-#~ msgstr ""
-#~ "%s : Impossible d'allouer plus de mémoire.\n"
-#~ "Essayez gstacksize('max').\n"
-
-#, c-format
-#~ msgid "%s: Wrong file VERSION %s.\n"
-#~ msgstr "%s : Mauvais fichier VERSION %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong file VERSION in %s.\n"
-#~ msgstr "%s : Mauvais fichier VERSION dans %s.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s : Mauvais type pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
-#~ "attendu.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s : Mauvais type pour l'argument n°%d : Scalaire, '%s' ou '%s' attendu.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Cannot allocate more memory.\n"
-#~ "Try stacksize('max').\n"
-#~ msgstr ""
-#~ "%s : Ne peux pas allouer plus de mémoire.\n"
-#~ "Essayez stacksize('max').\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Scalaire, '%s' ou '%s' "
-#~ "attendu.\n"
-
-#~ msgid "Free Physical Memory (Kbytes): %*I64d"
-#~ msgstr "Mémoire physique libre (Kbytes) : %*I64d"
-
-#~ msgid "Total Physical Memory (Kbytes): %*I64d"
-#~ msgstr "Mémoire physique totale (Kbytes) : %*I64d"
-
-#, c-format
-#~ msgid "Screen size: %d x %d %d bits"
-#~ msgstr "Taille de l'écran : %d x %d %d bits"
-
-#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
-#~ msgstr "Mémoire virtuelle disponible (Kbytes) : %*I64d"
-
-#~ msgid "Free Extended Memory (Kbytes): %*I64d"
-#~ msgstr "Mémoire étendue disponible (Kbytes) : %*I64d"
-
-#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
-#~ msgstr "Mémoire virtuelle totale (Kbytes) : %*I64d"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-#~ msgstr ""
-#~ "%s : Mauvais type pour l'argument d'entrée n°%d : Variable nommée attendue.\n"
-
-#, c-format
-#~ msgid ""
-#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
-#~ msgstr ""
-#~ "Erreur : Fichier version %s invalide (devrait commencer par <MODULE_VERSION> "
-#~ "et contenir <VERSION major='' minor='' maintenance='' revision='' "
-#~ "string=''>)\n"
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#~ msgid "Total Paging File (Kbytes): %*I64d"
-#~ msgstr "Taille fichiers paginés totale : %*I64d"
-
-#~ msgid "Free Paging File (Kbytes): %*I64d"
-#~ msgstr "Taille fichiers paginés disponible : %*I64d"

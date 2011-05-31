@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 
 import java.io.File;
 import java.io.IOException;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
@@ -32,13 +33,12 @@ public class FileExporter {
 
     /** The id used on classpath.xml to load vectorial export JARs */
     private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
+    private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
 
     /**
      * Default constructor
      */
-
-    protected FileExporter() {
-    }
+    protected FileExporter() { }
 
     /**
      * Export a figure into a file
@@ -61,33 +61,15 @@ public class FileExporter {
             return ExportRenderer.errors.get(ExportRenderer.IOEXCEPTION_ERROR);
         }
 
+        if (fileType == ExportRenderer.SVG_EXPORT) {
+            ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
+        }
+
         //When the graphic-export is too long, we inform the user that the figure is exporting
         String oldInfoMessage = exportedFig.getInfoMessage();
         exportedFig.setInfoMessage(exportingMessage);
         if (fileType == ExportRenderer.PDF_EXPORT || fileType == ExportRenderer.EPS_EXPORT || fileType == ExportRenderer.PS_EXPORT ) {
-
-            /* Under !Windows, make sure that the library for ps export
-             * are already loaded
-             * Note that this code is an ugly workaround to avoid the explicit call
-             * to:
-             * LoadClassPath.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-             * which creates a cyclic dependencies on:
-             *  graphic_export => jvm => gui => graphic_export
-             * This code will retrieve on the fly the object and call the method
-             */
-            try {
-                Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
-                Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
-                loadOnUseMethod.invoke(null, CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
-            } catch (java.lang.ClassNotFoundException ex) {
-                System.err.println("Could not find the Scilab class to load the export dependencies: " + ex);
-            } catch (java.lang.NoSuchMethodException ex) {
-                System.err.println("Could not find the Scilab method to load the export dependencies: " + ex);
-            } catch (java.lang.IllegalAccessException ex) {
-                System.err.println("Could not access to the Scilab method to load the export dependencies: " + ex);
-            } catch (java.lang.reflect.InvocationTargetException ex) {
-                System.err.println("Could not invoke the Scilab method to load the export dependencies: " + ex);
-            }
+            ScilabCommonsUtils.loadOnUse(CLASSPATH_PDF_PS_EPS_EXPORT_NAME);
 
             String ext = "";
 

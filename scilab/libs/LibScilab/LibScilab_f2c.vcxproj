@@ -502,6 +502,9 @@
       <Project>{05d8f60b-332a-4161-b946-b8ab30ed439c}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\ui_data\src\c\ui_data.vcxproj">
+      <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

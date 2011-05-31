@@ -1,0 +1,1224 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr ""
+
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#, c-format
+msgid "%s: Ambiguous property name %s matches several fields : %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot check cost function when x0 is empty"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,1)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,2)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,3)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,4)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,5)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 134
+#, c-format
+msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
+msgstr ""
+
+#, c-format
+msgid "%s: Empty function (use -function option)."
+msgstr ""
+
+#, c-format
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgstr ""
+
+#, c-format
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected real variable for variable %s at input #%d, but got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected string variable for variable %s at input #%d, but got %s "
+"instead."
+msgstr ""
+
+#
+# File: macros/derivative.sci, line: 125
+#, c-format
+msgid ""
+"%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: History disabled ; enable -storehistory option."
+msgstr ""
+
+#, c-format
+msgid "%s: History disabled ; turn on -storehistory option."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess [%s] is not feasible."
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s：初始猜测不可行。\n"
+
+#, c-format
+msgid "%s: Log file handle non zero while starting up the logging."
+msgstr ""
+
+#, c-format
+msgid "%s: Logging already started."
+msgstr ""
+
+#, c-format
+msgid "%s: Logging not started."
+msgstr ""
+
+#, c-format
+msgid "%s: Negative iteration index %d is not allowed."
+msgstr ""
+
+#, c-format
+msgid "%s: Negative iteration index are not allowed."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: No default options available: the function ''%s'' does not exist on the "
+"path."
+msgstr ""
+
+#, c-format
+msgid "%s: No output command is defined."
+msgstr ""
+
+#, c-format
+msgid "%s: Number of columns of fv is %d, which is different from 1."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of columns of x is %d, which is different from dimension = %d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of rows of fv is %d, which is different from number of vertices = "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of rows of x is %d, which is different from number of vertices = "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Odd number of arguments : the first argument is expected to be a struct, "
+"but is a %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s：阶数（order）必须为1，2或4。\n"
+
+#, c-format
+msgid "%s: Problem has constraints, but fixed algorithm ignores them."
+msgstr ""
+
+#, c-format
+msgid "%s: Problem has constraints, but variable algorithm ignores them."
+msgstr ""
+
+#, c-format
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgstr ""
+
+#
+# File: macros/derivative.sci, line: 62
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The -withderivatives option is true but all algorithms in neldermead are "
+"derivative-free."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The exclusion index vector has %d rows instead of 1."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The gradient can be applied only with a simplex made of n+1 points, but "
+"the dimension is %d and the number of vertices is %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a row matrix, but current shape is %d x "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
+"is %d x %d while current shape of len is %d x %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of columns in the function value array is %d, while expected "
+"1."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of columns in x is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of rows in the function value array is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of rows in x is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of variable is zero."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
+"than the number of columns %d (i.e. n+1)."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The numbers of columns of coords is %d but is expected to be at least %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The oriented simplex can be computed only with a simplex made of n+1 "
+"points, but the dimension is %d and the number of vertices is %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The value of the ''OutputFcn'' option is neither a function nor a list."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The value of the ''PlotFcns'' option is neither a function nor a list."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
+"x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected maximum number of function evaluations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected maximum number of iterations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected negative value %s for %s option"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 are expected."
+msgstr ""
+
+#
+# File: macros/neldermead/fminsearch.sci, line: 26
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of variables %d. Cannot draw contour plot for "
+"functions which do not have two parameters."
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown -method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown key %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown restart detection %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown restart simplex method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown simplex size method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown status %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown step %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for %s option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for -scalingsimplex0 option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for -simplex0method option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized parameter name ''%s''."
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
+msgstr ""
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s：加权矩阵必须为方阵。\n"
+
+#, c-format
+msgid "%s: Wrong number of arguments : %d expected while %d given"
+msgstr ""
+
+#
+# File: macros/derivative.sci, line: 166
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s：输入参数#%d的大小错误。"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
+
+#
+# File: macros/derivative.sci, line: 170
+#, c-format
+msgid ""
+"%s: Wrong type for element #%d in input argument #%d: A function is "
+"expected, but current type is %s.\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 98
+# File: macros/karmarkar.sci, line: 102
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个函数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为N维数组。\n"
+
+#
+# File: macros/karmarkar.sci, line: 76
+# File: macros/karmarkar.sci, line: 79
+# File: macros/karmarkar.sci, line: 82
+# File: macros/karmarkar.sci, line: 85
+# File: macros/karmarkar.sci, line: 88
+# File: macros/karmarkar.sci, line: 91
+# File: macros/karmarkar.sci, line: 94
+# File: macros/karmarkar.sci, line: 107
+# File: macros/karmarkar.sci, line: 110
+# File: macros/karmarkar.sci, line: 113
+# File: macros/karmarkar.sci, line: 116
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: external expected.\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 211
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
+"lower than the lower bound lb."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 194
+#, c-format
+msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 200
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be a floating point "
+"integer."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 191
+#, c-format
+msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 513
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 379
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
+"constraints."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 221
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 205
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 is not positive."
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 216
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 61
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 179
+msgid "...Done\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 23
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 23
+msgid "A new method of constrained optimization \n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 60
+msgid "Column #1: number of dimensions\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 61
+msgid "Column #2: number of function evaluations\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 62
+msgid "Column #3: number of iterations\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 63
+msgid "Column #4: convergence rate (lower is better)\n"
+msgstr ""
+
+#
+# File: demos/icse/icse.dem.gateway.sce, line: 11
+msgid "Computation of optimal parameters"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 43
+msgid "Configuring nmplot object...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 21
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 22
+# File: demos/neldermead/nmplot_han2.sce, line: 43
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 21
+msgid "Creating nmplot object ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 20
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 21
+# File: demos/neldermead/nmplot_han1.sce, line: 41
+msgid "Creating nmplot object...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 108
+msgid "Creating object ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 109
+msgid "Creating object...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 26
+msgid "Defining Han function...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 14
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 15
+msgid "Defining McKinnon function...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxpost.sce, line: 22
+msgid "Defining Rosenbrock Post Office function...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 13
+msgid "Defining Rosenbrock function ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 15
+msgid "Defining Rosenbrock function...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 33
+msgid "Defining initial simplex coordinates...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 15
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 15
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 15
+msgid "Defining quadratic function ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 15
+msgid "Defining quadratic function...\n"
+msgstr ""
+
+#
+# File: demos/optim/optim.dem.gateway.sce, line: 10
+msgid "Derivative"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_outputcmd.sce, line: 42
+msgid "End of Optimization\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxpost.sce, line: 137
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 158
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 146
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 86
+# File: demos/neldermead/neldermead_dimension.sce, line: 89
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 162
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 73
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 90
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 39
+# File: demos/neldermead/neldermead_outputcmd.sce, line: 66
+# File: demos/neldermead/nmplot_han2.sce, line: 81
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 35
+# File: demos/neldermead/nmplot_han1.sce, line: 94
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 192
+msgid "End of demo.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 52
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 152
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 61
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 55
+msgid "Function Value Average"
+msgstr ""
+
+#
+# File: demos/optimization.dem.gateway.sce, line: 13
+msgid "Genetic algorithms"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 16
+msgid ""
+"Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
+"Optimization Methods and Software, 2006.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 20
+msgid "Illustrates Box'' algorithm on Box problem A.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 20
+msgid "Illustrates Box'' algorithm on Box problem B.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxpost.sce, line: 21
+msgid "Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 19
+msgid ""
+"Illustrates Box'' algorithm on a simply bounds-constrained optimization "
+"problem.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 14
+msgid ""
+"Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
+"quadratic test case.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 14
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
+"well on Rosenbrock test case.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 14
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
+"a badly quadratic test case.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 14
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
+"a quadratic test case.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 14
+msgid ""
+"Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
+"quadratic test case.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 14
+msgid "Illustrates the 1st counter example given by Han et al.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han2.sce, line: 14
+msgid "Illustrates the 2nd counter example given by Han et al.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 15
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_outputcmd.sce, line: 39
+msgid "Initialization\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 52
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 65
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 152
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 154
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 156
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 61
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 64
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 67
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 58
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 68
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 58
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 68
+msgid "Iterations"
+msgstr ""
+
+#
+# File: demos/icse/icse.dem.gateway.sce, line: 9
+msgid "LQV"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 65
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 68
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 68
+msgid "Logarithm Maximum Oriented length"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 58
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 58
+msgid "Logarithm Minimum Function Value"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 156
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 67
+msgid "Maximum Oriented length"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 59
+#, c-format
+msgid "Maximum dimension:%d\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 154
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 64
+msgid "Minimum Function Value"
+msgstr ""
+
+#
+# File: demos/optimization.dem.gateway.sce, line: 7
+# File: demos/datafit/datafit.dem.gateway.sce, line: 8
+msgid "Non linear data fitting"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 85
+msgid "Number of function evaluations"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 75
+# File: demos/neldermead/neldermead_dimension.sce, line: 84
+msgid "Number of parameters"
+msgstr ""
+
+#
+# File: demos/optimization.dem.gateway.sce, line: 8
+msgid "Optimisation"
+msgstr ""
+
+msgid "Optimization and Simulation"
+msgstr "优化和仿真"
+
+#
+# File: demos/optim/optim.dem.gateway.sce, line: 8
+msgid "Output"
+msgstr ""
+
+#
+# File: demos/optim/optim.dem.gateway.sce, line: 9
+msgid "Plot"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 139
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 143
+msgid "Plot contour (please wait) ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 78
+msgid "Plot contour (please wait)...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 71
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 52
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 74
+# File: demos/neldermead/nmplot_han2.sce, line: 71
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 75
+msgid "Plotting contour (please wait) ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 77
+msgid "Plotting contour (please wait)...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 50
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 59
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 53
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 53
+msgid "Plotting history of fbar ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 53
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 62
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 56
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 56
+msgid "Plotting history of fopt ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 63
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 65
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 66
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 66
+msgid "Plotting history of sigma ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 26
+msgid "Problem A\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 26
+msgid "Problem B\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_dimension.sce, line: 76
+msgid "Rate of convergence"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 139
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 144
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 185
+#, c-format
+msgid "Relative error = %e\n"
+msgstr ""
+
+#
+# File: demos/optim/optim.dem.gateway.sce, line: 7
+msgid "Rosenbrock"
+msgstr ""
+
+#
+# File: demos/optim/optim_plot.sce, line: 13
+# File: demos/optim/optim_withderivative.sce, line: 13
+# File: demos/optim/optim_output.sce, line: 13
+# File: demos/optim/optim_rosenbrock.sce, line: 13
+# File: demos/neldermead/fminsearch_display.sce, line: 13
+# File: demos/neldermead/fminsearch_rosenbrock.sce, line: 12
+# File: demos/neldermead/fminsearch_optimplotfval.sce, line: 14
+# File: demos/neldermead/fminsearch_optimplotfunccount.sce, line: 13
+# File: demos/neldermead/fminsearch_optimplotx.sce, line: 14
+# File: demos/neldermead/fminsearch_tolx.sce, line: 14
+# File: demos/neldermead/fminsearch_outputfunction.sce, line: 13
+msgid "Running optimization ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxpost.sce, line: 122
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 133
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 132
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 46
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 136
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 47
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 49
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 59
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 35
+# File: demos/neldermead/nmplot_han2.sce, line: 64
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 26
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 49
+msgid "Searching (please wait) ...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 70
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 177
+msgid "Searching (please wait)...\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_han1.sce, line: 57
+msgid "Setup output files...\n"
+msgstr ""
+
+#
+# File: demos/optimization.dem.gateway.sce, line: 18
+msgid "Simulated Annealing"
+msgstr ""
+
+#
+# File: demos/icse/icse.dem.gateway.sce, line: 10
+msgid "Spaceship landing trajectory"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 24
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 24
+msgid "and a comparison with other methods.\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 141
+#, c-format
+msgid "f computed = %f\n"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 142
+#, c-format
+msgid "f expected = %f\n"
+msgstr ""
+
+#
+# File: demos/optimization.dem.gateway.sce, line: 9
+msgid "fminsearch"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 11
+msgid "fminsearch - Option Display"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 10
+msgid "fminsearch - Output Function"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 13
+msgid "fminsearch - Plot F"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 12
+msgid "fminsearch - Plot Func Count"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 14
+msgid "fminsearch - Plot X"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 8
+msgid "fminsearch - Rosenbrock"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 9
+msgid "fminsearch - tolx"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 26
+msgid "neldermead - Box A"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 27
+msgid "neldermead - Box B"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 28
+msgid "neldermead - Box Bounds"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 29
+msgid "neldermead - Box Post"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 17
+msgid "neldermead - Dimensionnality"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 16
+msgid "neldermead - Output Command"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 15
+msgid "neldermead - Rosenbrock Variable"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 18
+msgid "nmplot - Han #1"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 19
+msgid "nmplot - Han #2"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 20
+msgid "nmplot - McKinnon #1"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 21
+msgid "nmplot - McKinnon #2"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 22
+msgid "nmplot - Quadratic Fixed #1"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 23
+msgid "nmplot - Quadratic Fixed #2"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 24
+msgid "nmplot - Rosenbrock Fixed"
+msgstr ""
+
+#
+# File: demos/neldermead/neldermead.dem.gateway.sce, line: 25
+msgid "nmplot - Rosenbrock Variable"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 107
+#, c-format
+msgid "x0 = %s\n"
+msgstr ""
+
+#
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 108
+#, c-format
+msgid "x0=%s\n"
+msgstr ""

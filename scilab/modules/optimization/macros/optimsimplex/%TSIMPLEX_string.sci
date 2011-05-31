@@ -32,12 +32,13 @@ function str = %TSIMPLEX_string ( this )
   else
     for ive = 1:this.nbve
       // Compute a string for x
-      ss = sprintf("%e", this.x(ive,1));
+      ss = sprintf("%s", string(this.x(ive,1)));
       for i = 2:this.n
-        ss = ss + " " + sprintf("%e", this.x(ive,i));
+        ss = ss + " " + sprintf("%s", string(this.x(ive,i)));
       end
       k = k + 1
-      str(k) = sprintf("Vertex #%d/%d : fv=%e, x=%s\n" , ive , this.nbve , this.fv(ive), ss );
+      str(k) = sprintf("Vertex #%d/%d : fv=%s, x=%s\n" , ..
+          ive , this.nbve , string(this.fv(ive)), ss );
     end
   end
 endfunction

@@ -1,0 +1,182 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "  loading initial environment"
+msgstr "  завантаження початкового середовища"
+
+msgid " by "
+msgstr " Автор — "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s викликано у рядку %s %s"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s викликано у рядку %s команди %s."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s викликано у рядку %s макроса %s"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s викликано з %s"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: функцію %s не призначено для редагування.\n"
+
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr "%s: файла не існує: %s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: не вказано команди perl."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: будь ласка, перевірте: %s.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: потрібен редактор Scilab.\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: помилка системи: виконувалася команда: %s"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: не вдалося знайти файл Perl: %s"
+
+#, c-format
+msgid "%s: Unable to find Perl in ''%s''"
+msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметр №%d: мало бути вказано адресу файла скрипту "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати "
+"визначену змінну.\n"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Applications"
+msgstr "П&рограми"
+
+msgid "&Control"
+msgstr "&Керування"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Preferences"
+msgstr "П&араметри"
+
+msgid "&Toolboxes"
+msgstr "&Набори інструментів"
+
+msgid "Bytes"
+msgstr "Байти"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "Перевірка: %s\n"
+
+msgid "Introduction"
+msgstr "Вступ"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Size"
+msgstr "Розмір"
+
+msgid "Startup execution:"
+msgstr "Команда запуску:"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "User variables are:"
+msgstr "Змінними користувача є:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "На основі %s елементів з %s"

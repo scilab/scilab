@@ -1,0 +1,314 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr ""
+"%s: A função %s do Scilab não funciona com variáveis com mais de uma linha.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s não foi implementado.\n"
+
+#, c-format
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: ''%s'' ignorado.\n"
+
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: ''%s'' não implementado.\n"
+
+#, c-format
+msgid "%s: ''%s'' only used in 3d mode."
+msgstr "%s: ''%s'' usado apenas em modo 3D."
+
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: Opção ''%s'' ignorada.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: Todas as janelas excluídas.\n"
+
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: Não pode abrir o arquivo ''%s''.\n"
+
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: Não foi possível abrir ''%s'' nem ''%s'' nem ''%s''.\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+"%s: Chegou-se ao final do arquivo antes de terminar de ler toda a matriz.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: Chegou-se ao final do texto antes dos dados serem lidos.\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr "%s: Não há equivalente para a propriedade ''%s''.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: Não há a grade minor (menor) no Scilab.\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Ainda não foi implementado.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: O formato ''%s'' ainda não é tratado.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: O formato ''%s'' é desconhecido.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: O fator m - 1 de normalização é zero.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: O fator n - 1 de normalização é zero.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Este recurso não foi implementado.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Este recurso não foi implementado: %s.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: Este recurso não foi implementado: argumento do tipo %d.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s: Este recurso não foi implementado: suporte a hipermatrizes.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: Este caso em particular não está implementado.\n"
+
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: Classe ''%s'' não tratada.\n"
+
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr ""
+"%s: Encontrou-se uma cor desconhecida em ''%s'' -> ajustado para preto.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr ""
+"%s: Encontrado um estilo de linha desconhecido em ''%s'' -> ajustado para "
+"6.\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: Tipo desconhecido ''%s'': IGNORADO.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: Tipo desconhecido.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s: Argumento de entrada #%d está incorreto: tamanho inconsistente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: Argumentos de entrada incorretos: as dimensões fornecidas como primeiro "
+"argumento não correspondem ao conteúdo da célula especificada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumento(s) de saída: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s: Tamanho incorreto para ''%s'': esperava-se um vetor.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"de textos do Matlab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de reais, inteiros ou textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"coluna.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"quadrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada: elementos das células devem "
+"ser matrizes de caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada: esperava-se uma célula.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr "%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr "%s: Valor incorreto para simulação de ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se %s, %s, %s, "
+"''%s'', ''%s'' ou ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: Esperava-se %s, "
+"%s,''%s'' ou ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+"''%s'' ou ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um valor "
+"inteiro positivo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
+"conjunto {%s}.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: o lápis não é diagonalizável.\n"
+
+msgid "Apr"
+msgstr "Abr"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Dec"
+msgstr "Dez"
+
+msgid "Feb"
+msgstr "Fev"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Oct"
+msgstr "Out"
+
+msgid "Sep"
+msgstr "Set"

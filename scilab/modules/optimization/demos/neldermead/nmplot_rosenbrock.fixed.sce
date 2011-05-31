@@ -11,11 +11,17 @@
 
 function demo_nmplot_rosen()
 
+  filename = 'nmplot_rosenbrock.fixed.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform well on Rosenbrock test case.\n"));
   mprintf(_("Defining Rosenbrock function...\n"));
   
   function [ y , index ] = rosenbrock ( x , index )
     y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  endfunction
+  function [ y , index ] = rosenbrockC ( x1 , x2 )
+    y = rosenbrock ( [x1 , x2] , 2 )
   endfunction
 
   mprintf(_("Creating nmplot object ...\n"));
@@ -33,42 +39,36 @@ function demo_nmplot_rosen()
   // Setup output files
   //
   simplexfn = TMPDIR + filesep() + "history.simplex.txt";
-  fbarfn = TMPDIR + filesep() + "history.fbar.txt";
-  foptfn = TMPDIR + filesep() + "history.fopt.txt";
-  sigmafn = TMPDIR + filesep() + "history.sigma.txt";
   nm = nmplot_configure(nm, "-simplexfn",simplexfn);
-  nm = nmplot_configure(nm, "-fbarfn",fbarfn);
-  nm = nmplot_configure(nm, "-foptfn",foptfn);
-  nm = nmplot_configure(nm, "-sigmafn",sigmafn);
   
   //
   // Perform optimization
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
-  disp(nm);
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"nmplot_summary.sci"),-1);
+  nmplot_summary(nm)
   
   // Plot the contours of the cost function and the simplex history
   mprintf(_("Plotting contour (please wait) ...\n"));
-  [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
+  xmin = -2.0 ; 
+  xmax = 2.0 ; 
+  ymin = -2.0 ; 
+  ymax = 2.0 ; 
+  nx = 50 ; 
+  ny = 50;
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
   f = scf();
   drawlater();
-  contour ( xdata , ydata , zdata , [2 10 100 500 1000 2000] )
+  contour ( xdata , ydata , rosenbrockC , [2 10 100 500 1000 2000] )
   nmplot_simplexhistory ( nm );
   drawnow();
-  mprintf(_("Plotting history of fbar ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , fbarfn, mytitle = _("Function Value Average") , myxlabel = _("Iterations") );
-  mprintf(_("Plotting history of fopt ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , foptfn, mytitle = _("Minimum Function Value") , myxlabel = _("Iterations") );
-  mprintf(_("Plotting history of sigma ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , sigmafn, mytitle = _("Maximum Oriented length") , myxlabel = _("Iterations") );
+  //
   deletefile(simplexfn);
-  deletefile(fbarfn);
-  deletefile(foptfn);
-  deletefile(sigmafn);
   nm = nmplot_destroy(nm);
   mprintf(_("End of demo.\n"));
 
@@ -76,8 +76,6 @@ function demo_nmplot_rosen()
   // Load this script into the editor
   //
   
-  filename = 'nmplot_rosenbrock.fixed.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction

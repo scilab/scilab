@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Michael Baudin
+// Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
@@ -16,12 +16,13 @@ function demo_outputfunction()
     y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
   endfunction
 
-  function outfun ( x , optimValues , state )
+  function stop = outfun ( x , optimValues , state )
     fc = optimValues.funccount;
     fv = optimValues.fval;
     it = optimValues.iteration;
     pr = optimValues.procedure;
     mprintf ( "%d %e %d -%s-\n" , fc , fv , it , pr )
+	stop = %f
   endfunction
   
   opt = optimset ( "OutputFcn" , outfun );

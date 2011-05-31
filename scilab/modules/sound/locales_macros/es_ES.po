@@ -1,0 +1,180 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Ha ocurrido un error: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr "%s: Ha ocurrido un error: %s no está soportado.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr ""
+"%s: A ocurrido un error: El formato de compresión de datos %s no está "
+"soportado.\n"
+
+#, c-format
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+"%s: Ha ocurrido un error: formato de archivo inválido. Error leyendo la "
+"porción <%s>.\n"
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr "%s: Funciones de audio no disponibles.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No se puede abrir el archivo %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaba al menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de salida.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Número incorrecto de argumentos de salida.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamaño incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
+"vector of %d integers.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe ser %s o %s, un "
+"entero o un vector de %d enteros.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or %d-element vector.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada: El rango del índice debe ser "
+"especificado como escalar o un vector de %d-elementos.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: Valores incorrectos del argumento de entrada: El nombre de archivo debe "
+"ser un string.\n"
+
+msgid ".wav file does not contain the RIFF identifier."
+msgstr "el archivo .wav no contiene el identificador RIFF."
+
+msgid ".wav file does not contain the wave identifier."
+msgstr "El Archivo .wav no contiene el identificador de onda."
+
+#
+# File: demos/sound.dem.sce, line: 36
+msgid "A complete picture of the sound."
+msgstr ""
+
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr "No se puede leer el archivo .wav con más de 16 bits por muestra"
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "El arreglo de datos debe tener solo 1- o 2- dimensiones."
+
+msgid "Error reading .wav file."
+msgstr "Error leyendo el archivo .wav."
+
+msgid "Error reading <fact-ck> chunk."
+msgstr "Error leyendo la porción <fact-ck>."
+
+msgid "Error reading wav file."
+msgstr "Error leyendo archivo wav."
+
+msgid "Error while writing sound file."
+msgstr "Error mientras se escribia el archivo de sonido."
+
+#
+# File: demos/sound.dem.sce, line: 21
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr ""
+
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "Información de tamaño de porción incorrecto en el archivo RIFF."
+
+msgid "Invalid .wav file: found data before format information."
+msgstr ""
+"Archivo .wav inválido: se encontraron datos antes de la información de "
+"formato."
+
+msgid "Invalid sample limits (use ascending order)."
+msgstr "Límites de muestra inválidos (usando orden ascendente)."
+
+msgid "Invalid wav format."
+msgstr "Formato wav inválido."
+
+msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr ""
+"La ley Mu puede ser utilizada solo con datos de 8 bit. Use el método "
+"''lineal'' en su lugar."
+
+msgid "Requires 2-D values only."
+msgstr "Requiere solo valores 2-D."
+
+msgid "Sample limit vector must have 2 entries."
+msgstr "El vector límite de muestra debe tener 2 entradas"
+
+msgid "Sample limits out of range."
+msgstr "Límites de muestra fuera de rango."
+
+msgid "Unknown data format."
+msgstr "Formato de datos desconocido."
+
+msgid "Unrecognized data format."
+msgstr "Formato de datos no reconocido."
+
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "solo 8/16/24/32 bits para la codificacion."
+
+#
+# File: demos/sound.dem.sce, line: 36
+msgid "see ''mapsound'' function"
+msgstr ""

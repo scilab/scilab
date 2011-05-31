@@ -1,0 +1,278 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:15+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr "%s: %s Scilab 函數無法用於超過一行以上之變數.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s 尚未實作.\n"
+
+#, c-format
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: 忽略 ''%s''.\n"
+
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: ''%s'' 尚未實作.\n"
+
+#, c-format
+msgid "%s: ''%s'' only used in 3d mode."
+msgstr "%s: ''%s'' 只用於 3d 模式."
+
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: ''%s'' 選項忽略.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: 刪除所有視窗.\n"
+
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: 無法開啟檔案 ''%s''.\n"
+
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: 無法開啟 ''%s'' , ''%s''  或 ''%s''.\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr "%s: 在所有矩陣讀取前檔案已結束.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: 讀取資料前字串先結束.\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr "%s: 並無等價之 ''%s'' 屬性.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: Scilab 中並無小格線 (minor grid) .\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: 尚未實作.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: 格式 ''%s'' 尚未處理.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: 格式　''%s'' 未知.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: 正規化 m - 1 係數值為零.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: 正規化 n - 1 係數值為零.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: 此特性尚未實作.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: 此特性尚未實作: %s.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: 此特性尚未實作: 型態 %d 之參數.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s: 此特性尚未實作: 支援超矩陣 (hypermatrices).\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: 此特例尚未實作.\n"
+
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: 無法處理類別 ''%s''.\n"
+
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s:: ''%s''  中未知之顏色-> 設為黑色 ( black).\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr "%s: ''%s''  中未知之 line 型態-> 設為 6.\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: 未知型態 ''%s'': 忽略.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: 未知型態.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s: 第 %d 輸入參數錯誤: 大小不相容.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr "%s: 輸入參數錯誤: 第一參數之維度無法搭配 cell  之容.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數的個數錯誤: 應該是 %d 到 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d .\n"
+
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s: ''%s'' 之長度錯誤: 應為一向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一 Matlab 向量或字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一實數, 整數或字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤 : 應為列向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一方陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr "%s: 輸入參數之型態錯誤: Cell 元素必須為字元陣列.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為 Cell 型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr "%s: ''%s'' 之修飾 (affectation) 數值錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: 第 %d 輸入參數數值錯誤: 應為 %s, %s, %s, ''%s'', ''%s'' 或 ''%s''\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 %s, %s,''%s'' 或 ''%s'' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: ''%s'', 應為 ''%s'' 或 ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為一正整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s:  矩陣束違法主對角線化 (diagonalizable).\n"
+
+msgid "Apr"
+msgstr "四月"
+
+msgid "Aug"
+msgstr "八月"
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Dec"
+msgstr "十二月"
+
+msgid "Feb"
+msgstr "二月"
+
+msgid "Jan"
+msgstr "一月"
+
+msgid "Jul"
+msgstr "七月"
+
+msgid "Jun"
+msgstr "六月"
+
+msgid "Mar"
+msgstr "三月"
+
+msgid "May"
+msgstr "五月"
+
+msgid "Nov"
+msgstr "十一月"
+
+msgid "Oct"
+msgstr "十月"
+
+msgid "Sep"
+msgstr "九月"

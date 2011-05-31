@@ -1,0 +1,191 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr "%s已經對效能做編譯.不必再做了!"
+
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr "%s 已經被編譯, 不作任何動作!"
+
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr "%s 已經是非編譯,不作任何動作!"
+
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr "%s : %s檔案無法建立\n"
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s : %s 檔案強制編譯\n"
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s: 檔案 %s 裏不含任何函式.\n"
+
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr "%s: 檔案 %s  不存在.\n"
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s:找不到任何延伸檔名 %s 在 %s\n"
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s: 無法開啟檔案%s 來寫入\n"
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: 在 %s 檔案中的函數不正確.\n"
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s: 找不到副檔名%s在%s\n"
+
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr "%s:請檢查: %s\n"
+
+#
+# File: macros/warnobsolete.sci, line: 21
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: 處理檔案 %s 中\n"
+
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr "%s: 重新產生名字和函式庫\n"
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: 此函數尚未被特徵建立"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: %s 變數未被定義.\n"
+
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s: 警告: 檔案 %s 裏有錯: %s. 忽略檔案\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字元字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr "%s: 第%d 輸入參數的型態錯誤: 應該為 Scilab 的函數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s:輸入參數值錯誤: 在函數中找不到特徵資料\n"
+
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: 已停用的控制碼: %d.\n"
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- 生成 of [%s] (巨集) --\n"
+
+msgid "?"
+msgstr "幫助"
+
+#, c-format
+msgid "Checking: %s.\n"
+msgstr "檢查中: %s.\n"
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr "使用 a-z  移動並點擊取得回應列."
+
+msgid "Complexity"
+msgstr "複雜度"
+
+msgid "Edit"
+msgstr "編輯"
+
+msgid "Exit"
+msgstr "離開"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "%s函式已經過時的"
+
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+"函式庫檔%s 已經更新了,\n"
+"但是不能載入Scilab  因為 %s 是受保護的變數.\n"
+
+msgid "No comment available.\n"
+msgstr "沒有可用的建議.\n"
+
+#, c-format
+msgid "No variable named: %s"
+msgstr "沒有變數名叫: %s"
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "請用 %s 替換."
+
+#, c-format
+msgid "This feature will be permanently removed in Scilab %s"
+msgstr "此函數 %s 將在 Scilab 中永遠停用."
+
+msgid "Tools"
+msgstr "工具"
+
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr "行 %s [%s call, %s sec]:: "
+
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr "行 %s [%s call, %s sec]:: "

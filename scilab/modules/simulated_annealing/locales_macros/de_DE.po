@@ -1,0 +1,53 @@
+# German translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s: Temperatur Stufe %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s: cit_f ist verpflichtend"
+
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s: Fehler - falscher akzeptierter Typ"
+
+#
+# File: demos/SAdemo.sce, line: 10
+# File: demos/SAIsing2ddemo.sce, line: 10
+msgid "Please wait ..."
+msgstr ""
+
+#
+# File: demos/simulated_annealing.dem.gateway.sce, line: 7
+msgid "Simulated Annealing"
+msgstr ""
+
+#
+# File: demos/simulated_annealing.dem.gateway.sce, line: 8
+msgid "Simulated Annealing and Ising problem"
+msgstr ""
+
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa: sa_f ist verpflichtend"

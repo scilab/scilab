@@ -26,7 +26,7 @@ endfunction
 //  state : the current state of the algorithm
 //    "init", "iter", "done"
 //
-function outfun ( x , optimValues , state )
+function stop = outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
   // Unload all fields and check consistent values
   fc = optimValues.funccount;
@@ -61,23 +61,24 @@ function outfun ( x , optimValues , state )
   else
     error ( sprintf ( "Unknown state %s." , state ) )
   end
-  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
+  mprintf ( "%d %s %d -%s- %s\n" , fc , string(fv) , it , pr , state )
+  stop = %f
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-3 2.420000e+001 0 -- init
-3 2.005000e+001 1 -initial simplex- iter
-5 5.161796e+000 2 -expand- iter
-7 4.497796e+000 3 -reflect- iter
-9 4.497796e+000 4 -contract outside- iter
-11 4.381360e+000 5 -contract inside- iter
-13 4.245273e+000 6 -contract inside- iter
-15 4.217625e+000 7 -reflect- iter
-17 4.211291e+000 8 -contract inside- iter
-19 4.135560e+000 9 -expand- iter
-21 4.135560e+000 10 -contract inside- iter
-21 4.135560e+000 10 -- done
+3 24.2 0 -- init
+3 20.05 1 -initial simplex- iter
+5 5.161796 2 -expand- iter
+7 4.497796 3 -reflect- iter
+9 4.497796 4 -contract outside- iter
+11 4.3813601 5 -contract inside- iter
+13 4.2452728 6 -contract inside- iter
+15 4.2176247 7 -reflect- iter
+17 4.2112906 8 -contract inside- iter
+19 4.1355598 9 -expand- iter
+21 4.1355598 10 -contract inside- iter
+21 4.1355598 10 -- done
 fminsearch: Exiting: Maximum number of iterations has been exceeded
          - increase MaxIter option.
          Current function value: 4.1355598
@@ -85,15 +86,17 @@ close(gcf());
 //
 // Use several output functions
 //
-function outfun2 ( x , optimValues , state )
+function stop = outfun2 ( x , optimValues , state )
   global __fig1__
   scf ( __fig1__ );
   plot( x(1),x(2),'.');
+  stop = %f
 endfunction
-function outfun3 ( x , optimValues , state )
+function stop = outfun3 ( x , optimValues , state )
   global __fig2__
   scf ( __fig2__ );
   plot( x(1),x(2),'o');
+  stop = %f
 endfunction
 myfunctions = list ( outfun2 , outfun3 );
 global __fig1__

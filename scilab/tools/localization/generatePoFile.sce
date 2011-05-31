@@ -57,6 +57,27 @@ function  generatePoFile(LANGUAGE)
     end
   end
 
+  for MODULE = getmodules()'
+    PATH_PO = SCI + filesep() + "modules" + filesep() + MODULE + filesep() + "locales_macros" + filesep();
+    if LANGUAGE ==  "en_US" then
+      FULLFILENAMEPO = PATH_PO + filesep() + MODULE + ".pot";
+    else
+      FULLFILENAMEPO = PATH_PO + filesep() + LANGUAGE + ".po";
+    end
+    FINDFULLFILENAMEPO = ls(FULLFILENAMEPO);
+
+    if FINDFULLFILENAMEPO <> [] then
+      if isfile(FINDFULLFILENAMEPO) then
+        ext = fileext(FINDFULLFILENAMEPO);
+        if ( ( ext == ".pot" ) | (ext == ".po") ) then
+          // '""' path windows with blank
+          List_files(j) = '""' + FINDFULLFILENAMEPO + '""';
+          j = j + 1;
+        end
+      end
+    end
+  end
+
   if (List_files <> []) then
     unix(PATH_GETTEXT_TOOLS + filesep() + "msgcat -o " + DEST_FILE_PO + " " + strcat(List_files, " "));
     unix(PATH_GETTEXT_TOOLS + filesep() + "msgfmt --statistics -o " + DEST_FILE_MO + " " + DEST_FILE_PO);

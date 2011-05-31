@@ -17,6 +17,9 @@
 
 function demo_boxproblemB()
 
+  filename = 'neldermead_boxproblemB.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates Box'' algorithm on Box problem B.\n"));
 
   mprintf("M.J. Box, \n");
@@ -131,25 +134,26 @@ function demo_boxproblemB()
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = neldermead_search(nm);
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"neldermead_summary.sci"),-1);
+  neldermead_summary(nm)
   mprintf("==========================\n");
   xcomp = neldermead_get(nm,"-xopt");
-  mprintf("x computed = [%s]\n", strcat(string(xcomp), " "));
   mprintf("x expected = [%s]\n", strcat(string(xopt), " "));
   shift = norm(xcomp-xopt)/norm(xopt);
-  mprintf(_("Relative error = %e\n"), shift);
+  mprintf(_("Relative error on x = %e\n"), shift);
   fcomp = neldermead_get(nm,"-fopt");
-  mprintf(_("f computed = %f\n"), fcomp);
   mprintf(_("f expected = %f\n"), fopt);
   shift = abs(fcomp-fopt)/abs(fopt);
-  mprintf(_("Relative error = %e\n"), shift);
+  mprintf(_("Relative error on f = %e\n"), shift);
   nm = neldermead_destroy(nm);
   mprintf(_("End of demo.\n"));
 
   //
   // Load this script into the editor
   //
-  filename = 'neldermead_boxproblemB.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction

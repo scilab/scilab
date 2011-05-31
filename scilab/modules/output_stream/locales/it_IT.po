@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Matteo Ruffini <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -110,14 +111,14 @@ msgstr "%s: Si è verificato il seg. errore: %s\n"
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
-"con la direttiva 'c'.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato con la "
+"direttiva 'c'.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
-"con la direttiva 's'.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato con la "
+"direttiva 's'.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -206,32 +207,12 @@ msgid ""
 msgstr "%s: Sono state trovate troppe soluzioni.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Il tipo %s non è gestito : defnire la funzione %sa%s"
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Formato di esportazione sbagliato: %s"
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: I parametri in ingresso sono sbagliati.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi da %d "
-"a %d."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: erano attesi da %d a "
-"%d"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -244,6 +225,12 @@ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -263,8 +250,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -281,12 +268,6 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
-"booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -375,22 +356,8 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
-"''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -410,8 +377,7 @@ msgstr ""
 "diario non esiste.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "chiudere il diario %d.\n"
@@ -423,8 +389,7 @@ msgstr ""
 "chiudere un diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "fermare il diario %d.\n"
@@ -504,8 +469,7 @@ msgstr "%s: m deve essere di dimensione ncomp.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
-"%s: maxpts era troppo piccolo per ottenere la accuratezza richiesta.\n"
+msgstr "%s: maxpts era troppo piccolo per ottenere la accuratezza richiesta.\n"
 
 #, c-format
 msgid "%s: ncomp < 20 requested.\n"
@@ -531,10 +495,6 @@ msgstr "%s: il problema è singolare o asimmetrico.\n"
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) deve essere inferiore a 40.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: il sistema non può essere mostrato in questa pagina.\n"
 
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -570,8 +530,7 @@ msgstr ""
 "%s: le dimensioni della finestra sono state impostate a meno di 2^16.\n"
 
 msgid "A sparse matrix entry is defined with two different values.\n"
-msgstr ""
-"Una voce della matrice sparsa è definito con due valori differenti.\n"
+msgstr "Una voce della matrice sparsa è definito con due valori differenti.\n"
 
 msgid "Argument type must be boolean.\n"
 msgstr "L'argomento deve essere di tipo booleano.\n"
@@ -636,8 +595,7 @@ msgstr ""
 "Gli elementi del %d-esimo argomento devono essere in ordine crescente.\n"
 
 msgid "Elements of first argument are not (strictly) increasing.\n"
-msgstr ""
-"Gli elementi del primo argomento non sono (strettamente) crescenti.\n"
+msgstr "Gli elementi del primo argomento non sono (strettamente) crescenti.\n"
 
 msgid "Elements of first argument are not in (strictly) decreasing order.\n"
 msgstr ""
@@ -681,8 +639,8 @@ msgstr ""
 "Errore fatale!!! Le variabili dell'utente sono state salvate nel file: %s\n"
 "                                   Una chiamata sbagliata ad una funzione di "
 "Scilab ?\n"
-"                                   Altrimenti, inviare un rapporto sul bug a "
-":\n"
+"                                   Altrimenti, inviare un rapporto sul bug "
+"a :\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -722,6 +680,8 @@ msgstr "Il file d'aiuto è incoerente...\n"
 msgid "Host does not answer...\n"
 msgstr "Lo host non risponde...\n"
 
+#
+# File: src/c/errmsg.c, line: 996
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
@@ -798,6 +758,8 @@ msgstr "Stringa sbagliata.\n"
 msgid "Incorrect syntax.\n"
 msgstr "Sintassi sbagliata.\n"
 
+#
+# File: src/c/errmsg.c, line: 592
 msgid "Indexing not allowed for output arguments of resume.\n"
 msgstr ""
 
@@ -814,8 +776,9 @@ msgstr ""
 "Gli argomenti in ingresso devono avere lo stesso nome della variabile "
 "formale.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+#
+# File: src/c/errmsg.c, line: 1530
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -928,7 +891,9 @@ msgstr "Non è sviluppato in Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Una variabile nulla non può essere usata qui.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
 msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
@@ -1062,8 +1027,7 @@ msgstr ""
 
 #, c-format
 msgid "The top %d x %d block may not be in Schur form.\n"
-msgstr ""
-"Il blocco superiore %d x %d potrebbe non essere nella forma di Shur.\n"
+msgstr "Il blocco superiore %d x %d potrebbe non essere nella forma di Shur.\n"
 
 msgid "This data type is already defined.\n"
 msgstr "Il tipo di dato è già definito.\n"
@@ -1132,12 +1096,16 @@ msgstr "Memoria totale disponibile: %d\n"
 msgid "Trying to re-define function %s.\n"
 msgstr "Tentativo in corso di ridefinire la funzione %s.\n"
 
+#
+# File: src/c/errmsg.c, line: 1262
 msgid "Type data base is full.\n"
 msgstr ""
 
 msgid "Uncontrollable system.\n"
 msgstr "Il sistema non è controllabile.\n"
 
+#
+# File: src/c/msgs.c, line: 1278
 msgid "Undefined display for this data type.\n"
 msgstr ""
 
@@ -1167,6 +1135,8 @@ msgstr "Il sistema non è osservabile.\n"
 msgid "Use stacksize function to increase it.\n"
 msgstr "Usare la funzione stacksize per aumentarla.\n"
 
+#
+# File: src/c/msgs.c, line: 860
 #, c-format
 msgid "Using %s elements out of %s.\n"
 msgstr ""
@@ -1312,8 +1282,7 @@ msgstr "L'argomento in ingresso %d è sbagliato.\n"
 msgid "Wrong number of input arguments:\n"
 msgstr "Il numero degli argomenti in ingresso è sbagliato:\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Il numero degli argomenti in ingresso è sbagliato: questa funzione non ha "
 "argomenti in ingresso.\n"
@@ -1341,6 +1310,8 @@ msgstr ""
 "L'argomento %d è di tipo sbagliato: era attesa una matrice sparsa o "
 "totalmente scalare.\n"
 
+#
+# File: src/c/errmsg.c, line: 707
 #, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
@@ -1358,10 +1329,14 @@ msgstr ""
 "L'argomento %d è di tipo sbagliato: era atteso un gestore per fattori lu "
 "sparsi.\n"
 
+#
+# File: src/c/errmsg.c, line: 687
 #, c-format
 msgid "Wrong type for argument %d: In continuous time expected.\n"
 msgstr ""
 
+#
+# File: src/c/errmsg.c, line: 692
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
 msgstr ""
@@ -1404,8 +1379,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for argument %d: Square matrix expected.\n"
-msgstr ""
-"L'argomento %d è di tipo sbagliato: era attesa una matrice quadrata.\n"
+msgstr "L'argomento %d è di tipo sbagliato: era attesa una matrice quadrata.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: String expected.\n"
@@ -1443,8 +1417,7 @@ msgstr "L'argomento %d ha un valore sbagliato.\n"
 
 #, c-format
 msgid "Wrong value for argument %d: Empty string expected.\n"
-msgstr ""
-"L'argomento %d ha un valore sbagliato: era attesa una matrice vuota.\n"
+msgstr "L'argomento %d ha un valore sbagliato: era attesa una matrice vuota.\n"
 
 #, c-format
 msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
@@ -1495,8 +1468,7 @@ msgid "check or define function %s for overloading.\n"
 msgstr "controllare o definire la funzione %s per l'overloading.\n"
 
 msgid "computing least squares solution. (see lsq).\n"
-msgstr ""
-"calcolo in corso della soluzione dei minimi quadrati. (vedere lsq).\n"
+msgstr "calcolo in corso della soluzione dei minimi quadrati. (vedere lsq).\n"
 
 msgid "eigenvectors are badly conditioned.\n"
 msgstr "gli autovalori sono condizionati male.\n"
@@ -1524,8 +1496,7 @@ msgid "null matrix (argument # %d).\n"
 msgstr "matrice nulla (argomento # %d).\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
-msgstr ""
-"poly: il nome della variabile deve essere lungo meno di 5 caratteri.\n"
+msgstr "poly: il nome della variabile deve essere lungo meno di 5 caratteri.\n"
 
 #, c-format
 msgid "reference to the cleared global variable %s.\n"
@@ -1538,9 +1509,10 @@ msgstr "i risultati possono essere inaccurati. rcond = %s\n"
 msgid "semi def fails.\n"
 msgstr "semi def fallisce.\n"
 
+#
+# File: src/c/msgs.c, line: 688
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 
 msgid "stack size exceeded!\n"

@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
+
+#
+# File: macros/mkdir.sci, line: 72
+# File: macros/mkdir.sci, line: 81
+# File: macros/mkdir.sci, line: 85
+# File: macros/mkdir.sci, line: 89
+# File: macros/rmdir.sci, line: 62
+# File: macros/rmdir.sci, line: 66
+# File: sci_gateway/c/sci_msscanf.c, line: 55
+# File: sci_gateway/c/sci_mscanf.c, line: 74
+# File: src/c/do_xxprintf.c, line: 241
+# File: src/c/do_xxprintf.c, line: 415
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 437
+# File: src/c/do_xxscanf.c, line: 136
+# File: src/c/do_xxscanf.c, line: 147
+# File: src/c/do_xxscanf.c, line: 187
+# File: src/c/do_xxscanf.c, line: 207
+# File: src/c/do_xxscanf.c, line: 273
+# File: src/c/do_xxscanf.c, line: 289
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#, c-format
+msgid "%s: Incorrect format.\n"
+msgstr "%s: 格式不正確.\n"
+
+#, c-format
+msgid "%s: Invalid conversion.\n"
+msgstr "%s: 轉換不正確.\n"
+
+#
+# File: macros/ls.sci, line: 28
+#, c-format
+msgid "%s: Options ignored.\n"
+msgstr "%s: 忽略選項.\n"
+
+#
+# File: macros/mkdir.sci, line: 25
+# File: macros/mkdir.sci, line: 47
+# File: macros/rmdir.sci, line: 22
+# File: macros/rmdir.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 輸入參數之數目錯誤(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: 輸出的參數個數錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr "%s: 第#%d個參數長度有誤:  字串才對.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr "%s: 第#%d個參數長度有誤: 檔案描述子才對.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
+msgstr "%s: 第#%d個參數長度有誤:  檔名才對.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr "%s: 第#%d個參數型別有誤: 檔案描述子才對.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A filename or file descriptor "
+"expected.\n"
+msgstr "%s: 第#%d個參數型別有誤:  檔名或檔案描述子才對.\n"
+
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 64
+# File: sci_gateway/c/sci_fprintfMat.c, line: 30
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
+
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 79
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: macros/mdelete.sci, line: 30
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr "%s: 第#%d個參數值有誤: 有效的檔案描述子才對.\n"
+
+#
+# File: macros/rmdir.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s''.\n"
+
+#
+# File: macros/listvarinfile.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
+"corrupted.\n"
+msgstr "%s: 變數型態 (%s) 錯誤(在''%s'' 內). 檔案可能有誤或已破壞.\n"
+
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr "%s: 完成轉換前輸入已結束.\n"
+
+#
+# File: macros/mkdir.sci, line: 132
+msgid "A file with the same name already exists in "
+msgstr ""
+
+#
+# File: macros/mkdir.sci, line: 119
+# File: macros/mkdir.sci, line: 136
+msgid "Impossible to create directory "
+msgstr ""
+
+#
+# File: macros/mkdir.sci, line: 128
+msgid "This directory already exists in "
+msgstr ""

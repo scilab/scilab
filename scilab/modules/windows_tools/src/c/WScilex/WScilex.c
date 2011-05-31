@@ -72,7 +72,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 #ifndef _DEBUG
             /* catch system errors msgbox (release mode only) */
             /* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-            // LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+            LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
             _try
             {
 #endif

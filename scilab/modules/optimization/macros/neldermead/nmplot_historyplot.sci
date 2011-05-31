@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -32,9 +32,6 @@ function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
   exec(datafile,-1);
   nbiter = size ( history , 1 )
   plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
-  f = gcf();
-  f.children.title.text = mytitle;
-  f.children.x_label.text = myxlabel;
-  f.children.y_label.text = myylabel;
+  xtitle(mytitle,myxlabel,myylabel)
 endfunction
 

@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -15,6 +15,11 @@
 //   If the key is unknown, generates an error.
 //
 function value = optimbase_cget (this,key)
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_cget", 3);
+        error(errmsg)
+    end
   select key
   case "-verbose" then
     value = this.verbose;
@@ -44,14 +49,10 @@ function value = optimbase_cget (this,key)
     value = this.tolfunmethod;
   case "-outputcommand" then
     value = this.outputcommand;
-  case "-outputcommandarg" then
-    value = this.outputcommandarg;
   case "-numberofvariables" then
     value = this.numberofvariables;
   case "-storehistory" then
     value = this.storehistory;
-  case "-costfargument" then
-    value = this.costfargument;
   case "-boundsmin" then
     value = this.boundsmin;
   case "-boundsmax" then

@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,8 +23,7 @@ msgstr "%s: %s musi być %d-wymiarową hipermacierzą liczb rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr ""
-"%s: Powielone węzły lub wszystkie węzły są współliniowe (ier = %d).\n"
+msgstr "%s: Powielone węzły lub wszystkie węzły są współliniowe (ier = %d).\n"
 
 #, c-format
 msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
@@ -77,10 +77,6 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr "%s: Zła liczba parametrów wejściowych: Musi być pomiędzy %d i %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
 
@@ -100,35 +96,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi być %s.\n"
+msgstr "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi być %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano dwóch "
-"wierszy.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora "
-"lub macierzy.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
-"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
-"tego samego rozmiaru.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
 "tego samego rozmiaru.\n"
@@ -168,26 +139,6 @@ msgstr ""
 "%s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy liczb "
-"rzeczywistych.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-"%s Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwano ''%s'' lub "
-"''%s'' lub ''%s'' .\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano ''%s'' lub "
-"liczby rzeczywistej .\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
 "detected.\n"
@@ -197,21 +148,13 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano liczby "
-"rzeczywiste ale znaleziono kilka NaN.\n"
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano wektora z "
 "%d składowymi.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowe wartości parametrów wejściowych nr %d i nr %d: Oczekiwano "
 "tego samego rozmiaru.\n"
@@ -237,10 +180,8 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
-msgstr ""
-"%s: x i/lub y nie są  w tylko rosnącym porządku (lub wykryto +-inf)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr "%s: x i/lub y nie są  w tylko rosnącym porządku (lub wykryto +-inf)\n"
 
 #, c-format
 msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"

@@ -7,11 +7,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,8 +96,8 @@ msgid ""
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
 msgstr ""
 "\n"
-"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, 2^32-"
-"1]\n"
+"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
+"2^32-1]\n"
 
 #, c-format
 msgid "%s Wrong value for first input argument %s.\n"
@@ -215,6 +216,13 @@ msgstr ""
 "%s: помилковий тип четвертого вхідного параметра: слід використовувати "
 "число.\n"
 
+#
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
@@ -306,8 +314,7 @@ msgstr ""
 "значення > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: помилкове значення другого вхідного параметра: слід використовувати "
 "значення між %d та %d.\n"
@@ -349,9 +356,6 @@ msgstr "DF < 1.0, або DF <= 0.0, або Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Кількість степенів свободи не є додатною\n"
 
-msgid "Low > High\n"
-msgstr "Low > High\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "Не вказано A і B для закону бета розподілу\n"
 
@@ -365,8 +369,7 @@ msgid "Missing Av for exponential law\n"
 msgstr "Не вказано Av для експоненційного закону розподілу\n"
 
 msgid "Missing Df and Xnonc for non-central chi-square law\n"
-msgstr ""
-"Не вказано Df і Xnonc для нецентрального закону хі-квадрат розподілу\n"
+msgstr "Не вказано Df і Xnonc для нецентрального закону хі-квадрат розподілу\n"
 
 msgid "Missing Df for chi-square law\n"
 msgstr "Не вказано Df для закону хі-квадрат розподілу\n"
@@ -440,9 +443,6 @@ msgstr "Rand(...,'bet',..): A або B < %f\n"
 
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
-
-msgid "Random"
-msgstr "Випадкові величини"
 
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"

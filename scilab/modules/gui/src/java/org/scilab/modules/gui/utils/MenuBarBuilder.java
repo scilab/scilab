@@ -30,6 +30,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -163,7 +164,7 @@ public final class MenuBarBuilder {
 			}
 
 			// Build xml document for request
-			dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(xmlFile));
+			dom = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(xmlFile));
 		}
 
 		/**

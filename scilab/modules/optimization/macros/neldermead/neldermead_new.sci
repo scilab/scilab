@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -65,9 +65,12 @@ function newobj = neldermead_new ()
     "tolrelativevariance"
     "variancesimplex0"
     "mymethod"
+    "greedy"
+//
+// Obsolete options
+//
     "myterminate"
     "myterminateflag"
-    "greedy"
     ]);
 
   newobj.optbase = optimbase_new();
@@ -182,11 +185,15 @@ function newobj = neldermead_new ()
   newobj.variancesimplex0 = 0.0;
   // User-defined algorithm
   newobj.mymethod = []
+  // Set to %t to enable greedy Nelder-Mead
+  newobj.greedy = %f;
+  //
+  // Obsolete options
+  //
   // User-defined terimination criteria
   newobj.myterminate = []
   // Flag to enable the user-defined terimination criteria
   newobj.myterminateflag = %f
-  // Set to %t to enable greedy Nelder-Mead
-  newobj.greedy = %f;
+
 endfunction
 

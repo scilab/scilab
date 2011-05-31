@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -23,8 +23,9 @@
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
 //  this : the current nmplot object
+// stop: set to true when the algorithm must stop
 //
-function nmplot_outputcmd ( state , data , this )
+function stop = nmplot_outputcmd ( state , data , this )
   nmplot_log ( this , "nmplot_outputcmd (1)")
   iter = data.iteration
   // Print simplex
@@ -58,5 +59,6 @@ function nmplot_outputcmd ( state , data , this )
     sigma = optimsimplex_size ( data.simplex , "sigmaplus" )
     mfprintf ( this.sigmahandle , "%d %e\n", iter , sigma )
   end
+  stop = %f
 endfunction
 

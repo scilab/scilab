@@ -59,16 +59,44 @@ function [ f , c , index ] = optimtestcase ( x , index )
   end
 endfunction
 
+function [ f , c , index ] = optimtestcase2 ( x , index )
+  f = []
+  c = []
+  x2 = x.^2
+  if ( ( index == 2 ) | ( index == 6 ) ) then
+    f = [1 1 2 1]*x2 + [-5 -5 -21 7]*x
+  end
+  if ( ( index == 5 ) | ( index == 6 ) ) then
+    c1 = [-1 -1 -1 -1]*x2 + [-1 1 -1 1]*x + 8
+    c2 = [-1 -2 -1 -2]*x2 + [1 0 0 1]*x + 10
+    c3 = [-2 -1 -1 0]*x2 + [-2 1 0 1]*x + 5
+    c = [c1 c2 c3]
+  end
+endfunction
+
+//
+// Test the function.
+//
+xstar = [0.0 1.0 2.0 -1.0]';
+fstar = -44;
+[ f , c , index ] = optimtestcase ( xstar , 6 );
+assert_checkequal ( f , fstar );
+assert_checkequal ( c , [0 1 0] );
+//
+[ f , c , index ] = optimtestcase2 ( xstar , 6 );
+assert_checkequal ( f , fstar );
+assert_checkequal ( c , [0 1 0] );
+
 //
 // Test with Box algorithm and default axes initial simplex
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
-nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
+nm = neldermead_configure(nm,"-function",optimtestcase2);
+nm = neldermead_configure(nm,"-x0",[0.0 0.5 1.0 -0.5]');
 nm = neldermead_configure(nm,"-maxiter",400);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
@@ -89,7 +117,7 @@ nm = neldermead_destroy(nm);
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
@@ -117,11 +145,11 @@ nm = neldermead_destroy(nm);
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",400);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
@@ -156,11 +184,11 @@ nm = neldermead_destroy(nm);
 rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
@@ -176,7 +204,7 @@ fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-1 );
 // Check status
 status = neldermead_get(nm,"-status");
-assert_checkequal ( status , "maxfuneval" );
+assert_checkequal ( status , "tolsize" );
 // Check the optimum simplex
 simplexopt = neldermead_get ( nm , "-simplexopt" );
 nbve = optimsimplex_getnbve ( simplexopt );
@@ -198,11 +226,11 @@ nm = neldermead_destroy(nm);
 rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
@@ -235,11 +263,11 @@ nm = neldermead_destroy(nm);
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
@@ -278,7 +306,7 @@ nm = neldermead_destroy(nm);
 rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
-nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-function",optimtestcase2);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
 nm = neldermead_configure(nm,"-maxiter",5);
 nm = neldermead_configure(nm,"-maxfunevals",1000);

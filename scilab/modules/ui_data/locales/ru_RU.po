@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-02 21:20+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,17 +45,29 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: ans cannot be edited.\n"
 msgstr "%s: Переменная «ans» не может быть изменена.\n"
 
+#
+# File: scilab_fake_localization_file.c, line: 3
+# File: scilab_fake_localization_file.c, line: 7
 msgid "&?"
-msgstr "&Справка"
+msgstr ""
 
+#
+# File: scilab_fake_localization_file.c, line: 4
+# File: scilab_fake_localization_file.c, line: 8
 msgid "&About Scilab..."
-msgstr "&О Scilab"
+msgstr ""
 
+#
+# File: scilab_fake_localization_file.c, line: 2
+# File: scilab_fake_localization_file.c, line: 6
 msgid "&Close"
-msgstr "&Закрыть"
+msgstr ""
 
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 5
 msgid "&File"
-msgstr "&Файл"
+msgstr ""
 
 msgid "Boolean"
 msgstr "Логические значения"

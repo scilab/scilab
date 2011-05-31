@@ -1,15 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
- * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <string.h>
 #include "error_internal.h"
@@ -17,7 +17,6 @@
 #include "msgstore.h"
 #include "BOOL.h"
 #include "stack-def.h"
-#include "errmsg.h"
 #include "errmds.h"
 #include "lasterror.h"
 /*--------------------------------------------------------------------------*/ 
@@ -25,10 +24,10 @@ extern int C2F(errloc)(int *n); /* fortran */
 extern int C2F(errmgr)(); /* fortran */
 extern int C2F(errcontext)(); /* fortran */
 extern int C2F(whatln)(int *lpt1,int *lpt2,int *lpt6,int *nct,int *idebut,int *ifin); /* fortran */
-
 /*--------------------------------------------------------------------------*/ 
-int error_internal(int *n,char *buffer,int mode)
+int error_internal(int *n,char *buffer)
 {
+    int len = 0;
     int num = 0;
     int lct1 = 0;
     int imode = 0;
@@ -65,27 +64,22 @@ int error_internal(int *n,char *buffer,int mode)
             C2F(iop).lct[0] = -1;
         }
 
-        if (mode == ERROR_FROM_FORTRAN)
-        {
-            /* output and store error message */
-            C2F(errmsg)(n, &errtyp);
-        }
-        else /* ERROR_FROM_C */
-        {
-            int len = (int) strlen(buffer);
+        len = (int) strlen(buffer);
 
-            /* free message table */
-            clearLastError();
+        /* free message table */
+        clearLastError();
 
-            /* store error number */
-            setLastErrorValue(*n);
+        /* store error number */
+        setLastErrorValue(*n);
 
-            /* store message */
-            C2F(msgstore)(buffer,&len);
+        /* store message */
 
-            /* display error */
-            if (C2F(iop).lct[0] != -1) sciprint(buffer);
-        }
+
+        C2F(msgstore)(buffer,&len);
+
+        /* display error */
+        if (C2F(iop).lct[0] != -1) sciprint(buffer);
+
         C2F(iop).lct[0] = 0;
     }
     C2F(errcontext)(); 

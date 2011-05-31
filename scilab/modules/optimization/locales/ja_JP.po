@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,24 +27,10 @@ msgstr ""
 "    primal obj.  dual obj.  dual. gap \n"
 
 #
-# File: macros/lmisolver.sci, line: 135
-#, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " 制約,,数値 (%s)'),'lmisolver',%m,%fm));"
-
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#
 # File: sci_gateway/c/sci_qld.c, line: 150
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr "%s: 収束基準は不正確で満足しません。\n"
-
-#, c-format
-msgid "%s: Ambiguous property name %s matches several fields : %s"
-msgstr "%s: あいまいなプロパティ名 %s は、いくつかのフィールドと一致します: %s"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 81
@@ -59,163 +46,11 @@ msgstr "%s: 引数 3: 列 %d の不正な値が想定されます。\n"
 msgid "%s: Cannot allocate more memory.\n"
 msgstr "%s: これ以上メモリを割り当てられません。\n"
 
-#, c-format
-msgid "%s: Cannot check cost function when x0 is empty"
-msgstr "%s: x0が空のコスト関数を調べることができません"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr "%s: costf(x0,1) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr "%s: costf(x0,2) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr "%s: costf(x0,3) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr "%s: costf(x0,4) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr "%s: costf(x0,5) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,6)."
-msgstr "%s: costf(x0,6) からコスト関数を評価することができません。"
-
-#, c-format
-msgid "%s: Empty function (use -function option)."
-msgstr "%s: 空関数(-function オプション使用)"
-
-#, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
-msgstr "%1$s: 入力 #%3$d で変数 %2$s にブーリアンを想定しました、しかし %4$s を代わりに得ました。"
-
-#, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
-msgstr "%1$s: 入力 #%3$d で変数 %2$s に関数を想定しました、しかし %4$s を代わりに得ました。"
-
-#, c-format
-msgid ""
-"%s: Expected real variable for variable %s at input #%d, but got %s instead."
-msgstr "%1$s: 入力 #%3$d で変数 %2$s に実変数を想定しました、しかし %4$s を代わりに得ました。"
-
-#, c-format
-msgid ""
-"%s: Expected string variable for variable %s at input #%d, but got %s "
-"instead."
-msgstr "%1$s: 入力 #%3$d の変数 %2$s で文字を想定しました、しかし、代わりに %4$s を得ました。"
-
-#, c-format
-msgid "%s: History disabled ; enable -storehistory option."
-msgstr "%s: 履歴無効 ; -storehistory オプション有効。"
-
-#, c-format
-msgid "%s: History disabled ; turn on -storehistory option."
-msgstr "%s: 履歴無効 ; -storehistory オプションで設定"
-
-#, c-format
-msgid ""
-"%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
-msgstr "%1$s: 不等式制約へ [%4$s] で頂点 #%2$d/%3$d へ到達できません。"
-
-#, c-format
-msgid "%s: Initial guess [%s] is not feasible."
-msgstr "%s:  最初の推測[%s]は、実行できません。"
-
-#
-# File: macros/fit_dat.sci, line: 100
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: 最初の推測でうまくいきそうもありません。\n"
-
 #
 # File: sci_gateway/c/sci_qld.c, line: 152
 #, c-format
 msgid "%s: Length of working array is too short.\n"
 msgstr "%s: 作業整列の範囲は、あまりにも短いです。\n"
-
-#, c-format
-msgid "%s: Log file handle non zero while starting up the logging."
-msgstr "%s: ロギングの開始中にログファイル・ハンドルはゼロではありません。"
-
-#, c-format
-msgid "%s: Logging already started."
-msgstr "%s: ロギングは既に開始しています。"
-
-#, c-format
-msgid "%s: Logging not started."
-msgstr "%s: ロギングを開始できません。"
-
-#, c-format
-msgid "%s: Negative iteration index %d is not allowed."
-msgstr "%s: 負の反復インデックス %d は、許されません。"
-
-#, c-format
-msgid "%s: Negative iteration index are not allowed."
-msgstr "%s: 負の反復インデックスは、許されません。"
-
-#, c-format
-msgid ""
-"%s: No default options available: the function ''%s'' does not exist on the "
-"path."
-msgstr "%s: 初期化オプションが可能ではありません: 関数 ''%s'' は path に存在しません。"
-
-#, c-format
-msgid "%s: No output command is defined."
-msgstr "%s: 出力関数は定義されていません。"
-
-#, c-format
-msgid "%s: Number of columns of fv is %d, which is different from 1."
-msgstr "%s: fv の列の数は、 %d です、1と違います。"
-
-#, c-format
-msgid ""
-"%s: Number of columns of x is %d, which is different from dimension = %d."
-msgstr "%s: 次元 = %d から x の列の数は、%dと異ります。"
-
-#, c-format
-msgid ""
-"%s: Number of rows of fv is %d, which is different from number of vertices = "
-"%d."
-msgstr "%s: 頂点 = %d の数から fv の行の数は、%d と異ります。"
-
-#, c-format
-msgid ""
-"%s: Number of rows of x is %d, which is different from number of vertices = "
-"%d."
-msgstr "%s: 頂点 = %d の数から x の列の数は、%d と異なります。"
-
-#, c-format
-msgid ""
-"%s: Odd number of arguments : the first argument is expected to be a struct, "
-"but is a %s"
-msgstr "%s: 引数の奇数 : 最初の引数は、構造を予想しますが %s です"
-
-#
-# File: macros/derivative.sci, line: 49
-#, c-format
-msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr "%s:順序が１、２ または、４ でなくてはなりません。\n"
-
-#, c-format
-msgid "%s: Problem has constraints, but fixed algorithm ignores them."
-msgstr "%s: 問題は制約を持っています、しかし、固定したアルゴリズムはそれらを無視します。"
-
-#, c-format
-msgid "%s: Problem has constraints, but variable algorithm ignores them."
-msgstr "%s: 問題は制約を持っています、しかし、変数アルゴリズムはそれらを無視します。"
-
-#, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
-msgstr "%s: 問題は制約を持っていません、しかし、ボックスアルゴリズムは、それらのためにデザインされます。"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 174
@@ -223,87 +58,11 @@ msgstr "%s: 問題は制約を持っていません、しかし、ボックス�
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Qは、非対称な完全定義ではありません。\n"
 
-#, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
-msgstr "%s: 離散界の初期シンプレックスは界なしで利用できません。"
-
-#, c-format
-msgid ""
-"%s: The -withderivatives option is true but all algorithms in neldermead are "
-"derivative-free."
-msgstr "%s: -withderivatives オプションは真です、しかし全てのアルゴリズムはNelder-Mead法の導函数です。"
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr "%s: boundsmaxベクトルは、行の行列と予想されます、しかし、現在の形は %d x %d です"
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr "%s: boundsmaxベクトルは、%d 列を持っていると予想します、しかし、現在の形は、%d x %d です"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr "%s: boundsminベクトルは、行の行列と予想されます、しかし、現在の形は %d x %d です"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr "%s: boundsminベクトルは、%d 列を持っていると予想します、しかし、現在の形は、%d x %d です"
-
 #
 # File: sci_gateway/c/sci_qld.c, line: 154
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
 msgstr "%s: 制約は一貫性がないです。\n"
-
-#, c-format
-msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
-msgstr "%s: 引数 #%d の要素は、 [%d %d] でなくてはなりません。\n"
-
-#, c-format
-msgid "%s: The exclusion index vector has %d rows instead of 1."
-msgstr "%s: 排他インデックス・ベクトルは、１でなく %d を持っています。"
-
-#, c-format
-msgid ""
-"%s: The gradient can be applied only with a simplex made of n+1 points, but "
-"the dimension is %d and the number of vertices is %d"
-msgstr ""
-"%s: 勾配は、n+１点で作られているシンプレックスのみ適用することができます、しかし、次元は %d です、そして、頂点の数は、%dです。"
-
-#, c-format
-msgid ""
-"%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d."
-msgstr "%s: lenベクトルは、列行列と予想します、しかし、現在の形は、%d x %dです。"
-
-#, c-format
-msgid ""
-"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
-msgstr "%s: lenベクトルは、スカラーと予想します、しかし、現在の形は、%d x %d です"
-
-#, c-format
-msgid ""
-"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
-"is %d x %d while current shape of len is %d x %d."
-msgstr ""
-"%s: lenベクトルは、x0点で一貫しませんでした。現在のlenの形が %d x %d である間、現在のxoの形は、%d x %d です。"
-
-#, c-format
-msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
-msgstr "%1$s: costf(x0,%3$d) の行列 %2$s は、 %4$d 列を持っています、 %5$d を代用"
-
-#, c-format
-msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
-msgstr "%1$s: costf(x0,%3$d) の行列 %2$s は、 %4$d 行を持っています、 %5$d を代用"
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 170
@@ -312,318 +71,14 @@ msgid "%s: The minimization problem has no solution.\n"
 msgstr "%s: 最小限化問題は、いかなる解決策も持っていません。\n"
 
 #, c-format
-msgid ""
-"%s: The number of columns in the function value array is %d, while expected "
-"1."
-msgstr "%s: 値配列が %d である関数の列の数、1を予想します。"
-
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 81
-#, c-format
-msgid "%s: The number of columns in x is %d, while expected %d."
-msgstr "%1$s: %3$d が予想されましたが、列の数が %2$d です。"
-
-#, c-format
-msgid ""
-"%s: The number of rows in the function value array is %d, while expected %d."
-msgstr "%s: 値配列が %d である関数の数、%d を予想します。"
-
-#
-# File: sci_gateway/c/sci_qp_solve.c, line: 81
-#, c-format
-msgid "%s: The number of rows in x is %d, while expected %d."
-msgstr "%1$s: %3$d が予想されましたが、行の数が %2$d です。"
-
-#, c-format
-msgid "%s: The number of variable is zero."
-msgstr "%s: 変数の数は、ゼロです。"
-
-#, c-format
-msgid ""
-"%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
-"than the number of columns %d (i.e. n+1)."
-msgstr "%s: 頂点(列の数)の数は %d 、行の数よりも小さい %d (n+１) です。"
-
-#, c-format
-msgid ""
-"%s: The numbers of columns of coords is %d but is expected to be at least %d"
-msgstr "%s: coordsの列の数は、%d ですが、少なくとも %d を予想します"
-
-#, c-format
-msgid ""
-"%s: The oriented simplex can be computed only with a simplex made of n+1 "
-"points, but the dimension is %d and the number of vertices is %d"
-msgstr ""
-"%s: "
-"方向づけられたシンプレックスは、n+１点で作られているシンプレックスでのみ計算することができます、しかし、次元は%dで、そして、頂点の数は、%dです。"
-
-#, c-format
-msgid ""
-"%s: The restarteps option is expected to be a scalar, but current shape is "
-"%d x %d"
-msgstr "%s: restarteps オプションはスカラーと思われますが, カレントの shape は %d x %d です"
-
-#, c-format
-msgid "%s: The restarteps option is expected to be positive"
-msgstr "%s: restarteps オプションは正としてください."
-
-#, c-format
-msgid "%s: The restartstep vector is expected to be positive"
-msgstr "%s: restartstep ベクトルは正としてください."
-
-#, c-format
-msgid ""
-"%s: The restartstep vector is expected to have %d x %d shape, but current "
-"shape is %d x %d"
-msgstr ""
-"%s: restartstep ベクトルは %d x %d の shape を有する必要がありますが, カレントの shape は %d x %d です"
-
-#, c-format
-msgid ""
-"%s: The value of the ''OutputFcn'' option is neither a function nor a list."
-msgstr "%s: ''OutputFcn'' オプション の値は、ノルム関数リストではありません。"
-
-#, c-format
-msgid ""
-"%s: The value of the ''PlotFcns'' option is neither a function nor a list."
-msgstr "%s: ''PlotFcns'' オプション の値は、ノルム関数リストではありません。"
-
-#, c-format
-msgid ""
-"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
-"x %d"
-msgstr "%s: x0ベクトルは、列行列と予想します、しかし、現在の形は、%d x %d です"
-
-#, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d"
-msgstr "%s: x0ベクトルは、行の行列と予想します、しかし、現在の形は、%d x %d です"
-
-#, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d."
-msgstr "%s: x0ベクトルは、列行列と予想されます、しかし、現在の形は、%d x %d です。"
-
-#, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr "%s: 多すぎる反復(%d 以上)。\n"
-
-#, c-format
-msgid "%s: Unbounded problem!"
-msgstr "%s: 果てしない問題!"
-
-#, c-format
-msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr "%s: 関数評価 %s の思いがけない最大数です。"
-
-#, c-format
-msgid "%s: Unexpected maximum number of iterations %s."
-msgstr "%s: 反復 %s の思いがけない最大数です。"
-
-#, c-format
-msgid "%s: Unexpected negative value %s for %s option"
-msgstr "%1$s: %3$s オプション の想定しない負の値 %2$s"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 0 から 7 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 1 から 3 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 are expected."
-msgstr "%s: 入力引数の数が不正です: 2 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 2 から 3 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 1 から 4 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 2 から 5 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 2 から 6 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
-"expected."
-msgstr "%s: 入力引数の数が不正です: 6 から 7 が予想されたので %d を提供します。"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid ""
-"%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
-"expected."
-msgstr "%s: 出力引数の数が不正です: 3 から 5 が予想されたので %d を提供します。"
-
-#, c-format
-msgid ""
-"%s: Unexpected number of variables %d. Cannot draw contour plot for "
-"functions which do not have two parameters."
-msgstr "%s: 変数 %d の数は予想しませんでした。２つのパラメーターを持たない関数で描画を描くことができません。"
-
-#, c-format
-msgid "%s: Unknown -method %s"
-msgstr "%s: 未知の方法 %s です"
-
-#, c-format
-msgid "%s: Unknown key %s"
-msgstr "%s: 未知のキー %s です"
-
-#, c-format
-msgid "%s: Unknown method %s"
-msgstr "%s: 未知の方法 %s です。"
-
-#, c-format
-msgid "%s: Unknown restart detection %s"
-msgstr "%s: 未知の再開の検出 %s"
-
-#, c-format
-msgid "%s: Unknown restart simplex method %s"
-msgstr "%s: 未知の再開 シンプレックス方法 %s"
-
-#, c-format
-msgid "%s: Unknown simplex size method %s"
-msgstr "%s: 未知のシンプレックス・サイズ方法 %s"
-
-#, c-format
-msgid "%s: Unknown status %s"
-msgstr "%s: 未知の状態 %s です。"
-
-#, c-format
-msgid "%s: Unknown step %s"
-msgstr "%s: 未知の刻み %s です"
-
-#, c-format
-msgid "%s: Unknown value %s for %s option"
-msgstr "%1$s: %3$s オプション の未知の値 %2$s"
-
-#, c-format
-msgid "%s: Unknown value %s for -scalingsimplex0 option"
-msgstr "%s: -scalingsimplex0 オプションで未知の値 %s"
-
-#, c-format
-msgid "%s: Unknown value %s for -simplex0method option"
-msgstr "%s: -simplex0method オプション で、未知の値 %s"
-
-#, c-format
-msgid "%s: Unrecognized parameter name ''%s''."
-msgstr "%s: 承認されないパラメータ名 ''%s'' です。"
-
-#, c-format
-msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: ''Display'' オプションの承認されない値 ''%s'' です。"
-
-#
-# File: macros/fit_dat.sci, line: 81
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: 行列の分母は、平方でなくてはなりません。\n"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid "%s: Wrong number of arguments : %d expected while %d given"
-msgstr "%1$s: 入力引数の数が不正です: %3$d が与えられるので %2$d を想定します。"
-
-#
-# File: macros/fit_dat.sci, line: 78
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数の数が不正です。\n"
-
-#
-# File: macros/derivative.sci, line: 37
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
-
-#
-# File: macros/karmarkar.sci, line: 28
-# File: macros/karmarkar.sci, line: 32
-# File: macros/karmarkar.sci, line: 36
-#, c-format
-msgid "%s: Wrong size for input argument #%d."
-msgstr "%s: 入力引数 #%d で不正なサイズです。"
-
-#
-# File: macros/derivative.sci, line: 44
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 列 %d の数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 40
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: N-次元配列 を想定します。\n"
-
-#
-# File: macros/derivative.sci, line: 135
-#, c-format
-msgid "%s: Wrong type for input argument #%s: external expected.\n"
-msgstr "%s: 入力引数 #%s で不正な型: 外部を想定します。\n"
-
-#
-# File: macros/karmarkar.sci, line: 39
-#, c-format
-msgid "%s: x0 is not feasible."
-msgstr "%s: x0 はうまくいきそうもありません。"
 
 #
 # File: src/c/sp.c, line: 504
@@ -671,22 +126,22 @@ msgstr "Lは、最低でも1でなくてはなりません。\n"
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr "行列 Fi, i=1,..., mは１次従属です。\n"
 
-# File: etc/optimization.start, line: 13
-msgid "Optimization and Simulation"
-msgstr "最適化とシミュレーション"
-
 #
 # File: src/c/sp.c, line: 520
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
-msgstr "行列  F_i, i=1,..., mは１次従属です(あるいは、最初の点は、とても悪い条件でした)\n"
+msgstr ""
+"行列  F_i, i=1,..., mは１次従属です(あるいは、最初の点は、とても悪い条件でし"
+"た)\n"
 
 #
 # File: src/c/sp.c, line: 351
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
-msgstr "作業空間はあまりにも小さいです。最低でも %d*sizeof(double) の必要があります。\n"
+msgstr ""
+"作業空間はあまりにも小さいです。最低でも %d*sizeof(double) の必要がありま"
+"す。\n"
 
 #
 # File: src/c/sp.c, line: 316

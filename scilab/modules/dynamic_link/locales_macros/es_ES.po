@@ -1,0 +1,308 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: Comando: %s\n"
+
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: Copie %s en TMPDIR\n"
+
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr ""
+"   %s: Copie los archivos de compilación (Makefile*, libtool...) en TMPDIR\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: No se copio %s: El directorio de origen y el directorio de destino "
+"son el mismo (%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: El archivo %s fue ignorado.\n"
+
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: Modificación del Makefile en TMPDIR.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: Necesita ejecutar la detección de compilador (configurar).\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: Sustituye la referencia por el archivo actual.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: Usar la detección anterior de compilador.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configure : Genere Makefile.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   Construyendo la biblioteca compartida (sea paciente)\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   Comando: %s\n"
+
+msgid "   Compilation of "
+msgstr "   Compilación de "
+
+msgid "   Generate a Makefile\n"
+msgstr "   Generar un Makefile\n"
+
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Generar un Makefile: %s\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   Generar un archivo de limpieza\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   Generar un archivo de puerta de enlace\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   Generar un archivo de carga\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   Salida: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Ejecutando el Makefile\n"
+
+msgid "   Running the makefile\n"
+msgstr "   Ejecutando el makefile\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   stderr: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 84
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Se requiere un compilador de Fortran o C.\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: Ocurrió un error durante la compilación:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: Ha ocurrido un error durante la detección del compilador(es). Configure "
+"ilib_verbose(2) para más información.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: A ocurrido un error: %s\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: Comando de construcción: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No se puede abrir el archivo %s.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 184
+#, c-format
+msgid "%s: Could not find the built library ''%s''.\n"
+msgstr ""
+
+#
+# File: macros/ilib_compile.sci, line: 84
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: Error al modificar la referencia ''Makefile'':\n"
+
+#
+# File: macros/ilib_include_flag.sci, line: 21
+#, c-format
+msgid "%s: Failed to add include path : %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: Esta función no está disponible para Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: El comando era:\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: El archivo %s no existe.\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: Esta función fue implementada para Windows.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+"%s: Esta función requiere el compilador de Microsoft visual studio C.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: Advertencia: No se recibió un código de error en la compilación pero la "
+"salida de error no está vacía:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: Advertencia: Scilab no ha podido encontrar el código fuente. Por favor "
+"envíe un reporte de error en http://bugzilla.scilab.org/\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaba %d,%d ó %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamaño incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"de strings < 999.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"strings.\n"
+
+#
+# File: macros/ilib_build.sci, line: 60
+# File: macros/ilib_mex_build.sci, line: 26
+# File: macros/ilib_for_link.sci, line: 32
+#, c-format
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
+"{%s}.\n"
+
+#
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
+# File: macros/ilib_gen_Make_unix.sci, line: 153
+# File: macros/ilib_gen_Make_unix.sci, line: 169
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+
+msgid "A Fortran or C compiler is required."
+msgstr "Se requiere un compilador de Fortran o C."
+
+#
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 44
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
+msgstr ""
+
+msgid "Dynamic link"
+msgstr "Enlace dinámico"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C no puede construir fortran 90"
+
+#
+# File: macros/detectmsifort64tools.sci, line: 34
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "Salida: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 90
+msgid "You need to unload this library before."
+msgstr ""
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "stderr: %s\n"

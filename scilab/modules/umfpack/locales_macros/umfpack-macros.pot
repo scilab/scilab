@@ -1,0 +1,174 @@
+# Localization of the module umfpack-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/cond2sp.sci, line: 75
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 107
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 39
+# File: macros/scisptdemo.sci, line: 41
+# File: macros/scisptdemo.sci, line: 43
+msgid "                                                     "
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 44
+msgid "               CLICK TO  CONTINUE                    "
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 40
+msgid "              stacksize(3000000);                    "
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 95
+# File: macros/cond2sp.sci, line: 126
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 42
+msgid "           then re enter scisptdemo()                "
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 78
+msgid "   then click on OK   "
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 76
+msgid " ----------------------------------------------------- \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 108
+msgid " ------------------------------------------------------------\n"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 37
+msgid " For this demo the current stack size is not enough "
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 94
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 125
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 38
+msgid " enter the following at the scilab prompt :          "
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 84
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr ""
+#
+# File: macros/cond2sp.sci, line: 116
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr ""
+#
+# File: macros/condestsp.sci, line: 107
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 148
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 110
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr ""
+#
+# File: macros/condestsp.sci, line: 103
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr ""
+#
+# File: macros/PlotSparse.sci, line: 74
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 84
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+#
+# File: macros/condestsp.sci, line: 71
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/condestsp.sci, line: 79
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+#
+# File: macros/condestsp.sci, line: 75
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 81
+# File: macros/PlotSparse.sci, line: 88
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/PlotSparse.sci, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 120
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr ""
+#
+# File: macros/ReadHBSparse.sci, line: 77
+msgid "Choose a sparse matrix"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 61
+msgid "Click to choose a demo"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 58
+msgid "display a speed comparison test"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 57
+msgid "how to use this stuff"
+msgstr ""
+#
+# File: macros/scisptdemo.sci, line: 59
+msgid "small tests for condestsp"
+msgstr ""

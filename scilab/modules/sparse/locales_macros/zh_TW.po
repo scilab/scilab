@@ -1,0 +1,191 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  迭代(Iteration) #%s/%s residual : %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr ""
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr ""
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: 收歛有誤.\n"
+
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: 不收歛( converge).\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 至少 %d個才對.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤 : 至少應有 %d 個.\n"
+
+#
+# File: macros/sp2adj.sci, line: 23
+# File: macros/adj2sp.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 第#%d個輸入參數長度有誤: 應和第 #%d個參數同長度才對\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為方陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤 : 應為列向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一方陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 變換函式(Transpose)%s才對.\n"
+
+#
+# File: macros/adj2sp.sci, line: 63
+# File: macros/adj2sp.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 83
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#
+# File: macros/adj2sp.sci, line: 71
+# File: macros/adj2sp.sci, line: 75
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 行向量(Column vector )才對.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 變換函式(Transpose)%s才對.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 向量( vector )才對.\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "演算法有誤\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "演算法成功\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "參數:\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "最後剩餘(residual) = %s > tol =%s\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr ""
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr ""

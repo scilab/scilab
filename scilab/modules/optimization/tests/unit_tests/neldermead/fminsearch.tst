@@ -25,13 +25,8 @@ assert_checkequal ( output.iterations , 85 );
 assert_checkequal ( output.algorithm , "Nelder-Mead simplex direct search" );
 assert_checkequal ( output.funcCount , 159 );
 assert_checkequal ( output.message(1) , "Optimization terminated:");
-if getos() == 'Windows' then
-assert_checkequal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
-assert_checkequal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
-else
-assert_checkequal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04");
-assert_checkequal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04");
-end
+assert_checkequal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 0.0001");
+assert_checkequal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 0.0001");
 // 
 // fminsearch with incorrect number of input arguments
 //

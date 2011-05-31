@@ -1,0 +1,67 @@
+# Localization of the module output_stream-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/prettyprint.sci, line: 594
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 126
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 74
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 121
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 104
+# File: macros/prettyprint.sci, line: 115
+# File: macros/prettyprint.sci, line: 118
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 82
+# File: macros/prettyprint.sci, line: 89
+# File: macros/prettyprint.sci, line: 98
+# File: macros/prettyprint.sci, line: 109
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/prettyprint.sci, line: 92
+# File: macros/prettyprint.sci, line: 101
+# File: macros/prettyprint.sci, line: 112
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr ""

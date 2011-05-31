@@ -12,6 +12,7 @@
 
 package org.scilab.modules.commons;
 
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -46,4 +47,23 @@ public final class ScilabCommonsUtils {
         return new BigInteger(1, bytes).toString(16);
     }
 
+    /**
+     * Load on use
+     * @param str the action
+     */
+    public static void loadOnUse(String str) {
+        try {
+            Class jvmLoadClassPathClass = Class.forName("org.scilab.modules.jvm.LoadClassPath");
+            Method loadOnUseMethod = jvmLoadClassPathClass.getDeclaredMethod("loadOnUse", new Class[] { String.class });
+            loadOnUseMethod.invoke(null, str);
+        } catch (java.lang.ClassNotFoundException ex) {
+            System.err.println("Could not find the Scilab class to load the export dependencies: " + ex);
+        } catch (java.lang.NoSuchMethodException ex) {
+            System.err.println("Could not find the Scilab method to load the export dependencies: " + ex);
+        } catch (java.lang.IllegalAccessException ex) {
+            System.err.println("Could not access to the Scilab method to load the export dependencies: " + ex);
+        } catch (java.lang.reflect.InvocationTargetException ex) {
+            System.err.println("Could not invoke the Scilab method to load the export dependencies: " + ex);
+        }
+    }
 }

@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,6 +60,12 @@ msgstr "Campo del manejador gráfico"
 
 msgid "Scilab Command"
 msgstr "Comando de Scilab"
+
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
 
 msgid "Scilab Function"
 msgstr "Función de Scilab"

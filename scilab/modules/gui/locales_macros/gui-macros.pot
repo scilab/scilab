@@ -1,0 +1,564 @@
+# Localization of the module gui-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/tree/uiFindNode.sci, line: 115
+# File: macros/tree/uiFindNode.sci, line: 142
+# File: macros/tree/uiDeleteNode.sci, line: 110
+# File: macros/tree/uiDeleteNode.sci, line: 118
+# File: macros/tree/uiGetParentNode.sci, line: 87
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr ""
+#
+# File: macros/tree/uiInsertNode.sci, line: 205
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr ""
+#
+# File: macros/tree/uiDeleteNode.sci, line: 113
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr ""
+#
+# File: macros/tree/uiInsertNode.sci, line: 208
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 128
+# File: macros/tree/uiDeleteNode.sci, line: 90
+# File: macros/tree/uiInsertNode.sci, line: 101
+# File: macros/tree/uiInsertNode.sci, line: 188
+#, c-format
+msgid "%s: Invalid position ''%s''.\n"
+msgstr ""
+#
+# File: macros/tree/uiDeleteNode.sci, line: 121
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 138
+#, c-format
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 118
+#, c-format
+msgid "%s: No results found.\n"
+msgstr ""
+#
+# File: macros/getvalue.sci, line: 184
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 112
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 178
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiCreateTree.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+#
+# File: macros/findobj.sci, line: 14
+# File: macros/tree/uiConcatTree.sci, line: 17
+# File: macros/tree/uiDeleteNode.sci, line: 16
+# File: macros/tree/uiEqualsTree.sci, line: 16
+# File: macros/tree/uiGetNodePosition.sci, line: 16
+# File: macros/tree/uiGetChildrenNode.sci, line: 16
+# File: macros/tree/uiInsertNode.sci, line: 16
+# File: macros/tree/uiGetParentNode.sci, line: 16
+# File: macros/x_choices.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+#
+# File: macros/clipboard.sci, line: 47
+# File: macros/tree/uiCreateNode.sci, line: 16
+# File: macros/tree/uiDumpTree.sci, line: 16
+# File: macros/addmenu.sci, line: 202
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 75
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 66
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+#
+# File: macros/figure.sci, line: 26
+# File: macros/figure.sci, line: 53
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 51
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 72
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 62
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 56
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 336
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 58
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/close.sci, line: 33
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+#
+# File: macros/x_choices.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+#
+# File: macros/x_matrix.sci, line: 11
+# File: macros/addmenu.sci, line: 97
+# File: macros/addmenu.sci, line: 126
+# File: macros/addmenu.sci, line: 143
+# File: macros/addmenu.sci, line: 160
+# File: macros/addmenu.sci, line: 186
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 34
+# File: macros/addmenu.sci, line: 45
+# File: macros/addmenu.sci, line: 59
+# File: macros/addmenu.sci, line: 77
+# File: macros/addmenu.sci, line: 101
+# File: macros/addmenu.sci, line: 147
+# File: macros/addmenu.sci, line: 164
+# File: macros/addmenu.sci, line: 190
+# File: macros/x_choices.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 81
+# File: macros/addmenu.sci, line: 132
+# File: macros/addmenu.sci, line: 168
+# File: macros/addmenu.sci, line: 196
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiDumpTree.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiCreateNode.sci, line: 27
+# File: macros/tree/uiCreateNode.sci, line: 36
+# File: macros/tree/uiCreateNode.sci, line: 44
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiDeleteNode.sci, line: 39
+# File: macros/tree/uiInsertNode.sci, line: 39
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiCreateTree.sci, line: 34
+# File: macros/tree/uiFindNode.sci, line: 28
+# File: macros/tree/uiConcatTree.sci, line: 26
+# File: macros/tree/uiConcatTree.sci, line: 33
+# File: macros/tree/uiDeleteNode.sci, line: 27
+# File: macros/tree/uiEqualsTree.sci, line: 25
+# File: macros/tree/uiEqualsTree.sci, line: 32
+# File: macros/tree/uiDumpTree.sci, line: 26
+# File: macros/tree/uiGetNodePosition.sci, line: 25
+# File: macros/tree/uiGetNodePosition.sci, line: 32
+# File: macros/tree/uiGetChildrenNode.sci, line: 27
+# File: macros/tree/uiInsertNode.sci, line: 27
+# File: macros/tree/uiInsertNode.sci, line: 46
+# File: macros/tree/uiGetParentNode.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 42
+# File: macros/tree/uiGetChildrenNode.sci, line: 40
+# File: macros/tree/uiGetParentNode.sci, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+#
+# File: macros/tree/uiFindNode.sci, line: 54
+#, c-format
+msgid "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or ''callback''.\n"
+msgstr ""
+#
+# File: macros/tree/uiCreateTree.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 331
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr ""
+#
+# File: macros/clipboard.sci, line: 42
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/clipboard.sci, line: 34
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 30
+# File: macros/addmenu.sci, line: 55
+# File: macros/addmenu.sci, line: 73
+# File: macros/addmenu.sci, line: 122
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr ""
+#
+# File: macros/addmenu.sci, line: 16
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr ""
+#
+# File: macros/clipboard.sci, line: 51
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+# File: demos/uicontrol.dem.sce, line: 87
+# File: demos/uicontrol_LaTeX.dem.sce, line: 24
+msgid "&?"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
+# File: demos/uicontrol.dem.sce, line: 86
+# File: demos/uicontrol_LaTeX.dem.sce, line: 23
+msgid "&Edit"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 58
+# File: demos/uicontrol.dem.sce, line: 84
+# File: demos/uicontrol_LaTeX.dem.sce, line: 21
+msgid "&File"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
+# File: demos/uicontrol.dem.sce, line: 85
+# File: demos/uicontrol_LaTeX.dem.sce, line: 22
+msgid "&Tools"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 11
+# File: demos/uicontrol.dem.sce, line: 123
+msgid "<Enter color name here>"
+msgstr ""
+#
+# File: macros/about.sci, line: 20
+msgid "About Scilab..."
+msgstr ""
+#
+# File: macros/about.sci, line: 20
+msgid "Acknowledgements"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 130
+msgid "Add color in listbox"
+msgstr ""
+#
+# File: macros/getvalue.sci, line: 193
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+#
+# File: macros/getvalue.sci, line: 189
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+#
+# File: macros/getvalue.sci, line: 195
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 96
+msgid "Application"
+msgstr ""
+#
+# File: macros/about.sci, line: 18
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 75
+msgid "Close"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 117
+msgid "Colors list edition"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 67
+msgid "Control Plot3d"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 148
+msgid "Display selection"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 69
+msgid "Do you really want to quit Scilab?"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 12
+msgid "Error"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 97
+msgid "Exit figure"
+msgstr ""
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 72
+msgid "File"
+msgstr ""
+#
+# File: etc/gui.start, line: 20
+msgid "GUI"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 102
+msgid "Launch plot2d"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 101
+msgid "Launch plot3d"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 104
+msgid "Menu"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 45
+#, c-format
+msgid "Menu ''%s'' is %s."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 46
+msgid "Menu status"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 70
+msgid "No"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 27
+msgid "No color selected."
+msgstr ""
+#
+# File: macros/about.sci, line: 20
+msgid "Ok"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 12
+msgid "Please enter a color name first."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 61
+msgid "Popupmenu selection"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 70
+# File: demos/uicontrol.dem.sce, line: 98
+msgid "Quit Scilab"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 189
+msgid "Quit demonstration"
+msgstr ""
+#
+# File: macros/about.sci, line: 16
+msgid "Scilab 5.0 and future versions are released under the terms of the CeCILL license.\n"
+msgstr ""
+#
+# File: macros/about.sci, line: 30
+msgid "Scilab Contributors..."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 100
+msgid "Scilab Graphics"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 31
+msgid "Selected colors"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 29
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 36
+msgid "Selected menu"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 157
+msgid "Slider demo"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 52
+msgid "Slider value: "
+msgstr ""
+#
+# File: macros/about.sci, line: 17
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 105
+msgid "Sub-menu 1"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 106
+# File: demos/uicontrol.dem.sce, line: 109
+msgid "Sub-menu 2"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 107
+msgid "Sub-menu 2-1"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 108
+msgid "Sub-menu 2-2"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 78
+msgid "Uicontrols demo"
+msgstr ""
+#
+# File: demos/uicontrol_LaTeX.dem.sce, line: 15
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+#
+# File: macros/about.sci, line: 19
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 70
+msgid "Yes"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 35
+#, c-format
+msgid "You clicked on menu ''%s''."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 60
+#, c-format
+msgid "You selected ''%s''."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 134
+msgid "blue"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 41
+msgid "checked"
+msgstr ""
+#
+# File: macros/createpopup.sci, line: 50
+msgid "createPopupItems: found an empty cascading menu."
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 134
+msgid "green"
+msgstr ""
+#
+# File: macros/about.sci, line: 20
+msgid "http://www.scilab.org/"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 182
+msgid "item1|item2|item3|item4"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 134
+msgid "red"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 43
+msgid "unchecked"
+msgstr ""
+#
+# File: demos/uicontrol.dem.sce, line: 134
+msgid "yellow"
+msgstr ""

@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -536,6 +536,14 @@ endfunction
 //   simplex0 : the initial simplex
 //
 function [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
+  if ( simplex0.nbve == [] ) then
+    errmsg = msprintf(gettext ( "%s: The initial simplex has no vertices.") , "optimsimplex_oriented")
+    error(errmsg)
+  end
+  if ( simplex0.n == [] ) then
+    errmsg = msprintf(gettext ( "%s: The initial simplex has no dimension.") , "optimsimplex_oriented")
+    error(errmsg)
+  end
   if ( simplex0.nbve <> simplex0.n+1 ) then
     errmsg = msprintf(gettext ( "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d") , "optimsimplex_oriented", simplex0.n , simplex0.nbve)
     error(errmsg)

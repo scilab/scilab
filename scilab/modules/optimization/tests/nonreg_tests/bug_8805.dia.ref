@@ -1,0 +1,86 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+//
+// <-- Non-regression test for bug 8805 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=8805
+//
+// <-- Short Description -->
+// The neldermead function, algorithm box, wrongly used 
+// the output function.
+// Manually check that the .ref contains the good values for f and x.
+//
+function [ f , index ] = costf ( x , index )
+  f = 100*(x(2) - x(1)^2)^2 + (1 - x(1))^2
+endfunction
+function stop = myoutputcmd(state, data)
+  iter = data.iteration
+  if ( state == "init" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "Initialization\n");
+  elseif ( state == "done" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "End of Optimization\n");
+  end
+  fc = data.funccount
+  fval = data.fval
+  x = data.x
+  simplex = data.simplex
+  // Simplex is a data structure, which can be managed
+  // by the optimsimplex class.
+  ssize = optimsimplex_size ( simplex )
+  if ( modulo(iter,10)==0 ) then
+  mprintf ( "Iteration #%d, Feval #%d, Fval = %s, x = %s, Size = %s\n", ..
+    iter,fc, string(fval), strcat(string(x)," "), string(ssize));
+  end
+  stop = %f
+endfunction
+xopt = [1;1]
+ xopt  =
+ 
+    1.  
+    1.  
+fopt = 0
+ fopt  =
+ 
+    0.  
+x0 = [-1.2 1.0];
+lower_bounds = [-2 -2];
+upper_bounds = [2. 2.];
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",costf);
+nm = neldermead_configure(nm,"-x0",x0');
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-boundsmin",lower_bounds);
+nm = neldermead_configure(nm,"-boundsmax",upper_bounds);
+nm = neldermead_configure(nm,"-maxfunevals",200);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_search(nm);
+=================================
+Initialization
+Iteration #0, Feval #5, Fval = 24.2, x = -1.2 1, Size = 1
+Iteration #10, Feval #24, Fval = 17.739544, x = -1.306133 1.3535448, Size = 0.4232797
+Iteration #20, Feval #39, Fval = 3.1084555, x = -0.7605391 0.5878842, Size = 0.5279715
+Iteration #30, Feval #54, Fval = 2.8595067, x = -0.5902157 0.2908462, Size = 0.2124624
+Iteration #40, Feval #67, Fval = 1.8482026, x = -0.3567710 0.1186976, Size = 0.1320536
+Iteration #50, Feval #80, Fval = 1.2135961, x = -0.0967633 -0.0009840, Size = 0.1553767
+Iteration #60, Feval #95, Fval = 0.8071251, x = 0.1021266 0.0073502, Size = 0.0867644
+Iteration #70, Feval #109, Fval = 0.3862336, x = 0.3785234 0.1432114, Size = 0.0830308
+Iteration #80, Feval #123, Fval = 0.1657288, x = 0.6215871 0.3713597, Size = 0.1261381
+Iteration #90, Feval #138, Fval = 0.0560209, x = 0.7683165 0.5854691, Size = 0.0913569
+Iteration #100, Feval #152, Fval = 0.0118572, x = 0.9236613 0.8453851, Size = 0.1200287
+Iteration #110, Feval #169, Fval = 0.0035297, x = 0.9490188 0.8975862, Size = 0.0479899
+Iteration #120, Feval #184, Fval = 0.0000838, x = 1.0072619 1.0151336, Size = 0.0504394
+=================================
+End of Optimization
+xopt = neldermead_get(nm,"-xopt");
+assert_checkalmostequal(xopt,[1;1],1.d-2);
+nm = neldermead_destroy(nm);

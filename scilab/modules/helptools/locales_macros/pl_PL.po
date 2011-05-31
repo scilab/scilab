@@ -1,0 +1,282 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tPrzetwarzanie pliku %s.xml\n"
+
+msgid ""
+"\n"
+"Building master documents:\n"
+msgstr ""
+"\n"
+"Buduję główne dokumenty:\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"Tworzenie dokumentu głównego pliku pomocy Scilab dla %s.\n"
+
+#
+# File: macros/xmltoformat.sci, line: 562
+# File: macros/xmltoformat.sci, line: 679
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s.\n"
+msgstr ""
+
+#
+# File: macros/xmltoformat.sci, line: 674
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s].\n"
+msgstr ""
+
+msgid ""
+"\n"
+"Building the master document:\n"
+msgstr ""
+"\n"
+"Tworzenie głównego dokumentu:\n"
+
+#, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: plik %s nie został przeniesiony do katalogu %s."
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s nie zostały wygenerowane."
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Nie można otworzyć pliku %s.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: Katalog %s nie istnieje lub brak prawa dostępu do odczytu."
+
+#, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: Pliki pomijane %s."
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany taki sam "
+"rozmiar.\n"
+
+#
+# File: macros/xmltoformat.sci, line: 857
+#, c-format
+msgid "%s: Please check %s, number of modules is invalid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Przetwarzanie pliku: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%s: Przetwarzanie pliku: od %s do %s.\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: Odczyt z katalogu %s.\n"
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr "%s: Dwie listy typu mlist nie mogą mieć żadnego pola wspólnego.\n"
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: Plik CHAPTER nie jest dobrze sformatowany w wierszu %d\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Plik %s nie istnieje.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: Przeglądarka pliku pomocy jest nieaktywna w trybie %s.\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+"%s: Plik last_successful_build nie jest dobrze sformatowany w wierszu %d\n"
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Ta funkcja działa tylko na platformie Windows.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s:  Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwano wartości "
+"całkowitej.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
+"pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
+"logicznej.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano wartości "
+"całkowitej.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest "
+"pojedynczy łańcuch.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy ciągów "
+"znaków.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano listy typu "
+"macierzowego.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
+"łancuchu, zakończonego .last_successful_build.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwany "
+"łańcuch kończący się słowem CHAPTER.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartości argumentu wejściowego nr %d: oczekiwana poprawna "
+"nazwa katalogu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartości argumentu wejściowego nr %d: oczekiwana poprawna "
+"nazwa pliku.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwana nazwa "
+"istniejącego katalogu.\n"
+
+#, c-format
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: plik pomocy (.jar) nie zainstalowany.\n"
+
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: nie odnaleziono hhc.exe.\n"
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: no file generate.\n"
+
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: przetworzono %i plików.\n"
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Usuwanie plików pomocy --\n"
+
+msgid "Building the scilab manual file ["
+msgstr "Budowanie pliku pomocy Scilab ["
+
+msgid "Help chapter"
+msgstr "Rozdział pliku pomocy"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Uwaga %s nie jest zgodny z dtd"

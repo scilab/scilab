@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -80,23 +81,26 @@ msgstr "%s: エラーが起きました: %s\n"
 #
 # File: src/c/do_xxscanf.c, line: 216
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
-msgstr "%1$s: エラーが起きました: %%4$c 指令のためのフィールド %2$d は、あまりにも長いです(< %3$d)\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgstr ""
+"%1$s: エラーが起きました: %%4$c 指令のためのフィールド %2$d は、あまりにも長"
+"いです(< %3$d)\n"
 
 #
 # File: src/c/do_xxscanf.c, line: 194
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
-msgstr "%1$s: エラーが起きました: %%4$s 指令のためのフィールド %2$d は、あまりにも長いです(< %3$d)\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgstr ""
+"%1$s: エラーが起きました: %%4$s 指令のためのフィールド %2$d は、あまりにも長"
+"いです(< %3$d)\n"
 
 #
 # File: src/c/do_xxscanf.c, line: 175
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
-msgstr "%1$s: エラーが起きました: %%4$[ 指令のためのフィールド %2$d があまりにも長いです(>%3$d)\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgstr ""
+"%1$s: エラーが起きました: %%4$[ 指令のためのフィールド %2$d があまりにも長い"
+"です(>%3$d)\n"
 
 #
 # File: src/c/do_xxscanf.c, line: 317
@@ -114,13 +118,17 @@ msgstr "%s: エラーが起きました: 多すぎる変換要求です(>%d)\n"
 # File: src/c/mclose.c, line: 73
 #, c-format
 msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
-msgstr "%s: 記述子が %d のファイルを閉じることができません: ファイルは活動していません。\n"
+msgstr ""
+"%s: 記述子が %d のファイルを閉じることができません: ファイルは活動していませ"
+"ん。\n"
 
 #
 # File: src/c/mclose.c, line: 79
 #, c-format
 msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
-msgstr "%s: 記述子が %d のファイルを閉じることができません: 閉じるファイルはありません。\n"
+msgstr ""
+"%s: 記述子が %d のファイルを閉じることができません: 閉じるファイルはありませ"
+"ん。\n"
 
 #
 # File: macros/cd.sci, line: 26
@@ -146,7 +154,8 @@ msgstr "%s: ファイル %s を開けません。\n"
 # File: src/c/mclose.c, line: 73
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
-msgstr "%s: %d 記述子のファイルを開くことができません: ファイルは活動していません。\n"
+msgstr ""
+"%s: %d 記述子のファイルを開くことができません: ファイルは活動していません。\n"
 
 #
 # File: sci_gateway/c/sci_maxfiles.c, line: 68
@@ -183,26 +192,9 @@ msgstr "%s: 開いて読み込み中か、または、書いているときに�
 #
 # File: sci_gateway/c/sci_findfiles.c, line: 58
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
-msgstr "%s: 現在のディレクトリ名を回復するよう試みている間にエラーが起こりました。\n"
-
-#
-# File: src/c/mgeti.c, line: 214
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: 不正確なフォーマット\n"
-
-#
-# File: src/c/do_xxprintf.c, line: 442
-# File: src/c/do_xxprintf.c, line: 464
-# File: src/c/do_xxscanf.c, line: 187
-# File: src/c/do_xxscanf.c, line: 207
-# File: src/c/do_xxscanf.c, line: 273
-# File: src/c/do_xxscanf.c, line: 289
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: 無効なコンバージョン\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
+msgstr ""
+"%s: 現在のディレクトリ名を回復するよう試みている間にエラーが起こりました。\n"
 
 #, c-format
 msgid "%s: Invalid format.\n"
@@ -267,12 +259,6 @@ msgid "%s: No such file %s.\n"
 msgstr "%s: ファイル %s がありません。\n"
 
 #
-# File: macros/ls.sci, line: 31
-#, c-format
-msgid "%s: Options ignored.\n"
-msgstr "%s: オプションを無視しました。\n"
-
-#
 # File: sci_gateway/c/sci_mscanf.c, line: 66
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -300,7 +286,8 @@ msgstr "%s: 開いているファイルの数が多すぎます.\n"
 msgid ""
 "%s: Warning : only extend the limit for the number of scilab's files opened "
 "simultaneously.\n"
-msgstr "%s: 警告 : scilabの同時に開かれたファイル数のために単に限界を広げて下さい。\n"
+msgstr ""
+"%s: 警告 : scilabの同時に開かれたファイル数のために単に限界を広げて下さい。\n"
 
 #
 # File: sci_gateway/c/sci_createdir.c, line: 52
@@ -314,7 +301,9 @@ msgstr "%s: 警告: ディレクトリ '%s' は既にあります。\n"
 msgid ""
 "%s: Warning: Specified maximum number of files (%d) > Absolute maximum "
 "number of files allowed (%d).\n"
-msgstr "%s: 警告: ファイル(%d)の指定された最大数 > 考慮した絶対ファイルの最大数(%d)。\n"
+msgstr ""
+"%s: 警告: ファイル(%d)の指定された最大数 > 考慮した絶対ファイルの最大数"
+"(%d)。\n"
 
 #
 # File: sci_gateway/c/sci_mfprintf.c, line: 57
@@ -330,16 +319,6 @@ msgid "%s: Wrong file mode: READ only.\n"
 msgstr "%s: ファイルモードが不正: 読み取り専用\n"
 
 #
-# File: macros/mkdir.sci, line: 25
-# File: macros/mkdir.sci, line: 47
-# File: macros/mputl.sci, line: 21
-# File: macros/rmdir.sci, line: 22
-# File: macros/rmdir.sci, line: 37
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数の数が違います。\n"
-
-#
 # File: sci_gateway/c/sci_mfprintf.c, line: 86
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -350,12 +329,6 @@ msgstr "%s: 入力引数の数が違います: %d を想定します。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が違います: すくなくとも %d を想定します。\n"
-
-#
-# File: macros/mputl.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 入力引数の数が違います。\n"
 
 #
 # File: sci_gateway/c/sci_mfprintf.c, line: 86
@@ -379,13 +352,8 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 1-by-n または m-by-1 配列 を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_isdir.c, line: 56
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズ: 1-by-n または m-by-1 配列 を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_mfscanf.c, line: 44
@@ -394,28 +362,6 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: ブーリアンを想定します。\n"
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 44
-# File: sci_gateway/c/sci_mscanf.c, line: 49
-# File: sci_gateway/c/sci_msscanf.c, line: 43
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: ファイル記述子を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 44
-# File: sci_gateway/c/sci_mscanf.c, line: 49
-# File: sci_gateway/c/sci_msscanf.c, line: 43
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: ファイル名を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_isdir.c, line: 56
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
 
 #
 # File: macros/mputl.sci, line: 32
@@ -428,6 +374,12 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: m-by-1 配列 を想定し�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_isdir.c, line: 56
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
@@ -456,12 +408,15 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定しま�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列または論理値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列または論理値を指定してくださ"
+"い.\n"
 
 #
 # File: sci_gateway/c/sci_maxfiles.c, line: 81
@@ -477,59 +432,8 @@ msgstr "%s: 入力引数で不正なサイズ: スカラーを想定します。
 # File: sci_gateway/c/sci_fprintfMat.c, line: 44
 # File: sci_gateway/c/sci_fullpath.c, line: 66
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ファイル記述子を想定します。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ファイル名あるいはファイル記述子を想定します。\n"
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
-
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 整数、または、文字を想定します。\n"
 
 # File: macros/cd.sci, line: 13
 # File: macros/dir.sci, line: 18
@@ -552,6 +456,28 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字です。\n"
+
+# File: macros/cd.sci, line: 13
+# File: macros/dir.sci, line: 18
+# File: macros/fileparts.sci, line: 17
+# File: macros/fileparts.sci, line: 22
+# File: macros/ls.sci, line: 23
+# File: sci_gateway/c/sci_fprintfMat.c, line: 44
+# File: sci_gateway/c/sci_fullpath.c, line: 66
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+# File: macros/cd.sci, line: 13
+# File: macros/dir.sci, line: 18
+# File: macros/fileparts.sci, line: 17
+# File: macros/fileparts.sci, line: 22
+# File: macros/ls.sci, line: 23
+# File: sci_gateway/c/sci_fprintfMat.c, line: 44
+# File: sci_gateway/c/sci_fullpath.c, line: 66
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数、または、文字を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -586,12 +512,14 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してくださ"
+"い.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr "%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
+"%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
 
 #
 # File: macros/mputl.sci, line: 26
@@ -613,12 +541,6 @@ msgid "%s: Wrong type for input argument: Matrix expected.\n"
 msgstr "%s: 入力引数で不正な型: 行列を想定します。\n"
 
 #
-# File: macros/mdelete.sci, line: 30
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s: 入力引数で不正な型: 文字を想定します。\n"
-
-#
 # File: sci_gateway/c/sci_findfiles.c, line: 99
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
@@ -630,14 +552,25 @@ msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d (%s) で不正な値: '%s' または '%s' また '%s' を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d (%s) で不正な値: '%s' または '%s' また '%s' を想定します。\n"
+
+#
+# File: macros/copyfile.sci, line: 36
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値 ('%ls'): 適切なファイル名、または、ディレクトリ "
+"を想定します。\n"
 
 #
 # File: src/c/mput.c, line: 217
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
-msgstr "%s: 入力引数 #%d ('%s') で不正な値: フォーマットは認められませんでした。\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgstr ""
+"%s: 入力引数 #%d ('%s') で不正な値: フォーマットは認められませんでした。\n"
 
 #
 # File: macros/copyfile.sci, line: 36
@@ -656,13 +589,13 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' は無効な pathです。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s' または '%s' また '%s' を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: '%s' または '%s' また '%s' を想定します。\n"
 
 #
 # File: src/c/mseek.c, line: 63
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s' または '%s' を想定します。\n"
 
 #
@@ -673,31 +606,25 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: ''w'' または ''u'' 文字を想定します。\n"
 
 #
-# File: macros/copyfile.sci, line: 36
+# File: sci_gateway/c/sci_fileparts.c, line: 74
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル記述子を想定します。\n"
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
 
 #
-# File: macros/copyfile.sci, line: 36
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
+"%s: Wrong value for input argument #%d: A valid filename or directory "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値 ('%ls'): 適切なファイル名、または、ディレクトリ を想定します。\n"
+msgstr ""
 
 #
 # File: src/c/mget.c, line: 193
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: 入力引数 #%d で不正な値: フォーマットは認められませんでした。\n"
-
-#
-# File: macros/rmdir.sci, line: 33
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-msgstr "%s: 入力引数 #%d で不正な値: ''%s'' でなくてはなりません。\n"
 
 #
 # File: src/c/mget.c, line: 184
@@ -715,14 +642,6 @@ msgstr "%s: 入力引数で不正な値: 空でない文字を想定します。
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: 入力引数で不正な値です。\n"
 
-#
-# File: macros/listvarinfile.sci, line: 63
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
-"corrupted.\n"
-msgstr "%s: ''%s'' で不正な変数型(%s)を見つけました、ファイルは、誤っているか無効です。\n"
-
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr "%s: ファイル %s をオープンできません.\n"
@@ -730,10 +649,6 @@ msgstr "%s: ファイル %s をオープンできません.\n"
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr "%s: ファイル %s を読み込めません.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: 最終のコンバージョンの前に入力の終わりに達しました。\n"
 
 #, c-format
 msgid "%s: error.\n"

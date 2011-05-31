@@ -1,0 +1,217 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   L Ma M G V Sab Dom"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: deve essere "
+"tra %d e %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliat: era attesa una "
+"matrice m*3 o m*6.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso hanno una dimensione sbagliata: era attesa la "
+"stessa dimensione.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso hanno una grandezza sbagliata: era attesa la "
+"stessa dimensione.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"costante reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s:Gli argomenti in ingresso sono di tipo sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso è di tipo sbagliato: era atteso un intero.\n"
+"a una matrice reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono di tipo sbagliato: devono essere degli "
+"scalari.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato:%s deve essere tra "
+"%d e %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d "
+"e %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr ""
+"%s: L''argomento in ingresso ha un valore sbagliato: deve essere tra %d e "
+"%d.\n"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Day"
+msgstr "Giorno"
+
+msgid "Dec"
+msgstr "Dic"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Fri"
+msgstr "Ven"
+
+msgid "Friday"
+msgstr "Venerdì"
+
+msgid "Hour"
+msgstr "Ora"
+
+msgid "Jan"
+msgstr "Gen"
+
+msgid "Jul"
+msgstr "Lug"
+
+msgid "Jun"
+msgstr "Giu"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "May"
+msgstr "Mag"
+
+msgid "Minute"
+msgstr "Minuto"
+
+msgid "Mon"
+msgstr "Lun"
+
+msgid "Monday"
+msgstr "Lunedì"
+
+msgid "Month"
+msgstr "Mese"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Oct"
+msgstr "Ott"
+
+msgid "Sat"
+msgstr "Sab"
+
+msgid "Saturday"
+msgstr "Sabato"
+
+msgid "Second"
+msgstr "Secondo"
+
+msgid "Sep"
+msgstr "Set"
+
+msgid "Sun"
+msgstr "Dom"
+
+msgid "Sunday"
+msgstr "Domenica"
+
+msgid "Thu"
+msgstr "Gio"
+
+msgid "Thursday"
+msgstr "Giovedì"
+
+msgid "Tue"
+msgstr "Mar"
+
+msgid "Tuesday"
+msgstr "Martedì"
+
+msgid "Wed"
+msgstr "Mer"
+
+msgid "Wednesday"
+msgstr "Mercoledì"

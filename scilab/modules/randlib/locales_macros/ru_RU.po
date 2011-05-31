@@ -1,0 +1,85 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+# File: demos/random.dem.gateway.sce, line: 15
+msgid "Erlang random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 12
+msgid "Exponential random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 14
+msgid "Hyper geometric random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 11
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr "Случайные величины"
+
+#
+# File: demos/binomial.dem.sce, line: 63
+msgid "Simulation"
+msgstr ""
+
+#
+# File: demos/binomial.dem.sce, line: 59
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+#
+# File: demos/discrete.dem.sce, line: 43
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+#
+# File: demos/binomial.dem.sce, line: 63
+msgid "Theory"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 13
+msgid "Weibull random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 7
+msgid "binomial random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 8
+msgid "discrete random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 9
+msgid "discrete uniform random variable"
+msgstr ""
+
+#
+# File: demos/random.dem.gateway.sce, line: 10
+msgid "geometric random variable"
+msgstr ""

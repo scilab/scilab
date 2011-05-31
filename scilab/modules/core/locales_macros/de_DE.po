@@ -1,0 +1,174 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Ascurion <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "  loading initial environment"
+msgstr "  lade Startumgebung"
+
+msgid " by "
+msgstr " von "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s aufgerufen in Zeile %s von %s"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s aufgerufen in Zeile %s von %s Befehlen."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s aufgerufen in Zeile %s von Makro %s"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s aufgerufen unter %s"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s ist eine nicht editierbare hart kodierte Funktion.\n"
+
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr "%s: Datei existiert nicht: %s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: Kein Perl Befehl angegeben."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: überprüfen Sie: %s.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: benötigt Scilab Editor.\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Die Datei %s existiert nicht.\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: Kann Perl Datei nicht finden: %s"
+
+#, c-format
+msgid "%s: Unable to find Perl in ''%s''"
+msgstr "%s: Perl in ''%s'' nicht auffindbar"
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: Kann Perl nicht finden.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: falsches Eingangsargument #%d: Pfad zu einer Scilab Skript Datei "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d or %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Unerwartete Anzahl von Eingangsargumenten: Zumindest %d werden "
+"erwartet.\n"
+
+#
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: definierte Variable erwartet.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Applications"
+msgstr "Anwendungen"
+
+msgid "&Control"
+msgstr "Kontrolle"
+
+msgid "&Edit"
+msgstr "Editieren"
+
+msgid "&File"
+msgstr "Datei"
+
+msgid "&Preferences"
+msgstr "Voreinstellungen"
+
+msgid "&Toolboxes"
+msgstr "&Werkzeugboxen"
+
+msgid "Bytes"
+msgstr "Bytes"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "Überprüfe: %s\n"
+
+msgid "Introduction"
+msgstr "Vorwort"
+
+msgid "Name"
+msgstr ""
+
+msgid "Size"
+msgstr "Größe"
+
+msgid "Startup execution:"
+msgstr "Starte Ausführung:"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "User variables are:"
+msgstr "Benutzervariablen:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "Verwende %s aus %s Elementen"

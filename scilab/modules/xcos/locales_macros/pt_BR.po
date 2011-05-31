@@ -1,0 +1,484 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s não é um nome válido. Altere o título do diagrama."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Todos os caminhos definidos pela variável %s devem existir.\n"
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr "%s: O arquivo ''%s'' não existe.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s: O arquivo ''%s'' não é um arquivo válido de paleta.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s: Encontrou ''%s'' em vez de um bloco.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: O diretório %s não pode ser criado. Por favor, confira se você tem "
+"permissão de escrita neste diretório.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Incapaz de exportar %s para %s.\n"
+
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: Incapaz de exportar a paleta para hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: Incapaz de gerar a imagem %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: Incapaz de gerar o ícone da paleta: %s já existe.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr "%s: Incapaz de importar arquivo xcos %s.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr "%s: Incapaz de carregar bloco de %s: esperava-se um arquivo hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s: Incapaz de carregar bloco de %s: nenhuma variável ''scs_m'' foi "
+"encontrada.\n"
+
+#
+# File: macros/generateBlockImage.sci, line: 50
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de saída: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: Tipo incorreto para a variável %s: esperava-se uma matriz de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: Tipo incorreto para o argumento %d: esperava-se uma estrutura de "
+"diagrama ou um texto"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s: Tipo incorreto para o argumento %d: esperava-se uma estrutura de diagrama"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se o tipo "
+"bloco.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: o arquivo não foi "
+"encontrado.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um tipo "
+"diagrama.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto de "
+"caminho de diretório.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto de "
+"caminho completo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se uma função "
+"como texto ou um tipo de Bloco ou um texto de caminho completo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um "
+"manipulador.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se uma paleta.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se uma paleta ou "
+"um caminho.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto de "
+"caminho.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um texto ou "
+"uma estrutura.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se do tipo "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada %s: esperava-se um vetor de "
+"textos.\n"
+
+#
+# File: macros/xcosPalAddBlock.sci, line: 145
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada %s: esperava-se um arquivo "
+"existente.\n"
+
+#
+# File: macros/loadXcosLibs.sci, line: 72
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+
+#
+# File: demos/mechanical_systems.dem.gateway.sce, line: 7
+msgid "Automotive Suspension"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 9
+msgid "Ball on a Platform"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 7
+msgid "Basic controller"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 10
+msgid "Bouncing Ball"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 8
+msgid "Bouncing Balls"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 8
+msgid "Bridge Rectifer"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 11
+msgid "Chaos Modelica"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 15
+msgid "Colpitts oscillator"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 12
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 8
+# File: demos/scicos.dem.gateway.sce, line: 8
+msgid "Control Systems"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 14
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 13
+msgid "DC/DC Buck Converter"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 10
+msgid "Differential amplifier"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 9
+msgid "Discrete Controller"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 11
+msgid "Discrete Kalman Filter"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 9
+# File: demos/scicos.dem.gateway.sce, line: 9
+msgid "Electrical Systems"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 12
+msgid "Fibonacci Numbers"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 17
+msgid "Goto/From blocks"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 12
+msgid "Hydraulics blocks"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 14
+msgid "Inverted Pendulum"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 10
+msgid "Kalman Filter"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 16
+msgid "Logic AND gate"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 17
+msgid "Logic NOR gate"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 15
+msgid "Lorentz butterfly"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 10
+# File: demos/scicos.dem.gateway.sce, line: 10
+msgid "Mechanical Systems"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 14
+# File: demos/scicos.dem.gateway.sce, line: 11
+msgid "Modelica demos"
+msgstr ""
+
+#
+# File: demos/old_demos.dem.gateway.sce, line: 7
+msgid "Old Gain Block"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 18
+# File: demos/scicos.dem.gateway.sce, line: 12
+msgid "Old demos"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 11
+msgid "OpAmp amplifier"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 7
+msgid "RLC Circuit"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 13
+msgid "RLC circuit"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 13
+msgid "Scilab block"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 11
+msgid "Signal Builder"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 7
+msgid "Simple Demo"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 9
+msgid "Simple Thermostat"
+msgstr ""
+
+#
+# File: macros/xcos_simulate.sci, line: 374
+msgid "Simulation problem"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 7
+# File: demos/scicos.dem.gateway.sce, line: 7
+msgid "Standard demos"
+msgstr ""
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 12
+msgid "Switched capacitor integrator"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 10
+msgid "Table Lookup"
+msgstr ""
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 13
+msgid "Temperature Controller"
+msgstr ""
+
+msgid "The Scicos libraries are not loaded"
+msgstr "As bibliotecas Scicos não estão carregadas"
+
+#
+# File: demos/electrical_systems.dem.gateway.sce, line: 9
+msgid "Transformer"
+msgstr ""
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Não é possível abrir %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Não é possível simular %s"
+
+#
+# File: demos/control_systems.dem.gateway.sce, line: 8
+msgid "Water tank"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
+#
+# File: demos/standard.dem.gateway.sce, line: 14
+msgid "Xcos data types"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 15
+msgid "Zero Crossing"
+msgstr ""
+
+#
+# File: demos/standard.dem.gateway.sce, line: 16
+msgid "_IF_ Xcos block"
+msgstr ""

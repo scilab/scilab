@@ -1,0 +1,56 @@
+# translation of output_stream-ru.po to Russian
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# Aleksey Vorona <voronaam@yandex.ru>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: output_stream-ru\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <localization@lists.scilab.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Тип %s не обрабатывается: определите функцию %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Неверный формат для экспорта: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: Неверный тип параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
+"«%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: не удалось отобразить систему на этой странице.\n"

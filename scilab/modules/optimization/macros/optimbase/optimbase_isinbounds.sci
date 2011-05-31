@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -26,14 +26,14 @@ function [ this , isfeasible ] = optimbase_isinbounds ( this , x )
           xix = x ( ix )
           if ( xix < xmin ) then
             isfeasible = %f
-            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %e", ...
-              ix , this.numberofvariables , xmin ) )
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %s", ...
+              ix , this.numberofvariables , string(xmin) ) )
             break
           end
           if (xix > xmax) then
             isfeasible = %f
-            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %e", ...
-              ix , this.numberofvariables , xmax ) )
+            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %s", ...
+              ix , this.numberofvariables , string(xmax) ) )
             break
           end
         end

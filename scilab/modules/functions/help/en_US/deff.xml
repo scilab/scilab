@@ -75,8 +75,7 @@
     <title>Description</title>
     <para><literal>deff</literal> can be used to define functions from sequences of instructions
     written in text strings. The resulting function object has the same proprerties
-    of any other function defined in a text file and loaded with <literal>exec</literal> 
-    or <literal>exec</literal>.</para>
+    of any other function defined in a text file and loaded with <literal>exec</literal>.</para>
     <para>
     Quotes in the instructions (delimiting strings or meaning matrix transposition) 
     have to be doubled to be interpreted correctly (see help quote). This can make

@@ -1,0 +1,47 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+# File: sci_gateway/c/sci_chartooem.c, line: 48
+# File: sci_gateway/c/sci_dos.c, line: 50
+# File: sci_gateway/c/sci_dos.c, line: 62
+# File: sci_gateway/c/sci_findfileassociation.c, line: 38
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
+# File: sci_gateway/c/sci_mcisendstring.c, line: 106
+# File: sci_gateway/c/sci_oemtochar.c, line: 48
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "エラー(s): パワーシェル・ヘルプを見てください"
+
+msgid "Only for Microsoft Windows."
+msgstr "Microsoft Windows のみです。"
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "powershell コマンドを Scilab なしの環境で確認してください."
+
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 が見つかりません."
