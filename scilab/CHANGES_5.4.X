@@ -155,6 +155,8 @@ Graphics:
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
 
+* bug 9455 fixed - The contourf and contourf 2 demos displayed unwanted dots.
+
 
 Bug fixes:
 ==========
