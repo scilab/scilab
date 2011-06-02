@@ -3,8 +3,8 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-MEXLIB_C_SOURCES = src/c/mexlib.c \
-src/c/sci_gateway.c
+MEXLIB_CPP_SOURCES = src/cpp/mexlib.cpp \
+src/cpp/sci_gateway.cpp
 
 
 MEXLIB_FLAGS = 	-I$(srcdir)/includes/ \
@@ -23,27 +23,27 @@ MEXLIB_DEP =  \
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 
-libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmex_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmex_la_LIBADD = $(MEXLIB_DEP)
 
-libmex_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmex_la_CPPFLAGS=  $(MEXLIB_FLAGS)
 
 libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmat_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmat_la_LIBADD = $(MEXLIB_DEP)
 
-libmat_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmat_la_CPPFLAGS=  $(MEXLIB_FLAGS)
 
 libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
+libmx_la_SOURCES = $(MEXLIB_CPP_SOURCES)
 
 libmx_la_LIBADD = $(MEXLIB_DEP)
 
-libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
+libmx_la_CPPFLAGS=  $(MEXLIB_FLAGS)
 
 libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -51,7 +51,7 @@ libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 modulename=mexlib
 
 # For the code check (splint)
-CHECK_SRC= $(MEXLIB_C_SOURCES)
+CHECK_SRC= $(MEXLIB_CPP_SOURCES)
 INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####

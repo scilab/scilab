@@ -52,27 +52,32 @@
 	#include <stdlib.h> /* for exit()*/
 #endif
 
-
 #include "stack-c.h"
-#include "elementary_functions.h"
+extern "C" {
+  #include "elementary_functions.h"
+}
 
 #include "mex.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "mexlib.h"
-#include "cvstr.h"
 #include "sciprint.h"
-#include "cerro.h"
-#include "erro.h"
+extern "C" {
+  #include "cvstr.h"
+  #include "cerro.h"
+  #include "erro.h"
+}
 #include "localization.h"
 #include "Scierror.h"
 #include "call_scilab.h"
 
 static char *the_current_mex_name;
 
-extern int  C2F(hmcreate)(int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval);
-extern int  C2F(stcreate)(int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval);
-extern double C2F(dlamch)(char *CMACH, unsigned long int);
+extern "C" {
+  int  C2F(hmcreate)(int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval);
+  int  C2F(stcreate)(int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval);
+  double C2F(dlamch)(char *CMACH, unsigned long int);
+}
 extern int arr2num( mxArray  *ptr );
 extern int arr2numcst(const mxArray  *ptr );
 extern int IsReference  (mxArray *array_ptr);
@@ -730,7 +735,7 @@ int mxGetN(const mxArray *ptr)
 void mxSetN(mxArray *ptr, int N)
 {
   mxArray *mxNew;
-  int i,m,new,size;
+  int i,m,new_,size;
   int *headernew;
   double *valueold, *valuenew;
   int *header = Header(ptr);
@@ -752,10 +757,10 @@ void mxSetN(mxArray *ptr, int N)
     headernew[1]=header[1];
     headernew[2]=N;
     headernew[3]=header[3];
-    new = Nbvars;
+    new_ = Nbvars;
     valueold = (double *) &header[4]; valuenew = (double *) &headernew[4];
     memcpy(valuenew, valueold, header[1]*N*(header[3]+1)*sizeof(double));
-    ChangeToRef(arr2num(ptr),new);
+    ChangeToRef(arr2num(ptr),new_);
     break;
   case SPARSEMATRIX:
     /* TO BE DONE */
@@ -1199,7 +1204,7 @@ mxArray *mxGetCell(const mxArray *ptr, int lindex)
   }
   Nbvars++;  lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
-  headerobjcopy=GetData(lw);
+  headerobjcopy=(int *) GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
@@ -1256,7 +1261,7 @@ mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
 
   Nbvars++; lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
-  headerobjcopy=GetData(lw);
+  headerobjcopy=(int *) GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
@@ -1295,7 +1300,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
   if (isize==2) return (mxArray *) NULL; /* empty field */
   Nbvars++; lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
-  headerobjcopy=GetData(lw);
+  headerobjcopy=(int *)GetData(lw);
   for (kk = 0; kk < 2*isize; ++kk) headerobjcopy[kk]=headerobj[kk];
   C2F(intersci).ntypes[lw-1]=AsIs;
   C2F(intersci).iwhere[lw-1]=C2F(vstk).lstk[lw+ Top - Rhs - 1];
@@ -1566,7 +1571,7 @@ char *mxArrayToString(const mxArray *array_ptr)
   nrows = header[1];
   commonrowlength=header[5]-header[4];
   buflen=nrows*commonrowlength;
-  buf = mxCalloc(buflen, sizeof(char));
+  buf = (char *) mxCalloc(buflen, sizeof(char));
   if (mxGetString(array_ptr, buf, buflen) == 0) return (char *) buf;
   return (char *) 0;
 }
@@ -1591,7 +1596,7 @@ char *mxArrayToString(const mxArray *array_ptr)
 void mxFreeMatrix(mxArray *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
-  if ( (int)ptr == C2F(vstk).lstk[Top - Rhs + Nbvars - 1]) {
+  if ( (long)ptr == C2F(vstk).lstk[Top - Rhs + Nbvars - 1]) {
     /* sciprint("XXXX OK %dvar %d\n",(int)ptr,Nbvars); */
     Nbvars--;
   }
@@ -1606,8 +1611,9 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
      /* utility fct : its number as scilab variable
       * and its size in Scilab double stack */
 {
-  int kk,lst_k;
-  lst_k=(int) ptr;
+  int kk;
+  long lst_k;
+  lst_k=(long) ptr;
   if (lst_k < *Lstk(Bot)) {
     *number=0;*size=0;
   for (kk = 1; kk <= Nbvars; kk++)
@@ -1631,8 +1637,9 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
 
 int arr2num( mxArray  *ptr )
 {
-  int kk,lst_k,number;
-  lst_k=(int) ptr;
+  int kk,number;
+  long lst_k;
+  lst_k=(long) ptr;
   if (lst_k < *Lstk(Bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
@@ -1655,8 +1662,9 @@ int arr2num( mxArray  *ptr )
 
 int arr2numcst(const mxArray  *ptr )
 {
-  int kk,lst_k,number;
-  lst_k=(int) ptr;
+  int kk,number;
+  long lst_k;
+  lst_k=(long) ptr;
   if (lst_k < *Lstk(Bot)) {
     number=0;
   for (kk = 1; kk <= Nbvars; kk++)
@@ -1699,10 +1707,10 @@ bool mexIsGlobal(const mxArray *ptr)
 
 mxArray *mxDuplicateArray(const mxArray *ptr)
 {
-  int start_in;
+  long start_in;
   int lw, number, size, k;
   double *old , *data;
-  start_in = (int) ptr;
+  start_in = (long) ptr;
   if ( istk( iadr(start_in) )[0] < 0 ) {
     /*   variable is a reference : the reference is copied */
     size = istk( iadr(start_in) )[2];
@@ -1920,25 +1928,25 @@ mxArray *mxCreateString(const char *string)
 
 mxArray *mxCreateLogicalMatrix(int m, int n)
 {
-  int new, k; int *header;
+  int new_, k; int *header;
   Nbvars++;
-  new=Nbvars;
-  CreateData(new, (3+m*n)*sizeof(int));
-  header =  (int *) GetData(new);
+  new_=Nbvars;
+  CreateData(new_, (3+m*n)*sizeof(int));
+  header =  (int *) GetData(new_);
   header[0]=LOGICAL;
   header[1]= m;
   header[2]= n;
   for (k=0; k<m*n; k++)
     header[3+k]= 0;
-  return (mxArray *) C2F(intersci).iwhere[new-1];
+  return (mxArray *) C2F(intersci).iwhere[new_-1];
 }
 
 mxArray *mxCreateLogicalScalar(mxLOGICAL *value)
 {
-  mxArray *pa; int *header;
+  mxArray *pa;long *header;
   pa = mxCreateLogicalMatrix(1, 1);
-  header = (int *) stkptr((long int) pa);
-  header[3]=(int) value;
+  header = (long *) stkptr((long int) pa);
+  header[3]=(long) value;
   return (mxArray *) pa;
 }
 
@@ -1991,7 +1999,7 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
   for (k = 1; k <= nrhs; ++k)
     {
       for (kk = 1; kk <= nv; ++kk)
-	if ((int) prhs[k-1] == C2F(vstk).lstk[kk + Top - Rhs - 1]) break;
+	if ((long) prhs[k-1] == C2F(vstk).lstk[kk + Top - Rhs - 1]) break;
       if (kk == nv + 1)
 	{
 	  mexErrMsgTxt(_("mexCallSCILAB: invalid pointer passed to called function."));
@@ -2156,38 +2164,38 @@ int mexEvalString(const char *name)
 
 mxArray *mexGetArray(char *name, char *workspace)
 {
-  int lw, fin, new ; int *header;
+  int lw, fin, new_ ; int *header;
   /* mxArray *mxPointed; */
   if (C2F(objptr)(name,&lw,&fin,(unsigned long)strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
-    Nbvars++; new=Nbvars;
-    CreateData(new, 4*sizeof(int));
-    header =  (int *) GetRawData(new);
+    Nbvars++; new_=Nbvars;
+    CreateData(new_, 4*sizeof(int));
+    header =  (int *) GetRawData(new_);
     header[0]=- *istk( iadr(*Lstk(fin)));
     header[1]= lw;
     header[2]= fin;
     header[3]= *Lstk(fin+1) -*Lstk(fin) ;
     /*    C2F(intersci).ntypes[new-1]=45;  */
-    return (mxArray *) C2F(intersci).iwhere[new-1]; }
+    return (mxArray *) C2F(intersci).iwhere[new_-1]; }
   else
     return (mxArray *) 0;
 }
 
 const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
 {
-  int lw, fin, new ; int *header;
+  int lw, fin, new_ ; int *header;
   /* mxArray *mxPointed; */
   if (C2F(objptr)((char*)var_name,&lw,&fin,(unsigned long)strlen(var_name)))
     {
     /*    mxPointed = (mxArray *) lw;   */
-    Nbvars++; new=Nbvars;
-    CreateData(new, 4*sizeof(int));
-    header =  (int *) GetRawData(new);
+    Nbvars++; new_=Nbvars;
+    CreateData(new_, 4*sizeof(int));
+    header =  (int *) GetRawData(new_);
     header[0]=- *istk( iadr(*Lstk(fin)));
     header[1]= lw;
     header[2]= fin;
     header[3]= *Lstk(fin+1) -*Lstk(fin) ;
-    return (mxArray *) C2F(intersci).iwhere[new-1];
+    return (mxArray *) C2F(intersci).iwhere[new_-1];
     }
   else
     return (mxArray *) 0;
@@ -2195,19 +2203,19 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
 
 mxArray *mexGetVariable(const char *workspace, const char *name)
 {
-  int lw, fin, new ; int *header;
+  int lw, fin, new_ ; int *header;
   /* mxArray *mxPointed; */
   if (C2F(objptr)((char*)name,&lw,&fin,(unsigned long)strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
-    Nbvars++; new=Nbvars;
-    CreateData(new, 4*sizeof(int));
-    header =  (int *) GetData(new);
+    Nbvars++; new_=Nbvars;
+    CreateData(new_, 4*sizeof(int));
+    header =  (int *) GetData(new_);
     header[0]=- *istk( iadr(*Lstk(fin)));
     header[1]= lw;
     header[2]= fin;
     header[3]= *Lstk(fin+1) -*Lstk(fin) ;
     /*    C2F(intersci).ntypes[new-1]=45;  */
-    return (mxArray *) C2F(intersci).iwhere[new-1]; }
+    return (mxArray *) C2F(intersci).iwhere[new_-1]; }
   else
     return (mxArray *) 0;
 }
@@ -2503,14 +2511,15 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
 
 int C2F(endmex)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs)
 {
-  int nv,kk,k,plhsk;
+  int nv,kk,k;
+  long plhsk;
   for (k = 1; k <= *nlhs; k++) {
     if (IsstOrce(plhs[k-1])) plhs[k-1]=UnrefStruct(plhs[k-1]);
   }
   nv=Nbvars;
   for (k = 1; k <= *nlhs; k++)
     {
-      plhsk = (int) plhs[k-1];
+      plhsk = (long) plhs[k-1];
       LhsVar(k) = 0;
       for (kk = 1; kk <= nv; kk++)
 	{
@@ -2532,11 +2541,11 @@ int C2F(endmex)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs)
 void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs)
 {
   int nv=Nbvars ,k;
-  int max = (int) plhs[0] ;
+  long max = (long) plhs[0] ;
   for (k = 1; k <= nlhs; k++)
-    if (  (int)plhs[k-1] > max ) max =  (int)plhs[k-1];
+    if (  (long)plhs[k-1] > max ) max =  (long)plhs[k-1];
   for (k = 1; k <= nrhs; k++)
-    if ( (int)  prhs[k-1] > max ) max =  (int) prhs[k-1];
+    if ( (long)  prhs[k-1] > max ) max =  (long) prhs[k-1];
   for (k = 1; k <= nv; k++)
     if ( max <  C2F(vstk).lstk[k + Top - Rhs -1]) Nbvars--;
 }
@@ -2790,7 +2799,6 @@ int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, int *n)
   C2F(dcopy)(n,headerm,&one,++y,&two);
   return 0;
 }
-
 
 /* mxCreateLogicalArray
  * mxIsLogicalScalarTrue */

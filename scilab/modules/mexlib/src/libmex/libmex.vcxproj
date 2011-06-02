@@ -87,7 +87,7 @@
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Command>cd $(IntDir) &gt; nul
@@ -132,7 +132,7 @@ del libmextemp.def &gt;nul
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Command>cd $(IntDir) &gt; nul
@@ -171,7 +171,7 @@ del libmextemp.def &gt;nul
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -214,7 +214,7 @@ del libmextemp.def &gt;nul
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -244,12 +244,13 @@ del libmextemp.def &gt;nul
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\mexlib.c" />
-    <ClCompile Include="..\c\sci_gateway.c" />
+    <ClCompile Include="..\cpp\mexlib.cpp" />
+    <ClCompile Include="..\cpp\sci_gateway.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\mex.h" />
     <ClInclude Include="..\..\includes\sci_gateway.h" />
+    <ClInclude Include="..\cpp\mexlib.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="libmex.rc" />

@@ -167,9 +167,6 @@
     <ClCompile Include="md5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\mexlib\src\c\mexlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mode_exec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -231,9 +228,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\mexlib\src\c\sci_gateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c">
@@ -378,6 +372,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xscion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\mexlib\src\cpp\sci_gateway.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

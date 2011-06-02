@@ -13,6 +13,10 @@
 /*-----------------------------------------------------------------------------------*/
 typedef int (*GatefuncS) (char *fname, int l);
 /*-----------------------------------------------------------------------------------*/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 /**
  * This function manages the call of a native function which has been added
  * through addinter with PutLhsVar (Compatibility Scilab 4.x and 5.1)
@@ -33,3 +37,7 @@ int sci_gateway(char *fname, GatefuncS F);
 */
 int sci_gateway_without_putlhsvar(char *fname, GatefuncS F);
 /*-----------------------------------------------------------------------------------*/
+#ifdef __cplusplus
+}
+#endif
+

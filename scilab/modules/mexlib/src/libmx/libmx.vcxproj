@@ -87,7 +87,7 @@
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Command>cd $(IntDir) &gt; nul
@@ -132,7 +132,7 @@ del libmxtemp.def &gt;nul
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Command>cd $(IntDir) &gt; nul
@@ -173,7 +173,7 @@ del libmxtemp.def &gt;nul
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -218,7 +218,7 @@ del libmxtemp.def &gt;nul
       <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -248,12 +248,9 @@ del libmxtemp.def &gt;nul
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\mexlib.c" />
-    <ClCompile Include="..\c\sci_gateway.c" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\includes\mex.h" />
     <ClInclude Include="..\..\includes\sci_gateway.h" />
+    <ClInclude Include="..\cpp\mexlib.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="libmx.rc" />
@@ -300,6 +297,10 @@ del libmxtemp.def &gt;nul
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cpp\mexlib.cpp" />
+    <ClCompile Include="..\cpp\sci_gateway.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

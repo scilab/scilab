@@ -235,6 +235,8 @@ cd.. &gt;nul
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp" />
+    <ClCompile Include="..\..\..\mexlib\src\cpp\sci_gateway.cpp" />
     <ClCompile Include="callDynamicGateway.c" />
     <ClCompile Include="callFunctionFromGateway.c" />
     <ClCompile Include="callinterf.c" />
@@ -288,7 +290,6 @@ cd.. &gt;nul
     <ClCompile Include="LoadFunctionsTab.c" />
     <ClCompile Include="loadversion.c" />
     <ClCompile Include="md5.c" />
-    <ClCompile Include="..\..\..\mexlib\src\c\mexlib.c" />
     <ClCompile Include="mode_exec.c" />
     <ClCompile Include="..\cpp\namstr.cpp" />
     <ClCompile Include="parse.c" />
@@ -310,7 +311,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_format.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c" />
-    <ClCompile Include="..\..\..\mexlib\src\c\sci_gateway.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getmemory.c" />
