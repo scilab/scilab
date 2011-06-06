@@ -167,3 +167,6 @@ modules/types/src/jni/sci_types_wrap.c
 *.gcov
 *.gcno
 *.gcda
+
+# clang / scan-build generated temporary files
+modules/*/*.plist
