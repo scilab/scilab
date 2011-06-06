@@ -17,6 +17,18 @@
     <ClCompile Include="dynamic_link_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\c\sci_c_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_ilib_verbose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_getdynlibext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynamic_link_gw.hxx">
@@ -25,5 +37,8 @@
     <ClInclude Include="..\..\includes\dynlib_dynamic_link_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

@@ -22,10 +22,10 @@ static gw_generic_table Tab[] =
 	{sci_addinter,"addinter"},
 	{sci_fort,"fort"},
 	{sci_call,"call"},
-	{sci_link,"link"},
+	{NULL ,""}, //link
 	{sci_ulink,"ulink"},
-	{sci_c_link,"c_link"},
-	{sci_ilib_verbose,"ilib_verbose"}
+	{NULL, ""}, //c_link
+	{NULL, ""} // ilib_verbose
 };
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_link(void)

@@ -247,11 +247,7 @@ lib /DEF:"$(ProjectDir)Io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShor
     <ClCompile Include="..\..\sci_gateway\c\gw_dynamic_link.c" />
     <ClCompile Include="ilib_verbose.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_c_link.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_call.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdynlibext.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ilib_verbose.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_link.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c" />
   </ItemGroup>
   <ItemGroup>

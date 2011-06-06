@@ -16,6 +16,7 @@
 #define __GW_DYNAMIC_LINK__
 
 #include "dynlib_dynamic_link.h"
+#include "dynlib_dynamic_link_gw.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 DYNAMIC_LINK_IMPEXP int gw_dynamic_link(void);
@@ -26,13 +27,14 @@ DYNAMIC_LINK_IMPEXP int gw_dynamic_link(void);
 DYNAMIC_LINK_IMPEXP int sci_addinter(char *fname,unsigned long fname_len);
 DYNAMIC_LINK_IMPEXP int sci_fort(char *fname,unsigned long fname_len);
 DYNAMIC_LINK_IMPEXP int sci_call(char *fname,unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_link(char *fname,unsigned long fname_len);
 DYNAMIC_LINK_IMPEXP int sci_ulink(char *fname,unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_c_link(char *fname,unsigned long fname_len);
-DYNAMIC_LINK_IMPEXP int sci_ilib_verbose(char *fname,unsigned long fname_len);
-// YaSp
-DYNAMIC_LINK_IMPEXP int sci_getdynlibext(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
+//YaSp
+DYNAMIC_LINK_GW_IMPEXP int sci_link(char *fname, int* _piKey);
+DYNAMIC_LINK_GW_IMPEXP int sci_c_link(char *fname, int* _piKey);
+DYNAMIC_LINK_GW_IMPEXP int sci_getdynlibext(char *fname, int* _piKey);
+DYNAMIC_LINK_GW_IMPEXP int sci_ilib_verbose(char *fname, int* _piKey);
+
 #endif /* __GW_DYNAMIC_LINK__ */
 /*--------------------------------------------------------------------------*/

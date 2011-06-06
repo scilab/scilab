@@ -44,19 +44,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_c_link.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_call.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdynlibext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ilib_verbose.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c">
