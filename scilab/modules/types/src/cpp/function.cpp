@@ -34,6 +34,11 @@ namespace types
         return new WrapFunction(_stName, _pFunc, NULL, _stModule);
     }
 
+    Function *Function::createFunction(std::wstring _stName, MEXGW_FUNC _pFunc, std::wstring _stModule)
+    {
+        return new WrapMexFunction(_stName, _pFunc, NULL, _stModule);
+    }
+
     Function *Function::createFunction(std::wstring _stName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
     {
         return new Function(_stName, _pFunc, _pLoadDeps, _stModule);
@@ -42,6 +47,11 @@ namespace types
     Function *Function::createFunction(std::wstring _stName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
     {
         return new WrapFunction(_stName, _pFunc, _pLoadDeps, _stModule);
+    }
+
+    Function *Function::createFunction(std::wstring _stName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
+    {
+        return new WrapMexFunction(_stName, _pFunc, _pLoadDeps, _stModule);
     }
 
     Function::Function(std::wstring _stName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
@@ -156,6 +166,62 @@ namespace types
         {
             delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
         }
+        return retVal;
+    }
+
+    WrapMexFunction::WrapMexFunction(std::wstring _stName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
+    {
+        m_stName = _stName;
+        m_pOldFunc = _pFunc;
+        m_stModule = _stModule;
+        m_pLoadDeps = _pLoadDeps;
+    }
+
+    WrapMexFunction::WrapMexFunction(WrapMexFunction* _pWrapFunction)
+    {
+        m_stModule  = _pWrapFunction->getModule();
+        m_stName    = _pWrapFunction->getName();
+        m_pOldFunc  = _pWrapFunction->getFunc();
+        m_pLoadDeps = _pWrapFunction->getDeps();
+    }
+
+    InternalType* WrapMexFunction::clone()
+    {
+        return new WrapMexFunction(this);
+    }
+
+    Function::ReturnValue WrapMexFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+    {
+        if (m_pLoadDeps != NULL)
+        {
+            m_pLoadDeps();
+        }
+
+        ReturnValue retVal = Callable::OK;
+
+        int nlhs = _iRetCount;
+        int** plhs = new int*[nlhs];
+        memset(plhs, 0x00, sizeof(int*) * nlhs);
+
+        int nrhs = (int)in.size();
+        int** prhs = new int*[nrhs];
+        for(int i = 0 ; i < nrhs ; i++)
+        {
+            prhs[i] = (int*)(in[i]);
+        }
+
+        m_pOldFunc(nlhs, plhs, nrhs, prhs);
+
+        if(_iRetCount == 1 && plhs[0] == NULL)
+        {//dont copy empty values, juste return "no value"
+            return retVal;
+        }
+
+        for(int i = 0 ; i < nlhs ; i++)
+        {
+            out.push_back((types::InternalType*)plhs[i]);
+        }
+
         return retVal;
     }
 }

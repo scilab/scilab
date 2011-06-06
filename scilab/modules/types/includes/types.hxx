@@ -80,6 +80,9 @@ namespace types
 
         virtual InternalType*       clone(void) { return NULL;}
 
+        virtual bool resize(int* _piDims, int _iDims){return true;}
+        virtual bool resize(int _iNewRows, int _iNewCols){return true;}
+
     };
 
     static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)

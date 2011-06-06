@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2011 - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -63,6 +64,13 @@ function gateway_filename = ilib_gen_gateway(name,tables)
       nt = 3;
     end
 
+    prototype = '(char* fname, int* _piKey);';
+    addGWFunction = "addGatewayInContext";
+    if isdef("ismex") & ismex == %t then
+        prototype = '(int nlhs, int* plhs[], int nrhs, int* prhs[]);';
+        addGWFunction = "addMexGatewayInContext";
+    end
+
     if ( nt <> 3 ) then
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end
@@ -77,11 +85,11 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             '';
             '#define MODULE_NAME L""' + tname + '""';
             '';
-            'extern int ' + names(:) + '(char* fname, int* _piKey);';
+            'extern int ' + names(:) + prototype;
             '';
             'int ' + tname + '(wchar_t* _pwstName)';
             '{';
-            '   if(wcscmp(_pwstName, L""' + table(:,1) + '"") == 0){addGatewayInContext(L""' + table(:,1) + '"", &' + names(:) + ', MODULE_NAME);}';
+            '   if(wcscmp(_pwstName, L""' + table(:,1) + '"") == 0){' + addGWFunction + '(L""' + table(:,1) + '"", &' + names(:) + ', MODULE_NAME);}';
             '}'];
         
     old = [ 'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';

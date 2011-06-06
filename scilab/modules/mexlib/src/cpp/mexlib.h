@@ -135,7 +135,7 @@ mxArray *mxCreateLogicalMatrix(int m, int n);
  * @param value
  * @return
  */
-mxArray *mxCreateLogicalScalar(mxLOGICAL *value);
+mxArray *mxCreateLogicalScalar(mxLOGICAL value);
 
 /**
  * TODO : comment

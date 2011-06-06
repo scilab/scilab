@@ -20,6 +20,7 @@ extern "C"
 {
 #endif
     EXTERN_SYMBOL void addGatewayInContext(wchar_t* _pwstName, OLDGW_FUNC _pFunc, wchar_t* _pwstModule);
+    EXTERN_SYMBOL void addMexGatewayInContext(wchar_t* _pwstName, MEXGW_FUNC _pFunc, wchar_t* _pwstModule);
 #ifdef __cplusplus
 }
 #endif

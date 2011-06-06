@@ -40,5 +40,6 @@
     <!-- <module name="scicos" activate="@XCOS_ENABLE@"/> -->
     <module name="dynamic_link" activate="yes"/>
     <module name="action_binding" activate="yes"/>
+    <module name="mexlib" activate="yes"/>
 </modules>
 

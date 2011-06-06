@@ -292,6 +292,8 @@ typedef int (*GT) ();
     mxUINT16_CLASS,
     mxINT32_CLASS,
     mxUINT32_CLASS,
+    mxINT64_CLASS,
+    mxUINT64_CLASS,
     mxUNKNOWN_CLASS = 0
   } mxClassID;
   
@@ -306,7 +308,7 @@ typedef int (*GT) ();
   void mxSetPi(mxArray *array_ptr, double *pi);
   void mxSetData(mxArray *array_ptr, void *pr);
   mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID classid, mxComplexity flag);
-  mxArray *mxCreateNumericMatrix(int m, int n, mxClassID classid, int cmplx_flag);
+  mxArray *mxCreateNumericMatrix(int m, int n, mxClassID classid, mxComplexity flag);
   int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim);
   mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it);
   mxArray *mxCreateDoubleScalar(double value);

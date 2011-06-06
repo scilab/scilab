@@ -1,0 +1,63 @@
+
+// ============================================================================
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+
+//
+
+//  This file is distributed under the same license as the Scilab package.
+
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- ENGLISH IMPOSED -->
+
+// ============================================================================
+
+// Unitary tests for mxGetNumberOfDimensions mex function
+
+// ============================================================================
+
+cd(TMPDIR);
+
+mputl([ '#include ""mex.h""';
+        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+        '{';
+        '   int iDims = 0;';
+        '   mxArray* pOut = NULL;';
+        '';
+        '   if(nrhs != 1)';
+        '   {';
+        '       mexErrMsgTxt(""Wrong number of input argument"");';
+        '   }';
+        '';
+        '   iDims = mxGetNumberOfDimensions(prhs[0]);';
+        '   pOut = mxCreateDoubleScalar((double)iDims);';
+        '   plhs[0] = pOut;';
+        '}'],'mexGetNumberOfDimensions.c');
+
+ilib_mex_build('libmex',['getDims','mexGetNumberOfDimensions','cmex'], 'mexGetNumberOfDimensions.c',[],'Makelib','','','');
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy mexGetNumberOfDimensions.c to TMPDIR
+   ilib_gen_Make: Copy libmex.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+
+exec('loader.sce');
+Shared archive loaded.
+Link done.
+
+a = ones(5,4,3,2);
+
+iDims = getDims(a);
+
+if iDims <> 4 then pause end
+

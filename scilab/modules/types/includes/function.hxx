@@ -48,8 +48,10 @@ namespace types
 
         static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
         static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _szName, MEXGW_FUNC _pFunc, std::wstring _szModule);
         static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
         static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _szName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
 
         Function*               getAsFunction(void);
         RealType                getType(void) { return RealFunction; }
@@ -90,6 +92,22 @@ namespace types
 
     private :
         OLDGW_FUNC              m_pOldFunc;
+    };
+
+    class WrapMexFunction : public Function
+    {
+    private :
+                                WrapMexFunction(WrapMexFunction* _pWrapFunction);
+    public :
+                                WrapMexFunction(std::wstring _szName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+
+                                Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+        InternalType*           clone();
+
+        MEXGW_FUNC              getFunc() { return m_pOldFunc; }
+
+    private :
+        MEXGW_FUNC              m_pOldFunc;
     };
 
     class GatewayStruct

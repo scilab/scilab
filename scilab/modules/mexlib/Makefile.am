@@ -11,15 +11,18 @@ MEXLIB_FLAGS = 	-I$(srcdir)/includes/ \
 		-I$(top_srcdir)/modules/output_stream/includes/ \
 		-I$(top_srcdir)/modules/call_scilab/includes/ \
 		-I$(top_srcdir)/modules/elementary_functions/includes/ \
-		-I$(top_srcdir)/modules/operations/includes/
-
-MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
+		-I$(top_srcdir)/modules/operations/includes/ \
+		-I$(top_srcdir)/modules/string/includes \
+		-I$(top_srcdir)/modules/types/includes \
+		-I$(top_srcdir)/modules/symbol/includes \
+		-I$(top_srcdir)/modules/abstractSyntaxTree/includes
 
 MEXLIB_DEP =  \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/types/libscitypes.la
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 
@@ -56,7 +59,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
-libmex_la_root_DATA =  license.txt 
+libmex_la_root_DATA =  license.txt
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc

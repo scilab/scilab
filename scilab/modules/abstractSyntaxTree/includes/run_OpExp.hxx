@@ -149,7 +149,7 @@ void visitprivate(const OpExp &e)
             {
                 try
                 {
-                    pResult = GenericDotTimes(execMeL.result_get(), execMeR.result_get());
+                    pResult = GenericDotTimes(pITL, pITR);
                 }
                 catch (ScilabException *pSE)
                 {
@@ -170,7 +170,7 @@ void visitprivate(const OpExp &e)
             {
                 try
                 {
-                    pResult = GenericDotPower(execMeL.result_get(), execMeR.result_get());
+                    pResult = GenericDotPower(pITL, pITR);
                 }
                 catch (ScilabException *pSE)
                 {
@@ -191,7 +191,7 @@ void visitprivate(const OpExp &e)
             {
               try
                 {
-                    pResult = GenericComparisonEqual(execMeL.result_get(), execMeR.result_get());
+                    pResult = GenericComparisonEqual(pITL, pITR);
                 }
                 catch (ScilabException *pSE)
                 {
@@ -211,7 +211,7 @@ void visitprivate(const OpExp &e)
             {
               try
                 {
-                    pResult = GenericComparisonNonEqual(execMeL.result_get(), execMeR.result_get());
+                    pResult = GenericComparisonNonEqual(pITL, pITR);
                 }
                 catch (ScilabException *pSE)
                 {
@@ -452,7 +452,7 @@ void visitprivate(const OpExp &e)
             {
                 try
                 {
-                    pResult = GenericPower(execMeL.result_get(), execMeR.result_get());
+                    pResult = GenericPower(pITL, pITR);
                 }
                 catch (ScilabException *pSE)
                 {
