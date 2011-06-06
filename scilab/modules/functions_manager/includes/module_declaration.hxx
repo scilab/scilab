@@ -32,5 +32,6 @@
 #include "../../jvm/includes/jvm_gw.hxx"
 #include "../../helptools/includes/helptools_gw.hxx"
 #include "../../hdf5/includes/hdf5_gw.hxx"
+#include "../../dynamic_link/includes/dynamic_link_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

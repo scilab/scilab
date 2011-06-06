@@ -199,6 +199,9 @@
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\dynamic_link\sci_gateway\cpp\dynamic_link_gw.vcxproj">
+      <Project>{f93ff3ee-217a-4554-ab17-2f8d56b4bf4b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\elementary_functions\sci_gateway\cpp\elem_func_gw\elem_func_gw.vcxproj">
       <Project>{9881f0ce-a1ac-4744-b709-7c1453a77b95}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

@@ -38,5 +38,6 @@
     <module name="xcos" activate="@GUI_ENABLE@"/>
     <!-- comments -->
 <!--    <module name="scicos" activate="@XCOS_ENABLE@"/> -->
+    <module name="dynamic_link" activate="yes"/>
 </modules>
 

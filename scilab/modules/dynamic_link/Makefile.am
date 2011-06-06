@@ -19,6 +19,8 @@ sci_gateway/c/sci_ulink.c \
 sci_gateway/c/sci_c_link.c \
 sci_gateway/c/sci_ilib_verbose.c
 
+GATEWAY_CPP_SOURCES =	sci_gateway/cpp/dynamic_link_gw.cpp
+
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
 
 libscidynamic_link_la_CFLAGS = \
@@ -35,14 +37,23 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(srcdir)/includes/
 
+libscidynamic_link_la_CPPFLAGS = \
+					-I$(srcdir)/includes/ \
+					-I$(top_srcdir)/modules/api_scilab/includes \
+					-I$(top_srcdir)/modules/operations/includes \
+					-I$(top_srcdir)/modules/symbol/includes \
+					-I$(top_srcdir)/modules/types/includes \
+					-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+
 pkglib_LTLIBRARIES = libscidynamic_link.la
 noinst_LTLIBRARIES = libscidynamic_link-algo.la
 
 
 libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
-libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidynamic_link_algo_la_CFLAGS = $(libscidynamic_link_la_CFLAGS)
+libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
 
 # For the code check (splint)
@@ -57,7 +68,7 @@ modulename=dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA =  license.txt 
+libscidynamic_link_la_root_DATA =  license.txt
 
 #### dynamic_link : init scripts ####
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
