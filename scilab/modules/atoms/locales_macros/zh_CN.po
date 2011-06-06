@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:59+0000\n"
 "Last-Translator: Kenet Jervet <newelevenken@yahoo.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -173,9 +173,7 @@ msgstr ""
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
-msgstr ""
-"%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS "
-"拒绝删除这个路径。\n"
+msgstr "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS 拒绝删除这个路径。\n"
 
 #, c-format
 msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
@@ -223,9 +221,7 @@ msgstr "%s：下一个文件不能被下载：\n"
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
-msgstr ""
-"%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列"
-"表：\n"
+msgstr "%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列表：\n"
 
 #, c-format
 msgid "%s: The following module is not installed:\n"
@@ -247,8 +243,7 @@ msgstr "%s：包“%s”现在不在这个结构里。\n"
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
 "check if you have write access on this directory : %s.\n"
-msgstr ""
-"%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
+msgstr "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
 
 #, c-format
 msgid ""
@@ -387,8 +382,6 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为一个矩阵原始的�
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
-#
-# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -405,22 +398,21 @@ msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr "%s：第%d个输入参数值错误：应为“all”或“main”。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
 "''session'' expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
 "''official'' expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
 
 #, c-format
 msgid ""
@@ -481,13 +473,14 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr "%s：输入参数 #%d 的值出错：必须是一个 atoms 的包名。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 
 #, c-format
@@ -519,13 +512,14 @@ msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s：输入参数 #%d 的值出错：This （"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本或依存。\n"
 
 #, c-format
@@ -628,7 +622,8 @@ msgstr "安装"
 msgid "Install Directory"
 msgstr "安装目录"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Installation failed!"

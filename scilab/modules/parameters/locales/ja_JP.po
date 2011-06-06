@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-07-03 00:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -53,27 +53,19 @@ msgstr "%s: パラメータ %s の下界が誤っています: 下界 %f, 値 %f
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %d を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %d を返します.\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %f を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %f を返します.\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %s を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %s を返します.\n"
 
 #, c-format
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
-msgstr ""
-"%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されま"
-"した.\n"
+msgstr "%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されました.\n"
 
 #, c-format
 msgid "%s: wrong value for parameter %s: value %d\n"
@@ -86,3 +78,37 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %f\n"
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"
+
+# File: macros/add_param.sci, line: 20
+# File: macros/get_param.sci, line: 35
+# File: macros/is_param.sci, line: 20
+# File: macros/list_param.sci, line: 20
+# File: macros/remove_param.sci, line: 39
+# File: macros/set_param.sci, line: 25
+#, c-format
+#~ msgid "%s: not a plist"
+#~ msgstr "%s: plistではありません"
+
+#
+# File: macros/get_param.sci, line: 28
+#, c-format
+#~ msgid "%s: parameter %s not defined"
+#~ msgstr "%s: パラメータ %s は定義されていません"
+
+#
+# File: macros/set_param.sci, line: 19
+#, c-format
+#~ msgid "%s: parameter doesn''t exist"
+#~ msgstr "%s: パラメーターは存在しません"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: 偶数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています : 文字列を指定してください.\n"

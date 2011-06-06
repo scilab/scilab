@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 04:25+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -26,11 +26,9 @@ msgstr "%s не належить до встановлених модулів"
 msgid "%s is not an installed module or toolbox"
 msgstr "%s не належить до встановлених модулів або наборів інструментів"
 
-#
-# File: macros/test_run.sci, line: 877
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr ""
+msgstr "%s: тесту «%s» не існує або його не вдалося прочитати.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
@@ -41,11 +39,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument."
 msgstr "%s: помилкова розмірність вхідного параметра."
 
-#
-# File: macros/test_run.sci, line: 873
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

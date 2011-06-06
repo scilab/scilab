@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 22:59+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
@@ -65,8 +65,6 @@ msgstr "%s: 找不到副檔名%s在%s\n"
 msgid "%s: Please check: %s\n"
 msgstr "%s:請檢查: %s\n"
 
-#
-# File: macros/warnobsolete.sci, line: 21
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr ""
@@ -122,7 +120,8 @@ msgid ""
 msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
 msgstr "%s:輸入參數值錯誤: 在函數中找不到特徵資料\n"
 
 #, c-format

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:13+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -30,7 +30,8 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: 錯誤: 未支持資料壓縮格式 %s .\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s: 一個錯誤發生: 無效的檔案格式. 讀取大量<%s> 發生錯誤.\n"
 
 #, c-format
@@ -95,8 +96,6 @@ msgstr ".wav檔裏沒有 RIFF 指示符號."
 msgid ".wav file does not contain the wave identifier."
 msgstr ".wav檔裏沒有wave  指示符號."
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
 msgstr ""
 
@@ -118,8 +117,6 @@ msgstr "讀取.wav 檔有誤."
 msgid "Error while writing sound file."
 msgstr "寫入聲音檔時有誤."
 
-#
-# File: demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
@@ -135,7 +132,8 @@ msgstr "無效的取樣限制(使用遞減順序)."
 msgid "Invalid wav format."
 msgstr "無法的wav 格式"
 
-msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr "Mu-law 只能在8 bit數據使用。請改用method=''linear''."
 
 msgid "Requires 2-D values only."
@@ -156,7 +154,5 @@ msgstr "無法理解的資料格式"
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "只有8/16/24/32 位元 可以用作編碼."
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "see ''mapsound'' function"
 msgstr ""

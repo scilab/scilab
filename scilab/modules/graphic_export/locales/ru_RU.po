@@ -8,53 +8,47 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-05-10 19:59+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
-# File: src/c/xs2file.c, line: 208
 #, c-format
 msgid "%s: %s\n"
-msgstr ""
+msgstr "%s: %s\n"
 
-#
-# File: src/c/xs2file.c, line: 100
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался графический дескиптор.\n"
 
-#
-# File: src/c/xs2file.c, line: 78
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
-#
-# File: src/c/xs2file.c, line: 173
-# File: src/c/xs2file.c, line: 215
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Single character string expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась односимвольная "
+"строка.\n"
 
-#
-# File: src/c/xs2file.c, line: 184
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
 msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число между "
+"0 и 1.\n"
 
-#
-# File: src/c/xs2file.c, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
 msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось целое или дескриптор.\n"
 
 #, c-format
 msgid ""
@@ -73,3 +67,120 @@ msgstr "Модуль экспорта графики Scilab не установ�
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Графический модуль Scilab выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+#~ msgid "%s has been replaced by %s"
+#~ msgstr "%s заменено на %s"
+
+#, c-format
+#~ msgid "%s: OpenGL error during export.\n"
+#~ msgstr "%s: Ошибка OpenGL в процессе экспорта.\n"
+
+#, c-format
+#~ msgid "%s: Unable to create export file, permission denied.\n"
+#~ msgstr "%s: Не удалось создать файл для экспорта, доступ запрещён.\n"
+
+#, c-format
+#~ msgid "%s: GL2PS error during export.\n"
+#~ msgstr "%s: Ошибка GL2PS в процессе экспорта.\n"
+
+#, c-format
+#~ msgid "%s: %s must be called before any action.\n"
+#~ msgstr "%s: %s должна быть вызвана перед любым действием.\n"
+
+#, c-format
+#~ msgid "%s: EMF format only available under Microsoft Windows OS.\n"
+#~ msgstr "%s: Формат EMF доступен только под ОС Microsoft Windows.\n"
+
+#, c-format
+#~ msgid "%s: Unable to create export file, figure is too complex.\n"
+#~ msgstr "%s: Не удалось экспортировать в файл, изображение слишком сложное.\n"
+
+#~ msgid ""
+#~ "xbasimp has been replaced by toprint for printing and by xs2ps for the file "
+#~ "export"
+#~ msgstr ""
+#~ "Команда xbasimp было заменена на toprint для печати и на xs2ps для "
+#~ "экспортирования в файл"
+
+#, c-format
+#~ msgid "%s: Unable to execute pstoedit.\n"
+#~ msgstr "%s: Не удалось выполнить команду pstoedit.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалось положительное целое "
+#~ "число.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong number of input arguments: Function has no input argument with "
+#~ "''%s'' or ''%s'' drivers.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметра: функция не имеет входного "
+#~ "параметра при использовании драйвера «%s» или «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
+#~ "''%s'' or ''%s'' drivers.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалась строковая переменная "
+#~ "при использовании драйвера «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+#~ "''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
+#~ "«%s», «%s» или «%s».\n"
+
+#~ msgid "Scilab error"
+#~ msgstr "Ошибка Scilab"
+
+#~ msgid "error"
+#~ msgstr "ошибка"
+
+#, c-format
+#~ msgid "%s: Unable to create export file, figure is too big.\n"
+#~ msgstr ""
+#~ "%s: Не удалось создать файл для экспорта, графическое окно очень большое.\n"
+
+#, c-format
+#~ msgid "%s: Unable to find pstoedit.\n"
+#~ msgstr "%s: Не удалось найти команду pstoedit.\n"
+
+#, c-format
+#~ msgid "%s: Unable to create export file, invalid file.\n"
+#~ msgstr "%s: Не удалось создать файл для экспорта, неверный файл.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
+#~ "to be able to use this feature.\n"
+#~ msgstr ""
+#~ "%s: Не удалось найти команду pstoedit. Для правильной работы необходимо "
+#~ "установить программу pstoedit и/или добавить путь к ней в переменную PATH.\n"
+
+#~ msgid "Please install Ghostscript 32 bits to export an .FIG file."
+#~ msgstr ""
+#~ "Необходимо установить 32-битную версию Ghostscript для экспорта .FIG файлов."

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 12:22+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -27,27 +27,21 @@ msgstr "%s はインストール済みのモジュールではありません."
 msgid "%s is not an installed module or toolbox"
 msgstr "%s はインストール済みのモジュールまたはツールボックスではありません."
 
-#
-# File: macros/test_run.sci, line: 877
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-msgstr ""
+msgstr "%s: テスト ''%s ''は存在しないか, 読込めません.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
-msgstr ""
-"%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してく"
-"ださい."
+msgstr "%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してください."
 
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s: 入力引数の大きさが間違っています."
 
-#
-# File: macros/test_run.sci, line: 873
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
 
 #
 # File: macros/testexamples.sci, line: 17

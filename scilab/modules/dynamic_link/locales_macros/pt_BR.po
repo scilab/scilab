@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Albuquerque <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:21+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -99,8 +99,6 @@ msgstr "   Executando o makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 84
 #, c-format
 msgid "%s: %s already loaded in scilab."
 msgstr ""
@@ -133,14 +131,10 @@ msgstr "%s: construir comando: %s\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Não foi possível abrir o arquivo %s.\n"
 
-#
-# File: macros/ilib_compile.sci, line: 184
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
 msgstr ""
 
-#
-# File: macros/ilib_compile.sci, line: 84
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""
@@ -149,8 +143,6 @@ msgstr ""
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr "%s: erro quando modificando o Makefile de referência:\n"
 
-#
-# File: macros/ilib_include_flag.sci, line: 21
 #, c-format
 msgid "%s: Failed to add include path : %s"
 msgstr ""
@@ -189,8 +181,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: Alerta: Scilab não foi capaz de encontrar onde os fontes do Scilab se "
-"encontram. Por favor envie um relato de erro através de http://bugzilla."
-"scilab.org/\n"
+"encontram. Por favor envie um relato de erro através de "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -218,7 +210,8 @@ msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
 
 #, c-format
 msgid ""
@@ -234,7 +227,8 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
@@ -250,10 +244,6 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
 
-#
-# File: macros/ilib_build.sci, line: 60
-# File: macros/ilib_mex_build.sci, line: 26
-# File: macros/ilib_for_link.sci, line: 32
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
@@ -264,10 +254,6 @@ msgstr ""
 "%s: Valor errado para o argumento de entrada #%d: Deve pertencer ao conjunto "
 "{%s}.\n"
 
-#
-# File: macros/windows/dlwGenerateMakefile.sci, line: 180
-# File: macros/ilib_gen_Make_unix.sci, line: 153
-# File: macros/ilib_gen_Make_unix.sci, line: 169
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
@@ -275,11 +261,6 @@ msgstr ""
 msgid "A Fortran or C compiler is required."
 msgstr "É exigido um copilador C ou Fortran."
 
-#
-# File: macros/ilib_build.sci, line: 55
-# File: macros/ilib_compile.sci, line: 44
-# File: macros/ilib_mex_build.sci, line: 30
-# File: macros/ilib_for_link.sci, line: 43
 #, c-format
 msgid "A managed file extension for input argument #%d"
 msgstr ""
@@ -290,8 +271,6 @@ msgstr "Linking dinâmico"
 msgid "F2C cannot build fortran 90"
 msgstr "F2C não pode construir fortran 90"
 
-#
-# File: macros/detectmsifort64tools.sci, line: 34
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
@@ -299,8 +278,6 @@ msgstr ""
 msgid "Output: %s\n"
 msgstr "Saída: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 90
 msgid "You need to unload this library before."
 msgstr ""
 

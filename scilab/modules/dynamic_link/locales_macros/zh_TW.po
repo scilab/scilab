@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:57+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -100,8 +100,6 @@ msgstr "   正在執行 makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 84
 #, c-format
 msgid "%s: %s already loaded in scilab."
 msgstr ""
@@ -118,9 +116,7 @@ msgstr "%s: 編譯過程中發生錯誤:\n"
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
-msgstr ""
-"%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資"
-"訊.\n"
+msgstr "%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資訊.\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 72
@@ -138,14 +134,10 @@ msgstr "%s: 建立(Build) 指令: %s\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: 無法開啟 %s 檔案.\n"
 
-#
-# File: macros/ilib_compile.sci, line: 184
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
 msgstr ""
 
-#
-# File: macros/ilib_compile.sci, line: 84
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""
@@ -154,8 +146,6 @@ msgstr ""
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr "%s: 修改參考的 Makefile時產生錯誤:\n"
 
-#
-# File: macros/ilib_include_flag.sci, line: 21
 #, c-format
 msgid "%s: Failed to add include path : %s"
 msgstr ""
@@ -195,8 +185,8 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on http://"
-"bugzilla.scilab.org/\n"
+"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -236,7 +226,8 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
 
 #
@@ -250,10 +241,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr "%s: 第 #%d個參數型別有誤: String matrix 才對.\n"
 
-#
-# File: macros/ilib_build.sci, line: 60
-# File: macros/ilib_mex_build.sci, line: 26
-# File: macros/ilib_for_link.sci, line: 32
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
@@ -262,10 +249,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
 
-#
-# File: macros/windows/dlwGenerateMakefile.sci, line: 180
-# File: macros/ilib_gen_Make_unix.sci, line: 153
-# File: macros/ilib_gen_Make_unix.sci, line: 169
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
@@ -275,11 +258,6 @@ msgstr ""
 msgid "A Fortran or C compiler is required."
 msgstr "須要 Fortran  或 C 編譯器."
 
-#
-# File: macros/ilib_build.sci, line: 55
-# File: macros/ilib_compile.sci, line: 44
-# File: macros/ilib_mex_build.sci, line: 30
-# File: macros/ilib_for_link.sci, line: 43
 #, c-format
 msgid "A managed file extension for input argument #%d"
 msgstr ""
@@ -290,8 +268,6 @@ msgstr "動態連結"
 msgid "F2C cannot build fortran 90"
 msgstr "F2C 不能build fortran 90"
 
-#
-# File: macros/detectmsifort64tools.sci, line: 34
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
@@ -299,8 +275,6 @@ msgstr ""
 msgid "Output: %s\n"
 msgstr "輸出: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 90
 msgid "You need to unload this library before."
 msgstr ""
 

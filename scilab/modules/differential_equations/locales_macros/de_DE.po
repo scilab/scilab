@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:01+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -43,7 +43,8 @@ msgstr "%s: falsche Anzahl von Ausgangsargument(en): %d oder %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -69,7 +70,8 @@ msgid "1 : user-supplied full jacobian"
 msgstr "1: Benutzer-gelieferte volle Jacobi-Matrix"
 
 msgid "2 : computation at mesh points (given in first row of output of ode)"
-msgstr "2: Berechnung zu Netzzeiten (gegeben in erster Reihe des Ausgabecodes)"
+msgstr ""
+"2: Berechnung zu Netzzeiten (gegeben in erster Reihe des Ausgabecodes)"
 
 msgid "2 : internally generated full jacobian"
 msgstr "2: intern erzeugte volle Jacobi-Matrix"
@@ -142,8 +144,6 @@ msgstr "Bedeutung von ml,mu:"
 msgid "ODE 1D vector field"
 msgstr "ODE 1D Vektor Feld"
 
-#
-# File: demos/wheel/wheel.dem.gateway.sce, line: 8
 msgid "Reading a precomputed trajectory"
 msgstr ""
 
@@ -153,8 +153,6 @@ msgstr "Simulation"
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "Simulation von mechanischen Systemen mit holomorphen Bedingungen"
 
-#
-# File: demos/wheel/wheel.dem.gateway.sce, line: 9
 msgid "Simulation with ode (needs a Fortran compiler)"
 msgstr ""
 
@@ -165,7 +163,8 @@ msgid "Van der Pol vector field"
 msgstr "Van der Pol Vektor Feld"
 
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
-msgstr "eine Matrix J, bei der is ml+mu+1 x ny (wo ny=dim of y in ydot=f(t,y))"
+msgstr ""
+"eine Matrix J, bei der is ml+mu+1 x ny (wo ny=dim of y in ydot=f(t,y))"
 
 msgid "bike simulation, stable trajectory"
 msgstr "Fahrrad Simulation, stabile Trajektorie"

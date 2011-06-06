@@ -8,21 +8,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 23:58+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr "%s : Entitat invàlida %s\n"
 
-#
-# File: macros/polarplot.sci, line: 152
 #, c-format
 msgid "%s: ''%s'' cannot be used with ''%s''.\n"
 msgstr ""
@@ -35,19 +33,11 @@ msgstr "%s: Error : No s''ha pogut avaluar la funció d''entrada ''%s''."
 msgid "%s: Error : unable to evaluate input function."
 msgstr "%s: Error : No s''ha pogut avaluar la funció d''entrada."
 
-#
-# File: macros/comet.sci, line: 86
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
 
-#
-# File: macros/comet3d.sci, line: 71
-# File: macros/comet3d.sci, line: 96
-# File: macros/comet3d.sci, line: 107
-# File: macros/comet.sci, line: 79
-# File: macros/comet.sci, line: 94
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -99,11 +89,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
+msgstr ""
+"%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
+msgstr ""
+"%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -122,17 +114,10 @@ msgstr ""
 "%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i "
 "%d.\n"
 
-#
-# File: macros/comet3d.sci, line: 91
-# File: macros/comet3d.sci, line: 102
-# File: macros/comet3d.sci, line: 125
-# File: macros/comet.sci, line: 102
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr ""
 
-#
-# File: macros/legend.sci, line: 55
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
 msgstr ""
@@ -251,21 +236,10 @@ msgstr ""
 "%s: Els arguments d''entrada ''%s'' tenen una mida incorrecta: Han de ser "
 "vectors de mida %d.\n"
 
-#
-# File: macros/comet3d.sci, line: 115
-# File: macros/comet.sci, line: 68
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
 
-#
-# File: macros/comet3d.sci, line: 27
-# File: macros/comet3d.sci, line: 55
-# File: macros/comet3d.sci, line: 58
-# File: macros/comet3d.sci, line: 62
-# File: macros/comet.sci, line: 29
-# File: macros/comet.sci, line: 53
-# File: macros/comet.sci, line: 65
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
@@ -280,18 +254,6 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una "
 "estructura de dades %s.\n"
 
-#
-# File: macros/datatips/datatipToggle.sci, line: 18
-# File: macros/datatips/datatipMove.sci, line: 18
-# File: macros/datatips/datatipMove.sci, line: 26
-# File: macros/datatips/datatipSetInterp.sci, line: 20
-# File: macros/datatips/datatipRemove.sci, line: 18
-# File: macros/datatips/datatipRemove.sci, line: 37
-# File: macros/datatips/datatipSetOrientation.sci, line: 17
-# File: macros/datatips/datatipEventhandler.sci, line: 213
-# File: macros/datatips/datatipEventhandler.sci, line: 287
-# File: macros/datatips/datatipCreate.sci, line: 22
-# File: macros/datatips/datatipCreate.sci, line: 41
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
@@ -340,15 +302,10 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
 "tractament gràfic.\n"
 
-#
-# File: macros/histplot.sci, line: 89
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
-#
-# File: macros/histplot.sci, line: 67
-# File: macros/histplot.sci, line: 69
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
 msgstr ""
@@ -418,10 +375,6 @@ msgstr ""
 "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "enter major o igual que %d.\n"
 
-#
-# File: macros/comet3d.sci, line: 118
-# File: macros/histplot.sci, line: 87
-# File: macros/comet.sci, line: 71
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
@@ -439,17 +392,12 @@ msgstr ""
 "%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
 "d''aquests {%s}.\n"
 
-#
-# File: macros/plot3d2.sci, line: 61
-# File: macros/polarplot.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
 
-#
-# File: macros/fplot2d.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
@@ -461,8 +409,6 @@ msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 "%s: L''argument d''entrada #%d té valors incorrectes: Han de ser ''%s''.\n"
 
-#
-# File: macros/histplot.sci, line: 95
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
@@ -489,21 +435,15 @@ msgstr "&Fitxer"
 msgid "&Tools"
 msgstr "&Eines"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 72
 msgid "... as well as very tiny radii"
 msgstr ""
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 49
 msgid "A partial viewport may be set with clipping"
 msgstr ""
 
 msgid "Autumn"
 msgstr "Tardor"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 60
 msgid "Big radii are supported..."
 msgstr ""
 
@@ -525,8 +465,6 @@ msgstr "Coure"
 msgid "Customize your complex function"
 msgstr "Personalitzeu la vostra funció complexa"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 45
 msgid "Data on the full circle ..."
 msgstr ""
 
@@ -562,13 +500,9 @@ msgstr "Habilita la interpolació"
 msgid "Error %d at line %d of the function: ''%s''"
 msgstr "Error %d a la línia %d de la funció: ''%s''"
 
-#
-# File: macros/histplot.sci, line: 58
 msgid "Exact gaussian density"
 msgstr ""
 
-#
-# File: macros/histplot.sci, line: 57
 msgid "Gaussian random sample histogram"
 msgstr ""
 
@@ -593,7 +527,8 @@ msgstr "Jet"
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr ""
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Feu clic amb el botó esquerra en una corba per crear un datatip, el botó "
 "dret obre el menú contextual"
@@ -610,8 +545,6 @@ msgstr "Mode per múltiples datatips"
 msgid "Name"
 msgstr "Nom"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 55
 msgid "Negative radii are supported:"
 msgstr ""
 
@@ -624,8 +557,6 @@ msgstr "Accepta"
 msgid "Pink"
 msgstr "Rosa"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
 msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
 msgstr ""
@@ -633,8 +564,6 @@ msgstr ""
 msgid "Plot with 3 different Y scales at shared X"
 msgstr ""
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 19
 msgid "Press enter to go on..."
 msgstr ""
 
@@ -650,16 +579,12 @@ msgstr ""
 msgid "Select tip orientation"
 msgstr "Seleccioneu la orientació"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 77
 msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 msgid "Spring"
 msgstr "Primavera"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 27
 msgid "Still a single quadrant..."
 msgstr ""
 
@@ -680,8 +605,8 @@ msgstr "La funció seleccionada ha de tenir un paràmetre de sortida (str)"
 
 msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
-"La funció seleccionada ha de tenir tres paràmetres d''entrada (curve,pt,"
-"index)"
+"La funció seleccionada ha de tenir tres paràmetres d''entrada "
+"(curve,pt,index)"
 
 msgid "Unique datatip mode"
 msgstr "Mode de datatip únic"
@@ -695,13 +620,9 @@ msgstr "Hivern"
 msgid "automatic"
 msgstr "automàtic"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 66
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""
 
-#
-# File: macros/histplot.sci, line: 55
 msgid "histplot() : (normalized) histogram plot"
 msgstr ""
 
@@ -711,13 +632,9 @@ msgstr "inferior esquerre"
 msgid "lower right"
 msgstr "inferior esquerra"
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 35
 msgid "on 2 quadrants..."
 msgstr ""
 
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 23
 msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 msgstr ""
 

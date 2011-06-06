@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-05-27 14:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -32,7 +32,7 @@ msgstr "%s: запит на значення такого типу неможл�
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка виділення пам’яті.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -43,13 +43,10 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 59
-# File: sci_gateway/c/sci_winqueryreg.c, line: 85
-# File: sci_gateway/c/sci_winqueryreg.c, line: 104
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -96,3 +93,34 @@ msgstr "Консоль Scilab"
 
 msgid "see help"
 msgstr "див. довідку"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#~ msgid "Error(s) : see help powershell"
+#~ msgstr "Помилки: див. help powershell"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Лише для Microsoft Windows."
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell не знайдено."
+
+#~ msgid "Verify your script without Scilab."
+#~ msgstr "Перевірка вашого скрипту без Scilab."
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#~ msgid "Please verify your powershell command without Scilab."
+#~ msgstr "Будь ласка, перевірте вашу команду powershell поза межами Scilab."
+
+#~ msgid "Powershell 1.0 not found."
+#~ msgstr "Не виявлено Powershell 1.0."

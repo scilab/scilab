@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: arhiv_6 <Unknown>\n"
+"PO-Revision-Date: 2011-05-31 22:53+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid " %s.mo cannot be compiled\n"
@@ -68,23 +68,14 @@ msgstr "%s: Порты ввода не пронумерованы правиль
 msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: Порты вывода не пронумерованы правильно.\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 120
-# File: macros/scicos_auto/lincos.sci, line: 131
 #, c-format
 msgid "%s: Unable to find diagram inputs\n"
 msgstr ""
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 123
-# File: macros/scicos_auto/lincos.sci, line: 134
 #, c-format
 msgid "%s: Unable to find diagram outputs\n"
 msgstr ""
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 82
-# File: macros/scicos_auto/lincos.sci, line: 95
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -97,8 +88,6 @@ msgstr "%s: Неверный количество входных парамет�
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 104
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -121,22 +110,14 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Неверный размер входных параметров №%d и №%d.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 115
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 85
-# File: macros/scicos_auto/lincos.sci, line: 98
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 119
-# File: macros/scicos_auto/scicos_simulate.sci, line: 123
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
@@ -145,10 +126,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 131
-# File: macros/scicos_utils/block_parameter_error.sci, line: 24
-# File: macros/scicos_utils/block_parameter_error.sci, line: 27
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
@@ -157,8 +134,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 127
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
@@ -175,40 +150,26 @@ msgstr "&Файл"
 msgid "&Tools"
 msgstr "&Инструменты"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 140
 #, c-format
 msgid "&nbsp; %s input port size is: %s"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 139
 #, c-format
 msgid "&nbsp; %s output port size is: %s"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 110
 #, c-format
 msgid "&nbsp;Input port %s size is: %s"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 114
-# File: macros/scicos_scicos/bad_connection.sci, line: 144
 #, c-format
 msgid "&nbsp;Input port %s type is: %s"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 109
 #, c-format
 msgid "&nbsp;Output port %s size is: %s"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 113
-# File: macros/scicos_scicos/bad_connection.sci, line: 143
 #, c-format
 msgid "&nbsp;Output port %s type is: %s"
 msgstr ""
@@ -285,8 +246,6 @@ msgstr ""
 msgid "Calc"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 209
 msgid "Can''t convert old diagram (problem in version)"
 msgstr ""
 
@@ -364,13 +323,6 @@ msgstr ""
 msgid "Compile"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 82
-# File: macros/scicos_scicos/bad_connection.sci, line: 85
-# File: macros/scicos_scicos/bad_connection.sci, line: 110
-# File: macros/scicos_scicos/bad_connection.sci, line: 114
-# File: macros/scicos_scicos/bad_connection.sci, line: 140
-# File: macros/scicos_scicos/bad_connection.sci, line: 144
 msgid "Connection error"
 msgstr ""
 
@@ -428,15 +380,11 @@ msgstr ""
 msgid "Diagram"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 290
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 285
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver"
@@ -454,8 +402,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 367
 msgid "End problem: "
 msgstr ""
 
@@ -508,26 +454,16 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 85
 msgid "Highlighted block has connected ports<br />with  incompatible types."
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 82
 msgid "Highlighted block has connected ports<br />with incompatible sizes."
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 108
-# File: macros/scicos_scicos/bad_connection.sci, line: 138
 msgid ""
 "Highlighted block(s) have connected ports<br />with  incompatible sizes."
 msgstr ""
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 112
-# File: macros/scicos_scicos/bad_connection.sci, line: 142
 msgid ""
 "Highlighted block(s) have connected ports<br />with  incompatible types."
 msgstr ""
@@ -547,8 +483,6 @@ msgstr ""
 msgid "Identification"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 319
 msgid "Initialisation problem:"
 msgstr ""
 
@@ -665,8 +599,6 @@ msgstr ""
 msgid "Problem while building library %s\n"
 msgstr "Проблема при сборке библиотеки %s\n"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 164
 msgid "Problem with the block generated from modelica blocks."
 msgstr ""
 
@@ -787,13 +719,9 @@ msgstr ""
 msgid "Simulate"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 314
 msgid "Simulation parameters not set:"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 336
 msgid "Simulation problem: "
 msgstr ""
 
@@ -832,8 +760,6 @@ msgid ""
 "must be defined in the"
 msgstr ""
 
-#
-# File: macros/scicos_scicos/script2var.sci, line: 69
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""
@@ -891,16 +817,12 @@ msgstr ""
 msgid "Warning %d menus have identical name %s\n"
 msgstr ""
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 250
 #, c-format
 msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
 msgstr ""
 
-#
-# File: macros/scicos_utils/block_parameter_error.sci, line: 31
 msgid "Xcos block parameter error"
 msgstr ""
 

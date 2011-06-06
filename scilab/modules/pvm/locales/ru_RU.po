@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-07-11 10:05+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -199,3 +199,36 @@ msgstr ""
 
 msgid "but there exists no configuration file:\n"
 msgstr "но конфигурационный файл не существует в:\n"
+
+#, c-format
+#~ msgid "%s: Unknow type or not yet implemented\n"
+#~ msgstr "%s: Неизвестный тип или ещё не реализовано\n"
+
+#~ msgid "Out of ressources"
+#~ msgstr "Недостаточно ресурсов"
+
+#~ msgid "Already oing operation"
+#~ msgstr "Операция уже выполняется"
+
+#, c-format
+#~ msgid "%s: work space (stacksize) is too small d\n"
+#~ msgstr "%s: рабочее пространство (размер стека) слишком мало d\n"
+
+#, c-format
+#~ msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+#~ msgstr "Ошибка pvm_reduce: неизвестная операция сокращения %s\n"
+
+#~ msgid "PVM parallel Toolbox"
+#~ msgstr "Использование PVM"
+
+#, c-format
+#~ msgid "%s: Unknown type or not yet implemented\n"
+#~ msgstr "%s: Неизвестный тип или ещё не реализовано.\n"
+
+#, c-format
+#~ msgid "%s: work space (stacksize) is too small.\n"
+#~ msgstr "%s: размер стека слишком мал.\n"
+
+#, c-format
+#~ msgid "%s: Unknown type or not yet implemented.\n"
+#~ msgstr "%s: Неизвестный тип или ещё не реализовано.\n"

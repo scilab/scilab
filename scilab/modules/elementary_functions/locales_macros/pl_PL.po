@@ -8,30 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2011-05-31 23:32+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pl\n"
 
-# File: macros/repmat.sci, line: 44
 #, c-format
 msgid ""
 "%s : Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices"
 msgstr ""
 
-#
-# File: macros/repmat.sci, line: 34
 #, c-format
 msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#
-# File: macros/complex.sci, line: 43
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -101,8 +96,6 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
-#
-# File: macros/complex.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -118,8 +111,6 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: najwyżej oczekiwano %d.\n"
 
-#
-# File: macros/repmat.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
@@ -177,8 +168,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d:  oczekiwano "
 "rozmiar przynajmniej jak u argumentu wejściowego nr %d\n"
@@ -235,9 +226,6 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu real.\n"
 
-#
-# File: macros/complex.sci, line: 35
-# File: macros/complex.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -323,8 +311,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
-"macierz z liczbami całkowitymi bez znaku.\n"
+"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany "
+"skalar/macierz z liczbami całkowitymi bez znaku.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer expected.\n"
@@ -374,7 +362,8 @@ msgstr ""
 "Integer >= %d\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
 "zdiagonalizować.\n"
@@ -399,9 +388,6 @@ msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
 "i %d.\n"
 
-#
-# File: macros/asind.sci, line: 16
-# File: macros/acosd.sci, line: 16
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -439,16 +425,16 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany skalar/"
-"wektor/macierz liczb całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
+"skalar/wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany skalar/"
-"wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany "
+"skalar/wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid ""
@@ -498,8 +484,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"
-"(1).\n"
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
 msgstr ""
 "%s: Niepoprawne wartości argumentów wejściowych nr %d: i %d: c(1) musi być "
 "równe do r(1).\n"
