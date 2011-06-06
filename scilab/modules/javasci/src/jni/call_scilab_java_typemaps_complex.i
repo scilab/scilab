@@ -16,7 +16,9 @@ matching in Java */
 // Convert the CTYPE[][] => CTYPE *
       $2 = (*jenv)->GetArrayLength(jenv, $input);
    	  $3 = 0;
+   	  $1 = NULL;
 	  int i=0, j=0;
+
 	  for(i=0; i<$2; i++) {
 		  ##JNITYPE##Array oneDim=(##JNITYPE##Array)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
 		  if ($3==0) {
