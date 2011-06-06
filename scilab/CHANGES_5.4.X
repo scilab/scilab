@@ -267,3 +267,7 @@ Bug fixes:
                    EDT was crashing the execution of a java program.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
+
+* bug 9571 fixed - "error(144)" returned a wrong variable name.
+
+

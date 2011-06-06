@@ -23,6 +23,7 @@
 #include "errorTable.h"
 #include "lasterror.h"
 #include "Scierror.h"
+#include "strsubst.h"
 /*--------------------------------------------------------------------------*/
 typedef enum {
     CVNAME_READING_TYPE_1 = 0, 
@@ -1002,14 +1003,9 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_1);
             if (NameVarOnStack)
             {
-                char msgErr[bsiz*2];
-                char msgTmp[bsiz];
-
-                strcpy(msgErr, _("Undefined operation for the given operands.\n"));
-                sprintf(msgTmp, _("check or define function %s for overloading.\n"), NameVarOnStack);
-                strcat(msgErr, msgTmp);
-                iValueReturned = Scierror(iErr, msgErr);
-
+                char msgFormat[bsiz*2];
+                sprintf(msgFormat, "%s%s", _("Undefined operation for the given operands.\n"), _("check or define function %s for overloading.\n"));
+                iValueReturned = Scierror(iErr, msgFormat, NameVarOnStack);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1388,7 +1384,6 @@ int errorTable(int iErr)
             {
                 char msgErr[bsiz];
                 char msgTmp[bsiz];
-
                 strcpy(msgErr, _("Function not defined for given argument type(s),\n"));
                 sprintf(msgTmp, _("  check arguments or define function %s for overloading.\n"),NameVarOnStack);
                 strcat(msgErr, msgTmp);
@@ -1671,7 +1666,8 @@ static char *getConvertedNameFromStack(int cvnametype)
     }
 
     strip_blank(local_variable_buffer);
-    return strdup(local_variable_buffer);
+    /* bug 9571: % duplicated for variable name (used in sprintf) */
+    return strsub(local_variable_buffer, "%", "%%");
 }
 /*--------------------------------------------------------------------------*/
 static char *defaultStringError(void)
