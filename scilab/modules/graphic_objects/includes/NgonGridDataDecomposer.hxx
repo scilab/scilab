@@ -23,6 +23,8 @@ extern "C" {
  * NgonGridData decomposer class
  * Determines the vertices and the segments indices to be rendered
  * as a function of the decomposed NgonGridData object's properties.
+ *
+ * To do: being able to specify either per-facet or per-vertex colors at execution time.
  */
 
 class NgonGridDataDecomposer
@@ -166,6 +168,41 @@ protected :
      */
     static void computeMinMaxZValues(double* z, int numX, int numY, double* zMin, double* zMax);
 
+    /**
+     * Computes a facet's average z value.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the facet's lower-left corner x index.
+     * @param[in] the facet's lower-left corner y index.
+     * @return the facet's average z value.
+     */
+    static double computeFacetAverageZValue(double* z, int numX, int numY, int i, int j);
+
+    /**
+     * Writes the color value of a facet's four vertices into a buffer.
+     * The color is constant across the whole facet, hence four identical
+     * color values are consecutively written.
+     * @param[out] the buffer which is written to.
+     * @param[in] the buffer offset of the first vertex's color.
+     * @param[in] the facet color (3 or 4-element array).
+     * @param[in] the number of components taken by a color element (3 or 4).
+     */
+    static void writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize);
+
+    /**
+     * Returns the index of a facet's first vertex (its lower-left corner).
+     * This index corresponds to the location of the facet's first vertex in an array whose elements
+     * are sets of four vertices, a set corresponding to a single grid facet, with shared vertices
+     * being duplicated. For facet (i,j), vertices are ordered as follows: (i,j), (i+1,j), (i,j+1), (i+1,j+1) .
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the facet's lower-left corner x index.
+     * @param[in] the facet's lower-left corner y index.
+     * @return the index of the facet's first vertex.
+     */
+    static int getFirstVertexIndex(int numX, int numY, int i, int j);
+
 public :
 
     /**
@@ -218,5 +255,15 @@ public :
      */
     static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
 };
+
+/**
+ * Specifies whether per-vertex or per-facet colors are used (0 corresponds to
+ * per-facet color values, any other value to per-vertex colors) for all the
+ * Ngon grid-derived objects, by commenting out the related code blocks.
+ * Temporary since this should be specified as a parameter of the vertex,
+ * index and color fill functions, independently for each Ngon grid-derived
+ * object type.
+ */
+#define PER_VERTEX_VALUES    0
 
 #endif

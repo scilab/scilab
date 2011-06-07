@@ -34,7 +34,11 @@ int NgonGridDataDecomposer::getDataSize(char* id)
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
 
+#if PER_VERTEX_VALUES
     return numX*numY;
+#else
+    return 4*(numX-1)*(numY-1);
+#endif
 }
 
 void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
@@ -70,6 +74,7 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
 
     int bufferOffset;
 
+#if PER_VERTEX_VALUES
     for (j = 0; j < numY; j++)
     {
         yj = y[j];
@@ -115,6 +120,97 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
             }
         }
     }
+#else
+
+    double yjp1;
+    double xip1;
+
+    bufferOffset = 0;
+
+    for (j = 0; j < numY-1; j++)
+    {
+        double ycoords[4];
+        int yindices[4];
+
+        yj = y[j];
+        yjp1 = y[j+1];
+
+        if (coordinateMask  & 0x2)
+        {
+            if (logMask & 0x2)
+            {
+                yj = DecompositionUtils::getLog10Value(yj);
+                yjp1 = DecompositionUtils::getLog10Value(yjp1);
+            }
+        }
+
+        ycoords[0] = yj;
+        ycoords[1] = yj;
+        ycoords[2] = yjp1;
+        ycoords[3] = yjp1;
+
+        yindices[0] = j;
+        yindices[1] = j;
+        yindices[2] = j+1;
+        yindices[3] = j+1;
+
+        for (i = 0; i < numX-1; i++)
+        {
+            double xcoords[4];
+            int xindices[4];
+            int k;
+
+            xi = x[i];
+            xip1 = x[i+1];
+
+            if (logMask & 0x1)
+            {
+                xi = DecompositionUtils::getLog10Value(xi);
+                xip1 = DecompositionUtils::getLog10Value(xip1);
+            }
+
+            xcoords[0] = xi;
+            xcoords[1] = xip1;
+            xcoords[2] = xi;
+            xcoords[3] = xip1;
+
+            xindices[0] = i;
+            xindices[1] = i+1;
+            xindices[2] = i;
+            xindices[3] = i+1;
+
+            for (k = 0; k < 4; k++)
+            {
+                if (coordinateMask & 0x1)
+                {
+                    buffer[bufferOffset] = xcoords[k] * scale[0] + translation[0];
+                }
+
+                if (coordinateMask  & 0x2)
+                {
+                    buffer[bufferOffset +1] = ycoords[k] * scale[1] + translation[1];
+                }
+
+                if (coordinateMask & 0x4)
+                {
+                    zij = getZCoordinate(z, numX, numY, xindices[k], yindices[k], logMask & 0x4);
+
+                    buffer[bufferOffset +2] = zij * scale[2] + translation[2];
+                }
+
+                if (elementsSize == 4 && (coordinateMask & 0x8))
+                {
+                    buffer[bufferOffset +3] = 1.0;
+                }
+
+                bufferOffset += elementsSize;
+            }
+
+        }
+
+    }
+
+#endif
 
 }
 
@@ -145,6 +241,7 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
         zRange = zMax - zMin;
     }
 
+#if PER_VERTEX_VALUES
     for (j = 0; j < numY; j++)
     {
         for (i = 0; i < numX; i++)
@@ -161,6 +258,24 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
             bufferOffset += elementsSize;
         }
     }
+#else
+    for (j = 0; j < numY-1; j++)
+    {
+        for (i = 0; i < numX-1; i++)
+        {
+            double avgz;
+            float facetColor[3];
+
+            avgz = computeFacetAverageZValue(z, numX, numY, i, j);
+
+            ColorComputer::getColor(avgz, zMin, zRange, Z_COLOR_OFFSET, colormap, colormapSize, facetColor);
+
+            writeFacetColorToBuffer(buffer, bufferOffset, facetColor, elementsSize);
+
+            bufferOffset += 4*elementsSize;
+        }
+    }
+#endif
 
 }
 
@@ -170,13 +285,15 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
     int i;
     int j;
 
+    int currentPointIndex;
     int bufferOffset = 0;
 
+#if PER_VERTEX_VALUES
     for (j = 0; j < numY; j++)
     {
         for (i = 0; i < numX; i++)
         {
-            int currentPointIndex = getPointIndex(numX, numY, i, j);
+            currentPointIndex = getPointIndex(numX, numY, i, j);
 
             ColorComputer::getDirectColor(z[currentPointIndex] - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
 
@@ -188,6 +305,23 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
             bufferOffset += elementsSize;
         }
     }
+#else
+    for (j = 0; j < numY-1; j++)
+    {
+        for (i = 0; i < numX-1; i++)
+        {
+            float facetColor[3];
+
+            currentPointIndex = getPointIndex(numX, numY, i, j);
+
+            ColorComputer::getDirectColor(z[currentPointIndex] - 1.0, colormap, colormapSize, facetColor);
+
+            writeFacetColorToBuffer(buffer, bufferOffset, facetColor, elementsSize);
+
+            bufferOffset += 4*elementsSize;
+        }
+    }
+#endif
 
 }
 
@@ -358,12 +492,24 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
                  * All facets are currently decomposed the same way.
                  * To be adapted to the particular case of Plot3D objects.
                  */
+#if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ip1j;
                 buffer[bufferOffset+2] = ip1jp1;
                 buffer[bufferOffset+3] = ij;
                 buffer[bufferOffset+4] = ip1jp1;
                 buffer[bufferOffset+5] = ijp1;
+#else
+                int firstVertexIndex;
+                firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
+
+                buffer[bufferOffset] = firstVertexIndex;
+                buffer[bufferOffset+1] = firstVertexIndex +1;
+                buffer[bufferOffset+2] = firstVertexIndex +3;
+                buffer[bufferOffset+3] = firstVertexIndex;
+                buffer[bufferOffset+4] = firstVertexIndex +3;
+                buffer[bufferOffset+5] = firstVertexIndex +2;
+#endif
 
                 bufferOffset += 6;
             }
@@ -452,5 +598,49 @@ void NgonGridDataDecomposer::computeMinMaxZValues(double* z, int numX, int numY,
 
     *zMin = tmpZMin;
     *zMax = tmpZMax;
+}
+
+double NgonGridDataDecomposer::computeFacetAverageZValue(double* z, int numX, int numY, int i, int j)
+{
+    double avgz;
+    int pointIndex;
+
+    avgz = 0.0;
+    pointIndex = getPointIndex(numX, numY, i, j);
+    avgz += z[pointIndex];
+    pointIndex = getPointIndex(numX, numY, i+1, j);
+    avgz += z[pointIndex];
+    pointIndex = getPointIndex(numX, numY, i, j+1);
+    avgz += z[pointIndex];
+    pointIndex = getPointIndex(numX, numY, i+1, j+1);
+    avgz += z[pointIndex];
+
+    avgz *= 0.25;
+
+    return avgz;
+}
+
+void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize)
+{
+    int k;
+
+    for (k = 0; k < 4; k++)
+    {
+        buffer[bufferOffset] = color[0];
+        buffer[bufferOffset +1] = color[1];
+        buffer[bufferOffset +2] = color[2];
+
+        if (elementsSize == 4)
+        {
+            buffer[bufferOffset +3] = 1.0;
+        }
+
+        bufferOffset += elementsSize;
+    }
+}
+
+int NgonGridDataDecomposer::getFirstVertexIndex(int numX, int numY, int i, int j)
+{
+    return 4*j*(numX-1) + 4*i;
 }
 

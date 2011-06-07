@@ -26,8 +26,8 @@ extern "C"
 
 /*
  * To do:
- * -per-facet colors
- * -clean-up (replace explicitely computed z indices by getPointIndex calls)
+ * -clean-up: replace explicitely computed z indices by getPointIndex calls
+ * -remove the per-vertex color fill code
  */
 void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
@@ -73,6 +73,7 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
         return;
     }
 
+#if PER_VERTEX_VALUES
     for (j = 0; j < numY-1; j++)
     {
         for (i = 0; i < numX-1; i++)
@@ -127,6 +128,25 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
         buffer[bufferOffset+3] = 1.0;
     }
 
+#else
+
+    for (j = 0; j < numY-1; j++)
+    {
+        for (i = 0; i < numX-1; i++)
+        {
+            float facetColor[3];
+
+            currentZ = z[i*(numY-1)+(numY-2-j)];
+
+            ColorComputer::getDirectColor((double) currentZ - 1.0, colormap, colormapSize, facetColor);
+
+            writeFacetColorToBuffer(buffer, bufferOffset, facetColor, elementsSize);
+
+            bufferOffset += 4*elementsSize;
+        }
+    }
+
+#endif
 }
 
 /*
@@ -230,12 +250,24 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
             if (currentColumnValid && nextColumnValid && facetValid)
             {
                 /* All facets are decomposed the same way */
+#if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ip1j;
                 buffer[bufferOffset+2] = ip1jp1;
                 buffer[bufferOffset+3] = ij;
                 buffer[bufferOffset+4] = ip1jp1;
                 buffer[bufferOffset+5] = ijp1;
+#else
+                int firstVertexIndex;
+                firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
+
+                buffer[bufferOffset] = firstVertexIndex;
+                buffer[bufferOffset+1] = firstVertexIndex +1;
+                buffer[bufferOffset+2] = firstVertexIndex +3;
+                buffer[bufferOffset+3] = firstVertexIndex;
+                buffer[bufferOffset+4] = firstVertexIndex +3;
+                buffer[bufferOffset+5] = firstVertexIndex +2;
+#endif
 
                 bufferOffset += 6;
             }

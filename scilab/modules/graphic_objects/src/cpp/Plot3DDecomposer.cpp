@@ -226,6 +226,8 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     int ijm1;
     int ip1jm1;
 
+    int firstVertexIndex;
+
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
@@ -296,6 +298,10 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
 
         for (i = 0; i < numX-1; i++)
         {
+#if !PER_VERTEX_VALUES
+            firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
+#endif
+
             ip1j = getPointIndex(numX, numY, i+1, j);
             ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
 
@@ -339,16 +345,26 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
              */
             if ((currentColumnValid && nextColumnValid) && jHorizontalEdgeZValid && ((previousRowValid && jm1HorizontalEdgeZValid) || (nextRowValid && jp1HorizontalEdgeZValid)))
             {
+#if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ip1j;
+#else
+                buffer[bufferOffset] = firstVertexIndex;
+                buffer[bufferOffset+1] = firstVertexIndex +1;
+#endif
 
                 bufferOffset += 2;
             }
 
             if (currentColumnValid && nextRowValid && iVerticalEdgeZValid && ((previousColumnValid && im1VerticalEdgeZValid) || (nextColumnValid && ip1VerticalEdgeZValid)))
             {
+#if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ijp1;
+#else
+                buffer[bufferOffset] = firstVertexIndex;
+                buffer[bufferOffset+1] = firstVertexIndex +2;
+#endif
 
                 bufferOffset += 2;
             }
@@ -368,8 +384,15 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         /* Rightmost vertical line */
         if (currentColumnValid && nextRowValid && iVerticalEdgeZValid && (previousColumnValid && im1VerticalEdgeZValid))
         {
+#if PER_VERTEX_VALUES
             buffer[bufferOffset] = ij;
             buffer[bufferOffset+1] = ijp1;
+#else
+            firstVertexIndex = getFirstVertexIndex(numX, numY, numX-2, j);
+
+            buffer[bufferOffset] = firstVertexIndex +1;
+            buffer[bufferOffset+1] = firstVertexIndex +3;
+#endif
 
             bufferOffset += 2;
         }
@@ -436,8 +459,15 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
 
         if (currentRowValid && (currentColumnValid && nextColumnValid) && jHorizontalEdgeZValid && (previousRowValid && jm1HorizontalEdgeZValid))
         {
+#if PER_VERTEX_VALUES
             buffer[bufferOffset] = ij;
             buffer[bufferOffset+1] = ip1j;
+#else
+            firstVertexIndex = getFirstVertexIndex(numX, numY, i, numY-2);
+
+            buffer[bufferOffset] = firstVertexIndex +2;
+            buffer[bufferOffset+1] = firstVertexIndex +3;
+#endif
 
             bufferOffset += 2;
         }

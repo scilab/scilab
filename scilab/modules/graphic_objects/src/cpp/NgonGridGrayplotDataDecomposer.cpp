@@ -26,7 +26,7 @@ extern "C"
 NgonGridGrayplotDataDecomposer* NgonGridGrayplotDataDecomposer::decomposer = NULL;
 
 /*
- * To do: per-facet colors
+ * To do: allowing either per-vertex or per-facet colors
  */
 void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int bufferLength, int elementsSize)
 {
