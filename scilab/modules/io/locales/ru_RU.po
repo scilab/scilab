@@ -8,11 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: io-ru\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 18:25+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,24 +40,8 @@ msgid "%s: The file does not exist.\n"
 msgstr "%s: Файл не существует.\n"
 
 #, c-format
-msgid "%s: The system interpreter does not answer..."
-msgstr "%s: Системный интерпретатор не отвечает..."
-
-#, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: Переменная окружения %s не определена.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: Неверное количество входных параметров.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Неверное количество выходных параметров.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -83,22 +68,12 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid "%s: error during %s execution"
-msgstr "%s: ошибка во время выполнения %s"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "File \"%s\" already exists.\n"

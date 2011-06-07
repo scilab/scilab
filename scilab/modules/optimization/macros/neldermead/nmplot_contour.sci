@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -24,10 +24,8 @@ function [ this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin , xmax 
     errmsg = msprintf(gettext("%s: Unexpected number of variables %d. Cannot draw contour plot for functions which do not have two parameters."),"nmplot_contour",n)
     error(errmsg)
   end
-  stepx = (xmax - xmin)/nx
-  xdata = xmin:stepx:xmax;
-  stepy = (ymax - ymin)/ny
-  ydata = ymin:stepy:ymax;
+  xdata = linspace(xmin,xmax,nx);
+  ydata = linspace(ymin,ymax,ny);
   for ix = 1:length(xdata)
     for iy = 1:length(ydata)
       experiment = [xdata(ix) ydata(iy)]';

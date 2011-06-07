@@ -1,0 +1,234 @@
+# Localization of the module modules_manager-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/tbx_build_gateway.sci, line: 157
+#, c-format
+msgid "%s: Can''t go to directory ''%s''.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 34
+# File: macros/tbx_build_cleaner.sci, line: 50
+# File: macros/tbx_build_loader.sci, line: 51
+# File: macros/tbx_build_help_loader.sci, line: 50
+# File: macros/tbx_build_gateway_clean.sci, line: 46
+# File: macros/tbx_builder_help.sci, line: 34
+# File: macros/tbx_builder_macros.sci, line: 34
+# File: macros/tbx_builder_src.sci, line: 34
+# File: macros/tbx_builder_gateway_lang.sci, line: 56
+# File: macros/tbx_builder_gateway_lang.sci, line: 66
+# File: macros/tbx_build_gateway_loader.sci, line: 45
+# File: macros/tbx_build_macros.sci, line: 49
+# File: macros/tbx_builder_src_lang.sci, line: 46
+# File: macros/tbx_builder_src_lang.sci, line: 56
+# File: macros/tbx_builder_help_lang.sci, line: 46
+# File: macros/tbx_builder_help_lang.sci, line: 56
+# File: macros/tbx_build_help.sci, line: 51
+# File: macros/tbx_build_blocks.sci, line: 32
+#, c-format
+msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+#
+# File: macros/tbx_build_cleaner.sci, line: 97
+# File: macros/tbx_build_loader.sci, line: 74
+# File: macros/tbx_build_help_loader.sci, line: 66
+# File: macros/tbx_build_gateway_clean.sci, line: 81
+# File: macros/tbx_build_gateway_loader.sci, line: 89
+#, c-format
+msgid "%s: The file %s cannot been created, please check if you have write access on this file.\n"
+msgstr ""
+#
+# File: macros/tbx_builder.sci, line: 20
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 40
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_src.sci, line: 40
+#, c-format
+msgid "%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr ""
+#
+# File: macros/tbx_build_blocks.sci, line: 59
+# File: macros/tbx_build_blocks.sci, line: 67
+# File: macros/tbx_build_blocks.sci, line: 74
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 19
+# File: macros/tbx_builder_help.sci, line: 19
+# File: macros/tbx_builder_macros.sci, line: 19
+# File: macros/tbx_builder_src.sci, line: 19
+# File: macros/tbx_build_blocks.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_cleaner.sci, line: 20
+# File: macros/tbx_build_loader.sci, line: 21
+# File: macros/tbx_build_help_loader.sci, line: 20
+# File: macros/tbx_build_gateway_clean.sci, line: 20
+# File: macros/tbx_build_gateway.sci, line: 31
+# File: macros/tbx_builder_gateway_lang.sci, line: 30
+# File: macros/tbx_build_gateway_loader.sci, line: 19
+# File: macros/tbx_build_macros.sci, line: 19
+# File: macros/tbx_builder_src_lang.sci, line: 20
+# File: macros/tbx_builder_help_lang.sci, line: 20
+# File: macros/tbx_build_help.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 141
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 30
+# File: macros/tbx_build_cleaner.sci, line: 31
+# File: macros/tbx_build_cleaner.sci, line: 46
+# File: macros/tbx_build_loader.sci, line: 32
+# File: macros/tbx_build_loader.sci, line: 47
+# File: macros/tbx_build_help_loader.sci, line: 31
+# File: macros/tbx_build_help_loader.sci, line: 46
+# File: macros/tbx_build_gateway_clean.sci, line: 42
+# File: macros/tbx_build_gateway.sci, line: 42
+# File: macros/tbx_build_gateway.sci, line: 75
+# File: macros/tbx_builder_help.sci, line: 30
+# File: macros/tbx_builder_macros.sci, line: 30
+# File: macros/tbx_builder_src.sci, line: 30
+# File: macros/tbx_builder_gateway_lang.sci, line: 52
+# File: macros/tbx_build_gateway_loader.sci, line: 41
+# File: macros/tbx_build_macros.sci, line: 30
+# File: macros/tbx_build_macros.sci, line: 45
+# File: macros/tbx_builder_src_lang.sci, line: 42
+# File: macros/tbx_builder_help_lang.sci, line: 42
+# File: macros/tbx_build_help.sci, line: 32
+# File: macros/tbx_build_help.sci, line: 47
+# File: macros/tbx_build_blocks.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 53
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 137
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 49
+# File: macros/tbx_build_gateway.sci, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway_lang.sci, line: 37
+# File: macros/tbx_builder_src_lang.sci, line: 27
+# File: macros/tbx_builder_help_lang.sci, line: 27
+# File: macros/tbx_builder.sci, line: 14
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 26
+# File: macros/tbx_build_cleaner.sci, line: 27
+# File: macros/tbx_build_cleaner.sci, line: 42
+# File: macros/tbx_build_loader.sci, line: 28
+# File: macros/tbx_build_loader.sci, line: 43
+# File: macros/tbx_build_help_loader.sci, line: 27
+# File: macros/tbx_build_help_loader.sci, line: 42
+# File: macros/tbx_build_gateway_clean.sci, line: 27
+# File: macros/tbx_build_gateway_clean.sci, line: 38
+# File: macros/tbx_build_gateway.sci, line: 38
+# File: macros/tbx_build_gateway.sci, line: 71
+# File: macros/tbx_builder_help.sci, line: 26
+# File: macros/tbx_builder_macros.sci, line: 26
+# File: macros/tbx_builder_src.sci, line: 26
+# File: macros/tbx_builder_gateway_lang.sci, line: 48
+# File: macros/tbx_build_gateway_loader.sci, line: 26
+# File: macros/tbx_build_gateway_loader.sci, line: 37
+# File: macros/tbx_build_macros.sci, line: 26
+# File: macros/tbx_build_macros.sci, line: 41
+# File: macros/tbx_builder_src_lang.sci, line: 38
+# File: macros/tbx_builder_help_lang.sci, line: 38
+# File: macros/tbx_build_help.sci, line: 28
+# File: macros/tbx_build_help.sci, line: 43
+# File: macros/tbx_build_blocks.sci, line: 26
+# File: macros/tbx_build_blocks.sci, line: 37
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 83
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway.sci, line: 79
+#, c-format
+msgid "%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+#
+# File: macros/tbx_build_help.sci, line: 58
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr ""
+#
+# File: macros/tbx_build_blocks.sci, line: 40
+msgid "Building blocks...\n"
+msgstr ""
+#
+# File: macros/tbx_builder_gateway.sci, line: 44
+msgid "Building gateway...\n"
+msgstr ""
+#
+# File: macros/tbx_builder_help.sci, line: 38
+msgid "Building help...\n"
+msgstr ""
+#
+# File: macros/tbx_builder_macros.sci, line: 37
+msgid "Building macros...\n"
+msgstr ""
+#
+# File: macros/tbx_builder_src.sci, line: 44
+msgid "Building sources...\n"
+msgstr ""
+#
+# File: macros/tbx_build_cleaner.sci, line: 56
+msgid "Generating cleaner.sce...\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway_clean.sci, line: 52
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr ""
+#
+# File: macros/tbx_build_loader.sci, line: 57
+msgid "Generating loader.sce...\n"
+msgstr ""
+#
+# File: macros/tbx_build_gateway_loader.sci, line: 51
+msgid "Generating loader_gateway.sce...\n"
+msgstr ""

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,17 +17,16 @@
 #include "msgstore.h"
 #include "BOOL.h"
 #include "stack-def.h"
-#include "errmsg.h"
 #include "errmds.h"
 #include "lasterror.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(errloc)(int *n); /* fortran */
 extern int C2F(errmgr)(); /* fortran */
 extern int C2F(errcontext)(); /* fortran */
 extern int C2F(whatln)(int *lpt1,int *lpt2,int *lpt6,int *nct,int *idebut,int *ifin); /* fortran */
 
-/*--------------------------------------------------------------------------*/ 
-int error_internal(int *n,char *buffer,int mode)
+/*--------------------------------------------------------------------------*/
+int error_internal(int *n,char *buffer)
 {
     //int num = 0;
     //int lct1 = 0;
@@ -45,11 +44,11 @@ int error_internal(int *n,char *buffer,int mode)
     ///* errors are recoverable */
     //errtyp = 0;
 
-    //if (C2F(errgst).err1 == 0) 
+    //if (C2F(errgst).err1 == 0)
     //{
     //    BOOL trace = ! ((num < 0 || num == *n) && imess != 0);
     //    /* locate the error in the current statement */
-    //    if (trace) 
+    //    if (trace)
     //    {
     //        C2F(errloc)(n);
     //    }
@@ -88,7 +87,7 @@ int error_internal(int *n,char *buffer,int mode)
     //    }
     //    C2F(iop).lct[0] = 0;
     //}
-    //C2F(errcontext)(); 
+    //C2F(errcontext)();
     ///* handle the error */
     //C2F(errmgr)(n, &errtyp);
 
@@ -97,4 +96,4 @@ int error_internal(int *n,char *buffer,int mode)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

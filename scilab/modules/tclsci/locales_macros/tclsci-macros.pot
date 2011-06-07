@@ -1,0 +1,63 @@
+# Localization of the module tclsci-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/TCL_CreateSlave.sci, line: 38
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr ""
+#
+# File: macros/TCL_CreateSlave.sci, line: 18
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/TCL_CreateSlave.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+#
+# File: macros/TCL_CreateSlave.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr ""
+#
+# File: macros/TCL_CreateSlave.sci, line: 26
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 8
+msgid "Color"
+msgstr ""
+#
+# File: macros/gettklib.sci, line: 43
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr ""
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 9
+msgid "Puzzle"
+msgstr ""
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 11
+msgid "Scale"
+msgstr ""
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 10
+msgid "Scroll"
+msgstr ""

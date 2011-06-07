@@ -44,6 +44,7 @@ import org.scilab.modules.helptools.XML.HTMLXMLCodeHandler;
 import org.scilab.modules.helptools.c.CLexer;
 import org.scilab.modules.helptools.c.HTMLCCodeHandler;
 import org.scilab.modules.helptools.java.JavaLexer;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class to convert DocBook to HTML
@@ -52,6 +53,8 @@ import org.scilab.modules.helptools.java.JavaLexer;
 public class HTMLDocbookTagConverter extends DocbookTagConverter implements TemplateFiller {
 
     private static final String LATEXBASENAME = "Equation_LaTeX_";
+    private static final String VERSION = Messages.gettext("Version");
+    private static final String DESCRIPTION = Messages.gettext("Description");
 
     private StringBuffer buffer = new StringBuffer(8192);
     private int latexCompt;
@@ -1449,5 +1452,55 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTh(Map<String, String> attributes, String contents) throws SAXException {
         return encloseContents("th", contents);
+    }
+
+    /**
+     * Handle a revhistory
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevhistory(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        String str = "<table class=\"revhistory\"><tr class=\"title\"><td>" + VERSION + "</td><td>" + DESCRIPTION + "</td></tr>" + contents + "</table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + str;
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * Handle a revision
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevision(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("tr", contents);
+    }
+
+    /**
+     * Handle a revnumber
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevnumber(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("td", "revnumber", contents);
+    }
+
+    /**
+     * Handle a revremark
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevremark(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("td", "revremark", contents);
     }
 }

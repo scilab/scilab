@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,22 +34,19 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s: Hi ha hagut un error: %s\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: Hi ha hagut un error: El camp %d és massa llarg (> %d) per a la "
 "directiva %%c.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: Hi ha hagut un error: El camp %d és massa llarg (> %d) per a la "
 "directiva %%s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s: Hi ha hagut un error: El camp %d és massa llarg (> %d) per a la "
 "directiva %%[.\n"
@@ -59,8 +57,7 @@ msgstr "%s: Hi ha hagut un error: El format és massa llarg (> %d).\n"
 
 #, c-format
 msgid "%s: An error occurred: too many (> %d) conversion required.\n"
-msgstr ""
-"%s: Hi ha hagut un error: Es necessita fer massa conversions (> %d).\n"
+msgstr "%s: Hi ha hagut un error: Es necessita fer massa conversions (> %d).\n"
 
 #, c-format
 msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
@@ -110,18 +107,12 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: S'ha produït un error en obrir, llegir o escriure.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: No s'ha pogut recuperar el nom del directori actual.\n"
 
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: El format és incorrecte.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: La conversió és incorrecta.\n"
-
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 362
+# File: sci_gateway/c/sci_fscanfMat.c, line: 286
 #, c-format
 msgid "%s: Invalid format.\n"
 msgstr ""
@@ -149,10 +140,6 @@ msgstr "%s: No hi ha més memòria.\n"
 #, c-format
 msgid "%s: No such file %s.\n"
 msgstr "%s: No existeix el fitxer %s.\n"
-
-#, c-format
-msgid "%s: Options ignored.\n"
-msgstr "%s: S'ha generat les opcions.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -199,10 +186,6 @@ msgid "%s: Wrong file mode: READ only.\n"
 msgstr "%s: El mode del fitxer és incorrecte: Només lectura.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
@@ -211,10 +194,6 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
 "%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -227,6 +206,8 @@ msgstr ""
 "%s: L'argument d'entrada #%d (%s) té una mida incorrecta: Ha de ser una "
 "cadena de text no-buida.\n"
 
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 140
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -239,32 +220,9 @@ msgstr ""
 "(1 x n) o de (m x 1).\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"caràcters.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un descriptor "
-"de fitxer.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nom de "
-"fitxer.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
@@ -277,6 +235,11 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
@@ -301,6 +264,8 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un escalar.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -318,41 +283,9 @@ msgstr ""
 "%s: L'argument d'entrada té una mida incorrecta: Ha de ser un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
-"descriptor de fitxer.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nom o un "
-"descriptor de fitxer.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter o "
-"una cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -364,6 +297,17 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Una cadena de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter o "
+"una cadena de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -401,9 +345,10 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text o "
 "una unitat lògica.\n"
 
+#
+# File: sci_gateway/c/sci_mputl.c, line: 155
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -416,12 +361,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument: Matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una matriu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
-"caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
@@ -438,7 +377,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte ('%ls'): Ha de ser un "
+"nom de fitxer o de directori vàlid.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d (%s) té un valor incorrecte: No s'ha reconegut "
 "el format.\n"
@@ -461,8 +407,7 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
 "'%s'.\n"
@@ -474,31 +419,26 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''w'' or "
 "''u''.\n"
 
+#
+# File: sci_gateway/c/sci_fileparts.c, line: 74
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un descriptor "
-"de fitxer vàlid.\n"
 
+#
+# File: sci_gateway/c/sci_movefile.c, line: 223
+# File: sci_gateway/c/sci_movefile.c, line: 231
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
+"%s: Wrong value for input argument #%d: A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte ('%ls'): Ha de ser un nom de "
-"fitxer o de directori vàlid.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: No s'ha reconegut el "
 "format.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: no empty string expected.\n"
@@ -510,26 +450,18 @@ msgstr ""
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Els arguments d'entrada tenen valors incorrectes.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
-"corrupted.\n"
-msgstr ""
-"%s: S''ha trobat un tipus de variable incorrecta (%s) a ''%s''. Pot ser que el "
-"fitxer sigui incorrecte.\n"
-
+#
+# File: sci_gateway/c/sci_fprintfMat.c, line: 357
+# File: sci_gateway/c/sci_fscanfMat.c, line: 276
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_fscanfMat.c, line: 281
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr ""
-"%s: S'ha arribat al final de l'entrada abans d'acabar la conversió.\n"
 
 #, c-format
 msgid "%s: error.\n"

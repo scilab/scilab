@@ -291,9 +291,9 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="DllmainOutput_Stream.c" />
     <ClCompile Include="do_xxprintf.c" />
     <ClCompile Include="errmds.c" />
-    <ClCompile Include="errmsg.c" />
     <ClCompile Include="erro.c" />
     <ClCompile Include="error.c" />
+    <ClCompile Include="errorTable.c" />
     <ClCompile Include="error_internal.c" />
     <ClCompile Include="..\cpp\getDiaryDate.cpp" />
     <ClCompile Include="..\cpp\getFullFilename.cpp" />
@@ -319,8 +319,8 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\do_error_number.h" />
     <ClInclude Include="..\..\includes\dynlib_output_stream.h" />
     <ClInclude Include="..\..\includes\errmds.h" />
-    <ClInclude Include="errmsg.h" />
     <ClInclude Include="..\..\includes\erro.h" />
+    <ClInclude Include="errorTable.h" />
     <ClInclude Include="error_internal.h" />
     <ClInclude Include="..\cpp\getDiaryDate.hxx" />
     <ClInclude Include="..\cpp\getFullFilename.hxx" />

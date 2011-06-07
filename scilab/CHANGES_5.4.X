@@ -22,9 +22,13 @@ Graphical User Interface:
 Xcos:
 =====
 
+* bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"
+                   palette.
+
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
+* Bug 9547 fixed - The about box was not localized due to a multi-line string.
 
 File input/output:
 ==================
@@ -46,6 +50,42 @@ New functions
   This automatically fixes the bug #4381.
 
 
+Optimization:
+=============
+
+* neldermead: Added a demo - search for largest smallest polygon.
+
+* bug 7891 fixed - The neldermead component had too many options.
+  Tagged -costfargument option of optimbase as obsolete: will be 
+  maintained for backward compatibility until 5.4.1.
+  The -fun option can now be a list, where the element #1 is a 
+  function, and the elements #2 to the end are automatically appended to 
+  the calling sequence.
+  Tagged -outputcommandarg option of optimbase as obsolete: will be 
+  maintained for backward compatibility until 5.4.1.
+  The -outputcommand option can now be a list, where the element #1 is 
+  a function, and the elements #2 to the end are automatically appended 
+  to the calling sequence.
+  Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch 
+  as obsolete: will be maintained for backward compatibility until 
+  5.4.1.
+  The new calling sequence is "stop=outputfun(x,optimValues,state)"
+  Tagged "myoutputfun(state,data)" calling sequence of neldermead 
+  as obsolete: will be maintained for backward compatibility until 
+  5.4.1.
+  The new calling sequence is "stop=myoutputfun(state,data)"
+  Tagged "-myterminateflag" and "-myterminate" options as obsolete: 
+  will be maintained for backward compatibility until 5.4.1.
+  See the help page of neldermead for details to update your 
+  code, if required.
+
+* Bug 7889 fixed - The tolerance on x for neldermead was too small.
+                   Updated -tolxrelative default value from %eps to sqrt(%eps).
+
+* bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used 
+                   the output function.
+
+
 Xcos:
 =====
 
@@ -61,6 +101,12 @@ Documentation:
   (see bug 9474)
 
 * The space key behave like the page down key. (see bug 9491)
+
+* Management of the revhistory / revision tag to provide information about
+  the history of the function.
+
+* Bug 9299 fixed - Fix a typo in the cspect, pspect and window help pages
+                   (Hanning changed to Hann)
 
 
 Removed functions (previously declared as obsolete):
@@ -94,6 +140,13 @@ Compilation:
   This will avoid an important dependency tree for unitary testing.
 
 
+Graphics:
+=========
+
+* bug 9330 fixed - delete() called overloading instead of deleting the current
+                   graphic entity.
+
+
 Bug fixes:
 ==========
 
@@ -113,14 +166,14 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
-* bug 8863 fixed - The disabled test passes on the current build.
-
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
                    by default.
 
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
+
+* bug 9266 fixed - fftw crashed on Windows when using MKL wrapper.
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
@@ -131,3 +184,12 @@ Bug fixes:
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
+
+* bug 9527 fixed - Problem when a text was exported in SVG from the gui.
+
+* bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
+
+* bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
+                   to parse XML configuration files.
+
+* bug 9555 fixed - Typo in the 'deff' help page.

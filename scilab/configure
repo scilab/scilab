@@ -12970,7 +12970,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used
 
                 LOOKS=$PACKAGE_JAR_FILE
 
-                # Named differently under ArchLinux
+                # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking jgoodies-looks" >&5
@@ -13665,7 +13665,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhall used
 
                 JHALL=$PACKAGE_JAR_FILE
 
-                # Named differently under Mandriva
+                # Named differently under Mandriva or Fedora
                 if test -z "$JHALL"; then
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking javahelp2" >&5

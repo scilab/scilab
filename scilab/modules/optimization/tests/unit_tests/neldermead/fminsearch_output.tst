@@ -28,7 +28,7 @@ endfunction
 //  state : the current state of the algorithm
 //    "init", "iter", "done"
 //
-function outfun ( x , optimValues , state )
+function stop = outfun ( x , optimValues , state )
   plot( x(1),x(2),'.');
   // Unload all fields and check consistent values
   fc = optimValues.funccount;
@@ -63,7 +63,8 @@ function outfun ( x , optimValues , state )
   else
     error ( sprintf ( "Unknown state %s." , state ) )
   end
-  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
+  mprintf ( "%d %s %d -%s- %s\n" , fc , string(fv) , it , pr , state )
+  stop = %f
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 opt = optimset ( opt , "MaxIter" , 10 );
@@ -72,15 +73,17 @@ close(gcf());
 //
 // Use several output functions
 //
-function outfun2 ( x , optimValues , state )
+function stop = outfun2 ( x , optimValues , state )
   global __fig1__
   scf ( __fig1__ );
   plot( x(1),x(2),'.');
+  stop = %f
 endfunction
-function outfun3 ( x , optimValues , state )
+function stop = outfun3 ( x , optimValues , state )
   global __fig2__
   scf ( __fig2__ );
   plot( x(1),x(2),'o');
+  stop = %f
 endfunction
 myfunctions = list ( outfun2 , outfun3 );
 global __fig1__
@@ -170,5 +173,7 @@ opt = optimset ( opt , "MaxIter" , 10 );
 close(gcf());
 close(gcf());
 close(gcf());
+
+
 
 

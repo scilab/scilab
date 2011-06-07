@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 11:48+0100\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
 
 # File: src/c/msgs.c, line: 922
 #, c-format
@@ -106,31 +106,28 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1398
 #, c-format
-msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
-"machine precision.\n"
+msgid "%s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1386
 # File: src/c/msgs.c, line: 1392
 #, c-format
-msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgid "%s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 259
-# File: src/c/do_xxprintf.c, line: 451
-# File: src/c/do_xxprintf.c, line: 484
+# File: src/c/do_xxprintf.c, line: 258
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 465
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 386
+# File: src/c/do_xxprintf.c, line: 367
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 382
+# File: src/c/do_xxprintf.c, line: 363
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
@@ -191,27 +188,24 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 926
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1186
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1229
-# File: sci_gateway/c/sci_msprintf.c, line: 107
-# File: sci_gateway/c/sci_msprintf.c, line: 113
-# File: sci_gateway/c/sci_msprintf.c, line: 126
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 249
-# File: sci_gateway/c/sci_msprintf.c, line: 263
-# File: sci_gateway/c/sci_msprintf.c, line: 283
-# File: sci_gateway/c/sci_msprintf.c, line: 319
-# File: sci_gateway/c/sci_msprintf.c, line: 334
-# File: sci_gateway/c/sci_msprintf.c, line: 349
-# File: sci_gateway/c/sci_msprintf.c, line: 369
+# File: sci_gateway/c/sci_msprintf.c, line: 155
+# File: sci_gateway/c/sci_msprintf.c, line: 167
+# File: sci_gateway/c/sci_msprintf.c, line: 185
+# File: sci_gateway/c/sci_msprintf.c, line: 217
+# File: sci_gateway/c/sci_msprintf.c, line: 231
+# File: sci_gateway/c/sci_msprintf.c, line: 246
+# File: sci_gateway/c/sci_msprintf.c, line: 264
 # File: src/c/sciprint_full.c, line: 50
 # File: src/c/sciprint_full.c, line: 60
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 59
+# File: src/c/do_xxprintf.c, line: 58
 #, c-format
 msgid "%s: Not enough arguments.\n"
 msgstr ""
@@ -253,24 +247,9 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 594
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-#
-# File: macros/prettyprint.sci, line: 126
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr ""
-#
 # File: src/c/errmsg.c, line: 938
 #, c-format
 msgid "%s: Wrong input parameters.\n"
-msgstr ""
-#
-# File: macros/prettyprint.sci, line: 74
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 573
@@ -278,12 +257,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 121
+# File: sci_gateway/c/sci_msprintf.c, line: 42
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 153
+# File: sci_gateway/c/sci_msprintf.c, line: 78
 # File: sci_gateway/c/sci_mprintf.c, line: 60
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -294,7 +273,7 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 189
+# File: sci_gateway/c/sci_msprintf.c, line: 100
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
@@ -324,7 +303,6 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 829
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1327
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1395
-# File: sci_gateway/c/sci_msprintf.c, line: 101
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -336,13 +314,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 104
-# File: macros/prettyprint.sci, line: 115
-# File: macros/prettyprint.sci, line: 118
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-#
 # File: src/c/errmsg.c, line: 1129
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -350,9 +321,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1162
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
-"expected.\n"
+msgid "%s: Wrong type for argument %d: Function or string (external function) expected.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1151
@@ -434,14 +403,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 82
-# File: macros/prettyprint.sci, line: 89
-# File: macros/prettyprint.sci, line: 98
-# File: macros/prettyprint.sci, line: 109
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-#
 # File: sci_gateway/cpp/sci_diary.cpp, line: 348
 # File: sci_gateway/cpp/sci_diary.cpp, line: 495
 # File: sci_gateway/cpp/sci_diary.cpp, line: 501
@@ -449,15 +410,6 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 619
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
-#
-# File: macros/prettyprint.sci, line: 92
-# File: macros/prettyprint.sci, line: 101
-# File: macros/prettyprint.sci, line: 112
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 228
@@ -497,8 +449,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1164
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
 msgstr ""
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1136
@@ -506,16 +457,14 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msprintf.c, line: 216
+# File: sci_gateway/c/sci_msprintf.c, line: 123
 #, c-format
 msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1362
 #, c-format
-msgid ""
-"%s: both actual and predicted relative reductions in the criterion at most "
-"%s.\n"
+msgid "%s: both actual and predicted relative reductions in the criterion at most %s.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1001
@@ -607,14 +556,6 @@ msgstr ""
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr ""
 #
-# File: macros/ssprint.sci, line: 91
-# File: macros/ssprint.sci, line: 94
-# File: macros/ssprint.sci, line: 152
-# File: macros/ssprint.sci, line: 155
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr ""
-#
 # File: src/c/msgs.c, line: 1170
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -637,9 +578,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1374
 #, c-format
-msgid ""
-"%s: the cosine of the angle between %s and any column of the jacobian is at "
-"most %s in absolute value.\n"
+msgid "%s: the cosine of the angle between %s and any column of the jacobian is at most %s in absolute value.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1328
@@ -675,8 +614,8 @@ msgstr ""
 msgid "Bad call to primitive: %s\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 451
-# File: src/c/do_xxprintf.c, line: 484
+# File: src/c/do_xxprintf.c, line: 432
+# File: src/c/do_xxprintf.c, line: 465
 msgid "Bad conversion."
 msgstr ""
 #
@@ -689,7 +628,7 @@ msgstr ""
 msgid "Breakpoints of function : %s\n"
 msgstr ""
 #
-# File: src/c/do_xxprintf.c, line: 259
+# File: src/c/do_xxprintf.c, line: 258
 msgid "Buffer too small."
 msgstr ""
 #
@@ -984,8 +923,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1254
 #, c-format
-msgid ""
-"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgid "It is not possible to redefine the %s primitive this way (see clearfun).\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 743
@@ -1121,9 +1059,7 @@ msgid "Problem is singular.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 903
-msgid ""
-"Problem may be unbounded: too high distance between two consecutive "
-"iterations.\n"
+msgid "Problem may be unbounded: too high distance between two consecutive iterations.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 440
@@ -1187,8 +1123,7 @@ msgstr ""
 # File: src/c/errmsg.c, line: 848
 msgid ""
 "Stack problem detected within a loop.\n"
-"A primitive function has been called with a wrong number of output "
-"arguments.\n"
+"A primitive function has been called with a wrong number of output arguments.\n"
 "No output argument test has been made for this function.\n"
 "Please report this bug :\n"
 msgstr ""
@@ -1425,8 +1360,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 895
 #, c-format
-msgid ""
-"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgid "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1059
@@ -1465,9 +1399,7 @@ msgid "Warning: function is already compiled.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1122
-msgid ""
-"Warning: integration not completed! Check tolerance parameters or step "
-"size.\n"
+msgid "Warning: integration not completed! Check tolerance parameters or step size.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1116
@@ -1549,8 +1481,7 @@ msgid "Wrong number of output arguments\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 463
-msgid ""
-"Wrong number of output arguments: This function has no output argument.\n"
+msgid "Wrong number of output arguments: This function has no output argument.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 667
@@ -1569,9 +1500,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 707
 #, c-format
-msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
-"expected.\n"
+msgid "Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1215
@@ -1606,8 +1535,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 868
 #, c-format
-msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgid "Wrong type for argument %d: Named variable not an expression expected.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 682
@@ -1685,14 +1613,12 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1515
 #, c-format
-msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgid "Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1510
 #, c-format
-msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgid "Wrong value for argument %d: eigenvalues must have negative real parts.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1404

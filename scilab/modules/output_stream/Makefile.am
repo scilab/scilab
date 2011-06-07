@@ -37,7 +37,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/sciprint.c \
 	src/c/sciprint_full.c \
 	src/c/errmds.c \
-	src/c/errmsg.c \
 	src/c/error.c \
 	src/c/error_internal.c \
 	src/c/do_xxprintf.c \

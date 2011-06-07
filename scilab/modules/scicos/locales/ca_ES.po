@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,6 +42,8 @@ msgstr ""
 " Verifiqueu el vostre model:\n"
 " pot ser que crideu algunes funcions amb entrades incorrectes."
 
+#
+# File: src/c/scicos.c, line: 3060
 #, c-format
 msgid ""
 "\n"
@@ -142,21 +145,6 @@ msgid "  that must be informed with the following values :\n"
 msgstr "  que han de venir informats amb els següents valors:\n"
 
 #, c-format
-msgid " %s.mo cannot be compiled\n"
-msgstr " No es pot compilar el %s.mo\n"
-
-#, c-format
-msgid " %s.mo compilation forced\n"
-msgstr " S'ha forçat la compilació de %s.mo\n"
-
-#, c-format
-msgid " %s.mo must be recompiled\n"
-msgstr " S'ha de recompilar el %s.mo\n"
-
-msgid " Scilab is in no gui mode : Scicos is unavailable"
-msgstr " L'Scilab està en mode consola: L'Scicos no és disponible"
-
-#, c-format
 msgid "%s : Allocation error.\n"
 msgstr "%s : Error d'al·locació.\n"
 
@@ -207,8 +195,7 @@ msgstr "%s : El primer argument ha de ser una estructura.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr ""
-"%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
+msgstr "%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
 
 #, c-format
 msgid "%s : Fourth argument must be a Tlist.\n"
@@ -234,6 +221,8 @@ msgstr "%s : No hi ha més memòria.\n"
 msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
 msgstr "%s : Només estan permeses les hipermatrius de 3 dimensions.\n"
 
+#
+# File: sci_gateway/c/sci_data2sig.c, line: 157
 #, c-format
 msgid "%s : Second argument must be a real.\n"
 msgstr ""
@@ -326,8 +315,7 @@ msgstr ""
 "per a outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : error. El tipus %d de la matriu d'enters no està suportat per a outtb.\n"
 
@@ -376,85 +364,12 @@ msgid "%s :the handle is not or no more valid.\n"
 msgstr "%s : El tractament ja no és vàlid.\n"
 
 #, c-format
-msgid "%s is not a valid directory\n"
-msgstr "%s no és un directori vàlid\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s no és un nom vàlid, canvieu el nom del diagrama."
-
-#, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: El primer i el segon argument han de tenir la mateixa mida.\n"
 
 #, c-format
-msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr "%s: No s'ha pogut trobar cap fitxer MO a la següent ubicació: %s.\n"
-
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: El diagrama no compila al pas %d.\n"
-
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: Error: No s'ha definit un bloc scifunc."
-
-#, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr "%s: Error: El compilador Modelica (MODELICAC) no està disponible."
-
-#, c-format
-msgid "%s: First argument must be a Scicos diagram data structure\n"
-msgstr ""
-"%s: El primer argument ha de ser un diagrama d'estructura de dades de "
-"Scicos\n"
-
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: Els ports d'entrada no s'han numerat correctament.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Error de memòria.\n"
-
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: Els ports de sortida no s'han numerat correctament.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada. Ha de ser entre %d i %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un nombre simple.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: Mida incorrecta per als arguments d'entrada #%d i #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -488,26 +403,13 @@ msgstr "%s: error %d. Error indefinit.\n"
 msgid "%s: scicosim is not running.\n"
 msgstr "%s: No s'està executant l'scicosim.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "&Edita"
-
-msgid "&File"
-msgstr "&Fitxer"
-
-msgid "&Tools"
-msgstr "&Eines"
-
-msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-msgstr "El ''scicos'' ja no està disponible. Utilitzeu el ''xcos''.\n"
-
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 "**** No s'ha pogut inicialitzar el SUNDIALS.IDA  ->torneu-ho a intentar "
 "*****\n"
 
+#
+# File: src/c/scicos.c, line: 2121
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
@@ -527,6 +429,8 @@ msgstr "****SUNDIALS.Cvode de: %f a%f hot= %d  \n"
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr "****SUNDIALS.Cvode assolits: %f\n"
 
+#
+# File: src/c/scicos.c, line: 1430
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -550,75 +454,11 @@ msgstr "- [\"str1\";\"str2\",...] és una matriu de text\n"
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
 msgstr "- myvar : una matriu d'enters, de decimals o una Tlist.\n"
 
-msgid "?"
-msgstr "?"
-
-msgid "About Scicos"
-msgstr "Quant al Scicos"
-
-msgid "Activate Scilab Window"
-msgstr "Activa la finestra d'Scilab"
-
-msgid "Add a new color at the Scicos palette"
-msgstr "Afegeix un color nou a la paleta d'Scicos"
-
-msgid "Add color"
-msgstr "Afegeix un color"
-
-msgid "Add new block"
-msgstr "Afegeix un nou bloc"
-
-msgid "Align"
-msgstr "Alinea"
-
-msgid "An Atomic Superblock cannot contain sample clocks"
-msgstr "Un superbloc atòmic no pot contenir mostres de rellotge"
-
-msgid "An error occur when evaluating context:"
-msgstr "S'ha produït un error en avaluar el context:"
-
-#, c-format
-msgid ""
-"An unexpected  error occurred while executing the menu\n"
-"%s:\n"
-msgstr ""
-
-msgid "Analyze Diagram"
-msgstr "Analitza el diagrama"
-
-msgid "Atomic"
-msgstr "Atòmic"
-
-msgid "Available Parameters"
-msgstr "Paràmetres disponibles"
-
-msgid "Background color"
-msgstr "Color de fons"
-
-msgid "Background color ? :"
-msgstr "Color de fons? :"
-
-msgid "Block Documentation"
-msgstr "Documentació del bloc"
-
-msgid "Block ID font name"
-msgstr "Nom de lletra de l'identificador de bloc"
-
-msgid "Block ID font size"
-msgstr "Mida de lletra de l'identificador de bloc"
-
-msgid "BrowseTo"
-msgstr "Navega A"
-
-msgid "Browser"
-msgstr "Navegador"
-
-msgid "C Code Generation"
-msgstr "Generació de codi C"
-
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "CV_BAD_ABSTOL: abstol té components negatius (il·legal)."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2139
 msgid ""
 "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
 "[((d/dt)^k)y](t)."
@@ -636,6 +476,8 @@ msgstr "CV_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
 msgid "CV_BAD_ITASK: Illegal value for itask."
 msgstr "CV_BAD_ITASK: El valor d'itask és il·legal."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2167
 msgid ""
 "CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
 "CV_WF."
@@ -695,6 +537,8 @@ msgstr ""
 msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr "CV_EWT_FAIL: Ha fallat la funció EwtSet proporcionada per l'usuari."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2117
 msgid ""
 "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
 "recoverable error at the first call"
@@ -798,6 +642,8 @@ msgstr ""
 "CV_RHSFUNC_FAIL: La funció de mà dreta (ODE proporcionada per l'usuari) ha "
 "fallat de manera irrecuperable"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2125
 msgid ""
 "CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
 msgstr ""
@@ -806,8 +652,7 @@ msgid "CV_Rootfunction_NAN: The Root function returns NAN."
 msgstr "CV_Rootfunction_NAN: La funció Root retorna NAN."
 
 msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr ""
-"CV_TOO_CLOSE: ''tout'' és massa prop de ''t0'' per fer la integració."
+msgstr "CV_TOO_CLOSE: ''tout'' és massa prop de ''t0'' per fer la integració."
 
 msgid ""
 "CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
@@ -836,162 +681,10 @@ msgstr ""
 msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
 msgstr "CV_YOUT_NULL: ''yout'' = NULL il·legal."
 
-msgid "Calc"
-msgstr "Calc"
-
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 "No s'ha pogut trobar el mode inicial. Potser hi ha una condició de mode "
 "lliscant"
-
-msgid "Choose export format:"
-msgstr "Escolliu el format d'exportació:"
-
-msgid "Click block to label"
-msgstr "Feu clic al bloc per etiquetar"
-
-msgid "Click block to resize"
-msgstr "Feu clic al bloc per redimensionar"
-
-msgid "Click object to move, drag and click (left to fix, right to cancel)"
-msgstr ""
-"Feu clic a l'objecte per moure, arrossegar (esquerre per fixar, dret per "
-"cancel·lar)"
-
-msgid ""
-"Click on a Super Block (without activation output) to obtain a coded block!"
-msgstr ""
-"Feu clic en un super bloc (sense activar la sortida) per obtenir un bloc "
-"codificat."
-
-msgid "Click on a block to set or get its documentation"
-msgstr ""
-
-msgid "Click on a port of object to be moved"
-msgstr ""
-
-msgid "Click on a super block"
-msgstr "Feu clic en un super bloc"
-
-msgid "Click on an object to set or get identification"
-msgstr "Feu clic en un objecte per establir o obtenir la identificació"
-
-msgid "Click on block to  open graphic icon editor"
-msgstr "Feu clic en un bloc per obrir l'editor gràfic d'icones"
-
-msgid "Click on block to be flipped"
-msgstr "Feu clic al bloc que s'ha de capgirar"
-
-msgid "Click on block to be turned left"
-msgstr "Feu clic al bloc que s'ha de girar a l'esquerra"
-
-msgid "Click on block to be turned right"
-msgstr "Feu clic al bloc que s'ha de girar a la dreta"
-
-msgid "Click on block to edit its icon"
-msgstr "Feu clic al bloc per editar la seva icona"
-
-msgid "Click on object  to get information on it"
-msgstr "Feu clic a l'objecte per veure la seva informació"
-
-msgid "Click on object to choose its color"
-msgstr "Feu clic a l'objecte per escollir el seu color"
-
-msgid ""
-"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
-msgstr ""
-"Feu clic a l'objecte per duplicar-lo (esquerre per copiar, dret per "
-"cancel·lar)"
-
-msgid "Click to open block or make a link"
-msgstr "Feu clic per obrir el bloc o fer-ne un enllaç"
-
-msgid "Click where you want object to be placed (right-click to cancel)"
-msgstr ""
-"Feu clic on vulgueu posar l'objecte (amb el botó dret per cancel·lar)"
-
-msgid "Close"
-msgstr "Tanca"
-
-msgid "Code Generation only works for a Superblock !\n"
-msgstr "La generació de codi només funciona per a un superbloc.\n"
-
-msgid "Code generation applies only to Super Blocks."
-msgstr "La generació de codi només s'aplica a un superbloc."
-
-msgid "Color"
-msgstr "Color"
-
-msgid "Compile"
-msgstr "Compila"
-
-msgid "Context"
-msgstr "Context"
-
-msgid "Copy"
-msgstr "Copia"
-
-msgid "Create Atomic"
-msgstr "Crea un Atomic"
-
-msgid "Create Mask"
-msgstr "Crea una màscara"
-
-msgid "CtrlSelect"
-msgstr "CtrlSelect"
-
-msgid "Customize Mask"
-msgstr "Personalitza una màscara"
-
-msgid "Customize block GUI:"
-msgstr "Personalitza el bloc:"
-
-msgid "Cut"
-msgstr "Retalla"
-
-msgid "Cut: Click on the object to cut"
-msgstr "Retalla: Feu clic a l'objecte per retallar-lo"
-
-msgid "Debug Level"
-msgstr "Nivell de depuració"
-
-msgid "Default link colors"
-msgstr "Color predeterminat dels enllaços"
-
-msgid "Default window parameters"
-msgstr "Paràmetres predeterminats de finestra"
-
-msgid "Defined shortcuts"
-msgstr "Dreceres de teclat definides"
-
-msgid "Delete"
-msgstr "Elimina"
-
-msgid "Delete: Click on the object to delete"
-msgstr "Elimina: Feu clic a l'objecte a eliminar"
-
-msgid "Demos"
-msgstr "Demos"
-
-msgid "Details"
-msgstr "Detalls"
-
-msgid "Diagram"
-msgstr "Diagrama"
-
-msgid "Done\n"
-msgstr "Fet\n"
-
-msgid "Drag, click left for final or intermediate points or right to cancel"
-msgstr ""
-"Arrossega, clic amb el botó esquerre per posar punts intermedis o final, amb "
-"el botó dret per cancel·lar"
-
-msgid "Duplicate"
-msgstr "Duplica"
-
-msgid "Edit"
-msgstr "Edita"
 
 msgid "End of activation"
 msgstr "Final d'activació"
@@ -1001,9 +694,6 @@ msgstr "Final d'activació\n"
 
 msgid "Entering the block \n"
 msgstr "S'està entrant al bloc \n"
-
-msgid "Error\n"
-msgstr "Error\n"
 
 msgid "Error in the Debug block \n"
 msgstr "Error en el bloc de depuració \n"
@@ -1016,65 +706,12 @@ msgstr "Error: No s'ha pogut trobar '%s'  \n"
 msgid "Error: cannot write to  '%s'  \n"
 msgstr "Error: No s'ha pogut escriure a '%s'  \n"
 
-msgid "Eval"
-msgstr "Eval"
-
-msgid "Event links color? :"
-msgstr "Color dels enllaços a esdeveniments:"
-
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr "Esdeveniment: %d activat a t=%f\n"
 
-msgid "Exit"
-msgstr "Surt"
-
-msgid "Export"
-msgstr "Exporta"
-
-msgid "Export All"
-msgstr "Exporta-ho tot"
-
-#, c-format
-msgid "Export in file %s failed\n"
-msgstr "Ha fallat l'exportació al fitxer %s\n"
-
-msgid "File"
-msgstr "Fitxer"
-
-msgid "Fit diagram to figure"
-msgstr "Encaixa el diagrama a la figura"
-
-msgid "Flip"
-msgstr "Capgira"
-
-msgid "Following palette(s) ignored (associated file(s) no more exist):"
-msgstr ""
-"S'ha ignorat les següents paletes (ja no existeix el seu fitxer associat):"
-
-msgid "Foreground color ? :"
-msgstr "Color de primer pla:"
-
-msgid "Format"
-msgstr "Formata"
-
-msgid "Free"
-msgstr "Lliure"
-
 msgid "Function not found\n"
 msgstr "No s'ha trobat la funció\n"
-
-msgid "Get Info"
-msgstr "Obté informació"
-
-msgid "Help"
-msgstr "Ajuda"
-
-msgid "ID font definitions"
-msgstr "Definicions de font d'identificació"
-
-msgid "ID fonts"
-msgstr "Fonts d'identificació"
 
 msgid ""
 "IDACalc cannot find the initial condition at this point. If you are using a "
@@ -1107,6 +744,8 @@ msgstr "IDA_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
 msgid "IDA_BAD_ITASK: Illegal value for itask."
 msgstr "IDA_BAD_ITASK: Valor il·legal per a itask."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2053
 msgid ""
 "IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
 "and IDA_WF."
@@ -1280,6 +919,8 @@ msgstr ""
 "IDA_RES_FAIL: La rutina residual d'usuari ha retornat un senyal d'error "
 "irrecuperable."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2071
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
 msgstr ""
 
@@ -1329,18 +970,6 @@ msgstr "IDA_YPRET_NULL: yret = NULL incorrecte."
 msgid "IDA_YRET_NULL: yret = NULL illegal.."
 msgstr "IDA_YRET_NULL: yret = NULL incorrecte."
 
-msgid "Icon"
-msgstr "Icona"
-
-msgid "Icon Editor"
-msgstr "Editor d'icones"
-
-msgid "Identification"
-msgstr "Identificació"
-
-msgid "It is impossible to set ID for this type of object"
-msgstr "No es poden establir identificadors per a aquest tipus d'objecte"
-
 msgid ""
 "KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
 "verify your model. There might be an error in the computing function, for "
@@ -1369,9 +998,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV:  L'algoritme de cerca de línia no ha pogut trobar "
 "una iteració prou diferent de l'errada actual per satisfer la condició de "
@@ -1401,6 +1030,8 @@ msgstr ""
 "KIN_LSETUP_FAIL: La rutina pset proporcionada per l'usuari (utilitzada per "
 "calcular la precondició) ha trobat un error irrecuperable."
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2211
 msgid ""
 "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
 "preconditioned linear system) encountered an unrecoverable error, or the "
@@ -1469,271 +1100,13 @@ msgid ""
 msgstr ""
 "KIN_SYSFUNC_FAIL: Error en la funció de càlcul. Verifiqueu el vostre model."
 
-msgid "Label"
-msgstr "Etiqueta"
-
 #, c-format
 msgid "Leaving block %d \n"
 msgstr "Deixant el bloc %d \n"
 
-msgid "Link"
-msgstr "Enllaç"
-
-msgid "Link ID font name"
-msgstr "Nom de lletra de l'identificador d'enllaç"
-
-msgid "Link ID font size"
-msgstr "Mida de lletra de l'identificador d'enllaç"
-
-msgid "Link parameters"
-msgstr "Paràmetres d'enllaç"
-
-msgid "Load as Palette"
-msgstr "Carrega com una paleta"
-
-msgid "Mask"
-msgstr "Màscara"
-
-msgid "Mask can only be created for Super Blocks."
-msgstr "Només podeu crear una màscara per a superblocs."
-
-msgid "Modelica initialize"
-msgstr "Inicialitza la Modelica"
-
-msgid "Modify title and menu labels."
-msgstr "Modifica el títol i les etiquetes del menú."
-
-msgid "Move"
-msgstr "Mou"
-
-msgid "MoveLink "
-msgstr "MoveLink "
-
-msgid "Multiple selection cannot be used here"
-msgstr "No podeu seleccionar més d'un element"
-
-msgid "Navigator window"
-msgstr "Finestra del navegador"
-
-msgid "New"
-msgstr "Nou"
-
-msgid "No"
-msgstr "No"
-
-msgid "No selected block in the current Scicos window."
-msgstr "No heu seleccionat cap bloc a la finestra d'Scicos actual."
-
-msgid "Only  blocks can be selected for this operation."
-msgstr "Per a aquesta operació només podeu seleccionar blocs."
-
-msgid "Only one block can be selected in current window for this operation."
-msgstr ""
-"Només podeu seleccionar un bloc a la finetra actual per a aquesta operació."
-
-msgid "Open"
-msgstr "Obre"
-
-msgid "Open a Scicos demonstration diagram"
-msgstr "Obre un diagrama de demostració d'Scicos"
-
-msgid "Open a Scicos diagram"
-msgstr "Obre un diagrama d'Scicos"
-
-msgid "Open/Set"
-msgstr "Obre/Estableix"
-
-msgid "Pal editor"
-msgstr "Editor Pal"
-
-msgid "Palette"
-msgstr "Paleta"
-
-msgid "Palettes"
-msgstr "Paletes"
-
-msgid "Palettes Tree"
-msgstr "Arbre de paletes"
-
-msgid "Paste"
-msgstr "Enganxa"
-
-msgid "Place in Diagram"
-msgstr "Posa al diagrama"
-
-msgid "PlaceinBrowser"
-msgstr "Posa al navegador"
-
-msgid "PlaceinDiagram"
-msgstr "Posa al diagrama"
-
-msgid "Please report"
-msgstr "Informeu"
-
-msgid "Popup"
-msgstr "Finestra emergent"
-
-msgid ""
-"Press left mouse button, drag region and release (right button to cancel)"
-msgstr ""
-
-msgid "Problem saving a backup; I cannot activate Scilab\n"
-msgstr ""
-"S'ha produït un error en la còpia de seguretat. No es pot activar l'Scilab\n"
-
-#, c-format
-msgid "Problem while building library %s\n"
-msgstr "S'ha trobat un problema creant la llibreria %s\n"
-
-msgid "Properties"
-msgstr "Propietats"
-
-msgid "Purge"
-msgstr "Neteja"
-
-msgid "Region to Palette"
-msgstr "Passa la regió a una paleta"
-
-msgid "Region to Super Block"
-msgstr "Passa la regió a un superbloc"
-
-msgid "Regular links color ? :"
-msgstr "Color dels enllaços:"
-
-msgid "Remove Atomic"
-msgstr "Elimina l'Atomic"
-
-msgid "Remove Mask"
-msgstr "Elimina la màscara"
-
-msgid "Rename"
-msgstr "Canvia el nom"
-
-msgid "Replot"
-msgstr "Torna a dibuixar"
-
-#, c-format
-msgid "Requested action: %s is not available"
-msgstr "L'acció demanada: %s no és disponible"
-
-msgid "Resize"
-msgstr "Redimensiona"
-
-msgid "Resize is allowed only for Blocks or Links."
-msgstr "Només podeu redimensionar blocs o enllaços."
-
-msgid "Rotate Left"
-msgstr "Gira a l'esquerra"
-
-msgid "Rotate Right"
-msgstr "Gira a la dreta"
-
-msgid "Run"
-msgstr "Executa"
-
-msgid "Save"
-msgstr "Desa"
-
-msgid "Save As"
-msgstr "Anomena i desa"
-
-msgid "Save Block GUI"
-msgstr "Desa la interfície del bloc"
-
-msgid "Save as Interf Func"
-msgstr "Desa com a Interf Func"
-
-msgid "Save as Palette"
-msgstr "Desa com a paleta"
-
-msgid "Scicos Documentation"
-msgstr "Documentació d'Scicos"
-
-#, c-format
-msgid "Scicos version %s\n"
-msgstr "Versió d'Scicos %s\n"
-
-#, c-format
-msgid "Scilab Graphics of %s"
-msgstr "Gràfics d'Scilab de %s"
-
-msgid "Select a block."
-msgstr "Seleccioneu un bloc."
-
-msgid "Select a directory path"
-msgstr "Seleccioneu el camí a un directori"
-
-msgid "SelectAll"
-msgstr "Selecciona-ho tot"
-
-msgid "SelectLink  "
-msgstr "Selecciona un enllaç  "
-
-msgid "SelectRegion"
-msgstr "Selecciona una regió"
-
-msgid "Set Block identification"
-msgstr "Indiqueu una identificació del bloc"
-
-msgid "Set Block sizes"
-msgstr "Indiqueu les mides del bloc"
-
-msgid "Set Diagram Info"
-msgstr "Indiqueu la informació del diagrama"
-
-msgid "Set grid"
-msgstr "Indiqueu la graella"
-
-msgid "Set link Identification"
-msgstr "Indiqueu la identificació de l'enllaç"
-
-msgid "Set link edition mode"
-msgstr "Indiqueu el mode d'edició de l'enllaç"
-
-msgid "Setup"
-msgstr "Configura"
-
-msgid "Shortcuts"
-msgstr "Dreceres de teclat"
-
-msgid "Show Block Shadow"
-msgstr "Mostra l'ombra dels blocs"
-
-msgid "Simulate"
-msgstr "Simula"
-
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr "Diapositives t=%10.3f, flag=%d \n"
-
-msgid "Smart"
-msgstr "Intel·ligent"
-
-msgid "Smart Move"
-msgstr "Moviment intel·ligent"
-
-msgid "Smart move does not work yet with multiple selection"
-msgstr "El moviment intel·ligent encara no funciona amb seleccions múltiples"
-
-msgid "Sorry file name not defined in "
-msgstr "El nom de fitxer no està definit a "
-
-msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr "Només estan suportats els llenguatges C o FORTRAN"
-
-msgid "Stop"
-msgstr "Atura"
-
-msgid "The current icon depends on block parameter\n"
-msgstr "La icona actual depèn del paràmetre de bloc.\n"
-
-#, c-format
-msgid "The key %s is already in use for %s"
-msgstr "La clau %s ja s'utilitza per a %s"
-
-#, c-format
-msgid "The key %s is not a valid letter"
-msgstr "La clau %s no és una lletra vàlida"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -1746,63 +1119,11 @@ msgstr ""
 "un paràmetre utilitzant la propietat FIXED (per exemple, fixed=false) en un "
 "model de Modelica. Això s'arreglarà a la propera versió"
 
-#, c-format
-msgid ""
-"The parameter(s) %s \n"
-"must be defined in the"
-msgstr ""
-"El paràmetre %s \n"
-"s'ha de definir a"
-
-msgid "Thickness"
-msgstr "Gruix"
-
-msgid "This block is not masked."
-msgstr "Aquest bloc no té màscara."
-
-msgid "This window is not an active palette"
-msgstr "Aquesta finestra no és una paleta activa"
-
-msgid "This window is not an active scicos window"
-msgstr "Aquesta finestra no és una finestra activa d'Scicos"
-
-msgid "Title of the GUI"
-msgstr "Títol de la interfície"
-
-msgid "TkPopup "
-msgstr "TkPopup "
-
-#, c-format
-msgid "To avoid this message, please update the %s.scicos_pal file."
-msgstr "Per evitar aquest missatge, actualitzeu el fitxer %s.scicos_pal."
-
-msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-msgstr ""
-"Per reactivar l'Scicos, feu clic en un diagrama o escriviu scicos();\n"
-
-msgid "Toggle grid"
-msgstr "Intercanvia la reixa"
-
-msgid "Tools"
-msgstr "Eines"
-
-msgid "Type"
-msgstr "Tipus"
-
-msgid "Type not recognized"
-msgstr "Aquest tipus és desconegut"
-
 msgid "Undefined Function type\n"
 msgstr "Tipus de funció no definit\n"
 
 msgid "Undefined data type."
 msgstr "Tipus de dada no definida."
-
-msgid "Undo"
-msgstr "Desfés"
-
-msgid "Up To Main Diagram"
-msgstr "Ves al diagrama principal"
 
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
@@ -1810,19 +1131,6 @@ msgid ""
 msgstr ""
 "Utilització: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
-
-msgid "Use 3D aspect?"
-msgstr "Utilitzar aspecte en 3D?"
-
-msgid "View"
-msgstr "Visualitza"
-
-#, c-format
-msgid "Warning %d menus have identical name %s\n"
-msgstr "Avís: %d menús tenen el mateix nom %s\n"
-
-msgid "Yes"
-msgstr "Sí"
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -1835,15 +1143,8 @@ msgstr ""
 "Heu de recompilar el diagram o reiniciar la interfície d'inicialització per "
 "a regenerar el fitxer XML amb els nous paràmetres."
 
-msgid "Your diagram is not saved. Do not quit Scilab or "
-msgstr "No heu desat el diagrama. No tanqueu l'Scilab o "
-
-msgid "Zoom in"
-msgstr "Apropa"
-
-msgid "Zoom out"
-msgstr "Allunya"
-
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 1929
 msgid "algebraic loop detected"
 msgstr ""
 
@@ -1865,14 +1166,8 @@ msgstr "no s'ha pogut assignar més memòria"
 msgid "cannot allocate memory in block=%d"
 msgstr "no s'ha pogut assignar més memòria al bloc = %d"
 
-msgid "current choice is "
-msgstr "l'elecció actual és "
-
 msgid "event conflict"
 msgstr "conflicte d'esdeveniment"
-
-msgid "height"
-msgstr "alçada"
 
 msgid "initial conditions not converging"
 msgstr "les condicions inicials no convergeixen"
@@ -1895,11 +1190,10 @@ msgstr "s'ha trobat una arrel a t=: %f\n"
 msgid "scheduling problem"
 msgstr "problema de planificació"
 
+#
+# File: sci_gateway/c/sci_scicosim.c, line: 2232
 msgid "scicos unexpected error, please report..."
 msgstr ""
-
-msgid "scs_show active..."
-msgstr "scs_show està actiu..."
 
 msgid "singularity in a block"
 msgstr "singularitat en un bloc"
@@ -1919,9 +1213,6 @@ msgstr "les funcions de tipus 2 no estan permeses per a blocs d'Scilab\n"
 
 msgid "unknown or erroneous block"
 msgstr "bloc desconegut o erroni"
-
-msgid "width"
-msgstr "amplada"
 
 #, c-format
 msgid "with flag %d "

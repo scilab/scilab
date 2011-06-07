@@ -6,119 +6,32 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-05 14:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 12981)\n"
-"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
-
-msgid "&?"
-msgstr "&Довідка"
-
-msgid "&Edit"
-msgstr "З&міни"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "І&нструменти"
-
-msgid "&nbsp; Number of columns gives the number of outputs."
-msgstr "&nbsp; Кількість стовпчиків вказує на кількість виведених значень."
-
-msgid "&nbsp; Number of rows must be a power of two."
-msgstr "&nbsp; Кількість рядків має бути рівною степеню двійки."
-
-msgid "&nbsp; Rows of the matrix are the output values"
-msgstr "&nbsp; Рядками матриці є виведені дані"
-
-msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 верхня половина"
-
-msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 нижня половина"
-
-msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 діапазон від старшого біта"
-
-msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 діапазон до меншого біта"
-
-msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 діапазон бітів"
-
-msgid ""
-"&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
-"[Start, End]"
-msgstr ""
-"&nbsp;&nbsp;&nbsp;&nbsp;Якщо значенням «Біти для видобування» є «Діапазон "
-"бітів»: [Початок, Кінець]"
-
-msgid "&nbsp;- Bits to Extract:"
-msgstr "&nbsp;- Біти для видобування:"
-
-msgid "&nbsp;- Negative values are considered as int8(0)"
-msgstr "&nbsp;- Вважається, що від’ємні дані належать до типу int8(0)"
-
-msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
-msgstr "&nbsp;- Кількість бітів або позиція біта: позиція 0 — менший біт"
-
-msgid "&nbsp;- Positive values are considered as int8(1)"
-msgstr "&nbsp;- Вважається, що додатні дані належать до типу int8(1)"
-
-#, c-format
-msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
-msgstr ""
-"«Початкове значення» і «Остаточне значення» мають несумісні розмірності: %d "
-"і %d."
-
-msgid "''Minimum'' must be less than ''Maximum''."
-msgstr "«Мінімум» має бути меншим за «Максимум»."
-
-msgid "''Start'' must be less than ''End''."
-msgstr "Значення «Початок» має бути меншим за значення «Кінець»."
-
-msgid "Accepts Inherited Events (0:No, 1:Yes)"
-msgstr "Приймає успадковані події (0: Ні, 1: Так)"
-
-msgid "Add"
-msgstr "Додати"
 
 msgid "Allocation problem in spline.\n"
 msgstr "Проблема розподілу у сплайні.\n"
 
-msgid "Automatic"
-msgstr "Автоматично"
-
-msgid "Bits Extraction"
-msgstr "Видобування бітів"
-
-msgid "Bits to extract"
-msgstr "Біти для видобування"
-
-msgid "Boundary condition on a"
-msgstr "Гранична умова на a"
-
-msgid "Boundary condition on b"
-msgstr "Гранична умова на b"
-
-msgid "Cancel"
-msgstr "Скасувати"
-
-msgid "Choice:"
-msgstr "Вибір:"
-
-msgid "Clear a bit"
-msgstr "Спорожнити біт"
-
-msgid "Combinatorial logic"
-msgstr "Комбінаторна логіка"
+#
+# File: src/c/scoWindowScope.c, line: 287
+# File: src/c/scoWindowScope.c, line: 389
+# File: src/c/scoWindowScope.c, line: 422
+# File: src/c/scoWindowScope.c, line: 441
+# File: src/c/scoWindowScope.c, line: 500
+# File: src/c/scoWindowScope.c, line: 516
+# File: src/c/scoWindowScope.c, line: 548
+# File: src/c/scoWindowScope.c, line: 579
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr ""
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
@@ -126,20 +39,11 @@ msgstr "Спробуйте збільшити розмір буфера у бл�
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr "Спробуйте збільшити розмір буфера у блоці затримки змінної\n"
 
-msgid "Constant discriminant"
-msgstr "Сталий дискримінант"
-
 msgid "Could not open /dev/audio!\n"
 msgstr "Не вдалося відкрити /dev/audio!\n"
 
 msgid "Could not open the file!\n"
 msgstr "Не вдалося відкрити файл!\n"
-
-msgid "Data Type"
-msgstr "Тип даних"
-
-msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
-msgstr "Тип даних (3:int32, 4:int16, 5:int8, ...)"
 
 #, c-format
 msgid ""
@@ -151,142 +55,20 @@ msgstr ""
 " Розмірність змінної=[%d,%d] \n"
 "Розмірність блоку виведення=[%d,%d].\n"
 
-msgid "Discriminant type:"
-msgstr "Тип дискримінанта:"
-
-msgid "Display"
-msgstr "Показ"
-
-msgid "Display step value"
-msgstr "Показувати значення кроку"
-
-msgid "Do on Overflow"
-msgstr "Дія при переповненні"
-
-msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
-msgstr ""
-"Дія при переповненні (0: Нічого, 1: Доповнити, 2: Повідомити про помилку)"
-
-msgid "Domain"
-msgstr "Область"
-
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Помилка під час спроби відкриття файла «%s».\n"
 
-msgid "Event input port"
-msgstr "Порт введення даних подій"
-
-msgid "Event output port"
-msgstr "Порт виведення даних подій"
-
-msgid "Expression ="
-msgstr "Вираз ="
-
-msgid "Final Value"
-msgstr "Остаточне значення"
-
-msgid "Finite differences"
-msgstr "Скінченні різниці"
-
-msgid "Finite elements"
-msgstr "Скінченні елементи"
-
-msgid "Frequency (rad/s)"
-msgstr "Частота (рад/с)"
-
-msgid "Implicit input port"
-msgstr "Неявний порт введення даних"
-
-msgid "Implicit output port"
-msgstr "Неявний порт виведення даних"
-
-msgid "Index of Bit (0 is least significant)"
-msgstr "Позиція біта (0 — менший біт)"
-
-#, c-format
-msgid "Indexes must be in the interval %s."
-msgstr "Позиції мають належати діапазону %s."
-
-msgid "Initial State (zero or positive number)"
-msgstr "Початковий стан (нульове або додатне число)"
-
-msgid "Initial Value"
-msgstr "Початкове значення"
-
-msgid "Initial conditions"
-msgstr "Початкові умови"
-
-msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Тип вхідних даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
-
-msgid "Integer counter generator"
-msgstr "Породжувач цілого лічильника"
-
-msgid "Integer matrix multiplication"
-msgstr "Множення цілих матриць"
+#
+# File: src/c/scoWindowScope.c, line: 172
+msgid "Incorrect value for dimension argument."
+msgstr ""
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr "Некоректний тип змінної: помилка у коді функції hypermat scilab.\n"
 
 msgid "Invalid variable type.\n"
 msgstr "Змінна некоректного типу.\n"
-
-msgid "JK flip-flop"
-msgstr "JK-тригер"
-
-msgid "Magnitude"
-msgstr "Амплітуда"
-
-msgid "Manual"
-msgstr "Вручну"
-
-msgid "Maximum"
-msgstr "Максимум"
-
-msgid "Measurement points"
-msgstr "Точки вимірювання"
-
-msgid "Minimum"
-msgstr "Мінімум"
-
-msgid "Modulo counter (0 to N counter)"
-msgstr "Модульний лічильник (лічильник від 0 до N)"
-
-msgid "Must be a single value."
-msgstr "Має бути однобітовим значенням."
-
-#, c-format
-msgid "Must be in the interval %s."
-msgstr "Має належати проміжку %s."
-
-msgid "Must be integer."
-msgstr "Має бути цілим значенням."
-
-msgid "Must have this form: [Start, End]."
-msgstr "Повинне мати формат [Початок, Кінець]."
-
-msgid "Null or positive integer expected."
-msgstr "Слід вказати нульове або додатне ціле число."
-
-msgid "Number of Bits or Index of Bit"
-msgstr "Кількість бітів або позиція біта"
-
-msgid "Number of Bits to Shift Left (Negative number to shift right)"
-msgstr ""
-"Кількість бітів для зсування (від’ємне значення призведе до зсуву праворуч)"
-
-msgid "Number of nodes:"
-msgstr "Кількість вузлів:"
-
-msgid "Number of rows must be a power of two."
-msgstr "Кількість рядків має бути рівною степеню двійки."
-
-msgid "Ordering:"
-msgstr "Впорядкування:"
-
-msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
 
 msgid "Output should be of Real type.\n"
 msgstr "Виведені дані мають належати до дійсних чисел.\n"
@@ -312,54 +94,11 @@ msgstr "Виведені дані мають належати до типу uint
 msgid "Output should be of uint8 type.\n"
 msgstr "Виведені дані мають належати до типу uint8.\n"
 
-msgid "PDE Expression:"
-msgstr "Вираз ДРЧП:"
-
-msgid "PDE Specification"
-msgstr "Специфікація ДРЧП"
-
-msgid "PDE block"
-msgstr "Блок ДРЧП"
-
-msgid "Phase (rad)"
-msgstr "Фаза (рад)"
-
-msgid "Port number"
-msgstr "Номер порту"
-
-msgid "Ramp function"
-msgstr "Пилкоподібна функція"
-
 msgid "Read error\n"
 msgstr "Помилка читання\n"
 
 msgid "Read error!\n"
 msgstr "Помилка читання!\n"
-
-msgid "Regular input port"
-msgstr "Порт звичайного введення даних"
-
-msgid "Regular output port"
-msgstr "Порт звичайного виведення даних"
-
-msgid "Remove"
-msgstr "Вилучити"
-
-msgid "Rule (1:Increment, 2:Decrement)"
-msgstr "Правило (1: збільшення, 2: зменшення)"
-
-msgid ""
-"SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of "
-"object\n"
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: Не можна використовувати scoDrawScopeAmplitudeTimeStyle() "
-"з цим типом об’єктів\n"
-
-msgid ""
-"SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n"
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: Не можна використовувати scoRefreshDataBoundsX() з цим "
-"типом об’єктів\n"
 
 msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
 msgstr ""
@@ -381,200 +120,39 @@ msgstr ""
 "невідомої причини!\n"
 " Ймовірно, вами було знищено об’єкти вікон або батьківські об’єкти кривих.\n"
 
-msgid ""
-"SCOPE ERROR : scoInitOfWindow incorrect value for dimension argument.\n"
-msgstr ""
-"ПОМИЛКА ДІАПАЗОНУ: помилкове значення scoInitOfWindow для параметра "
-"розмірності.\n"
-
-msgid "SR flip-flop"
-msgstr "SR-тригер"
-
-msgid "Same sizes expected."
-msgstr "Розмірності мали збігатися."
-
-#, c-format
-msgid "Set %s block parameters"
-msgstr "Визначити параметри блоку %s"
-
-msgid "Set a bit"
-msgstr "Визначити біт"
-
-msgid "Shift Type (0:Arithmetic, 1:Circular)"
-msgstr "Тип зсуву (0: арифметичний, 1: циклічний)"
-
-msgid "Shift/Rotates bits"
-msgstr "Зсув/Циклічна перестановка бітів"
-
-msgid "Sine wave generator"
-msgstr "Генератор синусоїдальної хвилі"
-
 msgid "Size of buffer or input size have changed!\n"
 msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
-
-msgid "Slope"
-msgstr "Нахил"
-
-msgid "Spatial discretization method"
-msgstr "Спосіб просторової дискретизації"
-
-msgid "Start Time"
-msgstr "Час початку"
-
-msgid "Step Function"
-msgstr "Східчаста функція"
-
-msgid "Step Time"
-msgstr "Час сходинки"
-
-msgid "Strictly positive integer expected."
-msgstr "Слід вказати додатне ціле число."
 
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "Змінної «%s» не існує.\n"
 
-msgid "The ''Initial Value'' must be 0 or 1 of type int8"
-msgstr "«Початкове значення» має бути рівним 0 або 1 і належати до типу int8"
+#
+# File: src/c/fromws_c.c, line: 458
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
 
 msgid "The Time vector type is not double.\n"
 msgstr "Тип вектора значень часу не збігається з double.\n"
 
-msgid "The measurement points"
-msgstr "Точки вимірювання"
-
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Значення вектора часових даних має бути вказано за зростанням.\n"
 
-#, c-format
-msgid ""
-"This Scope (block number : %d) has same number than another. It has been "
-"deactivated!\n"
+#
+# File: src/c/scoWindowScope.c, line: 196
+msgid "This scope has the same window id than another."
 msgstr ""
-"Ця область (кількість блоків: %d) має той самий номер, що і інша. Її буде "
-"вимкнено!\n"
-
-msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
-msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
 
 msgid "Trigger block must have discrete time input."
 msgstr ""
 "Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
 "чисел."
 
-msgid "Truth Table (matrix of outputs)"
-msgstr "Таблиця істинності (матриця виведених даних)"
-
-msgid "Type conversion"
-msgstr "Перетворення типів"
-
-msgid "Type:"
-msgstr "Тип:"
-
-msgid "Upper Limit (positive number)"
-msgstr "Верхня межа (додатне число)"
-
-msgid "Validate"
-msgstr "Підтвердити"
-
-msgid "Variable discriminant:"
-msgstr "Дискримінант змінної:"
-
 #, c-format
 msgid "Write error in file '%s'.\n"
 msgstr "Помилка під час спроби запису до файла «%s».\n"
-
-#, c-format
-msgid "Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."
-msgstr ""
-"Помилкова розмірність параметра «Кількість бітів або позиція біта»: %s."
-
-#, c-format
-msgid "Wrong size for ''Truth Table'' parameter: %d."
-msgstr "Помилкова розмірність параметра «Таблиця істинності»: %d."
-
-#, c-format
-msgid "Wrong type for ''Index of Bit'' parameter: %5.1f."
-msgstr "Помилковий тип параметра «Позиція біта»: %5.1f."
-
-#, c-format
-msgid "Wrong value for  ''Rule'' parameter: %d"
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, c-format
-msgid "Wrong value for ''Bits to Extract'' parameter: %d."
-msgstr "Помилкове значення параметра «Біти для видобування»: %d."
-
-#, c-format
-msgid "Wrong value for ''Bits to Extract'' parameter: %s."
-msgstr "Помилкове значення параметра «Біти для видобування»: %s."
-
-#, c-format
-msgid "Wrong value for ''Data Type'' parameter: %d."
-msgstr "Помилкове значення параметра «Тип даних»: %d."
-
-#, c-format
-msgid "Wrong value for ''Do on Overflow'' parameter: %d."
-msgstr "Помилкове значення параметра «Дія при переповненні»: %d."
-
-#, c-format
-msgid "Wrong value for ''Frequency'' parameter: %e."
-msgstr "Помилкове значення параметра «Частота»: %e."
-
-#, c-format
-msgid "Wrong value for ''Index of Bit'' parameter: %d."
-msgstr "Помилкове значення параметра «Позиція біта»: %d."
-
-#, c-format
-msgid "Wrong value for ''Initial State'' parameter: %d."
-msgstr "Помилкове значення параметра «Початковий стан»: %d."
-
-#, c-format
-msgid "Wrong value for ''Input Type'' parameter: %d."
-msgstr "Помилкове значення параметра «Тип вхідних даних»: %d."
-
-#, c-format
-msgid "Wrong value for ''Output Type'' parameter: %d."
-msgstr "Помилкове значення параметра «Тип виведених даних»: %d."
-
-#, c-format
-msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "Помилкове значення параметра «Номер порту»: %d."
-
-#, c-format
-msgid "Wrong value for ''Shift Type'' parameter: %d"
-msgstr "Помилкове значення параметра «Тип зсуву»: %d"
-
-#, c-format
-msgid "Wrong value for ''Start Time'' parameter: %e."
-msgstr "Помилкове значення параметра «Час початку»: %e."
-
-#, c-format
-msgid "Wrong value for ''Treat Bit Field as an Integer'' parameter: %d."
-msgstr ""
-"Помилкове значення параметра «Вважати бітове поле полем цілого числа»: %d."
-
-msgid "Wrong value for elements of ''Truth Table'' parameter."
-msgstr "Помилкове значення параметра елементів «Таблиці істинності»."
-
-#, c-format
-msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-msgstr "Помилкові значення параметрів «Максимум» і «Мінімум»: %d &lt; %d"
-
-#, c-format
-msgid "Wrong values for ''Number of Bits or Index of Bit'' parameter: %s."
-msgstr "Помилкові значення параметра «Кількість бітів або позиція біта»: %s."
-
-#, c-format
-msgid "Wrong values for ''Port Number'' parameter: %d."
-msgstr "Помилкові значення параметра «Номер порту»: %d."
-
-#, c-format
-msgid "Wrong values for ''Upper Limit'' parameter: %d."
-msgstr "Помилкові значення параметра «Верхня межа»: %d."
-
-msgid "degree:"
-msgstr "порядок:"
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
@@ -584,22 +162,5 @@ msgstr "час затримки=%f, останній збережений час
 msgid "delayed time=%f but last stored time=%f \n"
 msgstr "час затримки=%f, останній збережений час=%f \n"
 
-msgid "negative"
-msgstr "від’ємний"
-
-msgid "null"
-msgstr "нульовий"
-
 msgid "overflow error"
 msgstr "помилка переповнення"
-
-msgid "positive"
-msgstr "додатний"
-
-#, c-format
-#~ msgid ""
-#~ "This Scope (block number : %d) has same number than another. It has been "
-#~ "desactivated !\n"
-#~ msgstr ""
-#~ "Ця область (номер блоку: %d) має той самий номер, що і інша. Її буде "
-#~ "вимкнено!\n"

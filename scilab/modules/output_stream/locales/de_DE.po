@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Tim Schulze-Hartung <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,8 +31,7 @@ msgstr "  (cont'd) %s\n"
 
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
-msgstr ""
-"  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
+msgstr "  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
 
 #, c-format
 msgid " and %s variables out of %s.\n"
@@ -156,6 +156,19 @@ msgstr ""
 msgid "%s: Loop on two orders detected.\n"
 msgstr "%s: Schleife bei zwei Anordnungen erkannt.\n"
 
+#
+# File: sci_gateway/cpp/sci_diary.cpp, line: 135
+# File: sci_gateway/cpp/sci_diary.cpp, line: 179
+# File: sci_gateway/cpp/sci_diary.cpp, line: 625
+# File: sci_gateway/cpp/sci_diary.cpp, line: 630
+# File: sci_gateway/cpp/sci_diary.cpp, line: 738
+# File: sci_gateway/cpp/sci_diary.cpp, line: 753
+# File: sci_gateway/cpp/sci_diary.cpp, line: 763
+# File: sci_gateway/cpp/sci_diary.cpp, line: 846
+# File: sci_gateway/cpp/sci_diary.cpp, line: 911
+# File: sci_gateway/cpp/sci_diary.cpp, line: 926
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1186
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1229
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -199,28 +212,12 @@ msgid ""
 msgstr "%s: zu viele Lösungen gefunden.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s wird nicht gehandhabt: Definieren Sie die Funktion %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: falsches Export Format: %s"
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: falscher Eingangsparameter.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d nach %d erwartet."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: falsche Anzahl von EIngangsargumenten.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: falsche Anzahl an Eingangsargumenten: %d zu %d erwartet"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -229,6 +226,12 @@ msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: falsche Anzahl von Eingangsargumenten: höchstens %d erwartet.\n"
+
+#
+# File: sci_gateway/c/sci_mprintf.c, line: 87
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -262,10 +265,6 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: ein Vektor erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: falscher Typ für Argument #%d: boolscher Wert erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
 msgstr "%s: falscher Typ für Argument %d: boolsche Matrix erwartet.\n"
 
@@ -287,8 +286,7 @@ msgstr "%s: falscher Typ für Argument %d: Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr ""
-"%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
+msgstr "%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
@@ -334,20 +332,8 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: falscher Wert von Eingangsargument #%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' "
-"oder ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -364,8 +350,7 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Tagebuch Name existiert nicht.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "schliessen %d.\n"
@@ -377,8 +362,7 @@ msgstr ""
 "schliessen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "pausieren %d.\n"
@@ -458,8 +442,7 @@ msgstr "%s: m muß die Größe ncomp haben.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
-"%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
+msgstr "%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
 
 #, c-format
 msgid "%s: ncomp < 20 requested.\n"
@@ -486,10 +469,6 @@ msgstr "%s: singläres oder asymetrisches Problem.\n"
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) muß kleiner als 40 sein.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: System kann nicht auf dieser Seite angezeigt werden.\n"
 
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -620,6 +599,8 @@ msgstr ""
 msgid "Eye variable undefined in this context.\n"
 msgstr "Augen-Variable für diesen Kontext definiert.\n"
 
+#
+# File: src/c/errmsg.c, line: 516
 #, c-format
 msgid ""
 "Fatal error!!! Your variables have been saved in the file : %s\n"
@@ -756,8 +737,7 @@ msgstr "Ungleicher Vergleich mit leerer Matrix.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Eingangsargumenten sollten dieselbe Variablenamen haben.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Instruktionen der linken Hand Seite: warte auf einen Punkt oder eine linke "
 "Klammer.\n"
@@ -872,13 +852,13 @@ msgstr "Nicht in Scilab Implementiert...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Eine Null-Variable kann hier nicht verwendet werden.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#
+# File: src/c/errmsg.c, line: 1293
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
 msgstr ""
-"Operanden von / und \\ Operationen darf kein Nan oder Inf. enthalten.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
-msgstr ""
-"Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
+msgstr "Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
 
 msgid "Optim stops: maximum number of iterations is reached.\n"
 msgstr "Optimierung hält an: maximale Anzahl an Iterationen ist erreicht.\n"
@@ -1014,8 +994,7 @@ msgid "This variable is not valid in fort.\n"
 msgstr "Diese Variable ist in Fort nicht gültig.\n"
 
 msgid "Too complex for scilab, may be a too long control instruction.\n"
-msgstr ""
-"Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
+msgstr "Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
 
 msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr "Zu komplexe Rekursion! (Rekursions-Tabellen sind voll)\n"
@@ -1087,6 +1066,8 @@ msgstr "Undefinierte Funktion.\n"
 msgid "Undefined operation for the given operands.\n"
 msgstr "Undefinierte Operation für die gegebenen Operanden.\n"
 
+#
+# File: src/c/errmsg.c, line: 104
 msgid "Undefined variable.\n"
 msgstr ""
 
@@ -1251,8 +1232,7 @@ msgstr "Falsches Eingangsargument %d.\n"
 msgid "Wrong number of input arguments:\n"
 msgstr "Falsche Anzahl an Eingangsargumenten:\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Falscher Anzahl an EIngangsargumenten: diese Funktion hat kein "
 "Eingangsargument.\n"
@@ -1458,8 +1438,7 @@ msgid "semi def fails.\n"
 msgstr "semi Definition schlägt fehl.\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : nicht komplette Konvergenz relativer Präzision erreicht: 10**(%s).\n"
 

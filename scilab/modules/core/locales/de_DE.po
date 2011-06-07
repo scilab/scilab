@@ -6,24 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Ascurion <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Consortium Scilab (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+# File: src/c/signal_mgmt.c, line: 75
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
 
 msgid "  loading initial environment"
 msgstr "  lade Startumgebung"
@@ -31,9 +30,6 @@ msgstr "  lade Startumgebung"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " und %10d Variablen von %10d\n"
-
-msgid " by "
-msgstr " von "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -60,22 +56,6 @@ msgid "%s argument and argument %d"
 msgstr "%s Argument und Argument %d"
 
 #, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s aufgerufen in Zeile %s von %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s aufgerufen in Zeile %s von %s Befehlen."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s aufgerufen in Zeile %s von Makro %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s aufgerufen unter %s"
-
-#, c-format
 msgid "%s module not found.\n"
 msgstr "%s Modul nicht gefunden.\n"
 
@@ -98,10 +78,6 @@ msgstr "%s: %s hat inkompatible Dimensionen (%dx%d) # (%dx%d)\n"
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: %s haben inkompatible Dimension.\n"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s ist eine nicht editierbare hart kodierte Funktion.\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -135,10 +111,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: kann Speicher nicht belegen.\n"
 
 #, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s: Datei existiert nicht: %s"
-
-#, c-format
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr "%s: es ist unmöglich %s Durchgang zu lesen.\n"
 
@@ -157,10 +129,6 @@ msgstr "%s: Speicherreservierungsfehler.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Kein weiterer Speicher verfügbar.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Kein Perl Befehl angegeben."
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -185,20 +153,8 @@ msgid "%s: Out of code.\n"
 msgstr "%s: Außerhalb des Codes.\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: überprüfen Sie: %s.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Rekursions Probleme. Sorry ...\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: benötigt Scilab Editor.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -207,18 +163,6 @@ msgstr "%s: Die Datei %s existiert nicht.\n"
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s: Zu viele Namen.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Kann Perl Datei nicht finden: %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: Perl in ''%s'' nicht auffindbar"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Kann Perl nicht finden.\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
@@ -253,13 +197,6 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: falscher 'von was' Wert %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s: falsches Eingangsargument #%d: Pfad zu einer Scilab Skript Datei "
-"erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: Falscher Modulname %s.\n"
 
@@ -272,22 +209,12 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: falsche Anzahl von EIngangsargumenten.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d or %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Unerwartete Anzahl von Eingangsargumenten: Zumindest %d werden "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -324,8 +251,7 @@ msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
@@ -337,8 +263,7 @@ msgstr "%s: falsche Größe des Eingabewertes #%d: Skalar wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: falsche Größe des Eingabewertes #%d: Zeichenkette wird erwartet.\n"
+msgstr "%s: falsche Größe des Eingabewertes #%d: Zeichenkette wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for inputs arguments.\n"
@@ -464,8 +389,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr ""
-"%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
+msgstr "%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
@@ -498,8 +422,7 @@ msgstr "%s: falscher Typ für Argument %d: dünn besetzte Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr ""
-"%s: falscher Typ für Argument %d: Matrix von Zeichenketten erwartet.\n"
+msgstr "%s: falscher Typ für Argument %d: Matrix von Zeichenketten erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -532,8 +455,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: ein Skalar oder Zeichenkette "
 "erwartet.\n"
@@ -549,11 +471,16 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Text oder ein Skalar wird "
 "erwartet.\n"
+
+#
+# File: sci_gateway/c/sci_errclear.c, line: 71
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
@@ -567,10 +494,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s'.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -612,8 +535,7 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
@@ -640,11 +562,6 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s' oder '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: '0' oder '1' erwartet.\n"
 
@@ -656,14 +573,15 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: 1, 2 oder 3 erwartet.\n"
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
 
+#
+# File: sci_gateway/c/sci_errclear.c, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: definierte Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -793,8 +711,10 @@ msgstr "&Werkzeugboxen"
 msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
-msgid "Bytes"
-msgstr "Bytes"
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
+msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
@@ -803,21 +723,40 @@ msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "Kann das Modul für Deklarationsdatei nicht laden: %s.\n"
 
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Überprüfe: %s\n"
-
 msgid "Commands:\n"
 msgstr "Befehle:\n"
 
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Willst du die Berechnung wirklich abbrechen (y or n ?) \n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+#
+# File: src/c/banier.c, line: 37
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#
+# File: src/c/signal_mgmt.c, line: 117
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
 
 msgid "Error"
 msgstr "Fehler"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Fehler beim Zurückgeben der tlist, Speicher voll.\n"
+
+#
+# File: includes/stack-c.h, line: 195
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -921,9 +860,6 @@ msgstr "unmöglich %s Bibliothek zu laden: %s\n"
 msgid "Internal Functions:\n"
 msgstr "interne Funktionen:\n"
 
-msgid "Introduction"
-msgstr "Vorwort"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "Ungültige %c,%c Matritzen.\n"
@@ -937,9 +873,6 @@ msgstr "Ungültige Zeitdomäne\n"
 msgid "List full.\n"
 msgstr "Liste voll.\n"
 
-msgid "Name"
-msgstr ""
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Es kann kein Platz im Scilab Stapel belegt werden.\n"
 
@@ -949,14 +882,22 @@ msgstr "Die Liste optionaler Argumente ist leer.\n"
 msgid "Optional arguments list: \n"
 msgstr "Liste optionaler Argmente: \n"
 
+#
+# File: src/c/signal_mgmt.c, line: 479
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+
 msgid "SCI environment variable not defined.\n"
 msgstr "SCI Umgebungsvariable nicht definiert.\n"
 
 msgid "SCIHOME not defined.\n"
 msgstr "SCIHOME nicht definiert.\n"
-
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: breche Berechnung ab\n"
 
 msgid "Scilab Console"
 msgstr "Scilab-Konsole"
@@ -976,9 +917,6 @@ msgstr ""
 "Scilab Version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-msgid "Size"
-msgstr "Größe"
-
 msgid "Startup execution:"
 msgstr "Starte Ausführung:"
 
@@ -988,12 +926,6 @@ msgstr "TMPDIR nicht definert\n"
 msgid "The SCI environment variable is not set.\n"
 msgstr "Die Sci Umgebungsvariable ist nicht gesetzt.\n"
 
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Versuch Scilab in der Mitte vom Interface anzuhalten.\n"
-
-msgid "Type"
-msgstr "Typ"
-
 #, c-format
 msgid "Undefined variable %s.\n"
 msgstr "Nicht definierte Variable %s.\n"
@@ -1001,20 +933,17 @@ msgstr "Nicht definierte Variable %s.\n"
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
 
+#
+# File: src/c/storeCommand.c, line: 205
 #, c-format
 msgid "Unqueuing %s - No option.\n"
 msgstr ""
 
+#
+# File: src/c/storeCommand.c, line: 209
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr ""
-
-msgid "User variables are:"
-msgstr "Benutzervariablen:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "Verwende %s aus %s Elementen"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1027,17 +956,15 @@ msgstr "Warnung: %s\n"
 msgid "Warning"
 msgstr "Warnung"
 
+#
+# File: src/c/getmodules.c, line: 132
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+
 #, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Warnung: Problem mit %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Warnung: das operative Team des Scilab Konsortiums\n"
-"bietet keinen und unterstützt diese Version von Scilab nicht, die mit "
-"gebaut\n"
 
 msgid "Your global variables are:"
 msgstr "Ihre globalen Variablen sind:"

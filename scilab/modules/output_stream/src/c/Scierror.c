@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +21,7 @@
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#define vsnprintf _vsnprintf
+  #define vsnprintf _vsnprintf
     #define vsnwprintf _vsnwprintf
 #endif
 /*--------------------------------------------------------------------------*/
@@ -28,23 +29,23 @@
 /*--------------------------------------------------------------------------*/
 int  Scierror(int iv,const char *fmt,...)
 {
-	int retval = 0;
-	int lstr = 0;
-	char s_buf[bsiz];
+  int retval = 0;
+  int lstr = 0;
+  char s_buf[bsiz];
     wchar_t* pwstError = NULL;
-	va_list ap;
+  va_list ap;
 
-	va_start(ap,fmt);
+  va_start(ap,fmt);
 
 #if _MSC_VER
-	retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
+  retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
 #else
-	retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
+  retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
 #endif
-	if (retval < 0) s_buf[bsiz-1]='\0';
+  if (retval < 0) s_buf[bsiz-1]='\0';
 
-	lstr = (int) strlen(s_buf);
-	va_end(ap);
+  lstr = (int) strlen(s_buf);
+  va_end(ap);
 
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
@@ -53,27 +54,27 @@ int  Scierror(int iv,const char *fmt,...)
     YaspWriteW(pwstError);
     YaspWriteW(L"\n");
     FREE(pwstError);
-	return retval;
+  return retval;
 }
 
 int ScierrorW(int iv, const wchar_t *fmt,...)
 {
-	int retval = 0;
-	int lstr = 0;
-	wchar_t s_buf[bsiz];
-	va_list ap;
+  int retval = 0;
+  int lstr = 0;
+  wchar_t s_buf[bsiz];
+  va_list ap;
 
-	va_start(ap,fmt);
+  va_start(ap,fmt);
 
 #if _MSC_VER
-	retval = vsnwprintf(s_buf,bsiz-1, fmt, ap );
+  retval = vsnwprintf(s_buf,bsiz-1, fmt, ap );
 #else
-	retval = vswprintf(s_buf, bsiz-1, fmt, ap );
+  retval = vswprintf(s_buf, bsiz-1, fmt, ap );
 #endif
-	if (retval < 0) s_buf[bsiz-1]='\0';
+  if (retval < 0) s_buf[bsiz-1]='\0';
 
-	lstr = (int) wcslen(s_buf);
-	va_end(ap);
+  lstr = (int) wcslen(s_buf);
+  va_end(ap);
 
 
     setLastError(iv, s_buf, 0, NULL);
@@ -81,6 +82,6 @@ int ScierrorW(int iv, const wchar_t *fmt,...)
     YaspWriteW(s_buf);
     YaspWriteW(L"\n");
 
-	return retval;
+  return retval;
 }
 /*--------------------------------------------------------------------------*/

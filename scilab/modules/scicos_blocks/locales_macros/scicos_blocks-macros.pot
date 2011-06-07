@@ -1,0 +1,953 @@
+# Localization of the module scicos_blocks-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/Sources/tkscaleblk.sci, line: 52
+msgid "&?"
+msgstr ""
+#
+# File: macros/Sources/tkscaleblk.sci, line: 51
+msgid "&Edit"
+msgstr ""
+#
+# File: macros/Sources/tkscaleblk.sci, line: 49
+msgid "&File"
+msgstr ""
+#
+# File: macros/Sources/tkscaleblk.sci, line: 50
+msgid "&Tools"
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 44
+msgid "&nbsp; - A binary file if no format given"
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 45
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 45
+msgid "&nbsp; Do not start if ''Initialisation Time'' is negative"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 41
+msgid "&nbsp; Number of columns gives the number of outputs."
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 40
+msgid "&nbsp; Number of rows must be a power of two."
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 40
+msgid "&nbsp; Rows of the matrix are the output values"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 47
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 47
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 48
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 48
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 49
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 50
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': [Start, End]"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 46
+msgid "&nbsp;- Bits to Extract:"
+msgstr ""
+#
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
+msgid "&nbsp;- Negative values are considered as int8(0)"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 49
+msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
+msgstr ""
+#
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
+msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 52
+#, c-format
+msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 60
+msgid "''Minimum'' must be less than ''Maximum''."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 83
+msgid "''Start'' must be less than ''End''."
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 49
+msgid "(Read Audio File)"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 59
+msgid "Accepts Inherited Events"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 42
+msgid "Accepts Inherited Events (0:No, 1:Yes)"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 345
+msgid "Add"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 257
+msgid "Automatic"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
+msgid "Bits Extraction"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
+msgid "Bits to Extract"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
+msgid "Bits to extract"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 310
+msgid "Boundary condition on a"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 313
+msgid "Boundary condition on b"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WRITEC_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 81
+# File: macros/Sinks/WRITEAU_f.sci, line: 43
+# File: macros/Sinks/WRITEAU_f.sci, line: 53
+# File: macros/Sinks/WRITEAU_f.sci, line: 57
+# File: macros/Sinks/WFILE_f.sci, line: 46
+# File: macros/Sinks/WFILE_f.sci, line: 79
+msgid "Buffer Size"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 50
+# File: macros/Sources/READAU_f.sci, line: 65
+msgid "Buffer size"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 351
+msgid "Cancel"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 250
+msgid "Choice:"
+msgstr ""
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 41
+msgid "Clear a bit"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 39
+msgid "Combinatorial logic"
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 41
+# File: macros/Sources/CONST_m.sci, line: 46
+# File: macros/Sources/CONST_m.sci, line: 69
+msgid "Constant Value"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 236
+msgid "Constant discriminant"
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 41
+msgid "Constant value generator"
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 46
+msgid "Constant value must have at least one element."
+msgstr ""
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 102
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
+# File: macros/IntegerOp/BITCLEAR.sci, line: 87
+# File: macros/IntegerOp/SHIFT.sci, line: 106
+# File: macros/IntegerOp/BITSET.sci, line: 83
+msgid "Data Type"
+msgstr ""
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 43
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
+# File: macros/IntegerOp/BITCLEAR.sci, line: 42
+# File: macros/IntegerOp/SHIFT.sci, line: 44
+# File: macros/IntegerOp/BITSET.sci, line: 40
+#, c-format
+msgid "Data Type %s"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 77
+# File: macros/Sinks/WFILE_f.sci, line: 70
+#, c-format
+msgid "Directory ''%s'' does not exist"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 232
+msgid "Discriminant type:"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 107
+msgid "Display"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 290
+msgid "Display step value"
+msgstr ""
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 50
+# File: macros/IntegerOp/CONVERT.sci, line: 53
+msgid "Do on Overflow"
+msgstr ""
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 43
+# File: macros/IntegerOp/CONVERT.sci, line: 45
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 86
+msgid "Domain"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 56
+#, c-format
+msgid "Elements must be in the interval %s."
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 68
+# File: macros/Sinks/WRITEAU_f.sci, line: 54
+msgid "End current simulation first"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 58
+# File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 64
+# File: macros/Sinks/WFILE_f.sci, line: 57
+# File: macros/Sinks/WFILE_f.sci, line: 60
+msgid "End current simulation first."
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 44
+msgid "Event clock generator"
+msgstr ""
+#
+# File: macros/Sources/CLKINV_f.sci, line: 82
+msgid "Event input port"
+msgstr ""
+#
+# File: macros/Sinks/CLKOUTV_f.sci, line: 87
+msgid "Event output port"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 323
+# File: macros/PDE/IHM_EDP.sci, line: 327
+msgid "Expression ="
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 42
+msgid "Final Value"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 59
+msgid "Finite differences"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 59
+msgid "Finite elements"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Frequency (rad/s)"
+msgstr ""
+#
+# File: macros/Sources/INIMPL_f.sci, line: 41
+msgid "Implicit input port"
+msgstr ""
+#
+# File: macros/Sinks/OUTIMPL_f.sci, line: 40
+msgid "Implicit output port"
+msgstr ""
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 49
+# File: macros/IntegerOp/BITCLEAR.sci, line: 55
+# File: macros/IntegerOp/BITCLEAR.sci, line: 66
+# File: macros/IntegerOp/BITCLEAR.sci, line: 77
+# File: macros/IntegerOp/BITSET.sci, line: 47
+# File: macros/IntegerOp/BITSET.sci, line: 53
+# File: macros/IntegerOp/BITSET.sci, line: 63
+# File: macros/IntegerOp/BITSET.sci, line: 74
+msgid "Index of Bit"
+msgstr ""
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 42
+# File: macros/IntegerOp/BITSET.sci, line: 40
+msgid "Index of Bit (0 is least significant)"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 96
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 135
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 174
+#, c-format
+msgid "Indexes must be in the interval %s."
+msgstr ""
+#
+# File: macros/Sources/Modulo_Count.sci, line: 41
+msgid "Initial State (zero or positive number)"
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 40
+# File: macros/Sources/STEP.sci, line: 42
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 46
+msgid "Initial Value"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 298
+msgid "Initial conditions"
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 45
+msgid "Initialisation Time"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 50
+# File: macros/Sources/READAU_f.sci, line: 63
+msgid "Input File Name"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sinks/WRITEC_f.sci, line: 63
+# File: macros/Sinks/WFILE_f.sci, line: 75
+msgid "Input Format"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 45
+# File: macros/Sinks/WRITEC_f.sci, line: 85
+# File: macros/Sinks/WFILE_f.sci, line: 45
+# File: macros/Sinks/WFILE_f.sci, line: 83
+msgid "Input Size"
+msgstr ""
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 57
+msgid "Input Type"
+msgstr ""
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 44
+msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 50
+msgid "Integer counter generator"
+msgstr ""
+#
+# File: macros/IntegerOp/INTMUL.sci, line: 42
+msgid "Integer matrix multiplication"
+msgstr ""
+#
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
+msgid "JK flip-flop"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Magnitude"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 263
+msgid "Manual"
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 51
+msgid "Maximum"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 335
+msgid "Measurement points"
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 51
+msgid "Minimum"
+msgstr ""
+#
+# File: macros/Sources/Modulo_Count.sci, line: 40
+msgid "Modulo counter (0 to N counter)"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 72
+msgid "Must be a single value."
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 65
+#, c-format
+msgid "Must be greater than %d."
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 80
+msgid "Must be greater than 1."
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 63
+# File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/IntegerOp/INTMUL.sci, line: 51
+# File: macros/IntegerOp/INTMUL.sci, line: 103
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 59
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 63
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 212
+# File: macros/IntegerOp/BITCLEAR.sci, line: 56
+# File: macros/IntegerOp/BITCLEAR.sci, line: 67
+# File: macros/IntegerOp/BITCLEAR.sci, line: 78
+# File: macros/IntegerOp/BITCLEAR.sci, line: 88
+# File: macros/IntegerOp/CONVERT.sci, line: 54
+# File: macros/IntegerOp/CONVERT.sci, line: 58
+# File: macros/IntegerOp/CONVERT.sci, line: 62
+# File: macros/IntegerOp/SHIFT.sci, line: 51
+# File: macros/IntegerOp/SHIFT.sci, line: 107
+# File: macros/IntegerOp/LOGIC.sci, line: 60
+# File: macros/IntegerOp/BITSET.sci, line: 54
+# File: macros/IntegerOp/BITSET.sci, line: 64
+# File: macros/IntegerOp/BITSET.sci, line: 75
+# File: macros/IntegerOp/BITSET.sci, line: 84
+# File: macros/Sinks/WRITEC_f.sci, line: 90
+# File: macros/Sinks/WRITEAU_f.sci, line: 63
+#, c-format
+msgid "Must be in the interval %s."
+msgstr ""
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 50
+# File: macros/IntegerOp/BITSET.sci, line: 48
+msgid "Must be integer."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 79
+msgid "Must have this form: [Start, End]."
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 45
+# File: macros/Sources/Modulo_Count.sci, line: 49
+msgid "Null or positive integer expected."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 52
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 71
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 78
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 82
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 95
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 134
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 173
+msgid "Number of Bits or Index of Bit"
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 44
+msgid "Number of Bits to Shift Left (Negative number to shift right)"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 285
+msgid "Number of nodes:"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 52
+msgid "Number of rows must be a power of two."
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 271
+msgid "Ordering:"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 45
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+# File: macros/Sinks/WRITEC_f.sci, line: 76
+# File: macros/Sinks/WFILE_f.sci, line: 45
+# File: macros/Sinks/WFILE_f.sci, line: 69
+msgid "Output File Name"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WFILE_f.sci, line: 46
+msgid "Output Format"
+msgstr ""
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 61
+msgid "Output Type"
+msgstr ""
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 44
+msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 105
+msgid "PDE Expression:"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 99
+msgid "PDE Specification"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 82
+msgid "PDE block"
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 45
+# File: macros/Sources/CLOCK_c.sci, line: 49
+msgid "Period"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Phase (rad)"
+msgstr ""
+#
+# File: macros/Sinks/OUT_f.sci, line: 108
+# File: macros/Sinks/CLKOUTV_f.sci, line: 88
+# File: macros/Sinks/OUTIMPL_f.sci, line: 41
+msgid "Port number"
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 39
+msgid "Ramp function"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 49
+msgid "Read is done on a binary ''.au'' file"
+msgstr ""
+#
+# File: macros/Sources/IN_f.sci, line: 96
+msgid "Regular input port"
+msgstr ""
+#
+# File: macros/Sinks/OUT_f.sci, line: 107
+msgid "Regular output port"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 347
+msgid "Remove"
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 52
+msgid "Rule (1:Increment, 2:Decrement)"
+msgstr ""
+#
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
+msgid "SR flip-flop"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 52
+msgid "Same sizes expected."
+msgstr ""
+#
+# File: macros/Sources/CLKINV_f.sci, line: 81
+# File: macros/Sources/CONST_m.sci, line: 40
+# File: macros/Sources/RAMP.sci, line: 39
+# File: macros/Sources/INIMPL_f.sci, line: 40
+# File: macros/Sources/STEP.sci, line: 40
+# File: macros/Sources/GENSIN_f.sci, line: 39
+# File: macros/Sources/Counter.sci, line: 49
+# File: macros/Sources/READAU_f.sci, line: 48
+# File: macros/Sources/IN_f.sci, line: 95
+# File: macros/Sources/Modulo_Count.sci, line: 40
+# File: macros/Sources/CLOCK_c.sci, line: 44
+# File: macros/IntegerOp/INTMUL.sci, line: 42
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
+# File: macros/IntegerOp/BITCLEAR.sci, line: 41
+# File: macros/IntegerOp/CONVERT.sci, line: 43
+# File: macros/IntegerOp/SHIFT.sci, line: 43
+# File: macros/IntegerOp/LOGIC.sci, line: 39
+# File: macros/IntegerOp/BITSET.sci, line: 39
+# File: macros/Sinks/OUT_f.sci, line: 107
+# File: macros/Sinks/CLKOUTV_f.sci, line: 87
+# File: macros/Sinks/WRITEC_f.sci, line: 44
+# File: macros/Sinks/OUTIMPL_f.sci, line: 40
+# File: macros/Sinks/WRITEAU_f.sci, line: 42
+# File: macros/Sinks/WFILE_f.sci, line: 43
+#, c-format
+msgid "Set %s block parameters"
+msgstr ""
+#
+# File: macros/IntegerOp/BITSET.sci, line: 39
+msgid "Set a bit"
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+msgid "Shift Type"
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 45
+msgid "Shift Type (0:Arithmetic, 1:Circular)"
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 43
+msgid "Shift/Rotates bits"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 57
+msgid "Simulation running !!! You cannot modify Input file name"
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 57
+msgid "Simulation running !!! You cannot switch<br />between formatted and unformatted when running"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 40
+msgid "Sine wave generator"
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 40
+msgid "Slope"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 248
+msgid "Spatial discretization method"
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 40
+msgid "Start Time"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 41
+msgid "Step Function"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 42
+msgid "Step Time"
+msgstr ""
+#
+# File: macros/Sources/CLKINV_f.sci, line: 88
+# File: macros/Sources/INIMPL_f.sci, line: 46
+# File: macros/Sources/GENSIN_f.sci, line: 46
+# File: macros/Sources/IN_f.sci, line: 102
+# File: macros/Sources/Modulo_Count.sci, line: 52
+# File: macros/Sinks/OUT_f.sci, line: 113
+# File: macros/Sinks/CLKOUTV_f.sci, line: 93
+# File: macros/Sinks/WRITEC_f.sci, line: 82
+# File: macros/Sinks/WRITEC_f.sci, line: 86
+# File: macros/Sinks/OUTIMPL_f.sci, line: 46
+# File: macros/Sinks/WRITEAU_f.sci, line: 58
+# File: macros/Sinks/WFILE_f.sci, line: 84
+msgid "Strictly positive integer expected."
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 49
+msgid "Strictly positive number expected."
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+msgid "Swap Mode"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 50
+msgid "Swap Mode (0:No 1:Yes)"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WRITEAU_f.sci, line: 43
+msgid "Swap Mode (0:No, 1:Yes)"
+msgstr ""
+#
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 44
+msgid "The ''Initial Value'' must be 0 or 1 of type int8"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 339
+msgid "The measurement points"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
+msgid "Treat Bit Field as an Integer"
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 52
+msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 51
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+msgid "Truth Table"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 42
+msgid "Truth Table (matrix of outputs)"
+msgstr ""
+#
+# File: macros/IntegerOp/CONVERT.sci, line: 43
+msgid "Type conversion"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 266
+msgid "Type:"
+msgstr ""
+#
+# File: macros/Sources/Modulo_Count.sci, line: 41
+msgid "Upper Limit (positive number)"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 60
+msgid "Valid formats are: "
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 349
+msgid "Validate"
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 70
+msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 241
+msgid "Variable discriminant:"
+msgstr ""
+#
+# File: macros/Sinks/WRITEAU_f.sci, line: 43
+msgid "Write ''.au'' sound file on audio device"
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 44
+msgid "Write is done on:"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 45
+msgid "Write to C binary file"
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 43
+msgid "Write to output file"
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 46
+#, c-format
+msgid "Wrong size for ''%s'' parameter"
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 51
+#, c-format
+msgid "Wrong size for ''%s'' parameter: %d."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 71
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 78
+#, c-format
+msgid "Wrong size for ''%s'' parameter: %s."
+msgstr ""
+#
+# File: macros/Sources/CONST_m.sci, line: 69
+#, c-format
+msgid "Wrong type for ''%s'' parameter"
+msgstr ""
+#
+# File: macros/IntegerOp/BITCLEAR.sci, line: 49
+# File: macros/IntegerOp/BITSET.sci, line: 47
+#, c-format
+msgid "Wrong type for ''%s'' parameter: %5.1f."
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''%s'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''Rule'' parameter: %d"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+#, c-format
+msgid "Wrong value for ''%s'' parameter"
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 76
+# File: macros/Sinks/WFILE_f.sci, line: 69
+#, c-format
+msgid "Wrong value for ''%s'' parameter."
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 65
+# File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/IntegerOp/INTMUL.sci, line: 50
+# File: macros/IntegerOp/INTMUL.sci, line: 102
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
+# File: macros/IntegerOp/BITCLEAR.sci, line: 55
+# File: macros/IntegerOp/BITCLEAR.sci, line: 66
+# File: macros/IntegerOp/BITCLEAR.sci, line: 77
+# File: macros/IntegerOp/BITCLEAR.sci, line: 87
+# File: macros/IntegerOp/CONVERT.sci, line: 53
+# File: macros/IntegerOp/CONVERT.sci, line: 57
+# File: macros/IntegerOp/CONVERT.sci, line: 61
+# File: macros/IntegerOp/SHIFT.sci, line: 106
+# File: macros/IntegerOp/LOGIC.sci, line: 59
+# File: macros/IntegerOp/BITSET.sci, line: 53
+# File: macros/IntegerOp/BITSET.sci, line: 63
+# File: macros/IntegerOp/BITSET.sci, line: 74
+# File: macros/IntegerOp/BITSET.sci, line: 83
+# File: macros/Sinks/WRITEC_f.sci, line: 81
+# File: macros/Sinks/WRITEC_f.sci, line: 85
+# File: macros/Sinks/WRITEAU_f.sci, line: 57
+# File: macros/Sinks/WFILE_f.sci, line: 79
+# File: macros/Sinks/WFILE_f.sci, line: 83
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 95
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 134
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 173
+# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sinks/WFILE_f.sci, line: 75
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %s."
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 45
+#, c-format
+msgid "Wrong value for ''Frequency'' parameter: %e."
+msgstr ""
+#
+# File: macros/Sources/Modulo_Count.sci, line: 48
+#, c-format
+msgid "Wrong value for ''Initial State'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 63
+msgid "Wrong value for ''Output File Name'' parameter"
+msgstr ""
+#
+# File: macros/Sources/INIMPL_f.sci, line: 45
+# File: macros/Sources/IN_f.sci, line: 101
+# File: macros/Sinks/OUT_f.sci, line: 112
+# File: macros/Sinks/CLKOUTV_f.sci, line: 92
+# File: macros/Sinks/OUTIMPL_f.sci, line: 45
+#, c-format
+msgid "Wrong value for ''Port Number'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sources/RAMP.sci, line: 44
+#, c-format
+msgid "Wrong value for ''Start Time'' parameter: %e."
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+#, c-format
+msgid "Wrong value for of ''%s'' parameter."
+msgstr ""
+#
+# File: macros/Sources/CLOCK_c.sci, line: 49
+#, c-format
+msgid "Wrong values for ''%s'' parameter: %5.1e."
+msgstr ""
+#
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 82
+#, c-format
+msgid "Wrong values for ''%s'' parameter: %s."
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 59
+#, c-format
+msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
+msgstr ""
+#
+# File: macros/Sources/CLKINV_f.sci, line: 87
+#, c-format
+msgid "Wrong values for ''Port Number'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sources/Modulo_Count.sci, line: 51
+#, c-format
+msgid "Wrong values for ''Upper Limit'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 63
+#, c-format
+msgid "You cannot modify ''%s'' when running"
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEAU_f.sci, line: 53
+#, c-format
+msgid "You cannot modify ''%s'' when running."
+msgstr ""
+#
+# File: macros/Sinks/WRITEC_f.sci, line: 67
+msgid "You cannot modify ''Buffer Size'' when running."
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 60
+msgid "You cannot modify ''Output File Name'' when running."
+msgstr ""
+#
+# File: macros/Sinks/WFILE_f.sci, line: 76
+msgid "You must enclose the format''s string between parentheses."
+msgstr ""
+#
+# File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+# File: macros/Sinks/WFILE_f.sci, line: 63
+msgid "You must provide a filename."
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 280
+msgid "degree:"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 62
+msgid "negative"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 62
+msgid "null"
+msgstr ""
+#
+# File: macros/PDE/IHM_EDP.sci, line: 62
+msgid "positive"
+msgstr ""

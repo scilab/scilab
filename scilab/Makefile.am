@@ -344,7 +344,7 @@ check-java:
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
-	MASK="modules/*/locales/"; \
+	MASK="modules/*/locales*/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	EXTENSION="*.po"; \

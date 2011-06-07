@@ -24,6 +24,11 @@ opt = optimbase_destroy(opt);
 
 // Test simple case
 function [ y , index ] = rosenbrock ( x , index )
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock", 2);
+        error(errmsg)
+    end
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -41,6 +46,11 @@ opt = optimbase_destroy(opt);
 
 // Test simple case where the index is changed
 function [ y , index ] = rosenbrock0 ( x , index )
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock0", 2);
+        error(errmsg)
+    end
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
   index = 0;
 endfunction
@@ -61,7 +71,12 @@ opt = optimbase_destroy(opt);
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function [ y , index , mydata ] = rosenbrock2 ( x , index , mydata )
+function [ y , index ] = rosenbrock2 ( x , index , mydata )
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock2", 3);
+        error(errmsg)
+    end
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -71,8 +86,7 @@ mystuff.a = 12.0;
 
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
-opt = optimbase_configure(opt,"-function",rosenbrock2);
-opt = optimbase_configure(opt,"-costfargument",mystuff);
+opt = optimbase_configure(opt,"-function",list(rosenbrock2,mystuff));
 [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
 assert_checkalmostequal ( f , 144. , %eps );
 assert_checkequal ( index , 1 );
@@ -96,6 +110,15 @@ opt = optimbase_destroy(opt);
 //  The inequality constraints are expected to be positive.
 //
 function [ f , c , index ] = optimtestcase ( x , index )
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimtestcase", 2);
+        error(errmsg)
+    end
+    if ( lhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "optimtestcase", 3);
+        error(errmsg)
+    end
   f = []
   c = []
   if ( index == 2 | index == 6 ) then
@@ -148,7 +171,16 @@ opt = optimbase_destroy(opt);
 // Note
 //  The inequality constraints are expected to be positive.
 //
-function [ f , c , index , data ] = boxproblemA ( x , index , data )
+function [ f , c , index ] = boxproblemA ( x , index , data )
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "boxproblemA", 3);
+        error(errmsg)
+    end
+    if ( lhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "boxproblemA", 3);
+        error(errmsg)
+    end
   f = []
   c = []
   b = x(2) + 0.01 * x(3)
@@ -233,8 +265,7 @@ x0 = [2.52 2.0 37.5 9.25 6.8].';
 
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",5);
-opt= optimbase_configure(opt,"-function",boxproblemA);
-opt = optimbase_configure(opt,"-costfargument",boxparams);
+opt= optimbase_configure(opt,"-function",list(boxproblemA,boxparams));
 opt = optimbase_configure(opt,"-nbineqconst",6);
 [this,f,c,index] = optimbase_function ( opt , x0 , 2 );
 assert_checkequal ( index , 2 );
@@ -251,11 +282,18 @@ assert_checkalmostequal ( c , [    32745.827    261254.17    96991.969    197008
 opt = optimbase_destroy(opt);
 
 //
-// Test with an additional argument
-// which is modified by the call.
+// Test with an additional argument.
 //
-function [ y , index , mydata ] = rosenbrock3 ( x , index , mydata )
-  mydata.n = mydata.n + 1
+function [ y , index ] = rosenbrock3 ( x , index , mydata )
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock3", 3);
+        error(errmsg)
+    end
+    if ( lhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "rosenbrock3", 2);
+        error(errmsg)
+    end
   y = 100*(x(2)-x(1)^2)^2 + ( 1.0 - x(1))^2;
 endfunction
 
@@ -264,13 +302,10 @@ mystuff.n = 0;
 
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
-opt = optimbase_configure(opt,"-function",rosenbrock3);
-opt = optimbase_configure(opt,"-costfargument",mystuff);
+opt = optimbase_configure(opt,"-function",list(rosenbrock3,mystuff));
 [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_checkequal ( index , 2 );
 assert_checkalmostequal ( f , 1.0 , %eps );
-mystuff = optimbase_cget ( opt , "-costfargument" );
-assert_checkequal ( mystuff.n , 1 );
 opt = optimbase_destroy(opt);
 
 //
@@ -287,6 +322,15 @@ opt = optimbase_destroy(opt);
 //   This function could be accepted by optim, hence the test.
 //
 function [ f , g , index ] = rosenbrock4 ( x , index )
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock4", 2);
+        error(errmsg)
+    end
+    if ( lhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "rosenbrock4", 3);
+        error(errmsg)
+    end
   if index == 1 then
     mprintf ( "index = %d, x = [%f %f]\n" , index , x(1) , x(2) );
   end

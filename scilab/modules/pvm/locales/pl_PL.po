@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: ErnestŻyciński <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,6 +33,9 @@ msgstr "%s: Brak pamięci.\n"
 msgid "%s: No such file or directory.\n"
 msgstr "%s: Nie ma takiego pliku lub katalogu.\n"
 
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
+# File: sci_gateway/c/sci_pvm_send.c, line: 53
 #, c-format
 msgid "%s: Unknown or not yet implemented type.\n"
 msgstr ""
@@ -42,6 +46,9 @@ msgstr ""
 "%s: Nieprawidłowy pierwszy argument wejściowy: oczekiwany jest '%s' lub "
 "'%s'.\n"
 
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
+# File: sci_gateway/c/sci_pvm_send.c, line: 51
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
 msgstr ""
@@ -140,9 +147,6 @@ msgstr "PVM istnieje"
 msgid "PVM not found"
 msgstr "Nie odnaleziono PVM"
 
-msgid "PVM parallel Toolbox"
-msgstr "PVM równoległe Toolbox"
-
 msgid "Pvmd system error"
 msgstr "Pvmd błąd systemu"
 
@@ -176,8 +180,8 @@ msgid ""
 "The standard configuration file $SCI%s%s needs the environment variables %s, "
 "%s, %s to be set. PVM can not be started.\n"
 msgstr ""
-"Standardowa konfiguracja pliku $SCI%s%s potrzebne środowisko "
-"zmiennych%s,%s,%s do rozwiązania. PVM nie można uruchomić.\n"
+"Standardowa konfiguracja pliku $SCI%s%s potrzebne środowisko zmiennych%s,%s,"
+"%s do rozwiązania. PVM nie można uruchomić.\n"
 
 msgid "Unknown Error"
 msgstr "Nieznany błąd"

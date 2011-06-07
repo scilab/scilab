@@ -18,6 +18,7 @@ function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
   _MYDATA_.nb = _MYDATA_.nb + 1
 endfunction
+x0 = [11.0 140.0]';
 //
 // Test with an additional argument
 //
@@ -27,22 +28,70 @@ _MYDATA_.nb = 0;
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",400);
-nm = neldermead_configure(nm,"-maxfunevals",600);
-nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
-nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
-nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-storehistory",%t);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxfunevals",%inf);
+nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
-// Check optimum point
-xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [12.0 144.0]', 1e-6 );
+iter = neldermead_get(nm,"-iterations");
+assert_checkequal ( iter , 10 );
 // Check _MYDATA_.nb
 // The variable is just read, not written and the nb field
 // is not updated.
 assert_checkequal ( _MYDATA_.nb , 0 );
 // Cleanup
+nm = neldermead_destroy(nm);
+//
+// In this case, the mydata variable is passed
+// explicitely by the neldermead class.
+// So the actual name "mydata" does not matter
+// and whatever variable name can be used.
+//
+function [ y , index ] = rosenbrock2 ( x , index , mydata )
+  a = mydata.a
+  y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
+endfunction
+//
+// Test with an additional argument
+//
+mystuff = tlist(["T_MYSTUFF","a"]);
+mystuff.a = 12.0;
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",list(rosenbrock2,mystuff));
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxfunevals",%inf);
+nm = neldermead_configure(nm,"-maxiter",10);
+nm = neldermead_search(nm);
+iter = neldermead_get(nm,"-iterations");
+assert_checkequal ( iter , 10 );
+nm = neldermead_destroy(nm);
+//
+// Use a global variable.
+//
+function [ y , index ] = rosenbrock3 ( x , index )
+  global _MYDATA_
+  a = _MYDATA_.a
+  y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
+  _MYDATA_.nb = _MYDATA_.nb + 1
+endfunction
+//
+// Test with an additional argument
+//
+global _MYDATA_
+_MYDATA_ = tlist(["T_MYSTUFF","a","nb"]);
+_MYDATA_.a = 12.0;
+_MYDATA_.nb = 0;
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock3);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxfunevals",%inf);
+nm = neldermead_configure(nm,"-maxiter",10);
+nm = neldermead_search(nm);
+iter = neldermead_get(nm,"-iterations");
+assert_checkequal ( iter , 10 );
+// Check _MYDATA_.nb
+// The variable is not just read, it is also written and the nb field
+// IS updated.
+assert_checkequal ( _MYDATA_.nb > 10 , %T );
 nm = neldermead_destroy(nm);

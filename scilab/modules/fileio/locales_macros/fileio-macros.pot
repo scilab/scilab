@@ -1,0 +1,153 @@
+# Localization of the module fileio-macros
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
+
+# File: macros/mkdir.sci, line: 119
+# File: macros/mkdir.sci, line: 128
+# File: macros/mkdir.sci, line: 132
+# File: macros/mkdir.sci, line: 136
+# File: macros/rmdir.sci, line: 62
+# File: macros/rmdir.sci, line: 66
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+#
+# File: macros/sscanf.sci, line: 55
+#, c-format
+msgid "%s: Incorrect format.\n"
+msgstr ""
+#
+# File: macros/sscanf.sci, line: 62
+# File: macros/sscanf.sci, line: 72
+#, c-format
+msgid "%s: Invalid conversion.\n"
+msgstr ""
+#
+# File: macros/ls.sci, line: 31
+#, c-format
+msgid "%s: Options ignored.\n"
+msgstr ""
+#
+# File: macros/mkdir.sci, line: 26
+# File: macros/mkdir.sci, line: 72
+# File: macros/rmdir.sci, line: 22
+# File: macros/rmdir.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 21
+# File: macros/sscanf.sci, line: 19
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr ""
+#
+# File: macros/fprintf.sci, line: 21
+# File: macros/sscanf.sci, line: 34
+# File: macros/sscanf.sci, line: 42
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 29
+# File: macros/fprintf.sci, line: 27
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+#
+# File: macros/fprintf.sci, line: 47
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 37
+# File: macros/mkdir.sci, line: 36
+# File: macros/mkdir.sci, line: 54
+# File: macros/mkdir.sci, line: 63
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/fprintf.sci, line: 17
+# File: macros/sscanf.sci, line: 30
+# File: macros/sscanf.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+#
+# File: macros/fprintf.sci, line: 64
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A filename or file descriptor expected.\n"
+msgstr ""
+#
+# File: macros/dir.sci, line: 18
+# File: macros/ls.sci, line: 23
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 33
+# File: macros/mkdir.sci, line: 32
+# File: macros/mkdir.sci, line: 50
+# File: macros/mkdir.sci, line: 59
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/mdelete.sci, line: 30
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+#
+# File: macros/fscanf.sci, line: 44
+# File: macros/fprintf.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr ""
+#
+# File: macros/rmdir.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+msgstr ""
+#
+# File: macros/listvarinfile.sci, line: 63
+#, c-format
+msgid "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or corrupted.\n"
+msgstr ""
+#
+# File: macros/sscanf.sci, line: 70
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr ""
+#
+# File: macros/mkdir.sci, line: 132
+msgid "A file with the same name already exists in "
+msgstr ""
+#
+# File: macros/mkdir.sci, line: 119
+# File: macros/mkdir.sci, line: 136
+msgid "Impossible to create directory "
+msgstr ""
+#
+# File: macros/mkdir.sci, line: 128
+msgid "This directory already exists in "
+msgstr ""
