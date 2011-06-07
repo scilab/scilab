@@ -301,12 +301,18 @@ function status = test_module(_params)
     else
         //not empty tests_mat
         for i = 1:size(_params.tests_mat, "*")
+            bFind = %f;
             for j = 1:size(directories, "*")
                 currentDir = directories(j);
                 testFile = currentDir + filesep() + _params.tests_mat(i) + ".tst";
                 if isfile(testFile) then
                     tests($+1, [1,2]) = [currentDir, _params.tests_mat(i)];
+                    bFind = %t;
                 end
+            end
+
+            if bFind == %f then
+                error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"), _params.tests_mat(i), name(1)));
             end
         end
     end
@@ -391,8 +397,8 @@ function status = test_module(_params)
 
         end
     end
-    elapsedTime = toc();
-    status.totalTime = elapsedTime;
+
+    status.totalTime = toc();
     status.test_passed_count  = test_passed_count;
     status.test_failed_count  = test_failed_count;
     status.test_skipped_count = test_skipped_count;
