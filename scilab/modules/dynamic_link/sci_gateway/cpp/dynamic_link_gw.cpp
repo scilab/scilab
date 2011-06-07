@@ -24,6 +24,7 @@ bool DynamicLinkModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getdynlibext", &sci_getdynlibext, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"link", &sci_link, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"ulink", &sci_ulink, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"c_link", &sci_c_link, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"ilib_verbose", &sci_ilib_verbose, MODULE_NAME));
     return true;

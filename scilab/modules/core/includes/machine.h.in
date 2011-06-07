@@ -458,6 +458,9 @@
 /* Extension of a shared library */
 #undef SHARED_LIB_EXT
 
+/* Extension of a shared library ( wide string ) */
+#undef SHARED_LIB_EXTW
+
 /* The size of `int', as computed by sizeof. */
 #undef SIZEOF_INT
 

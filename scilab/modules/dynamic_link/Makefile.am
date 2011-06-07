@@ -4,46 +4,54 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
-src/c/dynamic_link.c \
-src/c/dl_genErrorMessage.c \
-src/c/GetFunctionByName.c \
-src/c/ilib_verbose.c
+DYNAMIC_LINK_C_SOURCES = \
+    src/c/addinter.c \
+    src/c/dynamic_link.c \
+    src/c/dl_genErrorMessage.c \
+    src/c/GetFunctionByName.c \
+    src/c/ilib_verbose.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
-sci_gateway/c/sci_getdynlibext.c \
-sci_gateway/c/sci_addinter.c \
-sci_gateway/c/sci_call.c \
-sci_gateway/c/sci_link.c \
-sci_gateway/c/sci_ulink.c \
-sci_gateway/c/sci_c_link.c \
-sci_gateway/c/sci_ilib_verbose.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_dynamic_link.c \
+    sci_gateway/c/sci_addinter.c \
+    sci_gateway/c/sci_call.c
 
-GATEWAY_CPP_SOURCES =	sci_gateway/cpp/dynamic_link_gw.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/dynamic_link_gw.cpp \
+    sci_gateway/cpp/sci_link.cpp \
+    sci_gateway/cpp/sci_c_link.cpp \
+    sci_gateway/cpp/sci_ulink.cpp \
+    sci_gateway/cpp/sci_ilib_verbose.cpp \
+    sci_gateway/cpp/sci_getdynlibext.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
+
+GATEWAY_FORTRAN_SOURCES = \
+    sci_gateway/fortran/sci_fort.f
 
 libscidynamic_link_la_CFLAGS = \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/io/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/libs/dynamiclibrary/includes \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(srcdir)/includes/
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/io/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/system_env/includes \
+    -I$(srcdir)/includes/
 
 libscidynamic_link_la_CPPFLAGS = \
-					-I$(srcdir)/includes/ \
-					-I$(top_srcdir)/modules/api_scilab/includes \
-					-I$(top_srcdir)/modules/operations/includes \
-					-I$(top_srcdir)/modules/symbol/includes \
-					-I$(top_srcdir)/modules/types/includes \
-					-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
 noinst_LTLIBRARIES = libscidynamic_link-algo.la

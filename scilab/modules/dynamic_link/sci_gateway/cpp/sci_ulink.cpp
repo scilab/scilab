@@ -1,0 +1,62 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2011 - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+/*--------------------------------------------------------------------------*/
+#include "function.hxx"
+#include "double.hxx"
+
+extern "C"
+{
+#include "localization.h"
+#include "Scierror.h"
+#include "dynamic_link.h"
+}
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    /* environment variable used (linux) to detect a PROFILING tools */
+    /* in this case, we do not ulink external dynamic libraries */
+    if(getenv("PROFILE_SCILAB_DYNAMIC_LINK") != NULL)
+    {
+        return types::Function::OK;
+    }
+
+    if(in.size() > 1)
+    {
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"ulink", 0, 1);
+        return types::Function::Error;
+    }
+
+    if(in.size() == 0)
+    {
+        unlinkallsharedlib();
+    }
+    else if(in.size() == 1)
+    {
+        types::Double* pDIds = in[0]->getAs<types::Double>();
+        if(pDIds == NULL)
+        {
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Matrix expected.\n"), L"ulink", 1);
+            return types::Function::Error;
+        }
+
+        for(int i = 0 ; i < pDIds->getSize() ; i++)
+        {
+            int ilib = (int) pDIds->get(i);
+            unlinksharedlib(&ilib);
+        }
+    }
+
+    return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/

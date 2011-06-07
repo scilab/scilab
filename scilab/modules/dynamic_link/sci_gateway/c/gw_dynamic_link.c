@@ -23,7 +23,7 @@ static gw_generic_table Tab[] =
 	{sci_fort,"fort"},
 	{sci_call,"call"},
 	{NULL ,""}, //link
-	{sci_ulink,"ulink"},
+	{NULL, ""}, //ulink
 	{NULL, ""}, //c_link
 	{NULL, ""} // ilib_verbose
 };

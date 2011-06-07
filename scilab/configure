@@ -37624,6 +37624,11 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
+cat >>confdefs.h <<_ACEOF
+#define SHARED_LIB_EXTW L"$shrext_cmds"
+_ACEOF
+
+
 #################
 ## stop on warning
 #################

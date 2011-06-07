@@ -248,7 +248,6 @@ lib /DEF:"$(ProjectDir)Io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShor
     <ClCompile Include="ilib_verbose.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_call.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\addinter.h" />

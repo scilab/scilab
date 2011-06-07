@@ -9,10 +9,14 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "dynlib_dynamic_link_gw.h"
 
 #ifndef __DYNAMIC_LINK_GW_HXX__
 #define __DYNAMIC_LINK_GW_HXX__
+
+#include "dynlib_dynamic_link_gw.h"
+
+#include "funcmanager.hxx"
+#include "context.hxx"
 
 class DynamicLinkModule
 {
@@ -23,5 +27,11 @@ private:
 public:
     DYNAMIC_LINK_GW_IMPEXP static bool Load();
 };
+
+CPP_GATEWAY_PROTOTYPE(sci_getdynlibext);
+CPP_GATEWAY_PROTOTYPE(sci_link);
+CPP_GATEWAY_PROTOTYPE(sci_ilib_verbose);
+CPP_GATEWAY_PROTOTYPE(sci_c_link);
+CPP_GATEWAY_PROTOTYPE(sci_ulink);
 
 #endif /* !__DYNAMIC_LINK_GW_HXX__ */

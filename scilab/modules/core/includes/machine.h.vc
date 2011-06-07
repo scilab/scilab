@@ -75,6 +75,7 @@
 */
 
 #define SHARED_LIB_EXT ".dll"
+#define SHARED_LIB_EXTW L".dll"
 
 /* PATH_SEPARATOR : Under Windows by default is ; */
 #define PATH_SEPARATOR ";"
