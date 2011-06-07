@@ -14,21 +14,31 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:29+0100\n"
+"Revision-Date: 2011-06-07 13:23+0100\n"
 
-# File: macros/lmisolver.sci, line: 169
+# File: macros/lmisolver.sci, line: 310
 #, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgid "%s:       OPTIMIZATION PHASE."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 932
+# File: macros/lmisolver.sci, line: 224
 #, c-format
-msgid "%s: %s"
+msgid "%s:     FEASIBILITY PHASE."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 279
+#, c-format
+msgid "%s: Absolute accuracy reached."
 msgstr ""
 #
 # File: macros/neldermead/optimget.sci, line: 48
 #, c-format
 msgid "%s: Ambiguous property name %s matches several fields : %s"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 128
+#, c-format
+msgid "%s: Basis Construction."
 msgstr ""
 #
 # File: macros/optimbase/optimbase_checkcostfun.sci, line: 19
@@ -68,6 +78,11 @@ msgstr ""
 # File: macros/optimbase/optimbase_checkcostfun.sci, line: 57
 #, c-format
 msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 83
+#, c-format
+msgid "%s: Construction of canonical representation."
 msgstr ""
 #
 # File: macros/karmarkar.sci, line: 134
@@ -138,6 +153,11 @@ msgstr ""
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
 #
+# File: macros/lmisolver.sci, line: 168
+#, c-format
+msgid "%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
+msgstr ""
+#
 # File: macros/neldermead/neldermead_updatesimp.sci, line: 81
 # File: macros/neldermead/neldermead_search.sci, line: 1024
 # File: macros/neldermead/neldermead_search.sci, line: 1068
@@ -148,6 +168,11 @@ msgstr ""
 # File: macros/neldermead/neldermead_search.sci, line: 975
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 303
+#, c-format
+msgid "%s: Initial guess feasible."
 msgstr ""
 #
 # File: macros/fit_dat.sci, line: 100
@@ -170,6 +195,21 @@ msgstr ""
 msgid "%s: Logging not started."
 msgstr ""
 #
+# File: macros/lmisolver.sci, line: 330
+#, c-format
+msgid "%s: M must be strictly greater than trace of F(x0)."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 277
+#, c-format
+msgid "%s: Max. iters. exceeded."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 232
+#, c-format
+msgid "%s: Mbound too small."
+msgstr ""
+#
 # File: macros/optimbase/optimbase_histget.sci, line: 26
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
@@ -183,6 +223,16 @@ msgstr ""
 # File: macros/neldermead/optimset.sci, line: 157
 #, c-format
 msgid "%s: No default options available: the function ''%s'' does not exist on the path."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 295
+#, c-format
+msgid "%s: No feasible solution exists."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 287
+#, c-format
+msgid "%s: No feasible solution found."
 msgstr ""
 #
 # File: macros/optimbase/optimbase_outstruct.sci, line: 20
@@ -208,6 +258,11 @@ msgstr ""
 # File: macros/optimsimplex/optimsimplex_check.sci, line: 23
 #, c-format
 msgid "%s: Number of rows of x is %d, which is different from number of vertices = %d."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 156
+#, c-format
+msgid "%s: Objective constant."
 msgstr ""
 #
 # File: macros/neldermead/optimset.sci, line: 48
@@ -244,6 +299,21 @@ msgstr ""
 # File: macros/neldermead/neldermead_search.sci, line: 958
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 281
+#, c-format
+msgid "%s: Relative accuracy reached."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 285
+#, c-format
+msgid "%s: Target value not achievable."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 283
+#, c-format
+msgid "%s: Target value reached."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_search.sci, line: 43
@@ -699,6 +769,52 @@ msgstr ""
 # File: macros/karmarkar.sci, line: 216
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 299
+#, c-format
+msgid "%s: feasible solution found."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 38
+#, c-format
+msgid "%s: initial guess is feasible."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 344
+#, c-format
+msgid "%s: max number of iterations exceeded, solution may not be optimal"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 292
+#, c-format
+msgid "%s: max number of iterations exceeded."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 347
+#, c-format
+msgid "%s: may be unbounded below"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 202
+#, c-format
+msgid "%s: not feasible or badly defined problem."
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 350
+#, c-format
+msgid "%s: optimal solution found"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 179
+#, c-format
+msgid "%s: rank deficient problem"
+msgstr ""
+#
+# File: macros/lmisolver.sci, line: 161
+# File: macros/lmisolver.sci, line: 186
+#, c-format
+msgid "%s: solution unbounded."
 msgstr ""
 #
 # File: demos/neldermead/neldermead_boxbounds.sce, line: 68

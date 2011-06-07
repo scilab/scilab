@@ -929,7 +929,7 @@ function this = neldermead_startup (this)
     if ( hasbounds ) then
         [ this.optbase , isok , errmsg ] = optimbase_checkbounds ( this.optbase );
         if ( ~isok ) then
-            error ( msprintf(gettext("%s: %s"), "neldermead_startup" , errmsg ))
+            error ( msprintf("%s: %s", "neldermead_startup" , errmsg ))
         end
     end
     // 2. Get the initial guess and compute the initial simplex
