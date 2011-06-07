@@ -127,6 +127,7 @@
     <rename_vc_extension_files Include="..\..\scilab-lib-doc.properties.vc" />
     <rename_vc_extension_files Include="..\..\scilab-lib.properties.vc" />
     <rename_vc_extension_files Include="..\..\modules\core\includes\stack.h.vc" />
+    <rename_vc_extension_files Include="..\..\scilab.properties.vc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
