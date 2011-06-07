@@ -39,7 +39,7 @@ int  Scierror(int iv,const char *fmt,...)
 #if _MSC_VER
 	retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
 #else
-	retval = sprintf(s_buf,fmt, ap );
+	retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
 #endif
 	if (retval < 0) s_buf[bsiz-1]='\0';
 
