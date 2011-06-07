@@ -82,18 +82,19 @@ namespace types
 
     Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
+        bool bVarargout = false;
         ReturnValue RetVal = Callable::OK;
         symbol::Context *pContext = symbol::Context::getInstance();
 
+        //open a new scope
+        pContext->scope_begin();
         //check excepted and input/output parameters numbers
         // Scilab Macro can be called with less than prototyped arguments,
         // but not more execpts with varargin
-        // TODO: Manage varargin here
+
+        // varargin management
         if(m_inputArgs->size() > 0 && m_inputArgs->back().name_get() == L"varargin")
         {
-            //open a new scope
-            pContext->scope_begin();
-
             int iVarPos = static_cast<int>(in.size());
             if(iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
             {
@@ -141,13 +142,11 @@ namespace types
                 ostr << std::endl;
             }
             ScierrorW(58, ostr.str().c_str());
+            pContext->scope_end();
 			return Callable::Error;
 		}
         else
         {
-            //open a new scope
-            pContext->scope_begin();
-
             //assign value to variable in the new context
             std::list<symbol::Symbol>::const_iterator i;
             typed_list::const_iterator j;
@@ -158,7 +157,20 @@ namespace types
             }
         }
 
-        //common part with or without varargin
+        // varargout management
+        //rules : 
+        // varargout must be alone
+        // varargout is a list
+        // varargout can containt more items than caller need
+        // varargout must containt at leat caller needs
+        if(m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
+        {
+            bVarargout = true;
+            List* pL = new List();
+            pContext->put(symbol::Symbol(L"varargout"), *pL);
+        }
+
+        //common part with or without varargin/varargout
 
         // Declare nargin & nargout in function context.
         pContext->put(symbol::Symbol(L"nargin"), *new Double(static_cast<double>(in.size())));
@@ -177,20 +189,52 @@ namespace types
                 m_body->returnable_set();
             }
 
-            std::list<symbol::Symbol>::const_iterator i;
-            for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+            //varargout management
+            if(bVarargout)
             {
-                InternalType *pIT = pContext->get((*i));
-                if(pIT != NULL)
+                InternalType* pOut = pContext->get(symbol::Symbol(L"varargout"));
+                if(pOut == NULL)
                 {
+                    ScierrorW(999, _W("Invalid index.\n"));
+                    return Callable::Error;
+                }
+
+                List* pVarOut = pOut->getAs<List>();
+                if(pVarOut == NULL || pVarOut->getSize() == 0)
+                {
+                    ScierrorW(999, _W("Invalid index.\n"));
+                    return Callable::Error;
+                }
+
+                for(int i = 0 ; i < Min(pVarOut->getSize(), _iRetCount) ; i++)
+                {
+                    InternalType* pIT = pVarOut->get(i);
+                    if(pIT->isListUndefined())
+                    {
+                        ScierrorW(999, _W("List element number %d is Undefined.\n"), i + 1);
+                        return Callable::Error;
+                    }
+
                     out.push_back(pIT);
                     pIT->IncreaseRef();
                 }
-                else
+            }
+            else
+            {//normal output management
+                std::list<symbol::Symbol>::const_iterator i;
+                for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
                 {
-                    wchar_t sz[bsiz];
-                    os_swprintf(sz, bsiz, _W("Undefined variable %ls.\n"), (*i).name_get().c_str());
-                    YaspWriteW(sz);
+                    InternalType *pIT = pContext->get((*i));
+                    if(pIT != NULL)
+                    {
+                        out.push_back(pIT);
+                        pIT->IncreaseRef();
+                    }
+                    else
+                    {
+                        ScierrorW(999, _W("Undefined variable %ls.\n"), (*i).name_get().c_str());
+                        return Callable::Error;
+                    }
                 }
             }
         }

@@ -203,6 +203,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\types_comparison_equal.cpp" />
+    <ClCompile Include="src\cpp\types_comparison_non_equal.cpp" />
     <ClCompile Include="src\c\doublecomplex.c" />
     <ClCompile Include="src\c\matrix_addition.c" />
     <ClCompile Include="src\c\matrix_division.c" />
@@ -232,6 +233,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\matrix_transpose.h" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />
+    <ClInclude Include="includes\types_comparison_equal.hxx" />
+    <ClInclude Include="includes\types_comparison_non_equal.hxx" />
     <ClInclude Include="includes\types_divide.hxx" />
     <ClInclude Include="includes\types_finite.hxx" />
     <ClInclude Include="includes\types_multiplication.hxx" />

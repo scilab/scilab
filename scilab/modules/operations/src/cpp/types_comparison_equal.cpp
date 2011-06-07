@@ -14,6 +14,7 @@
 #include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
 
 using namespace types;
 
@@ -254,6 +255,34 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             pResult = new Bool(false);
         }
         return pResult;
+    }
+
+    /*
+    ** LIST == LIST
+    */
+    if(TypeL == GenericType::RealList && TypeR == GenericType::RealList)
+    {
+        types::List* pLL = _pLeftOperand->getAs<types::List>();
+        types::List* pLR = _pRightOperand->getAs<types::List>();
+
+        if(pLL->getSize() != pLR->getSize())
+        {
+            return new Bool(false);
+        }
+
+        Bool* pB = new Bool(1, pLL->getSize());
+        for(int i = 0 ; i < pLL->getSize() ; i++)
+        {
+            if(*pLL->get(i) == *pLR->get(i))
+            {
+                pB->set(i, true);
+            }
+            else
+            {
+                pB->set(i, false);
+            }
+        }
+        return pB;
     }
 
     /*
