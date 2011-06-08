@@ -188,6 +188,8 @@ Bug fixes:
 
 * bug 9266 fixed - fftw crashed on Windows when using MKL wrapper.
 
+* bug 9268 fixed - Scilab was overridding a predefined variable JAVA_HOME.
+
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
