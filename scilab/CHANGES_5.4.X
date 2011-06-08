@@ -109,6 +109,9 @@ Optimization:
 
 * Bug 9567 fixed - The neldermead Overview had a TODO section.
 
+* Bug 8542 fixed - In neldermead, there were undocumented default options. 
+                   Same changes applied to the help of optimbase.
+
 
 Documentation:
 ==============
