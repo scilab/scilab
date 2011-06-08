@@ -23,10 +23,11 @@
 #define __UINT8_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class UInt8 : public ArrayOf<unsigned char>
+    class TYPES_IMPEXP UInt8 : public ArrayOf<unsigned char>
     {
     public :
                                     UInt8(unsigned char _ucVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<unsigned char>;
 #endif /* !__UINT8_HXX__ */

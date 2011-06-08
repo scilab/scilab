@@ -15,10 +15,11 @@
 
 #include "arrayof.hxx"
 #include "singlestruct.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Struct : public ArrayOf<SingleStruct*>
+    class TYPES_IMPEXP Struct : public ArrayOf<SingleStruct*>
     {
     public :
                                     ~Struct();
@@ -78,4 +79,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<types::SingleStruct*>;
 #endif /* !__STRUCT_HXX__ */

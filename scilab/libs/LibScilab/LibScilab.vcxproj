@@ -531,6 +531,9 @@
     <ProjectReference Include="..\..\modules\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\types\typesmacro\typesmacro.vcxproj">
+      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\umfpack\src\c\umfpack.vcxproj">
       <Project>{f52e27b6-d1b2-4bc1-9fc9-be11b11397f0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

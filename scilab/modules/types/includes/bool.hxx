@@ -23,10 +23,11 @@
 #define __BOOL_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Bool : public ArrayOf<int>
+    class TYPES_IMPEXP Bool : public ArrayOf<int>
     {
     public :
                                 Bool(int _bReal);
@@ -71,4 +72,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<int>;
 #endif /* !__BOOL_HXX__ */

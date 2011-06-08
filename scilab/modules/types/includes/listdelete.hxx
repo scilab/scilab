@@ -15,10 +15,11 @@
 
 #include "types.hxx"
 #include "listoperation.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class ListDelete : public ListOperation
+    class TYPES_IMPEXP ListDelete : public ListOperation
     {
     public :
                                 ListDelete(): ListOperation(){};

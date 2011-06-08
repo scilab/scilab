@@ -21,6 +21,7 @@
 extern "C"
 {
 	#include "core_math.h"
+    #include "dynlib_types.h"
 }
 
 namespace types
@@ -28,7 +29,7 @@ namespace types
     /*
     ** Type
     */
-    class GenericType : public InternalType
+    class TYPES_IMPEXP GenericType : public InternalType
     {
 
     protected :

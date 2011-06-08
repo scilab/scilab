@@ -14,11 +14,12 @@
 #define __DOLLAR_HXX__
 
 #include "polynom.hxx"
+#include "dynlib_types.h"
 //#include "arrayof.hxx"
 
 namespace types
 {
-    class Dollar : public Polynom
+    class TYPES_IMPEXP Dollar : public Polynom
     {
     public :
 

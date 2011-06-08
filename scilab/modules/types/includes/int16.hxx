@@ -23,10 +23,11 @@
 #define __INT16_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Int16 : public ArrayOf<short>
+    class TYPES_IMPEXP Int16 : public ArrayOf<short>
     {
     public :
                                     Int16(short _sVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<short>;
 #endif /* !__INT16_HXX__ */

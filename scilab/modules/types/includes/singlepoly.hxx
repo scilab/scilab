@@ -15,10 +15,11 @@
 
 #include <list>
 #include "types.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class SinglePoly : public GenericType
+    class TYPES_IMPEXP SinglePoly : public GenericType
     {
     public :
                                 SinglePoly();

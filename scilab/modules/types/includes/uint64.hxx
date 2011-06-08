@@ -23,10 +23,11 @@
 #define __UINT64_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class UInt64 : public ArrayOf<unsigned long long>
+    class TYPES_IMPEXP UInt64 : public ArrayOf<unsigned long long>
     {
     public :
                                     UInt64(unsigned long long _ullVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<unsigned long long>;
 #endif /* !__UINT64_HXX__ */

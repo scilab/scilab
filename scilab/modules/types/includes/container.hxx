@@ -14,10 +14,11 @@
 #define __CONTAINER_HXX__
 
 #include "types.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Container : public GenericType
+    class TYPES_IMPEXP Container : public GenericType
     {
 
     public :

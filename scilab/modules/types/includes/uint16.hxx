@@ -23,10 +23,11 @@
 #define __UINT16_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class UInt16 : public ArrayOf<unsigned short>
+    class TYPES_IMPEXP UInt16 : public ArrayOf<unsigned short>
     {
     public :
                                     UInt16(unsigned short _usVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<unsigned short>;
 #endif /* !__UINT16_HXX__ */

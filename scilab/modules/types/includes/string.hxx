@@ -26,10 +26,11 @@
 #include <list>
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class String : public ArrayOf<wchar_t*>
+    class TYPES_IMPEXP String : public ArrayOf<wchar_t*>
     {
     public :
                                 String(int _iRows, int _iCols);
@@ -75,4 +76,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<wchar_t*>;
 #endif /* !__STRING_HXX__ */

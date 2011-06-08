@@ -14,10 +14,11 @@
 #define __FILE_HH__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class File
+    class TYPES_IMPEXP File
     {
     public :
                                     File();

@@ -14,6 +14,7 @@
 #define __TOSTRING_COMMON_HXX__
 
 #include <sstream>
+#include "dynlib_types.h"
 
 #define SIZE_BETWEEN_TWO_VALUES         2
 #define SPACE_BETWEEN_TWO_VALUES        L"  "
@@ -35,15 +36,15 @@
 #endif
 
 /*double*/
-void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
-void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-void printDoubleVar(std::wostringstream *_postr,  double _dblVal);
+TYPES_IMPEXP void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
+TYPES_IMPEXP void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
+TYPES_IMPEXP void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
+TYPES_IMPEXP void addDoubleComplexValue(std::wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
+TYPES_IMPEXP void printDoubleVar(std::wostringstream *_postr,  double _dblVal);
 
 /*Common*/
-void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-void addSpaces(std::wostringstream *_postr, int _iSpace);
+TYPES_IMPEXP void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
+TYPES_IMPEXP void addSpaces(std::wostringstream *_postr, int _iSpace);
 
 /*int*/
 /*

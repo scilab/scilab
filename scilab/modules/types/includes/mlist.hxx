@@ -15,10 +15,11 @@
 
 #include <vector>
 #include "list.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class MList : public List
+    class TYPES_IMPEXP MList : public List
     {
     public :
                                         MList();

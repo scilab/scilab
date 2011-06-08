@@ -15,10 +15,11 @@
 #define __FLOAT_HH__
 
 #include "types.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Float : public GenericType
+    class TYPES_IMPEXP Float : public GenericType
     {
     public :
         virtual				~Float();

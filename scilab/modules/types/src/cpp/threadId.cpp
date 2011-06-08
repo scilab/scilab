@@ -13,7 +13,6 @@
 #include <map>
 #include <sstream>
 #include "core_math.h"
-#include "arrayof.hxx"
 #include "threadId.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"

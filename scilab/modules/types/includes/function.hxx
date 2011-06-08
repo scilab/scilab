@@ -22,6 +22,7 @@
 #include <string>
 #include "types.hxx"
 #include "callable.hxx"
+#include "dynlib_types.h"
 
 #define MAX_OUTPUT_VARIABLE		64
 
@@ -29,7 +30,7 @@
 
 namespace types
 {
-    class Function : public Callable
+    class TYPES_IMPEXP Function : public Callable
     {
     public :
         typedef void (*LOAD_DEPS)(void);

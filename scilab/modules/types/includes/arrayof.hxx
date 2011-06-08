@@ -25,22 +25,23 @@
 
 extern "C"
 {
-#include "core_math.h"
-#include "localization.h"
+	#include "core_math.h"
+    #include "dynlib_types.h"
+    #include "localization.h"
 }
 
 namespace types
 {
 
     //commom function
-    int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
-    InternalType* createEmptyDouble();
-    InternalType* createDoubleVector(int _iSize);
-    int getIntValueFromDouble(InternalType* _pIT, int _iPos);
-    double* getDoubleArrayFromDouble(InternalType* _pIT);
+    TYPES_IMPEXP int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
+    TYPES_IMPEXP InternalType* createEmptyDouble();
+    TYPES_IMPEXP InternalType* createDoubleVector(int _iSize);
+    TYPES_IMPEXP int getIntValueFromDouble(InternalType* _pIT, int _iPos);
+    TYPES_IMPEXP double* getDoubleArrayFromDouble(InternalType* _pIT);
 
     template <typename T>
-    class ArrayOf : public GenericType
+    class TYPES_IMPEXP ArrayOf : public GenericType
     {
     protected :
         bool                    m_bComplex;

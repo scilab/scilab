@@ -18,11 +18,12 @@
 extern "C"
 {
 #include "Thread_Wrapper.h"
+#include "dynlib_types.h"
 }
 
 namespace types
 {
-    class ThreadId : public InternalType
+    class TYPES_IMPEXP ThreadId : public InternalType
     {
     public :
                                 ThreadId(__threadId _id, __threadKey _key);

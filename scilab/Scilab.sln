@@ -31,6 +31,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A} = {13082624-97F9-47DB-A9A1-AD7D6BF3856A}
 		{E6552427-01DD-4C12-823C-09AD46F77FAD} = {E6552427-01DD-4C12-823C-09AD46F77FAD}
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
 		{45ECEB36-A12B-42F5-9D7A-216A0E70601D} = {45ECEB36-A12B-42F5-9D7A-216A0E70601D}
 		{C2EDD447-BB60-41A1-973B-8213FCA9ECD4} = {C2EDD447-BB60-41A1-973B-8213FCA9ECD4}
 		{97B3664E-1186-400A-AEC0-AC3F23087689} = {97B3664E-1186-400A-AEC0-AC3F23087689}
@@ -339,6 +340,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell", "modules\shell\src\c\shell.vcxproj", "{805AA73F-EF7B-4177-BF46-200B72D8F83A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\src\java\jvm-JAVA.vcxproj", "{E9783492-017E-4811-9CC7-6B71856F847C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcxproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 EndProject
@@ -499,6 +503,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_manager", "modules\functions_manager\functions_manager.vcxproj", "{8EAC9381-C059-43EA-B5D7-FD5D6997B0BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA} = {9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parse", "modules\parse\parse.vcxproj", "{74D43792-DBFC-47F0-ADBC-4D7A20CDADA2}"
@@ -513,6 +518,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_env", "modules\syste
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_yasp", "modules\core\core_yasp.vcxproj", "{14373D41-991A-412E-8EA7-A832D98047B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boolean_gw", "modules\boolean\src\cpp\boolean_gw.vcxproj", "{09E6CF32-EF2F-4C63-A2B8-B04964768BD6}"
 EndProject
@@ -522,6 +530,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_gw", "modules\core\src
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "io_gw", "modules\io\src\cpp\io_gw.vcxproj", "{719EC179-3AD3-4C6B-BBD8-B44C96B1A204}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos", "modules\xcos\src\c\xcos.vcxproj", "{494FA8C9-6C85-4175-BE4C-9A113C7A3278}"
 EndProject
@@ -536,9 +547,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types_gw", "modules\types\s
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "functions_gw", "modules\functions\sci_gateway\cpp\functions_gw.vcxproj", "{67FF36D3-EC5A-4F0D-BF3B-A84A66D77294}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "output_stream_gw", "modules\output_stream\sci_gateway\cpp\output_stream_gw\output_stream_gw.vcxproj", "{C000FDF7-4D32-4630-9595-560D9CC66D11}"
 	ProjectSection(ProjectDependencies) = postProject
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}
 	EndProjectSection
 EndProject
@@ -563,6 +578,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parameters", "modules\param
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileio_gw", "modules\fileio\sci_gateway\cpp\fileio_gw.vcxproj", "{6D9647CE-9CB9-4B16-B34D-8542484EFBB0}"
 	ProjectSection(ProjectDependencies) = postProject
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0} = {9252A034-7F22-4CB1-A634-4577DA69F2D0}
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}
 	EndProjectSection
 EndProject
@@ -607,13 +623,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree", "modules\abstractSyntaxTree\abstractSyntaxTree.vcxproj", "{0D3FA25B-8116-44EC-A45E-260789DAA3D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}
-		{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF} = {64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}
 		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640} = {7CA60AEF-9AFA-4D06-AF28-613C0AA27640}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree-tools", "modules\abstractSyntaxTree\abstractSyntaxTree-tools\abstractSyntaxTree-tools.vcxproj", "{1F4A0344-99ED-461B-BD53-1593788FB34D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamic_link_gw", "modules\dynamic_link\sci_gateway\cpp\dynamic_link_gw.vcxproj", "{F93FF3EE-217A-4554-AB17-2F8D56B4BF4B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "typesmacro", "modules\types\typesmacro\typesmacro.vcxproj", "{9252A034-7F22-4CB1-A634-4577DA69F2D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1999,6 +2016,14 @@ Global
 		{F93FF3EE-217A-4554-AB17-2F8D56B4BF4B}.Release|Win32.Build.0 = Release|Win32
 		{F93FF3EE-217A-4554-AB17-2F8D56B4BF4B}.Release|x64.ActiveCfg = Release|x64
 		{F93FF3EE-217A-4554-AB17-2F8D56B4BF4B}.Release|x64.Build.0 = Release|x64
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Debug|Win32.Build.0 = Debug|Win32
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Debug|x64.ActiveCfg = Debug|x64
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Debug|x64.Build.0 = Debug|x64
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|Win32.ActiveCfg = Release|Win32
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|Win32.Build.0 = Release|Win32
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|x64.ActiveCfg = Release|x64
+		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

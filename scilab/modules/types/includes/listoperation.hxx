@@ -15,10 +15,11 @@
 
 #include <list>
 #include "types.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class ListOperation : public InternalType
+    class TYPES_IMPEXP ListOperation : public InternalType
     {
     public :
                                 ListOperation(): InternalType(){};

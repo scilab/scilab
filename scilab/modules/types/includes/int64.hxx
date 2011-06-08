@@ -23,10 +23,11 @@
 #define __INT64_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Int64 : public ArrayOf<long long>
+    class TYPES_IMPEXP Int64 : public ArrayOf<long long>
     {
     public :
                                     Int64(long long _llVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<long long>;
 #endif /* !__INT64_HXX__ */

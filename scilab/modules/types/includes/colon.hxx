@@ -25,10 +25,11 @@
 #include "implicitlist.hxx"
 #include "double.hxx"
 #include "dollar.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Colon : public ImplicitList
+    class TYPES_IMPEXP Colon : public ImplicitList
     {
     public :
 

@@ -23,10 +23,11 @@
 #define __DOUBLE_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Double : public ArrayOf<double>
+    class TYPES_IMPEXP Double : public ArrayOf<double>
     {
     public :
         virtual						~Double();
@@ -83,4 +84,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<double>;
 #endif /* !__DOUBLE_HXX__ */

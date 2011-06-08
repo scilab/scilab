@@ -19,10 +19,11 @@
 #include <iostream>
 #include <string.h>
 #include "anytype.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class InternalType
+    class TYPES_IMPEXP InternalType
     {
     public :
         enum RealType {

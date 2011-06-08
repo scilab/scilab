@@ -22,10 +22,11 @@
 #include <vector>
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Cell : public ArrayOf<InternalType*>
+    class TYPES_IMPEXP Cell : public ArrayOf<InternalType*>
     {
     public :
                             ~Cell();
@@ -84,4 +85,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<types::InternalType*>;
 #endif /* !__CELL_HXX__ */

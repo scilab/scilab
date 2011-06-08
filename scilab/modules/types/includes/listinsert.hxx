@@ -15,10 +15,11 @@
 
 #include "types.hxx"
 #include "listoperation.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class ListInsert : public ListOperation
+    class TYPES_IMPEXP ListInsert : public ListOperation
     {
     public :
                                 ListInsert(InternalType* _pIT);

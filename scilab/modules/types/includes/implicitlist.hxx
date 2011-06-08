@@ -24,12 +24,13 @@
 
 #include "internal.hxx"
 #include "double.hxx"
+#include "dynlib_types.h"
 namespace types
 {
     /*
     ** Type
     */
-    class ImplicitList : public InternalType
+    class TYPES_IMPEXP ImplicitList : public InternalType
     {
     protected :
         InternalType*		    m_poStart;

@@ -11,7 +11,6 @@
  */
 
 #include <sstream>
-#include "arrayof.hxx"
 #include "mlist.hxx"
 
 namespace types

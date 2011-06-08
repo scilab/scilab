@@ -23,10 +23,11 @@
 #define __INT32_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Int32 : public ArrayOf<int>
+    class TYPES_IMPEXP Int32 : public ArrayOf<int>
     {
     public :
                                     Int32(int _iVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<int>;
 #endif /* !__INT32_HXX__ */

@@ -17,10 +17,11 @@
 #include <map>
 #include <list>
 #include "internal.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class SingleStruct : public InternalType
+    class TYPES_IMPEXP SingleStruct : public InternalType
     {
     public :
                                                 SingleStruct();

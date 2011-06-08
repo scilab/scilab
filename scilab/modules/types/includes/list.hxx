@@ -15,10 +15,11 @@
 
 #include <list>
 #include "container.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class List : public Container
+    class TYPES_IMPEXP List : public Container
     {
     public :
                                         List();

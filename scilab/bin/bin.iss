@@ -54,6 +54,7 @@ Source: bin\abstractSyntaxTree-tools.dll; DestDir: {app}\bin; Components: {#COMP
 Source: bin\operations.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\functions_manager.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\symbol.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\types.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\system_env.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\parse.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\YaSp.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

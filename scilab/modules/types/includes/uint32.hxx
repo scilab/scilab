@@ -23,10 +23,11 @@
 #define __UINT32_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class UInt32 : public ArrayOf<unsigned int>
+    class TYPES_IMPEXP UInt32 : public ArrayOf<unsigned int>
     {
     public :
                                     UInt32(unsigned int _uiVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<unsigned int>;
 #endif /* !__UINT32_HXX__ */

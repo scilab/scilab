@@ -15,10 +15,11 @@
 
 #include "types.hxx"
 #include "listoperation.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class ListUndefined : public ListOperation
+    class TYPES_IMPEXP ListUndefined : public ListOperation
     {
     public :
                                 ListUndefined(): ListOperation(){};

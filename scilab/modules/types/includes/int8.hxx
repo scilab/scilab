@@ -23,10 +23,11 @@
 #define __INT8_HXX__
 
 #include "arrayof.hxx"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Int8 : public ArrayOf<char>
+    class TYPES_IMPEXP Int8 : public ArrayOf<char>
     {
     public :
                                     Int8(char _cVal);
@@ -67,4 +68,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<char>;
 #endif /* !__INT8_HXX__ */

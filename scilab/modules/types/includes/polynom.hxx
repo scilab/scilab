@@ -25,10 +25,12 @@
 #include "arrayof.hxx"
 #include "singlepoly.hxx"
 #include "double.hxx"
+#include "dynlib_types.h"
+#include "dynlib_types.h"
 
 namespace types
 {
-    class Polynom : public ArrayOf<SinglePoly*>
+    class TYPES_IMPEXP Polynom : public ArrayOf<SinglePoly*>
     {
     public :
                                 Polynom();
@@ -87,4 +89,5 @@ namespace types
     };
 }
 
+template class TYPES_IMPEXP types::ArrayOf<types::SinglePoly*>;
 #endif /* !__POLYNOM_HXX__ */

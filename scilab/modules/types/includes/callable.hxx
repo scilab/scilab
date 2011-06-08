@@ -18,11 +18,12 @@
 #include "types.hxx"
 
 #include "visitor.hxx"
+#include "dynlib_types.h"
 
 using namespace ast;
 namespace types
 {
-  class Callable : public InternalType
+  class TYPES_IMPEXP Callable : public InternalType
   {
   public :
       enum ReturnValue
