@@ -34,7 +34,7 @@
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
-  int ns,ierr = 0,seq = 0;
+  int ierr = 0,seq = 0;
   char *command;
 
   char *comm[arbitrary_max_queued_callbacks];
@@ -72,7 +72,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	   * set sciprompt to -1 (scilab busy)
 	   */
 	  seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
-	  ns=(int)strlen(command);
+
 	  if (C2F(iop).ddt==-1)
 	    {
 	      char *msg=_("Execution starts for %s");
@@ -81,6 +81,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	    }
 
 	  /*
+      int ns=(int)strlen(command);
 	  Was : syncexec(command,&ns,&ierr,&seq,ns);
 	  So far as Tcl has it's own thread now mixing global values
 	  and threads within parse makes Scilab crash often.
@@ -133,7 +134,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		      sciprint("\n");
 		    }
 		}
-	      ns=(int)strlen(comm[nc]);
 	  /*
 	  Was : syncexec(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
 	  So far as Tcl has it's own thread now mixing global values
