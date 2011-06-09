@@ -52,6 +52,14 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
     int *piErr = new int[pS->getRows()];
     double* pData = filesinfoW(pS->get(), pS->getRows(), piErr);
 
+    /* fileinfo returns [] for single non existing file to match the behavior
+       of Scilab < 6 */
+    if(pS->getRows() == 1 && *piErr == -1)
+    {
+        out.push_back(Double::Empty());
+        return Function::OK;
+    }
+
     Double *pOut = new Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
     pOut->set(pData);
     out.push_back(pOut);
