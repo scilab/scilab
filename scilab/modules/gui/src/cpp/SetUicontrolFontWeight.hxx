@@ -18,14 +18,13 @@ extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolFontWeight.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
-#include "UicontrolStyleToString.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+#include <stricmp.h>
 }
 
 #endif /* __SET_UICONTROL_FONTWEIGHT_HXX__ */

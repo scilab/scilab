@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,30 +36,22 @@ int get_visible_property( sciPointObj * pobj )
 {
     int visible = 0;
     int* piVisible = &visible;
+
     getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool, &piVisible);
 
-#ifdef __OLD_IMPLEMENTATION__
-    // Uicontrol should follow MVC implementation
-    if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
-    {
-        return GetUiobjectVisible(pobj);
-    }
-#endif
-
     if ( piVisible == NULL )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
-		return -1;
-	}
-
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "visible");
+        return FALSE;
+    }
 
     if (visible)
     {
-        return sciReturnString( "on" ) ;
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString( "off" ) ;
+        return sciReturnString("off");
     }
 }
 

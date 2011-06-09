@@ -25,11 +25,44 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "InitUIMenu.h"
-#include "SetUicontrolParent.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    char* type = NULL;
+    sciPointObj *figure = NULL;
+
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+
+    if (strcmp(type, __GO_UICONTROL__) == 0)
+    {
+        if (valueType == sci_handles)
+        {
+            figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+        }
+        else if (valueType == sci_matrix)
+        {
+            figure = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+        }
+        else
+        {
+          Scierror(999,_("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"),"parent","Figure", "Frame uicontrol");
+          return SET_PROPERTY_ERROR;
+        }
+
+        if (figure == NULL)
+        {
+            // Can not set the parent
+            Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+            return SET_PROPERTY_ERROR;
+        }
+
+        setGraphicObjectRelationship(figure->UID, pobj->UID);
+    }
+
+#if 0
   if(sciGetEntityType( pobj ) == SCI_UIMENU)
     {
       if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) /* sci_matrix used for adding menus in console menu */
@@ -59,5 +92,6 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
       Scierror(999, _("Parent property can not be modified directly.\n"));
       return SET_PROPERTY_ERROR ;
     }
+#endif
 }
 /*------------------------------------------------------------------------*/

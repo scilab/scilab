@@ -12,6 +12,9 @@
 
 #ifndef __SET_UICONTROL_MIN_H__
 #define __SET_UICONTROL_MIN_H__
+
+#include <stddef.h>
+
 #include "dynlib_gui.h"
 #include "ObjectStructure.h"
 

@@ -30,7 +30,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       return SET_PROPERTY_ERROR;
   }
 
-  return setGraphicObjectProperty(sciObj->UID, __GO_UI_STRING__, getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
+  return setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING__), getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
 
 #if 0
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)

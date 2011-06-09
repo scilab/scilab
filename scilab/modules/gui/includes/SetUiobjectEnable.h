@@ -12,6 +12,9 @@
 
 #ifndef __SETUIOBJECTENABLE_H__
 #define __SETUIOBJECTENABLE_H__
+
+#include <stddef.h>
+
 #include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"

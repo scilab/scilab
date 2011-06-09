@@ -38,6 +38,7 @@ public static final String __GO_RECTANGLE__ =              "Rectangle";
 public static final String __GO_SEGS__ =                   "Segs";
 public static final String __GO_TEXT__ =                   "Text";
 public static final String __GO_UICONTROL__ =              "uicontrol";
+public static final String __GO_UIMENU__ =                 "uimenu";
 
 
 public static final String __GO_CHILDREN__ =               "Children";
@@ -287,11 +288,36 @@ public static final String __GO_BOUNDING_BOX__ =           "BoundingBox";
 public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 
 public static final String __GO_STYLE__ =                  "Style";
+public static final String __GO_UI_FRAME__ =               "frame";
 public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";
 public static final String __GO_UI_TEXT__ =                "text";
 
-public static final String __GO_UI_BACKGROUND_COLOR__ =    "UIBackgroundColor";
+public static final String __GO_UI_BACKGROUNDCOLOR__ =     "UIBackgroundColor";
+public static final String __GO_UI_ENABLE__ =              "UIEnable";
+public static final String __GO_UI_FONTANGLE__ =           "UIFontAngle";
+public static final String __GO_UI_FONTNAME__ =            "UIFontName";
+public static final String __GO_UI_FONTSIZE__ =            "UIFontSize";
+public static final String __GO_UI_FONTUNITS__ =           "UIFontUnits";
+public static final String __GO_UI_FONTWEIGHT__ =          "UIFontWeight";
+public static final String __GO_UI_FOREGROUNDCOLOR__ =     "UIForegroundColor";
+public static final String __GO_UI_HORIZONTALALIGNMENT__ = "UIHorizontalAlignment";
+public static final String __GO_UI_LISTBOXTOP__ =          "UIListboxTop";
+public static final String __GO_UI_LISTBOXTOP_SIZE__ =     "UIListboxTopSize";
+public static final String __GO_UI_MAX__ =                 "UIMax";
+public static final String __GO_UI_MIN__ =                 "UIMin";
+public static final String __GO_UI_RELIEF__ =              "UIRelief";
 public static final String __GO_UI_STRING__ =              "UIString";
-public static final String __GO_UI_NB_STRING__ =           "UINbString";
+public static final String __GO_UI_STRING_SIZE__ =         "UIStringSize";
+public static final String __GO_UI_SLIDERSTEP__ =          "UISliderStep";
+public static final String __GO_UI_UNITS__ =               "UIUnits";
+public static final String __GO_UI_VALUE__ =               "UIValue";
+public static final String __GO_UI_VALUE_SIZE__ =          "UIValueSize";
+public static final String __GO_UI_VERTICALALIGNMENT__ =   "UIVerticalAlignment";
+
+public static final String __GO_UI_POINTS_UNITS__ =        "points";
+public static final String __GO_UI_NORMALIZED_UNITS__ =    "normalized";
+public static final String __GO_UI_INCHES_UNITS__ =        "inches";
+public static final String __GO_UI_CENTIMETERS_UNITS__ =   "centimeters";
+public static final String __GO_UI_PIXELS_UNITS__ =        "pixels";
 
 }

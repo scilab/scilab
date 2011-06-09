@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the max property of an uicontrol
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,17 +14,20 @@
 
 #include "GetUicontrolMax.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
 int GetUicontrolMax(sciPointObj* sciObj)
 {
-  if (sciGetEntityType(sciObj) == SCI_UICONTROL)
+    int maxValue = 0;
+    int* piMaxValue = &maxValue;
+
+    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_MAX__), jni_int, (void**) &piMaxValue);
+
+    if (piMaxValue == NULL)
     {
-      return sciReturnDouble(pUICONTROL_FEATURE(sciObj)->max);
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Max");
+        return FALSE; 
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Max");
-      return FALSE;
+        return sciReturnDouble((double) maxValue);
     }
 }

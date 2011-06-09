@@ -13,6 +13,18 @@ package org.scilab.modules.gui;
 
 public interface SwingViewObject {
 
+	/**
+	 * Set the UID
+	 * @param id the UID
+	 */
+    public void setId(String id);
+	
+	/**
+	 * Get the UID
+	 * @return the UID
+	 */
+    public String getId();
+
     /**
      * Generic method to force Swing objects to update their own properties.
      * @param property - the name of the property to update.

@@ -384,6 +384,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcxproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui-Ant", "modules\gui\src\java\gui-JAVA.vcxproj", "{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3193DF3-A764-4B51-B240-9285289C337E} = {A3193DF3-A764-4B51-B240-9285289C337E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell-Ant", "modules\shell\src\java\shell-JAVA.vcxproj", "{2EA61E81-0F0C-4006-985C-12785093CD2F}"
 EndProject

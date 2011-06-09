@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the position of an uicontrol
  *
  * This file must be used under the terms of the CeCILL.
@@ -12,37 +13,24 @@
  */
 
 #include "GetUicontrolPosition.hxx"
-#include "UnitsConversion.hxx"
-
-extern "C"
-{
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
-}
-
-using namespace org_scilab_modules_gui_bridge;
 
 int GetUicontrolPosition(sciPointObj* sciObj)
 {
-  int returnFlag = FALSE;
-  int * returnValues = NULL;
-  double *tmp;
+  double* position = NULL;
+  int status = FALSE;
 
-  getGraphicObjectProperty(sciObj->UID, __GO_POSITION__, jni_double_vector, (void**) &tmp);
+  getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_POSITION__), jni_double_vector, (void**) &position);
 
-  for (int i = 0 ; i < 4 ; ++i)
+  if (position == NULL)
   {
-      std::cerr << "GetUicontrolPosition " << tmp[i] << std::endl;
-  }
-
-  if (tmp != NULL)
-  {
-      return sciReturnRowVector(tmp, 4);
+      Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+      return FALSE;
   }
   else
   {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Position");
-      return FALSE;
+      status = sciReturnRowVector(position, 4);
+      delete[] position;
+      return status;
   }
 
 #if 0

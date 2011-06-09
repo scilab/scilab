@@ -52,12 +52,6 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     }
 #endif
 
-    if ( !isParameterDoubleMatrix( valueType ) )
-    {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "position");
-        return SET_PROPERTY_ERROR;
-    }
-
     /* Deactivated for now */
 #if 0
     if ( sciGetEntityType(pobj)== SCI_UIMENU )
@@ -68,6 +62,12 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 #endif
 
     getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+
+    if ( !isParameterDoubleMatrix( valueType ) && (strcmp(type, __GO_UICONTROL__) != 0))
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "position");
+        return SET_PROPERTY_ERROR;
+    }
 
     /* Type test required since a position set requires a 4-element, 3-element, and 2-element vector
     for respectively the Figure, Label and Legend */
@@ -152,6 +152,10 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
             return SET_PROPERTY_ERROR;
         }
 
+    }
+    else if (strcmp(type, __GO_UICONTROL__) == 0)
+    {
+        return SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
     }
     else
     {

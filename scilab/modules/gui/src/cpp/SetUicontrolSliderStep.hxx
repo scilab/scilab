@@ -13,19 +13,16 @@
 #ifndef __SET_UICONTROL_SLIDERSTEP_HXX__
 #define __SET_UICONTROL_SLIDERSTEP_HXX__
 
-#include "CallScilabBridge.hxx"
 extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolSliderStep.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
-#include "UicontrolStyleToString.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 }
 
 #endif /* __SET_UICONTROL_SLIDERSTEP_HXX__ */

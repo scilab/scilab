@@ -12,11 +12,23 @@
 package org.scilab.modules.gui;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
-
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.util.HashMap;
@@ -28,8 +40,6 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
 
 public class SwingView implements GraphicView {
 
@@ -90,7 +100,7 @@ public class SwingView implements GraphicView {
         DEBUG("SwingWiew", "Object Created : " + id);
         DEBUG("SwingWiew", "with type : " + objectType);
         if(objectType.equals(__GO_FIGURE__)) {
-            allObjects.put(id, CreateObjectFromType(objectType));
+            allObjects.put(id, CreateObjectFromType(objectType, id));
             return;
         }
 
@@ -98,7 +108,7 @@ public class SwingView implements GraphicView {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
             DEBUG("SwingView", "__GO_STYLE__("+style+")");
             if (style != null) {
-                allObjects.put(id, CreateObjectFromType(style));
+                allObjects.put(id, CreateObjectFromType(style, id));
             } else {
                 allObjects.put(id, null);
             }
@@ -116,12 +126,12 @@ public class SwingView implements GraphicView {
         return null;
     }
 
-    private TypedObject CreateObjectFromType(String type) {
+    private TypedObject CreateObjectFromType(String type, String id) {
         UielementType enumType = StyleToEnum(type);
-        return new TypedObject(enumType, CreateObjectFromType(enumType));
+        return new TypedObject(enumType, CreateObjectFromType(enumType, id));
     }
 
-    private SwingViewObject CreateObjectFromType(UielementType type) {
+    private SwingViewObject CreateObjectFromType(UielementType type, String id) {
         switch (type) {
         case Figure:
             SwingScilabWindow win = new SwingScilabWindow();
@@ -130,10 +140,21 @@ public class SwingView implements GraphicView {
             return tab;
         case PushButton:
             SwingScilabPushButton button = new SwingScilabPushButton();
-            //button.setText("Hello...");
-            button.setVisible(true);
-            button.setDims(new Size(200, 200));
-            button.setPosition(new Position(0, 0));
+            button.setId(id);
+            Double[] defaultButtonBackground = {0.6, 0.6, 0.6};
+            GraphicController.getController().setProperty(id, __GO_UI_BACKGROUNDCOLOR__, defaultButtonBackground);
+            SwingScilabWidget.update(button, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+            SwingScilabWidget.update(button, __GO_UI_FONTANGLE__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
+            SwingScilabWidget.update(button, __GO_UI_FONTNAME__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+            SwingScilabWidget.update(button, __GO_UI_FONTSIZE__, (Double) GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
+            SwingScilabWidget.update(button, __GO_UI_FONTWEIGHT__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
+            SwingScilabWidget.update(button, __GO_UI_FOREGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+            SwingScilabWidget.update(button, __GO_UI_HORIZONTALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
+            SwingScilabWidget.update(button, __GO_UI_RELIEF__, (String) GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
+            SwingScilabWidget.update(button, __GO_UI_STRING__, (String[]) GraphicController.getController().getProperty(id, __GO_UI_STRING__));
+            SwingScilabWidget.update(button, __GO_UI_VERTICALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
+            SwingScilabWidget.update(button, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
+            SwingScilabWidget.update(button, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
             return button;
         default:
             return null;
@@ -152,13 +173,13 @@ public class SwingView implements GraphicView {
         /* On uicontrol style is set after object creation */
         if (registeredObject == null && property.equals(__GO_STYLE__)) {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
-            allObjects.put(id, CreateObjectFromType(style));
+            allObjects.put(id, CreateObjectFromType(style, id));
         }
 
         if (registeredObject != null) {
             SwingViewObject swingObject = registeredObject.getValue();
             if (swingObject != null) {
-                swingObject.update(property, GraphicController.getController().getProperty(id,property));
+                swingObject.update(property, GraphicController.getController().getProperty(id, property));
             } else {
                 System.err.println("[DEBUG] swingObject ("+id+") is null can not update.");   
             }

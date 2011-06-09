@@ -4,7 +4,8 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -35,29 +36,25 @@
 /*------------------------------------------------------------------------*/
 int set_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	int b = (int)FALSE;
-	BOOL status;
+    int b = (int)FALSE;
+    BOOL status;
 
-#if 0
-	if ( (sciGetEntityType(pobj) == SCI_UIMENU) || (sciGetEntityType(pobj) == SCI_UICONTROL) )
-	{
-		return SetUiobjectVisible(pobj, stackPointer, valueType, nbRow, nbCol);
-	}
-#endif
+    b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "visible");
+    if (b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "visible");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    status = setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &b, jni_bool, 1);
 
-	status = setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &b, jni_bool, 1);
-
-	if (status == TRUE)
-	{
-		return SET_PROPERTY_SUCCEED;
-	}
-	else
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
-		return SET_PROPERTY_ERROR;
-	}
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"visible");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -37,6 +37,7 @@
 #define __GO_SEGS__                        "Segs"
 #define __GO_TEXT__                        "Text"
 #define __GO_UICONTROL__                   "uicontrol"
+#define __GO_UIMENU__                      "uimenu"
 
 
 #define __GO_CHILDREN__                    "Children"
@@ -286,11 +287,36 @@
 #define __GO_HIDDEN_COLOR__                "HiddenColor"
 
 #define __GO_STYLE__                       "Style"
+#define __GO_UI_FRAME__                    "frame"
 #define __GO_UI_PUSHBUTTON__               "pushbutton"
 #define __GO_UI_TEXT__                     "text"
 
-#define __GO_UI_BACKGROUND_COLOR__         "UIBackgroundColor"
+#define __GO_UI_BACKGROUNDCOLOR__          "UIBackgroundColor"
+#define __GO_UI_ENABLE__                   "UIEnable"
+#define __GO_UI_FONTANGLE__                "UIFontAngle"
+#define __GO_UI_FONTNAME__                 "UIFontName"
+#define __GO_UI_FONTSIZE__                 "UIFontSize"
+#define __GO_UI_FONTUNITS__                "UIFontUnits"
+#define __GO_UI_FONTWEIGHT__               "UIFontWeight"
+#define __GO_UI_FOREGROUNDCOLOR__          "UIForegroundColor"
+#define __GO_UI_HORIZONTALALIGNMENT__      "UIHorizontalAlignment"
+#define __GO_UI_LISTBOXTOP__               "UIListboxTop"
+#define __GO_UI_LISTBOXTOP_SIZE__          "UIListboxTopSize"
+#define __GO_UI_MAX__                      "UIMax"
+#define __GO_UI_MIN__                      "UIMin"
+#define __GO_UI_RELIEF__                   "UIRelief"
 #define __GO_UI_STRING__                   "UIString"
-#define __GO_UI_NB_STRING__                "UINbString"
+#define __GO_UI_STRING_SIZE__              "UIStringSize"
+#define __GO_UI_SLIDERSTEP__               "UISliderStep"
+#define __GO_UI_UNITS__                    "UIUnits"
+#define __GO_UI_VALUE__                    "UIValue"
+#define __GO_UI_VALUE_SIZE__               "UIValueSize"
+#define __GO_UI_VERTICALALIGNMENT__        "UIVerticalAlignment"
+
+#define __GO_UI_POINTS_UNITS__             "points"
+#define __GO_UI_NORMALIZED_UNITS__         "normalized"
+#define __GO_UI_INCHES_UNITS__             "inches"
+#define __GO_UI_CENTIMETERS_UNITS__        "centimeters"
+#define __GO_UI_PIXELS_UNITS__             "pixels"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

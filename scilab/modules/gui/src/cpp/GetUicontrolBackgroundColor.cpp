@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the background color of an uicontrol
  *
  * This file must be used under the terms of the CeCILL.
@@ -13,83 +14,23 @@
 
 #include "GetUicontrolBackgroundColor.hxx"
 
-extern "C"
-{
-#include "getGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
-}
-
-using namespace org_scilab_modules_gui_bridge;
-
 int GetUicontrolBackgroundColor(sciPointObj* sciObj)
 {
-  int returnFlag = FALSE;
-  int * returnValues = NULL;
-  double *tmp;
+    double *tmp;
+    int status = 0;
 
+    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_BACKGROUNDCOLOR__), jni_double_vector, (void **) &tmp);
 
-  getGraphicObjectProperty(sciObj->UID, __GO_UI_BACKGROUND_COLOR__, jni_double_vector, (void **) &tmp);
-
-  if (tmp != NULL)
-  {
-      returnFlag =  sciReturnRowVector(tmp, 3);
-      return returnFlag;
-  }
-  else
-  {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
-      return FALSE;
-  }
-
-#if 0
-  if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
+    if (tmp == NULL)
     {
-      // Get the color from Java
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
-        {
-          returnValues = CallScilabBridge::getFrameBackgroundColor(getScilabJavaVM(),
-                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-        }
-      else /* All other uicontrol styles */
-        {
-          returnValues = CallScilabBridge::getWidgetBackgroundColor(getScilabJavaVM(),
-                                                                    pUICONTROL_FEATURE(sciObj)->hashMapIndex);
-
-        }
-      tmp = new double[3];
-
-      /* If values are stored in Scilab then they are read */
-      /* else they are writen */
-      if (pUICONTROL_FEATURE(sciObj)->backgroundcolor != NULL)
-        {
-          tmp[0] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[0];
-          tmp[1] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[1];
-          tmp[2] = pUICONTROL_FEATURE(sciObj)->backgroundcolor[2];
-        }
-      else
-        {
-          tmp[0] = (double)returnValues[0] / 255; // Red
-          tmp[1] = (double)returnValues[1] / 255; // Green
-          tmp[2] = (double)returnValues[2] / 255; // Blue
-
-          pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
-          pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = tmp[0];
-          pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = tmp[1];
-          pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = tmp[2];
-        }
-
-      returnFlag =  sciReturnRowVector(tmp, 3);
-
-      delete [] tmp;
-	  delete [] returnValues;
-
-      return returnFlag;
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "BackgroundColor");
+        return FALSE;
     }
-  else
+    else
     {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
-      return FALSE;
+        status = sciReturnRowVector(tmp, 3);
+        delete[] tmp;
+        return status;
     }
-#endif
 }
 

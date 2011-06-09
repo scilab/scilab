@@ -13,22 +13,18 @@
 #ifndef __SET_UICONTROL_POSITION_HXX__
 #define __SET_UICONTROL_POSITION_HXX__
 
-#include "CallScilabBridge.hxx"
-#include "UnitsConversion.hxx"
+#include <stdio.h>
+
 extern "C"
 {
 #include "sci_types.h"
 #include "SetUicontrolPosition.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "localization.h"
-#include "Scierror.h"
-#include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
-#include "UicontrolStyleToString.h"
-#include "HandleManagement.h"
-#include "GraphicSynchronizerInterface.h"
+#include "Scierror.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 }
 
 #endif /* __SET_UICONTROL_POSITION_HXX__ */

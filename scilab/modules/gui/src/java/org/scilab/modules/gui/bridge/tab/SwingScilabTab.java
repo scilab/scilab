@@ -99,6 +99,8 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     private static final int VIEWPORT_SIZE = 4;
 
     private static final String UNDOCK = "undock";
+    
+    private String id = null;
 
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
@@ -1167,5 +1169,13 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     public void update(String property, Object value) {
         //TODO : Some parameters can be update from MVC. 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

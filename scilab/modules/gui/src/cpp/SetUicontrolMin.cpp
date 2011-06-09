@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * Sets the min property of an uicontrol object 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -13,111 +14,38 @@
 
 #include "SetUicontrolMin.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
 int SetUicontrolMin(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  if (valueType == sci_matrix)
+    int minValue = 0;
+    BOOL status = FALSE;
+
+    if (valueType != sci_matrix)
     {
-
-      if(nbCol != 1 || nbRow != 1)
-        {
-          /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "Min");
-          return SET_PROPERTY_ERROR;
-        }
-
-      /* Store the value in Scilab */
-      pUICONTROL_FEATURE(sciObj)->min = (int) getDoubleFromStack(stackPointer);
-
-      /* Update Java Objects */
-      if (pUICONTROL_FEATURE(sciObj)->style == SCI_SLIDER)
-        {
-          /* Min value */
-          CallScilabBridge::setSliderMinValue(getScilabJavaVM(),
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      (int) pUICONTROL_FEATURE(sciObj)->min);
-         
-          /* Ticks spacing: if not user defined */
-          if (pUICONTROL_FEATURE(sciObj)->sliderStep == NULL)
-            {
-              /* Check if min is < to max property */
-              if (pUICONTROL_FEATURE(sciObj)->min <= pUICONTROL_FEATURE(sciObj)->max)
-                {
-                  CallScilabBridge::setSliderMinorTickSpacing(getScilabJavaVM(),
-                                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                              (int) (0.01 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
-                  
-                  CallScilabBridge::setSliderMajorTickSpacing(getScilabJavaVM(), 
-                                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                              (int) (0.1 * (pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min)));
-                }
-            }
-       }
-      else if (pUICONTROL_FEATURE(sciObj)->style == SCI_LISTBOX)
-        {
-          /* Multiselection available ? */
-          if ((pUICONTROL_FEATURE(sciObj)->max - pUICONTROL_FEATURE(sciObj)->min) > 1)
-            {
-              CallScilabBridge::setListBoxMultipleSelectionEnabled(getScilabJavaVM(),
-                                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                                   TRUE);
-            }
-          else
-            {
-              CallScilabBridge::setListBoxMultipleSelectionEnabled(getScilabJavaVM(),
-                                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                                   FALSE);
-            }
-        }
-      else if (pUICONTROL_FEATURE(sciObj)->style == SCI_CHECKBOX)
-        {
-          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0) /* Value set by the user */
-            {
-              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
-                {
-					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "Checkbox", "Min", "Max");
-                }
-
-              CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
-                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                   pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
-            }
-          else  /* Default Value is 0 */
-            {
-              CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
-                                                   pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                   pUICONTROL_FEATURE(sciObj)->max == 0);
-            }
-        }
-      else if (pUICONTROL_FEATURE(sciObj)->style == SCI_RADIOBUTTON)
-        {
-          if (pUICONTROL_FEATURE(sciObj)->valueSize != 0)  /* Value set by the user */
-            {
-              if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
-                {
-					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "Radiobutton", "Min", "Max");
-                }
-
-              CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      pUICONTROL_FEATURE(sciObj)->value[0] == pUICONTROL_FEATURE(sciObj)->max);
-            }
-          else  /* Default Value is 0 */
-            {
-              CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
-                                                      pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                      pUICONTROL_FEATURE(sciObj)->max == 0);
-            }
-        }
-      return SET_PROPERTY_SUCCEED;
+        /* Wrong datatype */
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "Min");
+        return SET_PROPERTY_ERROR;
     }
-  else
+    if(nbCol != 1 || nbRow != 1)
     {
-      /* Wrong datatype */
-      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "Min");
-      return SET_PROPERTY_ERROR;
+        /* Wrong value size */
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "Min");
+        return SET_PROPERTY_ERROR;
     }
 
+
+    /* Store the value in Scilab */
+    minValue = (int) getDoubleFromStack(stackPointer);
+
+    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_MIN__), &minValue, jni_int, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Min");
+        return SET_PROPERTY_ERROR;
+    }
 }
 

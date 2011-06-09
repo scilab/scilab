@@ -34,6 +34,7 @@
 int get_position_property( sciPointObj * pobj )
 {
     char* type;
+    double* position;
 
   /* Deactivated for now */
 #if 0
@@ -47,7 +48,7 @@ int get_position_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **) &type);
 
     /* Special figure case */
     if (strcmp(type, __GO_FIGURE__) == 0)
@@ -56,9 +57,9 @@ int get_position_property( sciPointObj * pobj )
         int* figureSize;
         double position[4];
 
-        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector, &figurePosition);
+        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
 
-        getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector, &figureSize);
+        getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector, (void **) &figureSize);
 
         if (figurePosition == NULL || figureSize == NULL)
         {
@@ -79,7 +80,7 @@ int get_position_property( sciPointObj * pobj )
     {
         double* position;
 
-        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, &position);
+        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
         if (position == NULL)
         {
@@ -91,9 +92,8 @@ int get_position_property( sciPointObj * pobj )
     }
 
     /* Generic case : position is a 4 row vector */
-    double* position;
 
-    getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, &position);
+    getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
     if (position == NULL)
     {

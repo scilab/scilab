@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
  * Sets the listbox top property of an uicontrol object
  * 
@@ -15,11 +15,12 @@
 
 #include "SetUicontrolListboxTop.hxx"
 
-using namespace org_scilab_modules_gui_bridge;
-
 int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-  int value = 0, nbValue = 0;
+    int value = 0;
+    int nbValues = 0;
+    int listboxTopSize = 0;
+    BOOL status = FALSE;
 
   if (valueType == sci_matrix)
     {
@@ -41,9 +42,9 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
           return SET_PROPERTY_ERROR;
         }
 
-      nbValue = sscanf(getStringFromStack(stackPointer), "%d", &value);
+      nbValues = sscanf(getStringFromStack(stackPointer), "%d", &value);
 
-      if(nbValue != 1)
+      if(nbValues != 1)
         {
           /* Wrong value size */
           Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A real expected.\n")), "ListboxTop");
@@ -57,31 +58,28 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
       return SET_PROPERTY_ERROR;
     }
 
-  /* Store the value in Scilab */
-  if (nbCol == 0 || nbRow ==0) /* Empty matrix value */
-    {
-      if(pUICONTROL_FEATURE(sciObj)->listboxTop != NULL)
-        {
-          delete [] pUICONTROL_FEATURE(sciObj)->listboxTop;
-          pUICONTROL_FEATURE(sciObj)->listboxTop = NULL;
-        }
-    }
-  else
-    {
-      pUICONTROL_FEATURE(sciObj)->listboxTop = new int[1];
-      pUICONTROL_FEATURE(sciObj)->listboxTop[0] = value;
-    }
-  
-  switch(pUICONTROL_FEATURE(sciObj)->style)
-    {
-    case SCI_LISTBOX:
-        CallScilabBridge::setListBoxListBoxTop(getScilabJavaVM(), 
-                                         pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                         value);
-      return SET_PROPERTY_SUCCEED;
-    default:
-      /* No Java attribute to set or method to call */
-      return SET_PROPERTY_SUCCEED;
-    }
+  listboxTopSize = nbCol*nbRow;
+  status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP_SIZE__), &listboxTopSize, jni_int, 1);
+
+  if (status != TRUE)
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
+    return SET_PROPERTY_ERROR;
+  }
+
+  if (listboxTopSize != 0)
+  {
+      status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP__), &value, jni_int, nbCol*nbRow);
+
+      if (status == TRUE)
+      {
+          return SET_PROPERTY_SUCCEED;
+      }
+      else
+      {
+          Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
+          return SET_PROPERTY_ERROR;
+      }
+  }
 }
 

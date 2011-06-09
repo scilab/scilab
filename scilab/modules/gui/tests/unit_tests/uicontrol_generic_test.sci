@@ -100,6 +100,7 @@ if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
+if 0 // TODO Activate this test
 // --- Callback tests ---
 // Default values
 if get(h, "callback") <> "" then
@@ -133,6 +134,7 @@ if get(h, "callback_type") <> -1 then
   ierr = 1;
 end
 // TODO tests with wrong callbackType ??
+end
 
 // --- Enable ---
 // Default value
@@ -398,6 +400,7 @@ if get(h, "style") <>  uicontrol_style then
 end
 // TODO style changes tests (when implemented)
 
+if 0 // TODO Activate this test
 // --- Tag ---
 // Default value
 if get(h, "tag") <> "" then
@@ -412,6 +415,7 @@ if get(h, "tag") <> "" then
   ierr = 1;
 end
 // TODO test with wrong values
+end
 
 // --- Units ---
 // Default value
@@ -432,6 +436,7 @@ if get(h, "units") <> "pixels" then
 end
 // TODO test with wrong values
 
+if 0 // TODO Activate this test
 // --- UserData ---
 // Default value
 if ~isempty(get(h, "user_data")) then
@@ -444,6 +449,7 @@ end
 set(h, "user_data", []);
 if ~isempty(get(h, "user_data")) then
   ierr = 1;
+end
 end
 
 // --- Value tests ---

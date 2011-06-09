@@ -27,8 +27,8 @@ int GetUicontrolString(sciPointObj* sciObj)
     int *piNbStrings = &iNbStrings;
     char **pstString;
 
-    getGraphicObjectProperty(sciObj->UID, __GO_UI_NB_STRING__, jni_int, (void **) &piNbStrings);
-    getGraphicObjectProperty(sciObj->UID, __GO_UI_STRING__, jni_string_vector, (void **) &pstString);
+    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING_SIZE__), jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING__), jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {
