@@ -33,7 +33,6 @@
 #include "GetUicontrolFontUnits.h"
 #include "GetUicontrolFontSize.h"
 #include "GetUicontrolFontAngle.h"
-#include "GetUiobjectTag.h"
 #include "GetUiobjectEnable.h"
 #include "GetUicontrolMin.h"
 #include "GetUicontrolMax.h"
@@ -180,6 +179,7 @@ int get_color_range_property(          sciPointObj * pobj ) ;
 int get_outside_colors_property(       sciPointObj * pobj ) ;
 int get_grid_position_property(        sciPointObj * pobj ) ;
 int get_anti_aliasing_property(        sciPointObj * pobj ) ;
+int get_tag_property(                  sciPointObj * pobj ) ;
 int get_UID(                           sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

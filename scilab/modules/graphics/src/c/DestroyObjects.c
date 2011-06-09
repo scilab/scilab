@@ -41,7 +41,6 @@
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
-#include "SetUiobjectTag.h"
 #include "get_ticks_utils.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"
@@ -264,7 +263,6 @@ int DestroyFigure (sciPointObj * pthis)
     FREE( pFIGURE_FEATURE(pthis)->name ) ;
   }
 
-	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
   sciStandardDestroyOperations(pthis) ;

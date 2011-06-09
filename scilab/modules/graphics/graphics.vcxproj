@@ -358,10 +358,12 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />

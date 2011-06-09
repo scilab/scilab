@@ -195,7 +195,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
 { "fontangle"           , SetUicontrolFontAngle             },
 { "min"                 , SetUicontrolMin                   },
 { "max"                 , SetUicontrolMax                   },
-{ "tag"                 , SetUiobjectTag                    },
+{ "tag"                 , set_tag_property                  },
 { "listboxtop"          , SetUicontrolListboxTop            },
 { "value"               , SetUicontrolValue                 },
 { "units"               , SetUicontrolUnits                 },

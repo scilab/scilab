@@ -188,14 +188,12 @@ am__objects_2 = libscigui_algo_la-callJoGLView.lo \
 	libscigui_algo_la-GetUicontrolFontAngle.lo \
 	libscigui_algo_la-SetUiobjectCallback.lo \
 	libscigui_algo_la-GetUiobjectCallback.lo \
-	libscigui_algo_la-SetUiobjectTag.lo \
 	libscigui_algo_la-SetUiobjectRotate.lo \
 	libscigui_algo_la-SetUiobjectShear.lo \
 	libscigui_algo_la-SetUiobjectScale.lo \
 	libscigui_algo_la-SetUiobjectColnames.lo \
 	libscigui_algo_la-SetUiobjectRownames.lo \
 	libscigui_algo_la-SetUiobjectTabledata.lo \
-	libscigui_algo_la-GetUiobjectTag.lo \
 	libscigui_algo_la-SetUiobjectEnable.lo \
 	libscigui_algo_la-GetUiobjectEnable.lo \
 	libscigui_algo_la-SetUimenuChecked.lo \
@@ -720,14 +718,12 @@ src/cpp/SetUicontrolFontAngle.cpp \
 src/cpp/GetUicontrolFontAngle.cpp \
 src/cpp/SetUiobjectCallback.cpp \
 src/cpp/GetUiobjectCallback.cpp \
-src/cpp/SetUiobjectTag.cpp \
 src/cpp/SetUiobjectRotate.cpp \
 src/cpp/SetUiobjectShear.cpp \
 src/cpp/SetUiobjectScale.cpp \
 src/cpp/SetUiobjectColnames.cpp \
 src/cpp/SetUiobjectRownames.cpp \
 src/cpp/SetUiobjectTabledata.cpp \
-src/cpp/GetUiobjectTag.cpp \
 src/cpp/SetUiobjectEnable.cpp \
 src/cpp/GetUiobjectEnable.cpp \
 src/cpp/SetUimenuChecked.cpp \
@@ -1087,7 +1083,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectCallback.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectEnable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectForegroundColor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-ImageRenderer.Plo@am__quote@
@@ -1134,7 +1129,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectShear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectTabledata.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Slider.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-TerminateGui.Plo@am__quote@
@@ -1914,13 +1908,6 @@ libscigui_algo_la-GetUiobjectCallback.lo: src/cpp/GetUiobjectCallback.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-GetUiobjectCallback.lo `test -f 'src/cpp/GetUiobjectCallback.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectCallback.cpp
 
-libscigui_algo_la-SetUiobjectTag.lo: src/cpp/SetUiobjectTag.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-SetUiobjectTag.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-SetUiobjectTag.Tpo -c -o libscigui_algo_la-SetUiobjectTag.lo `test -f 'src/cpp/SetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTag.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-SetUiobjectTag.Tpo $(DEPDIR)/libscigui_algo_la-SetUiobjectTag.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectTag.cpp' object='libscigui_algo_la-SetUiobjectTag.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-SetUiobjectTag.lo `test -f 'src/cpp/SetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTag.cpp
-
 libscigui_algo_la-SetUiobjectRotate.lo: src/cpp/SetUiobjectRotate.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-SetUiobjectRotate.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-SetUiobjectRotate.Tpo -c -o libscigui_algo_la-SetUiobjectRotate.lo `test -f 'src/cpp/SetUiobjectRotate.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectRotate.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-SetUiobjectRotate.Tpo $(DEPDIR)/libscigui_algo_la-SetUiobjectRotate.Plo
@@ -1962,13 +1949,6 @@ libscigui_algo_la-SetUiobjectTabledata.lo: src/cpp/SetUiobjectTabledata.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/SetUiobjectTabledata.cpp' object='libscigui_algo_la-SetUiobjectTabledata.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-SetUiobjectTabledata.lo `test -f 'src/cpp/SetUiobjectTabledata.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectTabledata.cpp
-
-libscigui_algo_la-GetUiobjectTag.lo: src/cpp/GetUiobjectTag.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-GetUiobjectTag.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-GetUiobjectTag.Tpo -c -o libscigui_algo_la-GetUiobjectTag.lo `test -f 'src/cpp/GetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectTag.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-GetUiobjectTag.Tpo $(DEPDIR)/libscigui_algo_la-GetUiobjectTag.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/GetUiobjectTag.cpp' object='libscigui_algo_la-GetUiobjectTag.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-GetUiobjectTag.lo `test -f 'src/cpp/GetUiobjectTag.cpp' || echo '$(srcdir)/'`src/cpp/GetUiobjectTag.cpp
 
 libscigui_algo_la-SetUiobjectEnable.lo: src/cpp/SetUiobjectEnable.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-SetUiobjectEnable.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-SetUiobjectEnable.Tpo -c -o libscigui_algo_la-SetUiobjectEnable.lo `test -f 'src/cpp/SetUiobjectEnable.cpp' || echo '$(srcdir)/'`src/cpp/SetUiobjectEnable.cpp

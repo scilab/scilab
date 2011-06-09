@@ -298,7 +298,6 @@
     <ClCompile Include="..\cpp\GetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\GetUiobjectTag.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectVisible.cpp" />
     <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\gw_gui.c" />
@@ -378,7 +377,6 @@
     <ClCompile Include="..\cpp\SetUiobjectCallback.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectForegroundColor.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectTag.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectVisible.cpp" />
     <ClCompile Include="setVisibleMainWindow.c" />
     <ClCompile Include="..\cpp\Slider.cpp" />
@@ -478,8 +476,6 @@
     <ClInclude Include="..\cpp\GetUiobjectEnable.hxx" />
     <ClInclude Include="..\..\includes\GetUiobjectForegroundColor.h" />
     <ClInclude Include="..\cpp\GetUiobjectForegroundColor.hxx" />
-    <ClInclude Include="..\..\includes\GetUiobjectTag.h" />
-    <ClInclude Include="..\cpp\GetUiobjectTag.hxx" />
     <ClInclude Include="..\..\includes\GetUiobjectVisible.h" />
     <ClInclude Include="..\cpp\GetUiobjectVisible.hxx" />
     <ClInclude Include="..\jni\GiwsException.hxx" />
@@ -552,8 +548,6 @@
     <ClInclude Include="..\cpp\SetUiobjectEnable.hxx" />
     <ClInclude Include="..\..\includes\SetUiobjectForegroundColor.h" />
     <ClInclude Include="..\cpp\SetUiobjectForegroundColor.hxx" />
-    <ClInclude Include="..\..\includes\SetUiobjectTag.h" />
-    <ClInclude Include="..\cpp\SetUiobjectTag.hxx" />
     <ClInclude Include="..\..\includes\SetUiobjectVisible.h" />
     <ClInclude Include="..\cpp\SetUiobjectVisible.hxx" />
     <ClInclude Include="setVisibleMainWindow.h" />

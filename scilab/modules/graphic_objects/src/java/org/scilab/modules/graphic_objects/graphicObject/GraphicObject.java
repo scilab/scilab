@@ -36,7 +36,7 @@ public abstract class GraphicObject implements Cloneable {
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, SELECTEDCHILD, UNKNOWNPROPERTY };
+		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, SELECTEDCHILD, TAG, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -59,6 +59,9 @@ public abstract class GraphicObject implements Cloneable {
 	/** User data */
 	private Object userData;
 
+	/** Tag */
+	private String tag;
+
 	/**
 	 * Identifier of the selected child
 	 * This was previously implemented as a list, but is used in practice
@@ -77,6 +80,7 @@ public abstract class GraphicObject implements Cloneable {
 		valid = true;
 		referenced = false;
 		selectedChild = "";
+		tag = "";
 	}
 
 	public GraphicObject clone() {
@@ -194,6 +198,8 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.TYPE;
 		}  else if (propertyName.equals(__GO_DATA_MODEL__)) {
 			return GraphicObjectPropertyType.DATA;
+		}  else if (propertyName.equals(__GO_TAG__)) {
+			return GraphicObjectPropertyType.TAG;
 		}  else {
 			return GraphicObjectPropertyType.UNKNOWNPROPERTY;
 		}
@@ -229,6 +235,8 @@ public abstract class GraphicObject implements Cloneable {
             return getType();
         }  else if (property == GraphicObjectPropertyType.DATA) {
 			return getIdentifier();
+        }  else if (property == GraphicObjectPropertyType.TAG) {
+			return getTag();
         }  else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return null;
 		} else {
@@ -257,6 +265,8 @@ public abstract class GraphicObject implements Cloneable {
 			setSelectedChild((String) value);
         } else if (property == GraphicObjectPropertyType.DATA) {
 			return true;
+        } else if (property == GraphicObjectPropertyType.TAG) {
+			setTag((String) value);
 		} else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
 			return false;
 		}
@@ -379,6 +389,19 @@ public abstract class GraphicObject implements Cloneable {
 		return 0;
 	}
 
+	/**
+	 * @return the tag
+	 */
+	public String getTag() {
+		return tag;
+	}
+
+	/**
+	 * @param tag the tag to set
+	 */
+	public void setTag(String tag) {
+	    this.tag = tag;
+	}
 	/**
 	 * Get parent Figure method
 	 * Returns the identifier of the object's parent Figure

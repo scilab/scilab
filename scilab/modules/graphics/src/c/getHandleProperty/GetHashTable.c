@@ -194,7 +194,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
 { "fontangle"           , GetUicontrolFontAngle             },
 { "min"                 , GetUicontrolMin                   },
 { "max"                 , GetUicontrolMax                   },
-{ "tag"                 , GetUiobjectTag                    },
+{ "tag"                 , get_tag_property                  },
 { "listboxtop"          , GetUicontrolListboxTop            },
 { "value"               , GetUicontrolValue                 },
 { "units"               , GetUicontrolUnits                 },

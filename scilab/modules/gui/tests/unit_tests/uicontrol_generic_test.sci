@@ -400,7 +400,6 @@ if get(h, "style") <>  uicontrol_style then
 end
 // TODO style changes tests (when implemented)
 
-if 0 // TODO Activate this test
 // --- Tag ---
 // Default value
 if get(h, "tag") <> "" then
@@ -415,7 +414,6 @@ if get(h, "tag") <> "" then
   ierr = 1;
 end
 // TODO test with wrong values
-end
 
 // --- Units ---
 // Default value

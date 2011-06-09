@@ -89,6 +89,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Compound
@@ -97,10 +98,12 @@ function %h_p(h)
         case "Compound"
             u=h.user_data
             t=[t;
-            "parent: "+h.parent.type
-            "children: "+fmtchildren(h.children)
-            "visible = "+sci2exp(h.visible)
-            "user_data = "+fmtuser_data(u)]
+                "parent: "+h.parent.type
+                "children: "+fmtchildren(h.children)
+                "visible = "+sci2exp(h.visible)
+                "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
+                ]
 
         // Axes
         // =====================================================================
@@ -149,7 +152,7 @@ function %h_p(h)
                 "axes_visible = "+sci2exp(h.axes_visible)
                 "axes_reverse = "+sci2exp(h.axes_reverse)
                 "grid = "+sci2exp(h.grid,0)
-				"grid_position = "+sci2exp(h.grid_position)
+                "grid_position = "+sci2exp(h.grid_position)
                 "x_location = "+sci2exp(h.x_location)
                 "y_location = "+sci2exp(h.y_location)
                 "title: "+fmtchildren(h.title)
@@ -202,33 +205,35 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(h.user_data)
+                "tag = "+h.tag
             ]
 
         // Legend
         // =====================================================================
 
         case "Legend"
-	  t=[t;
-	     "parent: "+h.parent.type
-	     "children: "+fmtchildren(h.children)
-	     "visible = "+sci2exp(h.visible)
-	     "text = "+sci2exp(h.text)
-	     "font_style = "+string(h.font_style)
-	     "font_size = "+string(h.font_size)
-	     "font_color = "+string(h.font_color)
-	     "fractional_font = " + sci2exp(h.fractional_font)
-	     "links = " +  fmtchildren(h.links)
-	     "legend_location = " + sci2exp(h.legend_location)
-	     "position = " + sci2exp(h.position)
-	     "line_mode = "+sci2exp(h.line_mode)
-	     "thickness = "+string(h.thickness)
-	     "foreground = "+string(h.foreground)
-	     "fill_mode = "+sci2exp(h.fill_mode)
-	     "background = "+string(h.background)
-	     "clip_state = "+sci2exp(h.clip_state)
-	     "clip_box = "+sci2exp(h.clip_box,0)
-	     "user_data = "+fmtuser_data(h.user_data)
-	      ]
+          t=[t;
+              "parent: "+h.parent.type
+              "children: "+fmtchildren(h.children)
+              "visible = "+sci2exp(h.visible)
+              "text = "+sci2exp(h.text)
+              "font_style = "+string(h.font_style)
+              "font_size = "+string(h.font_size)
+              "font_color = "+string(h.font_color)
+              "fractional_font = " + sci2exp(h.fractional_font)
+              "links = " +  fmtchildren(h.links)
+              "legend_location = " + sci2exp(h.legend_location)
+              "position = " + sci2exp(h.position)
+              "line_mode = "+sci2exp(h.line_mode)
+              "thickness = "+string(h.thickness)
+              "foreground = "+string(h.foreground)
+              "fill_mode = "+sci2exp(h.fill_mode)
+              "background = "+string(h.background)
+              "clip_state = "+sci2exp(h.clip_state)
+              "clip_box = "+sci2exp(h.clip_box,0)
+              "user_data = "+fmtuser_data(h.user_data)
+              "tag = "+h.tag
+              ]
 
         // Rectangle
         // =====================================================================
@@ -255,6 +260,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Arc
@@ -277,6 +283,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Figure
@@ -297,7 +304,7 @@ function %h_p(h)
                 "color_map= matrix "+strcat(string(size(h.color_map)),'x')
                 "pixmap = "+sci2exp(h.pixmap)
                 "pixel_drawing_mode = "+sci2exp(h.pixel_drawing_mode,0)
-				"anti_aliasing = " + sci2exp(h.anti_aliasing)
+                "anti_aliasing = " + sci2exp(h.anti_aliasing)
                 "immediate_drawing = "+sci2exp(h.immediate_drawing)
                 "background =  "+string(h.background)
                 "visible = "+sci2exp(h.visible)
@@ -347,6 +354,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Matplot
@@ -369,6 +377,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Fec
@@ -396,13 +405,14 @@ function %h_p(h)
                 "data = "+d
                 "triangles = "+f
                 "z_bounds = "+sci2exp(h.z_bounds,0)
-				"color_range = " + sci2exp(h.color_range, 0);
-				"outside_colors = " + sci2exp(h.outside_colors, 0);
-				"line_mode = " + sci2exp(h.line_mode);
-				"foreground = " + sci2exp(h.foreground);
+                "color_range = " + sci2exp(h.color_range, 0);
+                "outside_colors = " + sci2exp(h.outside_colors, 0);
+                "line_mode = " + sci2exp(h.line_mode);
+                "foreground = " + sci2exp(h.foreground);
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Segs
@@ -443,6 +453,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Champ
@@ -494,6 +505,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Text
@@ -526,6 +538,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Title
@@ -544,6 +557,7 @@ function %h_p(h)
                 "font_size = "+string(h.font_size)
                 "fractional_font = " + sci2exp(h.fractional_font)
                 "font_angle = "+string(h.font_angle)
+                "tag = "+h.tag
             ]
 
         // Label
@@ -567,6 +581,7 @@ function %h_p(h)
                 "auto_position = "+sci2exp(h.auto_position)
                 "position = "+sci2exp(h.position,0)
                 "auto_rotation = "+sci2exp(h.auto_rotation)
+                "tag = "+h.tag
             ]
 
         // Plot3d
@@ -627,6 +642,7 @@ function %h_p(h)
                     "clip_state = "+sci2exp(h.clip_state)
                     "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
+                    "tag = "+h.tag
                 ]
             else
                 t=[t;
@@ -651,6 +667,7 @@ function %h_p(h)
                     "clip_state = "+sci2exp(h.clip_state)
                     "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
+                    "tag = "+h.tag
                 ]
             end
 
@@ -714,6 +731,7 @@ function %h_p(h)
                     "clip_state = "+sci2exp(h.clip_state)
                     "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
+                    "tag = "+h.tag
                 ]
             else
                 t=[t;
@@ -738,6 +756,7 @@ function %h_p(h)
                     "clip_state = "+sci2exp(h.clip_state)
                     "clip_box = "+sci2exp(h.clip_box,0)
                     "user_data = "+fmtuser_data(u)
+                    "tag = "+h.tag
                 ]
             end
 
@@ -779,6 +798,7 @@ function %h_p(h)
                 "color_mode = "+string(h.color_mode)
                 "surface_color = "+c
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // Axis
@@ -806,6 +826,7 @@ function %h_p(h)
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)
+                "tag = "+h.tag
             ]
 
         // uimenu
@@ -871,7 +892,7 @@ function %h_p(h)
             //"CallbackType = "+sci2exp(h.callback_type,0)
             //"Handle_visible = "+sci2exp(h.handle_visible)
             //"Userdata = "+fmtuser_data(u)
-            //"Tag = "+h.tag
+            "Tag = "+h.tag
             ]
 
         end
