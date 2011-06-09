@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include <stdio.h>
 #include "math_graphics.h"
 #include "sciprint.h"
@@ -78,7 +79,7 @@ void slider(int *flag, int *nevprt, double *t, double *xd,
     if( wid < 0) return;
     cur = set_block_win(wid) ; 
     {
-      double val = Min(rpar[1],Max(rpar[0],u[0]));
+      double val = min(rpar[1], max(rpar[0],u[0]));
       double percent = (val - rpar[0])/(rpar[1]-rpar[0]);
       if ( Abs(z[0] - percent) > 0.01 ) /* a mettre en parametre XXXXX */
 	{

@@ -69,7 +69,7 @@
 #include "cvstr.h"
 #include "ezxml.h"
 #include "xscion.h"
-#include "scicos_math.h"
+
 #include "sciblk2.h"
 #include "sciblk4.h"
 #include "dynlib_scicos.h"
@@ -1309,7 +1309,7 @@ static void cossim(double *told)
 		} else {
 			t = tevts[*pointi];
 		}
-		if (abs(t - *told) < ttol) {
+		if (fabs(t - *told) < ttol) {
 			t = *told;
 			/*     update output part */
 		}
@@ -1945,7 +1945,7 @@ static void cossimdaskr(double *told)
 		} else {
 			t = tevts[*pointi];
 		}
-		if (abs(t - *told) < ttol) {
+		if (fabs(t - *told) < ttol) {
 			t = *told;
 			/*     update output part */
 		}
@@ -4966,7 +4966,7 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 		rho_(a, lambda, x, work, rpar, ipar);
 		srur = 1e-10;
 		xi = x[*col-2];  
-		inc = srur * max(abs(xi),1);
+		inc = srur * max(fabs(xi),1);
 		inc = (xi + inc) - xi;  
 		x[*col-2] += inc;
 
@@ -5144,8 +5144,8 @@ static int CallKinsol(double *told)
 				}
 				ratio=0.3;
 				for( j=0;j<N;j++){
-					if (x[j]==0)      ysdata[j]+=1*ratio; else ysdata[j]+=ratio/abs(x[j]);
-					if (fsdata[j]==0) fsdata[j]=1; else fsdata[j]=1/abs(fsdata[j]);	
+					if (x[j]==0)      ysdata[j]+=1*ratio; else ysdata[j]+=ratio/fabs(x[j]);
+					if (fsdata[j]==0) fsdata[j]=1; else fsdata[j]=1/fabs(fsdata[j]);	
 					ysdata[j]/=ratio+1;
 				}
 				status = KINSol(kin_mem, y, strategy, yscale, fscale);/* Calling the Newton Solver */ 

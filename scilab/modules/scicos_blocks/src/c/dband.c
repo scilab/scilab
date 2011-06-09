@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "core_math.h"
 #include "scicos.h"
 #include "dynlib_scicos_blocks.h"

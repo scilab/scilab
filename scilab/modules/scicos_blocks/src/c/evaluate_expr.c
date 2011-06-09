@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include <stdlib.h>
 #if _MSC_VER
 #include <float.h>
 #endif
@@ -30,7 +31,6 @@
 
 #include "scicos_block.h"
 #include "machine.h" /* isinf */
-#include "scicos_math.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 #if _MSC_VER

@@ -173,7 +173,8 @@ Xcos:
 
 * bug 9547 fixed - The about box was not localized due to a multi-line string.
 
-* bug 9573 fixed - getdebuginfo did not report multiple video cards on Windows.
+* bug 9579 fixed - Duplicate content in scicos_math.h removed and replaced by
+                   a cleaner call to math.h instead.
 
 * bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
@@ -832,6 +833,8 @@ Bug fixes:
 * bug 9555 fixed - Typo in the 'deff' help page.
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
+
+* bug 9573 fixed - getdebuginfo did not report multiple video cards on Windows.
 
 * bug 9599 fixed - error message "at line ... of function ... called by" was
                    printed directly on the same line.
