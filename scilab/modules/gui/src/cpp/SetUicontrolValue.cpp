@@ -62,14 +62,6 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_VALUE_SIZE__), &valueSize, jni_int, 1);
-
-    if (status != TRUE)
-    {
-        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
-        return SET_PROPERTY_ERROR;
-    }
-
     valueAsInt = new int[valueSize];
     for (kValue = 0; kValue < valueSize; kValue++)
     {

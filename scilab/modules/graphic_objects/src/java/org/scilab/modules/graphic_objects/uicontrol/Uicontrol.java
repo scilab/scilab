@@ -99,8 +99,7 @@ public class Uicontrol extends GraphicObject {
 	private String fontWeight = "normal";
 	private Double[] foregroundColor = {0.0, 0.0, 0.0};
 	private String horizontalAlignment = "center";
-	private int listboxTop = 1; 
-	private int listboxTopSize = 0; 
+	private Integer[] listboxTop = null; 
 	private int max = 1; 
 	private int min = 0; 
 	private Double[] position = {20.0, 40.0, 40.0, 20.0};
@@ -260,9 +259,7 @@ public class Uicontrol extends GraphicObject {
 		} else if (property == UicontrolProperty.HORIZONTALALIGNMENT) {
 			setHorizontalAlignment((String) value);
 		} else if (property == UicontrolProperty.LISTBOXTOP) {
-			setListboxTop((Integer) value);
-		} else if (property == UicontrolProperty.LISTBOXTOP_SIZE) {
-			setListboxTopSize((Integer) value);
+			setListboxTop((Integer[]) value);
 		} else if (property == UicontrolProperty.MAX) {
 			setMax((Integer) value);
 		} else if (property == UicontrolProperty.MIN) {
@@ -380,17 +377,14 @@ public class Uicontrol extends GraphicObject {
 
 	/* Listbox Top */
 	public Integer getListboxTopSize() {
-		return this.listboxTopSize;
+		return (listboxTop != null ? listboxTop.length : 0); 
 	}
 
-	public void setListboxTopSize(Integer listboxTopSize) {
-		this.listboxTopSize = listboxTopSize;
-	}
-	public Integer getListboxTop() {
+	public Integer[] getListboxTop() {
 		return this.listboxTop;
 	}
 
-	public void setListboxTop(Integer listboxTop) {
+	public void setListboxTop(Integer[] listboxTop) {
 		this.listboxTop = listboxTop;
 	}
 

@@ -18,8 +18,9 @@
 int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int value = 0;
+    int* valueTab;
+    int valueSize = 0;
     int nbValues = 0;
-    int listboxTopSize = 0;
     BOOL status = FALSE;
 
   if (valueType == sci_matrix)
@@ -58,28 +59,24 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
       return SET_PROPERTY_ERROR;
     }
 
-  listboxTopSize = nbCol*nbRow;
-  status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP_SIZE__), &listboxTopSize, jni_int, 1);
-
-  if (status != TRUE)
+  valueSize = nbCol*nbRow;
+  valueTab = new int[valueSize];
+  if (valueSize > 0)
   {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
-    return SET_PROPERTY_ERROR;
+      valueTab[0] = value;
   }
 
-  if (listboxTopSize != 0)
-  {
-      status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP__), &value, jni_int, nbCol*nbRow);
+  status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP__), valueTab, jni_int_vector, valueSize);
 
-      if (status == TRUE)
-      {
-          return SET_PROPERTY_SUCCEED;
-      }
-      else
-      {
-          Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
-          return SET_PROPERTY_ERROR;
-      }
+  delete[] valueTab;
+
+  if (status == TRUE)
+  {
+      return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+      Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
+      return SET_PROPERTY_ERROR;
   }
 }
-

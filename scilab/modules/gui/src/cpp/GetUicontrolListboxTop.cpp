@@ -19,8 +19,7 @@ int GetUicontrolListboxTop(sciPointObj* sciObj)
 {
     int listboxTopSize = 0;
     int* piListboxTopSize = &listboxTopSize;
-    int listboxTop = 0;
-    int* piListboxTop = &listboxTop;
+    int* piListboxTop = NULL;;
 
     getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP_SIZE__), jni_int, (void**) &piListboxTopSize);
 
@@ -37,7 +36,7 @@ int GetUicontrolListboxTop(sciPointObj* sciObj)
         }
         else
         {
-            getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP__), jni_int, (void**) &piListboxTop);
+            getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_LISTBOXTOP__), jni_int_vector, (void**) &piListboxTop);
 
             if (piListboxTop == NULL)
             {
@@ -46,7 +45,7 @@ int GetUicontrolListboxTop(sciPointObj* sciObj)
             }
             else
             {
-                return sciReturnInt(listboxTop);
+                return sciReturnRowVectorFromInt(piListboxTop, listboxTopSize);
             }
         }
     }
