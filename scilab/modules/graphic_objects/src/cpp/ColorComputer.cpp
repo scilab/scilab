@@ -68,17 +68,17 @@ void ColorComputer::getDirectColor(double s, double* colorMap, int colormapSize,
 {
     int index;
 
-    index = (int) s;
-
     /* Clamp */
-    if (index < 0)
+    if (s < 0.0)
     {
-        index = 0;
+        s = 0.0;
     }
-    else if (index > colormapSize - 1)
+    else if (s > (double)(colormapSize - 1))
     {
-        index = colormapSize - 1;
+        s = (double) (colormapSize - 1);
     }
+
+    index = (int) s;
 
     returnedColor[0] = colorMap[index];
     returnedColor[1] = colorMap[colormapSize+index];
