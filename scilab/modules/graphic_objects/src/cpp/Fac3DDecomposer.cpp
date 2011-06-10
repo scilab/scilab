@@ -323,13 +323,11 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
              */
             colorRangeValid = 0;
 
-            colMin = 1.0;
+            colMin = 0.0;
             colRange = (double) (colormapSize-1);
             color = 0.5*(colRange);
         }
 
-        colMax -= 1.0;
-        colMin -= 1.0;
     }
 
     for (i = 0; i < numGons; i++)
@@ -340,11 +338,10 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
             if (perVertex == 1 && colorFlag == 2)
             {
                 color = computeAverageValue(&colors[i*numVerticesPerGon], numVerticesPerGon);
-                color -= 1.0;
             }
             else if (perVertex == 0)
             {
-                color = colors[i] - 1.0;
+                color = colors[i];
             }
         }
 
@@ -354,17 +351,18 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
             {
                 if (colorFlag == 3)
                 {
-                    color = colors[i*numVerticesPerGon+j] - 1.0;
+                    color = colors[i*numVerticesPerGon+j];
                 }
                 else if (colorFlag == 4)
                 {
-                    color = colors[i*numVerticesPerGon] - 1.0;
+                    color = colors[i*numVerticesPerGon];
                 }
             }
 
             if (dataMapping == 1)
             {
-                ColorComputer::getDirectColor(color, colormap, colormapSize, &buffer[bufferOffset]);
+                double tmpColor = DecompositionUtils::getAbsoluteValue(color);
+                ColorComputer::getDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
             }
             else if (dataMapping == 0)
             {
