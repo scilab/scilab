@@ -32,22 +32,29 @@ int mcloseCurrentFile()
 
 int mcloseAll()
 {
-     int iFileCount = FileManager::getFileMaxID();
-     for(int i = iFileCount ; i > 0 ; i--)
-     {
-         //stdin and stdout
-         if(i != 0 && i != 5 && i != 6 && FileManager::getFile(i) != NULL)
-         {
-             int iRet = mclose(i);
-             if(iRet)
-             {
-                 return iRet;
-             }
-             FileManager::deleteFile(i);
-         }
-     }
+    int iFileCount = FileManager::getFileMaxID();
+    for(int i = iFileCount - 1 ; i >= 0 ; i--)
+    {
+        switch (i)
+        {
+        case 0: // stderr
+        case 5: // stdin
+        case 6: // stdout
+            continue;
+            break;
+        default :
+            if(FileManager::getFile(i) != NULL)
+            {//call mclose only for existing opened files.
+                int iRet = mclose(i);
+                if(iRet)
+                {
+                    return iRet;
+                }
+            }
+        }
+    }
 
-     return 0;
+    return 0;
 }
 
 int mclose(int _iID)
