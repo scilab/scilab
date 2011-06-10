@@ -602,6 +602,9 @@ Bug fixes:
 * bug 4847 fixed - In uigetfile, there was no way to select files with a given
                    pattern.
 
+* bug 5696 fixed - When SE Linux is enable, disable the error messages for
+                   Scilab in the Scilab binary distribution.
+
 * bug 6875 fixed - test_run() could not run at once on the +3000 tests of
                    Scilab.
 

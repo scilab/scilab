@@ -327,6 +327,43 @@ set_embedded_java_vm () {
 
 }
 
+# If enabled, disable se_linux
+check_and_disable_selinux() {
+    if test -x /usr/sbin/selinuxenabled -a $IS_SCILAB_BINARY -eq 1; then
+        /usr/sbin/selinuxenabled
+        if test $? = 0; then
+            if test $SCIVERBOSE -ne 0; then
+                echo "Disabling SELinux on Scilab"
+            fi
+            
+            JVMLIB_32=$SCIBINARYBASE/java/lib/i386/server/libjvm.so
+            if test -f $JVMLIB_32; then
+                /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_32"
+                if test $? != 0; then
+                    echo "Error: Cannot chcon $JVMLIB_32"
+                fi
+            fi
+            JVMLIB_64=$SCIBINARYBASE/java/lib/amd64/server/libjvm.so
+            if test -f $JVMLIB_64; then
+                /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_64"
+                if test $? != 0; then
+                    echo "Error: Cannot chcon $JVMLIB_64"
+                fi
+            fi
+            /usr/bin/chcon -t execmem_exec_t "$SCIBINARYBASE/bin/scilab-bin"
+            if test $? != 0; then
+                echo "Error: Cannot chcon 'scilab-bin'"
+            fi
+
+            /usr/bin/chcon -t execmem_exec_t "$SCIBINARYBASE/bin/scilab-cli-bin"
+            if test $? != 0; then
+                echo "Error: Cannot chcon 'scilab-cli-bin'"
+            fi
+
+        fi
+    fi
+}
+
 detect_java_vm() {
 
     JAVA_SHLIB="libjava.so"
@@ -750,6 +787,9 @@ if test $IS_SCILAB_BINARY -ne 1; then
 # We are not using the Scilab binary, find out where docbook is.
     find_docbook_path
 fi
+
+# Check if SELINUX is enable. If it is the case, disable it for Scilab
+check_and_disable_selinux
 
 do_scilex()
 {
