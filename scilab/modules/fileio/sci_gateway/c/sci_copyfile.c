@@ -47,44 +47,45 @@ int sci_copyfile(char *fname, int* _piKey)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if (getAllocatedSingleWideString(_piKey, piAddressVarOne, &pStVarOne))
     {
-        return 0;
+        return 1;
     }
+
     if (getAllocatedSingleWideString(_piKey, piAddressVarTwo, &pStVarTwo))
     {
         if (pStVarOne)
@@ -92,7 +93,7 @@ int sci_copyfile(char *fname, int* _piKey)
             freeAllocatedSingleWideString(pStVarOne);
             pStVarOne = NULL;
         }
-        return 0;
+        return 1;
     }
 
     if (pStVarOne == NULL)
@@ -103,7 +104,7 @@ int sci_copyfile(char *fname, int* _piKey)
             pStVarTwo = NULL;
         }
         Scierror(999,_("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     if (pStVarTwo == NULL)
@@ -114,7 +115,7 @@ int sci_copyfile(char *fname, int* _piKey)
             pStVarOne = NULL;
         }
         Scierror(999,_("%s: Wrong value for input argument #%d: A string expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
@@ -176,7 +177,7 @@ int sci_copyfile(char *fname, int* _piKey)
                         }
 
                         Scierror(999,_("%s: Memory allocation error.\n"),fname);
-                        return 0;
+                        return 1;
                     }
                 }
                 else
@@ -199,6 +200,7 @@ int sci_copyfile(char *fname, int* _piKey)
                     pStVarTwo = NULL;
                 }
                 Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+                return 1;
             }
         }
         else
@@ -216,7 +218,7 @@ int sci_copyfile(char *fname, int* _piKey)
             }
 
             Scierror(999,_("%s: Wrong value(s) for input argument(s).\n"), fname);
-            return 0;
+            return 1;
         }
 
         returnCopyFileResultOnStack(ierrCopy, fname, _piKey);
@@ -224,6 +226,7 @@ int sci_copyfile(char *fname, int* _piKey)
     else
     {
         Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+        return 1;
     }
 
     if (pStVarOne)
@@ -247,11 +250,11 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
 
     if (wcFullFilename)
     {
-        wchar_t *wcdrv = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcdir = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcname = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
-        wcfilename = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t *wcdrv = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t* wcdir = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t* wcname = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wchar_t* wcext = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
+        wcfilename = (wchar_t*)MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
 
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 

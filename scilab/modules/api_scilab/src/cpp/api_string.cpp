@@ -32,6 +32,7 @@ extern "C"
 #include "localization.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#include "os_wcsdup.h"
 }
 
 using namespace types;
@@ -84,7 +85,9 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 	//non cummulative length
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		_piLength[i] = (int)wcslen(pS->get(i));
+        char* pstTemp = wide_string_to_UTF8(pS->get(i));
+		_piLength[i] = (int)strlen(pstTemp);
+        FREE(pstTemp);
 	}
 
 	if(_pstStrings == NULL || *_pstStrings == NULL)
@@ -92,7 +95,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 		return sciErr;
 	}
 
-	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
+    for(int i = 0 ; i < pS->getSize() ; i++)
 	{
 		if(_pstStrings[i] == NULL)
 		{
@@ -265,95 +268,26 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
 		return sciErr;
 	}
 
-	strSize = (*_piRows * *_piCols);
-	piLenStrings	= (int*)MALLOC(sizeof(int) * strSize);
+	String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
+    for(int i = 0 ; i < pS->getSize() ; i++)
+    {
+        _piwLength[i] = (int)wcslen(pS->get(i));
+    }
 
-	// get length UTF size
-	sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLenStrings, pstStrings);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
-		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
-		return sciErr;
-	}
+    if(_pwstStrings == NULL || *_pwstStrings == NULL)
+    {
+        return sciErr;
+    }
 
-	pstStrings = (char**)MALLOC(sizeof(char*) * strSize);
-
-	for(int i = 0; i < strSize; i++)
-	{
-		pstStrings[i] = (char*)MALLOC(sizeof(char)*(piLenStrings[i] + 1));
-	}
-
-	// get strings UTF format
-	sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLenStrings, pstStrings);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_WIDE_STRING, _("%s: Unable to get argument #%d"), "getMatrixOfWideString", getRhsFromAddress(_pvCtx, _piAddress));
-		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
-		freeArrayOfString(pstStrings,strSize);
-		return sciErr;
-	}
-
-	for(int i = 0; i < (*_piRows * *_piCols); i++)
-	{
-		wchar_t* wString = to_wide_string(pstStrings[i]);
-		if (wString)
+    for(int i = 0 ; i < pS->getSize() ; i++)
+    {
+		if(_pwstStrings[i] == NULL)
 		{
-			_piwLength[i] = (int)wcslen(wString);
-			FREE(wString);
-			wString = NULL;
-		}
-		else
-		{
-			// it should not be here
-			_piwLength[i] = 0;
-		}
-	}
-
-	if ( (_pwstStrings == NULL) || (*_pwstStrings == NULL) )
-	{
-		if (piLenStrings) {FREE(piLenStrings);piLenStrings = NULL;}
-		freeArrayOfString(pstStrings,strSize);
-		return sciErr;
-	}
-
-	for (int i = 0; i < (*_piRows * *_piCols); i++)
-	{
-		if (pstStrings[i])
-		{
-			wchar_t *wcstring = to_wide_string(pstStrings[i]);
-			if (wcstring)
-			{
-				if (_pwstStrings[i])
-				{
-					wcscpy(_pwstStrings[i], wcstring);
-					_piwLength[i] = (int)wcslen(_pwstStrings[i]);
-				}
-				else
-				{
-					_pwstStrings[i] = NULL;
-					_piwLength[i] = 0;
-				}
-				FREE(wcstring);
-				wcstring = NULL;
-			}
-			else
-			{
-				// case to_wide_string fails
-				_pwstStrings[i] = NULL;
-				_piwLength[i] = 0;
-			}
-		}
-		else
-		{
-			// case to_wide_string fails
-			_pwstStrings[i] = NULL;
-			_piwLength[i] = 0;
-		}
-	}
-
-	freeArrayOfString(pstStrings, strSize);
-	if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
+			addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+			return sciErr;
+        }
+        wcscpy( _pwstStrings[i], pS->get(i));
+    }
 
 	return sciErr;
 }
