@@ -199,29 +199,40 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     }
 
     /**
+     * Private method to raise to the front the window
+     */
+    private void raiseToFront() {
+        // force visibility
+        setVisible(true);
+
+        // deiconify the window if needed
+        setState(NORMAL);
+
+        // put it in front of others
+        toFront();
+    }
+
+    /**
      * Deiconify the window and put it in front of other window
      */
     public void raise() {
         // blocking call. So graphic synchronization must be desactivated here.
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        // force visibility
-                        setVisible(true);
-
-                        // deiconify the window if needed
-                        setState(NORMAL);
-
-                        // put it in front of others
-                        toFront();
-                    }
-                });
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        if (!SwingUtilities.isEventDispatchThread()) {
+        /* javasci bug: See bug 9544 why we are doing this check */
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                        public void run() {
+                            raiseToFront();
+                        }
+                    });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        } else {
+            raiseToFront();
         }
-
     }
 
     /**
@@ -356,8 +367,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             ActiveDockableTracker.requestDockableActivation((SwingScilabTab) it.next());
         }
     }
-
-
 
     /**
      * Sets a Scilab MenuBar to a Scilab window

@@ -254,4 +254,7 @@ Bug fixes:
 * bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
                    to parse XML configuration files.
 
+* bug 9544 fixed - Calling graphic with Javasci from a SWING application from
+                   EDT was crashing the execution of a java program.
+
 * bug 9555 fixed - Typo in the 'deff' help page.
