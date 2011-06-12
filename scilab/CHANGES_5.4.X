@@ -251,6 +251,9 @@ Compilation:
 
 * Force the Java class version target to version 6 (or 1.6).
 
+* bug 9500 fixed - Explicit the GUI module manifest class-path to make Debian
+                   checking tool happy.
+
 * bug 9782 fixed - configure with --without-gui was failing.
 
 
