@@ -196,7 +196,7 @@
         <term>"size implicit"</term>
 
         <listitem>
-          <para>if object is a size implicit polynom used for indexing. This a purely internal value.</para>
+          <para>if object is a size implicit polynomial used for indexing. This a purely internal value.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

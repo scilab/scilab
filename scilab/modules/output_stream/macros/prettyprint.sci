@@ -51,7 +51,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     // prettyprint(rand(3,4),"mathml","[") // Return the MathML representation of a 3,4 matrix with '[' as delimiter
     //
     // s=poly(0,'s'); G=[1,s;1+s^2,3*s^3];
-    // xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynom through a LaTeX representation
+    // xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynomial through a LaTeX representation
     //
     // See also
     // math_rendering_features_in_graphic
