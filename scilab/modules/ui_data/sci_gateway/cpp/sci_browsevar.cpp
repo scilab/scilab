@@ -81,26 +81,8 @@ int sci_browsevar(char *fname,unsigned long fname_len)
         pstAllVariableVisibility[i] = strdup("global");
     }
 
-    char *pstColumnNames[] = {_("Icon"), 
-        _("Name"), 
-        //_("Value"),
-        //_("Size"),
-        _("Bytes"),
-        _("Type"),
-        //_("Min"),
-        //_("Max"),
-        //_("Range"),
-        //_("Mean"),
-        //_("Median"),
-        //_("Mode"),
-        //_("Var"),
-        //_("Std"),
-        _("Visibility")
-    };
-
     // Launch Java Variable Browser through JNI
     BrowseVar::openVariableBrowser(getScilabJavaVM(), 
-        pstColumnNames, 5,
         pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
         piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
         piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,

@@ -24,7 +24,9 @@ import java.awt.Point;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -35,7 +37,9 @@ import org.flexdock.docking.DockingPort;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
+import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
+
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -66,6 +70,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
@@ -74,6 +79,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -98,11 +104,9 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     }
 
     private int parentWindowId;
-
+    private String appNameOnClose;
     private MenuBar menuBar;
-
     private ToolBar toolBar;
-
     private TextBox infoBar;
 
     /** Contains the canvas and widgets */
@@ -134,51 +138,8 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+	setCallback(null);
     }
-
-    /**
-     * Constructor
-     * @param name the name of the tab (used to identify it)
-     */
-    public SwingScilabTab(String name) {
-        this(name, name);
-    }
-
-    /**
-     * @param e the FocusEvent
-     */
-    public void focusGained(FocusEvent e) {
-        if (contentPane != null) {
-            contentPane.requestFocus();
-        } else if (getContentPane() != null) {
-            getContentPane().requestFocus();
-        } else {
-            SwingScilabTab.this.requestFocusInWindow();
-        }
-    }
-
-    /**
-     * @return the window icon associated with this tab
-     */
-    public Image getWindowIcon() {
-        if (icon ==null) {
-            return SCILAB_ICON;
-        } else {
-            return icon;
-        }
-    }
-
-    /**
-     * @param the window icon associated with this tab
-     */
-    public void setWindowIcon(Image icon) {
-        this.icon = icon;
-    }
-
-    /**
-     * @param e the FocusEvent
-     */
-    public void focusLost(FocusEvent e) { }
 
     /**
      * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
@@ -207,7 +168,70 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+	setCallback(null);
     }
+
+    /**
+     * Constructor
+     * @param name the name of the tab (used to identify it)
+     */
+    public SwingScilabTab(String name) {
+        this(name, name);
+    }
+
+    public static void removeActions(SwingScilabTab tab) {
+	tab.setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+	tab.setActionBlocked(UNDOCK, true);
+	tab.getTitlebar().revalidate();
+    }
+
+    public static void addActions(SwingScilabTab tab) {
+	tab.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
+	tab.setActionBlocked(UNDOCK, false);
+	tab.getTitlebar().revalidate();
+    }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusGained(FocusEvent e) {
+	//ActiveDockableTracker.requestDockableActivation(this);
+        if (contentPane != null) {
+            contentPane.requestFocus();
+        } else if (getContentPane() != null) {
+            getContentPane().requestFocus();
+        } else {
+            SwingScilabTab.this.requestFocusInWindow();
+        }
+    }
+
+    /**
+     * Call when the tab restoration is ended.
+     */
+    public void endedRestoration() { }
+
+    /**
+     * @return the window icon associated with this tab
+     */
+    public Image getWindowIcon() {
+        if (icon == null) {
+            return SCILAB_ICON;
+        } else {
+            return icon;
+        }
+    }
+
+    /**
+     * @param the window icon associated with this tab
+     */
+    public void setWindowIcon(Image icon) {
+        this.icon = icon;
+    }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusLost(FocusEvent e) { }
 
     /**
      * {@inheritDoc}
@@ -220,15 +244,13 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         if (port.getDockables().size() > 1) {
             while (iter.hasNext()) {
                 Object d = iter.next();
-                if (d instanceof View) {
-                    View view = (View) d;
-                    view.setActionBlocked(DockingConstants.CLOSE_ACTION, false);
-                    view.setActionBlocked(UNDOCK, false);
+                if (d instanceof SwingScilabTab) {
+                    SwingScilabTab view = (SwingScilabTab) d;
+                    addActions(view);
                 }
             }
         } else {
-            setActionBlocked(UNDOCK, true);
-            setActionBlocked(DockingConstants.CLOSE_ACTION, true);
+	    removeActions(this);
         }
     }
 
@@ -239,9 +261,15 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      */
     public void setName(String newTabName) {
         setTitle(newTabName, true);
-
         getTitlePane().repaint();
         SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this).setName(newTabName);
+    }
+
+    /**
+     * @return the UUID of the parent window
+     */
+    public String getParentWindowUUID() {
+        return ((SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)).getUUID();
     }
 
     /**
@@ -761,7 +789,6 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         return contentPane.addWidget(member.getAsComponent());
     }
 
-
     /**
      * Add a Tree member (dockable element) to container and returns its index
      * @param member the member to add
@@ -787,9 +814,6 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     private void removeMember(SwingScilabTree member) {
         contentPane.removeTree(member);
     }
-
-
-
 
     /**
      * Add a member (dockable element) to container and returns its index
@@ -888,17 +912,18 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         if (callback != null) {
             action = new SciClosingAction(this, callback);
         } else {
-            this.addAction(DockingConstants.CLOSE_ACTION);
-            action = new SciClosingAction(this, this.getTitlebar().getAction(DockingConstants.CLOSE_ACTION));
+            action = new SciClosingAction(this);
         }
 
         action.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
-        this.addAction(action);
+	((Titlebar) getTitlePane()).removeAction(DockingConstants.CLOSE_ACTION);
+        addAction(action);
 
         /* Undock button */
         SciUndockingAction undockAction = new SciUndockingAction(this);
         undockAction.putValue(Action.NAME, UNDOCK);
-        this.addAction(undockAction);
+	((Titlebar) getTitlePane()).removeAction(UNDOCK);
+        addAction(undockAction);
     }
 
     /**
@@ -1047,12 +1072,12 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      * Close the tab and disable it.
      */
     public void close() {
-        this.getContentPane().removeAll();
-        this.setMenuBar(null);
-        this.setToolBar(null);
-        this.setInfoBar(null);
-        this.setTitlebar(null);
-        this.removeAll();
+        getContentPane().removeAll();
+        setMenuBar(null);
+        setToolBar(null);
+        setInfoBar(null);
+        setTitlebar(null);
+        removeAll();
         setActive(false);
 
         scrolling = null;

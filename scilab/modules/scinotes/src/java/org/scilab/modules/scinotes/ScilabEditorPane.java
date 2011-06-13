@@ -147,8 +147,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     updateInfosWhenFocused();
-                    NavigatorWindow.updateNavigator((ScilabDocument) getDocument());
-                }
+                    NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
+		    if (nav != null) {
+			nav.update((ScilabDocument) getDocument());
+		    }
+		}
 
                 public void focusLost(FocusEvent e) {
                     ((ScilabDocument) getDocument()).setFocused(false);
@@ -1447,5 +1450,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         edComponent.getScrollPane().setRowHeaderView(xln);
         doc.setEditorPane(this);
+
+	NavigatorWindow nav = editor.getNavigator();
+	if (nav != null) {
+	    nav.addEditorPane(this);
+	}
     }
 }

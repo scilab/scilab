@@ -62,12 +62,14 @@ public final class ConfigManager {
     private static final String HELPWINPOSITION = "HelpWindowPosition";
     private static final String HELPWINSIZE = "HelpWindowSize";
     private static final String HELPFONTSIZE = "HelpFontSize";
+    private static final String HELPBROWSER = "HelpBrowser";
     private static final String PROFILE = "Profile";
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
     private static final String COLORPREFIX = "#";
     private static final String MAXOUTPUTSIZE = "MaxOutputSize";
     private static final String LASTOPENEDDIR = "LastOpenedDirectory";
+    private static final String INDEX = "index";
 
     private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 
@@ -467,7 +469,6 @@ public final class ConfigManager {
      * @param size the size of Scilab help Window
      */
     public static void saveHelpWindowSize(Size size) {
-
         /* Load file */
         readDocument();
 
@@ -499,7 +500,6 @@ public final class ConfigManager {
      * @return the size
      */
     public static Size getHelpWindowSize() {
-
         /* Load file */
         readDocument();
 
@@ -518,11 +518,61 @@ public final class ConfigManager {
         return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
+    public static void saveHelpBrowserState(String index) {
+	/* Load file */
+        readDocument();
+
+        if (document != null) {
+            Element racine = document.getDocumentElement();
+
+            NodeList profiles = racine.getElementsByTagName(PROFILE);
+            Element scilabProfile = (Element) profiles.item(0);
+
+            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPBROWSER);
+            Element helpBrowser = (Element) allPositionElements.item(0);
+
+            // Ascendant compatibility
+            if (helpBrowser == null) {
+                helpBrowser = document.createElement(HELPBROWSER);
+                scilabProfile.appendChild(helpBrowser);
+            }
+
+            helpBrowser.setAttribute(INDEX, index);
+
+            /* Save changes */
+            writeDocument();
+        }
+    }
+
+    public static String getHelpBrowserState() {
+	/* Load file */
+        readDocument();
+
+	String ret = null;
+
+        if (document != null) {
+            Element racine = document.getDocumentElement();
+
+            NodeList profiles = racine.getElementsByTagName(PROFILE);
+            Element scilabProfile = (Element) profiles.item(0);
+
+            NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPBROWSER);
+            Element helpBrowser = (Element) allPositionElements.item(0);
+	    
+	    if (helpBrowser == null) {
+		return null;
+	    }
+	    
+	    ret = helpBrowser.getAttribute(INDEX);
+        }
+	
+	return ret;
+    }
+
     /**
      * Save the Last Opened Directory in Scilab
      * @param the directory's path
      */
-
     public static void saveLastOpenedDirectory(String path ){
         /* Load file */
         readDocument();
@@ -688,7 +738,5 @@ public final class ConfigManager {
         } catch (TransformerException e) {
             System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
         }
-
     }
-
 }

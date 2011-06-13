@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -75,6 +76,8 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFi
  */
 public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
 
+    public static final String VARBROWSERUUID = "3b649047-6a71-4998-bd8e-00d367a4793c";
+
     private static final long serialVersionUID = 2169382559550113917L;
 
     private SwingTableModel<Object> dataModel;
@@ -110,7 +113,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * @param columnsName : Titles of JTable columns.
      */
     public SwingScilabVariableBrowser(String[] columnsName) {
-        super(UiDataMessages.VARIABLE_BROWSER);
+        super(UiDataMessages.VARIABLE_BROWSER, VARBROWSERUUID);
 
         buildMenuBar();
 
@@ -131,7 +134,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         // Mouse selection mode
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setCellSelectionEnabled(true);
-
 
         table.setBackground(Color.WHITE);
 

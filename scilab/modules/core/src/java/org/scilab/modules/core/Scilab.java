@@ -5,6 +5,7 @@
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste SILVY
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,27 +17,27 @@
 
 package org.scilab.modules.core;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
+import org.flexdock.docking.DockingManager;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.jvm.LoadClassPath;
+import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
-import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.localization.Messages;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,6 +51,7 @@ import java.util.List;
  * @author Vincent COUVERT
  * @author Sylvestre Ledru
  * @author Bruno JOFRET
+ * @author Calixte DENIZET
  */
 public class Scilab {
 
@@ -69,20 +71,23 @@ public class Scilab {
 
     private static String SCIDIR;
 
-    private static String MENUBARXMLFILE;
+    private static boolean success;
+    private static boolean finish;
+    private static int mode;
 
-    private static String TOOLBARXMLFILE;
-
-    private static List<Runnable> hooks = new ArrayList<Runnable>();
+    private static List<Runnable> finalhooks = new ArrayList<Runnable>();
+    private static List<Runnable> initialhooks = new ArrayList<Runnable>();
 
     private Window mainView;
-
 
     /**
      * Constructor Scilab Class.
      * @param mode Mode Scilab -NW -NWNI -STD -API
      */
     public Scilab(int mode) {
+        this.mode = mode;
+        DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
+
         /*
          * Set Scilab directory. Note that it is done in the constructor
          * and not as directly when setting the member because we had some
@@ -102,9 +107,6 @@ public class Scilab {
             System.err.println(e.getLocalizedMessage());
             System.exit(-1);
         }
-
-        MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
-        TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
 
         /*
          * Set options for JOGL
@@ -153,65 +155,22 @@ public class Scilab {
         }
 
         if (mode == 2) { /* Mode GUI */
-
             // Create a user config file if not already exists
             ConfigManager.createUserCopy();
 
-            try {
-                mainView = ScilabWindow.createWindow();
-            } catch (NoClassDefFoundError exception) {
-                System.err.println("Cannot create Scilab Window.\n"
-                                   + "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
-                System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
-                System.exit(-1);
-            } catch (java.awt.HeadlessException exception) {
-                System.err.println("Error during the initialization of the window: "  + exception.getLocalizedMessage());
-                System.exit(-1);
-            }
+            WindowsConfigurationManager.restoreUUID(ConsoleTabFactory.NULLUUID);
 
-            mainView.setPosition(ConfigManager.getMainWindowPosition());
-            mainView.setDims(ConfigManager.getMainWindowSize());
-
-            /************/
-            /* MENU BAR */
-            /************/
-            MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
-
-            /************/
-            /* TOOL BAR */
-            /************/
-            ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
-
-            /* Create the console */
-            Tab consoleTab = null;
-            try {
-                /* CONSOLE */
-                /* Create a tab to put console into */
-                LoadClassPath.loadOnUse("Console");
-                consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"));
-                /* Exit Scilab when the console is closed */
-                consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
-
-                ScilabConsole.createConsole();
-            } catch (NoClassDefFoundError exception) {
-                System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\n"
-                                   + SEE_DEFAULT_PATHS);
-                System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
-                System.exit(-1);
-            }
-
-            TextBox infoBar = ScilabTextBox.createTextBox();
-
-            /** Adding content into container */
-            toolBar.setVisible(false); // Enabled in scilab.start
-            ScilabConsole.getConsole().addToolBar(toolBar);
-            ScilabConsole.getConsole().addMenuBar(menuBar);
-            ScilabConsole.getConsole().addInfoBar(infoBar);
-            ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
-            consoleTab.addMember(ScilabConsole.getConsole());
-            mainView.addTab(consoleTab);
-            mainView.draw();
+            SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+            SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+            mainView = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
         }
+    }
+
+    /**
+     * @return the current mode
+     */
+    public static int getMode() {
+        return mode;
     }
 
     /**
@@ -270,26 +229,81 @@ public class Scilab {
     }
 
     /**
+     * Call from canCloseMainScilabObject (call itself from sci_exit)
+     * @return true if the console is closed
+     */
+    public static boolean canClose() {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    success = ClosingOperationsManager.startClosingOperationOnRoot();
+                    finish = true;
+                }
+            });
+
+        while (!finish) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                System.err.println(e);
+            }
+        }
+
+        finish = false;
+
+        return success;
+    }
+
+    /**
      * Register a hook to execute just before the JVM shutdown.
      * A hook should not contain threads, there is no warranty that they will be fully executed.
      */
-    public static void registerHook(Runnable hook) {
-        hooks.add(hook);
+    public static void registerFinalHook(Runnable hook) {
+        finalhooks.add(hook);
     }
 
     /**
      * Remove a hook
      */
-    public static void removeHook(Runnable hook) {
-        hooks.remove(hook);
+    public static void removeFinalHook(Runnable hook) {
+        finalhooks.remove(hook);
     }
 
     /**
      * This method should be called from jni (finishMainScilabObject())
      */
     public static void executeFinalHooks() {
-        for (Runnable hook : hooks) {
+        for (Runnable hook : finalhooks) {
             hook.run();
+        }
+    }
+
+    /**
+     * Register a hook to execute after the Scilab initialization.
+     * A hook should not contain threads, there is no warranty that they will be fully executed.
+     */
+    public static void registerInitialHook(Runnable hook) {
+        initialhooks.add(hook);
+    }
+
+    /**
+     * Remove a hook
+     */
+    public static void removeInitialHook(Runnable hook) {
+        initialhooks.remove(hook);
+    }
+
+    /**
+     * This method should be called from C (realmain)
+     */
+    public static void executeInitialHooks() {
+        for (final Runnable hook : initialhooks) {
+            try {
+                SwingUtilities.invokeAndWait(hook);
+            } catch (InterruptedException e) {
+                System.err.println(e);
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

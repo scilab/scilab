@@ -35,7 +35,6 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * SetAnchorAction Class
@@ -161,7 +160,7 @@ public class SetAnchorAction extends DefaultAction {
             Element root = doc.getDefaultRootElement();
             ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(sep.getCaretPosition()));
             line.setAnchor(name);
-            NavigatorWindow.updateNavigator();
+            getEditor().getNavigator().update();
         }
     }
 }

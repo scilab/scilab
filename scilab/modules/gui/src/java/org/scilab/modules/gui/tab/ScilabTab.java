@@ -592,14 +592,12 @@ public class ScilabTab extends ScilabContainer implements Tab {
         ScilabBridge.setViewingRegion(this, posX, posY, width, height);
     }
 
-
     /**
      * @return size of the axes in pixels
      */
     public Size getAxesSize() {
         return ScilabBridge.getAxesSize(this);
     }
-
 
     /**
      * @param newSize set a new axes size
@@ -639,6 +637,5 @@ public class ScilabTab extends ScilabContainer implements Tab {
     public void stopRotationRecording() {
         ScilabBridge.stopRotationRecording(this);
     }
-
 }
 

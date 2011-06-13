@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -215,6 +217,44 @@ public class ScilabXMLUtilities {
             for (int j = 0; j < map.length; j += 2) {
                 if (map[j].equals(key)) {
                     map[j + 1] = convert(attr.getValue(), (Class) map[j + 1]);
+                }
+            }
+        }
+    }
+
+    /**
+     * Retrieve the list of the elements which have an attribute equals to the given value.
+     * @param root the root element
+     * @param attribute the attribute name
+     * @param value the value
+     * @return the list
+     */
+    public static List<Element> getElementsWithAttributeEquals(Element root, String attribute, String value) {
+        List<Element> list = new ArrayList<Element>();
+        getElementsWithAttributeEquals(root, attribute, value, list);
+
+        return list;
+    }
+
+    /**
+     * Retrieve the list of the elements which have an attribute equals to the given value (recursive function).
+     * @param root the root element
+     * @param attribute the attribute name
+     * @param value the value
+     * @param list the list to fill
+     */
+    private static final void getElementsWithAttributeEquals(Element root, String attribute, String value, List<Element> list) {
+        if (root.getAttribute(attribute).equals(value)) {
+            list.add(root);
+        }
+        if (root.hasChildNodes()) {
+            NodeList nodes = root.getChildNodes();
+            int length = nodes.getLength();
+            for (int i = 0; i < length; i++) {
+                Node node = nodes.item(i);
+                if (node instanceof Element) {
+                    Element elem = (Element) nodes.item(i);
+                    getElementsWithAttributeEquals(elem, attribute, value, list);
                 }
             }
         }

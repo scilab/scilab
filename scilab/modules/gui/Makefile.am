@@ -52,7 +52,9 @@ src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
-src/c/messageboxoptions.c
+src/c/messageboxoptions.c \
+src/c/ScilabTermination.c \
+src/jni/ScilabTermination_wrap.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -144,7 +146,6 @@ src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
 src/jni/ScilabDisplayTree.cpp
 
-
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
@@ -157,6 +158,14 @@ src/jni/ScilabDisplayTree.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+
+if SWIG
+    BUILT_SOURCES=swig
 endif
 
 

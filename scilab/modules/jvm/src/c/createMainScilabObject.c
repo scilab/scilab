@@ -62,7 +62,7 @@ BOOL finishMainScilabObject(void)
     JNIEnv * currentENV = getScilabJNIEnv();
     JavaVM * currentJVM = getScilabJavaVM();
 
-    jint result = (*currentJVM)->AttachCurrentThread( currentJVM, (void **) &currentENV , NULL ) ;
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
     if (result == 0)
     {
         jclass cls = NULL;
@@ -86,3 +86,30 @@ BOOL finishMainScilabObject(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+BOOL canCloseMainScilabObject(void)
+{
+    JNIEnv * currentENV = getScilabJNIEnv();
+    JavaVM * currentJVM = getScilabJavaVM();
+
+    jint result = (*currentJVM)->AttachCurrentThread(currentJVM, (void **) &currentENV, NULL) ;
+    if (result == 0)
+    {
+        jclass cls = NULL;
+        cls = (*currentENV)->FindClass(currentENV, "org/scilab/modules/core/Scilab");
+        catchIfJavaException(_("Could not access to the Main Scilab Class:\n"));
+        if (cls)
+        {
+            jmethodID mid = NULL;
+            mid = (*currentENV)->GetStaticMethodID(currentENV, cls, "canClose", "()Z");
+            if (mid)
+            {
+                return (*currentENV)->CallStaticBooleanMethod(currentENV, cls, mid);
+            }
+            catchIfJavaException(_("Error with Scilab.canClose():\n"));
+        }
+    }
+
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+

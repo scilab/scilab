@@ -54,6 +54,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -121,7 +122,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -2291,6 +2291,14 @@ public class CallScilabBridge {
             /* Save new settings */
             ConfigManager.saveFont(selectedFont);
         }
+    }
+
+    /**
+     * Unblock the console if it is in "Continue display..." mode
+     */
+    public static void unblockConsole() {
+        SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
+        sciConsole.unblock();
     }
 
     /**

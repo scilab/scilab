@@ -42,13 +42,22 @@ import javax.swing.text.Element;
 	update();
     }
 
-    public void update() {
-        variables.clear();
+    public static void update() {
+        String[] vars = ScilabKeywords.GetVariablesName();
+	String[] funs = ScilabKeywords.GetFunctionsName();
+	String[] macs = ScilabKeywords.GetMacrosName();
+	variables.clear();
         commands.clear();
         macros.clear();
-        variables.addAll(Arrays.asList(ScilabKeywords.GetVariablesName()));
-        commands.addAll(Arrays.asList(ScilabKeywords.GetFunctionsName()));
-        macros.addAll(Arrays.asList(ScilabKeywords.GetMacrosName()));
+	if (vars != null) {
+	    variables.addAll(Arrays.asList(vars));
+	}
+        if (funs != null) {
+	    commands.addAll(Arrays.asList(funs));
+	}
+	if (macs != null) {
+	    macros.addAll(Arrays.asList(macs));
+	}
     }
 
     public void setRange(int p0, int p1) {

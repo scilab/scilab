@@ -765,7 +765,8 @@ sci_gateway/fortran/sci_f_debug.f \
 sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
 
-libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
+libscicore_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -784,8 +785,10 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/shell/includes $(XML_FLAGS) \
 	$(am__append_3)
-libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libscicore_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/jni/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/libs/MALLOC/includes/
@@ -797,7 +800,7 @@ libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 # For the code check (splint)
 CHECK_SRC = $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicore_la_CFLAGS)
-libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)  $(JNI_SOURCES)
+libscicore_algo_la_SOURCES = $(CORE_C_SOURCES) $(CORE_CPP_SOURCES) $(CORE_FORTRAN_SOURCES)
 libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_algo_la_CFLAGS = $(libscicore_la_CFLAGS)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)

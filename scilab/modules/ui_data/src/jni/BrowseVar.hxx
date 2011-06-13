@@ -64,7 +64,7 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidopenVariableBrowserjobjectArray_jobjectArray_jintArray_jintArray_jobjectArray_ID; // cache method id
+jmethodID voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_ID; // cache method id
 jclass stringArrayClass;
 jmethodID voidcloseVariableBrowserID; // cache method id
 
@@ -123,7 +123,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void openVariableBrowser(JavaVM * jvm_, char ** columnNames, int columnNamesSize, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableVisibility, int variableVisibilitySize);
+static void openVariableBrowser(JavaVM * jvm_, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableVisibility, int variableVisibilitySize);
 
 static void closeVariableBrowser(JavaVM * jvm_);
 
