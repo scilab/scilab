@@ -179,6 +179,8 @@ Bug fixes:
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
 
+* bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 
