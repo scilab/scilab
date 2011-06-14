@@ -1375,6 +1375,7 @@ AC_LIBXML2()
 #######################
 
 ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1384,6 +1385,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_SUBST(ALL_LINGUAS_DOC)
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)

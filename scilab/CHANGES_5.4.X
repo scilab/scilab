@@ -135,6 +135,10 @@ Optimization:
 Documentation:
 ==============
 
+* A new system to keep track of the translations of the main documentation
+  has been developed. See HTTP:// @TODO@
+  See bug 5119.
+
 * <ALT>+<LEFT ARROW> / <ALT>+<RIGHT ARROW> allows the browse of the history.
   (see bug 9474)
 

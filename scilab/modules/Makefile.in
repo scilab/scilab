@@ -197,6 +197,7 @@ am__relativize = \
   reldir="$$dir2"
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
