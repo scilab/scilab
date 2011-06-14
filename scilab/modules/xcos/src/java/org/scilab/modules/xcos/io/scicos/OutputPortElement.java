@@ -244,6 +244,21 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	}
 	
 	/**
+	 * If not connected, set the connected link id to 0.
+	 * 
+	 * @param from the bloc to encode
+	 * @param element the element to encode into
+	 * @return the updated element
+	 */
+	@Override
+	public ScilabType beforeEncode(OutputPort from, ScilabType element) {
+		if (from.getEdgeCount() == 0) {
+			from.setConnectedLinkId(0);
+		}
+		return super.beforeEncode(from, element);
+	}
+	
+	/**
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance

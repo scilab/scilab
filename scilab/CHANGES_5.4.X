@@ -40,6 +40,9 @@ Xcos:
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
                    column selection.
 
+* bug 9336 fixed - SuperBlock with non connected ports produced an invalid
+                   index error.
+
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 

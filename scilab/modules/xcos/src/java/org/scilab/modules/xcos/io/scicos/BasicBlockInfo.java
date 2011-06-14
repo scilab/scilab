@@ -48,7 +48,13 @@ public final class BasicBlockInfo {
 
 		double[][] data = new double[ports.size()][1];
 		for (int i = 0; i < ports.size(); ++i) {
-			data[i][0] = ((BasicPort) ports.get(i)).getConnectedLinkId();
+			final BasicPort p = (BasicPort) ports.get(i);
+			
+			if (p.getEdgeCount() == 0) {
+				data[i][0] = 0;
+			} else {
+				data[i][0] = p.getConnectedLinkId();
+			}
 		}
 
 		return new ScilabDouble(data);
