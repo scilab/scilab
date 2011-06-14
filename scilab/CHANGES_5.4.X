@@ -45,7 +45,9 @@ Xcos:
 
 * bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
 
-* Bug 9547 fixed - The about box was not localized due to a multi-line string.
+* bug 9547 fixed - The about box was not localized due to a multi-line string.
+
+* bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
 
 File input/output:
