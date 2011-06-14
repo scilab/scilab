@@ -84,7 +84,7 @@ function atomsGui()
     // Menu File:Installed Modules
     uimenu( ..
         "parent"   , h, ..
-        "label"    , gettext("Installed Modules"), ..
+        "label"    , gettext("Installed modules"), ..
         "callback" , "cbAtomsGui", ..
         "tag"      , "homeMenu");
 

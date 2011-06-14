@@ -733,8 +733,8 @@ msgstr "Entité"
 msgid "File"
 msgstr "Fichier"
 
-msgid "Modules installed"
-msgstr "Installed modules"
+msgid "Installed modules"
+msgstr "Modules installés"
 
 msgid "Install"
 msgstr "Installer"
