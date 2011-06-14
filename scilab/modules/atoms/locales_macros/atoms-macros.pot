@@ -1056,7 +1056,7 @@ msgid "File"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 87
-msgid "Home"
+msgid "Installed modules"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 221
