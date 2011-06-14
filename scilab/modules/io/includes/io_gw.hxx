@@ -13,10 +13,12 @@
 #ifndef __IO_GW_HXX__
 #define __IO_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
+extern "C"
+{
 #include "dynlib_io_gw.h"
+}
 
 class IoModule
 {

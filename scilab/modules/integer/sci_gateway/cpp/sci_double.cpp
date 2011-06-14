@@ -11,10 +11,10 @@
  *
  */
 
-#include "funcmanager.hxx"
 #include "integer_gw.hxx"
 #include "function.hxx"
 #include "int.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -30,7 +30,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d expected.\n"), L"double", 1);
         return types::Function::Error;
     }
-    
+
     types::Double* pOut = NULL;
     if(in[0]->isDouble())
     {
@@ -68,7 +68,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             }
             break;
         }
-        
+
         case types::InternalType::RealInt16 :
         {
             types::Int16* pInt = in[0]->getAs<types::Int16>();
@@ -90,7 +90,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             }
             break;
         }
-        
+
         case types::InternalType::RealInt32 :
         {
             types::Int32* pInt = in[0]->getAs<types::Int32>();
@@ -112,7 +112,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             }
             break;
         }
-        
+
         case types::InternalType::RealInt64 :
         {
             types::Int64* pInt = in[0]->getAs<types::Int64>();
@@ -134,14 +134,14 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             }
             break;
         }
-        
+
         default :
         {
             ScierrorW(999, _W("Never occur"));
             return types::Function::Error;
         }
     }
- 
+
     out.push_back(pOut);
     return types::Function::OK;
 }

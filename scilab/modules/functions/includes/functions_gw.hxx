@@ -13,8 +13,7 @@
 #ifndef __FUNCTIONS_GW_HXX__
 #define __FUNCTIONS_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 #include "dynlib_functions_gw.h"
 

@@ -20,6 +20,7 @@
 #include "funcmanager.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
 
 extern "C"
 {

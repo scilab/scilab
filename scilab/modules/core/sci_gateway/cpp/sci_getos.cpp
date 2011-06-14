@@ -9,6 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include "core_gw.hxx"
 #include "function.hxx"
 #include "context.hxx"
 #include "string.hxx"

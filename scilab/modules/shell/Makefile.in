@@ -473,7 +473,8 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/ui_data/includes/ $(am__append_1)
+	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/types/includes/ $(am__append_1)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -500,7 +501,7 @@ modulename = shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA = license.txt 
+libscishell_la_root_DATA = license.txt
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

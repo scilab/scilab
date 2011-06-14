@@ -14,9 +14,7 @@
 #ifndef __LOCALIZATION_GW_HXX__
 #define __LOCALIZATION_GW_HXX__
 
-
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 extern "C"
 {

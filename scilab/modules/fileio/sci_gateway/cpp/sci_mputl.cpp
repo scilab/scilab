@@ -13,6 +13,9 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "bool.hxx"
+#include "function.hxx"
 
 extern "C"
 {

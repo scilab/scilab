@@ -54,7 +54,8 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/ui_data/includes/
+			-I$(top_srcdir)/modules/ui_data/includes/ \
+			-I$(top_srcdir)/modules/types/includes/
 
 if IS_MACOSX
 libscishell_la_CFLAGS += -msse2
@@ -86,7 +87,7 @@ modulename=shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA =  license.txt 
+libscishell_la_root_DATA =  license.txt
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

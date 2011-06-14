@@ -18,7 +18,7 @@
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "function.hxx"
-#include "funcmanager.hxx"
+#include "context.hxx"
 #include "hdf5_gw.hxx"
 #include "listundefined.hxx"
 
@@ -312,7 +312,7 @@ static types::InternalType* import_string(int _iDatasetId)
     }
 
     pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
-    pwstData = (wchar_t **) MALLOC(iRows * iCols * sizeof(wchar_t*)); 
+    pwstData = (wchar_t **) MALLOC(iRows * iCols * sizeof(wchar_t*));
 
     iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
     if(iRet)

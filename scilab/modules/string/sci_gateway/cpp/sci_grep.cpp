@@ -14,10 +14,11 @@
 using regular express .                                         */
 /*------------------------------------------------------------------------*/
 
+#include "string_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
-#include "funcmanager.hxx"
+
 extern "C"
 {
 #include "os_strdup.h"

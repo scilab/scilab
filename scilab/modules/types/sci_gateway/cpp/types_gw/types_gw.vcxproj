@@ -207,8 +207,6 @@
     <ClInclude Include="..\..\..\includes\types_gw.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
     <Library Include="..\..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>

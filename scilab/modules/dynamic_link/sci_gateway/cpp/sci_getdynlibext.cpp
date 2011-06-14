@@ -12,7 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/
-
+#include "dynamic_link_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
 extern "C"

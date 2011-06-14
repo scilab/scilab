@@ -13,8 +13,8 @@
 #ifndef __HDF5_GW_HXX__
 #define __HDF5_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
+
 extern "C"
 {
     #include "dynlib_hdf5_scilab.h"

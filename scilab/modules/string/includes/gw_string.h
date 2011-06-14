@@ -13,9 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __GW_STRING__
 #define __GW_STRING__
-#include "api_scilab.h"
 #include "dynlib_string.h"
-#include "BOOL.h"
+#include "c_gateway_prototype.h"
 
 /*--------------------------------------------------------------------------*/
 STRING_IMPEXP int gw_string(void);
@@ -26,10 +25,10 @@ STRING_IMPEXP int gw_string(void);
 //STRING_IMPEXP int sci_NumTokens(char *fname,unsigned long fname_len);
 
 //YaSp
-STRING_IMPEXP int sci_strsplit(char *fname, int* _piKey);
-STRING_IMPEXP int sci_isdigit(char *fname, int* _piKey);
-STRING_IMPEXP int sci_isalphanum(char *fname, int* _piKey);
-STRING_IMPEXP int sci_isascii(char *fname, int* _piKey);
+STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_strsplit);
+STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isdigit);
+STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isalphanum);
+STRING_IMPEXP C_GATEWAY_PROTOTYPE(sci_isascii);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_STRING__ */

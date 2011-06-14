@@ -26,8 +26,6 @@
 
 #define MAX_OUTPUT_VARIABLE		64
 
-#define CPP_GATEWAY_PROTOTYPE(__gateway__) types::Function::ReturnValue __gateway__(types::typed_list &in, int _iRetCount, types::typed_list &out)
-
 namespace types
 {
     class TYPES_IMPEXP Function : public Callable

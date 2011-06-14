@@ -11,6 +11,7 @@
 */
 
 #include "io_gw.hxx"
+#include "context.hxx"
 
 #define MODULE_NAME L"io"
 

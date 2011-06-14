@@ -14,9 +14,7 @@
 #ifndef __CORE_GW_HXX__
 #define __CORE_GW_HXX__
 
-#include "function.hxx"
-#include "context.hxx"
-
+#include "cpp_gateway_prototype.hxx"
 #include "dynlib_core_gw.h"
 
 class CoreModule

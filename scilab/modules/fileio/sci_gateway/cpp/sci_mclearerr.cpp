@@ -11,10 +11,11 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "bool.hxx"
 #include "filemanager.hxx"
 
 extern "C"
@@ -34,7 +35,7 @@ Function::ReturnValue sci_mclearerr(types::typed_list &in, int _iRetCount, types
 {
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
-    
+
     if(in.size() > 1)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mclearerr", 0, 1);

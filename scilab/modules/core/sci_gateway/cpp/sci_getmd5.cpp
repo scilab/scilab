@@ -10,6 +10,7 @@
  *
  */
 
+#include "core_gw.hxx"
 #include "types.hxx"
 #include "function.hxx"
 #include "string.hxx"

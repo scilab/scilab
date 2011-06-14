@@ -10,6 +10,7 @@
  *
  */
 
+#include "integer_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "api_scilab.h"

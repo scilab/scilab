@@ -19,7 +19,7 @@ extern "C"
 
 #include "functions_gw.hxx"
 #include "configvariable.hxx"
-#include "funcmanager.hxx"
+#include "function.hxx"
 
 using namespace types;
 

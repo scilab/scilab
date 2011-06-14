@@ -16,6 +16,8 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -25,7 +27,7 @@ extern "C"
 }
 
 
-Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile           = -1; //default file : last opened file
     int dims            = 2;

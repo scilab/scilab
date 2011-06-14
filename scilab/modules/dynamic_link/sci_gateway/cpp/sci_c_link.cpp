@@ -13,6 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 
+#include "dynamic_link_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"

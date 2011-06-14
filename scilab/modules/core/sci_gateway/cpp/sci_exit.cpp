@@ -10,6 +10,7 @@
  *
  */
 
+#include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
 #include "double.hxx"

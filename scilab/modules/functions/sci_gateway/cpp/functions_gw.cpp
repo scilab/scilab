@@ -11,6 +11,7 @@
 */
 
 #include "functions_gw.hxx"
+#include "context.hxx"
 
 extern "C"
 {

@@ -10,6 +10,7 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "mlist.hxx"
 #include "function.hxx"
 #include "sci_tlist_or_mlist.hxx"

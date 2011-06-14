@@ -57,7 +57,8 @@ libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/types/includes
 
 # Includes need for the compilation
 libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -67,7 +68,8 @@ libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/types/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -104,7 +106,7 @@ modulename=action_binding
 
 #### action_binding : Conf files ####
 libsciaction_binding_la_rootdir = $(mydatadir)
-libsciaction_binding_la_root_DATA =  license.txt 
+libsciaction_binding_la_root_DATA =  license.txt
 
 ####�action_binding : init scripts ####
 libsciaction_binding_la_etcdir = $(mydatadir)/etc

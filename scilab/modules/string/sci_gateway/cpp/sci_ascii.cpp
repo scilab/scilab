@@ -20,6 +20,7 @@
 #include "string_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
 
 extern "C"
 {

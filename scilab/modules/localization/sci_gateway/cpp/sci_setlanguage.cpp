@@ -13,6 +13,7 @@
 #include "localization_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 
 extern "C"
 {

@@ -1,6 +1,5 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
@@ -11,12 +10,12 @@
  *
  */
 
-#include "types_gw.hxx"
-#include "function.hxx"
-#include "tlist.hxx"
-#include "sci_tlist_or_mlist.hxx"
+#ifndef __CPP_GATEWAY_PROTOTYPE_HXX__
+#define __CPP_GATEWAY_PROTOTYPE_HXX__
 
-Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out)
-{
-    return sci_tlist_or_mlist<TList>(in, _piRetCount, out, L"tlist");
-}
+#include "types.hxx"
+#include "callable.hxx"
+
+#define CPP_GATEWAY_PROTOTYPE(__gateway__) extern "C" types::Callable::ReturnValue (__gateway__)(types::typed_list &in, int _iRetCount, types::typed_list &out)
+
+#endif /* !__CPP_GATEWAY_PROTOTYPE_HXX__ */

@@ -12,9 +12,7 @@
 
 #include "functions_gw.hxx"
 #include "configvariable.hxx"
-#include "funcmanager.hxx"
-#include "cell.hxx"
-#include "threadId.hxx"
+#include "function.hxx"
 
 extern "C"
 {

@@ -10,6 +10,7 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "list.hxx"

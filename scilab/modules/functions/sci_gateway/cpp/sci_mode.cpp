@@ -10,9 +10,11 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
-#include "context.hxx"
+
+#include "functions_gw.hxx"
 #include "configvariable.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -27,7 +29,7 @@ using namespace types;
 Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 	InternalType *pIT = NULL;
-	wstring stModule;
+    std::wstring stModule;
 
 	/* Check the number of input argument */
 	if(in.size() > 1)

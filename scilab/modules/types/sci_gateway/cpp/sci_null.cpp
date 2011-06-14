@@ -10,9 +10,9 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "function.hxx"
 #include "listdelete.hxx"
-#include "funcmanager.hxx"
 
 using namespace types;
 

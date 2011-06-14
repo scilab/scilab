@@ -10,7 +10,7 @@
  *
  */
 
-
+#include "core_gw.hxx"
 #include "function.hxx"
 #include "runner.hxx"
 #include "threadId.hxx"
@@ -46,6 +46,6 @@ types::Function::ReturnValue sci_abort(types::typed_list &in, int _iRetCount, ty
         pThreadId->abort();
         __WaitThreadDie(id);
     }
-   
+
     return types::Function::OK;
 }

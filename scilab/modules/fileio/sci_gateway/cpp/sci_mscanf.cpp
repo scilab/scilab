@@ -17,6 +17,8 @@
 #include "string.hxx"
 #include "yaspio.hxx"
 #include "cell.hxx"
+#include "function.hxx"
+#include "double.hxx"
 
 extern "C"
 {

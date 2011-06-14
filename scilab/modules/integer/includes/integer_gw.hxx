@@ -13,9 +13,7 @@
 #ifndef __INTEGER_GW_HXX__
 #define __INTEGER_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
-#include "function.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 #include "dynlib_integer_gw.h"
 

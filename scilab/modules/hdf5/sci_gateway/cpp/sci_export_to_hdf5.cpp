@@ -20,7 +20,7 @@
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "function.hxx"
-#include "funcmanager.hxx"
+#include "context.hxx"
 #include "hdf5_gw.hxx"
 
 extern "C"
@@ -530,7 +530,7 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
             iRet = writeInterger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
-        case types::InternalType::RealUInt16 : 
+        case types::InternalType::RealUInt16 :
         {
             types::UInt16* pInt    = pIT->getAs<types::UInt16>();
             iRet = writeUnsignedInterger16Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
@@ -539,10 +539,10 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
         case types::InternalType::RealInt32 :
         {
             types::Int32* pInt    = pIT->getAs<types::Int32>();
-            iRet = writeInterger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get()); 
+            iRet = writeInterger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
-        case types::InternalType::RealUInt32 : 
+        case types::InternalType::RealUInt32 :
         {
             types::UInt32* pInt    = pIT->getAs<types::UInt32>();
             iRet = writeUnsignedInterger32Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
@@ -551,10 +551,10 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
         case types::InternalType::RealInt64 :
         {
             types::Int64* pInt    = pIT->getAs<types::Int64>();
-            iRet = writeInterger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get()); 
+            iRet = writeInterger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());
             break;
         }
-        case types::InternalType::RealUInt64 : 
+        case types::InternalType::RealUInt64 :
         {
             types::UInt64* pInt    = pIT->getAs<types::UInt64>();
             iRet = writeUnsignedInterger64Matrix(_iH5File, pstName, pInt->getRows(), pInt->getCols(), pInt->get());

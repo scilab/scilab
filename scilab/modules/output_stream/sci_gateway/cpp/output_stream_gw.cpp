@@ -12,6 +12,7 @@
 
 #include "output_stream_gw.hxx"
 #include "function.hxx"
+#include "context.hxx"
 
 extern "C"
 {

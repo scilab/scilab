@@ -12,9 +12,10 @@
 
 
 #include <string.h>
-#include "funcmanager.hxx"
 #include "io_gw.hxx"
 #include "string.hxx"
+#include "function.hxx"
+#include "double.hxx"
 
 extern "C"
 {

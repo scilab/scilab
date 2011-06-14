@@ -13,6 +13,8 @@
 #include <math.h>
 #include <sstream>
 #include "string.hxx"
+#include "double.hxx"
+#include "function.hxx"
 #include "string_gw.hxx"
 #include "tostring_common.hxx"
 
@@ -25,7 +27,7 @@ extern "C"
 
 using namespace types;
 
-static void DoubleComplexMatrix2String(wostringstream *_postr,  double _dblR, double _dblI)
+static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dblR, double _dblI)
 {
     /*
     if R && !C -> R
@@ -41,7 +43,7 @@ static void DoubleComplexMatrix2String(wostringstream *_postr,  double _dblR, do
 
             //0
             *_postr << (_dblI < 0 ? L"-" : L"");
-            *_postr << left << 0;
+            *_postr << std::left << 0;
         }
         else
         {//imaginary part

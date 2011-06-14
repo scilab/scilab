@@ -38,7 +38,7 @@ GUI_IMPEXP int sci_x_choose_modeless(char *fname,unsigned long fname_len);
 GUI_IMPEXP int sci_messagebox(char *fname,unsigned long l);
 GUI_IMPEXP int sci_waitbar(char *fname,unsigned long l);
 GUI_IMPEXP int sci_progressionbar(char *fname,unsigned long l);
-GUI_IMPEXP int sci_helpbrowser(char *fname,unsigned long l);
+//GUI_IMPEXP int sci_helpbrowser(char *fname,unsigned long l); -> C++
 GUI_IMPEXP int sci_uigetfont(char *fname,unsigned long l);
 GUI_IMPEXP int sci_uigetcolor(char *fname,unsigned long l);
 GUI_IMPEXP int sci_getcallbackobject(char *fname,unsigned long fname_len);

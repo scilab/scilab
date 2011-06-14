@@ -10,10 +10,10 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "double.hxx"
 #include "cell.hxx"
 #include "function.hxx"
-#include "funcmanager.hxx"
 
 using namespace types;
 

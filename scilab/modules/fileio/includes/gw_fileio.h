@@ -13,7 +13,7 @@
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
 #include "dynlib_fileio.h"
-#include "api_scilab.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/
@@ -22,12 +22,12 @@ FILEIO_IMPEXP int sci_maxfiles(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getdrives(char *fname,unsigned long fname_len);
 
 //YaSp
-FILEIO_IMPEXP int sci_pwd(char *fname, int* _piKey);
-FILEIO_IMPEXP int sci_chdir(char *fname, int* _piKey);
-FILEIO_IMPEXP int sci_copyfile(char *fname,int* _piKey);
-FILEIO_IMPEXP int sci_movefile(char *fname, int* _piKey);
-FILEIO_IMPEXP int sci_fscanfMat(char *fname, int *_piKey);
-FILEIO_IMPEXP int sci_fprintfMat(char *fname, int *_piKey);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_pwd);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_chdir);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_copyfile);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_movefile);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE(sci_fscanfMat);
+FILEIO_IMPEXP C_GATEWAY_PROTOTYPE( sci_fprintfMat);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */

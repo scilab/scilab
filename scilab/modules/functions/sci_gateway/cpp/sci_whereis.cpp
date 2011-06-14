@@ -10,7 +10,8 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
+
+#include "functions_gw.hxx"
 #include "context.hxx"
 #include "string.hxx"
 

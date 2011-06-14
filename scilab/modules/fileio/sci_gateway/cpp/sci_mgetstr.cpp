@@ -16,6 +16,8 @@
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -33,6 +35,7 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     types::String* pOutString   = NULL;
     int iSizeToRead             = 0;
     wchar_t* pwstOut            = NULL;
+
 
     if(in.size() < 1 || in.size() > 2)
     {
@@ -59,14 +62,13 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     }
     switch (iFile)
     {
-        case 0: // stderr
-        case 6: // stdout
-            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetstr", iFile);
-            return types::Function::Error;
-        default :
-            pwstOut = mgetstr(iFile, iSizeToRead);
+    case 0: // stderr
+    case 6: // stdout
+        ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetstr", iFile);
+        return types::Function::Error;
+    default :
+        pwstOut = mgetstr(iFile, iSizeToRead);
     }
-    pOutString = new types::String(iDims,iDimsArray);
 
     if(pwstOut == NULL)
     {
@@ -75,6 +77,7 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     }
     else
     {
+        pOutString = new types::String(iDims,iDimsArray);
         pOutString->set(0, pwstOut);
     }
 

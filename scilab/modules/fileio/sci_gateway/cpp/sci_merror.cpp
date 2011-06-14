@@ -11,10 +11,11 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "bool.hxx"
 #include "filemanager.hxx"
 
 extern "C"
@@ -34,7 +35,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
     int dimsArray[2] = {1,1};
-    
+
     if(in.size() > 1)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"merror", 0, 1);
@@ -62,7 +63,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
         {
             sciprintW(_W("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), L"merror", iFile);
         }
-        
+
         types::Bool* pOut = new types::Bool(0);
         out.push_back(pOut);
         return types::Function::OK;
@@ -71,14 +72,14 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     types::Double* pDoubleOut = new types::Double(2, dimsArray);
     pDoubleOut->set(0, iRet);
     out.push_back(pDoubleOut);
-    
+
     if(_iRetCount == 2)
     {
         types::String* pStringOut = new types::String(2, dimsArray);
         pStringOut->set(0, to_wide_string(strerror(iRet)));
         out.push_back(pStringOut);
     }
-    
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -24,9 +24,6 @@
     <ClCompile Include="..\sci_fieldnames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_getfield.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sci_insert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,6 +57,9 @@
     <ClCompile Include="..\types_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sci_getfield.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_types_gw.h">
@@ -73,8 +73,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\..\bin\lapack.lib" />
     <Library Include="..\..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

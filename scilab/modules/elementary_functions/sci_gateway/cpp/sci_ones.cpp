@@ -12,7 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "funcmanager.hxx"
+#include "function.hxx"
+#include "double.hxx"
 
 extern "C"
 {

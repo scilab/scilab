@@ -13,9 +13,6 @@
 #ifndef __BOOLEAN_GW_HXX__
 #define __BOOLEAN_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
-
 #include "dynlib_boolean_gw.h"
 
 class BooleanModule

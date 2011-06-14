@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "api_scilab.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 int gw_core(void);
 /*--------------------------------------------------------------------------*/
@@ -60,13 +61,13 @@ int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len);
 int C2F(sci_readgateway)(char *fname,unsigned long fname_len);
 int C2F(sci_comp)(char *fname,unsigned long fname_len);
 
-int C2F(sci_typename)(char *fname,int* _piKey);
+C_GATEWAY_PROTOTYPE(C2F(sci_typename));
 int C2F(sci_funcprot)(char *fname,int* _piKey);
 int C2F(sci_newfun)(char *fname, int* _piKey);
 
 //Yasp
-int sci_type(char *fname, int* _piKey);
-int sci_getdebuginfo(char *fname, int* _piKey);
+C_GATEWAY_PROTOTYPE(sci_type);
+C_GATEWAY_PROTOTYPE(sci_getdebuginfo);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/

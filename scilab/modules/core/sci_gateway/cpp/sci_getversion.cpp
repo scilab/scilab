@@ -15,6 +15,8 @@
 #include "funcmanager.hxx"
 #include "core_gw.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {

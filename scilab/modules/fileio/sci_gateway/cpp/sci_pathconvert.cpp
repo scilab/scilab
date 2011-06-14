@@ -10,11 +10,11 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
-#include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -26,6 +26,9 @@ extern "C"
 
 #define UNIX_TYPE       L"u"
 #define WINDOWS_TYPE    L"w"
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list &out)
 {

@@ -11,10 +11,12 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include <list>
+
+#include "core_gw.hxx"
 #include "configvariable.hxx"
 #include "string.hxx"
+#include "function.hxx"
 
 using namespace types;
 
@@ -26,10 +28,10 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
     }
 
 
-    list<wstring> sModuleList = ConfigVariable::getModuleList();
+    std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
     String *pOut  = new String(static_cast<int>(sModuleList.size()), 1);
 
-    list<wstring>::iterator it = sModuleList.begin();
+    std::list<std::wstring>::iterator it = sModuleList.begin();
     for(int i = 0; it != sModuleList.end() ; it++,i++)
     {
         pOut->set(i, it->c_str());

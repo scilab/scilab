@@ -15,7 +15,7 @@
 
 #include "function.hxx"
 #include "string.hxx"
-#include "funcmanager.hxx"
+#include "double.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 
@@ -25,6 +25,8 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
+
+using namespace types;
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &out)

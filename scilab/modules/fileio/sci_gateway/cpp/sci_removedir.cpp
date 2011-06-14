@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- * 
+ *
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,10 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -58,7 +58,7 @@ Function::ReturnValue sci_removedir(typed_list &in, int _iRetCount, typed_list &
     }
     else
     {
-        iRet = removedirW(pwstPath);       
+        iRet = removedirW(pwstPath);
     }
 
     FREE(pwstPath);

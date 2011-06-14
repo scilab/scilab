@@ -18,9 +18,8 @@
 /*--------------------------------------------------------------------------*/
 #include "function.hxx"
 #include "string.hxx"
-#include "funcmanager.hxx"
-#include "filemanager.hxx"
 #include "fileio_gw.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -29,6 +28,8 @@ extern "C"
 #include "expandPathVariable.h"
 #include "isdir.h"
 }
+
+using namespace types;
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)

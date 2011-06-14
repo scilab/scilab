@@ -26,7 +26,8 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/core/src/c/
+			-I$(top_srcdir)/modules/core/src/c/ \
+			-I$(top_srcdir)/modules/types/includes/
 
 pkglib_LTLIBRARIES = libscicall_scilab.la
 noinst_LTLIBRARIES = libscicall_scilab-algo.la
@@ -52,7 +53,7 @@ modulename=call_scilab
 
 #### call_scilab : Conf files ####
 libscicall_scilab_la_rootdir = $(mydatadir)
-libscicall_scilab_la_root_DATA =  license.txt 
+libscicall_scilab_la_root_DATA =  license.txt
 
 
 #### call_scilab : init scripts ####

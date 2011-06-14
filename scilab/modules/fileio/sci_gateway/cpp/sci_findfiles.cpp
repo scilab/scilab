@@ -12,11 +12,10 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include "funcmanager.hxx"
-#include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -31,6 +30,9 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC L"*.*"
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &out)
 {

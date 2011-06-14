@@ -11,6 +11,9 @@
  */
 
 #include "string_gw.hxx"
+#include "context.hxx"
+#include "function.hxx"
+
 extern "C"
 {
     #include "gw_string.h"
@@ -44,6 +47,6 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strtok", &sci_strtok, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strspn", &sci_strspn, MODULE_NAME));
-                
+
     return true;
 }

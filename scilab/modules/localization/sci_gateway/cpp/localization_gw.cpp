@@ -12,6 +12,7 @@
 */
 
 #include "localization_gw.hxx"
+#include "context.hxx"
 
 #pragma comment(lib,"../../../../bin/libintl.lib")
 

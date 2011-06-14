@@ -13,8 +13,7 @@
 #ifndef __FILEIO_GW_HXX__
 #define __FILEIO_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 #ifdef _MSC_VER
 	#if FILEIO_GW_EXPORTS

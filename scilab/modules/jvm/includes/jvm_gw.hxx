@@ -13,12 +13,14 @@
 #ifndef __JVM_GW_HXX__
 #define __JVM_GW_HXX__
 
+#include "cpp_gateway_prototype.hxx"
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+extern "C"
+{
 #include "dynlib_jvm_gw.h"
+}
 
-class JvmModule 
+class JvmModule
 {
 private :
   JvmModule() {};

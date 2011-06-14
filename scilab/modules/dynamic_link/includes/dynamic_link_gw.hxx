@@ -15,8 +15,7 @@
 
 #include "dynlib_dynamic_link_gw.h"
 
-#include "funcmanager.hxx"
-#include "context.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 class DynamicLinkModule
 {

@@ -10,10 +10,10 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "function.hxx"
 #include "listinsert.hxx"
 #include "listundefined.hxx"
-#include "funcmanager.hxx"
 
 using namespace types;
 

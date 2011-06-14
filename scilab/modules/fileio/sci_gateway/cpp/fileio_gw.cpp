@@ -11,6 +11,8 @@
  */
 
 #include "fileio_gw.hxx"
+#include "context.hxx"
+#include "function.hxx"
 
 #define MODULE_NAME L"fileio"
 
@@ -60,7 +62,7 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getrelativefilename", &sci_getrelativefilename, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pathsep", &sci_pathsep, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mfprintf", &sci_mfprintf, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mscanf", &sci_mscanf, MODULE_NAME));   
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mscanf", &sci_mscanf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mfscanf", &sci_mfscanf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"msscanf", &sci_msscanf, MODULE_NAME));
 

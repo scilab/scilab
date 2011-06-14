@@ -11,10 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "filemanager.hxx"
 
 extern "C"
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         pStringOutput->set(0, iRet);
         out.push_back(pStringOutput);
     }
-    
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -14,7 +14,9 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "list.hxx"
-#include "funcmanager.hxx"
+#include "bool.hxx"
+#include "double.hxx"
+#include "function.hxx"
 #include "string_gw.hxx"
 
 extern "C"
@@ -34,12 +36,12 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
     int dimsArray[2]        = {1,0};
     int dims                = 2;
 	BOOL *values            = NULL;
-	
+
     if(in.size() != 1)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"isletter", 1);
         return types::Function::Error;
-    }    
+    }
     if(_iRetCount != 1)
     {
         ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"isletter", 1);
@@ -50,7 +52,7 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
 		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"isletter", 1);
 		return types::Function::Error;
 	}
-    
+
     pString = in[0]->getAs<types::String>();
     if(pString->isScalar() == false)
     {
@@ -62,9 +64,9 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
-    
+
     values = isletterW(pString->get(0), &dimsArray[1]);
-    
+
     if(dimsArray[1] > 0)
     {
         pOutBool  = new types::Bool(dims, dimsArray);

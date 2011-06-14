@@ -17,6 +17,8 @@
 #include "string.hxx"
 #include "cell.hxx"
 #include "filemanager.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -52,7 +54,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
     if(size < 2 || size >3)
     {
-       ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mfscanf", 2, 3);
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mfscanf", 2, 3);
         return types::Function::Error;
     }
 
@@ -79,8 +81,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     }
 
     iFile = static_cast<int>(in[size-2]->getAs<types::Double>()->get(0));
-	switch (iFile)
-	{
+    switch (iFile)
+    {
     case 0:
         // stderr
         ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mfscanf", iFile);
@@ -105,7 +107,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     FILE* fDesc = pFile->getFiledesc();
     nrow = iNiter;
     //nrow = iLinesRead;
-	while(++rowcount < iNiter)
+    while(++rowcount < iNiter)
     {
         if((iNiter >= 0) && (rowcount >= iNiter)) break;
         // get data
@@ -120,19 +122,19 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         {
             switch(err)
             {
-                case DO_XXPRINTF_MISMATCH:
-                    if(iNiter >= 0)
-                    {
-                        Free_Scan(rowcount,ncol,type_s,&data);
-                        ScierrorW(999,_W("%ls: Data mismatch.\n"),L"mfscanf");
-                        return types::Function::Error;
-                    }
+            case DO_XXPRINTF_MISMATCH:
+                if(iNiter >= 0)
+                {
+                    Free_Scan(rowcount,ncol,type_s,&data);
+                    ScierrorW(999,_W("%ls: Data mismatch.\n"),L"mfscanf");
+                    return types::Function::Error;
+                }
                 break;
 
-                case DO_XXPRINTF_MEM_LACK:
-                    Free_Scan(rowcount,ncol,type_s,&data);
-                    ScierrorW(999,_W("%ls: No more memory.\n"),L"mfscanf");
-                    return types::Function::Error;
+            case DO_XXPRINTF_MEM_LACK:
+                Free_Scan(rowcount,ncol,type_s,&data);
+                ScierrorW(999,_W("%ls: No more memory.\n"),L"mfscanf");
+                return types::Function::Error;
                 break;
             }
             if(err==DO_XXPRINTF_MISMATCH) break;
@@ -144,8 +146,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     {
         switch(type_s[i])
         {
-            case SF_C:
-            case SF_S:
+        case SF_C:
+        case SF_S:
             {
                 types::String* ps = new types::String(iNiter,1);
                 for(int j = 0 ; j < iNiter ; j++)
@@ -156,14 +158,14 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 uiFormatUsed |= (1 << 1);
             }
             break;
-        	case SF_LUI:
-            case SF_SUI:
-            case SF_UI:
-            case SF_LI:
-            case SF_SI:
-            case SF_I:
-            case SF_LF:
-            case SF_F:
+        case SF_LUI:
+        case SF_SUI:
+        case SF_UI:
+        case SF_LI:
+        case SF_SI:
+        case SF_I:
+        case SF_LF:
+        case SF_F:
             {
                 types::Double* p = new types::Double(iNiter,1);
                 for(int j=0; j<iNiter; j++)
@@ -203,7 +205,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
         switch(uiFormatUsed)
         {
-            case (1 << 1) :
+        case (1 << 1) :
             {
                 int sizeOfString = (*pIT)[0]->getAs<types::String>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfString, sizeOfVector};
@@ -218,7 +220,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 out.push_back(pString);
             }
             break;
-            case (1 << 2) :
+        case (1 << 2) :
             {
                 int sizeOfDouble = (*pIT)[0]->getAs<types::Double>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfDouble, sizeOfVector};
@@ -233,7 +235,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 out.push_back(pDouble);
             }
             break;
-            default :
+        default :
             {
                 std::vector<types::InternalType*>* pITTemp = new std::vector<types::InternalType*>();
                 pITTemp->push_back((*pIT)[0]);
@@ -245,7 +247,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                     {
                         switch(pITTemp->back()->getType())
                         {
-                            case types::InternalType::RealString :
+                        case types::InternalType::RealString :
                             {
                                 int iRows               = pITTemp->back()->getAs<types::String>()->getRows();
                                 int iCols               = pITTemp->back()->getAs<types::String>()->getCols();
@@ -265,7 +267,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                                 pITTemp->push_back(pType);
                             }
                             break;
-                            case types::InternalType::RealDouble :
+                        case types::InternalType::RealDouble :
                             {
                                 int iRows               = pITTemp->back()->getAs<types::Double>()->getRows();
                                 int iCols               = pITTemp->back()->getAs<types::Double>()->getCols();
@@ -281,8 +283,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                                 pITTemp->push_back(pType);
                             }
                             break;
-                            default :
-                                return types::Function::Error;
+                        default :
+                            return types::Function::Error;
                         }
                     }
                     else
@@ -301,7 +303,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             }
         }
     }
-	Free_Scan(rowcount,ncol,type_s,&data);
+    Free_Scan(rowcount,ncol,type_s,&data);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

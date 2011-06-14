@@ -219,6 +219,8 @@
     <ClInclude Include="includes\cell.hxx" />
     <ClInclude Include="includes\colon.hxx" />
     <ClInclude Include="includes\container.hxx" />
+    <ClInclude Include="includes\cpp_gateway_prototype.hxx" />
+    <ClInclude Include="includes\c_gateway_prototype.h" />
     <ClInclude Include="includes\dollar.hxx" />
     <ClInclude Include="includes\double.hxx" />
     <ClInclude Include="includes\dynlib_types.h" />

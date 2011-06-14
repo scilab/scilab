@@ -12,7 +12,7 @@
 
 
 #include <string.h>
-#include "funcmanager.hxx"
+#include "function.hxx"
 #include "io_gw.hxx"
 
 extern "C"

@@ -29,6 +29,7 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "list.hxx"
+#include "double.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 

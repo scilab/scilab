@@ -10,11 +10,11 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "function.hxx"
 #include "struct.hxx"
 #include "string.hxx"
 #include "cell.hxx"
-#include "funcmanager.hxx"
 
 extern "C"
 {
@@ -90,7 +90,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     }
 
     Struct *pOut = NULL;
-    
+
     if(piDimsRef)
     {
         pOut = new Struct(iDimsRef, piDimsRef);
@@ -103,7 +103,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     InternalType *pFieldValue = NULL;
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {//for each field
-        wstring wstField((*itInput)->getAs<String>()->get(0));
+        std::wstring wstField((*itInput)->getAs<String>()->get(0));
         InternalType* pData = (*(itInput + 1));
 
         //add field in struct

@@ -10,6 +10,7 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "function.hxx"
 #include "struct.hxx"
 #include "bool.hxx"

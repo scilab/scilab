@@ -13,7 +13,7 @@
 #ifndef __GUI_GW_HXX__
 #define __GUI_GW_HXX__
 
-#include "function.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 #ifdef _MSC_VER
 	#if GUI_GW_EXPORTS

@@ -239,6 +239,12 @@
     <ClInclude Include="includes\dynlib_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\c_gateway_prototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\cpp_gateway_prototype.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

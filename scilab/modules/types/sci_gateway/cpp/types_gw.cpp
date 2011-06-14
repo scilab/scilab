@@ -11,6 +11,7 @@
  */
 
 #include "types_gw.hxx"
+#include "context.hxx"
 
 #define MODULE_NAME L"types"
 bool TypesModule::Load()

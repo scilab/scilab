@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -9,14 +9,9 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifndef __C_GATEWAY_PROTOTYPE_H__
+#define __C_GATEWAY_PROTOTYPE_H__
 
-#include "core_gw.hxx"
-#include "function.hxx"
-#include "configvariable.hxx"
+#define C_GATEWAY_PROTOTYPE(__gateway__) int __gateway__(char* fname, int* _piKey)
 
-types::Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, types::typed_list &out)
-{
-    ConfigVariable::setForceQuit(true);
-
-    return types::Function::OK;
-}
+#endif /* !__C_GATEWAY_PROTOTYPE_H__ */

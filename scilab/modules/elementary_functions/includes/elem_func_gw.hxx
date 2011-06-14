@@ -1,7 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+*  Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -14,9 +14,7 @@
 #ifndef __ELEM_FUNC_GW_HXX__
 #define __ELEM_FUNC_GW_HXX__
 
-#include "funcmanager.hxx"
-#include "context.hxx"
-#include "function.hxx"
+#include "cpp_gateway_prototype.hxx"
 
 #ifdef _MSC_VER
 	#if ELEM_FUNC_GW_EXPORTS

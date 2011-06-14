@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -124,7 +124,7 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -168,7 +168,7 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -219,7 +219,7 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

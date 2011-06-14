@@ -14,6 +14,7 @@
 #include "funcmanager.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 #include "configvariable.hxx"
 
 

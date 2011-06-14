@@ -13,7 +13,10 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "string.hxx"
+#include "double.hxx"
+#include "bool.hxx"
 #include "filemanager.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -26,9 +29,7 @@ extern "C"
 #include "PATH_MAX.h"
 }
 /*--------------------------------------------------------------------------*/
-
-
-Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRet  = 0;
     int iFile = -1; //default file : last opened file

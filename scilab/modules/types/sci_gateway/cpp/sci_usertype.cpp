@@ -10,6 +10,7 @@
  *
  */
 
+#include "types_gw.hxx"
 #include "types.hxx"
 #include "funcmanager.hxx"
 #include "user.hxx"

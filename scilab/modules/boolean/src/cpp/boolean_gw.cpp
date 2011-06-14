@@ -11,6 +11,8 @@
 */
 
 #include "boolean_gw.hxx"
+#include "context.hxx"
+#include "function.hxx"
 
 #define MODULE_NAME L"boolean"
 extern "C"
