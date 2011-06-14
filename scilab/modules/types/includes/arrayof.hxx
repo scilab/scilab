@@ -18,12 +18,15 @@
 //#include <string>
 //#include "anytype.hxx"
 #include <sstream>
+#include <cstdio>
 #include "types.hxx"
 #include "types_tools.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
-	#include "core_math.h"
+#include "core_math.h"
+#include "localization.h"
 }
 
 namespace types
@@ -53,50 +56,56 @@ namespace types
         /*internal constructor*/
         void create(int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
         {
-            //try
-            //{
-                m_iSize     = 1;
-                m_iDims     = _iDims;
-                m_piDims    = new int[m_iDims];
+            m_iSize     = 1;
+            m_iDims     = _iDims;
+            m_piDims    = new int[m_iDims];
 
-                for(int i = 0 ; i < m_iDims ; i++)
-                {
-                    m_piDims[i] = _piDims[i];
-                    m_iSize *= m_piDims[i];
-                }
+            for(int i = 0 ; i < m_iDims ; i++)
+            {
+                m_piDims[i] = _piDims[i];
 
-                if(_pRealData)
+                /*
+                ** Manage overflow on size
+                ** a = b * c is in overflow if a / b != c
+                ** check b is not 0 (empty matrix case)
+                */
+                int iTmpSize = m_iSize * m_piDims[i];
+                if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
                 {
-                    m_pRealData = allocData(m_iSize);
-                    *_pRealData = m_pRealData;
-                }
-                else
-                {
-                    m_pRealData = NULL;
-                }
-
-                if(_pImgData)
-                {
-                    m_pImgData = allocData(m_iSize);
-                    *_pImgData = m_pImgData;
-                    m_bComplex = true;
-                }
-                else
-                {
-                    m_pImgData = NULL;
+                    char message[bsiz];
+                    sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
+                    throw(ast::ScilabError(message));
                 }
 
-                m_iSizeMax = m_iSize;
-                m_iRows = m_piDims[0];
-                m_iCols = m_piDims[1];
-            //}
-            //catch (std::bad_alloc &e)
-            //{
-            //    wchar_t message[bsiz];
-            //    os_swprintf(message, bsiz, _W("Can not allocate %.2f MB memory.\n"),  (double) ((double)
-            //        m_piDims[0] * (double) m_piDims[1] * sizeof(T)) / 1.e6);
-            //    throw(ast::ScilabError(message));
-            //}
+                m_iSize = iTmpSize;
+
+
+            }
+
+            if(_pRealData)
+            {
+                m_pRealData = allocData(m_iSize);
+                *_pRealData = m_pRealData;
+            }
+            else
+            {
+                m_pRealData = NULL;
+            }
+
+            if(_pImgData)
+            {
+                m_pImgData = allocData(m_iSize);
+                *_pImgData = m_pImgData;
+                m_bComplex = true;
+            }
+            else
+            {
+                m_pImgData = NULL;
+            }
+
+            m_iSizeMax = m_iSize;
+            m_iRows = m_piDims[0];
+            m_iCols = m_piDims[1];
         }
 
         virtual T               getNullValue() = 0;
