@@ -10,7 +10,7 @@ SciNotes:
 
 * Add an 'Save and Execute all files' action.
 
-* bug 9334 fixed - Extra lines was added when code was exported into PDF under
+* bug 9334 fixed - Extra lines were added when code was exported into PDF under
                    Windows.
 
 * Bug 9358 fixed - A simple quoted string was not always correctly convert
@@ -27,6 +27,9 @@ SciNotes:
 * Bug 9488 fixed - There was no popup menu on the tab to copy the file path.
 
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
+
+* bug 9597 fixed - It was not possible to navigate across the tabs with
+                   <CTRL>+(PAGE_UP | PAGE_DOWN).
 
 
 Graphical User Interface:
