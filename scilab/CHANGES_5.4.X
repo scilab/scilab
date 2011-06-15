@@ -10,6 +10,8 @@ SciNotes:
 
 * Add an 'Save and Execute all files' action.
 
+* A tab can be closed in using the middle mouse button.
+
 * bug 9334 fixed - Extra lines were added when code was exported into PDF under
                    Windows.
 

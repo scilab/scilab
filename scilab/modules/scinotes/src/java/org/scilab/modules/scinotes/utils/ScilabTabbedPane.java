@@ -37,6 +37,7 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -394,6 +395,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             add(label);
             add(new JLabel("   "));
             add(new CloseButton());
+            addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
+                            closeTab();
+                        }
+                    }
+                });
         }
 
         /**
@@ -408,6 +416,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
          */
         public String getText() {
             return label.getText();
+        }
+
+        public void closeTab() {
+            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
+            if (getTabCount() == 0) {
+                editor.addEmptyTab();
+            }
         }
 
         /**
@@ -428,10 +443,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(CloseTabButton.this));
-                            if (getTabCount() == 0) {
-                                editor.addEmptyTab();
-                            }
+                            closeTab();
                         }
                     });
             }
