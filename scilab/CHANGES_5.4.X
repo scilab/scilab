@@ -251,6 +251,9 @@ Bug fixes:
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
+* bug 9542 fixed - During export operation the file could be locked by an other
+                   process (Windows bug).
+
 * bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
                    to parse XML configuration files.
 
