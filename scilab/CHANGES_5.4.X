@@ -193,6 +193,12 @@ ATOMS:
 * bug 9127 fixed - "Home" item renamed to "Installed Modules".
 
 
+Misc:
+=====
+
+* Change the buffering display mode.
+
+
 Bug fixes:
 ==========
 
