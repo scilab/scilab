@@ -134,6 +134,10 @@ Optimization:
 * Bug 8543 fixed - In neldermead, the help page presents a wrong order 
                    for the options.
 
+* Bug 8545 fixed - In neldermead, the printing system displays too long 
+                   messages.
+
+
 Documentation:
 ==============
 
