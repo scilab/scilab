@@ -135,9 +135,8 @@ nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
 nm = neldermead_configure(nm,"-restartflag",%t);
-nm = neldermead_configure(nm,"-restartdetection","foo");
-nm = neldermead_configure(nm,"-restartsimplexmethod","spendley");
-nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);
-cmd = "nm = neldermead_search(nm)";
-assert_checkerror(cmd,"%s: Unknown restart detection %s",[],"neldermead_istorestart","foo");
+instr = "nm = neldermead_configure(nm,""-restartdetection"",""foo"");";
+alloptions = """oneill"" or ""kelley""";
+assert_checkerror(instr,"%s: Expected value [%s] for input argument %s at input #%d, but got ""%s"" instead.",[],..
+  "neldermead_configure",alloptions,"value",3,"foo");
 nm = neldermead_destroy(nm);

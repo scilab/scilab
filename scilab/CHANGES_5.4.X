@@ -144,6 +144,9 @@ Optimization:
 * Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
                    Same changes applied to optimbase_checkx0.
 
+* Bug 9576 fixed - The neldermead component did not check the bounds 
+                   of some input parameters.
+
 
 Documentation:
 ==============

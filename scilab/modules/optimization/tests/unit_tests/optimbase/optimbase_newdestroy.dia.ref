@@ -221,12 +221,12 @@ assert_checkerror(cmd,"%s: The x0 vector is expected to be a column matrix, but 
 // Test wrong -tolxmethod
 //
 cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
-assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"assert_typeboolean","value",3,"string");
+assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"optimbase_typeboolean","value",3,"string");
 //
 // Test wrong -tolfunmethod
 //
 cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
-assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"assert_typeboolean","value",3,"string");
+assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"optimbase_typeboolean","value",3,"string");
 opt = optimbase_destroy(opt);
 //
 // Test outstruct when no -outputcommand is defined
