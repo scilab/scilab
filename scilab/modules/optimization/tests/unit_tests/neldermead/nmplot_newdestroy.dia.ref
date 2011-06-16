@@ -25,28 +25,32 @@ nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","axes");
 nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
-nm = nmplot_configure(nm,"-simplexfn","simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","sigma.txt");
+simfn = fullfile(TMPDIR,"simplex.txt");
+nm = nmplot_configure(nm,"-simplexfn",simfn);
+fbfn = fullfile(TMPDIR,"fbar.txt");
+nm = nmplot_configure(nm,"-fbarfn",fbfn);
+fofn = fullfile(TMPDIR,"fopt.txt");
+nm = nmplot_configure(nm,"-foptfn",fofn);
+sigfn = fullfile(TMPDIR,"sigma.txt");
+nm = nmplot_configure(nm,"-sigmafn",sigfn);
 sfn = nmplot_cget ( nm , "-simplexfn" );
-assert_checkequal ( sfn , "simplex.txt" );
+assert_checkequal ( sfn , simfn );
 sfn = nmplot_cget ( nm , "-fbarfn" );
-assert_checkequal ( sfn , "fbar.txt" );
+assert_checkequal ( sfn , fbfn );
 sfn = nmplot_cget ( nm , "-foptfn" );
-assert_checkequal ( sfn , "fopt.txt" );
+assert_checkequal ( sfn , fofn );
 sfn = nmplot_cget ( nm , "-sigmafn" );
-assert_checkequal ( sfn , "sigma.txt" );
+assert_checkequal ( sfn , sigfn );
 // Check the display
 disp(nm);
  
 Nelder-Mead Plot Object:
 ======================
 
-Simplex data file : simplex.txt
-Fbar data file : fbar.txt
-Fopt data file : fopt.txt
-Sigma data file : sigma.txt
+Simplex data file : TMPDIR\simplex.txt
+Fbar data file : TMPDIR\fbar.txt
+Fopt data file : TMPDIR\fopt.txt
+Sigma data file : TMPDIR\sigma.txt
 
 nmbase: <TNELDER Object>
 nm = nmplot_destroy(nm);

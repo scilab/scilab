@@ -927,10 +927,7 @@ function this = neldermead_startup (this)
     // 1. If the problem has bounds, check that they are consistent
     [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
     if ( hasbounds ) then
-        [ this.optbase , isok , errmsg ] = optimbase_checkbounds ( this.optbase );
-        if ( ~isok ) then
-            error ( msprintf("%s: %s", "neldermead_startup" , errmsg ))
-        end
+        this.optbase = optimbase_checkbounds ( this.optbase );
     end
     // 2. Get the initial guess and compute the initial simplex
     x0 = optimbase_cget ( this.optbase , "-x0" );

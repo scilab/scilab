@@ -137,6 +137,9 @@ Optimization:
 * Bug 8545 fixed - In neldermead, the printing system displays too long 
                    messages.
 
+* Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
+                   Same changes applied to optimbase_checkx0.
+
 
 Documentation:
 ==============
