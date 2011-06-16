@@ -137,7 +137,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     /*
      * To do:
      * -use polygon offset for wireframe rendering.
-     * -take into account colormap updates.
      */
     @Override
     public void visit(final Fec fec) {
@@ -291,7 +290,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         }
     }
 
-    /* To do: take into account colormap updates. */
     @Override
     public void visit(final Matplot matplot) {
         if (matplot.getVisible()) {
@@ -464,7 +462,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
      * To do:
      * -back faces rendering.
      * -use polygon offset for wireframe rendering.
-     * -take into account colormap updates.
      * -use common code for both the Fac3d and Plot3d visit methods
      *  as they are mostly similar.
      */
@@ -586,7 +583,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
      * To do:
      * -back faces rendering.
      * -use polygon offset for wireframe rendering.
-     * -take into account colormap updates.
      */
     @Override
     public void visit(final Plot3d plot3d) {
@@ -734,6 +730,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     @Override
     public void updateObject(String id, String property) {
         if (GraphicObjectProperties.__GO_COLORMAP__.equals(property) && figure.getIdentifier().equals(id)) {
+            dataManager.disposeAllColorBuffers();
             markManager.disposeAll();
             textManager.disposeAll();
             axesDrawer.getRulerSpriteManagerSet().disposeAll();

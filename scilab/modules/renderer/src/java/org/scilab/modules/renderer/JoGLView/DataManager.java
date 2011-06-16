@@ -219,6 +219,14 @@ public class DataManager {
     }
 
     /**
+     * Clears all the color buffers.
+     */
+    public void disposeAllColorBuffers() {
+        canvas.getBuffersManager().dispose(colorBufferMap.values());
+        colorBufferMap.clear();
+    }
+
+    /**
      * Fill the vertex, color, index and wire index buffers
      * of a given object.
      * @param id the object id.
