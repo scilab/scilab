@@ -1677,12 +1677,12 @@
     <para>
       It might happen that the function requires additionnal arguments to be evaluated.
       In this case, we can use the following feature.
-      The argument <literal>fun</literal> can also be the list <literal>(f,a1,a2,...)</literal>.
-      In this case <literal>f</literal>, the first element in the list, must be a function and must
+      The argument <literal>fun</literal> can also be the list <literal>(myfun,a1,a2,...)</literal>.
+      In this case <literal>myfun</literal>, the first element in the list, must be a function and must
       have the header:
       <screen>
-        [ f , index ] = costf ( x , index , a1, a2, ... )
-        [ f , c , index ] = costf ( x , index , a1, a2, ...)
+        [ f , index ] = myfun ( x , index , a1, a2, ... )
+        [ f , c , index ] = myfun ( x , index , a1, a2, ...)
       </screen>
       where the input arguments <literal>a1, a2, ...</literal>
       are automatically appended at the end of the calling sequence.

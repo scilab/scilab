@@ -276,3 +276,19 @@ assert_checkequal ( output.funcCount , 21 );
 //
 [x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1].' );
 assert_checkalmostequal ( x , [1.0   1.0], 1e-4 );
+//
+// Test extra arguments
+function y = bananaext (x,a,b)
+  y = a*(x(2)-x(1)^2)^2 + (b-x(1))^2;
+endfunction
+a = 100;
+b = 1;
+[x fval] = fminsearch ( list(bananaext,a,b) , [-1.2 1] );
+assert_checkalmostequal ( x , [1.0   1.0], 1e-4 );
+assert_checkalmostequal ( fval , 0, [], 1e-5 );
+//
+a = 100;
+b = 12;
+[x fval] = fminsearch ( list(bananaext,a,b) , [10 100] );
+assert_checkalmostequal ( x , [12  144], 1e-4 );
+assert_checkalmostequal ( fval , 0, [], 1e-5 );
