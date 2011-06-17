@@ -32,9 +32,6 @@
     <ClCompile Include="..\jni\GiwsException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_action_binding.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InterpreterManagement.c">
       <Filter>Source Files</Filter>
     </ClCompile>

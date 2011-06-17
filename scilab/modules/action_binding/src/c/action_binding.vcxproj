@@ -265,7 +265,6 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClCompile Include="..\cpp\action_binding_GiwsExports.cpp" />
     <ClCompile Include="DllmainAction_Binding.c" />
     <ClCompile Include="..\jni\GiwsException.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_action_binding.c" />
     <ClCompile Include="InterpreterManagement.c" />
     <ClCompile Include="..\jni\InterpreterManagement_wrap.c" />
     <ClCompile Include="..\jni\Signal.cpp" />
