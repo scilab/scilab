@@ -16,6 +16,8 @@ package org.scilab.modules.graph;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
@@ -25,6 +27,14 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 
+import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.mxChildChange;
+import com.mxgraph.model.mxGraphModel.mxCollapseChange;
+import com.mxgraph.model.mxGraphModel.mxGeometryChange;
+import com.mxgraph.model.mxGraphModel.mxStyleChange;
+import com.mxgraph.model.mxGraphModel.mxTerminalChange;
+import com.mxgraph.model.mxGraphModel.mxValueChange;
+import com.mxgraph.model.mxGraphModel.mxVisibleChange;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
 import com.mxgraph.swing.util.mxGraphActions;
@@ -62,7 +72,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * Manage the modification state on change
 	 */
-	private mxIEventListener changeTracker = new mxIEventListener() {
+	private final mxIEventListener changeTracker = new mxIEventListener() {
 		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			setModified(true);
@@ -98,7 +108,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * Update the selection on undo/redo
 	 */
-	private mxIEventListener selectionHandler = new mxIEventListener() {
+	private final mxIEventListener selectionHandler = new mxIEventListener() {
 		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
@@ -109,7 +119,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * Update the component when the graph is locked
 	 */
-	private PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
+	private final PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			if (evt.getPropertyName().equals("cellsLocked")) {
@@ -329,5 +339,61 @@ public class ScilabGraph extends mxGraph {
 	@Override
 	protected mxGraphView createGraphView() {
 		return new ScilabGraphView(this);
+	}
+	
+	/*
+	 * Utils
+	 */
+	/**
+	 * Returns the cells to be selected for the given list of changes.
+	 * @param changes the changes
+	 * @param model the model to work on
+	 * @return the cells
+	 */
+	public static Object[] getSelectionCellsForChanges(final List<mxUndoableChange> changes, final mxGraphModel model)
+	{
+		List<Object> cells = new ArrayList<Object>();
+		Iterator<mxUndoableChange> it = changes.iterator();
+
+		while (it.hasNext())
+		{
+			Object change = it.next();
+
+			if (change instanceof mxChildChange)
+			{
+				cells.add(((mxChildChange) change).getChild());
+			}
+			else if (change instanceof mxTerminalChange)
+			{
+				cells.add(((mxTerminalChange) change).getCell());
+			}
+			else if (change instanceof mxValueChange)
+			{
+				cells.add(((mxValueChange) change).getCell());
+			}
+			else if (change instanceof mxStyleChange)
+			{
+				cells.add(((mxStyleChange) change).getCell());
+			}
+			else if (change instanceof mxGeometryChange)
+			{
+				cells.add(((mxGeometryChange) change).getCell());
+			}
+			else if (change instanceof mxCollapseChange)
+			{
+				cells.add(((mxCollapseChange) change).getCell());
+			}
+			else if (change instanceof mxVisibleChange)
+			{
+				mxVisibleChange vc = (mxVisibleChange) change;
+
+				if (vc.isVisible())
+				{
+					cells.add(((mxVisibleChange) change).getCell());
+				}
+			}
+		}
+
+		return mxGraphModel.getTopmostCells(model, cells.toArray());
 	}
 }

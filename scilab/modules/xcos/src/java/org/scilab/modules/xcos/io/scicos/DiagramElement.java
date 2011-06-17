@@ -413,7 +413,9 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 */
 	@Override
 	public ScilabType beforeEncode(XcosDiagram from, ScilabType element) {
-		from.getAsComponent().clearCellOverlays();
+		if (from.getAsComponent() != null) {
+			from.getAsComponent().clearCellOverlays();
+		}
 		return super.beforeEncode(from, element);
 	}
 	

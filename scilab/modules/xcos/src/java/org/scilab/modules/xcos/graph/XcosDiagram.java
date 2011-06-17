@@ -18,7 +18,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.server.UID;
 import java.util.ArrayList;
@@ -122,6 +121,9 @@ import com.mxgraph.view.mxStylesheet;
 public class XcosDiagram extends ScilabGraph {
 	private static final Log LOG = LogFactory.getLog(XcosDiagram.class);
 	
+	private static final String MODIFIED = "modified";
+	private static final String CELLS = "cells";
+	
 	/*
 	 * Static helpers
 	 */
@@ -140,6 +142,358 @@ public class XcosDiagram extends ScilabGraph {
 				return klass.isInstance(cell);
 			}
 		});
+	}
+	
+	
+	/*
+	 * Static diagram listeners
+	 */
+	
+	/**
+     * CellAddedTracker
+     * Called when mxEvents.CELLS_ADDED is fired.
+     */
+    private static final class CellAddedTracker implements mxIEventListener {
+    	
+    	private static CellAddedTracker instance;
+    	
+    	/**
+    	 * Default constructor
+    	 */
+    	private CellAddedTracker() { }
+
+    	/**
+		 * @return the instance
+		 */
+		public static synchronized CellAddedTracker getInstance() {
+			if (instance == null) {
+				instance = new CellAddedTracker();
+			}
+			return instance;
+		}
+    	
+    	/**
+    	 * Update block values on add 
+    	 * @param source the source instance
+    	 * @param evt the event data
+    	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+    	 */
+    	@Override
+		public void invoke(final Object source, final mxEventObject evt) {
+    		final XcosDiagram diagram = (XcosDiagram) source;
+    		final Object[] cells = (Object[]) evt.getProperty(CELLS);
+    		
+    		diagram.getModel().beginUpdate();
+    		try {
+	    		final Filter filter = new Filter() {
+					@Override
+					public boolean filter(Object cell) {
+						if (cell instanceof BasicBlock) {
+							// Update parent on cell addition
+							((BasicBlock) cell).setParentDiagram(diagram);
+						}
+						return false;
+					}
+				};
+	    		
+	    		for (int i = 0; i < cells.length; ++i) {
+	    			mxGraphModel.filterDescendants(diagram.getModel(), filter, cells[i]);
+	    		}
+    		} finally {
+    			diagram.getModel().endUpdate();
+    		}
+    	}
+    }
+    
+    /**
+     * CellResizedTracker
+     * Called when mxEvents.CELLS_RESIZED is fired. 
+     */
+	private static final class CellResizedTracker implements mxIEventListener {
+
+		private static CellResizedTracker instance;
+
+		/**
+		 * Constructor
+		 */
+		private CellResizedTracker() { }
+
+		/**
+		 * @return the instance
+		 */
+		public static CellResizedTracker getInstance() {
+			if (instance == null) {
+				instance = new CellResizedTracker();
+			}
+			return instance;
+		}
+
+		/**
+		 * Update the cell view
+		 * 
+		 * @param source
+		 *            the source instance
+		 * @param evt
+		 *            the event data
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+		 *      com.mxgraph.util.mxEventObject)
+		 */
+		@Override
+		public void invoke(final Object source, final mxEventObject evt) {
+			final XcosDiagram diagram = (XcosDiagram) source;
+			final Object[] cells = (Object[]) evt.getProperty(CELLS);
+
+			diagram.getModel().beginUpdate();
+			try {
+				for (int i = 0; i < cells.length; ++i) {
+					if (cells[i] instanceof BasicBlock) {
+						BlockPositioning.updateBlockView((BasicBlock) cells[i]);
+					}
+				}
+			} finally {
+				diagram.getModel().endUpdate();
+			}
+		}
+	}
+	
+	/**
+	 * ModelTracker called when mxEvents.CHANGE occurs on a model
+	 */
+	private static final class ModelTracker implements mxIEventListener {
+		private static ModelTracker instance;
+
+		/**
+		 * Constructor
+		 */
+		private ModelTracker() { }
+		
+		/**
+		 * @return the instance
+		 */
+		public static ModelTracker getInstance() {
+			if (instance == null) {
+				instance = new ModelTracker();
+			}
+			return instance;
+		}
+
+		/**
+		 * Fire cell value update on any change
+		 * 
+		 * @param source
+		 *            the source instance
+		 * @param evt
+		 *            the event data
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+		 *      com.mxgraph.util.mxEventObject)
+		 */
+		@Override
+		public void invoke(final Object source, final mxEventObject evt) {
+			final mxGraphModel model = (mxGraphModel) source;
+			@SuppressWarnings("unchecked")
+			final List<mxAtomicGraphModelChange> changes = (List<mxAtomicGraphModelChange>) (evt
+					.getProperty("changes"));
+
+			final List<Object> objects = new ArrayList<Object>();
+			model.beginUpdate();
+			try {
+
+				for (int i = 0; i < changes.size(); ++i) {
+					if (changes.get(i) instanceof mxChildChange) {
+						if (((mxChildChange) changes.get(i)).getChild() instanceof SplitBlock) {
+							continue;
+						}
+
+						if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
+							final BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes
+									.get(i)).getChild();
+							objects.add(currentCell);
+						}
+					}
+				}
+				if (!objects.isEmpty()) {
+					final Object[] firedCells = new Object[objects.size()];
+					for (int j = 0; j < objects.size(); ++j) {
+						firedCells[j] = objects.get(j);
+					}
+					
+					model.fireEvent(new mxEventObject(
+							XcosEvent.FORCE_CELL_VALUE_UPDATE, CELLS,
+							firedCells));
+				}
+
+			} finally {
+				model.endUpdate();
+			}
+		}
+	}
+	
+
+    
+    /**
+     *  SuperBlockUpdateTracker
+     *  Called when adding some port in a SuperBlock diagram
+     *  to update current sub-diagram (i.e SuperBlock) representation.
+     */
+    private static final class SuperBlockUpdateTracker implements mxIEventListener {
+    	private static SuperBlockUpdateTracker instance;
+    	
+    	/**
+		 * Constructor 
+		 */
+		private SuperBlockUpdateTracker() { }
+    	
+    	/**
+		 * @return the instance
+		 */
+		public static SuperBlockUpdateTracker getInstance() {
+			if (instance == null) {
+				instance = new SuperBlockUpdateTracker();
+			}
+			return instance;
+		}
+	
+		/**
+		 * Update the superblock values (rpar) on update
+		 * @param source the source instance
+		 * @param evt the event data
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+		 */
+		@Override
+		public void invoke(final Object source, final mxEventObject evt) {
+			assert evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED) instanceof SuperBlock;
+			
+			final XcosDiagram diagram = (XcosDiagram) source;
+			final SuperBlock updatedBlock = (SuperBlock) evt
+					.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
+			
+			assert diagram == updatedBlock.getParentDiagram();
+
+			/*
+			 * TODO: is this really necessary on the EDT ? It might be a huge
+			 * improvement of the user experience.
+			 */
+			updatedBlock.setRealParameters(new DiagramElement()
+					.encode(updatedBlock.getChild()));
+			
+			if (diagram instanceof SuperBlockDiagram) {
+				final SuperBlock parentBlock = ((SuperBlockDiagram) diagram).getContainer();
+				parentBlock.getParentDiagram()
+						.fireEvent(
+								new mxEventObject(
+										XcosEvent.SUPER_BLOCK_UPDATED,
+										XcosConstants.EVENT_BLOCK_UPDATED,
+										parentBlock));
+			}
+			
+			BlockPositioning.updateBlockView(updatedBlock);
+			
+			diagram.getView().clear(updatedBlock, true, true);
+			diagram.getView().validate();
+			diagram.repaint();
+		}
+    }
+	
+    /**
+     * Update the modified block on undo/redo
+     */
+	private static final class UndoUpdateTracker implements mxIEventListener {
+		private static UndoUpdateTracker instance;
+
+		/**
+		 * Constructor
+		 */
+		public UndoUpdateTracker() { }
+
+		/**
+		 * @return the instance
+		 */
+		public static UndoUpdateTracker getInstance() {
+			if (instance == null) {
+				instance = new UndoUpdateTracker();
+			}
+			return instance;
+		}
+
+		/**
+		 * Update the block and style on undo
+		 * 
+		 * @param source
+		 *            the source instance
+		 * @param evt
+		 *            the event data
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+		 *      com.mxgraph.util.mxEventObject)
+		 */
+		@Override
+		public void invoke(final Object source, final mxEventObject evt) {
+			final mxUndoableEdit edit = (mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT);
+			
+			final mxGraphModel model = (mxGraphModel) edit.getSource();
+			final List<mxUndoableChange> changes = edit.getChanges();
+
+			final Object[] changedCells = getSelectionCellsForChanges(changes, model);
+			model.beginUpdate();
+			try {
+				for (final Object object : changedCells) {
+					if (object instanceof BasicBlock) {
+						final BasicBlock current = (BasicBlock) object;
+
+						// When we change the style property we have to update
+						// some BasiBlock fields
+						if (changes.get(0) instanceof mxStyleChange) {
+							current.updateFieldsFromStyle();
+						}
+
+						// Update the block position
+						BlockPositioning.updateBlockView(current);
+					}
+				}
+			} finally {
+				model.endUpdate();
+			}
+		}
+	}
+    
+	/**
+	 * Refresh each block on modification (update port position, etc...)
+	 */
+	private static final class RefreshBlockTracker implements mxIEventListener {
+		private static RefreshBlockTracker instance;
+
+		/**
+		 * @return the instance
+		 */
+		public static RefreshBlockTracker getInstance() {
+			if (instance == null) {
+				instance = new RefreshBlockTracker();
+			}
+			return instance;
+		}
+		
+		/**
+		 * Refresh the block on port added
+		 * 
+		 * @param sender the diagram
+		 * @param evt the event
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+		 */
+		@Override
+		public void invoke(Object sender, mxEventObject evt) {
+			final XcosDiagram diagram = (XcosDiagram) sender;
+
+			diagram.getModel().beginUpdate();
+			try {
+				final BasicBlock updatedBlock = (BasicBlock) evt
+						.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
+				BlockPositioning.updateBlockView(updatedBlock);
+				
+				diagram.getView().clear(updatedBlock, true, true);
+				diagram.getView().validate();
+			} finally {
+				diagram.getModel().endUpdate();
+			}
+		}
 	}
 	
 	/*
@@ -544,7 +898,7 @@ public class XcosDiagram extends ScilabGraph {
 	setAutoOrigin(true);
 	
 	// Add a listener to track when model is changed
-	getModel().addListener(mxEvent.CHANGE, new ModelTracker());
+	getModel().addListener(mxEvent.CHANGE, ModelTracker.getInstance());
 	
 	((mxCell) getDefaultParent()).setId((new UID()).toString());
 	((mxCell) getModel().getRoot()).setId((new UID()).toString());
@@ -575,16 +929,18 @@ public class XcosDiagram extends ScilabGraph {
     	
     	// Property change Listener
     	// Will say if a diagram has been modified or not.
-    	getAsComponent().addPropertyChangeListener(new PropertyChangeListener() {
-    	    @Override
-			public void propertyChange(final PropertyChangeEvent e) {
-    		if (e.getPropertyName().compareTo("modified") == 0) {
-    		    if (!e.getOldValue().equals(e.getNewValue())) {
-    			updateTabTitle();
-    		    }
+    	final PropertyChangeListener p = new PropertyChangeListener() {
+    		@Override
+    		public void propertyChange(final PropertyChangeEvent e) {
+    			if (e.getPropertyName().compareTo(MODIFIED) == 0) {
+    				if (!e.getOldValue().equals(e.getNewValue())) {
+    					updateTabTitle();
+    				}
+    			}
     		}
-    	    }
-    	});
+    	};
+    	getAsComponent().removePropertyChangeListener(MODIFIED, p);
+    	getAsComponent().addPropertyChangeListener(MODIFIED, p);
     }
     
 	/**
@@ -705,249 +1061,47 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * Install all needed Listeners.
      */
-    public void installListeners() {
-
-	// Track when superblock ask a parent refresh.
-	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
-	
-	// Track when cells are added.
-	addListener(mxEvent.CELLS_ADDED, CellAddedTracker.getInstance()); 
-	addListener(mxEvent.CELLS_ADDED, getEngine());
-	
-	// Track when cells are deleted.
-	addListener(mxEvent.CELLS_REMOVED, getEngine());
-	
-	// Track when resizing a cell.
-	addListener(mxEvent.CELLS_RESIZED, new CellResizedTracker());
-	
-	// Track when we have to force a Block value
-	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
-	
-	// Update the blocks view on undo/redo
-	getUndoManager().addListener(mxEvent.UNDO, new UndoUpdateTracker());
-	getUndoManager().addListener(mxEvent.REDO, new UndoUpdateTracker());
-	
-	addListener(XcosEvent.ADD_PORTS, new mxIEventListener() {
-	    @Override
-		public void invoke(final Object source, final mxEventObject evt) {
-		getModel().beginUpdate();
-		final BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
-		BlockPositioning.updateBlockView(updatedBlock);
-		getView().clear(updatedBlock, true, true);
-		getView().validate();
-		getModel().endUpdate();
-	    }
-	});	
-	
-    }
-
-    /**
-     * modelTracker
-     * Called when mxEvents.CHANGE occurs on a model
-     */
-    private class ModelTracker implements mxIEventListener {
-	/**
-	 * Constructor
-	 */
-	public ModelTracker() {
-	    super();
-	}
-
-	/**
-	 * Fire cell value update on any change 
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(final Object source, final mxEventObject evt) {
-	    final List<mxAtomicGraphModelChange> changes = (List<mxAtomicGraphModelChange>) (evt.getProperty("changes"));
-	    final List<Object> objects = new ArrayList<Object>();
-	    getModel().beginUpdate();
-	    for (int i = 0; i < changes.size(); ++i) {
-		if (changes.get(i) instanceof mxChildChange) {
-		    if (((mxChildChange) changes.get(i)).getChild() instanceof SplitBlock) {
-			continue;
-		    }
-
-		    if (((mxChildChange) changes.get(i)).getChild() instanceof BasicBlock) {
-			final BasicBlock currentCell = (BasicBlock) ((mxChildChange) changes.get(i)).getChild();
-			objects.add(currentCell);
-		    }
-		}
-	    }
-	    if (!objects.isEmpty()) {
-		final Object[] firedCells = new Object[objects.size()];
-		for (int j = 0;  j < objects.size(); ++j) {
-		    firedCells[j] = objects.get(j);
-		}
-		//fireEvent(XcosEvent.FORCE_CELL_RESHAPE, new mxEventObject(new Object[] {firedCells}));
-		fireEvent(new mxEventObject(XcosEvent.FORCE_CELL_VALUE_UPDATE, "cells", firedCells));
-	    }
-	    getModel().endUpdate();
-	}
-    }
-    
-    /**
-     *  SuperBlockUpdateTracker
-     *  Called when adding some port in a SuperBlock diagram
-     *  to update current sub-diagram (i.e SuperBlock) representation.
-     */
-    private class SuperBlockUpdateTracker implements mxIEventListener {
-	
-	/**
-	 * Constructor 
-	 */
-	public SuperBlockUpdateTracker() {
-	    super();
-	}
-
-	/**
-	 * Update the superblock values (rpar) on update
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(final Object source, final mxEventObject evt) {
-	    assert evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED) instanceof SuperBlock;
-	    final SuperBlock updatedBlock = (SuperBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
-	    updatedBlock.setRealParameters(new DiagramElement().encode(updatedBlock.getChild()));
-	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
-		final SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
-			.getParentDiagram()).getContainer();
-		parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-			XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
-	    }
-	    BlockPositioning.updateBlockView(updatedBlock);
-	    refresh();
-	}
-    }
-
-    /**
-     * CellAddedTracker
-     * Called when mxEvents.CELLS_ADDED is fired.
-     */
-    private static class CellAddedTracker implements mxIEventListener {
-    	private static CellAddedTracker instance;
-    	/**
-    	 * Default constructor
-    	 */
-    	private CellAddedTracker() { }
-
-    	/**
-		 * @return the instance
+	public void installListeners() {
+		/*
+		 * First remove all listeners if present
 		 */
-		public static synchronized CellAddedTracker getInstance() {
-			if (instance == null) {
-				instance = new CellAddedTracker();
-			}
-			return instance;
-		}
-    	
-    	/**
-    	 * Update block values on add 
-    	 * @param source the source instance
-    	 * @param evt the event data
-    	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-    	 */
-    	@Override
-		public void invoke(final Object source, final mxEventObject evt) {
-    		final XcosDiagram diagram = (XcosDiagram) source;
-    		final Object[] cells = (Object[]) evt.getProperty("cells");
-    		
-    		diagram.getModel().beginUpdate();
-    		
-    		final Filter filter = new Filter() {
-				@Override
-				public boolean filter(Object cell) {
-					if (cell instanceof BasicBlock) {
-						// Update parent on cell addition
-						((BasicBlock) cell).setParentDiagram(diagram);
-					}
-					return false;
-				}
-			};
-    		
-    		for (int i = 0; i < cells.length; ++i) {
-    			mxGraphModel.filterDescendants(diagram.getModel(), filter, cells[i]);
-    		}
-    		
-    		diagram.getModel().endUpdate();
-    	}
-    }
+		removeListener(SuperBlockUpdateTracker.getInstance());
+		removeListener(CellAddedTracker.getInstance());
+		removeListener(getEngine());
+		getModel().removeListener(getEngine());
+		removeListener(CellResizedTracker.getInstance());
+		getUndoManager().removeListener(UndoUpdateTracker.getInstance());
+		removeListener(RefreshBlockTracker.getInstance());
 
-    /**
-     * CellResizedTracker
-     * Called when mxEvents.CELLS_RESIZED is fired. 
-     */
-    private class CellResizedTracker implements mxIEventListener {
-	/**
-	 * Constructor
-	 */
-	public CellResizedTracker() {
-	    super();
-	}
+		// Track when superblock ask a parent refresh.
+		addListener(XcosEvent.SUPER_BLOCK_UPDATED,
+				SuperBlockUpdateTracker.getInstance());
 
-	/**
-	 * Update the cell view
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(final Object source, final mxEventObject evt) {
-	    final Object[] cells = (Object[]) evt.getProperty("cells");
-	    getModel().beginUpdate();
-	    for (int i = 0; i < cells.length; ++i) {
-		if (cells[i] instanceof BasicBlock) {
-		    BlockPositioning.updateBlockView((BasicBlock) cells[i]);
-		}
-	    }
-	    getModel().endUpdate();
-	}
-    }
-    
-    /**
-     * Update the modified block on undo/redo
-     */
-   private class UndoUpdateTracker implements mxIEventListener {
-        /**
-         * Constructor
-         */
-        public UndoUpdateTracker() {
-	    super();
-	}
+		// Track when cells are added.
+		addListener(mxEvent.CELLS_ADDED, CellAddedTracker.getInstance());
+		addListener(mxEvent.CELLS_ADDED, getEngine());
 
-	/**
-	 * Update the block and style on undo
-	 * @param source the source instance
-	 * @param evt the event data
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	@Override
-	public void invoke(final Object source, final mxEventObject evt) {
-            final List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
-            final Object[] changedCells = getSelectionCellsForChanges(changes);
-            getModel().beginUpdate();
-            for (final Object object : changedCells) {
-		if (object instanceof BasicBlock) {
-		    final BasicBlock current = (BasicBlock) object;
-		    
-		    // When we change the style property we have to update some
-		    // BasiBlock fields
-		    if (changes.get(0) instanceof mxStyleChange) {
-			current.updateFieldsFromStyle();
-		    }
-		    
-		    // Update the block position
-		    BlockPositioning.updateBlockView(current);
-		}
-	    }
-            getModel().endUpdate();
-            refresh();
-        }
-    };
+		// Track when cells are deleted.
+		addListener(mxEvent.CELLS_REMOVED, getEngine());
+
+		// Track when resizing a cell.
+		addListener(mxEvent.CELLS_RESIZED, CellResizedTracker.getInstance());
+
+		// Track when we have to force a Block value
+		addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
+		getModel().addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
+
+		// Update the blocks view on undo/redo
+		getUndoManager().addListener(mxEvent.UNDO,
+				UndoUpdateTracker.getInstance());
+		getUndoManager().addListener(mxEvent.REDO,
+				UndoUpdateTracker.getInstance());
+
+		// Refresh port position on update
+		addListener(XcosEvent.ADD_PORTS, RefreshBlockTracker.getInstance());
+
+	}  
+
 
 	/**
 	 * Removes the given cells from the graph including all connected edges if
@@ -1226,24 +1380,24 @@ public class XcosDiagram extends ScilabGraph {
 	 * @see com.mxgraph.view.mxGraph#isCellMovable(java.lang.Object)
 	 */
 	@Override
-    public boolean isCellMovable(final Object cell) {
-	if (cell instanceof BasicPort) {
-	    return false;
+	public boolean isCellMovable(final Object cell) {
+		if (cell instanceof BasicPort) {
+			return false;
+		}
+
+		boolean movable = false;
+		final Object[] cells = getSelectionCells();
+
+		// don't move if selection is only links
+		for (Object c : cells) {
+			if (!(c instanceof BasicLink)) {
+				movable = true;
+				break;
+			}
+		}
+
+		return movable && super.isCellMovable(cell);
 	}
-
-	boolean movable = false;
-	final Object[] cells =  getSelectionCells();
-
-	//don't move if selection is only links
-	for (int i = 0; i < cells.length; i++) {
-	    if (!(cells[i] instanceof BasicLink)) {
-		movable = true;
-		break;
-	    }
-	}
-
-	return movable && super.isCellMovable(cell);
-    }
 	
 	/**
 	 * Return true if resizable
