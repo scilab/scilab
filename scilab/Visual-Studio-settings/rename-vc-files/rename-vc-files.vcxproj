@@ -118,6 +118,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <rename_vc_extension_files Include="..\..\etc\logging.properties.vc" />
     <rename_vc_extension_files Include="..\..\modules\core\includes\version.h.vc" />
     <rename_vc_extension_files Include="..\..\modules\helptools\etc\SciDocConf.xml.vc" />
     <rename_vc_extension_files Include="..\..\modules\scicos_blocks\includes\blocks.h.vc" />
