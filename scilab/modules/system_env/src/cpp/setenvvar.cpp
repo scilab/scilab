@@ -76,6 +76,7 @@ void SetScilabEnvironment(void)
 #ifdef _MSC_VER
 void SciEnvForWindows(void)
 {
+    char *SCIPathName = computeSCI();
     /* Correction Bug 1579 */
     if (!IsTheGoodShell())
     {
@@ -83,6 +84,13 @@ void SciEnvForWindows(void)
         {
             cout << "Please modify ""ComSpec"" environment variable." << endl << "cmd.exe on W2K and more." << endl;
         }
+    }
+    
+    SetScilabEnvironmentVariables(SCIPathName);
+    if (SCIPathName) 
+    {
+        FREE(SCIPathName);
+        SCIPathName = NULL;
     }
 }
 #endif
@@ -133,6 +141,68 @@ bool Set_Shell(void)
         WINDIRPATH = NULL;
     }
     return bOK;
+}
+
+static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
+{
+    #define PATH_FORMAT "PATH=%s/bin;%s"
+
+    BOOL bOK = FALSE;
+    char *PATH = NULL;
+    char *env = NULL;
+
+    PATH = getenv("PATH");
+
+    env = (char*) MALLOC(sizeof(char)* (strlen(PATH_FORMAT) + strlen(PATH) +
+                        strlen(DefaultPath) + 1));
+    if (env)
+    {
+        sprintf(env, PATH_FORMAT, DefaultPath, PATH);
+        if (_putenv (env))
+        {
+            bOK = FALSE;
+        }
+        else bOK = TRUE;
+        FREE(env); env = NULL;
+    }
+    return bOK;
+}
+
+void Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
+{
+#ifdef _MSC_VER
+    _putenv ("COMPILER=VC++");
+#endif
+
+    /* WIN32 variable Environment */
+#ifdef _WIN32
+    _putenv ("WIN32=OK");
+#endif
+
+    /* WIN64 variable Environment */
+#ifdef _WIN64
+    _putenv ("WIN64=OK");
+#endif
+
+    if ( GetSystemMetrics(SM_REMOTESESSION) ) 
+    {
+        _putenv ("SCILAB_MSTS_SESSION=OK");
+    }
+}
+
+void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
+{
+    if (DefaultSCIPATH)
+    {
+        Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
+        AddScilabBinDirectoryToPATHEnvironnementVariable(DefaultSCIPATH);
+    }
+    else
+    {
+        /* Error */
+        exit(1);
+    }
+
 }
 #endif
 

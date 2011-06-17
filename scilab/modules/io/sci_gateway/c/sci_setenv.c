@@ -14,10 +14,11 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_io.h"
+#include "stack-c.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 #include "setenvc.h"
 #include "MALLOC.h" /* MALLOC */
-#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -41,7 +42,6 @@ int sci_setenv(char *fname, int* _piKey)
 
 	int result = 0;
 
-	Rhs = Max(0,Rhs);
 	CheckRhs(2,2);
 	CheckLhs(0,1);
 
@@ -161,7 +161,7 @@ int sci_setenv(char *fname, int* _piKey)
 
 	LhsVar(1) = Rhs + 1; 
 
-	C2F(putlhsvar)();
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

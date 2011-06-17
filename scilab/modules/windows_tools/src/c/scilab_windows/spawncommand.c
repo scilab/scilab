@@ -254,6 +254,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
                 if (pipe->NumberOfLines)
                 {
                     OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
+                    memset(OuputStrings, 0x00, sizeof(char*) * pipe->NumberOfLines);
                     if (OuputStrings)
                     {
                         char *line = strtok(buffer, LF_STR);

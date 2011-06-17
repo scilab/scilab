@@ -18,18 +18,18 @@ if getos() == 'Windows' then
   if findmsvccompiler() <> 'unknown' then
     // Configure Ms VC environment
     configure_msvc();
-    clear configure_msvc
+    //clear configure_msvc
     if findmsifortcompiler() <> 'unknown' then
       // Configure Intel Fortran environment
       configure_msifort();
-      clear configure_msifort
+      //clear configure_msifort
     else
       // Use F2C 
       setenv('USE_F2C', 'YES');
     end
-    clear findmsifortcompiler
+    //clear findmsifortcompiler
   end
-  clear findmsvccompiler
+  //clear findmsvccompiler
 end
 
 // Add demos

@@ -25,6 +25,7 @@
 #include "freeArrayOfString.h"
 #include "getshortpathname.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -278,7 +279,7 @@ int sci_dos(char *fname, int* _piKey)
 			LhsVar(3) = Rhs + 3;
 		}
 
-		C2F(putlhsvar)();
+		PutLhsVar();
 
 		if (StatusExit) {FREE(StatusExit); StatusExit = NULL;}
 		freeArrayOfString(Output, numberoflines);

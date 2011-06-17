@@ -12,8 +12,9 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
-#include "api_scilab.h"
 #include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 #include "MALLOC.h"
 #include "registry.h"
 #include "Scierror.h"
@@ -35,7 +36,6 @@ int sci_winqueryreg(char *fname,int *_piKey)
     char *pStrOutput = NULL;
     int iOutput = 0;
 
-    Rhs = Max(0, Rhs);
     CheckRhs(2, 3);
     CheckLhs(0, 1);
 

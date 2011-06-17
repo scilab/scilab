@@ -16,10 +16,11 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stack-c.h"
-#include "api_scilab.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
+#include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 int sci_getenv(char *fname, int* _piKey)
 {
@@ -42,114 +43,48 @@ int sci_getenv(char *fname, int* _piKey)
 	char *pStVarTwo = NULL;
 	int lenStVarTwo = 0;
 
-	Rhs = Max(Rhs,0);
-
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	if (Rhs == 2)
-	{
+	if(Rhs == 2)
+	{//second parameter
 		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 0;
+			return 1;
 		}
 
-		sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-
-		if (iType2  != sci_strings )
+        if(isStringType(_piKey, piAddressVarTwo) == FALSE || isScalar(_piKey, piAddressVarTwo) == FALSE)
 		{
 			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
-			return 0;
+			return 1;
 		}
-
-		sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-
-		if ( (m2 != n2) && (n2 != 1) ) 
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-			return 0;
-		}
-
-		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
-		if (pStVarTwo)
-		{
-			sciErr = getMatrixOfString(_piKey, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-			if(sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
-		}
-		else
-		{
-			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return 0;
-		}
+        
+        if(getAllocatedSingleString(_piKey, piAddressVarTwo, &pStVarTwo))
+        {
+            return 1;
+        }
 	}
 
+    //first parameter
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
-		return 0;
+		return 1;
 	}
 
-	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    if(isStringType(_piKey, piAddressVarOne) == FALSE || isScalar(_piKey, piAddressVarOne) == FALSE)
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 1;
+    }
 
-	if (iType1  != sci_strings )
-	{
-		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
-		return 0;
-	}
-
-	sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
-
-	if ( (m1 != n1) && (n1 != 1) ) 
-	{
-		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
-		return 0;
-	}
-
-	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-	if (pStVarOne)
-	{
-		sciErr = getMatrixOfString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-	}
-	else
-	{
-		if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-		return 0;
-	}
+    if(getAllocatedSingleString(_piKey, piAddressVarOne, &pStVarOne))
+    {
+        return 1;
+    }
 
 	#ifdef _MSC_VER
 	length_env = _MAX_ENV;
@@ -162,13 +97,13 @@ int sci_getenv(char *fname, int* _piKey)
 
 	env_value = (char*)MALLOC( (length_env + 1) *sizeof(char) );
 
-	if (env_value == NULL)
+	if(env_value == NULL)
 	{
-		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if (env_name) {FREE(env_name); env_name = NULL;}
+		if(default_env_value) {FREE(default_env_value); default_env_value = NULL;}
+		if(env_name) {FREE(env_name); env_name = NULL;}
 
 		Scierror(999,_("%s: No more memory.\n"), fname);
-		return 0;
+		return 1;
 	}
 	else
 	{
@@ -177,31 +112,31 @@ int sci_getenv(char *fname, int* _piKey)
 
 		getenvc(&ierr, env_name, env_value, &length_env, &iflag);
 
-		if (ierr == 0)
+		if(ierr == 0)
 		{
 			sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &env_value);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
-				return 0;
+				return 1;
 			}
 
 			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();	
+            PutLhsVar();	
 		}
 		else
 		{
-			if (default_env_value)
+			if(default_env_value)
 			{
 				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &default_env_value);
 				if(sciErr.iErr)
 				{
 					printError(&sciErr, 0);
-					return 0;
+					return 1;
 				}
 
 				LhsVar(1) = Rhs + 1;
-				C2F(putlhsvar)();	
+                PutLhsVar();	
 			}
 			else
 			{
@@ -209,9 +144,9 @@ int sci_getenv(char *fname, int* _piKey)
 			}
 		}
 
-		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if (env_name) {FREE(env_name); env_name = NULL;}
-		if (env_value) {FREE(env_value); env_value = NULL;}
+		if(default_env_value) {FREE(default_env_value); default_env_value = NULL;}
+		if(env_name) {FREE(env_name); env_name = NULL;}
+		if(env_value) {FREE(env_value); env_value = NULL;}
 
 	}
 	return 0;

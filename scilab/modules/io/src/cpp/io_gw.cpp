@@ -13,6 +13,10 @@
 #include "io_gw.hxx"
 #include "context.hxx"
 
+extern "C"
+{
+#include "gw_io.h"
+}
 #define MODULE_NAME L"io"
 
 using namespace types;
@@ -24,6 +28,8 @@ bool IoModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"file", &sci_file, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"host", &sci_host, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
     return true;
 }
 
