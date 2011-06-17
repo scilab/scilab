@@ -13,10 +13,12 @@ package org.scilab.modules.renderer.JoGLView.axes;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.clipping.ClippingPlane;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.Box;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
@@ -98,8 +100,31 @@ public class AxesDrawer {
          */
         Transformation dataTransformation = computeDataTransformation(axes);
         modelViewStack.pushRightMultiply(dataTransformation);
+
+        // TODO implement clipgrf
+        Double[] bounds = axes.getDataBounds();
+        Vector4d[] equations = new Vector4d[]{
+                new Vector4d(+1, 0, 0, -bounds[0]),
+                new Vector4d(-1, 0, 0, +bounds[1]),
+
+                new Vector4d(0, +1, 0, -bounds[2]),
+                new Vector4d(0, -1, 0, +bounds[3]),
+
+                new Vector4d(0, 0, +1, -bounds[4]),
+                new Vector4d(0, 0, -1, +bounds[5])
+        };
+
+        for (int i = 0 ; i < 6 ; i++) {
+            ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
+            plane.setEquation(equations[i]);
+            plane.setTransformation(drawingTools.getTransformationManager().getTransformation());
+            plane.setEnable(true);
+        }
+
         visitor.askAcceptVisitor(axes.getChildren());
         modelViewStack.pop();
+
+        drawingTools.getClippingManager().disableClipping();
 
         // Reset transformation stacks.
         modelViewStack.pop();
