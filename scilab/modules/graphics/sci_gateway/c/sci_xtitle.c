@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "MALLOC.h"
-#include "CurrentObjectsManagement.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
@@ -50,7 +49,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   nbLabels = Rhs ;
 
   /* get the given options from the name in opts */
-  if ( !get_optionals(fname,opts) ) 
+  if ( !get_optionals(fname,opts) )
   {
 		/* error */
 	  return 0;
@@ -79,11 +78,11 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     /* check if "box" is in the options */
     box = *istk(opts[0].l) ;
     if ( opts[0].m * opts[0].n != 1 )
-    {       
+    {
       /* check size */
       Scierror( 999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname ) ;
       return 1 ;
-    } 
+    }
     nbLabels-- ; /* it is not a label text */
   }
 
@@ -98,9 +97,9 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     sciPointObj * modifiedLabel = NULL ;
 
     GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);
-    if ( m*n == 0 ) 
-	{ 
-		continue ; 
+    if ( m*n == 0 )
+	{
+		continue ;
 	}
 
     switch(narg)
@@ -119,7 +118,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     default:
       break;
     }
-    
+
     startFigureDataWriting(pFigure);
     sciSetText( modifiedLabel, Str, m, n ) ;
 

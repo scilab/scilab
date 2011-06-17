@@ -18,7 +18,7 @@
  *
  * See the file ./license.txt
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file canimxy3d.c
    \author Benoit Bayol
@@ -27,8 +27,7 @@
    \brief CANIMXY3D is a scope in 3D which draw its input as a XY scope, there is animation.
    \see CANIMXY3D.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
-#include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -40,7 +39,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -116,7 +115,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d_draw(scicos_block * block, ScopeMemory ** pS
 
       scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax);
       if(scoGetScopeActivation(*pScopeMemory) == 1)
-	{ 
+	{
 	  sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
 	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
 
@@ -202,7 +201,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d_draw(scicos_block * block, ScopeMemory ** pS
   scicos_free(color);
   scicos_free(line_size);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void canimxy3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -219,8 +218,8 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, int flag)
   switch(flag)
     {
     case Initialization:
-      {	
-	
+      {
+
 	canimxy3d_draw(block,&pScopeMemory,1);
 	break; //Break of the switch condition don t forget it
       } //End of Initialization
@@ -245,7 +244,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, int flag)
 	  }
 	break; //Break of the switch don t forget it !
       }//End of stateupdate
-      
+
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
@@ -285,7 +284,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy3d(scicos_block * block, int flag)
 				break; //Break of the switch
       }
       //free the memory which is allocated at each turn by some variables
- 
+
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -29,7 +29,6 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "CurrentObjectsManagement.h"
 #include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Sets the parent of an uicontrol object
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,8 +18,9 @@ using namespace org_scilab_modules_gui_bridge;
 
 int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-
-  int parentFigureIndex = 0; 
+// ???
+#if 0
+  int parentFigureIndex = 0;
 
   int * returnValues = NULL;
 
@@ -32,7 +33,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A graphic handle expected.\n")), "Parent");
       return SET_PROPERTY_ERROR;
     }
-  
+
   if ((valueType == sci_handles) || (valueType == sci_matrix))
     {
       if (valueType == sci_handles)
@@ -40,7 +41,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
 
           parent = figure;
-          
+
           /* Set a Frame as parent: we need to get the parent figure */
           if (sciGetEntityType(figure) != SCI_FIGURE)
             {
@@ -137,13 +138,13 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                   return SET_PROPERTY_ERROR;
                 }
             }
-          
+
           // Scilab relationship
           sciAddThisToItsParent(sciObj, parent);
 
           // The parent is a figure
           parentFigureIndex = sciGetNum(figure);
-          
+
           switch(pUICONTROL_FEATURE(sciObj)->style)
             {
             case SCI_PUSHBUTTON:
@@ -191,20 +192,20 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           // Adjust position: position read from java and reset
           if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrols */
             {
-              CallScilabBridge::setFramePosition(getScilabJavaVM(), 
-                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                                 returnValues[0], 
-                                                 returnValues[1], 
-                                                 returnValues[2], 
+              CallScilabBridge::setFramePosition(getScilabJavaVM(),
+                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                 returnValues[0],
+                                                 returnValues[1],
+                                                 returnValues[2],
                                                  returnValues[3]);
             }
           else /* All other uicontrol styles */
             {
-              CallScilabBridge::setWidgetPosition(getScilabJavaVM(), 
-                                                  pUICONTROL_FEATURE(sciObj)->hashMapIndex, 
-                                                  returnValues[0], 
-                                                  returnValues[1], 
-                                                  returnValues[2], 
+              CallScilabBridge::setWidgetPosition(getScilabJavaVM(),
+                                                  pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+                                                  returnValues[0],
+                                                  returnValues[1],
+                                                  returnValues[2],
                                                   returnValues[3]);
             }
 		  delete [] returnValues;
@@ -225,5 +226,7 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n")), "Parent", "Figure", "Frame uicontrol");
       return SET_PROPERTY_ERROR;
     }
+#endif
+  return SET_PROPERTY_ERROR;
 }
 

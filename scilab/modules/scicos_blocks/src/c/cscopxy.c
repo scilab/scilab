@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cscopxy.c
    \author Benoit Bayol
@@ -27,8 +27,7 @@
    \brief CSCOPXY is a scope in 2D which draw its input as a XY scope, there is no animation, everything is keep in memory instead of CANIMXY
    \see CSCOPXY.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
-#include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -39,7 +38,7 @@
 #include "SetJavaProperty.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -118,7 +117,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy_draw(scicos_block * block, ScopeMemory ** pSco
         sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void cscopxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -129,7 +128,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
   /* Declarations*/
   ScopeMemory * pScopeMemory = NULL;
   double *u1 = NULL,*u2 = NULL;
-  scoGraphicalObject Pinceau; 
+  scoGraphicalObject Pinceau;
   int NbrPtsShort = 0;
   int i = 0;
 
@@ -147,7 +146,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 	scoRetrieveScopeMemory(block->work,&pScopeMemory);
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
-	    
+
 	/* Charging Elements */
 	if (scoGetPointerScopeWindow(pScopeMemory) == NULL) // If the window has been destroyed we recreate it
 	  {
@@ -156,7 +155,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 
 	u1 = GetRealInPortPtrs(block,1);
 	u2 = GetRealInPortPtrs(block,2);
-	
+
 	for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0); i++)
 	  {
 	    Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
@@ -165,12 +164,12 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 	    pPOLYLINE_FEATURE(Pinceau)->pvy[NbrPtsShort] = u2[i];
 	    pPOLYLINE_FEATURE(Pinceau)->n1++;
 	  }
-	
+
 	scoDrawScopeXYStyle(pScopeMemory);
 	  }
 	break; //Break of the switch don t forget it !
       }//End of stateupdate
-      
+
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
@@ -178,7 +177,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
 	    /*sciSetUsedWindow(scoGetWindowID(pScopeMemory));*/
-	    
+
 			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
 			scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
 			if (figure != NULL)
@@ -188,13 +187,13 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 					Pinceau = scoGetPointerLongDraw(pScopeMemory,0,i);
 					forceRedraw(Pinceau);
 				}
-			
+
 				//Here Pinceau = Window
 				/*Pinceau = sciGetCurrentFigure();*/
 				/*pFIGURE_FEATURE(Pinceau)->user_data = NULL;
 				pFIGURE_FEATURE(Pinceau)->size_of_user_data = 0;*/
 				clearUserData(figure);
-				
+
 				/* restore double buffering */
 				if (figure) {
                     sciSetJavaUseSingleBuffer(figure, FALSE);
@@ -207,4 +206,4 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
       //free the memory which is allocated at each turn by some variables
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

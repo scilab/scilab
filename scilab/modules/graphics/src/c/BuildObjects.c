@@ -36,10 +36,10 @@
 #include "CloneObjects.h"
 #include "StringMatrix.h"
 #include "Scierror.h"
-#include "CurrentObjectsManagement.h"
+#include "CurrentFigure.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
@@ -71,7 +71,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 {
     sciPointObj *pClone = sciCloneObj(getFigureModel());
     setGraphicObjectProperty(pClone->UID, __GO_ID__, figureIndex, jni_int, 1);
-    addNewFigureToList(pClone);
+    // No more needed with MVC.
+    //addNewFigureToList(pClone);
     return pClone;
 
 #ifdef __OLD_IMPLEMENTATION__
@@ -203,13 +204,14 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* Here we need to synchronize */
   startGraphicDataWriting();
   /* add the handle in the handle list */
-  if ( sciAddNewHandle(pobj) == -1 )
-  {
-    FREE(pobj->pfeatures);
-    FREE(pobj);
-    return NULL ;
-  }
-  addNewFigureToList(pobj);
+//  if ( sciAddNewHandle(pobj) == -1 )
+//  {
+//    FREE(pobj->pfeatures);
+//    FREE(pobj);
+//    return NULL ;
+//  }
+  // No more needed with MVC.
+  //addNewFigureToList(pobj);
   endGraphicDataWriting();
 
   // At least, should be only this call.
@@ -295,12 +297,12 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
     pClone = sciCloneObj(paxesmdl);
 
-    if ( sciAddNewHandle(pClone) == -1 )
-    {
-        deleteGraphicObject(pClone->UID);
-        FREE(pClone);
-        return (sciPointObj*) NULL;
-    }
+//    if ( sciAddNewHandle(pClone) == -1 )
+//    {
+//        deleteGraphicObject(pClone->UID);
+//        FREE(pClone);
+//        return (sciPointObj*) NULL;
+//    }
 
     setGraphicObjectRelationship(pparentfigure->UID, pClone->UID);
 
@@ -343,8 +345,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 
 		if (sciInitGraphicContext (pobj) == -1)
 		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -352,8 +354,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		}
 		if (sciInitGraphicMode (pobj) == -1)
 		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -363,8 +365,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		/* F.Leray 08.04.04 */
 		if (sciInitFontContext (pobj) == -1)
 		{
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -527,8 +529,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		/* Construction des labels: x,y,z et Title */
 
 		if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
-			sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -542,8 +544,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		/*------------------------------------*/
 		if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
 			DestroyLabel(ppsubwin->mon_title);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -558,8 +560,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
 			DestroyLabel(ppsubwin->mon_title);
 			DestroyLabel(ppsubwin->mon_x_label);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -573,8 +575,8 @@ ConstructSubWin(sciPointObj * pparentfigure)
 			DestroyLabel(ppsubwin->mon_title);
 			DestroyLabel(ppsubwin->mon_x_label);
 			DestroyLabel(ppsubwin->mon_y_label);
-			sciDelThisToItsParent (pobj, sciGetParent (pobj));
-			sciDelHandle (pobj);
+			//sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			// sciDelHandle (pobj);
 			FREE(pobj->pfeatures);
 			FREE(pobj);
 			endFigureDataWriting(pparentfigure);
@@ -838,12 +840,12 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
         return NULL;
     }
 
-    if (sciAddNewHandle (pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return NULL;
-    }
+//    if (sciAddNewHandle (pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -1010,12 +1012,12 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
     setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -1404,13 +1406,13 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 #endif
 
 
-  if (sciAddNewHandle(pobj) == -1)
-  {
-    deleteGraphicObject(pobj->UID);
-    deleteDataObject(pobj->UID);
-    FREE(pobj);
-    return NULL;
-  }
+//  if (sciAddNewHandle(pobj) == -1)
+//  {
+//    deleteGraphicObject(pobj->UID);
+//    deleteDataObject(pobj->UID);
+//    FREE(pobj);
+//    return NULL;
+//  }
 
   /*
    * Sets the Axes as the polyline's parent and adds the polyline to
@@ -1546,12 +1548,12 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return NULL;
+//    }
 
     /*
      * Sets the Axes as the arc's parent and adds the arc to
@@ -1683,12 +1685,12 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return NULL;
+//    }
 
     /*
      * Sets the Axes as the rectangle's parent and adds the rectangle to
@@ -1936,13 +1938,13 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        deleteDataObject(pobj->UID);
+//        FREE(pobj);
+//        return (sciPointObj*) NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -1951,7 +1953,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
         setGraphicObjectRelationship("", pobj->UID);
         deleteGraphicObject(pobj->UID);
         deleteDataObject(pobj->UID);
-        sciDelHandle(pobj);
+        // sciDelHandle(pobj);
 
         FREE(pobj);
         return (sciPointObj *) NULL;
@@ -2100,12 +2102,12 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return (sciPointObj*) NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -2131,7 +2133,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
         setGraphicObjectRelationship("", pobj->UID);
         deleteGraphicObject(pobj->UID);
         deleteDataObject(pobj->UID);
-        sciDelHandle(pobj);
+        // sciDelHandle(pobj);
 
         FREE(pobj);
         return (sciPointObj *) NULL;
@@ -2332,13 +2334,13 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        deleteDataObject(pobj->UID);
+//        FREE(pobj);
+//        return (sciPointObj*) NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -2453,13 +2455,13 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
      * done after data initialization in order to avoid additional
      * clean-up.
      */
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        deleteDataObject(pobj->UID);
+//        FREE(pobj);
+//        return (sciPointObj*) NULL;
+//    }
 
     setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
 
@@ -2494,7 +2496,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
         setGraphicObjectRelationship("", pobj->UID);
         deleteGraphicObject(pobj->UID);
         deleteDataObject(pobj->UID);
-        sciDelHandle(pobj);
+        // sciDelHandle(pobj);
 
         FREE(pobj);
         return (sciPointObj *) NULL;
@@ -2717,13 +2719,13 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
         return (sciPointObj *) NULL;
     }
 
-    if ( sciAddNewHandle(pobj) == -1 )
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(arrowCoords);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
+//    if ( sciAddNewHandle(pobj) == -1 )
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(arrowCoords);
+//        FREE(pobj);
+//        return (sciPointObj *) NULL;
+//    }
 
     setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
 
@@ -2772,12 +2774,12 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 #endif
 
   /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
-  if (sciAddNewHandle(compound) == -1)
-  {
-    deleteGraphicObject(compound->UID);
-    FREE(compound);
-    return NULL;
-  }
+//  if (sciAddNewHandle(compound) == -1)
+//  {
+//    deleteGraphicObject(compound->UID);
+//    FREE(compound);
+//    return NULL;
+//  }
 
   /* The Compound's parent Axes is considered to be the Compound's first child's own parent */
   firstMovedObject = sciGetPointerFromHandle( (long) handelsvalue[0]);
@@ -2845,9 +2847,9 @@ ConstructCompoundSeq (int number)
     int piVisible = &visible;
 
     sciPointObj *pobj;
-    sciPointObj *psubwin;
+    char* *psubwinUID;
 
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     /* Creates the Compound object A */
     if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -2858,16 +2860,16 @@ ConstructCompoundSeq (int number)
     pobj->UID = createGraphicObject(__GO_COMPOUND__);
 
     /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
-    if (sciAddNewHandle(pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return NULL;
-    }
+//    if (sciAddNewHandle(pobj) == -1)
+//    {
+//        deleteGraphicObject(pobj->UID);
+//        FREE(pobj);
+//        return NULL;
+//    }
 
-    getGraphicObjectProperty(psubwin->UID, __GO_CHILDREN_COUNT__, jni_int, &piNumberChildren);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN_COUNT__, jni_int, &piNumberChildren);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_CHILDREN__, jni_string_vector, &children);
+    getGraphicObjectProperty(psubwinUID, __GO_CHILDREN__, jni_string_vector, &children);
 
     /*
      * Remove the last "number" created objects (located at the children list's head)
@@ -2884,7 +2886,7 @@ ConstructCompoundSeq (int number)
     }
 
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(psubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(psubwinUID, pobj->UID);
 
     /* set Compound properties*/
     /* To be implemented */
@@ -2997,18 +2999,18 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
 	createDefaultRelationShip(pObj);
 
   /* add the handle in the handle list */
-  if ( sciAddNewHandle(pObj) == -1 )
-  {
-    return NULL ;
-  }
+//  if ( sciAddNewHandle(pObj) == -1 )
+//  {
+//    return NULL ;
+//  }
 
 
   /* connect the object under its parent in the hierarchy */
-  if ( !sciAddThisToItsParent( pObj, parent) )
-  {
-    sciDelHandle(pObj) ;
-    return NULL ;
-  }
+  //if ( !sciAddThisToItsParent( pObj, parent) )
+  //{
+  //  sciDelHandle(pObj) ;
+  //  return NULL ;
+  //}
 
   sciInitVisibility( pObj, TRUE ) ;
 
@@ -3029,10 +3031,13 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
  */
 void SciWin(void)
 {
+// ???
+#if 0
   if (!sciHasFigures())
   {
     sciGetCurrentFigure();
   }
+#endif
 }
 /*----------------------------------------------------------------------------*/
 /**
@@ -3049,7 +3054,7 @@ sciPointObj * createFullFigure(int * winNum)
     pNewFigure->UID = createGraphicObject(__GO_FIGURE__);
     setGraphicObjectProperty(pNewFigure->UID, __GO_ID__, winNum, jni_int, 1);
     createJoGLView(pNewFigure->UID);
-    sciAddNewHandle(pNewFigure);
+//    sciAddNewHandle(pNewFigure);
     return pNewFigure;
 
 #ifdef __OLD_IMPLEMENTATION__

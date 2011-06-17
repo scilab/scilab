@@ -57,13 +57,7 @@ int get_children_property( sciPointObj * pobj )
 
     for (i = 0 ; i < piChildrenCount[0] ; ++i)
     {
-        // Create temporary
-        pobjChildren = MALLOC(sizeof(sciPointObj));
-        pobjChildren->UID = pstChildrenUID[i];
-
-        sciAddNewHandle(pobjChildren);
-
-        plChildren[i] = sciGetHandle(pobjChildren);
+        plChildren[i] = getHandle(pstChildrenUID[i]);
     }
 
     status = sciReturnColHandleVector(plChildren, piChildrenCount[0]);
@@ -71,41 +65,5 @@ int get_children_property( sciPointObj * pobj )
     FREE( plChildren ) ;
 
     return status ;
-
-#if 0
-  sciSons * curSon = NULL ;
-  int nbChildren = sciGetNbAccessibleChildren( pobj ) ;
-
-  if ( nbChildren == 0 )
-  {
-    return sciReturnEmptyMatrix() ;
-  }
-  else
-  {
-    int index_  =  0 ;
-    int status = -1 ;
-    long * children = NULL ;
-
-    children = MALLOC( nbChildren * sizeof(long) ) ;
-    if ( children == NULL )
-    {
-			Scierror(999, _("%s: No more memory.\n"),"get_children_property");
-			return -1 ;
-    }
-
-    curSon = sciGetFirstAccessibleSon( pobj ) ;
-    while ( curSon != NULL && curSon->pointobj != NULL )
-    {
-      children[index_] = sciGetHandle( curSon->pointobj ) ;
-      index_++ ;
-      curSon = sciGetNextAccessibleSon( curSon ) ;
-    }
-    status = sciReturnColHandleVector( children, nbChildren ) ;
-
-    FREE( children ) ;
-
-    return status ;
-  }
-#endif
 }
 /*--------------------------------------------------------------------------*/

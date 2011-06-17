@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,7 +18,6 @@
 #include "stack-c.h"
 #include "gw_graphics.h"
 #include "GetProperty.h"
-#include "CurrentObjectsManagement.h"
 
 int geom3d(double *x, double *y, double *z, int n) ;
 
@@ -29,7 +28,7 @@ int geom3d(double *x, double *y, double *z, int n)
   double userCoords2d[2];
 
   sciPointObj * psubwin = sciGetCurrentSubWin();
-  
+
   for (i = 0; i < n; i++)
   {
     double userCoords[3] = {x[i], y[i], z[i]};
@@ -54,8 +53,8 @@ int sci_geom3d( char * fname, unsigned long fname_len )
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
-  if (m1 * n1 == 0)  
-  { 
+  if (m1 * n1 == 0)
+  {
 	  LhsVar(1) = 0;
 	  C2F(putlhsvar)();
 	  return 0;

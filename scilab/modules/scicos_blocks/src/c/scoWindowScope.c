@@ -41,11 +41,9 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "sciprint.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "DrawingBridge.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
-#include "HandleManagement.h" /* sciGetHandle */
 #include "scicos_block4.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/

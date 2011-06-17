@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,7 +23,6 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -47,19 +46,19 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 		LhsVar(1)=0;
 		C2F(putlhsvar)();
 		return 0;
-	} 
+	}
 
 
-  if (Rhs == 3) 
+  if (Rhs == 3)
   {
-    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); 
+    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
 
-    if (m3*n3==m1*n1) 
-    { 
+    if (m3*n3==m1*n1)
+    {
       CheckSameDims(1,3,m1,n1,m3,n3);
       v1=2; /* interpolated shading */
 
-      if ( m3 != 3 && m3 != 4 ) 
+      if ( m3 != 3 && m3 != 4 )
       {
         Scierror(999,_("%s: Interpolated shading only works for polygons of size %d or %d\n"),fname, 3, 4);
         return 0;
@@ -71,7 +70,7 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
       v1=1; /* flat shading */
     }
   }
-  else 
+  else
   {
     int un=1,ix;
     CreateVar(3,MATRIX_OF_INTEGER_DATATYPE,&un,&n2,&l3);
@@ -104,10 +103,10 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   endFigureDataWriting(sciGetParentFigure(psubwin));
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
- 
+
   LhsVar(1)=0;
 	C2F(putlhsvar)();
-  return 0;  
-} 
+  return 0;
+}
 
 /*--------------------------------------------------------------------------*/

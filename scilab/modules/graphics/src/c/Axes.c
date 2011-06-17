@@ -26,7 +26,7 @@
 #include "InitObjects.h"
 #include "SetProperty.h"
 #include "axesScale.h"
-#include "CurrentObjectsManagement.h"
+#include "CurrentSubwin.h"
 #include "DrawingBridge.h"
 
 #include "GetProperty.h"
@@ -35,6 +35,8 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "AxesModel.h"
+#include "CurrentSubwin.h"
 
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
@@ -44,6 +46,9 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
 /* clear a subwindow from all of its children */
 void clearSubWin( sciPointObj * pSubWin )
 {
+    abort();
+// ???
+#if 0
   sciSons * curSon = sciGetSons (pSubWin);
 
   while ( curSon != NULL && curSon->pointobj != NULL )
@@ -57,8 +62,8 @@ void clearSubWin( sciPointObj * pSubWin )
     {
       curSon = curSon->pnext ;
     }
-
   }
+#endif
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit a subwindow (but don't change position ) */
@@ -102,12 +107,12 @@ void initSubWinAngles( sciPointObj * pSubWin )
     int iViewType = 0;
     int* piViewType = &iViewType;
     double* rotationAngles;
-    sciPointObj* axesModel = getAxesModel();
+    char* axesModelUID = getAxesModel();
 
-    getGraphicObjectProperty(axesModel->UID, __GO_VIEW__, jni_int, &piViewType);
+    getGraphicObjectProperty(axesModelUID, __GO_VIEW__, jni_int, &piViewType);
     setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, iViewType, jni_int, 1);
 
-    getGraphicObjectProperty(axesModel->UID, __GO_ROTATION_ANGLES__, jni_double_vector, &rotationAngles);
+    getGraphicObjectProperty(axesModelUID, __GO_ROTATION_ANGLES__, jni_double_vector, &rotationAngles);
     setGraphicObjectProperty(pSubWin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
    /* To be implemented: last known values of the rotation angles when VIEW was equal to 3D */
@@ -121,13 +126,15 @@ void initSubWinAngles( sciPointObj * pSubWin )
 /* set the size and position of the subwindow to the default */
 void initSubWinSize( sciPointObj * pSubWin )
 {
+// ???
+#if 0
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
   sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
   ppSubWin->WRect[0] = ppAxesMdl->WRect[0] ;
   ppSubWin->WRect[1] = ppAxesMdl->WRect[1] ;
   ppSubWin->WRect[2] = ppAxesMdl->WRect[2] ;
   ppSubWin->WRect[3] = ppAxesMdl->WRect[3] ;
-
+#endif
 }
 /*--------------------------------------------------------------------------------*/
 /* set the data_bounds of the axes to the default value */
@@ -155,12 +162,13 @@ BOOL checkRedrawing( void )
 
     //  nbCheckRedraw++;
     //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
-    sciPointObj * pSubWin = sciGetCurrentSubWin();
+    char* pstSubWinID = getCurrentSubWin();
 
-    getGraphicObjectProperty(pSubWin->UID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+    getGraphicObjectProperty(pstSubWinID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
 
     if (iAutoClear)
     {
+#if 0
         reinitSubWin(pSubWin);
 
         /*
@@ -168,7 +176,6 @@ BOOL checkRedrawing( void )
          * that the Axes object has changed
          * To be implemented
          */
-#if 0
         forceRedraw(pSubWin);
 #endif
         return TRUE;

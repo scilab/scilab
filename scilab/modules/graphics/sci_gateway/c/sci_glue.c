@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,13 +16,14 @@
 /* desc : interface for glue routine                                      */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "elementary_functions.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
@@ -30,6 +31,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
 {
+// ???
+    abort();
+#if 0
   int numrow,numcol,l1,l2,lind,n,cx1=1,ret ;
   unsigned long hdl = 0, parenthdl = 0 ;
   long *handelsvalue = NULL ;
@@ -44,16 +48,16 @@ int sci_glue( char * fname, unsigned long fname_len )
   n=numrow*numcol;
   CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l2);
   CreateVar(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&numrow,&numcol,&lind);
-  if (n>1) 
+  if (n>1)
   {
 	C2F(dcopy)(&n, stk(l1), &cx1, stk(l2), &cx1);
     C2F(dsort)(stk(l2),&n,istk(lind));
-	for (i = 1; i < n;i++) 
+	for (i = 1; i < n;i++)
 	{
 	  long long i1 = (long long)*hstk(l2+i);
 	  long long i2 = (long long)*hstk(l2+i-1);
-	
-	  if (i1 == i2) 
+
+	  if (i1 == i2)
 	  {
         Scierror(999,_("%s: Each handle should not appear twice.\n"),fname);
         return 0;
@@ -66,7 +70,7 @@ int sci_glue( char * fname, unsigned long fname_len )
   {
     handelsvalue[i] = (unsigned long) (hstk(l1))[i];
     pobj = sciGetPointerFromHandle(handelsvalue[i]);
-    if (pobj == NULL) 
+    if (pobj == NULL)
 	{
       Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
@@ -82,13 +86,13 @@ int sci_glue( char * fname, unsigned long fname_len )
 
   }
   ret = CheckForCompound (handelsvalue, n);
-  if (ret>0) 
+  if (ret>0)
   {
     Scierror(999,_("%s: Handle %d cannot be glued (invalid parent).\n"),fname,ret);
     return 0;
   }
 
-  if (ret<0) 
+  if (ret<0)
   {
     Scierror(999,_("%s: Handle %d cannot be glued (invalid type).\n"),fname,-ret);
     return 0;
@@ -103,6 +107,7 @@ int sci_glue( char * fname, unsigned long fname_len )
   LhsVar(1) = Rhs+3;
   C2F(putlhsvar)();
   FREE(handelsvalue);
+#endif
   return 0;
 }
 /*--------------------------------------------------------------------------*/

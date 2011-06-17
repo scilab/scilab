@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "axesScale.h"
 #include "math_graphics.h"
 #include "MALLOC.h"
-#include "CurrentObjectsManagement.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "GraphicSynchronizerInterface.h"
@@ -33,7 +32,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double angle, int fontId, double fontSize,
                         double corners[4][2])
 {
- 
+
   /* first step, create at text object */
   sciPointObj * parentFigure = sciGetCurrentFigure();
   sciPointObj * parentSubwin = sciGetCurrentSubWin();
@@ -44,7 +43,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
   updateSubwinScale(parentSubwin);
 
   startFigureDataWriting(parentFigure);
-  
+
   pText = allocateText(parentSubwin,
                        text, nbRow, nbCol,
                        xPos, yPos,

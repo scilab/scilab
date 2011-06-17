@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * desc : interface for sci_uiwait routine 
+ * desc : interface for sci_uiwait routine
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,8 +11,9 @@
  *
  */
 
-#include <stdio.h> 
-#include <string.h> 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 /*--------------------------------------------------------------------------*/
 #include "gw_gui.h"
 #include "MALLOC.h" /* MALLOC */
@@ -23,16 +24,17 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "ContextMenu.h"
-#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_uiwait( char *fname,unsigned long fname_len )
 {
+    abort();
+// ???
+#if 0
   int nbRow = 0, nbCol = 0, stkAdr = 0;
 
   char * result = NULL;
@@ -70,7 +72,7 @@ int sci_uiwait( char *fname,unsigned long fname_len )
       Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
       return FALSE;
     }
- 
+
   /* Create return variable */
   nbRow = (int)strlen(result);
   nbCol = 1;
@@ -80,7 +82,7 @@ int sci_uiwait( char *fname,unsigned long fname_len )
   LhsVar(1)=Rhs+1;
 
   C2F(putlhsvar)();
-
+#endif
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

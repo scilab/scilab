@@ -27,7 +27,6 @@
 #include "BuildObjects.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "localization.h"
 #include "PloEch.h"
@@ -272,6 +271,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     return -1;
   }
 
+#if 0
   /* Set fec as current */
   sciSetCurrentObj(pFec);
 
@@ -282,7 +282,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   parentCompound = ConstructCompound (hdltab, cmpt);
   sciSetCurrentObj(parentCompound);  /** construct Compound **/
-
+#endif
   /*
    * Deactivated since it involves drawing via the renderer module
    * To be implemented

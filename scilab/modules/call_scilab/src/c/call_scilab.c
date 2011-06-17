@@ -30,7 +30,7 @@
 #include "scilabmode.h"
 #include "sciquit.h"
 #include "storeCommand.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "../../core/src/c/TerminateCore.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
@@ -248,11 +248,11 @@ CALL_SCILAB_ENGINE_STATE getCallScilabEngineState(void)
     return csEngineState;
 }
 /*--------------------------------------------------------------------------*/
-sci_types getVariableType(char *varName) 
+sci_types getVariableType(char *varName)
 {
     int iSciType = -1;
     SciErr sciErr = getNamedVarType(pvApiCtx, (char*)varName, &iSciType);
-    if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR) 
+    if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR)
     {
         return -2;
     }

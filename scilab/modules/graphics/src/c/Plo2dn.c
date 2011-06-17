@@ -30,7 +30,6 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h" /* MALLOC */
@@ -358,16 +357,16 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       }
       else
       {
-        sciSetCurrentObj(pobj);
+          //sciSetCurrentObj(pobj);
 
         /*sciDrawObjIfRequired(pobj);*/
-        hdl=sciGetHandle(pobj);
-        if (with_leg)
-        {
-          tabofhandles[cmpt] = hdl;
-        }
+        //hdl=sciGetHandle(pobj);
+        //if (with_leg)
+        //{
+        //  tabofhandles[cmpt] = hdl;
+        //}
 
-        hdltab[cmpt]=hdl;
+        //hdltab[cmpt]=hdl;
         cmpt++;
       }
 

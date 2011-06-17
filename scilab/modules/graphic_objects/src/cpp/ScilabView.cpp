@@ -19,12 +19,15 @@
 
 extern "C"
 {
-#include "FigureList.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 }
 
+/**
+ * C Wrapping functions
+ * \{
+ */
 void ScilabNativeView__createObject(char* pstId)
 {
     ScilabView::createObject(pstId);
@@ -40,27 +43,49 @@ void ScilabNativeView__updateObject(char* pstId, char* pstProperty)
     ScilabView::updateObject(pstId, pstProperty);
 }
 
-int __sciGetNbFigure(void)
+/**
+ * \}
+ */
+
+bool ScilabView::isEmptyFigureList()
 {
-    return ScilabView::getNbFigure();
+    return m_figureList.empty();
 }
 
-void __sciGetFiguresId(int ids[])
+char *ScilabView::getFigureFromIndex(int figNum)
 {
-    return ScilabView::getFiguresId(ids);
+    __figureList_iterator it;
+
+    for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it)
+    {
+        if (it->second == figNum)
+        {
+            return it->first;
+        }
+    }
+    return NULL;
 }
 
-void __registerToController()
+bool ScilabView::existsFigureId(int id)
 {
-    ScilabView::registerToController();
+    __figureList_iterator it;
+
+    for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it)
+    {
+        if (it->second == id)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void ScilabView::getFiguresId(int ids[])
 {
-    std::map<char*, int, ScilabView::cmp_str>::iterator it;
+    __figureList_iterator it;
     int i = 0;
 
-    for(it = figureList.begin() ; it != figureList.end() ; ++it, ++i)
+    for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it, ++i)
     {
         //std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
         ids[i] = it->second;
@@ -69,19 +94,23 @@ void ScilabView::getFiguresId(int ids[])
 
 int ScilabView::getNbFigure(void)
 {
-    return figureList.size();
+    return m_figureList.size();
 }
 
 void ScilabView::createObject(char* pstId)
 {
-    //std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
+    std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
     char *pstType;
 
     getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void**) &pstType);
     if(pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
-        ScilabView::figureList[strdup(pstId)] = -1;
+        m_figureList[strdup(pstId)] = -1;
+        setCurrentFigure(strdup(pstId));
     }
+
+    // Register objct handle.
+    getObjectHandle(pstId);
 }
 
 void ScilabView::deleteObject(char* pstId)
@@ -92,7 +121,7 @@ void ScilabView::deleteObject(char* pstId)
     getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void**) &pstType);
     if(pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
-        figureList.erase(pstId);
+        m_figureList.erase(pstId);
     }
 }
 
@@ -104,14 +133,14 @@ void ScilabView::updateObject(char* pstId, char* pstProperty)
     ** Take care of update if the value update is ID and object type is a Figure I manage.
     */
     if (strcmp(pstProperty, __GO_ID__) == 0
-        && figureList.find(pstId) != figureList.end())
+        && m_figureList.find(pstId) != m_figureList.end())
     {
         int iNewId = 0;
         int *piNewId = &iNewId;
 
         getGraphicObjectProperty(pstId, __GO_ID__, jni_int, (void**) &piNewId);
 
-        figureList[strdup(pstId)] = iNewId;
+        m_figureList[strdup(pstId)] = iNewId;
         //std::cerr << "### [ScilabView] updateMap UID=" << pstId << " id=" << iNewId << std::endl;
     }
 }
@@ -126,6 +155,146 @@ void ScilabView::registerToController(void)
 }
 
 /*
+** Set Current Figure UID
+*/
+void ScilabView::setCurrentFigure(char* UID)
+{
+    m_currentFigure = strdup(UID);
+}
+
+/*
+** Get Current Figure UID
+*/
+char *ScilabView::getCurrentFigure()
+{
+    std::cerr << "[ScilaView] currentFigure = " << (m_currentFigure == NULL ? "NULL !!" : m_currentFigure) << std::endl;
+    return m_currentFigure;
+}
+
+/*
+** Set Current Object UID
+*/
+void ScilabView::setCurrentObject(char* UID)
+{
+    m_currentObject = strdup(UID);
+}
+
+/*
+** Get Current Figure UID
+*/
+char *ScilabView::getCurrentObject()
+{
+    std::cerr << "[ScilaView] currentObject = " << m_currentObject << std::endl;
+    return m_currentObject;
+}
+
+/*
+** Set Current SubWin UID
+*/
+void ScilabView::setCurrentSubWin(char* UID)
+{
+    m_currentSubWin = strdup(UID);
+}
+
+/*
+** Get Current Figure UID
+*/
+char *ScilabView::getCurrentSubWin()
+{
+    std::cerr << "[ScilaView] currentSubWin = " << m_currentSubWin << std::endl;
+    return m_currentSubWin;
+}
+
+/*
+** Scilab only can store long as handle
+*/
+long ScilabView::getObjectHandle(char *UID)
+{
+    if (UID != NULL)
+    {
+        std::cerr << "UID = " << UID << std::endl;
+    }
+    else
+    {
+        std::cerr << "UID is null :-S" << std::endl;
+    }
+    __handleList_iterator it2;
+    std::cerr << "[DEBUG] +++ handleMap +++" << std::endl;
+    for (it2 = m_handleList.begin() ; it2 != m_handleList.end() ; ++it2)
+    {
+        std::cerr << "UID " << it2->first << " <-> handle " << it2->second << std::endl;
+    }
+    std::cerr << "[DEBUG] +++ handleMap +++" << std::endl;
+
+    __handleList_iterator it = m_handleList.find(UID);
+
+    if (it != m_handleList.end())
+    {
+        return it->second;
+    }
+
+    // increase maximum value
+    // register new handle and return it.
+    m_topHandleValue++;
+    m_handleList[strdup(UID)] = m_topHandleValue;
+
+    return m_topHandleValue;
+}
+
+char *ScilabView::getObjectFromHandle(long handle)
+{
+   __handleList_iterator it;
+   for (it = m_handleList.begin() ; it != m_handleList.end() ; ++it)
+   {
+       if (it->second == handle)
+       {
+           return it->first;
+       }
+   }
+   return NULL;
+}
+
+void ScilabView::swapHandles(long firstHandle, long secondHandle)
+{
+    char *firstUID = getObjectFromHandle(firstHandle);
+    char *secondUID = getObjectFromHandle(secondHandle);
+
+    m_handleList[firstUID] = secondHandle;
+    m_handleList[secondUID] = firstHandle;
+}
+
+char *ScilabView::getFigureModel(void)
+{
+    std::cerr << "[ScilabView] getFigureModel = " << (m_figureModel == NULL ? "!! NULL !!" : m_figureModel) << std::endl;
+    return m_figureModel;
+}
+
+void  ScilabView::setFigureModel(char *UID)
+{
+    m_figureModel = strdup(UID);
+}
+
+char *ScilabView::getAxesModel(void)
+{
+    std::cerr << "[ScilabView] getAxesModel = " << (m_axesModel == NULL ? "!! NULL !!" : m_axesModel) << std::endl;
+    return m_axesModel;
+}
+
+void  ScilabView::setAxesModel(char *UID)
+{
+    m_axesModel = strdup(UID);
+}
+
+
+
+/*
 ** Allocate static class variable.
 */
-std::map<char*, int, ScilabView::cmp_str> ScilabView::figureList;
+ScilabView::__figureList    ScilabView::m_figureList = *new __figureList();
+ScilabView::__handleList    ScilabView::m_handleList = *new __handleList();
+long                        ScilabView::m_topHandleValue = 0;
+char *                      ScilabView::m_currentFigure = NULL;
+char *                      ScilabView::m_currentObject = NULL;
+char *                      ScilabView::m_currentSubWin = NULL;
+char *                      ScilabView::m_figureModel = NULL;
+char *                      ScilabView::m_axesModel = NULL;

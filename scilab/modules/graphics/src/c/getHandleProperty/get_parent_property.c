@@ -43,13 +43,7 @@ int get_parent_property( sciPointObj * pobj )
 	}
 	else
 	{
-		parent = MALLOC(sizeof(sciPointObj));
-
-		parent->UID = parentID;
-
-		sciAddNewHandle(parent);
-
-		return sciReturnHandle(sciGetHandle(parent));
+		return sciReturnHandle(getHandle(parentID));
 	}
 }
 /*------------------------------------------------------------------------*/

@@ -31,7 +31,6 @@
 #include "Axes.h"
 #include "Fec.h"
 #include "GrayPlot.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "MALLOC.h" /* MALLOC */
@@ -71,6 +70,8 @@ void Objrect ( double * x         ,
                BOOL     isline    ,
                long   * hdl       )
 {
+// ???
+#if 0
   sciPointObj * newObj = NULL;
   sciPointObj *psubwin;
   sciPointObj * pFigure = sciGetCurrentFigure();
@@ -84,9 +85,7 @@ void Objrect ( double * x         ,
   if ( newObj == NULL )
   {
     /* Deactivated for now (synchronization) */
-#if 0
     endFigureDataWriting(pFigure);
-#endif
     /* an error occured */
 
     *hdl = -1;
@@ -95,7 +94,7 @@ void Objrect ( double * x         ,
 
   sciSetCurrentObj( newObj );
   *hdl=sciGetHandle( newObj );
-
+#endif
 }
 
 
@@ -115,6 +114,7 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        )
 {
+#if 0
   sciPointObj * psubwin;
   sciPointObj * pobj;
 
@@ -125,6 +125,7 @@ void Objarc( double * angle1    ,
   sciSetCurrentObj(pobj);
 
   *hdl=sciGetHandle(pobj);
+#endif
 }
 
 /*------------------------------------------------
@@ -138,6 +139,7 @@ void Objpoly ( double  * x     ,
                int       mark  ,
                long    * hdl    )
 {
+#if 0
     sciPointObj * pFigure = NULL;
     sciPointObj * psubwin;
     sciPointObj * pobj;
@@ -149,9 +151,7 @@ void Objpoly ( double  * x     ,
      * Deactivated for now as it involves the renderer module
      * To be implemented
      */
-#if 0
     checkRedrawing();
-#endif
 
     if (mark <= 0)
     {
@@ -173,6 +173,7 @@ void Objpoly ( double  * x     ,
 
     sciSetCurrentObj(pobj);
     *hdl=sciGetHandle(pobj);
+#endif
 }
 
 
@@ -187,6 +188,7 @@ void Objfpoly ( double  * x    ,
                 long    * hdl  ,
                 int   shading )
 {
+#if 0
     int fillcolor = 0;
     int *piFillColor = &fillcolor;
     int contourcolor = 0;
@@ -238,7 +240,7 @@ void Objfpoly ( double  * x    ,
 
     sciSetCurrentObj(pobj);
     *hdl=sciGetHandle(pobj);
-
+#endif
 }
 
 
@@ -253,6 +255,7 @@ void Objsegs ( int * style,
                double  * z    ,
                double    arsize )
 {
+#if 0
   int type=0, colored=0;
   double *fx =NULL,*fy = NULL; // No fx or fy
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
@@ -264,6 +267,7 @@ void Objsegs ( int * style,
     ConstructSegs(psubwin,type,
                   x,y,z,n1,n1, (z==NULL ? 0 : n1),     // x, y and z have the same size n1
                   fx,fy,flag,style,arsize,colored,typeofchamp));
+#endif
 }
 /*-----------------------------------------------------------
  * Objstring:
@@ -288,29 +292,24 @@ void Objstring( char            ** fname      ,
                 BOOL               isfilled   ,
                 sciTextAlignment   alignment   )
 {
+#if 0
     sciPointObj * psubwin = NULL;
     sciPointObj * pobj = NULL;
     sciPointObj * pFigure = NULL;
 
     /* Deactivated (synchronization) */
-#if 0
     startGraphicDataWriting();
-#endif
 
     pFigure = sciGetCurrentFigure();
     psubwin = sciGetCurrentSubWin();
 
-#if 0
     /* Deactivated (synchronization) */
     endGraphicDataWriting();
-#endif
 
     checkRedrawing();
 
     /* Deactivated (synchronization) */
-#if 0
     startFigureDataWriting(pFigure);
-#endif
 
 
     pobj = ConstructText( psubwin   ,
@@ -338,18 +337,15 @@ void Objstring( char            ** fname      ,
     sciSetCurrentObj(pobj);
 
     /* Deactivated (synchronization) */
-#if 0
     endFigureDataWriting(pFigure);
 
     startFigureDataReading(pFigure);
-#endif
     pobj = sciGetCurrentObj ();
     *hdl = sciGetHandle(pobj);
 
     setGraphicObjectProperty(pobj->UID, __GO_FONT_ANGLE__, angle, jni_double, 1);
 
   /* Deactivated (drawing and synchronization) */
-#if 0
     sciDrawObj(pobj);
     endFigureDataReading(pFigure);
 #endif
@@ -1015,6 +1011,7 @@ void Objdrawaxis ( char     dir    ,
                    int      seg    ,
                    int      nb_tics_labels )
 {
+#if 0
     sciPointObj* pobj = NULL;
 
     checkRedrawing();
@@ -1032,7 +1029,6 @@ void Objdrawaxis ( char     dir    ,
     sciSetCurrentObj(pobj);
 
     /* Deactivated (uses the former renderer) */
-#if 0
     sciDrawObjIfRequired(sciGetCurrentObj ());
 #endif
 

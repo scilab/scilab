@@ -200,6 +200,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tclsci", "modules\tclsci\tc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "modules\javasci\Javasci.vcxproj", "{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
 	ProjectSection(ProjectDependencies) = postProject
+		{30F9EE41-587B-4618-8DE7-698D3FBA4985} = {30F9EE41-587B-4618-8DE7-698D3FBA4985}
 		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
 	EndProjectSection
 EndProject
@@ -402,6 +403,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer-Ant", "modules\renderer\src\java\renderer-JAVA.vcxproj", "{4235A847-ED0E-43A3-B62B-E59CB857EDE9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "renderer", "modules\renderer\renderer.vcxproj", "{B23B01C1-A545-4BA0-9950-7BCADE201C5B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30F9EE41-587B-4618-8DE7-698D3FBA4985} = {30F9EE41-587B-4618-8DE7-698D3FBA4985}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "modules\console\src\c\console.vcxproj", "{445D3B85-C9B1-498B-9C88-0A3C2390B1CC}"
 EndProject
@@ -499,6 +503,9 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "eispack_f", "modules\elemen
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "call_scilab", "modules\call_scilab\call_scilab.vcxproj", "{6A6A6F76-CCC0-40C4-8AEE-8A010F49A604}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30F9EE41-587B-4618-8DE7-698D3FBA4985} = {30F9EE41-587B-4618-8DE7-698D3FBA4985}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "output_stream_f", "modules\output_stream\src\fortran\output_stream_f.vfproj", "{E60B43CC-73EA-457E-8DEE-31D0B2BDFA4B}"
 	ProjectSection(ProjectDependencies) = postProject

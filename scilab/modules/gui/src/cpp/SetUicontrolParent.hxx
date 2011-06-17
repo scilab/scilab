@@ -26,7 +26,6 @@ extern "C"
 #include "localization.h"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
-#include "WindowList.h"
 #include "HandleManagement.h"
 }
 

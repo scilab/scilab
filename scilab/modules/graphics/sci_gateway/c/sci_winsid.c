@@ -26,7 +26,7 @@
 int sci_winsid(char *fname,unsigned long fname_len)
 {
   int status = 0;
-  int nbFigure = __sciGetNbFigure();
+  int nbFigure = sciGetNbFigure();
   CheckRhs(-1,0);
 
   if (nbFigure <= 0)
@@ -42,7 +42,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
       Scierror(999, _("%s: No more memory.\n"),fname);
       return 0;
     }
-    __sciGetFiguresId(ids);
+    sciGetFiguresId(ids);
 
     status = sciReturnRowIntVector(ids, nbFigure);
     FREE(ids);

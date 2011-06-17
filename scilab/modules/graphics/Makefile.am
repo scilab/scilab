@@ -16,7 +16,7 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA =  license.txt 
+libscigraphics_la_root_DATA =  license.txt
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
@@ -41,7 +41,6 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-src/c/WindowList.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
@@ -339,16 +338,13 @@ src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
-src/c/HandleManagement.c \
 src/c/StringBox.c \
 src/c/axesScale.c \
 src/c/TerminateGraphics.c \
-src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c \
-src/c/SciHandleTab.c
+src/c/get_ticks_utils.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -438,7 +434,7 @@ libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
 
 # For the code check (splint)

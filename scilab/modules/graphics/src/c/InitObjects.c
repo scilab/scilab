@@ -52,6 +52,9 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 
+#include "AxesModel.h"
+#include "FigureModel.h"
+
 #define LABEL_BUFFER_LENGTH	128
 
 static char error_message[70]; /* DJ.A 08/01/04 */
@@ -90,34 +93,9 @@ unsigned short defcolors[] = {
   255, 215,   0  /* Gold */
 };
 
-static sciPointObj * pfiguremdl = NULL;
-static sciPointObj * paxesmdl = NULL;
-
-sciPointObj * getFigureModel( void )
-{
-  return pfiguremdl ;
-}
-
-sciPointObj * getAxesModel( void )
-{
-  return paxesmdl ;
-}
-
-BOOL isFigureModel(sciPointObj * pObj)
-{
-  return (pObj == pfiguremdl);
-}
-
-BOOL isAxesModel(sciPointObj * pObj)
-{
-  return (pObj == paxesmdl);
-}
-
-
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) (void)
 {
-    sciSubWindow * ppaxesmdl = NULL ;
     int iZero = 0;
     BOOL bTrue = TRUE;
     BOOL bFalse = FALSE;
@@ -133,174 +111,168 @@ int C2F(graphicsmodels) (void)
     int firstPlot;
     int result;
 
+    char* pfiguremdlUID = NULL;
+    char* paxesmdlUID = NULL;
+
     /*
     ** Init Figure Model
     */
-    if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        strcpy(error_message,_("Default figure cannot be create.\n"));
-        return 0;
-    }
+
 
     // Create default figure by Asking MVC a new one.
-    pfiguremdl->UID = createGraphicObject(__GO_FIGURE__);
+    pfiguremdlUID = createGraphicObject(__GO_FIGURE__);
+    setFigureModel(pfiguremdlUID);
     // Name
-    setGraphicObjectProperty(pfiguremdl->UID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
+    setGraphicObjectProperty(pfiguremdlUID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
 
     // Id
-    setGraphicObjectProperty(pfiguremdl->UID, __GO_ID__, &iZero, jni_int, 1);
+    setGraphicObjectProperty(pfiguremdlUID, __GO_ID__, &iZero, jni_int, 1);
     // pModelData
     // isselected ?? (No more used)
     // rotstyle = unary (0)
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
-  // visible
+    setGraphicObjectProperty(pfiguremdlUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
+    // visible
 
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
-  // immediateDrawingMode
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
-  // background
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
-  /*
-   * user data
-   * NULL has been replaced by the empty string as the third argument in order to
-   * avoid a crash due to giws 1.2.4
-   */
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA__, "", jni_string, 0);
-  // Size of user data
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
-  // Pixmap Mode
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
-  // Info Message
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_INFO_MESSAGE__, "", jni_string, 1);
-  // Event Handler
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_EVENTHANDLER__, "", jni_string, 1);
-  // Event Handler Enable
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
-  // Tag
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_TAG__, "", jni_string, 1);
+    setGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
+    // immediateDrawingMode
+    setGraphicObjectProperty(pfiguremdlUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
+    // background
+    setGraphicObjectProperty(pfiguremdlUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+    /*
+     * user data
+     * NULL has been replaced by the empty string as the third argument in order to
+     * avoid a crash due to giws 1.2.4
+     */
+    setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA__, "", jni_string, 0);
+    // Size of user data
+    setGraphicObjectProperty(pfiguremdlUID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
+    // Pixmap Mode
+    setGraphicObjectProperty(pfiguremdlUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
+    // Info Message
+    setGraphicObjectProperty(pfiguremdlUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
+    // Event Handler
+    setGraphicObjectProperty(pfiguremdlUID, __GO_EVENTHANDLER__, "", jni_string, 1);
+    // Event Handler Enable
+    setGraphicObjectProperty(pfiguremdlUID, __GO_EVENTHANDLER_ENABLE__, &bFalse, jni_bool, 1);
+    // Tag
+    setGraphicObjectProperty(pfiguremdlUID, __GO_TAG__, "", jni_string, 1);
 
 
-  if (pdblColorMap == NULL)
-  {
-	  sprintf(error_message,_("%s: No more memory.\n"),"InitFigureModel");
-	  return -1 ;
-  }
+    if (pdblColorMap == NULL)
+    {
+        sprintf(error_message,_("%s: No more memory.\n"),"InitFigureModel");
+        return -1 ;
+    }
 
-  for (i = 0 ; i < m ; i++ )
-  {
-      pdblColorMap[i        ] = (double) (defcolors[3*i]/255.0) ;
-      pdblColorMap[i + m    ] = (double) (defcolors[3*i+1]/255.0) ;
-      pdblColorMap[i + 2 * m] = (double) (defcolors[3*i+2]/255.0) ;
-  }
-  // ColorMap
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+    for (i = 0 ; i < m ; i++ )
+    {
+        pdblColorMap[i        ] = (double) (defcolors[3*i]/255.0) ;
+        pdblColorMap[i + m    ] = (double) (defcolors[3*i+1]/255.0) ;
+        pdblColorMap[i + 2 * m] = (double) (defcolors[3*i+2]/255.0) ;
+    }
+    // ColorMap
+    setGraphicObjectProperty(pfiguremdlUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
 
-  // Parent
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_PARENT__, "", jni_string, 1);
+    // Parent
+    setGraphicObjectProperty(pfiguremdlUID, __GO_PARENT__, "", jni_string, 1);
 
-  // Register object inside Scilab
-  sciAddNewHandle(pfiguremdl);
+    // Register object inside Scilab
+    //sciAddNewHandle(pfiguremdl);
 
-  /*
-  ** Init Axes Model
-  */
-  if ((paxesmdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
-  {
-      strcpy(error_message,_("Default axes cannot be created.\n"));
-      return 0;
-  }
+    /*
+    ** Init Axes Model
+    */
 
-  // Create default Axes by Asking MVC a new one.
-  paxesmdl->UID = createGraphicObject(__GO_AXES__);
+    // Create default Axes by Asking MVC a new one.
+    paxesmdlUID = createGraphicObject(__GO_AXES__);
+    setAxesModel(paxesmdlUID);
+    /* Axes Model properties */
 
-  /* Axes Model properties */
+    result = InitAxesModel();
 
-  result = InitAxesModel();
+    if (result < 0)
+    {
+        strcpy(error_message,_("Default axes cannot be created.\n"));
+        return 0;
+    }
 
-  if (result < 0)
-  {
-    strcpy(error_message,_("Default axes cannot be created.\n"));
-    deleteGraphicObject(paxesmdl->UID);
-    return 0;
-  }
+    /* Margins and clip region */
 
-  /* Margins and clip region */
+    margins[0] = 0.125;
+    margins[1] = 0.125;
+    margins[2] = 0.125;
+    margins[3] = 0.125;
 
-  margins[0] = 0.125;
-  margins[1] = 0.125;
-  margins[2] = 0.125;
-  margins[3] = 0.125;
+    setGraphicObjectProperty(paxesmdlUID, __GO_MARGINS__, margins, jni_double_vector, 4);
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_MARGINS__, margins, jni_double_vector, 4);
+    clipRegion[0] = 0.0;
+    clipRegion[1] = 0.0;
+    clipRegion[2] = 0.0;
+    clipRegion[3] = 0.0;
 
-  clipRegion[0] = 0.0;
-  clipRegion[1] = 0.0;
-  clipRegion[2] = 0.0;
-  clipRegion[3] = 0.0;
+    setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    clipRegionSet = 0;
+    setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-  clipRegionSet = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    /* add the handle in the handle list */
+    //if ( sciAddNewHandle(paxesmdl) == -1 )
+    //{
+    //  return NULL;
+    //}
 
-  /* add the handle in the handle list */
-  if ( sciAddNewHandle(paxesmdl) == -1 )
-  {
-    return NULL;
-  }
-
-  /*
-   * Specifies that no high-level drawing function has been called yet.
-   */
-  firstPlot = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    /*
+     * Specifies that no high-level drawing function has been called yet.
+     */
+    firstPlot = 1;
+    setGraphicObjectProperty(paxesmdlUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
 #if 0
-  ppaxesmdl->FirstPlot = TRUE;
+    ppaxesmdl->FirstPlot = TRUE;
 #endif
 
-  /* Sets the parent-child relationship between the default Figure and Axes */
-  setGraphicObjectRelationship(pfiguremdl->UID, paxesmdl->UID);
+    /* Sets the parent-child relationship between the default Figure and Axes */
+    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
 
-  /* Commented out: the equivalent MVC operations are done just above */
+    /* Commented out: the equivalent MVC operations are done just above */
 #if 0
-  sciSetEntityType (paxesmdl, SCI_SUBWIN);
-  if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+    sciSetEntityType (paxesmdl, SCI_SUBWIN);
+    if ((paxesmdl->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
     {
-      FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create.\n"));
-      return 0;
+        FREE(paxesmdl);
+        strcpy(error_message,_("Default axes cannot be create.\n"));
+        return 0;
     }
 	createDefaultRelationShip(paxesmdl);
 
 	/* add the handle in the handle list */
-  if ( sciAddNewHandle(paxesmdl) == -1 )
-  {
-    return NULL ;
-  }
+    //if ( sciAddNewHandle(paxesmdl) == -1 )
+    //{
+    //    return NULL ;
+    //}
 
 
-  /* there are properties not initialized bu InitAxesModel */
-  /* Is it a missing ? */
+    /* there are properties not initialized bu InitAxesModel */
+    /* Is it a missing ? */
 
-  ppaxesmdl->FirstPlot = TRUE;
+    ppaxesmdl->FirstPlot = TRUE;
 
-  ppaxesmdl->ARect[0]   = 0.125;
-  ppaxesmdl->ARect[1]   = 0.125;
-  ppaxesmdl->ARect[2]   = 0.125;
-  ppaxesmdl->ARect[3]   = 0.125;
+    ppaxesmdl->ARect[0]   = 0.125;
+    ppaxesmdl->ARect[1]   = 0.125;
+    ppaxesmdl->ARect[2]   = 0.125;
+    ppaxesmdl->ARect[3]   = 0.125;
 
-  ppaxesmdl->clip_region[0] = 0.;
-  ppaxesmdl->clip_region[1] = 0.;
-  ppaxesmdl->clip_region[2] = 0.;
-  ppaxesmdl->clip_region[3] = 0.;
+    ppaxesmdl->clip_region[0] = 0.;
+    ppaxesmdl->clip_region[1] = 0.;
+    ppaxesmdl->clip_region[2] = 0.;
+    ppaxesmdl->clip_region[3] = 0.;
 
-  /* the model has not been changed !!! */
-  ppaxesmdl->clip_region_set = 0 ;
+    /* the model has not been changed !!! */
+    ppaxesmdl->clip_region_set = 0 ;
 
 #endif
 
-  return 1;
+    return 1;
 }
 
 /*
@@ -341,7 +313,7 @@ sciInitGraphicContext (sciPointObj * pobj)
      * directly used by the Figure object (except backgroundcolor) but served to
      * initialize its children Axes' ones.
      */
-    if ( pobj == pfiguremdl )
+      if ( isFigureModel(pobj->UID) )
     {
 #if 0
       (sciGetGraphicContext(pobj))->backgroundcolor = /*-3;*/ 33;  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
@@ -370,56 +342,56 @@ sciInitGraphicContext (sciPointObj * pobj)
   else if (strcmp(type, __GO_AXES__) == 0)
   {
 
-    /*
-     * This block is reached as InitGraphicContext is called by InitAxesModel
-     * The property set calls it performs should be moved to the Java Model.
-     * Contoured properties are not copied from the parent Figure any more for now
-     * and are instead explicitely set here, in order to initialize the default
-     * Axes' ones.
-     */
-    if ( pobj == paxesmdl )
-    {
-      int background = -2;
-      int foreground = -1;
-      double lineWidth = 1.0;
+      /*
+       * This block is reached as InitGraphicContext is called by InitAxesModel
+       * The property set calls it performs should be moved to the Java Model.
+       * Contoured properties are not copied from the parent Figure any more for now
+       * and are instead explicitely set here, in order to initialize the default
+       * Axes' ones.
+       */
+      if ( isAxesModel(pobj->UID) )
+      {
+          int background = -2;
+          int foreground = -1;
+          double lineWidth = 1.0;
 
-      /* 0: solid */
-      int lineStyle = 0;
+          /* 0: solid */
+          int lineStyle = 0;
 
-      int markMode = 0;
-      int lineMode = 1;
-      int fillMode = 0;
-      int markStyle = 0;
-      int markSize = 0;
+          int markMode = 0;
+          int lineMode = 1;
+          int fillMode = 0;
+          int markStyle = 0;
+          int markSize = 0;
 
-      /* 0: point, 1: tabulated */
-      int markSizeUnit = 1;
+          /* 0: point, 1: tabulated */
+          int markSizeUnit = 1;
 
-      setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, &background, jni_int, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, &background, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-      setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
 
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
 
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
-      setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
+          setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
 
 
 #if 0
-      cloneGraphicContext( sciGetParent (pobj), pobj ) ;
+          cloneGraphicContext( sciGetParent (pobj), pobj ) ;
 
-      sciGetGraphicContext(pobj)->backgroundcolor = /*-3 ;*/ 33;
-      sciGetGraphicContext(pobj)->foregroundcolor = /*-2 ;*/ 32;
-      sciGetGraphicContext(pobj)->markbackground  = /*-3*/ 33;
-      sciGetGraphicContext(pobj)->markforeground  = /*-2*/ 32;
+          sciGetGraphicContext(pobj)->backgroundcolor = /*-3 ;*/ 33;
+          sciGetGraphicContext(pobj)->foregroundcolor = /*-2 ;*/ 32;
+          sciGetGraphicContext(pobj)->markbackground  = /*-3*/ 33;
+          sciGetGraphicContext(pobj)->markforeground  = /*-2*/ 32;
 #endif
     }
     /*
@@ -660,7 +632,7 @@ sciInitFontContext (sciPointObj * pobj)
      * and are instead explicitely set here, in order to initialize the
      * default Axes' font properties.
      */
-    if (pobj == paxesmdl)
+      if (isAxesModel(pobj->UID))
     {
       int fontColor = -1;
       double fontSize = 1.0;
@@ -684,24 +656,30 @@ sciInitFontContext (sciPointObj * pobj)
        * This block is never reached at all since since the Axes model
        * is now cloned within the MVC via a C call.
        */
-      initFCfromCopy( paxesmdl, pobj );
+#if 0
+        initFCfromCopy( paxesmdl, pobj );
+#endif
     }
   }
   else if (strcmp(type, __GO_FIGURE__) == 0)
   {
-    if (pobj == pfiguremdl)
+      if (isFigureModel(pobj->UID))
     {
+#if 0
        sciInitFontStyle (pobj, 6); /* set helvetica font */
       (sciGetFontContext(pobj))->backgroundcolor = 33;
       (sciGetFontContext(pobj))->foregroundcolor = 32;
       (sciGetFontContext(pobj))->fontSize = 1.0;
       (sciGetFontContext(pobj))->textorientation = 0.0;
       (sciGetFontContext(pobj))->useFractionalMetrics = FALSE;
+#endif
       /* END ADDING F.Leray 08.04.04*/
     }
     else
     {
+#if 0
       initFCfromCopy( pfiguremdl, pobj );
+#endif
     }
   }
   else if (strcmp(type, __GO_LEGEND__) == 0)
@@ -748,6 +726,7 @@ sciInitFontContext (sciPointObj * pobj)
 
 int InitFigureModel( void )
 {
+#if 0
   int i ;
   int m = NUMCOLORS_SCI ;
   double * colorMap ;
@@ -819,7 +798,7 @@ int InitFigureModel( void )
   pFIGURE_FEATURE (pfiguremdl)->numcolors = m;
 
   FREE( colorMap ) ;
-
+#endif
   return 0;
 }
 
@@ -869,7 +848,7 @@ int InitAxesModel()
    * Not needed any more since the MVC equivalent is now used
    * To be deleted
    */
-#if 1
+#if 0
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
 #endif
 
@@ -879,79 +858,82 @@ int InitAxesModel()
 
 
   /* These functions have been adapted to the MVC framework */
-  sciInitGraphicContext (paxesmdl);
-  sciInitGraphicMode (paxesmdl);
+//  sciInitGraphicContext (paxesmdl);
+//  sciInitGraphicMode (paxesmdl);
 //  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
+  char *pfiguremdlUID = getFigureModel();
+  char *paxesmdlUID = getAxesModel();
+
   cubeScaling = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
 
   /* Log flags set to linear for the 3 axes */
   logFlag = 0;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_LOG_FLAG__, &logFlag, jni_bool, 1);
 
   ticksColor = -1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_TICKS_COLOR__, &ticksColor, jni_int, 1);
 
   nbSubticks = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
 
 
   /* 0 corresponds to bottom position */
   axisLocation = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
   /* 4 corresponds to left position */
   axisLocation = 4;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
   /* 0 corresponds to OFF */
   boxType = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
   filled = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_FILLED__, &filled, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_FILLED__, &filled, jni_bool, 1);
 
   gridColor = -1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
 
   /* 0: background */
   gridPosition = 0;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);
 
   rotationAngles[0] = 0.0;
   rotationAngles[1] = 270.0;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+  setGraphicObjectProperty(paxesmdlUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
   /* 0: 2D view */
   view = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_VIEW__, &view, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_VIEW__, &view, jni_int, 1);
 
 
   /* Must be set after VIEW, since setting VIEW to 2D overwrites the 3D rotation angles */
   rotationAngles[0] = 45.0;
   rotationAngles[1] = 215.0;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
+  setGraphicObjectProperty(paxesmdlUID, __GO_ROTATION_ANGLES_3D__, rotationAngles, jni_double_vector, 2);
 
   axisVisible = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
   axisReverse = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_REVERSE__, &axisReverse, jni_bool, 1);
 
   /* Corresponds to the MVC AUTO_SUBTICKS property (!flagNax is equivalent to AUTO_SUBTICKS) */
 #if 0
@@ -959,13 +941,13 @@ int InitAxesModel()
 #endif
 
   autoSubticks = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
   /* To be corrected when the equivalent of flagnax is implemented within the MVC */
   nbSubticks = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
 
   /*
    * The code creating default ticks labels and positions should be put
@@ -980,14 +962,14 @@ int InitAxesModel()
    * ensure that the ticks values set are the automatic ticks' ones.
    */
   autoTicks = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
   defaultNumberTicks = 11;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
 
   stringVector = createStringArray(defaultNumberTicks);
 
@@ -1010,8 +992,8 @@ int InitAxesModel()
     }
   }
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
   /*
    * The same number of ticks is used now for the x,y and z axes.
@@ -1019,7 +1001,7 @@ int InitAxesModel()
    * overriding this default number (3) by creating an 11-tick z-axis when required (3D view).
    * Ticks locations and labels are however different for the z-axis (from -1 to +1 instead of 0 to 1).
    */
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_TICKS_LOCATIONS__, tabZTicksLocations, jni_double_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_TICKS_LOCATIONS__, tabZTicksLocations, jni_double_vector, defaultNumberTicks);
 
   /* ChoixFormatE should be used */
   for (i = 0; i < defaultNumberTicks; i++)
@@ -1035,7 +1017,7 @@ int InitAxesModel()
     }
   }
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
+  setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
   destroyStringArray(stringVector, defaultNumberTicks);
 
@@ -1044,7 +1026,7 @@ int InitAxesModel()
    * as it directly sets the Labels' font properties.
    * To be modified.
    */
-  sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
+  //sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
 
   /*
    * Indicates the direction of projection (0 for the axis corresponding to the direction,
@@ -1059,20 +1041,20 @@ int InitAxesModel()
 
 
   hiddenAxisColor = 4;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_HIDDEN_AXIS_COLOR__, &hiddenAxisColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_HIDDEN_AXIS_COLOR__, &hiddenAxisColor, jni_int, 1);
 
   hiddenColor = 4;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
 
   isoview = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
 
   /* Axes bounds set to fill the whole drawing area */
   axesBounds[0] = 0.0;
   axesBounds[1] = 0.0;
   axesBounds[2] = 1.0;
   axesBounds[3] = 1.0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
+  setGraphicObjectProperty(paxesmdlUID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
 
   /* xmin, xmax */
   dataBounds[0] = 0.0;
@@ -1084,25 +1066,25 @@ int InitAxesModel()
   dataBounds[4] = -1.0;
   dataBounds[5] = 1.0;
 
-  setGraphicObjectProperty(paxesmdl->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+  setGraphicObjectProperty(paxesmdlUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
   /* visible */
-  getGraphicObjectProperty(pfiguremdl->UID, __GO_VISIBLE__, jni_bool, &piVisible);
-  setGraphicObjectProperty(paxesmdl->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+  getGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, jni_bool, &piVisible);
+  setGraphicObjectProperty(paxesmdlUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
   /* 0: clipping off */
   clipState = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
   /* "real data bounds" and "data bounds" are initially the same */
-  setGraphicObjectProperty(paxesmdl->UID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+  setGraphicObjectProperty(paxesmdlUID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
   tightLimits = 0;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
 
   /* Sets the default arc drawing method to lines (1), which is faster */
   arcDrawingMethod = 1;
-  setGraphicObjectProperty(paxesmdl->UID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_ARC_DRAWING_METHOD__, &arcDrawingMethod, jni_int, 1);
 
   return 0;
 
@@ -1373,7 +1355,8 @@ int InitAxesModel()
 
 int ResetFigureToDefaultValues(sciPointObj * pobj)
 {
-
+// ???
+#if 0
   int x[2];
 
 
@@ -1388,14 +1371,14 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   /* initialisation de context et mode graphique par defaut (figure model)*/
   if (sciInitGraphicContext (pobj) == -1)
     {
-      sciDelHandle (pobj);
-      FREE(pobj->pfeatures);
-      FREE(pobj);
-      return -1;
+        //sciDelHandle (pobj);
+        FREE(pobj->pfeatures);
+        FREE(pobj);
+        return -1;
     }
   if (sciInitGraphicMode (pobj) == -1)
     {
-      sciDelHandle (pobj);
+        //sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return -1;
@@ -1404,7 +1387,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   /* F.Leray 08.04.04 */
   if (sciInitFontContext (pobj) == -1)
     {
-      sciDelHandle (pobj);
+        //sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
       return -1;
@@ -1427,7 +1410,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   sciInitImmediateDrawingMode(pobj, sciGetImmediateDrawingMode(pfiguremdl));
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
-
+#endif
   return 0;
 }
 
@@ -1460,7 +1443,7 @@ sciInitGraphicMode (sciPointObj * pobj)
       /* 3: copy pixel drawing mode */
       int xormode = 3;
 
-      if (pobj == pfiguremdl)
+      if (isFigureModel(pobj->UID))
 	{
           /*
            * These 3 properties are not used by the Figure object proper, but
@@ -1506,7 +1489,7 @@ sciInitGraphicMode (sciPointObj * pobj)
       /* 3: copy */
       int xormode = 3;
 
-      if (pobj == paxesmdl)
+      if (isAxesModel(pobj->UID))
 	{
           setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
           setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
@@ -1534,12 +1517,13 @@ sciInitGraphicMode (sciPointObj * pobj)
 	{
         int iTmp = 0;
           int* piTmp = &iTmp;
+          char *paxesmdlUID = getAxesModel();
 
-          getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_CLEAR__, jni_bool, &piTmp);
+          getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_CLEAR__, jni_bool, &piTmp);
           autoClear = iTmp;
-          getGraphicObjectProperty(paxesmdl->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+          getGraphicObjectProperty(paxesmdlUID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
           autoScale = iTmp;
-          getGraphicObjectProperty(paxesmdl->UID, __GO_ZOOM_ENABLED__, jni_bool, &piTmp);
+          getGraphicObjectProperty(paxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, &piTmp);
           zoom = iTmp;
 
           setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
@@ -1551,7 +1535,7 @@ sciInitGraphicMode (sciPointObj * pobj)
            * obsolete ? Not implemented yet within the MVC
            */
 
-          getGraphicObjectProperty(paxesmdl->UID, __GO_PIXEL_DRAWING_MODE__, jni_bool, &piTmp);
+          getGraphicObjectProperty(paxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, &piTmp);
           xormode = iTmp;
 
           setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
@@ -1630,20 +1614,20 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     return NULL ;
   }
 
-  if ( sciAddNewHandle ( newLabel ) == -1 )
-  {
-    FREE( ppLabel ) ;
-    FREE( newLabel ) ;
-    return NULL ;
-  }
+  //if ( sciAddNewHandle ( newLabel ) == -1 )
+  //{
+  //  FREE( ppLabel ) ;
+  //  FREE( newLabel ) ;
+  //  return NULL ;
+  //}
 
-  if ( !sciAddThisToItsParent( newLabel, pParentObj ) )
-  {
-    sciDelHandle (newLabel);
-    FREE( ppLabel ) ;
-    FREE( newLabel  );
-    return NULL ;
-  }
+  //if ( !sciAddThisToItsParent( newLabel, pParentObj ) )
+  //{
+      //sciDelHandle (newLabel);
+  //  FREE( ppLabel ) ;
+  //  FREE( newLabel  );
+  // return NULL ;
+  //}
 
   ppLabel->auto_position = TRUE;
   ppLabel->auto_rotation = TRUE;
@@ -1677,10 +1661,11 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 /*---------------------------------------------------------------------------------*/
 void destroyDefaultObjects( void )
 {
-  /* will destroy the figure and its children (so the axes). */
-  destroyGraphicHierarchy( pfiguremdl ) ;
-  pfiguremdl = NULL ;
-  paxesmdl = NULL;
+    // ???
+    /* will destroy the figure and its children (so the axes). */
+    //destroyGraphicHierarchy( pfiguremdl ) ;
+    //pfiguremdl = NULL ;
+    //paxesmdl = NULL;
 }
 /*---------------------------------------------------------------------------------*/
 /**
@@ -1758,11 +1743,6 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
  */
 BOOL isModelObject(sciPointObj * pObj)
 {
-	return pObj == pfiguremdl
-		|| pObj == paxesmdl
-		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_title
-		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+	return isFigureModel(pObj->UID) || isAxesModel(pObj->UID);
 }
 /*---------------------------------------------------------------------------------*/

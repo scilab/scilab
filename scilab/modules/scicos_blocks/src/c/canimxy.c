@@ -18,7 +18,7 @@
  *
  * See the file ./license.txt
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file canimxy.c
    \author Benoit Bayol
@@ -27,8 +27,7 @@
    \brief CANIMXY is a scope in 2D which draw its input as a XY scope, there is animation.
    \see CANIMXY.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
-#include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -38,7 +37,7 @@
 #include "DrawingBridge.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -87,7 +86,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pSco
   xmin = rpar[0];
   xmax = rpar[1];
   ymin = rpar[2];
-  ymax = rpar[3]; 
+  ymax = rpar[3];
   label = GetLabelPtrs(block);
   number_of_subwin = 1;
   /* If only one element to draw*/
@@ -130,7 +129,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pSco
 	{
 	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
 
-	 
+
 	  if(color[0] <= 0)  /*if mark style*/
 	    {
 	      if(firstdraw == 1)
@@ -144,11 +143,11 @@ SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pSco
 		  scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[0]);
 		  scoAddPolylineForShortDraw(*pScopeMemory,0,i+nbr_curves,color[0]); //same type of mark and black for the rubber
 		  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[0]);
-		    
+
 		  Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
 		  Gomme = scoGetPointerShortDraw(*pScopeMemory,0,i+nbr_curves);
 		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
-		    
+
 		  pPOLYLINE_FEATURE(Pinceau)->n1 = 1;
 		  pPOLYLINE_FEATURE(Gomme)->n1 = 1;
 		  sciSetMarkForeground(Gomme, gomme_color); //here the rubber becomes colored like the background of the axes
@@ -166,17 +165,17 @@ SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pSco
 		{
 		  scoSetShortDrawSize(*pScopeMemory,0,2);
 		  scoSetLongDrawSize(*pScopeMemory,0,buffer_size-1);
-		}		
+		}
 	      for(i = 0 ; i < nbr_curves ; i++)
 		{
 		  scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[0]);
 		  scoAddPolylineForShortDraw(*pScopeMemory,0,i+nbr_curves,gomme_color);
 		  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[0]);
-		    
+
 		  Pinceau = scoGetPointerShortDraw(*pScopeMemory,0,i);
 		  Gomme = scoGetPointerShortDraw(*pScopeMemory,0,i+nbr_curves);
 		  Trait = scoGetPointerLongDraw(*pScopeMemory,0,i);
-		    
+
 		  pPOLYLINE_FEATURE(Pinceau)->n1 = 2;
 		  pPOLYLINE_FEATURE(Gomme)->n1 = 2;
 		  pPOLYLINE_FEATURE(Trait)->n1 = buffer_size-1;
@@ -193,7 +192,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pSco
       scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void canimxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -210,7 +209,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy(scicos_block * block, int flag)
   switch(flag)
     {
     case Initialization:
-      {	
+      {
 	canimxy_draw(block,&pScopeMemory,1);
 	break; //Break of the switch condition don t forget it
       } //End of Initialization
@@ -235,7 +234,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy(scicos_block * block, int flag)
 	  }
 	break; //Break of the switch don t forget it !
       }//End of stateupdate
-      
+
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
@@ -269,7 +268,7 @@ SCICOS_BLOCKS_IMPEXP void canimxy(scicos_block * block, int flag)
 	break; //Break of the switch
       }
       //free the memory which is allocated at each turn by some variables
- 
+
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

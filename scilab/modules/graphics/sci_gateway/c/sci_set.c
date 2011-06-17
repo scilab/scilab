@@ -226,10 +226,60 @@ int sci_set(char *fname, unsigned long fname_len)
             // Only set the property whitout doing anythig else.
             setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
         }
+       else
+        {
+#define NB_PROPERTIES_SUPPORTED 6
+            /* No object specified */
+            /* ONLY supported properties are */
+            /* 'current_entity' */
+            /* 'hdl' */
+            /* 'current_figure' */
+            /* 'current_axes' */
+            /* 'default_values' */
+            /* 'figure_style' for compatibility but do nothing */
+            /* others values must return a error */
+            char *propertyField = cstk(l2);
+            char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = {"current_entity",
+                "hdl",
+                "current_figure",
+                "current_axes",
+                "figure_style",
+                "default_values"};
+            int i = 0;
+            int iPropertyFounded = 0;
+            for (i = 0; i < NB_PROPERTIES_SUPPORTED; i++)
+            {
 
+                if (strcmp(propertiesSupported[i], propertyField) == 0)
+                {
+                    iPropertyFounded = 1;
+                }
+            }
+
+            if (iPropertyFounded)
+            {
+                // we do nothing with "figure_style" "new" (to remove in 5.4)
+                int bDoSet = ((isMatrixOfString) && (strcmp(propertyField, "figure_style") == 0) && (strcmp(cstk(l3), "new") == 0)) != 1;
+                if (bDoSet)
+                {
+                    sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                }
+            }
+            else
+            {
+                Scierror(999,_("%s: Wrong value for input argument #%d: a valid property expected.\n"), fname, 1);
+                if(isMatrixOfString)
+                {
+                    freeArrayOfString((char**)l3, numrow3*numcol3);
+                }
+                return 0;
+            }
+        }
         LhsVar(1)=0;
         PutLhsVar();
     }
+
+
     return 0;
 #if 0
             vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,18 +17,18 @@
 #include "call_scilab.h"
 #include "api_scilab.h"
 #include "../../../modules/call_scilab/src/c/call_scilab_engine_state.h"
-#include "../../../modules/graphics/includes/WindowList.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
 /*--------------------------------------------------------------------------*/
 extern int GetLastErrorCode(void);
 /*--------------------------------------------------------------------------*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
 {
     setCallScilabEngineState(CALL_SCILAB_ENGINE_STARTED);
-    if ( GetInterfState() == 0) 
-    { 
+    if ( GetInterfState() == 0)
+    {
         EnableInterf();
         Initialize();
-    } 
+    }
 }
 /*--------------------------------------------------------------------------*/
 /* public static native void Events(); */
@@ -61,7 +61,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
     }
     else
     {
-        if ( SendScilabJob((char *)cjob) != 0) 
+        if ( SendScilabJob((char *)cjob) != 0)
         {
             fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
             bOK = JNI_FALSE;

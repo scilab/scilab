@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Class dedicated for the graphic rendering of graphic handles 
- * 
+ * desc : Class dedicated for the graphic rendering of graphic handles
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,7 +18,6 @@
 extern "C"
 {
 #include "GetProperty.h"
-#include "HandleManagement.h"
 }
 
 namespace sciGraphics
@@ -50,7 +49,7 @@ void DrawableObject::display( void )
     {
       m_bNeedDraw = false;
       m_bNeedRedraw = false ;
-    } 
+    }
   }
   else if (m_bNeedRedraw)
   {
@@ -63,7 +62,7 @@ void DrawableObject::display( void )
   {
     show() ;
   }
-  
+
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::hasChanged( void )
@@ -74,6 +73,8 @@ void DrawableObject::hasChanged( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::familyHasChanged( void )
 {
+// ???
+#if 0
   // force redraw
   hasChanged();
 
@@ -85,16 +86,19 @@ void DrawableObject::familyHasChanged( void )
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
-    if (!sciIsAutomaticallyRedrawn(curSon->pointobj)) 
+    if (!sciIsAutomaticallyRedrawn(curSon->pointobj))
       {
         getHandleDrawer( curSon->pointobj )->familyHasChanged();
       }
     curSon = curSon->pprev ;
   }
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::parentSubwinChanged( void )
 {
+// ???
+#if 0
   // just call the function on children
 	if (!m_bNeedRedraw)
 	{
@@ -109,10 +113,13 @@ void DrawableObject::parentSubwinChanged( void )
 			curSon = curSon->pprev ;
 		}
 	}
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::displayChildren( void )
 {
+// ???
+#if 0
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
   {
@@ -127,6 +134,7 @@ void DrawableObject::displayChildren( void )
       }
     curSon = curSon->pprev ;
   }
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObject::pointScale(double xCoord, double yCoord, double zCoord,

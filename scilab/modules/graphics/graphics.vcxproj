@@ -401,7 +401,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\graphicModuleLoad.c" />
     <ClCompile Include="src\c\Gray.c" />
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
-    <ClCompile Include="src\c\HandleManagement.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
@@ -479,7 +478,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
     <ClCompile Include="sci_gateway\c\sci_zoom_rect.c" />
     <ClCompile Include="src\c\sciCall.c" />
-    <ClCompile Include="src\c\SciHandleTab.c" />
     <ClCompile Include="src\c\sciMatrix.c" />
     <ClCompile Include="src\c\scitokenize.c" />
     <ClCompile Include="src\c\getHandleProperty\set_alignment_property.c" />
@@ -619,7 +617,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\StringBox.c" />
     <ClCompile Include="src\c\StringMatrix.c" />
     <ClCompile Include="src\c\TerminateGraphics.c" />
-    <ClCompile Include="src\c\WindowList.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h" />
@@ -650,7 +647,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\graphicModuleLoad.h" />
     <ClInclude Include="includes\GrayPlot.h" />
     <ClInclude Include="includes\gw_graphics.h" />
-    <ClInclude Include="includes\HandleManagement.h" />
     <ClInclude Include="includes\InitObjects.h" />
     <ClInclude Include="includes\Interaction.h" />
     <ClInclude Include="includes\math_graphics.h" />
@@ -660,7 +656,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="includes\PloEch.h" />
     <ClInclude Include="includes\Plot2d.h" />
     <ClInclude Include="includes\sciCall.h" />
-    <ClInclude Include="src\c\SciHandleTab.h" />
     <ClInclude Include="includes\sciMatrix.h" />
     <ClInclude Include="src\c\scitokenize.h" />
     <ClInclude Include="src\c\getHandleProperty\set_data_property.h" />
@@ -672,7 +667,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="src\c\StringBox.h" />
     <ClInclude Include="includes\StringMatrix.h" />
     <ClInclude Include="includes\TerminateGraphics.h" />
-    <ClInclude Include="includes\WindowList.h" />
     <ClInclude Include="src\c\XsetXgetParameters.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Call from Java to figure drawing code using JNI
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,12 +20,10 @@
 
 extern "C"
 {
-#include "WindowList.h"
 #include "GetProperty.h"
 #include "Interaction.h"
 #include "Axes.h"
 #include "axesScale.h"
-#include "HandleManagement.h"
 #include "Scierror.h"
 #include "sciprint.h"
 }
@@ -33,6 +31,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void displayFigure(int figureId)
 {
+#if 0
   startGraphicDataReading();
   sciPointObj * curFig = getFigureFromIndex(figureId) ;
   endGraphicDataReading();
@@ -42,7 +41,7 @@ void displayFigure(int figureId)
     return ;
   }
 
-  try 
+  try
   {
 	  startFigureDataDisplaying(curFig);
 	  (sciGraphics::getFigureDrawer(curFig))->display() ;
@@ -55,12 +54,14 @@ void displayFigure(int figureId)
 	  sciprint("Error: %s\n",e.what());
 	  Scierror(999, "An error occurred during the drawing of the figure.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
   }
+#endif
 }
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void redrawFigure(int figureId)
 {
+#if 0
   startGraphicDataReading();
   sciPointObj * curFig = getFigureFromIndex(figureId) ;
   endGraphicDataReading();
@@ -73,6 +74,7 @@ void redrawFigure(int figureId)
   startFigureDataDisplaying(curFig);
   (sciGraphics::getFigureDrawer(curFig))->familyHasChanged();
   endFigureDataDisplaying(curFig);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 
@@ -80,6 +82,7 @@ void redrawFigure(int figureId)
 /*--------------------------------------------------------------------------*/
 void redrawSubwins(int figureId)
 {
+#if 0
   startGraphicDataReading();
   sciPointObj * curFig = getFigureFromIndex(figureId) ;
   endGraphicDataReading();
@@ -92,12 +95,15 @@ void redrawSubwins(int figureId)
   startFigureDataDisplaying(curFig);
   (sciGraphics::getFigureDrawer(curFig))->redrawSubwins() ;
   endFigureDataDisplaying(curFig);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta)
 {
+// ???
+#if 0
 	startGraphicDataReading();
 	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
 	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
@@ -111,13 +117,17 @@ void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta)
   startFigureDataWriting(parentFigure);
 	updateViewingAngles(pSubwin, deltaAlpha, deltaTheta);
   endFigureDataWriting(parentFigure);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
 {
-	startGraphicDataReading();
+// ???
+    return 0;
+#if 0
+    startGraphicDataReading();
 	sciPointObj * curFig = getFigureFromIndex(figureId) ;
   endGraphicDataReading();
 
@@ -132,13 +142,15 @@ long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
 
 	// Will return 0 if clicked subwin is null or the handle otherwise
 	return sciGetHandle(clickedSubwin);
-
+#endif
 }
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
 {
+// ???
+#if 0
 	startGraphicDataReading();
 	sciPointObj * pObj = sciGetPointerFromHandle((long) objectHandle) ;
 	sciPointObj * parentFigure = sciGetParentFigure(pObj);
@@ -152,10 +164,13 @@ void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
   startFigureDataWriting(parentFigure);
 	sciZoomObject(pObj, x1, y1, x2, y2);
   endFigureDataWriting(parentFigure);
+#endif
 }
 /*--------------------------------------------------------------------------*/
 void unzoomSubwinHandle(long long subwinHandle)
 {
+// ???
+#if 0
 	startGraphicDataReading();
 	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
 	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
@@ -169,5 +184,6 @@ void unzoomSubwinHandle(long long subwinHandle)
   startFigureDataWriting(parentFigure);
 	unzoomSubwin(pSubwin);
   endFigureDataWriting(parentFigure);
+#endif
 }
 /*--------------------------------------------------------------------------*/

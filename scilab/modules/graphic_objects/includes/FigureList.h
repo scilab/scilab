@@ -14,10 +14,38 @@
 #define __FIGURE_LIST_H__
 
 #include "dynlib_graphic_objects.h"
+#include "BOOL.h"
 
-GRAPHIC_OBJECTS_IMPEXP int  __sciGetNbFigure(void);
-GRAPHIC_OBJECTS_IMPEXP void __sciGetFiguresId(int ids[]);
+/**
+ * @return number of opened windows in Scilab.
+ */
+GRAPHIC_OBJECTS_IMPEXP int  sciGetNbFigure(void);
 
-GRAPHIC_OBJECTS_IMPEXP void __registerToController();
+/**
+ * Fill the array Ids with all the figure ids currently used by Scilab.
+ * @param ids should be as long as there are figures.
+ */
+GRAPHIC_OBJECTS_IMPEXP void sciGetFiguresId(int ids[]);
+
+/**
+ * @return TRUE if the figure with index id exists
+ */
+GRAPHIC_OBJECTS_IMPEXP BOOL sciIsExistingFigure(int figNum);
+
+/**
+ * Register Scilab View to Graphic Controller
+ */
+GRAPHIC_OBJECTS_IMPEXP void registerToController();
+
+/**
+ * to know if there are some opened graphic windows
+ */
+GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
+
+/**
+ * returns the UID of window i
+ * or NULL if this window does not exists
+ */
+GRAPHIC_OBJECTS_IMPEXP char* getFigureFromIndex(int figNum);
 
 #endif /* !__FIGURE_LIST_H__ */

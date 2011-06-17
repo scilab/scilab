@@ -25,7 +25,6 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
-#include "CurrentObjectsManagement.h"
 #include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
@@ -294,12 +293,16 @@ CloneArc (sciPointObj * pthis)
 sciPointObj *
 sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 {
+// ???
+#if 0
   sciPointObj *pcopyobj;
 
   pcopyobj = sciCloneObj ((sciPointObj *)pobj);
-  sciDelThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)sciGetParent(pcopyobj));
-  sciAddThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)psubwinparenttarget);
+  //sciDelThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)sciGetParent(pcopyobj));
+  //sciAddThisToItsParent ((sciPointObj *)pcopyobj, (sciPointObj *)psubwinparenttarget);
   return (sciPointObj *)pcopyobj;
+#endif
+  return NULL;
 }
 
 /*--------------------------------------------------------------------------*/

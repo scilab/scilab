@@ -18,10 +18,9 @@
 /* desc : Set of functions to retrieve the currents objects               */
 /*------------------------------------------------------------------------*/
 
-#include "CurrentObjectsManagement.h"
 #include "BuildObjects.h"
 #include "ObjectSelection.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "HandleManagement.h"
 #include "InitObjects.h"
 #include "MALLOC.h"
@@ -45,8 +44,11 @@ static sciPointObj * getCurrentPointedFigure(void)
   return sciCurrentFigure;
 }
 /*----------------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentFigure( void )
+sciPointObj * __sciGetCurrentFigure( void )
 {
+    // ???
+    abort();
+#if 0
   /* debug F.Leray 22.07.04 */
   sciPointObj * pFigure = getCurrentPointedFigure();
   sciPointObj* newaxes = NULL;
@@ -77,30 +79,36 @@ sciPointObj * sciGetCurrentFigure( void )
        * This was previously done in ConstructFigure, called by createFullFigure
        * which has been replaced by the Figure model clone call above.
        */
-      addNewFigureToList(pFigure);
+      // No more needed with MVC.
+      //addNewFigureToList(pFigure);
 
-      sciSetCurrentFigure(pFigure);
+      setCurrentFigure(pFigure->UID);
 
       // Register handle to Scilab.
-      sciAddNewHandle(pFigure);
+//      sciAddNewHandle(pFigure);
 
       /*
        * Registers the Axes' handle and sets the Axes as the current object.
        * This was previously done in ConstructSubWin, called by createFirstSubwin
        * which was also called by createFullFigure.
        */
-      sciAddNewHandle(newaxes);
-      sciSetCurrentObj(newaxes);
+//      sciAddNewHandle(newaxes);
+//      sciSetCurrentObj(newaxes);
   }
 
   return pFigure;
+#endif
+  return NULL;
 }
 /*----------------------------------------------------------------------------------*/
 BOOL sciIsCurrentFigure(sciPointObj * pFigure)
 {
-  return (   pFigure != getFigureModel()
+#if 0
+    return (   pFigure != getFigureModel()
           && sciHasFigures()
           && (pFigure == sciGetCurrentFigure()));
+#endif
+    return FALSE;
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitCurrentFigure( sciPointObj * mafigure )
@@ -119,12 +127,12 @@ int sciSetCurrentFigure ( sciPointObj * mafigure )
   return sciInitCurrentFigure( mafigure ) ;
 }
 /*----------------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentObj( void )
+sciPointObj * __sciGetCurrentObj( void )
 {
   return sciCurrentObject ;
 }
 /*----------------------------------------------------------------------------------*/
-void sciSetCurrentObj( sciPointObj * pobj )
+void __sciSetCurrentObj( sciPointObj * pobj )
 {
   sciCurrentObject = pobj ;
 }
@@ -139,8 +147,9 @@ long sciGetCurrentHandle( void )
   return sciGetHandle( sciGetCurrentObj() );
 }
 /*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentSubWin( void )
+sciPointObj * __sciGetCurrentSubWin( void )
 {
+#if 0
   sciPointObj * currentFigure = sciGetCurrentFigure();
   sciPointObj * currentSubwin = NULL;
   int iNbChildren = 0;
@@ -162,17 +171,17 @@ sciPointObj * sciGetCurrentSubWin( void )
   currentSubwin = MALLOC(sizeof(sciPointObj));
 
   currentSubwin->UID = selectedChild;
-  sciAddNewHandle(currentSubwin);
+//  sciAddNewHandle(currentSubwin);
 
   /*
    * Former way to get the Figure's current selected Axes.
    * To be deleted
    */
-#if 0
   currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
-#endif
 
   return currentSubwin;
+#endif
+  return NULL;
 }
 /*-----------------------------------------------------------------------------*/
 

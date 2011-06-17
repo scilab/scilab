@@ -42,7 +42,6 @@ int get_y_label_property( sciPointObj * pobj )
 #endif
 
     char* labelUID;
-    sciPointObj* label;
     long labelHandle;
 
     getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelUID);
@@ -53,12 +52,7 @@ int get_y_label_property( sciPointObj * pobj )
         return -1;
     }
 
-    label = MALLOC(sizeof(sciPointObj));
-    label->UID = labelUID;
-
-    sciAddNewHandle(label);
-
-    labelHandle = sciGetHandle(label);
+    labelHandle = getHandle(labelUID);
 
     return sciReturnHandle(labelHandle);
 

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Return the style name corresponding to the integer value from UicontrolStyle enum
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -58,11 +58,12 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
     }
   else /* Uicontrol */
     {
-      parent = sciGetParent(sciObj);
-      if (parent == NULL && newUnit == NORMALIZED_UNITS) /* Parent not yet set */
-        {
-          return 0.0;
-        }
+        // ???
+        //parent = sciGetParent(sciObj);
+        //if (parent == NULL && newUnit == NORMALIZED_UNITS) /* Parent not yet set */
+        //{
+        //  return 0.0;
+        //}
     }
 
   switch(newUnit)
@@ -85,7 +86,7 @@ double ConvertFromPoint(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
         {
           position = CallScilabBridge::getFramePosition(getScilabJavaVM(),
                                                         pUICONTROL_FEATURE(parent)->hashMapIndex);
-          
+
           if (widthAsRef == TRUE)
             {
               refSize = position[2];
@@ -134,11 +135,12 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
     }
   else /* Uicontrol */
     {
-      parent = sciGetParent(sciObj);
-      if (parent == NULL && oldUnit == NORMALIZED_UNITS) /* Parent not yet set */
-        {
-          return 0;
-        }
+        // ???
+        //parent = sciGetParent(sciObj);
+        //if (parent == NULL && oldUnit == NORMALIZED_UNITS) /* Parent not yet set */
+        //{
+        //  return 0;
+        //}
     }
 
   switch(oldUnit)
@@ -161,7 +163,7 @@ int ConvertToPoint(double value, int oldUnit, sciPointObj *sciObj, BOOL widthAsR
         {
           position = CallScilabBridge::getFramePosition(getScilabJavaVM(),
                                                         pUICONTROL_FEATURE(parent)->hashMapIndex);
-          
+
           if (widthAsRef == TRUE)
             {
               refSize = position[2];
@@ -193,7 +195,7 @@ double ConvertFromPixel(int value, int newUnit, sciPointObj *sciObj, BOOL widthA
       newUnit = PIXELS_UNITS;
     }
 
-  if (newUnit == PIXELS_UNITS) 
+  if (newUnit == PIXELS_UNITS)
     {
       return (double) value;
     }

@@ -4,11 +4,11 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,9 +21,7 @@
 #include "TerminateGraphics.h"
 #include "getDictionaryGetProperties.h"
 #include "getDictionarySetProperties.h"
-#include "HandleManagement.h"
 #include "DrawObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -36,7 +34,6 @@
 #include "Axes.h"
 #include "getPropertyAssignedValue.h"
 #include "SetHashTable.h"
-#include "WindowList.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "Format.h"
@@ -62,7 +59,7 @@
 int gw_graphics(void)
 {
   Rhs = Max(0, Rhs);
-  
+
   if ( (Fin==DELETE_INDEX || Fin==GET_INDEX || Fin==SET_INDEX) &&
        (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
     {
@@ -107,11 +104,6 @@ double Maxi(const double vect[], int n)
 double Mini(const double vect[], int n)
 {
 	return 0.0;
-}
-/*--------------------------------------------------------------------------*/
-BOOL sciHasFigures( void )
-{
-  return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 char **getDictionaryGetProperties(int *sizearray)
@@ -159,7 +151,7 @@ int sciSetEntityType (sciPointObj * pobj, sciEntityType value)
 	return -1 ;
 }
 /*--------------------------------------------------------------------------*/
-sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) 
+sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
 {
 	return NULL;
 }
@@ -194,7 +186,7 @@ sciEntityType sciGetEntityType (sciPointObj * pobj)
 	return (sciEntityType)0;
 }
 /*--------------------------------------------------------------------------*/
-int sciStandardDestroyOperations( sciPointObj * pThis ) 
+int sciStandardDestroyOperations( sciPointObj * pThis )
 {
 	return -1;
 }
@@ -229,12 +221,12 @@ char * getStringFromStack( size_t stackPointer )
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-double * getDoubleMatrixFromStack( size_t stackPointer ) 
+double * getDoubleMatrixFromStack( size_t stackPointer )
 {
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-double getDoubleFromStack( size_t stackPointer ) 
+double getDoubleFromStack( size_t stackPointer )
 {
 	return 0.;
 }
@@ -264,7 +256,7 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-int sciInitFontForeground(sciPointObj * pobj, int colorindex ) 
+int sciInitFontForeground(sciPointObj * pobj, int colorindex )
 {
 	return -1;
 }
@@ -289,7 +281,7 @@ sciPointObj * allocateText( sciPointObj        * pparentsubwin,
 										   double              userSize[2]   ,
 										   BOOL                centerPos     ,
 										   int               * foreground    ,
-										   int               * background    , 
+										   int               * background    ,
 										   BOOL                isboxed       ,
 										   BOOL                isline        ,
 										   BOOL                isfilled      ,
@@ -328,7 +320,7 @@ int sciInitLineWidth( sciPointObj * pobj, double linewidth )
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-int sciInitBackground( sciPointObj * pobj, int colorindex ) 
+int sciInitBackground( sciPointObj * pobj, int colorindex )
 {
 	return -1;
 }
@@ -446,7 +438,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-void deleteMatrix( sciMatrix * mat ) 
+void deleteMatrix( sciMatrix * mat )
 {
 
 }
@@ -466,7 +458,7 @@ void rotate2D( double from[2], double center[2], double angle, double dest[2] )
 
 }
 /*--------------------------------------------------------------------------*/
-BOOL sciGetAutoRotation ( sciPointObj * pObj ) 
+BOOL sciGetAutoRotation ( sciPointObj * pObj )
 {
 	return FALSE;
 }
@@ -476,7 +468,7 @@ BOOL needsDisplay(sciPointObj * pFigure)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) 
+BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
 {
 	return FALSE;
 }
@@ -566,7 +558,7 @@ double sciGetFontOrientation (sciPointObj * pobj)
 	return 0.;
 }
 /*--------------------------------------------------------------------------*/
-sciTextAlignment sciGetAlignment( sciPointObj * pObj ) 
+sciTextAlignment sciGetAlignment( sciPointObj * pObj )
 {
 	return (sciTextAlignment)0;
 }
@@ -586,7 +578,7 @@ int getMatNbRow( const sciMatrix * mat )
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-char ** getStrMatData(  const StringMatrix * mat ) 
+char ** getStrMatData(  const StringMatrix * mat )
 {
 	return NULL;
 }
@@ -656,7 +648,7 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-EAxesBoxType sciGetBoxType( sciPointObj * pobj ) 
+EAxesBoxType sciGetBoxType( sciPointObj * pobj )
 {
 	return (EAxesBoxType)0;
 }
@@ -775,7 +767,7 @@ double * sciGetAxesBounds( sciPointObj * pObj )
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) 
+void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
 {
 
 }
@@ -806,10 +798,10 @@ void scalarMult3D(const double v[3], double scalar, double res[3])
 }
 /*--------------------------------------------------------------------------*/
 int TheTicks( double * xminv ,
-			 double * xmaxv , 
-			 double * grads , 
+			 double * xmaxv ,
+			 double * grads ,
 			 int    * ngrads,
-			 int      compNgrads ) 
+			 int      compNgrads )
 {
 	return -1;
 }
@@ -909,7 +901,7 @@ void doubleArrayCopy( double dest[], const double src[], int nbElement )
 
 }
 /*--------------------------------------------------------------------------*/
-void setDoubleArraySingleValue( double dest[], double value, int nbElement ) 
+void setDoubleArraySingleValue( double dest[], double value, int nbElement )
 {
 
 }
@@ -982,9 +974,4 @@ int sciInitMarkSize(sciPointObj * pobj, int marksize)
 double *sciGetClipping (sciPointObj * pobj)
 {
 	return NULL;
-}
-/*--------------------------------------------------------------------------*/
-BOOL sciIsExistingFigure(int figNum)
-{
-	return FALSE;
 }

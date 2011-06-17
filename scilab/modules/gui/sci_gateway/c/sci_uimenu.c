@@ -17,6 +17,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
@@ -25,7 +26,6 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "localization.h"
@@ -35,6 +35,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_uimenu( char *fname,unsigned long fname_len )
 {
+    abort();
+    // ???
+#if 0
     int nbRow = 0, nbCol = 0, stkAdr = 0;
 
     int setStatus = SET_PROPERTY_SUCCEED;
@@ -137,7 +140,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
 
         /* Read property value */
-        switch (VarType(iPropertyValuePositionIndex)) 
+        switch (VarType(iPropertyValuePositionIndex))
         {
         case sci_matrix:
             if (isUserDataProperty)
@@ -218,7 +221,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     LhsVar(1)=Rhs+1;
 
     C2F(putlhsvar)();
-
+#endif
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

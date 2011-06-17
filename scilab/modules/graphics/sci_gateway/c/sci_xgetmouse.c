@@ -21,10 +21,9 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h" /* sciGetNum */
-#include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */
 #include "CallJxgetmouse.h"
 #include "ObjectSelection.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "axesScale.h"
 #include "sciprint.h"
 #include "Scierror.h"

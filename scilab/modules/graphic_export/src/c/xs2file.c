@@ -4,24 +4,23 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * desc : interface for xs2file routine
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "xs2file.h"
 #include "stack-c.h"
 #include "GetProperty.h"
-#include "WindowList.h"
 #include "IsAScalar.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
@@ -29,7 +28,6 @@
 #include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
-#include "HandleManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
@@ -37,6 +35,9 @@ static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
+    // FIXME
+    abort();
+#if 0
   /* Check input and output sizes */
   CheckLhs(0,1);
   if (isVectorialExport(fileType) || fileType == JPG_EXPORT)
@@ -57,7 +58,7 @@ int xs2file(char * fname, ExportFileType fileType )
     }
 
   if ( (GetType(2) == sci_strings) )
-    {	
+    {
       char **fileName = NULL;
       char *real_filename = NULL;
       float jpegCompressionQuality = 0.95f;
@@ -75,7 +76,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	  GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	  if(m1*n1 != 1)
 	    {
-	      Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);        
+	      Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);
 	      LhsVar(1) = 0;
 	      C2F(putlhsvar)();
 	      return 0;
@@ -97,7 +98,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
 	  if(m1*n1 != 1)
 	    {
-	      Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);        
+	      Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
 	      LhsVar(1) = 0;
 	      C2F(putlhsvar)();
 	      return 0;
@@ -109,7 +110,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	      Scierror(999, "%s: Input argument #%d must be a valid handle.\n",fname, 1);
 	      LhsVar(1) = 0;
 	      C2F(putlhsvar)();
-	      return 0;        
+	      return 0;
 	    }
 	  startFigureDataReading(figurePtr);
 	  if(sciGetEntityType(figurePtr)!=SCI_FIGURE)
@@ -117,7 +118,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	      Scierror(999, "%s: Input argument #%d must be a handle on a figure.\n", fname, 1);
 	      LhsVar(1) = 0;
 	      C2F(putlhsvar)();
-	      return 0;        
+	      return 0;
 	    }
 	  endFigureDataReading(figurePtr);
 	}
@@ -130,19 +131,19 @@ int xs2file(char * fname, ExportFileType fileType )
 	    {
 	      int nbCol = 0;
 	      int nbRow = 0;
-	      
+
 	      if (isVectorialExport(fileType))
 		{
 
 		  char **sciOrientation = NULL;
-		  
+
 		  if (GetType(3) != sci_strings)
 		    {
 		      freeArrayOfString(fileName,m1*n1);
 		      Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 3);
 		      return 0;
 		    }
-		  
+
 		  GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&sciOrientation);
 		  if (nbRow*nbCol == 1)
 		    {
@@ -193,7 +194,7 @@ int xs2file(char * fname, ExportFileType fileType )
 
 	  /* Call the function for exporting file */
 	  status = exportToFile(figurePtr, real_filename, fileType, jpegCompressionQuality, orientation);
-	  
+
 	  /* free pointers no more used */
 	  if (real_filename)
 	    {
@@ -204,7 +205,7 @@ int xs2file(char * fname, ExportFileType fileType )
 
 	  /* treat errors */
 	  if (strlen(status) != 0)
-	  { 
+	  {
 	      Scierror(999,_("%s: %s\n"), fname, status);
 	      return 0;
 	  }
@@ -224,6 +225,7 @@ int xs2file(char * fname, ExportFileType fileType )
 
   LhsVar(1) = 0;
   C2F(putlhsvar)();
+#endif
   return 0;
 }
 /*--------------------------------------------------------------------------*/

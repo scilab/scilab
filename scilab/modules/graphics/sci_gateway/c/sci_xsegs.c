@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "stack-c.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -29,7 +28,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 {
   int dstyle = -1, *style, colorFlag;
   double * zptr = NULL;
-  int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc; 
+  int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc;
   const double arsize = 0.0 ; // no arrow here
   sciPointObj * psubwin = NULL ;
 
@@ -45,7 +44,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 		LhsVar(1)=0;
 		C2F(putlhsvar)();
 		return 0;
-	} 
+	}
 
   if (Rhs == 3)
   {
@@ -105,10 +104,10 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 #if 0
   sciDrawObjIfRequired(sciGetCurrentObj ());
 #endif
-    
+
 
   LhsVar(1)=0;
 	C2F(putlhsvar)();
   return 0;
-} 
+}
 /*--------------------------------------------------------------------------*/

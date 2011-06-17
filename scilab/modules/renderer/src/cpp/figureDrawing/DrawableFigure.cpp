@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the drawing routine for a figure object
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,7 +29,6 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "DrawObjects.h"
-#include "HandleManagement.h"
 }
 
 
@@ -109,7 +108,7 @@ void DrawableFigure::drawBackground(void)
 /*---------------------------------------------------------------------------------*/
 DrawableObject::EDisplayStatus DrawableFigure::draw( void )
 {
-  
+
   // retest on auto_redraw
   // because display may come directly from JoGL
   //clock_gettime(0, &t_t2);
@@ -146,6 +145,8 @@ DrawableObject::EDisplayStatus DrawableFigure::draw( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::redrawSubwins(void)
 {
+// ???
+#if 0
   // just call the function on children
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )
@@ -156,10 +157,11 @@ void DrawableFigure::redrawSubwins(void)
     }
     curSon = curSon->pprev ;
   }
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::forceDisplay( void )
-{ 
+{
   if ( !checkAutoRedraw() )
   {
     // if a single object is available this override drawlater()/ drawnow()
@@ -184,7 +186,7 @@ void DrawableFigure::forceDisplay( void )
 	}
 
   // make sure the context is created
- 
+
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
 

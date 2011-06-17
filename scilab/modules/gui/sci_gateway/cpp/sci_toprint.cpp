@@ -28,8 +28,8 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "WindowList.h"
 #include "warningmode.h"
+#include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
@@ -135,7 +135,7 @@ static int sci_toprint_one_rhs(const char *fname)
                     return 0;
                 }
 
-                if (!sciIsExistingFigure((int) num_win))
+                if (getFigureFromIndex((int) num_win) != NULL)
                 {
                     Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) num_win);
                     return 0;

@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,11 +19,10 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "CurrentObjectsManagement.h"
 #include "CallJxclick.h"
 #include "GetProperty.h"
 #include "ObjectSelection.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "axesScale.h"
 
 /*--------------------------------------------------------------------------*/
@@ -79,39 +78,39 @@ int sci_xclick(char *fname,unsigned long fname_len)
     *stk(rep + 1) = userCoords2D[0];
     *stk(rep + 2) = userCoords2D[1];
   }
-  else 
+  else
   {
     LhsVar(1) = Rhs+1;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep); 
+    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
     *stk(rep) = (double) mouseButtonNumber;
   }
 
-  if (Lhs >= 2) 
-  { 
+  if (Lhs >= 2)
+  {
     LhsVar(2) = Rhs+2;
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
     *stk(rep) = userCoords2D[0];
   }
- 
+
   if (Lhs >= 3)
-  { 
+  {
     LhsVar(3) = Rhs+3;
     CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
     *stk(rep) = userCoords2D[1];
   }
-  
-  if (Lhs >=4) 
-  { 
+
+  if (Lhs >=4)
+  {
     LhsVar(4) = Rhs+4;
     CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&rep);
     *stk(rep) = (double) windowID;
   }
-  
-  if (Lhs >= 5) 
+
+  if (Lhs >= 5)
   {
     LhsVar(5) = Rhs+5;
     istr = (int)strlen(menuCallback);
-    CreateVar(Rhs+5,STRING_DATATYPE,&istr,&one,&rep); 
+    CreateVar(Rhs+5,STRING_DATATYPE,&istr,&one,&rep);
     strncpy(cstk(rep),menuCallback,istr);
   }
 

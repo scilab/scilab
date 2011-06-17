@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cmat3d.c
    \author Benoit Bayol
@@ -27,9 +27,8 @@
    \brief CMAT3D is a scope which connect a matrix to a plot3d. Values of the matrix are the values at the nodes.
    \see CMAT3D.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -41,7 +40,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -124,7 +123,7 @@ SCICOS_BLOCKS_IMPEXP void cmat3d_draw(scicos_block * block, ScopeMemory ** pScop
 
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->alpha = 50;
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = 280;
-  
+
       /*Adding graphic elements like plot3d or polyline and so*/
       if(ipar[3] == 1)
 	{
@@ -137,15 +136,15 @@ SCICOS_BLOCKS_IMPEXP void cmat3d_draw(scicos_block * block, ScopeMemory ** pScop
 	  pShortDraw = scoGetPointerShortDraw(*pScopeMemory,0,0);
 	  h_x = fabs((xmax-xmin)/(GetInPortSize(block,1,1)-1));
 	  h_y = fabs((ymax-ymin)/(GetInPortSize(block,1,2)-1));
-      
+
 	  for(i = 0 ; i < size_in_x ; i++)
 	    {
 	      pSURFACE_FEATURE(pShortDraw)->pvecx[i] = xmin + i*h_x;
-	    } 
+	    }
 	  for(i = 0 ; i < size_in_y ; i++)
 	    {
 	      pSURFACE_FEATURE(pShortDraw)->pvecy[i] = ymin + i*h_y;
-	    } 
+	    }
 	}
       scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
     }
@@ -153,7 +152,7 @@ SCICOS_BLOCKS_IMPEXP void cmat3d_draw(scicos_block * block, ScopeMemory ** pScop
   scicos_free(mat);
 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void cmat3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -167,7 +166,7 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, int flag)
   double * u1 = NULL;
   int i = 0, j = 0;
   int dim_i = 0, dim_j = 0;
- 
+
   /* State Machine Control */
   switch(flag)
     {
@@ -201,13 +200,13 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, int flag)
 
 	    for(i = 0 ; i < dim_i ; i++)
 	      {
-	    
+
 		for(j = 0; j < dim_j ; j++)
 		  {
 		    pSURFACE_FEATURE(pShortDraw)->pvecz[j+i*dim_j] = u1[j+dim_j*i];
 		  }
 	      }
-        
+
 	    /*Here is the draw instructions*/
 	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 	    if(sciGetPixmapMode(scoGetPointerScopeWindow(pScopeMemory)))
@@ -246,4 +245,4 @@ SCICOS_BLOCKS_IMPEXP void cmat3d(scicos_block * block, int flag)
       }
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

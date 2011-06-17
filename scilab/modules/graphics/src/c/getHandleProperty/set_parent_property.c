@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,6 +31,7 @@
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    char* figureUID = NULL;
     char* type = NULL;
     sciPointObj *figure = NULL;
 
@@ -41,10 +42,14 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
         if (valueType == sci_handles)
         {
             figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
+            if (figure != NULL)
+            {
+                figureUID = figure->UID;
+            }
         }
         else if (valueType == sci_matrix)
         {
-            figure = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
+            figureUID = getFigureFromIndex((int)getDoubleMatrixFromStack(stackPointer)[0]);
         }
         else
         {
@@ -52,14 +57,14 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
           return SET_PROPERTY_ERROR;
         }
 
-        if (figure == NULL)
+        if (figure== NULL || figureUID == NULL)
         {
             // Can not set the parent
             Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectRelationship(figure->UID, pobj->UID);
+        setGraphicObjectRelationship(figureUID, pobj->UID);
     }
 
 #if 0
@@ -77,7 +82,7 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
     }
   else if(sciGetEntityType(pobj) == SCI_UICONTROL)
     {
-      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) 
+      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix))
         {
           Scierror(999,_("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"),"parent","Figure", "Uimenu");
           return SET_PROPERTY_ERROR ;

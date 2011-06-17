@@ -3,11 +3,11 @@
  * Copyright (C) 1998-2001 - ENPC - Jean-Philipp Chancelier
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,7 +26,6 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "Champ.h"
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
 #include "MALLOC.h" /* MALLOC */
@@ -42,20 +41,20 @@
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  *  int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  *
- * Used for Drawing 2 dimensional vector fields 
- * (fx[i+(*n1)*j], fy[i+(*n1)*j]) is the value of the vector field 
+ * Used for Drawing 2 dimensional vector fields
+ * (fx[i+(*n1)*j], fy[i+(*n1)*j]) is the value of the vector field
  * at point X=(x[i],y[j]);
- * 
+ *
  * - fx and fy are (*n1)*(*n2) matrix of double
- * - arfact : a factor by which to multiply the default arrow size 
- *          usr 1.0 by defaut 
- * - strflag : a string of length 3 (see plot2d) 
- * - brect=[xmin,ymin,xmax,ymax]    (see plot2d) 
+ * - arfact : a factor by which to multiply the default arrow size
+ *          usr 1.0 by defaut
+ * - strflag : a string of length 3 (see plot2d)
+ * - brect=[xmin,ymin,xmax,ymax]    (see plot2d)
  *
  * - lstr : (used when called from Fortran code)
  -------------------------------------------------------------------*/
 
-void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
+void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1,
 	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
     int clipState;
@@ -264,7 +263,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
   champg("champ",0,x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr);
-  return(0); 
+  return(0);
 }
 
 int C2F(champ1)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)

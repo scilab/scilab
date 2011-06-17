@@ -27,7 +27,6 @@
 #include "Axes.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "GrayPlot.h"
 #include "DrawingBridge.h"
 

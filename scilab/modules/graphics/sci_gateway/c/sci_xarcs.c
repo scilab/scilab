@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,6 @@
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -55,7 +54,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
 
   pFigure = sciGetCurrentFigure();
 
-  if (Rhs == 2) 
+  if (Rhs == 2)
   {
     GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     CheckVector(2,m2,n2);
@@ -64,13 +63,13 @@ int sci_xarcs(char *fname,unsigned long fname_len)
       return 0;
     }
   }
-  else 
+  else
   {
     int i2;
     m2=1,n2=n1; CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     startFigureDataReading(pFigure);
     for (i2 = 0; i2 < n2; ++i2)
-    { 
+    {
       *istk(l2 + i2) = sciGetForeground(sciGetCurrentSubWin() );
     }
     endFigureDataReading(pFigure);
@@ -79,11 +78,11 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   /* NG beg */
   startFigureDataWriting(sciGetCurrentFigure());
   for (i = 0; i < n1; ++i)
-  { 
+  {
     angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
     angle2 = DEG2RAD(*stk(l1+(6*i)+5) / 64.0);
     Objarc (&angle1,&angle2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
+      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl);
   }
   /* construct Compound and make it current object */
   sciSetCurrentObj(ConstructCompoundSeq(n1));
@@ -98,5 +97,5 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   LhsVar(1)=0;
 	C2F(putlhsvar)();
   return 0;
-} 
+}
 /*--------------------------------------------------------------------------*/

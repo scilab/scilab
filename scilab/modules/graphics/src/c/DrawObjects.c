@@ -37,7 +37,6 @@
 #include "DestroyObjects.h"
 #include "PloEch.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "math_graphics.h"
 #include "Format.h"
@@ -75,7 +74,8 @@ static BOOL subwinNeedsDisplay(sciPointObj * pSubwin);
 
 void sciRedrawFigure( void )
 {
-  sciDrawObj(sciGetCurrentFigure ());
+// ???
+//  sciDrawObj(sciGetCurrentFigure ());
 }
 
 
@@ -89,13 +89,10 @@ void sciClearFigure(sciPointObj * pFigure)
   forceHierarchyRedraw(pFigure);
 }
 
-void sciXbasc()
-{
-  sciClearFigure(sciGetCurrentFigure());
-}
-
 void sciXclear()
 {
+// ???
+#if 0
   static sciPointObj *masousfen, *tmpsousfen;
   sciSons *psonstmp;
 
@@ -115,6 +112,7 @@ void sciXclear()
 
   sciSetSelectedSubWin (tmpsousfen);
   notifyObservers(sciGetCurrentFigure ());
+#endif
 }
 
 

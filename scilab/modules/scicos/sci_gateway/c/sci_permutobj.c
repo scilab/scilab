@@ -22,7 +22,6 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
 #include "stack-c.h"
-#include "HandleManagement.h" /* sciGetPointerFromHandle */
 #include "Scierror.h"
 #include "scoMisc.h"
 #include "localization.h"
@@ -63,33 +62,33 @@ int sci_permutobj(char *fname,unsigned long fname_len)
 
 	/*get/check rhs 1*/
 	GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-	if ( m1!=1 || n1!=1 ) 
+	if ( m1!=1 || n1!=1 )
 	{
 		Scierror(999,_("%s : Bad size for Rhs(1).\n"),fname);
-		return 0; 
+		return 0;
 	}
 	hdl_1 = (unsigned long)*hstk(l1);
 	pobj_1 = sciGetPointerFromHandle(hdl_1);
-	if (pobj_1 == NULL) 
+	if (pobj_1 == NULL)
 	{
 		Scierror(999,_("%s :the handle is not or no more valid.\n"),fname);
-		return 0; 
+		return 0;
 	}
 	pparent_1 = sciGetParentSubwin(pobj_1);
 
 	/*get/check rhs 2*/
 	GetRhsVar(2, GRAPHICAL_HANDLE_DATATYPE,&m2,&n2,&l2);
-	if (m2!=1 || n2!=1) 
+	if (m2!=1 || n2!=1)
 	{
 		Scierror(999,_("%s : Bad size for Rhs(2).\n"),fname);
-		return 0; 
+		return 0;
 	}
 	hdl_2 = (unsigned long)*hstk(l2);
 	pobj_2 = sciGetPointerFromHandle(hdl_2);
-	if (pobj_2 == NULL) 
+	if (pobj_2 == NULL)
 	{
 		Scierror(999,_("%s :the handle is not or no more valid.\n"),fname);
-		return 0; 
+		return 0;
 	}
 	pparent_2 = sciGetParentSubwin(pobj_2);
 
@@ -100,4 +99,4 @@ int sci_permutobj(char *fname,unsigned long fname_len)
 	/* end */
 	return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

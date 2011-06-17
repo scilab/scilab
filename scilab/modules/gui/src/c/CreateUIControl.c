@@ -51,7 +51,7 @@ sciPointObj * CreateUIControl(char *style)
   if (style == NULL || strcmp(style,"pushbutton")==0)
   {
       pobj->UID = createGraphicObject(__GO_UI_PUSHBUTTON__);
-      sciAddNewHandle(pobj);
+      //sciAddNewHandle(pobj);
       //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
   }
 

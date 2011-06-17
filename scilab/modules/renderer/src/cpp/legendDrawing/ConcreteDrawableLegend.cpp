@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 * desc : Class containing the driver independant routine to draw a legend object
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -24,7 +24,6 @@ extern "C"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "math_graphics.h"
-#include "HandleManagement.h"
 }
 
 #define DEPTH_FRONT 0.01
@@ -112,11 +111,13 @@ namespace sciGraphics
 			getHandleDrawer(m_aLines[i])->hasChanged();
 			getHandleDrawer(m_aLines[i])->display();
 		}
-		
+
 	}
 	/*---------------------------------------------------------------------------------*/
 	int ConcreteDrawableLegend::updateLegend(void)
 	{
+// ???
+#if 0
 		//check if all legended objects still exist and update Legend object if necessary
 		int i1 = 0;
 
@@ -154,6 +155,7 @@ namespace sciGraphics
 			drawLegend();
 			return 1;
 		}
+#endif
 		return 0;
 	}
 	/*---------------------------------------------------------------------------------*/
@@ -291,6 +293,8 @@ namespace sciGraphics
 	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::setLinesParameters(void)
 	{
+// ???
+#if 0
 		int nbLegends = getNbLegend();
 		sciLegend * ppLegend = pLEGEND_FEATURE(m_pDrawed);
 		for (int i = 0; i < nbLegends; i++)
@@ -331,6 +335,7 @@ namespace sciGraphics
 			sciInitIsClipping(m_aLines[i], sciGetIsClipping(m_pDrawed));
 			sciSetClipping(m_aLines[i], sciGetClipping(m_pDrawed));
 		}
+#endif
 	}
 	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::destroyLines(void)
@@ -373,6 +378,9 @@ namespace sciGraphics
 		double upperBoxLeftCorner[3], double lowerBoxLeftCorner[3],
 		double lowerBoxRightCorner[3], double upperBoxRightCorner[3])
 	{
+// ???
+#if 0
+
 		sciPointObj * parentSubwin = sciGetParentSubwin(m_pNames);
 
 		// get viewing area used by axes
@@ -422,60 +430,60 @@ namespace sciGraphics
 		// First set the upper left point of the bounding box according to selected place option
 		upperBoxLeftCorner[2] = pixelDepth;
 		switch(sciGetLegendPlace(m_pDrawed))  {
-		case  SCI_LEGEND_OUT_UPPER_RIGHT: 
+		case  SCI_LEGEND_OUT_UPPER_RIGHT:
 			upperBoxLeftCorner[0] = axesXpos + axesWidth + xOffset;
 			upperBoxLeftCorner[1] = axesYpos;
-			if (sciGetyLocation(parentSubwin)=='r') 
+			if (sciGetyLocation(parentSubwin)=='r')
 				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] + 10*xOffset; //should be improved computing the ticks_label boundingbox
 			break;
-		case  SCI_LEGEND_OUT_UPPER_LEFT: 
+		case  SCI_LEGEND_OUT_UPPER_LEFT:
 			upperBoxLeftCorner[0] = axesXpos - pixelBoxWidth - xOffset  ;
-			upperBoxLeftCorner[1] = axesYpos; 
-			if (sciGetyLocation(parentSubwin)=='l') 
+			upperBoxLeftCorner[1] = axesYpos;
+			if (sciGetyLocation(parentSubwin)=='l')
 				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] - 10*xOffset; //should be improved  computing the ticks_label boundingbox
 			break;
-		case  SCI_LEGEND_OUT_LOWER_RIGHT: 
+		case  SCI_LEGEND_OUT_LOWER_RIGHT:
 			upperBoxLeftCorner[0] = axesXpos + axesWidth  + xOffset;
 			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight;
-			if (sciGetyLocation(parentSubwin)=='r') 
+			if (sciGetyLocation(parentSubwin)=='r')
 				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] + 11*xOffset; //should be improved  computing the ticks_label boundingbox
 			break;
-		case SCI_LEGEND_OUT_LOWER_LEFT: 
+		case SCI_LEGEND_OUT_LOWER_LEFT:
 			upperBoxLeftCorner[0] = axesXpos - pixelBoxWidth - xOffset ;
 			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight;
-			if (sciGetyLocation(parentSubwin)=='l') 
+			if (sciGetyLocation(parentSubwin)=='l')
 				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] - 11*xOffset; //should be improved computing the ticks_label boundingbox
 			break;
-		case  SCI_LEGEND_IN_UPPER_RIGHT: 
+		case  SCI_LEGEND_IN_UPPER_RIGHT:
 			upperBoxLeftCorner[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset;
 			upperBoxLeftCorner[1] = axesYpos + yOffset;
 			break;
-		case  SCI_LEGEND_IN_UPPER_LEFT: 
+		case  SCI_LEGEND_IN_UPPER_LEFT:
 			upperBoxLeftCorner[0] = axesXpos + xOffset;
 			upperBoxLeftCorner[1] = axesYpos + yOffset;
 			break;
-		case  SCI_LEGEND_IN_LOWER_RIGHT: 
+		case  SCI_LEGEND_IN_LOWER_RIGHT:
 			upperBoxLeftCorner[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset ;
 			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
 			break;
-		case  SCI_LEGEND_IN_LOWER_LEFT: 
+		case  SCI_LEGEND_IN_LOWER_LEFT:
 			upperBoxLeftCorner[0] = axesXpos + xOffset;
 			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
 			break;
-		case  SCI_LEGEND_LOWER_CAPTION: 
+		case  SCI_LEGEND_LOWER_CAPTION:
 			upperBoxLeftCorner[0] = axesXpos;
-			upperBoxLeftCorner[1] = axesYpos + axesHeight + yOffset; 
-			if (sciGetxLocation(parentSubwin)=='d') 
+			upperBoxLeftCorner[1] = axesYpos + axesHeight + yOffset;
+			if (sciGetxLocation(parentSubwin)=='d')
 				upperBoxLeftCorner[1] = upperBoxLeftCorner[1] +8*yOffset; //should be improved computing the ticks_label boundingbox
 			break;
-		case  SCI_LEGEND_UPPER_CAPTION: 
+		case  SCI_LEGEND_UPPER_CAPTION:
 			upperBoxLeftCorner[0] = axesXpos;
 			upperBoxLeftCorner[1] = axesYpos - pixelBoxHeight - yOffset;
-			if (sciGetxLocation(parentSubwin)=='u') 
+			if (sciGetxLocation(parentSubwin)=='u')
 				upperBoxLeftCorner[1] = upperBoxLeftCorner[1] - 8*yOffset; //should be improved
 			break;
 		case  SCI_LEGEND_BY_COORDINATES:
-			{ //The upper left corner of the legend position is given by its relative position with 
+			{ //The upper left corner of the legend position is given by its relative position with
 				//respect to the upper left corner of the axes frame.
 				int size[2] ;
 				sciGetJavaFigureSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
@@ -534,13 +542,15 @@ namespace sciGraphics
 		upperRightCorner[0] = lowerRightCorner[0];
 		upperRightCorner[1] = upperLeftCorner[1];
 		upperRightCorner[2] = pixelDepth;
+#endif
 
 	}
 	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::placeLines(const double upperLeftCorner[3], const double lowerLeftCorner[3],
 		const double lowerRightCorner[3], const double upperRightCorner[3])
 	{
-
+// ???
+#if 0
 		int nblegends = getNbLegend();
 
 		Camera * curCam = getCamera();
@@ -616,6 +626,7 @@ namespace sciGraphics
 			}
 
 		}
+#endif
 
 	}
 	/*---------------------------------------------------------------------------------*/
@@ -628,7 +639,7 @@ namespace sciGraphics
 		double finalCoord[3] = {lowerRightCorner[0] + xOffset,
 			                      lowerRightCorner[1],
 														lowerRightCorner[2]};
-		
+
 		// convert coordinates to scene ones
 		getCamera()->getSceneCoordinates(finalCoord, finalCoord);
 
@@ -646,14 +657,14 @@ namespace sciGraphics
 		Camera * curCam = getCamera();
 		curCam->getSceneCoordinates(lowerLeftCorner, tempsPos);
 
-		curPoly->pvx[0] = tempsPos[0]; 
-		curPoly->pvy[0] = tempsPos[1]; 
+		curPoly->pvx[0] = tempsPos[0];
+		curPoly->pvy[0] = tempsPos[1];
 		curPoly->pvz[0] = tempsPos[2];
 
 		curCam->getSceneCoordinates(upperLeftCorner, tempsPos);
 
-		curPoly->pvx[1] = tempsPos[0]; 
-		curPoly->pvy[1] = tempsPos[1]; 
+		curPoly->pvx[1] = tempsPos[0];
+		curPoly->pvy[1] = tempsPos[1];
 		curPoly->pvz[1] = tempsPos[2];
 
 		curCam->getSceneCoordinates(upperRightCorner, tempsPos);

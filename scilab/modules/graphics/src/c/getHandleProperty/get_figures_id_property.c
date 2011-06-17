@@ -22,7 +22,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "WindowList.h"
+#include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
 int get_figures_id_property( sciPointObj * pobj )

@@ -57,7 +57,14 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
 								src/cpp/TriangleMeshFecDataDecomposer.cpp \
-								src/cpp/ScilabView.cpp
+								src/cpp/ScilabView.cpp \
+								src/cpp/FigureList.cpp \
+								src/cpp/HandleManagement.cpp \
+								src/cpp/AxesModel.cpp \
+								src/cpp/FigureModel.cpp \
+								src/cpp/CurrentFigure.cpp \
+								src/cpp/CurrentObject.cpp \
+								src/cpp/CurrentSubwin.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 

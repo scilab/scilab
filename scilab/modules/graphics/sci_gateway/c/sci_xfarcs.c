@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,6 @@
 #include "sciCall.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -52,22 +51,22 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
       return 0;
     }
   }
-  else 
+  else
   {
     m2=1,n2=n1; CreateVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
     for (i = 0; i < n2; ++i) { *istk(l2 + i) = i+1 ; }
   }
 
   pFigure = sciGetCurrentFigure();
-  
+
 
   startFigureDataWriting(pFigure);
   for (i = 0; i < n1; ++i)
-  { 
+  {
     angle1 = DEG2RAD(*stk(l1+(6*i)+4) / 64.0);
     angle2 = DEG2RAD(*stk(l1+(6*i)+5) / 64.0);
     Objarc (&angle1,&angle2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
+      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl);
   }
   /** construct Compound and make it current object **/
   sciSetCurrentObj(ConstructCompoundSeq (n1));

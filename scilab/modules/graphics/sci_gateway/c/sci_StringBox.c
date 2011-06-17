@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,7 +23,6 @@
 #include "localization.h"
 #include "axesScale.h"
 #include "getPropertyAssignedValue.h"
-#include "CurrentObjectsManagement.h"
 #include "HandleManagement.h"
 #include "freeArrayOfString.h"
 
@@ -62,7 +61,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
   int four  = 4;
   size_t stackPointer = 0;
   double corners[4][2]; /* the four edges of the boundingRect */
-  
+
 
   /* The function should be called with stringbox( handle ) */
   CheckRhs( 1, 6 ) ;
@@ -113,7 +112,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
 
     /* get the string box */
     sciGet2dViewBoundingBox( pText, corners[0], corners[1], corners[2], corners[3]) ;
-    
+
   }
   else if (Rhs == 2)
   {
@@ -170,12 +169,12 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     getTextBoundingBox(text, textNbRow, textNbCol, xPos, yPos, angle, fontId, fontSize, corners);
     freeArrayOfString(text, textNbRow*textNbCol);
   }
-  
+
 
   /* copy everything into the lhs */
   stackPointer = 0; /* Fix for 64 bits: MSB of stackPointer has been set by GetRhsVar but are not reset by CreateVar */
   CreateVar( Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &two, &four, &stackPointer );
-  *stk( stackPointer     )  = corners[1][0] ; 
+  *stk( stackPointer     )  = corners[1][0] ;
   *stk( stackPointer + 1 )  = corners[1][1] ;
   *stk( stackPointer + 2 )  = corners[0][0] ;
   *stk( stackPointer + 3 )  = corners[0][1] ;

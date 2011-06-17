@@ -29,7 +29,6 @@
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
-#include "CurrentObjectsManagement.h"
 #include "Interaction.h"
 #include "JavaInteraction.h"
 #include "HandleManagement.h"

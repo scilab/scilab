@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
@@ -42,11 +41,11 @@ int sci_xarrows(char *fname,unsigned long fname_len)
 		LhsVar(1)=0;
 		C2F(putlhsvar)();
 		return 0;
-	} 
+	}
 
-  if (Rhs >= 3) { GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3); arsize = *stk(l3); } 
+  if (Rhs >= 3) { GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3); arsize = *stk(l3); }
 
-  if (Rhs >= 4) { 
+  if (Rhs >= 4) {
     GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&m4,&n4,&l4); CheckVector(4,m4,n4);
     if (m4 * n4 == 1) dstyle = *istk(l4);
     if (m4 * n4 != 1 && m2 * n2 / 2 != m4 * n4) {
@@ -59,20 +58,20 @@ int sci_xarrows(char *fname,unsigned long fname_len)
   {
     style=istk(l4) ;
     flag = 1 ;
-  } 
+  }
   else {
     style = &dstyle ;
     flag = 0;
   }
-  
+
   Objsegs (style,flag,mn2,stk(l1),stk(l2),NULL,arsize);
-  
+
   sciDrawObj(sciGetCurrentObj());
 
   LhsVar(1)=0;
 	C2F(putlhsvar)();
   return 0;
-} 
+}
 
 
 /*--------------------------------------------------------------------------*/

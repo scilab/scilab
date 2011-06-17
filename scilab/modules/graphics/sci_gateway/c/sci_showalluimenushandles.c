@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,16 +37,18 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
     int m1,n1,l1;
 
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-    pParent = sciGetPointerFromHandle((long)*hstk(l1));
+    // FIXME : use MVC UID
+    //pParent = sciGetPointerFromHandle((long)*hstk(l1));
 
-    if (sciGetEntityType (pParent) != SCI_FIGURE ) 
+    if (sciGetEntityType (pParent) != SCI_FIGURE )
     {
       Scierror(999,_("%s: Wrong type for input argument: '%s' handle expected.\n"),fname,"Figure");
       return 0;
     }
     else
     {
-      SciShowAllUimenus(pParent);
+        // FIXME: What's supposed to be done here ??
+        //SciShowAllUimenus(pParent);
     }
   }
   else
@@ -63,10 +65,11 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 /*--------------------------------------------------------------------------*/
 static int SciShowAllUimenus( sciPointObj * pparent )
 {
+#if 0
   sciSons * psonstmp = sciGetLastSons(pparent) ;
 
   while(psonstmp != (sciSons *) NULL)
-  {   
+  {
     if( sciGetEntityType(psonstmp->pointobj) == SCI_UIMENU )
     {
       pUIMENU_FEATURE(psonstmp->pointobj)->handle_visible = TRUE;
@@ -75,6 +78,7 @@ static int SciShowAllUimenus( sciPointObj * pparent )
 
     psonstmp = psonstmp->pprev;
   }
+#endif
   return 0;
 }
 /*--------------------------------------------------------------------------*/

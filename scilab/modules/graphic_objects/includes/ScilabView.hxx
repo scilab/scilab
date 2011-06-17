@@ -13,6 +13,9 @@
 #ifndef __SCILAB_VIEW_HXX__
 #define __SCILAB_VIEW_HXX__
 
+#include <map>
+#include <string.h>
+
 extern "C"
 {
     void ScilabNativeView__createObject(char* pstId);
@@ -29,18 +32,56 @@ private :
     {
         bool operator()(char const *a, char const *b)
         {
-            return std::strcmp(a, b) < 0;
+            return strcmp(a, b) < 0;
         }
     };
-    static std::map<char*,int, cmp_str> figureList;
+
+    // Define type for easy manipulation.
+    typedef std::map<char*, long, cmp_str>  __handleList;
+    typedef __handleList::iterator          __handleList_iterator;
+    typedef std::map<char*,int, cmp_str>    __figureList;
+    typedef __figureList::iterator          __figureList_iterator;
+
+    static __figureList                     m_figureList;
+    static __handleList                     m_handleList;
+    static long                             m_topHandleValue;
+    static char*                            m_currentFigure;
+    static char*                            m_currentObject;
+    static char*                            m_currentSubWin;
+    static char*                            m_figureModel;
+    static char*                            m_axesModel;
 
 public :
-    static void createObject(char* pstId);
-    static void deleteObject(char* pstId);
-    static void updateObject(char* pstId, char* pstProperty);
-    static int  getNbFigure(void);
-    static void getFiguresId(int ids[]);
-    static void registerToController(void);
+    static void   createObject(char* pstId);
+    static void   deleteObject(char* pstId);
+    static void   updateObject(char* pstId, char* pstProperty);
+
+    static int    getNbFigure(void);
+    static void   getFiguresId(int ids[]);
+    static void   registerToController(void);
+    static bool   existsFigureId(int id);
+    static char*  getFigureFromIndex(int figureNumber);
+    static bool   isEmptyFigureList(void);
+
+    static char*  getCurrentFigure(void);
+    static void   setCurrentFigure(char *UID);
+
+    static char*  getCurrentObject(void);
+    static void   setCurrentObject(char *UID);
+
+    static char*  getCurrentSubWin(void);
+    static void   setCurrentSubWin(char *UID);
+
+    static long   getObjectHandle(char *UID);
+    static char*  getObjectFromHandle(long handle);
+    static void   swapHandles(long firstHandle, long secondHandle);
+
+    static char*  getFigureModel(void);
+    static void   setFigureModel(char *UID);
+
+    static char*  getAxesModel(void);
+    static void   setAxesModel(char *UID);
+
 };
 
 #endif /* !__SCILAB_VIEW_HXX__ */

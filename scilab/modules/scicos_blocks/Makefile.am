@@ -9,7 +9,7 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
-libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
+libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 #### Target ######
 modulename=scicos_blocks
@@ -420,7 +420,8 @@ libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes
+			-I$(top_srcdir)/modules/elementary_functions/includes \
+			-I$(top_srcdir)/modules/graphic_objects/includes
 
 libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -467,7 +468,7 @@ $(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_B
 	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
-	@echo "-- Generates build/Fblocknames --" 
+	@echo "-- Generates build/Fblocknames --"
 	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
@@ -477,7 +478,7 @@ includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top
 	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
 		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
 	fi
-	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h 
+	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
@@ -497,7 +498,7 @@ libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la  
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA =  license.txt 
+libsciscicos_blocks_la_root_DATA =  license.txt
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc

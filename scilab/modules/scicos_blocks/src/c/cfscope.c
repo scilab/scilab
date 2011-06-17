@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cfscope.c
    \author Benoit Bayol
@@ -27,8 +27,7 @@
    \brief CFSCOPE This scope has no input port because it displays the values on the designated link
    \see CFSCOPE.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
-#include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
 #include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -40,9 +39,9 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(getouttb)();
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -50,7 +49,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope_draw(scicos_block * block, ScopeMemory ** pSco
 {
 
   double *rpar = NULL;
-  int *ipar = NULL, nipar = 0;   
+  int *ipar = NULL, nipar = 0;
 
   double period = 0.;
   int i = 0;
@@ -113,13 +112,13 @@ SCICOS_BLOCKS_IMPEXP void cfscope_draw(scicos_block * block, ScopeMemory ** pSco
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
       scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
-      
+
   /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
       scoAddCoupleOfPolylines(*pScopeMemory,colors);
       scicos_free(colors);
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 
 /** \fn void cfscope(scicos_block * block,int flag)
     \brief the computational function
@@ -147,8 +146,8 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 	break;
       }
     case StateUpdate:
-      {	
-	
+      {
+
 
 	/*Retreiving Scope in the block->work*/
 	scoRetrieveScopeMemory(block->work,&pScopeMemory);
@@ -181,7 +180,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 	      {
 		pShortDraw = scoGetPointerShortDraw(pScopeMemory,i,j);
 		NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-		pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;         // get time 
+		pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;         // get time
 		pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = sortie[j]; // get value
 		pPOLYLINE_FEATURE(pShortDraw)->n1++;
 	      }
@@ -189,7 +188,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 	//End of cannot
 	/*Main drawing function*/
 	scoDrawScopeAmplitudeTimeStyle(pScopeMemory, t);
-	
+
 	scicos_free(sortie);
 	scicos_free(index_of_view);
 	  }
@@ -204,7 +203,7 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-	    
+
 	    scoDelCoupleOfPolylines(pScopeMemory);*/
 
 			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
@@ -218,8 +217,8 @@ SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 			}
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);
-	break;  
+	break;
       }
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

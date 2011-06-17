@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file bouncexy.c
    \author Benoit Bayol
@@ -28,7 +28,6 @@
    \see BOUNCEXY.sci in macros/scicos_blocks/Misc/
 */
 #include <math.h>
-#include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -42,7 +41,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -52,7 +51,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy_draw(scicos_block * block, ScopeMemory ** pSc
   scoGraphicalObject pTemp;
   double * z = NULL;
   double *rpar = NULL;
-  int *ipar = NULL, nipar = 0;  
+  int *ipar = NULL, nipar = 0;
   int i = 0,j = 0;
   int dimension = 0;
   double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
@@ -71,7 +70,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy_draw(scicos_block * block, ScopeMemory ** pSc
   win = ipar[0];
   if (win == -1)
     {
-      win = 20000 + get_block_number() ; 
+      win = 20000 + get_block_number() ;
     }
   dimension = 2;
   imode = ipar[1];
@@ -129,7 +128,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy_draw(scicos_block * block, ScopeMemory ** pSc
   scicos_free(size_balls);
 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void bouncexy(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -144,7 +143,7 @@ SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block,int flag)
   int i = 0;
   double * u1 = NULL, *u2 = NULL;
   double * size_balls = NULL;
-  switch(flag) 
+  switch(flag)
     {
     case Initialization:
       {
@@ -200,8 +199,8 @@ SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block,int flag)
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);
-	break;  
+	break;
       }
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

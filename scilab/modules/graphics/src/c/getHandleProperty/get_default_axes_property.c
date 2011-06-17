@@ -19,12 +19,13 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "HandleManagement.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 #include "MALLOC.h"
+#include "HandleManagement.h"
+#include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
 int get_default_axes_property( sciPointObj * pobj )
 {
@@ -36,6 +37,6 @@ int get_default_axes_property( sciPointObj * pobj )
 		return -1;
 	}
 
-  return sciReturnHandle( sciGetHandle( getAxesModel() ) ) ;
+  return sciReturnHandle( getHandle( getAxesModel() ) ) ;
 }
 /*--------------------------------------------------------------------------*/

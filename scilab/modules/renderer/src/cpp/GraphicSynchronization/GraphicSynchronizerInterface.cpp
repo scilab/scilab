@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Interface to use class GraphicSynchronizer from C code
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,50 +26,50 @@ using namespace sciGraphics;
 /*---------------------------------------------------------------------------------*/
 void startFigureDataWriting(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->startWriting();
-  }
+  //  if (!isFigureModel(pFigure))
+  //  {
+  //  getFigureDrawer(pFigure)->getSynchronizer()->startWriting();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataWriting(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->endWritting();
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->endWritting();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void startFigureDataReading(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->startReading();
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->startReading();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataReading(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->endReading();
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->endReading();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void startFigureDataDisplaying(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->startDisplaying();
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->startDisplaying();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void endFigureDataDisplaying(sciPointObj * pFigure)
 {
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->endDisplaying();
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->endDisplaying();
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void startGraphicDataWriting( void )
@@ -105,19 +105,19 @@ void endGraphicDataDisplaying( void )
 void enableFigureSynchronization(sciPointObj * pFigure)
 {
   GraphicSynchronizerFactory::getGlobalSynchronizer()->setEnable(true);
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->setEnable(true);
-  }
+//  if (!isFigureModel(pFigure))
+//  {
+//    getFigureDrawer(pFigure)->getSynchronizer()->setEnable(true);
+//  }
 }
 /*---------------------------------------------------------------------------------*/
 void disableFigureSynchronization(sciPointObj * pFigure)
 {
   GraphicSynchronizerFactory::getGlobalSynchronizer()->setEnable(false);
-  if (!isFigureModel(pFigure))
-  {
-    getFigureDrawer(pFigure)->getSynchronizer()->setEnable(false);
-  }
+  //if (!isFigureModel(pFigure))
+  //{
+  //  getFigureDrawer(pFigure)->getSynchronizer()->setEnable(false);
+  //}
 }
 /*---------------------------------------------------------------------------------*/
 void createGraphicSynchronizer( void )

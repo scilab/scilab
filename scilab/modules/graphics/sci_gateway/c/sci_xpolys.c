@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
 
@@ -50,7 +49,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   pFigure = sciGetCurrentFigure();
 
   startFigureDataWriting(pFigure);
-  if (Rhs == 3) 
+  if (Rhs == 3)
   {
     GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); CheckVector (3,m3,n3);
     CheckDimProp(1,3,m3 * n3 < n1);
@@ -66,7 +65,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
     {
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,1,&hdl);
     }
-  } 
+  }
 
 
   /** construct Compound and make it current object**/

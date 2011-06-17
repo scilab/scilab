@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Class containing the driver dependant routines to draw a
  * subwin object with JoGL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -21,7 +21,6 @@
 extern "C"
 {
 #include "GetProperty.h"
-#include "HandleManagement.h"
 }
 
 namespace sciGraphics
@@ -49,17 +48,23 @@ void DrawableSubwinJoGL::initializeDrawing( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwinJoGL::interactiveRotation(void)
 {
+#if 0
 	getSubwinJavaMapper()->interactiveRotation(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwinJoGL::interactiveZoom(void)
 {
+#if 0
 	getSubwinJavaMapper()->interactiveZoom(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwinJoGL::unzoom(void)
 {
+#if 0
 	getSubwinJavaMapper()->unzoom(sciGetHandle(getSubwinDrawer()->getDrawedObject()));
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 DrawableSubwin * DrawableSubwinJoGL::getSubwinDrawer( void )

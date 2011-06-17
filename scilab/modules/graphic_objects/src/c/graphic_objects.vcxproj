@@ -228,6 +228,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\AxesModel.cpp" />
+    <ClCompile Include="..\cpp\CurrentFigure.cpp" />
+    <ClCompile Include="..\cpp\CurrentObject.cpp" />
+    <ClCompile Include="..\cpp\CurrentSubwin.cpp" />
+    <ClCompile Include="..\cpp\FigureList.cpp" />
+    <ClCompile Include="..\cpp\FigureModel.cpp" />
+    <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\jni\CallGraphicController.cpp" />

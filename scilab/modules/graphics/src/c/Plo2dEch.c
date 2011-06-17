@@ -27,7 +27,6 @@
 #include "BuildObjects.h"
 #include "axesScale.h"
 #include "Format.h"
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"

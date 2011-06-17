@@ -17,7 +17,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "Toolbar.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
@@ -36,7 +36,7 @@ int sci_toolbar(char *fname,unsigned long l)
   
   int figNum = -2;
 
-  sciPointObj *pObj = NULL;
+  char *pObjUID = NULL;
 
   CheckRhs(1,2);
   CheckLhs(0,1);
@@ -76,21 +76,22 @@ int sci_toolbar(char *fname,unsigned long l)
               Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);
               return FALSE;
             }
-          pObj=sciGetPointerFromHandle((long)*hstk(stkAdr));
+          pObjUID = getObjectFromHandle((long)*hstk(stkAdr));
           
-          if (pObj == NULL)
+          if (pObjUID == NULL)
             {
               Scierror(999, _("%s: Wrong value for input argument #%d: this handle does not exist.\n"), fname, 1);
               return FALSE;
             }
           
-          if ( (sciGetEntityType (pObj) != SCI_FIGURE) )
-            {
-              Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
-              return FALSE;
-            }
+          // FIXME
+          //if ( (sciGetEntityType (pObj) != SCI_FIGURE) )
+          //  {
+          //    Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
+          //    return FALSE;
+          //  }
 
-          figNum = pFIGURE_FEATURE(pObj)->number;
+          //figNum = pFIGURE_FEATURE(pObj)->number;
     }
   else
     {

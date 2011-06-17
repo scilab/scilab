@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * desc : Class containing the driver dependant routines to draw a figure object with JoGL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,7 +23,6 @@ extern "C"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
 #include "CallFigure.h"
-#include "HandleManagement.h"
 }
 
 #include <string.h>
@@ -37,7 +36,7 @@ namespace sciGraphics
 DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
   : DrawableObjectJoGL(drawer)
 {
-  
+
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
@@ -171,7 +170,8 @@ void DrawableFigureJoGL::rubberBox(bool isClick, const int initialRect[4], int e
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::interactiveZoom(void)
 {
-	getFigureJavaMapper()->interactiveZoom(sciGetHandle(getFigureDrawer()->getDrawedObject()));
+    // ???
+	//getFigureJavaMapper()->interactiveZoom(sciGetHandle(getFigureDrawer()->getDrawedObject()));
 }
 /*---------------------------------------------------------------------------------*/
 DrawableFigure * DrawableFigureJoGL::getFigureDrawer( void )

@@ -25,7 +25,6 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "Interaction.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "DrawingBridge.h"
 #include "localization.h"
@@ -50,7 +49,7 @@ int sci_delete(char *fname,unsigned long fname_len)
 
     if (Rhs==0) /* Delete current object */
     {
-        hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
+        hdl = (unsigned long) getHandle(getCurrentObject());
         dont_overload = 1;
         nb_handles = 1;
     }

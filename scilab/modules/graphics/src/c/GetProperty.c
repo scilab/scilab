@@ -29,7 +29,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "InitObjects.h"
-#include "CurrentObjectsManagement.h"
+#include "CurrentFigure.h"
 #include "ObjectSelection.h"
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
@@ -42,6 +42,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "FigureModel.h"
 
 
 /**sciGetPointerToFeature
@@ -1618,7 +1619,7 @@ sciGetResize (sciPointObj * pobj)
     switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-        if (isFigureModel(pobj))
+        if (isFigureModel(pobj->UID))
         {
             return pFIGURE_FEATURE(pobj)->pModelData->autoResizeMode;
         }
@@ -1870,6 +1871,9 @@ int sciGetWindowHeight(sciPointObj * pObj)
 sciPointObj *
 sciIsExistingSubWin (double WRect[4])
 {
+
+// ???
+#if 0
     sciPointObj *pparentfigure;
     sciSons *psonstmp;
 
@@ -1924,7 +1928,7 @@ sciIsExistingSubWin (double WRect[4])
         psonstmp = psonstmp->pnext;
     }
 
-
+#endif
     return NULL;
 }
 
@@ -3026,23 +3030,6 @@ BOOL sciGetIsAccessibleChild( sciPointObj * pObj )
         && GetHandleVisibilityOnUimenu( pObj ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-/**
-* return the number of children of an object. This corresponds to the number of children
-* seen in the Scilab console.
-*/
-int sciGetNbAccessibleChildren( sciPointObj * pObj )
-{
-    int nbChildren = 0 ;
-    sciSons * curSon = sciGetFirstAccessibleSon( pObj ) ;
-
-    while ( curSon != NULL && curSon->pointobj != NULL )
-    {
-        nbChildren++ ;
-        curSon = sciGetNextAccessibleSon( curSon ) ;
-    }
-    return nbChildren ;
-}
-/*-----------------------------------------------------------------------------------*/
 BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
 {
     if (sciGetEntityType(pobj)!=SCI_UIMENU) { return TRUE ; }
@@ -3157,7 +3144,7 @@ void sciGetViewport( sciPointObj * pObj, int viewport[4] )
     switch ( sciGetEntityType(pObj) )
     {
     case SCI_FIGURE:
-        if (isFigureModel(pObj))
+        if (isFigureModel(pObj->UID))
         {
             viewport[0] = pFIGURE_FEATURE(pObj)->pModelData->viewport[0];
             viewport[1] = pFIGURE_FEATURE(pObj)->pModelData->viewport[1];
@@ -3180,7 +3167,7 @@ void sciGetInfoMessage( sciPointObj * pObj, char * infoMessage )
     switch ( sciGetEntityType(pObj) )
     {
     case SCI_FIGURE:
-        if (isFigureModel(pObj))
+        if (isFigureModel(pObj->UID))
         {
             strcpy(infoMessage, pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
         }
@@ -3200,7 +3187,7 @@ int sciGetInfoMessageLength( sciPointObj * pObj )
     switch ( sciGetEntityType(pObj) )
     {
     case SCI_FIGURE:
-        if (isFigureModel(pObj))
+        if (isFigureModel(pObj->UID))
         {
             return (int) strlen( pFIGURE_FEATURE(pObj)->pModelData->infoMessage ) ;
         }
@@ -4128,7 +4115,7 @@ int sciGetAntialiasingQuality(sciPointObj * pObj)
     switch (sciGetEntityType(pObj))
     {
     case SCI_FIGURE:
-        if (isFigureModel(pObj))
+        if (isFigureModel(pObj->UID))
         {
             return pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality;
         }

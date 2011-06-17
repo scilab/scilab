@@ -4,11 +4,11 @@
 * Copyright (C) 2006 - INRIA - Fabrice Leray
 * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
 * Copyright (C) 2006 - INRIA - Vincent Couvert
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -22,12 +22,16 @@
 
 #include "stack-c.h"
 #include "HandleManagement.h"
-#include "CurrentObjectsManagement.h"
 
 #include "GetHashTable.h"
 #include "BuildObjects.h"
 #include "localization.h"
 #include "Scierror.h"
+
+#include "HandleManagement.h"
+#include "CurrentObject.h"
+#include "CurrentSubwin.h"
+
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
@@ -61,13 +65,13 @@ int sci_get(char *fname,unsigned long fname_len)
 	    C2F(overload)(&lw,"get",3);
 	    return 0;
 	  }
-	
+
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
 	/*  set or create a graphic window */
 
-	/* 
+	/*
 	The first input argument can be an ID or a marker (in this case, get returns the value of the current object */
 	switch(VarType(1))
 	{
@@ -115,8 +119,8 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_handles: /* scalar argument (hdl + string) */
 		CheckRhs(2,2);
 		GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-		if (m1!=1||n1!=1) 
-		{ 
+		if (m1!=1||n1!=1)
+		{
 			lw = 1 + Top - Rhs;
 			C2F(overload)(&lw,"get",3);
 			return 0;
@@ -136,14 +140,14 @@ int sci_get(char *fname,unsigned long fname_len)
 			else
 			{
 				/* Test debug F.Leray 13.04.04 */
-				if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0)) 
+				if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0))
 				{
 					SciWin();
-					hdl = sciGetHandle(sciGetCurrentObj());
+					hdl = getHandle(getCurrentObject());
 				}
 				else
 				{
-					hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
+					hdl = getHandle(getCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
 				}
 			}/* DJ.A 08/01/04 */
 		}
@@ -161,10 +165,10 @@ int sci_get(char *fname,unsigned long fname_len)
 	/* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
 	CheckLhs(0,1);
 
-	if (hdl == 0) 
+	if (hdl == 0)
 	{
 		/* No handle specified */
-		if (sciGet(NULL, cstk(l2)) != 0) 
+		if (sciGet(NULL, cstk(l2)) != 0)
 		{
 			/* An error has occured */
 			C2F(putlhsvar)();

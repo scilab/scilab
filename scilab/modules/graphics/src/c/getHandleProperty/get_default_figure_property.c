@@ -19,12 +19,14 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "HandleManagement.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 #include "MALLOC.h"
+
+#include "HandleManagement.h"
+#include "FigureModel.h"
 /*--------------------------------------------------------------------------*/
 int get_default_figure_property( sciPointObj * pobj )
 {
@@ -34,6 +36,6 @@ int get_default_figure_property( sciPointObj * pobj )
 		Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_figure");
 		return -1;
 	}
-  return sciReturnHandle( sciGetHandle(getFigureModel()) ) ;
+  return sciReturnHandle( getHandle(getFigureModel()) ) ;
 }
 /*--------------------------------------------------------------------------*/

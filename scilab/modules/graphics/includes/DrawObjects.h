@@ -4,17 +4,17 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
  *    This file contains all functions used to Draw the content of a window.
@@ -33,7 +33,6 @@
 
 GRAPHICS_IMPEXP void sciRedrawFigure(void); /* DRAWINGS */
 GRAPHICS_IMPEXP void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
-GRAPHICS_IMPEXP void sciXbasc(void);  /* DRAWINGS */
 GRAPHICS_IMPEXP void sciXclear(void); /* DRAWINGS */
 
 

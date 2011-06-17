@@ -45,10 +45,10 @@
 #include "BuildObjects.h"
 #include "math_graphics.h"
 #include "Scierror.h"
-#include "CurrentObjectsManagement.h"
+#include "CurrentFigure.h"
 #include "ObjectSelection.h"
 #include "BasicAlgos.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
@@ -64,6 +64,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "FigureModel.h"
 
 #define MAX_MARK_STYLE 14
 
@@ -315,12 +316,13 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
 
   sciSetNumColors (pobj,m); /* Add F.Leray 25.06.04 */
 
-  psonstmp = sciGetLastSons (pobj);
-  while (psonstmp != (sciSons *) NULL)
-    {
-      sciRecursiveUpdateBaW(psonstmp->pointobj, old_m, m);
-      psonstmp = psonstmp->pprev;
-    }
+  // ???
+  /* psonstmp = sciGetLastSons (pobj); */
+  /* while (psonstmp != (sciSons *) NULL) */
+  /*   { */
+  /*     sciRecursiveUpdateBaW(psonstmp->pointobj, old_m, m); */
+  /*     psonstmp = psonstmp->pprev; */
+  /*   } */
 }
 
 
@@ -520,7 +522,7 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
     int newIndex = Max (0, Min (colorindex - 1, m + 1));
     sciGetGraphicContext(pobj)->backgroundcolor = newIndex;
 
-    if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
+    if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj->UID))
     {
 			/* disable protection since this function will call Java */
 		  disableFigureSynchronization(pobj);
@@ -1673,6 +1675,8 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
 int
 sciSetDefaultValues (void)
 {
+// ???
+#if 0
   if ((sciInitGraphicContext (sciGetCurrentFigure()) == -1) ||
       (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
       (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
@@ -1680,6 +1684,7 @@ sciSetDefaultValues (void)
     Scierror(999, _("Unable to load default values.\n"));
     return -1 ;
   }
+#endif
   return 0;
 }
 
@@ -1815,7 +1820,7 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if (isFigureModel(pobj))
+      if (isFigureModel(pobj->UID))
       {
         pFIGURE_FEATURE(pobj)->pModelData->autoResizeMode = value;
       }
@@ -1880,7 +1885,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
 			if (newName == NULL)
 			{
 				/* Just set an empty title for the physical window if needed */
-				if (!isFigureModel(pobj))
+				if (!isFigureModel(pobj->UID))
 				{
 					sciSetJavaTitle(pobj, "");
 				}
@@ -1898,7 +1903,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
       strcpy(pFIGURE_FEATURE(pobj)->name, newName) ;
 
 			/* Update the name of the physical window if one exists */
-      if (!isFigureModel(pobj))
+      if (!isFigureModel(pobj->UID))
       {
       	/* In this case, we need to send the name to the physical window */
         if ( checkPercent(newName) == 0 )
@@ -2008,7 +2013,7 @@ int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if ( isFigureModel(pobj) )
+      if ( isFigureModel(pobj->UID) )
       {
         pFIGURE_FEATURE(pobj)->pModelData->figureWidth  = newWidth ;
         pFIGURE_FEATURE(pobj)->pModelData->figureHeight = newHeight;
@@ -2657,16 +2662,20 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 
 int sciInitdrawmode( BOOL mode )
 {
+#if 0
   static sciPointObj * pobj ;
   pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
   pSUBWIN_FEATURE(pobj)->visible = mode ;
   sciDrawObj(sciGetCurrentFigure ());
+#endif
   return 0;
 }
 
 int
 sciSetdrawmode (BOOL mode)
 {
+// ???
+#if 0
   static sciPointObj * pobj ;
   pobj = sciGetFirstTypedSelectedSon(sciGetCurrentFigure(), SCI_SUBWIN);
   if ( sciGetdrawmode( pobj ) == mode )
@@ -2675,11 +2684,14 @@ sciSetdrawmode (BOOL mode)
     return 1 ;
   }
   return sciInitdrawmode( mode ) ;
-
+#endif
+  return 0;
 }
 
 int sciSwitchWindow(int winnum)
 {
+// ???
+#if 0
   /* find if exist figure winnum */
   /* une autre methode c est de tester CurXGC->mafigure = NULL */
   if ( !sciIsExistingFigure(winnum) )
@@ -2694,6 +2706,7 @@ int sciSwitchWindow(int winnum)
   {
     sciSetCurrentFigure(getFigureFromIndex(winnum));
   }
+#endif
   return 0;
 }
 
@@ -2712,6 +2725,7 @@ int sciInitUsedWindow( int winNum )
  */
 int sciSetUsedWindow( int winNum )
 {
+    return 1;
   /* select or create the window in the driver */
   if ( sciHasFigures() && sciGetNum( sciGetCurrentFigure() ) == winNum )
   {
@@ -3359,7 +3373,7 @@ int sciSetViewport( sciPointObj * pObj, const int viewport[4] )
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_FIGURE:
-    if (isFigureModel(pObj))
+    if (isFigureModel(pObj->UID))
     {
       pFIGURE_FEATURE(pObj)->pModelData->viewport[0] = viewport[0];
       pFIGURE_FEATURE(pObj)->pModelData->viewport[1] = viewport[1];
@@ -3387,7 +3401,7 @@ int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
 		if (newMessage == NULL)
 		{
 			/* Just set an empty title for the physical window if needed */
-			if(isFigureModel(pObj))
+			if(isFigureModel(pObj->UID))
 			{
 				pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
 			}
@@ -3399,7 +3413,7 @@ int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
 			return 0;
 		}
 
-		if (isFigureModel(pObj))
+		if (isFigureModel(pObj->UID))
 		{
 			/* Copy the message into the special data */
 			int newMessageLength = (int) strlen(newMessage);
@@ -3429,7 +3443,7 @@ int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
  */
 int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage )
 {
-  if (isFigureModel(pObj) && pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
+  if (isFigureModel(pObj->UID) && pFIGURE_FEATURE(pObj)->pModelData->infoMessage != NULL)
 	{
 		FREE(pFIGURE_FEATURE(pObj)->pModelData->infoMessage);
 		pFIGURE_FEATURE(pObj)->pModelData->infoMessage = NULL;
@@ -3457,7 +3471,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
       ppFigure->eventHandler = strdup(name);
 
       /* Java is called to set the listener */
-      if (!isFigureModel(pObj))
+      if (!isFigureModel(pObj->UID))
         {
           setFigureEventHandler(sciGetNum(pObj), name);
         }
@@ -3504,7 +3518,7 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 	  pFIGURE_FEATURE(pObj)->isEventHandlerEnable = enable ;
 
 	  /* Java is called to enable or disable the listener */
-	  if (!isFigureModel(pObj))
+	  if (!isFigureModel(pObj->UID))
 	    {
 	      setFigureEventHandlerEnabled(sciGetNum(pObj), enable);
 	    }
@@ -4027,7 +4041,7 @@ int sciInitAntialiasingQuality(sciPointObj * pObj, int quality)
   switch (sciGetEntityType(pObj))
   {
 	case SCI_FIGURE:
-		if (isFigureModel(pObj))
+		if (isFigureModel(pObj->UID))
 		{
 			pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality = quality;
 		}

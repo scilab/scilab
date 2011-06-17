@@ -3,20 +3,20 @@
  * Copyright (C) 2001 - 2002 - INRIA - Mathieu Philipe
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
- *    This file contains all functions used to Init or Re-Init the window 
+ *    This file contains all functions used to Init or Re-Init the window
  *    (Figure and/or Subwin) to the default graphics properties.
  --------------------------------------------------------------------------*/
 
@@ -49,10 +49,6 @@ GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pOb
 
 GRAPHICS_IMPEXP int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
 
-GRAPHICS_IMPEXP sciPointObj * getFigureModel( void ) ;
-GRAPHICS_IMPEXP sciPointObj * getAxesModel( void ) ;
-GRAPHICS_IMPEXP BOOL isFigureModel(sciPointObj * pObj);
-GRAPHICS_IMPEXP BOOL isAxesModel(sciPointObj * pObj);
 GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
 
 GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;

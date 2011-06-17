@@ -42,10 +42,9 @@ int get_z_label_property( sciPointObj * pobj )
 #endif
 
     char* labelUID;
-    sciPointObj* label;
     long labelHandle;
 
-    getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelUID);
+    getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LABEL__, jni_string, (void **) &labelUID);
 
     if (labelUID == NULL)
     {
@@ -53,14 +52,7 @@ int get_z_label_property( sciPointObj * pobj )
         return -1;
     }
 
-    label = MALLOC(sizeof(sciPointObj));
-    label->UID = labelUID;
-
-    sciAddNewHandle(label);
-
-    labelHandle = sciGetHandle(label);
-
-    return sciReturnHandle(labelHandle);
+    return sciReturnHandle(getHandle(labelUID));
 
 #if 0
     return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_z_label ) );

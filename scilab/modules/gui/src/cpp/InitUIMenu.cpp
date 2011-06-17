@@ -3,11 +3,11 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - Yung-Jang Lee
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,7 +19,6 @@ extern "C"{
 #include "sci_types.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
-#include "CurrentObjectsManagement.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
@@ -37,8 +36,9 @@ void InitUIMenu(sciPointObj* sciObj)
 
 int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
-
-  int parentFigureIndex = 0; 
+// ???
+#if 0
+  int parentFigureIndex = 0;
 
   /* Special case to set current figure for parent */
   if (stackPointer == -1)
@@ -64,40 +64,40 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           // If the parent is a figure
           parentFigureIndex = sciGetNum(sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
-          
+
           // Scilab relationship
           sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
-          
+
           return SET_PROPERTY_SUCCEED;
 
-        } 
+        }
       else if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_UIMENU)
         {
 
           // If the parent is a menu
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
-          
+
           // Scilab relationship
           sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
-          
+
           return SET_PROPERTY_SUCCEED;
 
-        } 
+        }
       else if (sciGetEntityType(sciGetPointerFromHandle(getHandleFromStack(stackPointer))) == SCI_UICONTEXTMENU)
         {
 
           // If the parent is a context menu
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
-          
+
           // Scilab relationship
           sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
-          
+
           return SET_PROPERTY_SUCCEED;
 
-        } 
+        }
       else
         {
           Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
@@ -107,16 +107,17 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
   else if (valueType == sci_matrix)
     {
       // The parent is Scilab Main window (Console Tab)
-      // TODO check that value is 0 
+      // TODO check that value is 0
       CallScilabBridge::setRootAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciObj)->hashMapIndex);
       return SET_PROPERTY_SUCCEED;
-    } 
+    }
   else
     {
       Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
       return SET_PROPERTY_ERROR;
     }
-  
+#endif
+      return SET_PROPERTY_ERROR;
 }
 
 

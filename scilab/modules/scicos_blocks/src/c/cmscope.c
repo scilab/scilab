@@ -28,7 +28,6 @@
    \see CMSCOPE.sci in macros/scicos_blocks/Sinks/
 */
 /*--------------------------------------------------------------------------*/
-#include "CurrentObjectsManagement.h"
 #include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"

@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cmatview.c
    \author Benoit Bayol
@@ -27,10 +27,9 @@
    \brief CMATVIEW is a scope that connects a matrix to a grayplot. The values of the matrix are the values at the nodes
   \see CMATVIEW.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdlib.h>
-#include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -42,7 +41,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -102,7 +101,7 @@ SCICOS_BLOCKS_IMPEXP void cmatview_draw(scicos_block * block, ScopeMemory ** pSc
   scicos_free(mat);
 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void cmatview(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -120,7 +119,7 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, int flag)
   int dim_i = 0, dim_j = 0;
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below
- 
+
   /* State Machine Control */
   switch(flag)
     {
@@ -140,16 +139,16 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, int flag)
 	      {
 		cmatview_draw(block,&pScopeMemory,0);
 	      }
-	    
+
 	    pShortDraw = scoGetPointerShortDraw(pScopeMemory,0,0);
 	    rpar = GetRparPtrs(block);
 	    alpha = rpar[0];
 	    beta = rpar[1];
 	    u1 = GetInPortPtrs(block,1);
-	    
+
 	    dim_i = GetInPortRows(block,1);
 	    dim_j = GetInPortCols(block,1);
-	    
+
 	    for(i = 0 ; i < dim_i ; i++)
 	      {
 		for(j = 0; j < dim_j ; j++)
@@ -189,4 +188,4 @@ SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, int flag)
       }
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

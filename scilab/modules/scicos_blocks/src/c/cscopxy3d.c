@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cscopxy3d.c
    \author Benoit Bayol
@@ -27,8 +27,7 @@
    \brief CSCOPXY3D is a scope in 2D which draw its input as a XYZ scope, there is no animation, everything is keep in memory instead of CANIMXY3D
    \see CSCOPXY3D.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
-#include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -40,7 +39,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -110,18 +109,18 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pS
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->alpha = alpha;
-      pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = theta;	
+      pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = theta;
       scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
-      
-	
+
+
       for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory,0) ; i++)
 	{
 	  scoAddPolylineForShortDraw(*pScopeMemory,0,i,color[i]);
 	  scoAddPolylineForLongDraw(*pScopeMemory,0,i,color[i]);
-	  
+
 	  ShortDraw = scoGetPointerShortDraw(*pScopeMemory,0,i);
 	  LongDraw = scoGetPointerLongDraw(*pScopeMemory,0,i);
-	  
+
           /* Set ShortDraw properties */
 	  sciSetLineWidth(ShortDraw, line_size[i]);
 	  sciSetMarkSize(ShortDraw, line_size[i]);
@@ -135,7 +134,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pS
   scicos_free(color);
   scicos_free(line_size);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void cscopxy3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -174,25 +173,25 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, int flag)
 	    u1 = GetRealInPortPtrs(block,1);
 	    u2 = GetRealInPortPtrs(block,2);
 	    u3 = GetRealInPortPtrs(block,3);
-	    
+
 	    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	      {
 		Pinceau = scoGetPointerShortDraw(pScopeMemory,0,i);
-		
+
 		NbrPtsShort = pPOLYLINE_FEATURE(Pinceau)->n1;
-		
+
 		pPOLYLINE_FEATURE(Pinceau)->pvx[NbrPtsShort] = u1[i];
 		pPOLYLINE_FEATURE(Pinceau)->pvy[NbrPtsShort] = u2[i];
 		pPOLYLINE_FEATURE(Pinceau)->pvz[NbrPtsShort] = u3[i];
-	    
+
 		pPOLYLINE_FEATURE(Pinceau)->n1++;
 	      }
-	    
+
 	    scoDrawScopeXYStyle(pScopeMemory);
 	  }
 	    break; //Break of the switch don t forget it !
 	  }//End of stateupdate
-      
+
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
@@ -209,7 +208,7 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, int flag)
 				Pinceau = scoGetPointerLongDraw(pScopeMemory,0,i);
 				forceRedraw(Pinceau);
 			}
-		
+
 			/* Pinceau = sciGetCurrentFigure();*/
 			/*Pinceau = scoGetPointerScopeWindow(pScopeMemory);*/
 			/* pFIGURE_FEATURE(Pinceau)->user_data = NULL; */
@@ -223,4 +222,4 @@ SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, int flag)
       //free the memory which is allocated at each turn by some variables
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

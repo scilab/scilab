@@ -33,10 +33,9 @@
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
-#include "WindowList.h"
+#include "FigureList.h"
 #include "sciprint.h"
 #include "InitObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
@@ -53,6 +52,7 @@
 #include "localization.h"
 
 #include "deleteGraphicObject.h"
+#include "CurrentFigure.h"
 
 /*----------------------------------------------------------------------------*/
 
@@ -242,13 +242,14 @@ int C2F(scigerase)( void )
 int DestroyFigure (sciPointObj * pthis)
 {
   // remove the figure if it is in the list
-  removeFigureFromList(pthis);
+    // No more needed with MVC.
+    //removeFigureFromList(pthis);
 
-  if (sciIsCurrentFigure(pthis) )
+  if (isCurrentFigure(pthis->UID) )
   {
 
     /* destroyed figure is current one */
-    sciSetCurrentFigure(getFirstFigure()) ;
+    //sciSetCurrentFigure(getFirstFigure()) ;
   }
 
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
@@ -546,6 +547,9 @@ int DestroyCompound (sciPointObj * pthis)
 int
 sciUnCompound (sciPointObj * pobj)
 {
+    abort();
+    // ???
+#if 0
   sciPointObj *pparent, *pobjson;
   sciSons *psons = (sciSons *)NULL;
 
@@ -561,14 +565,15 @@ sciUnCompound (sciPointObj * pobj)
       pobjson = psons->pointobj;
       /* take the previous sons before the current is freed */
       psons = psons->pprev;
-      sciDelThisToItsParent (pobjson, pobj);
+      //sciDelThisToItsParent (pobjson, pobj);
       /* and link to its old parent */
-      sciAddThisToItsParent (pobjson, pparent);
+      //sciAddThisToItsParent (pobjson, pparent);
     }
 
   sciSetCurrentObj(pparent); /* pparent is the new current object */
 
   DestroyCompound(pobj);
+#endif
   return 0;
 }
 
@@ -584,8 +589,11 @@ int DestroyLabel (sciPointObj * pthis)
   deleteObservers( pthis ) ;
   destroyHandleDrawer( pthis ) ;
   sciUnselectSons( pthis ) ;
-  sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
-  if ( sciDelHandle(pthis) == -1 ) { return -1 ; }
+  //sciDelThisToItsParent( pthis, sciGetParent(pthis) ) ;
+  //if ( sciDelHandle(pthis) == -1 )
+  //{
+  //    return -1 ;
+  //}
   textStatus = deallocateText( ppLabel->text ) ;
   if ( textStatus != 0 )
   {
@@ -662,10 +670,10 @@ int sciStandardDestroyOperations( sciPointObj * pThis )
     {
       sciSetCurrentObj(sciGetParent(pThis));
     }
-    else if (getFirstFigure() != NULL)
-    {
-      sciSetCurrentObj(sciGetCurrentSubWin());
-    }
+    //else if (getFirstFigure() != NULL)
+    //{
+    //  sciSetCurrentObj(sciGetCurrentSubWin());
+    //}
     else
     {
       /* no more object */
@@ -677,8 +685,8 @@ int sciStandardDestroyOperations( sciPointObj * pThis )
   destroyHandleDrawer( pThis ) ;
   clearUserData( pThis ) ;
   sciUnselectSons( pThis ) ;
-  sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;
-  if ( sciDelHandle(pThis) == -1 ) { res = -1 ; }
+  //sciDelThisToItsParent( pThis, sciGetParent(pThis) ) ;
+  //if ( sciDelHandle(pThis) == -1 ) { res = -1 ; }
 	destroyRelationShip(pThis);
   FREE( pThis->pfeatures ) ;
   FREE( pThis ) ;

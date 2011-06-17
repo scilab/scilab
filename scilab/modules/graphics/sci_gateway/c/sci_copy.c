@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,6 +16,8 @@
 /* file: sci_copy.h                                                       */
 /* desc : interface for copy routine                                      */
 /*------------------------------------------------------------------------*/
+
+#include <stdlib.h>
 
 #include "gw_graphics.h"
 #include "stack-c.h"
@@ -27,7 +29,10 @@
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)
-{  
+{
+// ???
+    abort();
+#if 0
   unsigned long hdl, hdlparent;
   sciPointObj *pobj, *psubwinparenttarget, *pcopyobj;
   int m1, n1, l1,l2;
@@ -87,6 +92,7 @@ int sci_copy(char *fname,unsigned long fname_len)
   sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
   LhsVar(1) = Rhs+1;
     C2F(putlhsvar)();
+#endif
   return 0;
 }
 

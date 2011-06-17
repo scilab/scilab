@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,6 @@
 #include "stack-c.h"
 #include "XsetXgetParameters.h"
 #include "GetProperty.h"
-#include "CurrentObjectsManagement.h"
 #include "Format.h"
 #include "Scierror.h"
 #include "ObjectSelection.h"
@@ -63,13 +62,13 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
 
   if (Rhs == 2) {
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2); 
-    CheckScalar(2,m2,n2);  
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+    CheckScalar(2,m2,n2);
     flagx = (int)  *stk(l2); }
   else
     flagx = 0;
 
-  if ( strcmp(cstk(l1),"fpf") == 0 || strcmp(cstk(l1),"auto clear") == 0) 
+  if ( strcmp(cstk(l1),"fpf") == 0 || strcmp(cstk(l1),"auto clear") == 0)
   {
     int bufl;
     /*     special case for global variables set */
@@ -80,7 +79,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 		C2F(putlhsvar)();
     return 0;
   }
-  else if ( strcmp(cstk(l1),"colormap") == 0) 
+  else if ( strcmp(cstk(l1),"colormap") == 0)
   {
     /*     special case for colormap : must allocate space */
     int nbRow = 0 ;
@@ -105,7 +104,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     x2=2;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
     for (i2 = 0 ; i2 < x2 ; ++i2)
-		*stk(l3 + i2 ) = (double) x1[i2];      
+		*stk(l3 + i2 ) = (double) x1[i2];
     LhsVar(1)=Rhs+1;
   }
   else if ( strcmp(cstk(l1),"mark size") == 0)
@@ -117,25 +116,25 @@ int sci_xget(char *fname,unsigned long fname_len)
     x1[0]=x1[1];
     x2=1;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
+    for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];
     LhsVar(1)=Rhs+1;
   }
   else if ( strcmp(cstk(l1),"line style") == 0)
   {
     sciPointObj * subwin = sciGetCurrentSubWin();
     x1[0] = sciGetLineStyle(subwin);
-  
+
     x2=1;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    *stk(l3 ) = (double) x1[0];      
+    *stk(l3 ) = (double) x1[0];
     LhsVar(1)=Rhs+1;
-  } 
-  else if ( strcmp(cstk(l1),"old_style") == 0) 
+  }
+  else if ( strcmp(cstk(l1),"old_style") == 0)
   {
     x2=1;
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-    *stk(l3 ) = 0 ;    
-    LhsVar(1)=Rhs+1;          
+    *stk(l3 ) = 0 ;
+    LhsVar(1)=Rhs+1;
   }
   else if(strcmp(cstk(l1),"clipping") == 0)
   {
@@ -143,7 +142,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     sciReturnRowVector(clipArea, 4);
     LhsVar(1)=Rhs+1;
   }
-  else 
+  else
   {
     int i2;
     sciPointObj *psubwin = sciGetCurrentSubWin();
@@ -286,7 +285,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);
-      for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
+      for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];
     }
     else {
       x2=0;
@@ -300,22 +299,22 @@ int sci_xget(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1)
 {
-  if ( strcmp(str,"fpf") == 0) 
+  if ( strcmp(str,"fpf") == 0)
   {
     strncpy(str1,getFPF(),32);
     *len= (int) strlen(str1);
   }
-  else if ( strcmp(str,"auto clear")==0) 
+  else if ( strcmp(str,"auto clear")==0)
   {
     int autoclear;
     sciPointObj * subwin = sciGetFirstTypedSelectedSon( sciGetCurrentFigure(), SCI_SUBWIN ) ;
     autoclear = !(sciGetAddPlot(subwin));
-    if (autoclear == 1) 
+    if (autoclear == 1)
     {
       strncpy(str1,"on",2);
       *len=2;
     }
-    else 
+    else
     {
       strncpy(str1,"off",3);
       *len=3;

@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include "CurrentFigure.h"
 #include "setGraphicObjectProperty.h"
 }
 
@@ -32,8 +33,8 @@ int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
   // Scilab list of parent
   //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
 
-  sciPointObj *pobjCurrentFigure = sciGetCurrentFigure();
-  setGraphicObjectRelationship(pobjCurrentFigure->UID, sciObj->UID);
+  char *pstCurrentFigure = getCurrentFigure();
+  setGraphicObjectRelationship(pstCurrentFigure, sciObj->UID);
 
 
   // Java objects

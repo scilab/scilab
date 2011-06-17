@@ -20,7 +20,6 @@
 #include "DestroyObjects.h"
 #include "graphicModuleLoad.h"
 #include "InitObjects.h"
-#include "SciHandleTab.h"
 #include "FigureList.h"
 
 #include "GraphicSynchronizerInterface.h"
@@ -38,14 +37,15 @@ void loadGraphicModule( void )
   createScilabSetHashTable() ;
 
 	/* Create hastable for handle storing */
-	getScilabHandleTab();
+	//getScilabHandleTab();
 
   /* Create data for synchronization */
-  createGraphicSynchronizer();
+  //createGraphicSynchronizer();
 
   C2F(graphicsmodels)() ;
 
-  __registerToController();
+  /* Register Scilab as a dedicated View */
+  registerToController();
 
   isGraphicModuleLoaded = TRUE ;
 }
@@ -58,17 +58,17 @@ void closeGraphicModule( void )
   AllGraphWinDelete() ;
 
   /* destroy default objects */
-  destroyDefaultObjects() ;
+  //destroyDefaultObjects() ;
 
 	/* Destroy the handle tab */
-	destroyScilabHandleTab();
+	//destroyScilabHandleTab();
 
 	/* destroy hashtables */
-  destroyScilabGetHashTable() ;
-  destroyScilabSetHashTable() ;
+  //destroyScilabGetHashTable() ;
+  //destroyScilabSetHashTable() ;
 
   /* Delete synchronization data */
-  destroyGraphicSynchronizer();
+  //destroyGraphicSynchronizer();
 
   isGraphicModuleLoaded = FALSE ;
 

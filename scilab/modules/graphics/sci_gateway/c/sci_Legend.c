@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,12 +16,13 @@
 /* desc : interface for glue routine                                      */
 /*------------------------------------------------------------------------*/
 
+#include <stdlib.h>
+
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
-#include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
@@ -36,6 +37,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
 {
+    // ???
+    abort();
+#if 0
   int numrow,numcol,l1,l2,n,m2,n2;
   long handelsvalue = 0 ;
   int outindex,i;
@@ -51,10 +55,10 @@ int sci_Legend( char * fname, unsigned long fname_len )
   CheckRhs(2,3);
   CheckLhs(0,1);
 
-  
+
   GetMatrixdims(1,&numrow,&numcol);
   n=numrow*numcol;
-  if (numrow==0 || numcol==0) 
+  if (numrow==0 || numcol==0)
   {
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l1);
     LhsVar(1) = Rhs+1;
@@ -62,26 +66,26 @@ int sci_Legend( char * fname, unsigned long fname_len )
     return 0;
   }
   GetMatrixdims(2,&m2,&n2);
-  if (m2*n2 != n) 
+  if (m2*n2 != n)
   {
     Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"),fname,1,2);
     return 0;
   }
 
 
-  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
+  GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1);
   GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
-  if (Rhs==3) 
+  if (Rhs==3)
   {
     GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
     location = propertyNameToLegendPlace(cstk(l2));
-    if (location == SCI_LEGEND_POSITION_UNSPECIFIED) 
+    if (location == SCI_LEGEND_POSITION_UNSPECIFIED)
 	{
       Scierror(999,_("%s: Wrong value for input argument #%d: Incorrect value.\n"),fname,3);
       return 0;
     }
   }
-  else 
+  else
   {
     location = propertyNameToLegendPlace(DEF_LEGEND_LOCATION);
   }
@@ -109,13 +113,13 @@ int sci_Legend( char * fname, unsigned long fname_len )
     /**
       We check that the pSubwin is the same for all given handle.
     **/
-    if (psubwin!=sciGetParentSubwin(pobj)) 
+    if (psubwin!=sciGetParentSubwin(pobj))
     {
       Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
       return 0;
     }
 
-    if (pobj == NULL) 
+    if (pobj == NULL)
     {
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
@@ -123,7 +127,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
       return 0;
     }
     type=sciGetEntityType(pobj);
-    if (type != SCI_POLYLINE) 
+    if (type != SCI_POLYLINE)
     {
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
@@ -131,7 +135,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
       return 0;
     }
     tabofhandles[i]=handelsvalue;
-    
+
   }
 
   /* Create the legend */
@@ -154,6 +158,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+1;
   C2F(putlhsvar)();
+#endif
   return 0;
 }
 /*--------------------------------------------------------------------------*/

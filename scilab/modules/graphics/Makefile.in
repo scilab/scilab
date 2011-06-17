@@ -119,7 +119,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigraphics_algo_la_LIBADD =
 am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
-	libscigraphics_algo_la-WindowList.lo \
 	libscigraphics_algo_la-loadTextRenderingAPI.lo \
 	libscigraphics_algo_la-get_figure_position_property.lo \
 	libscigraphics_algo_la-get_figure_size_property.lo \
@@ -417,16 +416,13 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-DestroyObjects.lo \
 	libscigraphics_algo_la-math_graphics.lo \
 	libscigraphics_algo_la-Interaction.lo \
-	libscigraphics_algo_la-HandleManagement.lo \
 	libscigraphics_algo_la-StringBox.lo \
 	libscigraphics_algo_la-axesScale.lo \
 	libscigraphics_algo_la-TerminateGraphics.lo \
-	libscigraphics_algo_la-CurrentObjectsManagement.lo \
 	libscigraphics_algo_la-ObjectSelection.lo \
 	libscigraphics_algo_la-periEmpty.lo \
 	libscigraphics_algo_la-scitokenize.lo \
-	libscigraphics_algo_la-get_ticks_utils.lo \
-	libscigraphics_algo_la-SciHandleTab.lo
+	libscigraphics_algo_la-get_ticks_utils.lo
 am_libscigraphics_algo_la_OBJECTS = $(am__objects_1)
 libscigraphics_algo_la_OBJECTS = $(am_libscigraphics_algo_la_OBJECTS)
 libscigraphics_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -799,7 +795,7 @@ modulename = graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = license.txt 
+libscigraphics_la_root_DATA = license.txt
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
@@ -832,7 +828,6 @@ libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/modules/graphic_export/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-src/c/WindowList.c \
 src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
@@ -1130,16 +1125,13 @@ src/c/Gray.c \
 src/c/DestroyObjects.c \
 src/c/math_graphics.c \
 src/c/Interaction.c \
-src/c/HandleManagement.c \
 src/c/StringBox.c \
 src/c/axesScale.c \
 src/c/TerminateGraphics.c \
-src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c \
-src/c/SciHandleTab.c
+src/c/get_ticks_utils.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -1216,7 +1208,7 @@ libscigraphics_la_CPPFLAGS = -Iincludes/ \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
-libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
 
 # For the code check (splint)
@@ -1443,7 +1435,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-CloneObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-ColorMapManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Contour.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-CurrentObjectsManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-DestroyObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Plo@am__quote@
@@ -1453,20 +1444,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-GetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-GetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Gray.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-HandleManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-InitObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Interaction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-ObjectSelection.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Plo2dEch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-Plo2dn.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-SciHandleTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-SetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-SetPropertyStatus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-StringBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-TerminateGraphics.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-WindowList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_alignment_property.Plo@am__quote@
@@ -1840,13 +1828,6 @@ libscigraphics_algo_la-GetCommandArg.lo: src/c/GetCommandArg.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCommandArg.c' object='libscigraphics_algo_la-GetCommandArg.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-GetCommandArg.lo `test -f 'src/c/GetCommandArg.c' || echo '$(srcdir)/'`src/c/GetCommandArg.c
-
-libscigraphics_algo_la-WindowList.lo: src/c/WindowList.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-WindowList.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-WindowList.Tpo -c -o libscigraphics_algo_la-WindowList.lo `test -f 'src/c/WindowList.c' || echo '$(srcdir)/'`src/c/WindowList.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-WindowList.Tpo $(DEPDIR)/libscigraphics_algo_la-WindowList.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/WindowList.c' object='libscigraphics_algo_la-WindowList.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-WindowList.lo `test -f 'src/c/WindowList.c' || echo '$(srcdir)/'`src/c/WindowList.c
 
 libscigraphics_algo_la-loadTextRenderingAPI.lo: src/c/loadTextRenderingAPI.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-loadTextRenderingAPI.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-loadTextRenderingAPI.Tpo -c -o libscigraphics_algo_la-loadTextRenderingAPI.lo `test -f 'src/c/loadTextRenderingAPI.c' || echo '$(srcdir)/'`src/c/loadTextRenderingAPI.c
@@ -3927,13 +3908,6 @@ libscigraphics_algo_la-Interaction.lo: src/c/Interaction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-Interaction.lo `test -f 'src/c/Interaction.c' || echo '$(srcdir)/'`src/c/Interaction.c
 
-libscigraphics_algo_la-HandleManagement.lo: src/c/HandleManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-HandleManagement.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-HandleManagement.Tpo -c -o libscigraphics_algo_la-HandleManagement.lo `test -f 'src/c/HandleManagement.c' || echo '$(srcdir)/'`src/c/HandleManagement.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-HandleManagement.Tpo $(DEPDIR)/libscigraphics_algo_la-HandleManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/HandleManagement.c' object='libscigraphics_algo_la-HandleManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-HandleManagement.lo `test -f 'src/c/HandleManagement.c' || echo '$(srcdir)/'`src/c/HandleManagement.c
-
 libscigraphics_algo_la-StringBox.lo: src/c/StringBox.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-StringBox.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-StringBox.Tpo -c -o libscigraphics_algo_la-StringBox.lo `test -f 'src/c/StringBox.c' || echo '$(srcdir)/'`src/c/StringBox.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-StringBox.Tpo $(DEPDIR)/libscigraphics_algo_la-StringBox.Plo
@@ -3954,13 +3928,6 @@ libscigraphics_algo_la-TerminateGraphics.lo: src/c/TerminateGraphics.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateGraphics.c' object='libscigraphics_algo_la-TerminateGraphics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-TerminateGraphics.lo `test -f 'src/c/TerminateGraphics.c' || echo '$(srcdir)/'`src/c/TerminateGraphics.c
-
-libscigraphics_algo_la-CurrentObjectsManagement.lo: src/c/CurrentObjectsManagement.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-CurrentObjectsManagement.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-CurrentObjectsManagement.Tpo -c -o libscigraphics_algo_la-CurrentObjectsManagement.lo `test -f 'src/c/CurrentObjectsManagement.c' || echo '$(srcdir)/'`src/c/CurrentObjectsManagement.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-CurrentObjectsManagement.Tpo $(DEPDIR)/libscigraphics_algo_la-CurrentObjectsManagement.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CurrentObjectsManagement.c' object='libscigraphics_algo_la-CurrentObjectsManagement.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-CurrentObjectsManagement.lo `test -f 'src/c/CurrentObjectsManagement.c' || echo '$(srcdir)/'`src/c/CurrentObjectsManagement.c
 
 libscigraphics_algo_la-ObjectSelection.lo: src/c/ObjectSelection.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-ObjectSelection.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-ObjectSelection.Tpo -c -o libscigraphics_algo_la-ObjectSelection.lo `test -f 'src/c/ObjectSelection.c' || echo '$(srcdir)/'`src/c/ObjectSelection.c
@@ -3989,13 +3956,6 @@ libscigraphics_algo_la-get_ticks_utils.lo: src/c/get_ticks_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/get_ticks_utils.c' object='libscigraphics_algo_la-get_ticks_utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_ticks_utils.lo `test -f 'src/c/get_ticks_utils.c' || echo '$(srcdir)/'`src/c/get_ticks_utils.c
-
-libscigraphics_algo_la-SciHandleTab.lo: src/c/SciHandleTab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-SciHandleTab.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-SciHandleTab.Tpo -c -o libscigraphics_algo_la-SciHandleTab.lo `test -f 'src/c/SciHandleTab.c' || echo '$(srcdir)/'`src/c/SciHandleTab.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-SciHandleTab.Tpo $(DEPDIR)/libscigraphics_algo_la-SciHandleTab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciHandleTab.c' object='libscigraphics_algo_la-SciHandleTab.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_algo_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-SciHandleTab.lo `test -f 'src/c/SciHandleTab.c' || echo '$(srcdir)/'`src/c/SciHandleTab.c
 
 libscigraphics_disable_la-nographics.lo: src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_disable_la_CFLAGS) $(CFLAGS) -MT libscigraphics_disable_la-nographics.lo -MD -MP -MF $(DEPDIR)/libscigraphics_disable_la-nographics.Tpo -c -o libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
