@@ -11,21 +11,6 @@
 
 package org.scilab.modules.gui.graphicWindow;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
-
-import static org.scilab.modules.gui.utils.Debug.DEBUG;
-
-import java.awt.Component;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.HashMap;
-
-import javax.media.opengl.GLJPanel;
-import javax.swing.ImageIcon;
-
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -43,12 +28,20 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
-import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+
+import javax.media.opengl.GLJPanel;
+import javax.swing.ImageIcon;
+import java.awt.Component;
+import java.util.HashMap;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 /**
  * @author Pierre Lando
@@ -60,23 +53,26 @@ public class FigureBridge implements GraphicView {
     private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
     private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
     private static final String FIGURE_TITLE = "Graphic window number ";
-    
+
+    private final GLJPanel glPanel = new GLJPanel();
+    private FigureInteraction figureInteraction;
+    private final String id;
+
     private Window window = null;
     private MenuBar menuBar = null;
     private ToolBar toolBar = null;
     private Tab tab = null;
     private TextBox infoBar = null;
-    private final GLJPanel glpanel = new GLJPanel();
-    private final String id;
 
     private final HashMap<String,SwingScilabPushButton> children = new HashMap<String, SwingScilabPushButton>();
-    
+
     /**
      * Default constructor.
      * @param id the id of the figure represented by this frame.
      * @throws Exception when the given id is not a figure id.
      */
     private FigureBridge(final String id) throws Exception {
+
         Object type = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if (type instanceof String && type.equals("Figure")) {
             // TODO : use static Figure.type instead of "Figure".
@@ -87,7 +83,7 @@ public class FigureBridge implements GraphicView {
             if (object instanceof Figure) {
                 final Figure figure = (Figure) object;
 
-                Canvas rendererCanvas = JoGLCanvasFactory.createCanvas(glpanel);
+                Canvas rendererCanvas = JoGLCanvasFactory.createCanvas(glPanel);
 
                 rendererCanvas.setMainDrawer(new DrawerVisitor(rendererCanvas, figure));
 
@@ -109,56 +105,8 @@ public class FigureBridge implements GraphicView {
                 };
                 */
 
-                glpanel.addMouseListener(new MouseListener() {
-                    MouseEvent beginEvent;
-                    final MouseMotionListener mouseMotionListener = new MouseMotionListener() {
-
-                        @Override
-                        public void mouseDragged(MouseEvent e) {
-                            int dx = e.getX() - beginEvent.getX();
-                            int dy = e.getY() - beginEvent.getY();
-
-                            String[] children = (String[]) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
-                            for (String child : children) {
-                                Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                                angles[0] -= dy / 4.0;
-                                angles[1] -= dx / 4.0;
-                                GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
-                            }
-
-                            beginEvent = e;
-                        }
-
-                        @Override
-                        public void mouseMoved(MouseEvent e) {}
-                    };
-
-                    @Override
-                    public void mouseClicked(MouseEvent e) {}
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        if (e.getButton() == MouseEvent.BUTTON1) {
-                            DEBUG("FigureBridge", "Begin");
-                            glpanel.addMouseMotionListener(mouseMotionListener);
-                            beginEvent = e;
-                        }
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        if (e.getButton() == MouseEvent.BUTTON1) {
-                            DEBUG("FigureBridge","End");
-                            glpanel.removeMouseMotionListener(mouseMotionListener);
-                        }
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {}
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {}
-                });
+                figureInteraction = new FigureInteraction(glPanel, id);
+                figureInteraction.setEnable(true);
 
                 int figureIndex = figure.getId();
                 
@@ -187,12 +135,12 @@ public class FigureBridge implements GraphicView {
                 ((SwingScilabTab) tab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
                                                                                            + "/modules/gui/images/icons/graphic-window.png").getImage());
                
-                ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(glpanel);
+                ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(glPanel);
                 window.addTab(tab);
                 GraphicController.getController().register(this);
                 window.setVisible(true);
                 tab.setVisible(true);
-                glpanel.setVisible(true);
+                glPanel.setVisible(true);
                 updateGUI();
             }
         } else {
@@ -253,8 +201,8 @@ public class FigureBridge implements GraphicView {
                        
                            //children.put(allChildren[i], button);
                            //((SwingScilabTab) tab.getAsSimpleTab()).addMember(button);
-                           glpanel.setLayout(null);
-                           glpanel.add((Component) SwingView.getFromId(allChildren[i]));
+                           glPanel.setLayout(null);
+                           glPanel.add((Component) SwingView.getFromId(allChildren[i]));
                        }
                        else {
                           children.put(allChildren[i],null);

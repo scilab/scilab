@@ -149,6 +149,8 @@ public class Box {
 	}
 
 	/**
+     * Return the data bounds.
+     * The array contain : {xMin, xMax, yMin, yMax, zMin, zMax}
 	 * @return the dataBounds
 	 */
 	public Double[] getDataBounds() {

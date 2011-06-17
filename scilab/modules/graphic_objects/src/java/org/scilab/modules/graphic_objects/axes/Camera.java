@@ -119,7 +119,7 @@ public class Camera {
 	}
 
 	/**
-	 * @return the rotationAngles
+	 * @return the rotationAngles in degree
 	 */
 	public Double[] getRotationAngles() {
 		Double [] retRotationAngles = new Double[2];
