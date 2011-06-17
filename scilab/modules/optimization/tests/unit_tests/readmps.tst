@@ -1,0 +1,59 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+path = fullfile(SCI,"modules","optimization","tests","unit_tests");
+stacksize("max");
+//
+filename = fullfile(path,"test1.mps");
+huge = number_properties("huge");
+P=readmps(filename,[-huge huge]);
+assert_checkequal(typeof(P),"mps");
+assert_checkequal(P.irobj,1);
+assert_checkequal(P.namec,"COST    ");
+assert_checkequal(P.nameb,"RHS1    ");
+assert_checkequal(P.namran,"        ");
+assert_checkequal(P.nambnd,"BND1    ");
+assert_checkequal(P.name,"TESTPROB");
+assert_checkequal(P.rownames,["COST    ";"LIM1    ";"LIM2    ";"MYEQN   "]);
+assert_checkequal(P.colnames,["XONE    ","YTWO    ","ZTHREE  "]);
+assert_checkequal(P.rowstat,[4;3;2;1]);
+assert_checkequal(P.rowcode,[4,0;3,0;1,2;0,0]);
+assert_checkequal(P.colcode,zeros(3,2));
+assert_checkequal(P.rownmbs,[1;2;3;1;2;4;1;3;4]);
+assert_checkequal(P.colpnts,[1,4,7,10]);
+assert_checkequal(P.acoeff,[1;1;1;4;1;-1;9;1;1]);
+assert_checkequal(P.rhs,[0;5;10;7]);
+assert_checkequal(P.ranges,huge*ones(4,1));
+assert_checkequal(P.bounds,[-huge,4;-1,1;-huge,huge]);
+assert_checkequal(P.stavar,[1;3;0]);
+disp(P)
+//
+filename = fullfile(path,"25FV47.SIF");
+huge = number_properties("huge");
+P=readmps(filename,[-huge huge]);
+assert_checkequal(typeof(P),"mps");
+assert_checkequal(P.irobj,1);
+assert_checkequal(P.namec,"R0000   ");
+assert_checkequal(P.nameb,".00001  ");
+assert_checkequal(P.namran,"        ");
+assert_checkequal(P.nambnd,"        ");
+assert_checkequal(P.name,"25FV47  ");
+assert_checkequal(size(P.rownames),[822,1]);
+assert_checkequal(size(P.colnames), [1,1571]);
+assert_checkequal(size(P.rowstat),[822,1]);
+assert_checkequal(size(P.rowcode),[822,2]);
+assert_checkequal(size(P.colcode),[1571,2]);
+assert_checkequal(size(P.rownmbs),[11127,1]);
+assert_checkequal(size(P.colpnts),[1,1572]);
+assert_checkequal(size(P.acoeff),[11127,1]);
+assert_checkequal(size(P.rhs),[822,1]);
+assert_checkequal(size(P.ranges),[822,1]);
+assert_checkequal(size(P.bounds),[1571,2]);
+assert_checkequal(size(P.stavar),[1571,1]);
+disp(P)

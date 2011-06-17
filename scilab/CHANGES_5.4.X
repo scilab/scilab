@@ -120,6 +120,12 @@ Optimization:
   See the help page of neldermead for details to update your
   code, if required.
 
+* readmps - Created unit test.
+            Fixed bug in the management of error messages.
+            Fixed bug in the reading of a test file.
+            Defined a printing system by overloading for MPS structure.
+            Updated the help page.
+
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
