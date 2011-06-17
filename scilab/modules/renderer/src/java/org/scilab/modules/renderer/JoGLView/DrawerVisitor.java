@@ -579,11 +579,6 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     }
 
-    /*
-     * To do:
-     * -back faces rendering.
-     * -use polygon offset for wireframe rendering.
-     */
     @Override
     public void visit(final Plot3d plot3d) {
         if (plot3d.getVisible()) {
@@ -628,7 +623,50 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.BOTH;
+                    if (plot3d.getHiddenColor() > 0) {
+                        return FaceCullingMode.CW;
+                    }
+                    else {
+                        return FaceCullingMode.BOTH;
+                    }
+                }
+            };
+
+            Geometry backTriangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(plot3d.getIdentifier());
+                    return indices;
+                }
+
+                @Override
+                public IndicesBuffer getEdgesIndices() {
+                    return null;
+                }
+
+                @Override
+                public FaceCullingMode getFaceCullingMode() {
+                    return FaceCullingMode.CCW;
                 }
             };
 
@@ -672,6 +710,15 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
             if (plot3d.getSurfaceMode()) {
                 if (plot3d.getColorMode() != 0) {
+
+                    /* Back-facing triangles */
+                    if (plot3d.getHiddenColor() > 0) {
+                        Appearance backTrianglesAppearance = new Appearance();
+                        backTrianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, plot3d.getHiddenColor()));
+                        drawingTools.draw(backTriangles, backTrianglesAppearance);
+                    }
+
+                    /* Front-facing triangles */
                     Appearance trianglesAppearance = new Appearance();
 
                     if (plot3d.getColorFlag() == 0) {
