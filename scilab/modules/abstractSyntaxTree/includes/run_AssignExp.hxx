@@ -206,79 +206,77 @@ void visitprivate(const AssignExp  &e)
                 pITR = pIL;
             }
 
-            if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty() && pIT->isStruct() == false)
-            {//insert [] so deletion !
-                if(pIT == NULL)
+            if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty() && pIT == NULL)
+            {
+                // l(x) = [] when l is not defined => create l = []
+                pOut = Double::Empty();
+                bNew = true;
+            }
+            else if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty() && pIT->isStruct() == false && pIT->isList() == false)
+            {//insert [] so deletion except for Struct and List which can insert []
+                if(pIT->isDouble())
                 {
-                    pOut = Double::Empty();
-                    bNew = true;
+                    pOut = pIT->getAs<Double>()->remove(pArgs);
                 }
-                else
+                else if(pIT->isString())
                 {
-                    if(pIT->isDouble())
-                    {
-                        pOut = pIT->getAs<Double>()->remove(pArgs);
-                    }
-                    else if(pIT->isString())
-                    {
-                        pOut = pIT->getAs<String>()->remove(pArgs);
-                    }
-                    else if(pIT->isCell())
-                    {
-                        pOut = pIT->getAs<Cell>()->remove(pArgs);
-                    }
-                    else if(pIT->isBool())
-                    {
-                        pOut = pIT->getAs<Bool>()->remove(pArgs);
-                    }
-                    else if(pIT->isPoly())
-                    {
-                        pOut = pIT->getAs<Polynom>()->remove(pArgs);
-                    }
-                    else if(pIT->isInt8())
-                    {
-                        pOut = pIT->getAs<Int8>()->remove(pArgs);
-                    }
-                    else if(pIT->isUInt8())
-                    {
-                        pOut = pIT->getAs<UInt8>()->remove(pArgs);
-                    }
-                    else if(pIT->isInt16())
-                    {
-                        pOut = pIT->getAs<Int16>()->remove(pArgs);
-                    }
-                    else if(pIT->isUInt16())
-                    {
-                        pOut = pIT->getAs<UInt16>()->remove(pArgs);
-                    }
-                    else if(pIT->isInt32())
-                    {
-                        pOut = pIT->getAs<Int32>()->remove(pArgs);
-                    }
-                    else if(pIT->isUInt32())
-                    {
-                        pOut = pIT->getAs<UInt32>()->remove(pArgs);
-                    }
-                    else if(pIT->isInt64())
-                    {
-                        pOut = pIT->getAs<Int64>()->remove(pArgs);
-                    }
-                    else if(pIT->isUInt64())
-                    {
-                        pOut = pIT->getAs<UInt64>()->remove(pArgs);
-                    }
-                    else if(pIT->isStruct())
-                    {
-                        // a("b") = [] is not a deletion !!
-                        Struct* pStr = pIT->getAs<Struct>();
+                    pOut = pIT->getAs<String>()->remove(pArgs);
+                }
+                else if(pIT->isCell())
+                {
+                    pOut = pIT->getAs<Cell>()->remove(pArgs);
+                }
+                else if(pIT->isBool())
+                {
+                    pOut = pIT->getAs<Bool>()->remove(pArgs);
+                }
+                else if(pIT->isPoly())
+                {
+                    pOut = pIT->getAs<Polynom>()->remove(pArgs);
+                }
+                else if(pIT->isInt8())
+                {
+                    pOut = pIT->getAs<Int8>()->remove(pArgs);
+                }
+                else if(pIT->isUInt8())
+                {
+                    pOut = pIT->getAs<UInt8>()->remove(pArgs);
+                }
+                else if(pIT->isInt16())
+                {
+                    pOut = pIT->getAs<Int16>()->remove(pArgs);
+                }
+                else if(pIT->isUInt16())
+                {
+                    pOut = pIT->getAs<UInt16>()->remove(pArgs);
+                }
+                else if(pIT->isInt32())
+                {
+                    pOut = pIT->getAs<Int32>()->remove(pArgs);
+                }
+                else if(pIT->isUInt32())
+                {
+                    pOut = pIT->getAs<UInt32>()->remove(pArgs);
+                }
+                else if(pIT->isInt64())
+                {
+                    pOut = pIT->getAs<Int64>()->remove(pArgs);
+                }
+                else if(pIT->isUInt64())
+                {
+                    pOut = pIT->getAs<UInt64>()->remove(pArgs);
+                }
+                else if(pIT->isStruct())
+                {
+                    // a("b") = [] is not a deletion !!
+                    Struct* pStr = pIT->getAs<Struct>();
 
-                        pOut = pIT->getAs<Struct>()->insert(pArgs, pITR);
-                    }
+                    pOut = pIT->getAs<Struct>()->insert(pArgs, pITR);
+                }
 
-                    if(pOut && pOut != pIT)
-                    {
-                        bNew = true;
-                    }
+                if(pOut && pOut != pIT)
+                {
+                    bNew = true;
                 }
             }
             else if(pIT == NULL || (pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0))
@@ -290,6 +288,7 @@ void visitprivate(const AssignExp  &e)
                 {
                     bNew = true;
                 }
+
 
                 switch(pITR->getType())
                 {

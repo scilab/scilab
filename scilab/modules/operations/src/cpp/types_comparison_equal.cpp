@@ -15,6 +15,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
+#include "cell.hxx"
 
 using namespace types;
 
@@ -70,7 +71,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 for(int j = 0 ; j < pL->getCols() ; j++)
                 {
-                    pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) == dblRef);
+                    pResult->getAs<Bool>()->set(i, j, pL->getReal(i, j) == dblRef);
                 }
             }
         }
@@ -82,7 +83,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 for(int j = 0 ; j < pR->getCols() ; j++)
                 {
-                    pResult->getAs<types::Bool>()->set(i, j, dblRef == pR->getReal(i, j));
+                    pResult->getAs<Bool>()->set(i, j, dblRef == pR->getReal(i, j));
                 }
             }
         }
@@ -93,7 +94,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 for(int j = 0 ; j < pR->getCols() ; j++)
                 {
-                    pResult->getAs<types::Bool>()->set(i, j, pL->getReal(i, j) == pR->getReal(i, j));
+                    pResult->getAs<Bool>()->set(i, j, pL->getReal(i, j) == pR->getReal(i, j));
                 }
             }
         }
@@ -110,8 +111,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
     {
-        String *pL			= _pLeftOperand->getAs<types::String>();
-        String *pR			= _pRightOperand->getAs<types::String>();
+        String *pL			= _pLeftOperand->getAs<String>();
+        String *pR			= _pRightOperand->getAs<String>();
 
         if(pL->getSize() == 1)
         {
@@ -125,11 +126,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                     wchar_t* pstR = pR->get(i,j);
                     if(wcscmp(pstL, pstR) == 0)
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -146,11 +147,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                     wchar_t* pstL = pL->get(i,j);
                     if(wcscmp(pstL, pstR) == 0)
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -167,11 +168,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                     wchar_t* pstL = pL->get(i,j);
                     if(wcscmp(pstL, pstR) == 0)
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -188,8 +189,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
     {
-        Bool *pL			= _pLeftOperand->getAs<types::Bool>();
-        Bool *pR			= _pRightOperand->getAs<types::Bool>();
+        Bool *pL			= _pLeftOperand->getAs<Bool>();
+        Bool *pR			= _pRightOperand->getAs<Bool>();
 
         if(pL->getSize() == 1)
         {
@@ -202,11 +203,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if(iL == pR->get(i,j))
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -222,11 +223,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if(iR == pL->get(i,j))
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -241,11 +242,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if(pL->get(i,j) == pR->get(i,j))
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,true);
+                        pResult->getAs<Bool>()->set(i,j,true);
                     }
                     else
                     {
-                        pResult->getAs<types::Bool>()->set(i,j,false);
+                        pResult->getAs<Bool>()->set(i,j,false);
                     }
                 }
             }
@@ -262,12 +263,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     */
     if(TypeL == GenericType::RealList && TypeR == GenericType::RealList)
     {
-        types::List* pLL = _pLeftOperand->getAs<types::List>();
-        types::List* pLR = _pRightOperand->getAs<types::List>();
+        List* pLL = _pLeftOperand->getAs<List>();
+        List* pLR = _pRightOperand->getAs<List>();
 
         if(pLL->getSize() != pLR->getSize())
         {
             return new Bool(false);
+        }
+
+        if(pLL->getSize() == 0)
+        {//list() == list() -> return true
+            return new Bool(true);
         }
 
         Bool* pB = new Bool(1, pLL->getSize());
@@ -285,6 +291,40 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         return pB;
     }
 
+    if(TypeL == GenericType::RealCell && TypeR == GenericType::RealCell)
+    {
+        Cell* pCL = _pLeftOperand->getAs<Cell>();
+        Cell* pCR = _pRightOperand->getAs<Cell>();
+
+        /* check dimension*/
+        if(pCL->getDims() != pCR->getDims())
+        {
+            return new Bool(false);
+        }
+
+        int* piDimsL = pCL->getDimsArray();
+        int* piDimsR = pCR->getDimsArray();
+
+        for(int i = 0 ; i < pCL->getDims() ; i++)
+        {
+            if(piDimsL[i] != piDimsR[i])
+            {
+                return new Bool(false);
+            }
+        }
+
+        if(pCL->getSize() == 0)
+        {//{} == {} -> return true
+            return new Bool(true);
+        }
+
+        Bool *pB = new Bool(pCL->getDims(), piDimsL);
+        for(int i = 0 ; i < pCL->getSize() ; i++)
+        {
+            pB->set(i, *pCL->get(i) == *pCR->get(i));
+        }
+        return pB;
+    }
     /*
     ** Default case : Return NULL will Call Overloading.
     */

@@ -365,7 +365,7 @@ namespace types
             }
             else // _iDims < m_iDims
             {
-                if(isVector() || isScalar())
+                if(isVector() || isScalar() || getSize() == 0) //getSize() == 0, on ly for [] and {}
                 {
                     if(getSize() < piMaxDim[0])
                     {
@@ -373,7 +373,7 @@ namespace types
                         iNewDims = 2;
                         piNewDims = new int[2];
 
-                        if(getCols() == 1)
+                        if(getCols() == 1 || getSize() == 0)
                         {//column vector
                             piNewDims[0] = piMaxDim[0];
                             piNewDims[1] = 1;
