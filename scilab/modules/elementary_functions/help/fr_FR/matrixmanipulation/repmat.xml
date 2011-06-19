@@ -106,4 +106,16 @@
     <title>Auteurs</title>
     <para>Serge Steer, INRIA</para>
   </refsection>
+
+  <refsection>
+    <title>Historique</title>
+
+ <revhistory>
+  <revision>
+   <revnumber>5.3.1</revnumber>
+   <revremark>Fonction repmat introduite.</revremark>
+  </revision>
+ </revhistory>
+  </refsection>
+
 </refentry>
