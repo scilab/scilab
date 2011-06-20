@@ -97,7 +97,8 @@
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -180,7 +181,8 @@
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -228,7 +230,8 @@
       </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>LibScilab.lib;libjvm.lib;scilab_windows.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
