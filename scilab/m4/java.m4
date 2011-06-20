@@ -451,16 +451,19 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
           machine=sparc
           ;;
         powerpc|ppc64)
-            machine=ppc
+          machine=ppc
           ;;
-          armv*)
+        armv*)
           machine=arm
           ;;
-          s390x) # s390 arch can also returns s390x
+        s390x) # s390 arch can also returns s390x
           machine=s390
           ;;
         sh*)
             machine=sh
+          ;;
+        mips64)
+            machine=mips
           ;;
     esac
 

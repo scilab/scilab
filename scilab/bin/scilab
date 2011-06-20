@@ -469,8 +469,8 @@ detect_java_vm() {
                         "ia64")
                             proc="ia64"
                             ;;
-                        "mips"|"mipsel") # under mipsel, uname -m is
-                    # usually returning mips ...
+                        mips*) # under mipsel, uname -m is
+                    # usually returning mips or mips64...
                     # but binary are in mipsel
                             if test -d ${JRE_HOME}/lib/mipsel ; then
                                 proc="mipsel"
