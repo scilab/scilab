@@ -211,10 +211,10 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
 endfunction
 //------------------------------------------------------------------------------
 // Main
-[units,typs,nams] = file();
-path = fileparts(string(nams(1)),"path");
-filename = fileparts(string(nams(1)),"fname");
-extension = fileparts(string(nams(1)),"extension");
+[units,typs,nams] = file()
+path = fileparts(string(nams(2)),"path");
+filename = fileparts(string(nams(2)),"fname");
+extension = fileparts(string(nams(2)),"extension");
 
 fileAndExt = filename+extension;
 
