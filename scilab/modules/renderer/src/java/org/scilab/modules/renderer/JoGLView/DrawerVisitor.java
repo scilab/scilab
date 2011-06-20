@@ -611,9 +611,10 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                     drawingTools.draw(triangles, trianglesAppearance);
                 }
 
-                if (fac3d.getColorMode() >= 0) {
+                if (fac3d.getColorMode() >= 0 && fac3d.getLineThickness() > 0.0) {
                     Appearance wireframeAppearance = new Appearance();
                     wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                    wireframeAppearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     drawingTools.draw(wireframe, wireframeAppearance);
                 }
             }
@@ -777,9 +778,10 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                     drawingTools.draw(triangles, trianglesAppearance);
                 }
 
-                if (plot3d.getColorMode() >= 0) {
+                if (plot3d.getColorMode() >= 0 && plot3d.getLineThickness() > 0.0) {
                     Appearance wireframeAppearance = new Appearance();
                     wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                    wireframeAppearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     drawingTools.draw(wireframe, wireframeAppearance);
                 }
             }
