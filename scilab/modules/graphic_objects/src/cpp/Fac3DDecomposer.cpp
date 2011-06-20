@@ -531,12 +531,12 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
             continue;
         }
 
-        /* Performs a fan decomposition */
+        /* Performs a fan decomposition, vertices are ordered counter-clockwise. */
         for (j = 0; j < numVerticesPerGon-2; j++)
         {
             buffer[bufferOffset] = vertexOffset;
-            buffer[bufferOffset +1] = vertexOffset + j+1;
-            buffer[bufferOffset +2] = vertexOffset + j+2;
+            buffer[bufferOffset +1] = vertexOffset + j+2;
+            buffer[bufferOffset +2] = vertexOffset + j+1;
 
             bufferOffset += 3;
         }
