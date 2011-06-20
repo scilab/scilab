@@ -131,6 +131,8 @@ Optimization:
 * Bug 8542 fixed - In neldermead, there were undocumented default options. 
                    Same changes applied to the help of optimbase.
 
+* Bug 8543 fixed - In neldermead, the help page presents a wrong order 
+                   for the options.
 
 Documentation:
 ==============
