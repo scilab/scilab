@@ -765,8 +765,7 @@ sci_gateway/fortran/sci_f_debug.f \
 sci_gateway/fortran/sci_f_comp.f \
 sci_gateway/fortran/sci_f_isglobal.f
 
-libscicore_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ \
+libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -785,10 +784,8 @@ libscicore_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/shell/includes $(XML_FLAGS) \
 	$(am__append_3)
-libscicore_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-	-I$(srcdir)/includes/ \
+libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/jni/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/libs/MALLOC/includes/
