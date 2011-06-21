@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_labels_property( sciPointObj * pobj )
+int get_tics_labels_property(char *pobjUID)
 {
     char** labels;
     int iNumberTicksLabels = 0;
@@ -71,9 +72,9 @@ int get_tics_labels_property( sciPointObj * pobj )
     else
 #endif
     {
-        getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNumberTicksLabels);
+        getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNumberTicksLabels);
 
-        getGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, jni_string_vector, &labels);
+        getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, &labels);
 
         if (piNumberTicksLabels == NULL || labels == NULL)
         {

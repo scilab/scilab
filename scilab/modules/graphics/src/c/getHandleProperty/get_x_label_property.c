@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_label_property( sciPointObj * pobj )
+int get_x_label_property(char *pobjUID)
 {
 #if 0
     if ( sciGetEntityType(pobj) != SCI_SUBWIN )
@@ -44,7 +45,7 @@ int get_x_label_property( sciPointObj * pobj )
     char* labelUID;
     long labelHandle;
 
-    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LABEL__, jni_string, &labelUID);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LABEL__, jni_string, &labelUID);
 
     if (labelUID == NULL)
     {

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_reverse_property( sciPointObj * pobj )
+int get_axes_reverse_property(char *pobjUID)
 {
   char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
   char * axes_reverse[3]  = { NULL, NULL, NULL };
@@ -53,7 +54,7 @@ int get_axes_reverse_property( sciPointObj * pobj )
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-      getGraphicObjectProperty(pobj->UID, axesReversePropertiesNames[i], jni_bool, &piAxesReverse);
+      getGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], jni_bool, &piAxesReverse);
 
       if (piAxesReverse == NULL)
       {

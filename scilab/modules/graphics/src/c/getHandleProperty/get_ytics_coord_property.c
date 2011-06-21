@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ytics_coord_property( sciPointObj * pobj )
+int get_ytics_coord_property(char *pobjUID)
 {
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
@@ -42,7 +43,7 @@ int get_ytics_coord_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector, &yTicksCoords);
+    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &yTicksCoords);
 
     if (yTicksCoords == NULL)
     {
@@ -50,7 +51,7 @@ int get_ytics_coord_property( sciPointObj * pobj )
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
 
     return sciReturnRowVector(yTicksCoords, iYNumberTicks);
 }

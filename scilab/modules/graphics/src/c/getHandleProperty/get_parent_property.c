@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,22 +29,21 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property( sciPointObj * pobj )
+int get_parent_property(char *pobjUID)
 {
-	sciPointObj* parent = NULL;
-	char* parentID;
+    char* parentID;
 
-	/* All Graphic Objects have the __GO_PARENT__ property */
-	getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parentID);
+    /* All Graphic Objects have the __GO_PARENT__ property */
+    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &parentID);
 
-	if (strcmp(parentID, "") == 0)
-	{
-		/* No parent for this object */
-		return sciReturnEmptyMatrix();
-	}
-	else
-	{
-		return sciReturnHandle(getHandle(parentID));
-	}
+    if (strcmp(parentID, "") == 0)
+    {
+        /* No parent for this object */
+        return sciReturnEmptyMatrix();
+    }
+    else
+    {
+        return sciReturnHandle(getHandle(parentID));
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_log_flags_property( sciPointObj * pobj )
+int get_log_flags_property(char *pobjUID)
 {
     int i;
     int iLogFlag = 0;
@@ -44,7 +45,7 @@ int get_log_flags_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
 
     if (piLogFlag == NULL)
     {
@@ -54,10 +55,10 @@ int get_log_flags_property( sciPointObj * pobj )
 
     logFlags[0] = iLogFlag;
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
     logFlags[1] = iLogFlag;
 
-    getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
     logFlags[2] = iLogFlag;
 
     for (i = 0; i < 3; i++)

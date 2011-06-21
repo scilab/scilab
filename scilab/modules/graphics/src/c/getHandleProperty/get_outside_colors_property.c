@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_outside_colors_property( sciPointObj * pobj )
+int get_outside_colors_property(char *pobjUID)
 {
     int* colors;
 #if 0
@@ -39,7 +40,7 @@ int get_outside_colors_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_OUTSIDE_COLOR__, jni_int_vector, &colors);
+    getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, &colors);
 
     if (colors == NULL)
     {

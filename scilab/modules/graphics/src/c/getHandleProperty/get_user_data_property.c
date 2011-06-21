@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_user_data_property( sciPointObj * pobj )
+int get_user_data_property(char *pobjUID)
 {
     // TODO
     // Should not stay in this state.
@@ -40,9 +41,9 @@ int get_user_data_property( sciPointObj * pobj )
   int userDataSize;
   int* userData;
 
-  userDataSize = *(int*)getGraphicObjectProperty(pobj->UID, __GO_USER_DATA_SIZE__, jni_int);
+  userDataSize = *(int*)getGraphicObjectProperty(pobjUID, __GO_USER_DATA_SIZE__, jni_int);
 
-  userData = (int*)getGraphicObjectProperty(pobj->UID, __GO_USER_DATA__, jni_int_vector);
+  userData = (int*)getGraphicObjectProperty(pobjUID, __GO_USER_DATA__, jni_int_vector);
 
   if ( userData == NULL || userDataSize == 0 )
   {

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_interp_color_vector_property( sciPointObj * pobj )
+int get_interp_color_vector_property(char *pobjUID)
 {
     int* piInterpVector;
     int iInterpVectorSet = 0;
@@ -46,7 +47,7 @@ int get_interp_color_vector_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, &piInterpVectorSet);
+    getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR_SET__, jni_bool, &piInterpVectorSet);
 
     if (piInterpVectorSet == NULL)
     {
@@ -60,8 +61,8 @@ int get_interp_color_vector_property( sciPointObj * pobj )
     }
     else
     {
-        getGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, &piInterpVector);
-        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
+        getGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, &piInterpVector);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
 
         return sciReturnRowVectorFromInt(piInterpVector, iNumElements);
     }

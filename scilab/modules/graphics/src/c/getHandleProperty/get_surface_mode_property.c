@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_surface_mode_property( sciPointObj * pobj )
+int get_surface_mode_property(char *pobjUID)
 {
     int iSurfaceMode = 0;
     int *piSurfaceMode = &iSurfaceMode;
@@ -55,7 +56,7 @@ int get_surface_mode_property( sciPointObj * pobj )
   }
 #endif
 
-  getGraphicObjectProperty(pobj->UID, __GO_SURFACE_MODE__, jni_bool, &piSurfaceMode);
+  getGraphicObjectProperty(pobjUID, __GO_SURFACE_MODE__, jni_bool, &piSurfaceMode);
 
   if (piSurfaceMode == NULL)
   {

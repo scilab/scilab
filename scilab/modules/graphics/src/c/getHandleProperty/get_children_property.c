@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,18 +32,17 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_children_property( sciPointObj * pobj )
+int get_children_property(char *pobjUID)
 {
     int i = 0;
     int status = 0;
-    sciPointObj *pobjChildren = NULL;
     long *plChildren = NULL;
     char **pstChildrenUID;
 
     // All Graphic Objects have __GO_CHILDREN__ & __GO_CHILDREN_COUNT__ properties.
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
-    getGraphicObjectProperty(pobj->UID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
 
 
     if (piChildrenCount[0] == 0)
@@ -51,7 +51,7 @@ int get_children_property( sciPointObj * pobj )
         return sciReturnEmptyMatrix();
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
 
     plChildren = MALLOC(piChildrenCount[0] * sizeof(long));
 

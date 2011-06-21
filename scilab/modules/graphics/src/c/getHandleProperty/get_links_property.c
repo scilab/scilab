@@ -1,15 +1,16 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
-* Copyright (C) 2011 - DIGITEO - Manuel Juliachs
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 /*------------------------------------------------------------------------*/
 /* file: get_link_property.c                                              */
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_links_property( sciPointObj * pobj )
+int get_links_property(char *pobjUID)
 {
     int nbLegends;
     int i;
@@ -38,7 +39,7 @@ int get_links_property( sciPointObj * pobj )
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    getGraphicObjectProperty(pobj->UID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -53,7 +54,7 @@ int get_links_property( sciPointObj * pobj )
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_LINKS__, jni_string_vector, &links);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS__, jni_string_vector, &links);
 
     if (links == NULL)
     {

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_position_property( sciPointObj * pobj )
+int get_position_property(char *pobjUID)
 {
     char* type;
     double* position;
@@ -48,7 +49,7 @@ int get_position_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, (void **) &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **) &type);
 
     /* Special figure case */
     if (strcmp(type, __GO_FIGURE__) == 0)
@@ -57,9 +58,9 @@ int get_position_property( sciPointObj * pobj )
         int* figureSize;
         double position[4];
 
-        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
 
-        getGraphicObjectProperty(pobj->UID, __GO_SIZE__, jni_int_vector, (void **) &figureSize);
+        getGraphicObjectProperty(pobjUID, __GO_SIZE__, jni_int_vector, (void **) &figureSize);
 
         if (figurePosition == NULL || figureSize == NULL)
         {
@@ -80,7 +81,7 @@ int get_position_property( sciPointObj * pobj )
     {
         double* position;
 
-        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, (void **) &position);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
         if (position == NULL)
         {
@@ -93,7 +94,7 @@ int get_position_property( sciPointObj * pobj )
 
     /* Generic case : position is a 4 row vector */
 
-    getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, (void **) &position);
+    getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
     if (position == NULL)
     {

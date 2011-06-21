@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - INRIA - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,18 +38,19 @@
 
 #include "CurrentFigure.h"
 #include "FigureModel.h"
+#include "AxesModel.h"
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
-int get_current_figure_property( sciPointObj * pobj )
+int get_current_figure_property(char *pobjUID)
 {
     char *pstCurrentFigureId = NULL;
 
-	if (pobj != NULL)
-	{
-		/* This property should not be called on an handle */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
-		return -1;
-	}
+    if (pobjUID != NULL)
+    {
+        /* This property should not be called on an handle */
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
+        return -1;
+    }
 
     /* return handle on the current figure */
     pstCurrentFigureId = getCurrentFigure();
@@ -60,7 +62,7 @@ int get_current_figure_property( sciPointObj * pobj )
         // No default figure : create a new one
         // Will be automatically set as the default one.
         char* pFigureUID = NULL;
-        sciPointObj* newaxes = NULL;
+        char* newaxesUID = NULL;
         int iID = 0;
 
         pFigureUID = cloneGraphicObject(getFigureModel());
@@ -70,13 +72,13 @@ int get_current_figure_property( sciPointObj * pobj )
          * Clones a new Axes object using the Axes model which is then
          * attached to the newly created Figure.
          */
-        //newaxes = sciCloneObj(getAxesModel());
+        newaxesUID = cloneGraphicObject(getAxesModel());
 
         /* Sets the parent-child relationship within the MVC */
-        //setGraphicObjectRelationship(pFigure->UID, newaxes->UID);
+        setGraphicObjectRelationship(pFigureUID, newaxesUID);
 
         /* Sets the newly created Axes as the Figure's current selected child */
-        //setGraphicObjectProperty(pFigure->UID, __GO_SELECTED_CHILD__, newaxes->UID, jni_string, 1);
+        setGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, newaxesUID, jni_string, 1);
 
         /*
          * Added back to avoid creating a new Figure each time gcf() is executed.
@@ -96,11 +98,11 @@ int get_current_figure_property( sciPointObj * pobj )
          * This was previously done in ConstructSubWin, called by createFirstSubwin
          * which was also called by createFullFigure.
          */
-        //sciAddNewHandle(newaxes);
-        //__sciSetCurrentObject(newaxes->UID);
+        //sciAddNewHandle(newaxesUID);
+        setCurrentObject(newaxesUID);
 
     }
 
-    return sciReturnHandle( getHandle( getCurrentFigure() ) ) ;
+    return sciReturnHandle(getHandle(getCurrentFigure()));
 
 }

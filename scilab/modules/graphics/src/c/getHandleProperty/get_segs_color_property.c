@@ -4,11 +4,12 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * 
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -30,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_segs_color_property( sciPointObj * pobj )
+int get_segs_color_property(char * pobjUID)
 {
     int* segsColors = NULL;
     int iNbSegs = 0;
@@ -46,7 +47,7 @@ int get_segs_color_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, jni_int_vector, &segsColors);
+    getGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, jni_int_vector, &segsColors);
 
     if (segsColors == NULL)
     {
@@ -55,7 +56,7 @@ int get_segs_color_property( sciPointObj * pobj )
     }
 
     /* convert from int array to double one. */
-    getGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, jni_int, &piNbSegs);
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, &piNbSegs);
 
     status = sciReturnRowIntVector(segsColors, iNbSegs);
 

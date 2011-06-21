@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,13 +30,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_clip_box_property( sciPointObj * pobj )
+int get_clip_box_property(char *pobjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
     double* clipBox;
 
-    getGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, &piClipState);
 
     if (piClipState == NULL)
     {
@@ -47,7 +48,7 @@ int get_clip_box_property( sciPointObj * pobj )
     {
         /* clip state on */
 
-        getGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
+        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, &clipBox);
 
         if (clipBox == NULL)
         {

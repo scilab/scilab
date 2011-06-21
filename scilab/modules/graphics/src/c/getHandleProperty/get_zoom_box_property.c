@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_box_property( sciPointObj * pobj )
+int get_zoom_box_property(char *pobjUID)
 {
     double* zoomBox;
     int iZoomEnabled = 0;
@@ -43,9 +44,9 @@ int get_zoom_box_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, jni_bool, &zoomEnabled);
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, &zoomEnabled);
 
-    getGraphicObjectProperty(pobj->UID, __GO_ZOOM_BOX__, jni_double_vector, &zoomBox);
+    getGraphicObjectProperty(pobjUID, __GO_ZOOM_BOX__, jni_double_vector, &zoomBox);
 
     if (zoomEnabled == NULL || zoomBox == NULL)
     {

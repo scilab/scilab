@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_filled_property( sciPointObj * pobj )
+int get_filled_property(char *pobjUID)
 {
     int iFilled = 0;
     int* piFilled = &iFilled;
@@ -39,7 +40,7 @@ int get_filled_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_FILLED__, jni_bool, &piFilled);
+    getGraphicObjectProperty(pobjUID, __GO_FILLED__, jni_bool, &piFilled);
 
     if (piFilled == NULL)
     {

@@ -26,18 +26,19 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "getHandleProperty.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 
-int get_visible_property( sciPointObj * pobj )
+int get_visible_property(char *pobjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
 
-    getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pobjUID, __GO_VISIBLE__, jni_bool, &piVisible);
 
     if ( piVisible == NULL )
     {
@@ -55,8 +56,8 @@ int get_visible_property( sciPointObj * pobj )
     }
 }
 
-int get_UID(sciPointObj * pobj)
+int get_UID(char *pobjUID)
 {
-    return sciReturnString(pobj->UID);
+    return sciReturnString(pobjUID);
 }
 /*------------------------------------------------------------------------*/

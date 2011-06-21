@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_bar_width_property( sciPointObj * pobj )
+int get_bar_width_property(char *pobjUID)
 {
     double dblBarWidth = 0.0;
     double *pdblBarWidth = &dblBarWidth;
 
-    getGraphicObjectProperty(pobj->UID, __GO_BAR_WIDTH__, jni_double, &pdblBarWidth);
+    getGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, jni_double, &pdblBarWidth);
 
     if (pdblBarWidth == NULL)
     {

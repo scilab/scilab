@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_background_property( sciPointObj * pobj )
+int get_mark_background_property(char *pobjUID)
 {
     int iMarkBackground = 0;
     int* piMarkBackground = &iMarkBackground;
 
-    getGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, jni_int, &piMarkBackground);
+    getGraphicObjectProperty(pobjUID, __GO_MARK_BACKGROUND__, jni_int, &piMarkBackground);
 
     if (piMarkBackground == NULL)
     {

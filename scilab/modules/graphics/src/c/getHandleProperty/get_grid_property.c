@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_grid_property( sciPointObj * pobj )
+int get_grid_property(char *pobjUID)
 {
     double grid[3];
     int iGridColor = 0;
@@ -46,7 +47,7 @@ int get_grid_property( sciPointObj * pobj )
 #endif
 
     /* need conversion for display in double */
-    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_X_AXIS_GRID_COLOR__, jni_int, &piGridColor);
 
     if (piGridColor == NULL)
     {
@@ -56,13 +57,13 @@ int get_grid_property( sciPointObj * pobj )
 
     grid[0] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_GRID_COLOR__, jni_int, &piGridColor);
     grid[1] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_GRID_COLOR__, jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_GRID_COLOR__, jni_int, &piGridColor);
     grid[2] = (double) iGridColor;
 
-    getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int, &piView);
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
 
     if (iView)
     {

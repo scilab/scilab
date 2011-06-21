@@ -1,15 +1,16 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
-* Copyright (C) 2010 - DIGITEO - Manuel Juliachs
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 /*------------------------------------------------------------------------*/
 /* file: get_drawing_method_property.c                                    */
@@ -27,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arc_drawing_method_property( sciPointObj * pobj )
+int get_arc_drawing_method_property(char *pobjUID)
 {
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
@@ -40,7 +41,7 @@ int get_arc_drawing_method_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_ARC_DRAWING_METHOD__, jni_int, &piArcDrawingMethod);
+    getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, &piArcDrawingMethod);
 
     if (piArcDrawingMethod == NULL)
     {

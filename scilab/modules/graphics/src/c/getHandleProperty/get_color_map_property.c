@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,15 +32,15 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_color_map_property( sciPointObj * pobj )
+int get_color_map_property(char *pobjUID)
 {
     double *pdblColorMap;
 
     int iCmapSize = 0;
     int * piCmapSize = &iCmapSize;
 
-    getGraphicObjectProperty(pobj->UID, __GO_COLORMAP_SIZE__, jni_int, &piCmapSize);
-    getGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, jni_double_vector, &pdblColorMap);
+    getGraphicObjectProperty(pobjUID, __GO_COLORMAP_SIZE__, jni_int, &piCmapSize);
+    getGraphicObjectProperty(pobjUID, __GO_COLORMAP__, jni_double_vector, &pdblColorMap);
     if ( pdblColorMap == NULL )
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");

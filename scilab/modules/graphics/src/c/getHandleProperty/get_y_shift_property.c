@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,13 +31,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_shift_property( sciPointObj * pobj )
+int get_y_shift_property(char *pobjUID)
 {
     double* shiftCoordinates;
     int iValue = 0;
     int* piValue = &iValue;
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, &piValue);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, &piValue);
 
     if (piValue == NULL)
     {
@@ -50,8 +51,8 @@ int get_y_shift_property( sciPointObj * pobj )
     }
     else
     {
-        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, &shiftCoordinates);
-        getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piValue);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, &shiftCoordinates);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piValue);
 
         return sciReturnRowVector(shiftCoordinates, iValue);
     }

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_ticks_property( sciPointObj * pobj )
+int get_auto_ticks_property(char *pobjUID)
 {
   char * auto_ticks[3]  = { NULL, NULL, NULL };
   char* axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
@@ -55,7 +56,7 @@ int get_auto_ticks_property( sciPointObj * pobj )
 
   for ( i = 0 ; i < 3 ; i++ )
   {
-      getGraphicObjectProperty(pobj->UID, axesAutoTicksPropertiesNames[i], jni_bool, &piAutoTicks);
+      getGraphicObjectProperty(pobjUID, axesAutoTicksPropertiesNames[i], jni_bool, &piAutoTicks);
 
       if (piAutoTicks == NULL)
       {

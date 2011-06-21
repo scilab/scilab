@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_xtics_coord_property( sciPointObj * pobj )
+int get_xtics_coord_property(char *pobjUID)
 {
     int iXNumberTicks = 0;
     int* xNumberTicks = &iXNumberTicks;
@@ -42,7 +43,7 @@ int get_xtics_coord_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &xTicksCoords);
+    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, &xTicksCoords);
 
     if (xTicksCoords == NULL)
     {
@@ -50,7 +51,7 @@ int get_xtics_coord_property( sciPointObj * pobj )
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &xNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &xNumberTicks);
 
     return sciReturnRowVector(xTicksCoords, *xNumberTicks);
 }

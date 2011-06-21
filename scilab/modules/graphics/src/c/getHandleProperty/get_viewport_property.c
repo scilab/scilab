@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,10 +31,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_viewport_property( sciPointObj * pobj )
+int get_viewport_property(char *pobjUID)
 {
     int* viewport;
-    getGraphicObjectProperty(pobj->UID, __GO_VIEWPORT__, jni_int_vector, &viewport);
+    getGraphicObjectProperty(pobjUID, __GO_VIEWPORT__, jni_int_vector, &viewport);
 
     if (viewport == NULL)
     {

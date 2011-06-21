@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_location_property( sciPointObj * pobj )
+int get_y_location_property(char *pobjUID)
 {
     int iLocation = 0;
     int* piLocation = &iLocation;
@@ -44,7 +45,7 @@ int get_y_location_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOCATION__, jni_int, &piLocation);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, jni_int, &piLocation);
 
     if (piLocation == NULL)
     {

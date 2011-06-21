@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_triangles_property( sciPointObj * pobj )
+int get_triangles_property(char *pobjUID)
 {
     double* triangles;
     int* tmp;
@@ -44,7 +45,7 @@ int get_triangles_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, &triangles);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, &triangles);
 
     if (triangles == NULL)
     {
@@ -52,7 +53,7 @@ int get_triangles_property( sciPointObj * pobj )
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, &piNumTriangles);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, &piNumTriangles);
 
     return sciReturnMatrix(triangles, numTriangles , 5);
 }

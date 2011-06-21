@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_event_handler_property( sciPointObj * pobj )
+int get_event_handler_property(char *pobjUID)
 {
     char* eventHandler;
-    getGraphicObjectProperty(pobj->UID, __GO_EVENTHANDLER_NAME__, jni_string, &eventHandler);
+    getGraphicObjectProperty(pobjUID, __GO_EVENTHANDLER_NAME__, jni_string, &eventHandler);
 
     if ( eventHandler == NULL )
     {

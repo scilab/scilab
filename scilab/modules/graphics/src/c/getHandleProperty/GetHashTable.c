@@ -246,14 +246,15 @@ GetPropertyHashTable * createScilabGetHashTable( void )
 
 }
 /*--------------------------------------------------------------------------*/
-int callGetProperty( sciPointObj * pObj, char * propertyName )
+int callGetProperty( char* pObjUID, char * propertyName )
 {
-  getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
-  if ( accessor == NULL )
-  {Scierror(999, _("Unknown property: %s.\n"), propertyName ) ;
-    return -1 ;
-  }
-  return accessor( pObj ) ;
+    getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
+    if ( accessor == NULL )
+    {
+        Scierror(999, _("Unknown property: %s.\n"), propertyName ) ;
+        return -1 ;
+    }
+    return accessor( pObjUID ) ;
 }
 /*--------------------------------------------------------------------------*/
 void destroyScilabGetHashTable( void )

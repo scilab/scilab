@@ -26,12 +26,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tag_property( sciPointObj * pobj )
+int get_tag_property(char *pobjUID)
 {
     char* tag = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(pobj->UID,  __GO_TAG__, jni_string, (void**) &tag);
+    getGraphicObjectProperty(pobjUID,  __GO_TAG__, jni_string, (void**) &tag);
 
     if (tag == NULL)
     {

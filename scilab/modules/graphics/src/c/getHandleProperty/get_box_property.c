@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,11 +32,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_box_property( sciPointObj * pobj )
+int get_box_property(char *pobjUID)
 {
     char* type;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
@@ -47,7 +48,7 @@ int get_box_property( sciPointObj * pobj )
         int iBoxType = 0;
         int* piBoxType = &iBoxType;
 
-        getGraphicObjectProperty(pobj->UID, __GO_BOX_TYPE__, jni_int, &piBoxType);
+        getGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, jni_int, &piBoxType);
 
         if (piBoxType == NULL)
         {
@@ -78,7 +79,7 @@ int get_box_property( sciPointObj * pobj )
         int iBox = 0;
         int* piBox = &iBox;
 
-        getGraphicObjectProperty(pobj->UID, __GO_BOX__, jni_bool, &piBox);
+        getGraphicObjectProperty(pobjUID, __GO_BOX__, jni_bool, &piBox);
 
         if (piBox == NULL)
         {

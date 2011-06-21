@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_immediate_drawing_property( sciPointObj * pobj )
+int get_immediate_drawing_property(char *pobjUID)
 {
     int iImmediateDrawing = 0;
     int *piImmediateDrawing = &iImmediateDrawing;
 
-    getGraphicObjectProperty(pobj->UID, __GO_IMMEDIATE_DRAWING__, jni_bool, &piImmediateDrawing);
+    getGraphicObjectProperty(pobjUID, __GO_IMMEDIATE_DRAWING__, jni_bool, &piImmediateDrawing);
 
     if ( piImmediateDrawing == NULL )
     {

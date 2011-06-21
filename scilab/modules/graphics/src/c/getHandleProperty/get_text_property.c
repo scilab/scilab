@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,19 +34,19 @@
 #include <string.h>
 
 /*------------------------------------------------------------------------*/
-int get_text_property( sciPointObj * pobj )
+int get_text_property(char *pobjUID)
 {
     int* dimensions;
     char** textMatrix;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
 
     if (dimensions == NULL) {
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"text");
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
 
     if (textMatrix == NULL)
     {

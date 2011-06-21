@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,13 +29,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_data_bounds_property( sciPointObj * pobj )
+int get_data_bounds_property(char *pobjUID)
 {
     double* dataBounds;
     int iView = 0;
     int* piView = &iView;
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
     if (dataBounds == NULL)
     {
@@ -42,7 +43,7 @@ int get_data_bounds_property( sciPointObj * pobj )
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int, &piView);
+    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
 
     /**DJ.Abdemouche 2003**/
     if (iView == 1)
@@ -55,6 +56,7 @@ int get_data_bounds_property( sciPointObj * pobj )
     }
 
   /*
+   * FIXME
    * To be implemented using the MVC framework,
    * though it's probably not relevant nor used anymore
    * by Surface objects.

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_hidden_axis_color_property( sciPointObj * pobj )
+int get_hidden_axis_color_property(char *pobjUID)
 {
     int iHiddenAxisColor = 0;
     int* piHiddenAxisColor = &iHiddenAxisColor;
@@ -41,7 +42,7 @@ int get_hidden_axis_color_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_HIDDEN_AXIS_COLOR__, jni_int, &piHiddenAxisColor);
+    getGraphicObjectProperty(pobjUID, __GO_HIDDEN_AXIS_COLOR__, jni_int, &piHiddenAxisColor);
 
     if (iHiddenAxisColor == NULL)
     {

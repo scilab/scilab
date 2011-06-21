@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,11 +34,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_figure_id_property( sciPointObj * pobj )
+int get_figure_id_property(char *pobjUID)
 {
     int iFigureId = 0;
     int *piFigureId = &iFigureId;
-    getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int, &piFigureId);
+    getGraphicObjectProperty(pobjUID, __GO_ID__, jni_int, &piFigureId);
 
     if ( piFigureId == NULL )
     {

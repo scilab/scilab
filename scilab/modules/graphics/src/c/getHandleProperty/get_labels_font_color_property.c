@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +35,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_color_property( sciPointObj * pobj )
+int get_labels_font_color_property(char *pobjUID)
 {
     int iFontColor = 0;
     int* piFontColor = &iFontColor;
@@ -50,7 +51,7 @@ int get_labels_font_color_property( sciPointObj * pobj )
   return -1 ;
 #endif
 
-  getGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, jni_int, &piFontColor);
+  getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, &piFontColor);
 
     if (piFontColor == NULL)
     {

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,11 +30,11 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_text_box_property( sciPointObj * pobj )
+int get_text_box_property(char *pobjUID)
 {
     double* size;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TEXT_BOX__, jni_double_vector, &size);
+    getGraphicObjectProperty(pobjUID, __GO_TEXT_BOX__, jni_double_vector, &size);
 
     if (size == NULL)
     {

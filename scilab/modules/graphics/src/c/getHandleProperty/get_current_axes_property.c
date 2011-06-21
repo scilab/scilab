@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,15 +31,15 @@
 
 
 /*------------------------------------------------------------------------*/
-int get_current_axes_property( sciPointObj * pobj )
+int get_current_axes_property(char *pobjUID)
 {
-	if (pobj != NULL)
-	{
-		/* This property should not be called on an handle */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
-		return -1;
-	}
+    if (pobjUID != NULL)
+    {
+        /* This property should not be called on an handle */
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
+        return -1;
+    }
 
-  return sciReturnHandle( getHandle( getCurrentSubWin() ) ) ;
+    return sciReturnHandle(getHandle(getCurrentSubWin())) ;
 }
 /*------------------------------------------------------------------------*/

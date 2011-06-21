@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,7 +37,7 @@
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
-int getgrayplotdata(sciPointObj *pobj)
+int getgrayplotdata(char *pobjUID)
 {
     char * variable_tlist[] = {"grayplotdata","x","y","z"};
     int numX;
@@ -55,12 +56,12 @@ int getgrayplotdata(sciPointObj *pobj)
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
 
     addColVectorToReturnedList(tList, dataX, numX);
     addColVectorToReturnedList(tList, dataY, numY);
@@ -73,7 +74,7 @@ int getgrayplotdata(sciPointObj *pobj)
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(sciPointObj *pobj)
+int getchampdata(char *pobjUID)
 {
     char * variable_tlist[] = {"champdata","x","y","fx","fy"};
     int* dimensions;
@@ -91,12 +92,12 @@ int getchampdata(sciPointObj *pobj)
         return -1;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, &dimensions);
+    getGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, &dimensions);
 
-    getGraphicObjectProperty(pobj->UID, __GO_BASE_X__, jni_double_vector, &arrowBasesX);
-    getGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, jni_double_vector, &arrowBasesY);
-    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_X__, jni_double_vector, &arrowDirectionsX);
-    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_Y__, jni_double_vector, &arrowDirectionsY);
+    getGraphicObjectProperty(pobjUID, __GO_BASE_X__, jni_double_vector, &arrowBasesX);
+    getGraphicObjectProperty(pobjUID, __GO_BASE_Y__, jni_double_vector, &arrowBasesY);
+    getGraphicObjectProperty(pobjUID, __GO_DIRECTION_X__, jni_double_vector, &arrowDirectionsX);
+    getGraphicObjectProperty(pobjUID, __GO_DIRECTION_Y__, jni_double_vector, &arrowDirectionsY);
 
     addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
     addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
@@ -108,7 +109,7 @@ int getchampdata(sciPointObj *pobj)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int get3ddata(sciPointObj *pobj)
+int get3ddata(char *pobjUID)
 {
     char *variable_tlist_color[] = {"3d","x","y","z","color"};
     char *variable_tlist[] = {"3d","x","y","z"};
@@ -124,13 +125,13 @@ int get3ddata(sciPointObj *pobj)
 
     returnedList * tList = NULL;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, jni_double_vector, &colors);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, jni_double_vector, &colors);
 
     if (colors != NULL)
     {
@@ -142,10 +143,10 @@ int get3ddata(sciPointObj *pobj)
             int numColors = 0;
             int *piNumColors = &numColors;
 
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
 
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, &piNumColors);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, &piNumColors);
 
             addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
@@ -191,8 +192,8 @@ int get3ddata(sciPointObj *pobj)
 
         if (strcmp(type, __GO_FAC3D__) == 0)
         {
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
 
             addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
@@ -203,11 +204,11 @@ int get3ddata(sciPointObj *pobj)
             int* xDimensions;
             int* yDimensions;
 
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNbRow);
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNbCol);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNbCol);
 
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, &xDimensions);
-            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, &yDimensions);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, &xDimensions);
+            getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, &yDimensions);
 
             addMatrixToReturnedList( tList, dataX, xDimensions[0], xDimensions[1]);
             addMatrixToReturnedList( tList, dataY, yDimensions[0], yDimensions[1]);
@@ -226,9 +227,9 @@ int get3ddata(sciPointObj *pobj)
  * To be deleted
  */
 #if 0
-int get_data_property( sciPointObj * pobj )
+int get_data_property(char *pobjUID)
 {
-    double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, jni_double);
+    double *pdblData = getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double);
 
     if (pdblData == NULL)
     {
@@ -246,11 +247,11 @@ int get_data_property( sciPointObj * pobj )
  * It currently only works for a Polyline object.
  */
 
-int get_data_property( sciPointObj * pobj )
+int get_data_property(char *pobjUID)
 {
   char* type;
 
-  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+  getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
   /*
    * 0 values put within the conditional expressions to prevent calling sciGetEntityType
@@ -259,15 +260,15 @@ int get_data_property( sciPointObj * pobj )
    */
   if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
   {
-    return get3ddata( pobj );
+    return get3ddata(pobjUID);
   }
   else if (strcmp(type, __GO_CHAMP__) == 0)
   {
-    return getchampdata( pobj );
+    return getchampdata(pobjUID);
   }
   else if (strcmp(type, __GO_GRAYPLOT__) == 0)
   {
-    return getgrayplotdata( pobj );
+      return getgrayplotdata(pobjUID);
   }
   else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
   {
@@ -275,7 +276,7 @@ int get_data_property( sciPointObj * pobj )
     int nbCol  =  0 ;
     int status = SET_PROPERTY_ERROR ;
     /* Warning the following function allocate data */
-    double * data = sciGetPoint( pobj, &nbRow, &nbCol ) ;
+    double * data = sciGetPoint( pobjUID, &nbRow, &nbCol ) ;
 
     if (data == NULL && nbRow == 0 && nbCol == 0)
     {
@@ -289,11 +290,11 @@ int get_data_property( sciPointObj * pobj )
       Scierror(999, _("%s: No more memory."), "get_data_property") ;
       status = SET_PROPERTY_ERROR;
     }
-		else if (data == NULL)
-		{
-			Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
-			return -1;
-		}
+    else if (data == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+        return -1;
+    }
     else
     {
       status = sciReturnMatrix( data, nbRow, nbCol ) ;

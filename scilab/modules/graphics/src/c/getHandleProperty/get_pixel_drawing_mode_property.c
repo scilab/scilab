@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,11 +35,11 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_pixel_drawing_mode_property( sciPointObj * pobj )
+int get_pixel_drawing_mode_property(char *pobjUID)
 {
     int iPixelDrawingMode = 0;
     int* pixelDrawingMode = &iPixelDrawingMode;
-    getGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, jni_int, &pixelDrawingMode);
+    getGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, jni_int, &pixelDrawingMode);
 
     if (pixelDrawingMode == NULL)
     {

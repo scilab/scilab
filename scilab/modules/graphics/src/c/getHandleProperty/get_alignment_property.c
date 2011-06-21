@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,12 +30,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_alignment_property( sciPointObj * pobj )
+int get_alignment_property(char *pobjUID)
 {
     int iAlignment = 0;
     int* piAlignment = &iAlignment;
 
-    getGraphicObjectProperty(pobj->UID, __GO_ALIGNMENT__, jni_int, &piAlignment);
+    getGraphicObjectProperty(pobjUID, __GO_ALIGNMENT__, jni_int, &piAlignment);
 
     if (piAlignment == NULL)
     {

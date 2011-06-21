@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tight_limits_property( sciPointObj * pobj )
+int get_tight_limits_property(char *pobjUID)
 {
     int iTightLimits = 0;
     int* piTightLimits = &iTightLimits;
@@ -41,7 +42,7 @@ int get_tight_limits_property( sciPointObj * pobj )
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
+    getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
 
     if (piTightLimits == NULL)
     {

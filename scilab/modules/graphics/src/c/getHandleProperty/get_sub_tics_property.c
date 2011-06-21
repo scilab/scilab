@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_sub_tics_property( sciPointObj * pobj )
+int get_sub_tics_property(char *pobjUID)
 {
     char* type;
     int iSubTicks = 0;
@@ -40,7 +41,7 @@ int get_sub_tics_property( sciPointObj * pobj )
     /*Dj.A 17/12/2003*/
     /* modified jb Silvy 01/2006 */
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
@@ -48,7 +49,7 @@ int get_sub_tics_property( sciPointObj * pobj )
      */
     if (strcmp(type, __GO_AXIS__) == 0)
     {
-        getGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, jni_int, &piSubTicks);
+        getGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, jni_int, &piSubTicks);
 
         if (piSubTicks == NULL)
         {
@@ -64,7 +65,7 @@ int get_sub_tics_property( sciPointObj * pobj )
         int iView = 0;
         int* piView = &iView;
 
-        getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piSubTicks);
+        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, &piSubTicks);
 
         if (piSubTicks == NULL)
         {
@@ -74,13 +75,13 @@ int get_sub_tics_property( sciPointObj * pobj )
 
         sub_ticks[0] = iSubTicks;
 
-        getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piSubTicks);
+        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piSubTicks);
         sub_ticks[1] = iSubTicks;
 
-        getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_SUBTICKS__, jni_int, &piSubTicks);
+        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, &piSubTicks);
         sub_ticks[2] = iSubTicks;
 
-        getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int, &piView);
+        getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, &piView);
 
         if (iView == 1)
         {

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,21 +32,13 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_z_ticks_property( sciPointObj * pobj )
+int get_z_ticks_property(char *pobjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
 
-#if 0
-    if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_ticks");
-        return -1;
-    }
-#endif
-
     /* retrieve number of ticks */
-    getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, &piNbTicks);
 
     if (piNbTicks == NULL)
     {
@@ -63,9 +56,9 @@ int get_z_ticks_property( sciPointObj * pobj )
         char ** labels;
         double * positions;
 
-        getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, &positions);
+        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, &positions);
 
-        getGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, &labels);
+        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, &labels);
 
         if (positions == NULL || labels == NULL)
         {
