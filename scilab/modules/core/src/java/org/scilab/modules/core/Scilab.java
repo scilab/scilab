@@ -195,7 +195,7 @@ public class Scilab {
             TextBox infoBar = ScilabTextBox.createTextBox();
 
             /** Adding content into container */
-            toolBar.setVisible(false); // Enabled in scilab.start
+            //toolBar.setVisible(false); // Enabled in scilab.start
             ScilabConsole.getConsole().addToolBar(toolBar);
             ScilabConsole.getConsole().addMenuBar(menuBar);
             ScilabConsole.getConsole().addInfoBar(infoBar);
