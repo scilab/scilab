@@ -26,49 +26,54 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int sci_historymanager(char *fname,unsigned long fname_len)
+int sci_historymanager(char *fname, unsigned long fname_len)
 {
-    int l1 = 0,n1 = 0,m1 = 0;
+    int l1 = 0, n1 = 0, m1 = 0;
     char *Output = NULL;
 
-    CheckRhs(0,1) ;
-    CheckLhs(0,1) ;
+    CheckRhs(0, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 0)
     {
-        if (historyIsEnabled()) Output = strdup("on");
-        else Output = strdup("off");
+        if (historyIsEnabled())
+            Output = strdup("on");
+        else
+            Output = strdup("off");
     }
     else
     {
         if (GetType(1) == sci_strings)
         {
-            char *param=NULL;
+            char *param = NULL;
 
-            GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-            param=cstk(l1);
+            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+            param = cstk(l1);
 
-            if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
+            if ((strcmp(param, "off") == 0) || (strcmp(param, "on") == 0))
             {
-                if (strcmp(param,"off")==0)
+                if (strcmp(param, "off") == 0)
                 {
-                    if (historyIsEnabled()) TerminateHistoryManager();
+                    if (historyIsEnabled())
+                        TerminateHistoryManager();
                     Output = strdup("off");
                 }
-                else /* 'on' */
+                else            /* 'on' */
                 {
 
                     if (!historyIsEnabled())
                     {
                         char *commentbeginsession = NULL;
+
                         InitializeHistoryManager();
 
                         /* add date & time @ begin session */
-                        commentbeginsession = getCommentDateSession();
+                        commentbeginsession = getCommentDateSession(FALSE);
                         if (commentbeginsession)
                         {
                             appendLineToScilabHistory(commentbeginsession);
-                            FREE(commentbeginsession);commentbeginsession = NULL;
+                            FREE(commentbeginsession);
+                            commentbeginsession = NULL;
                         }
                     }
                     Output = strdup("on");
@@ -76,18 +81,23 @@ int sci_historymanager(char *fname,unsigned long fname_len)
             }
             else
             {
-                Scierror(999,_("%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"),fname,1,"on","off");
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"), fname, 1, "on", "off");
                 return 0;
             }
         }
     }
 
-    n1=1;
-    CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
-    LhsVar(1) = Rhs+1;
-    C2F(putlhsvar)();
-    if (Output) {FREE(Output);Output=NULL;}
+    n1 = 1;
+    CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, (m1 = (int)strlen(Output), &m1), &n1, &Output);
+    LhsVar(1) = Rhs + 1;
+    C2F(putlhsvar) ();
+    if (Output)
+    {
+        FREE(Output);
+        Output = NULL;
+    }
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
