@@ -56,6 +56,19 @@ Compilation:
   This will avoid an important dependency tree for unitary testing.
 
 
+Variable browser:
+=================
+
+* Shows the dimension of the variable by default.
+
+* Automatically resize the variable browser table when docked.
+
+* A tooltip has been added on the type column to display the name of the type.
+
+* A tooltip has been added on the size column to display the size in Bytes
+  (like in previous version of Scilab).
+
+
 History:
 ========
 

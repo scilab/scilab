@@ -31,8 +31,9 @@ extern "C"
 #endif
 }
 using namespace org_scilab_modules_ui_data;
+
 /*--------------------------------------------------------------------------*/
-int sci_browsevar(char *fname,unsigned long fname_len)
+int sci_browsevar(char *fname, unsigned long fname_len)
 {
     int iGlobalVariablesUsed = 0;
     int iGlobalVariablesTotal = 0;
@@ -41,32 +42,44 @@ int sci_browsevar(char *fname,unsigned long fname_len)
     int i = 0;
 
     CheckRhs(0, 0);
-    CheckLhs(0, 1);	
+    CheckLhs(0, 1);
 
     // First get how many global / local variable we have.
-    C2F(getvariablesinfo)(&iLocalVariablesTotal, &iLocalVariablesUsed);
-    C2F(getgvariablesinfo)(&iGlobalVariablesTotal, &iGlobalVariablesUsed);
+    C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
+    C2F(getgvariablesinfo) (&iGlobalVariablesTotal, &iGlobalVariablesUsed);
 
-    char ** pstAllVariableNames = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char ** pstAllVariableVisibility = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int * piAllVariableBytes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    int * piAllVariableTypes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    int nbRows, nbCols;
+    char *sizeStr = NULL;
 
     // for each local variable get informations
-    for (i = 0 ; i < iLocalVariablesUsed ; ++i)
+    for (i = 0; i < iLocalVariablesUsed; ++i)
     {
         // name
-        pstAllVariableNames[i] = getLocalNamefromId(i+1);
+        pstAllVariableNames[i] = getLocalNamefromId(i + 1);
         // type
         getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Bytes used
         piAllVariableBytes[i] = getLocalSizefromId(i);
+
+        // Sizes of the variable
+        getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
+
+        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
+        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+        pstAllVariableSizes[i] = strdup(sizeStr);
+        FREE(sizeStr);
+
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
     }
 
-    // for each global variable get informations
-    for (int j = 0 ; j < iGlobalVariablesUsed ; ++j, ++i)
+    // for each global variable get information
+    for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
     {
         // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
@@ -77,20 +90,30 @@ int sci_browsevar(char *fname,unsigned long fname_len)
         //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Using old stack operations...
         piAllVariableTypes[i] = GetType(C2F(vstk).isiz + 2 + j);
+
+        // Sizes of the variable
+        getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
+        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
+        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+        pstAllVariableSizes[i] = strdup(sizeStr);
+        FREE(sizeStr);
+
         // global / local ??
         pstAllVariableVisibility[i] = strdup("global");
     }
 
     // Launch Java Variable Browser through JNI
-    BrowseVar::openVariableBrowser(getScilabJavaVM(), 
-        pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
-        piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
-        piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-        pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed
-        );
+    BrowseVar::openVariableBrowser(getScilabJavaVM(),
+                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
+// TODO: find out why this is failing
+//    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
     if (piAllVariableBytes)
     {
         FREE(piAllVariableBytes);
@@ -103,8 +126,15 @@ int sci_browsevar(char *fname,unsigned long fname_len)
         piAllVariableTypes = NULL;
     }
 
+    if (pstAllVariableSizes)
+    {
+        FREE(pstAllVariableSizes);
+        pstAllVariableSizes = NULL;
+    }
+
     LhsVar(1) = 0;
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

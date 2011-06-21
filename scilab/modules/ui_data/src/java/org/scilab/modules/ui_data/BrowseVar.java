@@ -26,15 +26,17 @@ public class BrowseVar {
 
     public static final int ICON_COLUMN_INDEX = 0;
     public static final int NAME_COLUMN_INDEX = 1;
-    public static final int BYTES_COLUMN_INDEX = 2;
+    public static final int SIZE_COLUMN_INDEX = 2;
     public static final int TYPE_COLUMN_INDEX = 3;
     public static final int VISIBILITY_COLUMN_INDEX = 4;
+    public static final int BYTES_COLUMN_INDEX = 5;
 
     public static final String[] COLUMNNAMES = new String[]{"", /* Icon */
                                                             Messages.gettext("Name"),
-                                                            Messages.gettext("Bytes"),
+                                                            Messages.gettext("Size"),
                                                             Messages.gettext("Type"),
-                                                            Messages.gettext("Visibility")};
+                                                            Messages.gettext("Visibility"),
+                                                            Messages.gettext("Bytes")};
 
     private static final String ICON_PATH = System.getenv("SCI") + "/modules/ui_data/images/icons/";
 
@@ -99,16 +101,18 @@ public class BrowseVar {
      * @param dataNames : scilab variable name
      * @param dataBytes : scilab variable size in bytes
      * @param dataTypes : scilab variable type (as integer)
+     * @param dataSizes : scilab variable size under the form "XxX"
      * @param dataVisibility : local or global variable
      */
-    public static void openVariableBrowser(String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataVisibility) {
+    public static void openVariableBrowser(String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
             data[i][NAME_COLUMN_INDEX] = dataNames[i];
-            data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
+            data[i][SIZE_COLUMN_INDEX] = dataSizes[i];
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
+            data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
         }
         ScilabVariableBrowser.getVariableBrowser(data);
     }
