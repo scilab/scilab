@@ -30,7 +30,7 @@ public class BrowseVar {
     public static final int TYPE_COLUMN_INDEX = 3;
     public static final int VISIBILITY_COLUMN_INDEX = 4;
 
-    public static final String[] COLUMNNAMES = new String[]{Messages.gettext("Icon"),
+    public static final String[] COLUMNNAMES = new String[]{"", /* Icon */
                                                             Messages.gettext("Name"),
                                                             Messages.gettext("Bytes"),
                                                             Messages.gettext("Type"),

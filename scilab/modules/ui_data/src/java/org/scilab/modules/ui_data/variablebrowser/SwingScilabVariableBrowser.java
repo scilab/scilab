@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableColumn;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -130,6 +131,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.setAutoResizeMode(CENTER);
         table.setAutoCreateRowSorter(true);
 
+        TableColumn column = table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(30);
+        
         table.addMouseListener(new BrowseVarMouseListener());
         // Mouse selection mode
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
