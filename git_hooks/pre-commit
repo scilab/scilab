@@ -26,7 +26,7 @@ then
 	echo "Unable to find xmllint executable on the configuration."
 	echo
 	echo "Please configure it with :"
-	echo "  git config hooks.xmllint C:/path/to/xmllint"
+	echo "  git config --global hooks.xmllint C:/path/to/xmllint"
 	echo
 fi
 
@@ -50,7 +50,7 @@ then
 	echo "Unable to find indent executable on the configuration."
 	echo
 	echo "Please configure it with :"
-	echo "  git config hooks.indent C:/path/to/indent"
+	echo "  git config --global hooks.indent C:/path/to/indent"
 	echo
 fi
 
