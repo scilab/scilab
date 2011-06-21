@@ -71,6 +71,9 @@ import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.RefreshAction;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFilter;
 
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.ScilabTypeEnum;
+
 /**
  * Swing implementation of Scilab Variable browser
  * uses JTable
@@ -126,7 +129,20 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         dataModel = new SwingTableModel<Object>(columnsName);
 
-        table = new JTable(dataModel);
+        table = new JTable(dataModel){    
+                //Implement table cell tool tips.
+                public String getToolTipText(MouseEvent e) {
+                    String tip = null;
+                            java.awt.Point p = e.getPoint();
+                            int rowIndex = rowAtPoint(p);
+                            int colIndex = columnAtPoint(p);
+                            if (colIndex==3) {
+                                
+                                tip = Messages.gettext("Scilab type:")+" "+ScilabTypeEnum.swigToEnum(Integer.parseInt(getValueAt(rowIndex, colIndex).toString()));
+                            }
+                            return tip;
+                }
+            };
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(CENTER);
         table.setAutoCreateRowSorter(true);
