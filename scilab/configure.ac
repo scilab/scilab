@@ -19,6 +19,8 @@ AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.62)
 AC_CONFIG_MACRO_DIR([m4/])
 
+AC_PROG_RANLIB
+
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
@@ -1723,6 +1725,7 @@ modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
 modules/elementary_functions/Makefile
+modules/elementary_functions/src/c/fdlibm/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
 modules/shell/Makefile

@@ -3,6 +3,7 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
+SUBDIRS = src/c/fdlibm
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
