@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_closed_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_closed_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int b = (int)FALSE;
@@ -46,9 +46,12 @@ int set_closed_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 #endif
 
     b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "closed");
-    if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+    if(b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_CLOSED__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_CLOSED__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

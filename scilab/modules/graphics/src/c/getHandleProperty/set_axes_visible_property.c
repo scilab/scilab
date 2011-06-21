@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_axes_visible_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status[3];
   BOOL visible;
@@ -72,9 +72,9 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
       return SET_PROPERTY_ERROR ;
     }
 
-    status[0] = setGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[0], &visible, jni_bool, 1);
-    status[1] = setGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[1], &visible, jni_bool, 1);
-    status[2] = setGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[2], &visible, jni_bool, 1);
+    status[0] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[0], &visible, jni_bool, 1);
+    status[1] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[1], &visible, jni_bool, 1);
+    status[2] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[2], &visible, jni_bool, 1);
 
     if(status[0] == TRUE && status[1] == TRUE && status[2] == TRUE) {
       return SET_PROPERTY_SUCCEED;
@@ -106,7 +106,7 @@ int set_axes_visible_property( sciPointObj * pobj, size_t stackPointer, int valu
         return SET_PROPERTY_ERROR ;
       }
 
-      status[i] = setGraphicObjectProperty(pobj->UID, axesVisiblePropertiesNames[i], &visible, jni_bool, 1);
+      status[i] = setGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], &visible, jni_bool, 1);
 
       if (status[i] != TRUE)
       {

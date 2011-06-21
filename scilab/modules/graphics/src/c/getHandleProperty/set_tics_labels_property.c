@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_labels_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int iNbTicksLabels = 0;
@@ -54,7 +54,7 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNbTicksLabels);
+    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, &piNbTicksLabels);
 
     if (piNbTicksLabels == NULL)
     {
@@ -77,7 +77,7 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
     pAXES_FEATURE(pobj)->nb_tics_labels = nbRow*nbCol ; /* could be increased to support xy_type switching (i.e. xy_type='v' -> xy_type='r') */
 #endif
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow*nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow*nbCol);
 
     destroyStringArray(stringVector, nbRow*nbCol);
 

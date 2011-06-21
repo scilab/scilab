@@ -27,11 +27,11 @@
 #include "setGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_tag_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tag_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     // Tag must be only one character string
 
-    BOOL status = FALSE; 
+    BOOL status = FALSE;
 
     if (valueType != sci_strings)
     {
@@ -45,7 +45,7 @@ int set_tag_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_TAG__, getStringFromStack(stackPointer), jni_string, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_TAG__, getStringFromStack(stackPointer), jni_string, 1);
 
     if (status == TRUE)
     {

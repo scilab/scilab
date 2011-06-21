@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : File used to position viewpoint and rendering zone in the
  * canvas
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,12 +29,12 @@ namespace sciGraphics
 /*--------------------------------------------------------------------------*/
 Camera::Camera( sciPointObj * pObj ) : DrawableObject(pObj)
 {
-  
+
 }
 /*--------------------------------------------------------------------------*/
 Camera::~Camera( void )
 {
-  
+
 }
 /*--------------------------------------------------------------------------*/
 void Camera::setViewingArea( double axesBounds[4], double margins[4] )
@@ -72,13 +72,13 @@ void Camera::setSubwinBox( double bounds[6] )
   boxCenter[1] = (bounds[2] + bounds[3]) / 2.0 ;
   boxCenter[2] = (bounds[4] + bounds[5]) / 2.0 ;
   getCameraImp()->setAxesCenter(boxCenter) ;
-  
+
   double scale[3] ;
   // 1.0 / ( Xmax - Xmin )
   scale[0] = 1.0 / (bounds[1] - bounds[0]) ;
   scale[1] = 1.0 / (bounds[3] - bounds[2]) ;
   scale[2] = 1.0 / (bounds[5] - bounds[4]) ;
-  
+
   getCameraImp()->setAxesNormalizationScale(scale) ;
 
 	if (sciGetIsCubeScaled(m_pDrawed))
@@ -92,7 +92,7 @@ void Camera::setSubwinBox( double bounds[6] )
     double fittingScale[3] = {minScale, minScale, minScale};
     getCameraImp()->setAxesFittingScale(fittingScale);
   }
-  
+
 
   double trans[3];
   // put the min bounds to our origin
@@ -233,7 +233,7 @@ bool Camera::zoomRect(const double corners[4][2])
 
   // get data bounds, already scaled
   sciGetRealDataBounds(m_pDrawed, oldDataBounds);
- 
+
   // first step compute the 4 lines composing the selection area
   // in 3d coordinates
   // the selection area is an infinite cone (tube)
@@ -288,7 +288,7 @@ bool Camera::zoomRect(const double corners[4][2])
     }
   }
 
- 
+
 
   // same with x = Xmax axis
   if (getXaxisIntersections(selectionLines, oldXmax, intersections))
@@ -397,7 +397,7 @@ bool Camera::zoomRect(const double corners[4][2])
   inversePointScale(newXmax, newYmax, newZmax, &newXmax, &newYmax, &newZmax);
   double newDataBounds[6] = {newXmin, newXmax, newYmin, newYmax, newZmin, newZmax};
 
-  sciSetZoomBox(m_pDrawed, newDataBounds);
+  //sciSetZoomBox(m_pDrawed, newDataBounds);
 
   return true;
 
@@ -452,7 +452,7 @@ bool Camera::getXaxisIntersections(const double areaLines[4][2][3], double plane
     {
       return false;
     }
-    
+
     getIntersection(p1, p2, alpha, intersections[i]);
   }
   return true;
@@ -476,7 +476,7 @@ bool Camera::getYaxisIntersections(const double areaLines[4][2][3], double plane
     {
       return false;
     }
-    
+
     getIntersection(p1, p2, alpha, intersections[i]);
   }
   return true;
@@ -501,7 +501,7 @@ bool Camera::getZaxisIntersections(const double areaLines[4][2][3], double plane
       // lines are parallel to the plane
       return false;
     }
-    
+
     getIntersection(p1, p2, alpha, intersections[i]);
   }
   return true;
@@ -823,7 +823,7 @@ int Camera::computeLineRectangleIntersections(const double p1[2], const double p
                                               double intersections[2][2])
 {
   int nbIntersections = 0;
-  
+
   // check intersection with x = xMin
   // Let's I be the intersection of p1, p2 with x = xMin
   // I lies on (p1,p2), so I = p1 + a.p1p2
@@ -962,7 +962,7 @@ void Camera::visualizeZoomingArea(const double intersections[4][2][3])
   // draw viewing area
   for (int i = 0; i < 4; i++)
   {
-    
+
     color++;
 
     double xCoords[4] = {intersectionsView[i][0][0], intersectionsView[i][1][0],
@@ -971,13 +971,13 @@ void Camera::visualizeZoomingArea(const double intersections[4][2][3])
                          intersectionsView[(i + 1)%4][1][1], intersectionsView[(i+1)%4][0][1]};
     double zCoords[4] = {intersectionsView[i][0][2], intersectionsView[i][1][2],
                          intersectionsView[(i + 1)%4][1][2], intersectionsView[(i+1)%4][0][2]};
-    sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
-                                               FALSE, 4, 1, &color, &color, &color,
-                                               &color, &color, FALSE, TRUE, FALSE,
-                                               FALSE);
+//    sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
+//                                               FALSE, 4, 1, &color, &color, &color,
+//                                               &color, &color, FALSE, TRUE, FALSE,
+//                                               FALSE);
     // clipgrf
-    sciSetIsClipping(polyline, 0);
-    
+    //sciSetIsClipping(polyline, 0);
+
 
   }
 }
@@ -996,12 +996,12 @@ void Camera::visualizeIntersection(const double intersections[4][3])
     zCoords[i] = intersections[i][2];
   }
 
-  sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
-                                             TRUE, 4, 1, &color, &color, &mark,
-                                             &color, &color, TRUE, FALSE, TRUE,
-                                             FALSE);
+//  sciPointObj * polyline = ConstructPolyline(m_pDrawed, xCoords, yCoords, zCoords,
+//                                             TRUE, 4, 1, &color, &color, &mark,
+//                                             &color, &color, TRUE, FALSE, TRUE,
+//                                             FALSE);
   // clipgrf
-  sciSetIsClipping(polyline, -1);
+  //sciSetIsClipping(polyline, -1);
 
 }
 /*--------------------------------------------------------------------------*/

@@ -85,7 +85,7 @@ int sci_set(char *fname, unsigned long fname_len)
         size_t l3 = 0 ;
         unsigned long hdl;
         BOOL vis_save = FALSE ;
-        sciPointObj *pobj = NULL;
+        char *pobjUID = NULL;
 
         int valueType = 0 ; /* type of the rhs */
 
@@ -123,7 +123,7 @@ int sci_set(char *fname, unsigned long fname_len)
             }
 
             hdl = (long)*hstk(l1);
-            pobj = sciGetPointerFromHandle(hdl);
+            pobjUID = getObjectFromHandle(hdl);
 
             GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
 
@@ -177,7 +177,7 @@ int sci_set(char *fname, unsigned long fname_len)
             CheckRhs(2,2);
             GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
             hdl = 0;
-            pobj = NULL;
+            pobjUID = NULL;
             valueType = VarType(2) ;
 
             if (valueType == sci_matrix )
@@ -214,17 +214,16 @@ int sci_set(char *fname, unsigned long fname_len)
 
         if ( hdl != 0 )
         {
-            sciPointObj * parentFigure;
-            pobj = sciGetPointerFromHandle(hdl);
+            pobjUID = getObjectFromHandle(hdl);
 
-            if ( pobj == NULL )
+            if ( pobjUID == NULL )
             {
                 Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
                 return 0;
             }
 
             // Only set the property whitout doing anythig else.
-            setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+            setStatus = sciSet(pobjUID, cstk(l2), &l3, valueType, &numrow3, &numcol3);
         }
        else
         {

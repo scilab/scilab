@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_triangles_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type;
     BOOL result;
@@ -60,7 +60,7 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
      * is not done for now.
      * To be implemented/corrected.
      */
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_FEC__) != 0)
     {
@@ -75,7 +75,7 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     }
 
     /* Resizes the triangle array if required */
-    result  = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
+    result  = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, &nbRow, jni_int, 1);
 
     if (result == FALSE)
     {
@@ -85,7 +85,7 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
     pnoeud = getDoubleMatrixFromStack(stackPointer);
 
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
 
     return SET_PROPERTY_SUCCEED;
 }

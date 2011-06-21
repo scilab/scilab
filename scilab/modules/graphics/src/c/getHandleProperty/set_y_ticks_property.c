@@ -40,7 +40,7 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_y_ticks_property(char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL autoTicks;
     BOOL status;
@@ -95,7 +95,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
 
     if (iLogFlag)
     {
@@ -110,20 +110,20 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
         int nbSubticks = 0;
         int *piNbSubTicks = &nbSubticks;
 
-        getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbSubTicks);
+        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbSubTicks);
 
         /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-        nbSubticks = ComputeNbSubTics(pobj, userGrads, 'n', NULL, nbSubticks);
+        nbSubticks = ComputeNbSubTics(pobjUID, userGrads, 'n', NULL, nbSubticks);
 
-        setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
     }
 
     /* Automatic ticks must be first deactivated in order to set user ticks */
     autoTicks = FALSE;
 
-    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
 
     if (status == FALSE)
     {
@@ -143,7 +143,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
         /* Check if we should load LaTex / MathML Java libraries */
         loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
 
-        setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
+        setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
     }
     else
     {

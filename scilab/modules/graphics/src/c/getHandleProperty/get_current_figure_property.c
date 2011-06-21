@@ -37,6 +37,8 @@
 #include "callJoGLView.h"
 
 #include "CurrentFigure.h"
+#include "CurrentObject.h"
+#include "CurrentSubwin.h"
 #include "FigureModel.h"
 #include "AxesModel.h"
 #include "HandleManagement.h"
@@ -100,6 +102,7 @@ int get_current_figure_property(char *pobjUID)
          */
         //sciAddNewHandle(newaxesUID);
         setCurrentObject(newaxesUID);
+        setCurrentSubWin(newaxesUID);
 
     }
 

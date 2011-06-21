@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_interp_color_vector_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int iNumElements = 0;
@@ -53,7 +53,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
     /*
      * A way to display a more explicit message would be to first get the
@@ -79,7 +79,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
 
             copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol );
 
-            status = setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
+            status = setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, tmp, jni_int_vector, nbCol);
 
             if (status == TRUE)
             {

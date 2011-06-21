@@ -42,7 +42,7 @@
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setchampdata( sciPointObj * pobj, AssignedList * tlist )
+int setchampdata( char* pobjUID, AssignedList * tlist )
 {
     int nbRow[4];
     int nbCol[4];
@@ -84,13 +84,13 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
     }
 
     /* Update the champ's number of arrows and dimensions then set the coordinates */
-    setGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
 
-    setGraphicObjectProperty(pobj->UID, __GO_BASE_X__, vx, jni_double_vector, dimensions[0]);
-    setGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, vy, jni_double_vector, dimensions[1]);
-    setGraphicObjectProperty(pobj->UID, __GO_DIRECTION_X__, vfx, jni_double_vector, dimensions[0]*dimensions[1]);
-    setGraphicObjectProperty(pobj->UID, __GO_DIRECTION_Y__, vfy, jni_double_vector, dimensions[0]*dimensions[1]);
+    setGraphicObjectProperty(pobjUID, __GO_BASE_X__, vx, jni_double_vector, dimensions[0]);
+    setGraphicObjectProperty(pobjUID, __GO_BASE_Y__, vy, jni_double_vector, dimensions[1]);
+    setGraphicObjectProperty(pobjUID, __GO_DIRECTION_X__, vfx, jni_double_vector, dimensions[0]*dimensions[1]);
+    setGraphicObjectProperty(pobjUID, __GO_DIRECTION_Y__, vfy, jni_double_vector, dimensions[0]*dimensions[1]);
 
     return SET_PROPERTY_SUCCEED;
 }
@@ -99,7 +99,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 /* F.Leray 29.04.05 */
 /* the grayplot data is now set as a tlist (like for surface and champ objects) */
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
+int setgrayplotdata( char* pobjUID, AssignedList * tlist )
 {
     BOOL result;
 
@@ -146,7 +146,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
     gridSize[3] = 1;
 
     /* Resizes the coordinates arrays if required */
-    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
     if (result == FALSE)
     {
@@ -154,15 +154,15 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
         return SET_PROPERTY_ERROR;
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, nbRow[0]);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, nbRow[1]);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, nbRow[2]*nbCol[2]);
 
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata( sciPointObj * pobj, AssignedList * tlist )
+int set3ddata( char* pobjUID, AssignedList * tlist )
 {
     char* type;
 
@@ -249,7 +249,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         izcol = 0;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
@@ -363,7 +363,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         numElementsArray[1] = m1;
         numElementsArray[2] = m3n * n3n;
 
-        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 3);
 
         if (result == 0)
         {
@@ -381,7 +381,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         gridSize[2] = m2;
         gridSize[3] = n2;
 
-        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
 
         if (result == 0)
         {
@@ -390,9 +390,9 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         }
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1*n1);
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2*n2);
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3*n3);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1*n1);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2*n2);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3*n3);
 
     if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
     {
@@ -411,7 +411,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
      */
     if (isFac3d == 1)
     {
-        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, inputColors, jni_double_vector, nbInputColors);
     }
 
     /* Color vector/matrix dimensions: to be checked for MVC implementation */
@@ -428,8 +428,11 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
  * updates the x-shift coordinate array, if necessary, when polyline point coordinates are set.
  * To be deleted.
  */
-int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
+int CheckAndUpdate_x_shift(char* pobjUID, int numrow)
 {
+// FIXME
+    abort();
+#if 0
     sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
     double * new_bar = NULL ;
 
@@ -453,8 +456,8 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 
     FREE( ppolyline->x_shift ) ;
     ppolyline->x_shift = new_bar ;
-
-    return SET_PROPERTY_SUCCEED ;
+#endif
+    return SET_PROPERTY_ERROR;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -462,8 +465,11 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
  * updates the y-shift coordinate array, if necessary, when polyline point coordinates are set.
  * To be deleted.
  */
-int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
+int CheckAndUpdate_y_shift(char* pobjUID, int numrow)
 {
+// FIXME
+    abort();
+#if 0
     sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
     double * new_bar = NULL ;
 
@@ -487,8 +493,8 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 
     FREE( ppolyline->y_shift ) ;
     ppolyline->y_shift = new_bar ;
-
-    return SET_PROPERTY_SUCCEED ;
+#endif
+    return SET_PROPERTY_ERROR;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -496,8 +502,11 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
  * updates the z-shift coordinate array, if necessary, when polyline point coordinates are set.
  * To be deleted.
  */
-int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
+int CheckAndUpdate_z_shift(char* pobjUID, int numrow)
 {
+// FIXME
+    abort();
+#if 0
     sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
     double * new_bar = NULL ;
 
@@ -521,8 +530,8 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 
     FREE( ppolyline->z_shift ) ;
     ppolyline->z_shift = new_bar ;
-
-    return SET_PROPERTY_SUCCEED ;
+#endif
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/
 /*
@@ -531,10 +540,10 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
  * To be deleted
  */
 #if 0
-int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_data_property( char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     double *pdblValue = getDoubleMatrixFromStack(stackPointer);
-    BOOL bResult = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, pdblValue, jni_double, 1);
+    BOOL bResult = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, pdblValue, jni_double, 1);
 
     if (bResult == FALSE)
     {
@@ -549,11 +558,11 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
  * This version of set_data_property allows to set data within the data model.
  * It currently only works for a Polyline object.
  */
-int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char* type;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     /*
      * The tests using the sciGetEntityType value have been replaced by string comparisons
@@ -577,7 +586,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
             return SET_PROPERTY_ERROR;
         }
 
-        status = setchampdata( pobj, tlist );
+        status = setchampdata( pobjUID, tlist );
         destroyAssignedList( tlist );
         return status;
     }
@@ -601,7 +610,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
             return SET_PROPERTY_ERROR;
         }
 
-        status = setgrayplotdata( pobj, tlist );
+        status = setgrayplotdata( pobjUID, tlist );
         destroyAssignedList( tlist );
         return status;
     }
@@ -639,7 +648,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
             return SET_PROPERTY_ERROR ;
         }
 
-        status = set3ddata( pobj, tlist ) ;
+        status = set3ddata( pobjUID, tlist ) ;
         destroyAssignedList( tlist ) ;
         return status ;
 
@@ -665,7 +674,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
         }
 #endif
 
-        return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
+        return sciSetPoint( pobjUID, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
     }
     return SET_PROPERTY_ERROR ;
 

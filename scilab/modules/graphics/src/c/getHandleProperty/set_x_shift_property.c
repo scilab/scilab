@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_x_shift_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL result;
     double* shiftCoordinates;
@@ -53,7 +53,7 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piNumElements);
 
     if (piNumElements == NULL)
     {
@@ -71,7 +71,7 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
     {
         shiftCoordinates = (double*) getDoubleMatrixFromStack(stackPointer);
 
-        result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 
         /* The FALSE value is used for now to identify a failed memory allocation */
         if (result == FALSE)
@@ -88,7 +88,7 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
          * would probably be better.
          */
         int shiftSet = 0;
-        setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, &shiftSet, jni_double_vector, 1);
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, &shiftSet, jni_double_vector, 1);
     }
 
     return SET_PROPERTY_SUCCEED;

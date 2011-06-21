@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Set the label of anuimenu  
- * 
+ * Set the label of anuimenu
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -15,8 +15,9 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUimenuLabel(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUimenuLabel(char* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
+#if 0
   // Label must be only one character string
   if (valueType != sci_strings) {
     Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "Label");
@@ -44,5 +45,7 @@ int SetUimenuLabel(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
       Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Label");
       return SET_PROPERTY_ERROR;
     }
+#endif
+  return -1;
 }
 

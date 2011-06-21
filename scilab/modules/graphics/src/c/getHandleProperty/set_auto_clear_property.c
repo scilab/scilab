@@ -32,19 +32,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_auto_clear_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 	BOOL status;
 	int b =  (int)FALSE;
     char* objUID = NULL;
 
-	if (pobj == NULL)
+	if (pobjUID == NULL)
 	{
 		objUID = getCurrentSubWin();
 	}
     else
     {
-        objUID = pobj->UID;
+        objUID = pobjUID;
     }
 
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_clear");

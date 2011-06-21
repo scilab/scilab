@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,8 +27,11 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+// FIXME
+    abort();
+#if 0
   if (sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
     {
       if ( (!isParameterStringMatrix( valueType )) && (valueType != sci_list) )
@@ -47,5 +50,8 @@ int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
         }
      return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
     }
+#endif
+
+return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

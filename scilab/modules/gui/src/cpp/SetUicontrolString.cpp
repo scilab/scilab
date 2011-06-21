@@ -21,7 +21,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolString(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
   // Label must be a character string
   if (valueType != sci_strings)
@@ -30,7 +30,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       return SET_PROPERTY_ERROR;
   }
 
-  return setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING__), getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
+  return setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING__), getStringMatrixFromStack(stackPointer), jni_string_vector, nbRow * nbCol);
 
 #if 0
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)

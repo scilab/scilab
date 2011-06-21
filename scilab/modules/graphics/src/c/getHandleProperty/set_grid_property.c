@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_grid_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status[3];
     int i;
@@ -63,7 +63,7 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[0], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], jni_int, &piGridColor);
 
     if (piGridColor == NULL)
     {
@@ -73,16 +73,16 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
     gridStyles[0] = iGridColor;
 
-    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[1], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[1], jni_int, &piGridColor);
     gridStyles[1] = iGridColor;
 
-    getGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[2], jni_int, &piGridColor);
+    getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[2], jni_int, &piGridColor);
     gridStyles[2] = iGridColor;
 
     for (  i = 0 ; i < nbCol ; i++ )
     {
         int curValue = (int) values[i];
-        if ( values[i] < -1 || !sciCheckColorIndex(pobj, curValue) )
+        if ( values[i] < -1 || !sciCheckColorIndex(pobjUID, curValue) )
         {
             Scierror(999, _("Wrong value for '%s' property: Must be -1 or a valid color index.\n"), "grid");
             return SET_PROPERTY_ERROR ;
@@ -90,9 +90,9 @@ int set_grid_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
         gridStyles[i] = curValue ;
     }
 
-    status[0] = setGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[0], &gridStyles[0], jni_int, 1);
-    status[1] = setGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[1], &gridStyles[1], jni_int, 1);
-    status[2] = setGraphicObjectProperty(pobj->UID, gridColorPropertiesNames[2], &gridStyles[2], jni_int, 1);
+    status[0] = setGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], &gridStyles[0], jni_int, 1);
+    status[1] = setGraphicObjectProperty(pobjUID, gridColorPropertiesNames[1], &gridStyles[1], jni_int, 1);
+    status[2] = setGraphicObjectProperty(pobjUID, gridColorPropertiesNames[2], &gridStyles[2], jni_int, 1);
 
     if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
     {

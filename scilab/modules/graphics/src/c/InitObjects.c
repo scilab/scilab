@@ -844,6 +844,9 @@ int InitAxesModel()
   char labelBuffer[LABEL_BUFFER_LENGTH];
   char** stringVector;
 
+  int lineColor = -1;
+  int background = -2;
+
   /*
    * Not needed any more since the MVC equivalent is now used
    * To be deleted
@@ -905,6 +908,10 @@ int InitAxesModel()
   setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_GRID_COLOR__, &gridColor, jni_int, 1);
 
   /* 0: background */
+   setGraphicObjectProperty(paxesmdlUID, __GO_LINE_COLOR__, &lineColor, jni_int, 1);
+   setGraphicObjectProperty(paxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
+
+
   gridPosition = 0;
 
   setGraphicObjectProperty(paxesmdlUID, __GO_GRID_POSITION__, &gridPosition, jni_int, 1);

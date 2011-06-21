@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_direction_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int ticksDirection;
@@ -53,7 +53,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, piYNumberTicks);
 
     if (piYNumberTicks == NULL)
     {
@@ -94,7 +94,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
         }
     }
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
 
     if (status == TRUE)
     {

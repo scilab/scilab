@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_reverse_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_axes_reverse_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status[3];
   char* axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
@@ -59,7 +59,7 @@ int set_axes_reverse_property( sciPointObj * pobj, size_t stackPointer, int valu
   if( nbCol == 1 )
   {
     /* only one parameter to set the value for every axes.*/
-    if ( strcmp( values[0], "off" ) == 0 ) 
+    if ( strcmp( values[0], "off" ) == 0 )
     {
       reverse = FALSE;
     }
@@ -73,9 +73,9 @@ int set_axes_reverse_property( sciPointObj * pobj, size_t stackPointer, int valu
       return SET_PROPERTY_ERROR ; ;
     }
 
-    status[0] = setGraphicObjectProperty(pobj->UID, axesReversePropertiesNames[0], &reverse, jni_bool, 1);
-    status[1] = setGraphicObjectProperty(pobj->UID, axesReversePropertiesNames[1], &reverse, jni_bool, 1);
-    status[2] = setGraphicObjectProperty(pobj->UID, axesReversePropertiesNames[2], &reverse, jni_bool, 1);
+    status[0] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[0], &reverse, jni_bool, 1);
+    status[1] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[1], &reverse, jni_bool, 1);
+    status[2] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[2], &reverse, jni_bool, 1);
 
     if (status[0] == TRUE && status[1] == TRUE && status[2] == TRUE)
     {
@@ -108,7 +108,7 @@ int set_axes_reverse_property( sciPointObj * pobj, size_t stackPointer, int valu
         return SET_PROPERTY_ERROR ;
       }
 
-      status[i] = setGraphicObjectProperty(pobj->UID, axesReversePropertiesNames[i], &reverse, jni_bool, 1);
+      status[i] = setGraphicObjectProperty(pobjUID, axesReversePropertiesNames[i], &reverse, jni_bool, 1);
 
       if(status[i] != TRUE)
       {

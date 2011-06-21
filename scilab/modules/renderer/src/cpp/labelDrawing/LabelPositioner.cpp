@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * desc : Class specialized in positioning labels 
- * 
+ * desc : Class specialized in positioning labels
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -50,7 +50,7 @@ bool LabelPositioner::setLabelPosition(void)
     double newPos[3];
     if (getAutoPosition(newPos)) {
       // position could be compute succesfully
-      sciSetTextPos(pLabel, newPos[0], newPos[1], newPos[2]);
+        // sciSetTextPos(pLabel, newPos[0], newPos[1], newPos[2]);
       return true;
     }
     else
@@ -66,7 +66,7 @@ void LabelPositioner::setLabelOrientation(void)
   sciPointObj * pLabel = m_pLabel->getDrawedObject();
   if (sciGetAutoRotation(pLabel))
   {
-    sciSetFontOrientation(pLabel, getAutoOrientation());
+      //sciSetFontOrientation(pLabel, getAutoOrientation());
   }
 }
 /*------------------------------------------------------------------------------------------*/
@@ -81,7 +81,7 @@ void LabelPositioner::getTextDirections(double widthVect[3], double heightVect[3
   sciPointObj * pLabel = m_pLabel->getDrawedObject();
 
   // set default position for text
-  sciSetTextPos(pLabel, 1.0, 1.0, 1.0);
+  //sciSetTextPos(pLabel, 1.0, 1.0, 1.0);
 
   getTextDrawer(pLABEL_FEATURE(pLabel)->text)->getBoundingRectangle(corners[0], corners[1],
                                                                     corners[2], corners[3]);
@@ -135,7 +135,7 @@ void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], doubl
    *    /    \
    *   /bottom\
    */
- 
+
   double localDisplacement[3];
   if (ticksDirPix[0] > Abs(ticksDirPix[1]))
   {
@@ -156,7 +156,7 @@ void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], doubl
     localDisplacement[0] = -0.5;
     localDisplacement[1] = 1.0;
     localDisplacement[2] = 0.0;
-    
+
   }
   else
   {
@@ -164,7 +164,7 @@ void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], doubl
     localDisplacement[0] = -0.5;
     localDisplacement[1] = 0.0;
     localDisplacement[2] = 0.0;
-    
+
   }
 
   //rotate2D(localDisplacement, origin, -textAngle, localDisplacement);

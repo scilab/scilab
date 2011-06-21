@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_alignment_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_alignment_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int alignment;
@@ -67,7 +67,7 @@ int set_alignment_property( sciPointObj * pobj, size_t stackPointer, int valueTy
         return SET_PROPERTY_ERROR ;
     }
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_ALIGNMENT__, &alignment, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_ALIGNMENT__, &alignment, jni_int, 1);
 
     if (status == TRUE)
     {

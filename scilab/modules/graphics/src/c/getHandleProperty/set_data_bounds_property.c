@@ -84,7 +84,7 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
 }
 
 /*------------------------------------------------------------------------*/
-int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_data_bounds_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
 
@@ -109,7 +109,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
     }
 
     /* To be implemented within the MVC */
-    if (!checkDataBounds(pobj, xMin, xMax, yMin, yMax, zMin, zMax))
+    if (!checkDataBounds(pobjUID, xMin, xMax, yMin, yMax, zMin, zMax))
     {
         return SET_PROPERTY_ERROR;
     }
@@ -122,7 +122,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
         double* tmpBounds;
 
         /* To get the Z coordinates */
-        getGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, jni_double_vector, &tmpBounds);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, &tmpBounds);
 
         if (tmpBounds == NULL)
         {
@@ -137,14 +137,14 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
         bounds[4] = tmpBounds[4];
         bounds[5] = tmpBounds[5];
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
+        status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }
     else
     {
         /* 3D */
         double bounds[6] = {xMin, xMax, yMin, yMax, zMin, zMax} ;
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
+        status = setGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, bounds, jni_double_vector, 6);
     }
 
     /* To be implemented using the MVC framework */

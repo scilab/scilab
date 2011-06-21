@@ -14,14 +14,14 @@
 
 #include "GetUiobjectForegroundColor.hxx"
 
-int GetUiobjectForegroundColor(sciPointObj* sciObj)
+int GetUiobjectForegroundColor(char* sciObjUID)
 {
     double *tmp;
     int status = 0;
 
-    getGraphicObjectProperty(sciObj->UID,  const_cast<char*>(__GO_UI_FOREGROUNDCOLOR__), jni_double_vector, (void **) &tmp);
+    getGraphicObjectProperty(sciObjUID,  const_cast<char*>(__GO_UI_FOREGROUNDCOLOR__), jni_double_vector, (void **) &tmp);
 
-    if (tmp ==NULL)
+    if (tmp == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ForegroundColor");
         return FALSE;

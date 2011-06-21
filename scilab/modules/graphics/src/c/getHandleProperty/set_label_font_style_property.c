@@ -4,11 +4,11 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -36,7 +36,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int set_labels_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_labels_font_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
    BOOL status;
    int fontStyle;
@@ -67,7 +67,7 @@ int set_labels_font_style_property( sciPointObj * pobj, size_t stackPointer, int
 
     fontStyle = (int) getDoubleFromStack(stackPointer);
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
 
     if (status == TRUE)
     {

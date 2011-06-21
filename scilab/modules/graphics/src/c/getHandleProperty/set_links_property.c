@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_links_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     char* type;
@@ -51,7 +51,7 @@ int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
+    getGraphicObjectProperty(pobjUID, __GO_LINKS_COUNT__, jni_int, &piLinksCount);
 
     if (piLinksCount == NULL)
     {
@@ -73,16 +73,16 @@ int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &parentAxes);
 
     status = TRUE;
 
-    for (i=0; i<iLinksCount; i++)
+    for (i = 0 ; i < iLinksCount ; i++)
     {
         char* polylineParentAxes;
-        sciPointObj* polylineObject = sciGetPointerFromHandle( getHandleFromStack( stackPointer+i ) );
+        char* polylineObjectUID = getObjectFromHandle( getHandleFromStack( stackPointer+i ) );
 
-        getGraphicObjectProperty(polylineObject->UID, __GO_TYPE__, jni_string, &type);
+        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, &type);
 
         if (strcmp(type, __GO_POLYLINE__) != 0)
         {
@@ -91,9 +91,9 @@ int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, 
             break;
         }
 
-        links[i] = polylineObject->UID;
+        links[i] = polylineObjectUID;
 
-        getGraphicObjectProperty(pobj->UID, __GO_PARENT_AXES__, jni_string, &polylineParentAxes);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &polylineParentAxes);
 
         if (strcmp(polylineParentAxes, parentAxes) != 0)
         {
@@ -109,7 +109,7 @@ int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_LINKS__, links, jni_string_vector, iLinksCount);
+    status = setGraphicObjectProperty(pobjUID, __GO_LINKS__, links, jni_string_vector, iLinksCount);
 
     FREE(links);
 

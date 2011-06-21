@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_info_message_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status;
   if ( !isParameterStringMatrix( valueType ) )
@@ -49,7 +49,7 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
 #endif
 
-  status = setGraphicObjectProperty(pobj->UID, __GO_INFO_MESSAGE__, getStringFromStack( stackPointer ), jni_string, 1);
+  status = setGraphicObjectProperty(pobjUID, __GO_INFO_MESSAGE__, getStringFromStack( stackPointer ), jni_string, 1);
 
   if (status == TRUE)
   {
@@ -64,9 +64,9 @@ int set_info_message_property( sciPointObj * pobj, size_t stackPointer, int valu
   /* deactivated for now since it involves drawing operations, to be implemented */
 #if 0
   /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  status = sciSetInfoMessage( pobj, getStringFromStack( stackPointer ) ) ;
-  enableFigureSynchronization(pobj);
+  //disableFigureSynchronization(pobj);
+  status = sciSetInfoMessage( pobjUID, getStringFromStack( stackPointer ) ) ;
+  //enableFigureSynchronization(pobj);
 
 	/* return set property unchanged since repaint is not really needed */
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);

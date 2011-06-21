@@ -251,7 +251,7 @@ SetPropertyHashTable * createScilabSetHashTable( void )
 
 }
 /*--------------------------------------------------------------------------*/
-int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
+int callSetProperty(char* pObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )
 {
  setPropertyFunc accessor = searchSetHashtable( setHashTable, propertyName ) ;
   if ( accessor == NULL )
@@ -259,7 +259,7 @@ int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int
     Scierror(999,_("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
-  return accessor( pObj, stackPointer, valueType, nbRow, nbCol ) ;
+  return accessor(pObjUID, stackPointer, valueType, nbRow, nbCol ) ;
 }
 /*--------------------------------------------------------------------------*/
 void destroyScilabSetHashTable( void )

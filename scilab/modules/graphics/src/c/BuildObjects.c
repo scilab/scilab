@@ -1027,382 +1027,367 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 /**
  * Create a polyline but does not add it to Scilab hierarchy
  */
-sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
-                               int closed, int n1,int plot, int *foreground, int *background,
-                               int *mark_style, int *mark_foreground, int *mark_background,
-                               BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+char* allocatePolyline(char* pparentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
+                       int closed, int n1,int plot, int *foreground, int *background,
+                       int *mark_style, int *mark_foreground, int *mark_background,
+                       BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
-  sciPointObj * pobj = NULL;
-  int i = 0;
-  BOOL result;
-  char* type;
-  char* polylineID;
-  double barWidth;
-  double arrowSizeFactor;
-  double* clipRegion;
-  double* dataVector;
-  int clipState = 0;
-  int *piClipState = &clipState;
-  int lineClosed;
-  int numElementsArray[2];
-  int polylineStyle;
-  int visible = 0;
-  int* piVisible = &visible;
-  int zCoordinatesSet;
-  int* tmp;
-  int clipRegionSet = 0;
-  int *piClipRegionSet = &clipRegionSet;
+    char* pobjUID = NULL;
+    int i = 0;
+    BOOL result;
+    char* type;
+    char* polylineID;
+    double barWidth;
+    double arrowSizeFactor;
+    double* clipRegion;
+    double* dataVector;
+    int clipState = 0;
+    int *piClipState = &clipState;
+    int lineClosed;
+    int numElementsArray[2];
+    int polylineStyle;
+    int visible = 0;
+    int* piVisible = &visible;
+    int zCoordinatesSet;
+    int* tmp;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
 
 
-  getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &type);
 
-  if (strcmp(type, __GO_AXES__) != 0)
-  {
-    Scierror(999, _("The parent has to be a SUBWIN\n"));
-    return (sciPointObj *) NULL;
-  }
+    if (strcmp(type, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return NULL;
+    }
 
-  if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-  {
-    return NULL;
-  }
+    pobjUID = (char*) createGraphicObject(__GO_POLYLINE__);
 
-  pobj->UID = (char*) createGraphicObject(__GO_POLYLINE__);
+    polylineID = (char*) createDataObject(pobjUID, __GO_POLYLINE__);
 
-  polylineID = (char*) createDataObject(pobj->UID, __GO_POLYLINE__);
+    if (polylineID == NULL)
+    {
+        deleteGraphicObject(pobjUID);
+        return NULL;
+    }
 
-  if (polylineID == NULL)
-  {
-    deleteGraphicObject(pobj->UID);
-    FREE(pobj);
-    return (sciPointObj*) NULL;
-  }
-
-  /* To be deleted */
+    /* To be deleted */
 #if 0
-  /* Create the default relationShip */
-  createDefaultRelationShip(pobj);
+    /* Create the default relationShip */
+    createDefaultRelationShip(pobj);
 #endif
 
-  /* To be deleted */
+    /* To be deleted */
 #if 0
-  sciSetParent( pobj, pparentsubwin );
+    sciSetParent( pobj, pparentsubwin );
 #endif
 
-  /*
-   * Sets the polyline's parent in order to initialize the former's Contoured properties
-   * with the latter's values (sciInitGraphicContext call below)
-   */
-  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
-
-
-  barWidth = 0.0;
-  setGraphicObjectProperty(pobj->UID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
-
-  /* To be implemented */
-#if 0
-  pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
-  pPOLYLINE_FEATURE (pobj)->callbacklen = 0;
-  pPOLYLINE_FEATURE (pobj)->callbackevent = 100;
-#endif
-
-  getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
-
-  setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-
-  /* To be deleted, see the MVC corresponding calls below */
-#if 0
-  pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
-  sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
-  sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-#endif
-
-  /* Clip state and region */
-  /* To be checked for consistency */
-
-  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-  setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
-
-  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
-  setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
-
-  getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
-  setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
-
-
-  arrowSizeFactor = 1.0;
-  setGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
-
-  /* To be implemented */
-#if 0
-  pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
-#endif
-
-
-  /*
-   * First element: number of gons (always 1 for a Polyline)
-   * Second one: number of vertices composing the Polyline
-   */
-  numElementsArray[0] = 1;
-  numElementsArray[1] = n1;
-
-  /* Data */
-  if ( n1 != 0 )
-  {
     /*
-     * Sets the number of elements (vertices composing the polyline) and allocates the coordinates array
-     * The FALSE value is used to identify a failed memory allocation for now.
+     * Sets the polyline's parent in order to initialize the former's Contoured properties
+     * with the latter's values (sciInitGraphicContext call below)
      */
-    result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    if (result == FALSE)
+
+    barWidth = 0.0;
+    setGraphicObjectProperty(pobjUID, __GO_BAR_WIDTH__, &barWidth, jni_double, 1);
+
+    /* To be implemented */
+#if 0
+    pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
+    pPOLYLINE_FEATURE (pobj)->callbacklen = 0;
+    pPOLYLINE_FEATURE (pobj)->callbackevent = 100;
+#endif
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
+
+
+    /* To be deleted, see the MVC corresponding calls below */
+#if 0
+    pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
+    sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
+    sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+#endif
+
+    /* Clip state and region */
+    /* To be checked for consistency */
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+
+    arrowSizeFactor = 1.0;
+    setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
+
+    /* To be implemented */
+#if 0
+    pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
+#endif
+
+
+    /*
+     * First element: number of gons (always 1 for a Polyline)
+     * Second one: number of vertices composing the Polyline
+     */
+    numElementsArray[0] = 1;
+    numElementsArray[1] = n1;
+
+    /* Data */
+    if ( n1 != 0 )
     {
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
+        /*
+         * Sets the number of elements (vertices composing the polyline) and allocates the coordinates array
+         * The FALSE value is used to identify a failed memory allocation for now.
+         */
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
 
-    dataVector = MALLOC(3*n1*sizeof(double));
-
-    if (dataVector == NULL)
-    {
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
-
-    if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
-    {
-        for (i = 0; i < n1; i++)
+        if (result == FALSE)
         {
-            dataVector[i] = pvecx[i];
-            dataVector[n1+i] = pvecy[i];
+            deleteGraphicObject(pobjUID);
+            deleteDataObject(pobjUID);
+            return NULL;
         }
+
+        dataVector = MALLOC(3*n1*sizeof(double));
+
+        if (dataVector == NULL)
+        {
+            deleteGraphicObject(pobjUID);
+            deleteDataObject(pobjUID);
+            return NULL;
+        }
+
+        if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
+        {
+            for (i = 0; i < n1; i++)
+            {
+                dataVector[i] = pvecx[i];
+                dataVector[n1+i] = pvecy[i];
+            }
+        }
+        else
+        {
+            for (i = 0; i < n1; i++)
+            {
+                dataVector[i] = 0.0;
+                dataVector[n1+i] = 0.0;
+            }
+        }
+
+        /**DJ.Abdemouche 2003**/
+        if (pvecz == NULL)
+        {
+            for (i = 0; i < n1; i++)
+            {
+                dataVector[2*n1+i] = 0.0;
+            }
+
+            zCoordinatesSet = 0;
+        }
+        else
+        {
+            for (i = 0; i < n1; i++)
+            {
+                dataVector[2*n1+i] = pvecz[i];
+            }
+
+            zCoordinatesSet = 1;
+        }
+
+        /*
+         * We could probably do without the dataVector copy by individually setting
+         * x, y or z coordinates, and initializing coordinates to 0 during allocation
+         * to ensure consistency
+         */
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, dataVector, jni_double, n1);
+
+        FREE(dataVector);
+
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_double, n1);
     }
     else
     {
-        for (i = 0; i < n1; i++)
+        /* 0 points */
+        result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+
+        if (result == FALSE)
         {
-            dataVector[i] = 0.0;
-            dataVector[n1+i] = 0.0;
+            deleteGraphicObject(pobjUID);
+            deleteDataObject(pobjUID);
+            return NULL;
         }
     }
 
-    /**DJ.Abdemouche 2003**/
-    if (pvecz == NULL)
+    if (closed > 0)
     {
-        for (i = 0; i < n1; i++)
-        {
-            dataVector[2*n1+i] = 0.0;
-        }
-
-        zCoordinatesSet = 0;
+        lineClosed = 1;
     }
     else
     {
-        for (i = 0; i < n1; i++)
-        {
-            dataVector[2*n1+i] = pvecz[i];
-        }
-
-        zCoordinatesSet = 1;
+        lineClosed = 0;
     }
 
+    setGraphicObjectProperty(pobjUID, __GO_CLOSED__, &lineClosed, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_POLYLINE_STYLE__, &plot, jni_int, 1);
+
     /*
-     * We could probably do without the dataVector copy by individually setting
-     * x, y or z coordinates, and initializing coordinates to 0 during allocation
-     * to ensure consistency
+     * Initializes the contour properties (background, foreground, etc)
+     * to the default values (those of the parent Axes).
      */
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, dataVector, jni_double, n1);
 
-    FREE(dataVector);
+    // FIXME ???
+    //sciInitGraphicContext(pobj);
 
-    setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_double, n1);
-  }
-  else
-  {
-      /* 0 points */
-      result = setGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
-
-      if (result == FALSE)
-      {
-          deleteGraphicObject(pobj->UID);
-          deleteDataObject(pobj->UID);
-          FREE(pobj);
-          return (sciPointObj *) NULL;
-      }
-  }
-
-  if (closed > 0)
-  {
-      lineClosed = 1;
-  }
-  else
-  {
-      lineClosed = 0;
-  }
-
-  setGraphicObjectProperty(pobj->UID, __GO_CLOSED__, &lineClosed, jni_bool, 1);
-  setGraphicObjectProperty(pobj->UID, __GO_POLYLINE_STYLE__, &plot, jni_int, 1);
-
-  /*
-   * Initializes the contour properties (background, foreground, etc)
-   * to the default values (those of the parent Axes).
-   */
-
-  sciInitGraphicContext(pobj);
-
-  /* To be deleted */
+    /* To be deleted */
 #if 0
-  if (sciInitGraphicContext (pobj) == -1)
-  {
-    FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-    FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-    FREE(pPOLYLINE_FEATURE(pobj));
-    FREE(pobj);
-    return (sciPointObj *) NULL;
-  }
+    if (sciInitGraphicContext (pobj) == -1)
+    {
+        FREE(pPOLYLINE_FEATURE (pobj)->pvy);
+        FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+        FREE(pPOLYLINE_FEATURE(pobj));
+        FREE(pobj);
+        return NULL;
+    }
 #endif
 
   /* colors and marks setting */
-  setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &ismark, jni_bool, 1);
-  setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
-  setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &ismark, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
-  /* shading interpolation vector and mode */
-  setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_MODE__, &isinterpshaded, jni_bool, 1);
+    /* shading interpolation vector and mode */
+    setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_MODE__, &isinterpshaded, jni_bool, 1);
 
-  if(foreground != NULL)
-  {
-      setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+    if(foreground != NULL)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, foreground, jni_int, 1);
 
-      /* To be fully implemented within the MVC framework since it performs color range checks */
+        /* To be fully implemented within the MVC framework since it performs color range checks */
 #if 0
-      sciInitForeground(pobj,(*foreground));
+        sciInitForeground(pobj,(*foreground));
 #endif
-  }
+    }
 
-  if(background != NULL){
-      if(isinterpshaded == TRUE)
-      { /* 3 or 4 values to store */
+    if(background != NULL){
+        if(isinterpshaded == TRUE)
+        { /* 3 or 4 values to store */
 
-          setGraphicObjectProperty(pobj->UID, __GO_INTERP_COLOR_VECTOR__, background, jni_int_vector, n1);
+            setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, background, jni_int_vector, n1);
 
-          /* To be deleted */
+            /* To be deleted */
 #if 0
-          sciSetInterpVector(pobj,n1,background);
+            sciSetInterpVector(pobj,n1,background);
 #endif
-      }
-      else
-      {
-          setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, background, jni_int, 1);
+        }
+        else
+        {
+            setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, background, jni_int, 1);
 
-    /* To be fully implemented within the MVC framework since it performs color range checks */
+            /* To be fully implemented within the MVC framework since it performs color range checks */
 #if 0
-          sciInitBackground(pobj,(*background));
+            sciInitBackground(pobj,(*background));
 #endif
-      }
-  }
+        }
+    }
 
-  if(mark_style != NULL)
-  {
-      /* This does use the MVC */
-      sciInitMarkStyle(pobj,(*mark_style));
-  }
-
-  if(mark_foreground != NULL)
-  {
-    setGraphicObjectProperty(pobj->UID, __GO_MARK_FOREGROUND__, mark_foreground, jni_int, 1);
-
-    /* To be fully implemented within the MVC framework since it performs color range checks */
+    if(mark_style != NULL)
+    {
+        /* This does use the MVC */
 #if 0
-    sciInitMarkForeground(pobj,(*mark_foreground));
+        sciInitMarkStyle(pobj,(*mark_style));
 #endif
-  }
+    }
 
-  if(mark_background != NULL)
-  {
-    setGraphicObjectProperty(pobj->UID, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
+    if(mark_foreground != NULL)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, mark_foreground, jni_int, 1);
 
-    /* To be fully implemented within the MVC framework since it performs color range checks */
+        /* To be fully implemented within the MVC framework since it performs color range checks */
 #if 0
-    sciInitMarkBackground(pobj,(*mark_background));
+        sciInitMarkForeground(pobj,(*mark_foreground));
 #endif
-  }
+    }
 
-  /* no sons for now */
-  /* To be deleted */
+    if(mark_background != NULL)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
+
+        /* To be fully implemented within the MVC framework since it performs color range checks */
 #if 0
-  sciInitSelectedSons( pobj ) ;
-
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
+        sciInitMarkBackground(pobj,(*mark_background));
 #endif
+    }
 
-  /* Parent reset to the null object */
-  setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
-
-  visible = 1;
-  setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
-
-  /*
-   * Deactivated for now since not fully implemented yet by the MVC
-   * To be implemented
-   */
+    /* no sons for now */
+    /* To be deleted */
 #if 0
-  initUserData(pobj);
+    sciInitSelectedSons( pobj ) ;
+
+    sciGetRelationship(pobj)->psons        = NULL ;
+    sciGetRelationship(pobj)->plastsons    = NULL ;
+    sciGetRelationship(pobj)->pSelectedSon = NULL ;
 #endif
 
-  /*
-   * To be deleted
-   */
-  pobj->pObservers = NULL;
+    /* Parent reset to the null object */
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-  pobj->pDrawer = NULL;
+    visible = 1;
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
-  return pobj;
+    /*
+     * Deactivated for now since not fully implemented yet by the MVC
+     * To be implemented
+     */
+#if 0
+    initUserData(pobj);
+#endif
 
+    return pobjUID;
 }
 /*---------------------------------------------------------------------------------*/
 /**ConstructPolyline
  * This function creates  Polyline 2d structure
  */
-sciPointObj *
-ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+char *ConstructPolyline (char *pparentsubwinUID, double *pvecx, double *pvecy, double *pvecz,
 		   int closed, int n1,int plot, int *foreground, int *background,
 		   int *mark_style, int *mark_foreground, int *mark_background,
-		   BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+                         BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
-  sciPointObj * pobj = allocatePolyline(pparentsubwin, pvecx, pvecy, pvecz, closed, n1, plot,
-                                        foreground, background, mark_style, mark_foreground, mark_background,
-                                        isline, isfilled, ismark, isinterpshaded);
+    char* pobjUID = allocatePolyline(pparentsubwinUID, pvecx, pvecy, pvecz, closed, n1, plot,
+                                     foreground, background, mark_style, mark_foreground, mark_background,
+                                     isline, isfilled, ismark, isinterpshaded);
 
-  if (pobj == NULL)
-  {
-    return NULL;
-  }
+    if (pobjUID == NULL)
+    {
+        return NULL;
+    }
 
-  /* allocatePolyline created a "fake" relationship, destroy it */
-  /*
-   * Deactivated since the sciPolyline struct is not used anymore
-   * and sciStandardBuildOperations uses the obsolete C hierarchical
-   * relationships.
-   * The operations still relevant are performed below
-   * (sciStandardBuildOperations should be updated as to include them).
-   */
+    /* allocatePolyline created a "fake" relationship, destroy it */
+    /*
+     * Deactivated since the sciPolyline struct is not used anymore
+     * and sciStandardBuildOperations uses the obsolete C hierarchical
+     * relationships.
+     * The operations still relevant are performed below
+     * (sciStandardBuildOperations should be updated as to include them).
+     */
 #if 0
-  FREE(pobj->relationShip);
+    FREE(pobj->relationShip);
 
-  if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
-  {
-    FREE(pobj->pfeatures);
-    FREE(pobj);
-    return NULL;
-  }
+    if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
+    {
+        FREE(pobj->pfeatures);
+        FREE(pobj);
+        return NULL;
+    }
 #endif
 
 
@@ -1414,14 +1399,13 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 //    return NULL;
 //  }
 
-  /*
-   * Sets the Axes as the polyline's parent and adds the polyline to
-   * its parent's list of children.
-   */
-  setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    /*
+     * Sets the Axes as the polyline's parent and adds the polyline to
+     * its parent's list of children.
+     */
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-  return pobj;
-
+    return pobjUID;
 }
 
 

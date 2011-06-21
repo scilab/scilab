@@ -241,7 +241,7 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
     }
   }
 
-  sciSetRealDataBounds(m_pDrawed, bestBounds);
+  //sciSetRealDataBounds(m_pDrawed, bestBounds);
 
 }
 /*------------------------------------------------------------------------------------------*/
@@ -263,11 +263,11 @@ void ConcreteDrawableSubwin::updateScale(void)
 
   // update the data by just calling
   // display on the invisible window
-  sciSetXorMode(parentFigure, getPixelModeIndex("noop"));
-  sciSetVisibility(m_pDrawed, FALSE);
-  sciDrawSingleObj(m_pDrawed);
-  sciSetVisibility(m_pDrawed, visible);
-  sciSetXorMode(parentFigure, pixelMode);
+  //sciSetXorMode(parentFigure, getPixelModeIndex("noop"));
+  //sciSetVisibility(m_pDrawed, FALSE);
+  //sciDrawSingleObj(m_pDrawed);
+  //sciSetVisibility(m_pDrawed, visible);
+  //sciSetXorMode(parentFigure, pixelMode);
 }
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::getNbXTicks(void)

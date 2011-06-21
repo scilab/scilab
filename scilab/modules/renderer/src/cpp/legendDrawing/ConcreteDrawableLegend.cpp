@@ -166,7 +166,7 @@ namespace sciGraphics
 		if (updateLegend()) return;
 
 		// just do that in order to be able to retrieve bounding box
-		sciSetTextPos(m_pNames, 1.0, 1.0, 1.0);
+		//sciSetTextPos(m_pNames, 1.0, 1.0, 1.0);
 		// line parameters may have changed
 		setLinesParameters();
 		// Box parameters may have changed
@@ -224,20 +224,21 @@ namespace sciGraphics
 			0.0, 0.0, TRUE, NULL, FALSE, &foreground, &background,
 			FALSE, FALSE, FALSE, ALIGN_LEFT);
 
-		sciInitFontSize(m_pNames, sciGetFontSize(m_pDrawed));
-		sciInitFontForeground(m_pNames, sciGetFontForeground(m_pDrawed));
-		sciInitFontBackground(m_pNames, sciGetBackground(m_pDrawed));
-		sciSetFontStyle(m_pNames, sciGetFontStyle(m_pDrawed));
-		sciSetFontOrientation(m_pNames, 0.0); // always horizontal
-		sciInitIsClipping(m_pNames, sciGetIsClipping(m_pDrawed));
-		sciSetClipping(m_pNames, sciGetClipping(m_pDrawed));
+		//sciInitFontSize(m_pNames, sciGetFontSize(m_pDrawed));
+		//sciInitFontForeground(m_pNames, sciGetFontForeground(m_pDrawed));
+		//sciInitFontBackground(m_pNames, sciGetBackground(m_pDrawed));
+		//sciSetFontStyle(m_pNames, sciGetFontStyle(m_pDrawed));
+		//sciSetFontOrientation(m_pNames, 0.0); // always horizontal
+		//sciInitIsClipping(m_pNames, sciGetIsClipping(m_pDrawed));
+		//sciSetClipping(m_pNames, sciGetClipping(m_pDrawed));
 
-		sciSetTextPos(m_pNames, 1.0, 1.0, 1.0);
+		//sciSetTextPos(m_pNames, 1.0, 1.0, 1.0);
 	}
 	/*---------------------------------------------------------------------------------*/
 	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::setBoxParameters(void)
 	{
+#if 0
 		// set same mark parameters as the polyline
 		sciInitMarkSize(m_aBox, sciGetMarkSize(m_pDrawed));
 		sciInitMarkSizeUnit(m_aBox, sciGetMarkSizeUnit(m_pDrawed));
@@ -256,7 +257,7 @@ namespace sciGraphics
 		// use clip state of legend object
 		sciInitIsClipping(m_aBox, sciGetIsClipping(m_pDrawed));
 		sciSetClipping(m_aBox, sciGetClipping(m_pDrawed));
-
+#endif
 
 
 	}
@@ -273,8 +274,8 @@ namespace sciGraphics
 
 		for (int i = 0; i < nbLegends; i++)
 		{
-			m_aLines[i] = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 0, 4, 1,
-				NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE);
+//			m_aLines[i] = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 0, 4, 1,
+//				NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE);
 		}
 
 	}
@@ -285,8 +286,8 @@ namespace sciGraphics
 		destroyBox();
 		sciPointObj * parentSubwin = sciGetParentSubwin(m_pDrawed);
 		double defaultCoords[4] = {0.0, 0.0, 0.0, 0.0};
-		m_aBox = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 1, 4, 1,
-			NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE);
+//		m_aBox = allocatePolyline(parentSubwin, defaultCoords, defaultCoords, defaultCoords, 1, 4, 1,
+//			NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE);
 
 	}
 
@@ -643,7 +644,7 @@ namespace sciGraphics
 		// convert coordinates to scene ones
 		getCamera()->getSceneCoordinates(finalCoord, finalCoord);
 
-		sciSetTextPos(m_pNames, finalCoord[0], finalCoord[1], finalCoord[2]);
+		//sciSetTextPos(m_pNames, finalCoord[0], finalCoord[1], finalCoord[2]);
 
 	}
 	/*---------------------------------------------------------------------------------*/

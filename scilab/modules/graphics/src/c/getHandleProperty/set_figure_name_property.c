@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_name_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
 
@@ -50,7 +50,7 @@ int set_figure_name_property( sciPointObj * pobj, size_t stackPointer, int value
     }
 #endif
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_NAME__, getStringFromStack( stackPointer ), jni_string, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_NAME__, getStringFromStack( stackPointer ), jni_string, 1);
 
     if(status == TRUE)
     {

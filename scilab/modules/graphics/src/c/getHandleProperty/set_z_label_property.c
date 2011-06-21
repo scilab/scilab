@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_label_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_label_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type;
 
@@ -45,7 +45,7 @@ int set_z_label_property( sciPointObj * pobj, size_t stackPointer, int valueType
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {

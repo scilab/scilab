@@ -446,8 +446,11 @@ void Objplot3d ( char    * fname ,
     int flagcolor;
     long *hdltab;
     int i;
-    sciPointObj *psubwin = NULL, *pobj = NULL;
-    sciPointObj * parentFigure = NULL;
+
+    char *psubwinUID = NULL;
+    char *pobjUID = NULL;
+    char *parentFigureUID = NULL;
+
     double drect[6];
     double rotationAngles[2];
     double* dataBounds;
@@ -495,8 +498,8 @@ void Objplot3d ( char    * fname ,
 #if 0
     startGraphicDataWriting();
 #endif
-    parentFigure = sciGetCurrentFigure();
-    psubwin = sciGetCurrentSubWin();
+    parentFigureUID = getCurrentFigure();
+    psubwinUID = getCurrentSubWin();
     /* Deactivated (synchronization) */
 #if 0
     endGraphicDataWriting();
@@ -511,7 +514,7 @@ void Objplot3d ( char    * fname ,
 
     /* Force 3D view */
     view = 1;
-    setGraphicObjectProperty(psubwin->UID, __GO_VIEW__, &view, jni_int, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_VIEW__, &view, jni_int, 1);
 
     /* project: to be implemented within the MVC */
 #if 0
@@ -535,7 +538,7 @@ void Objplot3d ( char    * fname ,
 
         if (legx != NULL)
         {
-            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legx, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -545,7 +548,7 @@ void Objplot3d ( char    * fname ,
         legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
         if ( legy != NULL )
         {
-            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legy, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -555,7 +558,7 @@ void Objplot3d ( char    * fname ,
         legz=strtok((char *)NULL,"@");
         if ( legz != NULL )
         {
-            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
 
             setGraphicObjectProperty(labelId, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
             setGraphicObjectProperty(labelId, __GO_TEXT_STRINGS__, &legz, jni_string_vector, textDimensions[0]*textDimensions[1]);
@@ -565,9 +568,9 @@ void Objplot3d ( char    * fname ,
     /* Force psubwin->logflags to linear */
     linLogFlag = 0;
 
-    setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
-    setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
-    setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
 
 
     /*
@@ -586,7 +589,7 @@ void Objplot3d ( char    * fname ,
     }
 #endif
 
-    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
     if (firstPlot == 0 && (iflag[2] == 0 || iflag[2] == 1))
     {
@@ -609,18 +612,18 @@ void Objplot3d ( char    * fname ,
                 box = 0;
 
                 axisVisible = 0;
-                setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-                setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-                setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
-                setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &box, jni_int, 1);
+                setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
                 labelVisible = 0;
-                getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-                getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
                 setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
             }
             /*else no changes : the axes visible properties are driven by the previous plot */
@@ -631,19 +634,19 @@ void Objplot3d ( char    * fname ,
             box = 2;
 
             /* for 2d use only (when switching to 2d mode) */
-            setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &box, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
             axisVisible = 0;
-            setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 0;
-            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if(iflag[2] == 3)
@@ -652,38 +655,38 @@ void Objplot3d ( char    * fname ,
             box = 1;
 
             /* for 2d use only (when switching to 2d mode) */
-            setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &box, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
             axisVisible = 0;
-            setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
         else if(iflag[2] == 4)
         {
             /* 1: ON */
             box = 1;
-            setGraphicObjectProperty(psubwin->UID, __GO_BOX_TYPE__, &box, jni_int, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_BOX_TYPE__, &box, jni_int, 1);
 
             axisVisible = 1;
-            setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_VISIBLE__, &axisVisible, jni_bool, 1);
 
             labelVisible = 1;
-            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
-            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, &labelId);
             setGraphicObjectProperty(labelId, __GO_VISIBLE__, &labelVisible, jni_bool, 1);
         }
     }
@@ -691,11 +694,11 @@ void Objplot3d ( char    * fname ,
     rotationAngles[0] = *alpha;
     rotationAngles[1] = *theta;
 
-    setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
     if (autoScale)
     {
@@ -732,7 +735,8 @@ void Objplot3d ( char    * fname ,
 
         if (iflag[1] != 0)
         {
-            bounds_changed = update_specification_bounds(psubwin, drect,3);
+            // FIXME
+            //bounds_changed = update_specification_bounds(psubwin, drect,3);
         }
     }
 
@@ -740,7 +744,7 @@ void Objplot3d ( char    * fname ,
     {
         isoview = ( iflag[1] == 3 || iflag[1] == 4 || iflag[1] == 5 || iflag[1] == 6);
 
-        setGraphicObjectProperty(psubwin->UID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
+        setGraphicObjectProperty(psubwinUID, __GO_ISOVIEW__, &isoview, jni_bool, 1);
     }
 
     /* =================================================
@@ -868,7 +872,7 @@ void Objplot3d ( char    * fname ,
             flag_y = monotony;
         }
 
-        pNewSurface = ConstructSurface( psubwin, typeof3d,
+        pNewSurface = ConstructSurface( psubwinUID, typeof3d,
             x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
             isfac,m1,n1,m2,n2,m3,n3,m3n,n3n);
 
@@ -958,13 +962,13 @@ void Objplot3d ( char    * fname ,
 
             sciSetCurrentObj(pNewPolyline);
 
-            pobj = sciGetCurrentObj();
+            pobjUID = getCurrentObject();
 
             /* Force clipping, 1: CLIPGRF */
             clipState = 1;
-            setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+            setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-            hdltab[i]=sciGetHandle(pobj);
+            hdltab[i]=getHandle(pobjUID);
         }
 
         /** construct Compound and make it current object**/
@@ -986,7 +990,7 @@ void Objplot3d ( char    * fname ,
 #endif
 
     firstPlot = 0;
-    setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     FREE(loc); loc = NULL;
 

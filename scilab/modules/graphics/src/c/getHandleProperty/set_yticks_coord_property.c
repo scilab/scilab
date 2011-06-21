@@ -36,7 +36,7 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_ytics_coord_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int N = 0;
@@ -70,7 +70,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
+    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piYNumberTicks);
 
     if (piYNumberTicks == NULL)
     {
@@ -93,7 +93,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
     /* what follows remains here as it was */
     coordsVector = createCopyDoubleVectorFromStack( stackPointer, nbCol );
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, coordsVector, jni_double_vector, nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, coordsVector, jni_double_vector, nbCol);
 
     if (status == FALSE)
     {
@@ -104,7 +104,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
     FREE(coordsVector);
 
-    getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
+    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piTicksStyle);
 
     if (iTicksStyle == 0)
     {
@@ -119,12 +119,12 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
         ticksStyle = 'i';
     }
 
-    ComputeXIntervals( pobj, ticksStyle, &vector, &N, 0 );
-    ComputeC_format( pobj, c_format );
+    ComputeXIntervals( pobjUID, ticksStyle, &vector, &N, 0 );
+    ComputeC_format( pobjUID, c_format );
 
     stringVector = copyFormatedArray( vector, N, c_format, 256 );
 
-    status = setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
+    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
 
     FREE( vector );
 

@@ -29,23 +29,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_parent_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* figureUID = NULL;
     char* type = NULL;
-    sciPointObj *figure = NULL;
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_UICONTROL__) == 0)
     {
         if (valueType == sci_handles)
         {
-            figure = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
-            if (figure != NULL)
-            {
-                figureUID = figure->UID;
-            }
+            figureUID = getObjectFromHandle(getHandleFromStack(stackPointer));
         }
         else if (valueType == sci_matrix)
         {
@@ -57,14 +52,14 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
           return SET_PROPERTY_ERROR;
         }
 
-        if (figure== NULL || figureUID == NULL)
+        if (figureUID == NULL)
         {
             // Can not set the parent
             Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectRelationship(figureUID, pobj->UID);
+        setGraphicObjectRelationship(figureUID, pobjUID);
     }
 
 #if 0

@@ -35,7 +35,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type;
     BOOL status;
@@ -61,7 +61,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     }
 #endif
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if ( !isParameterDoubleMatrix( valueType ) && (strcmp(type, __GO_UICONTROL__) != 0))
     {
@@ -85,7 +85,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
         figureSize[0] = (int) values[2];
         figureSize[1] = (int) values[3];
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, figurePosition, jni_int_vector, 2);
 
         if (status == TRUE)
         {
@@ -97,7 +97,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
             status1 = SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_SIZE__, figureSize, jni_int_vector, 2);
+        status = setGraphicObjectProperty(pobjUID, __GO_SIZE__, figureSize, jni_int_vector, 2);
 
         if (status == TRUE)
         {
@@ -117,13 +117,13 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
         double* currentPosition;
         double labelPosition[3];
 
-        getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, &currentPosition);
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, &currentPosition);
 
         labelPosition[0] = values[0];
         labelPosition[1] = values[1];
         labelPosition[2] = currentPosition[2];
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_POSITION__, labelPosition, jni_double_vector, 3);
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, labelPosition, jni_double_vector, 3);
 
         if (status == TRUE)
         {
@@ -140,7 +140,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
         double * values = getDoubleMatrixFromStack( stackPointer );
 
-        status = setGraphicObjectProperty(pobj->UID, __GO_POSITION__, values, jni_double_vector, 2);
+        status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
 
         if (status == TRUE)
         {
@@ -155,7 +155,7 @@ int set_position_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     }
     else if (strcmp(type, __GO_UICONTROL__) == 0)
     {
-        return SetUicontrolPosition(pobj, stackPointer, valueType, nbRow, nbCol);
+        return SetUicontrolPosition(pobjUID, stackPointer, valueType, nbRow, nbCol);
     }
     else
     {

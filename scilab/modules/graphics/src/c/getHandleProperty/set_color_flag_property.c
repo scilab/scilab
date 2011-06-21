@@ -38,7 +38,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_flag_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     char* type;
     int flagcolor = (int) getDoubleFromStack( stackPointer );
@@ -63,7 +63,7 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_PLOT3D__) == 0)
     {
@@ -73,7 +73,7 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
 
         return SET_PROPERTY_SUCCEED;
     }
@@ -85,7 +85,7 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
             return SET_PROPERTY_ERROR;
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_COLOR_FLAG__, &flagcolor, jni_int, 1);
 
         return SET_PROPERTY_SUCCEED;
     }

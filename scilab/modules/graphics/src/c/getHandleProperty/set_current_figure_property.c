@@ -31,80 +31,87 @@
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 
+#include "FigureModel.h"
+#include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "callJoGLView.h"
 
+
 /*------------------------------------------------------------------------*/
-int set_current_figure_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int figNum = -1 ;
-  int res = -1 ;
+    int figNum = -1 ;
+    int res = -1 ;
 
 
-	if (pobj != NULL)
+	if (pobjUID != NULL)
 	{
 		/* This property should not be called on an handle */
 		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
 		return SET_PROPERTY_ERROR;
 	}
 
-  if (nbRow * nbCol != 1)
-  {
-    Scierror(999, _("Wrong size for '%s' property: A scalar expected.\n"), "current_figure");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isParameterHandle( valueType ) )
-  {
-
-    sciPointObj * curFig = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
-
-    if ( curFig == NULL )
+    if (nbRow * nbCol != 1)
     {
-      Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
-      return SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong size for '%s' property: A scalar expected.\n"), "current_figure");
+        return SET_PROPERTY_ERROR ;
     }
 
-    if ( sciGetEntityType( curFig ) != SCI_FIGURE )
+    if ( isParameterHandle( valueType ) )
     {
-      Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
-      return SET_PROPERTY_ERROR;
+
+        char *curFigUID = getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+
+        if ( curFigUID == NULL )
+        {
+            Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
+            return SET_PROPERTY_ERROR ;
+        }
+// FIXME
+#if 0
+        if ( sciGetEntityType( curFig ) != SCI_FIGURE )
+        {
+            Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
+            return SET_PROPERTY_ERROR;
+        }
+        startGraphicDataReading();
+        figNum = sciGetNum( curFig ) ;
+        endGraphicDataReading();
+#endif
     }
-    startGraphicDataReading();
-    figNum = sciGetNum( curFig ) ;
-    endGraphicDataReading();
-  }
-  else if ( isParameterDoubleMatrix( valueType ) )
-  {
-    figNum = (int) getDoubleFromStack( stackPointer ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
-    return SET_PROPERTY_ERROR ;
-  }
+    else if ( isParameterDoubleMatrix( valueType ) )
+    {
+        figNum = (int) getDoubleFromStack( stackPointer ) ;
+    }
+    else
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
+        return SET_PROPERTY_ERROR ;
+    }
 
-  if (getFigureFromIndex(figNum) == NULL)
-  {
-      // No Figure available with this index, should create it  !!
-      char* pFigureUID = NULL;
-      sciPointObj* newaxes = NULL;
+    if (getFigureFromIndex(figNum) == NULL)
+    {
+        // No Figure available with this index, should create it  !!
+        char* pFigureUID = NULL;
+        sciPointObj* newaxes = NULL;
 
 
-      pFigureUID = cloneGraphicObject(getFigureModel());
-      setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
-      createJoGLView(pFigureUID);
-  }
+        pFigureUID = cloneGraphicObject(getFigureModel());
+        setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
+        createJoGLView(pFigureUID);
+    }
 
-  /* select the figure num */
-  res = sciSetUsedWindow( figNum ) ;
-  if ( res < 0 )
-  {
-    Scierror(999, _("Unable to create requested figure: No more memory.\n"));
-  }
-  return res ;
-
+    return 0;
+#if 0
+    /* select the figure num */
+    res = sciSetUsedWindow( figNum ) ;
+    if ( res < 0 )
+    {
+        Scierror(999, _("Unable to create requested figure: No more memory.\n"));
+    }
+    return res ;
+#endif
 }
 /*------------------------------------------------------------------------*/

@@ -5,11 +5,11 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_y_location_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_y_location_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   BOOL status;
   int axisLocation;
@@ -66,13 +66,13 @@ int set_y_location_property( sciPointObj * pobj, size_t stackPointer, int valueT
   {
     axisLocation = 3;
   }
-  else  
+  else
   {
     Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "y_location", "left, right, middle, origin");
     return SET_PROPERTY_ERROR ;
   }
 
-  status = setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  status = setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
   if (status == TRUE)
   {

@@ -3,11 +3,11 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -28,7 +28,7 @@
 #include "axesScale.h"
 
 /*------------------------------------------------------------------------*/
-int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_zoom_box_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
   if ( !isParameterDoubleMatrix( valueType ) )
@@ -48,15 +48,15 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   /* We must have a 4x1 matrix */
   if ( nbRow * nbCol == 6 )
   {
-    return sciZoom3D(pobj, getDoubleMatrixFromStack(stackPointer));
+    return sciZoom3D(pobjUID, getDoubleMatrixFromStack(stackPointer));
   }
   else if( nbRow * nbCol == 4)
   {
-    return sciZoom2D(pobj, getDoubleMatrixFromStack(stackPointer));
+    return sciZoom2D(pobjUID, getDoubleMatrixFromStack(stackPointer));
   }
   else if ( nbCol * nbRow == 0 )
   {
-    sciUnzoomSubwin(pobj);
+    sciUnzoomSubwin(pobjUID);
   }
   else
   {

@@ -15,7 +15,7 @@
 
 #include "SetUicontrolBackgroundColor.hxx"
 
-int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolBackgroundColor(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
@@ -68,7 +68,7 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int va
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_BACKGROUNDCOLOR__), allColors, jni_double_vector, 3);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_BACKGROUNDCOLOR__), allColors, jni_double_vector, 3);
 
     if (valueType == sci_strings)
     {

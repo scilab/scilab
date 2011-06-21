@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_sub_tics_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
     BOOL status;
     int result;
@@ -47,7 +47,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
         return SET_PROPERTY_ERROR ;
     }
 
-    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
     /*
      * Type test required as the Axis object stores subticks as a single int
@@ -57,7 +57,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
         int nbTicks = (int) getDoubleFromStack(stackPointer);
 
-        status =  setGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, &nbTicks, jni_int, 1);
+        status =  setGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, &nbTicks, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -88,7 +88,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
          * To be modified.
          */
         autoSubticks = 0;
-        status = setGraphicObjectProperty(pobj->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+        status = setGraphicObjectProperty(pobjUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
         if (status == FALSE)
         {
@@ -107,7 +107,7 @@ int set_sub_tics_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
                 nbTicks = 0;
             }
 
-            status = setGraphicObjectProperty(pobj->UID, axisSubticksPropertiesNames[i], &nbTicks, jni_int, 1);
+            status = setGraphicObjectProperty(pobjUID, axisSubticksPropertiesNames[i], &nbTicks, jni_int, 1);
 
             if (status == FALSE)
             {
