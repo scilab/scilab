@@ -23,7 +23,6 @@ import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
-import org.scilab.modules.renderer.JoGLView.axes.ruler.RulerSpriteManagerSet;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 import java.awt.geom.Rectangle2D;
@@ -42,8 +41,6 @@ public class AxesDrawer {
     private final Geometries geometries;
 
     private final AxesRulerDrawer rulerDrawer;
-    private final RulerSpriteManagerSet rulerSpriteManagerSet;
-
 
     /**
      * Default constructor.
@@ -52,9 +49,7 @@ public class AxesDrawer {
     public AxesDrawer(DrawerVisitor visitor) {
         this.visitor = visitor;
         this.geometries = new Geometries(visitor.getCanvas());
-
-        rulerSpriteManagerSet = new RulerSpriteManagerSet(visitor.getCanvas().getSpriteManager());
-        rulerDrawer = new AxesRulerDrawer(rulerSpriteManagerSet);
+        this.rulerDrawer = new AxesRulerDrawer(visitor.getCanvas());
     }
 
 
@@ -231,9 +226,9 @@ public class AxesDrawer {
 
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
-                axes.getAxes()[0].getReverse() ? -1 : 1,
-                axes.getAxes()[1].getReverse() ? -1 : 1,
-                axes.getAxes()[2].getReverse() ? -1 : 1
+                axes.getAxes()[0].getReverse() ? 1 : -1,
+                axes.getAxes()[1].getReverse() ? 1 : -1,
+                axes.getAxes()[2].getReverse() ? 1 : -1
         );
 
         // Scale data.
@@ -283,7 +278,7 @@ public class AxesDrawer {
         // Rotate.
         Transformation alphaRotation = TransformationFactory.getRotationTransformation(-axes.getRotationAngles()[0], 1.0, 0.0, 0.0);
         transformation = transformation.rightTimes(alphaRotation);
-        Transformation thetaRotation = TransformationFactory.getRotationTransformation(DEFAULT_THETA - axes.getRotationAngles()[1], 0.0, 0.0, 1.0);
+        Transformation thetaRotation = TransformationFactory.getRotationTransformation(DEFAULT_THETA + axes.getRotationAngles()[1], 0.0, 0.0, 1.0);
         transformation = transformation.rightTimes(thetaRotation);
 
         // If there is no cube scaling, we must take into account the distribution of data.
@@ -319,7 +314,15 @@ public class AxesDrawer {
         return transformation;
     }
 
-    public RulerSpriteManagerSet getRulerSpriteManagerSet() {
-        return rulerSpriteManagerSet;
+    public void disposeAll() {
+        this.rulerDrawer.disposeAll();
+    }
+
+    public void update(String id, String property) {
+        this.rulerDrawer.update(id, property);
+    }
+
+    public void dispose(String id) {
+        this.rulerDrawer.dispose(id);
     }
 }

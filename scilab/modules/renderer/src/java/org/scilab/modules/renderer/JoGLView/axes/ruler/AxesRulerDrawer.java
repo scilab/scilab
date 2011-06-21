@@ -11,6 +11,7 @@
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
 
+import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.ruler.RulerDrawer;
@@ -33,13 +34,14 @@ import java.nio.FloatBuffer;
  * @author Pierre Lando
  */
 public class AxesRulerDrawer {
+
+    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
     private static final double TICKS_SIZE = .1;
 
     private final RulerSpriteManagerSet rulerSpriteManagerSet;
-    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
 
-    public AxesRulerDrawer(RulerSpriteManagerSet rulerSpriteManagerSet) {
-        this.rulerSpriteManagerSet = rulerSpriteManagerSet;
+    public AxesRulerDrawer(Canvas canvas) {
+        this.rulerSpriteManagerSet = new RulerSpriteManagerSet(canvas.getSpriteManager());
     }
 
     /**
@@ -63,6 +65,7 @@ public class AxesRulerDrawer {
         Vector3d py = canvasProjection.projectDirection(new Vector3d(0, 1, 0)).setZ(0);
         Vector3d pz = canvasProjection.projectDirection(new Vector3d(0, 0, 1)).setZ(0);
 
+        // Draw X ruler
 
         ElementsBuffer vertexBuffer = drawingTools.getCanvas().getBuffersManager().createElementsBuffer();
         int gridPosition;
@@ -94,27 +97,31 @@ public class AxesRulerDrawer {
             }
         }
 
+
+        Vector3d xTicksDirection;
         if (py.getNorm2() > pz.getNorm2()) {
-            rulerModel.setTicksDirection(new Vector3d(0, TICKS_SIZE * ys, 0));
+            xTicksDirection = new Vector3d(0, TICKS_SIZE * ys, 0);
         } else {
-            rulerModel.setTicksDirection(new Vector3d(0, 0, TICKS_SIZE * zs));
+            xTicksDirection = new Vector3d(0, 0, TICKS_SIZE * zs);
         }
+        rulerModel.setTicksDirection(xTicksDirection);
 
         rulerModel.setFirstPoint(new Vector3d(1, ys, zs));
         rulerModel.setSecondPoint(new Vector3d(-1, ys, zs));
 
         if (axes.getAxes()[0].getReverse()) {
-            rulerModel.setValues(bounds[1], bounds[0]);
-        } else {
             rulerModel.setValues(bounds[0], bounds[1]);
+        } else {
+            rulerModel.setValues(bounds[1], bounds[0]);
         }
-
 
         rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
         values = rulerDrawingResult.getTicksValues();
         axes.setXAxisTicksLocations(toDoubleArray(values));
         axes.setXAxisTicksLabels(toStringArray(values));
         axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+
+        // Draw Y ruler
 
         if (axes.getXAxisGridColor() != -1) {
             FloatBuffer vertexData = getXGridData(values, rulerModel);
@@ -160,9 +167,9 @@ public class AxesRulerDrawer {
 
 
         if (axes.getAxes()[1].getReverse()) {
-            rulerModel.setValues(bounds[3], bounds[2]);
-        } else {
             rulerModel.setValues(bounds[2], bounds[3]);
+        } else {
+            rulerModel.setValues(bounds[3], bounds[2]);
         }
         rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
         values = rulerDrawingResult.getTicksValues();
@@ -186,7 +193,7 @@ public class AxesRulerDrawer {
             drawingTools.getTransformationManager().getModelViewStack().pop();
         }
 
-
+        // Draw Z ruler
 
         double txs;
         double tys;
@@ -206,9 +213,9 @@ public class AxesRulerDrawer {
         rulerModel.setSecondPoint(new Vector3d(xs, ys, -1));
         rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
         if (axes.getAxes()[2].getReverse()) {
-            rulerModel.setValues(bounds[5], bounds[4]);
-        } else {
             rulerModel.setValues(bounds[4], bounds[5]);
+        } else {
+            rulerModel.setValues(bounds[5], bounds[4]);
         }
         rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
         values = rulerDrawingResult.getTicksValues();
@@ -252,8 +259,12 @@ public class AxesRulerDrawer {
         return r;
     }
 
-
-
+    /**
+     * Build X grid data.
+     * @param values X values where grid is drawn.
+     * @param rulerModel used rulerModel to compute grid world position.
+     * @return X grid data.
+     */
     private FloatBuffer getXGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
             int limit = 0;
@@ -271,6 +282,12 @@ public class AxesRulerDrawer {
         return vertexData;
     }
 
+    /**
+     * Build Y grid data.
+     * @param values Y values where grid is drawn.
+     * @param rulerModel used rulerModel to compute grid world position.
+     * @return Y grid data.
+     */
     private FloatBuffer getYGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
             int limit = 0;
@@ -288,6 +305,12 @@ public class AxesRulerDrawer {
         return vertexData;
     }
 
+    /**
+     * Build Z grid data.
+     * @param values Z values where grid is drawn.
+     * @param rulerModel used rulerModel to compute grid world position.
+     * @return Z grid data.
+     */
     private FloatBuffer getZGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
             int limit = 0;
@@ -303,5 +326,17 @@ public class AxesRulerDrawer {
             }
             vertexData.limit(limit);
         return vertexData;
+    }
+
+    public void disposeAll() {
+        this.rulerSpriteManagerSet.disposeAll();
+    }
+
+    public void update(String id, String property) {
+        this.rulerSpriteManagerSet.update(id, property);
+    }
+
+    public void dispose(String id) {
+        this.rulerSpriteManagerSet.dispose(id);
     }
 }

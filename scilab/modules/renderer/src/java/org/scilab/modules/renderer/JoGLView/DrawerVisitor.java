@@ -674,7 +674,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
                     if (plot3d.getHiddenColor() > 0) {
-                        return FaceCullingMode.CW;
+                        return FaceCullingMode.CCW;
                     }
                     else {
                         return FaceCullingMode.BOTH;
@@ -716,7 +716,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.CCW;
+                    return FaceCullingMode.CW;
                 }
             };
 
@@ -831,13 +831,13 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             dataManager.disposeAllColorBuffers();
             markManager.disposeAll();
             textManager.disposeAll();
-            axesDrawer.getRulerSpriteManagerSet().disposeAll();
+            axesDrawer.disposeAll();
             canvas.redraw();
         } else if (isFigureChild(id)) {
             dataManager.update(id, property);
             markManager.update(id, property);
             textManager.update(id, property);
-            axesDrawer.getRulerSpriteManagerSet().update(id, property);
+            axesDrawer.update(id, property);
             canvas.redraw();
         }
     }
@@ -851,7 +851,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
-        axesDrawer.getRulerSpriteManagerSet().dispose(id);
+        axesDrawer.dispose(id);
         canvas.redraw();
     }
 
