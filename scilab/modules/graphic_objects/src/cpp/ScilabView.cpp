@@ -87,7 +87,7 @@ void ScilabView::getFiguresId(int ids[])
 
     for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it, --i)
     {
-        std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
+        //std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
         ids[i] = it->second;
     }
 }
@@ -99,7 +99,7 @@ int ScilabView::getNbFigure(void)
 
 void ScilabView::createObject(char* pstId)
 {
-    std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
+    //std::cerr << "[ScilabView] ++ createObject UID=" << pstId << std::endl;
     char *pstType;
 
     getGraphicObjectProperty(pstId, __GO_TYPE__, jni_string, (void**) &pstType);
@@ -193,7 +193,7 @@ char *ScilabView::getCurrentObject()
 */
 void ScilabView::setCurrentSubWin(char* UID)
 {
-    m_currentSubWin = strdup(UID);
+    m_currentSubWin = UID;
 }
 
 /*
@@ -272,7 +272,7 @@ char *ScilabView::getFigureModel(void)
 
 void  ScilabView::setFigureModel(char *UID)
 {
-    m_figureModel = strdup(UID);
+    m_figureModel = UID;
 }
 
 char *ScilabView::getAxesModel(void)
@@ -283,7 +283,7 @@ char *ScilabView::getAxesModel(void)
 
 void  ScilabView::setAxesModel(char *UID)
 {
-    m_axesModel = strdup(UID);
+    m_axesModel = UID;
 }
 
 

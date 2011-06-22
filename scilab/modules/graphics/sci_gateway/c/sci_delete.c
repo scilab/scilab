@@ -18,6 +18,7 @@
 /* desc : interface for delete routine                                    */
 /*------------------------------------------------------------------------*/
 
+#include "MALLOC.h"
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "DestroyObjects.h"
@@ -34,6 +35,7 @@
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
+#include "FigureList.h"
 #include "deleteGraphicObject.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
@@ -41,7 +43,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     int m1,n1,l1,m2,n2,l2,num, lw;
     unsigned long hdl;
     int nb_handles = 0, i, dont_overload = 0;
-    sciPointObj * pobj;
+    char* pobjUID;
     sciPointObj * parentFigure;
 
     CheckRhs(0,1);
@@ -72,11 +74,24 @@ int sci_delete(char *fname,unsigned long fname_len)
             GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
             if (strcmp(cstk(l2),"all") == 0)
             {
-                startGraphicDataWriting();
-                sciClearFigure(sciGetCurrentFigure());
-                endGraphicDataWriting();
-                sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
-                dont_overload = 1;
+                //startGraphicDataWriting();
+                //sciClearFigure(sciGetCurrentFigure());
+                //endGraphicDataWriting();
+                //sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+                int i = 0;
+                int iFigureNumber = sciGetNbFigure();
+                int *piFigureIds = MALLOC(iFigureNumber * sizeof(int));
+                sciGetFiguresId(piFigureIds);
+
+                for(i = 0 ; i < iFigureNumber ; ++i)
+                {
+                    deleteGraphicObject(getFigureFromIndex(piFigureIds[i]));
+                }
+                FREE(piFigureIds);
+                LhsVar(1) = 0;
+                PutLhsVar();
+
+                return 0;
             }
             else
             {
@@ -92,22 +107,22 @@ int sci_delete(char *fname,unsigned long fname_len)
         }
     }
 
-    for(i=0;i<nb_handles; i++)
+    for( i = 0 ; i < nb_handles ; i++)
     {
         if (Rhs != 0)
         {
             hdl = (unsigned long)*hstk(l1+i); /* Puts the value of the Handle to hdl */
         }
 
-        pobj = sciGetPointerFromHandle(hdl);
+        pobjUID = getObjectFromHandle(hdl);
 
-        if (pobj == NULL)
+        if (pobjUID == NULL)
         {
             Scierror(999,_("%s: The handle is not valid.\n"),fname);
             return 0;
         }
 
-        deleteGraphicObject(pobj->UID);
+        deleteGraphicObject(pobjUID);
 
 #if 0
         parentFigure = sciGetParentFigure(pobj);
