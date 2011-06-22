@@ -240,6 +240,9 @@ Misc:
 
 * SEP 67: lines(0) by default at startup.
 
+* Options -disable-exception-catching added under GNU/Linux & Mac OS X.
+  Disables the Scilab exception catching system.
+
 
 Bug fixes:
 ==========

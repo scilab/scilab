@@ -555,6 +555,7 @@ if test $SCIVERBOSE -ne 0; then
     echo "IS_SCILAB_BINARY : $IS_SCILAB_BINARY"
 fi
 
+
 # If we are calling scilab-cli, no need to detect java.
 if test $DISABLE_JAVA_DETECTION -ne 1; then
     detect_java_vm
@@ -754,6 +755,7 @@ do_help()
         echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
         echo     "                        callgrind (and override the existing callgrind arguments)."
         echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
         echo     " "
     fi
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
@@ -892,6 +894,10 @@ if test "$rest" = "yes"; then
                 ;;
             -electric-fence)
                 ELECTRIC_FENCE="-electric-fence"
+                ;;
+            -disable-exception-catching)
+                SCI_DISABLE_EXCEPTION_CATCHING=1
+                export SCI_DISABLE_EXCEPTION_CATCHING
                 ;;
             -h|--help)
                 do_help

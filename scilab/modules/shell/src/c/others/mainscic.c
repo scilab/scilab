@@ -71,7 +71,9 @@ int main(int argc, char **argv)
   InitializeLaunchScilabSignal();
 
 /* Management of the signals (seg fault, floating point exception, etc) */
-  base_error_init();
+  if (getenv("SCI_DISABLE_EXCEPTION_CATCHING")==NULL) {
+      base_error_init();
+  }
 
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */
