@@ -160,7 +160,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             // use as delegates for various com.apple.eawt.ApplicationListener methods
             OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
             OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
-            OSXAdapter.setDockIcon(System.getenv("SCI") + "/icons/puffin.png");
+            OSXAdapter.setDockIcon(System.getenv("SCI") + "/desktop/puffin.png");
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
         }
