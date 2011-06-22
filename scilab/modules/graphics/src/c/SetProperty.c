@@ -2815,37 +2815,6 @@ sciSetdrawmode (BOOL mode)
     return 0;
 }
 
-int sciSwitchWindow(int winnum)
-{
-// ???
-#if 0
-    /* find if exist figure winnum */
-    /* une autre methode c est de tester CurXGC->mafigure = NULL */
-    if ( !sciIsExistingFigure(winnum) )
-    {
-        /* Figure winnum don't exist, create it! */
-        if( createFullFigure(&winnum) == NULL)
-        {
-            return -1; /* failed to switch */
-        }
-    }
-    else
-    {
-        sciSetCurrentFigure(getFigureFromIndex(winnum));
-    }
-#endif
-    return 0;
-}
-
-/*----------------------------------------------------------------------------------*/
-/**
- * In new graphic style, select a window and create one if not already done.
- */
-int sciInitUsedWindow( int winNum )
-{
-    return sciSwitchWindow( winNum ) ; /* create the handle */
-}
-
 /*----------------------------------------------------------------------------------*/
 /**
  * In new graphic style, select a window and create one if not already done.

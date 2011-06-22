@@ -3060,67 +3060,6 @@ void SciWin(void)
 }
 /*----------------------------------------------------------------------------*/
 /**
- * Create a new figure with already a subwindow inside and show it.
- * When creating a new figure this mehod mut be called
- * @param winNum if not NULL a pointer to the figure number otherwise
- *               a default figure number is chosen.
- * @return a pointer on the created figure or NULL if the creation could
- *         not be performed
- */
-sciPointObj * createFullFigure(int * winNum)
-{
-    sciPointObj *pNewFigure = MALLOC(sizeof(sciPointObj));
-    pNewFigure->UID = createGraphicObject(__GO_FIGURE__);
-    setGraphicObjectProperty(pNewFigure->UID, __GO_ID__, winNum, jni_int, 1);
-    createJoGLView(pNewFigure->UID);
-//    sciAddNewHandle(pNewFigure);
-    return pNewFigure;
-
-#ifdef __OLD_IMPLEMENTATION__
-  sciPointObj * newFig = NULL;
-  sciPointObj * newSubwin = NULL;
-
-  /* Check that environement is OK for creating a window */
-  if (!sciGetIsAbleToCreateWindow())
-  {
-    return NULL;
-  }
-
-
-  /* Create figure */
-  newFig = ConstructFigure(NULL, winNum);
-
-  startFigureDataWriting(newFig);
-
-  if (newFig == NULL)
-  {
-    endFigureDataWriting(newFig);
-    return NULL;
-  }
-
-  sciSetCurrentFigure(newFig);
-
-  /* Add a subwindow inside the figure */
-  if (createFirstSubwin(newFig) == NULL)
-  {
-    DestroyFigure(newFig);
-    endFigureDataWriting(newFig);
-    return NULL;
-  }
-
-  endFigureDataWriting(newFig);
-
-
-
-  /* show th enewly created window */
-  showWindow(newFig);
-
-
-  return newFig;
-#endif
-}
-/*----------------------------------------------------------------------------*/
-/**
  * Get the first subwin object within a figure.
  * If not exists, create one withj default value.
  * @return the first subwin or NULL if an error occured during subwin creation

@@ -108,8 +108,6 @@ GRAPHICS_IMPEXP sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sc
 
 GRAPHICS_IMPEXP void SciWin(void);
 
-GRAPHICS_IMPEXP sciPointObj * createFullFigure(int * winNum);
-
 GRAPHICS_IMPEXP sciPointObj * createFirstSubwin(sciPointObj * pFigure);
 
 GRAPHICS_IMPEXP void createDefaultRelationShip(sciPointObj * pObj);

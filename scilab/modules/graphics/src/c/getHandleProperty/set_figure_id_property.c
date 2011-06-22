@@ -34,49 +34,29 @@
 /*------------------------------------------------------------------------*/
 int set_figure_id_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int id;
-  BOOL status;
+    int id;
+    BOOL status;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "figure_id");
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "figure_id");
+        return SET_PROPERTY_ERROR ;
+    }
+
+    id = (int) getDoubleFromStack( stackPointer ) ;
+
+    status = setGraphicObjectProperty(pobjUID, __GO_ID__, &id, jni_int, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
+        return SET_PROPERTY_ERROR;
+    }
+
     return SET_PROPERTY_ERROR ;
-  }
-
-  id = (int) getDoubleFromStack( stackPointer ) ;
-
-#if 0
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
-    return SET_PROPERTY_ERROR ;
-  }
-#endif
-
-  status = setGraphicObjectProperty(pobjUID, __GO_ID__, &id, jni_int, 1);
-
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
-    return SET_PROPERTY_ERROR;
-  }
-
-  /* to be implemented later */
-#if 0
-  if ( pobj != getFigureModel() )
-  {
-    return sciInitUsedWindow( id ) ;
-  }
-  else
-  {
-    return sciSetNum( getFigureModel(), id ) ;
-  }
-#endif
-
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

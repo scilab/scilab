@@ -30,6 +30,12 @@
 #include "Scierror.h"
 #include "DrawingBridge.h"
 #include "HandleManagement.h"
+
+#include "BuildObjects.h"
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+#include "FigureList.h"
+#include "CurrentFigure.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,int lx0,int lx1) ;
 /*--------------------------------------------------------------------------*/
@@ -220,9 +226,14 @@ int sci_xset( char *fname, unsigned long fname_len )
   }
   else if ( strcmp(cstk(l1),"window") == 0 || strcmp(cstk(l1),"figure") == 0 )
   {
-    if (sciSwitchWindow(x[0]) != 0){
-      Scierror(999,_("%s: Unable to create requested figure: No more memory.\n"), fname);
-    }
+      // Find if window already exists, if not create a new one
+      if (getObjectFromHandle(x[0]) == NULL)
+      {
+          int iID = x[0];
+          char *pFigureUID = createNewFigureWithAxes();
+          setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
+          setCurrentFigure(pFigureUID);
+      }
   }
   else
   {
