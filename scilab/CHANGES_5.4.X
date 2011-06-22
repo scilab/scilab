@@ -146,6 +146,8 @@ Optimization:
 * Bug 8545 fixed - In neldermead, the printing system displays too long 
                    messages.
 
+* Bug 8546 fixed - The neldermead functions may call f outside the bounds.
+
 * Bug 8552 fixed - Improved fminsearch to provide Extra Parameters.
                    Help page updated with new section "The cost function".
                    Help page updated with new example "Passing extra parameters".

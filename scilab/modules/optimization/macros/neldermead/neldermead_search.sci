@@ -232,6 +232,7 @@ function this = neldermead_variable ( this )
         // Store history
 
 
+
         //
         xcoords = optimsimplex_getallx ( simplex )
         this = neldermead_storehistory ( this , n , flow , xlow , xcoords );
@@ -1344,17 +1345,18 @@ endfunction
 // _boxlinesearch --
 //   For Box's method, perform a line search
 //   from xbar, on the line (xhigh,xbar) and returns:
-//   status : %t if the search is successful
-//   xr : the reflected point
-//   fr : the function value
+//   status : %t if the search is successful, 
+//            status=%f if the search failed.
+//   xr : the reflected, scaled point
+//   fr : the function value. fr=f(xr) if the search successful, 
+//        fr is Nan if the search failed.
 //   The reflected point satisfies the following
 //   constraints :
 //   * fr < fhigh
 //   * xr satisfies the bounds constraints
 //   * xr satisfies the nonlinear positive inequality constraints
 //   * xr satisfies the linear positive inequality constraints
-//   The method is based on projection and
-//   scaling toward the centroid.
+//   The method is based on projection and scaling toward the centroid xbar.
 //
 // Arguments
 //   n : number of variables
@@ -1367,53 +1369,21 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
     if ( verbose == 1 ) then
         this = neldermead_log (this,"_boxlinesearch");
         this = neldermead_log (this, sprintf ("> xhigh=[%s], fhigh=%s",_strvec(xhigh),string(fhigh)));
-        this = neldermead_log (this, sprintf ( "> xbar=[%s]" , _strvec(xbar) ) );
+        this = neldermead_log (this, sprintf ("> xbar=[%s]" , _strvec(xbar) ) );
     end
     xr = neldermead_interpolate ( xbar , xhigh , rho );
     if ( verbose == 1 ) then
         this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec ( xr ) ) );
     end
-    status = %f
     alphamin = this.guinalphamin
     [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     //
-    // Scale from xr toward xbar until fr < fhigh and update xr
+    // The algorithm has 3 steps:
+    // 1. scale for bounds (cannot fail)
+    // 2. scale for nonlinear constraints (may fail)
+    // 3. scale for function improvement (may fail)
     //
-    xr0 = xr
-    alpha = 1.0
-    while ( alpha > alphamin )
-        if ( hasnlcons ) then
-            [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
-        else
-            [ this.optbase , fr , index ] = optimbase_function ( this.optbase , xr , 2 );
-        end
-        if ( fr < fhigh ) then
-            if ( verbose == 1 ) then
-                this = neldermead_log (this, sprintf ( "fr = %s improves %s : no need for scaling for f" , ..
-                string(fr) , string(fhigh) ) );
-            end
-            status = %t;
-            break
-        end
-        alpha = alpha * this.boxineqscaling;
-        if ( verbose == 1 ) then
-            this = neldermead_log (this, sprintf ( "Scaling for f with alpha=%s" , string(alpha) ) );
-        end
-        xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
-        if ( verbose == 1 ) then
-            this = neldermead_log (this, sprintf ( "> xr = %s" , _strvec ( xr ) ) );
-        end
-    end
-    // If the scaling for function improvement has failed,
-    // we return.
-    if ( ~status ) then
-        return;
-    end
-    // scaledc is set to %t if xr is updated during scaling into constraints 
-    // That implies that the function value is to update.
-    scaledc = %f
-    //
-    // Project xr into bounds, with an additionnal alpha inside the bounds.
+    // 1. Project xr into bounds, with an additionnal alpha inside the bounds.
     // This algo is always succesful.
     // Note:
     //   If the alpha coefficient was not used, the
@@ -1429,33 +1399,16 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
             xmax = boundsmax ( ix );
             xrix = xr ( ix );
             if ( xrix > xmax ) then
-                if ( verbose == 1 ) then
-                    this = neldermead_log (this, sprintf ( "Projecting index #%d = %s on max bound %s - %s" , ...
-                    ix , string(xrix) , string(xmax) , string(boxboundsalpha) ) );
-                end
                 xr ( ix ) = xmax - boxboundsalpha;
-                if ( ~scaledc ) then
-                    scaledc = %t
-                end
             elseif ( xrix < xmin ) then
-                if ( verbose == 1 ) then
-                    this = neldermead_log (this, sprintf ( "Projecting index #%d = %s on min bound %s - %s" , ...
-                    ix , string(xrix) , string(xmin) , string(boxboundsalpha) ) );
-                end
                 xr ( ix ) = xmin + boxboundsalpha;
-                if ( ~scaledc ) then
-                    scaledc = %t
-                end
             end
-        end
-        if ( verbose == 1 ) then
-            this = neldermead_log (this, sprintf ( " > After projection into bounds xr = [%s]" , _strvec(xr)));
         end
     end
     //
-    // Scale from xr to xbar into nonlinear inequality constraints
+    // 2. Scale from xr to xbar into nonlinear inequality constraints
     // and update xr. 
-    // Set status to 0 if the process fails.
+    // Set status to %f if the process fails, set status=%t if it succeeds.
     //
     nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" );
     if ( nbnlc == 0 ) then
@@ -1471,33 +1424,40 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
                 break
             end
             alpha = alpha * this.boxineqscaling;
-            if ( verbose == 1 ) then
-                this = neldermead_log (this, sprintf ( "Scaling for nonlinear/linear inequality constraints with alpha=%s from xbar=[%s] toward [%s]" , ...
-                string(alpha) , _strvec(xbar) , _strvec(xr0) ));
-            end
             xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
-            if ( verbose == 1 ) then
-                this = neldermead_log (this, sprintf ( "> xr = [%s]" , _strvec(xr) ));
-            end
-            if ( ~scaledc ) then
-                scaledc = %t;
-            end
         end
     end
     // If scaling failed, returns immediately 
     // (there is no need to update the function value).
     if ( ~status ) then
+        fr = %nan
         return
     end
-    if ( scaledc ) then
-        // Re-compute the function value at scaled point
+    //
+    // 3. Scale from xr toward xbar until fr < fhigh.
+    //
+    status = %f;
+    xr0 = xr
+    alpha = 1.0
+    while ( alpha > alphamin )
         if ( hasnlcons ) then
             [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
         else
             [ this.optbase , fr , index ] = optimbase_function ( this.optbase , xr , 2 );
         end
+        if ( fr < fhigh ) then
+            status = %t;
+            break
+        end
+        alpha = alpha * this.boxineqscaling;
+        xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
     end
-
+    // If the scaling for function improvement has failed,
+    // we return.
+    if ( ~status ) then
+        fr = %nan
+        return;
+    end
 endfunction
 //
 // costf_transposex --
@@ -1511,3 +1471,17 @@ function [ f , this ] = costf_transposex ( x , this )
     [ f , this ] = neldermead_costf ( xt , this )
 endfunction
 
+    function argin = argindefault ( rhs , vararglist , ivar , default )
+        // Returns the value of the input argument #ivar.
+        // If this argument was not provided, or was equal to the 
+        // empty matrix, returns the default value.
+        if ( rhs < ivar ) then
+            argin = default
+        else
+            if ( vararglist(ivar) <> [] ) then
+                argin = vararglist(ivar)
+            else
+                argin = default
+            end
+        end
+    endfunction
