@@ -233,6 +233,7 @@ function this = neldermead_variable ( this )
 
 
 
+
         //
         xcoords = optimsimplex_getallx ( simplex )
         this = neldermead_storehistory ( this , n , flow , xlow , xcoords );

@@ -119,29 +119,26 @@ s1 = optimsimplex_new ( coords , rosenbrock );
 string(s1)
  ans  =
  
-!Optim Simplex Object:        !
-!                             !
-!=====================        !
-!                             !
-!Vertex #1/5 : fv=1, x=0 0    !
-!                             !
-!Vertex #2/5 : fv=100, x=1 0  !
-!                             !
-!Vertex #3/5 : fv=101, x=0 1  !
-!                             !
-!Vertex #4/5 : fv=0, x=1 1    !
-!                             !
-!Vertex #5/5 : fv=401, x=2 2  !
+!Optim Simplex Object:  !
+!                       !
+!=====================  !
+!                       !
+!nbve: 5                !
+!                       !
+!n: 2                   !
+!                       !
+!x: 5-by-2 matrix       !
+!                       !
+!fv: 5-by-1 matrix      !
 s1
  s1  =
  
 Optim Simplex Object:
 =====================
-Vertex #1/5 : fv=1, x=0 0
-Vertex #2/5 : fv=100, x=1 0
-Vertex #3/5 : fv=101, x=0 1
-Vertex #4/5 : fv=0, x=1 1
-Vertex #5/5 : fv=401, x=2 2
+nbve: 5
+n: 2
+x: 5-by-2 matrix
+fv: 5-by-1 matrix
 s1 = optimsimplex_destroy(s1);
 //
 coords = [
@@ -157,5 +154,32 @@ s1
  
 Optim Simplex Object:
 =====================
-Empty simplex (zero function values)
+nbve: 5
+n: 2
+x: 5-by-2 matrix
+fv: [] matrix
+s1 = optimsimplex_destroy(s1);
+// Check with empty function
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords , [] )
+ s1  =
+ 
+Optim Simplex Object:
+=====================
+nbve: 5
+n: 2
+x: 5-by-2 matrix
+fv: [] matrix
+computed = optimsimplex_getn(s1);
+assert_checkequal ( computed , 2 );
+computed = optimsimplex_getnbve (s1);
+assert_checkequal ( computed , 5 );
+computed = optimsimplex_getallx(s1);
+assert_checkequal ( computed , coords );
 s1 = optimsimplex_destroy(s1);

@@ -67,9 +67,10 @@ Center : [1.3333333 1.3333333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=2, x=1 1
-Vertex #2/3 : fv=5, x=2 1
-Vertex #3/3 : fv=5, x=1 2
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=1.5 1
 Function Evaluation #6 at [2 0]
@@ -85,9 +86,10 @@ Center : [1.6666667 0.6666667]
 Size : 1.4142136
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=2, x=1 1
-Vertex #2/3 : fv=4, x=2 0
-Vertex #3/3 : fv=5, x=2 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=1.5 0.5
 Function Evaluation #7 at [1 0]
@@ -103,9 +105,10 @@ Center : [1.3333333 0.3333333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=1, x=1 0
-Vertex #2/3 : fv=2, x=1 1
-Vertex #3/3 : fv=4, x=2 0
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=1 0.5
 Function Evaluation #8 at [0 1]
@@ -121,9 +124,10 @@ Center : [0.6666667 0.6666667]
 Size : 1.4142136
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=1, x=1 0
-Vertex #2/3 : fv=1, x=0 1
-Vertex #3/3 : fv=2, x=1 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=0.5 0.5
 Function Evaluation #9 at [0 0]
@@ -139,9 +143,10 @@ Center : [0.3333333 0.3333333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=0, x=0 0
-Vertex #2/3 : fv=1, x=1 0
-Vertex #3/3 : fv=1, x=0 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Terminate with status : maxiter
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0;0.0], 1e-6 );
@@ -209,9 +214,10 @@ Center : [-0.8666667 1.3333333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=24.2, x=-1.2 1
-Vertex #2/3 : fv=36.2, x=-1.2 2
-Vertex #3/3 : fv=93.6, x=-0.2 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=-1.2 1.5
 Function Evaluation #6 at [-2.2 2]
@@ -230,9 +236,10 @@ Center : [-0.5333333 0.6666667]
 Size : 1.4142136
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=1.6, x=-0.2 0
-Vertex #2/3 : fv=24.2, x=-1.2 1
-Vertex #3/3 : fv=93.6, x=-0.2 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=-0.7 0.5
 Function Evaluation #8 at [-1.2 0]
@@ -253,9 +260,10 @@ Center : [-0.3666667 0.3333333]
 Size : 0.7071068
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=1.6, x=-0.2 0
-Vertex #2/3 : fv=2.9, x=-0.7 0.5
-Vertex #3/3 : fv=22.6, x=-0.2 0.5
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=-0.45 0.25
 Function Evaluation #12 at [-0.7 0]
@@ -274,9 +282,10 @@ Center : [-0.0333333 0.1666667]
 Size : 0.7071068
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=1.3, x=0.3 0
-Vertex #2/3 : fv=1.6, x=-0.2 0
-Vertex #3/3 : fv=22.6, x=-0.2 0.5
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=0.05 0
 Function Evaluation #14 at [0.3 -0.5]
@@ -297,9 +306,10 @@ Center : [0.1333333 0.0833333]
 Size : 0.25
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=0.903125, x=0.05 0
-Vertex #2/3 : fv=1.3, x=0.3 0
-Vertex #3/3 : fv=7.028125, x=0.05 0.25
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Terminate with status : maxiter
 status = neldermead_get(nm,"-status");
 assert_checkequal ( status , "maxiter" );

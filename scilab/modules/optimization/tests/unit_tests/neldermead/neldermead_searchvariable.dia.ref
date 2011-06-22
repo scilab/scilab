@@ -97,9 +97,10 @@ Center : [-0.8666667 1.3333333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=24.2, x=-1.2 1
-Vertex #2/3 : fv=36.2, x=-1.2 2
-Vertex #3/3 : fv=93.6, x=-0.2 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 Reflect
 xbar=-1.2 1.5
 Function Evaluation #6 at [-2.2 2]
@@ -119,9 +120,10 @@ Center : [-1.0333333 1.4166667]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=24.2, x=-1.2 1
-Vertex #2/3 : fv=36.2, x=-1.2 2
-Vertex #3/3 : fv=60.65, x=-0.7 1.25
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
   > Termination ?
   > iterations=2 >= maxiter=5
   > funevals=7 >= maxfunevals=300
@@ -148,9 +150,10 @@ Center : [-1.1166667 1.4583333]
 Size : 1
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=24.2, x=-1.2 1
-Vertex #2/3 : fv=26.128125, x=-0.95 1.375
-Vertex #3/3 : fv=36.2, x=-1.2 2
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
   > Termination ?
   > iterations=3 >= maxiter=5
   > funevals=9 >= maxfunevals=300
@@ -177,9 +180,10 @@ Center : [-1.0541667 1.0520833]
 Size : 0.5970304
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=9.9991821, x=-1.0125 0.78125
-Vertex #2/3 : fv=24.2, x=-1.2 1
-Vertex #3/3 : fv=26.128125, x=-0.95 1.375
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
   > Termination ?
   > iterations=4 >= maxiter=5
   > funevals=11 >= maxfunevals=300
@@ -206,9 +210,10 @@ Center : [-1.0802083 0.9713542]
 Size : 0.3519096
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=4.6874228, x=-1.028125 1.1328125
-Vertex #2/3 : fv=9.9991821, x=-1.0125 0.78125
-Vertex #3/3 : fv=24.2, x=-1.2 1
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
   > Termination ?
   > iterations=5 >= maxiter=5
   > Terminate = T, status = maxiter
