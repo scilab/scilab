@@ -25,7 +25,6 @@ public abstract class FilteringAction extends DefaultAction {
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
-	private static final Integer CLASS_NUMBER = 0;
 
 	/**
 	 * @param e parameter

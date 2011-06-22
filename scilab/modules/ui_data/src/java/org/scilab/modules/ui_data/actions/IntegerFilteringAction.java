@@ -19,7 +19,6 @@ public class IntegerFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.INTEGER;
 	
-	private static final Integer CLASS_NUMBER = 8;
 
 	/**
 	 * Constructor

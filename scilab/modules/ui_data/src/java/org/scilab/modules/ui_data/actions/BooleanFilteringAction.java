@@ -19,7 +19,6 @@ public class BooleanFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.BOOLEAN;
 
-	private static final Integer CLASS_NUMBER = 4;
 	/**
 	 * Constructor
 	 * 

@@ -19,7 +19,6 @@ public class ListFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.LIST;
 	
-	private static final Integer CLASS_NUMBER = 15;
 
 	/**
 	 * Constructor

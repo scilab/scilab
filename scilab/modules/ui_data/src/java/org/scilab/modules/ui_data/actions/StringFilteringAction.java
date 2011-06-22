@@ -19,7 +19,6 @@ public class StringFilteringAction extends FilteringAction{
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.STRING;
 	
-	private static final Integer CLASS_NUMBER = 10;
 
 	/**
 	 * Constructor

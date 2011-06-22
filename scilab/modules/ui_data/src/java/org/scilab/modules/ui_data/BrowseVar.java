@@ -30,13 +30,16 @@ public class BrowseVar {
     public static final int TYPE_COLUMN_INDEX = 3;
     public static final int VISIBILITY_COLUMN_INDEX = 4;
     public static final int BYTES_COLUMN_INDEX = 5;
+    public static final int FROM_SCILAB_COLUMN_INDEX = 6;
 
     public static final String[] COLUMNNAMES = new String[]{"", /* Icon */
                                                             Messages.gettext("Name"),
                                                             Messages.gettext("Size"),
                                                             Messages.gettext("Type"),
                                                             Messages.gettext("Visibility"),
-                                                            Messages.gettext("Bytes")};
+                                                            Messages.gettext("Bytes"),
+                                                            Messages.gettext("User")
+};
 
     private static final String ICON_PATH = System.getenv("SCI") + "/modules/ui_data/images/icons/";
 
@@ -103,8 +106,9 @@ public class BrowseVar {
      * @param dataTypes : scilab variable type (as integer)
      * @param dataSizes : scilab variable size under the form "XxX"
      * @param dataVisibility : local or global variable
+     * @param dataFromUser : Scilab data or user data
      */
-    public static void openVariableBrowser(String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility) {
+    public static void openVariableBrowser(String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
@@ -113,6 +117,7 @@ public class BrowseVar {
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
+            data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i];
         }
         ScilabVariableBrowser.getVariableBrowser(data);
     }

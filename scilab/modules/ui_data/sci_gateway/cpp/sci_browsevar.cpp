@@ -14,9 +14,14 @@
 #include <iostream>
 #include "BrowseVar.hxx"
 
+#include <string>
+#include <iterator>
+using std::string;
+#include <set>
 extern "C"
 {
 #include <string.h>
+#include "BOOL.h"
 #include "localization.h"
 #include "gw_ui_data.h"
 #include "MALLOC.h"
@@ -26,13 +31,15 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "sci_types.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 }
 using namespace org_scilab_modules_ui_data;
 
-/*--------------------------------------------------------------------------*/
+static std::set<string> createScilabDefaultVariablesSet();
+
 int sci_browsevar(char *fname, unsigned long fname_len)
 {
     int iGlobalVariablesUsed = 0;
@@ -53,8 +60,11 @@ int sci_browsevar(char *fname, unsigned long fname_len)
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    bool *piAllVariableFromUser = (bool *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(BOOL));
     int nbRows, nbCols;
     char *sizeStr = NULL;
+
+    std::set<string> scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
 
     // for each local variable get informations
     for (i = 0; i < iLocalVariablesUsed; ++i)
@@ -76,6 +86,15 @@ int sci_browsevar(char *fname, unsigned long fname_len)
 
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
+
+        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() 
+            && piAllVariableTypes[i] != sci_c_function /*TODO: voir si je fais sauter ou pas*/
+            && piAllVariableTypes[i] != sci_lib) {
+            piAllVariableFromUser[i]=TRUE;
+        } else {
+            piAllVariableFromUser[i]=FALSE;
+        }
+
     }
 
     // for each global variable get information
@@ -100,6 +119,15 @@ int sci_browsevar(char *fname, unsigned long fname_len)
 
         // global / local ??
         pstAllVariableVisibility[i] = strdup("global");
+
+        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() 
+            && piAllVariableTypes[i] != sci_c_function
+            && piAllVariableTypes[i] != sci_lib) {
+            piAllVariableFromUser[i]=TRUE;
+        } else {
+            piAllVariableFromUser[i]=FALSE;
+        }
+
     }
 
     // Launch Java Variable Browser through JNI
@@ -108,7 +136,9 @@ int sci_browsevar(char *fname, unsigned long fname_len)
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
+                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
+
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
@@ -138,3 +168,40 @@ int sci_browsevar(char *fname, unsigned long fname_len)
 }
 
 /*--------------------------------------------------------------------------*/
+static std::set<string> createScilabDefaultVariablesSet() {
+    string arr[] = {"home",
+                    "PWD",
+                    "%tk",
+                    "%pvm",
+                    "MSDOS",
+                    "%F",
+                    "%T",
+                    "%f",
+                    "%t",
+                    "%e",
+                    "%pi",
+                    "%modalWarning",
+                    "%exportFileName",
+                    "%nan",
+                    "%inf",
+                    "SCI",
+                    "SCIHOME",
+                    "TMPDIR",
+                    "%gui",
+                    "%fftw",
+                    "%eps",
+                    "%io",
+                    "%i",
+                    "demolist",
+                    "%driverName",
+                    "%toolboxes",
+                    "%toolboxes_dir"};
+    int i=0;
+    #define NBELEMENT 26
+    std::set<string> ScilabDefaultVariables;
+    for (i=0; i<=NBELEMENT; i++) {
+        ScilabDefaultVariables.insert(arr[i]);
+    }
+    return ScilabDefaultVariables;
+
+}

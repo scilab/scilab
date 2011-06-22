@@ -17,29 +17,28 @@ import java.util.HashSet;
 
 import javax.swing.RowFilter;
 
+import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.types.ScilabTypeEnum;
 
-public class VariableBrowserRowFilter extends RowFilter<Object, Object>{
+public class VariableBrowserRowTypeFilter extends RowFilter<Object, Object>{
 
-	private static final int TYPE_INDEX = 3;
-	
 	private HashSet<ScilabTypeEnum> filteredValues;
 	
-	public VariableBrowserRowFilter() {
+	public VariableBrowserRowTypeFilter() {
 		super();
 		filteredValues = new HashSet<ScilabTypeEnum>();
 	}
 	
-	public VariableBrowserRowFilter(HashSet<ScilabTypeEnum> filteredValues) {
+	public VariableBrowserRowTypeFilter(HashSet<ScilabTypeEnum> filteredValues) {
 		this.filteredValues = filteredValues;
 	}
 	
 	@Override
 	public boolean include(Entry< ? extends Object, ? extends Object> entry) {
-		Integer currentRowVariableclassNumber =  (Integer) entry.getValue(TYPE_INDEX);
+		Integer currentRowVariableTypeNumber =  (Integer) entry.getValue(BrowseVar.TYPE_COLUMN_INDEX);
 		
 		try {
-			if (filteredValues.contains(ScilabTypeEnum.swigToEnum(currentRowVariableclassNumber))) {
+			if (filteredValues.contains(ScilabTypeEnum.swigToEnum(currentRowVariableTypeNumber))) {
 				return false;
 			}
 		} catch (IllegalArgumentException e) {

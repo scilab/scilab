@@ -33,6 +33,8 @@ public final class UiDataMessages {
     public static final String CLOSE = Messages.gettext("Close");
     public static final String FILTER = Messages.gettext("Filter");
 
+    public static final String SCILABVAR = Messages.gettext("Hide Scilab variables");
+
     public static final String DOUBLE = Messages.gettext("Double");
     public static final String POLYNOMIAL = Messages.gettext("Polynomial");
     public static final String BOOLEAN = Messages.gettext("Boolean");

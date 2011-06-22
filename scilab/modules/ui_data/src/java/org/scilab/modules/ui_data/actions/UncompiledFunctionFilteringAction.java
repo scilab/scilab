@@ -19,7 +19,6 @@ public class UncompiledFunctionFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.UNCOMPILED_FUNC;
 	
-	private static final Integer CLASS_NUMBER = 11;
 
 	/**
 	 * Constructor

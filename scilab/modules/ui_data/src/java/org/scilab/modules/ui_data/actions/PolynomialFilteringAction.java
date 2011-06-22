@@ -19,7 +19,6 @@ public class PolynomialFilteringAction extends FilteringAction{
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.POLYNOMIAL;
 	
-	private static final Integer CLASS_NUMBER = 2;
 
 	/**
 	 * Constructor

@@ -38,6 +38,7 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
+
 #ifndef __ORG_SCILAB_MODULES_UI_DATA_BROWSEVAR__
 #define __ORG_SCILAB_MODULES_UI_DATA_BROWSEVAR__
 #include <iostream>
@@ -48,7 +49,7 @@ knowledge of the CeCILL-B license and that you accept its terms.
 
 #include "GiwsException.hxx"
 
-#ifndef _MSC_VER                /* Defined anyway with Visual */
+#ifndef _MSC_VER /* Defined anyway with Visual */
 #if !defined(byte)
 typedef signed char byte;
 #else
@@ -56,26 +57,27 @@ typedef signed char byte;
 #endif
 #endif
 
-namespace org_scilab_modules_ui_data
-{
-    class BrowseVar
-    {
+namespace org_scilab_modules_ui_data {
+class BrowseVar {
 
 private:
-        JavaVM * jvm;
+JavaVM * jvm;
 
 protected:
-        jmethodID voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_ID; // cache method id
-        jclass stringArrayClass;
-        jmethodID voidcloseVariableBrowserID;   // cache method id
+jmethodID voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID; // cache method id
+jclass stringArrayClass;
+jmethodID voidcloseVariableBrowserID; // cache method id
 
-        jobject instance;
-        jclass instanceClass;   // cache class
+
+
+jobject instance;
+jclass instanceClass; // cache class
+
 
 /**
 * Get the environment matching to the current thread.
 */
-        virtual JNIEnv *getCurrentEnv();
+virtual JNIEnv * getCurrentEnv();
 
 public:
 // Constructor
@@ -84,7 +86,7 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-          BrowseVar(JavaVM * jvm_);
+BrowseVar(JavaVM * jvm_);
 
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
@@ -92,20 +94,19 @@ public:
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-          BrowseVar(JavaVM * jvm_, jobject JObj);
+BrowseVar(JavaVM * jvm_, jobject JObj);
+
 
 /** 
 * This is a fake constructor to avoid the constructor
 * chaining when dealing with extended giws classes 
 */
 #ifdef FAKEGIWSDATATYPE
-          BrowseVar(fakeGiwsDataType::fakeGiwsDataType /* unused */ )
-        {
-        }
+BrowseVar(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
 #endif
 
 // Destructor
-         ~BrowseVar();
+~BrowseVar();
 
 // Generic method
 // Synchronization methods
@@ -113,32 +114,32 @@ public:
 * Enter monitor associated with the object.
 * Equivalent of creating a "synchronized(obj)" scope in Java.
 */
-        void synchronize();
+void synchronize();
 
 /**
 * Exit monitor associated with the object.
 * Equivalent of ending a "synchronized(obj)" scope.
 */
-        void endSynchronize();
+void endSynchronize();
 
 // Methods
-        static void openVariableBrowser(JavaVM * jvm_, char **variableNames, int variableNamesSize, int *variableBytes, int variableBytesSize,
-                                        int *variableTypes, int variableTypesSize, char **variableSize, int variableSizeSize,
-                                        char **variableVisibility, int variableVisibilitySize);
+static void openVariableBrowser(JavaVM * jvm_, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize);
 
-        static void closeVariableBrowser(JavaVM * jvm_);
+static void closeVariableBrowser(JavaVM * jvm_);
+
 
                         /**
                         * Get class name to use for static methods
                         * @return class name to use for static methods
                         */
+                        
+                static const std::string className()
+                {
+                return "org/scilab/modules/ui_data/BrowseVar";
+                }
+                
+};
 
-        static const std::string className()
-        {
-            return "org/scilab/modules/ui_data/BrowseVar";
-        }
-
-    };
 
 }
 #endif

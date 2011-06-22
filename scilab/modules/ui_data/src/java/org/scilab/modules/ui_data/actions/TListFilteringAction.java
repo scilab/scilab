@@ -19,7 +19,6 @@ public class TListFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.TLIST;
 	
-	private static final Integer CLASS_NUMBER = 16;
 
 	/**
 	 * Constructor

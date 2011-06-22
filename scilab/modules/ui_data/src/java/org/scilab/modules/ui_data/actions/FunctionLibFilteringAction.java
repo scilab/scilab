@@ -19,7 +19,6 @@ public class FunctionLibFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.FUNCTIONLIB;
 	
-	private static final Integer CLASS_NUMBER = 1;
 
 	/**
 	 * Constructor

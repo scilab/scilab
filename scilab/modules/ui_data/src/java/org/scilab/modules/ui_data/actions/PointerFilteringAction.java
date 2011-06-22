@@ -19,7 +19,6 @@ public class PointerFilteringAction extends FilteringAction {
 	/** Name of the action */
 	public static final String NAME = UiDataMessages.POINTER;
 	
-	private static final Integer CLASS_NUMBER = 128;
 
 	/**
 	 * Constructor

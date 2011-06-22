@@ -15,16 +15,15 @@ package org.scilab.modules.ui_data.actions;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
-public class GraphicHandlesFilteringAction extends FilteringAction {
+public class ScilabVarFilteringAction extends FilteringAction {
 	/** Name of the action */
-	public static final String NAME = UiDataMessages.GRAPHIC_HANDLES;
-	
+	public static final String NAME = UiDataMessages.SCILABVAR;
 
 	/**
 	 * Constructor
 	 * 
 	 */
-	public GraphicHandlesFilteringAction() {
+	public ScilabVarFilteringAction() {
 		super();
 	}
 	/**
@@ -33,8 +32,9 @@ public class GraphicHandlesFilteringAction extends FilteringAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu() {
-		CheckBoxMenuItem menu = createCheckBoxMenu( new GraphicHandlesFilteringAction());
+		CheckBoxMenuItem menu = createCheckBoxMenu( new ScilabVarFilteringAction());
 		return menu;
 	}
 
 }
+
