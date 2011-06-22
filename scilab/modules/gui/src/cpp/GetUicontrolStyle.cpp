@@ -23,11 +23,11 @@ extern "C"
  ** \brief Get the style of an uicontrol object
  */
 
-int GetUicontrolStyle(sciPointObj* sciObj)
+int GetUicontrolStyle(char *sciObjUID)
 {
     char *pstrStyle;
 
-    getGraphicObjectProperty(sciObj->UID, __GO_STYLE__, jni_string, (void **) &pstrStyle);
+    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_string, (void **) &pstrStyle);
 
   if (pstrStyle != NULL)
   {

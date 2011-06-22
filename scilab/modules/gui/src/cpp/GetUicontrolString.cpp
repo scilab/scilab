@@ -21,14 +21,14 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolString(sciPointObj* sciObj)
+int GetUicontrolString(char *sciObjUID)
 {
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING_SIZE__), jni_int, (void **) &piNbStrings);
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_STRING__), jni_string_vector, (void **) &pstString);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING_SIZE__), jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_STRING__), jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {

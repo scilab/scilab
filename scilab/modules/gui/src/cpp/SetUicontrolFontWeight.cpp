@@ -3,22 +3,22 @@
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Sets the font weight of an uicontrol object
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetUicontrolFontWeight.hxx"
 
-int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontWeight(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be light, normal, demi or bold */
 
-    char* fontWeight = NULL; 
+    char* fontWeight = NULL;
     BOOL status = FALSE;
 
     // Font Name must be only one character string
@@ -43,7 +43,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_FONTWEIGHT__), fontWeight, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTWEIGHT__), fontWeight, jni_string, 1);
 
     if (status == TRUE)
     {

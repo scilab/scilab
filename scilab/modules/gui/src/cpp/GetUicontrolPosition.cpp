@@ -14,12 +14,12 @@
 
 #include "GetUicontrolPosition.hxx"
 
-int GetUicontrolPosition(sciPointObj* sciObj)
+int GetUicontrolPosition(char *sciObjUID)
 {
   double* position = NULL;
   int status = FALSE;
 
-  getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_POSITION__), jni_double_vector, (void**) &position);
+  getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_POSITION__), jni_double_vector, (void**) &position);
 
   if (position == NULL)
   {

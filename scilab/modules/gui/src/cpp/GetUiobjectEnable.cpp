@@ -3,23 +3,23 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Get the callback string of an uicontrol or uimenu
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUiobjectEnable.hxx"
 
-int GetUiobjectEnable(sciPointObj* sciObj)
+int GetUiobjectEnable(char *pObjUID)
 {
     int enable = 0;
     int* piEnable = &enable;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_ENABLE__), jni_bool, (void**) &piEnable);
+    getGraphicObjectProperty(pObjUID, const_cast<char*>(__GO_UI_ENABLE__), jni_bool, (void**) &piEnable);
 
     if (piEnable == NULL)
     {

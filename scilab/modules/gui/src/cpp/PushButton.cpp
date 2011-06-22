@@ -15,6 +15,8 @@
 
 extern "C"
 {
+#include "BuildObjects.h"
+#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "setGraphicObjectProperty.h"
 }
@@ -26,7 +28,7 @@ void createPushButton(sciPointObj* sciObj)
     CallScilabBridge::newPushButton(getScilabJavaVM(), sciObj->UID);
 }
 
-int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
+int setCurentFigureAsPushButtonParent(char *sciObjUID)
 {
   int parentFigureIndex = 0;
 
@@ -34,7 +36,12 @@ int setCurentFigureAsPushButtonParent(sciPointObj* sciObj)
   //sciAddThisToItsParent(sciObj, sciGetCurrentFigure());
 
   char *pstCurrentFigure = getCurrentFigure();
-  setGraphicObjectRelationship(pstCurrentFigure, sciObj->UID);
+  if (pstCurrentFigure == NULL)
+  {
+      pstCurrentFigure = createNewFigureWithAxes();
+      createJoGLView(pstCurrentFigure);
+  }
+  setGraphicObjectRelationship(pstCurrentFigure, sciObjUID);
 
 
   // Java objects

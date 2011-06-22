@@ -14,7 +14,7 @@
 
 #include "GetUicontrolBackgroundColor.hxx"
 
-int GetUicontrolBackgroundColor(char* sciObjUID)
+int GetUicontrolBackgroundColor(char *sciObjUID)
 {
     double *tmp;
     int status = 0;

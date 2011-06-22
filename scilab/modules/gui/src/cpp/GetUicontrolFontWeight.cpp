@@ -14,12 +14,12 @@
 
 #include "GetUicontrolFontWeight.hxx"
 
-int GetUicontrolFontWeight(sciPointObj* sciObj)
+int GetUicontrolFontWeight(char *sciObjUID)
 {
     char* fontWeight = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_FONTWEIGHT__), jni_string, (void**) &fontWeight);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTWEIGHT__), jni_string, (void**) &fontWeight);
 
     if (fontWeight == NULL)
     {

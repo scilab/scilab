@@ -14,12 +14,12 @@
 
 #include "GetUicontrolMin.hxx"
 
-int GetUicontrolMin(sciPointObj* sciObj)
+int GetUicontrolMin(char *sciObjUID)
 {
     int minValue = 0;
     int* piMinValue = &minValue;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_MIN__), jni_int, (void**) &piMinValue);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), jni_int, (void**) &piMinValue);
 
     if (piMinValue == NULL)
     {

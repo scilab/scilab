@@ -3,22 +3,22 @@
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * Sets the font angle of an uicontrol object
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "SetUicontrolFontAngle.hxx"
 
-int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontAngle(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Font angle can be normal, italic or oblique */
 
-    char* fontAngle = NULL; 
+    char* fontAngle = NULL;
     BOOL status = FALSE;
 
     // Font Name must be only one character string
@@ -42,7 +42,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueTyp
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_FONTANGLE__), fontAngle, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTANGLE__), fontAngle, jni_string, 1);
 
     if (status == TRUE)
     {

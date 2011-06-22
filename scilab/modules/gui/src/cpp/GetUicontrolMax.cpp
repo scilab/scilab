@@ -14,12 +14,12 @@
 
 #include "GetUicontrolMax.hxx"
 
-int GetUicontrolMax(sciPointObj* sciObj)
+int GetUicontrolMax(char *sciObjUID)
 {
     int maxValue = 0;
     int* piMaxValue = &maxValue;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_MAX__), jni_int, (void**) &piMaxValue);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MAX__), jni_int, (void**) &piMaxValue);
 
     if (piMaxValue == NULL)
     {

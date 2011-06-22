@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
 #include "CreateUIControl.h"
+#include "HandleManagement.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "stricmp.h"
@@ -61,7 +63,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
   char *styleProperty=NULL;
 
   char *pParentUID = NULL;
-  sciPointObj *pUicontrol=NULL;
+  char *pUicontrol=NULL;
 
   unsigned long GraphicHandle = 0;
 
@@ -75,10 +77,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
   int lw = 0;
   char *propertyPart = NULL;
 
-  int iItemCount = 0;
-  int *piCurrentItem = NULL;
-  int *piItemType = NULL;
-
   char* uicontrolStyle;
   char* parentType;
   char* parentStyle;
@@ -90,11 +88,10 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
       /* Create a pushbutton in current figure */
 
       /* Create a new pushbutton */
-      GraphicHandle=sciGetHandle(CreateUIControl(NULL));
+      GraphicHandle = getHandle(CreateUIControl(NULL));
 
       /* Set the parent */
-      // ???
-      //setCurentFigureAsPushButtonParent(sciGetPointerFromHandle(GraphicHandle));
+      setCurentFigureAsPushButtonParent(getObjectFromHandle(GraphicHandle));
     }
   else if (Rhs==1)
     {
@@ -126,28 +123,29 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   getGraphicObjectProperty(pParentUID, __GO_STYLE__, jni_string, &parentStyle);
                   if (strcmp(parentStyle, __GO_UI_FRAME__) == 0) /* Frame style uicontrol */
                   {
+                      // TODO
                       //requestFrameFocus(pParent);
                   }
                   else
                   {
+                      // TODO
                       //requestWidgetFocus(pParent);
                   }
                   free(parentStyle);
               }
               else if ((strcmp(parentType, __GO_FIGURE__) == 0) || (strcmp(parentType, __GO_UIMENU__) == 0)) /* PushButton creation */
               {
-                  // ????
                   /* Create a new pushbutton */
-                  //GraphicHandle = sciGetHandle(CreateUIControl(NULL));
+                  GraphicHandle = getHandle(CreateUIControl(NULL));
 
                   /* First parameter is the parent */
-                  //setGraphicObjectRelationship(pParent->UID, sciGetPointerFromHandle(GraphicHandle)->UID);
-                  //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
-                  //if (setStatus == SET_PROPERTY_ERROR)
-                  //{
-                  //    Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
-                  //    return FALSE;
-                  //}
+                  setGraphicObjectRelationship(pParentUID, getObjectFromHandle(GraphicHandle));
+                  setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[1]);
+                  if (setStatus == SET_PROPERTY_ERROR)
+                  {
+                      Scierror(999, _("%s: Could not set property '%s'.\n"), fname, propertyName);
+                      return FALSE;
+                  }
               }
               else
               {
@@ -347,7 +345,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           Scierror(999, _("%s: Could not create 'Uicontrol' handle.\n"), fname);
           return FALSE;
         }
-      GraphicHandle=sciGetHandle(pUicontrol);
+      GraphicHandle = getHandle(pUicontrol);
 
       /* If no parent given then the current figure is the parent */
       if(propertiesValuesIndices[1]==NOT_FOUND)
@@ -357,8 +355,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           getGraphicObjectProperty(graphicObjectUID, __GO_STYLE__, jni_string, &uicontrolStyle);
           if (strcmp(uicontrolStyle, __GO_UI_PUSHBUTTON__) == 0)
           {
-              // FIXME
-              //setCurentFigureAsPushButtonParent(graphicObject);
+              setCurentFigureAsPushButtonParent(graphicObjectUID);
           }
           free(uicontrolStyle);
           #if 0
@@ -416,8 +413,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   stkAdr = propertiesValuesIndices[inputIndex]; /* Special management */
                   nbRow = -1;
                   nbCol = -1;
-                  // FIXME
-                  //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                  setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, VarType(propertiesValuesIndices[inputIndex]), nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                 }
               else /* All other properties */
                 {
@@ -426,31 +422,27 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                     {
                     case sci_matrix:
                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                         // FIXME
-                         //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                         setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_strings:
                          if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
                            {
                              GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
-                             // FIXME
-                             //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                             setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                              freeArrayOfString(stkAdrForStrings, nbRow*nbCol);
                            }
                          else
                            {
                              GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                             // FIXME
-                             //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                             setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                            }
                       break;
                     case sci_handles:
                       GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                      // FIXME
-                      //setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                      setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_tlist:
-                        // ???
+                        // TODO
                         //if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, propertiesValuesIndices[inputIndex]) != 0)
                         {
                             setStatus = SET_PROPERTY_ERROR;

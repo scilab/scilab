@@ -14,7 +14,7 @@
 
 #include "SetUicontrolHorizontalAlignment.hxx"
 
-int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolHorizontalAlignment(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* HorizontalAlignment can be left, center or right */
 
@@ -44,7 +44,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_HORIZONTALALIGNMENT__), alignment, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_HORIZONTALALIGNMENT__), alignment, jni_string, 1);
 
     if (status == TRUE)
     {

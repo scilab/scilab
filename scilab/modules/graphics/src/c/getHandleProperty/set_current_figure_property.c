@@ -37,6 +37,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "callJoGLView.h"
+#include "FigureList.h"
 
 
 /*------------------------------------------------------------------------*/
@@ -44,7 +45,8 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
 {
     int figNum = -1 ;
     int res = -1 ;
-
+    char* pFigureUID = NULL;
+    char* curFigUID = NULL;
 
 	if (pobjUID != NULL)
 	{
@@ -62,7 +64,7 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     if ( isParameterHandle( valueType ) )
     {
 
-        char *curFigUID = getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+        curFigUID = getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
 
         if ( curFigUID == NULL )
         {
@@ -92,7 +94,7 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
     }
 
     /* Retrieve figure with figNum */
-    char* pFigureUID = getFigureFromIndex(figNum);
+    pFigureUID = getFigureFromIndex(figNum);
 
     if (pFigureUID == NULL)
     {

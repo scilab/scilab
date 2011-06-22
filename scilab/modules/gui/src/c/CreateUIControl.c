@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
  * Create Java object matching Scilab uicontrol
  *
  * This file must be used under the terms of the CeCILL.
@@ -38,20 +39,12 @@
  * @param char style[]: the type of the uicontrol object
  * @return  : pointer sciPointObj if ok , NULL if not
  */
-sciPointObj * CreateUIControl(char *style)
+char *CreateUIControl(char *style)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  pobj = MALLOC (sizeof (sciPointObj));
-
-  if (pobj == NULL)
-  {
-      return NULL;
-  }
-
+  char *pobjUID = NULL;
   if (style == NULL || strcmp(style,"pushbutton")==0)
   {
-      pobj->UID = createGraphicObject(__GO_UI_PUSHBUTTON__);
-      //sciAddNewHandle(pobj);
+      pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
       //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
   }
 
@@ -201,7 +194,7 @@ sciPointObj * CreateUIControl(char *style)
     }
  #endif
 
-  return (sciPointObj *) pobj;
+  return pobjUID;
 }
 /*----------------------------------------------------------------------------*/
 

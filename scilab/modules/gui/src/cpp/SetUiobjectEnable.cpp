@@ -14,7 +14,7 @@
 
 #include "SetUiobjectEnable.hxx"
 
-int SetUiobjectEnable(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUiobjectEnable(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status;
@@ -25,7 +25,7 @@ int SetUiobjectEnable(sciPointObj* sciObj, size_t stackPointer, int valueType, i
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_ENABLE__), &b, jni_bool, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_ENABLE__), &b, jni_bool, 1);
 
     if (status == TRUE)
     {

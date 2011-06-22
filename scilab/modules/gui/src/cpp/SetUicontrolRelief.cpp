@@ -14,7 +14,7 @@
 
 #include "SetUicontrolRelief.hxx"
 
-int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolRelief(char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Relief can be flat, groove, raised, ridge, solid or sunken */
 
@@ -49,7 +49,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           return SET_PROPERTY_ERROR;
       }
 
-    status = setGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_RELIEF__), relief, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_RELIEF__), relief, jni_string, 1);
 
     if (status == TRUE)
     {

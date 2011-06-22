@@ -2,12 +2,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- * Sets the units of an uicontrol object 
- * 
+ * Sets the units of an uicontrol object
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -23,7 +23,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolUnits(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     /* Units can be points, normalized, inches, centimeters or pixels */
 
@@ -31,7 +31,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
     char* type = NULL;
 
     /* Handle must be a uicontrol */
-    getGraphicObjectProperty(sciObj->UID, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**) &type);
     if (strcmp(type, __GO_UICONTROL__) != 0)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
@@ -46,7 +46,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
           Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
-      
+
       units = getStringFromStack(stackPointer);
 
       if (stricmp(units, "points") != 0
@@ -60,7 +60,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
           return SET_PROPERTY_ERROR;
       }
 
-      return setGraphicObjectProperty(sciObj->UID, __GO_UI_UNITS__, units, jni_string, 1);
+      return setGraphicObjectProperty(sciObjUID, __GO_UI_UNITS__, units, jni_string, 1);
 
     }
     else
@@ -71,4 +71,3 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
     }
 
 }
-

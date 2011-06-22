@@ -13,12 +13,12 @@
 
 #include "GetUicontrolFontUnits.hxx"
 
-int GetUicontrolFontUnits(sciPointObj* sciObj)
+int GetUicontrolFontUnits(char *sciObjUID)
 {
     char* fontUnits = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_FONTUNITS__), jni_string, (void**) &fontUnits);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTUNITS__), jni_string, (void**) &fontUnits);
 
     if (fontUnits == NULL)
     {

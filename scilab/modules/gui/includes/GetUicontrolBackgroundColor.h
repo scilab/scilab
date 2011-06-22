@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,9 +20,9 @@
 /**
  * Get the background color of a uicontrol
  *
- * @param pobj Scilab object corresponding to the uicontrol
+ * @param pobjUID Scilab object corresponding to the uicontrol
  * @return true if the color has been correcty got
  */
-GUI_IMPEXP int GetUicontrolBackgroundColor(char* pobjUID);
+GUI_IMPEXP int GetUicontrolBackgroundColor(char *pobjUID);
 
 #endif /* __GET_UICONTROL_BACKGROUNDCOLOR_H__ */

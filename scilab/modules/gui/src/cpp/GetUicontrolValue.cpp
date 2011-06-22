@@ -14,14 +14,14 @@
 
 #include "GetUicontrolValue.hxx"
 
-int GetUicontrolValue(sciPointObj* sciObj)
+int GetUicontrolValue(char *sciObjUID)
 {
     int valueSize = 0;
     int* piValueSize = &valueSize;
     int* piValue = NULL;
     int status = 0;
 
-    getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_VALUE_SIZE__), jni_int, (void**) &piValueSize);
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE_SIZE__), jni_int, (void**) &piValueSize);
 
     if (piValueSize == NULL)
     {
@@ -36,7 +36,7 @@ int GetUicontrolValue(sciPointObj* sciObj)
         }
         else
         {
-            getGraphicObjectProperty(sciObj->UID, const_cast<char*>(__GO_UI_VALUE__), jni_int_vector, (void**) &piValue);
+            getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), jni_int_vector, (void**) &piValue);
 
             if (piValue == NULL)
             {

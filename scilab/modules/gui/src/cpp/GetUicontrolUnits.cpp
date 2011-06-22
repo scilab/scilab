@@ -22,19 +22,19 @@ extern "C"
 
 using namespace org_scilab_modules_gui_bridge;
 
-int GetUicontrolUnits(sciPointObj* sciObj)
+int GetUicontrolUnits(char *sciObjUID)
 {
     char* units = NULL;
     char* type = NULL;
 
     /* Handle must be a uicontrol */
-    getGraphicObjectProperty(sciObj->UID, __GO_TYPE__, jni_string, (void**) &type);
+    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_string, (void**) &type);
     if (strcmp(type, __GO_UICONTROL__) != 0)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
         return FALSE;
     }
 
-    getGraphicObjectProperty(sciObj->UID, __GO_UI_UNITS__, jni_string, (void**) &units);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_UNITS__, jni_string, (void**) &units);
     return sciReturnString(units);
 }

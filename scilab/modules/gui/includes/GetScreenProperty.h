@@ -1,8 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * Get the position of an uicontrol 
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -16,7 +15,7 @@
 #include "dynlib_gui.h"
 /*
  * Get a screen (root) property
- * 
+ *
  * @param stack address where the property name is stored
  * @param propertyName the name of the property to get
  * @return execution status
