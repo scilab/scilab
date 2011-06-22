@@ -59,6 +59,41 @@
 #include "graphicObjectProperties.h"
 #include "callJoGLView.h"
 
+#include "FigureModel.h"
+#include "AxesModel.h"
+
+/**
+ * If a current figure exists : return it
+ * Otherwise create a new one.
+ */
+GRAPHICS_IMPEXP char *createNewFigureWithAxes()
+{
+    int iID = 0;
+    char *pFigureUID = NULL;
+    char *pAxesUID = NULL;
+
+    pFigureUID = cloneGraphicObject(getFigureModel());
+    setGraphicObjectProperty(pFigureUID, __GO_ID__, &iID, jni_int, 1);
+    /*
+     * Clones a new Axes object using the Axes model which is then
+     * attached to the newly created Figure.
+     */
+    pAxesUID = cloneGraphicObject(getAxesModel());
+
+    /* Sets the parent-child relationship within the MVC */
+    setGraphicObjectRelationship(pFigureUID, pAxesUID);
+
+    /* Sets the newly created Axes as the Figure's current selected child */
+    setGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, pAxesUID, jni_string, 1);
+
+    setCurrentFigure(pFigureUID);
+    setCurrentObject(pAxesUID);
+    setCurrentSubWin(pAxesUID);
+
+    return pFigureUID;
+}
+
+
 /*-----------------------------------------------------------------------------*/
 
 /**ConstructFigure

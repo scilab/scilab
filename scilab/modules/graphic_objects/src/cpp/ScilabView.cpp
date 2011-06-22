@@ -83,11 +83,11 @@ bool ScilabView::existsFigureId(int id)
 void ScilabView::getFiguresId(int ids[])
 {
     __figureList_iterator it;
-    int i = 0;
+    int i = m_figureList.size() - 1;
 
-    for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it, ++i)
+    for(it = m_figureList.begin() ; it != m_figureList.end() ; ++it, --i)
     {
-        //std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
+        std::cerr << "[ScilabView] DEBUG " << it->first << " <-> " << it->second << std::endl;
         ids[i] = it->second;
     }
 }
@@ -106,10 +106,10 @@ void ScilabView::createObject(char* pstId)
     if(pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
         m_figureList[strdup(pstId)] = -1;
-        setCurrentFigure(strdup(pstId));
+        //setCurrentFigure(strdup(pstId));
     }
 
-    // Register objct handle.
+    // Register object handle.
     getObjectHandle(pstId);
 }
 
@@ -167,7 +167,7 @@ void ScilabView::setCurrentFigure(char* UID)
 */
 char *ScilabView::getCurrentFigure()
 {
-    std::cerr << "[ScilaView] currentFigure = " << (m_currentFigure == NULL ? "NULL !!" : m_currentFigure) << std::endl;
+    //std::cerr << "[ScilaView] currentFigure = " << (m_currentFigure == NULL ? "NULL !!" : m_currentFigure) << std::endl;
     return m_currentFigure;
 }
 
@@ -184,7 +184,7 @@ void ScilabView::setCurrentObject(char* UID)
 */
 char *ScilabView::getCurrentObject()
 {
-    std::cerr << "[ScilaView] currentObject = " << m_currentObject << std::endl;
+    //std::cerr << "[ScilaView] currentObject = " << m_currentObject << std::endl;
     return m_currentObject;
 }
 
@@ -201,7 +201,7 @@ void ScilabView::setCurrentSubWin(char* UID)
 */
 char *ScilabView::getCurrentSubWin()
 {
-    std::cerr << "[ScilaView] currentSubWin = " << m_currentSubWin << std::endl;
+    //std::cerr << "[ScilaView] currentSubWin = " << m_currentSubWin << std::endl;
     return m_currentSubWin;
 }
 
@@ -210,6 +210,7 @@ char *ScilabView::getCurrentSubWin()
 */
 long ScilabView::getObjectHandle(char *UID)
 {
+    /*
     if (UID != NULL)
     {
         std::cerr << "UID = " << UID << std::endl;
@@ -225,7 +226,7 @@ long ScilabView::getObjectHandle(char *UID)
         std::cerr << "UID " << it2->first << " <-> handle " << it2->second << std::endl;
     }
     std::cerr << "[DEBUG] +++ handleMap +++" << std::endl;
-
+    */
     __handleList_iterator it = m_handleList.find(UID);
 
     if (it != m_handleList.end())
@@ -265,7 +266,7 @@ void ScilabView::swapHandles(long firstHandle, long secondHandle)
 
 char *ScilabView::getFigureModel(void)
 {
-    std::cerr << "[ScilabView] getFigureModel = " << (m_figureModel == NULL ? "!! NULL !!" : m_figureModel) << std::endl;
+    //std::cerr << "[ScilabView] getFigureModel = " << (m_figureModel == NULL ? "!! NULL !!" : m_figureModel) << std::endl;
     return m_figureModel;
 }
 
@@ -276,7 +277,7 @@ void  ScilabView::setFigureModel(char *UID)
 
 char *ScilabView::getAxesModel(void)
 {
-    std::cerr << "[ScilabView] getAxesModel = " << (m_axesModel == NULL ? "!! NULL !!" : m_axesModel) << std::endl;
+    //std::cerr << "[ScilabView] getAxesModel = " << (m_axesModel == NULL ? "!! NULL !!" : m_axesModel) << std::endl;
     return m_axesModel;
 }
 

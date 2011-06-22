@@ -30,6 +30,12 @@
 #include "BOOL.h"
 #include "ObjectStructure.h"
 
+/**
+ * If a current figure exists : return it
+ * Otherwise create a new one.
+ */
+GRAPHICS_IMPEXP char *createNewFigureWithAxes(void);
+
 GRAPHICS_IMPEXP sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
 GRAPHICS_IMPEXP sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
 

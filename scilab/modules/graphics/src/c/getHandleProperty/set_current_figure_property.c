@@ -31,8 +31,8 @@
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
 
-#include "FigureModel.h"
-#include "createGraphicObject.h"
+#include "BuildObjects.h"
+#include "CurrentFigure.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -91,17 +91,17 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
         return SET_PROPERTY_ERROR ;
     }
 
-    if (getFigureFromIndex(figNum) == NULL)
+    /* Retrieve figure with figNum */
+    char* pFigureUID = getFigureFromIndex(figNum);
+
+    if (pFigureUID == NULL)
     {
         // No Figure available with this index, should create it  !!
-        char* pFigureUID = NULL;
-        sciPointObj* newaxes = NULL;
-
-
-        pFigureUID = cloneGraphicObject(getFigureModel());
+        pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
         createJoGLView(pFigureUID);
     }
+    setCurrentFigure(pFigureUID);
 
     return 0;
 #if 0
