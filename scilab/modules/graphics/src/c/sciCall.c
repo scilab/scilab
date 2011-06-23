@@ -867,7 +867,7 @@ void Objplot3d ( char    * fname ,
 #if 0
                 endFigureDataWriting(parentFigure);
 #endif
-                Scierror(999, _("%s: x vector is not monotonous.\n"),"Objplot3d");
+                Scierror(999, _("%s: y vector is not monotonous.\n"),"Objplot3d");
                 return;
             }
 

@@ -1762,6 +1762,8 @@ ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typeof3d,
 //        return (sciPointObj*) NULL;
 //    }
 
+    // Here we init old 'graphicContext' by cloning it from parent.
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
 //    if (sciInitGraphicContext (pobj) == -1)
