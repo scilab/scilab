@@ -54,10 +54,10 @@ public static final String __GO_PARENT_AXES__ =            "ParentAxes";
 public static final String __GO_HAS_LEGEND_CHILD__ =       "HasLegendChild";
 public static final String __GO_SELECTED_CHILD__ =         "SelectedChild";
 
-public static final String __GO_DATA_MODEL_COORDINATES__ =            "DataModelCoordinates";
-public static final String __GO_DATA_MODEL_X__ =		           "DataModelX";
-public static final String __GO_DATA_MODEL_Y__ =                      "DataModelY";
-public static final String __GO_DATA_MODEL_Z__ =                      "DataModelZ";
+public static final String __GO_DATA_MODEL_COORDINATES__ = "DataModelCoordinates";
+public static final String __GO_DATA_MODEL_X__ =           "DataModelX";
+public static final String __GO_DATA_MODEL_Y__ =           "DataModelY";
+public static final String __GO_DATA_MODEL_Z__ =           "DataModelZ";
 
 public static final String __GO_DATA_MODEL_X_COORDINATES_SHIFT__ =     "DataModelXCoordinatesShift";
 public static final String __GO_DATA_MODEL_Y_COORDINATES_SHIFT__ =     "DataModelYCoordinatesShift";
@@ -67,7 +67,7 @@ public static final String __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__ = "DataMode
 public static final String __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__ = "DataModelYCoordinatesShiftSet";
 public static final String __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__ = "DataModelZCoordinatesShiftSet";
 
-public static final String __GO_DATA_MODEL_NUM_ELEMENTS__ =	    "DataModelNumElements";
+public static final String __GO_DATA_MODEL_NUM_ELEMENTS__ =            "DataModelNumElements";
 public static final String __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ =      "DataModelNumElementsArray";
 public static final String __GO_DATA_MODEL_NUM_VERTICES_PER_GON__ =    "DataModelNumVerticesPerGon";
 public static final String __GO_DATA_MODEL_NUM_GONS__ =                "DataModelNumGons";
@@ -289,6 +289,7 @@ public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 
 public static final String __GO_STYLE__ =                  "Style";
 public static final String __GO_UI_FRAME__ =               "frame";
+public static final String __GO_UI_IMAGERENDERER__ =       "imagerenderer";
 public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";
 public static final String __GO_UI_TEXT__ =                "text";
 
@@ -306,6 +307,8 @@ public static final String __GO_UI_LISTBOXTOP_SIZE__ =     "UIListboxTopSize";
 public static final String __GO_UI_MAX__ =                 "UIMax";
 public static final String __GO_UI_MIN__ =                 "UIMin";
 public static final String __GO_UI_RELIEF__ =              "UIRelief";
+public static final String __GO_UI_SCALE__ =               "UIScale";
+public static final String __GO_UI_SHEAR__ =               "UIShear";
 public static final String __GO_UI_STRING__ =              "UIString";
 public static final String __GO_UI_STRING_SIZE__ =         "UIStringSize";
 public static final String __GO_UI_SLIDERSTEP__ =          "UISliderStep";

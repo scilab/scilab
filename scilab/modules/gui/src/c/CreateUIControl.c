@@ -41,13 +41,16 @@
  */
 char *CreateUIControl(char *style)
 {
-  char *pobjUID = NULL;
-  if (style == NULL || strcmp(style,"pushbutton")==0)
-  {
-      pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
-      //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
-  }
-
+    char *pobjUID = NULL;
+    if (style == NULL || strcmp(style, "pushbutton")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
+        //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
+    }
+    else if (strcmp(style,"imagerenderer")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
+    }
 
 #if 0
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,23 +10,23 @@
  *
  */
 
-package org.scilab.modules.graphic_objects.uicontrol.pushbutton;
+package org.scilab.modules.graphic_objects.uicontrol.imagerenderer;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
- * @author Bruno JOFRET
+ * @author Vincent COUVERT
  */
-public class PushButton extends Uicontrol {
+public class ImageRenderer extends Uicontrol {
 
 	/**
 	 * Constructor
 	 */
-	public PushButton() {
+	public ImageRenderer() {
 		super();
-		setStyle(__GO_UI_PUSHBUTTON__);
+		setStyle(__GO_UI_IMAGERENDERER__);
 	}
 
 }

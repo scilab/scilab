@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Han DONG
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.imagerenderer.SimpleImageRenderer;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -38,10 +41,13 @@ import org.scilab.modules.gui.utils.Size;
 /**
  * Swing implementation for Scilab ImageRenderer in GUIs
  * @author Han DONG
+ * @author Vincent COUVERT
  */
-public class SwingScilabImageRenderer extends JScrollPane implements SimpleImageRenderer {
+public class SwingScilabImageRenderer extends JScrollPane implements SwingViewObject, SimpleImageRenderer {
 
 	private static final long serialVersionUID = -3394912554085956130L;
+
+	private String uid;
 
 	private JLabel imageRenderer;
 	private ImageIcon imi;
@@ -299,15 +305,14 @@ public class SwingScilabImageRenderer extends JScrollPane implements SimpleImage
 	 * @param indices the double value of the angle to rotate
 	 */
 	public void setRotate(double[] indices) {
-		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
-		else {
-		int h = img.getHeight(this);
-		int w = img.getWidth(this);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.rotate(Math.toRadians(indices[0]), w/2, h/2);
-		g2.drawImage(img, 0, 0, this);
-		imageRenderer.setIcon(new ImageIcon(bim));
+		if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
+			int h = img.getHeight(this);
+			int w = img.getWidth(this);
+			BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = bim.createGraphics();
+			g2.rotate(Math.toRadians(indices[0]), w / 2, h / 2);
+			g2.drawImage(img, 0, 0, this);
+			imageRenderer.setIcon(new ImageIcon(bim));
 		}
 	}
 
@@ -316,15 +321,14 @@ public class SwingScilabImageRenderer extends JScrollPane implements SimpleImage
 	 * @param indices the double array of x, y values to shear
 	 */
 	public void setShear(double[] indices) {
-		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
-		else {
-		int h = img.getHeight(this);
-		int w = img.getWidth(this);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.shear(indices[0], indices[1]);
-		g2.drawImage(img, 0, 0, this);
-		imageRenderer.setIcon(new ImageIcon(bim));
+		if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
+			int h = img.getHeight(this);
+			int w = img.getWidth(this);
+			BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = bim.createGraphics();
+			g2.shear(indices[0], indices[1]);
+			g2.drawImage(img, 0, 0, this);
+			imageRenderer.setIcon(new ImageIcon(bim));
 		}
 	}
 
@@ -333,15 +337,39 @@ public class SwingScilabImageRenderer extends JScrollPane implements SimpleImage
 	 * @param indices the double array of x, y values to scale
 	 */
 	public void setScale(double[] indices) {
-		if(img == null || img.getHeight(this) < 0 || img.getWidth(this) < 0) {}
-		else {
-		int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
-		int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
-		BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2 = bim.createGraphics();
-		g2.scale(indices[0], indices[1]);
-		g2.drawImage(img, 0, 0, this);
-		imageRenderer.setIcon(new ImageIcon(bim));
+		if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
+			int h = img.getHeight(this) * (int) Math.ceil(indices[0]);
+			int w = img.getWidth(this) * (int) Math.ceil(indices[1]);
+			BufferedImage bim = new BufferedImage(h, w, BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2 = bim.createGraphics();
+			g2.scale(indices[0], indices[1]);
+			g2.drawImage(img, 0, 0, this);
+			imageRenderer.setIcon(new ImageIcon(bim));
 		}
+	}
+
+	/**
+	 * Set the UID
+	 * @param id the UID
+	 */
+	public void setId(String id) {
+		uid = id;
+	}
+
+	/**
+	 * Get the UID
+	 * @return the UID
+	 */
+	public String getId() {
+		return uid;
+	}
+
+	/**
+	 * Generic update method
+	 * @param property property name
+	 * @param value property value
+	 */
+	public void update(String property, Object value) {
+		SwingScilabWidget.update(this, property, value);
 	}
 }

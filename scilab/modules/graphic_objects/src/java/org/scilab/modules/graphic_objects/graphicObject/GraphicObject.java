@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,7 @@ import org.scilab.modules.graphic_objects.legend.Legend;
 /**
  * GraphicObject class
  * @author Manuel JULIACHS
+ * @author Vincent COUVERT
  */
 public abstract class GraphicObject implements Cloneable {
 	/** User data array default size */
@@ -32,7 +34,7 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Graphic objects types */
 	public enum Type { ARC, AXES, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, GRAYPLOT,
-		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, PUSHBUTTON, UNKNOWNOBJECT };
+		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, PUSHBUTTON, IMAGERENDERER, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
@@ -155,6 +157,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.SEGS;
         } else if (typeName.equals(__GO_TEXT__)) {
             return Type.TEXT;
+        } else if (typeName.equals(__GO_UI_IMAGERENDERER__)) {
+            return Type.IMAGERENDERER;
         } else if (typeName.equals(__GO_UI_PUSHBUTTON__)) {
             return Type.PUSHBUTTON;
         } else {
@@ -288,18 +292,18 @@ public abstract class GraphicObject implements Cloneable {
 	 * @param property the property name
 	 */
 	public Object getPropertyVoid(String property) {
-		// TBD
+		// TODO
 		return null;
 	}
 
-	/* TBD */
+	/* TODO */
 	/**
 	 * Void property set method
 	 * @param property the property name
 	 * @param value the property value
 	 */
 	public void setPropertyVoid(String property, Object value) {
-		// TBD
+		// TODO
 	}
 	
 	/**
@@ -308,7 +312,7 @@ public abstract class GraphicObject implements Cloneable {
 	public String[] getChildren() {
 		String[] result = new String[children.size()];
 	    
-		for (int i = 0 ; i < children.size() ; ++i) {
+		for (int i = 0; i < children.size(); ++i) {
 	        result[i] = children.get(i);
 	    }
 		
@@ -413,13 +417,10 @@ public abstract class GraphicObject implements Cloneable {
 	public String getParentFigure() {
                 if (this instanceof Figure) {
                         return getIdentifier();
-                }
-                else
-                {
-                	if(getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
+                } else {
+                	if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 		return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
-                	}
-                	else {
+                	} else {
                 		return null;
                 	}
                 }
@@ -436,13 +437,10 @@ public abstract class GraphicObject implements Cloneable {
 	public String getParentAxes() {
                 if (this instanceof Axes) {
                         return getIdentifier();
-                }
-                else
-                {
+                } else {
                 	if (getParent() != null && GraphicController.getController().getObjectFromId(getParent()) != null) {
                 		return GraphicController.getController().getObjectFromId(getParent()).getParentAxes();
-                	}
-                	else {
+                	} else {
                 		return null;
                 	}
                 }

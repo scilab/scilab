@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,6 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -37,6 +39,7 @@ import java.util.Map;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -45,8 +48,7 @@ public class SwingView implements GraphicView {
 
     private static SwingView me = null;;
 
-    public static void registerSwingView()
-    {
+    public static void registerSwingView() {
         DEBUG("SwingView", "calling registerSwingView()");
         if (me == null) {
             me = new SwingView();
@@ -61,7 +63,7 @@ public class SwingView implements GraphicView {
     public static SwingViewObject getFromId(String id) {
         TypedObject typedObject = me.allObjects.get(id);
         
-        if(typedObject == null) {
+        if (typedObject == null) {
             return null;
         }
         
@@ -70,7 +72,8 @@ public class SwingView implements GraphicView {
     
     private enum UielementType {
         Figure,
-        PushButton
+        PushButton,
+        ImageRenderer
     } 
 
     private class TypedObject {
@@ -97,16 +100,15 @@ public class SwingView implements GraphicView {
     public void createObject(String id) {
 
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-        DEBUG("SwingWiew", "Object Created : " + id);
-        DEBUG("SwingWiew", "with type : " + objectType);
-        if(objectType.equals(__GO_FIGURE__)) {
+        DEBUG("SwingWiew", "Object Created : " + id + "with type : " + objectType);
+        if (objectType.equals(__GO_FIGURE__)) {
             allObjects.put(id, CreateObjectFromType(objectType, id));
             return;
         }
 
-        if(objectType.equals(__GO_UICONTROL__)) {
+        if (objectType.equals(__GO_UICONTROL__)) {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
-            DEBUG("SwingView", "__GO_STYLE__("+style+")");
+            DEBUG("SwingView", "__GO_STYLE__(" + style + ")");
             if (style != null) {
                 allObjects.put(id, CreateObjectFromType(style, id));
             } else {
@@ -116,12 +118,15 @@ public class SwingView implements GraphicView {
     }
 
     private UielementType StyleToEnum(String style) {
-        DEBUG("SwingView", "StyleToEnum("+style+")");
-        if(style.equals(__GO_UI_PUSHBUTTON__)) {
+        DEBUG("SwingView", "StyleToEnum(" + style + ")");
+        if (style.equals(__GO_UI_PUSHBUTTON__)) {
             return UielementType.PushButton;
         }
-        if(style.equals(__GO_FIGURE__)) {
+        if (style.equals(__GO_FIGURE__)) {
             return UielementType.Figure;
+        }
+        if (style.equals(__GO_UI_IMAGERENDERER__)) {
+            return UielementType.ImageRenderer;
         }
         return null;
     }
@@ -156,6 +161,10 @@ public class SwingView implements GraphicView {
             SwingScilabWidget.update(button, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
             SwingScilabWidget.update(button, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
             return button;
+        case ImageRenderer:
+        	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
+        	imageRenderer.setId(id);
+        	return imageRenderer;
         default:
             return null;
         }
@@ -181,10 +190,10 @@ public class SwingView implements GraphicView {
             if (swingObject != null) {
                 swingObject.update(property, GraphicController.getController().getProperty(id, property));
             } else {
-                System.err.println("[DEBUG] swingObject ("+id+") is null can not update.");   
+                System.err.println("[DEBUG] swingObject (" + id + ") is null can not update.");   
             }
         } else {
-            System.err.println("[DEBUG] registeredObject ("+id+") is null.");   
+            System.err.println("[DEBUG] registeredObject (" + id + ") is null.");   
         }
     }
 

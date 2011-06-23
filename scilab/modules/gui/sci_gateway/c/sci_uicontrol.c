@@ -45,7 +45,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 28
+#define NBPROPERTIES 30
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -72,12 +72,11 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type", "treedata"};
+  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type", "treedata", "scale", "shear"};
   int *propertiesValuesIndices = NULL;
   int lw = 0;
   char *propertyPart = NULL;
 
-  char* uicontrolStyle;
   char* parentType;
   char* parentStyle;
 
@@ -352,12 +351,14 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
         {
           char * graphicObjectUID = getObjectFromHandle(GraphicHandle);
           /* Set the parent */
-          getGraphicObjectProperty(graphicObjectUID, __GO_STYLE__, jni_string, &uicontrolStyle);
-          if (strcmp(uicontrolStyle, __GO_UI_PUSHBUTTON__) == 0)
+          char *pstCurrentFigure = getCurrentFigure();
+          if (pstCurrentFigure == NULL)
           {
-              setCurentFigureAsPushButtonParent(graphicObjectUID);
+              pstCurrentFigure = createNewFigureWithAxes();
+              createJoGLView(pstCurrentFigure);
           }
-          free(uicontrolStyle);
+          setGraphicObjectRelationship(pstCurrentFigure, graphicObjectUID);
+          // TODO Remove following code and called functions in src/cpp/*.cpp
           #if 0
           switch(pUICONTROL_FEATURE(graphicObject)->style)
             {
