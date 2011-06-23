@@ -300,9 +300,11 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/apps/system-search.png \
+images/icons/16x16/actions/edit-clear.png \
 images/icons/16x16/actions/execute-all.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \

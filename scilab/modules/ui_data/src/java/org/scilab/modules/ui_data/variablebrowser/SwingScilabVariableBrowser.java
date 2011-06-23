@@ -1,4 +1,4 @@
-/*
+/**
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
@@ -41,6 +41,7 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -51,6 +52,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.actions.ScilabVarFilteringAction;
+import org.scilab.modules.ui_data.actions.ScilabVarFilteringButtonAction;
 import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
 import org.scilab.modules.ui_data.actions.CompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.actions.DoubleFilteringAction;
@@ -78,6 +80,9 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowDa
 
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTypeEnum;
+
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 
 /**
  * Swing implementation of Scilab Variable browser
@@ -115,7 +120,10 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
     private CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
     private CheckBoxMenuItem filterMatlabSparseCheckBox;
     private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
-
+    private PushButton filteringButton;
+    
+    private boolean isSetData = false;
+    
     private TableRowSorter< ? > rowSorter;
 
     /**
@@ -131,6 +139,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
+        toolBar.addSeparator();
+        filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
+//        toolBar.add(filteringButton);
         addToolBar(toolBar);
 
         dataModel = new SwingTableModel<Object>(columnsName);
@@ -139,29 +150,32 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                 //Implement table cell tool tips.
                 public String getToolTipText(MouseEvent e) {
                     String tip = null;
-                            java.awt.Point p = e.getPoint();
-                            int rowIndex = rowAtPoint(p);
-                            int colIndex = columnAtPoint(p);
-                            if (colIndex==BrowseVar.TYPE_COLUMN_INDEX) { /* Scilab type */
-                                try {
-                                    int type = Integer.parseInt(getValueAt(rowIndex, colIndex).toString());
-                                    tip = Messages.gettext("Scilab type:")+" "+ ScilabTypeEnum.swigToEnum(type);
-                                } catch (IllegalArgumentException exception) {
-                                    /* If the type is not known/manage, don't crash */
-                                }
-                                
-                            } else {
+                    java.awt.Point p = e.getPoint();
+                    int rowIndex = rowAtPoint(p);
+                    if (rowIndex >= 0) {
+                        
+                        int colIndex = columnAtPoint(p);
 
-                                if (colIndex==BrowseVar.SIZE_COLUMN_INDEX) {
-                                    /* Use the getModel() method because the
-                                     * column 5 has been removed from display
-                                     * but still exist in the model */
-                                    tip = Messages.gettext("Bytes:")+" "+((JTable)e.getSource()).getModel().getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
-                                }
-
+                        if (colIndex==BrowseVar.TYPE_COLUMN_INDEX) { /* Scilab type */
+                            try {
+                                int type = Integer.parseInt(getValueAt(rowIndex, colIndex).toString());
+                                tip = Messages.gettext("Scilab type:")+" "+ ScilabTypeEnum.swigToEnum(type);
+                            } catch (IllegalArgumentException exception) {
+                                /* If the type is not known/managed, don't crash */
                             }
-                            
-                            return tip;
+                                
+                        } else {
+
+                            if (colIndex==BrowseVar.SIZE_COLUMN_INDEX) {
+                                /* Use the getModel() method because the
+                                 * column 5 has been removed from display
+                                 * but still exist in the model */
+                                tip = Messages.gettext("Bytes:")+" "+((JTable)e.getSource()).getModel().getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
+                            }
+
+                        }
+                    }
+                    return tip;
                 }
             };
 
@@ -222,6 +236,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * {@inheritDoc}
      */
     public void setData(Object[][] data) {
+        isSetData = true;
         dataModel.setData(data);
         rowSorter = new TableRowSorter<TableModel>(dataModel);
         this.updateRowFiltering();
@@ -233,6 +248,14 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * @see org.scilab.modules.ui_data.variablebrowser.SimpleVariableBrowser#updateRowFiltering()
      */
     public void updateRowFiltering() {
+        if (isSetData == false) { /* If the pull of the data has not been done, do it (please) */
+            try {
+                ScilabInterpreterManagement.synchronousScilabExec("browsevar");
+                isSetData = true;
+            } catch (InterpreterException e) {
+                System.err.println(e);
+            }
+        }
         VariableBrowserRowTypeFilter rowFilter = new VariableBrowserRowTypeFilter(getFilteredTypeValues());
         VariableBrowserRowDataFilter rowDataFilter = new VariableBrowserRowDataFilter(getFilteredDataValues());
 
@@ -460,6 +483,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      */
     public boolean getFilteredDataValues() {
         return filterScilabVarCheckBox.isChecked();
+//        return filteringButton.isEnabled();
 
     }
 

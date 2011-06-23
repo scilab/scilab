@@ -188,11 +188,14 @@ static std::set<string> createScilabDefaultVariablesSet() {
                     "%io",
                     "%i",
                     "demolist",
+                    "%z",
+                    "%s",
+                    "$",
                     "%driverName",
                     "%toolboxes",
                     "%toolboxes_dir"};
-    int i = 0;
-#define NBELEMENT 26
+    int i=0;
+    #define NBELEMENT 29
     std::set<string> ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++) {
