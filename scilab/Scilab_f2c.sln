@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "modules\functions\scripts\buildmacros\BuildMacros.vcxproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
@@ -187,6 +187,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "norandlib", "modules\randlib\src\norandlib\norandlib.vcxproj", "{E5038304-761D-448C-B358-48CA2883778A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell", "modules\shell\src\c\shell.vcxproj", "{805AA73F-EF7B-4177-BF46-200B72D8F83A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\src\java\jvm-JAVA.vcxproj", "{E9783492-017E-4811-9CC7-6B71856F847C}"
 EndProject

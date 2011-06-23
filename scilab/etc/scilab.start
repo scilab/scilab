@@ -98,13 +98,7 @@ end
 // Protect variable previously defined  ================================
 predef("all");
 
-// At startup, no interactive vertical paging is authorized.===========
-// Note :
-// This may happen when the .scilab startup configuration file is loaded.
-// This may freeze a unit test, for which the .scilab file is so long 
-// that an interactive action is required ; but that interactive
-// action cannot occur, since it is during a unit test.
-_DEFAULT_LN_ = lines();
+// At startup, no interactive vertical paging by default. ==============
 lines(0);
 
 // load contrib menu if present ========================================
@@ -165,8 +159,5 @@ if getscilabmode() == "STD" then
   toolbar(-1, "on");
 end
 
-// Restore initial lines mode ==========================================
-lines(_DEFAULT_LN_(2),_DEFAULT_LN_(1));
-clear _DEFAULT_LN_;
-
+// ====================================================================
 clear ans
