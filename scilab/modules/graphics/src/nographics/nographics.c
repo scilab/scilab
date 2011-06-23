@@ -480,7 +480,7 @@ BOOL sciGetVisibility (sciPointObj * pobj)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-void sciGetLogFlags(sciPointObj * pObj, char flags[3])
+void sciGetLogFlags(char *pObjUID, char flags[3])
 {
 
 }

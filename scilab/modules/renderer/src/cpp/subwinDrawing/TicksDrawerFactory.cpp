@@ -4,11 +4,11 @@
  * Copyright (C) 2009 - INRIA - Pierre Lando
  * Copyright (C) 2010 - Paul Griffiths
  * desc : Factory for TicksDrawer classes
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -58,6 +58,8 @@ TicksDrawerFactory::~TicksDrawerFactory(void)
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
 {
+// No more needed
+#if 0
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
 
   BOOL axesVisible[3];
@@ -69,7 +71,7 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   {
     newTicksDrawer->setTicksDrawer(new TicksDrawerJoGL(m_pDrawer));
   }
-  
+
   BOOL autoTicks[3];
   sciGetAutoTicks(pSubwin, autoTicks);
 
@@ -108,7 +110,7 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     {
       ticksComputer = new AutomaticTicksComputer(m_pDrawer);
     }
-    
+
     double bounds[6];
     sciGetRealDataBounds(pSubwin, bounds);
     ticksComputer->setAxisBounds(bounds[0], bounds[1]);
@@ -163,16 +165,18 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   }
 
   return newTicksDrawer;
-
+#endif
+  return NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
 {
+#if 0
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
 
   BOOL axesVisible[3];
   sciGetAxesVisible(pSubwin, axesVisible);
-  
+
 
   TicksDrawer * newTicksDrawer = new TicksDrawer();
 
@@ -272,10 +276,13 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
   }
 
   return newTicksDrawer;
+#endif
+  return NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
 {
+#if 0
   sciPointObj * pSubwin = m_pDrawer->getDrawedObject();
 
   BOOL axesVisible[3];
@@ -365,6 +372,8 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
   }
 
   return newTicksDrawer;
+#endif
+  return NULL;
 }
 /*------------------------------------------------------------------------------------------*/
 ComputeSubticksStrategy * TicksDrawerFactory::createRightSubTicksComputer(DrawableSubwin * subwin,

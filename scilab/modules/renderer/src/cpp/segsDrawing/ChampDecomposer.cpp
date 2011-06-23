@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * desc : Strategy decomposing only champ object 
- * 
+ * desc : Strategy decomposing only champ object
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,7 +24,7 @@ namespace sciGraphics
 {
 /*---------------------------------------------------------------------------------*/
 ChampDecomposer::ChampDecomposer(DrawableSegs * segs)
-  : DecomposeSegsStrategy(segs) 
+  : DecomposeSegsStrategy(segs)
 {
 
 }
@@ -38,6 +38,7 @@ void ChampDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
                                  double startYCoords[], double endYCoords[],
                                  double startZCoords[], double endZCoords[])
 {
+#if 0
   int nbSegs = getNbSegment();
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
   sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
@@ -68,14 +69,14 @@ void ChampDecomposer::getSegsPos(double startXCoords[], double endXCoords[],
   for (int i = 0; i < nbSegs; i++)
   {
     startZCoords[i] = defaultZvalue;
-    endZCoords[i] = defaultZvalue; 
+    endZCoords[i] = defaultZvalue;
   }
 
   // apply log scale if needed
   m_pDrawed->pointScale(startXCoords, startYCoords, startZCoords, nbSegs);
   m_pDrawed->pointScale(endXCoords, endYCoords, endZCoords, nbSegs);
 
-
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 int ChampDecomposer::getNbSegment(void)
@@ -136,7 +137,7 @@ void ChampDecomposer::getChampPos(double startXCoords[], double endXCoords[],
   double maxLength = computeMaxUsableLength();
 
   int nbSegs = getNbSegment();
-  
+
   // modify the length proportionally so
   // that the longest vector get the max usable length
   for (int i = 0; i < nbSegs; i++)
@@ -189,7 +190,7 @@ double ChampDecomposer::computeMaxUsableLength(void)
 {
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
   sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
-  
+
   // find the minimum distance between two consecutive abscissas.
   double minLengthX;
   if (ppSegs->Nbr1 < 2)
@@ -208,8 +209,8 @@ double ChampDecomposer::computeMaxUsableLength(void)
       }
     }
   }
-  
-  
+
+
   // find the minimum distance between two consecutive ordinates.
   double minLengthY;
 

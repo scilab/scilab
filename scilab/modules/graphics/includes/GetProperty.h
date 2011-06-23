@@ -195,7 +195,7 @@ GRAPHICS_IMPEXP void sciGetDisplayedDataBounds(sciPointObj * pObj, double bounds
 
 GRAPHICS_IMPEXP void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta) ; /* GET */
 
-GRAPHICS_IMPEXP void sciGetLogFlags(sciPointObj * pObj, char flags[3]); /* GET */
+GRAPHICS_IMPEXP void sciGetLogFlags(char *pObjUID, char flags[3]); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetPixmapMode(sciPointObj * pObj); /* GET */
 

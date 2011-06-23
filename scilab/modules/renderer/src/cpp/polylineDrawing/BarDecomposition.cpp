@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Decompose polyline to get data for bar drawing
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -67,7 +67,7 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
       }
     }
   }
-  
+
 
   if (yCoords != NULL)
   {
@@ -80,7 +80,7 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
       }
     }
   }
-  
+
   if (zCoords != NULL)
   {
     if ( zPoints == NULL )
@@ -100,11 +100,11 @@ void BarDecomposition::getDrawnVertices(double xCoords[], double yCoords[], doub
       }
     }
   }
-  
+
 
   // apply logarithmic mode if needed
   m_pDrawed->pointScale(xCoords, yCoords, zCoords, getDrawnVerticesLength());
-  
+
 }
 /*---------------------------------------------------------------------------------*/
 void BarDecomposition::getDrawnVerticesColor(int colors[])
@@ -145,6 +145,8 @@ void BarDecomposition::getBarAbscissas(double left[], double right[])
 /*---------------------------------------------------------------------------------*/
 void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[], double zCoords[])
 {
+// No more needed ?
+#if 0
   // first half
   getDrawnVertices(xCoords, yCoords, zCoords);
 
@@ -152,7 +154,7 @@ void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[]
 
   // second half
   sciPointObj * pPolyline = m_pDrawed->getDrawedObject();
-  
+
   // special case for with logarithmic mode
   // bars starts at y = 1 = 10^0 and not 0 which is not displayable
   char logFlags[3];
@@ -175,7 +177,7 @@ void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[]
       zCoords[i + semiSize] = zCoords[i];
     }
   }
-  
+  #endif
 }
 /*---------------------------------------------------------------------------------*/
 int BarDecomposition::getBarPlotMarkVerticesLength(void)

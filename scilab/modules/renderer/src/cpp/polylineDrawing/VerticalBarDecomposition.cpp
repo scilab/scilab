@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Decompose polyline to get data for vertical bar drawing
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -36,6 +36,8 @@ VerticalBarDecomposition::~VerticalBarDecomposition( void )
 /*---------------------------------------------------------------------------------*/
 void VerticalBarDecomposition::getBarOrdinates(double bottom[], double top[])
 {
+// No more needed ?
+#if 0
   sciPointObj * pPolyline = m_pDecomposition->getDrawedPolyline()->getDrawedObject();
   int nbVertices = m_pDecomposition->getDrawnVerticesLength();
   double * yPoints = pPOLYLINE_FEATURE(pPolyline)->pvy;
@@ -64,7 +66,7 @@ void VerticalBarDecomposition::getBarOrdinates(double bottom[], double top[])
     {
       top[i] += yShift[i];
     }
-  }   
+  }
 
   // for barplot, bars always start at y = 0
   if (sciGetPolylineStyle(pPolyline) != 3 && yShift != NULL)
@@ -74,7 +76,7 @@ void VerticalBarDecomposition::getBarOrdinates(double bottom[], double top[])
       bottom[i] +=  yShift[i];
     }
   }
-
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 void VerticalBarDecomposition::getBarAbscissas(double left[], double right[])

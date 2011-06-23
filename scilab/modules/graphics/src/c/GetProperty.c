@@ -3377,7 +3377,7 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
 /**
 * Copy the logflags of a subwin to an array of size 3.
 */
-void sciGetLogFlags(sciPointObj * pObj, char flags[3])
+void sciGetLogFlags(char * pObjUID, char flags[3])
 {
     char* logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
     int i;
@@ -3386,7 +3386,7 @@ void sciGetLogFlags(sciPointObj * pObj, char flags[3])
 
     for (i = 0; i < 3; i++)
     {
-        getGraphicObjectProperty(pObj->UID, logflagPropertyNames[i], jni_bool, &piLogFlag);
+        getGraphicObjectProperty(pObjUID, logflagPropertyNames[i], jni_bool, &piLogFlag);
 
         if (piLogFlag == NULL)
         {

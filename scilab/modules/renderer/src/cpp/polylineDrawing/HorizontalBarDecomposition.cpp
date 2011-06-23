@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * desc : Decompose polyline to get data for horizontal bar drawing
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -65,6 +65,8 @@ void HorizontalBarDecomposition::getBarOrdinates(double bottom[], double top[])
 /*---------------------------------------------------------------------------------*/
 void HorizontalBarDecomposition::getBarAbscissas(double left[], double right[])
 {
+// No more needed
+#if 0
   sciPointObj * pPolyline = m_pDecomposition->getDrawedPolyline()->getDrawedObject();
   int nbVertices = m_pDecomposition->getDrawnVerticesLength();
   // for barh pvy and y_shift stand for ordinates
@@ -94,8 +96,8 @@ void HorizontalBarDecomposition::getBarAbscissas(double left[], double right[])
       right[i] += xShift[i];
     }
   }
+#endif
 
-  
 }
 /*---------------------------------------------------------------------------------*/
 

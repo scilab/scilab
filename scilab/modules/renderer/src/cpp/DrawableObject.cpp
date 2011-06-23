@@ -185,6 +185,8 @@ void DrawableObject::setDrawableImp( DrawableObjectBridge * imp )
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::move(const double translation[3])
 {
+// No more needed
+#if 0
   // disable move in logarithmic scale
   // move is to be used with affine transformations
   // TODO create specific cases for each object
@@ -202,6 +204,7 @@ void DrawableObject::move(const double translation[3])
   m_aMoveTranslation[0] += translation[0];
   m_aMoveTranslation[1] += translation[1];
   m_aMoveTranslation[2] += translation[2];
+#endif
 }
 /*------------------------------------------------------------------------------------------*/
 void DrawableObject::reinitMove(void)

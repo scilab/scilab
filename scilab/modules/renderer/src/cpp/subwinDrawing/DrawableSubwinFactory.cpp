@@ -1,13 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Factory for subwin objects. Automatically create a subwin 
+ * desc : Factory for subwin objects. Automatically create a subwin
  * drawer with the right algorithms from the graphic handle
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -62,11 +62,13 @@ void DrawableSubwinFactory::update( void )
 
   // update strategies
   setStrategies(dynamic_cast<ConcreteDrawableSubwin *>(getSubwinDrawer(m_pDrawed)));
-  
+
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
 {
+// No more needed
+#if 0
   sciPointObj * pSubwin = subwin->getDrawedObject();
 
   // bounds computation
@@ -130,7 +132,7 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
   subwin->setXTicksDrawer(tdf.createXTicksDrawer());
   subwin->setYTicksDrawer(tdf.createYTicksDrawer());
   subwin->setZTicksDrawer(tdf.createZTicksDrawer());
-
+#endif
 }
 /*------------------------------------------------------------------------------------------*/
 
