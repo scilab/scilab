@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:43+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -59,32 +60,8 @@ msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: es gibt kein xls Datenstrom in der Datei %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s: falsche Typ für Eingangsargument #%d: Skalar erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
-#, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: Datei %s existiert nicht.\n"
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
@@ -295,3 +272,31 @@ msgstr "ripOLE: Dekodieren von %s ergab einen Fehler %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: Dekodieren von %s ergab einen Fehler %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+#~ msgid "%s: file %s does not exist.\n"
+#~ msgstr "%s: Datei %s existiert nicht.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+#~ msgstr ""
+#~ "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"

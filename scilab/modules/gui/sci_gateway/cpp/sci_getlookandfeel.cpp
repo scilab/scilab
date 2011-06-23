@@ -30,7 +30,7 @@ int sci_getlookandfeel(char *fname,unsigned long fname_len)
 	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
 	if (lnf)
 	{
-		static int n1 = 0,m1 = 0,l1 = 0;
+		static int n1 = 0,m1 = 0;
 
 		char *look = lnf->getCurrentLookAndFeel();
 		if (look)

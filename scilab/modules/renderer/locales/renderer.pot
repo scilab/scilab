@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 11:48+0100\n"
+"Revision-Date: 2011-06-06 15:28+0100\n"
 
 # File: src/cpp/DrawableObjectJoGL.cpp, line: 53
 # File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
@@ -49,8 +49,7 @@ msgid "%s: No more memory.\n"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgid "Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
 msgstr ""
 #
 # File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 89

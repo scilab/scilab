@@ -22,6 +22,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
 
 /**
@@ -51,11 +52,13 @@ public class PasteAction extends DefaultAction {
                 doc.mergeEditsBegin();
                 getEditor().getTextPane().replaceSelection(str);
                 doc.mergeEditsEnd();
+                if (!((SciNotesCaret) getEditor().getTextPane().getCaret()).isEmptySelection()) {
+                    ((SciNotesCaret) getEditor().getTextPane().getCaret()).removeHighlights();
+                }
             }
-        } catch (UnsupportedFlavorException ex1) {
-            System.err.println(ex1);
-        } catch (IOException ex2) {
-            System.err.println(ex2);
+        } catch (UnsupportedFlavorException e) {
+        } catch (IOException e) {
+            System.err.println(e);
         }
     }
 

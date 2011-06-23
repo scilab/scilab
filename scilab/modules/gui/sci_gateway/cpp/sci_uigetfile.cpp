@@ -88,8 +88,6 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 	int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
 	int nbRowOutPath = 1, nbColOutPath = 1;
 
-	int voidSelectionAdr = 0;
-
 	char *optName = NULL;
 
 	char **mask = NULL; 
@@ -155,7 +153,6 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 	/* call uigetfile with 2 arg */
 	if (Rhs >= 2)
 	{
-		int out_n = 0;
 		char *path = NULL;
 
 		if (VarType(2) != sci_strings) 

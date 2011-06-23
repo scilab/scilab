@@ -7,15 +7,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 05:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr " Почато синхронне виконання команд з черги.\n"
@@ -57,40 +58,14 @@ msgid "%s: No such slave interpreter.\n"
 msgstr "%s: допоміжного інтерпретатора не виявлено.\n"
 
 #, c-format
-msgid "%s: Slave interpreter already exists.\n"
-msgstr "%s: допоміжний інтерпретатор вже запущено.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше одного.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«boolean».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
 #, c-format
@@ -117,27 +92,11 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
-msgid "&?"
-msgstr "&Довідка"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
 msgid "Alpha Release"
 msgstr "Передтестовий випуск"
 
 msgid "Beta Release"
 msgstr "Тестовий випуск"
-
-#, c-format
-msgid "Error %s while loading library %s"
-msgstr "Помилка %s під час спроби завантаження бібліотеки %s"
 
 #, c-format
 msgid "Execution ends for %s"
@@ -261,3 +220,63 @@ msgstr "Попередження: у черзі занадто багато зв
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] не працює у Tcl/Tk.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+#~ "%d параметрів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«boolean».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#~ msgid "&Edit"
+#~ msgstr "&Правка"
+
+#~ msgid "&File"
+#~ msgstr "&Файл"
+
+#~ msgid "&Tools"
+#~ msgstr "&Інструменти"
+
+#, c-format
+#~ msgid "Error %s while loading library %s"
+#~ msgstr "Помилка %s під час спроби завантаження бібліотеки %s"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Інтерфейс Tcl/Tk не завантажено."
+
+#~ msgid "Updating, please wait"
+#~ msgstr "Оновлення, зачекайте"
+
+#, c-format
+#~ msgid "%s: Slave interpreter already exists.\n"
+#~ msgstr "%s: допоміжний інтерпретатор вже запущено.\n"
+
+#~ msgid "&?"
+#~ msgstr "&Довідка"
+
+#~ msgid "Scroll"
+#~ msgstr "Гортання"
+
+#~ msgid "Scale"
+#~ msgstr "Масштабування"
+
+#~ msgid "Color"
+#~ msgstr "Колір"
+
+#~ msgid "Puzzle"
+#~ msgstr "Головломка"

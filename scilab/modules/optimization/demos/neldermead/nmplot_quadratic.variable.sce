@@ -11,10 +11,16 @@
 
 function demo_nmplot_qvariable()
 
+  filename = 'nmplot_quadratic.variable.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates that the variable-shape Nelder-Mead algorithm performs well on a quadratic test case.\n"));
   mprintf(_("Defining quadratic function ...\n"));
   function [ y , index ] = quadratic ( x , index )
     y = x(1)^2 + x(2)^2 - x(1) * x(2);
+  endfunction
+  function y = quadraticC ( x1 , x2 )
+    y = quadratic ( [x1 , x2] , 2 )
   endfunction
 
   mprintf(_("Creating nmplot object...\n"));
@@ -32,64 +38,44 @@ function demo_nmplot_qvariable()
   // Setup output files
   //
   simplexfn = TMPDIR + filesep() + "history.simplex.txt";
-  fbarfn = TMPDIR + filesep() + "history.fbar.txt";
-  foptfn = TMPDIR + filesep() + "history.fopt.txt";
-  sigmafn = TMPDIR + filesep() + "history.sigma.txt";
   nm = nmplot_configure(nm, "-simplexfn",simplexfn);
-  nm = nmplot_configure(nm, "-fbarfn",fbarfn);
-  nm = nmplot_configure(nm, "-foptfn",foptfn);
-  nm = nmplot_configure(nm, "-sigmafn",sigmafn);
   
   //
   // Perform optimization
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
-  disp(nm);
-  // Plot various histories
-  mprintf(_("Plotting history of fbar ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , fbarfn, mytitle = _("Function Value Average") , myxlabel = _("Iterations") );
-  mprintf(_("Plotting history of fopt ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , foptfn, mytitle = _("Logarithm Minimum Function Value") , myxlabel = _("Iterations") );
-  f.children.log_flags = "nln";
-  newticks = tlist(["ticks","locations","labels"]);
-  newticks.labels = ["1.e-20" "1.e-10" "1.e-1"];
-  newticks.locations = [1.e-20 1.e-10 1.e-1];
-  f.children.y_ticks = newticks;
-  f.children.children(1).children.mark_mode = "on";
-  f.children.children(1).children.mark_style = 9;
-  mprintf(_("Plotting history of sigma ...\n"));
-  f = scf();
-  nmplot_historyplot ( nm , sigmafn, mytitle = _("Logarithm Maximum Oriented length") , myxlabel = _("Iterations") );
-  f.children.log_flags = "nln";
-  f.children.y_ticks = newticks;
-  f.children.children(1).children.mark_mode = "on";
-  f.children.children(1).children.mark_style = 9;
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"nmplot_summary.sci"),-1);
+  nmplot_summary(nm)
+  //
   // Plot the contours of the cost function and the simplex history
   mprintf(_("Plotting contour (please wait) ...\n"));
   nm = nmplot_configure(nm, "-verbose", 0);
-  [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 50 , ny = 50 );
-  f = scf();
+  xmin = -2.0 ; 
+  xmax = 4.0 ; 
+  ymin = -2.0 ; 
+  ymax = 4.0 ; 
+  nx = 50 ; 
+  ny = 50;
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
+  scf()
   drawlater();
-  contour ( xdata , ydata , zdata , [0.1 1.0 2.0 5.0 10.0 15.0 20.0] )
+  contour ( xdata , ydata , quadraticC , [0.1 1.0 2.0 5.0 10.0 15.0 20.0] )
   nmplot_simplexhistory ( nm );
   drawnow();
   
   // Clean-up
   deletefile(simplexfn);
-  deletefile(fbarfn);
-  deletefile(foptfn);
-  deletefile(sigmafn);
   nm = nmplot_destroy(nm);
   mprintf(_("End of demo.\n"));
 
   //
   // Load this script into the editor
   //
-  filename = 'nmplot_quadratic.variable.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction

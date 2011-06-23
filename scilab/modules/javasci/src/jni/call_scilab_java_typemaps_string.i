@@ -74,7 +74,9 @@ matching in Java */
     // Convert the String[][] => char *
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
-    
+    arg2 = NULL;
+
+
     for(i=0; i<arg3; i++) {
       jobjectArray oneDim=(jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
       if (arg4==0) {

@@ -19,13 +19,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -318,6 +321,25 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		
 		final String type = ((ScilabString) data.get(0)).getData()[0][0];
 		return type.equals(DATA_FIELD_NAMES.get(0));
+	}
+	
+	/**
+	 * {@inheritDoc}} 
+	 *
+	 * Clear cell warnings before encoding
+	 */
+	@Override
+	public ScilabType beforeEncode(BasicBlock from, ScilabType element) {
+		XcosDiagram graph = from.getParentDiagram();
+		if (graph == null) {
+			from.setParentDiagram(Xcos.findParent(from));
+			graph = from.getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
+		}
+		if (graph.getAsComponent() != null) {
+			graph.getAsComponent().removeCellOverlays(from);
+		}
+		return super.beforeEncode(from, element);
 	}
 	
 	/**

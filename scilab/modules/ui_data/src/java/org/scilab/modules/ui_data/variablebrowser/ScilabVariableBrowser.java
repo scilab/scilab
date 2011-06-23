@@ -62,15 +62,30 @@ public final class ScilabVariableBrowser implements VariableBrowser {
     }
 
     /**
+     * @return true if an instance of BrowseVar already exists.
+     */
+    public static boolean isBrowseVarOpened() {
+        return instance != null;
+    }
+
+    /**
      * Retrieve Singleton
      * @param columnNames : columns title
      * @param data : data from scilab (type, name, size, ...)
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(Object[][] data) {
-        VariableBrowser variableBrowser = getVariableBrowser();
+    public static VariableBrowser getVariableBrowser(boolean update, Object[][] data) {
+        VariableBrowser variableBrowser = getVariableBrowser(update);
         variableBrowser.setData(data);
         return variableBrowser;
+    }
+
+    /**
+     * Get the variable browser singleton
+     * @return the Variable Browser
+     */
+    public static VariableBrowser getVariableBrowser() {
+        return instance;
     }
 
     /**
@@ -78,7 +93,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * @param columnNames : the columns title
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser() {
+    public static VariableBrowser getVariableBrowser(boolean update) {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabVariableBrowser.VARBROWSERUUID);
             if (!success) {
@@ -91,8 +106,10 @@ public final class ScilabVariableBrowser implements VariableBrowser {
             }
         } else {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableBrowser) browserTab);
-            window.setVisible(true);
-            window.toFront();
+            if (!update) {
+                window.setVisible(true);
+                window.toFront();
+            }
         }
 
         return instance;
@@ -102,7 +119,9 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * Close Variable Browser
      */
     public static void closeVariableBrowser() {
-        instance = null;
+	if (instance != null) {
+	    instance.close();
+	}
     }
 
     /**
@@ -132,5 +151,4 @@ public final class ScilabVariableBrowser implements VariableBrowser {
         //super.setVisible(status);
         browserTab.setVisible(status);
     }
-
 }

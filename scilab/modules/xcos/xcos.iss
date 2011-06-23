@@ -45,7 +45,7 @@ Source: modules\{#XCOS}\macros\names; DestDir: {app}\modules\{#XCOS}\macros; Com
 Source: modules\{#XCOS}\macros\*.bin; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\*.sci; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 ;
-;
+Source: modules\{#XCOS}\examples\*.*; DestDir: {app}\modules\{#XCOS}\examples; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\demos\*.*; DestDir: {app}\modules\{#XCOS}\demos; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;

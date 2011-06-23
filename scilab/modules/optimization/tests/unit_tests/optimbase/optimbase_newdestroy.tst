@@ -27,8 +27,9 @@ endfunction
 //    * fval : the minimum function value
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
+// stop : set to %f to interrupt algorithm
 //
-function myoutputcmd ( state , data )
+function stop = myoutputcmd ( state , data )
   global _OUTPUCMDFLAG_
   // Unload the array, just to make sure that the minimum is there
   iter = data.iteration
@@ -36,6 +37,7 @@ function myoutputcmd ( state , data )
   fval = data.fval
   x = data.x
   _OUTPUCMDFLAG_ = 1
+  stop = %f
 endfunction
 
 global _OUTPUCMDFLAG_
@@ -55,8 +57,9 @@ _OUTPUCMDFLAG_ = 0
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
 //  myobj : a user-defined data structure
+// stop : set to %f to interrupt algorithm
 //
-function myoutputcmd2 ( state , data , myobj )
+function stop = myoutputcmd2 ( state , data , myobj )
   global _OUTPUCMDFLAG_
   // Unload the array, just to make sure that the minimum is there
   iter = data.iteration
@@ -64,6 +67,7 @@ function myoutputcmd2 ( state , data , myobj )
   fval = data.fval
   x    = data.x
   _OUTPUCMDFLAG_ = myobj.myarg
+  stop = %f
 endfunction
 
 
@@ -79,7 +83,7 @@ myobj.myarg = 12;
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function [ y , index , mydata ] = rosenbrock2 ( x , index , mydata )
+function [ y , index ] = rosenbrock2 ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
@@ -104,8 +108,7 @@ opt = optimbase_configure(opt,"-function",rosenbrock);
 [this,f , index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_checkalmostequal ( f , 1.0 , %eps );
 // Check cost function with additionnal argument
-opt = optimbase_configure(opt,"-function",rosenbrock2);
-opt = optimbase_configure(opt,"-costfargument",mystuff);
+opt = optimbase_configure(opt,"-function",list(rosenbrock2,mystuff));
 [this,f, index ] = optimbase_function ( opt , [0.0 0.0] , 2 );
 assert_checkalmostequal ( f , 144.0 , %eps );
 // Check initial guess
@@ -172,8 +175,7 @@ mydata.myspecialdata = "yahoo !";
 optimbase_outputcmd ( opt , "init" , mydata );
 assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
 // Check output command with additionnal argument
-opt = optimbase_configure(opt,"-outputcommand",myoutputcmd2);
-opt = optimbase_configure(opt,"-outputcommandarg",myobj);
+opt = optimbase_configure(opt,"-outputcommand",list(myoutputcmd2,myobj));
 brutedata = optimbase_outstruct ( opt );
 mydata = tlist(["T_MYDATA",...
       "x","fval","iteration","funccount",...

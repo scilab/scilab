@@ -21,6 +21,8 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
@@ -332,7 +334,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		// pin
 		sciValues = (ScilabDouble) graphics.get(GRAPHICS_PIN_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getConnectedLinkId();
+		if (from.getEdgeCount() == 1) {
+			// only set on valid connection
+			values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
+		} else {
+			values[alreadyDecodedCount][0] = 0.0;
+		}
 		
 		// in_implicit
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_INIMPL_INDEX);

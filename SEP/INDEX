@@ -60,3 +60,6 @@ SEP #060: CACSD frequency tools
 SEP #061: CSV read/write
 SEP #062: Add timeout option to 'host' function
 SEP #063: User block wizard
+SEP #064: HDF5 Scilab specification
+SEP #065: load and save based on HDF5
+SEP #066: Xcos compilation hooks

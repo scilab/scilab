@@ -64,8 +64,9 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID; // cache method id
+jmethodID voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID; // cache method id
 jclass stringArrayClass;
+jmethodID jbooleanisVariableBrowserOpenedID; // cache method id
 jmethodID voidcloseVariableBrowserID; // cache method id
 
 
@@ -123,7 +124,9 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void openVariableBrowser(JavaVM * jvm_, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize);
+static void openVariableBrowser(JavaVM * jvm_, bool update, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize);
+
+static bool isVariableBrowserOpened(JavaVM * jvm_);
 
 static void closeVariableBrowser(JavaVM * jvm_);
 

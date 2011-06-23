@@ -8,6 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt 
       subroutine intdebug()
       include 'stack.h'
+      character tmpbuf * (bsiz)
       logical checkrhs,checklhs,getscalar,cremat
 c
       rhs=max(0,rhs)
@@ -17,8 +18,8 @@ c
 c     .  set debug mode
          if(.not.getscalar('debug',top,top,l)) return
          ddt = int(stk(l))
-         write(buf(1:4),'(i4)') ddt
-         call basout(io,wte,' debug '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') ddt
+         call basout(io,wte,' debug '//tmpbuf(1:4))
          call objvide('debug',top)
       else
 c     .  get debug mode

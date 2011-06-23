@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:51+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -202,30 +203,12 @@ msgstr ""
 "   A solução computada da ordem anterior foi retornada.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Parâmetros de entrada incorretos.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Número errado de argumentos de entrada.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -237,6 +220,10 @@ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se no máximo "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -271,10 +258,6 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "vetor.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -351,21 +334,8 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
-"''%s'', ''%s'', ''%s'', ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -487,10 +457,6 @@ msgstr ""
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) deve ser menor que 40.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -868,7 +834,7 @@ msgstr "Não implementado no Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "A variável null não pode ser usada aqui.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
 msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
@@ -912,7 +878,7 @@ msgstr "Deficiente de posto: rank = %s  - tol = %s .\n"
 
 #, c-format
 msgid "Rank deficient. rank = %d\n"
-msgstr ""
+msgstr "Posto deficiente. posto = %d\n"
 
 msgid "Real part\n"
 msgstr "Parte real\n"
@@ -1030,7 +996,7 @@ msgid "Too many commands defined.\n"
 msgstr "Muitos comandos definidos.\n"
 
 msgid "Too many files opened!\n"
-msgstr ""
+msgstr "Muitos arquivos abertos!\n"
 
 #, c-format
 msgid "Too many functions are defined (maximum #:%d).\n"
@@ -1038,13 +1004,13 @@ msgstr "Muitas funções definidas (número máximo:%d).\n"
 
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
-msgstr ""
+msgstr "Muitas variáveis globais! A quantidade máxima permitida é %d.\n"
 
 msgid "Too many input/output entries for highlighted block.\n"
-msgstr ""
+msgstr "Muitos itens de entrada/saída para o bloco destacado.\n"
 
 msgid "Too many input/output ports for highlighted block.\n"
-msgstr ""
+msgstr "Muitas portas de entrada/saída para o bloco destacado.\n"
 
 msgid "Too many linked routines.\n"
 msgstr "Muitas rotinas ligadas.\n"
@@ -1079,7 +1045,7 @@ msgid "Undefined operation for the given operands.\n"
 msgstr "Operação indefinida para os dados operandos.\n"
 
 msgid "Undefined variable.\n"
-msgstr ""
+msgstr "Variável indefinida.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"
@@ -1154,6 +1120,8 @@ msgid ""
 "Warning: Jacobian external is given, but\n"
 " not used! See %ODEOPTIONS(6).\n"
 msgstr ""
+"Aviso: o Jacobiano externo foi fornecido,\n"
+"mas não usado! Veja %ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1192,7 +1160,7 @@ msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Aviso: uso obsoleto de  '=' ao invés de '=='.\n"
 
 msgid "Warning: obsolete use of eye, rand, or ones.\n"
-msgstr ""
+msgstr "Aviso: uso obsoleto do eye, rand ou ones.\n"
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"
@@ -1234,18 +1202,22 @@ msgid "Wrong input argument %d.\n"
 msgstr "O argumento de entrada #%d está errado.\n"
 
 msgid "Wrong number of input arguments:\n"
-msgstr ""
+msgstr "Quantidade incorreta de argumentos de entrada:\n"
 
 msgid ""
 "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
+"Quantidade incorreta de argumentos de entrada: esta função não possui "
+"argumento de entrada.\n"
 
 msgid "Wrong number of output arguments\n"
-msgstr ""
+msgstr "Quantidade incorreta de argumentos de saída\n"
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
 msgstr ""
+"Quantidade incorreta de argumentos de saída: esta função não possui "
+"argumentos de saída.\n"
 
 #, c-format
 msgid "Wrong size for argument %d.\n"
@@ -1478,3 +1450,119 @@ msgstr "O domínio de tempo para o argumento %d não está definido.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "a palavra-chave varargout não pode ser utilizada aqui.\n"
+
+#~ msgid "Incorrect # of outputs in the function\n"
+#~ msgstr "Número incorreto de saídas na função\n"
+
+#~ msgid "Function has no output.\n"
+#~ msgstr "A função não possui saída\n"
+
+#~ msgid "Wrong number of arguments in function call...\n"
+#~ msgstr "Número errado de argumentos na chamada à função...\n"
+
+#~ msgid "Function has no input argument...\n"
+#~ msgstr "A função não possui argumento de entrada...\n"
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Erro fatal!!! Suas variáveis foram salvas em : %s\n"
+#~ "Chamada ruim à função Scilab ?\n"
+#~ "Em caso contrário, envie um relatório de bug para :\n"
+
+#~ msgid "No more logical units available!\n"
+#~ msgstr "Não há mais unidades lógicas disponíveis.\n"
+
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: Problema singular ou assimétrico.\n"
+
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: Este método NÃO foi implementado.\n"
+
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr ""
+#~ "Uma entrada de matriz esparsa é definida com dois valores diferentes.\n"
+
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr "Os operandos das operações / e \\ não devem conter NaN ou Inf.\n"
+
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr "Arquivos binários de acesso direto devem ser abertos por 'file'.\n"
+
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: A matriz de colocação é singular.\n"
+
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "Muitas variáveis globais! O número máximo é %d.\n"
+
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr "Erro ao se escrever no arquivo, (disco cheio ou arquivo deletado).\n"
+
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "Aviso:uso obsoleto de eye, rand ou ones\n"
+
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "Deficiente de posto. posto = %d\n"
+
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "Aviso: a external Jacobian foi fornecida, mas\n"
+#~ " não foi utilizada!,  ver %ODEOPTIONS(6).\n"
+
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr ""
+#~ "Aviso: a integração não foi completada! Verifique os parâmetros de "
+#~ "tolerância ou o tamanho do passo.\n"
+
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr ""
+#~ "No momento: %s , muitas iterações para se alcançar a precisão requerida.\n"
+
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "Muitas portas de entrada/saída para o bloco destacado.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Erro na alocação de memoria.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d."
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+#~ msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um booleano.\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr "Operandos das operações / e \\ não devem conter NaN ou Inf.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+#~ "''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''%s'', "
+#~ "''%s'', ''%s'', ''%s'', ''%s'' ou ''%s''.\n"

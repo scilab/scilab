@@ -59,7 +59,7 @@ nm = neldermead_configure(nm,"-maxfunevals",200);
 nm = neldermead_restart(nm);
 xc = neldermead_get(nm,"-xopt");
 fc = neldermead_get(nm,"-fopt");
-assert_checkalmostequal(xc,xopt,1.e-8);
-assert_checkalmostequal(fc,fopt,%eps);
+assert_checkalmostequal(xc,xopt,1.e-7);
+assert_checkalmostequal(fc,fopt,1.e-15);
 nm = neldermead_destroy(nm);
 

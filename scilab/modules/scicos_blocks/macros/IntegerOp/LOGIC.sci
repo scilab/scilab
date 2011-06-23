@@ -52,7 +52,7 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
             gettext("Number of rows must be a power of two."));
           ok=%f;
       elseif (find(mat(:) <> 0 & mat(:) <> 1) <> []) then
-          block_parameter_error(msprintf(gettext("Wrong value for of ''%s'' parameter."), gettext("Truth Table")), ..
+          block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Truth Table")), ..
               msprintf(gettext( "Elements must be in the interval %s."),"[0, 1]"));
           ok=%f;
       elseif herit <0 | herit > 1 then

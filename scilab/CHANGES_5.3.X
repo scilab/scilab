@@ -270,6 +270,8 @@ CACSD Module:
                    the symetric part and a new function added for high
                    definition zoom.
 
+* Bug 9285 fixed - g_margin() returned an erroneous result.
+
 
 Bug Fixes:
 ==========

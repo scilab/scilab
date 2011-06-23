@@ -321,7 +321,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
                 }
             };
 
-        setCallback(callback);       
+        setCallback(callback);
         MenuBar menubar = ScilabMenuBar.createMenuBar();
         Menu fileMenu = ScilabMenu.createMenu();
         fileMenu.setText(SciNotesMessages.FILE);
@@ -593,6 +593,9 @@ public class SearchFile extends SwingScilabTab implements Tab {
         synchronized public void done() {
             SearchManager.MatchingPositions pos = getResults();
             if (pos == null) {
+                if (component != null) {
+                    component.firePropertyChange(SEARCHDONE, false, true);
+                }
                 return;
             }
 
@@ -613,8 +616,8 @@ public class SearchFile extends SwingScilabTab implements Tab {
                         sf.getJTree().addSelectionRow(0);
                         sf.getJTree().requestFocus();
                         long time = getElapsedTime();
-                        String msg = (time <= 1000) ? SciNotesMessages.ELAPSEDTIMELESSONESEC : SciNotesMessages.ELAPSEDTIME;
-                        sf.getInfoBar().setText(String.format(msg, ((double) time) / 1000));
+
+                        sf.getInfoBar().setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
                     }
                 });
 

@@ -1,9 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
-// Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-subdemolist = [_("Introduction")             , "intro/poly.intro.dem.sce" ];
+function subdemolist = demo_gateway()
 
-subdemolist(:,2) = SCI + "/modules/polynomials/demos/" + subdemolist(:,2);
+  demopath = get_absolute_file_path("polynomials.dem.gateway.sce");
+  add_demo(gettext("Polynomials"),demopath+"polynomials.dem.gateway.sce");
+
+  subdemolist = [_("Introduction")             , "intro/poly.intro.dem.sce" ];
+
+  subdemolist(:,2) = demopath + subdemolist(:,2);
+  
+endfunction
+
+subdemolist = demo_gateway();
+clear demo_gateway;

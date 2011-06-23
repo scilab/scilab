@@ -160,6 +160,12 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
     }
 
     sciErr = getNamedVarType(pvApiCtx, (char *)cvarName, (int*)&type);
+    if(sciErr.iErr)
+    {
+        fprintf(stderr,"%s", getErrorMessage(sciErr));
+        return JNI_FALSE;
+    }
+
     (*env)->ReleaseStringUTFChars(env, varName , cvarName);
 
     return type;

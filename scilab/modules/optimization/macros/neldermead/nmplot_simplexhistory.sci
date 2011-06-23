@@ -15,6 +15,7 @@
 //  this : the current nmplot object
 //
 function nmplot_simplexhistory ( this , colorforeground , markforeground , markstyle )
+  drawlater();
   if (~isdef('foregroundcolor','local')) then
     colorforeground = 5;
   end
@@ -40,5 +41,6 @@ function nmplot_simplexhistory ( this , colorforeground , markforeground , marks
     f.children(1).children(iter).children.mark_style = markstyle;
     f.children(1).children(iter).children.closed = "on";
   end
+  drawnow();
 endfunction
 

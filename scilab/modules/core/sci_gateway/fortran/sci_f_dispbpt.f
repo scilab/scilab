@@ -10,6 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intdispbpt
       include 'stack.h'
       logical checkrhs,checklhs
+      character tmpbuf * (bsiz)
 c
       rhs=max(rhs,0)
       if(.not.checklhs('dispbpt',1,1)) return
@@ -20,8 +21,8 @@ c
             call cvname(macnms(1,kk),buf(1:nlgh),1)
             call msgs(27,0)
             do 373 kl=lgptrs(kk),lgptrs(kk+1)-1
-               write(buf(1:10),'(5x,i5)') bptlg(kl)
-               call basout(io,wte,buf(1:10))
+               write(tmpbuf(1:10),'(5x,i5)') bptlg(kl)
+               call basout(io,wte,tmpbuf(1:10))
  373        continue
  375     continue
       endif

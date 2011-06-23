@@ -150,9 +150,7 @@ public final class XcosMessages {
 
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");
-    public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define "
-	    + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
-	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)") + "</html>";
+    public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK, by Eval and every time diagram is loaded).") + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
     public static final String FAIL_SAVING_DIAGRAM = Messages.gettext("Could not save diagram.");
@@ -216,21 +214,21 @@ public final class XcosMessages {
     public static final String SETUP_TITLE =  Messages.gettext("Set Parameters");
     
     /* About box */
-    public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
-    public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
+    public static final String CONSORTIUM = "The Scilab Consortium (DIGITEO)";
+    public static final String COPYRIGHT_INRIA = "Copyright © 1989-2009 (INRIA)";
     public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
 
     /* InfoBar messages */
     public static final String EMPTY_INFO = "";
-    public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
-    public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
-    public static final String LOADING_PALETTES = Messages.gettext("Loading palettes" + DOTS);
-    public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes" + DOTS);
-    public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock" + DOTS);
+    public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram") + DOTS;
+    public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram") + DOTS;
+    public static final String LOADING_PALETTES = Messages.gettext("Loading palettes") + DOTS;
+    public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes") + DOTS;
+    public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock") + DOTS;
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
-    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress" + DOTS);
-    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable" + DOTS);
-    public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait ...");
+    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress") + DOTS;
+    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable") + DOTS;
+    public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait") + DOTS;
     public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
     
     
@@ -275,7 +273,8 @@ public final class XcosMessages {
     public static final String BLOCK_FROM = Messages.gettext("From %s");
     public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
 
-	/* Error checking */
+    /* Errors */
+	public static final String ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK = Messages.gettext("Error: unable to compile this SuperBlock");
 	public static final String WRONG_PORT_NUMBER =  Messages.gettext("Wrong port number");
     
 // CSON: JavadocVariable

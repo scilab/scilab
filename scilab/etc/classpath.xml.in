@@ -98,6 +98,7 @@ The option is "disableUnderMode" and can be:
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="svg_graphic_export"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
 </path>

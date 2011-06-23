@@ -104,7 +104,8 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID=NULL; 
+voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID=NULL; 
+jbooleanisVariableBrowserOpenedID=NULL; 
 voidcloseVariableBrowserID=NULL; 
 
 
@@ -128,7 +129,8 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID=NULL; 
+        voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID=NULL; 
+jbooleanisVariableBrowserOpenedID=NULL; 
 voidcloseVariableBrowserID=NULL; 
 
 
@@ -149,16 +151,18 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "BrowseVar");
 }
 // Method(s)
 
-void BrowseVar::openVariableBrowser (JavaVM * jvm_, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize){
+void BrowseVar::openVariableBrowser (JavaVM * jvm_, bool update, char ** variableNames, int variableNamesSize, int* variableBytes, int variableBytesSize, int* variableTypes, int variableTypesSize, char ** variableSize, int variableSizeSize, char ** variableVisibility, int variableVisibilitySize, bool* variableFromUser, int variableFromUserSize){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID = curEnv->GetStaticMethodID(cls, "openVariableBrowser", "([Ljava/lang/String;[I[I[Ljava/lang/String;[Ljava/lang/String;[Z)V" ) ;
-if (voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID == NULL) {
+jmethodID voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID = curEnv->GetStaticMethodID(cls, "openVariableBrowser", "(Z[Ljava/lang/String;[I[I[Ljava/lang/String;[Ljava/lang/String;[Z)V" ) ;
+if (voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "openVariableBrowser");
 }
+
+jboolean update_ = (static_cast<bool>(update) ? JNI_TRUE : JNI_FALSE);
 jclass stringArrayClass = curEnv->FindClass("java/lang/String");
 
 // create java array of strings.
@@ -251,7 +255,7 @@ curEnv->DeleteLocalRef(TempString);
 jbooleanArray variableFromUser_ = curEnv->NewBooleanArray( variableFromUserSize ) ;
 curEnv->SetBooleanArrayRegion( variableFromUser_, 0, variableFromUserSize, (jboolean*)variableFromUser ) ;
 
-                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID ,variableNames_, variableBytes_, variableTypes_, variableSize_, variableVisibility_, variableFromUser_);
+                         curEnv->CallStaticVoidMethod(cls, voidopenVariableBrowserjbooleanjobjectArray_jintArray_jintArray_jobjectArray_jobjectArray_jbooleanArray_ID ,update_, variableNames_, variableBytes_, variableTypes_, variableSize_, variableVisibility_, variableFromUser_);
                         curEnv->DeleteLocalRef(stringArrayClass);
 curEnv->DeleteLocalRef(variableNames_);
 curEnv->DeleteLocalRef(variableBytes_);
@@ -263,6 +267,26 @@ curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
+}
+
+bool BrowseVar::isVariableBrowserOpened (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanisVariableBrowserOpenedID = curEnv->GetStaticMethodID(cls, "isVariableBrowserOpened", "()Z" ) ;
+if (jbooleanisVariableBrowserOpenedID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "isVariableBrowserOpened");
+}
+
+                        jboolean res =  static_cast<jboolean>( curEnv->CallStaticBooleanMethod(cls, jbooleanisVariableBrowserOpenedID ));
+                        curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return (res == JNI_TRUE);
+
 }
 
 void BrowseVar::closeVariableBrowser (JavaVM * jvm_){

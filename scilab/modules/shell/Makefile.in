@@ -275,6 +275,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -462,7 +463,8 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
 	-I$(top_srcdir)/modules/fileio/src/c/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes/ $(am__append_2)
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/ $(am__append_2)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

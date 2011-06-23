@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +17,8 @@
 #include "Scierror.h"
 #include "do_error_number.h"
 #include "freeArrayOfString.h"
+#include "strsubst.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* @TO DO : extend 'error' primitive */
 /*--------------------------------------------------------------------------*/
@@ -47,13 +49,17 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                 /* check scalar */
                 if ( (m == 1) && (n == 1) )
                 {
-                    errorCode = defaultErrorCode;
-                    strcpy(bufferErrorMessage,InputString_Parameter[0]);
-
-                    freeArrayOfString(InputString_Parameter,m*n);
-
+                    char *msg = strsub(InputString_Parameter[0], "%", "%%");
+                    if (msg)
+                    {
+                        Scierror(defaultErrorCode, "%s", msg);
+                        FREE(msg);
+                        msg = NULL;
+                    }
+                    freeArrayOfString(InputString_Parameter, m*n);
+                    InputString_Parameter = NULL;
                     C2F(iop).err = errorPosition;
-                    SciError(errorCode);
+
                 }
                 else
                 {
@@ -124,10 +130,15 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                     errorCode = (int)(*stk(l2));
                     if (errorCode > 0)
                     {
-                        strcpy(bufferErrorMessage,InputString_Parameter1[0]);
-                        freeArrayOfString(InputString_Parameter1,m1*n1);
+                        char *msg = strsub(InputString_Parameter1[0], "%", "%%");
+                        if (msg)
+                        {
+                            Scierror(errorCode, "%s", msg);
+                            FREE(msg);
+                            msg = NULL;
+                        }
+                        freeArrayOfString(InputString_Parameter1, m1*n1);
                         C2F(iop).err = errorPosition;
-                        SciError(errorCode);
                     }
                     else
                     {
@@ -212,7 +223,14 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                     errorCode = (int)(*stk(l1));
                     if (errorCode > 0)
                     {
-                        Scierror(errorCode,InputString_Parameter2[0]);
+                        char *msg = strsub(InputString_Parameter2[0], "%", "%%");
+                        if (msg)
+                        {
+                            Scierror(errorCode, msg);
+                            FREE(msg);
+                            msg = NULL;
+                        }
+
                         freeArrayOfString(InputString_Parameter2,m2*n2);
                     }
                     else

@@ -6,6 +6,34 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function B = repmat(A,varargin)
+  //ajouter test sur les type des elements de varargin
+  rhs = argn(2);
+  if rhs < 2 then
+    error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "repmat", 2))
+  end
+
+  narg=size(varargin);
+
+  // Test varargin
+  if narg==1 then
+    // Scalar of vector needed
+    if typeof(varargin(1)) <> "constant" then
+      error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+    end
+    if size(varargin(1),'*')<>1 & isempty(find(size(varargin(1))==1)) then
+      error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+    end
+  else
+    for i=1:narg
+      if typeof(varargin(i)) <> "constant" then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+      end
+      if size(varargin(i),"*")<>1 then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+      end
+    end
+  end
+
   if type(A)>10 then
     if typeof(A)=="rational" then
       B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
@@ -14,12 +42,8 @@ function B = repmat(A,varargin)
       execstr('B=%'+typeof(A)+"_repmat(A,varargin(:))")
     end
   end
-  narg=size(varargin)
-  //ajouter test sur les type des elements de varargin
-  if narg<1 then
-     error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"),"repmat",2))
-  end
-  if narg==1 then 
+
+  if narg==1 then
     if size(varargin(1),'*')==1 then
       siz=list(varargin(1),varargin(1))
     else //convert array into list
@@ -30,18 +54,14 @@ function B = repmat(A,varargin)
   else
     siz=list();
     for i=1:narg
-      if size(varargin(i),'*')<>1 then
-        error(msprintf(_("%s : Wrong size for input argument #%d: A scalar expected.\n"),"repmat",i))
-      else
-        siz(i)=varargin(i)
-      end
+      siz(i)=varargin(i)
     end
   end
-  
+
   nd=size(siz)
   if or(type(A)==[5 6]) then //sparse matrices
     if nd>2 then
-      error(msprintf(_("%s : Wrong number of output matrix dimensions required: %d expected for sparse matrices"),"repmat",2))
+      error(msprintf(_("%s: Wrong number of output matrix dimensions required: %d expected for sparse matrices.\n"), "repmat", 2))
     end
   end
   for i=size(siz):-1:3
@@ -49,7 +69,7 @@ function B = repmat(A,varargin)
     nd=nd-1
   end
   sizA=size(A)
- 
+
   if and(sizA==1) then //scalar case
     if nd<=2 then
       B=A(ones(siz(1:nd)))

@@ -50,6 +50,7 @@ import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -2026,6 +2027,7 @@ public final class ConfigSciNotesManager {
     private static void readDocument(String pathConfSci, String pathConfKeys) {
         File xml = null;
         DocumentBuilder docBuilder = null;
+        String factoryName = ScilabDocumentBuilderFactory.useDefaultDocumentBuilderFactoryImpl();
 
         try {
             if (document == null) {
@@ -2064,6 +2066,8 @@ public final class ConfigSciNotesManager {
                 }
             } catch (IOException e) { }
         }
+
+        ScilabDocumentBuilderFactory.restoreDocumentBuilderFactoryImpl(factoryName);
     }
 
     /**

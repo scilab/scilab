@@ -77,6 +77,7 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/Makefile.call_scilab.am $(top_srcdir)/configure \
 	$(top_srcdir)/etc/Info.plist.in \
 	$(top_srcdir)/etc/classpath.xml.in \
+	$(top_srcdir)/etc/logging.properties.in \
 	$(top_srcdir)/etc/modules.xml.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/core/includes/version.h.in \
@@ -117,7 +118,7 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab.pc etc/modules.xml etc/classpath.xml etc/Info.plist \
-	scilab.properties scilab-lib.properties \
+	etc/logging.properties scilab.properties scilab-lib.properties \
 	scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml \
 	modules/core/includes/version.h
 CONFIG_CLEAN_VPATH_FILES =
@@ -432,6 +433,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -652,7 +654,7 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir = $(pkgdatadir)/icons/
+iconsdir = $(pkgdatadir)/desktop/
 icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
 $(top_srcdir)/desktop/puffin_128.xpm \
 $(top_srcdir)/desktop/puffin_256.xpm \
@@ -787,6 +789,8 @@ etc/modules.xml: $(top_builddir)/config.status $(top_srcdir)/etc/modules.xml.in
 etc/classpath.xml: $(top_builddir)/config.status $(top_srcdir)/etc/classpath.xml.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 etc/Info.plist: $(top_builddir)/config.status $(top_srcdir)/etc/Info.plist.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+etc/logging.properties: $(top_builddir)/config.status $(top_srcdir)/etc/logging.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 scilab.properties: $(top_builddir)/config.status $(srcdir)/scilab.properties.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
@@ -1851,7 +1855,7 @@ check-java:
 # Please note that ALL_LINGUAS is defined in configure.ac
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales*/"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	LC="LC_MESSAGES"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	EXTENSION="*.po"; \

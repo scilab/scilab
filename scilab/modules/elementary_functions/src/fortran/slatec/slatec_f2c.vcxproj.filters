@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran Files">
+      <UniqueIdentifier>{7dd1223c-31ad-4a51-a8be-fe39aaa3d3cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="balanc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common_f2c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="d9b0mp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="d9b1mp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="d9knus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="d9lgmc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dasyik.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dasyjy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbdiff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesi0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesi1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesj0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesj1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesk0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesk1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesy0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesy1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbkias.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbkisr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsi0e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsi1e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsk0e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsk1e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbskes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbskin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsknu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbsynu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dcsevl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dexint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgamlm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgamln.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgamrn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dhkseq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="djairy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dlngam.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dpsixn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dtensbs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlegf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dyairy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fdump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initds.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="j4save.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pchim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xercnt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xermsg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xerprn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xersve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xgetua.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zacai.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zacon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zairy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zasyi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbinu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbknu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbuni.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbunk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zdiv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zexp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zkscl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zmlri.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zmlt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zrati.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zs1s2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zseri.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zshch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zsqrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zuchk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zunhj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zuni1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zuni2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zunik.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zunk1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zunk2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zuoik.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwrsk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="balanc.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="d9b0mp.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="d9b1mp.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="d9knus.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="d9lgmc.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dasyik.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dasyjy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbdiff.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesi.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesi0.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesi1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesj.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesj0.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesj1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesk.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesk0.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesk1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesks.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesy0.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesy1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbkias.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbkisr.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsi0e.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsi1e.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsk0e.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsk1e.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbskes.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbskin.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsknu.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbsynu.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dcsevl.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dexint.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgamlm.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgamln.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgamma.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgamrn.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dhkseq.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="djairy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dlngam.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dpsixn.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dtensbs.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dxlegf.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dyairy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fdump.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gamma.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="initds.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="j4save.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="pchim.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="xercnt.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="xermsg.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="xerprn.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="xersve.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="xgetua.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zabs.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zacai.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zacon.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zairy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zasyi.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesh.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesi.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesj.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesk.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbinu.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbknu.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbuni.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbunk.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zdiv.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zexp.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zkscl.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zlog.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zmlri.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zmlt.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zrati.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zs1s2.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zseri.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zshch.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zsqrt.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zuchk.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zunhj.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zuni1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zuni2.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zunik.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zunk1.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zunk2.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zuoik.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zwrsk.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+</Project>

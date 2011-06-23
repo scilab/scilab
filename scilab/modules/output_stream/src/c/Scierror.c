@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,7 +42,7 @@ int  Scierror(int iv,const char *fmt,...)
 	lstr = (int) strlen(s_buf);
 	va_end(ap);
 
-	error_internal(&iv,s_buf,ERROR_FROM_C);
+	error_internal(&iv,s_buf);
 
 	return retval;
 }

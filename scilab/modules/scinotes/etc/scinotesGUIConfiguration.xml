@@ -123,6 +123,7 @@
       <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
       <separator/>
       <menuitem action="SaveAndExecuteFileAction" label="Save and execute"/>
+      <menuitem action="SaveAndExecuteAllFilesAction" label="Save and execute all files"/>
     </menu>
 
     <menu label="?">
@@ -178,6 +179,7 @@
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
     <button action="SaveAndExecuteFileAction" tooltip="Execute" icon="16x16/actions/save-and-execute.png"/>
+    <button action="SaveAndExecuteAllFilesAction" tooltip="Execute" icon="16x16/actions/execute-all.png"/>
   </ToolBar>
 
 </Configuration>

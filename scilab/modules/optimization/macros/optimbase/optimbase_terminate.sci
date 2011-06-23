@@ -78,8 +78,8 @@ function [ this , terminate , status ] = optimbase_terminate (this , ...
       acfopt = abs(currentfopt);
       apfopt = abs(previousfopt);
       if ( this.verbose == 1 ) then
-        this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%e < tolfunrelative * abs(previousfopt) + tolfunabsolute=%e",...
-          acfopt, tolfr * apfopt + tolfa));
+        this = optimbase_stoplog (this,sprintf("  > abs(currentfopt)=%s < tolfunrelative * abs(previousfopt) + tolfunabsolute=%s",...
+          string(acfopt), string(tolfr * apfopt + tolfa)));
       end
       if ( acfopt < tolfr * apfopt + tolfa ) then
         terminate = %t;
@@ -103,8 +103,8 @@ function [ this , terminate , status ] = optimbase_terminate (this , ...
       tolxr = this.tolxrelative;
       tolxa = this.tolxabsolute;
       if ( this.verbose == 1 ) then
-        this = optimbase_stoplog (this,sprintf("  > e(x)=%e < %e * %e + %e",...
-          normdelta, tolxr , normold , tolxa ));
+        this = optimbase_stoplog (this,sprintf("  > e(x)=%s < %s * %s + %s",...
+          string(normdelta), string(tolxr) , string(normold) , string(tolxa) ));
       end
       if ( normdelta < tolxr * normold + tolxa ) then
         terminate = %t;

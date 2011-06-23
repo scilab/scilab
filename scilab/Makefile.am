@@ -134,7 +134,7 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/icons/
+iconsdir=$(pkgdatadir)/desktop/
 icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
 $(top_srcdir)/desktop/puffin_128.xpm \
 $(top_srcdir)/desktop/puffin_256.xpm \
@@ -320,7 +320,7 @@ check-java:
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
-	MASK="modules/*/locales/"; \
+	MASK="modules/*/locales*/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	EXTENSION="*.po"; \

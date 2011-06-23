@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -84,10 +84,6 @@ function value = neldermead_cget (this,key)
     value = this.boxineqscaling;
   case "-mymethod" then
     value = this.mymethod
-  case "-myterminate" then
-    value = this.myterminate
-  case "-myterminateflag" then
-    value = this.myterminateflag
   case "-tolvarianceflag" then
     value = this.tolvarianceflag
   case "-tolabsolutevariance" then

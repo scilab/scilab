@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>dcd_f</ProjectName>
+    <ProjectGuid>{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}</ProjectGuid>
+    <RootNamespace>dcd_f2c_DLL</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__STDC__;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build dcd.def file</Message>
+      <Command>lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Statistics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)statistics.lib" 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>output_stream.lib;statistics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>dcd.def</ModuleDefinitionFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__STDC__;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build dcd.def file</Message>
+      <Command>lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Statistics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)statistics.lib" 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>output_stream.lib;statistics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>dcd.def</ModuleDefinitionFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__STDC__;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build dcd.def file</Message>
+      <Command>lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Statistics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)statistics.lib" 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>output_stream.lib;statistics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>dcd.def</ModuleDefinitionFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__STDC__;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>$(Configuration)/</ObjectFileName>
+      <ProgramDataBaseFileName>$(Configuration)/vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build dcd.def file</Message>
+      <Command>lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Statistics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)statistics.lib" 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>output_stream.lib;statistics.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>dcd.def</ModuleDefinitionFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\algdiv.c" />
+    <ClCompile Include="..\alngam.c" />
+    <ClCompile Include="..\alnrel.c" />
+    <ClCompile Include="..\apser.c" />
+    <ClCompile Include="..\basym.c" />
+    <ClCompile Include="..\bcorr.c" />
+    <ClCompile Include="..\betaln.c" />
+    <ClCompile Include="..\bfrac.c" />
+    <ClCompile Include="..\bgrat.c" />
+    <ClCompile Include="..\bpser.c" />
+    <ClCompile Include="..\bratio.c" />
+    <ClCompile Include="..\brcmp1.c" />
+    <ClCompile Include="..\brcomp.c" />
+    <ClCompile Include="..\bup.c" />
+    <ClCompile Include="..\cdfbet.c" />
+    <ClCompile Include="..\cdfbin.c" />
+    <ClCompile Include="..\cdfchi.c" />
+    <ClCompile Include="..\cdfchn.c" />
+    <ClCompile Include="..\cdff.c" />
+    <ClCompile Include="..\cdffnc.c" />
+    <ClCompile Include="..\cdfgam.c" />
+    <ClCompile Include="..\cdfnbn.c" />
+    <ClCompile Include="..\cdfnor.c" />
+    <ClCompile Include="..\cdfpoi.c" />
+    <ClCompile Include="..\cdft.c" />
+    <ClCompile Include="..\cumbet.c" />
+    <ClCompile Include="..\cumbin.c" />
+    <ClCompile Include="..\cumchi.c" />
+    <ClCompile Include="..\cumchn.c" />
+    <ClCompile Include="..\cumf.c" />
+    <ClCompile Include="..\cumfnc.c" />
+    <ClCompile Include="..\cumgam.c" />
+    <ClCompile Include="..\cumnbn.c" />
+    <ClCompile Include="..\cumnor.c" />
+    <ClCompile Include="..\cumpoi.c" />
+    <ClCompile Include="..\cumt.c" />
+    <ClCompile Include="..\devlpl.c" />
+    <ClCompile Include="..\dexpm1.c" />
+    <ClCompile Include="..\dinvnr.c" />
+    <ClCompile Include="..\dinvr.c" />
+    <ClCompile Include="..\dt1.c" />
+    <ClCompile Include="..\dzror.c" />
+    <ClCompile Include="..\erf.c" />
+    <ClCompile Include="..\erfc1.c" />
+    <ClCompile Include="..\esum.c" />
+    <ClCompile Include="..\exparg.c" />
+    <ClCompile Include="..\fpser.c" />
+    <ClCompile Include="..\gam1.c" />
+    <ClCompile Include="..\gaminv.c" />
+    <ClCompile Include="..\gamln.c" />
+    <ClCompile Include="..\gamln1.c" />
+    <ClCompile Include="..\gamma.c" />
+    <ClCompile Include="..\grat1.c" />
+    <ClCompile Include="..\gratio.c" />
+    <ClCompile Include="..\gsumln.c" />
+    <ClCompile Include="..\ipmpar.c" />
+    <ClCompile Include="..\psi.c" />
+    <ClCompile Include="..\rcomp.c" />
+    <ClCompile Include="..\rexp.c" />
+    <ClCompile Include="..\rlog.c" />
+    <ClCompile Include="..\rlog1.c" />
+    <ClCompile Include="..\spmpar.c" />
+    <ClCompile Include="..\stvaln.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="..\algdiv.f" />
+    <f2c_rule Include="..\alngam.f" />
+    <f2c_rule Include="..\alnrel.f" />
+    <f2c_rule Include="..\apser.f" />
+    <f2c_rule Include="..\basym.f" />
+    <f2c_rule Include="..\bcorr.f" />
+    <f2c_rule Include="..\betaln.f" />
+    <f2c_rule Include="..\bfrac.f" />
+    <f2c_rule Include="..\bgrat.f" />
+    <f2c_rule Include="..\bpser.f" />
+    <f2c_rule Include="..\bratio.f" />
+    <f2c_rule Include="..\brcmp1.f" />
+    <f2c_rule Include="..\brcomp.f" />
+    <f2c_rule Include="..\bup.f" />
+    <f2c_rule Include="..\cdfbet.f" />
+    <f2c_rule Include="..\cdfbin.f" />
+    <f2c_rule Include="..\cdfchi.f" />
+    <f2c_rule Include="..\cdfchn.f" />
+    <f2c_rule Include="..\cdff.f" />
+    <f2c_rule Include="..\cdffnc.f" />
+    <f2c_rule Include="..\cdfgam.f" />
+    <f2c_rule Include="..\cdfnbn.f" />
+    <f2c_rule Include="..\cdfnor.f" />
+    <f2c_rule Include="..\cdfpoi.f" />
+    <f2c_rule Include="..\cdft.f" />
+    <f2c_rule Include="..\cumbet.f" />
+    <f2c_rule Include="..\cumbin.f" />
+    <f2c_rule Include="..\cumchi.f" />
+    <f2c_rule Include="..\cumchn.f" />
+    <f2c_rule Include="..\cumf.f" />
+    <f2c_rule Include="..\cumfnc.f" />
+    <f2c_rule Include="..\cumgam.f" />
+    <f2c_rule Include="..\cumnbn.f" />
+    <f2c_rule Include="..\cumnor.f" />
+    <f2c_rule Include="..\cumpoi.f" />
+    <f2c_rule Include="..\cumt.f" />
+    <f2c_rule Include="..\devlpl.f" />
+    <f2c_rule Include="..\dexpm1.f" />
+    <f2c_rule Include="..\dinvnr.f" />
+    <f2c_rule Include="..\dinvr.f" />
+    <f2c_rule Include="..\dt1.f" />
+    <f2c_rule Include="..\dzror.f" />
+    <f2c_rule Include="..\erf.f" />
+    <f2c_rule Include="..\erfc1.f" />
+    <f2c_rule Include="..\esum.f" />
+    <f2c_rule Include="..\exparg.f" />
+    <f2c_rule Include="..\fpser.f" />
+    <f2c_rule Include="..\gam1.f" />
+    <f2c_rule Include="..\gaminv.f" />
+    <f2c_rule Include="..\gamln.f" />
+    <f2c_rule Include="..\gamln1.f" />
+    <f2c_rule Include="..\gamma.f" />
+    <f2c_rule Include="..\grat1.f" />
+    <f2c_rule Include="..\gratio.f" />
+    <f2c_rule Include="..\gsumln.f" />
+    <f2c_rule Include="..\ipmpar.f" />
+    <f2c_rule Include="..\psi.f" />
+    <f2c_rule Include="..\rcomp.f" />
+    <f2c_rule Include="..\rexp.f" />
+    <f2c_rule Include="..\rlog.f" />
+    <f2c_rule Include="..\rlog1.f" />
+    <f2c_rule Include="..\spmpar.f" />
+    <f2c_rule Include="..\stvaln.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

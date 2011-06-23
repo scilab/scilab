@@ -82,7 +82,7 @@ assert_checkequal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0",[-6.0 1.0]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
-Component #1/2 of x is lower than min bound -5.000000e+000
+Component #1/2 of x is lower than min bound -5
 ... initial guess is not feasible.
 assert_checkequal ( isok , %F );
 opt = optimbase_destroy(opt);

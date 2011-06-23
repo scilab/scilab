@@ -11,197 +11,23 @@
  *
  */
 
-#include <iostream>
-#include "BrowseVar.hxx"
-
-#include <string>
-#include <iterator>
-using std::string;
-#include <set>
 extern "C"
 {
-#include <string.h>
-#include "BOOL.h"
-#include "localization.h"
+#include "UpdateBrowseVar.h"
 #include "gw_ui_data.h"
-#include "MALLOC.h"
+#include "BOOL.h"
 #include "stack-c.h"
-#include "stackinfo.h"
-#include "api_scilab.h"
-#include "getScilabJavaVM.h"
-#include "Scierror.h"
-#include "freeArrayOfString.h"
-#include "sci_types.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 }
-using namespace org_scilab_modules_ui_data;
-
-static std::set<string> createScilabDefaultVariablesSet();
-
+/*--------------------------------------------------------------------------*/
 int sci_browsevar(char *fname, unsigned long fname_len)
 {
-    int iGlobalVariablesUsed = 0;
-    int iGlobalVariablesTotal = 0;
-    int iLocalVariablesUsed = 0;
-    int iLocalVariablesTotal = 0;
-    int i = 0;
-
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
-    // First get how many global / local variable we have.
-    C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
-    C2F(getgvariablesinfo) (&iGlobalVariablesTotal, &iGlobalVariablesUsed);
-
-    char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    bool *piAllVariableFromUser = (bool *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(BOOL));
-    int nbRows, nbCols;
-    char *sizeStr = NULL;
-
-    std::set<string> scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
-
-    // for each local variable get informations
-    for (i = 0; i < iLocalVariablesUsed; ++i)
-    {
-        // name
-        pstAllVariableNames[i] = getLocalNamefromId(i + 1);
-        // type
-        getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
-        // Bytes used
-        piAllVariableBytes[i] = getLocalSizefromId(i);
-
-        // Sizes of the variable
-        getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
-
-        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        pstAllVariableSizes[i] = strdup(sizeStr);
-        FREE(sizeStr);
-
-        // global / local ??
-        pstAllVariableVisibility[i] = strdup("local");
-
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() 
-            && piAllVariableTypes[i] != sci_c_function /*TODO: voir si je fais sauter ou pas*/
-            && piAllVariableTypes[i] != sci_lib) {
-            piAllVariableFromUser[i]=TRUE;
-        } else {
-            piAllVariableFromUser[i]=FALSE;
-        }
-
-    }
-
-    // for each global variable get information
-    for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
-    {
-        // name
-        pstAllVariableNames[i] = getGlobalNamefromId(j);
-        // Bytes used
-        piAllVariableBytes[i] = getGlobalSizefromId(j);
-        // type
-        // Calling "API Scilab": not yet implemented for global variable
-        //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
-        // Using old stack operations...
-        piAllVariableTypes[i] = GetType(C2F(vstk).isiz + 2 + j);
-
-        // Sizes of the variable
-        getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
-        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        pstAllVariableSizes[i] = strdup(sizeStr);
-        FREE(sizeStr);
-
-        // global / local ??
-        pstAllVariableVisibility[i] = strdup("global");
-
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() 
-            && piAllVariableTypes[i] != sci_c_function
-            && piAllVariableTypes[i] != sci_lib) {
-            piAllVariableFromUser[i]=TRUE;
-        } else {
-            piAllVariableFromUser[i]=FALSE;
-        }
-
-    }
-
-    // Launch Java Variable Browser through JNI
-    BrowseVar::openVariableBrowser(getScilabJavaVM(),
-                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
-
-
-    freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
-// TODO: find out why this is failing
-//    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
-    if (piAllVariableBytes)
-    {
-        FREE(piAllVariableBytes);
-        piAllVariableBytes = NULL;
-    }
-
-    if (piAllVariableTypes)
-    {
-        FREE(piAllVariableTypes);
-        piAllVariableTypes = NULL;
-    }
-
-    if (pstAllVariableSizes)
-    {
-        FREE(pstAllVariableSizes);
-        pstAllVariableSizes = NULL;
-    }
+    UpdateBrowseVar(FALSE);
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
-}
-
-/*--------------------------------------------------------------------------*/
-static std::set<string> createScilabDefaultVariablesSet() {
-    string arr[] = {"home",
-                    "PWD",
-                    "%tk",
-                    "%pvm",
-                    "MSDOS",
-                    "%F",
-                    "%T",
-                    "%f",
-                    "%t",
-                    "%e",
-                    "%pi",
-                    "%modalWarning",
-                    "%exportFileName",
-                    "%nan",
-                    "%inf",
-                    "SCI",
-                    "SCIHOME",
-                    "TMPDIR",
-                    "%gui",
-                    "%fftw",
-                    "%eps",
-                    "%io",
-                    "%i",
-                    "demolist",
-                    "%driverName",
-                    "%toolboxes",
-                    "%toolboxes_dir"};
-    int i=0;
-    #define NBELEMENT 26
-    std::set<string> ScilabDefaultVariables;
-    for (i=0; i<=NBELEMENT; i++) {
-        ScilabDefaultVariables.insert(arr[i]);
-    }
-    return ScilabDefaultVariables;
-
 }

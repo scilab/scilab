@@ -43,12 +43,16 @@ BOOL TerminateCorePart1(void)
 /*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart2(void)
 {
-#ifdef _MSC_VER /* Bug under Linux on freeing memory */
-#ifndef _WIN64
-    C2F(freegmem)();
-    C2F(freemem)();
-#endif
-#endif
+	/* memory freed by OS for all platforms and all targets */
+	/* freemem can crash randomly at exit with VS 2010 (32 bits) */
+	/* same behavior on all platforms */
+
+//#ifdef _MSC_VER /* Bug under Linux on freeing memory */
+//#ifndef _WIN64
+//    C2F(freegmem)();
+//    C2F(freemem)();
+//#endif
+//#endif
 
     DisposeModulesInfo();
 

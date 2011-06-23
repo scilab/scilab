@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>optimization_f</ProjectName>
+    <ProjectGuid>{1D219098-007C-4F76-9AE6-271ABBB7D393}</ProjectGuid>
+    <RootNamespace>optimization_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)optimization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)optimization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build optimization_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul
+copy *.def optimization_f.def &gt;nul
+copy optimization_f.def ..\optimization_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;optimization.lib;string.lib;output_stream.lib;io_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>optimization_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)optimization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)optimization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build optimization_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul
+copy *.def optimization_f.def &gt;nul
+copy optimization_f.def ..\optimization_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;optimization.lib;string.lib;output_stream.lib;io_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>optimization_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)optimization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)optimization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build optimization_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul
+copy *.def optimization_f.def &gt;nul
+copy optimization_f.def ..\optimization_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;optimization.lib;string.lib;output_stream.lib;io_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>optimization_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)optimization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)optimization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build optimization_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n optimization_f.dll %%f &gt;nul
+copy *.def optimization_f.def &gt;nul
+copy optimization_f.def ..\optimization_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>LibScilab.lib;optimization.lib;string.lib;output_stream.lib;io_f.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>optimization_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ajour.c" />
+    <ClCompile Include="bfgsd.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bjlsqrsolv.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bjsolv.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\blsqrsolv.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\boptim.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bsolv.c" />
+    <ClCompile Include="calbx.c" />
+    <ClCompile Include="calmaj.c" />
+    <ClCompile Include="ctcab.c" />
+    <ClCompile Include="ctonb.c" />
+    <ClCompile Include="dcube.c" />
+    <ClCompile Include="ddd2.c" />
+    <ClCompile Include="minpack\dogleg.c" />
+    <ClCompile Include="minpack\dpmpar.c" />
+    <ClCompile Include="minpack\enorm.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-fsolve.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-optim.c" />
+    <ClCompile Include="fajc1.c" />
+    <ClCompile Include="fcomp1.c" />
+    <ClCompile Include="fcube.c" />
+    <ClCompile Include="minpack\fdjac1.c" />
+    <ClCompile Include="minpack\fdjac2.c" />
+    <ClCompile Include="ffinf1.c" />
+    <ClCompile Include="fmani1.c" />
+    <ClCompile Include="fmc11a.c" />
+    <ClCompile Include="fmc11b.c" />
+    <ClCompile Include="fmc11e.c" />
+    <ClCompile Include="fmc11z.c" />
+    <ClCompile Include="fmlag1.c" />
+    <ClCompile Include="fmulb1.c" />
+    <ClCompile Include="fmuls1.c" />
+    <ClCompile Include="fpq2.c" />
+    <ClCompile Include="fprf2.c" />
+    <ClCompile Include="frdf1.c" />
+    <ClCompile Include="fremf1.c" />
+    <ClCompile Include="fremf2.c" />
+    <ClCompile Include="fretc1.c" />
+    <ClCompile Include="fuclid.c" />
+    <ClCompile Include="gcbd.c" />
+    <ClCompile Include="gcp.c" />
+    <ClCompile Include="minpack\hybrd.c" />
+    <ClCompile Include="minpack\hybrd1.c" />
+    <ClCompile Include="minpack\hybrj.c" />
+    <ClCompile Include="minpack\hybrj1.c" />
+    <ClCompile Include="icscof.c" />
+    <ClCompile Include="icse.c" />
+    <ClCompile Include="icse0.c" />
+    <ClCompile Include="icse1.c" />
+    <ClCompile Include="icse2.c" />
+    <ClCompile Include="icsec2.c" />
+    <ClCompile Include="icsei.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\intlsqrsolve.c" />
+    <ClCompile Include="intreadmps.c" />
+    <ClCompile Include="minpack\lmder.c" />
+    <ClCompile Include="minpack\lmdif.c" />
+    <ClCompile Include="minpack\lmpar.c" />
+    <ClCompile Include="majour.c" />
+    <ClCompile Include="majysa.c" />
+    <ClCompile Include="majz.c" />
+    <ClCompile Include="n1fc1.c" />
+    <ClCompile Include="n1fc1a.c" />
+    <ClCompile Include="n1fc1o.c" />
+    <ClCompile Include="n1gc2.c" />
+    <ClCompile Include="n1gc2a.c" />
+    <ClCompile Include="n1gc2b.c" />
+    <ClCompile Include="n1qn1.c" />
+    <ClCompile Include="n1qn1a.c" />
+    <ClCompile Include="n1qn2.c" />
+    <ClCompile Include="n1qn2a.c" />
+    <ClCompile Include="n1qn3.c" />
+    <ClCompile Include="n1qn3a.c" />
+    <ClCompile Include="nlis0.c" />
+    <ClCompile Include="nlis2.c" />
+    <ClCompile Include="proj.c" />
+    <ClCompile Include="minpack\qform.c" />
+    <ClCompile Include="ql0001.c" />
+    <ClCompile Include="qnbd.c" />
+    <ClCompile Include="qpgen1sci.c" />
+    <ClCompile Include="qpgen2.c" />
+    <ClCompile Include="minpack\qrfac.c" />
+    <ClCompile Include="minpack\qrsolv.c" />
+    <ClCompile Include="minpack\r1mpyq.c" />
+    <ClCompile Include="minpack\r1updt.c" />
+    <ClCompile Include="rdmps1.c" />
+    <ClCompile Include="rdmpsz.c" />
+    <ClCompile Include="rednor.c" />
+    <ClCompile Include="relvar.c" />
+    <ClCompile Include="rlbd.c" />
+    <ClCompile Include="satur.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fsolve.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_optim.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_semidef.c" />
+    <ClCompile Include="shanph.c" />
+    <ClCompile Include="strang.c" />
+    <ClCompile Include="writebuf.c" />
+    <ClCompile Include="zgcbd.c" />
+    <ClCompile Include="zqnbd.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="ajour.f" />
+    <f2c_rule Include="bfgsd.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjlsqrsolv.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjsolv.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\blsqrsolv.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\boptim.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bsolv.f" />
+    <f2c_rule Include="calbx.f" />
+    <f2c_rule Include="calmaj.f" />
+    <f2c_rule Include="ctcab.f" />
+    <f2c_rule Include="ctonb.f" />
+    <f2c_rule Include="dcube.f" />
+    <f2c_rule Include="ddd2.f" />
+    <f2c_rule Include="minpack\dogleg.f" />
+    <f2c_rule Include="minpack\dpmpar.f" />
+    <f2c_rule Include="minpack\enorm.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-fsolve.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-lsqrsolve.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-optim.f" />
+    <f2c_rule Include="fajc1.f" />
+    <f2c_rule Include="fcomp1.f" />
+    <f2c_rule Include="fcube.f" />
+    <f2c_rule Include="minpack\fdjac1.f" />
+    <f2c_rule Include="minpack\fdjac2.f" />
+    <f2c_rule Include="ffinf1.f" />
+    <f2c_rule Include="fmani1.f" />
+    <f2c_rule Include="fmc11a.f" />
+    <f2c_rule Include="fmc11b.f" />
+    <f2c_rule Include="fmc11e.f" />
+    <f2c_rule Include="fmc11z.f" />
+    <f2c_rule Include="fmlag1.f" />
+    <f2c_rule Include="fmulb1.f" />
+    <f2c_rule Include="fmuls1.f" />
+    <f2c_rule Include="fpq2.f" />
+    <f2c_rule Include="fprf2.f" />
+    <f2c_rule Include="frdf1.f" />
+    <f2c_rule Include="fremf1.f" />
+    <f2c_rule Include="fremf2.f" />
+    <f2c_rule Include="fretc1.f" />
+    <f2c_rule Include="fuclid.f" />
+    <f2c_rule Include="gcbd.f" />
+    <f2c_rule Include="gcp.f" />
+    <f2c_rule Include="minpack\hybrd.f" />
+    <f2c_rule Include="minpack\hybrd1.f" />
+    <f2c_rule Include="minpack\hybrj.f" />
+    <f2c_rule Include="minpack\hybrj1.f" />
+    <f2c_rule Include="icscof.f" />
+    <f2c_rule Include="icse.f" />
+    <f2c_rule Include="icse0.f" />
+    <f2c_rule Include="icse1.f" />
+    <f2c_rule Include="icse2.f" />
+    <f2c_rule Include="icsec2.f" />
+    <f2c_rule Include="icsei.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\intlsqrsolve.f" />
+    <f2c_rule Include="minpack\lmder.f" />
+    <f2c_rule Include="minpack\lmdif.f" />
+    <f2c_rule Include="minpack\lmpar.f" />
+    <f2c_rule Include="majour.f" />
+    <f2c_rule Include="majysa.f" />
+    <f2c_rule Include="majz.f" />
+    <f2c_rule Include="n1fc1.f" />
+    <f2c_rule Include="n1fc1a.f" />
+    <f2c_rule Include="n1fc1o.f" />
+    <f2c_rule Include="n1gc2.f" />
+    <f2c_rule Include="n1gc2a.f" />
+    <f2c_rule Include="n1gc2b.f" />
+    <f2c_rule Include="n1qn1.f" />
+    <f2c_rule Include="n1qn1a.f" />
+    <f2c_rule Include="n1qn2.f" />
+    <f2c_rule Include="n1qn2a.f" />
+    <f2c_rule Include="n1qn3.f" />
+    <f2c_rule Include="n1qn3a.f" />
+    <f2c_rule Include="nlis0.f" />
+    <f2c_rule Include="nlis2.f" />
+    <f2c_rule Include="proj.f" />
+    <f2c_rule Include="minpack\qform.f" />
+    <f2c_rule Include="ql0001.f" />
+    <f2c_rule Include="qnbd.f" />
+    <f2c_rule Include="qpgen1sci.f" />
+    <f2c_rule Include="qpgen2.f" />
+    <f2c_rule Include="minpack\qrfac.f" />
+    <f2c_rule Include="minpack\qrsolv.f" />
+    <f2c_rule Include="minpack\r1mpyq.f" />
+    <f2c_rule Include="minpack\r1updt.f" />
+    <f2c_rule Include="rdmps1.f" />
+    <f2c_rule Include="rdmpsz.f" />
+    <f2c_rule Include="rednor.f" />
+    <f2c_rule Include="relvar.f" />
+    <f2c_rule Include="rlbd.f" />
+    <f2c_rule Include="satur.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fsolve.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_optim.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_semidef.f" />
+    <f2c_rule Include="shanph.f" />
+    <f2c_rule Include="strang.f" />
+    <f2c_rule Include="writebuf.f" />
+    <f2c_rule Include="zgcbd.f" />
+    <f2c_rule Include="zqnbd.f" />
+    <f2c_rule Include="intreadmps.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\optimization_gateway.xml" />
+    <None Include="Optimization_Import.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
+      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
+      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

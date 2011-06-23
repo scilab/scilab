@@ -39,7 +39,7 @@ public class BrowseVar {
                                                             Messages.gettext("Visibility"),
                                                             Messages.gettext("Bytes"),
                                                             Messages.gettext("User")
-};
+    };
 
     private static final String ICON_PATH = System.getenv("SCI") + "/modules/ui_data/images/icons/";
 
@@ -95,8 +95,8 @@ public class BrowseVar {
     /**
      * Open variable Browser
      */
-    public static void openVariableBrowser() {
-        ScilabVariableBrowser.getVariableBrowser();
+    public static void openVariableBrowser(boolean update) {
+        ScilabVariableBrowser.getVariableBrowser(update);
     }
 
     /**
@@ -108,7 +108,7 @@ public class BrowseVar {
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void openVariableBrowser(String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
@@ -119,13 +119,20 @@ public class BrowseVar {
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
             data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i];
         }
-        ScilabVariableBrowser.getVariableBrowser(data);
+        ScilabVariableBrowser.getVariableBrowser(update, data);
+    }
+
+    /**
+     * @return true if an instance of BrowseVar already exists.
+     */
+    public static boolean isVariableBrowserOpened() {
+        return ScilabVariableBrowser.isBrowseVarOpened();
     }
 
     /**
      * Close Variable Browser
      */
     public static void closeVariableBrowser() {
-        ScilabVariableBrowser.getVariableBrowser().close();
+        ScilabVariableBrowser.closeVariableBrowser();
     }
 }

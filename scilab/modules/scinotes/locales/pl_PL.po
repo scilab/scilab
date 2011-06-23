@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-27 15:39+0000\n"
+"Last-Translator: Sylvestre Ledru <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pl\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " został zmieniony.\n"
 "Czy chcesz go zapisać?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s jest katalogiem."
 
@@ -36,6 +38,10 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje "
 "takich samych wymiarów.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A single string.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -54,6 +60,9 @@ msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
 msgid "... file with echo"
 msgstr "... plik, z echem"
 
@@ -62,6 +71,14 @@ msgstr "... plik, bez echa"
 
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr ".. zaznaczenie z echem;... do kursoru, z echem"
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
+msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -78,6 +95,12 @@ msgstr "Wszystko"
 msgid "Alphabetic order"
 msgstr "Kolejność alfabetyczna"
 
+msgid "An error occured when exporting the code using FOP"
+msgstr "Błąd w czasie eksportowania kodu za pomocą FOP"
+
+msgid "An error occured when printing"
+msgstr "Błąd w czasie drukowania"
+
 msgid "Anchor's name: "
 msgstr "Nazwa kotwicy "
 
@@ -86,6 +109,9 @@ msgstr "Kotwica "
 
 msgid "Anchors"
 msgstr "Kotwice"
+
+msgid "Apply & Reindent"
+msgstr "Zastosuj i wznów wcięcie"
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "Jesteś pewny, że chcesz zamknąć SciNotes?"
@@ -105,6 +131,9 @@ msgstr "Kolor tła"
 msgid "Backward"
 msgstr "Wstecz"
 
+msgid "Base directory:"
+msgstr "Katalog bazowy:"
+
 msgid "Binary file: read-only mode"
 msgstr "Plik binarny (tryb tylko do odczytu)"
 
@@ -114,11 +143,23 @@ msgstr "Pogrubiony"
 msgid "Cancel"
 msgstr "Anuluj"
 
+msgid "Cannot guess the file encoding."
+msgstr "NIe rozpoznano kodowania pliku"
+
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "Nie można załadować \"scinotesConfiguration.xml\""
 
+msgid "Capitalize Selection;Capitalize character"
+msgstr "Zmień litery w zaznaczeniu na wielkie;Zmień literę na wielką"
+
 msgid "Case sensitive"
 msgstr "Rozróżniaj wielkość liter"
+
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
 
 msgid "Change Color"
 msgstr "Zmień kolor"
@@ -126,8 +167,14 @@ msgstr "Zmień kolor"
 msgid "Change Colors"
 msgstr "Zmienić kolory"
 
+msgid "Choose the search base directory"
+msgstr "Wybierz katalog bazowy do wyszukiwania"
+
+msgid "Choose..."
+msgstr "Wybierz..."
+
 msgid "Circular search"
-msgstr ""
+msgstr "Wyszukiwanie kołowe"
 
 msgid "Clone and close tab in a new window"
 msgstr ""
@@ -156,17 +203,26 @@ msgstr "Koloryzacja anulowana"
 msgid "Colorize"
 msgstr "Koloryzacja"
 
+msgid "Columns actions"
+msgstr "Operacje na kolumnach"
+
 msgid "Comment Selection"
 msgstr "Zakomentuj zaznaczenie"
 
 msgid "Complete"
-msgstr ""
+msgstr "Zakończ"
+
+msgid "Configure Tabulation"
+msgstr "Konfiguracja tabulacji"
 
 msgid "Continue ?"
 msgstr "Kontunuować?"
 
 msgid "Copy"
 msgstr "Kopiuj"
+
+msgid "Copy as HTML with line number"
+msgstr "Kopiuj jako HTML wraz z numerem linii"
 
 msgid "Copy selection in a new tab"
 msgstr "Skopiuj zaznaczenie do nowej zakładki"
@@ -186,6 +242,9 @@ msgstr "Nie udało się znaleść ani konsoli ani InterpreterManagement"
 msgid "Could not find the temporary file."
 msgstr "Nie można znaleźć pliku tymczasowego"
 
+msgid "Current file encoding"
+msgstr "Kodowanie bieżącego pliku"
+
 msgid "Cursor Color"
 msgstr "Kolor kursora"
 
@@ -194,6 +253,10 @@ msgstr "Wytnij"
 
 msgid "Default"
 msgstr "Domyślne"
+
+msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+msgstr ""
+"Domyślne kodowanie pliku w SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
 
 msgid "Delete"
 msgstr "Usuń"
@@ -207,14 +270,28 @@ msgstr "Kierunek"
 msgid "Document"
 msgstr "Dokument"
 
+msgid "Double chevrons"
+msgstr "Podwójne nawiasy kątowe"
+
 msgid "Edit"
 msgstr "Edycja"
+
+#, c-format
+msgid "Elapsed time: %s second."
+msgstr "Szacowany czas: %s sec."
+
+#, c-format
+msgid "Elapsed time: %s seconds."
+msgstr "Szacowany czas: %s sec."
 
 msgid "Enable Auto Reformat"
 msgstr "Włącz autoformatowanie"
 
 msgid "Encoding"
 msgstr "Kodowanie"
+
+msgid "Encoding problems"
+msgstr "Problemy z kodowaniem"
 
 msgid "Enter line number"
 msgstr "Wprowadź numer linii"
@@ -231,6 +308,9 @@ msgstr "Oblicz zaznaczenie z echem;Oblicz do pozycji kursora, z echem"
 msgid "Evaluate from beginning..."
 msgstr "Oblicz od początku..."
 
+msgid "Exact"
+msgstr ""
+
 msgid "Execute"
 msgstr "Wykonaj"
 
@@ -240,11 +320,17 @@ msgstr "Wykonaj plik w Scilab"
 msgid "Exit"
 msgstr "Wyjście"
 
+msgid "Export"
+msgstr "Eksport"
+
 msgid "File"
 msgstr "Plik"
 
 msgid "File already exists"
 msgstr "Plik już istnieje"
+
+msgid "File pattern"
+msgstr ""
 
 msgid "Find"
 msgstr "Znajdź"
@@ -254,6 +340,12 @@ msgstr "Znajdź następny"
 
 msgid "Find Previous"
 msgstr "Znajdź poprzedni"
+
+msgid "Find files"
+msgstr ""
+
+msgid "Find word in files"
+msgstr "Znajdź słowo w plikach"
 
 msgid "Find/Replace"
 msgstr "Znajdź/Zamień"
@@ -306,17 +398,41 @@ msgstr "Pomoc w czasie pisania"
 msgid "Highlight current line"
 msgstr "Podświetl bierzącą linię"
 
+msgid "Horizontal rule"
+msgstr "Linia pozioma"
+
+msgid "Horizontal wrapping"
+msgstr "Zawijanie tekstu"
+
 msgid "Ignore"
 msgstr "Ignoruj"
 
+msgid "Incremental Search"
+msgstr "Poszukiwanie przyrostowe"
+
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Błędne wyrażenie regularne : %s"
 
 msgid "Italic"
 msgstr "Kursywa"
 
+msgid "Length"
+msgstr "Długość"
+
+#, c-format
+msgid "Line %s, Column %s."
+msgstr "Linia %s, kolumna %s."
+
+#, c-format
+msgid "Line %s, Column %s. Function '%s' at Line %s."
+msgstr "Linia %s,  kolumna %s. funkcja '%s' w wierszu %s."
+
 msgid "Line Endings"
 msgstr "Zakończenie linii"
+
+msgid "Line by line"
+msgstr "Wiersz po wierszu"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeracja wierszy:Brak;Zwykła;Whereami compatible"
@@ -333,8 +449,14 @@ msgstr "Klasyczny Mac (CR)"
 msgid "Mail to "
 msgstr "E-mail do "
 
+msgid "Make Selection Lowercase"
+msgstr "Zmień litery w zaznaczeniu na małe"
+
+msgid "Make Selection Uppercase"
+msgstr "Zmień litery w zaznaczeniu na duże"
+
 msgid "Natural order"
-msgstr ""
+msgstr "Kolejność naturalna"
 
 msgid "New"
 msgstr "Nowy"
@@ -357,8 +479,8 @@ msgstr "Brak kodu do wykonania"
 msgid "Normal Line Numbering"
 msgstr "Normalna numeracja wierszy"
 
-msgid "Numerotation"
-msgstr ""
+msgid "Numeration"
+msgstr "Numeracja"
 
 msgid "Ok"
 msgstr "OK"
@@ -369,14 +491,14 @@ msgstr "Otwórz"
 msgid "Open URL"
 msgstr "Otwórz URL"
 
-msgid "Open file in ...;Add a directory;Remove last directory"
-msgstr "Otwórz plik w ...;Dodaj katalog;Usuń ostatni katalog"
+msgid "Open file in ..."
+msgstr "Otwórz plik w ..."
 
 msgid "Open function source file"
 msgstr "Otwórz plik źródłowy funkcji"
 
 msgid "Open in the navigator the URL "
-msgstr ""
+msgstr "Open URL w nawigatorze "
 
 msgid "Open source"
 msgstr "Otwórz plik źródłowy"
@@ -402,11 +524,14 @@ msgstr "Ustawienia strony"
 msgid "Paste"
 msgstr "Wklej"
 
+msgid "Paste Column"
+msgstr "Wklej kolumnę"
+
 msgid "Preferences"
 msgstr "Ustawienia"
 
 msgid "Press CTRL and move the mouse over the link to activate it"
-msgstr ""
+msgstr "Naciśnij CTRL i przesuń wskaźnik myszy na link, żeby go aktywować"
 
 msgid "Preview"
 msgstr "Podgląd"
@@ -420,14 +545,29 @@ msgstr "Drukuj"
 msgid "Print Preview"
 msgstr "Podgląd wydruku"
 
+msgid "Read file line by line"
+msgstr "Odczytaj plik wiersz po wierszu"
+
 msgid "Read-only mode"
 msgstr "Tryb tylko do odczytu"
 
 msgid "Recent Files"
 msgstr "Poprzednie pliki"
 
+msgid "Recursive"
+msgstr ""
+
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
 msgstr "Powtórz"
+
+msgid "Regex"
+msgstr "Wyrażenia regularne"
+
+msgid "Regular expression (Word)"
+msgstr "Wyrażenia regularne"
 
 msgid "Regular expressions"
 msgstr "Wyrażenia regularne"
@@ -446,6 +586,9 @@ msgstr "Usuń końcowe spacje"
 
 msgid "Remove trailing whitespaces"
 msgstr "Usuń spacje na końcu"
+
+msgid "Repeat on the Column"
+msgstr ""
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -483,8 +626,14 @@ msgstr "Zapisz"
 msgid "Save All"
 msgstr "Zapisz wszystko"
 
+msgid "Save and execute"
+msgstr "Zapisz i wykonaj"
+
 msgid "Save as"
 msgstr "Zapisz jako"
+
+msgid "Save file in ..."
+msgstr "Zapisz plik w ..."
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -512,6 +661,12 @@ msgstr "Zakres"
 msgid "Search"
 msgstr "Znajdź"
 
+msgid "Search Files..."
+msgstr "Znajdź pliki..."
+
+msgid "Search in Files..."
+msgstr "Znajdź w plikach..."
+
 msgid "Select All"
 msgstr "Zaznacz wszystko"
 
@@ -523,6 +678,9 @@ msgstr "Zaznaczone linie"
 
 msgid "Set Colors"
 msgstr "Ustaw kolory"
+
+msgid "Set Colors ..."
+msgstr "Ustaw kolory ..."
 
 msgid "Set Font"
 msgstr "Ustaw czcionkę"
@@ -548,6 +706,9 @@ msgstr "Pokaż definicję makra "
 msgid "Show/Hide ToolBar"
 msgstr "Pokaż/ukryj pasek narzędzi"
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Źródło '"
 
@@ -560,22 +721,37 @@ msgstr "Podziel poziomo"
 msgid "Split vertically"
 msgstr "Podziel pionowo"
 
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr "Przekreślenie"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
+
+msgid "Suppress comments when executing selection"
+msgstr "Brak wyświetlania komentarzy przy wykonaniu zaznaczenia"
 
 msgid "Syntax Type"
 msgstr "Rodzaj składni"
 
+msgid "Tab representation"
+msgstr "Symbol tabulacji"
+
+msgid "Tab style"
+msgstr "Styl zakładki"
+
+#, c-format
 msgid ""
-"The file %s doesn't exist\n"
-" Do you want to create it?"
+"The file %s does not exist\n"
+"Do you want to create it?"
 msgstr ""
 "Plik %s nie istnieje\n"
-" Czy chcesz go utworzyć?"
+"Czy chcesz go utworzyć?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -586,8 +762,23 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "Plik nie może być przekonwertowany"
 
+msgid "The file could not be created, check the path"
+msgstr "Brak możliwości utworzenia pliku. Sprawdź ścieżkę dostępu"
+
 msgid "The file could not be saved."
 msgstr "Plik nie może być zapisany"
+
+#, c-format
+msgid ""
+"The file encoding is actually %s and it will be saved in using %s. Continue ?"
+msgstr ""
+"Bieżące kodowanie pliku to %s, będzie zapisany używając kodowania %s. "
+"Kontynuować?"
+
+msgid "The file is not writable so it is opened in read-only mode"
+msgstr ""
+"Plik jest chroniony przez zapisem, dlatego będzie otwarty w trybie \"tylko "
+"do odczytu\""
 
 msgid "This file"
 msgstr "Ten plik"
@@ -620,6 +811,12 @@ msgstr "Unix (LF)"
 msgid "Untitled "
 msgstr "Bez nazwy "
 
+msgid "Use spaces"
+msgstr "Użyj spacji"
+
+msgid "Vertical rule"
+msgstr "Linia pionowa"
+
 msgid "View"
 msgstr "Widok"
 
@@ -627,7 +824,7 @@ msgid "Warning: the file has been modified by another program !"
 msgstr "Ostrzeżenie: plik został zmieniony przez inny program !"
 
 msgid "Whereami Line Numbering"
-msgstr ""
+msgstr "Względna numeracja linii"
 
 msgid "Whole word"
 msgstr "Całe słowo"
@@ -638,8 +835,23 @@ msgstr "Okno"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr "Słowo"
+
 msgid "Word Wrap"
 msgstr "Zawijanie wierszy"
+
+msgid "Word pattern"
+msgstr ""
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr "Katalog roboczy;Dodaj katalog;Usuń ostatni katalog"
+
+msgid "You do not have the permissions to read this file"
+msgstr "Nie masz uprawnień do odczytu tego pliku"
+
+msgid "You do not have the permissions to write this file"
+msgstr ""
 
 msgid "You have passed the beginning of the document"
 msgstr "Przekroczyleś początek dokumentu"
@@ -662,3 +874,49 @@ msgstr "Twoje zmiany zostaną utracone, należy zmienić kodowanie."
 
 msgid "close this tab"
 msgstr "zamknij kartę"
+
+#~ msgid "Are you sure that you want to close Text Editor ?"
+#~ msgstr "Czy na pewno chcesz zamknąć edytor tekstu?"
+
+#~ msgid "Continue?"
+#~ msgstr "Kontynuować?"
+
+#~ msgid "Edit selection in a new tab"
+#~ msgstr "Edytuj wybrane w nowej karcie"
+
+#~ msgid "Editor"
+#~ msgstr "Edytor"
+
+#~ msgid "Editor error"
+#~ msgstr "Błąd edytora"
+
+#~ msgid "Help about a selected text"
+#~ msgstr "Pomoc o zaznaczonym tekscie"
+
+#~ msgid "Line Numbers"
+#~ msgstr "Numery wierszy"
+
+#~ msgid "Scilab text editor"
+#~ msgstr "Edytor tekstu Scilab"
+
+#~ msgid "Scilab text editor help"
+#~ msgstr "Pomoc edytora tekstu Scilab"
+
+#~ msgid ""
+#~ "The file %s doesn't exist\n"
+#~ " Do you want to create it?"
+#~ msgstr ""
+#~ "Plik %s nie istnieje\n"
+#~ " Czy chcesz go utworzyć?"
+
+#~ msgid "Wrap search"
+#~ msgstr "Szukaj naokoło"
+
+#~ msgid "No text to execute"
+#~ msgstr "Brak tekstu do wykonania"
+
+#~ msgid "No text selected"
+#~ msgstr "Nie zaznaczono tekstu"
+
+#~ msgid "Open file in ...;Add a directory;Remove last directory"
+#~ msgstr "Otwórz plik w ...;Dodaj katalog;Usuń ostatni katalog"

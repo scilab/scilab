@@ -54,7 +54,8 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes/
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/ui_data/includes/
 if IS_MACOSX
 libscishell_la_CFLAGS += -msse2
 endif

@@ -327,6 +327,13 @@ else
    enable_debug_CXX=no
 fi
 
+if test "$enable_debug_java" = yes; then
+   LOGGING_LEVEL="ALL"
+else
+   LOGGING_LEVEL="INFO"
+fi
+AC_SUBST(LOGGING_LEVEL)
+
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -852,7 +859,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
-                # Named differently under ArchLinux
+                # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
                     AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
@@ -914,7 +921,7 @@ the the JNI libraries."])],
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
                 JHALL=$PACKAGE_JAR_FILE
 
-                # Named differently under Mandriva
+                # Named differently under Mandriva or Fedora
                 if test -z "$JHALL"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
                     JHALL=$PACKAGE_JAR_FILE
@@ -1799,6 +1806,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/Info.plist
+etc/logging.properties
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties

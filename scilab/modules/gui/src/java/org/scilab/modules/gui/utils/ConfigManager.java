@@ -33,6 +33,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -693,7 +694,7 @@ public final class ConfigManager {
         DocumentBuilder docBuilder = null;
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
             docBuilder = factory.newDocumentBuilder();
 
             // lecture du contenu d'un fichier XML avec DOM

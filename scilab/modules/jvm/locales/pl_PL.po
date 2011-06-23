@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-22 21:27+0000\n"
+"Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pl\n"
 
 #, c-format
 msgid ""
@@ -198,6 +199,16 @@ msgstr "JNI: za mało pamięci"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Interfejs JVM  wyłączony w trybach in -nogui lub -nwni.\n"
 
+#, c-format
+msgid "Options:\n"
+msgstr "Opcje:\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+
 msgid "Scilab Java module not installed.\n"
 msgstr "Moduł Java programu Scilab nie jest zainstalowany.\n"
 
@@ -239,3 +250,9 @@ msgstr "Ostrzeżenie: nie odnaleziono pliku %s deklaracji classpath .\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "Zły format dla %s.\n"
+
+#~ msgid "Console"
+#~ msgstr "Konsola"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Konsola Scilab"

@@ -1,0 +1,663 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-06-01 09:22+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s: некоректний елемент %s\n"
+
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr "%s: «%s» не можна використовувати разом з «%s».\n"
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: помилка: не вдалося обчислити вхідну функцію «%s»."
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: помилка: не вдалося обчислити вхідну функцію."
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: кількість рядків має бути "
+"однаковою.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be a handle on a axes.\n"
+msgstr "%s: вхідний параметр №%d має бути елементом керування на осі.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: вхідний параметр №%d має бути дійсним числом.\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr ""
+"%s: умовні позначення не відповідають поточному контексту. Пропущено.\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: елемента керування «%s» не виявлено.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути %d або від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: помилкова розмірність параметра %d: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: помилкова розмірність вхідного параметра №%d."
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %dx%d "
+"або %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
+"%d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця "
+"розмірності більшої за %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: очікувалося дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
+"рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра %d: слід використовувати "
+"елемент керування «Axes».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
+"by-%d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра «%s»: мала бути матриця "
+"розмірності більшої за %dx%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgstr ""
+"'%s: помилковий розмір вхідного параметра «%s»: слід використовувати "
+"непорожню матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgstr ""
+"'%s: помилковий розмір вхідного параметра «%s»: слід використовувати "
+"вектор.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
+"dimensions.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів «%s» та «%s»: несумісні "
+"розмірності.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів «%s» і «%s»: мало бути "
+"використано матриці однакової розмірності.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів «%s» і «%s»: мало бути "
+"використано однакову розмірність.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів «%s»: мало бути використано "
+"вектор розмірності %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути вказано вектор дійсних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
+"даних %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано дескриптор "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"вектора.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"елементів керування «Figure»."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування «Axes».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути дійсне значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real array or graphic handle array "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"дійсних значень або елементів керування графічним об’єктом.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %d: слід використовувати елемент "
+"керування «Axes».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра «%s»: слід використовувати матрицю "
+"дійсних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: помилковий тип вхідного параметра.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «clear» "
+"або «reset»."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A %d digits integer with digits "
+"greater than %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення з %d цифрами, більшими за %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення, більше або рівне %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
+"інтервалі %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"у інтервалі [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра. Слід використовувати «%s», «%s», "
+"«%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра. Слід використовувати «%s», «%s», "
+"«%s», «%s», «%s», «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: помилкові значення вхідного параметра №%d: мало бути «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: елементи слід вказувати у "
+"порядку зростання.\n"
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: елемент керування, що вже не діє, проігноровано.\n"
+
+#, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: занадто багато вхідних параметрів"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Інструменти"
+
+msgid "... as well as very tiny radii"
+msgstr "…а також дуже маленькі значення радіуса"
+
+msgid "A partial viewport may be set with clipping"
+msgstr "Можна переглянути частину графіка за допомогою обрізання ділянки"
+
+msgid "Autumn"
+msgstr "Осінь"
+
+msgid "Big radii are supported..."
+msgstr "Передбачено підтримку великих значень радіуса…"
+
+msgid "Bone"
+msgstr "Слонова кістка"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Color number"
+msgstr "Номер кольору"
+
+msgid "Common X axis"
+msgstr "Загальна вісь X"
+
+msgid "Copper"
+msgstr "Мідь"
+
+msgid "Customize your complex function"
+msgstr "Налаштування вашої комплексної функції"
+
+msgid "Data on the full circle ..."
+msgstr "Дані на повному колі…"
+
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr ""
+"Не можна долучити позначки даних до цієї кривої,\n"
+"поле user_data вже використано"
+
+msgid "Delete all datatips"
+msgstr "Вилучити всі позначки даних"
+
+msgid "Delete all datatips for the selected curve"
+msgstr "Вилучити всі позначки даних для вказаної кривої"
+
+msgid "Delete last datatip"
+msgstr "Вилучити останню позначку даних"
+
+msgid "Delete nearest datatip"
+msgstr "Вилучити найближчу позначку даних"
+
+msgid "Disable interpolation"
+msgstr "Вимкнути інтерполяцію"
+
+msgid "Edit the curve tip display function"
+msgstr "Змінити функцію показу позначок на кривій"
+
+msgid "Enable interpolation"
+msgstr "Увімкнути інтерполяцію"
+
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr "Помилка %d у рядку %d функції: «%s»"
+
+msgid "Exact gaussian density"
+msgstr "Точна щільність нормального розподілу"
+
+msgid "Gaussian random sample histogram"
+msgstr "Гістограма вибірки ВВ, розподіленої за нормальним законом"
+
+msgid "Graphics"
+msgstr "Графіка"
+
+msgid "Graphics with 2 different Y-scales"
+msgstr "Графіки з 2 різними масштабами за Y"
+
+msgid "Gray"
+msgstr "Сірий"
+
+msgid "HSV"
+msgstr "HSV"
+
+msgid "Hot"
+msgstr "Гарячий"
+
+msgid "Jet"
+msgstr "Агат"
+
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+"Клацання лівою на кривій створить позначку даних, правою — відкриє вікно "
+"властивостей"
+
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+"Клацання лівою кнопкою миші на кривій створить позначку даних, клацання "
+"правою — відкриє контекстне меню."
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Клацніть лівою кнопкою миші на пункті графіка, щоб відкрити редактор "
+"властивостей"
+
+msgid "Misc"
+msgstr "Інше"
+
+msgid "Multiple datatips mode"
+msgstr "Режим декільокх позначок даних"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Negative radii are supported:"
+msgstr "Підтримуються від’ємні значення радіуса:"
+
+msgid "Ocean"
+msgstr "Океан"
+
+msgid "Ok"
+msgstr "Гаразд"
+
+msgid "Pink"
+msgstr "Рожевий"
+
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+"Натисніть Enter у консолі Scilab, щоб переглянути інші приклади застосування "
+"polarplot"
+
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Креслення з 3 різними масштабами за Y і спільною віссю X"
+
+msgid "Press enter to go on..."
+msgstr "Натисніть Enter для продовження…"
+
+msgid "Rainbow"
+msgstr "Райдуга"
+
+msgid "Redraw all datatips"
+msgstr "Оновити всі позначки даних"
+
+msgid "Scale n1"
+msgstr "Масштаб n1"
+
+msgid "Select tip orientation"
+msgstr "Вибрати орієнтацію позначки"
+
+msgid "Several curves may be plotted at the same time"
+msgstr "Можна поєднувати на одному кресленні декілька кривих"
+
+msgid "Spring"
+msgstr "Весна"
+
+msgid "Still a single quadrant..."
+msgstr "У одному квадранті…"
+
+msgid "Summer"
+msgstr "Літо"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Інтерфейс Tcl/Tk не встановлено."
+
+msgid "The selected file cannot be executed"
+msgstr "Вказаний файл неможливо виконати"
+
+msgid "The selected file defines more than one function"
+msgstr "У вказаному файлі визначено декілька функцій"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "Вказана функція повинна мати один вихідний параметр (str)"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr "Вказана функція повинна мати три вихідних параметри (curve,pt,index)"
+
+msgid "Unique datatip mode"
+msgstr "Режим єдиної системи позначок даних"
+
+msgid "White"
+msgstr "Білий"
+
+msgid "Winter"
+msgstr "Зима"
+
+msgid "automatic"
+msgstr "автоматично"
+
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+"навіть з величезними значеннями радіусів з належним форматуванням міток…"
+
+msgid "histplot() : (normalized) histogram plot"
+msgstr "histplot(): (нормалізована) гістограма"
+
+msgid "lower left"
+msgstr "внизу ліворуч"
+
+msgid "lower right"
+msgstr "внизу праворуч"
+
+msgid "on 2 quadrants..."
+msgstr "на 2 квадрантах…"
+
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr ""
+"polarplot(): показано лише квадранти, у яких розташовано точки графіка"
+
+msgid "select the curve tip display function"
+msgstr "вибір функції показу поначок на кривій"
+
+msgid "upper left"
+msgstr "вгорі ліворуч"
+
+msgid "upper right"
+msgstr "вгорі праворуч"

@@ -44,6 +44,8 @@ public class ConnectionHandler extends mxConnectionHandler {
 	 */
 	public ConnectionHandler(GraphComponent graphComponent) {
 		super(graphComponent);
+		
+		getMarker().setHotspot(1.0);
 	}
 
 	/**
@@ -107,7 +109,7 @@ public class ConnectionHandler extends mxConnectionHandler {
 			{
 				final mxPoint tr = graph.getView().getTranslate();
 				final double scale = graph.getView().getScale();
-				points.add(new mxPoint(x / scale - tr.getX(), y / scale - tr.getY()));
+				points.add(new mxPoint(graph.snap(x / scale - tr.getX()), graph.snap(y / scale - tr.getY())));
 			}
 
 			// update the preview and set the flag
