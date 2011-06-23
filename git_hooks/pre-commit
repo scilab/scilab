@@ -3,7 +3,24 @@
 # Hook used to indent all xcos files before commiting
 #
 
+
+#
+# Pre-conditions
+#
+if test -d ".git/rebase-merge"          || \
+   test -d ".git/rebase-apply"          || \
+   test -f ".git/MERGE_HEAD"            || \
+   test -f ".git/CHERRY_PICK_HEAD"      || \
+   test -f ".git/BISECT_LOG"            
+then
+	exit 0
+fi
+
+#
+# Configuration check
+#
 XMLLINT="$(git config --get hooks.xmllint)"
+
 if test ! -x "$XMLLINT"
 then
 	echo "Unable to find xmllint executable on the configuration."
@@ -37,6 +54,7 @@ then
 	echo
 fi
 
+<<<<<<< HEAD
 if test -z "$(git config --get-all indent.ignored)"
 then
 	echo "Unable to find indent ignored list on the configuration, ignored"
@@ -51,7 +69,11 @@ else
 	INDENT_IGNORED="$(find $(git config --get-all indent.ignored))"
 fi
 
+=======
+#
+>>>>>>> 465c595... deactivate pre-commit on in-progress state
 # indent / format file by type
+#
 indent() {
 	# getting against as the current commit
 	if git rev-parse --verify HEAD >/dev/null 2>&1
