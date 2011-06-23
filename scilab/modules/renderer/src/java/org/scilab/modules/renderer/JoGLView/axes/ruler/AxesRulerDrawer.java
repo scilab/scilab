@@ -25,6 +25,7 @@ import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
+import org.scilab.modules.graphic_objects.axes.Camera;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
@@ -87,13 +88,13 @@ public class AxesRulerDrawer {
             zs = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
             ys = -Math.signum(matrix[6]) * zs * Math.signum(matrix[10]);
             if (ys == 0) {
-                ys = -1;
+                ys = +1;
             }
         } else {
             zs = Math.signum(matrix[9]);  // First : switch Z such that Y was maximal.
             ys = -Math.signum(matrix[6]) * zs * Math.signum(matrix[10]);
             if (ys == 0) {
-                ys = +1;
+                ys = -1;
             }
         }
 
@@ -145,13 +146,13 @@ public class AxesRulerDrawer {
             zs = -Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
             xs = -Math.signum(matrix[2]) * zs * Math.signum(matrix[10]);
             if (xs == 0) {
-                xs = -1;
+                xs = +1;
             }
         } else {
             zs = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
             xs = -Math.signum(matrix[2]) * zs * Math.signum(matrix[10]); // Then switch X such that Z max but not in the middle.
             if (xs == 0) {
-                xs = +1;
+                xs = -1;
             }
         }
 
@@ -194,51 +195,51 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
+        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
+            double txs;
+            double tys;
+            if (Math.abs(matrix[2]) < Math.abs(matrix[6])) {
+                xs = Math.signum(matrix[2]);
+                ys = -Math.signum(matrix[6]);
+                txs = xs;
+                tys = 0;
+            } else {
+                xs = -Math.signum(matrix[2]);
+                ys = Math.signum(matrix[6]);
+                txs = 0;
+                tys = ys;
+            }
 
-        double txs;
-        double tys;
-        if (Math.abs(matrix[2]) < Math.abs(matrix[6])) {
-            xs = Math.signum(matrix[2]);
-            ys = -Math.signum(matrix[6]);
-            txs = xs;
-            tys = 0;
-        } else {
-            xs = -Math.signum(matrix[2]);
-            ys = Math.signum(matrix[6]);
-            txs = 0;
-            tys = ys;
+            rulerModel.setFirstPoint(new Vector3d(xs, ys, 1));
+            rulerModel.setSecondPoint(new Vector3d(xs, ys, -1));
+            rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
+            if (axes.getAxes()[2].getReverse()) {
+                rulerModel.setValues(bounds[4], bounds[5]);
+            } else {
+                rulerModel.setValues(bounds[5], bounds[4]);
+            }
+            rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
+            values = rulerDrawingResult.getTicksValues();
+            axes.setZAxisTicksLocations(toDoubleArray(values));
+            axes.setZAxisTicksLabels(toStringArray(values));
+            axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+
+            if (axes.getZAxisGridColor() != -1) {
+                FloatBuffer vertexData = getZGridData(values, rulerModel);
+                vertexBuffer.setData(vertexData, 4);
+
+                Transformation mirror = TransformationFactory.getScaleTransformation(
+                        matrix[2] < 0 ? gridPosition : -gridPosition,
+                        matrix[6] < 0 ? gridPosition : -gridPosition,
+                        1
+                );
+
+                gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
+                drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
+                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                drawingTools.getTransformationManager().getModelViewStack().pop();
+            }
         }
-
-        rulerModel.setFirstPoint(new Vector3d(xs, ys, 1));
-        rulerModel.setSecondPoint(new Vector3d(xs, ys, -1));
-        rulerModel.setTicksDirection(new Vector3d(TICKS_SIZE * txs, TICKS_SIZE * tys, 0));
-        if (axes.getAxes()[2].getReverse()) {
-            rulerModel.setValues(bounds[4], bounds[5]);
-        } else {
-            rulerModel.setValues(bounds[5], bounds[4]);
-        }
-        rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
-        values = rulerDrawingResult.getTicksValues();
-        axes.setZAxisTicksLocations(toDoubleArray(values));
-        axes.setZAxisTicksLabels(toStringArray(values));
-        axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
-
-        if (axes.getZAxisGridColor() != -1) {
-            FloatBuffer vertexData = getZGridData(values, rulerModel);
-            vertexBuffer.setData(vertexData, 4);
-
-            Transformation mirror = TransformationFactory.getScaleTransformation(
-                    matrix[2] < 0 ? gridPosition : -gridPosition,
-                    matrix[6] < 0 ? gridPosition : -gridPosition,
-                    1
-            );
-
-            gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
-            drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-            drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
-            drawingTools.getTransformationManager().getModelViewStack().pop();
-        }
-
 
         drawingTools.getCanvas().getBuffersManager().dispose(vertexBuffer);
     }

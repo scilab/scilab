@@ -26,6 +26,8 @@ import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 /**
@@ -64,6 +66,11 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
     @Override
     public Sprite create(double value, NumberFormat adaptedFormat, SpriteManager spriteManager) {
+
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        ((DecimalFormat) adaptedFormat).setDecimalFormatSymbols(dfs);
+
         String text = adaptedFormat.format(value);
         final TextEntity textEntity = new TextEntity(text);
 
