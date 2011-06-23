@@ -27,14 +27,16 @@ public interface UiTable extends Text {
 	SimpleUiTable getAsSimpleUiTable();
 
 	/**
-	 * Sets the column name for uitable
+	 * Sets the column names for uitable
+	 * @param names the column names
 	 */
-	void setColnames(String text);
+	void setColumnNames(String[] names);
 
 	/**
 	 * Sets the row name for uitable
+	 * @param names the row names
 	 */
-	void setRownames(String text);
+	void setRowNames(String[] names);
 
 	/**
 	 * Sets the data for uitable

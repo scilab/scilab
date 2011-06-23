@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -29,10 +30,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCALE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SHEAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
@@ -43,6 +46,7 @@ import java.awt.Font;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UnitsConverter;
@@ -59,6 +63,8 @@ public class SwingScilabWidget {
     	if (property.equals(__GO_UI_BACKGROUNDCOLOR__)) {
     		Double[] allColors = ((Double[]) value);
     		uiControl.setBackground(new Color((int) (allColors[0]*255), (int) (allColors[1]*255), (int) (allColors[2]*255)));
+    	} else if (property.equals(__GO_UI_COLUMNNAMES__)) {
+    		((SwingScilabUiTable) uiControl).setColumnNames((String[]) value);
     	} else if (property.equals(__GO_UI_ENABLE__)) {
     		uiControl.setEnabled(((Boolean) value).booleanValue());
     	} else if (property.equals(__GO_UI_FONTANGLE__)) {
@@ -134,6 +140,8 @@ public class SwingScilabWidget {
     		uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
     	} else if (property.equals(__GO_UI_RELIEF__)) {
     		uiControl.setRelief((String) value);
+    	} else if (property.equals(__GO_UI_ROWNAMES__)) {
+    		((SwingScilabUiTable) uiControl).setRowNames((String[]) value);
     	} else if (property.equals(__GO_UI_SCALE__)) {
     		Double[] scale = ((Double[]) value);
     		double[] convertedScale = new double[2];
@@ -150,6 +158,8 @@ public class SwingScilabWidget {
     	} else if (property.equals(__GO_STYLE__)) {
     	} else if (property.equals(__GO_UI_STRING__)) {
     		uiControl.setText(((String[]) value)[0]);
+    	} else if (property.equals(__GO_UI_TABLEDATA__)) {
+    		((SwingScilabUiTable) uiControl).setData((String[]) value);
     	} else if (property.equals(__GO_UI_UNITS__)) {
     	} else if (property.equals(__GO_UI_VALUE__)) {
     	} else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {

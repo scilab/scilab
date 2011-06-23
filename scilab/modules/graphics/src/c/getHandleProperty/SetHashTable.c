@@ -208,7 +208,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
 { "rotate"              , SetUiobjectRotate                 },
 { "shear"               , SetUiobjectShear                  },
 { "scale"               , SetUiobjectScale                  },
-{ "colnames"            , SetUiobjectColnames               },
+{ "columnnames"         , SetUiobjectColnames               },
 { "rownames"            , SetUiobjectRownames               },
 { "tabledata"           , SetUiobjectTabledata              },
 { "arc_drawing_method"  , set_arc_drawing_method_property   },

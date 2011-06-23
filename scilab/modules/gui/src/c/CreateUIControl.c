@@ -51,6 +51,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
     }
+    else if (strcmp(style,"table")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_TABLE__);
+    }
 
 #if 0
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;

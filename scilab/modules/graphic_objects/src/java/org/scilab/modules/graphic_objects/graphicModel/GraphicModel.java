@@ -34,6 +34,7 @@ import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
+import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 
@@ -45,7 +46,7 @@ public class GraphicModel {
 
     private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
 
-    private static GraphicModel me = null;
+    private static GraphicModel me;
 
     /**
      * Default constructor
@@ -78,7 +79,7 @@ public class GraphicModel {
      * @param property the property name
      * @return the property
      */
-    public Object getNullProperty(String id, String property){
+    public Object getNullProperty(String id, String property) {
         GraphicObject object = allObjects.get(id);
         return object.getNullProperty(property);
     }
@@ -191,6 +192,8 @@ public class GraphicModel {
                 return new ImageRenderer();
             case PUSHBUTTON:
                 return new PushButton();
+            case TABLE:
+                return new Table();
             case UNKNOWNOBJECT:
                 return null;
             default:

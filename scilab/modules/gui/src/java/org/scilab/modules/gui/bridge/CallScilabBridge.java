@@ -3158,14 +3158,16 @@ public class CallScilabBridge {
      * Sets the column names for the uitable
      */
     public static void setUiTableColnames(int id, String text) {
-	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
+    	// TODO Remove this method
+    	//((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
     }
 
     /**
      * Sets the row names for the uitable
      */
     public static void setUiTableRownames(int id, String text) {
-	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
+    	// TODO Remove this method
+    	//((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
     }
 
     /**

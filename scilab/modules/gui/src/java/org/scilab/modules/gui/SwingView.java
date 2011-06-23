@@ -29,6 +29,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
@@ -42,22 +43,30 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
-public class SwingView implements GraphicView {
+/**
+ * @author Bruno JOFRET
+ * @author Vincent COUVERT
+ */
+public final class SwingView implements GraphicView {
 
-    private static SwingView me = null;;
+    private static SwingView me;
+
+    /**
+     * Constructor
+     */
+    private SwingView() {
+        GraphicController.getController().register(this);
+        allObjects = new HashMap<String, TypedObject>();
+    }
 
     public static void registerSwingView() {
         DEBUG("SwingView", "calling registerSwingView()");
         if (me == null) {
             me = new SwingView();
         }
-    }
-
-    private SwingView() {
-        GraphicController.getController().register(this);
-        allObjects = new HashMap<String, TypedObject>();
     }
 
     public static SwingViewObject getFromId(String id) {
@@ -72,8 +81,9 @@ public class SwingView implements GraphicView {
     
     private enum UielementType {
         Figure,
+        ImageRenderer,
         PushButton,
-        ImageRenderer
+        Table
     } 
 
     private class TypedObject {
@@ -119,14 +129,17 @@ public class SwingView implements GraphicView {
 
     private UielementType StyleToEnum(String style) {
         DEBUG("SwingView", "StyleToEnum(" + style + ")");
-        if (style.equals(__GO_UI_PUSHBUTTON__)) {
-            return UielementType.PushButton;
-        }
         if (style.equals(__GO_FIGURE__)) {
             return UielementType.Figure;
         }
         if (style.equals(__GO_UI_IMAGERENDERER__)) {
             return UielementType.ImageRenderer;
+        }
+        if (style.equals(__GO_UI_PUSHBUTTON__)) {
+            return UielementType.PushButton;
+        }
+        if (style.equals(__GO_UI_TABLE__)) {
+            return UielementType.Table;
         }
         return null;
     }
@@ -143,6 +156,10 @@ public class SwingView implements GraphicView {
             SwingScilabTab tab = new SwingScilabTab("");
             DockingManager.dock(tab, win.getDockingPort());
             return tab;
+        case ImageRenderer:
+        	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
+        	imageRenderer.setId(id);
+        	return imageRenderer;
         case PushButton:
             SwingScilabPushButton button = new SwingScilabPushButton();
             button.setId(id);
@@ -161,10 +178,10 @@ public class SwingView implements GraphicView {
             SwingScilabWidget.update(button, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
             SwingScilabWidget.update(button, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
             return button;
-        case ImageRenderer:
-        	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
-        	imageRenderer.setId(id);
-        	return imageRenderer;
+        case Table:
+        	SwingScilabUiTable table = new SwingScilabUiTable();
+        	table.setId(id);
+        	return table;
         default:
             return null;
         }

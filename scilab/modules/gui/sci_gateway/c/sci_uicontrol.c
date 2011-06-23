@@ -42,10 +42,14 @@
 #include "Widget.h" /* requestWidgetFocus */
 #include "SetUicontrolPosition.h"
 #include "freeArrayOfString.h"
+#include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "callJoGLView.h"
+#include "CurrentFigure.h"
+#include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 30
+#define NBPROPERTIES 33
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -72,7 +76,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type", "treedata", "scale", "shear"};
+  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type", "treedata", "scale", "shear", "rownames", "columnnames", "tabledata"};
   int *propertiesValuesIndices = NULL;
   int lw = 0;
   char *propertyPart = NULL;
@@ -426,7 +430,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                          setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_strings:
-                         if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
+                        /* Index for String/RowNames/ColumnNames/TableData properties: Can be mon than one character string */
+                        if (inputIndex == 4 || inputIndex == 30 || inputIndex == 31 || inputIndex == 32)
                            {
                              GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
                              setStatus = callSetProperty(getObjectFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
