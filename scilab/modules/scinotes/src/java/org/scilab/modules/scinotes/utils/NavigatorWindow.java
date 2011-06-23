@@ -60,25 +60,26 @@ import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.defaults.DockingSplitPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tab.SimpleTab;
+import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -134,6 +135,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         this.editor = editor;
         editor.addNavigator(this);
         ConfigSciNotesManager.saveCodeNavigatorState(editor.getPersistentId(), getPersistentId());
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**
@@ -250,10 +252,10 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         model = null;
         pane = null;
         doc = null;
-	for (ScilabEditorPane p : panes) {
-	    ((ScilabDocument) p.getDocument()).removeDocumentListener(this);
-	}
-	panes.clear();
+        for (ScilabEditorPane p : panes) {
+            ((ScilabDocument) p.getDocument()).removeDocumentListener(this);
+        }
+        panes.clear();
     }
 
     /**
@@ -283,21 +285,21 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      */
     public void dockingComplete(DockingEvent evt) {
         super.dockingComplete(evt);
-	changeToolBar();
+        changeToolBar();
     }
 
     /**
      * Try to add a SciNotes toolbar
      */
     public void changeToolBar() {
-	SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
-	Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-	for (SwingScilabTab tab : set) {
-	    if (tab instanceof SciNotes) {
-		addToolBar(((SciNotes) tab).getToolBar());
-		break;
-	    }
-	}
+        SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
+        Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
+        for (SwingScilabTab tab : set) {
+            if (tab == editor) {
+                addToolBar(editor.getToolBar());
+                break;
+            }
+        }
     }
 
     /**
@@ -385,9 +387,9 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
             mapNode.remove(pane);
             mapFunPath.remove(pane);
             mapAnchorPath.remove(pane);
-	    panes.remove(pane);
-	    this.pane = null;
-	    this.doc = null;
+            panes.remove(pane);
+            this.pane = null;
+            this.doc = null;
         }
     }
 
@@ -583,7 +585,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         mapFunPath.clear();
         if (functionNavigator == null) {
             functionNavigator = new JTree();
-	}
+        }
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
         model = new DefaultTreeModel(root);
 

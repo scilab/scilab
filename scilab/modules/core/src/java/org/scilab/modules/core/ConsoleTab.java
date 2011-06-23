@@ -79,6 +79,7 @@ public class ConsoleTab {
                 });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
+	    WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
 
             return tab;
         }
@@ -134,6 +135,7 @@ public class ConsoleTab {
         ScilabConsole.getConsole().addInfoBar(infoBar);
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
+	WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
 
         return consoleTab;
     }

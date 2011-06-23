@@ -48,6 +48,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.ui_data.BrowseVar;
@@ -146,13 +147,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         dataModel = new SwingTableModel<Object>(columnsName);
 
-        table = new JTable(dataModel){    
+        table = new JTable(dataModel){
                 //Implement table cell tool tips.
                 public String getToolTipText(MouseEvent e) {
                     String tip = null;
                     java.awt.Point p = e.getPoint();
                     int rowIndex = rowAtPoint(p);
-                    if (rowIndex >= 0) {
+                    if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
                         
                         int colIndex = columnAtPoint(p);
 
@@ -185,14 +186,14 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         /* Size of the icon column */
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
-        
+
         /* Hide the columns. But keep it in memory for the tooltip */
         TableColumn column = table.getColumnModel().getColumn(BrowseVar.FROM_SCILAB_COLUMN_INDEX);
         table.removeColumn(column);
-        
+
         column = table.getColumnModel().getColumn(BrowseVar.BYTES_COLUMN_INDEX);
         table.removeColumn(column);
-        
+
         table.addMouseListener(new BrowseVarMouseListener());
         // Mouse selection mode
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -202,6 +203,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         JScrollPane scrollPane = new JScrollPane(table);
         setContentPane(scrollPane);
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**
@@ -263,7 +265,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         RowFilter<Object, Object> compoundRowFilter = null;
         filters.add(rowFilter);
         filters.add(rowDataFilter);
-        compoundRowFilter = RowFilter.andFilter(filters); 
+        compoundRowFilter = RowFilter.andFilter(filters);
         rowSorter.setRowFilter(compoundRowFilter);
         table.setRowSorter(rowSorter);
 

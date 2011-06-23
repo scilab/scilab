@@ -82,10 +82,11 @@ public class SciUndockingAction extends AbstractAction {
         DockingManager.undock((Dockable) associatedTab);
         iter = port.getDockables().iterator();
         if (iter.hasNext()) {
-            /** The first component of the old window is activated to get true menubar and toolbar */
-            ActiveDockableTracker.getCurrentTracker().setActive((Dockable) iter.next());
+	    SwingScilabTab tab = (SwingScilabTab) iter.next();
+	    BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }
         DockingManager.dock(associatedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
+	BarUpdater.updateBars(associatedTab.getParentWindowId(), associatedTab.getMenuBar(), associatedTab.getToolBar(), associatedTab.getInfoBar(), associatedTab.getName(), associatedTab.getWindowIcon());
         ActiveDockableTracker.requestDockableActivation(associatedTab);
 
         /** New Window properties */

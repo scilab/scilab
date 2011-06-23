@@ -51,6 +51,8 @@ import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
 
+import org.flexdock.docking.event.DockingEvent;
+
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -256,6 +258,32 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public SwingScilabWindow getSwingParentWindow() {
         return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void undockingComplete(DockingEvent evt) {
+        super.undockingComplete(evt);
+        if (navigator != null) {
+            navigator.addToolBar(null);
+        }
+        if (searchInFiles != null) {
+            searchInFiles.addToolBar(null);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void dockingComplete(DockingEvent evt) {
+        super.dockingComplete(evt);
+        if (navigator != null) {
+            navigator.changeToolBar();
+        }
+        if (searchInFiles != null) {
+            searchInFiles.changeToolBar();
+        }
     }
 
     /**
@@ -538,6 +566,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
             if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
                 openFile(null, 0, null);
             }
+            WindowsConfigurationManager.restorationFinished(this);
+
             return;
         }
 
@@ -561,6 +591,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     if (navigator != null) {
                         navigator.updateTree();
                     }
+
+                    WindowsConfigurationManager.restorationFinished(SciNotes.this);
                 }
             });
     }

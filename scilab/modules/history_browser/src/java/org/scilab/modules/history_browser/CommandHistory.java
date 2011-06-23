@@ -187,6 +187,7 @@ public final class CommandHistory {
                         scilabHistoryTree.setRootVisible(false);
                         scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
                         scrollPane.getHorizontalScrollBar().setValue(0);
+			WindowsConfigurationManager.restorationFinished(getBrowserTab());
                     }
                 });
         }

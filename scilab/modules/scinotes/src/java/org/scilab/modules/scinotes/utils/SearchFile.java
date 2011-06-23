@@ -73,6 +73,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotesGUI;
@@ -109,6 +110,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
         ConfigSciNotesManager.saveSearchInFilesState(editor.getPersistentId(), getPersistentId());
         initTab();
         restoreSearchFile();
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**
@@ -180,8 +182,8 @@ public class SearchFile extends SwingScilabTab implements Tab {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
         for (SwingScilabTab tab : set) {
-            if (tab instanceof SciNotes) {
-                addToolBar(((SciNotes) tab).getToolBar());
+            if (tab == editor) {
+                addToolBar(editor.getToolBar());
                 break;
             }
         }
