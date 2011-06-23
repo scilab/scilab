@@ -178,6 +178,9 @@ public class GraphicController {
      * @param prop the property that has been updated
      */
     public void objectUpdate(String id, String prop) {
+        DEBUG("### Update object : "+id);
+        DEBUG("### type is : " + getProperty(id, "Type"));
+        DEBUG("### prop is : " + prop);
         for (GraphicView view : allViews) {
             view.updateObject(id, prop);
         }

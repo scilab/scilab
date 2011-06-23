@@ -36,7 +36,6 @@
  */
 GRAPHICS_IMPEXP char *createNewFigureWithAxes(void);
 
-GRAPHICS_IMPEXP sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
 GRAPHICS_IMPEXP sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj * allocateText( sciPointObj        * pparentsubwin,
@@ -76,7 +75,7 @@ GRAPHICS_IMPEXP sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, do
 					double height, double width,  int *foreground, int *background,
 					int isfilled, int isline);
 
-GRAPHICS_IMPEXP sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
+GRAPHICS_IMPEXP char *ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typeof3d,
 				      double * pvecx, double * pvecy, double * pvecz,
 				      double *zcol, int izcol, int dimzx, int dimzy,
 				      int *flag, double *ebox, int flagcolor, int *isfac,

@@ -44,6 +44,9 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentFigure.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
 
 /**
  * Put min and max of vector in dMin and dMax.
@@ -478,7 +481,7 @@ void Objplot3d ( char    * fname ,
     int isoview;
     int clipState;
 
-    sciPointObj  * pNewSurface = NULL;
+    char *pNewSurfaceUID = NULL;
     BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraw) */
 
 
@@ -510,7 +513,7 @@ void Objplot3d ( char    * fname ,
     startFigureDataWriting(parentFigure);
 #endif
 
-    checkRedrawing();
+    //checkRedrawing();
 
     /* Force 3D view */
     view = 1;
@@ -735,8 +738,7 @@ void Objplot3d ( char    * fname ,
 
         if (iflag[1] != 0)
         {
-            // FIXME
-            //bounds_changed = update_specification_bounds(psubwin, drect,3);
+            setGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, drect, jni_double_vector, 6);
         }
     }
 
@@ -872,11 +874,11 @@ void Objplot3d ( char    * fname ,
             flag_y = monotony;
         }
 
-        pNewSurface = ConstructSurface( psubwinUID, typeof3d,
+        pNewSurfaceUID = ConstructSurface( psubwinUID, typeof3d,
             x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
             isfac,m1,n1,m2,n2,m3,n3,m3n,n3n);
 
-        if ( pNewSurface == NULL )
+        if ( pNewSurfaceUID == NULL )
         {
             /* Deactivated for now (synchronization) */
 #if 0
@@ -886,7 +888,7 @@ void Objplot3d ( char    * fname ,
             return;
         }
 
-        sciSetCurrentObj( pNewSurface );
+        setCurrentObject( pNewSurfaceUID );
 
         /* To be implemented within the MVC (indicate whether the x and y vectors are increasing or decreasing) */
 #if 0
@@ -896,12 +898,12 @@ void Objplot3d ( char    * fname ,
 
         /* Force clipping, 1: CLIPGRF */
         clipState = 1;
-        setGraphicObjectProperty(pNewSurface->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+        setGraphicObjectProperty(pNewSurfaceUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
     }
     else
     {
-        sciPointObj* pNewPolyline = NULL;
-        sciPointObj* currentSubwin = NULL;
+        char* pNewPolylineUID = NULL;
+        char* currentSubwinUID = NULL;
 
         if ((hdltab = MALLOC (*n * sizeof (long))) == NULL)
         {
@@ -913,7 +915,7 @@ void Objplot3d ( char    * fname ,
             return;
         }
 
-        currentSubwin = sciGetCurrentSubWin();
+        currentSubwinUID = getCurrentSubWin();
 
         for (i = 0; i < *n; ++i)
         {
@@ -928,16 +930,16 @@ void Objplot3d ( char    * fname ,
                 if ((int) zcol[i] > 0)
                 {
                     int intzcol = (int) zcol[i];
-                    pNewPolyline = ConstructPolyline
-                        (currentSubwin,
+                    pNewPolylineUID = ConstructPolyline
+                        (currentSubwinUID,
                          &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
                          &intzcol,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
                 }
                 else
                 {
                     int intzcol = (int) -zcol[i];
-                    pNewPolyline = ConstructPolyline
-                        (currentSubwin,
+                    pNewPolylineUID = ConstructPolyline
+                        (currentSubwinUID,
                          &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
                          NULL,NULL,&intzcol,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
                 }
@@ -947,20 +949,20 @@ void Objplot3d ( char    * fname ,
                 int curcolor = 0;
                 int *piCurColor = &curcolor;
 
-                getGraphicObjectProperty(currentSubwin->UID, __GO_LINE_COLOR__, jni_int, &piCurColor);
+                getGraphicObjectProperty(currentSubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
 
-                pNewPolyline = ConstructPolyline(currentSubwin,
+                pNewPolylineUID = ConstructPolyline(currentSubwinUID,
                                                  &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,
                                                  &curcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
             }
 
-            if (pNewPolyline == NULL)
+            if (pNewPolylineUID == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return;
             }
 
-            sciSetCurrentObj(pNewPolyline);
+            setCurrentObject(pNewPolylineUID);
 
             pobjUID = getCurrentObject();
 
@@ -972,7 +974,10 @@ void Objplot3d ( char    * fname ,
         }
 
         /** construct Compound and make it current object**/
-        if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));
+        if ( *n>1 )
+        {
+            setCurrentObject(ConstructCompound (hdltab, *n));
+        }
         FREE(hdltab);
     }
 

@@ -93,8 +93,7 @@ unsigned short defcolors[] = {
   255, 215,   0  /* Gold */
 };
 
-/* DJ.A 08/01/04 */
-int C2F(graphicsmodels) (void)
+static void initFigureModel(char *pfiguremdlUID)
 {
     int iZero = 0;
     BOOL bTrue = TRUE;
@@ -105,23 +104,13 @@ int C2F(graphicsmodels) (void)
     int i = 0;
     double *pdblColorMap = MALLOC(m * 3 * sizeof(double)) ;
 
-    double margins[4];
-    double clipRegion[4];
-    int clipRegionSet;
-    int firstPlot;
-    int result;
+    int piFigurePosition[2] = {200, 200};
+    int piFigureSize[2] = {620, 590};
+    int piAxesSize[2] = {610, 460};
 
-    char* pfiguremdlUID = NULL;
-    char* paxesmdlUID = NULL;
+    // FIXME : inline this function here ...
 
-    /*
-    ** Init Figure Model
-    */
-
-
-    // Create default figure by Asking MVC a new one.
-    pfiguremdlUID = createGraphicObject(__GO_FIGURE__);
-    setFigureModel(pfiguremdlUID);
+    sciInitGraphicMode(pfiguremdlUID);
     // Name
     setGraphicObjectProperty(pfiguremdlUID, __GO_NAME__, _("Graphic window number %d"), jni_string, 1);
 
@@ -131,13 +120,23 @@ int C2F(graphicsmodels) (void)
     // isselected ?? (No more used)
     // rotstyle = unary (0)
     setGraphicObjectProperty(pfiguremdlUID, __GO_ROTATION_TYPE__, &iZero, jni_int, 1);
-    // visible
 
+    // visible
     setGraphicObjectProperty(pfiguremdlUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
     // immediateDrawingMode
     setGraphicObjectProperty(pfiguremdlUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
     // background
     setGraphicObjectProperty(pfiguremdlUID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
+    // position
+    setGraphicObjectProperty(pfiguremdlUID, __GO_POSITION__, piFigurePosition, jni_int_vector, 2);
+    // size
+    setGraphicObjectProperty(pfiguremdlUID, __GO_SIZE__, piFigureSize, jni_int_vector, 2);
+
+    // auto_resize
+    setGraphicObjectProperty(pfiguremdlUID, __GO_AUTORESIZE__, &bTrue, jni_bool, 1);
+    // axes_size
+    setGraphicObjectProperty(pfiguremdlUID, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+
     /*
      * user data
      * NULL has been replaced by the empty string as the third argument in order to
@@ -175,9 +174,32 @@ int C2F(graphicsmodels) (void)
 
     // Parent
     setGraphicObjectProperty(pfiguremdlUID, __GO_PARENT__, "", jni_string, 1);
+}
 
-    // Register object inside Scilab
-    //sciAddNewHandle(pfiguremdl);
+
+/* DJ.A 08/01/04 */
+int C2F(graphicsmodels) (void)
+{
+    double margins[4];
+    double clipRegion[4];
+    int clipRegionSet;
+    int firstPlot;
+    int result;
+
+    char* pfiguremdlUID = NULL;
+    char* paxesmdlUID = NULL;
+
+    /*
+    ** Init Figure Model
+    */
+
+
+    // Create default figure by Asking MVC a new one.
+    pfiguremdlUID = createGraphicObject(__GO_FIGURE__);
+    setFigureModel(pfiguremdlUID);
+    initFigureModel(pfiguremdlUID);
+
+    sciInitGraphicMode(pfiguremdlUID);
 
     /*
     ** Init Axes Model
@@ -846,6 +868,20 @@ int InitAxesModel()
 
   int lineColor = -1;
   int background = -2;
+  int foreground = -1;
+  double lineWidth = 1.0;
+
+  /* 0: solid */
+  int lineStyle = 0;
+
+  int markMode = 0;
+  int lineMode = 1;
+  int fillMode = 1;
+  int markStyle = 0;
+  int markSize = 0;
+
+  /* 0: point, 1: tabulated */
+  int markSizeUnit = 1;
 
   /*
    * Not needed any more since the MVC equivalent is now used
@@ -867,6 +903,26 @@ int InitAxesModel()
 
   char *pfiguremdlUID = getFigureModel();
   char *paxesmdlUID = getAxesModel();
+
+  sciInitGraphicMode(paxesmdlUID);
+
+  setGraphicObjectProperty(paxesmdlUID, __GO_BACKGROUND__, &background, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+
+  setGraphicObjectProperty(paxesmdlUID, __GO_LINE_THICKNESS__, &lineWidth, jni_double, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
+
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_BACKGROUND__, &background, jni_int, 1);
+  setGraphicObjectProperty(paxesmdlUID, __GO_MARK_FOREGROUND__, &foreground, jni_int, 1);
+
 
   cubeScaling = 0;
   setGraphicObjectProperty(paxesmdlUID, __GO_CUBE_SCALING__, &cubeScaling, jni_bool, 1);
@@ -1432,11 +1488,11 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
  * Inits the graphic mode of this object with the default value
  */
 int
-sciInitGraphicMode (sciPointObj * pobj)
+sciInitGraphicMode (char *pobjUID)
 {
   char* type;
 
-  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+  getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
 //  switch (sciGetEntityType (pobj))
 
@@ -1450,7 +1506,7 @@ sciInitGraphicMode (sciPointObj * pobj)
       /* 3: copy pixel drawing mode */
       int xormode = 3;
 
-      if (isFigureModel(pobj->UID))
+      if (isFigureModel(pobjUID))
 	{
           /*
            * These 3 properties are not used by the Figure object proper, but
@@ -1458,11 +1514,10 @@ sciInitGraphicMode (sciPointObj * pobj)
            */
 #if 0
 	  (sciGetGraphicMode (pobj))->addplot = TRUE;
-	  (sciGetGraphicMode (pobj))->autoscaling = TRUE;
 	  (sciGetGraphicMode (pobj))->zooming = FALSE;
 #endif
 
-          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+          setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
 
 #if 0
 	  (sciGetGraphicMode (pobj))->xormode = 3; /* copy */
@@ -1496,18 +1551,18 @@ sciInitGraphicMode (sciPointObj * pobj)
       /* 3: copy */
       int xormode = 3;
 
-      if (isAxesModel(pobj->UID))
+      if (isAxesModel(pobjUID))
 	{
-          setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
-          setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
-          setGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
 
 	  /*
            * Internal state: was possibly used to avoid accessing the parent Figure's pixel drawing mode
            * or may be entirely useless, as pixel drawing mode is associated to the whole Figure.
            * As it has no corresponding MVC property, this call will not set anything.
            */
-          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+          setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
 
 #if 0
 	  (sciGetGraphicMode (pobj))->addplot =sciGetAddPlot (sciGetParent (pobj));
@@ -1533,9 +1588,9 @@ sciInitGraphicMode (sciPointObj * pobj)
           getGraphicObjectProperty(paxesmdlUID, __GO_ZOOM_ENABLED__, jni_bool, &piTmp);
           zoom = iTmp;
 
-          setGraphicObjectProperty(pobj->UID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
-          setGraphicObjectProperty(pobj->UID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
-          setGraphicObjectProperty(pobj->UID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_AUTO_CLEAR__, &autoClear, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, &autoScale, jni_bool, 1);
+          setGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, &zoom, jni_bool, 1);
 
 	  /*
            * Internal state: used to avoid accessing the parent's pixel drawing mode
@@ -1545,7 +1600,7 @@ sciInitGraphicMode (sciPointObj * pobj)
           getGraphicObjectProperty(paxesmdlUID, __GO_PIXEL_DRAWING_MODE__, jni_bool, &piTmp);
           xormode = iTmp;
 
-          setGraphicObjectProperty(pobj->UID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
+          setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
 
 #if 0
 	  (sciGetGraphicMode (pobj))->addplot =(sciGetGraphicMode (paxesmdl))->addplot;

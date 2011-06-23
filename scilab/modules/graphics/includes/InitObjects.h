@@ -33,7 +33,9 @@
 GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
 GRAPHICS_IMPEXP int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
 GRAPHICS_IMPEXP int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
-GRAPHICS_IMPEXP int sciInitGraphicMode (sciPointObj * pobj);
+
+
+GRAPHICS_IMPEXP int sciInitGraphicMode (char* pobjUID);
 
 GRAPHICS_IMPEXP sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
 
