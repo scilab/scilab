@@ -37,14 +37,11 @@ import static org.scilab.modules.gui.utils.Debug.DEBUG;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 
 /**
  * @author Bruno JOFRET
@@ -152,10 +149,13 @@ public final class SwingView implements GraphicView {
     private SwingViewObject CreateObjectFromType(UielementType type, String id) {
         switch (type) {
         case Figure:
-            SwingScilabWindow win = new SwingScilabWindow();
-            SwingScilabTab tab = new SwingScilabTab("");
-            DockingManager.dock(tab, win.getDockingPort());
-            return tab;
+        	// TODO
+        	// Add here the code in FigureBridge
+        	// This code created an invisible Windows which was never used...
+            //SwingScilabWindow win = new SwingScilabWindow();
+            //SwingScilabTab tab = new SwingScilabTab("");
+            //DockingManager.dock(tab, win.getDockingPort());
+            return null;
         case ImageRenderer:
         	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
         	imageRenderer.setId(id);
