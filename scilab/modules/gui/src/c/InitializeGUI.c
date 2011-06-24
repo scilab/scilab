@@ -29,7 +29,8 @@ BOOL InitializeGUI(void)
     if (getScilabMode() == SCILAB_STD)
 	{
 		char *title = NULL;
-        createSwingView();
+        // TODO why this line since already done above
+        // createSwingView();
 		#ifdef _MSC_VER
 			WindowShow();
 		#endif
