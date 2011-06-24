@@ -17,6 +17,7 @@
 #include <string>
 #include <iterator>
 using std::string;
+
 #include <set>
 
 extern "C"
@@ -39,7 +40,7 @@ extern "C"
 }
 using namespace org_scilab_modules_ui_data;
 
-static std::set<string> createScilabDefaultVariablesSet();
+static std::set < string > createScilabDefaultVariablesSet();
 
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
@@ -56,25 +57,25 @@ void UpdateBrowseVar(BOOL update)
     }
 
     // First get how many global / local variable we have.
-    C2F(getvariablesinfo)(&iLocalVariablesTotal, &iLocalVariablesUsed);
-    C2F(getgvariablesinfo)(&iGlobalVariablesTotal, &iGlobalVariablesUsed);
+    C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
+    C2F(getgvariablesinfo) (&iGlobalVariablesTotal, &iGlobalVariablesUsed);
 
-    char ** pstAllVariableNames = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char ** pstAllVariableVisibility = (char **) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int * piAllVariableBytes = (int *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    bool *piAllVariableFromUser = (bool *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(BOOL));
+    bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(BOOL));
     int nbRows, nbCols;
     char *sizeStr = NULL;
 
-    std::set<string> scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
+    std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
 
     // for each local variable get informations
-    for (i = 0 ; i < iLocalVariablesUsed ; ++i)
+    for (i = 0; i < iLocalVariablesUsed; ++i)
     {
         // name
-        pstAllVariableNames[i] = getLocalNamefromId(i+1);
+        pstAllVariableNames[i] = getLocalNamefromId(i + 1);
         // type
         getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Bytes used
@@ -91,17 +92,19 @@ void UpdateBrowseVar(BOOL update)
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
 
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
-            && piAllVariableTypes[i] != sci_c_function /*TODO: voir si je fais sauter ou pas*/
-            && piAllVariableTypes[i] != sci_lib) {
+        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_c_function    /*TODO: voir si je fais sauter ou pas */
+            && piAllVariableTypes[i] != sci_lib)
+        {
             piAllVariableFromUser[i] = TRUE;
-        } else {
+        }
+        else
+        {
             piAllVariableFromUser[i] = FALSE;
         }
     }
 
     // for each global variable get informations
-    for (int j = 0 ; j < iGlobalVariablesUsed ; ++j, ++i)
+    for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
     {
         // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
@@ -124,10 +127,12 @@ void UpdateBrowseVar(BOOL update)
         pstAllVariableVisibility[i] = strdup("global");
 
         if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
-            && piAllVariableTypes[i] != sci_c_function
-            && piAllVariableTypes[i] != sci_lib) {
+            && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
+        {
             piAllVariableFromUser[i] = TRUE;
-        } else {
+        }
+        else
+        {
             piAllVariableFromUser[i] = FALSE;
         }
     }
@@ -162,43 +167,49 @@ void UpdateBrowseVar(BOOL update)
         pstAllVariableSizes = NULL;
     }
 }
-/*--------------------------------------------------------------------------*/
-static std::set<string> createScilabDefaultVariablesSet() {
-    string arr[] = {"home",
-                    "PWD",
-                    "%tk",
-                    "%pvm",
-                    "MSDOS",
-                    "%F",
-                    "%T",
-                    "%f",
-                    "%t",
-                    "%e",
-                    "%pi",
-                    "%modalWarning",
-                    "%exportFileName",
-                    "%nan",
-                    "%inf",
-                    "SCI",
-                    "SCIHOME",
-                    "TMPDIR",
-                    "%gui",
-                    "%fftw",
-                    "%eps",
-                    "%io",
-                    "%i",
-                    "demolist",
-                    "%z",
-                    "%s",
-                    "$",
-                    "%driverName",
-                    "%toolboxes",
-                    "%toolboxes_dir"};
-    int i=0;
-    #define NBELEMENT 29
-    std::set<string> ScilabDefaultVariables;
 
-    for (i = 0; i <= NBELEMENT; i++) {
+/*--------------------------------------------------------------------------*/
+static std::set < string > createScilabDefaultVariablesSet()
+{
+    string arr[] = { "home",
+        "PWD",
+        "%tk",
+        "%pvm",
+        "MSDOS",
+        "%F",
+        "%T",
+        "%f",
+        "%t",
+        "%e",
+        "%pi",
+        "%modalWarning",
+        "%exportFileName",
+        "%nan",
+        "%inf",
+        "SCI",
+        "SCIHOME",
+        "TMPDIR",
+        "%gui",
+        "%fftw",
+        "%helps",
+        "%eps",
+        "%io",
+        "%i",
+        "demolist",
+        "%z",
+        "%s",
+        "$",
+        "%driverName",
+        "%toolboxes",
+        "%toolboxes_dir"
+    };
+    int i = 0;
+
+#define NBELEMENT 30
+    std::set < string > ScilabDefaultVariables;
+
+    for (i = 0; i <= NBELEMENT; i++)
+    {
         ScilabDefaultVariables.insert(arr[i]);
     }
 
