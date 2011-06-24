@@ -151,6 +151,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                 //Implement table cell tool tips.
                 public String getToolTipText(MouseEvent e) {
                     String tip = null;
+                    TableModel model = ((JTable) e.getSource()).getModel();
                     java.awt.Point p = e.getPoint();
                     int rowIndex = rowAtPoint(p);
                     if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
@@ -171,7 +172,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                                 /* Use the getModel() method because the
                                  * column 5 has been removed from display
                                  * but still exist in the model */
-                                tip = Messages.gettext("Bytes:")+" "+((JTable)e.getSource()).getModel().getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
+                                tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
                             }
 
                         }
