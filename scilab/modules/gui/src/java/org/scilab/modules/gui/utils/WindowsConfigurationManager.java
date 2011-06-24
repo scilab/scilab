@@ -67,8 +67,8 @@ public class WindowsConfigurationManager {
     private static final int DEFAULTWIDTH = 500;
 
     private static final String SCI = "SCI";
-    private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/WindowsConfiguration.xml";
-    private static final String USER_WINDOWS_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/WindowsConfiguration.xml";
+    private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
+    private static final String USER_WINDOWS_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/windowsConfiguration.xml";
     private static final String NULLUUID = new UUID(0L, 0L).toString();
     private static final Map<SwingScilabTab, EndedRestoration> endedRestoration = new HashMap<SwingScilabTab, EndedRestoration>();
     private static final List<String> alreadyRestoredWindows = new ArrayList<String>();
