@@ -94,7 +94,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         figure.accept(this);
         long end = System.currentTimeMillis();
         long delta = end - start;
-        System.out.println(delta + "ms | " + 1000.0 / delta + " FPS");
+        //System.out.println(delta + "ms | " + 1000.0 / delta + " FPS");
     }
 
     /**

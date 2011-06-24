@@ -207,10 +207,10 @@ public final class SwingView implements GraphicView {
             if (swingObject != null) {
                 swingObject.update(property, GraphicController.getController().getProperty(id, property));
             } else {
-                System.err.println("[DEBUG] swingObject (" + id + ") is null can not update.");   
+                //System.err.println("[DEBUG] swingObject (" + id + ") is null can not update.");   
             }
         } else {
-            System.err.println("[DEBUG] registeredObject (" + id + ") is null.");   
+            //System.err.println("[DEBUG] registeredObject (" + id + ") is null.");   
         }
     }
 

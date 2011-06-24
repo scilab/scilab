@@ -32,7 +32,7 @@ public class GraphicController {
 
     private static void DEBUG(String message)
     {
-        System.err.println("[CONTROLLER] : "+message);
+        //System.err.println("[CONTROLLER] : "+message);
     }
 
     /**

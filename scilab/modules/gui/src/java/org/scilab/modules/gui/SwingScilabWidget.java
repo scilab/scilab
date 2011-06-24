@@ -132,10 +132,8 @@ public class SwingScilabWidget {
     	} else if (property.equals(__GO_POSITION__)) {
     		/* Convert value according to units */
     		UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_UNITS__));
-    		System.out.println("Input position = " + ((Double[]) value)[0] + " " + ((Double[]) value)[1] + " "+ ((Double[]) value)[2] + " "+ ((Double[]) value)[3] + " ");
     		Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl, false);
     		/* Set dimensions before position because position is adjusted according to size */
-    		System.out.println("Converted position = " + dblValues[0] + " " + dblValues[1] + " "+ dblValues[2] + " "+ dblValues[3] + " ");
     		uiControl.setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
     		uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
     	} else if (property.equals(__GO_UI_RELIEF__)) {
