@@ -52,14 +52,13 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                     char *msg = strsub(InputString_Parameter[0], "%", "%%");
                     if (msg)
                     {
+                        C2F(iop).err = errorPosition;
                         Scierror(defaultErrorCode, "%s", msg);
                         FREE(msg);
                         msg = NULL;
                     }
                     freeArrayOfString(InputString_Parameter, m*n);
                     InputString_Parameter = NULL;
-                    C2F(iop).err = errorPosition;
-
                 }
                 else
                 {
@@ -133,12 +132,12 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                         char *msg = strsub(InputString_Parameter1[0], "%", "%%");
                         if (msg)
                         {
+                            C2F(iop).err = errorPosition;
                             Scierror(errorCode, "%s", msg);
                             FREE(msg);
                             msg = NULL;
                         }
                         freeArrayOfString(InputString_Parameter1, m1*n1);
-                        C2F(iop).err = errorPosition;
                     }
                     else
                     {
