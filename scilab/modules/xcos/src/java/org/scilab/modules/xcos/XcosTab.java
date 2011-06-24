@@ -15,6 +15,7 @@ package org.scilab.modules.xcos;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
@@ -116,11 +118,13 @@ import com.mxgraph.swing.mxGraphOutline;
  * 
  * This class implement specific operation of an Xcos Tab.
  */
+//CSOFF: ClassFanOutComplexity
+//CSOFF: ClassDataAbstractionCoupling
 public class XcosTab extends ScilabTab {
 
 	static {
-		DefaultAction.addIconPath(System.getenv("SCI")
-				+ "/modules/xcos/images/icons/");
+		DefaultAction.addIconPath(new File(ScilabConstants.SCI,
+				"/modules/xcos/images/icons/"));
 	}
 
 	/*
@@ -238,6 +242,7 @@ public class XcosTab extends ScilabTab {
 	 *            the diagram
 	 * @return the Xcos diagram menu bar
 	 */
+	// CSOFF: JavaNCSS
 	private MenuBar createMenuBar(final XcosDiagram diagram) {
 
 		menuBar = ScilabMenuBar.createMenuBar();
@@ -388,7 +393,8 @@ public class XcosTab extends ScilabTab {
 
 		return menuBar;
 	}
-
+	// CSON: JavaNCSS
+	
 	/**
 	 * Create the recent menu from the previously opened files
 	 * @return the recent menu
@@ -562,7 +568,7 @@ public class XcosTab extends ScilabTab {
 	 * Set the current tab and the associated window visible when a unique Tab
 	 * is docked.
 	 * 
-	 * @param newVisibleState
+	 * @param newVisibleState the new state
 	 * @see org.scilab.modules.gui.tab.ScilabTab#setVisible(boolean)
 	 */
 	@Override
@@ -574,3 +580,6 @@ public class XcosTab extends ScilabTab {
 		super.setVisible(newVisibleState);
 	}
 }
+
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity

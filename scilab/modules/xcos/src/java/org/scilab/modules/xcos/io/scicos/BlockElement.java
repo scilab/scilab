@@ -42,6 +42,7 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  * Perform a block transformation between Scicos and Xcos.
  */
 //CSOFF: ClassDataAbstractionCoupling
+//CSOFF: ClassFanOutComplexity
 public class BlockElement extends AbstractElement<BasicBlock> {
 	private static final List<String> DATA_FIELD_NAMES = asList(
 			"Block", "graphics", "model", "gui", "doc");
@@ -445,4 +446,5 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		return element;
 	}
 }
+//CSON: ClassFanOutComplexity
 //CSON: ClassDataAbstractionCoupling

@@ -27,9 +27,9 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  * Implement a view of a block category.
  * 
  * As the JScrollPane doesn't allow a to specify it's associated layout, we have
- * to use a {@link #mainArea} to perform what we want there. Never use the
+ * to use a mainArea to perform what we want there. Never use the
  * {@link javax.swing.JScrollPane#add(java.awt.Component)} on this class but use
- * {@link #getMainArea()} then {@link JPanel#add(java.awt.Component)} instead.
+ * {@link JPanel#add(java.awt.Component)} instead.
  */
 public class PaletteView extends JPanel implements Scrollable {
 	private boolean isLoaded;

@@ -15,11 +15,8 @@ package org.scilab.modules.xcos.block.positionning;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
 import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
 
@@ -27,8 +24,6 @@ import com.mxgraph.model.mxICell;
  * Implement a round block with inputs spread around the block.
  */
 public class RoundBlock extends BasicBlock {
-	private static final int SIDE_NUMBER = Orientation.values().length;
-	
 	/**
 	 * Default constructor
 	 */
@@ -68,7 +63,8 @@ public class RoundBlock extends BasicBlock {
 	 * Insert a port into this block.
 	 * 
 	 * @param child the port to add
-	 * @param index the index 
+	 * @param index the index
+	 * @return the inserted cell
 	 */
 	@Override
 	public mxICell insert(mxICell child, int index) {
@@ -89,6 +85,7 @@ public class RoundBlock extends BasicBlock {
 	 * @param order the port ordering
 	 * @return the selected orientation
 	 */
+	// CSOFF: MagicNumber
 	private Orientation getPortOrientation(int order) {
 		final Orientation ret;
 
@@ -111,4 +108,5 @@ public class RoundBlock extends BasicBlock {
 		}
 		return ret;
 	}
+	// CSON: MagicNumber
 }

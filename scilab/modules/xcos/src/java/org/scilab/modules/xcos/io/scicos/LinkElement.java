@@ -202,6 +202,7 @@ public class LinkElement extends AbstractElement<BasicLink> {
 	 * @param link
 	 *            the link instance
 	 */
+	// CSOFF: JavaNCSS
 	private void searchForPorts(BasicLink link) {
 		final ScilabDouble from = (ScilabDouble) data.get(FROM_INDEX);
 		final ScilabDouble to = (ScilabDouble) data.get(TO_INDEX);
@@ -292,7 +293,8 @@ public class LinkElement extends AbstractElement<BasicLink> {
 					endKlass).get(endPortIndex - 1);
 		}
 	}
-
+	// CSON: JavaNCSS
+	
 	/**
 	 * Validate the current data.
 	 * 
@@ -479,20 +481,19 @@ public class LinkElement extends AbstractElement<BasicLink> {
 			final mxGeometry endGeom) {
 		final int ptCount = from.getPointCount();
 		
-		double[][] xx = new double[2 + ptCount][1];
-		double[][] yy = new double[2 + ptCount][1];
+		mxGeometry geometry;
+		final double[][] xx = new double[2 + ptCount][1];
+		final double[][] yy = new double[2 + ptCount][1];
 
 		/*
 		 * Start point
 		 */
-		{
-			xx[0][0] = srcGeom.getCenterX();
-			yy[0][0] = -srcGeom.getCenterY();
-			final mxGeometry geometry = start.getParent().getGeometry();
-			if (geometry != null) {
-				xx[0][0] += geometry.getX();
-				yy[0][0] -= geometry.getY() - geometry.getHeight();
-			}
+		xx[0][0] = srcGeom.getCenterX();
+		yy[0][0] = -srcGeom.getCenterY();
+		geometry = start.getParent().getGeometry();
+		if (geometry != null) {
+			xx[0][0] += geometry.getX();
+			yy[0][0] -= geometry.getY() - geometry.getHeight();
 		}
 
 		/*
@@ -509,15 +510,13 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		/*
 		 * End point
 		 */
-		{
-			xx[1 + ptCount][0] = endGeom.getCenterX();
-			yy[1 + ptCount][0] = -endGeom.getCenterY();
-			
-			final mxGeometry geometry = end.getParent().getGeometry();
-			if (geometry != null) {
-				xx[1 + ptCount][0] += geometry.getX();
-				yy[1 + ptCount][0] -= geometry.getY() - geometry.getHeight();
-			}
+		xx[1 + ptCount][0] = endGeom.getCenterX();
+		yy[1 + ptCount][0] = -endGeom.getCenterY();
+		
+		geometry = end.getParent().getGeometry();
+		if (geometry != null) {
+			xx[1 + ptCount][0] += geometry.getX();
+			yy[1 + ptCount][0] -= geometry.getY() - geometry.getHeight();
 		}
 		
 		data.add(new ScilabDouble(xx));
