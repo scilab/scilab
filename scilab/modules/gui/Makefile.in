@@ -567,7 +567,8 @@ etc/graphics_toolbar.xml \
 etc/helpbrowser_menubar.xml \
 etc/main_menubar.xml \
 etc/main_toolbar.xml \
-etc/flexdock-themes.xml
+etc/flexdock-themes.xml \
+etc/windowsConfiguration.xml
 
 
 #### gui : tree functions ####
