@@ -54,7 +54,6 @@ then
 	echo
 fi
 
-<<<<<<< HEAD
 if test -z "$(git config --get-all indent.ignored)"
 then
 	echo "Unable to find indent ignored list on the configuration, ignored"
@@ -69,9 +68,6 @@ else
 	INDENT_IGNORED="$(find $(git config --get-all indent.ignored))"
 fi
 
-=======
-#
->>>>>>> 465c595... deactivate pre-commit on in-progress state
 # indent / format file by type
 #
 indent() {
