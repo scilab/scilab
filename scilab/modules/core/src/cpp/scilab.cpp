@@ -22,6 +22,8 @@ extern "C"
 #include <unistd.h>
 #endif
 
+
+
 //#include "SetScilabEnvironment.h"
 #include "prompt.h"
 #include "InitializeLocalization.h"
@@ -61,6 +63,8 @@ extern "C"
 #include "sci_tmpdir.h"
 #include "deleteafile.h"
 #include "setgetlanguage.h"
+
+#include "elem_common.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -116,6 +120,7 @@ using std::string;
 
 void Add_i(void);
 void Add_pi(void);
+void Add_eps(void);
 void Add_s(void);
 void Add_z(void);
 void Add_true(void);
@@ -671,6 +676,7 @@ int InitializeEnvironnement(void)
 void Add_All_Variables(void)
 {
     Add_pi();
+    Add_eps();
     Add_i();
     Add_s();
     Add_z();
@@ -713,6 +719,11 @@ void Add_true(void)
 void Add_pi(void)
 {
     Add_Double_Constant(L"%pi", 3.1415926535897931159980, 0, false);
+}
+
+void Add_eps(void)
+{
+    Add_Double_Constant(L"%eps", C2F(dlamch)("p",1L), 0, false);
 }
 
 void Add_i(void)
