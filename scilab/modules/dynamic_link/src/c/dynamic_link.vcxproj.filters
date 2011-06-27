@@ -20,16 +20,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="addinter.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dl_genErrorMessage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainDynamic_link.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GetFunctionByName.c">
@@ -41,13 +35,16 @@
     <ClCompile Include="ilib_verbose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_call.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\addinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\dynamic_link.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

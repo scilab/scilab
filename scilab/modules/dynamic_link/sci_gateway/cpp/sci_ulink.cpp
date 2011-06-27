@@ -15,6 +15,7 @@
 #include "dynamic_link_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -22,6 +23,9 @@ extern "C"
 #include "Scierror.h"
 #include "dynamic_link.h"
 }
+
+void unLinkAll();
+void unLink(int _iLib);
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -40,7 +44,7 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
 
     if(in.size() == 0)
     {
-        unlinkallsharedlib();
+        unLinkAll();
     }
     else if(in.size() == 1)
     {
@@ -53,11 +57,26 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
 
         for(int i = 0 ; i < pDIds->getSize() ; i++)
         {
-            int ilib = (int) pDIds->get(i);
-            unlinksharedlib(&ilib);
+            unLink(pDIds->get(i));
         }
     }
 
     return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/
+void unLinkAll()
+{
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst =  ConfigVariable::getDynamicLibraryList();
+    for(int i = 0 ; i < pDLLIst->size() ; i++)
+    {
+        unLink(i);
+    }
+}
+/*--------------------------------------------------------------------------*/
+void unLink(int _iLib)
+{
+    unsigned long iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
+    ConfigVariable::removeDynamicLibrary(_iLib);
+    Sci_dlclose(iLib);
 }
 /*--------------------------------------------------------------------------*/

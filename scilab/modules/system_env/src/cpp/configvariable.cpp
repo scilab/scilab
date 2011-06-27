@@ -16,6 +16,7 @@ extern "C"
 {
 #include "strsubst.h"
 #include "os_wcsdup.h"
+#include "MALLOC.h"
 }
 /*
 ** Module List
@@ -365,11 +366,30 @@ int ConfigVariable::m_iSilentError = 0;
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
     m_iPromptMode = _iPromptMode;
+    if(m_iPromptMode == 0)
+    {
+        //m_iPromptMode = -1;
+    }
 }
 
 int ConfigVariable::getPromptMode(void)
 {
     return m_iPromptMode;
+}
+
+bool ConfigVariable::isPromptShow(void)
+{
+    if( m_iPromptMode == 0 || 
+        m_iPromptMode == 1 || 
+        m_iPromptMode == 2 || 
+        m_iPromptMode == 3)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void ConfigVariable::setSilentError(int _iSilentError)
@@ -519,6 +539,172 @@ void ConfigVariable::DecreasePauseLevel()
 int ConfigVariable::getPauseLevel()
 {
     return m_iPauseLevel;
+}
+
+/*
+** \}
+*/
+
+/*
+** Dynamic Link
+** \{
+*/
+
+std::vector<ConfigVariable::DynamicLibraryStr*> ConfigVariable::m_DynLibList;
+std::list<ConfigVariable::EntryPointStr*> ConfigVariable::m_EntryPointList;
+
+
+ConfigVariable::DynamicLibraryStr* ConfigVariable::getNewDynamicLibraryStr()
+{
+    DynamicLibraryStr* pDL = (DynamicLibraryStr*)MALLOC(sizeof(DynamicLibraryStr));
+    pDL->pwstLibraryName = NULL;
+    pDL->hLib = 0;
+    return pDL;
+}
+
+ConfigVariable::EntryPointStr* ConfigVariable::getNewEntryPointStr()
+{
+    EntryPointStr* pEP = (EntryPointStr*)MALLOC(sizeof(EntryPointStr));
+    pEP->bOK = false;
+    pEP->functionPtr = NULL;
+    pEP->iLibIndex = -1;
+    pEP->pwstEntryPointName = NULL;
+    return pEP;
+}
+
+void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName)
+{
+    if(_pDynamicLibrary)
+    {
+        if(_pDynamicLibrary->pwstLibraryName)
+        {
+            FREE(_pDynamicLibrary->pwstLibraryName);
+        }
+        _pDynamicLibrary->pwstLibraryName = os_wcsdup(_pwstLibraryName);
+    }
+}
+
+void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName)
+{
+    if(_pEntryPoint)
+    {
+        if(_pEntryPoint->pwstEntryPointName)
+        {
+            FREE(_pEntryPoint->pwstEntryPointName);
+        }
+        _pEntryPoint->pwstEntryPointName = os_wcsdup(_pwstEntryPointName);;
+    }
+}
+
+/* Dynamic libraries functions */
+int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary)
+{
+    for(int i = 0 ; i < m_DynLibList.size() ; i++)
+    {
+        if(m_DynLibList[i] == NULL)
+        {
+            m_DynLibList[i] = _pDynamicLibrary;
+            return i;
+        }
+    }
+
+    m_DynLibList.push_back(_pDynamicLibrary);
+    return m_DynLibList.size() - 1;
+}
+
+void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
+{
+    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    {
+        std::list<EntryPointStr*>::const_iterator it;
+        for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+        {//clear all entry points linked to removed dynamic library
+            if((*it)->iLibIndex == _iDynamicLibraryIndex)
+            {
+                m_EntryPointList.remove(*it);
+                if(m_EntryPointList.size() == 0)
+                {
+                    break;
+                }
+                it = m_EntryPointList.begin();
+            }
+        }
+        //remove dynamic library
+        m_DynLibList[_iDynamicLibraryIndex] = NULL;
+    }
+
+    //clean dynamic library vector
+    while(m_DynLibList.size() != 0 && m_DynLibList.back() == NULL)
+    {
+        m_DynLibList.pop_back();
+    }
+}
+
+ConfigVariable::DynamicLibraryStr* ConfigVariable::getDynamicLibrary(int _iDynamicLibraryIndex)
+{
+    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    {
+        return m_DynLibList[_iDynamicLibraryIndex];
+    }
+    return NULL;
+}
+
+bool ConfigVariable::isDynamicLibrary(int _iDynamicLibraryIndex)
+{
+    if(_iDynamicLibraryIndex < m_DynLibList.size())
+    {
+        if(m_DynLibList[_iDynamicLibraryIndex] != NULL)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
+{
+    if(_pEP != NULL)
+    {
+        m_EntryPointList.push_back(_pEP);
+    }
+}
+
+ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
+{
+    std::list<EntryPointStr*>::const_iterator it;
+    for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    {
+        //by pass iLibIndex check if _iDynamicLibraryIndex == -1
+        if(_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
+        {
+            if(wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            {
+                return *it;
+            }
+        }
+    }
+    return NULL;
+}
+
+std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
+{
+    std::vector<std::wstring> EntryPointNames;
+    std::list<EntryPointStr*>::const_iterator it;
+    for(it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    {
+        EntryPointNames.push_back((*it)->pwstEntryPointName);
+    }
+    return EntryPointNames;
+}
+
+std::vector<ConfigVariable::DynamicLibraryStr*>* ConfigVariable::getDynamicLibraryList()
+{
+    return &m_DynLibList;
+}
+
+std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
+{
+    return &m_EntryPointList;
 }
 
 /*

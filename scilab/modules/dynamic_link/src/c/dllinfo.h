@@ -20,7 +20,7 @@
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isDll(const char *dllfilename);
+BOOL isDll(const wchar_t* _pwstDLLName);
 
 /**
 *  check if it is a valid x64 dll

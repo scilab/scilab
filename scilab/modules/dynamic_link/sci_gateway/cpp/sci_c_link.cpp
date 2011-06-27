@@ -18,6 +18,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "bool.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -25,6 +26,8 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
+
+bool isLink(wchar_t* _pwstEntryPoint, int* _piLib);
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -63,9 +66,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    pstFunctionName = wide_string_to_UTF8(pSLibName->get(0));
-    BOOL bFind = c_link(pstFunctionName, &iLib);
-    FREE(pstFunctionName);
+    BOOL bFind = isLink(pSLibName->get(0), &iLib);
 
     out.push_back(new types::Bool(bFind));
     if(_iRetCount == 2)
@@ -74,5 +75,18 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     }
 
     return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/
+bool isLink(wchar_t* _pwstEntryPoint, int* _piLib)
+{
+    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstEntryPoint, *_piLib);
+
+    if(pEP == NULL)
+    {
+        return false;
+    }
+
+    *_piLib = pEP->iLibIndex;
+    return true;
 }
 /*--------------------------------------------------------------------------*/

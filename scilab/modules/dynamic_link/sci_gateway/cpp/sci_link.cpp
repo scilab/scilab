@@ -13,6 +13,7 @@
 
 /*-----------------------------------------------------------------------------------*/
 #include "dynamic_link_gw.hxx"
+#include "configvariable.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -21,19 +22,24 @@ extern "C"
 {
 #include "Scierror.h"
 #include "dynamic_link.h"
+#include "ilib_verbose.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "dl_genErrorMessage.h"
 #include "freeArrayOfString.h"
+#include "sciprint.h"
 }
+
+void displayDynLibInfo(void);
+types::Double* getLibraryIDs(void);
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iSizeSubNames   = 0;
-    char** pstSubNames  = NULL;
-    char* pstLibName    = NULL;
-    BOOL bFortran       = TRUE;
-    int iIDSharedLib    = -1;
+    int iSizeSubNames       = 0;
+    wchar_t** pwstSubNames  = NULL;
+    wchar_t* pwstLibName    = NULL;
+    BOOL bFortran           = TRUE;
+    int iIDSharedLib        = -1;
 
     if(in.size() > 3)
     {
@@ -43,22 +49,17 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if(in.size() == 0)
     {
-        int sizeFunctionsList = 0;
-        char ** FunctionsList = NULL;
-
-        FunctionsList = getNamesOfFunctionsInSharedLibraries(&sizeFunctionsList);
-        if(sizeFunctionsList == 0 || FunctionsList == NULL)
+        std::vector<std::wstring> FunctionsList = ConfigVariable::getEntryPointNameList();
+        if(FunctionsList.size() == 0)
         {
             out.push_back(types::Double::Empty());
             return types::Function::OK;
         }
 
-        types::String* pSFunctionNames = new types::String(1 ,sizeFunctionsList);
-        for(int i = 0 ; i < sizeFunctionsList ; i++)
+        types::String* pSFunctionNames = new types::String(1, (int)FunctionsList.size());
+        for(int i = 0 ; i < FunctionsList.size() ; i++)
         {
-            wchar_t* pwstFunc = to_wide_string(FunctionsList[i]);
-            pSFunctionNames->set(i, pwstFunc);
-            FREE(pwstFunc);
+            pSFunctionNames->set(i, FunctionsList[i].c_str());
         }
 
         out.push_back(pSFunctionNames);
@@ -100,11 +101,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
 
         iSizeSubNames = pSSubNames->getSize();
-        pstSubNames = (char**)MALLOC(iSizeSubNames * sizeof(char*));
-        for(int i = 0 ; i < iSizeSubNames ; i++)
-        {
-            pstSubNames[i] = wide_string_to_UTF8(pSSubNames->get(i));
-        }
+        pwstSubNames = pSSubNames->get();
     }
 
     if(in.size() >= 1)
@@ -131,29 +128,13 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             
             if(wcscmp(pS->get(0), L"show") == 0)
             {//show option
-                int *piIds      = NULL;
-                int iSizeIds    = 0;
-
-                ShowDynLinks();
-                piIds = getAllIdSharedLib(&iSizeIds);
-                if(iSizeIds == 0 || piIds == NULL)
-                {
-                    out.push_back(types::Double::Empty());
-                    return types::Function::OK;
-                }
-
-                types::Double* pDIds = new types::Double(1, iSizeIds);
-                for(int i = 0 ; i < iSizeIds ; i++)
-                {
-                    pDIds->set(i, (double)piIds[i]);
-                }
-
-                out.push_back(pDIds);
+                displayDynLibInfo();
+                out.push_back(getLibraryIDs());
                 return types::Function::OK;
             }
 
             //library name
-            pstLibName = wide_string_to_UTF8(pS->get(0));
+            pwstLibName = pS->get(0);
         }
         else
         {
@@ -163,31 +144,101 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     }
 
     int iErr    = 0;
-    int iRetID  = scilabLink(iIDSharedLib, pstLibName, pstSubNames, iSizeSubNames, bFortran, &iErr);
-
-    if(in.size() >= 2)
-    {
-        freeArrayOfString(pstSubNames, iSizeSubNames);
-    }
+    int iRetID  = scilabLink(iIDSharedLib, pwstLibName, pwstSubNames, iSizeSubNames, bFortran, &iErr);
 
     if(iErr)
     {
-        dl_genErrorMessage("link", iErr, pstLibName);
-        if(pstLibName)
+        dl_genErrorMessage(L"link", iErr, pwstLibName);
+
+        /* release lib if it is a new link */
+        if(iIDSharedLib == -1)
         {
-            FREE(pstLibName);
-            pstLibName = NULL;
+            ConfigVariable::removeDynamicLibrary(iRetID);
         }
         return types::Function::Error;
     }
 
-    if(pstLibName)
-    {
-        FREE(pstLibName);
-        pstLibName = NULL;
-    }
-    
     out.push_back(new types::Double(iRetID));
     return types::Function::OK;
+}
+/*-----------------------------------------------------------------------------------*/
+void displayDynLibInfo(void)
+{
+    std::list<ConfigVariable::EntryPointStr*>* pEPList = ConfigVariable::getEntryPointList();
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
+
+    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+    {
+        sciprintW(_W("Number of entry points %d.\nShared libraries :\n"), pEPList->size());
+    }
+
+    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+    {
+        sciprintW(L"[ ");
+    }
+
+    int iLibCount = 0;
+    for(int i = 0 ; i < pDLList->size() ; i++)
+    {
+        if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+        {
+            if((*pDLList)[i] != NULL)
+            {
+                sciprintW(L"%d ", i);
+                iLibCount++;
+            }
+        }
+    }
+
+    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+    {
+        if(iLibCount < 2)
+        {
+            sciprintW(_W("] : %d library.\n"), iLibCount);
+        }
+        else
+        {
+            sciprintW(_W("] : %d libraries.\n"), iLibCount);
+        }
+    }
+
+    std::list<ConfigVariable::EntryPointStr*>::const_reverse_iterator it;
+    for(it = pEPList->rbegin() ; it != pEPList->rend() ; it++)
+    {
+        if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+        {
+            sciprintW(_W("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
+        }
+    }
+}
+/*-----------------------------------------------------------------------------------*/
+types::Double* getLibraryIDs(void)
+{
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
+
+    int iLibCount = 0;
+    for(int i = 0 ; i < pDLList->size() ; i++)
+    {
+        if((*pDLList)[i] != NULL)
+        {
+            iLibCount++;
+        }
+    }
+
+    if(iLibCount == 0)
+    {
+        return types::Double::Empty();
+    }
+
+    types::Double* pOut = new types::Double(1, iLibCount);
+    iLibCount = 0;
+    for(int i = 0 ; i < pDLList->size() ; i++)
+    {
+        if((*pDLList)[i] != NULL)
+        {
+            pOut->set(iLibCount++, (double)i);
+        }
+    }
+    return pOut;
 }
 /*-----------------------------------------------------------------------------------*/

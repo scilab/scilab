@@ -67,30 +67,43 @@ function gateway_filename = ilib_gen_gateway(name,tables)
       error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
     end
     [gate,names] = new_names(table);
-    t = [ '#include <mex.h> ';
-          '#include <sci_gateway.h>';
-          '#include <api_scilab.h>';
-          '#include <MALLOC.h>';
-          'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
-          'extern Gatefunc ' + names(:) + ';';
-          'static GenericTable Tab[]={';
-          '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
-          '};';
-          ' ';
-          'int C2F(' + tname + ')()';
-          '{';
-          '  Rhs = Max(0, Rhs);';
-          '  if (*(Tab[Fin-1].f) != NULL) '
-          '  {';
-          '     if(pvApiCtx == NULL)';
-          '     {'
-          '       pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));';
-          '     }';
-          '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
-          '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
-          '  }';
-          '  return 0;';
-          '}'];
+    t = [   '#include <wchar.h> ';   
+            '#include ""mex.h"" ';
+            '#include ""sci_gateway.h""';
+            '#include ""api_scilab.h""';
+            '#include ""api_oldstack.h""';
+            '#include ""MALLOC.h""';
+            '#include ""addGatewayInContext.h""';
+            '';
+            '#define MODULE_NAME L""' + tname + '""';
+            '';
+            'extern int ' + names(:) + '(char* fname, int* _piKey);';
+            '';
+            'int ' + tname + '(wchar_t* _pwstName)';
+            '{';
+            '   if(wcscmp(_pwstName, L""' + table(:,1) + '"") == 0){addGatewayInContext(L""' + table(:,1) + '"", &' + names(:) + ', MODULE_NAME);}';
+            '}'];
+        
+    old = [ 'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
+            'extern Gatefunc ' + names(:) + ';';
+            'static GenericTable Tab[]={';
+            '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
+            '};';
+            ' ';
+            'int C2F(' + tname + ')()';
+            '{';
+            '  Rhs = Max(0, Rhs);';
+            '  if (*(Tab[Fin-1].f) != NULL) '
+            '  {';
+            '     if(pvApiCtx == NULL)';
+            '     {'
+            '       pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));';
+            '     }';
+            '     pvApiCtx->pstName = (char*)Tab[Fin-1].name;';
+            '    (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+            '  }';
+            '  return 0;';
+            '}'];
 
     gateway_filename = path + tname + '.c';
     // first check if we have already a gateway

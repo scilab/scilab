@@ -184,6 +184,8 @@ private :
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
+    static bool isPromptShow(void);
+
     static void setSilentError(int _iSilentError);
     static int getSilentError(void);
 
@@ -211,7 +213,48 @@ public :
     static void DecreasePauseLevel();
     static int getPauseLevel();
 
+// Dynamic Libraries
 
+    typedef struct 
+    {
+        wchar_t* pwstLibraryName;   /** name of dynamic library **/
+        unsigned long  hLib;        /** handle of the library **/
+    } DynamicLibraryStr;
+
+    typedef struct 
+    {
+        wchar_t* pwstEntryPointName;    /** name of interface **/
+        int iLibIndex;                  /** name of interface **/
+        void (*functionPtr)(wchar_t*);          /** entrypoint for the interface **/
+        bool bOK;                       /** flag set to TRUE if entrypoint can be used **/
+    } EntryPointStr;
+
+private :
+    static std::list<EntryPointStr*> m_EntryPointList;
+    static std::vector<DynamicLibraryStr*> m_DynLibList;
+public :
+
+    /* tools fucntions */
+    static void setLibraryName(DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName);
+    static void setEntryPointName(EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName);
+
+    /* "Constructors" */
+    static DynamicLibraryStr* getNewDynamicLibraryStr();
+    static EntryPointStr* getNewEntryPointStr();
+
+    /* Dynamic libraries functions */
+    static std::vector<DynamicLibraryStr*>* getDynamicLibraryList();
+    static int addDynamicLibrary(DynamicLibraryStr* _pDynamicLibrary);
+    static void removeDynamicLibrary(int _iDynamicLibraryIndex);
+    static DynamicLibraryStr* getDynamicLibrary(int _iDynamicLibraryIndex);
+    static bool isDynamicLibrary(int _iDynamicLibraryIndex);
+
+    /* Entry point functions */
+    static std::list<EntryPointStr*>* getEntryPointList();
+    static void addEntryPoint(EntryPointStr* _pEP);
+    static void removeEntryPoint(int _iEntryPointIndex);
+    static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static std::vector<std::wstring> getEntryPointNameList();
 };
 
-#endif /* __CONFIGVARIABLE_HXX__ */
+#endif /* !__CONFIGVARIABLE_HXX__ */

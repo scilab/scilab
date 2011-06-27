@@ -11,6 +11,8 @@
  */
 #include <string.h>
 #include "dynamiclibrary_windows.h"
+#include "charEncoding.h"
+#include "MALLOC.h"
 /*---------------------------------------------------------------------------*/
 IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibHandle LoadDynLibraryW(wchar_t *libname)
 {
@@ -27,33 +29,44 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL BOOL FreeDynLibrary(DynLibHandle hInstance)
 	return (BOOL) FreeLibrary((HMODULE) hInstance);
 }
 /*---------------------------------------------------------------------------*/
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName)
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle _hLib, char* _pstEntryPointName)
 {
-	DynLibFuncPtr retFuncPtr = NULL ;
-	
-	if (hInstance)
+	DynLibFuncPtr retFuncPtr = NULL;
+	if (_hLib)
 	{
-		retFuncPtr = GetProcAddress(hInstance, funcName);
+		retFuncPtr = GetProcAddress(_hLib, _pstEntryPointName);
 	}
 	
 	return retFuncPtr;
 }
 /*---------------------------------------------------------------------------*/
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL char * GetLastDynLibError(void)
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtrW(DynLibHandle _hLib, wchar_t* _pwstEntryPointName)
 {
-	static char buffer[512];
+    DynLibFuncPtr retFuncPtr = NULL;
+    if (_hLib)
+    {
+        char* pstEntryPoint = wide_string_to_UTF8(_pwstEntryPointName);
+        retFuncPtr = GetProcAddress(_hLib, pstEntryPoint);
+        FREE(pstEntryPoint);
+    }
+    return retFuncPtr;
+}
+/*---------------------------------------------------------------------------*/
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL wchar_t* GetLastDynLibError(void)
+{
+	static wchar_t buffer[512];
 	DWORD dw = GetLastError(); 
 	DWORD source = 0;
 
 	if (dw == 0)
 	{
-		strcpy(buffer, "Unknown Error");
+		wcscpy(buffer, L"Unknown Error");
 	}
-	else if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
+    else if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM |
 			FORMAT_MESSAGE_IGNORE_INSERTS, &source, dw, 0,
 			buffer, 512, NULL) == 0) 
 	{
-			strcpy(buffer, "Unknown Error");
+			wcscpy(buffer, L"Unknown Error");
 	}
 
 	return buffer;

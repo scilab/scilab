@@ -24,7 +24,7 @@ private:
     ~DynamicLinkModule() {};
 
 public:
-    DYNAMIC_LINK_GW_IMPEXP static bool Load();
+    DYNAMIC_LINK_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_getdynlibext);
@@ -32,5 +32,6 @@ CPP_GATEWAY_PROTOTYPE(sci_link);
 CPP_GATEWAY_PROTOTYPE(sci_ilib_verbose);
 CPP_GATEWAY_PROTOTYPE(sci_c_link);
 CPP_GATEWAY_PROTOTYPE(sci_ulink);
+CPP_GATEWAY_PROTOTYPE(sci_addinter);
 
 #endif /* !__DYNAMIC_LINK_GW_HXX__ */

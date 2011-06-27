@@ -96,7 +96,7 @@ function libn = ilib_compile(lib_name, ..
     // Source tree version
     // Headers are dispatched in the source tree
     if isdir(SCI+"/modules/core/includes/") then
-      defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
+      defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization", "operations", "symbol", "types" ];
       defaultModulesFHeader=[ "core" ];
       ScilabTreeFound=%t
 
@@ -160,7 +160,6 @@ function libn = ilib_compile(lib_name, ..
 
     if ierr <> 0 then
       mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
-      lines(0);
       disp(stderr);
       mprintf("\n");
       mprintf(gettext("%s: The command was:\n"),"ilib_compile");

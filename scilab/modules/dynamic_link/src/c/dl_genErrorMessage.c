@@ -17,30 +17,31 @@
 #include "Scierror.h"
 #include "localization.h"
 /*---------------------------------------------------------------------------*/
-void dl_genErrorMessage(char *fname, int errorCode, char* SharedLibraryName){
-	switch (errorCode)
-		{
-			case -1:
-				Scierror(236,_("%s: The shared archive was not loaded: %s\n"),fname,GetLastDynLibError());
-				break;
+void dl_genErrorMessage(wchar_t* _pwstCallerName, int _iErr, wchar_t* _pwstLibraryName)
+{
+    switch (_iErr)
+    {
+    case -1:
+        ScierrorW(236, _W("%ls: The shared archive was not loaded: %ls\n"), _pwstCallerName, GetLastDynLibError());
+        break;
 
-			case -2:
-				Scierror(999,_("%s: Cannot open shared files. Max entry %d reached.\n"),fname,ENTRYMAX);
-				break;
+    case -2:
+        ScierrorW(999, _W("%ls: Cannot open shared files. Max entry %d reached.\n"), _pwstCallerName, ENTRYMAX);
+        break;
 
-			case -3:
-				Scierror(999,_("%s: Shared lib %s does not exist.\n"),fname,SharedLibraryName);
-				break;
+    case -3:
+        ScierrorW(999, _W("%ls: Shared lib %ls does not exist.\n") ,_pwstCallerName, _pwstLibraryName);
+        break;
 
-			case -4:
-				Scierror(999,_("%s: Already loaded from library %s\n"),fname,SharedLibraryName);
-				break;
-			case -5:
-				Scierror(235,_("%s: problem with one of the entry point.\n"),fname,GetLastDynLibError());
-				break;
-			default:
-				Scierror(999,_("%s: An error occurred: %s\n"),fname,GetLastDynLibError());
-				break;
-		}
+    case -4:
+        ScierrorW(999, _W("%ls: Already loaded from library %ls\n"),_pwstCallerName, _pwstLibraryName);
+        break;
+    case -5:
+        ScierrorW(235, _W("%ls: problem with one of the entry point.\n"), _pwstCallerName, GetLastDynLibError());
+        break;
+    default:
+        ScierrorW(999, _W("%ls: An error occurred: %ls\n"), _pwstCallerName, GetLastDynLibError());
+        break;
+    }
 }
 /*---------------------------------------------------------------------------*/

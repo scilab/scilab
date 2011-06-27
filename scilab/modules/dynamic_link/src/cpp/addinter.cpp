@@ -12,6 +12,10 @@
  */
 
 /*-----------------------------------------------------------------------------------*/
+#include "configvariable.hxx"
+
+extern "C"
+{
 #include <string.h> 
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,7 +37,7 @@
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
 #endif
-
+}
 /* size of interface name */
 /* scilab limitation to nlgh characters (24)*/
 #define INTERFSIZE nlgh + 1 
@@ -53,99 +57,42 @@ static int LastInterf = 0;
 static void initializeInterfaces(void);
 static BOOL reallocDynInterf(void);
 /*-----------------------------------------------------------------------------------*/
-int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts)
+int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize)
 {
-	int IdLib = -1; /* Id of library */
-	int idinput = -1; /* Id of a function */
-	int ierr1 = 0;
-	int one = 1;
-	char **subname = NULL;
-	int ierr = 0;
-	int i = 0;
-	int inum = 0;
-	int k1 = 0;
+	int iLibID = -1; /* Id of library */
+	int iErr = 0;
 	
-	initializeLink();
-	initializeInterfaces();
-
 	/** Try to unlink the interface if it was previously linked **/
-
-	for ( i = 0 ; i < LastInterf ; i++) 
-	{
-		if (strcmp(spname,DynInterf[i].name) == 0) 
-		{
-			unlinksharedlib(&DynInterf[i].Nshared);
-			break;
-		}
-	}
-
-	/** Try to find a free position in the interface table : inum **/
-	inum=-1;
-	for ( i = 0 ; i < LastInterf ; i++) 
-	{
-		if ( DynInterf[i].ok == 0 ) 
-		{
-			inum= i;
-		}
-	}
-
-	inum = ( inum == -1 ) ? LastInterf : inum ;
-
-	/** Linking Files and add entry point name iname */
-
-	if ( inum >=  MaxInterfaces ) 
-	{
-		/* Try to resize DynInterf */
-		if ( ( !reallocDynInterf() ) || ( inum >=  MaxInterfaces ) ) return -1;
-	}
-
-	subname = (char **)MALLOC(sizeof (char*));
-	subname[0]= spname;
+    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
+    if(pEP)
+    {//entry point already linked, so remove it before add it
+        ConfigVariable::removeDynamicLibrary(pEP->iLibIndex);
+    }
 
 	/* link then search  */ 
-	/* Trying with the fortran symbol */
-	IdLib =  scilabLink(idinput,filenamelib,subname,one,TRUE,&ierr1);
-	if (ierr1!=0)
+	/* Haven't been able to find the symbol. Try C symbol */
+    iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, FALSE, &iErr);
+    if(iErr)
 	{
-		/* Haven't been able to find the symbol. Try C symbol */
-		IdLib =  scilabLink(idinput,filenamelib,subname,one,FALSE,&ierr1);
-	}
+    	/* Trying with the fortran symbol */
+        iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, TRUE, &iErr);
+        if(iErr)
+        {
+            return iErr;
+        }
+    }
 
-	subname[0] = NULL;
-	if (subname) { FREE(subname);subname = NULL;}
+    pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
+    if(pEP == NULL)
+    {//
+        return -1;
+    }
 
-	if ( IdLib < 0 ) return IdLib;
-
-	/** store the linked function in the interface function table DynInterf **/
-	DynInterf[inum].Nshared = IdLib;
-
-	if ( SearchInDynLinks(spname,&DynInterf[inum].func) < 0 ) 
-	{
-		/* Maximum number of dynamic interfaces */
-		return -6;
-	}
-	else
-	{
-		strncpy(DynInterf[inum].name,spname,INTERFSIZE);
-		DynInterf[inum].ok = TRUE;
-	}
-	if ( inum == LastInterf ) LastInterf++;
-
-	k1 = inum+1;
-	for (i = 0;i < sizefcts; i++)
-	{
-		int id[nsiz],zero=0,three=3,fptr = 0,fptr1 = 0,four=4;
-
-		/* find a previous functions with same name */
-		C2F(cvname)(id,fcts[i],&zero,(unsigned long)strlen(fcts[i]));
-		fptr1 = fptr = (DynInterfStart+k1)*1000 +(i+1);
-		/* clear previous def set fptr1 to 0*/
-		C2F(funtab)(id,&fptr1,&four,"NULL_NAME",0); 
-		/* reinstall */
-		C2F(funtab)(id,&fptr,&three,fcts[i],(unsigned long)strlen(fcts[i])); 
-	}
-
-	return ierr;
+    for(int i = 0 ; i < _iEntryPointSize ; i++)
+    {
+        pEP->functionPtr(_pwstEntryPointName[i]);
+    }
+	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 static void initializeInterfaces(void)

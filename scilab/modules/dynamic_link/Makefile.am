@@ -5,15 +5,16 @@
 
 
 DYNAMIC_LINK_C_SOURCES = \
-    src/c/addinter.c \
-    src/c/dynamic_link.c \
     src/c/dl_genErrorMessage.c \
     src/c/GetFunctionByName.c \
     src/c/ilib_verbose.c
 
+DYNAMIC_LINK_CPP_SOURCES = \
+    src/cpp/dynamic_link.cpp \
+    src/cpp/addinter.cpp
+
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_dynamic_link.c \
-    sci_gateway/c/sci_addinter.c \
     sci_gateway/c/sci_call.c
 
 GATEWAY_CPP_SOURCES = \
@@ -22,7 +23,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_c_link.cpp \
     sci_gateway/cpp/sci_ulink.cpp \
     sci_gateway/cpp/sci_ilib_verbose.cpp \
-    sci_gateway/cpp/sci_getdynlibext.cpp
+    sci_gateway/cpp/sci_getdynlibext.cpp \
+    sci_gateway/cpp/sci_addinter.cpp
 
 
 GATEWAY_FORTRAN_SOURCES = \
@@ -45,20 +47,25 @@ libscidynamic_link_la_CFLAGS = \
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/libs/dynamiclibrary/includes \
+    -I$(top_srcdir)/modules/io/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/operations/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/system_env/includes
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
 noinst_LTLIBRARIES = libscidynamic_link-algo.la
 
 
 libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
+libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidynamic_link_algo_la_CFLAGS = $(libscidynamic_link_la_CFLAGS)
 libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)

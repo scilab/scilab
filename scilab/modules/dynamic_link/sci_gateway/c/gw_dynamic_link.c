@@ -19,7 +19,7 @@
 static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //getdynlibext
-	{sci_addinter,"addinter"},
+	{NULL, ""}, //addinter
 	{sci_fort,"fort"},
 	{sci_call,"call"},
 	{NULL ,""}, //link

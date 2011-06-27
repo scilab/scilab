@@ -53,13 +53,14 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return
 */
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle _hLib, char* _pstEntryPointName);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtrW(DynLibHandle _hLib, wchar_t* _pwstEntryPointName);
 
 /**
 * return last dynamic linking error 
 * @return a string
 */
-IMPORT_EXPORT_DYNAMICLIBRARY_DLL char * GetLastDynLibError(void);
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL  wchar_t* GetLastDynLibError(void);
 
 #endif /* __DYNAMICLIBRARY_WINDOWS_H__ */
 
