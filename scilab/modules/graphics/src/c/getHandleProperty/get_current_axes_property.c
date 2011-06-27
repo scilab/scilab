@@ -26,19 +26,33 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "BuildObjects.h"
 #include "HandleManagement.h"
 #include "CurrentSubwin.h"
-
+#include "callJoGLView.h"
 
 /*------------------------------------------------------------------------*/
 int get_current_axes_property(char *pobjUID)
 {
+    char *pFigureUID = NULL;
+    char *pSubWinUID = NULL;
+
     if (pobjUID != NULL)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
         return -1;
     }
+
+    pSubWinUID = getCurrentSubWin();
+
+    if (pSubWinUID == NULL)
+    {
+        pFigureUID = createNewFigureWithAxes();
+        createJoGLView(pFigureUID);
+        setCurrentFigure(pFigureUID);
+    }
+
 
     return sciReturnHandle(getHandle(getCurrentSubWin())) ;
 }
