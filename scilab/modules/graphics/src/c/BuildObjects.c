@@ -1391,11 +1391,12 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 /**ConstructRectangle
  * This function creates Rectangle structure and only this to destroy all sons use DelGraphicsSon
  */
-sciPointObj *
-ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
+char *
+ConstructRectangle (char * pparentsubwinUID, double x, double y,
 		    double height, double width,  int *foreground, int *background,
 		    int isfilled, int isline)
 {
+    char* pobjUID = NULL;
     char* type;
     double upperLeftPoint[3];
     double* clipRegion;
@@ -1407,34 +1408,27 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     int clipState = 0;
     int *piClipState = &clipState;
 
-    sciPointObj *pobj = (sciPointObj *) NULL;
-
     if ( height < 0.0 || width < 0.0 )
     {
         Scierror(999,_("Width and height must be positive.\n"));
         return NULL;
     }
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &type);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &type);
 
     if (strcmp(type, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return (sciPointObj *) NULL;
+        return (char *) NULL;
     }
 
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        return (sciPointObj *) NULL;
-    }
-
-    pobj->UID = (char*) createGraphicObject(__GO_RECTANGLE__);
+    pobjUID = (char*) createGraphicObject(__GO_RECTANGLE__);
 
     /*
      * Sets the rectangle's parent in order to initialize the former's Contoured properties
-     * with the latter's values (sciInitGraphicContext call below)
+     * with the latter's values (cloneGraphicContext call below)
      */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
       /* To be implemented */
 #if 0
@@ -1447,18 +1441,18 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     upperLeftPoint[1] = y;
     upperLeftPoint[2] = 0.0;
 
-    setGraphicObjectProperty(pobj->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+    setGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
-    setGraphicObjectProperty(pobj->UID, __GO_HEIGHT__, &height, jni_double, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_WIDTH__, &width, jni_double, 1);
+    setGraphicObjectProperty(pobjUID, __GO_HEIGHT__, &height, jni_double, 1);
+    setGraphicObjectProperty(pobjUID, __GO_WIDTH__, &width, jni_double, 1);
 
       /* To be implemented */
 #if 0
     pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
-    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* Clipping: to be checked */
 #if 0
@@ -1470,42 +1464,47 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     /* Clip state and region */
     /* To be checked for consistency */
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /*
      * Initializes the contour properties (background, foreground, etc)
      * to the default values (those of the parent Axes).
      */
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
+
+    /* To be deleted */
+#if 0
     if (sciInitGraphicContext (pobj) == -1)
     {
-        deleteGraphicObject(pobj->UID);
+        deleteGraphicObject(pobjUID);
         FREE(pobj);
         return (sciPointObj *) NULL;
     }
+#endif
 
     /* Contour settings */
-    setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
     if(foreground != NULL)
     {
-        setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, foreground, jni_int, 1);
     }
 
     if(background != NULL)
     {
-        setGraphicObjectProperty(pobj->UID, __GO_BACKGROUND__, background, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, background, jni_int, 1);
     }
 
     /* Parent reset to the null object */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
 //    if (sciAddNewHandle(pobj) == -1)
 //    {
@@ -1518,9 +1517,9 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
      * Sets the Axes as the rectangle's parent and adds the rectangle to
      * its parent's list of children.
      */
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    return pobj;
+    return pobjUID;
 }
 
 

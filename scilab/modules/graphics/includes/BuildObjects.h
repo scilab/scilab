@@ -71,7 +71,7 @@ GRAPHICS_IMPEXP sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x
 				  double height, double width, double alphabegin, double alphaend,
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
 
-GRAPHICS_IMPEXP sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
+GRAPHICS_IMPEXP char *ConstructRectangle (char * pparentsubwinUID, double x, double y,
 					double height, double width,  int *foreground, int *background,
 					int isfilled, int isline);
 
