@@ -178,12 +178,15 @@ namespace types
 
         try
         {
-            m_body->mute();
-            MuteVisitor mute;
-            m_body->accept(mute);
+            //m_body->mute();
+            //MuteVisitor mute;
+            //m_body->accept(mute);
 
+            int oldVal = ConfigVariable::getPromptMode();
+            ConfigVariable::setPromptMode(-1);
             m_body->returnable_set();
             m_body->accept(*execFunc);
+            ConfigVariable::setPromptMode(oldVal);
             if(m_body->is_return())
             {
                 m_body->returnable_set();

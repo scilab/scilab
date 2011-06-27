@@ -34,18 +34,12 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 		return Function::Error;
 	}
 
-    //save current prompt mode
-    int oldVal = ConfigVariable::getPromptMode();
-    //set mode silent for errors
-    ConfigVariable::setPromptMode(0);
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
-		YaspWriteW(L"\n");
-		YaspWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
+        YaspForcedWriteW(L"\n");
+		YaspForcedWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
 	}
 
-	YaspWriteW(L"\n");
-    //restore previous prompt mode
-    ConfigVariable::setPromptMode(oldVal);
+	YaspForcedWriteW(L"\n");
     return Function::OK;
 }

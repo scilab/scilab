@@ -50,9 +50,9 @@ int  Scierror(int iv,const char *fmt,...)
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
 
-    YaspWriteW(L"Error: ");
-    YaspWriteW(pwstError);
-    YaspWriteW(L"\n");
+    YaspErrorW(L"Error: ");
+    YaspErrorW(pwstError);
+    YaspErrorW(L"\n");
     FREE(pwstError);
   return retval;
 }

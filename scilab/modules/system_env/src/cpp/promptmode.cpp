@@ -29,6 +29,11 @@ void setPromptMode(int _iMode)
     ConfigVariable::setPromptMode(_iMode);
 }
 
+int isPromptShow(void)
+{
+    return static_cast<int>(ConfigVariable::isPromptShow());
+}
+
 int getSilentError(void)
 {
     return static_cast<int>(ConfigVariable::getSilentError());

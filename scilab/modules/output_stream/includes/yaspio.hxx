@@ -37,6 +37,10 @@ OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* _pwstText);
 OUTPUT_STREAM_IMPEXP void YaspError(const char* _pstText);
 OUTPUT_STREAM_IMPEXP void YaspErrorW(const wchar_t* _pwstText);
 
+/* functions write in "console" without take care of mode*/
+OUTPUT_STREAM_IMPEXP void YaspForcedWriteW(const wchar_t* _pwsText);
+OUTPUT_STREAM_IMPEXP void YaspForcedWrite(const char* _pstText);
+
 #ifdef __cplusplus
 }
 #endif

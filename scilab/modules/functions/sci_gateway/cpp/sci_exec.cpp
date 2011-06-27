@@ -51,7 +51,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode  = 1;
+    int promptMode  = 0;//default value
     int iErr        = 0;
 	bool bErrCatch	= false;
 	Exp* pExp		= NULL;
@@ -173,8 +173,17 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
-    ConfigVariable::setPromptMode(promptMode);
 
+    //FILE* f1 = fopen("d:\\log.txt", "a");
+    //fprintf(f1, "mode = %d\n", oldVal);
+    //fprintf(f1, "promptMode = %d\n", promptMode);
+    //if(promptMode != -4)
+    //{
+        ConfigVariable::setPromptMode(promptMode);
+        //fprintf(f1, "NEW mode = %d\n", promptMode);
+    //}
+
+    //fclose(f1);
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
@@ -187,14 +196,20 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			//	(*j)->accept(mute);
 			//}
             //exec3 ou normal prompt mode
-            if(ConfigVariable::getPromptMode() == 1 || ConfigVariable::getPromptMode() == 3)
+
+            //mode == 0, print new variable but not command
+            if(ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
 			{
 				printExp(&file, *j, stPrompt, &iCurrentLine, str);
 			}
 
             //excecute script
+            //force -1 to prevent recursive call to exec to write in console
+            //ConfigVariable::setPromptMode(-1);
             ExecVisitor execMe;
             (*j)->accept(execMe);
+            //ConfigVariable::setPromptMode(promptMode);
+
 
             //to manage call without ()
             if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())

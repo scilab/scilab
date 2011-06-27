@@ -612,10 +612,12 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
     //set prompt value
     C2F(setprlev)(&pause);
 
+    ConfigVariable::setPromptMode(-1);
     try
     {
         if(execCommand)
         {//-e option
+
             processCommand(argv[iFileIndex]);
         }
         else if(execFile)
@@ -632,7 +634,6 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
     }
 
     ConfigVariable::setPromptMode(2);
-
     if (!parseFile)
     {
         //always run as interactiveMain even after -e or -f option

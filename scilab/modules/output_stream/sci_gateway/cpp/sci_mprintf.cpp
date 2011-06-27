@@ -122,7 +122,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
 
     for(int i = 0 ; i < iOutputRows ; i++)
     {
-        YaspWriteW(pwstOutput[i]);
+        YaspForcedWriteW(pwstOutput[i]);
         if(iOutputRows != 1)
         {
             //YaspWriteW(L"\n");

@@ -207,10 +207,10 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             }
             else
             {
-                YaspWriteW(wcsStringToWrite[i]);
+                YaspForcedWriteW(wcsStringToWrite[i]);
             }
         }
-        std::cout << "\n";
+        YaspForcedWriteW(L"\n");
         iRet = 0;
     }
     else

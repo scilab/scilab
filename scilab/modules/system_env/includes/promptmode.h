@@ -20,19 +20,20 @@ extern "C"
 {
 #endif
 
-#define PROMPTMODE_NORMAL   0
-#define PROMPTMODE_SILENT   -1
-#define PROMPTMODE_PROMPT   2
-#define PROMPTMODE_EXEC     1
-#define PROMPTMODE_EXEC3    3
-#define PROMPTMODE_STEP     4
-#define PROMPTMODE_STEP7    7
+#define PROMPTMODE_NORMAL   0   //show new values but not commands
+#define PROMPTMODE_SILENT   -1  //hide all
+#define PROMPTMODE_PROMPT   2   //show all
+#define PROMPTMODE_EXEC     1   //show all
+#define PROMPTMODE_EXEC3    3   //show all
+#define PROMPTMODE_STEP     4   //later ...
+#define PROMPTMODE_STEP7    7   //later ...
 
 #define SILENT_ERROR        1
 #define VERBOSE_ERROR       0
 
 EXTERN_SYSTEM_ENV int getPromptMode(void);
 EXTERN_SYSTEM_ENV void setPromptMode(int _iMode);
+EXTERN_SYSTEM_ENV int isPromptShow(void);
 
 EXTERN_SYSTEM_ENV int getSilentError(void);
 EXTERN_SYSTEM_ENV void setSilentError(int _iSilent);

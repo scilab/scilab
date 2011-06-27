@@ -66,20 +66,32 @@ char *YaspRead()
 
 void YaspWrite(const char* _pstText)
 {
-    if(getPromptMode() != PROMPTMODE_SILENT)
+    if(isPromptShow())
     {
         YaspPrint(const_cast<char*>(_pstText));
     }
 }
 
+void YaspForcedWrite(const char* _pstText)
+{
+    YaspPrint(const_cast<char*>(_pstText));
+}
+
 void YaspWriteW(const wchar_t* _pwsText)
 {
-    if(getPromptMode() != PROMPTMODE_SILENT)
+    if(isPromptShow())
     {
         char* pstTemp = wide_string_to_UTF8(_pwsText);
         YaspWrite(pstTemp);
         FREE(pstTemp);
     }
+}
+
+void YaspForcedWriteW(const wchar_t* _pwsText)
+{
+    char* pstTemp = wide_string_to_UTF8(_pwsText);
+    YaspForcedWrite(pstTemp);
+    FREE(pstTemp);
 }
 
 void YaspError(const char* _pstText)
