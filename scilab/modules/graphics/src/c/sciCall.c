@@ -294,27 +294,31 @@ void Objstring( char            ** fname      ,
                 BOOL               isfilled   ,
                 sciTextAlignment   alignment   )
 {
+    char * psubwinUID = NULL;
+    char * pobjUID = NULL;
+    char * pfigureUID = NULL;
+
+    /* Deactivated (synchronization) */
 #if 0
-    sciPointObj * psubwin = NULL;
-    sciPointObj * pobj = NULL;
-    sciPointObj * pFigure = NULL;
-
-    /* Deactivated (synchronization) */
     startGraphicDataWriting();
+#endif
 
-    pFigure = sciGetCurrentFigure();
-    psubwin = sciGetCurrentSubWin();
+    pfigureUID = getCurrentFigure();
+    psubwinUID = getCurrentSubWin();
 
     /* Deactivated (synchronization) */
+#if 0
     endGraphicDataWriting();
+#endif
 
     checkRedrawing();
 
     /* Deactivated (synchronization) */
+#if 0
     startFigureDataWriting(pFigure);
+#endif
 
-
-    pobj = ConstructText( psubwin   ,
+    pobjUID = ConstructText( psubwinUID   ,
                                    fname     ,
                                    nbRow     ,
                                    nbCol     ,
@@ -330,24 +334,28 @@ void Objstring( char            ** fname      ,
                                    isfilled  ,
                                    alignment  );
 
-    if (pobj == NULL)
+    if (pobjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "Objstring");
         return;
     }
 
-    sciSetCurrentObj(pobj);
+    setCurrentObject(pobjUID);
 
     /* Deactivated (synchronization) */
+#if 0
     endFigureDataWriting(pFigure);
 
     startFigureDataReading(pFigure);
-    pobj = sciGetCurrentObj ();
-    *hdl = sciGetHandle(pobj);
+#endif
 
-    setGraphicObjectProperty(pobj->UID, __GO_FONT_ANGLE__, angle, jni_double, 1);
+    pobjUID = getCurrentObject();
+    *hdl = getHandle(pobjUID);
+
+    setGraphicObjectProperty(pobjUID, __GO_FONT_ANGLE__, angle, jni_double, 1);
 
   /* Deactivated (drawing and synchronization) */
+#if 0
     sciDrawObj(pobj);
     endFigureDataReading(pFigure);
 #endif

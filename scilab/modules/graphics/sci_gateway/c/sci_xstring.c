@@ -25,9 +25,15 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BuildObjects.h"
+
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_xstring( char *fname, unsigned long fname_len )
 {
+	char* psubwinUID = NULL;
+	char* pfigureUID = NULL;
 	double rect[4];
 	double x,y,angle=0.0;
 	int m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
@@ -106,6 +112,14 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	sendn3 = n3;
 	if (Rhs >= 4) angle = DEG2RAD(*stk(l4));
 	if (Rhs >= 5) isboxed = (*stk(l5) != 0);
+
+	psubwinUID = getCurrentSubWin();
+	if (psubwinUID == NULL)
+	{
+		/* No default figure nor axes: create one */
+		pfigureUID = createNewFigureWithAxes();
+		createJoGLView(pfigureUID);
+	}
 
 	if(nbElement == 1)
 	{

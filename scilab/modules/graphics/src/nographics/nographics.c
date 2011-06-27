@@ -276,7 +276,7 @@ int sciInitFontSize(char * pobj, double fontSize)
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-sciPointObj * allocateText( sciPointObj        * pparentsubwin,
+char * allocateText( char        * pparentsubwinUID,
 										   char             ** text          ,
 										   int                 nbRow         ,
 										   int                 nbCol         ,

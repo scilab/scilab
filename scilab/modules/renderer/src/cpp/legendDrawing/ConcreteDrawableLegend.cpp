@@ -220,9 +220,12 @@ namespace sciGraphics
 		int background = sciGetBackground(m_pDrawed);
 		int foreground = sciGetForeground(m_pDrawed);
 
+                /* Deactivated as allocateText's prototype has changed */
+#if 0
 		m_pNames = allocateText(sciGetParentSubwin(m_pDrawed), textMat, nbLegends, 1,
 			0.0, 0.0, TRUE, NULL, FALSE, &foreground, &background,
 			FALSE, FALSE, FALSE, ALIGN_LEFT);
+#endif
 
 		//sciInitFontSize(m_pNames, sciGetFontSize(m_pDrawed));
 		//sciInitFontForeground(m_pNames, sciGetFontForeground(m_pDrawed));

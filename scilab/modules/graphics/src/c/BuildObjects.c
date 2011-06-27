@@ -481,7 +481,7 @@ ConstructSubWin(sciPointObj * pparentfigure)
  * Its graphic and font contexts are initialized.
  * This function is to be used with objects including a text object.
  */
-sciPointObj * allocateText( sciPointObj       * pparentsubwin,
+char * allocateText( char       * pparentsubwinUID,
                             char             ** text         ,
                             int                 nbRow        ,
                             int                 nbCol        ,
@@ -497,7 +497,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
                             BOOL                isfilled     ,
                             sciTextAlignment    align         )
 {
-    sciPointObj * pObj = NULL;
+    char* pobjUID = NULL;
     int textDimensions[2];
     int visible = 0;
     int* piVisible = &visible;
@@ -509,16 +509,11 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     double position[3];
     double setUserSize[2];
 
-    if ( ( pObj = MALLOC( sizeof(sciPointObj) ) ) == NULL )
-    {
-        return NULL;
-    }
-
-    pObj->UID = (char*) createGraphicObject(__GO_TEXT__);
+    pobjUID = (char*) createGraphicObject(__GO_TEXT__);
 
 
     /* Required to initialize the default contour properties */
-    setGraphicObjectProperty(pObj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
     /* To be implemented */
 #if 0
@@ -528,18 +523,18 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     ppText->visible = sciGetVisibility( pparentsubwin );
 #endif
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
-    setGraphicObjectProperty(pObj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* Clipping: to be checked for consistency */
     clipRegionSet = 0;
-    setGraphicObjectProperty(pObj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-    setGraphicObjectProperty(pObj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
-    setGraphicObjectProperty(pObj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Check if we should load LaTex / MathML Java libraries */
     loadTextRenderingAPI(text, nbRow, nbCol);
@@ -548,15 +543,15 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     textDimensions[0] = nbRow;
     textDimensions[1] = nbCol;
 
-    setGraphicObjectProperty(pObj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
 
-    setGraphicObjectProperty(pObj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, nbRow*nbCol);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, nbRow*nbCol);
 
     position[0] = x;
     position[1] = y;
     position[2] = 0.0;
 
-    setGraphicObjectProperty(pObj->UID, __GO_POSITION__, position, jni_double_vector, 3);
+    setGraphicObjectProperty(pobjUID, __GO_POSITION__, position, jni_double_vector, 3);
 
     /*
      * Possibly useless.
@@ -581,8 +576,8 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   }
 #endif
 
-    setGraphicObjectProperty(pObj->UID, __GO_TEXT_BOX_MODE__, &centerPos, jni_int, 1);
-    setGraphicObjectProperty(pObj->UID, __GO_AUTO_DIMENSIONING__, &autoSize, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_BOX_MODE__, &centerPos, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_AUTO_DIMENSIONING__, &autoSize, jni_bool, 1);
 
     /* userSize must be specified if the size is given by the user */
     /* or the user specified a rectangle */
@@ -597,7 +592,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
         setUserSize[1] = 0.0;
     }
 
-    setGraphicObjectProperty(pObj->UID, __GO_TEXT_BOX__, setUserSize, jni_double_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_BOX__, setUserSize, jni_double_vector, 2);
 
     /* Required to get the correct MVC value from the sciTextAlignment enum */
     align = align - 1;
@@ -608,75 +603,87 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
         align = 0;
     }
 
-    setGraphicObjectProperty(pObj->UID, __GO_ALIGNMENT__, &align, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_ALIGNMENT__, &align, jni_int, 1);
 
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
+
+    /* To be deleted */
+#if 0
     if ( sciInitGraphicContext( pObj ) == -1)
     {
-        deleteGraphicObject(pObj->UID);
+        deleteGraphicObject(pobjUID);
         FREE(pObj);
         return NULL;
     }
+#endif
 
+    cloneFontContext(pparentsubwinUID, pobjUID);
+
+    /* To be deleted */
+#if 0
     if ( sciInitFontContext( pObj ) == -1 )
     {
-        deleteGraphicObject(pObj->UID);
+        deleteGraphicObject(pobjUID);
         FREE(pObj);
         return NULL;
     }
+#endif
 
-    setGraphicObjectProperty(pObj->UID, __GO_BOX__, &isboxed, jni_bool, 1);
-    setGraphicObjectProperty(pObj->UID, __GO_LINE_MODE__, &isline, jni_bool, 1);
-    setGraphicObjectProperty(pObj->UID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_BOX__, &isboxed, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
 
     if ( foreground != NULL )
     {
-        setGraphicObjectProperty(pObj->UID, __GO_LINE_COLOR__, foreground, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, foreground, jni_int, 1);
     }
 
     if ( background != NULL )
     {
-        setGraphicObjectProperty(pObj->UID, __GO_BACKGROUND__, foreground, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, foreground, jni_int, 1);
     }
 
     /* Parent reset to the null object */
-    setGraphicObjectProperty(pObj->UID, __GO_PARENT__, "", jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-    return pObj;
+    return pobjUID;
 }
 
 /**ConstructText
  * This function creates the parents window (manager) and the elementaries structures
- * @param  sciPointObj *pparentsubwin :
+ * @param  char *pparentsubwinUID : parent subwin UID
  * @param  char * text[] : intial text matrix string.
  * @param  int nbCol : the number column of the text
  * @param  int nbRow : the number of row of the text
- * @return  : pointer sciPointObj if ok , NULL if not
+ * @return  : object UID if ok , NULL if not
  */
-sciPointObj *
-ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
+char *
+ConstructText (char * pparentsubwinUID, char ** text, int nbRow, int nbCol, double x,
 	       double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
 	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
     char* parentType;
-    sciPointObj* pobj;
+    char* pobjUID = NULL;
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return (sciPointObj*) NULL;
+        return (char*) NULL;
     }
 
-    pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y,
+    pobjUID = allocateText( pparentsubwinUID, text, nbRow, nbCol, x, y,
         autoSize, userSize, centerPos, foreground, background,
         isboxed, isline, isfilled, align );
 
-    if ( pobj == NULL )
+    /* allocateText never returns NULL, to be deleted. */
+#if 0
+    if ( pobjUID == NULL )
     {
-        /* In this particular case, object deletion has already occured in allocateText */
         return NULL;
     }
+#endif
 
 //    if (sciAddNewHandle (pobj) == -1)
 //    {
@@ -685,9 +692,9 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 //        return NULL;
 //    }
 
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    return pobj;
+    return pobjUID;
 }
 
 
