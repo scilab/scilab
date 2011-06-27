@@ -166,7 +166,7 @@ Q5  =  -2.01099218183624371326e-07; /* BE8AFDB7 6E09C32D */
 		else
 		    {hi = x + ln2_hi; lo = -ln2_lo;  k = -1;}
 	    } else {
-		k  = invln2*x+((xsb==0)?0.5:-0.5);
+		k  = (int)(invln2*x+((xsb==0)?0.5:-0.5));
 		t  = k;
 		hi = x - t*ln2_hi;	/* t*ln2_hi is exact here */
 		lo = t*ln2_lo;
