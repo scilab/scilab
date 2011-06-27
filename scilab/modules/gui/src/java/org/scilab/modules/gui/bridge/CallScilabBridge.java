@@ -101,7 +101,8 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.ConfigManager;
+import org.scilab.modules.gui.utils.ConfigManager;// Deprecated by next line
+import org.scilab.modules.gui.utils.XConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
@@ -2328,6 +2329,14 @@ public class CallScilabBridge {
     /**
      * Opens a dialog to selected a new Foreground Color for the console
      */
+    public static void openPreferences() {
+	//TODO
+        XConfigManager.displayAndWait();
+    }
+
+    /**
+     * Opens a dialog to selected a new Foreground Color for the console
+     */
     public static void changeConsoleForeground() {
         ColorChooser colorChooser = ScilabColorChooser.createColorChooser(ScilabConsole.getConsole().getForeground());
         colorChooser.setTitle(Messages.gettext("Console Font..."));
@@ -2398,7 +2407,6 @@ public class CallScilabBridge {
      * @return execution status
      */
     public static boolean printString(String theString, String pageHeader) {
-        /* TODO use pageHeader */
         return PrinterHelper.printString(theString, pageHeader);
     }
 

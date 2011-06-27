@@ -100,6 +100,9 @@
         <submenu label="&amp;Select all" accelerator="OSSCKEY A">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents' type="3"/>
         </submenu>
+        <submenu label="P&amp;references">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openPreferences' type="3"/>
+        </submenu>
     </menu>
 
     <!-- Preferences menu -->

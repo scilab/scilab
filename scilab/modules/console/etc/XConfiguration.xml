@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<INTERFACE id="root" path="INTERFACE/fonts/">
+	<general>
+		<BODY maturity="B">
+			<environment 
+				floating-point-exception="Produces a warning" 
+				printing-format="long"
+				width="10"
+				/>
+			<java-heap-memory 
+				heap-size="128"
+				/>
+		</BODY>
+		<confirmation-dialogs>
+			<BODY maturity="B">
+				<tools order="ascending">
+					<tool 
+						state="checked"   
+						name="Scinotes"        
+						description="Prompt"/>
+					<tool 
+						state="unchecked" 
+						name="Console"         
+						description="Warn before clearing the Console"
+					/>
+					<tool 
+						state="checked"
+						name="Command History"
+						description="Warn before deleting Command History items"
+					/>
+				</tools>		
+			</BODY>
+		</confirmation-dialogs>		
+		<shortcuts>
+			<BODY maturity="B">
+				<actions active="scilab" filter="">
+					<action-folder name="Console" state="open">
+						<action 
+							name="console-execute"   
+							ctrl="E"   
+							description="Execute..."/>
+						<action 
+							name="console-open"   
+							ctrl="O"   
+							description="Open a file"/>
+					</action-folder>
+					<action-folder name="Scinotes" state="close">
+						<action 
+							ctrl="N"   
+							description="New..."/>
+						<action 
+							ctrl="O"   
+							description="Open..."/>
+					</action-folder>
+				</actions>		
+			</BODY>
+		</shortcuts>		
+		<current-directory>
+			<BODY>
+				<TBS/>
+			</BODY>
+		</current-directory>		
+	</general>
+	<fonts>
+		<BODY maturity="B">
+			<desktop-font use-system-font="checked">
+				<font family="system" face="plain" size="10pt"/>
+			</desktop-font>
+			<custom-font selected="Help">
+				<font-type name="Console"  font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+				<font-type name="Command History"  font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+				<font-type name="Variable Browser" font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+				<font-type name="Help"  font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+				<font-type name="Scinotes"  font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+				<font-type name="Variables Editor" font-to-use="desktop">
+					<font family="arial" face="bold italic" size="12pt"/>
+				</font-type>
+			</custom-font>
+		</BODY>
+	</fonts>
+	<colors>
+		<BODY>
+			<desktop-colors 
+				use-system-color="checked" 
+				text="#000000"
+				background="#ffffff"
+				cursor="#000000"/>
+			<syntax-highlighting-colors select="Default">
+				<item title="Default" color="#345678" 
+					bold="unchecked" itali="unchecked"
+					underline="unchecked" strinke-through="unchecked">
+				</item>
+				<item title="String" color="#345678" 
+					bold="unchecked" itali="unchecked"
+					underline="unchecked" strinke-through="unchecked">
+				</item>
+				<item title="Commands" color="#345678" 
+					bold="unchecked" itali="unchecked"
+					underline="unchecked" strinke-through="unchecked">
+				</item>
+			</syntax-highlighting-colors>
+		</BODY>
+	</colors>
+	<console>
+		<BODY>
+			<display wrap-lines="checked" columns-to-display="100"
+				tab-size="4" scroll-size = "3000">
+			</display>
+			<accessibility/>
+		</BODY>
+	</console>
+	<command-history>
+		<BODY>
+			<saving kind="quit">
+				<after volume="1"/>				
+			</saving>
+			<settings history-file="" history-lines="1000"/>
+		</BODY>
+	</command-history>
+	<scinotes>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+		<display>
+			<BODY maturity="I">
+				<TBD/>
+			</BODY>
+		</display>		
+		<tab>
+			<BODY maturity="I">
+				<TBD/>
+			</BODY>
+		</tab>		
+		<language>
+			<BODY maturity="I">
+				<TBD/>
+			</BODY>
+		</language>		
+		<autosave>
+			<BODY maturity="I">
+				<TBD/>
+			</BODY>
+		</autosave>		
+	</scinotes>
+	<help>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</help>
+	<variable-browser>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</variable-browser>
+	<variable-editor>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</variable-editor>
+	<xcos>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</xcos>
+	<toolbars>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</toolbars>
+	<toolboxes>
+		<BODY maturity="I">
+			<TBD/>
+		</BODY>
+	</toolboxes>
+</INTERFACE>
