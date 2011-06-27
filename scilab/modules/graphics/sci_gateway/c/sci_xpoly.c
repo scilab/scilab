@@ -30,10 +30,18 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentFigure.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
+#include "callJoGLView.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
 {
+  char* pfigureUID = NULL;
+  char* psubwinUID = NULL;
+  char* pobjUID = NULL;
+
   int m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
 
   long hdl;/* NG */
@@ -43,9 +51,6 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   int foreground;
   int iTmp = 0;
   int* piTmp = &iTmp;
-  sciPointObj * pobj    = NULL ;
-  sciPointObj * psubwin = NULL ;
-  sciPointObj * pFigure = NULL;
 
   CheckRhs(2,4);
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
@@ -79,8 +84,14 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   startGraphicDataWriting();
 #endif
 
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* no default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
 
   /* Deactivated for now (synchronization) */
 #if 0
@@ -89,7 +100,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
   Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
-  pobj = sciGetCurrentObj(); /* the polyline newly created */
+  pobjUID = getCurrentObject(); /* the polyline newly created */
 
   /* Deactivated for now (synchronization) */
 #if 0
@@ -100,31 +111,33 @@ int sci_xpoly( char * fname, unsigned long fname_len )
    * The contour properties set calls below were
    * already present and have been updated for the MVC.
    */
-  if(mark == 0){
+  if(mark == 0)
+  {
     /* marks are enabled but markstyle & foreground
     is determined by parents' markstyle & foreground */
 
     markMode = 1;
     lineMode = 0;
 
-    getGraphicObjectProperty(psubwin->UID, __GO_MARK_STYLE__, jni_int, &piTmp);
-    sciInitMarkStyle(pobj, iTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, &piTmp);
+    sciInitMarkStyle(pobjUID, iTmp);
   }
-  else{
+  else
+  {
     markMode = 0;
     lineMode = 1;
 
-    getGraphicObjectProperty(psubwin->UID, __GO_LINE_STYLE__, jni_int, &piTmp);
-    sciInitLineStyle(pobj, iTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, &piTmp);
+    sciInitLineStyle(pobjUID, iTmp);
   }
 
-  getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piTmp);
+  getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piTmp);
   foreground = iTmp;
 
-  setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+  setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-  setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-  setGraphicObjectProperty(pobj->UID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+  setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+  setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
 
 
  /*

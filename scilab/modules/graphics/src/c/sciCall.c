@@ -140,41 +140,35 @@ void Objpoly ( double  * x     ,
                int       mark  ,
                long    * hdl    )
 {
-#if 0
-    sciPointObj * pFigure = NULL;
-    sciPointObj * psubwin;
-    sciPointObj * pobj;
+    char * pfigureUID = NULL;
+    char * psubwinUID = NULL;
+    char * pobjUID = NULL;
 
-    pFigure = sciGetCurrentFigure();
-    psubwin = sciGetCurrentSubWin();
+    pfigureUID = getCurrentFigure();
+    psubwinUID = getCurrentSubWin();
 
-    /*
-     * Deactivated for now as it involves the renderer module
-     * To be implemented
-     */
     checkRedrawing();
 
     if (mark <= 0)
     {
         int absmark = abs(mark);
-        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,1,
             NULL,NULL,&absmark,NULL,NULL,FALSE,FALSE,TRUE,FALSE);
     }
     else
     {
-        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,1,
+        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,1,
             &mark,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
     }
 
-    if (pobj == NULL)
+    if (pobjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"),"Objpoly");
         return;
     }
 
-    sciSetCurrentObj(pobj);
-    *hdl=sciGetHandle(pobj);
-#endif
+    setCurrentObject(pobjUID);
+    *hdl=getHandle(pobjUID);
 }
 
 
@@ -189,22 +183,23 @@ void Objfpoly ( double  * x    ,
                 long    * hdl  ,
                 int   shading )
 {
-#if 0
+    char* psubwinUID = NULL;
+    char* pobjUID = NULL;
+
     int fillcolor = 0;
     int *piFillColor = &fillcolor;
     int contourcolor = 0;
     int *piContourColor = &contourcolor;
 
-    sciPointObj *psubwin, *pobj;
     int closed = 1; /* we close the polyline by default */
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
     if(shading == 2)
     {
         /* interpolated shading is "on" */
-        pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+        pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                  1,NULL,style,NULL,NULL,NULL,FALSE,TRUE,FALSE,TRUE);
     }
     else
@@ -214,34 +209,33 @@ void Objfpoly ( double  * x    ,
         if (*style < 0)
         {
             fillcolor = abs(*style);
-            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,NULL,&fillcolor,NULL,NULL,NULL,FALSE,TRUE,FALSE,FALSE);
         }
         else if (*style == 0)
         {
-            getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,&contourcolor,NULL,NULL,NULL,NULL,TRUE,FALSE,FALSE,FALSE);
         }
         else
         { /* *style > 0*/
             fillcolor = *style;
-            getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piContourColor);
-            pobj = ConstructPolyline(psubwin,x,y,PD0,closed,n,
+            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piContourColor);
+            pobjUID = ConstructPolyline(psubwinUID,x,y,PD0,closed,n,
                                      1,&contourcolor,&fillcolor,NULL,NULL,NULL,TRUE,TRUE,FALSE,FALSE);
         }
 
     }
 
-    if (pobj == NULL)
+    if (pobjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"),"Objfpoly");
         return;
     }
 
-    sciSetCurrentObj(pobj);
-    *hdl=sciGetHandle(pobj);
-#endif
+    setCurrentObject(pobjUID);
+    *hdl=getHandle(pobjUID);
 }
 
 
