@@ -25,17 +25,20 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "CurrentFigure.h"
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xarc(char *fname,unsigned long fname_len)
 {
+  char* pfigureUID = NULL;
+  char* psubwinUID = NULL;
   int m1,n1,l1,l2,l3,l4,l5,l6;
   long hdl;
   int* tmp;
   int curcolor = 0;
   int *piCurColor = &curcolor;
-  sciPointObj * psubwin = NULL;
-  sciPointObj * pFigure = NULL;
   double angle1 = 0.0;
   double angle2 = 0.0;
 
@@ -56,8 +59,14 @@ int sci_xarc(char *fname,unsigned long fname_len)
   startGraphicDataWriting();
 #endif
 
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* no default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
 
   /* Deactivated (synchronization) */
 #if 0
@@ -71,7 +80,7 @@ int sci_xarc(char *fname,unsigned long fname_len)
   endFigureDataReading(pFigure);
 #endif
 
-  getGraphicObjectProperty(psubwin->UID, __GO_LINE_COLOR__, jni_int, &piCurColor);
+  getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piCurColor);
 
   /* Deactivated (synchronization) */
 #if 0

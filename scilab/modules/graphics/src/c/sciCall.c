@@ -117,18 +117,16 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        )
 {
-#if 0
-  sciPointObj * psubwin;
-  sciPointObj * pobj;
+    char * psubwinUID;
+    char * pobjUID;
 
-  psubwin = sciGetCurrentSubWin() ;
-  checkRedrawing() ;
-  pobj = ConstructArc(psubwin,*x,*y,
-	              *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
-  sciSetCurrentObj(pobj);
+    psubwinUID = getCurrentSubWin();
+    checkRedrawing();
+    pobjUID = ConstructArc(psubwinUID,*x,*y,
+                       *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
+    setCurrentObject(pobjUID);
 
-  *hdl=sciGetHandle(pobj);
-#endif
+    *hdl=getHandle(pobjUID);
 }
 
 /*------------------------------------------------

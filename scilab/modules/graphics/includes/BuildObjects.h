@@ -67,7 +67,7 @@ GRAPHICS_IMPEXP char *ConstructPolyline (char* pparentsubwinUID, double *pvecx, 
 				       int *mark_style, int *mark_foreground, int *mark_background,
 				       BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded); /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
+GRAPHICS_IMPEXP char *ConstructArc (char * pparentsubwinUID, double x, double y,
 				  double height, double width, double alphabegin, double alphaend,
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
 
