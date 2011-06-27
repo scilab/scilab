@@ -694,15 +694,10 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 /**constructLegend
  * This function creates  Legend structure
  */
-sciPointObj *
-ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandles[], int nblegends)
+char *
+ConstructLegend (char * pparentsubwinUID, char **text, long long tabofhandles[], int nblegends)
 {
-    sciPointObj * pobj = (sciPointObj *) NULL;
-
-    /* To be deleted */
-#if 0
-    sciLegend   * ppLegend;
-#endif
+    char* pobjUID = NULL;
 
     int i;
     int iLegendPresent = 0;
@@ -724,7 +719,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
     char* parentType;
 
     /* Check beforehand whether a Legend object is already present */
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_HAS_LEGEND_CHILD__, jni_bool, &piLegendPresent);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_HAS_LEGEND_CHILD__, jni_bool, &piLegendPresent);
 
     if (iLegendPresent)
     {
@@ -737,23 +732,18 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 #endif
     }
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return (sciPointObj*) NULL;
+        return (char*) NULL;
     }
 
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        return (sciPointObj*) NULL;
-    }
-
-    pobj->UID = (char*) createGraphicObject(__GO_LEGEND__);
+    pobjUID = (char*) createGraphicObject(__GO_LEGEND__);
 
     /* Required to initialize the default contour and font properties */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
     /* To be implemented */
 #if 0
@@ -768,50 +758,50 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 #endif
 
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
 
-    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
     lineIDS = (char**) MALLOC(nblegends*sizeof(char*));
 
     if (lineIDS == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
-        return (sciPointObj*) NULL;
+        return (char*) NULL;
     }
 
     textDimensions[0] = nblegends;
     textDimensions[1] = 1;
 
-    setGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
-    setGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, nblegends);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, textDimensions, jni_int_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, text, jni_string_vector, nblegends);
 
     for (i = 0; i < nblegends; i++)
     {
-        sciPointObj* tmpObj;
+        char* tmpObjUID;
 
-        tmpObj =  sciGetPointerFromHandle(tabofhandles[i]);
+        tmpObjUID =  getObjectFromHandle(tabofhandles[i]);
 
         /*
          * Links are ordered from most recent to least recent,
          * as their referred-to Polylines in the latter's parent Compound object.
          */
-        lineIDS[nblegends-i-1] = tmpObj->UID;
+        lineIDS[nblegends-i-1] = tmpObjUID;
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_LINKS__, lineIDS, jni_string_vector, nblegends);
+    setGraphicObjectProperty(pobjUID, __GO_LINKS__, lineIDS, jni_string_vector, nblegends);
 
     FREE(lineIDS);
 
 
     position[0] = 0.0;
     position[1] = 0.0;
-    setGraphicObjectProperty(pobj->UID, __GO_POSITION__, position, jni_double_vector, 2);
+    setGraphicObjectProperty(pobjUID, __GO_POSITION__, position, jni_double_vector, 2);
 
 
     /* 9: LOWER_CAPTION */
     legendLocation = 9;
-    setGraphicObjectProperty(pobj->UID, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LEGEND_LOCATION__, &legendLocation, jni_int, 1);
 
     /* To be implemented */
 #if 0
@@ -820,35 +810,45 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
     /* Clipping: to be checked for consistency */
     clipRegionSet = 0;
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
     /* 0: OFF */
     clipState = 0;
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
 
     /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
+
+    /* To be deleted */
+#if 0
     if (sciInitGraphicContext (pobj) == -1)
     {
         deleteGraphicObject(pobj->UID);
         FREE(pobj);
         return (sciPointObj*) NULL;
     }
+#endif
 
+    cloneFontContext(pparentsubwinUID, pobjUID);
+
+    /* To be deleted */
+#if 0
     if (sciInitFontContext (pobj) == -1)
     {
         deleteGraphicObject(pobj->UID);
         FREE(pobj);
         return (sciPointObj*) NULL;
     }
+#endif
 
     fillMode = TRUE;
-    setGraphicObjectProperty(pobj->UID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
 
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
 //    if (sciAddNewHandle(pobj) == -1)
 //    {
@@ -857,9 +857,9 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 //        return NULL;
 //    }
 
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
-    return pobj;
+    return pobjUID;
 }
 /*---------------------------------------------------------------------------------*/
 /**
