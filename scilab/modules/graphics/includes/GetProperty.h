@@ -117,7 +117,7 @@ GRAPHICS_IMPEXP int sciGetWindowHeight(sciPointObj * pObj) ; /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciIsExistingSubWin (double *WRect); /* GET */ /* WARNING special case here */
 
 
-GRAPHICS_IMPEXP double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
+GRAPHICS_IMPEXP double *sciGetPoint (char * pthis, int *num, int *numco); /* GET */
 
 GRAPHICS_IMPEXP BOOL sciGetdrawmode (sciPointObj *pobj); /* GET */
 GRAPHICS_IMPEXP sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin); /* GET */
