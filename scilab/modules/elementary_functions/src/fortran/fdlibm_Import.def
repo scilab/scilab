@@ -1,0 +1,18 @@
+LIBRARY    fdlibm.dll
+
+
+EXPORTS
+      sqrt
+      pow
+      exp
+      cos
+      sin
+      tan
+      asin
+      atan
+      log
+      atan2
+      sinh
+      acos
+      log10
+      cosh
