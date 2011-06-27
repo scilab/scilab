@@ -57,7 +57,9 @@ namespace ast
             }
 
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return  new ArrayListExp(*newloc, *exps);
+            ArrayListExp* cloned = new ArrayListExp(*newloc, *exps);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

@@ -51,7 +51,9 @@ namespace ast
         virtual NotExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new NotExp(*newloc, *exp_get().clone());
+            NotExp* cloned = new NotExp(*newloc, *exp_get().clone());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

@@ -60,7 +60,9 @@ namespace ast
         virtual TransposeExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new TransposeExp(*newloc, *exp_get().clone(), conjugate_get());
+            TransposeExp* cloned = new TransposeExp(*newloc, *exp_get().clone(), conjugate_get());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

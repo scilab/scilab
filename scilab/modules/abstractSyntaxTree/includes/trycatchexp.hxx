@@ -54,7 +54,9 @@ namespace ast
         virtual TryCatchExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new TryCatchExp(*newloc, *try_get().clone(), *catch_get().clone());
+            TryCatchExp* cloned = new TryCatchExp(*newloc, *try_get().clone(), *catch_get().clone());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

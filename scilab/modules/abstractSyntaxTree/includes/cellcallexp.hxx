@@ -54,7 +54,9 @@ namespace ast
                 args->push_back((*it)->clone());
             }
 
-            return new CellCallExp(*newloc, *name_get().clone(), *args);
+            CellCallExp* cloned = new CellCallExp(*newloc, *name_get().clone(), *args);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

@@ -40,7 +40,9 @@ namespace ast
         virtual StringExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new StringExp(*newloc, value_get());
+            StringExp* cloned = new StringExp(*newloc, value_get());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

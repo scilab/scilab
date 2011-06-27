@@ -123,11 +123,11 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get().name_get() << L" = " << std::endl;
+                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
                     }
                     else
                     {
-                        ostr << L"???" << L" = " << std::endl;
+                        ostr << L"???" << L"  = " << std::endl;
                     }
                     ostr << std::endl;
                     ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
@@ -511,11 +511,11 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     if(pVar)
                     {
-                        ostr << pVar->name_get().name_get() << L" = " << std::endl;
+                        ostr << pVar->name_get().name_get() << L"  = " << std::endl;
                     }
                     else
                     {
-                        ostr << *getStructNameFromExp(&pCall->name_get()) << L" = " << std::endl;
+                        ostr << *getStructNameFromExp(&pCall->name_get()) << L"  = " << std::endl;
                     }
                     ostr << std::endl;
                     ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
@@ -573,7 +573,7 @@ void visitprivate(const AssignExp  &e)
             if(e.is_verbose())
             {
                 std::wostringstream ostr;
-                ostr << pVar->name_get().name_get() << L" = " << std::endl << std::endl;
+                ostr << pVar->name_get().name_get() << L"  = " << std::endl << std::endl;
                 ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 YaspWriteW(ostr.str().c_str());
             }
@@ -605,7 +605,7 @@ void visitprivate(const AssignExp  &e)
                 if(e.is_verbose())
                 {
                     std::wostringstream ostr;
-                    ostr << pListVar->name_get().name_get() << L" = " << std::endl;
+                    ostr << pListVar->name_get().name_get() << L"  = " << std::endl;
                     ostr << std::endl;
                     ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());
@@ -706,7 +706,7 @@ void visitprivate(const AssignExp  &e)
                 const wstring *pstName = getStructNameFromExp(pField);
 
                 std::wostringstream ostr;
-                ostr << *pstName << L" = " << std::endl << std::endl;
+                ostr << *pstName << L"  = " << std::endl << std::endl;
                 ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 YaspWriteW(ostr.str().c_str());
             }

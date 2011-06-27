@@ -68,14 +68,19 @@ namespace ast
             {
                 cases->push_back((*it)->clone());
             }
-            if (_default != NULL)
+
+            SelectExp* cloned = NULL;
+            if(_default != NULL)
             {
-                return new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
+                cloned = new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
             }
             else
             {
-                return new SelectExp(*newloc, *select_get()->clone(), *cases);
+                cloned = new SelectExp(*newloc, *select_get()->clone(), *cases);
             }
+
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
     public :

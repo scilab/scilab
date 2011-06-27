@@ -356,7 +356,7 @@ namespace ast
                 if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
                 {
                     std::wostringstream ostr;
-                    ostr << e.name_get().name_get() << L" = " << L"(" << pI->getRef() << L")"<< std::endl;
+                    ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
                     ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());

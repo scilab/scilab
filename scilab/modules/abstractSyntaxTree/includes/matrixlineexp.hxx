@@ -62,7 +62,9 @@ namespace ast
             }
 
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return  new MatrixLineExp(*newloc, *columns);
+            MatrixLineExp* cloned = new MatrixLineExp(*newloc, *columns);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

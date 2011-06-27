@@ -44,7 +44,9 @@ namespace ast
         virtual AssignExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new AssignExp(*newloc, *left_exp_get().clone(), *right_exp_get().clone());
+            AssignExp* cloned = new AssignExp(*newloc, *left_exp_get().clone(), *right_exp_get().clone());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

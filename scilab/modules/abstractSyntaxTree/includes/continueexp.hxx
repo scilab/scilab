@@ -42,7 +42,9 @@ namespace ast
         virtual ContinueExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new ContinueExp(*newloc);
+            ContinueExp* cloned = new ContinueExp(*newloc);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

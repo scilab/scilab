@@ -62,7 +62,9 @@ namespace ast
         virtual ForExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new ForExp(*newloc, *vardec_get().clone(), *body_get().clone());
+            ForExp* cloned = new ForExp(*newloc, *vardec_get().clone(), *body_get().clone());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

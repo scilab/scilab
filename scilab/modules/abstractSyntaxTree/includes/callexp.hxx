@@ -63,7 +63,9 @@ namespace ast
                 args->push_back((*it)->clone());
             }
 
-            return new CallExp(*newloc, *name_get().clone(), *args);
+            CallExp* cloned = new CallExp(*newloc, *name_get().clone(), *args);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         // \brief Visitors entry point.

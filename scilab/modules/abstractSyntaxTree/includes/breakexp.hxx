@@ -42,7 +42,9 @@ namespace ast
         virtual BreakExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new BreakExp(*newloc);
+            BreakExp* cloned = new BreakExp(*newloc);
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
         /** \name Visitors entry point.
         ** \{ */

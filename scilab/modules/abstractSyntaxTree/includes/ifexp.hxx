@@ -81,14 +81,18 @@ namespace ast
         virtual IfExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
+            IfExp* cloned = NULL;
             if(has_else())
             {
-                return new IfExp(*newloc, *test_get().clone(), *then_get().clone(), *else_get().clone());
+                cloned = new IfExp(*newloc, *test_get().clone(), *then_get().clone(), *else_get().clone());
             }
             else
             {
-                return new IfExp(*newloc, *test_get().clone(), *then_get().clone());
+                cloned = new IfExp(*newloc, *test_get().clone(), *then_get().clone());
             }
+
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         // \brief Visitors entry point.

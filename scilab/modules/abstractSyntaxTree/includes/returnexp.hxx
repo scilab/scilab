@@ -63,14 +63,18 @@ namespace ast
         virtual ReturnExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
+            ReturnExp* cloned = NULL;
             if(is_global())
             {
-                return new ReturnExp(*newloc);
+                cloned = new ReturnExp(*newloc);
             }
             else
             {
-                return new ReturnExp(*newloc, exp_get().clone());
+                cloned = new ReturnExp(*newloc, exp_get().clone());
             }
+
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.

@@ -150,7 +150,9 @@ namespace ast
         virtual OpExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new OpExp(*newloc, *left_get().clone(), oper_get(), *right_get().clone());
+            OpExp* cloned = new OpExp(*newloc, *left_get().clone(), oper_get(), *right_get().clone());
+            cloned->set_verbose(is_verbose());
+            return cloned;
         }
 
         /** \name Visitors entry point.
