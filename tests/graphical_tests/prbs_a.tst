@@ -1,8 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/prbs_a_data.ref','rb');
-u = prbs_a(50, 10);
-plot2d2('onn', (1:50)', u', 1, '151', ' ', [0,-1.5,50,1.5]);
-xdel_run(winsid());
-
-mclose(%U);

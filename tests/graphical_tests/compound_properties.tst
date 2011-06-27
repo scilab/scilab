@@ -1,7 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/graphical_tests/compound_properties_data.ref','rb');
-
-xdel_run(winsid());
-
-mclose(%U);
