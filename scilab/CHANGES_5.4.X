@@ -158,6 +158,9 @@ Optimization:
 * Bug 9576 fixed - The neldermead component did not check the bounds 
                    of some input parameters.
 
+* Bug 9578 fixed - The optimbase_configure function does not check the 
+                   values of input arguments.
+
 
 Documentation:
 ==============
