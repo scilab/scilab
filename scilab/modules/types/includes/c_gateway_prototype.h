@@ -13,5 +13,6 @@
 #define __C_GATEWAY_PROTOTYPE_H__
 
 #define C_GATEWAY_PROTOTYPE(__gateway__) int __gateway__(char* fname, int* _piKey)
+typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
 #endif /* !__C_GATEWAY_PROTOTYPE_H__ */

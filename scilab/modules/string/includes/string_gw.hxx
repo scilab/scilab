@@ -24,7 +24,7 @@ private :
    StringModule(){};
    ~StringModule(){};
 public :
-   EXTERN_STRING_GW static bool Load();
+   EXTERN_STRING_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_grep);

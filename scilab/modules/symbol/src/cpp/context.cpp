@@ -14,6 +14,12 @@
 #include "function.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "addGatewayInContext.h"
+
+void addGatewayInContext(wchar_t* _pwstName , OLDGW_FUNC _pFunc, wchar_t* _pwstModule)
+{
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
+}
 
 namespace symbol
 {

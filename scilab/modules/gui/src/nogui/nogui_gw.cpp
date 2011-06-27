@@ -12,7 +12,7 @@
 
 #include "gui_gw.hxx"
 
-bool GuiModule::Load()
+int GuiModule::Load()
 {
 	/* Do Nothing */
     return true;

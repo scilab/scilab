@@ -171,6 +171,7 @@
     <ClCompile Include="src\cpp\table.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\addGatewayInContext.h" />
     <ClInclude Include="includes\context.hxx" />
     <ClInclude Include="includes\export_symbol.h" />
     <ClInclude Include="includes\heap.hxx" />

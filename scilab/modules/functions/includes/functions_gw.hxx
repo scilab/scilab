@@ -23,7 +23,7 @@ private :
 	FunctionsModule(){};
 	~FunctionsModule(){};
 public :
-	FUNCTIONS_GW_IMPEXP static bool Load();
+	FUNCTIONS_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_exec);

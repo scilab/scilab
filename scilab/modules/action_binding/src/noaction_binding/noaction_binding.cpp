@@ -12,7 +12,7 @@
 
 #include "action_binding_gw.hxx"
 
-bool ActionBindingModule::Load()
+int ActionBindingModule::Load()
 {
 	return true;
 }

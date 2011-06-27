@@ -32,7 +32,7 @@ private :
     ~FileioModule() {};
 
 public :
-	EXTERN_FILEIO_GW static bool Load();
+	EXTERN_FILEIO_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_mopen);

@@ -21,7 +21,7 @@ extern "C"
 
 #define MODULE_NAME L"string"
 
-bool StringModule::Load()
+int StringModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
@@ -47,6 +47,5 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strtok", &sci_strtok, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strspn", &sci_strspn, MODULE_NAME));
-
-    return true;
+    return 1;
 }

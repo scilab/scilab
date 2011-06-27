@@ -23,7 +23,7 @@ extern "C"
 
 using namespace types;
 
-bool FileioModule::Load()
+int FileioModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"cd", &sci_chdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"chdir", &sci_chdir, MODULE_NAME));
@@ -66,6 +66,5 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mfscanf", &sci_mfscanf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"msscanf", &sci_msscanf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getdrives", &sci_getdrives, MODULE_NAME));
-    return true;
+    return 1;
 }
-

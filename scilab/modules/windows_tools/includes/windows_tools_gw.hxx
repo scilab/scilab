@@ -27,7 +27,7 @@ private :
   ~WindowsToolsModule() {};
 
 public :
-  WINDOWS_TOOLS_IMPEXP static bool Load();
+  WINDOWS_TOOLS_IMPEXP static int Load();
 };
 
 

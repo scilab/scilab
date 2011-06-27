@@ -22,8 +22,8 @@ extern "C"
 
 #define MODULE_NAME L"action_binding"
 
-bool ActionBindingModule::Load()
+int ActionBindingModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"notify", &sci_notify, MODULE_NAME));
-    return true;
+    return 1;
 }

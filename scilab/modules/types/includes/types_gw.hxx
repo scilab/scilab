@@ -25,7 +25,7 @@ private :
   ~TypesModule() {};
 
 public :
-  TYPES_GW_IMPEXP static bool Load();
+  TYPES_GW_IMPEXP static int Load();
 };
 CPP_GATEWAY_PROTOTYPE(sci_list);
 CPP_GATEWAY_PROTOTYPE(sci_struct);

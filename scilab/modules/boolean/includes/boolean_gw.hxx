@@ -21,7 +21,7 @@ private :
 	BooleanModule(){};
 	~BooleanModule(){};
 public :
-	BOOLEAN_GW_IMPEXP static bool Load();
+	BOOLEAN_GW_IMPEXP static int Load();
 };
 
 #endif /* __BOOLEAN_GW_HXX__ */

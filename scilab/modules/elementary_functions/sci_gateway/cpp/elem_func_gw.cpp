@@ -20,7 +20,7 @@ extern "C"
 	#include "gw_elementary_functions.h"
 }
 
-bool ElemFuncModule::Load()
+int ElemFuncModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"abs", &sci_abs, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"acos", &sci_acos, MODULE_NAME));
@@ -67,7 +67,5 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"testmatrix", &sci_testmatrix, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tril", &sci_tril, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"zeros", &sci_zeros, MODULE_NAME));
-
-	return true;
+	return 1;
 }
-

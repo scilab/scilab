@@ -22,7 +22,7 @@ extern "C"
 
 using namespace types;
 
-bool FunctionsModule::Load()
+int FunctionsModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"exec", &sci_exec, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"execstr", &sci_execstr, MODULE_NAME));
@@ -31,6 +31,5 @@ bool FunctionsModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getCurrentThreadId", &sci_getCurrentThreadId, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mode", &sci_mode, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getThreads", &sci_getThreads, MODULE_NAME));
-	return true;
+	return 1;
 }
-

@@ -23,7 +23,7 @@ extern "C"
 
 #define MODULE_NAME L"localization"
 
-bool LocalizationModule::Load()
+int LocalizationModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"gettext", &sci_gettext, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"_", &sci_gettext, MODULE_NAME));
@@ -31,5 +31,5 @@ bool LocalizationModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getdefaultlanguage", &sci_getdefaultlanguage, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"setlanguage", &sci_setlanguage, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getlanguage", &sci_getlanguage, MODULE_NAME));
-    return true;
+    return 1;
 }

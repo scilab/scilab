@@ -22,10 +22,10 @@ extern "C"
 
 using namespace types;
 
-bool BooleanModule::Load()
+int BooleanModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"or", &sci_or, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"and", &sci_and, MODULE_NAME));
-	return true;
+	return 1;
 }
 

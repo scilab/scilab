@@ -32,7 +32,7 @@ private :
 	ElemFuncModule(){};
 	~ElemFuncModule(){};
 public :
-	EXTERN_EF_GW static bool Load();
+	EXTERN_EF_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_isequal);

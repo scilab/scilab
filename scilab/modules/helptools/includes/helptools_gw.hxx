@@ -31,7 +31,7 @@ private :
     static void LoadDeps(void);
 
 public :
-    HELPTOOLS_IMPEXP static bool Load();
+    HELPTOOLS_IMPEXP static int Load();
 };
 
 #endif /* !__HELPTOOLS_GW_HXX__ */

@@ -24,6 +24,11 @@
 #include "callable.hxx"
 #include "dynlib_types.h"
 
+extern "C"
+{
+#include "c_gateway_prototype.h"
+}
+
 #define MAX_OUTPUT_VARIABLE		64
 
 namespace types
@@ -33,7 +38,6 @@ namespace types
     public :
         typedef void (*LOAD_DEPS)(void);
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
-        typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
                                 Function() : Callable() {};
                                 Function(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);

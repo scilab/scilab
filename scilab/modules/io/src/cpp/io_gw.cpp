@@ -21,7 +21,7 @@ extern "C"
 
 using namespace types;
 
-bool IoModule::Load()
+int IoModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"load", &sci_load, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
@@ -30,6 +30,5 @@ bool IoModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
-    return true;
+    return 1;
 }
-

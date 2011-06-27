@@ -40,7 +40,7 @@ using namespace std;
 #define END_EXT     L".end"
 
 //Gateway function pointer
-typedef bool (*GW_MOD)(void); 
+typedef int (*GW_MOD)(void); 
 
 class EXTERN_FUNC_MAN FuncManager
 {

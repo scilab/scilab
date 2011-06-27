@@ -13,7 +13,7 @@
 #include "jvm_gw.hxx"
 
 
-bool JvmModule::Load()
+int JvmModule::Load()
 {
     /* Do Nothing */
     return true;

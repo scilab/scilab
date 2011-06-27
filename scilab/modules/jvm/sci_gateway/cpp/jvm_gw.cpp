@@ -22,9 +22,9 @@ extern "C"
 
 #define MODULE_NAME L"jvm"
 
-bool JvmModule::Load()
+int JvmModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"system_getproperty", &sci_system_getproperty, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"javaclasspath", &sci_javaclasspath, MODULE_NAME));
-    return true;
+    return 1;
 }

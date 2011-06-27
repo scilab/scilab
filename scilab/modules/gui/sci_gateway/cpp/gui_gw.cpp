@@ -22,9 +22,9 @@ extern "C"
 
 using namespace types;
 
-bool GuiModule::Load()
+int GuiModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"about", &sci_about, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"helpbrowser", &sci_helpbrowser, MODULE_NAME));
-    return true;
+    return 1;
 }

@@ -23,7 +23,7 @@ private :
 	IntegerModule(){};
 	~IntegerModule(){};
 public :
-	INTEGER_GW_IMPEXP static bool Load();
+	INTEGER_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_inttype);

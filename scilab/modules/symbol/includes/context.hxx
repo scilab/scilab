@@ -23,6 +23,7 @@
 #include "function.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "export_symbol.h"
 
 namespace symbol
 {

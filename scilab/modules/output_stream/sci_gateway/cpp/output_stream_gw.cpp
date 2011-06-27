@@ -21,11 +21,11 @@ extern "C"
 
 #define MODULE_NAME L"output_stream"
 
-bool OutputStreamModule::Load()
+int OutputStreamModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"disp", &sci_disp, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"msprintf", &sci_msprintf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"mprintf", &sci_mprintf, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"diary", &sci_diary, MODULE_NAME));
-    return true;
+    return 1;
 }

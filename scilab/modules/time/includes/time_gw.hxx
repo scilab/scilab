@@ -32,7 +32,7 @@ private :
    TimeModule() {};
    ~TimeModule() {};
 public :
-   EXTERN_TIME_GW static bool Load();
+   EXTERN_TIME_GW static int Load();
 };
 
 types::Function::ReturnValue sci_tic(types::typed_list &in, int _iRetCount, types::typed_list &out);

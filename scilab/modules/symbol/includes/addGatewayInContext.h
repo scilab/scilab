@@ -10,21 +10,18 @@
  *
  */
 
-#include "hdf5_gw.hxx"
-#include "context.hxx"
+#ifndef __ADDGATEWAYINCONTEXT_H__
+#define __ADDGATEWAYINCONTEXT_H__
+#include "export_symbol.h"
+#include "c_gateway_prototype.h"
 
-#define MODULE_NAME L"hdf5"
-
+#ifdef __cplusplus
 extern "C"
 {
-	#include "gw_fileio.h"
+#endif
+    EXTERN_SYMBOL void addGatewayInContext(wchar_t* _pwstName, OLDGW_FUNC _pFunc, wchar_t* _pwstModule);
+#ifdef __cplusplus
 }
+#endif
 
-using namespace types;
-
-int Hdf5Module::Load()
-{
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"export_to_hdf5", &sci_export_to_hdf5, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"import_from_hdf5", &sci_import_from_hdf5, MODULE_NAME));
-    return 1;
-}
+#endif /* !__ADDGATEWAYINCONTEXT_H__ */

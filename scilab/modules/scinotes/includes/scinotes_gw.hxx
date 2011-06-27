@@ -29,7 +29,7 @@ private :
    ScinotesModule() {};
    ~ScinotesModule() {};
 public :
-   EXTERN_SCINOTES_GW static bool Load();
+   EXTERN_SCINOTES_GW static int Load();
 };
 
 #endif /* !__SCINOTES_GW_HXX__ */

@@ -27,7 +27,7 @@ private :
   ~OutputStreamModule() {};
 
 public :
-  OUTPUT_STREAM_IMPEXP_GW static bool Load();
+  OUTPUT_STREAM_IMPEXP_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_disp);

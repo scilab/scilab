@@ -22,7 +22,7 @@ extern "C"
 
 using namespace types;
 
-bool IntegerModule::Load()
+int IntegerModule::Load()
 {
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int8", &sci_int8, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint8", &sci_uint8, MODULE_NAME));
@@ -34,6 +34,5 @@ bool IntegerModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint64", &sci_uint64, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"double", &sci_double, MODULE_NAME));
-	return true;
+	return 1;
 }
-

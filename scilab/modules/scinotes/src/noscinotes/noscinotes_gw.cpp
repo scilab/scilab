@@ -13,7 +13,7 @@
 #include "scinotes_gw.hxx"
 
 
-bool ScinotesModule::Load()
+int ScinotesModule::Load()
 {
     /* Do Nothing */
     return true;

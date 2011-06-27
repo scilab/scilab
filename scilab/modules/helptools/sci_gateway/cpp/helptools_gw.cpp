@@ -35,9 +35,9 @@ void HelptoolsModule::LoadDeps(void)
     }
 }
 
-bool HelptoolsModule::Load()
+int HelptoolsModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"buildDoc", &sci_buildDoc, &HelptoolsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"buildDocv2", &sci_buildDocv2, &HelptoolsModule::LoadDeps, MODULE_NAME));
-    return true;
+    return 1;
 }

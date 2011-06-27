@@ -33,7 +33,7 @@ private :
   MatioModule(){};
   ~MatioModule(){};
 public :
-  EXTERN_MATIO_GW static bool Load();
+  EXTERN_MATIO_GW static int Load();
 };
 
 types::Function::ReturnValue sci_matfile_open(types::typed_list &in, int* _piRetCount, types::typed_list &out);

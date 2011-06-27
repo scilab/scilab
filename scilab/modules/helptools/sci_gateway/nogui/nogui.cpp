@@ -32,7 +32,7 @@ int sci_buildDoc(char *fname, unsigned long l)
 }
 /*--------------------------------------------------------------------------*/
 
-bool HelptoolsModule::Load()
+int HelptoolsModule::Load()
 {
     /* Do Nothing */
     return true;

@@ -47,6 +47,9 @@
     <ClInclude Include="includes\table.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\addGatewayInContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

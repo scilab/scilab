@@ -21,8 +21,8 @@ extern "C"
 #include "gw_scinotes.h"
 }
 
-bool ScinotesModule::Load()
+int  ScinotesModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"editor", &sci_scinotes, MODULE_NAME));
-    return true;
+    return 1;
 }

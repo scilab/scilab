@@ -26,7 +26,7 @@ private :
     ~Hdf5Module() {};
 
 public :
-	HDF5_SCILAB_IMPEXP static bool Load();
+	HDF5_SCILAB_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_export_to_hdf5);

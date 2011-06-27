@@ -14,7 +14,7 @@
 #include "context.hxx"
 
 #define MODULE_NAME L"types"
-bool TypesModule::Load()
+int TypesModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"list", &sci_list, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
@@ -30,5 +30,5 @@ bool TypesModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
 
-    return true;
+    return 1;
 }

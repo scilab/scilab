@@ -21,7 +21,7 @@ extern "C"
 
 using namespace types;
 
-bool CoreModule::Load()
+int CoreModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"type", &sci_type, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"getmodules", &sci_getmodules, MODULE_NAME));
@@ -49,6 +49,5 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"abort", &sci_abort, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"who", &sci_who, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"stacksize", &sci_stacksize, MODULE_NAME));
-    return true;
+    return 1;
 }
-

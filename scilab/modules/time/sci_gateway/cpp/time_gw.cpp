@@ -18,7 +18,7 @@ extern "C"
    #include "gw_time.h"
 }
 
-bool TimeModule::Load()
+int TimeModule::Load()
 {
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"getdate", &sci_getdate, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"Calendar", &sci_calendar, MODULE_NAME));
@@ -29,5 +29,5 @@ bool TimeModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"realtime", &sci_realtime, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tic", &sci_tic, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"toc", &sci_toc, MODULE_NAME));
-    return true;
+    return 1;
 }
