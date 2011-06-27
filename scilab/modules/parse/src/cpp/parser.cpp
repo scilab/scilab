@@ -136,26 +136,31 @@ void ParserSingleInstance::parse(char *command)
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
-	char szFile[MAX_PATH];
+    char szFile[MAX_PATH];
     char* pstTmpDIr = getTMPDIR();
     sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
     FREE(pstTmpDIr);
-	fopen_s(&yyin, szFile, "w");
-	fwrite(command, sizeof(char), strlen(command), yyin);
-	fclose(yyin);
-	fopen_s(&yyin, szFile, "r");
+    if(yyin)
+    {
+        fclose(yyin);
+    }
+
+    fopen_s(&yyin, szFile, "w");
+    fwrite(command, sizeof(char), strlen(command), yyin);
+    fclose(yyin);
+    fopen_s(&yyin, szFile, "r");
 #endif
 
 #ifdef __APPLE__
-	char szFile[PATH_MAX];
+    char szFile[PATH_MAX];
     char* pstTmpDIr = "/tmp";
-    //char* pstTmpDIr = NSTemporaryDirectory();
     sprintf(szFile, "%s/%s", pstTmpDIr, "command.temp");
-    // FREE(pstTmpDIr);
-	yyin = fopen(szFile, "w");
-	fwrite(command, 1, strlen(command), yyin);
-	fclose(yyin);
-	yyin = fopen(szFile, "r");
+    //FREE(pstTmpDIr);
+    fclose(yyin);
+    yyin = fopen(szFile, "w");
+    fwrite(command, 1, strlen(command), yyin);
+    fclose(yyin);
+    yyin = fopen(szFile, "r");
 #endif
 
 
@@ -173,9 +178,9 @@ void ParserSingleInstance::parse(char *command)
 
     yyparse();
 
-    fclose(yyin);
+    //fclose(yyin);
 #ifdef _MSC_VER
-	DeleteFileA(szFile);
+    DeleteFileA(szFile);
 #endif
 }
 
