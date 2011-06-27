@@ -15,10 +15,20 @@
 /*--------------------------------------------------------------------------*/
 #include "dynlib_signal_processing.h"
 #include "machine.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
 
+SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_remez);
+//SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_rpem); => c++
+//SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_corr); -> c++
+//SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_fft); -> c++
+SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_amell);
+//SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_delip); -> c++
+//SIGNAL_PROCESSING_IMPEXP C_GATEWAY_PROTOTYPE(sci_syredi); -> c++
+
+/*
 //YaSp
 SIGNAL_PROCESSING_IMPEXP int sci_remez(char *fname, int* _piKey);
 SIGNAL_PROCESSING_IMPEXP int sci_rpem(char *fname, int* _piKey);
@@ -29,6 +39,7 @@ SIGNAL_PROCESSING_IMPEXP int sci_fiir(char *fname, int* _piKey);
 SIGNAL_PROCESSING_IMPEXP int sci_amell(char *fname, int* _piKey);
 SIGNAL_PROCESSING_IMPEXP int sci_delip(char *fname, int* _piKey);
 SIGNAL_PROCESSING_IMPEXP int sci_syredi(char *fname, int* _piKey);
+*/
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

@@ -237,6 +237,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arnoldi", "modules\arnoldi\arnoldi.vcxproj", "{D575A6BA-094A-45EC-8F8D-2DF7A2C37AA6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing", "modules\signal_processing\src\c\signal_processing.vcxproj", "{A3AD381E-C0DD-45BB-ACB2-C0A0DB33A606}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "cacsd_f", "modules\cacsd\src\fortran\cacsd_f.vfproj", "{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -645,6 +648,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noui_data", "modules\ui_data\src\noui_data\noui_data.vcxproj", "{337A52F8-310E-49E3-A2BA-F19CA32EB617}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console_gw", "modules\console\sci_gateway\cpp\console_gw.vcxproj", "{273B1F5C-C137-46D1-B516-FFE5764FABE5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing_gw", "modules\signal_processing\sci_gateway\cpp\signal_processing_gw.vcxproj", "{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{959384FC-016C-4B01-B848-1B18D26B6CC4} = {959384FC-016C-4B01-B848-1B18D26B6CC4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2066,6 +2074,14 @@ Global
 		{273B1F5C-C137-46D1-B516-FFE5764FABE5}.Release|Win32.Build.0 = Release|Win32
 		{273B1F5C-C137-46D1-B516-FFE5764FABE5}.Release|x64.ActiveCfg = Release|x64
 		{273B1F5C-C137-46D1-B516-FFE5764FABE5}.Release|x64.Build.0 = Release|x64
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Debug|Win32.Build.0 = Debug|Win32
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Debug|x64.ActiveCfg = Debug|x64
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Debug|x64.Build.0 = Debug|x64
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Release|Win32.ActiveCfg = Release|Win32
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Release|Win32.Build.0 = Release|Win32
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Release|x64.ActiveCfg = Release|x64
+		{A968A82E-B2DC-4ED2-BD9B-12C1E97ABBB4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

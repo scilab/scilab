@@ -36,5 +36,6 @@
 #include "../../action_binding/includes/action_binding_gw.hxx"
 #include "../../history_manager/includes/history_manager_gw.hxx"
 #include "../../console/includes/console_gw.hxx"
+#include "../../signal_processing/includes/signal_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

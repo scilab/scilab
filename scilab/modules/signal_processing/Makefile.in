@@ -135,22 +135,22 @@ libscisignal_processing_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_3 = libscisignal_processing_la-sci_remez.lo \
+	libscisignal_processing_la-sci_amell.lo
+am__objects_4 = bgetx.lo bgety.lo Ex-corr.lo
+am__objects_5 = libscisignal_processing_la-signal_gw.lo \
 	libscisignal_processing_la-sci_rpem.lo \
 	libscisignal_processing_la-sci_corr.lo \
-	libscisignal_processing_la-sci_amell.lo \
-	libscisignal_processing_la-gw_signal.lo \
 	libscisignal_processing_la-sci_delip.lo \
 	libscisignal_processing_la-sci_fft.lo \
 	libscisignal_processing_la-sci_syredi.lo
-am__objects_4 = bgetx.lo bgety.lo Ex-corr.lo
 am_libscisignal_processing_la_OBJECTS = $(am__objects_3) \
-	$(am__objects_4)
+	$(am__objects_4) $(am__objects_5)
 libscisignal_processing_la_OBJECTS =  \
 	$(am_libscisignal_processing_la_OBJECTS)
-libscisignal_processing_la_LINK = $(LIBTOOL) --tag=F77 \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(AM_FFLAGS) $(FFLAGS) $(libscisignal_processing_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
+libscisignal_processing_la_LINK = $(LIBTOOL) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(AM_CXXFLAGS) $(CXXFLAGS) \
+	$(libscisignal_processing_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -163,6 +163,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -441,101 +450,119 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
-SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
-src/fortran/parcha.f \
-src/fortran/ouch.f \
-src/fortran/dfftbi.f \
-src/fortran/dsqrtc.f \
-src/fortran/tranze.f \
-src/fortran/chebc.f \
-src/fortran/tscccf.f \
-src/fortran/dsn2.f \
-src/fortran/hammin.f \
-src/fortran/bounn.f \
-src/fortran/nstabl.f \
-src/fortran/ino.f \
-src/fortran/desia.f \
-src/fortran/desi11.f \
-src/fortran/cmpse3.f \
-src/fortran/cheby.f \
-src/fortran/trbize.f \
-src/fortran/r2tx.f \
-src/fortran/deli2.f \
-src/fortran/gee.f \
-src/fortran/r4tx.f \
-src/fortran/transn.f \
-src/fortran/r8tx.f \
-src/fortran/kaiser.f \
-src/fortran/deli11.f \
-src/fortran/compel.f \
-src/fortran/filbut.f \
-src/fortran/desi01.f \
-src/fortran/desi22.f \
-src/fortran/amell.f \
-src/fortran/desi24.f \
-src/fortran/dellk.f \
-src/fortran/syredi.f \
-src/fortran/dpspln.f \
-src/fortran/coeft.f \
-src/fortran/tranpo.f \
-src/fortran/blnumz.f \
-src/fortran/sn.f \
-src/fortran/bldenz.f \
-src/fortran/dspln.f \
-src/fortran/belan.f \
-src/fortran/desib.f \
-src/fortran/freque.f \
-src/fortran/desi12.f \
-src/fortran/cmpse2.f \
-src/fortran/desi14.f \
-src/fortran/delip.f \
-src/fortran/deli1.f \
-src/fortran/trbipo.f \
-src/fortran/rpem.f \
-src/fortran/dfft2.f \
-src/fortran/dgee01.f \
-src/fortran/romeg.f \
-src/fortran/snell.f \
-src/fortran/fft842.f \
-src/fortran/tg02ad.f \
-src/fortran/remez.f \
-src/fortran/poles.f \
-src/fortran/desi00.f \
-src/fortran/desi21.f \
-src/fortran/dfftmx.f
+SIGNAL_PROCESSING_C_SOURCES = \
+    src/c/corrtable.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_remez.c \
-sci_gateway/c/sci_rpem.c \
-sci_gateway/c/sci_corr.c \
-sci_gateway/c/sci_amell.c \
-sci_gateway/c/gw_signal.c \
-sci_gateway/c/sci_delip.c \
-sci_gateway/c/sci_fft.c \
-sci_gateway/c/sci_syredi.c
+SIGNAL_PROCESSING_FORTRAN_SOURCES = \
+    src/fortran/degree.f \
+    src/fortran/parcha.f \
+    src/fortran/ouch.f \
+    src/fortran/dfftbi.f \
+    src/fortran/dsqrtc.f \
+    src/fortran/tranze.f \
+    src/fortran/chebc.f \
+    src/fortran/tscccf.f \
+    src/fortran/dsn2.f \
+    src/fortran/hammin.f \
+    src/fortran/bounn.f \
+    src/fortran/nstabl.f \
+    src/fortran/ino.f \
+    src/fortran/desia.f \
+    src/fortran/desi11.f \
+    src/fortran/cmpse3.f \
+    src/fortran/cheby.f \
+    src/fortran/trbize.f \
+    src/fortran/r2tx.f \
+    src/fortran/deli2.f \
+    src/fortran/gee.f \
+    src/fortran/r4tx.f \
+    src/fortran/transn.f \
+    src/fortran/r8tx.f \
+    src/fortran/kaiser.f \
+    src/fortran/deli11.f \
+    src/fortran/compel.f \
+    src/fortran/filbut.f \
+    src/fortran/desi01.f \
+    src/fortran/desi22.f \
+    src/fortran/amell.f \
+    src/fortran/desi24.f \
+    src/fortran/dellk.f \
+    src/fortran/syredi.f \
+    src/fortran/dpspln.f \
+    src/fortran/coeft.f \
+    src/fortran/tranpo.f \
+    src/fortran/blnumz.f \
+    src/fortran/sn.f \
+    src/fortran/bldenz.f \
+    src/fortran/dspln.f \
+    src/fortran/belan.f \
+    src/fortran/desib.f \
+    src/fortran/freque.f \
+    src/fortran/desi12.f \
+    src/fortran/cmpse2.f \
+    src/fortran/desi14.f \
+    src/fortran/delip.f \
+    src/fortran/deli1.f \
+    src/fortran/trbipo.f \
+    src/fortran/rpem.f \
+    src/fortran/dfft2.f \
+    src/fortran/dgee01.f \
+    src/fortran/romeg.f \
+    src/fortran/snell.f \
+    src/fortran/fft842.f \
+    src/fortran/tg02ad.f \
+    src/fortran/remez.f \
+    src/fortran/poles.f \
+    src/fortran/desi00.f \
+    src/fortran/desi21.f \
+    src/fortran/dfftmx.f
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bgetx.f \
-sci_gateway/fortran/bgety.f \
-sci_gateway/fortran/Ex-corr.f
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/signal_gw.cpp \
+    sci_gateway/cpp/sci_rpem.cpp \
+    sci_gateway/cpp/sci_corr.cpp \
+    sci_gateway/cpp/sci_delip.cpp \
+    sci_gateway/cpp/sci_fft.cpp \
+    sci_gateway/cpp/sci_syredi.cpp
 
-libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
-					-I$(top_srcdir)/modules/output_stream/includes \
-					-I$(top_srcdir)/modules/dynamic_link/includes \
-					-I$(top_srcdir)/modules/api_scilab/includes \
-					-I$(top_srcdir)/modules/statistics/includes \
-					-I$(top_srcdir)/modules/operations/includes
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_remez.c \
+    sci_gateway/c/sci_amell.c
+
+GATEWAY_FORTRAN_SOURCES = \
+    sci_gateway/fortran/bgetx.f \
+    sci_gateway/fortran/bgety.f \
+    sci_gateway/fortran/Ex-corr.f
+
+libscisignal_processing_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/statistics/includes \
+    -I$(top_srcdir)/modules/operations/includes
+
+libscisignal_processing_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/functions_manager/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/symbol/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 noinst_LTLIBRARIES = libscisignal_processing-algo.la
 libscisignal_processing_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscisignal_processing_algo_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES)
-libscisignal_processing_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisignal_processing_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscisignal_processing_algo_la_CFLAGS = $(libscisignal_processing_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisignal_processing_la_CFLAGS)
-libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = signal_processing
@@ -621,7 +648,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -704,7 +731,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_algo_la-corrtable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-gw_signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_amell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_corr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_delip.Plo@am__quote@
@@ -712,6 +738,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_remez.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_rpem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_syredi.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-signal_gw.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -742,60 +769,81 @@ libscisignal_processing_algo_la-corrtable.lo: src/c/corrtable.c
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_algo_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_algo_la-corrtable.lo `test -f 'src/c/corrtable.c' || echo '$(srcdir)/'`src/c/corrtable.c
 
 libscisignal_processing_la-sci_remez.lo: sci_gateway/c/sci_remez.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_remez.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_remez.Tpo -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_remez.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_remez.Tpo -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_remez.Tpo $(DEPDIR)/libscisignal_processing_la-sci_remez.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_remez.c' object='libscisignal_processing_la-sci_remez.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
-
-libscisignal_processing_la-sci_rpem.lo: sci_gateway/c/sci_rpem.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_rpem.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_rpem.Tpo -c -o libscisignal_processing_la-sci_rpem.lo `test -f 'sci_gateway/c/sci_rpem.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rpem.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_rpem.Tpo $(DEPDIR)/libscisignal_processing_la-sci_rpem.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_rpem.c' object='libscisignal_processing_la-sci_rpem.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_rpem.lo `test -f 'sci_gateway/c/sci_rpem.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rpem.c
-
-libscisignal_processing_la-sci_corr.lo: sci_gateway/c/sci_corr.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_corr.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_corr.Tpo -c -o libscisignal_processing_la-sci_corr.lo `test -f 'sci_gateway/c/sci_corr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_corr.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_corr.Tpo $(DEPDIR)/libscisignal_processing_la-sci_corr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_corr.c' object='libscisignal_processing_la-sci_corr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_corr.lo `test -f 'sci_gateway/c/sci_corr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_corr.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
 
 libscisignal_processing_la-sci_amell.lo: sci_gateway/c/sci_amell.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_amell.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_amell.Tpo -c -o libscisignal_processing_la-sci_amell.lo `test -f 'sci_gateway/c/sci_amell.c' || echo '$(srcdir)/'`sci_gateway/c/sci_amell.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_amell.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_amell.Tpo -c -o libscisignal_processing_la-sci_amell.lo `test -f 'sci_gateway/c/sci_amell.c' || echo '$(srcdir)/'`sci_gateway/c/sci_amell.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_amell.Tpo $(DEPDIR)/libscisignal_processing_la-sci_amell.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_amell.c' object='libscisignal_processing_la-sci_amell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_amell.lo `test -f 'sci_gateway/c/sci_amell.c' || echo '$(srcdir)/'`sci_gateway/c/sci_amell.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_amell.lo `test -f 'sci_gateway/c/sci_amell.c' || echo '$(srcdir)/'`sci_gateway/c/sci_amell.c
 
-libscisignal_processing_la-gw_signal.lo: sci_gateway/c/gw_signal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-gw_signal.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-gw_signal.Tpo -c -o libscisignal_processing_la-gw_signal.lo `test -f 'sci_gateway/c/gw_signal.c' || echo '$(srcdir)/'`sci_gateway/c/gw_signal.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-gw_signal.Tpo $(DEPDIR)/libscisignal_processing_la-gw_signal.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_signal.c' object='libscisignal_processing_la-gw_signal.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-gw_signal.lo `test -f 'sci_gateway/c/gw_signal.c' || echo '$(srcdir)/'`sci_gateway/c/gw_signal.c
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
-libscisignal_processing_la-sci_delip.lo: sci_gateway/c/sci_delip.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_delip.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_delip.Tpo -c -o libscisignal_processing_la-sci_delip.lo `test -f 'sci_gateway/c/sci_delip.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delip.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_delip.Tpo $(DEPDIR)/libscisignal_processing_la-sci_delip.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_delip.c' object='libscisignal_processing_la-sci_delip.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_delip.lo `test -f 'sci_gateway/c/sci_delip.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delip.c
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-libscisignal_processing_la-sci_fft.lo: sci_gateway/c/sci_fft.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_fft.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_fft.Tpo -c -o libscisignal_processing_la-sci_fft.lo `test -f 'sci_gateway/c/sci_fft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fft.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_fft.Tpo $(DEPDIR)/libscisignal_processing_la-sci_fft.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fft.c' object='libscisignal_processing_la-sci_fft.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_fft.lo `test -f 'sci_gateway/c/sci_fft.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fft.c
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscisignal_processing_la-sci_syredi.lo: sci_gateway/c/sci_syredi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_syredi.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_syredi.Tpo -c -o libscisignal_processing_la-sci_syredi.lo `test -f 'sci_gateway/c/sci_syredi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_syredi.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_syredi.Tpo $(DEPDIR)/libscisignal_processing_la-sci_syredi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_syredi.c' object='libscisignal_processing_la-sci_syredi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_syredi.lo `test -f 'sci_gateway/c/sci_syredi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_syredi.c
+libscisignal_processing_la-signal_gw.lo: sci_gateway/cpp/signal_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-signal_gw.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-signal_gw.Tpo -c -o libscisignal_processing_la-signal_gw.lo `test -f 'sci_gateway/cpp/signal_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/signal_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-signal_gw.Tpo $(DEPDIR)/libscisignal_processing_la-signal_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/signal_gw.cpp' object='libscisignal_processing_la-signal_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-signal_gw.lo `test -f 'sci_gateway/cpp/signal_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/signal_gw.cpp
+
+libscisignal_processing_la-sci_rpem.lo: sci_gateway/cpp/sci_rpem.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-sci_rpem.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_rpem.Tpo -c -o libscisignal_processing_la-sci_rpem.lo `test -f 'sci_gateway/cpp/sci_rpem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rpem.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_rpem.Tpo $(DEPDIR)/libscisignal_processing_la-sci_rpem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_rpem.cpp' object='libscisignal_processing_la-sci_rpem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-sci_rpem.lo `test -f 'sci_gateway/cpp/sci_rpem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rpem.cpp
+
+libscisignal_processing_la-sci_corr.lo: sci_gateway/cpp/sci_corr.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-sci_corr.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_corr.Tpo -c -o libscisignal_processing_la-sci_corr.lo `test -f 'sci_gateway/cpp/sci_corr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_corr.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_corr.Tpo $(DEPDIR)/libscisignal_processing_la-sci_corr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_corr.cpp' object='libscisignal_processing_la-sci_corr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-sci_corr.lo `test -f 'sci_gateway/cpp/sci_corr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_corr.cpp
+
+libscisignal_processing_la-sci_delip.lo: sci_gateway/cpp/sci_delip.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-sci_delip.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_delip.Tpo -c -o libscisignal_processing_la-sci_delip.lo `test -f 'sci_gateway/cpp/sci_delip.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_delip.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_delip.Tpo $(DEPDIR)/libscisignal_processing_la-sci_delip.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_delip.cpp' object='libscisignal_processing_la-sci_delip.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-sci_delip.lo `test -f 'sci_gateway/cpp/sci_delip.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_delip.cpp
+
+libscisignal_processing_la-sci_fft.lo: sci_gateway/cpp/sci_fft.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-sci_fft.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_fft.Tpo -c -o libscisignal_processing_la-sci_fft.lo `test -f 'sci_gateway/cpp/sci_fft.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fft.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_fft.Tpo $(DEPDIR)/libscisignal_processing_la-sci_fft.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_fft.cpp' object='libscisignal_processing_la-sci_fft.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-sci_fft.lo `test -f 'sci_gateway/cpp/sci_fft.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fft.cpp
+
+libscisignal_processing_la-sci_syredi.lo: sci_gateway/cpp/sci_syredi.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscisignal_processing_la-sci_syredi.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_syredi.Tpo -c -o libscisignal_processing_la-sci_syredi.lo `test -f 'sci_gateway/cpp/sci_syredi.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_syredi.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_syredi.Tpo $(DEPDIR)/libscisignal_processing_la-sci_syredi.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_syredi.cpp' object='libscisignal_processing_la-sci_syredi.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisignal_processing_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscisignal_processing_la-sci_syredi.lo `test -f 'sci_gateway/cpp/sci_syredi.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_syredi.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

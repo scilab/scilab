@@ -30,11 +30,13 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-I$(top_builddir)/modules/output_stream/includes/ \
 						-I$(top_builddir)/modules/threads/includes/ \
 						-I$(top_builddir)/modules/console/includes/ \
+						-I$(top_builddir)/modules/signal_processing/includes/ \
 						-Iincludes/ \
 						$(XML_FLAGS)
 
 libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-					$(top_builddir)/modules/matio/libscimatio.la
+					$(top_builddir)/modules/matio/libscimatio.la \
+					$(top_builddir)/modules/signal_processing/libscisignal_processing.la
 
 libscifunctions_manager_la_includedir=$(pkgincludedir)/Types
 

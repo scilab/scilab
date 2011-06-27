@@ -287,6 +287,9 @@
       <Project>{bae68b54-2c1a-44d0-a0e9-05156a784e79}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\signal_processing\sci_gateway\cpp\signal_processing_gw.vcxproj">
+      <Project>{a968a82e-b2dc-4ed2-bd9b-12c1e97abbb4}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\string\sci_gateway\cpp\string_gw.vcxproj">
       <Project>{aec1f7b5-28f2-4c1f-a436-98d0352fd3f5}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

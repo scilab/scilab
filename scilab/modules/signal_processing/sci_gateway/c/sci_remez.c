@@ -10,12 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
-#include "api_scilab.h"
 #include "MALLOC.h"
 #include "gw_signal.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
+
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
 extern void C2F(remez)(int *ngrid, int *nc, int *iext,
 		       double *ad, double *x, double *y,
