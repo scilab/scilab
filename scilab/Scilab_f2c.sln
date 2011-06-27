@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "modules\functions\scripts\buildmacros\BuildMacros.vcxproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
@@ -357,6 +357,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "giws-all", "Visual-Studio-settings\giws-all\giws-all.vcxproj", "{88E95224-A931-4B3E-AC6C-5A40B3961421}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-all", "Visual-Studio-settings\test-all\test-all.vcxproj", "{439D04EC-A444-48BE-8E55-8CD2BB66B782}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fdlibm", "modules\elementary_functions\src\c\fdlibm\fdlibm.vcxproj", "{F739925F-311F-4C1E-914C-AF65B64F197D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1598,6 +1600,14 @@ Global
 		{439D04EC-A444-48BE-8E55-8CD2BB66B782}.Debug|x64.ActiveCfg = Debug|x64
 		{439D04EC-A444-48BE-8E55-8CD2BB66B782}.Release|Win32.ActiveCfg = Release|Win32
 		{439D04EC-A444-48BE-8E55-8CD2BB66B782}.Release|x64.ActiveCfg = Release|x64
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Debug|Win32.Build.0 = Debug|Win32
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Debug|x64.ActiveCfg = Debug|x64
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Debug|x64.Build.0 = Debug|x64
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Release|Win32.ActiveCfg = Release|Win32
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Release|Win32.Build.0 = Release|Win32
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Release|x64.ActiveCfg = Release|x64
+		{F739925F-311F-4C1E-914C-AF65B64F197D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
