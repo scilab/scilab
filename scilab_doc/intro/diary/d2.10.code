@@ -1,4 +1,0 @@
- x=1;y=2;z=3;w=4;v=5;
- a=['x' 'y';'z' 'w+v']
- at=trianfml(a)
- evstr(at)
