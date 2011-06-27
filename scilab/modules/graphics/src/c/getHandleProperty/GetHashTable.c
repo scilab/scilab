@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 160
+#define NB_PROPERTIES 165
 
 /**
  * list of all property names and associated functions in scilab
@@ -213,7 +213,12 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
 { "color_range"         , get_color_range_property          },
 { "grid_position"       , get_grid_position_property        },
 { "anti_aliasing"       , get_anti_aliasing_property        },
-{ "UID"                 , get_UID                           }
+{ "UID"                 , get_UID                           },
+{ "scale"               , GetUiobjectScale                  },
+{ "shear"               , GetUiobjectShear                  },
+{ "rownames"            , GetUiobjectRowNames               },
+{ "columnnames"         , GetUiobjectColumnNames            },
+{ "tabledata"           , GetUiobjectTableData              }
 } ;
 
 /*--------------------------------------------------------------------------*/

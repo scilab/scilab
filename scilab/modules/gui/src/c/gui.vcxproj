@@ -234,8 +234,13 @@
   <ItemGroup>
     <ClCompile Include="..\cpp\callJoGLView.cpp" />
     <ClCompile Include="..\cpp\displayUiTree.cpp" />
+    <ClCompile Include="..\cpp\GetUiobjectColumnNames.cpp" />
+    <ClCompile Include="..\cpp\GetUiobjectRowNames.cpp" />
+    <ClCompile Include="..\cpp\GetUiobjectScale.cpp" />
+    <ClCompile Include="..\cpp\GetUiobjectShear.cpp" />
+    <ClCompile Include="..\cpp\GetUiobjectTableData.cpp" />
     <ClCompile Include="..\cpp\ImageRenderer.cpp" />
-    <ClCompile Include="..\cpp\SetUiobjectColnames.cpp" />
+    <ClCompile Include="..\cpp\SetUiobjectColumnNames.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectRotate.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectRownames.cpp" />
     <ClCompile Include="..\cpp\SetUiobjectScale.cpp" />
@@ -388,6 +393,27 @@
     <ClCompile Include="..\cpp\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\CallClipboard.h" />
+    <ClInclude Include="..\..\includes\callJoGLView.h" />
+    <ClInclude Include="..\..\includes\CallJuigetfile.h" />
+    <ClInclude Include="..\..\includes\CallJuigetfile.hxx" />
+    <ClInclude Include="..\..\includes\DestroyUicontrol.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectColumnNames.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectEnable.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectRowNames.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectScale.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectShear.h" />
+    <ClInclude Include="..\..\includes\GetUiobjectTableData.h" />
+    <ClInclude Include="..\..\includes\ImageRenderer.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectColumnNames.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectEnable.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectRotate.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectRowNames.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectScale.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectShear.h" />
+    <ClInclude Include="..\..\includes\SetUiobjectTableData.h" />
+    <ClInclude Include="..\..\includes\UiDisplayTree.h" />
+    <ClInclude Include="..\..\includes\UiTable.h" />
     <ClInclude Include="buildMainWindowTitle.h" />
     <ClInclude Include="..\cpp\CallClipboard.hxx" />
     <ClInclude Include="..\..\includes\CallColorChooser.h" />

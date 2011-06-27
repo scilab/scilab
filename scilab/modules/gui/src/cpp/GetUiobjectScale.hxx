@@ -1,6 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Han DONG
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
@@ -11,19 +10,15 @@
  *
  */
 
-#ifndef __SET_UIOBJECT_ROWNAMES_HXX__
-#define __SET_UIOBJECT_ROWNAMES_HXX__
+#ifndef __GET_UIOBJECT_SCALE_HXX__
+#define __GET_UIOBJECT_SCALE_HXX__
 
-extern "C"
-{
-#include "sci_types.h"
-#include "SetUiobjectRownames.h"
-#include "getPropertyAssignedValue.h"
+extern "C"{
 #include "localization.h"
-#include "SetPropertyStatus.h"
+#include "GetUiobjectScale.h"
 #include "Scierror.h"
 #include "graphicObjectProperties.h"
-#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 }
 
-#endif /* __SET_UIOBJECT_ROWNAMES_HXX__ */
+#endif /* __GET_UIOBJECT_SCALE_HXX__ */

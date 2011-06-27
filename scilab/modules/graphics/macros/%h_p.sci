@@ -893,6 +893,12 @@ function %h_p(h)
             //"Handle_visible = "+sci2exp(h.handle_visible)
             //"Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
+            ""
+            "Scale = "+sci2exp(h.scale, 0)
+            "Shear = "+sci2exp(h.shear, 0)
+            "RowNames = "+sci2exp(h.rownames)
+            "ColumnNames = "+sci2exp(h.columnnames)
+            "TableData = "+fmtuser_data(h.columnnames)
             ]
 
         end

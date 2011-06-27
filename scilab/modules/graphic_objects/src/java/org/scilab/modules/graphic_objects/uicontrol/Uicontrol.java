@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -34,6 +35,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCALE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SHEAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
@@ -41,6 +43,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
@@ -57,7 +60,7 @@ public class Uicontrol extends GraphicObject {
 
 	private UicontrolStyle style;
 	private Double[] backgroundColor = {0.0, 0.0, 0.0};
-	private String[] columnnames = {};
+	private String[] columnnames = {""};
 	private boolean enable = true;
 	private String fontAngle = "normal";
 	private String fontName = "helvetica";
@@ -71,12 +74,12 @@ public class Uicontrol extends GraphicObject {
 	private int min; 
 	private Double[] position = {20.0, 40.0, 40.0, 20.0};
 	private String relief = "raised";
-	private String[] rownames = {};
+	private String[] rownames = {""};
 	private Double[] scale = {1.0, 1.0};
-	private Double[] shear = {1.0, 1.0};
+	private Double[] shear = {0.0, 0.0};
 	private Double[] sliderStep = {0.01, 0.1};
 	private String[] string = {""};
-	private String[] tabledata = {};
+	private String[] tabledata = {""};
 	private String units = "pixels";
 	private Integer[] value; 
 	private String verticalAlignment = "middle";
@@ -88,6 +91,7 @@ public class Uicontrol extends GraphicObject {
 		STYLE,
 		BACKGROUNDCOLOR,
 		COLUMNNAMES,
+		COLUMNNAMES_SIZE,
 		ENABLE,
 		FONTANGLE,
 		FONTNAME,
@@ -108,7 +112,9 @@ public class Uicontrol extends GraphicObject {
 		STRING_SIZE,
 		RELIEF,
 		ROWNAMES,
+		ROWNAMES_SIZE,
 		TABLEDATA,
+		TABLEDATA_SIZE,
 		UNITS,
 		VALUE,
 		VALUE_SIZE,
@@ -188,6 +194,8 @@ public class Uicontrol extends GraphicObject {
 			return UicontrolProperty.BACKGROUNDCOLOR;
 		} else if (propertyName.equals(__GO_UI_COLUMNNAMES__)) {
 			return UicontrolProperty.COLUMNNAMES;
+		} else if (propertyName.equals(__GO_UI_COLUMNNAMES_SIZE__)) {
+			return UicontrolProperty.COLUMNNAMES_SIZE;
 		} else if (propertyName.equals(__GO_UI_ENABLE__)) {
 			return UicontrolProperty.ENABLE;
 		} else if (propertyName.equals(__GO_UI_FONTANGLE__)) {
@@ -218,6 +226,8 @@ public class Uicontrol extends GraphicObject {
 			return UicontrolProperty.RELIEF;
 		} else if (propertyName.equals(__GO_UI_ROWNAMES__)) {
 			return UicontrolProperty.ROWNAMES;
+		} else if (propertyName.equals(__GO_UI_ROWNAMES_SIZE__)) {
+			return UicontrolProperty.ROWNAMES_SIZE;
 		} else if (propertyName.equals(__GO_UI_SCALE__)) {
 			return UicontrolProperty.SCALE;
 		} else if (propertyName.equals(__GO_UI_SHEAR__)) {
@@ -230,6 +240,8 @@ public class Uicontrol extends GraphicObject {
 			return UicontrolProperty.STRING_SIZE;
 		} else if (propertyName.equals(__GO_UI_TABLEDATA__)) {
 			return UicontrolProperty.TABLEDATA;
+		} else if (propertyName.equals(__GO_UI_TABLEDATA_SIZE__)) {
+			return UicontrolProperty.TABLEDATA_SIZE;
 		} else if (propertyName.equals(__GO_UI_UNITS__)) {
 			return UicontrolProperty.UNITS;
 		} else if (propertyName.equals(__GO_UI_VALUE__)) {
@@ -255,6 +267,8 @@ public class Uicontrol extends GraphicObject {
 			return getBackgroundColor();
 		} else if (property == UicontrolProperty.COLUMNNAMES) {
 			return getColumnNames();
+		} else if (property == UicontrolProperty.COLUMNNAMES_SIZE) {
+			return getColumnNames().length;
 		} else if (property == UicontrolProperty.ENABLE) {
 			return getEnable();
 		} else if (property == UicontrolProperty.FONTANGLE) {
@@ -285,6 +299,8 @@ public class Uicontrol extends GraphicObject {
 			return getRelief();
 		} else if (property == UicontrolProperty.ROWNAMES) {
 			return getRowNames();
+		} else if (property == UicontrolProperty.ROWNAMES_SIZE) {
+			return getRowNames().length;
 		} else if (property == UicontrolProperty.SCALE) {
 			return getScale();
 		} else if (property == UicontrolProperty.SHEAR) {
@@ -297,6 +313,8 @@ public class Uicontrol extends GraphicObject {
 			return getString().length;
 		} else if (property == UicontrolProperty.TABLEDATA) {
 			return getTableData();
+		} else if (property == UicontrolProperty.TABLEDATA_SIZE) {
+			return getTableData().length;
 		} else if (property == UicontrolProperty.UNITS) {
 			return getUnits();
 		} else if (property == UicontrolProperty.VALUE) {

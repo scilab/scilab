@@ -18,7 +18,6 @@ function [f]=scf(h)
 	h = max(num)+1
      end
   end
-  disp("[DEBUG] set(''current_figure'')");
   set("current_figure",h);
   f=get("current_figure");
 endfunction

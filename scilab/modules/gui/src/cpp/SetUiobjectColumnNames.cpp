@@ -12,7 +12,7 @@
  *
  */
 
-#include "SetUiobjectColnames.hxx"
+#include "SetUiobjectColumnNames.hxx"
 
 int SetUiobjectColnames(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {

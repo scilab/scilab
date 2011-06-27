@@ -12,7 +12,7 @@
  *
  */
 
-#include "SetUiobjectTabledata.hxx"
+#include "SetUiobjectTableData.hxx"
 
 int SetUiobjectTabledata(char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {

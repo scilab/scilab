@@ -17,7 +17,7 @@
 extern "C"
 {
 #include "sci_types.h"
-#include "SetUiobjectTabledata.h"
+#include "SetUiobjectTableData.h"
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"

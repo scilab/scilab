@@ -43,7 +43,12 @@
 #include "GetUicontrolHorizontalAlignment.h"
 #include "GetUicontrolVerticalAlignment.h"
 #include "GetUicontrolFontName.h"
+#include "GetUiobjectColumnNames.h"
+#include "GetUiobjectRowNames.h"
 #include "GetUicontrolSliderStep.h"
+#include "GetUiobjectScale.h"
+#include "GetUiobjectShear.h"
+#include "GetUiobjectTableData.h"
 #include "GetUimenuChecked.h"
 
 int get_figures_id_property(           char *pobjUID) ;
