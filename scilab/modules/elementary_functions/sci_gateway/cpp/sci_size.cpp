@@ -41,7 +41,6 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         // Dedicated case for lists.
     case InternalType::RealList:
     case InternalType::RealMList:
-    case InternalType::RealStruct:
     case InternalType::RealTList:
         {
             if(in.size() > 1)
