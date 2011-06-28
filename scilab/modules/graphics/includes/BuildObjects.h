@@ -83,7 +83,7 @@ GRAPHICS_IMPEXP char *ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typ
 				      int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
 
-GRAPHICS_IMPEXP sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy,
+GRAPHICS_IMPEXP char *ConstructGrayplot (char * pparentsubwinUID,double *vx,double *vy,
                                    double *vz,int nx,int ny, int type); /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,

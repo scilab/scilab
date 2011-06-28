@@ -38,13 +38,15 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
 
 int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
 {
+    char* psubwinUID = NULL;
+    char* pgrayplotUID = NULL;
     double xx[2],yy[2];
     int nn1=1,nn2=2;
-    sciPointObj  *psubwin = NULL;
-    sciPointObj* pgrayplot = NULL;
     double drect[6];
     BOOL bounds_changed = FALSE;
     BOOL isRedrawn;
@@ -65,7 +67,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
 
     /* Adding F.Leray 22.04.04 */
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     isRedrawn = checkRedrawing();
 
@@ -92,19 +94,19 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
     /* Force psubwin->axes.aaint to those given by argument aaint*/
     /*****TO CHANGE F.Leray 10.09.04  for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
     /* Force "cligrf" clipping (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
     firstPlot = iTmp;
 
-    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
     autoScale = iTmp;
 
     if (autoScale)
@@ -120,11 +122,11 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             break;
           case '2' : case '4' : case '6' : case '8': case '9':
 
-              getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
               logFlags[0] = iTmp;
-              getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
               logFlags[1] = iTmp;
-              getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+              getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
               logFlags[2] = iTmp;
 
             /* Conversion required by compute_data_bounds2 */
@@ -141,7 +143,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         if (!firstPlot &&(strflag[1] == '7' || strflag[1] == '8'))
         {
             double* dataBounds;
-            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
             drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
@@ -151,7 +153,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwin, drect,2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect,2);
         }
     }
 
@@ -160,17 +162,17 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
         bounds_changed = TRUE;
     }
 
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
 
     firstPlot = 0;
-    setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
     u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
 
     /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
     autoSubticks = !flagNax;
-    setGraphicObjectProperty(psubwin->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
     if (flagNax == TRUE)
     {
@@ -179,8 +181,8 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             int autoTicks;
 
             autoTicks = 0;
-            setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
             /*
              * Creates user-defined ticks using the Nax values
@@ -210,17 +212,17 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     }
 
     /* Constructs the object */
-    pgrayplot = ConstructGrayplot((sciPointObj *) sciGetCurrentSubWin(), x,y,z,*n1,*n2,0);
+    pgrayplotUID = ConstructGrayplot(getCurrentSubWin(), x,y,z,*n1,*n2,0);
 
     /* Failed allocation */
-    if (pgrayplot == NULL)
+    if (pgrayplotUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "grayplot");
         return -1;
     }
 
     /* Sets the grayplot as current */
-    sciSetCurrentObj(pgrayplot);
+    setCurrentObject(pgrayplotUID);
 
     /*
      * Deactivated as it performs redrawing.
@@ -248,10 +250,10 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 
 int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1)
 {
+    char* psubwinUID = NULL;
+    char* pGrayplotUID = NULL;
     double xx[2],yy[2];
     static int nn1=1,nn2=2;
-    sciPointObj * psubwin = NULL;
-    sciPointObj * pGrayplot = NULL;
     double drect[6];
     BOOL bounds_changed = FALSE;
     BOOL axes_properties_changed = FALSE;
@@ -273,7 +275,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     yy[1] = *n1+0.5;
 
     /* Adding F.Leray 22.04.04 */
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
@@ -296,18 +298,18 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
     /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++)     pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
     /* Force "cligrf" clipping (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piTmp);
     firstPlot = iTmp;
 
-    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piTmp);
     autoScale = iTmp;
 
     /*---- Boundaries of the frame ----*/
@@ -323,11 +325,11 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
             re_index_brect(brect, drect);
             break;
         case '2' : case '4' : case '6' : case '8': case '9':
-            getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
             logFlags[0] = iTmp;
-            getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
             logFlags[1] = iTmp;
-            getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+            getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
             logFlags[2] = iTmp;
 
             /* Conversion required by compute_data_bounds2 */
@@ -344,7 +346,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
           (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
         {
             double* dataBounds;
-            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
             drect[0] = Min(dataBounds[0], drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2], drect[2]); /*ymin*/
@@ -354,7 +356,7 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwin, drect, 2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect, 2);
         }
     }
 
@@ -363,17 +365,17 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
         bounds_changed = TRUE;
     }
 
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
 
     firstPlot = 0;
-    setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
     u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
 
     /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
     autoSubticks = !flagNax;
-    setGraphicObjectProperty(psubwin->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
 
 
@@ -384,8 +386,8 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
             int autoTicks;
 
             autoTicks = 0;
-            setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-            setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+            setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
             /*
              * Creates user-defined ticks using the Nax values
@@ -416,16 +418,16 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
     }
 
     /* Construct the grayplot object */
-    pGrayplot = ConstructGrayplot(psubwin,NULL,NULL,z,*n1 + 1,*n2 + 1,1);
+    pGrayplotUID = ConstructGrayplot(psubwinUID,NULL,NULL,z,*n1 + 1,*n2 + 1,1);
 
-    if (pGrayplot == NULL)
+    if (pGrayplotUID == NULL)
     {
         // allocation error
         Scierror(999, _("%s: No more memory.\n"), "grayplot");
         return -1;
     }
 
-    sciSetCurrentObj(pGrayplot);
+    setCurrentObject(pGrayplotUID);
     /* if the auto_clear is on we must redraw everything */
 
     /*
@@ -448,38 +450,38 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 
 int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect)
 {
+    char * psubwinUID = NULL;
+    char * pGrayplotUID = NULL;
     BOOL isRedrawn;
     double y; /* void for ConstructGrayplot */
-    sciPointObj *psubwin = NULL;
-    sciPointObj * pGrayplot = NULL;
     int clipState;
 
     isRedrawn = checkRedrawing();
 
     /*---- Boundaries of the frame ----*/
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     /* Force "cligrf" clipping (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* Deactivated as it performs redrawing */
 #if 0
     sciDrawObj(psubwin);
 #endif
 
-    pGrayplot = ConstructGrayplot
-        ((sciPointObj *) psubwin,
+    pGrayplotUID = ConstructGrayplot
+        ((char *) psubwinUID,
          xrect,&y,z,*n1+1,*n2+1,2);
 
-    if (pGrayplot == NULL)
+    if (pGrayplotUID == NULL)
     {
         // allocation error
         Scierror(999, _("%s: No more memory.\n"), "grayplot");
         return -1;
     }
 
-    sciSetCurrentObj(pGrayplot);
+    setCurrentObject(pGrayplotUID);
 
     /* if the auto_clear is on we must redraw everything */
     /*

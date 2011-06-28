@@ -23,9 +23,15 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
+
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )
 {
+  char* pfigureUID = NULL;
+  char* psubwinUID = NULL;
   int frame_def=8;
   int *frame=&frame_def;
   int axes_def=1;
@@ -81,7 +87,14 @@ int sci_grayplot( char *fname, unsigned long fname_len )
   GetRect(fname,5,opts,&rect);
   GetNax(6,opts,&nax,&flagNax);
 
-   SciWin();
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* No default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
 
   if ( isDefStrf( strf ) )
   {
