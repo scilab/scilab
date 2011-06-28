@@ -2558,36 +2558,18 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
  * do only a association with a parent and a handle reservation !
  * check for valid handle can be done using CheckForCompound
  */
-sciPointObj *
+char *
 ConstructCompound (long *handelsvalue, int number) /* Conflicting types with definition */
 {
-  sciPointObj* compound;
-  sciPointObj* firstMovedObject;
-  /* Now useless */
-#if 0
-  sciAgreg    * ppCompound;
-#endif
+  char* compoundUID;
+  char* parentAxesUID;
+  char* firstMovedObjectUID;
+
   int i;
   int parentVisible = 0;
   int *piParentVisible = &parentVisible;
-  char* parentAxes;
 
-  if ((compound = MALLOC ((sizeof (sciPointObj)))) == NULL)
-  {
-    return (sciPointObj *) NULL;
-  }
-
-  compound->UID = createGraphicObject(__GO_COMPOUND__);
-
-  /* To be deleted */
-#if 0
-  if ( sciStandardBuildOperations( compound, sciGetParent(sciGetPointerFromHandle( (long) handelsvalue[0])) ) == NULL )
-  {
-    FREE( compound->pfeatures ) ;
-    FREE( compound) ;
-    return NULL ;
-  }
-#endif
+  compoundUID = createGraphicObject(__GO_COMPOUND__);
 
   /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
 //  if (sciAddNewHandle(compound) == -1)
@@ -2598,19 +2580,19 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
 //  }
 
   /* The Compound's parent Axes is considered to be the Compound's first child's own parent */
-  firstMovedObject = sciGetPointerFromHandle( (long) handelsvalue[0]);
-  getGraphicObjectProperty(firstMovedObject->UID, __GO_PARENT__, jni_string, &parentAxes);
+  firstMovedObjectUID = getObjectFromHandle( (long) handelsvalue[0]);
+  getGraphicObjectProperty(firstMovedObjectUID, __GO_PARENT__, jni_string, &parentAxesUID);
 
   /* Set the parent-child relationship between the Compound and each aggregated object */
   for ( i = 0 ; i < number ; i++ )
   {
-    sciPointObj* movedObject = sciGetPointerFromHandle( (long) handelsvalue[i]);
+    char* movedObjectUID = getObjectFromHandle( (long) handelsvalue[i]);
 
-    setGraphicObjectRelationship(compound->UID, movedObject->UID);
+    setGraphicObjectRelationship(compoundUID, movedObjectUID);
   }
 
   /* Sets the parent-child relationship for the Compound */
-  setGraphicObjectRelationship(parentAxes, compound->UID);
+  setGraphicObjectRelationship(parentAxesUID, compoundUID);
 
   /* Deactivated */
 #if 0
@@ -2626,8 +2608,8 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   ppCompound->visible = sciGetVisibility(sciGetParentSubwin(compound));
 #endif
 
-  getGraphicObjectProperty(parentAxes, __GO_VISIBLE__, jni_bool, &piParentVisible);
-  setGraphicObjectProperty(compound->UID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
+  getGraphicObjectProperty(parentAxesUID, __GO_VISIBLE__, jni_bool, &piParentVisible);
+  setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
 
  /*
   * Not implemented within the MVC yet
@@ -2637,7 +2619,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   ppCompound->isselected = TRUE;
 #endif
 
-  return (sciPointObj *) compound;
+  return (char *) compoundUID;
 }
 
 /**sciConstructCompoundSeq

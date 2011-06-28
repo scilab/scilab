@@ -98,7 +98,7 @@ GRAPHICS_IMPEXP sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int typ
                int Nbr2, int Nbr3, double *vfx, double *vfy, int flag,
               int *style, double arsize,  int colored, int typeofchamp);  /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
+GRAPHICS_IMPEXP char *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 GRAPHICS_IMPEXP sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
 GRAPHICS_IMPEXP sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
