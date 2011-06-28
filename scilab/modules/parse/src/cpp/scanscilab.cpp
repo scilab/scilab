@@ -1261,16 +1261,20 @@ static std::string program_name;
 
 static std::string *pstBuffer;
 
- static bool rejected = false;
+static bool rejected = false;
 
 #define YY_USER_ACTION                          \
  yylloc.last_column += yyleng;
+
 /* -*- Verbose Special Debug -*- */
 //#define DEV
 //#define TOKENDEV
 
-//#define DEBUG(x) std::cout << "[DEBUG] " << x << std::endl;
+#ifdef DEV
+#define DEBUG(x) std::cout << "[DEBUG] " << x << std::endl;
+#else
 #define DEBUG(x) /* Nothing */
+#endif
 
 #define INITIAL 0
 #define SIMPLESTRING 1
@@ -1822,7 +1826,6 @@ YY_RULE_SETUP
             str += "' to UTF-8";
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
-            yyterminate();
         }
         yylval.str = new std::wstring(pwText);
         if (symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str)) != NULL
@@ -2167,7 +2170,6 @@ YY_RULE_SETUP
         str += "' to UTF-8";
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
-        yyterminate();
     }
     yylval.str = new std::wstring(pwText);
 #ifdef TOKENDEV
@@ -2282,7 +2284,6 @@ YY_RULE_SETUP
     str += "'";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yyterminate();
 }
 	YY_BREAK
 
@@ -2439,7 +2440,6 @@ YY_RULE_SETUP
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yyterminate();
   }
 	YY_BREAK
 case 94:
@@ -2541,7 +2541,6 @@ YY_RULE_SETUP
         str += "' to UTF-8";
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
-        yyterminate();
     }
     yylval.str = new std::wstring(pwText);
 #ifdef TOKENDEV
@@ -2565,7 +2564,6 @@ YY_RULE_SETUP
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yyterminate();
   }
 	YY_BREAK
 
@@ -2614,8 +2612,6 @@ YY_RULE_SETUP
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 
@@ -2647,7 +2643,6 @@ YY_RULE_SETUP
             str += "' to UTF-8";
             exit_status = SCAN_ERROR;
             scan_error("can not convert string to UTF-8");
-            yyterminate();
         }
         yylval.comment = new std::wstring(pwstBuffer);
         delete pstBuffer;
@@ -2667,7 +2662,6 @@ case YY_STATE_EOF(LINECOMMENT):
         str += "' to UTF-8";
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
-        yyterminate();
     }
     yylval.comment = new std::wstring(pwstBuffer);
     delete pstBuffer;
@@ -2723,8 +2717,6 @@ case YY_STATE_EOF(REGIONCOMMENT):
     std::string str = "unexpected end of file in a comment";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 
@@ -2765,7 +2757,6 @@ YY_RULE_SETUP
         str += "' to UTF-8";
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
-        yyterminate();
     }
     yylval.str = new std::wstring(pwstBuffer);
     delete pstBuffer;
@@ -2779,8 +2770,6 @@ YY_RULE_SETUP
     std::string str = "Heterogeneous string detected, starting with ' and ending with \".";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 case 122:
@@ -2799,8 +2788,6 @@ YY_RULE_SETUP
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 case YY_STATE_EOF(SIMPLESTRING):
@@ -2808,8 +2795,6 @@ case YY_STATE_EOF(SIMPLESTRING):
     std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 case 124:
@@ -2857,7 +2842,6 @@ YY_RULE_SETUP
         str += "' to UTF-8";
         exit_status = SCAN_ERROR;
         scan_error("can not convert string to UTF-8");
-        yyterminate();
     }
     yylval.str = new std::wstring(pwstBuffer);
     delete pstBuffer;
@@ -2871,8 +2855,6 @@ YY_RULE_SETUP
     std::string str = "Heterogeneous string detected, starting with \" and ending with '.";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 case 131:
@@ -2891,7 +2873,6 @@ YY_RULE_SETUP
     scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
-    yyterminate();
   }
 	YY_BREAK
 case YY_STATE_EOF(DOUBLESTRING):
@@ -2899,15 +2880,13 @@ case YY_STATE_EOF(DOUBLESTRING):
     std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
-    yy_pop_state();
-    yyterminate();
   }
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
 {
-    scan_step();
-    *pstBuffer += yytext;
+   scan_step();
+   *pstBuffer += yytext;
   }
 	YY_BREAK
 
@@ -3999,12 +3978,15 @@ void scan_step() {
 
 void scan_error(std::string msg)
 {
-  wchar_t* pstMsg = to_wide_string(msg.c_str());
+    wchar_t* pstMsg = to_wide_string(msg.c_str());
 
-  //std::wcerr << pstMsg << std::endl;
-  ParserSingleInstance::PrintError(pstMsg);
-  ParserSingleInstance::setExitStatus(Parser::Failed);
-  FREE(pstMsg);
+    //std::wcerr << pstMsg << std::endl;
+    ParserSingleInstance::PrintError(pstMsg);
+    ParserSingleInstance::setExitStatus(Parser::Failed);
+    ParserSingleInstance::resetControlStatus();
+    FREE(pstMsg);
+    last_token = YYEOF;
+    BEGIN(INITIAL);
 }
 
 /*
