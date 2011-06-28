@@ -269,6 +269,8 @@ Bug fixes:
 
 * bug 9045 fixed - plot2d did not support overloading.
 
+* bug 9098 fixed - demo CACSD --> Robust control failed on Windows 64 bit.
+
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
 
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
