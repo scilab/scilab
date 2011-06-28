@@ -89,11 +89,11 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void draw(DrawingTools drawingTools) {
-        long start = System.currentTimeMillis();
+        //long start = System.currentTimeMillis();
         this.drawingTools = drawingTools;
         figure.accept(this);
-        long end = System.currentTimeMillis();
-        long delta = end - start;
+        //long end = System.currentTimeMillis();
+        //long delta = end - start;
         //System.out.println(delta + "ms | " + 1000.0 / delta + " FPS");
     }
 
@@ -413,9 +413,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public IndicesBuffer getIndices() {
-                    IndicesBuffer indices = dataManager.getWireIndexBuffer(polyline.getIdentifier());
-                    System.out.println("indices size : " + indices.getSize());
-                    return indices;
+                    return dataManager.getWireIndexBuffer(polyline.getIdentifier());
                 }
 
                 @Override
