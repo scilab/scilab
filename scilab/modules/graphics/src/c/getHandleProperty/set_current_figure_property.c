@@ -71,6 +71,9 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
             Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
             return SET_PROPERTY_ERROR ;
         }
+        setCurrentFigure(curFigUID);
+
+        return 0;
 // FIXME
 #if 0
         if ( sciGetEntityType( curFig ) != SCI_FIGURE )
