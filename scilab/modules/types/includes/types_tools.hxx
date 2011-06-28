@@ -13,11 +13,12 @@
 #ifndef __TYPES_TOOLS_HXX__
 #define __TYPES_TOOLS_HXX__
 
+#include "dynlib_types.h"
 #include "types.hxx"
 
 namespace types
 {
-    int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
+    TYPES_IMPEXP int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
 }
 
 #endif /* !__TYPES_TOOLS_HXX__ */
