@@ -5,7 +5,7 @@
  * Copyright (C) 2002 - INRIA - Serge Steer
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,6 +36,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
 
 /*-------------------------------------------
  * setscale2d
@@ -132,23 +133,25 @@ int setscale2d(double WRect[4],
 /* used to send values to Scilab */
 int getscale2d( double WRect[4], double FRect[4], char logscale[2], double ARect[4] )
 {
+  char* curSubwinUID = NULL;
   int i;
   int iTmp = 0;
   int *piTmp = &iTmp;
   double* axesBounds;
   double* margins;
   double* realDataBounds;
-  sciPointObj * curSubwin = sciGetCurrentSubWin();
 
-  getGraphicObjectProperty(curSubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+  curSubwinUID = getCurrentSubWin();
+
+  getGraphicObjectProperty(curSubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
   logscale[0] = getTextLogFlag(iTmp);
 
-  getGraphicObjectProperty(curSubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+  getGraphicObjectProperty(curSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
   logscale[1] = getTextLogFlag(iTmp);
 
-  getGraphicObjectProperty(curSubwin->UID, __GO_AXES_BOUNDS__, jni_double_vector, &axesBounds);
-  getGraphicObjectProperty(curSubwin->UID, __GO_MARGINS__, jni_double_vector, &margins);
-  getGraphicObjectProperty(curSubwin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+  getGraphicObjectProperty(curSubwinUID, __GO_AXES_BOUNDS__, jni_double_vector, &axesBounds);
+  getGraphicObjectProperty(curSubwinUID, __GO_MARGINS__, jni_double_vector, &margins);
+  getGraphicObjectProperty(curSubwinUID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
 
   for ( i=0; i < 4 ; i++)
   {
