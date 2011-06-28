@@ -90,7 +90,7 @@ GRAPHICS_IMPEXP sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char di
                                    int nx, double *vy, int ny, char *str[], int subint, char *format,
                                    int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);  /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud,
+GRAPHICS_IMPEXP char *ConstructFec (char * pparentsubwinUID, double *pvecx, double *pvecy, double *pnoeud,
 				  double *pfun, int Nnode, int Ntr, double *zminmax,
 				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 

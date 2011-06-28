@@ -37,6 +37,8 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
 
 /**
  * Before Scilab 5.1, default colout was [-1, -1].
@@ -81,12 +83,13 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
   /* Fec code */
 
+  char * pptabofpointobjUID;
+  char * psubwinUID;
+  char * pFecUID;
+  char * parentCompoundUID;
+
   long hdltab[2];
   int cmpt=0;
-  sciPointObj * pptabofpointobj;
-  sciPointObj * psubwin;
-  sciPointObj * pFec;
-  sciPointObj * parentCompound;
   double drect[6];
 
   BOOL bounds_changed = FALSE;
@@ -104,7 +107,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   int *piTmp = &iTmp;
   double rotationAngles[2];
 
-  psubwin = sciGetCurrentSubWin();
+  psubwinUID = getCurrentSubWin();
 
   checkRedrawing();
 
@@ -131,21 +134,21 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   rotationAngles[0] = 0.0;
   rotationAngles[1] = 270.0;
 
-  setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+  setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
   /* Force psubwin->axes.aaint to those given by argument aaint*/
   /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
   /* Force "cligrf" clipping (1) */
   clipState = 1;
-  setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+  setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
   /* Force  axes_visible property */
   /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-  getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+  getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
-  getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+  getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
   if (autoScale)
   {
@@ -160,11 +163,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
         break;
       case '2' : case '4' : case '6' : case '8':case '9':
 
-        getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
         logFlags[0] = iTmp;
-        getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
         logFlags[1] = iTmp;
-        getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+        getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
         logFlags[2] = iTmp;
 
         /* Conversion required by compute_data_bounds2 */
@@ -181,7 +184,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
       (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9'))
     {
         double* dataBounds;
-        getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+        getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
         drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
         drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
@@ -191,7 +194,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 
     if (strflag[1] != '0')
     {
-        bounds_changed = update_specification_bounds(psubwin, drect,2);
+        bounds_changed = update_specification_bounds(psubwinUID, drect,2);
     }
   }
 
@@ -200,11 +203,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
       bounds_changed = TRUE;
   }
 
-  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+  axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
 
   /* just after strflag2axes_properties */
   firstPlot = 0;
-  setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+  setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
   /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and
   u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -212,13 +215,13 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   /* The MVC AUTO_SUBTICKS property corresponds to !flagNax */
   /* store new value for flagNax */
   autoSubticks = !flagNax;
-  setGraphicObjectProperty(psubwin->UID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
+  setGraphicObjectProperty(psubwinUID, __GO_AUTO_SUBTICKS__, &autoSubticks, jni_bool, 1);
 
   if (flagNax == TRUE)
   {
-    getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
     logFlags[0] = iTmp;
-    getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+    getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
     logFlags[1] = iTmp;
 
     if (logFlags[0] == 0 && logFlags[1] == 0)
@@ -226,8 +229,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
       int autoTicks;
 
       autoTicks = 0;
-      setGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
-      setGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+      setGraphicObjectProperty(psubwinUID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+      setGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
 
       /*
        * Creates user-defined ticks using the Nax values
@@ -261,28 +264,27 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
 	/* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
 	/* [-1,-1] */
 	coloutPatch(colout);
-  pFec = ConstructFec(psubwin,x,y,triangles,func,
+  pFecUID = ConstructFec(psubwinUID,x,y,triangles,func,
                       *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh);
 
-  if (pFec == NULL)
+  if (pFecUID == NULL)
   {
     // error in allocation
     Scierror(999, _("%s: No more memory.\n"), "fec");
     return -1;
   }
 
-#if 0
   /* Set fec as current */
-  sciSetCurrentObj(pFec);
+  setCurrentObject(pFecUID);
 
   /* retrieve the created object : fec */
-  pptabofpointobj = pFec;
-  hdltab[cmpt] = sciGetHandle(pptabofpointobj);
+  pptabofpointobjUID = pFecUID;
+  hdltab[cmpt] = getHandle(pptabofpointobjUID);
   cmpt++;
 
-  parentCompound = ConstructCompound (hdltab, cmpt);
-  sciSetCurrentObj(parentCompound);  /** construct Compound **/
-#endif
+  parentCompoundUID = ConstructCompound (hdltab, cmpt);
+  setCurrentObject(parentCompoundUID);  /** construct Compound **/
+
   /*
    * Deactivated since it involves drawing via the renderer module
    * To be implemented
