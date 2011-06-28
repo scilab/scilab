@@ -346,11 +346,21 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		 */
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-			BasicBlock source = (BasicBlock) evt.getSource();
+			final BasicBlock source = (BasicBlock) evt.getSource();
 			
-			StyleMap style = new StyleMap(source.getStyle());
+			/*
+			 * Put the interfunction at the start of the style map to preserve
+			 * style modification.
+			 * 
+			 * oldStyle="SUPER_f;fillColor=red"
+			 * newStyle="DSUPER;fillColor=red"
+			 * 
+			 * and not newStyle="fillColor=red;DSUPER"
+			 */
+			final StyleMap style = new StyleMap((String) evt.getNewValue());
+			style.putAll(source.getStyle());
 			style.remove(evt.getOldValue());
-			style.put((String) evt.getNewValue(), null);
+			
 			source.setStyle(style.toString());
 		}
 		
