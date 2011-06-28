@@ -19,8 +19,10 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -88,38 +90,40 @@ public class ScilabXMLUtilities {
      * @param fileName the file name
      */
     public static void writeDocument(Document doc, String fileName) {
-        if (transformer == null) {
-            initTransformer();
-        }
+        if (doc != null && fileName != null) {
+            if (transformer == null) {
+                initTransformer();
+            }
 
-        if (transformer != null) {
-            removeEmptyLines(doc.getDocumentElement());
+            if (transformer != null) {
+                removeEmptyLines(doc.getDocumentElement());
 
-            FileOutputStream fos = null;
-            OutputStreamWriter osw = null;
+                FileOutputStream fos = null;
+                OutputStreamWriter osw = null;
 
-            try {
-                /* FileOutputStream & OutputStreamWriter are needed to be sure that
-                   the indentation will be correct (known Java bug) */
+                try {
+                    /* FileOutputStream & OutputStreamWriter are needed to be sure that
+                       the indentation will be correct (known Java bug) */
 
-                fos = new FileOutputStream(fileName, false);
-                osw = new OutputStreamWriter(fos, ENCODING);
-                transformer.transform(new DOMSource(doc), new StreamResult(osw));
-            } catch (FileNotFoundException e) {
-                System.err.println(ERROR_WRITE + fileName);
-                System.err.println(e);
-            } catch (UnsupportedEncodingException e) {
-                System.err.println(ERROR_WRITE + fileName);
-                System.err.println(e);
-            } catch (TransformerException e) {
-                System.err.println(ERROR_WRITE + fileName);
-                System.err.println(e);
-            } finally {
-                if (osw != null) {
-                    try {
-                        osw.close();
-                    } catch (IOException ex) {
-                        System.err.println(ex);
+                    fos = new FileOutputStream(fileName, false);
+                    osw = new OutputStreamWriter(fos, ENCODING);
+                    transformer.transform(new DOMSource(doc), new StreamResult(osw));
+                } catch (FileNotFoundException e) {
+                    System.err.println(ERROR_WRITE + fileName);
+                    System.err.println(e);
+                } catch (UnsupportedEncodingException e) {
+                    System.err.println(ERROR_WRITE + fileName);
+                    System.err.println(e);
+                } catch (TransformerException e) {
+                    System.err.println(ERROR_WRITE + fileName);
+                    System.err.println(e);
+                } finally {
+                    if (osw != null) {
+                        try {
+                            osw.close();
+                        } catch (IOException ex) {
+                            System.err.println(ex);
+                        }
                     }
                 }
             }
@@ -131,27 +135,122 @@ public class ScilabXMLUtilities {
      * @param node the initial node
      */
     public static void removeEmptyLines(Node node) {
-        if (node != null) {
-            if (node.getNodeType() == Node.TEXT_NODE) {
-                node.getParentNode().removeChild(node);
-            } else {
-                NodeList list = node.getChildNodes();
-                int length = 0;
-                try {
-                    length = list.getLength();
-                } catch (NullPointerException e) {
-                    /* Avoid Java bug */
-                }
+        Set<Node> nodesToRemove = new HashSet<Node>();
+        collectEmptyLines(node, nodesToRemove);
+        for (Node n : nodesToRemove) {
+            n.getParentNode().removeChild(n);
+        }
+    }
 
-                for (int i = 0; i < length; i++) {
-                    removeEmptyLines(list.item(i));
+    /**
+     * Collect the empty lines to remove
+     * @param node the parent node
+     * @param nodesToRemove the set containing the nodes to remove
+     */
+    private static void collectEmptyLines(Node node, Set<Node> nodesToRemove) {
+        if (node != null) {
+            NodeList list = node.getChildNodes();
+            int length = getNodeListLength(list);
+            for (int i = 0; i < length; i++) {
+                Node n = list.item(i);
+                if (n != null) {
+                    if (n.getNodeType() == Node.TEXT_NODE) {
+                        nodesToRemove.add(n);
+                    } else {
+                        collectEmptyLines(n, nodesToRemove);
+                    }
                 }
             }
         }
     }
 
     /**
+     * Replace or create a named node with parent element
+     * @param doc the document
+     * @param parent the parent element
+     * @param nodeName the node name
+     * @param attr an array containing attribute name followed by its value: "attr1", 1, "attr2", true, ...
+     * @return the created element
+     */
+    public static Element replaceNamedNode(Document doc, Element parent, String nodeName, Object[] attr) {
+        NodeList children = parent.getElementsByTagName(nodeName);
+        Element elem;
+        if (getNodeListLength(children) > 0) {
+            elem = (Element) children.item(0);
+        } else {
+            elem = doc.createElement(nodeName);
+            parent.appendChild(elem);
+        }
+
+        for (int i = 0; i < attr.length; i += 2) {
+            elem.setAttribute(attr[i].toString(), attr[i + 1].toString());
+        }
+
+        return elem;
+    }
+
+    /**
+     * Replace or create a named node with parent element
+     * @param doc the document
+     * @param parent the name of the parent element
+     * @param nodeName the node name
+     * @param attr an array containing attribute name followed by its value: "attr1", 1, "attr2", true, ...
+     * @return the created element
+     */
+    public static Element replaceNamedNode(Document doc, String parent, String nodeName, Object[] attr) {
+        NodeList parents = doc.getDocumentElement().getElementsByTagName(parent);
+        if (getNodeListLength(parents) > 0) {
+            return replaceNamedNode(doc, (Element) parents.item(0), nodeName, attr);
+        }
+
+        return null;
+    }
+
+    /**
+     * Replace or create a named node with parent element
+     * @param doc the document
+     * @param parent the parent element
+     * @param nodeName the node name
+     * @param map a map containing {attributes -&gt; value}, the method value.toString() will be used.
+     * @return the created element
+     */
+    public static Element replaceNamedNode(Document doc, Element parent, String nodeName, Map<String, Object> map) {
+        NodeList children = parent.getElementsByTagName(nodeName);
+        Element elem;
+        if (getNodeListLength(children) > 0) {
+            elem = (Element) children.item(0);
+        } else {
+            elem = doc.createElement(nodeName);
+            parent.appendChild(elem);
+        }
+
+        for (String name : map.keySet()) {
+            elem.setAttribute(name, map.get(name).toString());
+        }
+
+        return elem;
+    }
+
+    /**
+     * Replace or create a named node with parent element
+     * @param doc the document
+     * @param parent the name of the parent element
+     * @param nodeName the node name
+     * @param map a map containing {attributes -&gt; value}, the method value.toString() will be used.
+     * @return the created element
+     */
+    public static Element replaceNamedNode(Document doc, String parent, String nodeName, Map<String, Object> map) {
+        NodeList parents = doc.getDocumentElement().getElementsByTagName(parent);
+        if (getNodeListLength(parents) > 0) {
+            return replaceNamedNode(doc, (Element) parents.item(0), nodeName, map);
+        }
+
+        return null;
+    }
+
+    /**
      * Create a new node with parent element
+     * @param doc the document
      * @param parent the parent element
      * @param nodeName the node name
      * @param attr an array containing attribute name followed by its value: "attr1", 1, "attr2", true, ...
@@ -169,9 +268,10 @@ public class ScilabXMLUtilities {
 
     /**
      * Create a new node with parent element
+     * @param doc the document
      * @param parent the parent element
      * @param nodeName the node name
-     * @param map a map containing {attributes -> value}, the method value.toString() will be used.
+     * @param map a map containing {attributes -&gt; value}, the method value.toString() will be used.
      * @return the created element
      */
     public static Element createNode(Document doc, Element parent, String nodeName, Map<String, Object> map) {
@@ -186,7 +286,7 @@ public class ScilabXMLUtilities {
 
     /**
      * Read the attributes of elem.
-     * Map must be like this: "attr1" -> integer.class, "attr2" -> boolean.class, ...
+     * Map must be like this: "attr1" -&gt; integer.class, "attr2" -&gt; boolean.class, ...
      * Map will be filled with the value (as Object) of the different attributes
      * @param elem the element to analyze
      * @param map the map containing the attributes type.
@@ -220,6 +320,50 @@ public class ScilabXMLUtilities {
                 }
             }
         }
+    }
+
+    /**
+     * Read the attributes of first element named nodeName in the document.
+     * Map must be like this: "attr1" -&gt; integer.class, "attr2" -&gt; boolean.class, ...
+     * Map will be filled with the value (as Object) of the different attributes
+     * @param doc the document
+     * @param nodeName the node name
+     * @param map the map containing the attributes type.
+     * @return the corresponding element or null if it doesn't exist
+     */
+    public static Element readNodeAttributes(Document doc, String nodeName, Map<String, Object> map) {
+        NodeList list = doc.getDocumentElement().getElementsByTagName(nodeName);
+        if (getNodeListLength(list) > 0) {
+            Node n = list.item(0);
+            if (n instanceof Element) {
+                readNodeAttributes((Element) n, map);
+                return (Element) n;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Read the attributes of first element named nodeName in the document.
+     * Map must be like this: Object[]{"attr1", integer.class, "attr2", boolean.class, ...}
+     * Map will be filled with the value (as Object) of the different attributes
+     * @param doc the document
+     * @param nodeName the node name
+     * @param map the map containing the attributes type.
+     * @return the corresponding element or null if it doesn't exist
+     */
+    public static Element readNodeAttributes(Document doc, String nodeName, Object[] map) {
+        NodeList list = doc.getDocumentElement().getElementsByTagName(nodeName);
+        if (getNodeListLength(list) > 0) {
+            Node n = list.item(0);
+            if (n instanceof Element) {
+                readNodeAttributes((Element) n, map);
+                return (Element) n;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -324,5 +468,19 @@ public class ScilabXMLUtilities {
             System.err.println("Problem to init the Transformer to write xml files");
             System.err.println(e);
         }
+    }
+
+    /**
+     * @param list a node list
+     * @return the length
+     */
+    private static int getNodeListLength(NodeList list) {
+        int length = 0;
+        try {
+            length = list.getLength();
+        } catch (NullPointerException e) {
+            /* Avoid Java bug */
+        }
+        return length;
     }
 }

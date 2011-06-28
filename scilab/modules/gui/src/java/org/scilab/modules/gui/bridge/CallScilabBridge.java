@@ -2125,7 +2125,6 @@ public class CallScilabBridge {
      * Close Scilab Help Browser
      */
     public static void closeHelpBrowser() {
-        CallScilabBridge.saveHelpWindowSettings();
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
@@ -2299,38 +2298,6 @@ public class CallScilabBridge {
     public static void unblockConsole() {
         SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
         sciConsole.unblock();
-    }
-
-    /**
-     * Save the main Window size and position
-     */
-    public static void saveMainWindowSettings() {
-        SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-        Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-        ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
-        ConfigManager.saveMainWindowSize(mainWindow.getDims());
-
-    }
-
-    /**
-     * Save the help Window size and position
-     */
-    public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null )  {
-            SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
-            if (sciHelpBrowser != null) {
-                SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
-                if (consoleTab != null) {
-                    Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-                    ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
-                    ConfigManager.saveHelpWindowSize(helpWindow.getDims());
-                }
-            }
-        }
-
     }
 
     /**

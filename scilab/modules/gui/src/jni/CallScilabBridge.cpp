@@ -246,8 +246,6 @@ voiddestroyWaitBarjintID=NULL;
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArray_jstringID=NULL; 
 voidsearchKeywordjobjectArray_jstringjstringjbooleanID=NULL; 
-voidsaveMainWindowSettingsID=NULL; 
-voidsaveHelpWindowSettingsID=NULL; 
 jintnewExportFileChooserjintID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
@@ -452,8 +450,6 @@ voiddestroyWaitBarjintID=NULL;
 voidsetWaitBarIndeterminateModejintjbooleanID=NULL; 
 voidlaunchHelpBrowserjobjectArray_jstringID=NULL; 
 voidsearchKeywordjobjectArray_jstringjstringjbooleanID=NULL; 
-voidsaveMainWindowSettingsID=NULL; 
-voidsaveHelpWindowSettingsID=NULL; 
 jintnewExportFileChooserjintID=NULL; 
 jintnewFontChooserID=NULL; 
 voidfontChooserDisplayAndWaitjintID=NULL; 
@@ -4004,42 +4000,6 @@ curEnv->DeleteLocalRef(helps_);
 curEnv->DeleteLocalRef(keyword_);
 curEnv->DeleteLocalRef(language_);
 curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::saveMainWindowSettings (JavaVM * jvm_){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsaveMainWindowSettingsID = curEnv->GetStaticMethodID(cls, "saveMainWindowSettings", "()V" ) ;
-if (voidsaveMainWindowSettingsID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "saveMainWindowSettings");
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsaveMainWindowSettingsID );
-                        curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
-
-void CallScilabBridge::saveHelpWindowSettings (JavaVM * jvm_){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidsaveHelpWindowSettingsID = curEnv->GetStaticMethodID(cls, "saveHelpWindowSettings", "()V" ) ;
-if (voidsaveHelpWindowSettingsID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "saveHelpWindowSettings");
-}
-
-                         curEnv->CallStaticVoidMethod(cls, voidsaveHelpWindowSettingsID );
-                        curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

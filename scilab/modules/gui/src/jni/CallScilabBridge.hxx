@@ -207,8 +207,6 @@ jmethodID voiddestroyWaitBarjintID; // cache method id
 jmethodID voidsetWaitBarIndeterminateModejintjbooleanID; // cache method id
 jmethodID voidlaunchHelpBrowserjobjectArray_jstringID; // cache method id
 jmethodID voidsearchKeywordjobjectArray_jstringjstringjbooleanID; // cache method id
-jmethodID voidsaveMainWindowSettingsID; // cache method id
-jmethodID voidsaveHelpWindowSettingsID; // cache method id
 jmethodID jintnewExportFileChooserjintID; // cache method id
 jmethodID jintnewFontChooserID; // cache method id
 jmethodID voidfontChooserDisplayAndWaitjintID; // cache method id
@@ -588,10 +586,6 @@ static void setWaitBarIndeterminateMode(JavaVM * jvm_, int objID, bool status);
 static void launchHelpBrowser(JavaVM * jvm_, char ** helps, int helpsSize, char * language);
 
 static void searchKeyword(JavaVM * jvm_, char ** helps, int helpsSize, char * keyword, char * language, bool fullText);
-
-static void saveMainWindowSettings(JavaVM * jvm_);
-
-static void saveHelpWindowSettings(JavaVM * jvm_);
 
 static int newExportFileChooser(JavaVM * jvm_, int figureId);
 

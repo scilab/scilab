@@ -121,8 +121,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigui_la_iconsdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigui_algo_la_LIBADD =
-am__objects_1 = libscigui_algo_la-TerminateGui.lo \
-	libscigui_algo_la-buildMainWindowTitle.lo \
+am__objects_1 = libscigui_algo_la-buildMainWindowTitle.lo \
 	libscigui_algo_la-getMainWindowTitle.lo \
 	libscigui_algo_la-InitializeGUI.lo \
 	libscigui_algo_la-setMainWindowTitle.lo \
@@ -151,7 +150,6 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-CallFontChooser.lo \
 	libscigui_algo_la-CallFigure.lo \
 	libscigui_algo_la-CallMessageBox.lo \
-	libscigui_algo_la-CallMainWindow.lo \
 	libscigui_algo_la-CallWaitBar.lo \
 	libscigui_algo_la-CallHelpBrowser.lo \
 	libscigui_algo_la-PushButton.lo libscigui_algo_la-EditBox.lo \
@@ -638,7 +636,6 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 GUI_C_SOURCES = \
-src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
@@ -669,7 +666,6 @@ src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \
@@ -1053,7 +1049,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallJuigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallJxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallJxgetmouse.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallMainWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallMessageBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CallWaitBar.Plo@am__quote@
@@ -1137,7 +1132,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectVisible.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Slider.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-TerminateGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UicontrolStyleToString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UnitsConversion.Plo@am__quote@
@@ -1209,13 +1203,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscigui_algo_la-TerminateGui.lo: src/c/TerminateGui.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_algo_la_CFLAGS) $(CFLAGS) -MT libscigui_algo_la-TerminateGui.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-TerminateGui.Tpo -c -o libscigui_algo_la-TerminateGui.lo `test -f 'src/c/TerminateGui.c' || echo '$(srcdir)/'`src/c/TerminateGui.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-TerminateGui.Tpo $(DEPDIR)/libscigui_algo_la-TerminateGui.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateGui.c' object='libscigui_algo_la-TerminateGui.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_algo_la_CFLAGS) $(CFLAGS) -c -o libscigui_algo_la-TerminateGui.lo `test -f 'src/c/TerminateGui.c' || echo '$(srcdir)/'`src/c/TerminateGui.c
 
 libscigui_algo_la-buildMainWindowTitle.lo: src/c/buildMainWindowTitle.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_algo_la_CFLAGS) $(CFLAGS) -MT libscigui_algo_la-buildMainWindowTitle.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-buildMainWindowTitle.Tpo -c -o libscigui_algo_la-buildMainWindowTitle.lo `test -f 'src/c/buildMainWindowTitle.c' || echo '$(srcdir)/'`src/c/buildMainWindowTitle.c
@@ -1615,13 +1602,6 @@ libscigui_algo_la-CallMessageBox.lo: src/cpp/CallMessageBox.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallMessageBox.cpp' object='libscigui_algo_la-CallMessageBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-CallMessageBox.lo `test -f 'src/cpp/CallMessageBox.cpp' || echo '$(srcdir)/'`src/cpp/CallMessageBox.cpp
-
-libscigui_algo_la-CallMainWindow.lo: src/cpp/CallMainWindow.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-CallMainWindow.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-CallMainWindow.Tpo -c -o libscigui_algo_la-CallMainWindow.lo `test -f 'src/cpp/CallMainWindow.cpp' || echo '$(srcdir)/'`src/cpp/CallMainWindow.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-CallMainWindow.Tpo $(DEPDIR)/libscigui_algo_la-CallMainWindow.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallMainWindow.cpp' object='libscigui_algo_la-CallMainWindow.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-CallMainWindow.lo `test -f 'src/cpp/CallMainWindow.cpp' || echo '$(srcdir)/'`src/cpp/CallMainWindow.cpp
 
 libscigui_algo_la-CallWaitBar.lo: src/cpp/CallWaitBar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-CallWaitBar.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-CallWaitBar.Tpo -c -o libscigui_algo_la-CallWaitBar.lo `test -f 'src/cpp/CallWaitBar.cpp' || echo '$(srcdir)/'`src/cpp/CallWaitBar.cpp

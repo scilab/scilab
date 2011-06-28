@@ -40,7 +40,6 @@ MACROSDIRSEXT = macros/tree
 include $(top_srcdir)/Makefile.incl.am
 
 GUI_C_SOURCES = \
-src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
 src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
@@ -71,7 +70,6 @@ src/cpp/CallColorChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
-src/cpp/CallMainWindow.cpp \
 src/cpp/CallWaitBar.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/PushButton.cpp \

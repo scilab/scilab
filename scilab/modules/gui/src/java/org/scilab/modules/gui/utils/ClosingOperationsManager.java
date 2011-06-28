@@ -118,12 +118,16 @@ public class ClosingOperationsManager {
      * @param window the window to close
      */
     public static boolean startClosingOperation(SwingScilabWindow window) {
-        List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
-        Object[] dockArray = window.getDockingPort().getDockables().toArray();
-        for (int i = 0; i < dockArray.length; i++) {
-            collectTabsToClose((SwingScilabTab) dockArray[i], list);
+        if (window != null) {
+            List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
+            Object[] dockArray = window.getDockingPort().getDockables().toArray();
+            for (int i = 0; i < dockArray.length; i++) {
+                collectTabsToClose((SwingScilabTab) dockArray[i], list);
+            }
+            return close(list, window);
         }
-        return close(list, window);
+
+        return true;
     }
 
     /**
@@ -271,7 +275,10 @@ public class ClosingOperationsManager {
                     tab.getActionButton("undock").getAction().actionPerformed(null);
                     Action action = ((SciClosingAction) tab.getActionButton(DockingConstants.CLOSE_ACTION).getAction()).getAction();
                     if (action == null) {
-                        getWindow(tab).removeTabs(new SwingScilabTab[]{tab});
+                        SwingScilabWindow win = getWindow(tab);
+                        if (win != null) {
+                            win.removeTabs(new SwingScilabTab[]{tab});
+                        }
                     } else {
                         action.actionPerformed(null);
                     }
@@ -284,10 +291,12 @@ public class ClosingOperationsManager {
             Map<SwingScilabWindow, List<SwingScilabTab>> map = new HashMap<SwingScilabWindow, List<SwingScilabTab>>();
             for (SwingScilabTab tab : list) {
                 SwingScilabWindow win = getWindow(tab);
-                if (!map.containsKey(win)) {
-                    map.put(win, new ArrayList<SwingScilabTab>());
+                if (win != null) {
+                    if (!map.containsKey(win)) {
+                        map.put(win, new ArrayList<SwingScilabTab>());
+                    }
+                    map.get(win).add(tab);
                 }
-                map.get(win).add(tab);
             }
 
             List<SwingScilabWindow> winsWithOneTab = new ArrayList<SwingScilabWindow>();

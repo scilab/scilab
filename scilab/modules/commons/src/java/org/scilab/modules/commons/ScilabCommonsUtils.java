@@ -13,8 +13,8 @@
 package org.scilab.modules.commons;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -60,20 +60,20 @@ public final class ScilabCommonsUtils {
      * @return true if the operation succeeded
      */
     public static boolean copyFile(File inFile, File outFile) {
-        FileReader in = null;
-        FileWriter out = null;
+        FileInputStream in = null;
+        FileOutputStream out = null;
         boolean success = false;
 
         try {
-            in = new FileReader(inFile);
-            out = new FileWriter(outFile);
-            char[] buffer = new char[BUFFERSIZE];
+            in = new FileInputStream(inFile);
+            out = new FileOutputStream(outFile);
+            byte[] buffer = new byte[BUFFERSIZE];
             int n;
 
             while ((n = in.read(buffer)) != -1) {
                 out.write(buffer, 0, n);
             }
-
+            out.flush();
             success = true;
         } catch (IOException e) {
             System.err.println("Error in copying file " + inFile.getAbsolutePath() + " to " + outFile.getAbsolutePath());
