@@ -329,6 +329,9 @@ Bug fixes:
 * bug 9599 fixed - error message "at line ... of function ... called by" was
                    printed directly on the same line.
 
+* bug 9647 fixed - On Scilab startup, the variable fft was declared by default
+                   while it should not.
+
 * bug 9675 fixed - iir generated bad results.
 
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
