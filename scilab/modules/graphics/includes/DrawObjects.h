@@ -36,7 +36,7 @@ GRAPHICS_IMPEXP void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
 GRAPHICS_IMPEXP void sciXclear(void); /* DRAWINGS */
 
 
-GRAPHICS_IMPEXP void sciGetDisplayedBounds( sciPointObj * pSubWin,
+GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
                                    double      * xmin   ,
                                    double      * xmax   ,
                                    double      * ymin   ,
@@ -44,9 +44,9 @@ GRAPHICS_IMPEXP void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * zmin   ,
                                    double      * zmax    ) ;
 GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
-GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
+GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_2d(char *pobjUID);  /* DRAWINGS */
 
-GRAPHICS_IMPEXP int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
+GRAPHICS_IMPEXP int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
 
 GRAPHICS_IMPEXP void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
 GRAPHICS_IMPEXP void DrawAxes(sciPointObj*); /* DRAWINGS */

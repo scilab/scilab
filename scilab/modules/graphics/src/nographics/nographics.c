@@ -813,7 +813,7 @@ int GradLog( double _min, double _max, double *_grads, int * n_grads, int compNg
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input)
+int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input)
 {
 	return -1;
 }

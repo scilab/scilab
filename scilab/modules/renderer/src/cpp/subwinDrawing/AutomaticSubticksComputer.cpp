@@ -37,14 +37,24 @@ AutomaticSubticksComputer::~AutomaticSubticksComputer(void)
 /*------------------------------------------------------------------------------------------*/
 int AutomaticSubticksComputer::getNbSubticks(double ticksPositions[], int nbTicks)
 {
+  /* Deactivated as ComputeNbSubTics's prototype has changed */
+#if 0
   return Max(0, ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0) * (nbTicks - 1));
+#else
+  return 0;
+#endif
 }
 /*------------------------------------------------------------------------------------------*/
 void AutomaticSubticksComputer::getSubticksPosition(const double ticksPositions[], int nbTicks,
                                                     double subTickspositions[])
 {
   // compute number of subtics
+  /* Deactivated as ComputeNbSubTics's prototype has changed */
+#if 0
   int nbSubtics = ComputeNbSubTics(m_pDrawer->getDrawedObject(), nbTicks, 'n', ticksPositions, 0);
+#else
+  int nbSubtics = 0;
+#endif
 
   /*    |              |              |    */
   /* ___|____|____|____|____|____|____|___ */

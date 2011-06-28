@@ -117,7 +117,7 @@ void sciXclear()
 
 
 /* get the displayed bounds of an axis */
-void sciGetDisplayedBounds( sciPointObj * pSubWin,
+void sciGetDisplayedBounds( char * pSubWinUID,
                             double      * xmin   ,
                             double      * xmax   ,
                             double      * ymin   ,
@@ -135,15 +135,15 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
   int iLogFlag = 0;
   int *piLogFlag = &iLogFlag;
 
-  getGraphicObjectProperty(pSubWin->UID, __GO_ZOOM_ENABLED__, jni_bool, &piZoomEnabled);
+  getGraphicObjectProperty(pSubWinUID, __GO_ZOOM_ENABLED__, jni_bool, &piZoomEnabled);
 
   if (iZoomEnabled)
   {
-      getGraphicObjectProperty(pSubWin->UID, __GO_ZOOM_BOX__, jni_double_vector, &bounds);
+      getGraphicObjectProperty(pSubWinUID, __GO_ZOOM_BOX__, jni_double_vector, &bounds);
   }
   else
   {
-      getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
+      getGraphicObjectProperty(pSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
   }
 
   *xmin = bounds[0];
@@ -157,7 +157,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    * modify  bounds and aaint  if using log scaling X axis
    *****************************************************************/
 
-  getGraphicObjectProperty(pSubWin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
 
   if (iLogFlag == 1)
   {
@@ -171,7 +171,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    * modify  bounds and aaint  if using log scaling Y axis
    *****************************************************************/
 
-  getGraphicObjectProperty(pSubWin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pSubWinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
 
   if (iLogFlag == 1)
   {
@@ -185,7 +185,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    * modify  bounds and aaint  if using log scaling Z axis
    *****************************************************************/
 
-  getGraphicObjectProperty(pSubWin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pSubWinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
 
   if (iLogFlag == 1)
   {
@@ -204,7 +204,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
 /*
  * This function has been adapted to the MVC framework.
  */
-BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
+BOOL sci_update_frame_bounds_2d(char *pobjUID)
 {
   double xmax, xmin, ymin, ymax, zmin, zmax ;
   double hx,hy,hx1,hy1;
@@ -254,22 +254,22 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   /* Get the initial data bounds, number of ticks and number of subticks */
 
   /* Formerly FRect */
-  getGraphicObjectProperty(pobj->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &previousDataBounds);
+  getGraphicObjectProperty(pobjUID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &previousDataBounds);
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
   nbsubtics[0] = nbxsubticks;
-  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
   nbsubtics[1] = nbysubticks;
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbXSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbXSubticks);
   nbgrads[0] = nbxsubticks;
-  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, &piNbYSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, &piNbYSubticks);
   nbgrads[1] = nbysubticks;
 
   /* Sets the z-axis number of ticks to 0 */
-  setGraphicObjectProperty(pobj->UID, __GO_Z_AXIS_TICKS_LOCATIONS__, NULL, jni_double_vector, 0);
+  setGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, NULL, jni_double_vector, 0);
 
-  sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax ) ;
+  sciGetDisplayedBounds( pobjUID, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax ) ;
 
   /* _grad Init. to 0. */
   for(i = 0; i < 20; i++)
@@ -287,30 +287,30 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
    * to the data bounds.
    */
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
   logFlags[0] = iLogFlag;
 
   /* x-axis */
   if (logFlags[0] == 0)
   {
-      getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
+      getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
 
     TheTicks(&xmin, &xmax, &xGrads[0], &updatedNxgrads, FALSE);
 
     /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-    nbxsubticks = ComputeNbSubTics(pobj,updatedNxgrads,'n',NULL, nbxsubticks);
+    nbxsubticks = ComputeNbSubTics(pobjUID,updatedNxgrads,'n',NULL, nbxsubticks);
 
     stringVector = createStringArray(updatedNxgrads);
     printLabels(stringVector, xGrads, updatedNxgrads, 0);
   }
   else
   {
-      getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
+      getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
 
     GradLog(xmin, xmax, &xGrads[0], &updatedNxgrads, FALSE);
 
     /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-    nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'l', xGrads, 0);
+    nbxsubticks = ComputeNbSubTics(pobjUID, updatedNxgrads, 'l', xGrads, 0);
 
     stringVector = createStringArray(updatedNxgrads);
     printLabels(stringVector, xGrads, updatedNxgrads, TRUE);
@@ -319,40 +319,40 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     computeCoordinatesFromLogExponents(xGrads, updatedNxgrads);
   }
 
-  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
-  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
+  setGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
+  setGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
 
-  setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
+  setGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
 
   destroyStringArray(stringVector, updatedNxgrads);
 
 
-  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+  getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
   logFlags[1] = iLogFlag;
 
   /* y-axis */
   if (logFlags[1] == 0)
   {
-      getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
+      getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
 
     TheTicks(&ymin, &ymax, &yGrads[0], &updatedNygrads, FALSE);
 
     /* Nb of subtics computation and storage */
     /* F.Leray 07.10.04 */
-    nbysubticks = ComputeNbSubTics(pobj,updatedNygrads,'n',NULL, nbysubticks);
+    nbysubticks = ComputeNbSubTics(pobjUID,updatedNygrads,'n',NULL, nbysubticks);
 
     stringVector = createStringArray(updatedNygrads);
     printLabels(stringVector, yGrads, updatedNygrads, 0);
   }
   else
   {
-      getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
+      getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
 
     GradLog(ymin, ymax, &yGrads[0], &updatedNygrads, FALSE);
 
     /* Nb of subtics computation and storage */
     /* F.Leray 07.10.04 */
-    nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'l', yGrads, 0);
+    nbysubticks = ComputeNbSubTics(pobjUID, updatedNygrads, 'l', yGrads, 0);
 
     stringVector = createStringArray(updatedNygrads);
     printLabels(stringVector, yGrads, updatedNygrads, TRUE);
@@ -361,15 +361,15 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     computeCoordinatesFromLogExponents(yGrads, updatedNygrads);
   }
 
-  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
-  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
+  setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
+  setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
 
-  setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
+  setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
 
   destroyStringArray(stringVector, updatedNygrads);
 
 
-  getGraphicObjectProperty(pobj->UID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
+  getGraphicObjectProperty(pobjUID, __GO_TIGHT_LIMITS__, jni_bool, &piTightLimits);
 
   if (tightLimits == FALSE)
   {
@@ -382,7 +382,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   /*****************************************************************
    * modify  bounds if  isoview requested
    *****************************************************************/
-  getGraphicObjectProperty(pobj->UID, __GO_ISOVIEW__, jni_bool, &piIsoView);
+  getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, &piIsoView);
 
   /*
    * Depending on the high-level function calling update_specification_bounds, this section
@@ -397,7 +397,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     char* parentId;
     int* figureDimensions;
 
-    getGraphicObjectProperty(pobj->UID, __GO_PARENT__, jni_string, &parentId);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, &parentId);
 
     /*
      * Window width and height are currently 0 (default Figure values)
@@ -439,14 +439,14 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     {
       TheTicks(&xmin, &xmax, xGrads, &updatedNxgrads, FALSE);
       /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-      nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'n', NULL, nbxsubticks);
+      nbxsubticks = ComputeNbSubTics(pobjUID, updatedNxgrads, 'n', NULL, nbxsubticks);
 
       stringVector = createStringArray(updatedNxgrads);
       printLabels(stringVector, xGrads, updatedNxgrads, FALSE);
     }
     else{ /* log. case */
       GradLog(xmin, xmax, xGrads, &updatedNxgrads, FALSE);
-      nbxsubticks = ComputeNbSubTics(pobj, updatedNxgrads, 'l',xGrads,0);
+      nbxsubticks = ComputeNbSubTics(pobjUID, updatedNxgrads, 'l',xGrads,0);
 
       stringVector = createStringArray(updatedNxgrads);
       printLabels(stringVector, xGrads, updatedNxgrads, TRUE);
@@ -455,10 +455,10 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
       computeCoordinatesFromLogExponents(xGrads, updatedNxgrads);
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
-    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
+    setGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LOCATIONS__, xGrads, jni_double_vector, updatedNxgrads);
+    setGraphicObjectProperty(pobjUID, __GO_X_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNxgrads);
 
-    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, &nbxsubticks, jni_int, 1);
 
     destroyStringArray(stringVector, updatedNxgrads);
 
@@ -467,14 +467,14 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     {
       TheTicks(&ymin, &ymax, yGrads, &updatedNygrads, FALSE);
       /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-      nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'n', NULL, nbysubticks);
+      nbysubticks = ComputeNbSubTics(pobjUID, updatedNygrads, 'n', NULL, nbysubticks);
 
       stringVector = createStringArray(updatedNygrads);
       printLabels(stringVector, yGrads, updatedNygrads, FALSE);
     }
     else{ /* log. case */
       GradLog(ymin, ymax, yGrads, &updatedNygrads, FALSE);
-      nbysubticks = ComputeNbSubTics(pobj, updatedNygrads, 'l',yGrads,0);
+      nbysubticks = ComputeNbSubTics(pobjUID, updatedNygrads, 'l',yGrads,0);
 
       stringVector = createStringArray(updatedNygrads);
       printLabels(stringVector, yGrads, updatedNygrads, TRUE);
@@ -483,10 +483,10 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
       computeCoordinatesFromLogExponents(yGrads, updatedNygrads);
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
-    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
+    setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LOCATIONS__, yGrads, jni_double_vector, updatedNygrads);
+    setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, updatedNygrads);
 
-    setGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, &nbysubticks, jni_int, 1);
 
     destroyStringArray(stringVector, updatedNygrads);
 
@@ -504,7 +504,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   updatedDataBounds[4] = zmin;
   updatedDataBounds[5] = zmax;
 
-  setGraphicObjectProperty(pobj->UID, __GO_REAL_DATA_BOUNDS__, updatedDataBounds, jni_double_vector, 6);
+  setGraphicObjectProperty(pobjUID, __GO_REAL_DATA_BOUNDS__, updatedDataBounds, jni_double_vector, 6);
 
   for(i=0;i<4;i++)
   {
@@ -515,9 +515,9 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     }
   }
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbXSubticks);
   updatedNbsubtics[0] = nbxsubticks;
-  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, &piNbYSubticks);
   updatedNbsubtics[1] = nbysubticks;
 
   for(i=0;i<2;i++)
@@ -529,9 +529,9 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
     }
   }
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbXSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_X_AXIS_NUMBER_TICKS__, jni_int, &piNbXSubticks);
   updatedNxgrads = nbxsubticks;
-  getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, &piNbYSubticks);
+  getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, &piNbYSubticks);
   updatedNygrads = nbysubticks;
 
   if(nbgrads[0] != updatedNxgrads) return TRUE;
@@ -815,14 +815,14 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
  *
  * (Update 8/24/2010 by Paul Griffiths to resolve poor choice of subtics. See bug#6686.)
  *
- * @param pobj Pointer to a sciSubWindow.
+ * @param pobjUID UID of an Axes object
  * @param nbtics Number of major ticks.
  * @param logflag Character value of 'l' or 'n' that indicates log or normal axis scaling, respectively.
  * @param grads Value of major tick graduations. May be NULL.
  * @param nbsubtics_input Value returned if auto subtics feature is disabled.
  * @return Number of subticks to display.
  */
-int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input)
+int ComputeNbSubTics(char * pobjUID, int nbtics, char logflag, const double * grads, int nbsubtics_input)
 {
   /* Parameters for calculating the number of subtics */
   const int subticsval_len = 13; /* <--- MUST MATCH LENGTH OF subticsval */
@@ -914,7 +914,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   }
   else /* linear scaling case */
   {
-      getGraphicObjectProperty(pobj->UID, __GO_AUTO_SUBTICKS__, jni_bool, &piAutoSubticks);
+      getGraphicObjectProperty(pobjUID, __GO_AUTO_SUBTICKS__, jni_bool, &piAutoSubticks);
 
 #if 0
     if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
