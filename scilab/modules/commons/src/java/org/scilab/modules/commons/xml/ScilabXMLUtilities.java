@@ -68,7 +68,7 @@ public class ScilabXMLUtilities {
     public static Document readDocument(String fileToRead) {
         Document doc = null;
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = factory.newDocumentBuilder();
             doc = docBuilder.parse(new File(fileToRead));
         } catch (ParserConfigurationException e) {
