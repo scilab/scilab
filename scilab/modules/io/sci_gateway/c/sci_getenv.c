@@ -26,10 +26,8 @@ int sci_getenv(char *fname, int* _piKey)
 {
 	SciErr sciErr;
 	int ierr = 0;
-	char *default_env_value = NULL;
 	char *env_value = NULL;
 	int length_env = 0;
-	char *env_name = NULL;
 
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -72,17 +70,20 @@ int sci_getenv(char *fname, int* _piKey)
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
+        freeAllocatedSingleString(pStVarTwo);
 		return 1;
 	}
 
     if(isStringType(_piKey, piAddressVarOne) == FALSE || isScalar(_piKey, piAddressVarOne) == FALSE)
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        freeAllocatedSingleString(pStVarTwo);
         return 1;
     }
 
     if(getAllocatedSingleString(_piKey, piAddressVarOne, &pStVarOne))
     {
+        freeAllocatedSingleString(pStVarTwo);
         return 1;
     }
 
@@ -92,16 +93,12 @@ int sci_getenv(char *fname, int* _piKey)
 	length_env = bsiz;
 	#endif
 
-	default_env_value =  pStVarTwo;
-	env_name = pStVarOne;
-
 	env_value = (char*)MALLOC( (length_env + 1) *sizeof(char) );
 
 	if(env_value == NULL)
 	{
-		if(default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if(env_name) {FREE(env_name); env_name = NULL;}
-
+        freeAllocatedSingleString(pStVarTwo);
+        freeAllocatedSingleString(pStVarOne);
 		Scierror(999,_("%s: No more memory.\n"), fname);
 		return 1;
 	}
@@ -110,13 +107,15 @@ int sci_getenv(char *fname, int* _piKey)
 		int m_out = 1, n_out = 1;
 		int iflag = 0;
 
-		getenvc(&ierr, env_name, env_value, &length_env, &iflag);
+		getenvc(&ierr, pStVarOne, env_value, &length_env, &iflag);
 
 		if(ierr == 0)
 		{
 			sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &env_value);
 			if(sciErr.iErr)
 			{
+                freeAllocatedSingleString(pStVarTwo);
+                freeAllocatedSingleString(pStVarOne);
 				printError(&sciErr, 0);
 				return 1;
 			}
@@ -126,11 +125,13 @@ int sci_getenv(char *fname, int* _piKey)
 		}
 		else
 		{
-			if(default_env_value)
+			if(pStVarTwo)
 			{
-				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &default_env_value);
+				sciErr = createMatrixOfString(_piKey, Rhs + 1, m_out, n_out, &pStVarTwo);
 				if(sciErr.iErr)
 				{
+                    freeAllocatedSingleString(pStVarTwo);
+                    freeAllocatedSingleString(pStVarOne);
 					printError(&sciErr, 0);
 					return 1;
 				}
@@ -140,14 +141,16 @@ int sci_getenv(char *fname, int* _piKey)
 			}
 			else
 			{
-				Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, env_name);
+                freeAllocatedSingleString(pStVarTwo);
+                freeAllocatedSingleString(pStVarOne);
+				Scierror(999,_("%s: Undefined environment variable %s.\n"), fname, pStVarOne);
+                return 1;
 			}
 		}
 
-		if(default_env_value) {FREE(default_env_value); default_env_value = NULL;}
-		if(env_name) {FREE(env_name); env_name = NULL;}
-		if(env_value) {FREE(env_value); env_value = NULL;}
-
+        freeAllocatedSingleString(pStVarTwo);
+        freeAllocatedSingleString(pStVarOne);
+        if(env_value) {FREE(env_value); env_value = NULL;}
 	}
 	return 0;
 }
