@@ -622,7 +622,11 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 break;
             case ScilabLeafElement.FUN :
                 if (compt == 0) {
-                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), e.getFunctionInfo().functionName, line - index);
+                    String str = e.getFunctionInfo().functionName;
+                    if (str == null) {
+                        str = SciNotesMessages.UNKNOWN_FUNCTION;
+                    }
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), str, line - index);
                 } else {
                     compt++;
                 }
@@ -697,7 +701,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if ((added != null && added.length > 0) || (removed != null && removed.length > 0)) {
                 for (int i = 0; i < removed.length; i++) {
                     String name = ((ScilabLeafElement) removed[i]).getFunctionName();
-                    if (name.length() != 0) {
+                    if (name != null && name.length() != 0) {
                         functions.remove(name);
                     }
                 }
@@ -705,7 +709,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                     ((ScilabLeafElement) added[i]).resetType();
                     ((ScilabLeafElement) added[i]).resetTypeWhenBroken();
                     String name = ((ScilabLeafElement) added[i]).getFunctionName();
-                    if (name.length() != 0) {
+                    if (name != null && name.length() != 0) {
                         functions.add(name);
                     }
                 }
@@ -841,9 +845,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
-                if (!info.functionName.equals(oldName)) {
+                if (info.functionName != null) {
+                    if (!info.functionName.equals(oldName)) {
+                        functions.remove(oldName);
+                        functions.add(info.functionName);
+                    }
+                } else {
                     functions.remove(oldName);
-                    functions.add(info.functionName);
                 }
             }
 
