@@ -36,7 +36,7 @@ public class BrowseVar {
 
     public static final String[] COLUMNNAMES = new String[]{"", /* Icon */
                                                             Messages.gettext("Name"),
-                                                            Messages.gettext("Size"),
+                                                            Messages.gettext("Dimension"),
                                                             Messages.gettext("Type"),
                                                             Messages.gettext("Visibility"),
                                                             Messages.gettext("Bytes"),

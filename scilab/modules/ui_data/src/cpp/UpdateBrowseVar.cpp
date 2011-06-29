@@ -84,10 +84,17 @@ void UpdateBrowseVar(BOOL update)
         // Sizes of the variable
         getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
 
-        sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        pstAllVariableSizes[i] = strdup(sizeStr);
-        FREE(sizeStr);
+        if (nbRows*nbCols == 0) {
+#define N_A "N/A"
+            pstAllVariableSizes[i] = (char *)MALLOC((sizeof(N_A) + 1) * sizeof(char));
+            strcpy(pstAllVariableSizes[i],N_A);
+        } else {
+            sizeStr = (char *)MALLOC((sizeof(nbRows) + sizeof(nbCols) + strlen("x") + 1) * sizeof(char));
+            sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+            pstAllVariableSizes[i] = strdup(sizeStr);
+            FREE(sizeStr);
+        }
+
 
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
