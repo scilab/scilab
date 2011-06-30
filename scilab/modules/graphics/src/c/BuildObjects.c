@@ -2581,7 +2581,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
   return (char *) compoundUID;
 }
 
-/**sciConstructCompoundSeq
+/**ConstructCompoundSeq
  * constructs a Compound of with the last n entities created in the current subwindow
  on entry the subwin children list is
  s1->s2->...->sn->sn+1->...->sN
@@ -2592,7 +2592,7 @@ ConstructCompound (long *handelsvalue, int number) /* Conflicting types with def
  with A a Compound object whose children list is:
  s1->s2->...->sn-1->sn
 */
-sciPointObj *
+char *
 ConstructCompoundSeq (int number)
 {
     char** children;
@@ -2603,18 +2603,13 @@ ConstructCompoundSeq (int number)
     int visible = 0;
     int piVisible = &visible;
 
-    sciPointObj *pobj;
-    char* *psubwinUID;
+    char* pobjUID = NULL;
+    char* psubwinUID;
 
     psubwinUID = getCurrentSubWin();
 
     /* Creates the Compound object A */
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        return NULL;
-    }
-
-    pobj->UID = createGraphicObject(__GO_COMPOUND__);
+    pobjUID = createGraphicObject(__GO_COMPOUND__);
 
     /* Adding the Compound's handle was previously done by sciStandardBuildOperations */
 //    if (sciAddNewHandle(pobj) == -1)
@@ -2639,11 +2634,11 @@ ConstructCompoundSeq (int number)
          * Children are added to the Compound from the least recent to the most recent, to
          * preserve their former ordering.
          */
-        setGraphicObjectRelationship(pobj->UID, children[number-i-1]);
+        setGraphicObjectRelationship(pobjUID, children[number-i-1]);
     }
 
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(psubwinUID, pobj->UID);
+    setGraphicObjectRelationship(psubwinUID, pobjUID);
 
     /* set Compound properties*/
     /* To be implemented */
@@ -2658,17 +2653,17 @@ ConstructCompoundSeq (int number)
      * parent Axes in ConstructCompound.
      * To be made consistent.
      */
-    getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+    getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
     getGraphicObjectProperty(parentFigure, __GO_VISIBLE__, jni_bool, &piVisible);
 
-    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* To be implemented */
 #if 0
     ppagr->isselected = TRUE;
 #endif
 
-    return (sciPointObj *)pobj;
+    return (char*) pobjUID;
 }
 
 
