@@ -510,7 +510,7 @@ case "$CXX" in
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
-   clang-* | clang) 
+   clang-* | clang)
            # clang expect an explict declaration
            LDFLAGS="$LDFLAGS -lstdc++"
    ;;
@@ -691,8 +691,8 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 
 ################
 ## SSE
-## By default, for x86 CPU, enable the SSE. 
-## Note that it is already the case with 64 bits CPU 
+## By default, for x86 CPU, enable the SSE.
+## Note that it is already the case with 64 bits CPU
 ## (these extensions are enabled by default by gcc)
 ################
 
@@ -803,7 +803,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
         case "$host_os" in
-             *Darwin* | *darwin*) 
+             *Darwin* | *darwin*)
                # Mac OS X does not link against the lib but uses -framework
                JAVA_JNI_LIBS="-framework JavaVM"
              ;;
