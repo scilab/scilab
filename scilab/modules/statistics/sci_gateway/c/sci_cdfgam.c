@@ -20,7 +20,7 @@ extern int C2F(cdfgam)(int *, double *, double *, double*, double *, double *, i
  * SUBROUTINE CDFGAM( WHICH, P, Q, X, SHAPE, SCALE, STATUS, BOUND )
  * Cumulative Distribution Function, GAMma distribution
  */
-int cdfgamI(char* fname, int* _piKey)
+int sci_cdfgam(char* fname, int* _piKey)
 {
   struct cdf_item items[] =
     {{"PQ",    3, 2, 2},

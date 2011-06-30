@@ -16,10 +16,24 @@
 #include "machine.h"
 #include "dynlib_statistics.h"
 #include "api_scilab.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/ 
 STATISTICS_IMPEXP int gw_statistics(void);
 /*--------------------------------------------------------------------------*/ 
 
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfbet);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfbin);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfchi);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfchn);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdff);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdffnc);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfgam);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfnbn);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfnor);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdfpoi);
+STATISTICS_IMPEXP C_GATEWAY_PROTOTYPE(sci_cdft);
+
+/*
 //YaSp
 STATISTICS_IMPEXP int cdfchiI(char* fname, int* _piKey);
 STATISTICS_IMPEXP int cdftI(char* fname, int* _piKey);
@@ -32,6 +46,7 @@ STATISTICS_IMPEXP int cdfbetI(char* fname, int* _piKey);
 STATISTICS_IMPEXP int cdfchnI(char* fname, int* _piKey);
 STATISTICS_IMPEXP int cdfnbnI(char* fname, int* _piKey);
 STATISTICS_IMPEXP int cdfnorI(char* fname, int* _piKey);
+*/
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STATISTICS__ */
 /*--------------------------------------------------------------------------*/

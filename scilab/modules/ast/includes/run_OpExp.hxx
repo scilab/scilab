@@ -152,6 +152,26 @@ void visitprivate(const OpExp &e)
                 result_set(pResult);
                 break;
             }
+        case OpExp::dotrdivide :
+            {
+                try
+                {
+                    pResult = GenericDotRDivide(pITL, pITR);
+                }
+                catch (ScilabException *pSE)
+                {
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
+                }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+                }
+                result_set(pResult);
+                break;
+            }        
         case OpExp::dottimes :
             {
                 try

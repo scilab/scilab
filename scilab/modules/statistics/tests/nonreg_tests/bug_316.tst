@@ -15,7 +15,7 @@
 // the parameter "r" really does the column average, while the "c"
 // parameter does the row
 
-a = [ 1 1 1 ; 2 2 2 ; 3 3 3 ]
+a = [ 1 1 1 ; 2 2 2 ; 3 3 3 ];
 
 if size(mean(a,'r')) <> [ 1, 3] then pause, end
 if size(mean(a,'c')) <> [ 3, 1] then pause, end

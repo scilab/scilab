@@ -20,7 +20,7 @@ extern int C2F(cdfbet)(int *,double *,double *,double *,double *,double *,double
  * SUBROUTINE CDFBET( WHICH, P, Q, X, Y, A, B, STATUS, BOUND )
  * Cumulative Distribution Function, BETa Distribution
  */
-int cdfbetI(char* fname, int* _piKey) 
+int sci_cdfbet(char* fname, int* _piKey) 
 {
   struct cdf_item items[] =
     {{"PQ", 4, 2, 2},

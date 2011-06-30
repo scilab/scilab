@@ -4,92 +4,107 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-STATISTICS_C_SOURCES = src/c/CdfBase.c \
-src/c/ipmpar1.c \
-src/c/sci_string_matrix.c
+STATISTICS_C_SOURCES = \
+	src/c/CdfBase.c \
+	src/c/ipmpar1.c \
+	src/c/sci_string_matrix.c
 
-STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
-src/dcdflib/alngam.f \
-src/dcdflib/erfc1.f \
-src/dcdflib/cdff.f \
-src/dcdflib/spmpar.f \
-src/dcdflib/cumnor.f \
-src/dcdflib/cdfpoi.f \
-src/dcdflib/bcorr.f \
-src/dcdflib/cumchi.f \
-src/dcdflib/apser.f \
-src/dcdflib/gamln1.f \
-src/dcdflib/cdft.f \
-src/dcdflib/gaminv.f \
-src/dcdflib/cumnbn.f \
-src/dcdflib/cdffnc.f \
-src/dcdflib/rlog1.f \
-src/dcdflib/cdfchn.f \
-src/dcdflib/dt1.f \
-src/dcdflib/bgrat.f \
-src/dcdflib/dinvnr.f \
-src/dcdflib/rlog.f \
-src/dcdflib/basym.f \
-src/dcdflib/bfrac.f \
-src/dcdflib/cumbin.f \
-src/dcdflib/cumbet.f \
-src/dcdflib/rcomp.f \
-src/dcdflib/cdfgam.f \
-src/dcdflib/gratio.f \
-src/dcdflib/gam1.f \
-src/dcdflib/exparg.f \
-src/dcdflib/ipmpar.f \
-src/dcdflib/cumf.f \
-src/dcdflib/cumpoi.f \
-src/dcdflib/gamln.f \
-src/dcdflib/betaln.f \
-src/dcdflib/stvaln.f \
-src/dcdflib/cumt.f \
-src/dcdflib/esum.f \
-src/dcdflib/bpser.f \
-src/dcdflib/cdfnor.f \
-src/dcdflib/cumfnc.f \
-src/dcdflib/erf.f \
-src/dcdflib/alnrel.f \
-src/dcdflib/cumchn.f \
-src/dcdflib/rexp.f \
-src/dcdflib/fpser.f \
-src/dcdflib/bratio.f \
-src/dcdflib/cdfchi.f \
-src/dcdflib/gamma.f \
-src/dcdflib/dinvr.f \
-src/dcdflib/brcomp.f \
-src/dcdflib/devlpl.f \
-src/dcdflib/cdfnbn.f \
-src/dcdflib/dzror.f \
-src/dcdflib/gsumln.f \
-src/dcdflib/algdiv.f \
-src/dcdflib/cumgam.f \
-src/dcdflib/grat1.f \
-src/dcdflib/brcmp1.f \
-src/dcdflib/cdfbin.f \
-src/dcdflib/bup.f \
-src/dcdflib/cdfbet.f
+STATISTICS_FORTRAN_SOURCES = \
+	src/dcdflib/psi.f \
+	src/dcdflib/alngam.f \
+    src/dcdflib/erfc1.f \
+    src/dcdflib/cdff.f \
+    src/dcdflib/spmpar.f \
+    src/dcdflib/cumnor.f \
+    src/dcdflib/cdfpoi.f \
+    src/dcdflib/bcorr.f \
+    src/dcdflib/cumchi.f \
+    src/dcdflib/apser.f \
+    src/dcdflib/gamln1.f \
+    src/dcdflib/cdft.f \
+    src/dcdflib/gaminv.f \
+    src/dcdflib/cumnbn.f \
+    src/dcdflib/cdffnc.f \
+    src/dcdflib/rlog1.f \
+    src/dcdflib/cdfchn.f \
+    src/dcdflib/dt1.f \
+    src/dcdflib/bgrat.f \
+    src/dcdflib/dinvnr.f \
+    src/dcdflib/rlog.f \
+    src/dcdflib/basym.f \
+    src/dcdflib/bfrac.f \
+    src/dcdflib/cumbin.f \
+    src/dcdflib/cumbet.f \
+    src/dcdflib/rcomp.f \
+    src/dcdflib/cdfgam.f \
+    src/dcdflib/gratio.f \
+    src/dcdflib/gam1.f \
+    src/dcdflib/exparg.f \
+    src/dcdflib/ipmpar.f \
+    src/dcdflib/cumf.f \
+    src/dcdflib/cumpoi.f \
+    src/dcdflib/gamln.f \
+    src/dcdflib/betaln.f \
+    src/dcdflib/stvaln.f \
+    src/dcdflib/cumt.f \
+    src/dcdflib/esum.f \
+    src/dcdflib/bpser.f \
+    src/dcdflib/cdfnor.f \
+    src/dcdflib/cumfnc.f \
+    src/dcdflib/erf.f \
+    src/dcdflib/alnrel.f \
+    src/dcdflib/cumchn.f \
+    src/dcdflib/rexp.f \
+    src/dcdflib/fpser.f \
+    src/dcdflib/bratio.f \
+    src/dcdflib/cdfchi.f \
+    src/dcdflib/gamma.f \
+    src/dcdflib/dinvr.f \
+    src/dcdflib/brcomp.f \
+    src/dcdflib/devlpl.f \
+    src/dcdflib/cdfnbn.f \
+    src/dcdflib/dzror.f \
+    src/dcdflib/gsumln.f \
+    src/dcdflib/algdiv.f \
+    src/dcdflib/cumgam.f \
+    src/dcdflib/grat1.f \
+    src/dcdflib/brcmp1.f \
+    src/dcdflib/cdfbin.f \
+    src/dcdflib/bup.f \
+    src/dcdflib/cdfbet.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
-sci_gateway/c/sci_cdfchi.c \
-sci_gateway/c/sci_cdft.c \
-sci_gateway/c/sci_cdfgam.c \
-sci_gateway/c/sci_cdff.c \
-sci_gateway/c/sci_cdffnc.c \
-sci_gateway/c/sci_cdfpoi.c \
-sci_gateway/c/sci_cdfbin.c \
-sci_gateway/c/sci_cdfchn.c \
-sci_gateway/c/sci_cdfbet.c \
-sci_gateway/c/sci_cdfnbn.c \
-sci_gateway/c/sci_cdfnor.c
+GATEWAY_C_SOURCES = \
+	sci_gateway/c/gw_statistics.c \
+	sci_gateway/c/sci_cdfchi.c \
+	sci_gateway/c/sci_cdft.c \
+	sci_gateway/c/sci_cdfgam.c \
+	sci_gateway/c/sci_cdff.c \
+	sci_gateway/c/sci_cdffnc.c \
+	sci_gateway/c/sci_cdfpoi.c \
+	sci_gateway/c/sci_cdfbin.c \
+	sci_gateway/c/sci_cdfchn.c \
+	sci_gateway/c/sci_cdfbet.c \
+	sci_gateway/c/sci_cdfnbn.c \
+	sci_gateway/c/sci_cdfnor.c
 
-libscistatistics_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/statistics_gw.cpp
+
+libscistatistics_la_CFLAGS= \
+	-I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/output_stream/includes
+
+libscistatistics_la_CPPFLAGS = \
+	-I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
@@ -97,7 +112,7 @@ noinst_LTLIBRARIES = libscistatistics-algo.la
 libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscistatistics_algo_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES)
-libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscistatistics_algo_la_CFLAGS = $(libscistatistics_la_CFLAGS)
 
 # For the code check (splint)

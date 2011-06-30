@@ -50,9 +50,9 @@ int  Scierror(int iv,const char *fmt,...)
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
 
-    scilabErrorW(L"Error: ");
-    scilabErrorW(pwstError);
-    scilabErrorW(L"\n");
+    scilabWriteW(L"Error: ");
+    scilabWriteW(pwstError);
+    scilabWriteW(L"\n");
     FREE(pwstError);
   return retval;
 }

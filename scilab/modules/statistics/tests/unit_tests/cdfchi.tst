@@ -9,10 +9,13 @@
 // Tests for cdfchi() function
 // =============================================================================
 
+function [y]=chi1(x)
+    y=exp(-x/2)/sqrt(2*%pi*x)
+endfunction
+
 prec = 1.e-5;
 
 x  = [0.01,0.025,0.05,0.1,0.9,0.95];
-deff('[y]=chi1(x)','y=exp(-x/2)/sqrt(2*%pi*x)');
 y1 = [];
 
 for xx=x

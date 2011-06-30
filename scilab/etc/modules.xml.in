@@ -45,5 +45,7 @@
     <module name="modules_manager" activate="yes"/>
     <module name="signal_processing" activate="yes"/>
     <module name="linear_algebra" activate="yes"/>
+    <module name="statistics" activate="yes"/>
+>>>>>>> aee3f8c... statistics plugged.
 </modules>
 

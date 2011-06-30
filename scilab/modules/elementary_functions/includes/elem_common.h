@@ -61,7 +61,7 @@ extern double C2F(dlamch)  (char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
 extern int C2F(dgemm)();
 extern int C2F(dswap)();
-extern double C2F(dasum)();
+extern double C2F(dasum)(int* _iSize, double* _pdbl, int* _iInc);
 extern int C2F(dcopy)(int *_iSize, double *_pdblSrc, int* _piIncSrc, double *_pdblDest, int *_piDest);
 extern int C2F(dscal)(int *_iSize, double *_pdblVal, double *_pdblDest, int *_iInc);
 extern int C2F(zscal)(int *_iSize, doublecomplex *_pdblVal, doublecomplex *_pdblDest, int *_iInc);

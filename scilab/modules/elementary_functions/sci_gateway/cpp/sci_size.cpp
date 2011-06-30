@@ -16,6 +16,7 @@
 #include "types.hxx"
 #include "string.hxx"
 #include "container.hxx"
+#include "getmode.hxx"
 
 extern "C"
 {
@@ -23,11 +24,8 @@ extern "C"
 #include "localization.h"
 }
 
-int getProcessMode(types::typed_list &in, int _iProcess, int _iRef);
-
-/*--------------------------------------------------------------------------*/
 using namespace types;
-
+/*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if(in.size() < 1)
@@ -66,17 +64,11 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 
             if(in.size() == 2)
             {
-                iMode = getProcessMode(in, 1, 0);
-                if((iMode == 1 || iMode == 2) && in[0]->getAsGenericType()->getDims() > 2)
+                iMode = getMode(in, 1, 0);
+                if(iMode == -2)
                 {
-                    ScierrorW(999, _W("%ls: Wrong values for input argument #%d: '%ls' or '%ls' expected.\n"), L"size", 2, L"*", L"0");
                     return Function::Error;
                 }
-            }
-
-            if(iMode == -2)
-            {
-                return Function::Error;
             }
 
             int iDims   = in[0]->getAsGenericType()->getDims();
@@ -92,20 +84,9 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 {
                 case -1 : //lhs == 1
                     iColsOut = iDims;
-                    //pdblReal[0] = iRows;
-                    //pdblReal[1] = iCols;
                     break;
-                case 0 : //"*"
+                default : //"*"
                     iColsOut = 1;
-                    //pdblReal[0] = iRows * iCols;
-                    break;
-                case 1 : //"r"
-                    iColsOut = 1;
-                    //pdblReal[0] = iRows;
-                    break;
-                case 2 : //"c"
-                    iColsOut = 1;
-                    //pdblReal[0] = iCols;
                     break;
                 }
 
@@ -124,13 +105,15 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 case 0 : //"*"
                     pdbl[0] = in[0]->getAsGenericType()->getSize();
                     break;
-                case 1 : //"r"
+                default : //"r"
+                    if(iMode > iDims)
+                    {
+                        ScierrorW(999, _W("%ls: Wrong value for input argument #%d.\n"), L"size", 2);
+                        return Function::Error;
+                    }
+
                     iColsOut = 1;
-                    pdbl[0] = in[0]->getAsGenericType()->getRows();
-                    break;
-                case 2 : //"c"
-                    iColsOut = 1;
-                    pdbl[0] = in[0]->getAsGenericType()->getCols();
+                    pdbl[0] = piDims[iMode - 1];
                     break;
                 }
                 out.push_back(pD);
@@ -147,76 +130,5 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         }
     }
     return Function::OK;
-}
-
-/*return process mode, "r", "c", "*", 0, 1, 2*/
-int getProcessMode(types::typed_list &in, int _iProcess, int _iRef)
-{
-    int iMode = 0;
-    if(in[_iProcess]->isString())
-    {
-        String* pS = in[_iProcess]->getAs<types::String>();
-        if(pS->getSize() != 1)
-        {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
-        }
-
-        switch(pS->get(0)[0])
-        {
-        case 'r' :
-            iMode = 1;
-            break;
-        case 'c' :
-            iMode = 2;
-            break;
-        case '*' :
-            iMode = 0;
-            break;
-        case 'm' :
-            iMode = -1;
-            break;
-        default :
-            Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "m" , "*" , "r", "c");
-            iMode = -2;
-            break;
-        }
-    }
-    else if(in[1]->isDouble() && in[1]->getAs<Double>()->isComplex() == false)
-    {
-        Double* pD = in[_iProcess]->getAs<Double>();
-        if(pD->getSize() != 1)
-        {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
-            iMode = -2;
-        }
-
-        iMode = static_cast<int>(pD->getReal()[0]);
-        if(iMode != -1 && iMode != 0 && iMode != 1 && iMode != 2)
-        {
-            Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "-1" , "0" , "1", "2");
-            iMode = -2;
-        }
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"), "size", 2);
-        iMode = -2;
-    }
-
-    //special case for -1
-    if(iMode == -1)
-    {
-        iMode = 0;
-        if(in[_iRef]->getAsGenericType()->getRows() > 1)
-        {
-            iMode = 1;
-        }
-        else if(in[_iRef]->getAsGenericType()->getCols() > 1)
-        {
-            iMode = 2;
-        }
-    }
-
-    return iMode;
 }
 /*--------------------------------------------------------------------------*/

@@ -100,7 +100,7 @@ namespace types
                 }
 
                 //allow new Double variable
-                Double* pDbl    = new Double(iItemCount, 1);
+                Double* pDbl    = new Double(1, iItemCount);
                 double* pdbl    = pDbl->getReal();
 
                 int j = 0;

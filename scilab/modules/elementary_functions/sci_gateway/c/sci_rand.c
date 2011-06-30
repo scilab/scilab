@@ -16,18 +16,6 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
-#define Ran1		siRandSave		//old C2F(com).ran[0]
-#define Ran2		siRandType		//old C2F(com).ran[1]
-
-const char g_pstConfigInfo[] = {"info"};
-const char g_pstConfigSeed[] = {"seed"};
-
-const char g_pstTypeUniform[] = {"uniform"};
-const char g_pstTypeNormal[] = {"normal"};
-
-int setRandType(char _cType);
-double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
-
 /*--------------------------------------------------------------------------*/
 int sci_rand(char *fname, int* _piKey)
 {
@@ -280,57 +268,3 @@ int sci_rand(char *fname, int* _piKey)
 	PutLhsVar();
 	return 0;
 }
-
-double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
-{
-	static int siInit				= TRUE;
-	static double sdblImg		= 0;
-	static double sdblR			= 0;
-	double dblReal					= 0;
-	double dblVal						= 0;
-	double dblTemp					= 2;
-
-	if(_iForceInit)
-	{
-		siInit = TRUE;
-	}
-
-	if(_iRandType == 0)
-	{
-		dblVal = durands(_piRandSave);
-	}
-	else
-	{
-		if(siInit == TRUE)
-		{
-			while(dblTemp > 1)
-			{
-				dblReal	= 2 * durands(_piRandSave) - 1;
-				sdblImg	= 2 * durands(_piRandSave) - 1;
-				dblTemp = dblReal * dblReal + sdblImg * sdblImg;
-			}
-			sdblR			= dsqrts(-2 * dlogs(dblTemp) / dblTemp);
-			dblVal		= dblReal * sdblR;
-		}
-		else
-		{
-			dblVal	= sdblImg * sdblR;
-		}
-		siInit = !siInit;
-	}
-	return dblVal;
-}
-
-int setRandType(char _cType)
-{
-	switch(_cType)
-	{
-	case 'g' :
-	case 'n' :
-		return 1;
-		break;
-	default :
-		return 0;
-	}
-}
-/*--------------------------------------------------------------------------*/

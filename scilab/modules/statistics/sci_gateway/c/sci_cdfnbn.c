@@ -20,7 +20,7 @@ extern int C2F(cdfnbn)(int *, double *, double *, double *, double *, double *, 
  * SUBROUTINE CDFNBN ( WHICH, P,Q, S, XN, PR, STATUS, BOUND )
  * Cumulative Distribution Function, Negative BiNomial distribution
  */
-int cdfnbnI(char* fname, int* _piKey)
+int sci_cdfnbn(char* fname, int* _piKey)
 {
   struct cdf_item items[] =
     {{"PQ"    , 4, 2, 2},

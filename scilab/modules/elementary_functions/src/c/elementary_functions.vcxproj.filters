@@ -191,9 +191,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_prod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_rand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_rat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -302,6 +299,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\xerhlt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\basic_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,11 +17,15 @@
 #include "double.hxx"
 #include "polynom.hxx"
 
+// operator /
 EXTERN_OP types::InternalType *GenericRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
-int DivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
-int DividePolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom** _pPolyOut);
-int DivideDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
+int RDivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
+int RDividePolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom** _pPolyOut);
+int RDivideDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
 
+// operator ./
+EXTERN_OP types::InternalType *GenericDotRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+int DotRDivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
 
 #endif /* !__TYPES_DIVIDE_HXX__ */

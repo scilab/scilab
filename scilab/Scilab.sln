@@ -656,6 +656,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_processing_gw", "mod
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linear_algebra_gw", "modules\linear_algebra\sci_gateway\cpp\linear_algebra_gw.vcxproj", "{EE43BE6D-817D-4B09-AC40-7E6AC5BDB80D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics_gw", "modules\statistics\sci_gateway\cpp\statistics_gw.vcxproj", "{EAE1009F-B967-43C4-9408-97A37EFA8678}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2092,6 +2094,14 @@ Global
 		{EE43BE6D-817D-4B09-AC40-7E6AC5BDB80D}.Release|Win32.Build.0 = Release|Win32
 		{EE43BE6D-817D-4B09-AC40-7E6AC5BDB80D}.Release|x64.ActiveCfg = Release|x64
 		{EE43BE6D-817D-4B09-AC40-7E6AC5BDB80D}.Release|x64.Build.0 = Release|x64
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Debug|Win32.Build.0 = Debug|Win32
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Debug|x64.ActiveCfg = Debug|x64
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Debug|x64.Build.0 = Debug|x64
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Release|Win32.ActiveCfg = Release|Win32
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Release|Win32.Build.0 = Release|Win32
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Release|x64.ActiveCfg = Release|x64
+		{EAE1009F-B967-43C4-9408-97A37EFA8678}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

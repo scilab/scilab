@@ -482,3 +482,4 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
     }
     return 0;
 }
+

@@ -325,6 +325,24 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         }
         return pB;
     }
+
+
+    /*
+    ** DOUBLE == STRING
+    */
+    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
+    {
+        return new types::Bool(0);;
+    }
+
+   /*
+    ** STRING == DOUBLE
+    */
+    if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
+    {
+        return new types::Bool(0);;
+    }
+
     /*
     ** Default case : Return NULL will Call Overloading.
     */

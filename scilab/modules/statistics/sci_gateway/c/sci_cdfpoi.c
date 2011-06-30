@@ -20,7 +20,7 @@ extern int C2F(cdfpoi)(int *, double *, double *, double *, double *, int *, dou
  * SUBROUTINE CDFPOI( WHICH, P, Q, S, XLAM, STATUS, BOUND )
  * Cumulative Distribution Function, POIsson distribution
  */
-int cdfpoiI(char* fname, int* _piKey)
+int sci_cdfpoi(char* fname, int* _piKey)
 {
   struct cdf_item items[] =
     {{"PQ"  , 2, 2, 2},

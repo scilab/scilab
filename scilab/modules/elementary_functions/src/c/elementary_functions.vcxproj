@@ -322,7 +322,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\c\sci_nearfloat.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_number_properties.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_prod.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_rand.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_rat.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_real.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_round.c" />
@@ -352,6 +351,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="xerhlt.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\basic_functions.h" />
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h" />
     <ClInclude Include="..\..\includes\elementary_functions.h" />
     <ClInclude Include="..\..\includes\finite.h" />

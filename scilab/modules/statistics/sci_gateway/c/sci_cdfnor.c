@@ -20,7 +20,7 @@ extern int C2F(cdfnor)(int *,double *,double *,double*,double *,double *, int *,
  * SUBROUTINE CDFNOR ( WHICH, P, Q, X, MEAN, SD, STATUS, BOUND )
  * Cumulative Distribution Function, NORmal distribution
  */
-int cdfnorI(char* fname, int* _piKey)
+int sci_cdfnor(char* fname, int* _piKey)
 {
   struct cdf_item items[] =
     {{"PQ"  , 3, 2, 2},

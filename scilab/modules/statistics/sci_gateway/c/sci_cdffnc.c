@@ -20,7 +20,7 @@ extern int C2F(cdffnc)(int *,double *,double *,double*,double *,double *, int *,
  * SUBROUTINE CDFFNC( WHICH, P, Q, F, DFN, DFD, PNONC, STATUS, BOUND )
  * Cumulative Distribution Function, F distribution Non-Central 
  */
-int cdffncI(char* fname, int* _piKey)
+int sci_cdffnc(char* fname, int* _piKey)
 {
   struct cdf_item items[] =
     {{"PQ"   , 4, 2, 2},

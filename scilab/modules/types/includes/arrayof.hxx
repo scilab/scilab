@@ -60,6 +60,16 @@ namespace types
         {
             m_iSize     = 1;
             m_iDims     = _iDims;
+
+            //reduce dims if it's possible
+            for(int i = _iDims - 1 ; i > 1 ; i--)
+            {
+                if(_piDims[i] == 1)
+                {//remove dimension equal to 1
+                    m_iDims--;
+                }
+            }
+
             m_piDims    = new int[m_iDims];
 
             for(int i = 0 ; i < m_iDims ; i++)
@@ -949,7 +959,7 @@ namespace types
                 else
                 {
                     //two cases, depends of original matrix/vector
-                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1)
+                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1 && m_piDims[0] == 1)
                     {//special case for row vector
                         int piRealDim[2] = {1, piCountDim[0]};
                         pOut = createEmpty(2, piRealDim, isComplex());

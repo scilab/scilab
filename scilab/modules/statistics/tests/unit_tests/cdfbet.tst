@@ -9,13 +9,15 @@
 // Tests for beta distribution
 // =============================================================================
 
+function [y]=Beta(x)
+    y=bn*(x^(A-1) * (1-x)^(B-1))
+endfunction
+
 prec = 1.e-5;
 
 A  = 2;
 B  = 3;
 bn = 1;
-
-deff('[y]=Beta(x)','y=bn*(x^(A-1) * (1-x)^(B-1))');
 
 bn = intg(0,1,Beta);
 bn = 1/bn;

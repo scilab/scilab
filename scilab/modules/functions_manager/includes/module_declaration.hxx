@@ -38,5 +38,6 @@
 #include "../../console/includes/console_gw.hxx"
 #include "../../signal_processing/includes/signal_gw.hxx"
 #include "../../linear_algebra/includes/linear_algebra_gw.hxx"
+#include "../../statistics/includes/statistics_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

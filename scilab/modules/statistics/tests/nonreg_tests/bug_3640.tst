@@ -17,29 +17,29 @@
 test = rand(150,1,165);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 150] then pause,end
+if size(r) <> [150 1] then pause,end
 
 test = rand(150,1,166);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 150] then pause,end
+if size(r) <> [150 1] then pause,end
 
 test = rand(1000,1,165);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 1000] then pause,end
+if size(r) <> [1000 1] then pause,end
 
 test = rand(1000,1,166);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 1000] then pause,end
+if size(r) <> [1000 1] then pause,end
 
 test = rand(250,1,165);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 250] then pause,end
+if size(r) <> [250 1] then pause,end
 
 test = rand(250,1,166);
 ierr = execstr('r = mean(test,3);','errcatch');
 if ierr <> 0 then pause,end
-if size(r) <> [1 250] then pause,end
+if size(r) <> [250 1] then pause,end

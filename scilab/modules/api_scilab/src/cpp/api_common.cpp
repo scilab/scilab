@@ -300,29 +300,25 @@ SciErr getNamedVarType(void* _pvCtx, const char* _pstName, int* _piType)
 /*--------------------------------------------------------------------------*/
 int isVarComplex(void* _pvCtx, int* _piAddress)
 {
-    SciErr sciErr;
-    int iType            = 0;
-    int iComplex    = 0;
+     SciErr sciErr;
+     int iType      = 0;
+     int iComplex   = 0;
 
-    if(_piAddress == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
-        return 0;
-    }
+     if(_piAddress == NULL)
+     {
+         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
+         return 0;
+     }
 
-    getVarType(_pvCtx, _piAddress, &iType);
-    switch(iType)
-    {
-    case sci_matrix :
-        iComplex = ((types::InternalType*)_piAddress)->getAs<Double>()->isComplex();
-        break;
-    case sci_poly :
-        iComplex = ((types::InternalType*)_piAddress)->getAs<Polynom>()->isComplex();
-    case sci_sparse :
-        //iComplex = ((InternalType*)_piAddress)->getAsSparse()->isComplex();
-        break;
-    }
-    return iComplex;
+     types::InternalType* pIT = (types::InternalType*)_piAddress;
+     types::GenericType* pGT = dynamic_cast<types::GenericType*>(pIT);
+     if(pGT == NULL)
+     {
+         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
+         return 0;
+     }
+
+     return pGT->isComplex();
 }
 /*--------------------------------------------------------------------------*/
 int isNamedVarComplex(void* _pvCtx, const char *_pstName)

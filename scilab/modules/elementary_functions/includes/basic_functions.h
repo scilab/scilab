@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "dynlib_elementary_functions.h"
 #include "BOOL.h"
 #include "elem_common.h"
 
@@ -55,7 +56,7 @@ double dblNearFloat(double _dblVal, double _dblMode);
 void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc);
 void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc);
 
-double durands(int *_iVal);
+ELEMENTARY_FUNCTIONS_IMPEXP double durands(int *_iVal);
 int nint(double _iVal);
 double danints(double _dblVal);
 
