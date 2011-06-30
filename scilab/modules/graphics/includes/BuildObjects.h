@@ -94,7 +94,7 @@ GRAPHICS_IMPEXP char *ConstructFec (char * pparentsubwinUID, double *pvecx, doub
 				  double *pfun, int Nnode, int Ntr, double *zminmax,
 				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 
-GRAPHICS_IMPEXP sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, double *vz, int Nbr1,
+GRAPHICS_IMPEXP char *ConstructSegs (char * pparentsubwinUID, int type,double *vx, double *vy, double *vz, int Nbr1,
                int Nbr2, int Nbr3, double *vfx, double *vfy, int flag,
               int *style, double arsize,  int colored, int typeofchamp);  /* BUILD */
 

@@ -23,14 +23,23 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BuildObjects.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {
+  int color = 0;
+  int *piColor = &color;
   int dstyle = -1, *style, colorFlag;
   double * zptr = NULL;
   int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc;
   const double arsize = 0.0 ; // no arrow here
-  sciPointObj * psubwin = NULL ;
+  char * pfigureUID = NULL;
+  char * psubwinUID = NULL;
 
 
   CheckRhs(2,4);
@@ -84,13 +93,21 @@ int sci_xsegs(char *fname,unsigned long fname_len)
     }
   }
 
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* No default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
+
   if(mc*nc == 0)
   { /* no color specified, use current color (taken from axes parent) */
-    int col;
-    psubwin = sciGetCurrentSubWin();
-    col   = sciGetForegroundToDisplay(psubwin);
-    style = &col;
-    colorFlag  = 0;
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piColor);
+
+    style = &color;
+    colorFlag = 0;
   }
   else
   {

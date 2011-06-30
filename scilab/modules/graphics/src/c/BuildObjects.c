@@ -2306,19 +2306,16 @@ ConstructFec (char * pparentsubwinUID, double *pvecx, double *pvecy, double *pno
  * @version 0.1
  * @see sciSetCurrentObj
  */
-sciPointObj *
-ConstructSegs ( sciPointObj * pparentsubwin, int type,
+char *
+ConstructSegs ( char * pparentsubwinUID, int type,
                 double *vx, double *vy, double *vz,
                 int Nbr1,int Nbr2, int Nbr3,
                 double *vfx, double *vfy,
                 int flag, int *style, double arsize,
                 int colored, int typeofchamp)
 {
-    sciPointObj *pobj = (sciPointObj *) NULL;
-    /* To be deleted */
-#if 0
-    sciSegs * ppSegs = (sciSegs *) NULL;
-#endif
+    char* pobjUID = NULL;
+
     int visible = 0;
     int* piVisible = &visible;
     int clipRegionSet = 0;
@@ -2334,22 +2331,17 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
     double* clipRegion;
     double* arrowCoords;
 
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        return (sciPointObj *) NULL;
-    }
-
     if (type == 0)
     {
-        pobj->UID = createGraphicObject(__GO_SEGS__);
+        pobjUID = createGraphicObject(__GO_SEGS__);
     }
     else if (type == 1)
     {
-        pobj->UID = createGraphicObject(__GO_CHAMP__);
+        pobjUID = createGraphicObject(__GO_CHAMP__);
     }
     else
     {
-        return (sciPointObj*) NULL;
+        return (char*) NULL;
     }
 
     /* To be implemented */
@@ -2361,9 +2353,9 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
     ppSegs->isselected = TRUE;
 #endif
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, &piVisible);
 
-    setGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     /* this must be done prior to the call of sciSetClipping to know */
     /* if the clip_state has been set */
@@ -2372,14 +2364,14 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
     * Clip state and region
     * To be checked for consistency
     */
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, &piClipRegionSet);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_STATE__, jni_int, &piClipState);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, &piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
 
     if (type == 1)
@@ -2393,7 +2385,7 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
     }
 
     /* Triggers the creation of the Arrow objects part of Champ or Segs */
-    setGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, &numberArrows, jni_int, 1);
 
     /* Champ property only */
     if (type == 1)
@@ -2401,16 +2393,15 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
         dimensions[0] = Nbr1;
         dimensions[1] = Nbr2;
 
-        setGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
+        setGraphicObjectProperty(pobjUID, __GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
     }
 
     arrowCoords = (double*) MALLOC(3*numberArrows*sizeof(double));
 
     if (arrowCoords == NULL)
     {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
+        deleteGraphicObject(pobjUID);
+        return (char*) NULL;
     }
 
     /* Type 0 corresponds to a SEGS object */
@@ -2431,7 +2422,7 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
             }
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_BASE__, arrowCoords, jni_double_vector, 3*numberArrows);
+        setGraphicObjectProperty(pobjUID, __GO_BASE__, arrowCoords, jni_double_vector, 3*numberArrows);
 
         for (i = 0; i < numberArrows; i++)
         {
@@ -2448,17 +2439,17 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
             }
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
+        setGraphicObjectProperty(pobjUID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
 
         if (flag == 1)
         {
             /* Style is an array of numberArrows elements */
-            setGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, style, jni_int_vector, numberArrows);
+            setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, style, jni_int_vector, numberArrows);
         }
         else
         {
             /* Style is a scalar */
-            setGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, style, jni_int_vector, 1);
+            setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, style, jni_int_vector, 1);
         }
 
     }
@@ -2468,8 +2459,8 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
          * Type 1 corresponds to a CHAMP object
          * so building comes from champg
          */
-        setGraphicObjectProperty(pobj->UID, __GO_BASE_X__, vx, jni_double_vector, Nbr1);
-        setGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, vy, jni_double_vector, Nbr2);
+        setGraphicObjectProperty(pobjUID, __GO_BASE_X__, vx, jni_double_vector, Nbr1);
+        setGraphicObjectProperty(pobjUID, __GO_BASE_Y__, vy, jni_double_vector, Nbr2);
 
         /*
          * Foreground color
@@ -2477,12 +2468,12 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
          * commented out for now.
          */
 #if 0
-        tmp = (int*) getGraphicObjectProperty(pparentsubwin->UID, __GO_LINE_COLOR__, jni_int);
+        tmp = (int*) getGraphicObjectProperty(pparentsubwinUID, __GO_LINE_COLOR__, jni_int);
         foreground = *tmp;
-        setGraphicObjectProperty(pobj->UID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+        setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 #endif
 
-        setGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE__, &arsize, jni_double, 1);
+        setGraphicObjectProperty(pobjUID, __GO_ARROW_SIZE__, &arsize, jni_double, 1);
 
         for (i = 0; i < numberArrows; i++)
         {
@@ -2491,22 +2482,17 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
             arrowCoords[3*i+2] = 0.0;
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
+        setGraphicObjectProperty(pobjUID, __GO_DIRECTION__, arrowCoords, jni_double_vector, 3*numberArrows);
 
         /* typeofchamp corresponds to COLORED (0: false, 1: true) */
-        setGraphicObjectProperty(pobj->UID, __GO_COLORED__, &typeofchamp, jni_bool, 1);
+        setGraphicObjectProperty(pobjUID, __GO_COLORED__, &typeofchamp, jni_bool, 1);
     }
 
     /* Required to initialize the default contour properties */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(arrowCoords);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
+    /* Initializes the default Contour values */
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
 
 //    if ( sciAddNewHandle(pobj) == -1 )
 //    {
@@ -2516,13 +2502,13 @@ ConstructSegs ( sciPointObj * pparentsubwin, int type,
 //        return (sciPointObj *) NULL;
 //    }
 
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     FREE(arrowCoords);
 
-    return pobj;
+    return pobjUID;
 }
 
 

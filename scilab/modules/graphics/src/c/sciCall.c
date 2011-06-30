@@ -250,19 +250,26 @@ void Objsegs ( int * style,
                double  * z    ,
                double    arsize )
 {
-#if 0
-  int type=0, colored=0;
-  double *fx =NULL,*fy = NULL; // No fx or fy
-  int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-  sciPointObj *psubwin = NULL;
+    char *pobjUID = NULL;
+    char *psubwinUID = NULL;
+    int type=0, colored=0;
+    double *fx =NULL,*fy = NULL; // No fx or fy
+    int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
 
-  checkRedrawing() ;
-  psubwin = sciGetCurrentSubWin();
-  sciSetCurrentObj(
-    ConstructSegs(psubwin,type,
+    checkRedrawing() ;
+    psubwinUID = getCurrentSubWin();
+
+    pobjUID = ConstructSegs(psubwinUID,type,
                   x,y,z,n1,n1, (z==NULL ? 0 : n1),     // x, y and z have the same size n1
-                  fx,fy,flag,style,arsize,colored,typeofchamp));
-#endif
+                  fx,fy,flag,style,arsize,colored,typeofchamp);
+
+    if (pobjUID == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"Objsegs");
+        return;
+    }
+
+    setCurrentObject(pobjUID);
 }
 /*-----------------------------------------------------------
  * Objstring:
