@@ -22,6 +22,37 @@ Reported bugs:
  * HTML labels bounds are wrong when zoom != 1
    http://www.jgraph.org/bugzilla/show_bug.cgi?id=75
 
+23-JUN-2011: 1.7.0.7
+
+14-JUN-2011: 1.7.0.6
+
+- Adds mxStylesheetCodec.getStringValue hook [JavaScript,Java,Dotnet,Php]
+- Fixes ignored scale in mxUtils.getSizeForHtml [Java]
+
+07-JUN-2011: 1.7.0.5
+
+02-JUN-2011: 1.7.0.4
+
+27-MAY-2011: 1.7.0.3
+
+24-MAY-2011: 1.7.0.2
+
+- Caller of mxConnectPreview.update no longer snaps arguments to grid [Java]
+- mxConnectPreview.update uses scale when snapping to grid [Java]
+- Returns true in mxGraph.isTerminalPointMovable [Java]
+- Fixes curve label glyph width calculation for right-to-left languages [Java]
+
+16-MAY-2011: 1.7.0.1
+
+- Fixes possible NPE in mxEdgeHandler.isHandleVisible [JavaScript]
+- mxEdgeSegmentHandler no longer ignores mxGraph.isCellBendable [JavaScript]
+- mxElbowEdgeHandler, mxEdgeSegmentHandler use createHandleShape for terminal handles [JavaScript]
+- mxDragSource uses mxGraph.isGridEnabledEvent, mxGuide.isEnabledForEvent [JavaScript]
+- Changes mxGraphHandler.useGuidesForEvent to use mxGuide.isEnabledForEvent [JavaScript]
+- Adds mxGuide.isEnabledForEvent, mxGuide.hide [JavaScript]
+- Fixes rendering of multi-character single glyphs on curve labels [Java]
+- Removes conflicting fix for highlight offset in IE [JavaScript]
+
 11-MAY-2011: 1.7.0.0
 
 - Fixes clearSelection for toggle events in mxGraphHandler [Java]
