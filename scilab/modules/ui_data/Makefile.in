@@ -576,17 +576,24 @@ libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 
 #### ui_data : icons files ####
 libsciui_data_la_iconsdir = $(mydatadir)/
-nobase_libsciui_data_la_icons_DATA = images/icons/tp00.gif \
-images/icons/tp01.gif \
-images/icons/tp02.gif \
-images/icons/tp04.gif \
-images/icons/tp05.gif \
-images/icons/tp06.gif \
-images/icons/tp08.gif \
-images/icons/tp10.gif \
-images/icons/tp15.gif \
-images/icons/tp16.gif \
-images/icons/tp17.gif
+nobase_libsciui_data_la_icons_DATA = images/icons/cell.png \
+images/icons/double.png \
+images/icons/sparse.png \
+images/icons/boolean.png \
+images/icons/object.png \
+images/icons/string.png \
+images/icons/list.png \
+images/icons/noicon.png \
+images/icons/array_up.png \
+images/icons/fptr.png \
+images/icons/function.png \
+images/icons/handle.png \
+images/icons/int.png \
+images/icons/uint.png \
+images/icons/mlist.png \
+images/icons/polynomial.png \
+images/icons/user.png \
+images/icons/tlist.png
 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)

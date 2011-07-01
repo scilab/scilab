@@ -46,17 +46,20 @@ public class BrowseVar {
 
     private static final String ICON_PATH = System.getenv("SCI") + "/modules/ui_data/images/icons/";
 
-    private static final ImageIcon TP00 = new ImageIcon(ICON_PATH + "tp00.gif");
-    private static final ImageIcon TP01 = new ImageIcon(ICON_PATH + "tp01gif");
-    private static final ImageIcon TP02 = new ImageIcon(ICON_PATH + "tp02.gif");
-    private static final ImageIcon TP04 = new ImageIcon(ICON_PATH + "tp04.gif");
-    private static final ImageIcon TP05 = new ImageIcon(ICON_PATH + "tp05.gif");
-    private static final ImageIcon TP06 = new ImageIcon(ICON_PATH + "tp06.gif");
-    private static final ImageIcon TP08 = new ImageIcon(ICON_PATH + "tp08.gif");
-    private static final ImageIcon TP10 = new ImageIcon(ICON_PATH + "tp10.gif");
-    private static final ImageIcon TP15 = new ImageIcon(ICON_PATH + "tp15.gif");
-    private static final ImageIcon TP16 = new ImageIcon(ICON_PATH + "tp16.gif");
-    private static final ImageIcon TP17 = new ImageIcon(ICON_PATH + "tp17.gif");
+    private static final ImageIcon NO_ICON = new ImageIcon(ICON_PATH + "noicon.png");
+    private static final ImageIcon DOUBLE_ICON = new ImageIcon(ICON_PATH + "double.png");
+    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(ICON_PATH + "polynomial.png");
+    private static final ImageIcon BOOLEAN_ICON = new ImageIcon(ICON_PATH + "boolean.png");
+    private static final ImageIcon SPARSE_ICON = new ImageIcon(ICON_PATH + "sparse.png");
+    private static final ImageIcon INT_ICON = new ImageIcon(ICON_PATH + "int.png");
+    private static final ImageIcon HANDLE_ICON = new ImageIcon(ICON_PATH + "handle.png");
+    private static final ImageIcon STRING_ICON = new ImageIcon(ICON_PATH + "string.png");
+    private static final ImageIcon FUNCTION_ICON = new ImageIcon(ICON_PATH + "function.png");
+    private static final ImageIcon LIST_ICON = new ImageIcon(ICON_PATH + "list.png");
+    private static final ImageIcon TLIST_ICON = new ImageIcon(ICON_PATH + "tlist.png");
+    private static final ImageIcon MLIST_ICON = new ImageIcon(ICON_PATH + "mlist.png");
+    private static final ImageIcon USER_ICON = new ImageIcon(ICON_PATH + "user.png");
+    private static final ImageIcon FPTR_ICON = new ImageIcon(ICON_PATH + "fptr.png");
 
     /**
      * Default private constructor for utility class
@@ -71,27 +74,38 @@ public class BrowseVar {
     private static ImageIcon getIconFromType(int type) {
         switch (type) {
         case 1:
-            return TP01;
+            return DOUBLE_ICON;
         case 2:
-            return TP02;
+          return POLYNOMIAL_ICON;
         case 4:
-            return TP04;
+            return BOOLEAN_ICON;
         case 5:
-            return TP05;
         case 6:
-            return TP06;
+        case 7:
+            return SPARSE_ICON;
         case 8:
-            return TP08;
+          return INT_ICON;
+        case 9:
+            return HANDLE_ICON;
         case 10:
-            return TP10;
+            return STRING_ICON;
+        case 11:
+        case 13:
+            return FUNCTION_ICON;
+        /*case 14:
+            return LIBRARY_ICON;*/
         case 15:
-            return TP15;
+            return LIST_ICON;
         case 16:
-            return TP16;
+            return TLIST_ICON;
         case 17:
-            return TP17;
+            return MLIST_ICON;
+        case 128:
+            return USER_ICON;
+        case 130:
+            return FPTR_ICON;
         default:
-            return TP00;
+            return NO_ICON;
         }
     }
 

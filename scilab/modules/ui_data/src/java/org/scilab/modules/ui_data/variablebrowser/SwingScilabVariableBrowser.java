@@ -122,9 +122,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
     private CheckBoxMenuItem filterMatlabSparseCheckBox;
     private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
     private PushButton filteringButton;
-    
+
     private boolean isSetData = false;
-    
+
     private TableRowSorter< ? > rowSorter;
 
     /**
@@ -154,16 +154,16 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                     TableModel model = ((JTable) e.getSource()).getModel();
                     java.awt.Point p = e.getPoint();
                     int rowIndex = rowAtPoint(p);
-                    if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
-                        
+
+                    if (rowIndex >= 0) {
+                        rowIndex = convertRowIndexToModel(rowIndex);
                         int colIndex = columnAtPoint(p);
-                        if (colIndex==BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
+                        if (colIndex == BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
                             try {
-                                tip = Messages.gettext("Scilab type:")+" "+ model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
+                                tip = Messages.gettext("Scilab type:") + " " + model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
                             } catch (IllegalArgumentException exception) {
                                 /* If the type is not known/managed, don't crash */
                             }
-                                
                         } else {
 
                             if (colIndex==BrowseVar.SIZE_COLUMN_INDEX) {
@@ -172,7 +172,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                                  * but still exist in the model */
                                 tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
                             }
-
                         }
                     }
                     return tip;
