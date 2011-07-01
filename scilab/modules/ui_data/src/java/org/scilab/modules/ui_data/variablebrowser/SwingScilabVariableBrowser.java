@@ -157,11 +157,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                     if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
                         
                         int colIndex = columnAtPoint(p);
-
-                        if (colIndex==BrowseVar.TYPE_COLUMN_INDEX) { /* Scilab type */
+                        if (colIndex==BrowseVar.TYPE_DESC_COLUMN_INDEX) { /* Scilab type */
                             try {
-                                int type = Integer.parseInt(getValueAt(rowIndex, colIndex).toString());
-                                tip = Messages.gettext("Scilab type:")+" "+ ScilabTypeEnum.swigToEnum(type);
+                                tip = Messages.gettext("Scilab type:")+" "+ model.getValueAt(rowIndex, BrowseVar.TYPE_COLUMN_INDEX).toString();
                             } catch (IllegalArgumentException exception) {
                                 /* If the type is not known/managed, don't crash */
                             }
@@ -189,7 +187,11 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
 
         /* Hide the columns. But keep it in memory for the tooltip */
-        TableColumn column = table.getColumnModel().getColumn(BrowseVar.FROM_SCILAB_COLUMN_INDEX);
+        TableColumn column = table.getColumnModel().getColumn(BrowseVar.TYPE_COLUMN_INDEX);
+        /* The order to removing does matter since it changes the positions */
+        table.removeColumn(column);
+
+        column = table.getColumnModel().getColumn(BrowseVar.FROM_SCILAB_COLUMN_INDEX);
         table.removeColumn(column);
 
         column = table.getColumnModel().getColumn(BrowseVar.BYTES_COLUMN_INDEX);
@@ -259,14 +261,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                 System.err.println(e);
             }
         }
-        VariableBrowserRowTypeFilter rowFilter = new VariableBrowserRowTypeFilter(getFilteredTypeValues());
+        VariableBrowserRowTypeFilter rowTypeFilter = new VariableBrowserRowTypeFilter(getFilteredTypeValues());
         VariableBrowserRowDataFilter rowDataFilter = new VariableBrowserRowDataFilter(getFilteredDataValues());
 
         List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>();
         RowFilter<Object, Object> compoundRowFilter = null;
-        filters.add(rowFilter);
+        filters.add(rowTypeFilter);
         filters.add(rowDataFilter);
         compoundRowFilter = RowFilter.andFilter(filters);
+
         rowSorter.setRowFilter(compoundRowFilter);
         table.setRowSorter(rowSorter);
 
