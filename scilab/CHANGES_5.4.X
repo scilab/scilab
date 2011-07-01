@@ -318,10 +318,13 @@ Bug fixes:
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
+* bug 9675 fixed - iir generated bad results.
+
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
 
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
                    was not ignored (generated file)
+
 
