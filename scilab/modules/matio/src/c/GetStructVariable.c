@@ -39,7 +39,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return NULL;
     }
 
     /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
@@ -84,7 +84,7 @@ matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, cha
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                return 0;
+                return NULL;
             }
 
             for (valueIndex = 0; valueIndex < prodDims; valueIndex++)

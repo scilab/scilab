@@ -348,6 +348,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
+    <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="includes\cluni0.h" />
     <ClInclude Include="src\c\copyfile.h" />
@@ -380,7 +381,6 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClInclude Include="src\c\merror.h" />
     <ClInclude Include="includes\mget.h" />
     <ClInclude Include="src\c\mgeti.h" />
-    <ClInclude Include="src\c\mgetl.h" />
     <ClInclude Include="src\c\mgetstr.h" />
     <ClInclude Include="includes\mopen.h" />
     <ClInclude Include="src\c\movefile.h" />

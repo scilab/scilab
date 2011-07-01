@@ -123,6 +123,9 @@ size(lter) - size(lbis) - size(l)  // doit être nul
         <link linkend="tlist">tlist</link>
       </member>
       <member>
+        <link linkend="mlist">mlist</link>
+      </member>
+      <member>
         <link linkend="insertion">insertion</link>
       </member>
       <member>

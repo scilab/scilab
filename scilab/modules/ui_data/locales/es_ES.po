@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-03-16 15:36+0000\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -48,29 +48,17 @@ msgstr ""
 msgid "%s: ans cannot be edited.\n"
 msgstr "%s: no puede editarse ans.\n"
 
-#
-# File: scilab_fake_localization_file.c, line: 3
-# File: scilab_fake_localization_file.c, line: 7
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
-#
-# File: scilab_fake_localization_file.c, line: 4
-# File: scilab_fake_localization_file.c, line: 8
 msgid "&About Scilab..."
-msgstr ""
+msgstr "&Acerca de Scilab..."
 
-#
-# File: scilab_fake_localization_file.c, line: 2
-# File: scilab_fake_localization_file.c, line: 6
 msgid "&Close"
-msgstr ""
+msgstr "&Cerrar"
 
-#
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 5
 msgid "&File"
-msgstr ""
+msgstr "&Archivo"
 
 msgid "Boolean"
 msgstr "Booleano"

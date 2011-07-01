@@ -20,6 +20,7 @@
 #include "strdup_windows.h"
 #endif
 #include "freeArrayOfString.h"
+#include "strsubst.h"
 /*--------------------------------------------------------------------------*/
 static char **splitErrorMessage(const char *msg, int *nbLines);
 /*--------------------------------------------------------------------------*/
@@ -55,6 +56,7 @@ int C2F(msgstore)(char *str, int *n)
     int nbLines = 0;
     int i = 0;
     char *msg = NULL;
+    char *msgTmp = NULL;
 
     if (str == NULL) return 1;
     msg = strdup(str);
@@ -63,6 +65,13 @@ int C2F(msgstore)(char *str, int *n)
         msg[*n] = 0;
     }
 
+    // remove duplicate percent bug 9571
+    msgTmp = strsub(msg, "%%", "%");
+    if (msgTmp)
+    {
+        FREE(msg);
+        msg = msgTmp;
+    }
     multilines = splitErrorMessage(msg, &nbLines);
     if (multilines)
     {

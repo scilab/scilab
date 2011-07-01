@@ -152,6 +152,13 @@ public class LinkElement extends AbstractElement<BasicLink> {
 				.get(XX_INDEX).getWidth();
 
 		/*
+		 * Pre-condition (start and end should have been set)
+		 */
+		if (start == null || end == null) {
+			return points;
+		}
+		
+		/*
 		 * The first, last and common indexes.
 		 */
 		final int min = 1;
@@ -214,7 +221,17 @@ public class LinkElement extends AbstractElement<BasicLink> {
 		incrementIndexes(indexes, isColumnDominant);
 
 		final int startPortIndex = (int) fromReal[indexes[0]][indexes[1]];
-		final int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
+		if (startPortIndex == 0) {
+			LOG.error("Link has an invalid start port");
+			LOG.error(data.toString());
+			return;
+		}
+		int endPortIndex = (int) toReal[indexes[0]][indexes[1]];
+		if (endPortIndex == 0) {
+			LOG.error("Link has an invalid end port");
+			LOG.error(data.toString());
+			return;
+		}
 
 		incrementIndexes(indexes, isColumnDominant);
 

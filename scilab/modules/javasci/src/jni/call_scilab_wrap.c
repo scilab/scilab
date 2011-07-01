@@ -1101,6 +1101,8 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putStrin
     // Convert the String[][] => char *
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
+    
     
     for(i=0; i<arg3; i++) {
       jobjectArray oneDim=(jobjectArray)(*jenv)->GetObjectArrayElement(jenv, jarg2, i);
@@ -1240,6 +1242,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putDoubl
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jdouble*element = NULL;
@@ -1348,6 +1351,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putBoole
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jboolean*element = NULL;
@@ -1456,6 +1460,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putByte(
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jbyte*element = NULL;
@@ -1564,6 +1569,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jbyte*element = NULL;
@@ -1672,6 +1678,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putShort
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jshort*element = NULL;
@@ -1780,6 +1787,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jchar*element = NULL;
@@ -1888,6 +1896,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putInt(J
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jint*element = NULL;
@@ -1996,6 +2005,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_javasci_Call_1ScilabJNI_putUnsig
     int i=0, j=0;
     arg3 = (*jenv)->GetArrayLength(jenv, jarg2);
     arg4 = 0;
+    arg2 = NULL;
     
     for(i=0; i<arg3; i++) {
       jint*element = NULL;

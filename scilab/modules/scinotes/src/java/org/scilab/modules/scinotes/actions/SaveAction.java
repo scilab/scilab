@@ -69,8 +69,7 @@ public final class SaveAction extends DefaultAction {
      */
     public void doAction() {
         if (!getEditor().save(getEditor().getTabPane().getSelectedIndex(), true)) {
-            ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE,
-                                   SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            ScilabModalDialog.show(getEditor(), SciNotesMessages.COULD_NOT_SAVE_FILE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
         }
     }
 }

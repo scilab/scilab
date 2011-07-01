@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-07-29 11:02+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -103,7 +103,8 @@ msgstr "Categoria"
 msgid "Center"
 msgstr "Centrat"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Feu clic al diagrama per afegir un punt d'enllaç o en un destí compatible "
 "per finalitzar"
@@ -127,13 +128,9 @@ msgstr "S'està compilant, el resultat es desarà a la variable 'scicos_cpr'"
 msgid "Compile"
 msgstr "Compila"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 42
 msgid "Compiling"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 43
 msgid "Computing"
 msgstr ""
 
@@ -179,13 +176,12 @@ msgstr "Fons del diagrama"
 msgid "Diagram browser"
 msgstr "Explorador de diagrames"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
 "desar?"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -219,18 +215,12 @@ msgstr "Elèctric"
 msgid "Enable"
 msgstr "Activa"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 46
 msgid "Equations"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 54
 msgid "Error"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
@@ -240,12 +230,14 @@ msgstr "Tractaments d'esdeveniments"
 msgid "Execution trace and Debug"
 msgstr "Depuració i traces de l'execució"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Un port de dades d'entrada explícit ha d'estar connectat a un port de dades "
 "de sortida explícit"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Un port de dades de sortida explícit ha d'estar connectat a un port de dades "
 "d'entrada explícit"
@@ -259,8 +251,6 @@ msgstr "S'està exportant"
 msgid "Export to XML"
 msgstr "Exporta a XML"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 58
 msgid "Extended"
 msgstr ""
 
@@ -279,23 +269,15 @@ msgstr "Temps total d'integració"
 msgid "Fit diagram to view"
 msgstr "Ajusta el diagrama a la vista"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
 msgid "Fix derivatives"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 38
 msgid "Fix states"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
 msgid "Fixed parameters"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
 msgid "Fixed variables"
 msgstr ""
 
@@ -318,8 +300,6 @@ msgstr "Format"
 msgid "From %s"
 msgstr "De %s"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 53
 msgid "Generate Jacobian"
 msgstr ""
 
@@ -332,8 +312,6 @@ msgstr "S'està generant el codi C per al SuperBlock"
 msgid "Get infos"
 msgstr "Informació"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 45
 msgid "Global"
 msgstr ""
 
@@ -353,20 +331,20 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "La imatge no conté dades."
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr "Implícit"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Un port de dades d'entrada implícit ha d'estar connectat a un port de dades "
 "de sortida implícit"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Un port de dades de sortida implícit ha d'estar connectat a un port de dades "
 "d'entrada implícit"
@@ -374,18 +352,12 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa de XML"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 50
 msgid "Initial computing method"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 48
 msgid "Input"
 msgstr ""
 
@@ -422,8 +394,6 @@ msgstr "S'està carregant el diagrama"
 msgid "Loading palettes"
 msgstr "S'està carregant les paletes"
 
-#
-# File: src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 54
 msgid "Loading the block"
 msgstr ""
 
@@ -454,8 +424,6 @@ msgstr "Inverteix"
 msgid "Modelica initialize"
 msgstr "Inicialitza la modelica"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 23
 msgid "Modelica settings"
 msgstr ""
 
@@ -498,26 +466,18 @@ msgstr "Nom de la paleta"
 msgid "Palettes"
 msgstr "Paletes"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Crides a traces i depuracions per execucions de blocs"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 65
 msgid "Please take a look into the Scilab console"
 msgstr ""
 
@@ -530,8 +490,6 @@ msgstr ""
 "El port ja està connectat. Seleccioneu un port desconnectat o un enllaç "
 "vàlid."
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
 msgstr ""
 
@@ -547,21 +505,15 @@ msgstr "Escalat en temps real"
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 57
 msgid "Reduced"
 msgstr ""
 
 msgid "Region to superblock"
 msgstr "Regió a superbloc"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
 msgid "Relaxed parameters"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Relaxed variables"
 msgstr ""
 
@@ -650,21 +602,15 @@ msgstr "S'està realitzant la simulació"
 msgid "Sinks"
 msgstr "Destins"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 40
 msgid "Solve"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 49
 msgid "Solver"
 msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
@@ -711,8 +657,8 @@ msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
-"El fitxer de configuració de la paleta d'usuari (palettes.xml) és invàlid."
-"<BR> S'utilitzarà el predeterminat."
+"El fitxer de configuració de la paleta d'usuari (palettes.xml) és "
+"invàlid.<BR> S'utilitzarà el predeterminat."
 
 msgid "Thermo-Hydraulics"
 msgstr "Termohidràulica"
@@ -726,14 +672,10 @@ msgstr "Eines"
 msgid "Top"
 msgstr "Superior"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 #, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
@@ -757,8 +699,6 @@ msgstr ""
 "No s'ha pogut carregar la llibreria Batik. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
 
-#
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 70
 #, c-format
 msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
@@ -773,21 +713,15 @@ msgstr ""
 "No s'ha pogut carregar la llibreria jgraphx. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
 
-#
-# File: src/java/org/scilab/modules/xcos/Xcos.java, line: 72
 msgid "Unable to load the native HDF5 library."
 msgstr ""
 
 msgid "Unknown Diagram Version : "
 msgstr "Diagrama de versió desconegut: "
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 56
 msgid "Unknowns"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
 msgid "Unknowns not equals to Equations"
 msgstr ""
 
@@ -833,8 +767,6 @@ msgstr "WinTitle"
 msgid "Window title"
 msgstr "Títol de la finestra"
 
-#
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 61
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
@@ -844,8 +776,6 @@ msgstr ""
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "L'argument d'entrada \"%s\" és incorrecte: No és un camí vàlid.\n"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
 msgid "Wrong port number"
 msgstr ""
 
@@ -864,83 +794,377 @@ msgstr "Error de Xcos"
 msgid "Xcos file"
 msgstr "Fitxer d'Xcos"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
 msgid "You may enter here scilab instructions to define "
 msgstr ""
 
 msgid "Zero crossing detection"
 msgstr "Detecció d'encreuament pel zero"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 34
 msgid "comment"
 msgstr ""
 
 msgid "control port must be connected to command port"
 msgstr "Un port de control ha d'estar connectat a un port de comanda"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
 msgid "fixed"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
 msgid "id"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 29
 msgid "initial"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 27
 msgid "kind"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 52
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 31
 msgid "max"
 msgstr ""
 
 msgid "maximum step size (0 means no limit)"
 msgstr "mida màxima del pas (0 indica que no hi ha límit)"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 32
 msgid "min"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 41
 msgid "model is not valid"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 25
 msgid "name"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 33
 msgid "nominal"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 35
 msgid "selected"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 30
 msgid "weight"
 msgstr ""
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr ""
+#~ "El mòdul '%s' de Scilab està deshabilitat en els modes -nogui o -nwni."
+
+#, c-format
+#~ msgid "%s: File ''%s'' does not exist.\n"
+#~ msgstr "%s: No existeix el fitxer ''%s''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "Ha fallat l'exportació: %s\n"
+
+#~ msgid "Cut"
+#~ msgstr "Retalla"
+
+#~ msgid "Copy"
+#~ msgstr "Copia"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Allunya"
+
+#~ msgid "Undo"
+#~ msgstr "Desfés"
+
+#~ msgid "Zoom In"
+#~ msgstr "Apropa"
+
+#~ msgid "Paste"
+#~ msgstr "Enganxa"
+
+#~ msgid "Redo"
+#~ msgstr "Refés"
+
+#~ msgid "Group"
+#~ msgstr "Agrupa"
+
+#~ msgid "Select all"
+#~ msgstr "Selecciona-ho tot"
+
+#~ msgid "Invert selection"
+#~ msgstr "Inverteix la selecció"
+
+#~ msgid "UnGroup"
+#~ msgstr "Desagrupa"
+
+#~ msgid "Quit"
+#~ msgstr "Surt"
+
+#~ msgid "Browser"
+#~ msgstr "Explorador"
+
+#~ msgid "Help"
+#~ msgstr "Ajuda"
+
+#~ msgid "Threshold"
+#~ msgstr "Llindar"
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Versió de Xcos 1.0"
+
+#~ msgid "Continuous"
+#~ msgstr "Continu"
+
+#~ msgid "Discontinuous"
+#~ msgstr "Discontinu"
+
+#~ msgid "Events"
+#~ msgstr "Esdeveniments"
+
+#~ msgid "Port Action"
+#~ msgstr "Acció de port"
+
+#~ msgid "Math Operations"
+#~ msgstr "Operacions matemàtiques"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid ""
+#~ "Diagram has been modified since last save\n"
+#~ "save it?"
+#~ msgstr ""
+#~ "El diagrama s'ha modificat des de l'últim cop que es va desar\n"
+#~ "El voleu desar?"
+
+#~ msgid ""
+#~ "You may enter here scilab instructions to define symbolic parameters used in "
+#~ "block definitions using Scilab instructions.<br/>These instructions are "
+#~ "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+#~ "diagram is loaded.)"
+#~ msgstr ""
+#~ "Heu d'introduir instruccions per a que l'Scilab defineixi paràmetres "
+#~ "simbòlics utilitzats en definicions de bloc que utilitzin instruccions "
+#~ "d'Scilab.<br/>Aquestes instruccions s'avaluen un cop es confirmen (per "
+#~ "exemple, quan feu clic a Accepta, a Eval i cada cop que es carrega el "
+#~ "diagrama)."
+
+#~ msgid "Line Color"
+#~ msgstr "Color de línia"
+
+#, c-format
+#~ msgid "%s: Unable to import xcos file %s.\n"
+#~ msgstr "%s: No s'ha pogut importar el fitxer xcos %s.\n"
+
+#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
+#~ msgstr "Traca de la simulació (interruptors de parts discretes i contínues)"
+
+#~ msgid "Remove user defined palette"
+#~ msgstr "Elimina les paletes d'usuari"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "Versió de diagrama desconeguda : "
+
+#~ msgid "Xcos 1.0"
+#~ msgstr "Xcos 1.0"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: diagram structure expected"
+#~ msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un diagrama"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+#~ msgstr ""
+#~ "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text o "
+#~ "un diagrama"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "No s'ha pogut comunicar amb l'intèrpret"
+
+#~ msgid "Same command executed again"
+#~ msgstr "Torneu a executar la mateixa comanda"
+
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "No s'ha carregat les llibreries de Scicos"
+
+#, c-format
+#~ msgid "Unable to open %s"
+#~ msgstr "No s'ha pogut obrir %s"
+
+#, c-format
+#~ msgid "Unable to simulate %s"
+#~ msgstr "No s'ha pogut fer la simulació %s"
+
+#, c-format
+#~ msgid "%s: Unable to generate the image %s.\n"
+#~ msgstr "%s: No s'ha pogut generar la imatge %s.\n"
+
+#, c-format
+#~ msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+#~ msgstr "%s: No s'ha pogut generar la icona de la paleta: Ja existeix %s.\n"
+
+#, c-format
+#~ msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+#~ msgstr ""
+#~ "%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
+
+#, c-format
+#~ msgid "%s: Unable to export the palette to hdf5.\n"
+#~ msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
+
+#, c-format
+#~ msgid "%s: Unable to export %s to %s.\n"
+#~ msgstr "%s: No s'ha pogut exportar %s a %s.\n"
+
+#, c-format
+#~ msgid "%s: File ''%s'' is not a valid palette file.\n"
+#~ msgstr "%s: El fitxer ''%s'' no és un fitxer de paleta vàlid.\n"
+
+#, c-format
+#~ msgid "%s: All paths defined by %s variable must exist.\n"
+#~ msgstr "%s: Tots els camins definits per la variable %s han d'existir.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory %s cannot been created, please check if you have write "
+#~ "access on this directory.\n"
+#~ msgstr ""
+#~ "%s: No es pot crear el directori %s. Comproveu si hi teniu accés "
+#~ "d'escriptura.\n"
+
+#, c-format
+#~ msgid "%s: Found ''%s'' instead of a block.\n"
+#~ msgstr "%s: S'ha trobat ''%s'' en comptes d'un bloc.\n"
+
+#, c-format
+#~ msgid "%s is not a valid name, please change the title of the diagram."
+#~ msgstr "%s no és un nom vàlid, canvieu el nom del diagrama."
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: El nombre d'arguments de sortida és incorrecte: Han de ser entre %d i "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s variable: A string array expected.\n"
+#~ msgstr ""
+#~ "%s: La variable %s és d'un tipus incorrecte: Ha de ser un vector de text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: L'argument d'entrada %s és incorrecte: Ha de ser svg o gif.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+#~ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+#~ msgstr ""
+#~ "%s: No s'ha pogut carregar el bloc de %s: No s'ha trobat la variable "
+#~ "`scs_m''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: path string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta o "
+#~ "un camí.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: function as string or Block type or "
+#~ "full path string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una funció, "
+#~ "un bloc o un camí absolut.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
+#~ "tractament.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
+#~ "diagrama.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: directory path string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí a un "
+#~ "directori.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí "
+#~ "absolut.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: File not found.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: No s'ha trobat el "
+#~ "fitxer.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un vector de "
+#~ "text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string type expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text o "
+#~ "una estructura.\n"
+
+#~ msgid ""
+#~ "Unable to load the HDF5 library. \n"
+#~ "Expecting version %s ; Getting version %s ."
+#~ msgstr ""
+#~ "No s'ha pogut carregar la llibreria HDF5. \n"
+#~ "Ha de ser la versió %s ; Hi ha la versió %s ."

@@ -1,0 +1,7 @@
+# FOP logging level
+org.apache.fop.level = @LOGGING_LEVEL@
+org.apache.fop.render.level = @LOGGING_LEVEL@
+
+#Scilab logging level
+org.scilab.level = @LOGGING_LEVEL@
+

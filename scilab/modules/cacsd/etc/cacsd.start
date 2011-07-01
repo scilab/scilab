@@ -7,15 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function cacsdlib = startModule()
+
 //Load  functions libraries
 // =============================================================================
-load("SCI/modules/cacsd/macros/lib");
+  load("SCI/modules/cacsd/macros/lib");
 
-// add demos
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/cacsd/demos/cacsd.dem.gateway.sce",%f,%t);
-	add_demo(gettext("CACSD"),pathdemos);
-	clear pathdemos ;
-end
+endfunction
 
+cacsdlib = startModule();
+clear startModule;

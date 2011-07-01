@@ -186,7 +186,7 @@
   </add>
   <add as="Modulo_Count" extend="blockWithLabel">
     <!-- FIXME : Show parameters over block  -->
-    <add as="displayedLabel" value="Counter&lt;BR&gt;         Modulo 3"/>
+    <add as="displayedLabel" value="Counter&lt;BR&gt;Modulo %2$s"/>
   </add>
   <add as="Sigbuilder" extend="blockWithLabel">
     <add as="displayedLabel" value="Signal Builder"/>
@@ -531,7 +531,7 @@
   </add>
   <add as="TOWS_c" extend="blockWithLabel">
     <!-- FIXME : Show workspace under block  -->
-    <add as="displayedLabel" value="To workspace"/>
+    <add as="displayedLabel" value="To workspace&lt;BR&gt;%2$s [%1$s]"/>
   </add>
   <add as="CMAT3D" extend="blockWithLabel">
     <add as="displayedLabel" value="Mat. 3D"/>
@@ -909,7 +909,7 @@
   </add>
   <add as="Counter" extend="blockWithLabel">
     <!-- FIXME : Show parameters over block  -->
-    <add as="displayedLabel" value="Counter&lt;BR&gt;         0 &amp;#8594; 2"/>
+    <add as="displayedLabel" value="Counter&lt;BR&gt;%s &amp;#8594; %s"/>
   </add>
   <add as="CLOCK_f" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg"/>

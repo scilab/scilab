@@ -21,7 +21,7 @@ if nin <= 0 then x=1:10;end
 if nin <= 1 then y=1:10;end
 if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end
 if nin <= 3 then zmin=min(z);zmax=max(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end
-if nin <= 5 then strf="121";end
+if nin <= 5 then strf="021";end
 if nin <= 6 then leg=" ";end
 if nin <= 7 then rect=[0,0,1,1];end
 if nin <= 8 then nax=[1,10,1,10];end

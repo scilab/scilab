@@ -50,7 +50,7 @@ case 'plot' then //normal  position
   
    
   //** special case for Windows 
-  if MSDOS then
+  if getos() == "Windows" then
     //** xset('pattern',scs_m.props.options.Background(1))
     gh_winpal.font_color = scs_m.props.options.Background(1) ;
     

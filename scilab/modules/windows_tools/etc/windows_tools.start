@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
+// Copyright (C) DIGITEO - 2011 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,12 +8,22 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// =============================================================================
+function [windows_toolslib, WSCI] = startModule()
+
 // Load  functions libraries
 // =============================================================================
-load("SCI/modules/windows_tools/macros/lib");
+  load("SCI/modules/windows_tools/macros/lib");
+
+// path of scilab main directory for Windows
 // =============================================================================
-if (getscilabmode() == 'STD') then 
-  consolebox('off');
-end
+  WSCI = getlongpathname(pathconvert(SCI, %f, %f, "w"));
+
 // =============================================================================
+  if (getscilabmode() == 'STD') then 
+    consolebox('off');
+  end
+  
+endfunction
+
+[windows_toolslib, WSCI] = startModule();
+clear startModule;

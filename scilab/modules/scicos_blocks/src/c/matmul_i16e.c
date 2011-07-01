@@ -37,7 +37,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_i16e(scicos_block *block,int flag)
 		short *u1=Getint16InPortPtrs(block,1);
 		short *u2=Getint16InPortPtrs(block,2);
 		short *y=Getint16OutPortPtrs(block,1);
-		int *ipar=GetIparPtrs(block);
 
 		double k = pow(2,16);
 		int l = 0;

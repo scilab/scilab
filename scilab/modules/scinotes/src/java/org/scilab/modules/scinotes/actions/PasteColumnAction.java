@@ -25,6 +25,7 @@ import javax.swing.text.Element;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.CompoundUndoManager;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
 
 /**
@@ -59,11 +60,19 @@ public class PasteColumnAction extends DefaultAction {
             System.err.println(ex2);
         }
         if (str != null) {
+            SciNotesCaret caret = (SciNotesCaret) getEditor().getTextPane().getCaret();
+            int pos;
+            if (caret.isEmptySelection()) {
+                pos = getEditor().getTextPane().getSelectionStart();
+            } else {
+                int[][] positions = caret.getSelectedPositions();
+                pos = positions[0][0];
+            }
+            int spos = pos;
             ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
             doc.mergeEditsBegin();
+            getEditor().getTextPane().replaceSelection("");
             StringTokenizer tokens = new StringTokenizer(str, CR);
-            int pos = getEditor().getTextPane().getCaretPosition();
-            int spos = pos;
             int index = root.getElementIndex(pos);
             String crs = initString(tokens.countTokens() - root.getElementCount() + index, '\n');
             if (crs.length() > 0) {

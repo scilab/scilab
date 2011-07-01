@@ -81,10 +81,10 @@ function atomsGui()
         "parent"   , atomsfig, ..
         "label"    , gettext("File"));
 
-    // Menu File:Home
+    // Menu File:Installed Modules
     uimenu( ..
         "parent"   , h, ..
-        "label"    , gettext("Home"), ..
+        "label"    , gettext("Installed modules"), ..
         "callback" , "cbAtomsGui", ..
         "tag"      , "homeMenu");
 
@@ -233,7 +233,7 @@ function atomsGui()
         "Enable"             , "off", ..
         "Tag"                , "updateButton");
 
-    // Home: List of installed modules
+    // Installed Modules: List of installed modules
     // =========================================================================
 
     descWidth                = descFrameWidth  - 2*margin;

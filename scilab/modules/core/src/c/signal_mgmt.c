@@ -74,8 +74,6 @@ static char *backtrace_print(int niv_debut)
         {
             ret = snprintf(tmp, size, _("\nCall stack:\n"));
             size -= ret;
-            tmp += ret;
-
         }
 
         for (ind = niv_debut; ind < nbr; ind++)
@@ -107,16 +105,13 @@ static char *backtrace_print(int niv_debut)
 
             ret = snprintf(tmp, size, "%s%4lu: %-16s %-32s (%s)\n", s_prefix, ind - niv_debut + 1, s_addr, s_func_buf, s_file);
             size -= ret;
-            tmp += ret;
         }
 
         sci_backtrace_destroy(tr);
 
         if (nbr > 0)
         {
-            ret = snprintf(tmp, size, _("End of stack\n\n"));
-            size -= ret;
-            tmp += ret;
+            snprintf(tmp, size, _("End of stack\n\n"));
         }
     }
 
@@ -162,7 +157,6 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 #endif
 
     size -= ret;
-    tmp += ret;
 
     if (NULL != info)
     {
@@ -425,12 +419,10 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
             ret = snprintf(tmp, size, HOSTFORMAT "Associated errno: %s (%d)\n",
                            stacktrace_hostname, getpid(), strerror(info->si_errno), info->si_errno);
             size -= ret;
-            tmp += ret;
         }
 
         ret = snprintf(tmp, size, HOSTFORMAT "Signal code: %s (%d)\n", stacktrace_hostname, getpid(), si_code_str, info->si_code);
         size -= ret;
-        tmp += ret;
 
         switch (signum)
         {
@@ -439,17 +431,13 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
         case SIGSEGV:
         case SIGBUS:
             {
-                ret = snprintf(tmp, size, HOSTFORMAT "Failing at address: %p\n", stacktrace_hostname, getpid(), info->si_addr);
-                size -= ret;
-                tmp += ret;
+                snprintf(tmp, size, HOSTFORMAT "Failing at address: %p\n", stacktrace_hostname, getpid(), info->si_addr);
                 break;
             }
         case SIGCHLD:
             {
-                ret = snprintf(tmp, size, HOSTFORMAT "Sending PID: %d, Sending UID: %d, Status: %d\n",
+                snprintf(tmp, size, HOSTFORMAT "Sending PID: %d, Sending UID: %d, Status: %d\n",
                                stacktrace_hostname, getpid(), info->si_pid, info->si_uid, info->si_status);
-                size -= ret;
-                tmp += ret;
                 break;
             }
 #ifdef SIGPOLL
@@ -459,12 +447,8 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
                 ret = snprintf(tmp, size, HOSTFORMAT "Band event: %ld, File Descriptor : %d\n",
                                stacktrace_hostname, getpid(), info->si_band, info->si_fd);
 #elif HAVE_SIGINFO_T_SI_BAND
-                ret = snprintf(tmp, size, HOSTFORMAT "Band event: %ld\n", stacktrace_hostname, getpid(), info->si_band);
-#else
-                ret = 0;
+                snprintf(tmp, size, HOSTFORMAT "Band event: %ld\n", stacktrace_hostname, getpid(), info->si_band);
 #endif
-                size -= ret;
-                tmp += ret;
                 break;
             }
 #endif
@@ -472,15 +456,12 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     }
     else
     {
-        ret = snprintf(tmp, size, HOSTFORMAT "siginfo is NULL, additional information unavailable\n", stacktrace_hostname, getpid());
-        size -= ret;
-        tmp += ret;
+        snprintf(tmp, size, HOSTFORMAT "siginfo is NULL, additional information unavailable\n", stacktrace_hostname, getpid());
     }
     Scierror(42, _("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with the following\ninformation:\n%s %s\n"), PACKAGE_BUGREPORT, print_buffer,
              backtrace_print(0));
 
     longjmp(&jmp_env, 1);
-
 }
 
 void base_error_init(void)

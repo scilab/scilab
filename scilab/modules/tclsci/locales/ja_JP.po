@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-12-04 11:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid " Flushing starts for queued commands.\n"
@@ -89,13 +89,11 @@ msgstr "%s: 従属インタープリタはありません。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています:　少なくとも1個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています:　少なくとも1個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-"%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
@@ -109,9 +107,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定して"
-"ください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -209,17 +205,13 @@ msgstr "Tclエラー: %s\n"
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
 "%s\n"
-msgstr ""
-"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: "
-"%s\n"
+msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: %s\n"
 
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
 "%s\n"
-msgstr ""
-"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できません"
-"でした: %s\n"
+msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できませんでした: %s\n"
 
 #
 # File: src/c/InitTclTk.c, line: 142
@@ -285,3 +277,85 @@ msgstr "警告: 待ち行列内のコールバックの数が多すぎます!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] は Tcl/Tk では使用できません.\n"
+
+# File: demos/tk/uicontrol.sci, line: 28
+#~ msgid "&File"
+#~ msgstr "ファイル(&F)"
+
+#
+# File: demos/tk/uicontrol.sci, line: 29
+#~ msgid "&Tools"
+#~ msgstr "ツール(&T)"
+
+#
+# File: demos/tk/uicontrol.sci, line: 30
+#~ msgid "&Edit"
+#~ msgstr "編集(&E)"
+
+#
+# File: macros/TCL_CreateSlave.sci, line: 38
+#, c-format
+#~ msgid "%s: Slave interpreter already exists.\n"
+#~ msgstr "%s: 従属インタープリタは既にあります。\n"
+
+#
+# File: macros/TCL_SetVar.sci, line: 34
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 実数、または文字行列を想定します。\n"
+
+#
+# File: macros/editvar_get.sci, line: 27
+#~ msgid "Updating, please wait"
+#~ msgstr "変更中、しばらくお待ちください"
+
+#
+# File: macros/gettklib.sci, line: 45
+#, c-format
+#~ msgid "Error %s while loading library %s"
+#~ msgstr "ライブラリ %2$s で %1$s エラー"
+
+#
+# File: macros/tk_getdir.sci, line: 12
+# File: macros/tk_savefile.sci, line: 12
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Tcl/Tk インターフェースがロードできません。"
+
+#
+# File: macros/tk_getfile.sci, line: 33
+#~ msgid "Open"
+#~ msgstr "開く"
+
+#
+# File: demos/tk/uicontrol.sci, line: 31
+#~ msgid "&?"
+#~ msgstr "その他(&?)"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています:論理値を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "Scroll"
+#~ msgstr "スクロール"
+
+#~ msgid "Scale"
+#~ msgstr "拡大縮小"
+
+#~ msgid "Color"
+#~ msgstr "色"
+
+#~ msgid "Puzzle"
+#~ msgstr "パズル"

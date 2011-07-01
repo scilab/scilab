@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2011-04-05 14:08+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -101,7 +101,8 @@ msgstr "Kategorie"
 msgid "Center"
 msgstr "Zentriert"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klicken Sie auf das Diagramm, um einen Verbindungspunkt hinzuzufügen, oder "
 "auf ein kompatibles Ziel, um zu beenden."
@@ -175,13 +176,12 @@ msgstr "Diagramm-Hintergrund"
 msgid "Diagram browser"
 msgstr "Diagramm-Browser"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "Das Diagramm wurde seit dem letzten Speichern verändert. <br/> Wollen Sie es "
 "speichern?"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 59
 msgid "Diff. States"
 msgstr ""
 
@@ -212,8 +212,6 @@ msgstr "Editierbar"
 msgid "Electrical"
 msgstr "Elektrisch"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 145
 msgid "Enable"
 msgstr ""
 
@@ -223,25 +221,23 @@ msgstr "Gleichungen"
 msgid "Error"
 msgstr "Fehler"
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
 msgid "Event handling"
 msgstr "Ereignis-Behandlung"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 202
 msgid "Execution trace and Debug"
 msgstr ""
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explizierter Dateneingangsport muß mit explizitem Datenausgangsport "
 "verbunden sein"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explizierter Datenausgangsport muß mit explizitem Dateneingangsport "
 "verbunden sein"
@@ -273,23 +269,15 @@ msgstr "Finale Integrationszeit"
 msgid "Fit diagram to view"
 msgstr "Diagramm an Anzeige anpassen"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 37
 msgid "Fix derivatives"
-msgstr ""
+msgstr "Ableitungen korrigieren"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 38
 msgid "Fix states"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 60
 msgid "Fixed parameters"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 62
 msgid "Fixed variables"
 msgstr ""
 
@@ -312,10 +300,8 @@ msgstr "Format"
 msgid "From %s"
 msgstr "Von %s"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 53
 msgid "Generate Jacobian"
-msgstr ""
+msgstr "Erzeuge Jacobi-Matrix"
 
 msgid "Generate SuperBlock, please wait ..."
 msgstr "Generiere Superblock, bitte warten..."
@@ -345,20 +331,20 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "Bild enthält keine Daten."
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr "Implizit"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Implizierter Dateneingangsport muß mit implizitem Datenausgangsport "
 "verbunden sein"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Implizierter Datenausgangsport muß mit impliziertem Dateneingangsport "
 "verbunden sein"
@@ -366,16 +352,12 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importieren von XML"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
 msgid "Initial computing method"
 msgstr "Initiale Berechnungsmethode"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 48
 msgid "Input"
 msgstr ""
 
@@ -485,21 +467,15 @@ msgstr "Paletten-Name"
 msgid "Palettes"
 msgstr "Paletten"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 51
 msgid "Parameter embedding"
 msgstr ""
 
 msgid "Per block execution trace and Debug block calls"
 msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
@@ -515,8 +491,6 @@ msgstr ""
 "Port ist bereits verbunden, bitte wählen Sie einen nicht verbundenen Port "
 "oder einen gültigen Link."
 
-#
-# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
 msgstr ""
 
@@ -538,13 +512,9 @@ msgstr "Reduziert"
 msgid "Region to superblock"
 msgstr "Region zu Superblock"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 61
 msgid "Relaxed parameters"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 63
 msgid "Relaxed variables"
 msgstr ""
 
@@ -602,7 +572,8 @@ msgid "Set block parameters"
 msgstr "Setze Blockparameter"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
-msgstr "Setzte Fehlersuchstufe (0,1,2,3) <br/>es führt Scicos Fehlersuche aus."
+msgstr ""
+"Setzte Fehlersuchstufe (0,1,2,3) <br/>es führt Scicos Fehlersuche aus."
 
 msgid "Setting up Modelica Compiler."
 msgstr "Konfigurieren des Modelica-Compilers."
@@ -640,8 +611,6 @@ msgstr "Gleichungslöser"
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Gleichungslöser 0 (CVODE) - 100 (IDA)"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
@@ -703,14 +672,10 @@ msgstr "Werkzeuge"
 msgid "Top"
 msgstr "Oben"
 
-#
-# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 #, c-format
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
@@ -759,10 +724,8 @@ msgstr "Unbekannte Diagrammversion: "
 msgid "Unknowns"
 msgstr "Unbekannte"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 55
 msgid "Unknowns not equals to Equations"
-msgstr ""
+msgstr "Anzahl der Unbekannten ist ungleich der Anzahl von Gleichungen"
 
 msgid "Untitled"
 msgstr "Unbenannt"
@@ -813,14 +776,10 @@ msgstr ""
 "Falsches Eingangsargument \"%s\": ungültiger Knoten, benutzen Sie "
 "'xcosPalDisable' stattdessen.\n"
 
-#
-# File: src/java/org/scilab/modules/xcos/palette/Palette.java, line: 58
 #, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
-msgstr ""
+msgstr "Falsches Eingangsargument \"%s\": ungültiger \"Baum-Pfad\".\n"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
 msgid "Wrong port number"
 msgstr ""
 
@@ -839,8 +798,6 @@ msgstr "Xcos Fehler"
 msgid "Xcos file"
 msgstr "Xcos Datei"
 
-#
-# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
 msgid "You may enter here scilab instructions to define "
 msgstr ""
 
@@ -853,21 +810,15 @@ msgstr "Kommentar"
 msgid "control port must be connected to command port"
 msgstr "Kontrollport muß mit dem Kommandoport verbunden sein"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 28
 msgid "fixed"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 26
 msgid "id"
 msgstr ""
 
 msgid "initial"
 msgstr "initial"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 27
 msgid "kind"
 msgstr ""
 
@@ -884,10 +835,8 @@ msgstr "max"
 msgid "maximum step size (0 means no limit)"
 msgstr "maximale Stufengröße (0 meint kein Limit)"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 32
 msgid "min"
-msgstr ""
+msgstr "min."
 
 msgid "model is not valid"
 msgstr "Das Modell ist nicht gültig"
@@ -895,8 +844,6 @@ msgstr "Das Modell ist nicht gültig"
 msgid "name"
 msgstr "Name"
 
-#
-# File: src/java/org/scilab/modules/xcos/modelica/ModelicaMessages.java, line: 33
 msgid "nominal"
 msgstr ""
 
@@ -905,3 +852,338 @@ msgstr "ausgewählt"
 
 msgid "weight"
 msgstr "Gewichtung"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "Scilab '%s' Modul im -nogui oder .nwmi Modus deaktiviert."
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "Fehler beim Exportieren: %s\n"
+
+#~ msgid "Cut"
+#~ msgstr "Ausschneiden"
+
+#~ msgid "Copy"
+#~ msgstr "Unbenannt"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Verkleinern"
+
+#~ msgid "Undo"
+#~ msgstr "Rückgängig machen"
+
+#~ msgid "Zoom In"
+#~ msgstr "Vergrößern"
+
+#~ msgid "Paste"
+#~ msgstr "Einfügen"
+
+#~ msgid "Redo"
+#~ msgstr "Wiederholen"
+
+#~ msgid "Group"
+#~ msgstr "Gruppe"
+
+#~ msgid "Select all"
+#~ msgstr "Alle auswählen"
+
+#~ msgid "UnGroup"
+#~ msgstr "nicht gruppieren"
+
+#~ msgid "Invert selection"
+#~ msgstr "Auswahl umkehren"
+
+#~ msgid "Quit"
+#~ msgstr "Beenden"
+
+#~ msgid "Browser"
+#~ msgstr "Browser"
+
+#~ msgid "Help"
+#~ msgstr "Hilfe"
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Xcos version 1.0"
+
+#~ msgid "Discontinuous"
+#~ msgstr "Diskontinuierlich"
+
+#~ msgid "Continuous"
+#~ msgstr "Kontinuierlich"
+
+#~ msgid "Threshold"
+#~ msgstr "Schwellenwert"
+
+#~ msgid "Events"
+#~ msgstr "Ereignisse"
+
+#~ msgid "Port Action"
+#~ msgstr "Port Aktion"
+
+#~ msgid "Math Operations"
+#~ msgstr "Mathematische Operationen"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid ""
+#~ "Diagram has been modified since last save\n"
+#~ "save it?"
+#~ msgstr ""
+#~ "Diagramm wurde seit dem letzten Speichern verändert\n"
+#~ "Speichern?"
+
+#~ msgid "Line Color"
+#~ msgstr "Linienfarbe"
+
+#~ msgid ""
+#~ "You may enter here scilab instructions to define symbolic parameters used in "
+#~ "block definitions using Scilab instructions.<br/>These instructions are "
+#~ "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+#~ "diagram is loaded.)"
+#~ msgstr ""
+#~ "Sie können hier Scilab Instruktionen eingeben, um symbolische Parameter, die "
+#~ "in Block Definitionen verwendet werden unter Verwendung von Scilab "
+#~ "Instruktionen. </br> Diese Instruktionen werden evaluiert, wenn sie einmal "
+#~ "bestätigt werden (z.B. wenn Sie auf OK klicken, durch Evaluierung und "
+#~ "jedesmal, wenn ein Diagramm geladen wurde.)"
+
+#~ msgid "CeCILL License"
+#~ msgstr "CeCILL Lizenz"
+
+#~ msgid "All rights reserved"
+#~ msgstr "Alle Rechte vorbehalten"
+
+#~ msgid "Copyright 2009"
+#~ msgstr "(c) 2009"
+
+#~ msgid "Final inegration time"
+#~ msgstr "endgültige Integrationszeit"
+
+#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+#~ msgstr "Setzte Fehlersuchestufe (0,1,2,3) </br> es führt scicos_debug(n) aus"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Das Scilab Konsortium / DIGITEO"
+
+#~ msgid "Set Debug Level"
+#~ msgstr "Setzte Fehlersuchestufe"
+
+#~ msgid "Xcos 1.0"
+#~ msgstr "Xcos 1.0"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "unbekannte Diagrammversion "
+
+#~ msgid "Remove user defined palette"
+#~ msgstr "Enferne Vom Benutzer definierte Palette"
+
+#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
+#~ msgstr ""
+#~ "leichte Simulationsspur (diskrete und kontinuierliche Teilumschaltung)"
+
+#~ msgid "Same command executed again"
+#~ msgstr "gleicher Befehl nochmals ausgeführt"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "Kann nicht mit dem Interpreter kommunizieren"
+
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "Die Scicos-Bibliotheken wurden nicht geladen"
+
+#, c-format
+#~ msgid "%s: All paths defined by %s variable must exist.\n"
+#~ msgstr ""
+#~ "%s: Alle durch die Variable %s definierten Pfade müssen existieren.\n"
+
+#, c-format
+#~ msgid "%s is not a valid name, please change the title of the diagram."
+#~ msgstr "%s ist kein gültiger Name, bitte ändern Sie den Titel des Diagramms."
+
+#, c-format
+#~ msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+#~ msgstr "%s: Kann Block nicht von %s laden: hdf5-Datei erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+#~ msgstr ""
+#~ "%s: Kann Block nicht von %s laden: keine `scs_m'' Variable gefunden.\n"
+
+#, c-format
+#~ msgid "%s: Unable to generate the image %s.\n"
+#~ msgstr "%s: Kann die Darstellung %s nicht erzeugen.\n"
+
+#, c-format
+#~ msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+#~ msgstr "%s: Kann Paletten-Icon nicht erzeugen: %s existiert bereits.\n"
+
+#, c-format
+#~ msgid "%s: Unable to import data from %s"
+#~ msgstr "%s: Kann Daten von %s nicht importieren"
+
+#, c-format
+#~ msgid "%s: Unable to import xcos file %s.\n"
+#~ msgstr "%s: Kann xcos-Datei %s nicht importieren.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s variable: A string array expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für %s Variable: ein Zeichenketten-Array erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Argument %d: Zeichenkette oder Diagrammstruktur erwartet"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: diagram structure expected"
+#~ msgstr "%s: Falscher Typ für Argument %d: Diagrammstruktur erwartet"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Falsche Anzahl von Eingangsargumenten: zwischen %d und %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: Falsches Eingangsargument %s: svg oder gif erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Falsche Anzahl von Ausgangsargumenten: zwischen %d und %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s: Falsche Anzahl von Ausgangsargumenten: %d erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory %s cannot been created, please check if you have write "
+#~ "access on this directory.\n"
+#~ msgstr ""
+#~ "%s: Das Verzeichnis %s kann nicht erzeugt werden, überprüfen Sie bitte, ob "
+#~ "sie Schreibzugriffsrechte zu diesem Verzeichnis haben.\n"
+
+#, c-format
+#~ msgid "%s: Unable to export the palette to hdf5.\n"
+#~ msgstr "%s: Kann die Palette nicht nach hdf5 exportieren.\n"
+
+#, c-format
+#~ msgid "%s: Unable to export %s to %s.\n"
+#~ msgstr "%s: Kann %s nicht nach %s exportieren.\n"
+
+#, c-format
+#~ msgid "%s: Unable to export ''XX'' to %s"
+#~ msgstr "%s: Kann ''XX'' nicht nach %s exportieren"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Paletten-Typ erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Paletten-Typ oder Pfad erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: function as string or Block type or "
+#~ "full path string expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Funktion als Zeichenkette, Block-"
+#~ "Typ oder Zeichenkette für absoluten Verzeichnispfad erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Handle-Typ erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: einen booleschen Wert erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Diagramm-Typ erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument %s: directory path string expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenkette für Verzeichnispfad "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenkette für absoluten "
+#~ "Verzeichnispfad erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Block-Typ erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: File not found.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Datei nicht gefunden.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string expected.\n"
+#~ msgstr "%s: Falscher Typ für Eingangsargument %s: Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: path string expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenkette für Pfad erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenketten-Vektor erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string type expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenketten-Typ erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: eine vorhandene Datei erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Typ für Eingangsargument %s: Zeichenkette oder Struktur "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "Unable to open %s"
+#~ msgstr "Kann %s nicht öffnen"
+
+#, c-format
+#~ msgid "Unable to simulate %s"
+#~ msgstr "Kann %s nicht simulieren"
+
+#, c-format
+#~ msgid "%s: File ''%s'' does not exist.\n"
+#~ msgstr "%s: Datei ''%s'' existiert nicht.\n"
+
+#, c-format
+#~ msgid "%s: File ''%s'' is not a valid palette file.\n"
+#~ msgstr "%s: Datei ''%s'' ist keine gültige Paletten-Datei.\n"
+
+#, c-format
+#~ msgid "%s: Found ''%s'' instead of a block.\n"
+#~ msgstr "%s: ''%s'' gefunden anstelle eines Blocks.\n"

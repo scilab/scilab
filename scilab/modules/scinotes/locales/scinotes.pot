@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-06-06 15:29+0100\n"
 
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 170
 msgid ""
@@ -64,8 +64,12 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
 msgid "(* for any string and ? for any character)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 82
@@ -160,7 +164,7 @@ msgstr ""
 msgid "Backward"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
 msgid "Base directory:"
 msgstr ""
 #
@@ -369,14 +373,9 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
-#, c-format
-msgid "Elapsed time: %s second."
-msgstr ""
-#
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
 #, c-format
-msgid "Elapsed time: %s seconds."
+msgid "Elapsed time: %s sec."
 msgstr ""
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 118
@@ -443,7 +442,7 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
 msgid "File pattern"
 msgstr ""
 #
@@ -508,6 +507,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 91
 msgid "Goto line"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 312
+msgid "Graphics handle field"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 137
@@ -631,6 +634,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 100
 msgid "No Line Numbering"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 317
+msgid "No help"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 108
@@ -762,7 +769,7 @@ msgstr ""
 msgid "Recent Files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
 msgid "Recursive"
 msgstr ""
 #

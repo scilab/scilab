@@ -1,6 +1,7 @@
-/ =============================================================================
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2011 - DIGITEO - Clément DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,10 +15,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5444
 //
 // <-- Short Description -->
-// On a superblock diagram, start a simulation is not applicable.
+// Error report on superblock diagram is not supported.
 
-// start xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.xcos")
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.xcos");
 
 // start simulation
-
 // After the first error message, check that superblock is highlighted and in the new window, MUX and DEMUX blocks are highlighted too.

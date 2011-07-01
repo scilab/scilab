@@ -16,10 +16,10 @@ using namespace org_scilab_modules_gui_bridge;
 
 void setToolbarVisible(int figNum, BOOL status)
 {
-  CallScilabBridge::setToolbarVisible(getScilabJavaVM(), figNum, BOOLtobool(status));
+    CallScilabBridge::setToolbarVisible(getScilabJavaVM(), figNum, BOOLtobool(status));
 }
 
 BOOL isToolbarVisible(int figNum)
 {
-  return CallScilabBridge::isToolbarVisible(getScilabJavaVM(), figNum);
+    return booltoBOOL(CallScilabBridge::isToolbarVisible(getScilabJavaVM(), figNum));
 }

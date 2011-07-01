@@ -2029,6 +2029,27 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
   end
 endfunction
 
+function id = getBlockIds(path)
+    // Return a block id path from a block index path
+    //
+    // path: the path in the index form
+    // id: th path in the uid form
+    
+    scs_m; // check scs_m access
+    id=[];
+    
+    k = path(:);
+    for i = k
+        b = scs_m.objs(i);
+        if typeof(b) == "Block" &  size(scs_m.objs(i).doc) >= 1 then
+            id($ + 1) = scs_m.objs(i).doc(1);
+        end
+        if typeof(b.model.rpar) == "diagram" then
+           scs_m = b.model.rpar; 
+        end
+    end
+endfunction
+
 //19/01/07, Alan : under_connection show bad link and returns two dimensions now
 function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg)
 // alert for badly connected blocks
@@ -2036,139 +2057,76 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 // path_in  : Path of the "to block" in scs_m
 //!
 
-  //** save the current figure handle
-  gh_wins = gcf();
-
   if path_in==-1 then
-    hilite_obj(path_out);
-    messagebox(msprintf(_('One of this block''s outputs has a negative size.\n'+..
-	     'Please check.')),"modal","error")
-    unhilite_obj(path_out);
+    msg = "<html><body>";
+    msg = msg + gettext("One of this block output has negative size.<br />Please check.");
+    msg = msg + "</body></html>";
+    hilite_path(path_out, msg);
     ninnout=0
     return
   end
 
   if path_in==-2 then
-    hilite_obj(path_out);
-    messagebox(msprintf(_('The input port #%d of this block have a negative size.\n'+..
-	     'Please check.'),prt_out),"modal","error")
-    unhilite_obj(path_out);
+    msg = "<html><body>";
+    msg = msg + gettext("Block input has negative size:");
+    msg = msg + "<ul>";
+    msg = msg + "<li>" + msprintf(gettext("Input port %s size is: %s"), string(prt_out), sci2exp(nout)) + "</li>";
+    msg = msg + "</ul>";
+    msg = msg + "</body></html>";
+    hilite_path(path_out, msg);
     ninnout=0
     return
   end
 
-  lp=min(size(path_out,'*'),size(path_in,'*'))
-  k=find(path_out(1:lp)<>path_in(1:lp))
-  path=path_out(1:k(1)-1) // common superbloc path
-  if (k <> []) then
-    path_out=path_out(k(1)) // "from" block number
-    path_in=path_in(k(1))   // "to" block number
-  end
+// different use case (Unable to report on a non opened diagram)
   if isdef('Code_gene_run') then
-    mxwin=max(winsid())
-    path=path+1 // Consider locally compiled superblock as a superblock
-    for k=1:size(path,'*')
-      //hilite_obj(all_scs_m.objs(numk(k)))
-      hilite_obj(numk(k))
-      scs_m=all_scs_m.objs(numk(k)).model.rpar;
-      scs_show(scs_m,mxwin+k)
-    end
-    //hilite_obj(scs_m.objs(path_out))
-    hilite_obj(path_out)
-    //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-    if or(path_in<>path_out) then hilite_obj(path_in),end
-    mess=msprintf(_('Highlighted block(s) have connected ports \n'+..
-		    'with  sizes that cannot be determined by the context.\n'+..
-		    'What is the size of this link?'))
-
-    if flagg==1 then
-      ninnout=evstr(dialog(mess,'[1,1]'))
-    else 
-      ninnout=evstr(dialog(mess,'1'))
-    end
-	      
-    for k=size(path,'*'):-1:1,
-      //** select the mxwin+k window and get the handle
-      gh_del = scf(mxwin+k);
-      //** delete the window
-      delete(gh_del)
-    end
-    //scs_m=null()
-    //unhilite_obj(all_scs_m.objs(numk(1)))
-
-    //** restore the active window
-    scf(gh_wins);
-
-    unhilite_obj(numk(1))
+    messagebox([gettext("Unable to report an error into a SuperBlock"); gettext("Please compile the diagram to report the error.")], "Compilation error", "error", "modal");
+    ninnout=0
+    return
+  end
+  
+  msg = "<html><body>";
+  if flagg==1 then
+    msg = msg + gettext("<em>Please update the diagram to avoid this warning.</em><br />Block output port has a non-determined size:");
+    msg = msg + "<ul>";
+    msg = msg + "<li>" + msprintf(gettext("Output port %s size is: %s"), string(prt_out), sci2exp(nout)) + "</li>";
+    msg = msg + "<li>" + msprintf(gettext("Input port %s size is: %s"), string(prt_in), sci2exp(nin)) + "</li>";
   else
-    if path==[] then
-      kk=path_out
-      if or(path_in<>path_out) then kk=[kk;path_in], end
-      if prt_in<>[] & prt_out<>[] then
-        if prt_in >0 & prt_out >0 then
-          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
-                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
-          end
-        end
-      end
-      hilite_obj(kk)
-      if flagg==1 then
-	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
-	    'with  sizes that cannot be determined by the context';
-	    'what is the size of this link'],'[1,1]'))
-      else
-	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
-	    'with  types that cannot be determined by the context';
-	    'what is the size of this link'],'1'))
-      end
-      unhilite_obj(kk)
+    msg = msg + gettext("<em>Please update the diagram to avoid this warning.</em><br />Block output port has a non-determined type:");
+    msg = msg + "<ul>";
+    msg = msg + "<li>" + msprintf(gettext("Output port %s type."), string(prt_out)) + "</li>";
+    msg = msg + "<li>" + msprintf(gettext("Input port %s type."), string(prt_in)) + "</li>";
+  end
+  msg = msg + "</ul>";
+  msg = msg + "</body></html>";  
+  hilite_path(path_out, msg)
+  
+  if or(path_in<>path_out) then
+    msg = "<html><body>";
+    if flagg==1 then
+      msg = msg + gettext("<em>Please update the diagram to avoid this warning.</em><br />Block input port has a non-determined size:");
+      msg = msg + "<ul>";
+      msg = msg + "<li>" + msprintf(gettext("Output port %s size is: %s"), string(prt_out), sci2exp(nout)) + "</li>";
+      msg = msg + "<li>" + msprintf(gettext("Input port %s size is: %s"), string(prt_in), sci2exp(nin)) + "</li>";
     else
-      mxwin=max(winsid())
-      kk=[];
-      for k=1:size(path,'*')
-	//hilite_obj(scs_m.objs(path(k)))
-        hilite_obj(path(k))
-	scs_m=scs_m.objs(path(k)).model.rpar;
-	scs_show(scs_m,mxwin+k)
-      end
-      //hilite_obj(scs_m.objs(path_out))
-      kk=[path_out]
-      //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-      if or(path_in<>path_out) then kk=[kk;path_in], end
-      if prt_in<>[] & prt_out<>[] then
-        if prt_in >0 & prt_out >0 then
-          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
-                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
-          end
-        end
-      end
-      hilite_obj(kk)
-      if flagg==1 then
-	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
-	    'with  sizes that cannot be determined by the context';
-	    'what is the size of this link'],'[1,1]'))
-      else
-	ninnout=evstr(dialog(['Highlighted block(s) have connected ports ';
-	    'with  types that cannot be determined by the context';
-	    'what is the size of this link'],'1'))
-      end
-      
-      //for k=size(path,'*'):-1:1,xdel(mxwin+k),end //TOBEDONE
-      for k=size(path,'*'):-1:1,
-        //** select the mxwin+k window and get the handle
-        gh_del = scf(mxwin+k);
-        //** delete the window
-        delete(gh_del)
-      end
-      //scs_m=null()
-      //** restore the active window
-      scf(gh_wins);
-
-      //unhilite_obj(scs_m.objs(path(1)))
-      unhilite_obj(path(1))
+      msg = msg + gettext("<em>Please update the diagram to avoid this warning.</em><br />Block input port has a non-determined type:");
+      msg = msg + "<ul>";
+      msg = msg + "<li>" + msprintf(gettext("Output port %s type."), string(prt_out)) + "</li>";
+      msg = msg + "<li>" + msprintf(gettext("Input port %s type."), string(prt_in)) + "</li>";
     end
+    msg = msg + "</ul>";
+    msg = msg + "</body></html>";
+    hilite_path(path_in, msg)
+  end
+  
+  mess=msprintf(_('Highlighted block(s) have connected ports \n'+..
+	    'with  sizes that cannot be determined by the context.\n'+..
+	    'What is the size of this link?'))
+	
+  if flagg==1 then
+    ninnout=evstr(dialog(mess,'[1,1]'))
+  else 
+    ninnout=evstr(dialog(mess,'1'))
   end
 endfunction
 

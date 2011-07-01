@@ -59,6 +59,7 @@ public final class DoubleQuoteStringAction extends DefaultAction {
      * @param doc the documen
      */
     public static void doubleQuoteString(ScilabDocument doc) {
+        StringBuffer buffer = new StringBuffer(128);
         ScilabLexer lexer = doc.createLexer();
         Element elem = doc.getDefaultRootElement();
         Element line;
@@ -71,18 +72,24 @@ public final class DoubleQuoteStringAction extends DefaultAction {
                 lexer.setRange(line.getStartOffset(), line.getEndOffset());
                 do {
                     tok = lexer.scan();
-                    if (tok == ScilabLexerConstants.STRING) {
-                        int start = lexer.start + lexer.yychar();
-                        char[] str = doc.getText(start, lexer.yylength()).toCharArray();
-                        if (str.length > 0) {
-                            if (str[0] == '\'') {
-                                str[0] = '\"';
-                            }
-                            if (str[str.length - 1] == '\'') {
-                                str[str.length - 1] = '\"';
-                            }
-                            doc.replace(start, str.length, new String(str), null);
+                    if (ScilabLexerConstants.isString(tok)) {
+                        buffer.append(doc.getText(lexer.start + lexer.yychar(), lexer.yylength()));
+                    } else if (buffer.length() > 0) {
+                        boolean modified = false;
+                        int len = buffer.length();
+                        if (buffer.charAt(0) == '\'') {
+                            buffer.replace(0, 1, "\"");
+                            modified = true;
                         }
+                        if (len > 1 && buffer.charAt(len - 1) == '\'') {
+                            buffer.replace(len - 1, len, "\"");
+                            modified = true;
+                        }
+                        if (modified) {
+                            int start = lexer.start + lexer.yychar() - len;
+                            doc.replace(start, len, buffer.toString(), null);
+                        }
+                        buffer.setLength(0);
                     }
                 } while (tok != ScilabLexerConstants.EOF);
             }

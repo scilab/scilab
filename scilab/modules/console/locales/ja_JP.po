@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-12-03 14:38+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid "Could not change the Console Font."
@@ -25,10 +25,8 @@ msgstr "コンソールのフォントを変更できません."
 msgid "Could not change the Console Foreground."
 msgstr "コンソールの表示を変更できません."
 
-#
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 67
 msgid "Field"
-msgstr ""
+msgstr "フィールド"
 
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 58
 msgid "File or Directory"

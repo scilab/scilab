@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2011  - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,58 +7,50 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if %fftw then
-
+function fftptr = startModule()
+  fftptr = fft;
+  
+  if %fftw then
     if getos() == "Windows" then
-        librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
-        librarynamefftw3 = "";
+      librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
+      librarynamefftw3 = "";
     else
-        librarynamefftw = "libfftw3"+getdynlibext();
-        // Some distribs/os are not adding the .3 extension...
-        librarynamefftw3 = librarynamefftw+".3";
+      librarynamefftw = "libfftw3"+getdynlibext();
+      // Some distribs/os are not adding the .3 extension...
+      librarynamefftw3 = librarynamefftw+".3";
     end
 
     if ( loadfftwlibrary(librarynamefftw3) | loadfftwlibrary(librarynamefftw)) then
-        //Load  functions libraries
-        //load("SCI/modules/fftw/macros/lib");
-        // ===========================================================
-        // replace scilab fft function by fftw
-        clearfun fft;
-        fft=fftw;
-
-        //add demos
-
-        // path = get_absolute_file_path("fftw.start");
-        // path = getshortpathname(path);
-        // pathdemos = pathconvert(part(path,1:(length(path)-5))+"/demos/fftw.dem",%f,%f);
-        // add_demo("FFTW",pathdemos);
-        // clear path
-        // clear pathdemos;
+      // replace scilab fft function by fftw
+      clearfun fft;
+      fftptr = fftw;
 
     else  // if ( loadfftwlibrary(librarynamefftw) )
-        // TO DO : replace this by a Message box
-        settings_file = pathconvert(SCIHOME+"/.scilab_settings",%f,%t)
-        w=fileinfo(settings_file);
-        show=%t;
-        if w <> [] then
-            show=grep(mgetl(SCIHOME+"/.scilab_settings"),"displayWarningFFTW=no")==[]
+      settings_file = pathconvert(SCIHOME+"/.scilab_settings", %f, %t)
+      w = fileinfo(settings_file);
+      show = %t;
+      if w <> [] then
+        show = grep(mgetl(SCIHOME+"/.scilab_settings"),"displayWarningFFTW=no")==[]
+      end
+      if show then
+        MSG_FTTW = [_("You choose to install scilab with fftw module.");
+                  _("This module requires : "+librarynamefftw+" (GPL licence).");
+                  _("Scilab will use standard fft by default until you install this library.");
+                  _("See help fftw for more informations.")];
+      
+        if getscilabmode() == "STD" then
+          messagebox(MSG_FTTW,"","info");
+        else
+          warning(MSG_FTTW);
         end
-        if show then
-            MSG_FTTW = "You choose to install scilab with fftw module."+ascii(10)+ ..
-                "This module requires : "+librarynamefftw+" (GPL licence)."+ascii(10)+ ..
-                "Scilab will use standard fft by default until you install this library."+ascii(10)+ ..
-                "See help fftw for more informations."+ascii(10);
-            printf("\n");
-            warning(MSG_FTTW);
-            clear MSG_FTTW;
-            mputl("displayWarningFFTW=no",SCIHOME+"/.scilab_settings")
-            clear printf;
-        end
-        clear show;
-        clear settings_file;
-        clear w;
-    end // if ( loadfftwlibrary(librarynamefftw) ) then
+        mputl("displayWarningFFTW=no",SCIHOME+"/.scilab_settings")
+      end
+    end // if ( loadfftwlibrary(librarynamefftw) ) 
+  end
 
-    clear librarynamefftw
-    clear librarynamefftw3
-end
+endfunction
+
+funcprot(0);
+fft = startModule();
+funcprot(1);
+clear startModule;

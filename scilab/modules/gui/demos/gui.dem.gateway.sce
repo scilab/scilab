@@ -1,19 +1,29 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("gui.dem.gateway.sce");
 
-subdemolist = ["Dialogs"   ,"dialog.dem.sce" ; ..
-	"Uicontrols 1" ,"uicontrol.dem.sce" ];
+function subdemolist = demo_gateway()
 
-if ~ usecanvas() then
-	subdemolist = [ subdemolist ; "Uicontrols 2" ,"uicontrol_plot3d.dem.sce" ];
-end
+  demopath = get_absolute_file_path("gui.dem.gateway.sce");
+  add_demo(gettext("GUI"), demopath + "gui.dem.gateway.sce");
 
-subdemolist = [ subdemolist ; "Uicontrols with LaTeX/MathML" ,  "uicontrol_LaTeX.dem.sce" ];
+  subdemolist = [_("Dialogs")   ,"dialog.dem.sce" ; ..
+                 _("Uicontrols 1") ,"uicontrol.dem.sce" ];
 
-subdemolist(:,2) = demopath + subdemolist(:,2);
-clear demopath;
+  if ~ usecanvas() then
+    subdemolist = [ subdemolist ; 
+                  _("Uicontrols 2") ,"uicontrol_plot3d.dem.sce" ];
+  end
+
+  subdemolist = [ subdemolist ; 
+                 _("Uicontrols with LaTeX/MathML") ,  "uicontrol_LaTeX.dem.sce" ];
+
+  subdemolist(:,2) = demopath + subdemolist(:,2);
+endfunction
+
+subdemolist = demo_gateway();
+clear demo_gateway;

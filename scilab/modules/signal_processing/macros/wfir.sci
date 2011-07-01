@@ -108,7 +108,7 @@ if rhs<=0 then,
 	     gettext('only one of this two values is to be defined,')
 	     gettext('the other one is automatically deduced')],..
 	     [gettext('name of specified value');
-	     gettext('value')],list('str',-1,'vec',1),['dp','0.3'])
+	     gettext('value')],list('str',-1,'vec',1),['dp';'0.3'])
     if part(name,1:2)=='dp' then
       fpar=[value,-1]
     elseif part(name,1:2)=='df' then

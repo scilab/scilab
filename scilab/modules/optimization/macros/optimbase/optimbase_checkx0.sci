@@ -12,17 +12,11 @@
 // optimbase_checkx0 --
 //   Returns %T if the initial guess is consistent with the bounds
 //   and the non linear inequality constraints, if any.
-// Arguments
-//   flag : %T or %F
 //
-function [ this , isok ] = optimbase_checkx0 ( this )
-    this = optimbase_log ( this , sprintf ( "Checking initial guess..." ) )
+function this = optimbase_checkx0 ( this )
     [ this , isfeasible ] = optimbase_isfeasible ( this , this.x0 )
-    isok = ( isfeasible == 1 )
-    if ( isok ) then
-      this = optimbase_log ( this , sprintf ( "... initial guess is feasible." ) )
-    else
-      this = optimbase_log ( this , sprintf ( "... initial guess is not feasible." ) )
+    if ( isfeasible <> 1 ) then
+       error(sprintf ( gettext("%s: Initial guess is not feasible."),"optimbase_checkx0") )
     end
 endfunction
 

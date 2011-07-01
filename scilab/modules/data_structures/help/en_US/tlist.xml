@@ -140,6 +140,9 @@ disp(t)
       <member>
         <link linkend="list">list</link>
       </member>
+      <member>
+        <link linkend="mlist">mlist</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

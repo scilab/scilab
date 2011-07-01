@@ -2092,7 +2092,6 @@ int C2F(pmatj)(char *fname,int *lw,int *j,unsigned long fname_len)
     incj = (*j - 1) * m;
     il2 = iadr(*Lstk(*lw ));
     ix1 = il2 + 4;
-    l2 = sadr(ix1);
     m2 = Max(m,1);
     ix1 = il + 9 + m * n;
     l = sadr(ix1);
@@ -2153,7 +2152,6 @@ int C2F(crewmat)(char *fname,int *lw,int *m,int *lr,unsigned long fname_len)
     *istk(il + 1) = 1;
     *istk(il + 2) = *m;
     *istk(il + 3) = 0;
-    ix1 = il + 4;
     *lr = sadr(il+4);
     *Lstk(*lw +1) = sadr(il+4) + *m;
     return TRUE;

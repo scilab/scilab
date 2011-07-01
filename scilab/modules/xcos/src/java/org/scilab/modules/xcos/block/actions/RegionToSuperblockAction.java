@@ -682,6 +682,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 				childGraph.addCells(cells);
 			}
 
+			childGraph.setChildrenParentDiagram();
 			BlockPositioning.updateBlockView(superBlock);
 		} finally {
 			childModel.endUpdate();

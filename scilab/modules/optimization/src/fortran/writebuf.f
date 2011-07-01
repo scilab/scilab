@@ -68,23 +68,25 @@ c      write(buffer(1:15),'(1pd15.7)') r1
       end
 c     ====================================
       
-      subroutine writebufspa(buffer,line)
+      subroutine writebufspa(buffer,fname,line)
       
       character*(*) buffer
-      character*(*) line
+      character*(*) fname
+      integer line
       
-      write(buffer,'(''Error while reading line '',a5)') line
+      write(buffer,'(A,'': Error while reading line '',I5)') fname,line
       
       end
 c     ====================================      
-      subroutine writebufspb(buffer,typrow,line)
+      subroutine writebufspb(buffer,fname,typrow,line)
       
       character*(*) buffer
+      character*(*) fname
       character*(*) typrow
-      character*(*) line
+      integer line
       
-      write(buffer,'(''Unknown row type '',a2,'' at line '',a5)')
-     $ typrow,line
+      write(buffer,'(A,''Unknown row type '',a2,'' at line '',I5)')
+     $ fname,typrow,line
      
       end
 c     ====================================      

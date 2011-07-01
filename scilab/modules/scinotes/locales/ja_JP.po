@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-05-28 01:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ja\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -33,16 +33,11 @@ msgstr "%s: メモリ不足です.\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
 
-#
-# File: sci_gateway/cpp/sci_scinotes.cpp, line: 344
-# File: sci_gateway/cpp/sci_scinotes.cpp, line: 356
 #, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -50,18 +45,14 @@ msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定し
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
-msgstr ""
-"%s: 引数 %d の型が間違っています:　実数行列または 'readonly' を指定してくださ"
-"い.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数行列または 'readonly' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定してください.\n"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
 msgid "(* for any string and ? for any character)"
-msgstr ""
+msgstr "(* : 任意の文字列, ?: 任意の文字)"
 
 msgid "... file with echo"
 msgstr ".. エコーバック付きのファイル"
@@ -72,17 +63,13 @@ msgstr ".. エコーバックなしのファイル"
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr ".. エコーバックありを選択; ..キャレットまでエコーあり"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
 #, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
-msgstr ""
+msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
 #, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
-msgstr ""
+msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
 
 msgid "?"
 msgstr "?"
@@ -99,15 +86,11 @@ msgstr "全て"
 msgid "Alphabetic order"
 msgstr "アルファベット順"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 55
 msgid "An error occured when exporting the code using FOP"
-msgstr ""
+msgstr "FOPによりコードをエクスポートする際にエラーが発生しました"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 56
 msgid "An error occured when printing"
-msgstr ""
+msgstr "印刷時にエラーが発生しました"
 
 msgid "Anchor's name: "
 msgstr "アンカーの名前: "
@@ -118,10 +101,8 @@ msgstr "アンカー: "
 msgid "Anchors"
 msgstr "アンカー"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 180
 msgid "Apply & Reindent"
-msgstr ""
+msgstr "適用 & 再インデント"
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "本当に SciNotes を閉じてよいですか ?"
@@ -141,10 +122,8 @@ msgstr "背景色"
 msgid "Backward"
 msgstr "戻る"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
 msgid "Base directory:"
-msgstr ""
+msgstr "ベースディレクトリ:"
 
 msgid "Binary file: read-only mode"
 msgstr "バイナリファイル: 読み出し専用モード"
@@ -155,31 +134,23 @@ msgstr "ボールド体"
 msgid "Cancel"
 msgstr "取消"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 227
 msgid "Cannot guess the file encoding."
-msgstr ""
+msgstr "ファイルのエンコーディングを推定できません."
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "\"scinotesConfiguration.xml\"を読み込めません"
 
-#
-# File: scilab_fake_localization_file.c, line: 44
 msgid "Capitalize Selection;Capitalize character"
-msgstr ""
+msgstr "セレクションの先頭を大文字にします; 文字の先頭を大文字にします"
 
 msgid "Case sensitive"
 msgstr "大文字/小文字を区別"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 323
 msgid "Case-sensitivity (File name)"
-msgstr ""
+msgstr "大文字小文字を区別 (ファイル名)"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 322
 msgid "Case-sensitivity (Word)"
-msgstr ""
+msgstr "大文字小文字を区別 (単語)"
 
 msgid "Change Color"
 msgstr "色を変更"
@@ -187,15 +158,11 @@ msgstr "色を変更"
 msgid "Change Colors"
 msgstr "色を変更"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
 msgid "Choose the search base directory"
-msgstr ""
+msgstr "検索用基本ディレクトリを選択"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
 msgid "Choose..."
-msgstr ""
+msgstr "選択..."
 
 msgid "Circular search"
 msgstr "環状探索"
@@ -227,10 +194,8 @@ msgstr "色付けは取り消されました"
 msgid "Colorize"
 msgstr "色付け"
 
-#
-# File: scilab_fake_localization_file.c, line: 30
 msgid "Columns actions"
-msgstr ""
+msgstr "カラム処理"
 
 msgid "Comment Selection"
 msgstr "コメント選択"
@@ -238,11 +203,8 @@ msgstr "コメント選択"
 msgid "Complete"
 msgstr "完了"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 289
-# File: scilab_fake_localization_file.c, line: 73
 msgid "Configure Tabulation"
-msgstr ""
+msgstr "設定の一覧表化"
 
 msgid "Continue ?"
 msgstr "続けますか?"
@@ -250,11 +212,8 @@ msgstr "続けますか?"
 msgid "Copy"
 msgstr "コピー"
 
-#
-# File: scilab_fake_localization_file.c, line: 29
-# File: scilab_fake_localization_file.c, line: 98
 msgid "Copy as HTML with line number"
-msgstr ""
+msgstr "行番号付きのHTMLとしてコピー"
 
 msgid "Copy selection in a new tab"
 msgstr "選択部を新規タブにコピー"
@@ -274,10 +233,8 @@ msgstr "インタープリタ・マネージメントもコンソールも見つ
 msgid "Could not find the temporary file."
 msgstr "一時ファイルを見つけることができません。"
 
-#
-# File: scilab_fake_localization_file.c, line: 60
 msgid "Current file encoding"
-msgstr ""
+msgstr "カレントのファイルエンコーディング"
 
 msgid "Cursor Color"
 msgstr "カーソルの色"
@@ -288,10 +245,8 @@ msgstr "切り取り"
 msgid "Default"
 msgstr "デフォルト"
 
-#
-# File: scilab_fake_localization_file.c, line: 61
 msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
+msgstr "デフォルトのSciNotesファイルエンコーディング; UTF-8; Windows 1252 (ANSI);ISO-8859-1"
 
 msgid "Delete"
 msgstr "削除"
@@ -305,25 +260,19 @@ msgstr "方向"
 msgid "Document"
 msgstr "文書"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 296
 msgid "Double chevrons"
-msgstr ""
+msgstr "二重逆V字型"
 
 msgid "Edit"
 msgstr "編集"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
 #, c-format
 msgid "Elapsed time: %s second."
-msgstr ""
+msgstr "経過時間: %s 秒."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
 #, c-format
 msgid "Elapsed time: %s seconds."
-msgstr ""
+msgstr "経過時間: %s 秒."
 
 msgid "Enable Auto Reformat"
 msgstr "自動再フォーマットを有効"
@@ -331,10 +280,8 @@ msgstr "自動再フォーマットを有効"
 msgid "Encoding"
 msgstr "エンコーディング"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 226
 msgid "Encoding problems"
-msgstr ""
+msgstr "エンコーディングの問題"
 
 msgid "Enter line number"
 msgstr "行番号を入力してください"
@@ -351,10 +298,8 @@ msgstr "エコーバックありで選択部を評価;エコーバックあり�
 msgid "Evaluate from beginning..."
 msgstr "先頭から評価..."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 301
 msgid "Exact"
-msgstr ""
+msgstr "完全一致"
 
 msgid "Execute"
 msgstr "実行"
@@ -365,10 +310,8 @@ msgstr "Scilabへ取り込んで実行"
 msgid "Exit"
 msgstr "終了"
 
-#
-# File: scilab_fake_localization_file.c, line: 17
 msgid "Export"
-msgstr ""
+msgstr "エクスポート"
 
 msgid "File"
 msgstr "ファイル"
@@ -376,10 +319,8 @@ msgstr "ファイル"
 msgid "File already exists"
 msgstr "ファイルが既に存在します"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
 msgid "File pattern"
-msgstr ""
+msgstr "ファイルパターン"
 
 msgid "Find"
 msgstr "検索"
@@ -390,15 +331,11 @@ msgstr "次を検索"
 msgid "Find Previous"
 msgstr "前を検索"
 
-#
-# File: scilab_fake_localization_file.c, line: 52
 msgid "Find files"
-msgstr ""
+msgstr "ファイルを検索"
 
-#
-# File: scilab_fake_localization_file.c, line: 51
 msgid "Find word in files"
-msgstr ""
+msgstr "ファイル中で単語検索"
 
 msgid "Find/Replace"
 msgstr "検索/置換"
@@ -451,23 +388,17 @@ msgstr "入力に関するヘルプ"
 msgid "Highlight current line"
 msgstr "現在行をハイライト"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 294
 msgid "Horizontal rule"
-msgstr ""
+msgstr "水平方向の罫線"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
 msgid "Horizontal wrapping"
-msgstr ""
+msgstr "水平方向のラッピング"
 
 msgid "Ignore"
 msgstr "無視する"
 
-#
-# File: scilab_fake_localization_file.c, line: 50
 msgid "Incremental Search"
-msgstr ""
+msgstr "インクリメンタルサーチ"
 
 #, c-format
 msgid "Invalid regular expression : %s"
@@ -476,30 +407,22 @@ msgstr "正規表現が不正です: %s"
 msgid "Italic"
 msgstr "イタリック体"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 292
 msgid "Length"
-msgstr ""
+msgstr "長さ"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 203
 #, c-format
 msgid "Line %s, Column %s."
-msgstr ""
+msgstr "%s 行, %s 列目."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 202
 #, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr ""
+msgstr "%s 行, %s 列. 関数 '%s' (%s 行目)."
 
 msgid "Line Endings"
 msgstr "行末コード"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 325
 msgid "Line by line"
-msgstr ""
+msgstr "行単位"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行番号付け; オフ;通常; whereami 互換"
@@ -516,15 +439,11 @@ msgstr "Macクラシック(CR)"
 msgid "Mail to "
 msgstr "メール送信 "
 
-#
-# File: scilab_fake_localization_file.c, line: 43
 msgid "Make Selection Lowercase"
-msgstr ""
+msgstr "選択部を小文字にする"
 
-#
-# File: scilab_fake_localization_file.c, line: 42
 msgid "Make Selection Uppercase"
-msgstr ""
+msgstr "選択部を大文字にする"
 
 msgid "Natural order"
 msgstr "自然順序"
@@ -550,10 +469,8 @@ msgstr "実行するテキストがありません."
 msgid "Normal Line Numbering"
 msgstr "通常の行番号付け"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 255
 msgid "Numeration"
-msgstr ""
+msgstr "計算"
 
 msgid "Ok"
 msgstr "OK"
@@ -564,10 +481,8 @@ msgstr "開く"
 msgid "Open URL"
 msgstr "URLを開く"
 
-#
-# File: scilab_fake_localization_file.c, line: 6
 msgid "Open file in ..."
-msgstr ""
+msgstr "ファイルをオープン ..."
 
 msgid "Open function source file"
 msgstr "関数のソースファイルを開く"
@@ -599,18 +514,14 @@ msgstr "ページ設定"
 msgid "Paste"
 msgstr "貼り付け"
 
-#
-# File: scilab_fake_localization_file.c, line: 31
-# File: scilab_fake_localization_file.c, line: 97
 msgid "Paste Column"
-msgstr ""
+msgstr "カラムを貼付け"
 
 msgid "Preferences"
 msgstr "設定"
 
 msgid "Press CTRL and move the mouse over the link to activate it"
-msgstr ""
-"CTRLキーを押しながらマウスでリンクの上を移動させるとアクティブ化されます"
+msgstr "CTRLキーを押しながらマウスでリンクの上を移動させるとアクティブ化されます"
 
 msgid "Preview"
 msgstr "プレビュー"
@@ -624,10 +535,8 @@ msgstr "印刷"
 msgid "Print Preview"
 msgstr "印刷プレビュー"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 317
 msgid "Read file line by line"
-msgstr ""
+msgstr "ファイルを一行毎に読み込む"
 
 msgid "Read-only mode"
 msgstr "読み込み専用モード"
@@ -635,28 +544,20 @@ msgstr "読み込み専用モード"
 msgid "Recent Files"
 msgstr "最近使ったファイル"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
 msgid "Recursive"
-msgstr ""
+msgstr "再帰的"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 324
 msgid "Recursive search"
-msgstr ""
+msgstr "再帰検索"
 
 msgid "Redo"
 msgstr "やり直す"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
-msgstr ""
+msgstr "正規表現"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 326
 msgid "Regular expression (Word)"
-msgstr ""
+msgstr "正規表現 (単語)"
 
 msgid "Regular expressions"
 msgstr "正規表現"
@@ -676,10 +577,8 @@ msgstr "末尾の空白を削除する"
 msgid "Remove trailing whitespaces"
 msgstr "末尾の空白文字を削除する"
 
-#
-# File: scilab_fake_localization_file.c, line: 32
 msgid "Repeat on the Column"
-msgstr ""
+msgstr "カラムに繰り返す"
 
 msgid "Replace"
 msgstr "置換"
@@ -717,18 +616,14 @@ msgstr "保存"
 msgid "Save All"
 msgstr "全て保存"
 
-#
-# File: scilab_fake_localization_file.c, line: 84
 msgid "Save and execute"
-msgstr ""
+msgstr "保存して実行"
 
 msgid "Save as"
 msgstr "名前を付けて保存"
 
-#
-# File: scilab_fake_localization_file.c, line: 7
 msgid "Save file in ..."
-msgstr ""
+msgstr "ファイルを保存 ..."
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -756,15 +651,11 @@ msgstr "範囲"
 msgid "Search"
 msgstr "検索"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 306
 msgid "Search Files..."
-msgstr ""
+msgstr "ファイルを検索..."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 307
 msgid "Search in Files..."
-msgstr ""
+msgstr "ファイルを検索..."
 
 msgid "Select All"
 msgstr "全て選択"
@@ -778,10 +669,8 @@ msgstr "選択された行"
 msgid "Set Colors"
 msgstr "色設定"
 
-#
-# File: scilab_fake_localization_file.c, line: 70
 msgid "Set Colors ..."
-msgstr ""
+msgstr "色を設定 ..."
 
 msgid "Set Font"
 msgstr "フォントを指定"
@@ -807,16 +696,14 @@ msgstr "マクロの定義を表示する "
 msgid "Show/Hide ToolBar"
 msgstr "ツールバーの表示/非表示"
 
-#
-# File: scilab_fake_localization_file.c, line: 45
 msgid "Single to double quote strings"
-msgstr ""
+msgstr "一重または二重引用符付きの文字列"
 
 msgid "Source of '"
 msgstr "ソースコード '"
 
 msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割ビュー;ofu"
+msgstr "分割ビュー;オフ;水平方向;垂直方向"
 
 msgid "Split horizontally"
 msgstr "水平方向に分割"
@@ -824,10 +711,8 @@ msgstr "水平方向に分割"
 msgid "Split vertically"
 msgstr "垂直方向に分割"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 319
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 msgid "Strike Through"
 msgstr "削除"
@@ -836,31 +721,23 @@ msgstr "削除"
 msgid "String %s not found"
 msgstr "文字列 %s は見つかりません"
 
-#
-# File: scilab_fake_localization_file.c, line: 67
 msgid "Suppress comments when executing selection"
-msgstr ""
+msgstr "選択部を実行する際にコメントを非表示にする"
 
 msgid "Syntax Type"
 msgstr "構文の型"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 293
 msgid "Tab representation"
-msgstr ""
+msgstr "タブ形式"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 290
 msgid "Tab style"
-msgstr ""
+msgstr "タブ形式"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 167
 #, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
-msgstr ""
+msgstr "ファイル %s が存在しません"
 
 #, c-format
 msgid ""
@@ -873,40 +750,31 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "ファイルは変換できませんでした."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 43
 msgid "The file could not be created, check the path"
-msgstr ""
+msgstr "ファイルを作成できません, パスを確認してください"
 
 msgid "The file could not be saved."
 msgstr "ファイルは保存できませんでした."
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 225
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
-msgstr ""
+msgstr "ファイルエンコーディングは実際には %s で、 %s により保存されます. 続けますか ?"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 44
 msgid "The file is not writable so it is opened in read-only mode"
-msgstr ""
+msgstr "このファイルは書込み不可のため,読み込み専用モードでオープンします"
 
 msgid "This file"
 msgstr "このファイル"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr ""
-"このファイルはバイナリ形式です, このファイルに保存するとファイルを壊す可能性"
-"があります."
+msgstr "このファイルはバイナリ形式です, このファイルに保存するとファイルを壊す可能性があります."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"このファイルはとても長いです。\"Scilabにファイルをロードして実行\" の方が適し"
-"ている可能性があります.\n"
+"このファイルはとても長いです。\"Scilabにファイルをロードして実行\" の方が適している可能性があります.\n"
 "本当に続けますか?"
 
 msgid "Tools"
@@ -927,15 +795,11 @@ msgstr "Unix (LF)"
 msgid "Untitled "
 msgstr "無題 "
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 291
 msgid "Use spaces"
-msgstr ""
+msgstr "空白を使用"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 295
 msgid "Vertical rule"
-msgstr ""
+msgstr "縦罫線"
 
 msgid "View"
 msgstr "表示"
@@ -955,33 +819,23 @@ msgstr "ウィンドウ"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 321
 msgid "Word"
-msgstr ""
+msgstr "単語"
 
 msgid "Word Wrap"
 msgstr "ワードラップ"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 316
 msgid "Word pattern"
-msgstr ""
+msgstr "単語パターン"
 
-#
-# File: scilab_fake_localization_file.c, line: 5
 msgid "Working directories;Add a directory;Remove last directory"
-msgstr ""
+msgstr "ワーキングディレクトリ;ディレクトリを追加;直近のディレクトリを削除"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 46
 msgid "You do not have the permissions to read this file"
-msgstr ""
+msgstr "このファイルの読み込みが許可されていません"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 45
 msgid "You do not have the permissions to write this file"
-msgstr ""
+msgstr "このファイルへの書込みが許可されていません"
 
 msgid "You have passed the beginning of the document"
 msgstr "文書の先頭を通過しました"
@@ -997,11 +851,41 @@ msgstr "文書の終端に達しました"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"このファイルをScilabへ取り込んで実行する前に修正部を保存する必要があります。"
+msgstr "このファイルをScilabへ取り込んで実行する前に修正部を保存する必要があります。"
 
 msgid "Your modifications will be lost, change encoding anyway?"
 msgstr "変更内容を失うかもしれません, それでもエンコーディングを変えますか?"
 
 msgid "close this tab"
 msgstr "このタブを閉じる"
+
+#~ msgid "Continue?"
+#~ msgstr "続けますか?"
+
+#~ msgid "Edit selection in a new tab"
+#~ msgstr "新規タブで編集"
+
+#~ msgid "No text to execute"
+#~ msgstr "実行するテキストがありません."
+
+#~ msgid "No text selected"
+#~ msgstr "テキストは選択されていません"
+
+#~ msgid ""
+#~ "The file %s doesn't exist\n"
+#~ " Do you want to create it?"
+#~ msgstr ""
+#~ "ファイル %s は存在しません\n"
+#~ "作成しますか?"
+
+#~ msgid "Wrap search"
+#~ msgstr "折り返し検索"
+
+#~ msgid "Edition"
+#~ msgstr "エディション"
+
+#~ msgid "Open file in ...;Add a directory;Remove last directory"
+#~ msgstr "ファイルを開く ...;ディレクトリを追加;直近のディレクトリを削除"
+
+#~ msgid "Numerotation"
+#~ msgstr "数値循環"

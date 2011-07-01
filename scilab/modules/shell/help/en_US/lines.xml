@@ -27,9 +27,12 @@ ncl=lines()</synopsis>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>nl : an integer, the number of lines for vertical paging control. If 0</term>
+        <term>nl : an integer, the number of lines for vertical paging control.</term>
         <listitem>
-          <para>no vertical paging control is done.</para>
+          <para> If 0 : no vertical paging control is done.</para>
+        </listitem>
+        <listitem>
+          <para> If -1 : reset vertical paging control to current size of the window.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,7 +65,7 @@ ncl=lines()</synopsis>
     parameters are also automatically modified when the window is resized.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="disp">disp</link>
@@ -71,5 +74,14 @@ ncl=lines()</synopsis>
         <link linkend="print">print</link>
       </member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>lines is set by default to 0. Argument -1 added. See SEP 67 for more information.</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

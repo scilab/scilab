@@ -16,7 +16,7 @@
 
 #include "dynlib_dynamic_link.h"
 #include "BOOL.h"
-#include "machine.h" /* C2F */
+#include "machine.h"            /* C2F */
 
 #define ENTRYMAX 500
 
@@ -37,7 +37,7 @@ DYNAMIC_LINK_IMPEXP void initializeLink(void);
 * @param[in/out] ilib number in the function table (-1 if FALSE)
 * @return a BOOL
 */
-DYNAMIC_LINK_IMPEXP BOOL c_link(char *routinename,int *ilib);
+DYNAMIC_LINK_IMPEXP BOOL c_link(char *routinename, int *ilib);
 
 /**
 * OBSOLETE 
@@ -49,8 +49,7 @@ DYNAMIC_LINK_IMPEXP BOOL c_link(char *routinename,int *ilib);
 * @param[in] routinename
 * @param[in/out] ilib
 */
-DYNAMIC_LINK_IMPEXP void C2F(iislink)(char *routinename, int *ilib);
-
+DYNAMIC_LINK_IMPEXP void C2F(iislink) (char *routinename, int *ilib);
 
 /**
 * returns the ii functions 
@@ -83,21 +82,20 @@ DYNAMIC_LINK_IMPEXP void unlinkallsharedlib(void);
 */
 DYNAMIC_LINK_IMPEXP void unlinksharedlib(int *i);
 
-
 /**
 * load a shared archive and call LoadDynLibrary
 * the shared lib handler is stored in a Table 
 * return value is == -1 if the LoadDynLibrary failed 
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlopen( char *loaded_file);
+DYNAMIC_LINK_IMPEXP int Sci_dlopen(char *loaded_file);
 
 /**
 * This routine load the entryname ename 
 * from shared lib ishared 
 * @return TRUE or FALSE
 */
-DYNAMIC_LINK_IMPEXP BOOL Sci_dlsym(char *ename,int ishared,char *strf);
+DYNAMIC_LINK_IMPEXP int Sci_dlsym(char *ename, int ishared, char *strf);
 
 /**
 * Delete entry points associated with shared lib ishared
@@ -122,10 +120,7 @@ DYNAMIC_LINK_IMPEXP char **getNamesOfFunctionsInSharedLibraries(int *sizearray);
 * @param ierr (last error)
 * @return id 
 */
-DYNAMIC_LINK_IMPEXP int scilabLink(int idsharedlibrary,
-			   char *filename,
-			   char **subnamesarray,int sizesubnamesarray,
-			   BOOL fflag,int *ierr);
+DYNAMIC_LINK_IMPEXP int scilabLink(int idsharedlibrary, char *filename, char **subnamesarray, int sizesubnamesarray, BOOL fflag, int *ierr);
 
 /**
 * get list of all Id of shared lib

@@ -14,9 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-06-06 15:29+0100\n"
 
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 69
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -139,38 +139,38 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 181
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 181
 msgid "&?"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 168
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 170
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 173
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 176
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 179
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 168
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 173
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 176
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 179
 msgid "&Applications"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 167
 msgid "&Control"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 165
 msgid "&Edit"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
 msgid "&File"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 166
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 166
 msgid "&Preferences"
 msgstr ""
 #
 # File: macros/toolboxes.sci, line: 43
 # File: macros/toolboxes.sci, line: 44
 # File: macros/toolboxes.sci, line: 48
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 182
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 182
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -195,7 +195,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 #
-# File: /pro/git/scilab.5.3/scilab/etc/scilab.start, line: 68
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 68
 msgid "Startup execution:"
 msgstr ""
 #

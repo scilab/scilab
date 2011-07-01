@@ -22,7 +22,7 @@
         <refname>getAllocatedMatrixOfString</refname>
 
         <refpurpose>
-            Get matrix of polynom variable.
+            Get matrix of polynomial variable.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

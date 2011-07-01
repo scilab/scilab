@@ -1,0 +1,188 @@
+# Russian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-25 12:36+0000\n"
+"Last-Translator: Dmitry Grebennikov <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13144)\n"
+
+#, c-format
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr "%s: не осуществлено сохранение двумерного массива.\n"
+
+#, c-format
+msgid ""
+"%s: Column array of strings with different lengths saving is not "
+"implemented.\n"
+msgstr "%s: Сохранение массива столбцов с разными длинами не осуществлено.\n"
+
+#, c-format
+msgid "%s: Could not rewind the file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid file identifier.\n"
+msgstr "%s: Неверный идентификатор файла.\n"
+
+#, c-format
+msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
+msgstr "%s: Mlists типа %s не могут быть записаны в двоичный файл Matlab.\n"
+
+#, c-format
+msgid "%s: N-D arrays of chars not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Недостаточно памяти.\n"
+
+#, c-format
+msgid "%s: Row array of strings saving is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
+msgstr ""
+"%s: Неверный тип первого входного аргумента: Ожидалась матрица целых чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgstr "%s: Неверный тип первого входного аргумента: Ожидалось Mlist.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный тип первого входного аргумента: Ожидалась разреженная матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: String matrix expected.\n"
+msgstr ""
+"%s: Неверный тип первого входного аргумента: Ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
+msgstr ""
+"%s: Неверное значение второго входного аргумента: ожидалось 'r' или 'w'.\n"
+
+msgid "Scilab matio module not installed.\n"
+msgstr "Не установлен модуль Scilab matio.\n"
+
+#, c-format
+#~ msgid "%s mlist type not yet implemented."
+#~ msgstr "%s тип mlist еще не реализован."
+
+#, c-format
+#~ msgid "%s not yet implemented."
+#~ msgstr "%s еще не реализован."
+
+#, c-format
+#~ msgid "%s: Cannot open file %s.\n"
+#~ msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+#~ msgid "%s: Could not open file ''%s''.\n"
+#~ msgstr "%s: Не удалось открыть файл \"%s\".\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: No variable read in file ''%s''. Check if your file is not corrupted.\n"
+#~ msgstr ""
+#~ "%s: В файле \"%s\" не обнаружено переменных. Проверьте, не поврежден ли "
+#~ "файл.\n"
+
+#, c-format
+#~ msgid "%s: This feature has not been implemented: %s."
+#~ msgstr "%s: Это свойство не было реализовано: %s."
+
+#~ msgid "All inputs must be character strings."
+#~ msgstr "Все входные данные должны быть символьными строками."
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась матрица строк.\n"
+
+#, c-format
+#~ msgid "Not implemented DataType: %d."
+#~ msgstr "Не реализованный тип данных: %d."
+
+#, c-format
+#~ msgid "Name conflict: it is not possible to save variable with name %s."
+#~ msgstr "Конфликт имен: невозможно сохранить переменную с именем %s."
+
+#~ msgid "Attempt to write an unsupported data type to an ASCII file."
+#~ msgstr "Попытка записи неподдерживаемого типа данных в файл ASCII."
+
+#, c-format
+#~ msgid "Found Datatype=%d, expecting %d."
+#~ msgstr "Найденный тип данных = %d, ожидается %d."
+
+#~ msgid "Error while writing MI."
+#~ msgstr "Ошибка во время записи MI."
+
+#~ msgid "Option -v7 added."
+#~ msgstr "Добавлена опция -v7."
+
+#, c-format
+#~ msgid "Option %s not implemented: IGNORED."
+#~ msgstr "Опция %s не реализована: IGNORED."
+
+#, c-format
+#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
+#~ msgstr "Переменная %s не может быть сохранена в файл ASCII: IGNORED."
+
+#, c-format
+#~ msgid "savematfile: could not save variable named %s.\n"
+#~ msgstr "savematfile: переменная с именем %s не может быть сохранена.\n"
+
+#~ msgid "Unknown Class."
+#~ msgstr "Неизвестный класс."
+
+#, c-format
+#~ msgid "Unknown integer type: %s."
+#~ msgstr "Неизвестный целочисленный тип: %s."

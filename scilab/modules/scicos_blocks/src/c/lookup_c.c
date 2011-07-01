@@ -81,10 +81,8 @@ SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block,int flag)
 
 	if (u0<RPAR[i]) {
 	  i=FindIndex(Order,u0,0,i,RPAR,nPoints);
-	  ip1=i+1;
 	}else if (u0>=RPAR[ip1]) {
 	  i=FindIndex(Order,u0,ip1,nPoints-1,RPAR,nPoints);		
-	  ip1=i+1;
 	}
 	ind[0]=i;
 

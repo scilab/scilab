@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-04-05 14:25+0000\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 #, c-format
 msgid "\tin %s\n"
@@ -58,7 +58,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to create list item #%d in variable \"%s\""
-msgstr "%s: Imposible crear el elemento #%d de la lista en la variable \"%s\""
+msgstr ""
+"%s: Imposible crear el elemento #%d de la lista en la variable \"%s\""
 
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
@@ -177,7 +178,8 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
 "una cadena de caracteres.\n"

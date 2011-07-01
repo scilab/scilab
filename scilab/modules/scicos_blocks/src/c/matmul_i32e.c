@@ -37,7 +37,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_i32e(scicos_block *block,int flag)
 		long *u1 = Getint32InPortPtrs(block,1);
 		long *u2 = Getint32InPortPtrs(block,2);
 		long *y = Getint32OutPortPtrs(block,1);
-		int *ipar = GetIparPtrs(block);
 
 		double k = pow(2,32);
 		int l = 0;

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2011-05-23 02:27+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid ""
@@ -40,8 +40,7 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"Error: 不能返回Scilab Java 環境(jvm_SCILAB):請檢查JVM 是否在呼叫這個函數之"
-"前，已經被Scilab 載入\n"
+"Error: 不能返回Scilab Java 環境(jvm_SCILAB):請檢查JVM 是否在呼叫這個函數之前，已經被Scilab 載入\n"
 
 #, c-format
 msgid ""
@@ -75,8 +74,8 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Scilab 不能新建Scilab Java Main-Class(我們找不到main Scilab class.請檢查是否"
-"Scilab 和第三方套件是存在的).\n"
+"Scilab 不能新建Scilab Java Main-Class(我們找不到main Scilab class.請檢查是否Scilab "
+"和第三方套件是存在的).\n"
 
 #, c-format
 msgid ""
@@ -158,16 +157,14 @@ msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug http://"
-"bugzilla.scilab.org/.\n"
-msgstr ""
-"假如你正在使用Scilab的二進位版本.請到http://bugzilla.scilab.org/.回報一個臭"
-"蟲.\n"
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr "假如你正在使用Scilab的二進位版本.請到http://bugzilla.scilab.org/.回報一個臭蟲.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script bin/"
-"scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
 msgstr "假如你用的是自己建構的Scilab,請更新腳本的bin/scilab以提供JVM的路徑\n"
 
 msgid "JNI version error"
@@ -182,19 +179,15 @@ msgstr "JNI: 資憶體不足"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM 介面在-nogui or -nwni模式下不作用.\n"
 
-#
-# File: src/c/JVM.c, line: 207
 #, c-format
 msgid "Options:\n"
-msgstr ""
+msgstr "選項\n"
 
-#
-# File: src/c/JVM.c, line: 125
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
 "system (or vice versa).\n"
-msgstr ""
+msgstr "也請確認您正在運行的Scilab版本是32位元或是64位元(是否有運行錯誤平台的情況發生)。\n"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab java模組未安裝.\n"
@@ -236,3 +229,9 @@ msgstr "警告:找不到類別路徑宣告檔%s.\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "錯誤的格式%s.\n"
+
+#~ msgid "Console"
+#~ msgstr "主控台"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Scilab  主控台"

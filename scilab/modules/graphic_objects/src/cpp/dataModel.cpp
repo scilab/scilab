@@ -32,7 +32,7 @@ BOOL DataModel::setGraphicObjectProperty(char *_pstID, char* _pstName, void* _db
 
     returnValue = dataObject->setDataProperty(property, _dblValue, numElements);
 
-    return returnValue;
+    return (BOOL) returnValue;
 }
 
 void DataModel::getGraphicObjectProperty(char *_pstID, char* _pstName, void **_pvData)

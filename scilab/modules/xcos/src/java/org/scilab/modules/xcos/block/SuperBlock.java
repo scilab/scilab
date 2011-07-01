@@ -383,7 +383,7 @@ public final class SuperBlock extends BasicBlock {
 	
 	/**
 	 * @param <T> The type to work on
-	 * @param klass the class instance list to work on
+	 * @param klasses the class instance list to work on
 	 * @return list of typed block
 	 */
 	protected < T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
@@ -392,54 +392,6 @@ public final class SuperBlock extends BasicBlock {
 			list.addAll(getAllTypedBlock(klass));
 		}
 		return list;
-	}
-	
-	/**
-	 * @return list of input explicit block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllExplicitInBlock() {
-		return getAllTypedBlock(ExplicitInBlock.class);
-	}
-
-	/**
-	 * @return list of input implicit block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllImplicitInBlock() {
-		return getAllTypedBlock(ImplicitInBlock.class);
-	}
-
-	/**
-	 * @return list of input event block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllEventInBlock() {
-		return getAllTypedBlock(EventInBlock.class);
-	}
-
-	/**
-	 * @return list of ouput explicit block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllExplicitOutBlock() {
-		return getAllTypedBlock(ExplicitOutBlock.class);
-	}
-
-	/**
-	 * @return list of output implicit block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllImplicitOutBlock() {
-		return getAllTypedBlock(ImplicitOutBlock.class);
-	}
-
-	/**
-	 * @return list of output event block
-	 */
-	@Deprecated
-	protected List< ? extends BasicBlock> getAllEventOutBlock() {
-		return getAllTypedBlock(EventOutBlock.class);
 	}
 
 	/**
@@ -462,6 +414,10 @@ public final class SuperBlock extends BasicBlock {
 		// populate
 		for (int i = 0; i < array.length; i++) {
 			final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+			
+			if (data.getWidth() < 1 || data.getHeight() < 1) {
+				continue;
+			}
 			final int index = (int) data.getRealPart()[0][0];
 			
 			if (index <= array.length) {
@@ -491,6 +447,8 @@ public final class SuperBlock extends BasicBlock {
 		updateBlocksColor(getAllTypedBlock(EventInBlock.class));
 		updateBlocksColor(getAllTypedBlock(EventOutBlock.class));
 		
+		child.getAsComponent().validate();
+		child.getView().validate();
 	}
 
 	/**
@@ -504,7 +462,7 @@ public final class SuperBlock extends BasicBlock {
 				return;
 			}
 
-			int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
+			final int countUnique = getBlocksConsecutiveUniqueValueCount(blocks);
 			boolean[] isDone = new boolean[countUnique];
 
 			// Initialize
@@ -512,15 +470,23 @@ public final class SuperBlock extends BasicBlock {
 
 			for (int i = 0; i < blocks.size(); i++) {
 				final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+				
+				if (data.getWidth() < 1 || data.getHeight() < 1) {
+					continue;
+				}
 				final int index = (int) data.getRealPart()[0][0];
+				
 				if (index > countUnique || isDone[index - 1]) {
 					child.getAsComponent().setCellWarning(blocks.get(i),
 							XcosMessages.WRONG_PORT_NUMBER);
+					child.getView().invalidate(blocks.get(i));
 				} else {
 					isDone[index - 1] = true;
 					child.getAsComponent().setCellWarning(blocks.get(i), null);
+					child.getView().invalidate(blocks.get(i));
 				}
 			}
+			
 		} finally {
 			child.getModel().endUpdate();
 		}

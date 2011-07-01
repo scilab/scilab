@@ -7,14 +7,21 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function [atomslib, atomsguilib] = startModule()
 // Load  functions libraries
 // =============================================================================
 
 // Command lines functions
-load("SCI/modules/atoms/macros/lib");
+  load("SCI/modules/atoms/macros/lib");
 
 // GUI functions
-if or(getscilabmode() == ["NW";"STD"]) then
   load("SCI/modules/atoms/macros/atoms_gui/lib");
-end
 
+endfunction
+
+if or(getscilabmode() == ["NW";"STD"]) then
+   [atomslib, atomsguilib] = startModule();
+else
+   atomslib = startModule();
+end
+clear startModule;

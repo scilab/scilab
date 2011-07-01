@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2010-12-03 15:00+0000\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -61,11 +61,8 @@ msgstr "Campo del manejador gráfico"
 msgid "Scilab Command"
 msgstr "Comando de Scilab"
 
-#
-# File: src/c/windows/TermCompletion.c, line: 175
-# File: src/c/others/zzledt.c, line: 940
 msgid "Scilab Fields"
-msgstr ""
+msgstr "Campos de Scilab"
 
 msgid "Scilab Function"
 msgstr "Función de Scilab"

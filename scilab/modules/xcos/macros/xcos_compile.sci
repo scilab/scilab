@@ -21,14 +21,6 @@
 
 function  [%cpr,ok] = xcos_compile(scs_m)
 
-//-- BJ : Alias Warning Function
-  prot = funcprot();
-  funcprot(0);
-  hilite_obj = xcosShowBlockWarning;
-  unhilite_obj = xcosClearBlockWarning;
-  funcprot(prot);
-  //-- end
-
 ////////////////////////////////////////////////////////////////
 // Add global environment variable so that scicos is not lost //
 ////////////////////////////////////////////////////////////////

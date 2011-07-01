@@ -7,11 +7,19 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function [texmacslib, texmacsoverloadinglib] = startModule()
+
 //Load  functions libraries
 // =============================================================================
-if with_texmacs() then
   load('SCI/modules/texmacs/macros/overloading/lib');
-end
-load('SCI/modules/texmacs/macros/lib');
-clear with_texmacs;
+  load('SCI/modules/texmacs/macros/lib');
+endfunction
 
+
+if or(sciargs() == "--texmacs") then
+  [texmacslib, texmacsoverloadinglib] = startModule();
+else
+  texmacslib = startModule();
+end
+
+clear startModule;

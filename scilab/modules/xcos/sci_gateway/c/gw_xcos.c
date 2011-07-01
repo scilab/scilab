@@ -28,8 +28,6 @@ static gw_generic_table Tab[] = {
     {sci_warnBlockByUID,                  "warnBlockByUID"},
     {sci_closeXcosFromScilab,             "closeXcos"},
     {sci_xcosDiagramToHDF5,               "xcosDiagramToHDF5"},
-    {sci_xcosDiagramOpen,                 "xcosDiagramOpen"},
-    {sci_xcosDiagramClose,                "xcosDiagramClose"},
     {sci_xcosPalLoad,                     "xcosPalLoad"},
     {sci_xcosPalCategoryAdd,              "xcosPalCategoryAdd"},
     {sci_xcosPalDelete,                   "xcosPalDelete"},

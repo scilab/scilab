@@ -37,7 +37,6 @@ SCICOS_BLOCKS_IMPEXP void summation_i16e(scicos_block *block,int flag)
 		int nu = GetInPortRows(block,1);
 		int mu = GetInPortCols(block,1);
 		int *ipar=GetIparPtrs(block);
-		double *rpar=GetRparPtrs(block);
 		int nin=GetNin(block);
 
 		double l = pow(2,16)/2;

@@ -91,6 +91,18 @@ function result = atomsAutoload()
 
     end
 
+    global demolist
+
+    if isempty(demolist) then
+      // we load scilab demos before ATOMS
+      modules = getmodules();
+      for i=1:size(modules,"*")
+        if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
+          exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+        end
+      end
+    end
+
     // Load the wanted packages
     // =========================================================================
     result = atomsLoad([packages(:,1) packages(:,2)]);

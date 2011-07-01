@@ -212,7 +212,7 @@ static int sci_gstacksizeMin(char *fname)
 static int setGStacksizeMin(char *fname)
 {
     unsigned long memstackused = getUsedGStacksize();
-    unsigned long newminstack = getUsedGStacksize();
+    unsigned long newminstack;
 
     if (memstackused < MIN_GSTACKSIZE)
     {

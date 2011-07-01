@@ -1,0 +1,2829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XcosDiagram background="-1" title="error_ports_with_negative_size">
+  <mxGraphModel as="model">
+    <root>
+      <mxCell id="71e94dae:12f1145140a:-7fff"/>
+      <mxCell id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+      <ConstBlock blockType="d" id="71e94dae:12f1145140a:-7fe0" ordering="1" parent="71e94dae:12f1145140a:-8000" simulationFunctionType="C_OR_FORTRAN">
+        <ScilabString as="exprs" height="1" width="1">
+          <data column="0" line="0" value="1"/>
+        </ScilabString>
+        <ScilabDouble as="realParameters" height="1" width="1">
+          <data column="0" line="0" realPart="1.0"/>
+        </ScilabDouble>
+        <ScilabDouble as="integerParameters" height="0" width="0"/>
+        <Array as="objectsParameters" scilabClass="ScilabList"/>
+        <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <ScilabDouble as="nmode" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <Array as="oDState" scilabClass="ScilabList"/>
+        <Array as="equations" scilabClass="ScilabList"/>
+        <mxGeometry as="geometry" height="40.0" width="40.0" x="10.0" y="80.0"/>
+      </ConstBlock>
+      <ExplicitOutputPort connectable="0" connectedLinkId="7" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fdf" ordering="1" parent="71e94dae:12f1145140a:-7fe0" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+      </ExplicitOutputPort>
+      <BasicBlock dependsOnU="1" id="71e94dae:12f1145140a:-7fcf" interfaceFunctionName="MUX" ordering="2" parent="71e94dae:12f1145140a:-8000" simulationFunctionName="multiplex" simulationFunctionType="C_OR_FORTRAN" style="MUX">
+        <ScilabString as="exprs" height="1" width="1">
+          <data column="0" line="0" value="2"/>
+        </ScilabString>
+        <ScilabDouble as="realParameters" height="0" width="0"/>
+        <ScilabDouble as="integerParameters" height="1" width="1">
+          <data column="0" line="0" realPart="2.0"/>
+        </ScilabDouble>
+        <Array as="objectsParameters" scilabClass="ScilabList"/>
+        <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <ScilabDouble as="nmode" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <Array as="oDState" scilabClass="ScilabList"/>
+        <Array as="equations" scilabClass="ScilabList"/>
+        <mxGeometry as="geometry" height="40.0" width="30.0" x="210.0" y="80.0"/>
+      </BasicBlock>
+      <ExplicitOutputPort connectable="0" connectedLinkId="6" dataColumns="1" dataLines="0" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fce" ordering="1" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="30.0" y="16.0"/>
+      </ExplicitOutputPort>
+      <ExplicitInputPort connectable="0" connectedLinkId="5" dataColumns="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fcd" ordering="1" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+      </ExplicitInputPort>
+      <ExplicitInputPort connectable="0" connectedLinkId="9" dataColumns="1" dataLines="-2" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fcc" ordering="2" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+      </ExplicitInputPort>
+      <SplitBlock id="71e94dae:12f1145140a:-7fb8" ordering="4" parent="71e94dae:12f1145140a:-8000" simulationFunctionType="DEFAULT">
+        <mxGeometry as="geometry" height="7.0" width="7.0" x="87.0" y="97.0"/>
+      </SplitBlock>
+      <ExplicitInputPort connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb7" ordering="1" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="-4.0"/>
+      </ExplicitInputPort>
+      <ExplicitOutputPort connectable="0" connectedLinkId="8" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb6" ordering="1" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-4.0"/>
+      </ExplicitOutputPort>
+      <ExplicitOutputPort connectable="0" connectedLinkId="9" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb5" ordering="2" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="6.0"/>
+      </ExplicitOutputPort>
+      <ExplicitLink id="71e94dae:12f1145140a:-7fb4">
+        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+          <Array as="points" scilabClass=""/>
+        </mxGeometry>
+        <mxCell as="parent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="7" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fdf" ordering="1" parent="71e94dae:12f1145140a:-7fe0" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+        </ExplicitOutputPort>
+        <ExplicitInputPort as="target" connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb7" ordering="1" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="-4.0"/>
+        </ExplicitInputPort>
+      </ExplicitLink>
+      <ExplicitLink id="71e94dae:12f1145140a:-7fb9">
+        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+          <mxPoint as="sourcePoint" x="206.0" y="110.0"/>
+          <mxPoint as="targetPoint" x="90.0" y="100.0"/>
+          <Array as="points" scilabClass="">
+            <mxPoint x="90.0" y="150.0"/>
+            <mxPoint x="180.0" y="150.0"/>
+            <mxPoint x="180.0" y="110.0"/>
+          </Array>
+        </mxGeometry>
+        <mxCell as="parent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="9" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb5" ordering="2" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="6.0"/>
+        </ExplicitOutputPort>
+        <ExplicitInputPort as="target" connectable="0" connectedLinkId="9" dataColumns="1" dataLines="-2" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fcc" ordering="2" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+        </ExplicitInputPort>
+      </ExplicitLink>
+      <SuperBlock id="71e94dae:12f1145140a:-7fa3" parent="71e94dae:12f1145140a:-8000" simulationFunctionType="DEFAULT">
+        <SuperBlockDiagram as="child">
+          <mxGraphModel as="model">
+            <root>
+              <mxCell id="71e94dae:12f1145140a:-7fa1"/>
+              <mxCell id="71e94dae:12f1145140a:-7fa2" parent="71e94dae:12f1145140a:-7fa1"/>
+              <ExplicitOutBlock id="71e94dae:12f1145140a:-7fa0" ordering="1" parent="71e94dae:12f1145140a:-7fa2" simulationFunctionType="DEFAULT">
+                <ScilabString as="exprs" height="1" width="1">
+                  <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="integerParameters" height="1" width="1">
+                  <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="181.0" y="70.0"/>
+              </ExplicitOutBlock>
+              <ExplicitInputPort connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9f" ordering="1" parent="71e94dae:12f1145140a:-7fa0" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+              </ExplicitInputPort>
+              <ExplicitInBlock id="71e94dae:12f1145140a:-7f9c" ordering="2" parent="71e94dae:12f1145140a:-7fa2" simulationFunctionType="DEFAULT">
+                <ScilabString as="exprs" height="1" width="1">
+                  <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble as="integerParameters" height="1" width="1">
+                  <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="229.0" y="70.0"/>
+              </ExplicitInBlock>
+              <ExplicitOutputPort connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9b" ordering="1" parent="71e94dae:12f1145140a:-7f9c" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+              </ExplicitOutputPort>
+              <ExplicitInBlock id="71e94dae:12f1145140a:-7f98" ordering="3" parent="71e94dae:12f1145140a:-7fa2" simulationFunctionType="DEFAULT" value="2">
+                <ScilabString as="exprs" height="1" width="1">
+                  <data column="0" line="0" value="2"/>
+                </ScilabString>
+                <ScilabDouble as="integerParameters" height="1" width="1">
+                  <data column="0" line="0" realPart="2.0"/>
+                </ScilabDouble>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="40.5" y="80.5"/>
+              </ExplicitInBlock>
+              <ExplicitOutputPort connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f97" ordering="1" parent="71e94dae:12f1145140a:-7f98" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+              </ExplicitOutputPort>
+              <SuperBlock id="71e94dae:12f1145140a:-7f92" ordering="4" parent="71e94dae:12f1145140a:-7fa2" simulationFunctionType="DEFAULT">
+                <SuperBlockDiagram as="child">
+                  <mxGraphModel as="model">
+                    <root>
+                      <mxCell id="71e94dae:12f1145140a:-7f90"/>
+                      <mxCell id="71e94dae:12f1145140a:-7f91" parent="71e94dae:12f1145140a:-7f90"/>
+                      <BasicBlock dependsOnU="1" id="71e94dae:12f1145140a:-7fc3" interfaceFunctionName="MUX" ordering="1" parent="71e94dae:12f1145140a:-7f91" simulationFunctionName="multiplex" simulationFunctionType="C_OR_FORTRAN" style="MUX">
+                        <ScilabString as="exprs" height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble as="realParameters" height="0" width="0"/>
+                        <ScilabDouble as="integerParameters" height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <Array as="objectsParameters" scilabClass="ScilabList"/>
+                        <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble as="nmode" height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array as="oDState" scilabClass="ScilabList"/>
+                        <Array as="equations" scilabClass="ScilabList"/>
+                        <mxGeometry as="geometry" height="40.0" width="30.0" x="120.0" y="70.0"/>
+                      </BasicBlock>
+                      <ExplicitOutputPort connectable="0" connectedLinkId="5" dataColumns="1" dataLines="0" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc2" ordering="1" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="30.0" y="16.0"/>
+                      </ExplicitOutputPort>
+                      <ExplicitInputPort connectable="0" connectedLinkId="6" dataColumns="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc1" ordering="1" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+                      </ExplicitInputPort>
+                      <ExplicitInputPort connectable="0" connectedLinkId="7" dataColumns="1" dataLines="-2" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc0" ordering="2" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+                      </ExplicitInputPort>
+                      <ExplicitOutBlock id="71e94dae:12f1145140a:-7f8f" ordering="2" parent="71e94dae:12f1145140a:-7f91" simulationFunctionType="DEFAULT">
+                        <ScilabString as="exprs" height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble as="integerParameters" height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <mxGeometry as="geometry" height="40.0" width="40.0" x="190.0" y="70.0"/>
+                      </ExplicitOutBlock>
+                      <ExplicitInputPort connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f8e" ordering="1" parent="71e94dae:12f1145140a:-7f8f" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                      </ExplicitInputPort>
+                      <ExplicitLink id="71e94dae:12f1145140a:-7f8b">
+                        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                          <mxPoint as="sourcePoint" x="154.0" y="90.0"/>
+                          <mxPoint as="targetPoint" x="200.0" y="100.0"/>
+                        </mxGeometry>
+                        <mxCell as="parent" id="71e94dae:12f1145140a:-7f91" parent="71e94dae:12f1145140a:-7f90"/>
+                        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="5" dataColumns="1" dataLines="0" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc2" ordering="1" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="30.0" y="16.0"/>
+                        </ExplicitOutputPort>
+                        <ExplicitInputPort as="target" connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f8e" ordering="1" parent="71e94dae:12f1145140a:-7f8f" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                        </ExplicitInputPort>
+                      </ExplicitLink>
+                      <ExplicitInBlock id="71e94dae:12f1145140a:-7f8a" ordering="3" parent="71e94dae:12f1145140a:-7f91" simulationFunctionType="DEFAULT">
+                        <ScilabString as="exprs" height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble as="integerParameters" height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <mxGeometry as="geometry" height="40.0" width="40.0" x="250.0" y="70.0"/>
+                      </ExplicitInBlock>
+                      <ExplicitOutputPort connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f89" ordering="1" parent="71e94dae:12f1145140a:-7f8a" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                      </ExplicitOutputPort>
+                      <ExplicitLink id="71e94dae:12f1145140a:-7f86">
+                        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                          <mxPoint as="sourcePoint" x="244.0" y="100.0"/>
+                          <mxPoint as="targetPoint" x="120.0" y="80.0"/>
+                          <Array as="points" scilabClass="">
+                            <mxPoint x="320.0" y="90.0"/>
+                            <mxPoint x="320.0" y="10.0"/>
+                            <mxPoint x="90.0" y="10.0"/>
+                            <mxPoint x="90.0" y="80.0"/>
+                          </Array>
+                        </mxGeometry>
+                        <mxCell as="parent" id="71e94dae:12f1145140a:-7f91" parent="71e94dae:12f1145140a:-7f90"/>
+                        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f89" ordering="1" parent="71e94dae:12f1145140a:-7f8a" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                        </ExplicitOutputPort>
+                        <ExplicitInputPort as="target" connectable="0" connectedLinkId="6" dataColumns="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc1" ordering="1" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+                        </ExplicitInputPort>
+                      </ExplicitLink>
+                      <ExplicitInBlock id="71e94dae:12f1145140a:-7f85" ordering="4" parent="71e94dae:12f1145140a:-7f91" simulationFunctionType="DEFAULT" value="2">
+                        <ScilabString as="exprs" height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble as="integerParameters" height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <mxGeometry as="geometry" height="40.0" width="40.0" x="40.5" y="80.5"/>
+                      </ExplicitInBlock>
+                      <ExplicitOutputPort connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f84" ordering="1" parent="71e94dae:12f1145140a:-7f85" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                        <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                      </ExplicitOutputPort>
+                      <ExplicitLink id="71e94dae:12f1145140a:-7f81">
+                        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                          <Array as="points" scilabClass=""/>
+                        </mxGeometry>
+                        <mxCell as="parent" id="71e94dae:12f1145140a:-7f91" parent="71e94dae:12f1145140a:-7f90"/>
+                        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f84" ordering="1" parent="71e94dae:12f1145140a:-7f85" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                        </ExplicitOutputPort>
+                        <ExplicitInputPort as="target" connectable="0" connectedLinkId="7" dataColumns="1" dataLines="-2" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fc0" ordering="2" parent="71e94dae:12f1145140a:-7fc3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+                        </ExplicitInputPort>
+                      </ExplicitLink>
+                    </root>
+                  </mxGraphModel>
+                  <mxCell as="defaultParent" id="71e94dae:12f1145140a:-7f91" parent="71e94dae:12f1145140a:-7f90"/>
+                </SuperBlockDiagram>
+                <Array as="realParameters" scilabClass="ScilabMList">
+                  <ScilabString height="1" width="3">
+                    <data column="0" line="0" value="diagram"/>
+                    <data column="1" line="0" value="props"/>
+                    <data column="2" line="0" value="objs"/>
+                  </ScilabString>
+                  <Array scilabClass="ScilabTList">
+                    <ScilabString height="1" width="11">
+                      <data column="0" line="0" value="params"/>
+                      <data column="1" line="0" value="wpar"/>
+                      <data column="2" line="0" value="title"/>
+                      <data column="3" line="0" value="tol"/>
+                      <data column="4" line="0" value="tf"/>
+                      <data column="5" line="0" value="context"/>
+                      <data column="6" line="0" value="void1"/>
+                      <data column="7" line="0" value="options"/>
+                      <data column="8" line="0" value="void2"/>
+                      <data column="9" line="0" value="void3"/>
+                      <data column="10" line="0" value="doc"/>
+                    </ScilabString>
+                    <ScilabDouble height="1" width="6">
+                      <data column="0" line="0" realPart="600.0"/>
+                      <data column="1" line="0" realPart="450.0"/>
+                      <data column="2" line="0" realPart="0.0"/>
+                      <data column="3" line="0" realPart="0.0"/>
+                      <data column="4" line="0" realPart="600.0"/>
+                      <data column="5" line="0" realPart="450.0"/>
+                    </ScilabDouble>
+                    <ScilabString height="1" width="1">
+                      <data column="0" line="0" value="Sans_titre"/>
+                    </ScilabString>
+                    <ScilabDouble height="1" width="7">
+                      <data column="0" line="0" realPart="1.0E-4"/>
+                      <data column="1" line="0" realPart="1.0E-6"/>
+                      <data column="2" line="0" realPart="1.0E-10"/>
+                      <data column="3" line="0" realPart="100001.0"/>
+                      <data column="4" line="0" realPart="0.0"/>
+                      <data column="5" line="0" realPart="0.0"/>
+                      <data column="6" line="0" realPart="0.0"/>
+                    </ScilabDouble>
+                    <ScilabDouble height="1" width="1">
+                      <data column="0" line="0" realPart="100000.0"/>
+                    </ScilabDouble>
+                    <ScilabString height="1" width="1">
+                      <data column="0" line="0" value=""/>
+                    </ScilabString>
+                    <ScilabDouble height="0" width="0"/>
+                    <Array scilabClass="ScilabTList">
+                      <ScilabString height="1" width="6">
+                        <data column="0" line="0" value="scsopt"/>
+                        <data column="1" line="0" value="3D"/>
+                        <data column="2" line="0" value="Background"/>
+                        <data column="3" line="0" value="Link"/>
+                        <data column="4" line="0" value="ID"/>
+                        <data column="5" line="0" value="Cmap"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="33.0"/>
+                        </ScilabDouble>
+                      </Array>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="8.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="5.0"/>
+                      </ScilabDouble>
+                      <Array scilabClass="ScilabList">
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="5.0"/>
+                          <data column="1" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="4.0"/>
+                          <data column="1" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                      </Array>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="0.8"/>
+                        <data column="1" line="0" realPart="0.8"/>
+                        <data column="2" line="0" realPart="0.8"/>
+                      </ScilabDouble>
+                    </Array>
+                    <ScilabDouble height="0" width="0"/>
+                    <ScilabDouble height="0" width="0"/>
+                    <Array scilabClass="ScilabList"/>
+                  </Array>
+                  <Array scilabClass="ScilabList">
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="120.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="30.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="6.0"/>
+                          <data column="0" line="1" realPart="7.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="5.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;MUX&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabString height="2" width="1">
+                          <data column="0" line="0" value="E"/>
+                          <data column="0" line="1" value="E"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="multiplex"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="4.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                          <data column="0" line="1" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                          <data column="0" line="1" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                          <data column="0" line="1" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="true"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7fc3"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="MUX"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7fc3"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="190.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="5.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;OUT_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="output"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8f"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="OUT_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8f"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="250.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="6.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="input"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8a"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="IN_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8a"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.5"/>
+                          <data column="1" line="0" realPart="-120.5"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="7.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="input"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f85"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="IN_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f85"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="154.0"/>
+                        <data column="0" line="1" realPart="186.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="-50.0"/>
+                        <data column="0" line="1" realPart="-50.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="2.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="6" width="1">
+                        <data column="0" line="0" realPart="294.0"/>
+                        <data column="0" line="1" realPart="320.0"/>
+                        <data column="0" line="2" realPart="320.0"/>
+                        <data column="0" line="3" realPart="90.0"/>
+                        <data column="0" line="4" realPart="90.0"/>
+                        <data column="0" line="5" realPart="116.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="6" width="1">
+                        <data column="0" line="0" realPart="-50.0"/>
+                        <data column="0" line="1" realPart="-90.0"/>
+                        <data column="0" line="2" realPart="-10.0"/>
+                        <data column="0" line="3" realPart="-10.0"/>
+                        <data column="0" line="4" realPart="-80.0"/>
+                        <data column="0" line="5" realPart="-40.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="3.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="84.5"/>
+                        <data column="0" line="1" realPart="116.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="-60.5"/>
+                        <data column="0" line="1" realPart="-60.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="4.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="2.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                  </Array>
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value=""/>
+                  </ScilabString>
+                </Array>
+                <mxGeometry as="geometry" height="40.0" width="40.0" x="115.0" y="70.0"/>
+              </SuperBlock>
+              <ExplicitOutputPort connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f8d" ordering="1" parent="71e94dae:12f1145140a:-7f92" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+              </ExplicitOutputPort>
+              <ExplicitInputPort connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f88" ordering="1" parent="71e94dae:12f1145140a:-7f92" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+              </ExplicitInputPort>
+              <ExplicitInputPort connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f83" ordering="2" parent="71e94dae:12f1145140a:-7f92" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+              </ExplicitInputPort>
+              <ExplicitLink id="71e94dae:12f1145140a:-7f9d">
+                <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                  <mxPoint as="sourcePoint" x="154.0" y="90.0"/>
+                  <mxPoint as="targetPoint" x="200.0" y="100.0"/>
+                </mxGeometry>
+                <mxCell as="parent" id="71e94dae:12f1145140a:-7fa2" parent="71e94dae:12f1145140a:-7fa1"/>
+                <ExplicitOutputPort as="source" connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f8d" ordering="1" parent="71e94dae:12f1145140a:-7f92" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" connectable="0" connectedLinkId="5" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9f" ordering="1" parent="71e94dae:12f1145140a:-7fa0" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
+                </ExplicitInputPort>
+              </ExplicitLink>
+              <ExplicitLink id="71e94dae:12f1145140a:-7f99">
+                <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                  <mxPoint as="sourcePoint" x="244.0" y="100.0"/>
+                  <mxPoint as="targetPoint" x="120.0" y="80.0"/>
+                  <Array as="points" scilabClass="">
+                    <mxPoint x="290.0" y="90.0"/>
+                    <mxPoint x="290.0" y="10.0"/>
+                    <mxPoint x="90.0" y="10.0"/>
+                    <mxPoint x="90.0" y="80.0"/>
+                  </Array>
+                </mxGeometry>
+                <mxCell as="parent" id="71e94dae:12f1145140a:-7fa2" parent="71e94dae:12f1145140a:-7fa1"/>
+                <ExplicitOutputPort as="source" connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9b" ordering="1" parent="71e94dae:12f1145140a:-7f9c" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" connectable="0" connectedLinkId="6" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f88" ordering="1" parent="71e94dae:12f1145140a:-7f92" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+                </ExplicitInputPort>
+              </ExplicitLink>
+              <ExplicitLink id="71e94dae:12f1145140a:-7f95">
+                <mxGeometry as="geometry" x="-60.0" y="-120.0">
+                  <Array as="points" scilabClass=""/>
+                </mxGeometry>
+                <mxCell as="parent" id="71e94dae:12f1145140a:-7fa2" parent="71e94dae:12f1145140a:-7fa1"/>
+                <ExplicitOutputPort as="source" connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f97" ordering="1" parent="71e94dae:12f1145140a:-7f98" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+                </ExplicitOutputPort>
+                <ExplicitInputPort as="target" connectable="0" connectedLinkId="7" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f83" ordering="2" parent="71e94dae:12f1145140a:-7f92" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+                  <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+                </ExplicitInputPort>
+              </ExplicitLink>
+            </root>
+          </mxGraphModel>
+          <mxCell as="defaultParent" id="71e94dae:12f1145140a:-7fa2" parent="71e94dae:12f1145140a:-7fa1"/>
+        </SuperBlockDiagram>
+        <Array as="realParameters" scilabClass="ScilabMList">
+          <ScilabString height="1" width="3">
+            <data column="0" line="0" value="diagram"/>
+            <data column="1" line="0" value="props"/>
+            <data column="2" line="0" value="objs"/>
+          </ScilabString>
+          <Array scilabClass="ScilabTList">
+            <ScilabString height="1" width="11">
+              <data column="0" line="0" value="params"/>
+              <data column="1" line="0" value="wpar"/>
+              <data column="2" line="0" value="title"/>
+              <data column="3" line="0" value="tol"/>
+              <data column="4" line="0" value="tf"/>
+              <data column="5" line="0" value="context"/>
+              <data column="6" line="0" value="void1"/>
+              <data column="7" line="0" value="options"/>
+              <data column="8" line="0" value="void2"/>
+              <data column="9" line="0" value="void3"/>
+              <data column="10" line="0" value="doc"/>
+            </ScilabString>
+            <ScilabDouble height="1" width="6">
+              <data column="0" line="0" realPart="600.0"/>
+              <data column="1" line="0" realPart="450.0"/>
+              <data column="2" line="0" realPart="0.0"/>
+              <data column="3" line="0" realPart="0.0"/>
+              <data column="4" line="0" realPart="600.0"/>
+              <data column="5" line="0" realPart="450.0"/>
+            </ScilabDouble>
+            <ScilabString height="1" width="1">
+              <data column="0" line="0" value="Sans_titre"/>
+            </ScilabString>
+            <ScilabDouble height="1" width="7">
+              <data column="0" line="0" realPart="1.0E-4"/>
+              <data column="1" line="0" realPart="1.0E-6"/>
+              <data column="2" line="0" realPart="1.0E-10"/>
+              <data column="3" line="0" realPart="100001.0"/>
+              <data column="4" line="0" realPart="0.0"/>
+              <data column="5" line="0" realPart="0.0"/>
+              <data column="6" line="0" realPart="0.0"/>
+            </ScilabDouble>
+            <ScilabDouble height="1" width="1">
+              <data column="0" line="0" realPart="100000.0"/>
+            </ScilabDouble>
+            <ScilabString height="1" width="1">
+              <data column="0" line="0" value=""/>
+            </ScilabString>
+            <ScilabDouble height="0" width="0"/>
+            <Array scilabClass="ScilabTList">
+              <ScilabString height="1" width="6">
+                <data column="0" line="0" value="scsopt"/>
+                <data column="1" line="0" value="3D"/>
+                <data column="2" line="0" value="Background"/>
+                <data column="3" line="0" value="Link"/>
+                <data column="4" line="0" value="ID"/>
+                <data column="5" line="0" value="Cmap"/>
+              </ScilabString>
+              <Array scilabClass="ScilabList">
+                <ScilabBoolean height="1" width="1">
+                  <data column="0" line="0" value="true"/>
+                </ScilabBoolean>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="33.0"/>
+                </ScilabDouble>
+              </Array>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="8.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="1.0"/>
+                <data column="1" line="0" realPart="5.0"/>
+              </ScilabDouble>
+              <Array scilabClass="ScilabList">
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="5.0"/>
+                  <data column="1" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="4.0"/>
+                  <data column="1" line="0" realPart="1.0"/>
+                </ScilabDouble>
+              </Array>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="0.8"/>
+                <data column="1" line="0" realPart="0.8"/>
+                <data column="2" line="0" realPart="0.8"/>
+              </ScilabDouble>
+            </Array>
+            <ScilabDouble height="0" width="0"/>
+            <ScilabDouble height="0" width="0"/>
+            <Array scilabClass="ScilabList"/>
+          </Array>
+          <Array scilabClass="ScilabList">
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="5">
+                <data column="0" line="0" value="Block"/>
+                <data column="1" line="0" value="graphics"/>
+                <data column="2" line="0" value="model"/>
+                <data column="3" line="0" value="gui"/>
+                <data column="4" line="0" value="doc"/>
+              </ScilabString>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="14">
+                  <data column="0" line="0" value="graphics"/>
+                  <data column="1" line="0" value="orig"/>
+                  <data column="2" line="0" value="sz"/>
+                  <data column="3" line="0" value="flip"/>
+                  <data column="4" line="0" value="theta"/>
+                  <data column="5" line="0" value="exprs"/>
+                  <data column="6" line="0" value="pin"/>
+                  <data column="7" line="0" value="pout"/>
+                  <data column="8" line="0" value="pein"/>
+                  <data column="9" line="0" value="peout"/>
+                  <data column="10" line="0" value="gr_i"/>
+                  <data column="11" line="0" value="id"/>
+                  <data column="12" line="0" value="in_implicit"/>
+                  <data column="13" line="0" value="out_implicit"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="181.0"/>
+                  <data column="1" line="0" realPart="-110.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="40.0"/>
+                  <data column="1" line="0" realPart="40.0"/>
+                </ScilabDouble>
+                <ScilabBoolean height="1" width="1">
+                  <data column="0" line="0" value="true"/>
+                </ScilabBoolean>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="5.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList">
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;OUT_f&quot;,sz(1),sz(2));"/>
+                  </ScilabString>
+                  <ScilabDouble height="1" width="1">
+                    <data column="0" line="0" realPart="8.0"/>
+                  </ScilabDouble>
+                </Array>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value=""/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="E"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+              </Array>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="23">
+                  <data column="0" line="0" value="model"/>
+                  <data column="1" line="0" value="sim"/>
+                  <data column="2" line="0" value="in"/>
+                  <data column="3" line="0" value="in2"/>
+                  <data column="4" line="0" value="intyp"/>
+                  <data column="5" line="0" value="out"/>
+                  <data column="6" line="0" value="out2"/>
+                  <data column="7" line="0" value="outtyp"/>
+                  <data column="8" line="0" value="evtin"/>
+                  <data column="9" line="0" value="evtout"/>
+                  <data column="10" line="0" value="state"/>
+                  <data column="11" line="0" value="dstate"/>
+                  <data column="12" line="0" value="odstate"/>
+                  <data column="13" line="0" value="rpar"/>
+                  <data column="14" line="0" value="ipar"/>
+                  <data column="15" line="0" value="opar"/>
+                  <data column="16" line="0" value="blocktype"/>
+                  <data column="17" line="0" value="firing"/>
+                  <data column="18" line="0" value="dep_ut"/>
+                  <data column="19" line="0" value="label"/>
+                  <data column="20" line="0" value="nzcross"/>
+                  <data column="21" line="0" value="nmode"/>
+                  <data column="22" line="0" value="equations"/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="output"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="c"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabBoolean height="1" width="2">
+                  <data column="0" line="0" value="false"/>
+                  <data column="1" line="0" value="false"/>
+                </ScilabBoolean>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7fa0"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <Array scilabClass="ScilabList"/>
+              </Array>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="OUT_f"/>
+              </ScilabString>
+              <Array scilabClass="ScilabList">
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7fa0"/>
+                </ScilabString>
+              </Array>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="5">
+                <data column="0" line="0" value="Block"/>
+                <data column="1" line="0" value="graphics"/>
+                <data column="2" line="0" value="model"/>
+                <data column="3" line="0" value="gui"/>
+                <data column="4" line="0" value="doc"/>
+              </ScilabString>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="14">
+                  <data column="0" line="0" value="graphics"/>
+                  <data column="1" line="0" value="orig"/>
+                  <data column="2" line="0" value="sz"/>
+                  <data column="3" line="0" value="flip"/>
+                  <data column="4" line="0" value="theta"/>
+                  <data column="5" line="0" value="exprs"/>
+                  <data column="6" line="0" value="pin"/>
+                  <data column="7" line="0" value="pout"/>
+                  <data column="8" line="0" value="pein"/>
+                  <data column="9" line="0" value="peout"/>
+                  <data column="10" line="0" value="gr_i"/>
+                  <data column="11" line="0" value="id"/>
+                  <data column="12" line="0" value="in_implicit"/>
+                  <data column="13" line="0" value="out_implicit"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="229.0"/>
+                  <data column="1" line="0" realPart="-110.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="40.0"/>
+                  <data column="1" line="0" realPart="40.0"/>
+                </ScilabDouble>
+                <ScilabBoolean height="1" width="1">
+                  <data column="0" line="0" value="true"/>
+                </ScilabBoolean>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="1"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="6.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList">
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                  </ScilabString>
+                  <ScilabDouble height="1" width="1">
+                    <data column="0" line="0" realPart="8.0"/>
+                  </ScilabDouble>
+                </Array>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value=""/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="E"/>
+                </ScilabString>
+              </Array>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="23">
+                  <data column="0" line="0" value="model"/>
+                  <data column="1" line="0" value="sim"/>
+                  <data column="2" line="0" value="in"/>
+                  <data column="3" line="0" value="in2"/>
+                  <data column="4" line="0" value="intyp"/>
+                  <data column="5" line="0" value="out"/>
+                  <data column="6" line="0" value="out2"/>
+                  <data column="7" line="0" value="outtyp"/>
+                  <data column="8" line="0" value="evtin"/>
+                  <data column="9" line="0" value="evtout"/>
+                  <data column="10" line="0" value="state"/>
+                  <data column="11" line="0" value="dstate"/>
+                  <data column="12" line="0" value="odstate"/>
+                  <data column="13" line="0" value="rpar"/>
+                  <data column="14" line="0" value="ipar"/>
+                  <data column="15" line="0" value="opar"/>
+                  <data column="16" line="0" value="blocktype"/>
+                  <data column="17" line="0" value="firing"/>
+                  <data column="18" line="0" value="dep_ut"/>
+                  <data column="19" line="0" value="label"/>
+                  <data column="20" line="0" value="nzcross"/>
+                  <data column="21" line="0" value="nmode"/>
+                  <data column="22" line="0" value="equations"/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="input"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="c"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabBoolean height="1" width="2">
+                  <data column="0" line="0" value="false"/>
+                  <data column="1" line="0" value="false"/>
+                </ScilabBoolean>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f9c"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <Array scilabClass="ScilabList"/>
+              </Array>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="IN_f"/>
+              </ScilabString>
+              <Array scilabClass="ScilabList">
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f9c"/>
+                </ScilabString>
+              </Array>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="5">
+                <data column="0" line="0" value="Block"/>
+                <data column="1" line="0" value="graphics"/>
+                <data column="2" line="0" value="model"/>
+                <data column="3" line="0" value="gui"/>
+                <data column="4" line="0" value="doc"/>
+              </ScilabString>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="14">
+                  <data column="0" line="0" value="graphics"/>
+                  <data column="1" line="0" value="orig"/>
+                  <data column="2" line="0" value="sz"/>
+                  <data column="3" line="0" value="flip"/>
+                  <data column="4" line="0" value="theta"/>
+                  <data column="5" line="0" value="exprs"/>
+                  <data column="6" line="0" value="pin"/>
+                  <data column="7" line="0" value="pout"/>
+                  <data column="8" line="0" value="pein"/>
+                  <data column="9" line="0" value="peout"/>
+                  <data column="10" line="0" value="gr_i"/>
+                  <data column="11" line="0" value="id"/>
+                  <data column="12" line="0" value="in_implicit"/>
+                  <data column="13" line="0" value="out_implicit"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="40.5"/>
+                  <data column="1" line="0" realPart="-120.5"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="40.0"/>
+                  <data column="1" line="0" realPart="40.0"/>
+                </ScilabDouble>
+                <ScilabBoolean height="1" width="1">
+                  <data column="0" line="0" value="true"/>
+                </ScilabBoolean>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="2"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="7.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList">
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                  </ScilabString>
+                  <ScilabDouble height="1" width="1">
+                    <data column="0" line="0" realPart="8.0"/>
+                  </ScilabDouble>
+                </Array>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value=""/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="E"/>
+                </ScilabString>
+              </Array>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="23">
+                  <data column="0" line="0" value="model"/>
+                  <data column="1" line="0" value="sim"/>
+                  <data column="2" line="0" value="in"/>
+                  <data column="3" line="0" value="in2"/>
+                  <data column="4" line="0" value="intyp"/>
+                  <data column="5" line="0" value="out"/>
+                  <data column="6" line="0" value="out2"/>
+                  <data column="7" line="0" value="outtyp"/>
+                  <data column="8" line="0" value="evtin"/>
+                  <data column="9" line="0" value="evtout"/>
+                  <data column="10" line="0" value="state"/>
+                  <data column="11" line="0" value="dstate"/>
+                  <data column="12" line="0" value="odstate"/>
+                  <data column="13" line="0" value="rpar"/>
+                  <data column="14" line="0" value="ipar"/>
+                  <data column="15" line="0" value="opar"/>
+                  <data column="16" line="0" value="blocktype"/>
+                  <data column="17" line="0" value="firing"/>
+                  <data column="18" line="0" value="dep_ut"/>
+                  <data column="19" line="0" value="label"/>
+                  <data column="20" line="0" value="nzcross"/>
+                  <data column="21" line="0" value="nmode"/>
+                  <data column="22" line="0" value="equations"/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="input"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="c"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabBoolean height="1" width="2">
+                  <data column="0" line="0" value="false"/>
+                  <data column="1" line="0" value="false"/>
+                </ScilabBoolean>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f98"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <Array scilabClass="ScilabList"/>
+              </Array>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="IN_f"/>
+              </ScilabString>
+              <Array scilabClass="ScilabList">
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f98"/>
+                </ScilabString>
+              </Array>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="5">
+                <data column="0" line="0" value="Block"/>
+                <data column="1" line="0" value="graphics"/>
+                <data column="2" line="0" value="model"/>
+                <data column="3" line="0" value="gui"/>
+                <data column="4" line="0" value="doc"/>
+              </ScilabString>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="14">
+                  <data column="0" line="0" value="graphics"/>
+                  <data column="1" line="0" value="orig"/>
+                  <data column="2" line="0" value="sz"/>
+                  <data column="3" line="0" value="flip"/>
+                  <data column="4" line="0" value="theta"/>
+                  <data column="5" line="0" value="exprs"/>
+                  <data column="6" line="0" value="pin"/>
+                  <data column="7" line="0" value="pout"/>
+                  <data column="8" line="0" value="pein"/>
+                  <data column="9" line="0" value="peout"/>
+                  <data column="10" line="0" value="gr_i"/>
+                  <data column="11" line="0" value="id"/>
+                  <data column="12" line="0" value="in_implicit"/>
+                  <data column="13" line="0" value="out_implicit"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="115.0"/>
+                  <data column="1" line="0" realPart="-110.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="2">
+                  <data column="0" line="0" realPart="40.0"/>
+                  <data column="1" line="0" realPart="40.0"/>
+                </ScilabDouble>
+                <ScilabBoolean height="1" width="1">
+                  <data column="0" line="0" value="true"/>
+                </ScilabBoolean>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="2" width="1">
+                  <data column="0" line="0" realPart="6.0"/>
+                  <data column="0" line="1" realPart="7.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="5.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList">
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;SUPER_f&quot;,sz(1),sz(2));"/>
+                  </ScilabString>
+                  <ScilabDouble height="1" width="1">
+                    <data column="0" line="0" realPart="8.0"/>
+                  </ScilabDouble>
+                </Array>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value=""/>
+                </ScilabString>
+                <ScilabString height="2" width="1">
+                  <data column="0" line="0" value="E"/>
+                  <data column="0" line="1" value="E"/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="E"/>
+                </ScilabString>
+              </Array>
+              <Array scilabClass="ScilabMList">
+                <ScilabString height="1" width="23">
+                  <data column="0" line="0" value="model"/>
+                  <data column="1" line="0" value="sim"/>
+                  <data column="2" line="0" value="in"/>
+                  <data column="3" line="0" value="in2"/>
+                  <data column="4" line="0" value="intyp"/>
+                  <data column="5" line="0" value="out"/>
+                  <data column="6" line="0" value="out2"/>
+                  <data column="7" line="0" value="outtyp"/>
+                  <data column="8" line="0" value="evtin"/>
+                  <data column="9" line="0" value="evtout"/>
+                  <data column="10" line="0" value="state"/>
+                  <data column="11" line="0" value="dstate"/>
+                  <data column="12" line="0" value="odstate"/>
+                  <data column="13" line="0" value="rpar"/>
+                  <data column="14" line="0" value="ipar"/>
+                  <data column="15" line="0" value="opar"/>
+                  <data column="16" line="0" value="blocktype"/>
+                  <data column="17" line="0" value="firing"/>
+                  <data column="18" line="0" value="dep_ut"/>
+                  <data column="19" line="0" value="label"/>
+                  <data column="20" line="0" value="nzcross"/>
+                  <data column="21" line="0" value="nmode"/>
+                  <data column="22" line="0" value="equations"/>
+                </ScilabString>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="super"/>
+                </ScilabString>
+                <ScilabDouble height="2" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                  <data column="0" line="1" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="2" width="1">
+                  <data column="0" line="0" realPart="-2.0"/>
+                  <data column="0" line="1" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="2" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                  <data column="0" line="1" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-2.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="-1.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabMList">
+                  <ScilabString height="1" width="3">
+                    <data column="0" line="0" value="diagram"/>
+                    <data column="1" line="0" value="props"/>
+                    <data column="2" line="0" value="objs"/>
+                  </ScilabString>
+                  <Array scilabClass="ScilabTList">
+                    <ScilabString height="1" width="11">
+                      <data column="0" line="0" value="params"/>
+                      <data column="1" line="0" value="wpar"/>
+                      <data column="2" line="0" value="title"/>
+                      <data column="3" line="0" value="tol"/>
+                      <data column="4" line="0" value="tf"/>
+                      <data column="5" line="0" value="context"/>
+                      <data column="6" line="0" value="void1"/>
+                      <data column="7" line="0" value="options"/>
+                      <data column="8" line="0" value="void2"/>
+                      <data column="9" line="0" value="void3"/>
+                      <data column="10" line="0" value="doc"/>
+                    </ScilabString>
+                    <ScilabDouble height="1" width="6">
+                      <data column="0" line="0" realPart="600.0"/>
+                      <data column="1" line="0" realPart="450.0"/>
+                      <data column="2" line="0" realPart="0.0"/>
+                      <data column="3" line="0" realPart="0.0"/>
+                      <data column="4" line="0" realPart="600.0"/>
+                      <data column="5" line="0" realPart="450.0"/>
+                    </ScilabDouble>
+                    <ScilabString height="1" width="1">
+                      <data column="0" line="0" value="Sans_titre"/>
+                    </ScilabString>
+                    <ScilabDouble height="1" width="7">
+                      <data column="0" line="0" realPart="1.0E-4"/>
+                      <data column="1" line="0" realPart="1.0E-6"/>
+                      <data column="2" line="0" realPart="1.0E-10"/>
+                      <data column="3" line="0" realPart="100001.0"/>
+                      <data column="4" line="0" realPart="0.0"/>
+                      <data column="5" line="0" realPart="0.0"/>
+                      <data column="6" line="0" realPart="0.0"/>
+                    </ScilabDouble>
+                    <ScilabDouble height="1" width="1">
+                      <data column="0" line="0" realPart="100000.0"/>
+                    </ScilabDouble>
+                    <ScilabString height="1" width="1">
+                      <data column="0" line="0" value=""/>
+                    </ScilabString>
+                    <ScilabDouble height="0" width="0"/>
+                    <Array scilabClass="ScilabTList">
+                      <ScilabString height="1" width="6">
+                        <data column="0" line="0" value="scsopt"/>
+                        <data column="1" line="0" value="3D"/>
+                        <data column="2" line="0" value="Background"/>
+                        <data column="3" line="0" value="Link"/>
+                        <data column="4" line="0" value="ID"/>
+                        <data column="5" line="0" value="Cmap"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="33.0"/>
+                        </ScilabDouble>
+                      </Array>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="8.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="5.0"/>
+                      </ScilabDouble>
+                      <Array scilabClass="ScilabList">
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="5.0"/>
+                          <data column="1" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="4.0"/>
+                          <data column="1" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                      </Array>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="0.8"/>
+                        <data column="1" line="0" realPart="0.8"/>
+                        <data column="2" line="0" realPart="0.8"/>
+                      </ScilabDouble>
+                    </Array>
+                    <ScilabDouble height="0" width="0"/>
+                    <ScilabDouble height="0" width="0"/>
+                    <Array scilabClass="ScilabList"/>
+                  </Array>
+                  <Array scilabClass="ScilabList">
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="120.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="30.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="6.0"/>
+                          <data column="0" line="1" realPart="7.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="5.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;MUX&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabString height="2" width="1">
+                          <data column="0" line="0" value="E"/>
+                          <data column="0" line="1" value="E"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="multiplex"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="4.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                          <data column="0" line="1" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                          <data column="0" line="1" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="2" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                          <data column="0" line="1" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="true"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7fc3"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="MUX"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7fc3"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="190.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="5.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;OUT_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="output"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8f"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="OUT_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8f"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="250.0"/>
+                          <data column="1" line="0" realPart="-110.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="1"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="6.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="input"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8a"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="IN_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f8a"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="5">
+                        <data column="0" line="0" value="Block"/>
+                        <data column="1" line="0" value="graphics"/>
+                        <data column="2" line="0" value="model"/>
+                        <data column="3" line="0" value="gui"/>
+                        <data column="4" line="0" value="doc"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="14">
+                          <data column="0" line="0" value="graphics"/>
+                          <data column="1" line="0" value="orig"/>
+                          <data column="2" line="0" value="sz"/>
+                          <data column="3" line="0" value="flip"/>
+                          <data column="4" line="0" value="theta"/>
+                          <data column="5" line="0" value="exprs"/>
+                          <data column="6" line="0" value="pin"/>
+                          <data column="7" line="0" value="pout"/>
+                          <data column="8" line="0" value="pein"/>
+                          <data column="9" line="0" value="peout"/>
+                          <data column="10" line="0" value="gr_i"/>
+                          <data column="11" line="0" value="id"/>
+                          <data column="12" line="0" value="in_implicit"/>
+                          <data column="13" line="0" value="out_implicit"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.5"/>
+                          <data column="1" line="0" realPart="-120.5"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="2">
+                          <data column="0" line="0" realPart="40.0"/>
+                          <data column="1" line="0" realPart="40.0"/>
+                        </ScilabDouble>
+                        <ScilabBoolean height="1" width="1">
+                          <data column="0" line="0" value="true"/>
+                        </ScilabBoolean>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="2"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="7.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList">
+                          <ScilabString height="1" width="1">
+                            <data column="0" line="0" value="xstringb(orig(1),orig(2),&quot;IN_f&quot;,sz(1),sz(2));"/>
+                          </ScilabString>
+                          <ScilabDouble height="1" width="1">
+                            <data column="0" line="0" realPart="8.0"/>
+                          </ScilabDouble>
+                        </Array>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value=""/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="E"/>
+                        </ScilabString>
+                      </Array>
+                      <Array scilabClass="ScilabMList">
+                        <ScilabString height="1" width="23">
+                          <data column="0" line="0" value="model"/>
+                          <data column="1" line="0" value="sim"/>
+                          <data column="2" line="0" value="in"/>
+                          <data column="3" line="0" value="in2"/>
+                          <data column="4" line="0" value="intyp"/>
+                          <data column="5" line="0" value="out"/>
+                          <data column="6" line="0" value="out2"/>
+                          <data column="7" line="0" value="outtyp"/>
+                          <data column="8" line="0" value="evtin"/>
+                          <data column="9" line="0" value="evtout"/>
+                          <data column="10" line="0" value="state"/>
+                          <data column="11" line="0" value="dstate"/>
+                          <data column="12" line="0" value="odstate"/>
+                          <data column="13" line="0" value="rpar"/>
+                          <data column="14" line="0" value="ipar"/>
+                          <data column="15" line="0" value="opar"/>
+                          <data column="16" line="0" value="blocktype"/>
+                          <data column="17" line="0" value="firing"/>
+                          <data column="18" line="0" value="dep_ut"/>
+                          <data column="19" line="0" value="label"/>
+                          <data column="20" line="0" value="nzcross"/>
+                          <data column="21" line="0" value="nmode"/>
+                          <data column="22" line="0" value="equations"/>
+                        </ScilabString>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="input"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="-1.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <Array scilabClass="ScilabList"/>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="2.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="c"/>
+                        </ScilabString>
+                        <ScilabDouble height="0" width="0"/>
+                        <ScilabBoolean height="1" width="2">
+                          <data column="0" line="0" value="false"/>
+                          <data column="1" line="0" value="false"/>
+                        </ScilabBoolean>
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f85"/>
+                        </ScilabString>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <ScilabDouble height="1" width="1">
+                          <data column="0" line="0" realPart="0.0"/>
+                        </ScilabDouble>
+                        <Array scilabClass="ScilabList"/>
+                      </Array>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="IN_f"/>
+                      </ScilabString>
+                      <Array scilabClass="ScilabList">
+                        <ScilabString height="1" width="1">
+                          <data column="0" line="0" value="71e94dae:12f1145140a:-7f85"/>
+                        </ScilabString>
+                      </Array>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="154.0"/>
+                        <data column="0" line="1" realPart="186.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="-50.0"/>
+                        <data column="0" line="1" realPart="-50.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="2.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="6" width="1">
+                        <data column="0" line="0" realPart="294.0"/>
+                        <data column="0" line="1" realPart="320.0"/>
+                        <data column="0" line="2" realPart="320.0"/>
+                        <data column="0" line="3" realPart="90.0"/>
+                        <data column="0" line="4" realPart="90.0"/>
+                        <data column="0" line="5" realPart="116.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="6" width="1">
+                        <data column="0" line="0" realPart="-50.0"/>
+                        <data column="0" line="1" realPart="-90.0"/>
+                        <data column="0" line="2" realPart="-10.0"/>
+                        <data column="0" line="3" realPart="-10.0"/>
+                        <data column="0" line="4" realPart="-80.0"/>
+                        <data column="0" line="5" realPart="-40.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="3.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                    <Array scilabClass="ScilabMList">
+                      <ScilabString height="1" width="8">
+                        <data column="0" line="0" value="Link"/>
+                        <data column="1" line="0" value="xx"/>
+                        <data column="2" line="0" value="yy"/>
+                        <data column="3" line="0" value="id"/>
+                        <data column="4" line="0" value="thick"/>
+                        <data column="5" line="0" value="ct"/>
+                        <data column="6" line="0" value="from"/>
+                        <data column="7" line="0" value="to"/>
+                      </ScilabString>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="84.5"/>
+                        <data column="0" line="1" realPart="116.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="2" width="1">
+                        <data column="0" line="0" realPart="-60.5"/>
+                        <data column="0" line="1" realPart="-60.0"/>
+                      </ScilabDouble>
+                      <ScilabString height="1" width="1">
+                        <data column="0" line="0" value="drawlink"/>
+                      </ScilabString>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="0.0"/>
+                        <data column="1" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="2">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="4.0"/>
+                        <data column="1" line="0" realPart="1.0"/>
+                        <data column="2" line="0" realPart="0.0"/>
+                      </ScilabDouble>
+                      <ScilabDouble height="1" width="3">
+                        <data column="0" line="0" realPart="1.0"/>
+                        <data column="1" line="0" realPart="2.0"/>
+                        <data column="2" line="0" realPart="1.0"/>
+                      </ScilabDouble>
+                    </Array>
+                  </Array>
+                  <ScilabString height="1" width="1">
+                    <data column="0" line="0" value=""/>
+                  </ScilabString>
+                </Array>
+                <ScilabDouble height="0" width="0"/>
+                <Array scilabClass="ScilabList"/>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="h"/>
+                </ScilabString>
+                <ScilabDouble height="0" width="0"/>
+                <ScilabBoolean height="1" width="2">
+                  <data column="0" line="0" value="false"/>
+                  <data column="1" line="0" value="false"/>
+                </ScilabBoolean>
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f92"/>
+                </ScilabString>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <ScilabDouble height="1" width="1">
+                  <data column="0" line="0" realPart="0.0"/>
+                </ScilabDouble>
+                <Array scilabClass="ScilabList"/>
+              </Array>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="SUPER_f"/>
+              </ScilabString>
+              <Array scilabClass="ScilabList">
+                <ScilabString height="1" width="1">
+                  <data column="0" line="0" value="71e94dae:12f1145140a:-7f92"/>
+                </ScilabString>
+              </Array>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="8">
+                <data column="0" line="0" value="Link"/>
+                <data column="1" line="0" value="xx"/>
+                <data column="2" line="0" value="yy"/>
+                <data column="3" line="0" value="id"/>
+                <data column="4" line="0" value="thick"/>
+                <data column="5" line="0" value="ct"/>
+                <data column="6" line="0" value="from"/>
+                <data column="7" line="0" value="to"/>
+              </ScilabString>
+              <ScilabDouble height="2" width="1">
+                <data column="0" line="0" realPart="159.0"/>
+                <data column="0" line="1" realPart="177.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="2" width="1">
+                <data column="0" line="0" realPart="-50.0"/>
+                <data column="0" line="1" realPart="-50.0"/>
+              </ScilabDouble>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="drawlink"/>
+              </ScilabString>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="0.0"/>
+                <data column="1" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="1.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="4.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+                <data column="2" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="1.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+                <data column="2" line="0" realPart="1.0"/>
+              </ScilabDouble>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="8">
+                <data column="0" line="0" value="Link"/>
+                <data column="1" line="0" value="xx"/>
+                <data column="2" line="0" value="yy"/>
+                <data column="3" line="0" value="id"/>
+                <data column="4" line="0" value="thick"/>
+                <data column="5" line="0" value="ct"/>
+                <data column="6" line="0" value="from"/>
+                <data column="7" line="0" value="to"/>
+              </ScilabString>
+              <ScilabDouble height="6" width="1">
+                <data column="0" line="0" realPart="273.0"/>
+                <data column="0" line="1" realPart="290.0"/>
+                <data column="0" line="2" realPart="290.0"/>
+                <data column="0" line="3" realPart="90.0"/>
+                <data column="0" line="4" realPart="90.0"/>
+                <data column="0" line="5" realPart="111.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="6" width="1">
+                <data column="0" line="0" realPart="-50.0"/>
+                <data column="0" line="1" realPart="-90.0"/>
+                <data column="0" line="2" realPart="-10.0"/>
+                <data column="0" line="3" realPart="-10.0"/>
+                <data column="0" line="4" realPart="-80.0"/>
+                <data column="0" line="5" realPart="-40.0"/>
+              </ScilabDouble>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="drawlink"/>
+              </ScilabString>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="0.0"/>
+                <data column="1" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="1.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="2.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+                <data column="2" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="4.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+                <data column="2" line="0" realPart="1.0"/>
+              </ScilabDouble>
+            </Array>
+            <Array scilabClass="ScilabMList">
+              <ScilabString height="1" width="8">
+                <data column="0" line="0" value="Link"/>
+                <data column="1" line="0" value="xx"/>
+                <data column="2" line="0" value="yy"/>
+                <data column="3" line="0" value="id"/>
+                <data column="4" line="0" value="thick"/>
+                <data column="5" line="0" value="ct"/>
+                <data column="6" line="0" value="from"/>
+                <data column="7" line="0" value="to"/>
+              </ScilabString>
+              <ScilabDouble height="2" width="1">
+                <data column="0" line="0" realPart="84.5"/>
+                <data column="0" line="1" realPart="111.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="2" width="1">
+                <data column="0" line="0" realPart="-60.5"/>
+                <data column="0" line="1" realPart="-60.0"/>
+              </ScilabDouble>
+              <ScilabString height="1" width="1">
+                <data column="0" line="0" value="drawlink"/>
+              </ScilabString>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="0.0"/>
+                <data column="1" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="2">
+                <data column="0" line="0" realPart="1.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="3.0"/>
+                <data column="1" line="0" realPart="1.0"/>
+                <data column="2" line="0" realPart="0.0"/>
+              </ScilabDouble>
+              <ScilabDouble height="1" width="3">
+                <data column="0" line="0" realPart="4.0"/>
+                <data column="1" line="0" realPart="2.0"/>
+                <data column="2" line="0" realPart="1.0"/>
+              </ScilabDouble>
+            </Array>
+          </Array>
+          <ScilabString height="1" width="1">
+            <data column="0" line="0" value=""/>
+          </ScilabString>
+        </Array>
+        <mxGeometry as="geometry" height="40.0" width="40.0" x="115.0" y="70.0"/>
+      </SuperBlock>
+      <ExplicitOutputPort connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9e" ordering="1" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+      </ExplicitOutputPort>
+      <ExplicitInputPort connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9a" ordering="1" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+      </ExplicitInputPort>
+      <ExplicitInputPort connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f96" ordering="2" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+      </ExplicitInputPort>
+      <ExplicitLink id="71e94dae:12f1145140a:-7fbf">
+        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+          <mxPoint as="sourcePoint" x="154.0" y="90.0"/>
+          <mxPoint as="targetPoint" x="200.0" y="100.0"/>
+        </mxGeometry>
+        <mxCell as="parent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+        <ExplicitOutputPort as="source" connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9e" ordering="1" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
+        </ExplicitOutputPort>
+        <ExplicitInputPort as="target" connectable="0" connectedLinkId="5" dataColumns="1" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fcd" ordering="1" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+        </ExplicitInputPort>
+      </ExplicitLink>
+      <ExplicitLink id="71e94dae:12f1145140a:-7fbd">
+        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+          <mxPoint as="sourcePoint" x="244.0" y="100.0"/>
+          <mxPoint as="targetPoint" x="120.0" y="80.0"/>
+          <Array as="points" scilabClass="">
+            <mxPoint x="290.0" y="100.0"/>
+            <mxPoint x="290.0" y="10.0"/>
+            <mxPoint x="90.0" y="10.0"/>
+            <mxPoint x="90.0" y="80.0"/>
+          </Array>
+        </mxGeometry>
+        <mxCell as="parent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="6" dataColumns="1" dataLines="0" dataType="REAL_MATRIX" id="71e94dae:12f1145140a:-7fce" ordering="1" parent="71e94dae:12f1145140a:-7fcf" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="30.0" y="16.0"/>
+        </ExplicitOutputPort>
+        <ExplicitInputPort as="target" connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f9a" ordering="1" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
+        </ExplicitInputPort>
+      </ExplicitLink>
+      <ExplicitLink id="71e94dae:12f1145140a:-7fb3">
+        <mxGeometry as="geometry" x="-60.0" y="-120.0">
+          <Array as="points" scilabClass=""/>
+        </mxGeometry>
+        <mxCell as="parent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+        <ExplicitOutputPort as="source" connectable="0" connectedLinkId="8" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7fb6" ordering="1" parent="71e94dae:12f1145140a:-7fb8" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0" visible="0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-4.0"/>
+        </ExplicitOutputPort>
+        <ExplicitInputPort as="target" connectable="0" dataType="UNKNOW_TYPE" id="71e94dae:12f1145140a:-7f96" ordering="2" parent="71e94dae:12f1145140a:-7fa3" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0">
+          <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
+        </ExplicitInputPort>
+      </ExplicitLink>
+    </root>
+  </mxGraphModel>
+  <mxCell as="defaultParent" id="71e94dae:12f1145140a:-8000" parent="71e94dae:12f1145140a:-7fff"/>
+</XcosDiagram>

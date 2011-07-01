@@ -15,33 +15,6 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 //-- BJ : Alias Warning Function
   prot = funcprot();
   funcprot(0);
-//  hilite_obj = xcosShowBlockWarning;
-//  unhilite_obj = xcosClearBlockWarning;
-//  scs_show = xcos_open;
-
-//    function ret = fake_gcf() 
-//        disp("fake_gcf");
-//        ret = [];
-//    endfunction;
-//    gcf = fake_gcf;
-
-//    function ret = fake_scf(id) 
-//        disp("fake_scf");
-//        ret = [];
-//    endfunction;
-//    scf = fake_scf;
-
-//    function ret = fake_gca() 
-//        disp("fake_gca");
-//        ret = [];
-//    endfunction;
-//    gca = fake_gca;
-
-//    function ret = fake_sca(id) 
-//        disp("fake_sca");
-//        ret = [];
-//    endfunction;
-//    sca = fake_sca;
 
 if ~isdef('scicos_menuslib') then
   load('SCI/modules/scicos/macros/scicos_menus/lib')
@@ -130,18 +103,15 @@ end
   end
   //end of for backward compatibility for scifuncpagate context values
   
-  [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr);
-  
+  [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
+  if ~ok then
+    error(msprintf(gettext("%s: Error during block parameters evaluation."), "xcos_simulate"));
+  end
   
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
-  
-  //** if an error has ocurred in do_update
-  //** then we exit from do_run
   if ~ok then
-    %tcur      = []
-    alreadyran = %f ;
-    return
+    error(msprintf(gettext("%s: Error during block parameters update."), "xcos_simulate"));
   end
 
   //** if alreadyran then set the var choice

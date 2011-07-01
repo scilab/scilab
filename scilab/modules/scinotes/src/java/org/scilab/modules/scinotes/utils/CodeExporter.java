@@ -29,6 +29,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
@@ -101,7 +102,7 @@ public class CodeExporter extends FOCodeConverter {
      */
     public static void convert(ScilabEditorPane pane, String fileName, String type, PageFormat format) {
         CodeExporter exporter = new CodeExporter(pane);
-        exporter.convert(pane.getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
+        exporter.convert(((ScilabDocument) pane.getDocument()).getText(), pane.getXln().getLineNumber(), fileName, type, pane.getShortName(), format);
     }
 
     /**

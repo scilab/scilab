@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Hook used to produce a commit message based on CHANGES
+#
+
+FILE="$1"
+SOURCE="$2"
+COMMIT="$3"
+
+case $SOURCE in
+'')
+    TMP=$(mktemp) && \
+    cat $FILE >$TMP && \
+    git diff --cached scilab/CHANGES_* |sed -n '/^+/p' |sed -n '/^+++/!p' |sed 's/^.\{1\}//g' >$FILE && \
+    cat $TMP >>$FILE && \
+    rm $TMP
+  ;;
+*)
+  ;;
+esac
+

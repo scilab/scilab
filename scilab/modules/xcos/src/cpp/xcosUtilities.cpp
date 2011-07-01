@@ -190,7 +190,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     for (int i = 0; i < rowsArgument * colsArgument; ++i)
     {
         value[i] = (char*) MALLOC(sizeof(char) * (lenArgument[i] + 1)); // +1 for null termination
-        value[lenArgument[i]] = '\0';
+        value[i][lenArgument[i]] = '\0';
     }
 
     sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
@@ -210,6 +210,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     *out = value;
     *vectorLength = rowsArgument * colsArgument;
     
+    FREE(lenArgument);
     return 0;
 }
 

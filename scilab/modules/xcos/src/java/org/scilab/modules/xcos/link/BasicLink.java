@@ -52,6 +52,7 @@ import com.mxgraph.util.mxRectangle;
 public abstract class BasicLink extends ScilabGraphUniqueObject {
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
 	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
+	private transient int ordering;
 
 	/**
 	 * Default constructor
@@ -64,14 +65,20 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	setStyle(style);
     }
 
-    /**
-     * Set the order number of this link (will be applied to source and target)
-     * @param ordering The order number
-     */
-    public void setOrdering(int ordering) {
-	((BasicPort) this.getSource()).setConnectedLinkId(ordering);
-	((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
-    }
+	/**
+	 * @param ordering
+	 *            a unique order number per instance
+	 */
+	public void setOrdering(int ordering) {
+		this.ordering = ordering;
+	}
+
+	/**
+	 * @return the unique order number per instance
+	 */
+	public int getOrdering() {
+		return ordering;
+	}
 
     /** @param index the point index to be removed */
     public void removePoint(int index) { 

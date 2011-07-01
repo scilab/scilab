@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-05-27 13:36+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid ""
@@ -167,16 +167,16 @@ msgstr "Ошибка: не удалось сделать грамматичес�
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug http://"
-"bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
 msgstr ""
 "Если вы используете бинарную версию Scilab, просьба сообщить об ошибке на "
 "http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script bin/"
-"scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
 msgstr ""
 "Если вы используете самостоятельно собранную версию Scilab, обновите "
 "сценарий bin/scilab для указания пути к JVM.\n"
@@ -193,19 +193,17 @@ msgstr "JNI: недостаточно памяти"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
 
-#
-# File: src/c/JVM.c, line: 207
 #, c-format
 msgid "Options:\n"
-msgstr ""
+msgstr "Параметры:\n"
 
-#
-# File: src/c/JVM.c, line: 125
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
 "system (or vice versa).\n"
 msgstr ""
+"Также проверьте, что вы не пытаетесь запустить 64-битую версию Scilab на 32-"
+"битной ОС (или наоборот).\n"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Модуль Java не установлен.\n"
@@ -247,3 +245,17 @@ msgstr "Внимание: не удалось найти файл объявле
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "Неверный формат для %s.\n"
+
+#~ msgid "Console"
+#~ msgstr "Командное окно"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Командное окно Scilab"
+
+#, c-format
+#~ msgid ""
+#~ "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+#~ "system (and vice versa).\n"
+#~ msgstr ""
+#~ "Также проверьте, что вы не запускаете 64-битую версию Scilab  на 32-битной "
+#~ "ОС (и наоборот).\n"

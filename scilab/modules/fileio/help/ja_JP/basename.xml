@@ -72,7 +72,7 @@
 	エントリの基本部分を返します.</para>
 
     <para><literal>flag</literal> が真の場合,ファイルは
-	<literal>MSDOS</literal>変数で指定した目標型にまず変換されます.
+	<literal>getos() == 'Windows'</literal>変数で指定した目標型にまず変換されます.
 	さらに, <literal>flagexpand</literal>が真の場合,
 	 <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
 	のような基準となる変数は環境変数により展開されます.</para>

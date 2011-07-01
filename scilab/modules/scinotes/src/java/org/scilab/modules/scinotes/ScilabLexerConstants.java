@@ -269,6 +269,15 @@ public class ScilabLexerConstants {
     }
 
     /**
+     * Have we a piece of a Scilab string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a piece of Scilab string
+     */
+    public static boolean isString(int type) {
+        return type == STRING || type == WHITE_STRING || type == TAB_STRING;
+    }
+
+    /**
      * Have we a LaTeX string ?
      * @param type the type of the keyword
      * @return true if the keyword is a LaTeX string

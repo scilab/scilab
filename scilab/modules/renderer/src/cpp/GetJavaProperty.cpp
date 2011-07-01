@@ -22,178 +22,200 @@ extern "C"
 #include "BasicAlgos.h"
 }
 
-using namespace sciGraphics ;
+using namespace sciGraphics;
 
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaColormap( sciPointObj * pFigure, double rgbMat[] )
+void sciGetJavaColormap(sciPointObj * pFigure, double rgbMat[])
 {
-  getFigureDrawer(pFigure)->getColorMap( rgbMat ) ;
+    getFigureDrawer(pFigure)->getColorMap(rgbMat);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaFigureSize( sciPointObj * pFigure, int size[2] )
+void sciGetJavaFigureSize(sciPointObj * pFigure, int size[2])
 {
-  getFigureDrawer(pFigure)->getSize(size) ;
+    getFigureDrawer(pFigure)->getSize(size);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowSize( sciPointObj * pFigure, int size[2] )
+void sciGetJavaWindowSize(sciPointObj * pFigure, int size[2])
 {
-  getFigureDrawer(pFigure)->getWindowSize(size) ;
+    getFigureDrawer(pFigure)->getWindowSize(size);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaWindowPosition( sciPointObj * pFigure, int pos[2] )
+void sciGetJavaWindowPosition(sciPointObj * pFigure, int pos[2])
 {
-  getFigureDrawer(pFigure)->getWindowPosition(pos) ;
+    getFigureDrawer(pFigure)->getWindowPosition(pos);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaInfoMessage(sciPointObj * pFigure, char * infoMessage)
+void sciGetJavaInfoMessage(sciPointObj * pFigure, char *infoMessage)
 {
-	getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
+    getFigureDrawer(pFigure)->getInfoMessage(infoMessage);
 }
+
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaInfoMessageLength(sciPointObj * pFigure)
 {
-	return getFigureDrawer(pFigure)->getInfoMessageLength();
+    return getFigureDrawer(pFigure)->getInfoMessageLength();
 }
+
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
 {
-	return getFigureDrawer(pFigure)->getAntialiasingQuality();
+    return getFigureDrawer(pFigure)->getAntialiasingQuality();
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
-  getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);
+    getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJava2dViewPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
-   getSubwinDrawer(pSubwin)->getCamera()->get2dViewPixelCoordinates(userCoord, pixCoord);
+    getSubwinDrawer(pSubwin)->getCamera()->get2dViewPixelCoordinates(userCoord, pixCoord);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJava2dViewCoordinates(sciPointObj * pSubwin, const double userCoords3D[3], double userCoords2D[2])
 {
-  getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(userCoords3D, userCoords2D);
+    getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(userCoords3D, userCoords2D);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJava2dViewCoordFromPixel(sciPointObj * pSubwin, const int pixCoords[2], double userCoords2D[2])
 {
-  getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(pixCoords, userCoords2D);
+    getSubwinDrawer(pSubwin)->getCamera()->get2dViewCoordinates(pixCoords, userCoords2D);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3],
-                           double corner3[3], double corner4[3])
+void sciGetJavaBoundingBox(sciPointObj * pText, double corner1[3], double corner2[3], double corner3[3], double corner4[3])
 {
-  getTextDrawer(pText)->getBoundingRectangle(corner1, corner2, corner3, corner4);
+    getTextDrawer(pText)->getBoundingRectangle(corner1, corner2, corner3, corner4);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2],
-                                int corner3[2], int corner4[2])
+void sciGetJavaPixelBoundingBox(sciPointObj * pText, int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
-  getTextDrawer(pText)->getScreenBoundingBox(corner1, corner2, corner3, corner4);
+    getTextDrawer(pText)->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaViewingArea(sciPointObj * pSubwin, int * xPos, int * yPos,
-                           int * width, int * height)
+void sciGetJavaViewingArea(sciPointObj * pSubwin, int *xPos, int *yPos, int *width, int *height)
 {
-  getSubwinDrawer(pSubwin)->getCamera()->getViewingArea(xPos, yPos, width, height);
+    getSubwinDrawer(pSubwin)->getCamera()->getViewingArea(xPos, yPos, width, height);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaSegsBoundingBox(sciPointObj * pSegs, double bounds[6])
 {
-  getSegsDrawer(pSegs)->getBoundingBox(bounds);
+    getSegsDrawer(pSegs)->getBoundingBox(bounds);
 }
+
 /*---------------------------------------------------------------------------------*/
 BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure)
 {
- if (getFigureDrawer(pFigure)->getAutoResizeMode())
- {
-   return TRUE;
- }
- else
- {
-   return FALSE;
- }
+    if (getFigureDrawer(pFigure)->getAutoResizeMode())
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4])
 {
-  getFigureDrawer(pFigure)->getViewport(viewport);
+    getFigureDrawer(pFigure)->getViewport(viewport);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciGetJavaNbSubticks(sciPointObj * pSubwin, double nbsubtics[3])
 {
-  getSubwinDrawer(pSubwin)->getNbSubticksPerGrad( nbsubtics );
+    getSubwinDrawer(pSubwin)->getNbSubticksPerGrad(nbsubtics);
 }
+
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbXTicks(sciPointObj * pSubwin)
 {
-  return getSubwinDrawer(pSubwin)->getNbXTicks();
+    return getSubwinDrawer(pSubwin)->getNbXTicks();
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+void sciGetJavaXTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
 {
-  // ticksLabels comes from graphics so is allocated with MALLOC
-  // however getTicksPos will use new to allocate
-  int nbTicks = sciGetJavaNbXTicks(pSubwin);
-  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
-  
-  getSubwinDrawer(pSubwin)->getXTicksPos(ticksPos, javaLabels);
+    // ticksLabels comes from graphics so is allocated with MALLOC
+    // however getTicksPos will use new to allocate
+    int nbTicks = sciGetJavaNbXTicks(pSubwin);
+    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
 
-  // copy it into ticksLabels
-  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+    getSubwinDrawer(pSubwin)->getXTicksPos(ticksPos, javaLabels);
 
-  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
+    // copy it into ticksLabels
+    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
 }
+
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbYTicks(sciPointObj * pSubwin)
 {
-  return getSubwinDrawer(pSubwin)->getNbYTicks();
+    return getSubwinDrawer(pSubwin)->getNbYTicks();
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+void sciGetJavaYTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
 {
-  // ticksLabels comes from graphics so is allocated with MALLOC
-  // however getTicksPos will use new to allocate
-  int nbTicks = sciGetJavaNbYTicks(pSubwin);
-  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
-  
-  getSubwinDrawer(pSubwin)->getYTicksPos(ticksPos, javaLabels);
+    // ticksLabels comes from graphics so is allocated with MALLOC
+    // however getTicksPos will use new to allocate
+    int nbTicks = sciGetJavaNbYTicks(pSubwin);
+    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
 
-  // copy it into ticksLabels
-  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+    getSubwinDrawer(pSubwin)->getYTicksPos(ticksPos, javaLabels);
 
-  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
+    // copy it into ticksLabels
+    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
 }
+
 /*---------------------------------------------------------------------------------*/
 int sciGetJavaNbZTicks(sciPointObj * pSubwin)
 {
-  return getSubwinDrawer(pSubwin)->getNbZTicks();
+    return getSubwinDrawer(pSubwin)->getNbZTicks();
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char ** ticksLabels)
+void sciGetJavaZTicksPos(sciPointObj * pSubwin, double ticksPos[], char **ticksLabels)
 {
-  // ticksLabels comes from graphics so is allocated with MALLOC
-  // however getTicksPos will use new to allocate
-  int nbTicks = sciGetJavaNbZTicks(pSubwin);
-  char ** javaLabels = BasicAlgos::createStringArray(nbTicks);
-  
-  getSubwinDrawer(pSubwin)->getZTicksPos(ticksPos, javaLabels);
+    // ticksLabels comes from graphics so is allocated with MALLOC
+    // however getTicksPos will use new to allocate
+    int nbTicks = sciGetJavaNbZTicks(pSubwin);
+    char **javaLabels = BasicAlgos::createStringArray(nbTicks);
 
-  // copy it into ticksLabels
-  stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+    getSubwinDrawer(pSubwin)->getZTicksPos(ticksPos, javaLabels);
 
-  BasicAlgos::destroyStringArray(javaLabels, nbTicks);
+    // copy it into ticksLabels
+    stringArrayCopy(ticksLabels, javaLabels, nbTicks);
+
+    BasicAlgos::destroyStringArray(javaLabels, nbTicks);
 }
+
 /*---------------------------------------------------------------------------------*/
 BOOL sciGetJavaIsAbleToCreateWindow(void)
 {
-  if (DrawableFigure::isAbleToCreateFigure())
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+    if (DrawableFigure::isAbleToCreateFigure())
+    {
+        return booltoBOOL(true);
+    }
+    else
+    {
+        return booltoBOOL(false);
+    }
 }
+
 /*---------------------------------------------------------------------------------*/

@@ -20,9 +20,6 @@
 //
 
 function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
-  // any old scicos macros, will be removed on 5.4.0
-  warnobsolete(scilabRemovedVersion="5.4.0")
-
 //!
 //
 //**  30 August 2007 :
@@ -33,7 +30,6 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 //
 // Perform deletion of scs_m object whose index are given in the vector
 // K and all other relevant objects (link, splits,..)
-// if gr==%t objects are also graphicaly erased.
 //
 // deleted objects:
 //  - are replaced by the value : mlist('Deleted')
@@ -41,8 +37,6 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 //
 //**  Perform deletion of [scs_m] object whose index are given in the vector
 //**  [K] and all other relevant objects (link, splits,..) in recursive way
-//**
-//**  If gr==%t objects are also graphicaly erased.
 //
 //**  Deleted objects are replaced by the value : mlist('Deleted')
 //**  ---> not to change the indexing:
@@ -68,13 +62,6 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   DELL= [] // table of redefined links
   outin = ['out','in']
 
-  //** Acquire the current clicked window 
-  //gh_curwin = scf(%win) ;
-  gh_axes = gca(); 
-  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
-                                    //** at the beginning of this operation
-	       		            //** this variable is very important for the selective
-			            //** elimination of undesired object(s)
 //**	Delete object until "K" is empty
 //** ----------------------------------------------------------------------------------------------
 while K<>[] do
@@ -171,11 +158,7 @@ while K<>[] do
 	    DEL = [DEL connected(1)] // supress one link
 	    DELL=[DELL  connected(1)]
 	    scs_m.objs(connected(2))=o1 //change link
-	    if gr==%t then
-	      gr_k = get_gri(connected(2), o_size(1)) ; 
-	      gh_object = gh_axes.children(gr_k);
-	      gh_object.children.data = [o1.xx , o1.yy];
-            end
+	    
 	    scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),outin(to2(3)+1),ct2(2),..
 					connected(2))
 	    scs_m.objs(o1.from(1))=mark_prt(scs_m.objs(o1.from(1)),o1.from(2),..
@@ -223,11 +206,6 @@ while K<>[] do
 	    DEL=[DEL connected(1)] // supress one link
 	    DELL=[DELL  connected(1)]
 	    scs_m.objs(connected(2))=o1 //change link
-	    if gr==%t then
-              gr_k = get_gri(connected(2),o_size(1)) ; 
-	      gh_object = gh_axes.children(gr_k)     ;
-	      gh_object.children.data = [o1.xx , o1.yy];
-            end
 
 	    scs_m.objs(to1(1))=mark_prt(scs_m.objs(to1(1)),..
 					to1(2),outin(to1(3)+1),o1.ct(2),connected(2))
@@ -267,26 +245,11 @@ while K<>[] do
 end //** ... end of while ()
 //**---------------------------------- end of main while() loop ---------------------------
 
-//** Show the results if the "gr" flag is TRUE: go in drawlater() mode 
-  if gr==%t then
-    drawlater(); 
-  end
 
 //** Scan all the deleted elements and update the graphics datastrucure 
   for k = DEL
     scs_m.objs(k) = mlist('Deleted'); //** mark the object as "Deleted" 
-    if gr==%t then //** .... and the graphics 
-      gr_k = get_gri(k,o_size(1)) ;
-      gh_object_invisible = gh_axes.children(gr_k);
-      gh_object_invisible.visible = "off";
-    end
   end
-
-//** Show the results if the "gr" flag is TRUE 
-  if gr==%t then
-    drawnow(); 
-  end
-  
 endfunction
 
 

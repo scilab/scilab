@@ -62,4 +62,5 @@ SEP #062: Add timeout option to 'host' function
 SEP #063: User block wizard
 SEP #064: HDF5 Scilab specification
 SEP #065: load and save based on HDF5
-
+SEP #066: Xcos compilation hooks
+SEP #067: lines() default value

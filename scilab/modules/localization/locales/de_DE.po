@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-10-09 18:24+0000\n"
 "Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
 
 #, c-format
 msgid "%s: This feature is only used on Windows.\n"
@@ -27,7 +26,8 @@ msgstr "%s: nicht unterstützte Sprache '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr "%s: falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
+msgstr ""
+"%s: falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

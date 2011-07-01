@@ -407,6 +407,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	}
 	
 	/**
+	 * {@inheritDoc}} 
+	 *
+	 * Clear cell warnings before encoding
+	 */
+	@Override
+	public ScilabType beforeEncode(XcosDiagram from, ScilabType element) {
+		if (from.getAsComponent() != null) {
+			from.getAsComponent().clearCellOverlays();
+		}
+		return super.beforeEncode(from, element);
+	}
+	
+	/**
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance

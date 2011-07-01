@@ -1434,6 +1434,14 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block,int flag)
 			}
 			scicos_free(ptr);
 		}
+		/***********************************************************************/
+	}
+	else if (flag==6) 
+	{ /* re-init */
+	
+	    // finish then init
+		fromws_c(block, 5);
+		fromws_c(block, 4);
 	}
 	/*************************************************************************/
 }

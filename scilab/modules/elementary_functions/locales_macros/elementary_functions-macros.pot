@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-06-06 15:28+0100\n"
 
 # File: macros/repmat.sci, line: 44
 #, c-format
@@ -97,7 +97,7 @@ msgstr ""
 # File: macros/asinhm.sci, line: 19
 # File: macros/bitand.sci, line: 35
 # File: macros/bitget.sci, line: 37
-# File: macros/dec2hex.sci, line: 23
+# File: macros/dec2hex.sci, line: 24
 # File: macros/sinhm.sci, line: 16
 # File: macros/acosh.sci, line: 30
 # File: macros/cosm.sci, line: 21
@@ -332,8 +332,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
 #
-# File: macros/oct2dec.sci, line: 27
-# File: macros/hex2dec.sci, line: 27
+# File: macros/oct2dec.sci, line: 28
+# File: macros/hex2dec.sci, line: 28
 # File: macros/bin2dec.sci, line: 34
 # File: macros/base2dec.sci, line: 28
 #, c-format
@@ -477,7 +477,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
 #
-# File: macros/dec2hex.sci, line: 29
+# File: macros/dec2hex.sci, line: 30
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"
 msgstr ""
@@ -509,12 +509,12 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s or %s expected"
 msgstr ""
 #
-# File: macros/hex2dec.sci, line: 39
+# File: macros/hex2dec.sci, line: 40
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"
 msgstr ""
 #
-# File: macros/oct2dec.sci, line: 39
+# File: macros/oct2dec.sci, line: 40
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Valid octal representations expected.\n"
 msgstr ""

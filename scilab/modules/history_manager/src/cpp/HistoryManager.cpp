@@ -1,15 +1,16 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2008 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007-2008 - INRIA - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+* Copyright (C) 2011 - DIGITEO - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*------------------------------------------------------------------------*/
 #include "HistoryManager.hxx"
@@ -190,6 +191,16 @@ BOOL loadScilabHistoryFromFile(char *filename)
     return bOK;
 }
 /*------------------------------------------------------------------------*/
+BOOL isScilabHistoryTruncated(void)
+{
+    BOOL bOK = FALSE;
+    if (ScilabHistory)
+    {
+        bOK = ScilabHistory->isTruncated();
+    }
+    return bOK;
+}
+/*------------------------------------------------------------------------*/
 BOOL setFilenameScilabHistory(char *filename)
 {
     if (filename)
@@ -327,8 +338,23 @@ int getSizeScilabHistory(void)
     return val;
 }
 /*------------------------------------------------------------------------*/
+BOOL setSizeMaxScilabHistory(int nbLinesMax)
+{
+    BOOL bOK = FALSE;
+    if (ScilabHistory) bOK = ScilabHistory->setNumberOfLinesMax(nbLinesMax);
+    return bOK;
+}
+/*------------------------------------------------------------------------*/
+int getSizeMaxScilabHistory(void)
+{
+    int val = 0;
+    if (ScilabHistory) val = ScilabHistory->getNumberOfLinesMax();
+    return val;
+}
+/*------------------------------------------------------------------------*/
 HistoryManager::HistoryManager()
 {
+    bTruncated = FALSE;
     CommandsList.clear();
     saveconsecutiveduplicatelines = FALSE;
     afterhowmanylineshistoryissaved = 0;
@@ -476,7 +502,10 @@ BOOL HistoryManager::loadFromFile(char *filename)
         std::string name;
         name.assign(filename);
 
-        my_file.loadFromFile(name);
+        if (my_file.loadFromFile(name) == HISTORY_TRUNCATED)
+        {
+            bTruncated = TRUE;
+        }
 
         CommandsList.clear();
         CommandsList = my_file.getHistory();
@@ -740,7 +769,7 @@ BOOL HistoryManager::isBeginningSessionLine(char *line)
     {
         if (strlen(line) > strlen(SESSION_PRAGMA_BEGIN) + strlen(SESSION_PRAGMA_END))
         {
-            #define STR_LEN_MAX 64
+#define STR_LEN_MAX 64
             char str_start[STR_LEN_MAX];
             char str_end[STR_LEN_MAX];
             strncpy(str_start, line, (int)strlen(SESSION_PRAGMA_BEGIN));
@@ -766,5 +795,20 @@ void HistoryManager::fixHistorySession(void)
         FREE(commentbeginsession);
         commentbeginsession = NULL;
     }
+}
+/*--------------------------------------------------------------------------*/
+BOOL HistoryManager::isTruncated(void)
+{
+    return bTruncated;
+}
+/*--------------------------------------------------------------------------*/
+BOOL HistoryManager::setNumberOfLinesMax(int nbLinesMax)
+{
+    return my_file.setDefaultMaxNbLines(nbLinesMax);
+}
+/*--------------------------------------------------------------------------*/
+int HistoryManager::getNumberOfLinesMax(void)
+{
+    return my_file.getDefaultMaxNbLines();
 }
 /*--------------------------------------------------------------------------*/

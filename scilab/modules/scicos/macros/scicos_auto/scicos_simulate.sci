@@ -253,7 +253,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   if ierr == 0 then //++ no error
     [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr,%scicos_context)
     if ~ok then
-      error(['Error during block parameters evaluation , ' + lasterror()])
+      error(msprintf(gettext("%s: Error during block parameters evaluation."), "scicos_simulate"));
     end
     if needcompile <> 4 & size(%cpr) > 0 then
       %state0 = %cpr.state
@@ -273,7 +273,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
                                                   %state0, needcompile)
 
   if ~ok then
-    error('Error updating parameters.')
+    error(msprintf(gettext("%s: Error during block parameters update."), "scicos_simulate"));
   end
 
   if or(%state0_n <> %state0) then //initial state has been changed

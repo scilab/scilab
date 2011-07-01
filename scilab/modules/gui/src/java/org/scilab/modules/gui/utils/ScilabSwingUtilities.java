@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,6 +38,8 @@ import javax.swing.JFrame;
 import javax.swing.JWindow;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
  * Add some utilities related to swing event dispatch thread.
@@ -205,7 +208,9 @@ public final class ScilabSwingUtilities {
      * JFrame or JWindow or JDialog
      */
     public static void closeOnEscape(final Window window) {
-        KeyStroke esc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0);
+        KeyStroke esc = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
+        KeyStroke ctrlw = ScilabKeyStroke.getKeyStroke("OSSCKEY W");
+
         ActionListener listener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     WindowListener[] listeners = window.getWindowListeners();
@@ -218,10 +223,13 @@ public final class ScilabSwingUtilities {
             };
         if (window instanceof JFrame) {
             ((JFrame) window).getRootPane().registerKeyboardAction(listener, esc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+            ((JFrame) window).getRootPane().registerKeyboardAction(listener, ctrlw, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (window instanceof JWindow) {
             ((JWindow) window).getRootPane().registerKeyboardAction(listener, esc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+            ((JWindow) window).getRootPane().registerKeyboardAction(listener, ctrlw, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (window instanceof JDialog) {
             ((JDialog) window).getRootPane().registerKeyboardAction(listener, esc, JComponent.WHEN_IN_FOCUSED_WINDOW);
+            ((JDialog) window).getRootPane().registerKeyboardAction(listener, ctrlw, JComponent.WHEN_IN_FOCUSED_WINDOW);
         }
     }
 }
