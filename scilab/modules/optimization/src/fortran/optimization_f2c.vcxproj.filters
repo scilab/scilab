@@ -611,7 +611,9 @@
     <f2c_rule Include="zqnbd.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="intreadmps.f" />
+    <f2c_rule Include="intreadmps.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
@@ -621,8 +623,5 @@
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\optimization_gateway.xml" />
-    <None Include="Optimization_Import.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
