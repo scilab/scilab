@@ -140,9 +140,9 @@ void ParserSingleInstance::parse(char *command)
     char* pstTmpDIr = getTMPDIR();
     sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
     FREE(pstTmpDIr);
-    if(yyin)
+    if(fileLocker)
     {
-        fclose(yyin);
+        fclose(fileLocker);
     }
 
     fopen_s(&yyin, szFile, "w");
@@ -156,7 +156,7 @@ void ParserSingleInstance::parse(char *command)
     char* pstTmpDIr = "/tmp";
     sprintf(szFile, "%s/%s", pstTmpDIr, "command.temp");
     //FREE(pstTmpDIr);
-    fclose(yyin);
+    fclose(fileLocker);
     yyin = fopen(szFile, "w");
     fwrite(command, 1, strlen(command), yyin);
     fclose(yyin);
@@ -178,9 +178,17 @@ void ParserSingleInstance::parse(char *command)
 
     yyparse();
 
-    //fclose(yyin);
+    fclose(yyin);
 #ifdef _MSC_VER
     DeleteFileA(szFile);
+#endif
+
+#ifdef _MSC_VER
+    //reopen a file to prevents max file opened.
+    fopen_s(&fileLocker, szFile, "w");
+#endif
+#ifdef __APPLE__
+    fileLocker = fopen(szFile, "w");
 #endif
 }
 
@@ -231,3 +239,4 @@ bool ParserSingleInstance::_stop_on_first_error = false;
 ast::Exp* ParserSingleInstance::_the_program = NULL;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> *ParserSingleInstance::_control_status = new std::list<Parser::ControlStatus>();
+FILE* ParserSingleInstance::fileLocker = NULL;

@@ -114,6 +114,7 @@ private :
     static ast::Exp* _the_program;
     static Parser::ParserStatus _exit_status;
     static std::list<Parser::ControlStatus> *_control_status;
+    static FILE* fileLocker;
 
 };
 
