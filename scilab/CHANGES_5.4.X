@@ -231,6 +231,7 @@ ATOMS:
 
 * bug 9127 fixed - "Home" item renamed to "Installed Modules".
 
+* bug 8664 fixed - Message error updated for non supported OS.
 
 Misc:
 =====
