@@ -114,7 +114,8 @@ void UpdateBrowseVar(BOOL update)
         // Calling "API Scilab": not yet implemented for global variable
         //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
         // Using old stack operations...
-        piAllVariableTypes[i] = GetType(C2F(vstk).isiz + 2 + j);
+        int pos = C2F(vstk).isiz + 2 + j;
+        piAllVariableTypes[i] = C2F(gettype)(&pos);
 
         // Sizes of the variable
         getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
@@ -172,36 +173,36 @@ void UpdateBrowseVar(BOOL update)
 static std::set < string > createScilabDefaultVariablesSet()
 {
     string arr[] = { "home",
-        "PWD",
-        "%tk",
-        "%pvm",
-        "MSDOS",
-        "%F",
-        "%T",
-        "%f",
-        "%t",
-        "%e",
-        "%pi",
-        "%modalWarning",
-        "%exportFileName",
-        "%nan",
-        "%inf",
-        "SCI",
-        "SCIHOME",
-        "TMPDIR",
-        "%gui",
-        "%fftw",
-        "%helps",
-        "%eps",
-        "%io",
-        "%i",
-        "demolist",
-        "%z",
-        "%s",
-        "$",
-        "%driverName",
-        "%toolboxes",
-        "%toolboxes_dir"
+                     "PWD",
+                     "%tk",
+                     "%pvm",
+                     "MSDOS",
+                     "%F",
+                     "%T",
+                     "%f",
+                     "%t",
+                     "%e",
+                     "%pi",
+                     "%modalWarning",
+                     "%exportFileName",
+                     "%nan",
+                     "%inf",
+                     "SCI",
+                     "SCIHOME",
+                     "TMPDIR",
+                     "%gui",
+                     "%fftw",
+                     "%helps",
+                     "%eps",
+                     "%io",
+                     "%i",
+                     "demolist",
+                     "%z",
+                     "%s",
+                     "$",
+                     "%driverName",
+                     "%toolboxes",
+                     "%toolboxes_dir"
     };
     int i = 0;
 

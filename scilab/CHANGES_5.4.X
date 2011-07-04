@@ -234,6 +234,8 @@ Bug fixes:
 
 * bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
+* bug 7333 fixed - In BrowseVar, variables could have a weird type number.
+
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
 
