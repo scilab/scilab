@@ -93,8 +93,8 @@
       <menuitem action="PageSetupAction" label="Page Setup"/>
       <menuitem action="HorizontalWrapAction" label="Horizontal wrapping"/>
       <separator/>
-      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
-      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>
+      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (, [, ..."/>
+      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if, function, ..."/>
       <separator/>
       <menuitem action="SuppressCommentsAction" label="Suppress comments when executing selection"/>
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
