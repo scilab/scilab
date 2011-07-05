@@ -506,7 +506,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
                     if (fac3d.getHiddenColor() > 0) {
-                        return FaceCullingMode.CW;
+                        return FaceCullingMode.CCW;
                     }
                     else {
                         return FaceCullingMode.BOTH;
@@ -548,7 +548,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.CCW;
+                    return FaceCullingMode.CW;
                 }
             };
 
