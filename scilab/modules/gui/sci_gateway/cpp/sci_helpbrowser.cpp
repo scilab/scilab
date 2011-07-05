@@ -106,7 +106,7 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
         pstLang = wide_string_to_UTF8(in[2]->getAs<String>()->get(0));
         pstKey  = wide_string_to_UTF8(in[1]->getAs<String>()->get(0));
         int iFullText = in[3]->getAs<Bool>()->get(0);
-        searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, iFullText);
+        searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
     }
 
     if(pstLang != NULL)

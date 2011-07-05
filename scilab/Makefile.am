@@ -159,7 +159,7 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/icons/
+iconsdir=$(pkgdatadir)/desktop/
 icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
 $(top_srcdir)/desktop/puffin_128.xpm \
 $(top_srcdir)/desktop/puffin_256.xpm \
@@ -362,6 +362,20 @@ localization:
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;
+
+
+localization-status:
+	@for LOCALE in $(ALL_LINGUAS_DOC); do \
+		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+		if test ! -d $$PATHTO; then \
+			echo "        Creating $$PATHTO"; \
+			mkdir -p $$PATHTO; \
+		fi; \
+		echo "Building $$LOCALE"; \
+		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
+	done; 
+
 endif
 
 # Misc variable for the documentation installation

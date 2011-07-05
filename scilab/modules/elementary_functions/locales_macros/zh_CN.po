@@ -8,30 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 23:03+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
-# File: macros/repmat.sci, line: 44
 #, c-format
 msgid ""
 "%s : Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices"
 msgstr ""
 
-#
-# File: macros/repmat.sci, line: 34
 #, c-format
 msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#
-# File: macros/complex.sci, line: 43
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -89,8 +84,6 @@ msgstr "%s：输入参数的数目错误：应该为%d。"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
-#
-# File: macros/complex.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -103,8 +96,6 @@ msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
 
-#
-# File: macros/repmat.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
@@ -149,8 +140,8 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
 msgstr "%s：输入参数#%d的大小错误：大小应该为输入参数#%d的大小。\n"
 
 #, c-format
@@ -190,9 +181,6 @@ msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s：参数的类型错误#%d：应该为实数。\n"
 
-#
-# File: macros/complex.sci, line: 35
-# File: macros/complex.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -292,7 +280,8 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该 >= %d。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s：输入参数#%d的值错误：矩阵不可对角化。\n"
 
 #, c-format
@@ -309,9 +298,6 @@ msgstr "%s：输入参数#%d的值错误：应该介于%d与%d之间。"
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
 
-#
-# File: macros/asind.sci, line: 16
-# File: macros/acosd.sci, line: 16
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -352,8 +338,7 @@ msgstr "%s：输入参数#%d的值错误：应该为正整数标量/向量/矩�
 msgid ""
 "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
 "or %s expected"
-msgstr ""
-"%s：输入参数#%d的值错误：未知的文件扩展名，应该为'%s'、'%s'、'%s'或'%s'。"
+msgstr "%s：输入参数#%d的值错误：未知的文件扩展名，应该为'%s'、'%s'、'%s'或'%s'。"
 
 #, c-format
 msgid ""
@@ -385,6 +370,6 @@ msgstr "%s：输入参数的值错误：应该为正确的基于%d进制的表�
 
 #, c-format
 msgid ""
-"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"
-"(1).\n"
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
 msgstr "%s：输入参数#%d和#%d的值错误：c(1)必须等于r(1)。\n"

@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2009
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -166,8 +166,7 @@ static void *new_malloc(size_t size)
 
 static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
 {
-	int rc = 0;
-	rc = pcre_fullinfo(re, study, option, ptr);
+	pcre_fullinfo(re, study, option, ptr);
 }
 
 /*************************************************
@@ -298,7 +297,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		char *pp = NULL;
 		char *ppp = NULL;
 		const unsigned char *tables = NULL;
-		unsigned long int true_size = 0;
 		int do_G = 0;
 		int do_g = 0;
 		int erroroffset = 0, len = 0, delimiter;
@@ -381,7 +379,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			case 'U': options |= PCRE_UNGREEDY; break;
 			case 'X': options |= PCRE_EXTRA; break;
 			case 'Z': break;
-			case '8': 
+			case '8':
 				{
 					int rc = 0;
 					(void)pcre_config(PCRE_CONFIG_UTF8, &rc);
@@ -449,8 +447,6 @@ SKIP_DATA:
 				return CAN_NOT_COMPILE_PATTERN;
 			}
 
-			true_size = ((real_pcre *)re)->size;
-
 		}        /* End of non-POSIX compile */
 
 		/* Read data lines and test them */
@@ -483,7 +479,6 @@ SKIP_DATA:
 			callout_fail_id = -1;
 
 			if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
-			len = 0;
 			p = buffer;
 			bptr = q = buffer;
 			while ((c = *p++) != 0)
@@ -540,7 +535,7 @@ SKIP_DATA:
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
-						n = pcre_get_stringnumber(re, (char *)copynamesptr);
+						pcre_get_stringnumber(re, (char *)copynamesptr);
 						copynamesptr = npp;
 					}
 					else if (*p == '+')
@@ -587,7 +582,7 @@ SKIP_DATA:
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
-						n = pcre_get_stringnumber(re, (char *)getnamesptr);
+						pcre_get_stringnumber(re, (char *)getnamesptr);
 						getnamesptr = npp;
 					}
 					continue;
@@ -803,7 +798,7 @@ SKIP_DATA:
 				{
 					if (count == PCRE_ERROR_NOMATCH)
 					{
-						if (gmatched == 0) 
+						if (gmatched == 0)
 						{
 							if (tables) { (*pcre_free)((void *)tables); tables = NULL; }
 							if (re) { (*pcre_free)((void *)re); re = NULL; }
@@ -912,3 +907,4 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
     }
     return iPcreStatus;
 }
+/*-------------------------------------------------------------------------------*/

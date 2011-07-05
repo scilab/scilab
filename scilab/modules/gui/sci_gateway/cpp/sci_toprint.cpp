@@ -33,16 +33,18 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
+
 /*--------------------------------------------------------------------------*/
 static int sci_toprint_one_rhs(const char *fname, int* _piKey);
 static int sci_toprint_two_rhs(const char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
 int sci_toprint(char *fname, int* _piKey)
 {
-    CheckRhs(1,2);
-    CheckLhs(0,1);
+    CheckRhs(1, 2);
+    CheckLhs(0, 1);
 
     if (!loadedDep)
     {
@@ -60,6 +62,7 @@ int sci_toprint(char *fname, int* _piKey)
     }
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 static int sci_toprint_one_rhs(const char *fname, int* _piKey)
 {
@@ -81,6 +84,7 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
         if (getAllocatedSingleString(_piKey, piAddressVarOne, &fileName) == 0)
         {
             char *fullName = getFullFilename(fileName);
+
             freeAllocatedSingleString(fileName);
             if (fullName)
             {
@@ -88,13 +92,14 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
                 {
                     try
                     {
-                        iRet = (int)CallScilabBridge::printFile(getScilabJavaVM(), fullName);
+                        iRet = booltoBOOL(CallScilabBridge::printFile(getScilabJavaVM(), fullName));
                     }
-                    catch (const GiwsException::JniException& e)
+                    catch(const GiwsException::JniException & e)
                     {
                         FREE(fullName);
                         fullName = NULL;
-                        Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+                        Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
+                                 e.getJavaExceptionName().c_str());
                         return 0;
                     }
                 }
@@ -116,7 +121,7 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
     else if (isDoubleType(_piKey, piAddressVarOne))
@@ -131,23 +136,23 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
 
                 if (num_win < 0)
                 {
-                    Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
                     return 0;
                 }
 
-                if (!sciIsExistingFigure((int) num_win))
+                if (!sciIsExistingFigure((int)num_win))
                 {
-                    Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) num_win);
+                    Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
                     return 0;
                 }
 
                 try
                 {
-                    iRet = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
                 }
-                catch (const GiwsException::JniException& e)
+                catch(const GiwsException::JniException & e)
                 {
-                    Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+                    Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
                     return 0;
                 }
 
@@ -157,20 +162,21 @@ static int sci_toprint_one_rhs(const char *fname, int* _piKey)
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
             }
         }
         else
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"),fname,1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"), fname, 1);
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
     }
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 static int sci_toprint_two_rhs(const char *fname, int* _piKey)
 {
@@ -215,15 +221,15 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                     return 0;
                 }
 
-                if ( !((mOne == 1) || (nOne == 1)) )
+                if (!((mOne == 1) || (nOne == 1)))
                 {
-                    Scierror(999,_("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
                     return 0;
                 }
 
                 mnOne = mOne * nOne;
 
-                lenStVarOne = (int*)MALLOC(sizeof(int) * mnOne);
+                lenStVarOne = (int *)MALLOC(sizeof(int) * mnOne);
                 if (lenStVarOne == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
@@ -237,12 +243,12 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                     return 0;
                 }
 
-                for (i = 0; i <  mnOne; i++)
+                for (i = 0; i < mnOne; i++)
                 {
                     lenLineToPrint = lenLineToPrint + lenStVarOne[i] + (int)strlen("\n") + 1;
                 }
 
-                pStVarOne = (char**) MALLOC(sizeof(char*) * mnOne);
+                pStVarOne = (char **)MALLOC(sizeof(char *) * mnOne);
                 if (pStVarOne == NULL)
                 {
                     FREE(lenStVarOne);
@@ -253,18 +259,26 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
 
                 for (i = 0; i < mnOne; i++)
                 {
-                    pStVarOne[i] = (char*)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
+                    pStVarOne[i] = (char *)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
                     if (pStVarOne[i] == NULL)
                     {
                         freeArrayOfString(pStVarOne, i);
-                        if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+                        if (lenStVarOne)
+                        {
+                            FREE(lenStVarOne);
+                            lenStVarOne = NULL;
+                        }
                         Scierror(999, _("%s: No more memory.\n"), fname);
                         return 0;
                     }
                 }
 
                 sciErr = getMatrixOfString(_piKey, piAddressVarOne, &mOne, &nOne, lenStVarOne, pStVarOne);
-                if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+                if (lenStVarOne)
+                {
+                    FREE(lenStVarOne);
+                    lenStVarOne = NULL;
+                }
                 if(sciErr.iErr)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
@@ -272,7 +286,7 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                     return 0;
                 }
 
-                lines = (char*)MALLOC((lenLineToPrint + 1) * sizeof(char));
+                lines = (char *)MALLOC((lenLineToPrint + 1) * sizeof(char));
                 if (lines == NULL)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
@@ -282,13 +296,13 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
 
                 for (i = 0; i < mnOne; i++)
                 {
-                    if (i==0)
+                    if (i == 0)
                     {
                         sprintf(lines, "%s\n", pStVarOne[i]);
                     }
                     else
                     {
-                        sprintf(lines, "%s%s\n", lines,  pStVarOne[i]);
+                        sprintf(lines, "%s%s\n", lines, pStVarOne[i]);
                     }
                 }
                 freeArrayOfString(pStVarOne, mnOne);
@@ -296,12 +310,13 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                 if (getAllocatedSingleString(_piKey, piAddressVarTwo, &pageHeader) == 0)
                 {
                     BOOL iRet = FALSE;
+
                     try
                     {
-                        iRet = (BOOL)CallScilabBridge::printString(getScilabJavaVM(), lines, pageHeader);
+                        iRet = booltoBOOL(CallScilabBridge::printString(getScilabJavaVM(), lines, pageHeader));
                     }
 
-                    catch (const GiwsException::JniException& e)
+                    catch(const GiwsException::JniException & e)
                     {
                         freeAllocatedSingleString(pageHeader);
                         if (lines)
@@ -309,7 +324,8 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                             FREE(lines);
                             lines = NULL;
                         }
-                        Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+                        Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
+                                 e.getJavaExceptionName().c_str());
                         return 0;
                     }
 
@@ -331,19 +347,19 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                         FREE(lines);
                         lines = NULL;
                     }
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
                 return 0;
             }
         }
         else
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
             return 0;
         }
     }
@@ -360,19 +376,19 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
 
                 if (num_win < 0)
                 {
-                    Scierror(999,_("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
-            if (!sciIsExistingFigure((int) num_win))
+            if (!sciIsExistingFigure((int)num_win))
             {
-                Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) num_win);
+                Scierror(999, "%s: Figure with figure_id %d does not exist.\n", fname, (int)num_win);
                 return 0;
             }
 
@@ -391,16 +407,17 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                             {
                                 if (strcmp(outputType, "pos") == 0)
                                 {
-                                    iRet = (BOOL)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE);
+                                    iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), num_win, TRUE, FALSE));
                                 }
                                 else
                                 {
-                                    iRet = (BOOL)(int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE);
+                                    iRet = booltoBOOL((int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, FALSE, FALSE));
                                 }
                             }
-                            catch (const GiwsException::JniException& e)
+                            catch(const GiwsException::JniException & e)
                             {
-                                Scierror(999,_("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+                                Scierror(999, _("%s: An exception occurred: %s\n%s\n"), fname, e.getJavaDescription().c_str(),
+                                         e.getJavaExceptionName().c_str());
                                 freeAllocatedSingleString(outputType);
                                 return 0;
                             }
@@ -411,34 +428,35 @@ static int sci_toprint_two_rhs(const char *fname, int* _piKey)
                         }
                         else
                         {
-                            Scierror(999,_("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "pos", "gdi");
+                            Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "pos", "gdi");
                         }
                         freeAllocatedSingleString(outputType);
                     }
                     else
                     {
-                        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     }
                 }
                 else
                 {
-                    Scierror(999,_("%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"), fname, 2);
                 }
             }
             else
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
             }
         }
         else
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"), fname, 1);
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
     }
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

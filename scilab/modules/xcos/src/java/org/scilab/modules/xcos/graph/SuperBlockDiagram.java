@@ -33,11 +33,12 @@ import com.mxgraph.util.mxEventObject;
 
 /**
  * @author Antoine ELIAS
- *
+ * @author Clément DAVID
  */
 public final class SuperBlockDiagram extends XcosDiagram implements Serializable, Cloneable {
 
-    private static final long serialVersionUID = -402918614723713301L;
+	private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
+	private static final long serialVersionUID = -402918614723713301L;
     private SuperBlock container;
 
     /**
@@ -81,7 +82,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 		if (graph == null) {
 			block.setParentDiagram(Xcos.findParent(block));
 			graph = block.getParentDiagram();
-			LogFactory.getLog(getClass()).error("Parent diagram was null");
+			LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 		}
 		
 		final String[] parent;
@@ -145,8 +146,11 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 		}
 	}
     
+	/**
+	 * Update the diagram labels
+	 */
     private static final class LabelBlockListener implements mxIEventListener, Serializable {
-    	private static final LabelBlockListener instance = new LabelBlockListener();
+    	private static LabelBlockListener instance;
     	
     	/**
 		 * Default Constructor
@@ -159,6 +163,9 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 		 * @return the instance
 		 */
 		public static LabelBlockListener getInstance() {
+			if (instance == null) {
+				instance = new LabelBlockListener();
+			}
 			return instance;
 		}
 
@@ -183,13 +190,14 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 					@Override
 					public int compare(BasicPort o1, BasicPort o2) {
 						return o1.getOrdering() - o2.getOrdering();
-					}});
+					}
+				});
 				
 				XcosDiagram graph = container.getParentDiagram();
 				if (graph == null) {
 					container.setParentDiagram(Xcos.findParent(container));
 					graph = container.getParentDiagram();
-					LogFactory.getLog(getClass()).error("Parent diagram was null");
+					LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 				}
 				container.getParentDiagram().cellLabelChanged(ports[index - 1], value, false);
 			}
@@ -200,14 +208,14 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      * Install the specific listeners for {@link SuperBlockDiagram}.
      */
     public void installSuperBlockListeners() {
-	addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
-
-	addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
-	
-	addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
-}
+    	removeListener(GenericSuperBlockListener.getInstance());
+    	removeListener(LabelBlockListener.getInstance());
+    	
+		addListener(XcosEvent.CELLS_ADDED, GenericSuperBlockListener.getInstance());
+		addListener(XcosEvent.CELLS_REMOVED, GenericSuperBlockListener.getInstance());
+		addListener(XcosEvent.IO_PORT_VALUE_UPDATED, GenericSuperBlockListener.getInstance());
+		addListener(mxEvent.LABEL_CHANGED, LabelBlockListener.getInstance());
+	}
 
     /**
      * This function set the SuperBlock diagram and all its parents in a 
@@ -230,13 +238,14 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      * It doesn't perform recursively on the parent diagrams. If you want such
      * a behavior use setModified instead.
      * @param modified status
-     * @see setModified
+     * @see #setModified
      */
     public void setModifiedNonRecursively(boolean modified) {
 	super.setModified(modified);
     }
     
     /** {@inheritDoc}} */
+    // CSOFF: SuperClone
     @Override
     public Object clone() throws CloneNotSupportedException {
     	final SuperBlockDiagram clone = new SuperBlockDiagram();    	
@@ -248,4 +257,5 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     	
     	return clone;
     }
+    // CSON: SuperClone
 }

@@ -24,20 +24,18 @@
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-  {NULL, ""}, //xcos
-  {NULL, ""}, //warnBlockByUID
-  {NULL, ""}, //closeXcos
-  {NULL, ""}, //xcosDiagramToHDF5
-  {NULL, ""}, //xcosDiagramOpen
-  {NULL, ""},  //xcosDiagramClose
-  {NULL, ""},  //"xcosPalLoad"
-  {NULL, ""},  //"xcosPalCategoryAdd"
-  {NULL, ""},  //"xcosPalDelete"
-  {NULL, ""},  //"xcosPalMove"
-  {NULL, ""},  //"xcosPalEnable"
-  {NULL, ""},  //"xcosPalDisable"
-  {NULL, ""},  //"xcosPalGenerateIcon"
-  {NULL, ""} //"xcosConfigureXmlFile"
+    {NULL, ""}, //xcos
+    {NULL, ""}, //warnBlockByUID
+    {NULL, ""}, //closeXcos
+    {NULL, ""}, //xcosDiagramToHDF5
+    {NULL, ""},  //"xcosPalLoad"
+    {NULL, ""},  //"xcosPalCategoryAdd"
+    {NULL, ""},  //"xcosPalDelete"
+    {NULL, ""},  //"xcosPalMove"
+    {NULL, ""},  //"xcosPalEnable"
+    {NULL, ""},  //"xcosPalDisable"
+    {NULL, ""},  //"xcosPalGenerateIcon"
+    {NULL, ""} //"xcosConfigureXmlFile"
 };
 
 /*--------------------------------------------------------------------------*/

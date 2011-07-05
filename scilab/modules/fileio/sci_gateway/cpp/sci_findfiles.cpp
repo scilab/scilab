@@ -84,7 +84,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     int iSize               = 0;
     wchar_t** pwstFilesList = NULL;
 
-    pwstFilesList = findfilesW(pwstPath, pwstSpec, &iSize, 0);
+    pwstFilesList = findfilesW(pwstPath, pwstSpec, &iSize, FALSE);
     if(pwstFilesList)
     {
         String* pS = new String(iSize, 1);

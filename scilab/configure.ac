@@ -330,6 +330,13 @@ else
    enable_debug_CXX=no
 fi
 
+if test "$enable_debug_java" = yes; then
+   LOGGING_LEVEL="ALL"
+else
+   LOGGING_LEVEL="INFO"
+fi
+AC_SUBST(LOGGING_LEVEL)
+
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -826,7 +833,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
         case "$host_os" in
-             *Darwin* | *darwin*) 
+             *Darwin* | *darwin*)
                # Mac OS X does not link against the lib but uses -framework
                JAVA_JNI_LIBS="-framework JavaVM"
              ;;
@@ -904,7 +911,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
@@ -932,7 +941,9 @@ the the JNI libraries."])],
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
                    AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
                    [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
@@ -1398,6 +1409,7 @@ AC_LIBXML2()
 #######################
 
 ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1407,6 +1419,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_SUBST(ALL_LINGUAS_DOC)
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
@@ -1841,6 +1854,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/Info.plist
+etc/logging.properties
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties

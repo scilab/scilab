@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Eberval Oliveira Castro <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 00:34+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pt_BR\n"
 
 msgid ""
 "\n"
@@ -80,7 +80,8 @@ msgstr " Iteração %3d : lm = %e  \n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
+msgstr ""
+"%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
@@ -111,13 +112,15 @@ msgstr ""
 "%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparasa.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparsa\n"

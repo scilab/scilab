@@ -10,11 +10,3 @@
 // Load  functions libraries
 // =============================================================================
 load('SCI/modules/sound/macros/lib');
-
-// Add demos
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/sound/demos/sound.dem.sce",%f,%t);
-	add_demo(gettext('Sound file handling'),pathdemos);
-	clear pathdemos;
-end

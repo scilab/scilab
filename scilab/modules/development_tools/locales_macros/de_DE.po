@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 22:58+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -23,24 +23,22 @@ msgstr "Modul %s ist nicht installiert"
 
 #, c-format
 msgid "%s is not an installed module or toolbox"
-msgstr "%s ist kein installiertes Modul und keine installierte Werkzeugleiste"
+msgstr ""
+"%s ist kein installiertes Modul und keine installierte Werkzeugleiste"
 
-#
-# File: macros/test_run.sci, line: 877
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
-msgstr "%s: falsches erstes Eingangsargument: Datei mit .dia Suffix erwartet."
+msgstr ""
+"%s: falsches erstes Eingangsargument: Datei mit .dia Suffix erwartet."
 
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s: Falsche Größe des Eingabe-Arguments."
 
-#
-# File: macros/test_run.sci, line: 873
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 15:31+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -55,8 +55,7 @@ msgstr "%s: 入力引数で不正な数: 少なくとも %d を想定します�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 152
@@ -73,24 +72,18 @@ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します�
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
 
-#
-# File: macros/sp2adj.sci, line: 23
-# File: macros/adj2sp.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#
-# File: macros/adj2sp.sci, line: 57
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の数が間違っています: %s の大きさは %d ですが,  %d  が仕様です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 128
@@ -102,14 +95,11 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定しま"
-"す。\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #
 # File: macros/gmres.sci, line: 66
@@ -175,44 +165,32 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
 
-#
-# File: macros/adj2sp.sci, line: 63
-# File: macros/adj2sp.sci, line: 67
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数  #%d: %s=%d の値が間違っています, 正の値を指定してください.\n"
 
-#
-# File: macros/adj2sp.sci, line: 79
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
+msgstr "%s: 入力引数  #%d: %s=%d の値が間違っています,  %s:%d 形式に一致しません.\n"
 
-#
-# File: macros/adj2sp.sci, line: 83
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
-msgstr ""
+msgstr "%s: 入力引数  #%d: %s=%d の値が間違っています,  %s: %d がお大きさと一致しません.\n"
 
-#
-# File: macros/adj2sp.sci, line: 71
-# File: macros/adj2sp.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
 "is expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の値が間違っています #%d: %s=%s, 浮動小数点数の整数が仕様です.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
 
 #
 # File: macros/pcg.sci, line: 176

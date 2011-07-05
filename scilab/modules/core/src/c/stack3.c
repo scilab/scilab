@@ -849,7 +849,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	if(iValType < 0)
 	{
 		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
 	}
 
 	iGetPolyFromAddress(iAddrBase, _piVarName, _piRows, _piCols, _piPow, _piReal, _piImg);
@@ -882,7 +881,6 @@ void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalEle
 	if(iValType < 0)
 	{
 		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
 	}
 
 	iGetSparseFromAddress(iAddrBase, _piRows, _piCols, _piTotalElem, _piElemByRow, _piColByRow, _piReal, _piImg);
@@ -900,7 +898,6 @@ void GetRhsBooleanSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTo
 	if(iValType < 0)
 	{
 		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
 	}
 
 	iGetBooleanSparseFromAddress(iAddrBase, _piRows, _piCols, _piTotalElem, _piElemByRow, _piColByRow);
@@ -971,7 +968,6 @@ void GetRhsStringVar(int _iVarNum, int* _piRows, int* _piCols, int* _piLen, char
 	if(iValType < 0)
 	{
 		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
 	}
 
 	iGetStringFromAddress(iAddrBase, _piRows, _piCols, _piLen, &iAddrData);
@@ -1576,7 +1572,6 @@ int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pE
 		if(iValType < 0)
 		{
 			iAddrBase		=	iadr(*istk(iAddrBase + 1));
-			iValType		= *istk(iAddrBase);
 		}
 
 		piBase				= istk(iAddrBase);
@@ -1668,7 +1663,6 @@ int* iGetListItemPointerFromItemNumber(int _iVar, int* _piParentList, int _iItem
 		if(iValType < 0)
 		{
 			iAddrBase		=	iadr(*istk(iAddrBase + 1));
-			iValType		= *istk(iAddrBase);
 		}
 
 		pItemAddr	= istk(iAddrBase);
@@ -1765,7 +1759,6 @@ int* iGetListItemList(int _iVar, int* _piParentList, int _iItemPos)
 		if(iValType < 0)
 		{
 			iAddrBase		=	iadr(*istk(iAddrBase + 1));
-			iValType		= *istk(iAddrBase);
 		}
 
 		_piParentList	= istk(iAddrBase);
@@ -1871,7 +1864,6 @@ int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalE
 	iAddElemByRow		= _iAddr + 5;
 	iAddrColByRow		= iAddElemByRow + *_piRows;
 	iAddrRealData		= iAddrColByRow + *_piTotalElem;
-	iAddrImgData		= iAddrColByRow + 2 * (*_piTotalElem);
 
 	for(iIndex = 0 ; iIndex < *_piRows ; iIndex++)
 	{
@@ -2210,7 +2202,6 @@ int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int 
 	iStart = iGetAddressFromItemNumber(_iVar, _iItemPos);
 	iAllocComplexMatrixOfPolyToAddress(iStart, _iComplex, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, _pdblImgData);
 
-	iAddrData = iAddrBase + (9 + _iRows * _iCols);
 	piItemPos[_iItemPos] = piItemPos[_iItemPos - 1] + ((9 + _iRows * _iCols) + !((_iRows * _iCols) % 2)) / 2 + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1);
 	if(_iItemPos == iItemNumber)
 	{

@@ -242,8 +242,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_warnBlockByUID.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_Xcos.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramClose.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramOpen.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalCategoryAdd.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalDelete.cpp" />

@@ -407,6 +407,19 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	}
 	
 	/**
+	 * {@inheritDoc}} 
+	 *
+	 * Clear cell warnings before encoding
+	 */
+	@Override
+	public ScilabType beforeEncode(XcosDiagram from, ScilabType element) {
+		if (from.getAsComponent() != null) {
+			from.getAsComponent().clearCellOverlays();
+		}
+		return super.beforeEncode(from, element);
+	}
+	
+	/**
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance
@@ -514,39 +527,60 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 			public boolean filter(Object current) {
 				if (current instanceof BasicBlock
 						&& !(current instanceof TextBlock)) {
-					final BasicBlock block = (BasicBlock) current;
-					blockList.add(block);
-
-					//
-					// Look inside a Block to see if there is no "AutoLink"
-					// Jgraphx will store this link as block's child
-					//
-					for (int j = 0; j < block.getChildCount(); ++j) {
-						if (block.getChildAt(j) instanceof BasicLink) {
-							final BasicLink link = (BasicLink) block
-									.getChildAt(j);
-
-							// do not add the link if not connected
-							if (link.getSource() != null
-									&& link.getTarget() != null) {
-								linkList.add(link);
-							}
-						}
-					}
+					filterBlocks(blockList, linkList, (BasicBlock) current);
 				} else if (current instanceof BasicLink) {
-					final BasicLink link = (BasicLink) current;
-
-					// Only add connected links
-					final mxICell source = link.getSource();
-					final mxICell target = link.getTarget();
-					if (source != null && target != null
-							&& source.getParent() instanceof BasicBlock
-							&& target.getParent() instanceof BasicBlock) {
-						linkList.add(link);
-					}
+					filterLink(linkList, (BasicLink) current);
 				}
 
 				return false;
+			}
+
+			/**
+			 * Filter blocks
+			 * 
+			 * @param blockList the current block list
+			 * @param linkList the current link list
+			 * @param block the block to filter
+			 */
+			private void filterBlocks(final List<BasicBlock> blockList,
+					final List<BasicLink> linkList, final BasicBlock block) {
+				blockList.add(block);
+
+				//
+				// Look inside a Block to see if there is no "AutoLink"
+				// Jgraphx will store this link as block's child
+				//
+				for (int j = 0; j < block.getChildCount(); ++j) {
+					if (block.getChildAt(j) instanceof BasicLink) {
+						final BasicLink link = (BasicLink) block
+								.getChildAt(j);
+
+						// do not add the link if not connected
+						if (link.getSource() != null
+								&& link.getTarget() != null) {
+							linkList.add(link);
+						}
+					}
+				}
+				
+			}
+			
+			/**
+			 * Filter links
+			 * 
+			 * @param linkList the current link list
+			 * @param link the link to filter
+			 */
+			private void filterLink(final List<BasicLink> linkList,
+					final BasicLink link) {
+				// Only add connected links
+				final mxICell source = link.getSource();
+				final mxICell target = link.getTarget();
+				if (source != null && target != null
+						&& source.getParent() instanceof BasicBlock
+						&& target.getParent() instanceof BasicBlock) {
+					linkList.add(link);
+				}
 			}
 		};
 		mxGraphModel.filterDescendants(from.getModel(), filter);
@@ -554,7 +588,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		/*
 		 * Use a predictable block and links order when debug is enable
 		 */
-		if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()){
+		if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()) {
 			Collections.sort(blockList);
 			Collections.sort(linkList, new Comparator<BasicLink>() {
 				@Override

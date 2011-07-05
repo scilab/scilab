@@ -8,297 +8,176 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-29 18:39+0000\n"
-"Last-Translator: simone.sandri <lexluxsox@hotmail.it>\n"
+"PO-Revision-Date: 2011-05-27 09:59+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
-# File: src/c/fromws_c.c, line: 539
 msgid "Allocation problem in spline.\n"
-msgstr ""
+msgstr "Problema di allocazione in spline.\n"
 
-#
-# File: src/c/scoWindowScope.c, line: 287
-# File: src/c/scoWindowScope.c, line: 389
-# File: src/c/scoWindowScope.c, line: 422
-# File: src/c/scoWindowScope.c, line: 441
-# File: src/c/scoWindowScope.c, line: 500
-# File: src/c/scoWindowScope.c, line: 516
-# File: src/c/scoWindowScope.c, line: 548
-# File: src/c/scoWindowScope.c, line: 579
 #, c-format
 msgid "Cannot use %s with this type of object."
-msgstr ""
+msgstr "Non è possibile usare %s con questo tipo di oggetto."
 
-#
-# File: src/c/time_delay.c, line: 87
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
-#
-# File: src/c/variable_delay.c, line: 65
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 
-#
-# File: src/c/writeau.c, line: 110
 msgid "Could not open /dev/audio!\n"
-msgstr ""
+msgstr "Non è possibile aprire /dev/audio!\n"
 
-#
-# File: src/c/readau.c, line: 159
-# File: src/c/writec.c, line: 90
-# File: src/c/readc.c, line: 149
 msgid "Could not open the file!\n"
-msgstr ""
+msgstr "Non è possibile aprire il file!\n"
 
-#
-# File: src/c/fromws_c.c, line: 219
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
 " Variable size=[%d,%d] \n"
 "Block output size=[%d,%d].\n"
 msgstr ""
+"Le dimensioni dei dati non sono consistenti:\n"
+" dimensione della variabile=[%d,%d] \n"
+"Dimensione del blocco di uscita=[%d,%d].\n"
 
-#
-# File: src/c/tows_c.c, line: 692
 #, c-format
 msgid "Error when opening file '%s'.\n"
-msgstr ""
+msgstr "Errore nell'aprire il file \"%s\".\n"
 
-#
-# File: src/c/scoWindowScope.c, line: 172
 msgid "Incorrect value for dimension argument."
-msgstr ""
+msgstr "Il valore dell'argomento dimensione non è corretto."
 
-#
-# File: src/c/fromws_c.c, line: 1486
-# File: src/c/fromws_c.c, line: 1498
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
+"Il tipo della variabile non è corretto: errore nella codifica della "
+"ipermatrice di Scilab.\n"
 
-#
-# File: src/c/fromws_c.c, line: 183
-# File: src/c/fromws_c.c, line: 191
-# File: src/c/fromws_c.c, line: 209
 msgid "Invalid variable type.\n"
-msgstr ""
+msgstr "Variabile di tipo non valido.\n"
 
-#
-# File: src/c/fromws_c.c, line: 233
 msgid "Output should be of Real type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo reale.\n"
 
-#
-# File: src/c/fromws_c.c, line: 243
 msgid "Output should be of complex type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo complesso.\n"
 
-#
-# File: src/c/fromws_c.c, line: 269
 msgid "Output should be of int16 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo int16.\n"
 
-#
-# File: src/c/fromws_c.c, line: 279
 msgid "Output should be of int32 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo int32.\n"
 
-#
-# File: src/c/fromws_c.c, line: 259
 msgid "Output should be of int8 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo int8.\n"
 
-#
-# File: src/c/fromws_c.c, line: 299
 msgid "Output should be of uint16 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo uint16.\n"
 
-#
-# File: src/c/fromws_c.c, line: 309
 msgid "Output should be of uint32 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo uint32.\n"
 
-#
-# File: src/c/fromws_c.c, line: 289
 msgid "Output should be of uint8 type.\n"
-msgstr ""
+msgstr "Il risultato dovrebbe essere di tipo uint8.\n"
 
-#
-# File: src/c/readau.c, line: 177
-# File: src/c/readc.c, line: 164
 msgid "Read error\n"
-msgstr ""
+msgstr "Errore di lettura\n"
 
-#
-# File: src/c/readau.c, line: 131
-# File: src/c/readau.c, line: 195
-# File: src/c/readc.c, line: 102
-# File: src/c/readc.c, line: 182
 msgid "Read error!\n"
-msgstr ""
+msgstr "Errore di lettura!\n"
 
-#
-# File: src/c/scoMisc.c, line: 52
 msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
 msgstr ""
+"ERRORE DI SCOPE: Errore durante l'uso di malloc - Controllare la memoria\n"
 
-#
-# File: src/c/scoMemoryScope.c, line: 280
 msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr ""
+msgstr "ERRORE DI SCOPE: Errore in scoReallocLongDraw()"
 
-#
-# File: src/c/scoMisc.c, line: 55
 msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr ""
+msgstr "ERRORE DI SCOPE: Codice di errore sconosciuto!\n"
 
-#
-# File: src/c/scoMisc.c, line: 49
 msgid ""
 "SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
 "reason !\n"
 " Maybe you have destroyed the windows or any parent of curves\n"
 msgstr ""
+"ERRORE DI SCOPE: sciDrawObj non può essere eseguita, pShortDraw è NULL per "
+"una ragione sconosciuta!\n"
+" È possibile che siano state distrutte le finestre o alcuni genitori delle "
+"curve\n"
 
-#
-# File: src/c/tows_c.c, line: 1532
-# File: src/c/tows_c.c, line: 1541
 msgid "Size of buffer or input size have changed!\n"
-msgstr ""
+msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
 
-#
-# File: src/c/fromws_c.c, line: 172
 #, c-format
 msgid "The '%s' variable does not exist.\n"
-msgstr ""
+msgstr "La variabile \"%s\" non esiste.\n"
 
-#
-# File: src/c/fromws_c.c, line: 458
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
+"Il vettore Time ha una dimensione sbagliata, era attesa [%d, %d] e ottenuta "
+"[%d, %d].\n"
 
-#
-# File: src/c/fromws_c.c, line: 469
 msgid "The Time vector type is not double.\n"
-msgstr ""
+msgstr "Il tipo del vettore Time non è double.\n"
 
-#
-# File: src/c/fromws_c.c, line: 499
 msgid "The time vector should be an increasing vector.\n"
-msgstr ""
+msgstr "Il vettore Time dovrebbe essere un vettore crescente.\n"
 
-#
-# File: src/c/scoWindowScope.c, line: 196
 msgid "This scope has the same window id than another."
-msgstr ""
+msgstr "Questo scope ha lo stesso id di finestra di un altro."
 
-#
-# File: src/c/edgetrig.c, line: 52
 msgid "Trigger block must have discrete time input."
-msgstr ""
+msgstr "Il blocco di attivazione deve avere un ingresso di tempo discreto."
 
-#
-# File: src/c/tows_c.c, line: 1323
-# File: src/c/tows_c.c, line: 1333
-# File: src/c/tows_c.c, line: 1357
-# File: src/c/tows_c.c, line: 1454
-# File: src/c/tows_c.c, line: 1468
-# File: src/c/tows_c.c, line: 1478
-# File: src/c/tows_c.c, line: 1488
-# File: src/c/tows_c.c, line: 1500
 #, c-format
 msgid "Write error in file '%s'.\n"
-msgstr ""
+msgstr "Errore di scrittura nel file \"%s\".\n"
 
-#
-# File: src/c/variable_delay.c, line: 64
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
-msgstr ""
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f\n"
 
-#
-# File: src/c/time_delay.c, line: 86
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
-msgstr ""
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
 
-#
-# File: src/c/summation_ui32e.c, line: 61
-# File: src/c/summation_ui32e.c, line: 85
-# File: src/c/gainblk_i16e.c, line: 51
-# File: src/c/gainblk_i16e.c, line: 68
-# File: src/c/gainblk_ui16e.c, line: 53
-# File: src/c/gainblk_ui16e.c, line: 70
-# File: src/c/matmul_i32e.c, line: 63
-# File: src/c/matmul_ui8e.c, line: 61
-# File: src/c/matbyscal_e.c, line: 50
-# File: src/c/matbyscal_e.c, line: 64
-# File: src/c/matbyscal_e.c, line: 78
-# File: src/c/matbyscal_e.c, line: 92
-# File: src/c/matbyscal_e.c, line: 106
-# File: src/c/matbyscal_e.c, line: 120
-# File: src/c/gainblk_i32e.c, line: 53
-# File: src/c/gainblk_i32e.c, line: 70
-# File: src/c/summation_i16e.c, line: 55
-# File: src/c/summation_i16e.c, line: 80
-# File: src/c/matmul_ui16e.c, line: 58
-# File: src/c/gainblk_i8e.c, line: 53
-# File: src/c/gainblk_i8e.c, line: 70
-# File: src/c/matmul2_e.c, line: 50
-# File: src/c/matmul2_e.c, line: 64
-# File: src/c/matmul2_e.c, line: 78
-# File: src/c/matmul2_e.c, line: 92
-# File: src/c/matmul2_e.c, line: 106
-# File: src/c/matmul2_e.c, line: 120
-# File: src/c/summation_ui16e.c, line: 61
-# File: src/c/summation_ui16e.c, line: 85
-# File: src/c/summation_i32e.c, line: 61
-# File: src/c/summation_i32e.c, line: 85
-# File: src/c/gainblk_ui32e.c, line: 53
-# File: src/c/gainblk_ui32e.c, line: 70
-# File: src/c/convert.c, line: 769
-# File: src/c/convert.c, line: 784
-# File: src/c/convert.c, line: 799
-# File: src/c/convert.c, line: 814
-# File: src/c/convert.c, line: 829
-# File: src/c/convert.c, line: 844
-# File: src/c/convert.c, line: 859
-# File: src/c/convert.c, line: 874
-# File: src/c/convert.c, line: 888
-# File: src/c/convert.c, line: 903
-# File: src/c/convert.c, line: 918
-# File: src/c/convert.c, line: 933
-# File: src/c/convert.c, line: 947
-# File: src/c/convert.c, line: 960
-# File: src/c/convert.c, line: 975
-# File: src/c/convert.c, line: 989
-# File: src/c/convert.c, line: 1002
-# File: src/c/convert.c, line: 1016
-# File: src/c/convert.c, line: 1031
-# File: src/c/convert.c, line: 1046
-# File: src/c/convert.c, line: 1061
-# File: src/c/convert.c, line: 1076
-# File: src/c/convert.c, line: 1091
-# File: src/c/convert.c, line: 1106
-# File: src/c/convert.c, line: 1121
-# File: src/c/convert.c, line: 1136
-# File: src/c/convert.c, line: 1151
-# File: src/c/matmul_i16e.c, line: 62
-# File: src/c/summation_ui8e.c, line: 61
-# File: src/c/summation_ui8e.c, line: 85
-# File: src/c/summation_i8e.c, line: 60
-# File: src/c/summation_i8e.c, line: 85
-# File: src/c/matmul_ui32e.c, line: 58
-# File: src/c/matmul_i8e.c, line: 58
-# File: src/c/gainblk_ui8e.c, line: 53
-# File: src/c/gainblk_ui8e.c, line: 70
 msgid "overflow error"
-msgstr ""
+msgstr "errore di overflow"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#~ msgid "&Tools"
+#~ msgstr "&Strumenti"
+
+#~ msgid "&Edit"
+#~ msgstr "&Modifica"
+
+#~ msgid "&File"
+#~ msgstr "&File"
+
+#~ msgid "Buffer size"
+#~ msgstr "Dimensione del buffer"
+
+#~ msgid "Buffer Size"
+#~ msgstr "DImensione del buffer"
+
+#~ msgid "Boundary condition on a"
+#~ msgstr "Condizione al contorno su a"
+
+#~ msgid "Boundary condition on b"
+#~ msgstr "Condizione al contorno su b"
+
+#~ msgid "Cancel"
+#~ msgstr "Annulla"
+
+#~ msgid "Combinatorial logic"
+#~ msgstr "Logica combinatoria"

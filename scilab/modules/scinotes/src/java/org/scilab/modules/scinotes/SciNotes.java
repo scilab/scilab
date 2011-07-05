@@ -146,8 +146,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private List<Integer> tabList = new ArrayList<Integer>();
     private List<Integer> closedTabList = new ArrayList<Integer>();
 
-    private String fileFullPath = "";
-
     /**
      * Create SciNotes instance inside parent Window
      * @param parentWindow the parent Window
@@ -706,18 +704,17 @@ public class SciNotes extends SwingScilabTab implements Tab {
         styledDocument.setContentModified(false);
 
         // Get current file path for Execute file into Scilab
-        fileFullPath = newSavedFile.getAbsolutePath();
-        getTextPane().setLastModified(newSavedFile.lastModified());
+        textPaneAt.setLastModified(newSavedFile.lastModified());
 
         if (textPaneAt.getName() == null) {
-            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
+            String name = getTabPane().getScilabTitleAt(indexTab);
             String index = name.substring(name.length() - 1, name.length());
             tabList.remove(Integer.valueOf(index));
             closedTabList.add(Integer.valueOf(index));
         }
 
         textPaneAt.setName(fileToSave);
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
+        getTabPane().setTitleAt(indexTab , newSavedFile.getName());
 
         setTitle(textPaneAt.getTitle());
 
@@ -751,7 +748,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
 
         // Get current file path for Execute file into Scilab
-        fileFullPath = newSavedFile.getAbsolutePath();
         getTextPane().setLastModified(newSavedFile.lastModified());
 
         textPaneAt.setName(fileToSave);
@@ -946,9 +942,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         getTextPane().setLastModified(f.lastModified());
         getTextPane().setReadOnly(false);
         getInfoBar().setText(getTextPane().getInfoBarText());
-
-        // Get current file path for Execute file into Scilab
-        fileFullPath = f.getAbsolutePath();
 
         return true;
     }
@@ -1261,9 +1254,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 createNewFile(f);
             }
         }
-
-        // Get current file path for Execute file into Scilab
-        fileFullPath = f.getAbsolutePath();
     }
 
     /**
@@ -1625,14 +1615,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * Return the Full path of the file.
-     * @return the full path
-     */
-    public String getFileFullPath() {
-        return fileFullPath;
-    }
-
-    /**
      * Load a file and add it at the end
      * @param f the file to load
      */
@@ -1646,9 +1628,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param index the index where to put the file
      */
     public void loadFile(File f, int index) {
-        // Get current file path for Execute file into Scilab
-        fileFullPath = f.getAbsolutePath();
-
         ScilabDocument styleDocument = null;
         ScilabEditorPane theTextPane;
 
@@ -1714,6 +1693,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
             undo.discardAllEdits();
+
+            if (getTabPane().getTabCount() == 2) {
+                ScilabEditorPane pane = getTextPane(0);
+                if (pane.getName() == null && !((ScilabDocument) pane.getDocument()).isContentModified()) {
+                    closeTabAt(0);
+                }
+            }
         }
     }
 
@@ -1774,9 +1760,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument.setContentModified(false);
             styleDocument.enableUndoManager();
             theTextPane.setLastModified(f.lastModified());
-
-            // Get current file path for Execute file into Scilab
-            fileFullPath = f.getAbsolutePath();
         }
 
         getInfoBar().setText("");

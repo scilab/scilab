@@ -1,0 +1,166 @@
+#!/bin/sh
+#
+# Hook used to indent all xcos files before commiting
+#
+
+
+#
+# Pre-conditions
+#
+if test -d ".git/rebase-merge"          || \
+   test -d ".git/rebase-apply"          || \
+   test -f ".git/MERGE_HEAD"            || \
+   test -f ".git/CHERRY_PICK_HEAD"      || \
+   test -f ".git/BISECT_LOG"            
+then
+	exit 0
+fi
+
+#
+# Configuration check
+#
+XMLLINT="$(git config --get hooks.xmllint)"
+
+if test ! -x "$XMLLINT"
+then
+	echo "Unable to find xmllint executable on the configuration."
+	echo
+	echo "Please configure it with :"
+	echo "  git config --global hooks.xmllint C:/path/to/xmllint"
+	echo
+fi
+
+if test -z "$(git config --get-all xmllint.ignored)"
+then
+	echo "Unable to find xmllint ignored list on the configuration, ignored"
+	echo
+	echo "You can configure it with :"
+	echo "  git config --add xmllint.ignored 'scilab/Visual-Studio-settings/*.xml' "
+	echo "  git config --add xmllint.ignored 'scilab/checkstyle/*.xml' "
+	echo
+	
+	XMLLINT_IGNORED=""
+else
+	XMLLINT_IGNORED="$(find $(git config --get-all xmllint.ignored))"
+fi
+
+INDENT="$(git config --get hooks.indent)"
+if test ! -x "$INDENT"
+then
+	echo "Unable to find indent executable on the configuration."
+	echo
+	echo "Please configure it with :"
+	echo "  git config --global hooks.indent C:/path/to/indent"
+	echo
+fi
+
+if test -z "$(git config --get-all indent.ignored)"
+then
+	echo "Unable to find indent ignored list on the configuration, ignored"
+	echo
+	echo "You can configure it with :"
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.hxx' "
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.cpp' "
+	echo
+	
+	INDENT_IGNORED=""
+else
+	INDENT_IGNORED="$(find $(git config --get-all indent.ignored))"
+fi
+
+# indent / format file by type
+#
+indent() {
+	# getting against as the current commit
+	if git rev-parse --verify HEAD >/dev/null 2>&1
+	then
+		local against=HEAD
+	else
+		# Initial commit: diff against an empty tree object
+		local against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+	fi
+
+	# loop on modified files
+	git diff --cached --name-only $against |while read file;
+	do
+		local ext=$(expr "$file" : ".*\(\..*\)")
+		case $ext in
+		.xcos)
+			__indent_Xml;
+		;;
+		.xml)
+			__indent_Xml;
+		;;
+		.h)
+			__indent_C;
+		;;
+		.c)
+			__indent_C;
+		;;
+		.hxx)
+			__indent_C;
+		;;
+		.cpp)
+			__indent_C;
+		;;
+		esac
+	done
+}
+# Indent the file with xmllint if this is an xcos file
+__indent_Xml() {
+
+	if test ! -x "$XMLLINT"
+	then
+		return;
+	fi
+	if test ! -f $file
+	then
+		return;
+	fi
+
+	# ignored globs
+	if test -n "$XMLLINT_IGNORED"
+	then
+		echo $XMLLINT_IGNORED |grep -q $file
+		if test $? -eq 0
+		then
+			echo "Formatting" $file	": ignored"
+			return
+		fi
+	fi
+
+	echo "Formatting" $file
+	"$XMLLINT" --format -o "$file" "$file"
+	git add "$file"
+}
+# Indent the file with `indent' if this is a C/CPP file
+__indent_C() {
+
+	if test ! -x "$INDENT"
+	then
+		return;
+	fi
+	if test ! -f $file
+	then
+		return;
+	fi
+
+	# ignored globs
+	if test -n "$INDENT_IGNORED"
+	then
+		echo $INDENT_IGNORED |grep -q "$file"
+		if test $? -eq 0
+		then
+			echo "Indenting" $file	": ignored"
+			return
+		fi
+	fi
+        
+
+	echo "Indenting" $file
+	"$INDENT" -npro --braces-after-if-line -i4 -ts4 -sob -ss -ncs -sc --no-space-after-parentheses -cp1 --no-tabs -bap -bad -npcs --dont-break-function-decl-args --dont-break-procedure-type -bli0 -l150 -il0 "$file"
+	git add "$file"
+}
+
+indent
+

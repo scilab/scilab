@@ -114,7 +114,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
 
     for(int i = 0 ; i < pS->getSize() ; i++)
     {
-        pStr[i] = pathconvertW(pS->get(i), iPathTrail, iPathExpand, PType);
+        pStr[i] = pathconvertW(pS->get(i), (BOOL) iPathTrail, (BOOL) iPathExpand, PType);
     }
 
     out.push_back(pOut);

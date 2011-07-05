@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    BOOL bFind = isLink(pSLibName->get(0), &iLib);
+    bool bFind = isLink(pSLibName->get(0), &iLib);
 
     out.push_back(new types::Bool(bFind));
     if(_iRetCount == 2)

@@ -217,10 +217,11 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if (*err > 0) goto ErrL;
 
        /*Formuled data*/
-       taille=Len-2-2-2-8-2-4;
-       /*char formuladata[taille];
-	 C2F(mgetnc) (fd, (void*) formuladata, &taille, typ_char, err);
-	 if (*err > 0) goto ErrL;*/
+       
+       /*taille=Len-2-2-2-8-2-4;
+         char formuladata[taille];
+         C2F(mgetnc) (fd, (void*) formuladata, &taille, typ_char, err);
+         if (*err > 0) goto ErrL;*/
 
        break;
      }

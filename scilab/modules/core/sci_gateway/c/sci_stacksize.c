@@ -204,7 +204,7 @@ static int sci_stacksizeMin(char *fname)
 static int setStacksizeMin(char *fname)
 {
     unsigned long memstackused = getUsedStacksize();
-    unsigned long newminstack = getUsedStacksize();
+    unsigned long newminstack;
 
     if (memstackused < MIN_STACKSIZE)
     {

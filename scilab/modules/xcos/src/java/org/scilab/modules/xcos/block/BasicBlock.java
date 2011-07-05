@@ -106,76 +106,82 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
+/**
+ * A block on the diagram
+ */
+// CSOFF: ClassDataAbstractionCoupling
+// CSOFF: ClassFanOutComplexity
 public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
 	/**
-	 * Property name of {@link #interfaceFunctionName}
+	 * Property name of interfaceFunctionName
 	 */
 	public static final String INTERFACE_FUNCTION_NAME = "interfaceFunctionName";
 	/**
-	 * Property name of {@link #simulationFunctionName}
+	 * Property name of simulationFunctionName
 	 */
 	public static final String SIMULATION_FUNCTION_NAME = "simulationFunctionName";
 	/**
-	 * Property name of {@link #simulationFunctionType}
+	 * Property name of simulationFunctionType
 	 */
 	public static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
 	/**
-	 * Property name of {@link #realParameters}
+	 * Property name of realParameters
 	 */
 	public static final String REAL_PARAMETERS = "realParameters";
 	/**
-	 * Property name of {@link #integerParameters}
+	 * Property name of integerParameters
 	 */
 	public static final String INTEGER_PARAMETERS = "integerParameters";
 	/**
-	 * Property name of {@link #objectsParameters}
+	 * Property name of objectsParameters
 	 */
 	public static final String OBJECTS_PARAMETERS = "objectsParameters";
 	/**
-	 * Property name of {@link #dependsOnU}
+	 * Property name of dependsOnU
 	 */
 	public static final String DEPENDS_ON_U = "dependsOnU";
 	/**
-	 * Property name of {@link #dependsOnT}
+	 * Property name of dependsOnT
 	 */
 	public static final String DEPENDS_ON_T = "dependsOnT";
 	/**
-	 * Property name of {@link #blockType}
+	 * Property name of blockType
 	 */
 	public static final String BLOCK_TYPE = "blockType";
 	/**
-	 * Property name of {@link #ordering}
+	 * Property name of ordering
 	 */
 	public static final String ORDERING = "ordering";
 	/**
-	 * Property name of {@link #exprs}
+	 * Property name of exprs
 	 */
 	public static final String EXPRS = "exprs";
 	/**
-	 * Property name of {@link #nbZerosCrossing}
+	 * Property name of nbZerosCrossing
 	 */
 	public static final String NB_ZEROS_CROSSING = "nbZerosCrossing";
 	/**
-	 * Property name of {@link #nmode}
+	 * Property name of nmode
 	 */
 	public static final String NMODE = "nmode";
 	/**
-	 * Property name of {@link #state}
+	 * Property name of state
 	 */
 	public static final String STATE = "state";
 	/**
-	 * Property name of {@link #dState}
+	 * Property name of dState
 	 */
 	public static final String D_STATE = "dState";
 	/**
-	 * Property name of {@link #oDState}
+	 * Property name of oDState
 	 */
 	public static final String O_D_STATE = "oDState";
 	/**
-	 * Property name of {@link #equations}
+	 * Property name of equations
 	 */
 	public static final String EQUATIONS = "equations";
 	
+	private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
 	private static final double DEFAULT_POSITION_X = 10.0;
 	private static final double DEFAULT_POSITION_Y = 10.0;
 	private static final double DEFAULT_WIDTH = 40.0;
@@ -256,8 +262,32 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * function type descriptors.
 	 */
 	public static enum SimulationFunctionType {
-		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), DEBUG(99), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
+		/** event select; reduced at compilation */
+		ESELECT(-2.0),
+		/** if then else; reduced at compilation */
+		IFTHENELSE(-1.0),
+		/** first common block */
+		DEFAULT(0.0),
+		/** first native block */
+		TYPE_1(1.0),
+		/** second native block */
+		TYPE_2(2.0),
+		/** third native block */
+		TYPE_3(3.0),
+		/** forth native block */
+		C_OR_FORTRAN(4.0),
+		/** Scilab blocks */
+		SCILAB(5.0),
+		/** Debug blocks */
+		DEBUG(99),
+		/** Modelica {@link #C_OR_FORTRAN} blocks */
+		MODELICA(30004.0),
+		/** Magic types */
+		UNKNOWN(5.0),
+		/** Implicit {@link #TYPE_1} blocks */
+		OLDBLOCKS(10001.0),
+		/** Implicit {@link #C_OR_FORTRAN} blocks */
+		IMPLICIT_C_OR_FORTRAN(10004.0);
 
 		private double value;
 
@@ -687,13 +717,17 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     
     /**
      * Append the data recursively to the stack
-     * @param stack the current stack
+     * @param currentStack the current stack
      * @param data the data to append
      * @return the stack
      */
-    private List<String[]> getString(List<String[]> stack, ScilabType data)  {
-    	if (stack == null) {
+    private List<String[]> getString(List<String[]> currentStack, ScilabType data)  {
+    	final List<String[]> stack;
+    	
+    	if (currentStack == null) {
     		stack = new LinkedList<String[]>();
+    	} else {
+    		stack = currentStack;
     	}
     		
     	if (data instanceof List) {
@@ -949,7 +983,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			if (graph == null) {
 				setParentDiagram(Xcos.findParent(block));
 				graph = block.getParentDiagram();
-				LogFactory.getLog(getClass()).error("Parent diagram was null");
+				LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 			}
 			
 			graph.fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
@@ -996,7 +1030,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (graph == null) {
 			setParentDiagram(Xcos.findParent(this));
 			graph = getParentDiagram();
-			LogFactory.getLog(getClass()).error("Parent diagram was null");
+			LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 		}
 		
 		/*
@@ -1108,12 +1142,16 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	if (getParentDiagram() == null) {
 		setParentDiagram(Xcos.findParent(this));
 		graph = getParentDiagram();
-		LogFactory.getLog(getClass()).error("Parent diagram was null");
+		LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 	} else {
 		graph = getParentDiagram();
 	}
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;
+	}
+	
+	if (context == null) {
+		throw new IllegalArgumentException();
 	}
 	
 	//prevent to open twice
@@ -1291,6 +1329,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param graph parent graph
      * @return context menu
      */
+    // CSOFF: JavaNCSS
     public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 
@@ -1393,11 +1432,13 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	
 	return menu;
     }
+    // CSON: JavaNCSS
 
     /**
      * @param graph parent graph
      * @return context menu
      */
+    // CSOFF: JavaNCSS
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
 		Map<Class< ? extends DefaultAction>, Menu> menuList = new HashMap<Class< ? extends DefaultAction>, Menu>();
@@ -1480,6 +1521,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		
 		return menu;
     }
+    // CSON: JavaNCSS
     
     /**
      * @param flip value
@@ -1488,7 +1530,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isFlipped = flip;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] { this },
+			mxUtils.setCellStyles(model, new Object[] {this},
 					ScilabGraphConstants.STYLE_FLIP, Boolean.toString(flip));
 		}
 	}
@@ -1516,7 +1558,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isMirrored = mirror;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] { this },
+			mxUtils.setCellStyles(model, new Object[] {this},
 					ScilabGraphConstants.STYLE_MIRROR, Boolean.toString(mirror));
 		}
 	}
@@ -1678,7 +1720,6 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param child the child to insert
 	 * @return the previous child
 	 * @see com.mxgraph.model.mxCell#insert(com.mxgraph.model.mxICell)
-	 * @see http://www.jgraphsupport.co.uk/bugzilla/show_bug.cgi?id=39
 	 * @deprecated Will be left after the switch to jgraphx >= 1.4.0.4
 	 */
 	@Deprecated
@@ -1693,3 +1734,5 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		return insert(child, index);
 	}
 }
+// CSON: ClassDataAbstractionCoupling
+// CSON: ClassFanOutComplexity

@@ -1,28 +1,34 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("graphics.dem.gateway.sce");
 
-subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
-               "Basic functions"             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
-               "Animation"                   ,"anim/anim.dem.gateway.sce"                           ; ..
-               "Finite Elements"             ,"fec/fec.dem.gateway.sce"                             ; ..
-               "Bezier curves and surfaces"  ,"bezier/bezier.dem.gateway.sce"                       ; ..
-               "More surfaces"               ,"surface/surfaces.dem.gateway.sce"                    ; ..
-               "Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
-               "bar histogram"               ,"bar/bar.dem.sce"; ..
-               "LaTeX/MathML"                ,"textrendering/textrendering.dem.gateway.sce"                                     ];
+function subdemolist = demo_gateway()
 
+  demopath = get_absolute_file_path("graphics.dem.gateway.sce");
+  add_demo(gettext("Graphics"), demopath+"graphics.dem.gateway.sce");
 
+  subdemolist = [_("2D and 3D plots")             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
+                 _("Basic functions")             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
+                 _("Animation")                   ,"anim/anim.dem.gateway.sce"                           ; ..
+                 _("Finite Elements")             ,"fec/fec.dem.gateway.sce"                             ; ..
+                 _("Bezier curves and surfaces")  ,"bezier/bezier.dem.gateway.sce"                       ; ..
+                 _("More surfaces")               ,"surface/surfaces.dem.gateway.sce"                    ; ..
+                 _("Complex elementary functions"),"cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
+                 _("bar histogram")               ,"bar/bar.dem.sce"; ..
+                 _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"                                     ];
 
-if ~ usecanvas() then
+  if ~ usecanvas() then
     subdemolist = [ subdemolist ;
-                "Misc"                        ,"misc/misc.dem.sce"                                  ; ..
-                "Colormap"                    ,"colormap/colormap.dem.sce"                        ];
-end
+                 _("Misc")                        ,"misc/misc.dem.sce"; ..
+                 _("Colormap")                    ,"colormap/colormap.dem.sce"];
+  end
 
-subdemolist(:,2) = demopath + subdemolist(:,2);
-clear demopath;
+  subdemolist(:,2) = demopath + subdemolist(:,2);
+endfunction
+
+subdemolist = demo_gateway();
+clear demo_gateway;

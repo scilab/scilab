@@ -42,6 +42,10 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     char *startup = (char*)MALLOC(sizeof(char)*(PATH_MAX+1));
     Set_no_startup_flag(no_startup_flag_l);
 
+    /* Change the buffering mode of standard streams stdout/stderr */
+    setvbuf(stdout, (char *)NULL, _IONBF, 0);
+    setvbuf(stderr, (char *)NULL, _IONBF, 0);
+
     /* create temp directory */
     defineTMPDIR();
 

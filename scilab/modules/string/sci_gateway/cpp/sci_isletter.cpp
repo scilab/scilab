@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
     if(dimsArray[1] > 0)
     {
         pOutBool  = new types::Bool(dims, dimsArray);
-        pOutBool->set(values);
+        pOutBool->set((int *) values);
         out.push_back(pOutBool);
     }
     else

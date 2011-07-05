@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 01:39+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -25,8 +25,6 @@ msgstr "%s não é um módulo instalado"
 msgid "%s is not an installed module or toolbox"
 msgstr "%s não é um módulo ou uma caixa de ferramentas instalado"
 
-#
-# File: macros/test_run.sci, line: 877
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
 msgstr ""
@@ -41,8 +39,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument."
 msgstr "%s: Tamanho incorreto para o argumento de entrada."
 
-#
-# File: macros/test_run.sci, line: 873
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""

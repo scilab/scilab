@@ -83,6 +83,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
     private static final int GAP = 5;
     private static final String FILTERNEWLINES = "filterNewlines";
     private static final String ESCAPE = "ESCAPE";
+    private static final String ENABLED = "enabled";
     private static final Color ERRORCOLOR = Color.RED;
     private static Color NORMALCOLOR;
 
@@ -457,8 +458,14 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         buttonStop.addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     if (mainFrame.isVisible() && e.getPropertyName().equals(SearchFile.SEARCHDONE)) {
-                        buttonFind.setEnabled((Boolean) e.getNewValue());
-                        buttonStop.setEnabled(!((Boolean) e.getNewValue()));
+                        boolean newValue = (Boolean) e.getNewValue();
+                        buttonFind.setEnabled(newValue);
+                        buttonStop.setEnabled(!newValue);
+                    } else if (e.getPropertyName().equals(ENABLED)) {
+                        boolean newValue = (Boolean) e.getNewValue();
+                        comboBaseDir.setEnabled(!newValue);
+                        comboFilePattern.setEnabled(!newValue);
+                        chooseBaseDirButton.setEnabled(!newValue);
                     }
                 }
             });

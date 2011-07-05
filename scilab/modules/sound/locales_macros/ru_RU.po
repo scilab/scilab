@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-05-31 22:56+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -32,7 +32,8 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s: Произошла ошибка: формат сжатия данных %s не поддерживается.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -103,8 +104,6 @@ msgstr ".wav файл не содержит идентификатора RIFF."
 msgid ".wav file does not contain the wave identifier."
 msgstr ".wav файл не содержит идентификатора wave."
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
 msgstr ""
 
@@ -126,8 +125,6 @@ msgstr "Ошибка чтения wav файла."
 msgid "Error while writing sound file."
 msgstr "Ошибка записи звукового файла."
 
-#
-# File: demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
@@ -143,7 +140,8 @@ msgstr "Неверные границы сэмплов (нужно указыв�
 msgid "Invalid wav format."
 msgstr "Неверный формат wav."
 
-msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr ""
 "Mu-law может быть использован только с 8-битными данными. Используйте метод "
 "«linear» вместо него."
@@ -152,7 +150,8 @@ msgid "Requires 2-D values only."
 msgstr "Требуются двумерные значения."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr ""
+"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Sample limits out of range."
 msgstr "Границы сэмплов вне допустимых пределов."
@@ -166,7 +165,5 @@ msgstr "Неизвестный формат данных."
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "только 8/16/24/32 бит для кодирования."
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "see ''mapsound'' function"
 msgstr ""

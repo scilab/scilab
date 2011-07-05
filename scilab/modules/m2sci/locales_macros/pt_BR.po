@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:18+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
@@ -239,7 +239,8 @@ msgstr ""
 "ajustado para []."
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Pelo menos um operando de %s é uma matriz vazia, o equivalente Scilab é []."
 
@@ -545,7 +546,8 @@ msgstr ""
 "mtlb_qr() é utilizado."
 
 msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
-msgstr "sort() e gsort() do Scilab não trabalham com arrays multidimensionais."
+msgstr ""
+"sort() e gsort() do Scilab não trabalham com arrays multidimensionais."
 
 msgid "See msprintf for solutions."
 msgstr "Ver msprintf para soluções."
@@ -616,7 +618,8 @@ msgid "Unknown property %s."
 msgstr "Propriedade desconhecida %s."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
-msgstr "Tipo desconhecido para o parâmetro de entrada: considere fclose(fid)."
+msgstr ""
+"Tipo desconhecido para o parâmetro de entrada: considere fclose(fid)."
 
 #, c-format
 msgid "Variable %s supposed to be the Imaginary unit."
@@ -635,8 +638,8 @@ msgstr ""
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
 msgstr ""
-"Verifique se as funções de sobrecarga foram escritas para entradas em display"
-"()."
+"Verifique se as funções de sobrecarga foram escritas para entradas em "
+"display()."
 
 msgid "W and A permission parameters."
 msgstr "Parâmetros de permissão W e A permission."
@@ -728,7 +731,8 @@ msgstr "É um escalar"
 msgid "is not a character string matrix."
 msgstr "Não é uma matriz de strings"
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal requer que os campos estejam na mesma ordem para que as estruturas "
 "sejam iguais."
@@ -774,7 +778,8 @@ msgid "message_id ignored in following line."
 msgstr "message_id ignorado na linha seguinte."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) pode ser substituído por %s() ou %s de %s for um M-file, ou não."
 
@@ -789,8 +794,8 @@ msgstr "name deve ser um string, ao invés de: %s."
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"Não há dados suficientes, você deveria fornecer pelo menos variable_name|"
-"dimensions|datatype."
+"Não há dados suficientes, você deveria fornecer pelo menos "
+"variable_name|dimensions|datatype."
 
 msgid "not matlab path"
 msgstr "Não é um endereço Matlab"
@@ -816,11 +821,13 @@ msgid "recursive extraction from a variable %s of type %s."
 msgstr "Extração recursiva de uma variável %s do tipo %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "Extração recursiva com um índice de tipo %s ainda não implementada."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "Inserção recursiva em uma variável que não é um Cell nem um Struct: %s."
 

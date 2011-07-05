@@ -4,4 +4,7 @@
 EXPORTS
 ;fileio
 expandPathVariable
+mclose_
+mopen_
+mgetl
 ;

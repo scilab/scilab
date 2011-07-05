@@ -8,30 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:16+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
-# File: macros/repmat.sci, line: 44
 #, c-format
 msgid ""
 "%s : Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices"
 msgstr ""
 
-#
-# File: macros/repmat.sci, line: 34
 #, c-format
 msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#
-# File: macros/complex.sci, line: 43
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -107,8 +102,6 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
 "%d.\n"
 
-#
-# File: macros/complex.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -125,8 +118,6 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
 
-#
-# File: macros/repmat.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
@@ -187,8 +178,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
 "almeno la dimensione dell''argomento in ingresso #%d.\n"
@@ -196,8 +187,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: deve essere <="
-"%d.\n"
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: deve essere "
+"<=%d.\n"
 
 #, c-format
 msgid ""
@@ -248,9 +239,6 @@ msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
 "reale.\n"
 
-#
-# File: macros/complex.sci, line: 35
-# File: macros/complex.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -337,8 +325,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare/"
-"matrice di interi positivi.\n"
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+"scalare/matrice di interi positivi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer expected.\n"
@@ -361,8 +349,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
-"''%s'' .\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' "
+".\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -388,7 +376,8 @@ msgstr ""
 "intero >=%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: la matrice non è "
 "diagonalizzabile.\n"
@@ -413,9 +402,6 @@ msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d "
 "e %d.\n"
 
-#
-# File: macros/asind.sci, line: 16
-# File: macros/acosd.sci, line: 16
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -453,16 +439,16 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso uno/un/"
-"una scalare/vettore/matrice di interi positivi.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"uno/un/una scalare/vettore/matrice di interi positivi.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso uno/un/"
-"una scalare/vettore/matrice/ipermatrice di interi positivi.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"uno/un/una scalare/vettore/matrice/ipermatrice di interi positivi.\n"
 
 #, c-format
 msgid ""
@@ -512,8 +498,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r"
-"(1).\n"
+"%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
+"r(1).\n"
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno dei valori sbagliati: c(1) "
 "deve essere uguale a r(1).\n"

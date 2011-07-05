@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-03-14 05:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ja\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -45,29 +45,17 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans は編集できません.\n"
 
-#
-# File: scilab_fake_localization_file.c, line: 3
-# File: scilab_fake_localization_file.c, line: 7
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
-#
-# File: scilab_fake_localization_file.c, line: 4
-# File: scilab_fake_localization_file.c, line: 8
 msgid "&About Scilab..."
-msgstr ""
+msgstr "Scilabバージョン情報(&A)..."
 
-#
-# File: scilab_fake_localization_file.c, line: 2
-# File: scilab_fake_localization_file.c, line: 6
 msgid "&Close"
-msgstr ""
+msgstr "閉じる(&C)"
 
-#
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 5
 msgid "&File"
-msgstr ""
+msgstr "ファイル(&F)"
 
 msgid "Boolean"
 msgstr "論理値"

@@ -665,7 +665,6 @@ int C2F(createvarfrom)(int *lw,char *typex,int *m,int *n,int *lr,int *lar,unsign
       if (*lar != -1)  C2F(cvstr1)(&MN, istk(*lr), cstk(*lar), &cx0,  MN + 1);
       *lar = *lr;
       *lr = cadr(*lr);
-      M=MN; N= 1;
       break;
   case 'd' :
       if (! C2F(cremat)(fname, &lw1, &it, m, n, lr, &lcs, nlgh))  return FALSE;
@@ -1612,7 +1611,6 @@ int C2F(getlistrhsvar)(int *lnumber,int *number,char *typex,int *m,int *n,int *l
       nn= (*m)*(*n);
       ScilabMStr2CM(istk(il1),&nn,istk(ild1),&items,&ierr);
       if ( ierr == 1) return FALSE;
-      Type = '$';
       /*
       * Warning : lr must have the proper size when calling getrhsvar
       * char **Str1; .... GetRhsVar(...., &lr)
@@ -1629,7 +1627,6 @@ int C2F(getlistrhsvar)(int *lnumber,int *number,char *typex,int *m,int *n,int *l
       Sp->icol = istk(icol);
       Sp->R = stk(lr1);
       Sp->I = stk(lc);
-      Type = '$';
       break;
   case 'I' :
       /* int matrices */
@@ -1638,7 +1635,6 @@ int C2F(getlistrhsvar)(int *lnumber,int *number,char *typex,int *m,int *n,int *l
           return FALSE;
       Im->m = *m ; Im->n = *n ; Im->it = it; Im->l = lr1;
       Im->D = istk(lr1);
-      Type = '$';
       break;
   case 'p' :
       if (! C2F(getlistpointer)(fname, &topk, &lw, number, lr,  nlgh))
@@ -2094,7 +2090,7 @@ int C2F(scistring)(int *ifirst,char *thestring,int *mlhs,int *mrhs,unsigned long
     int ret = FALSE;
     int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
     int id[nsiz];
-    int lf = 0, op = 0, ile = 0, ils = 0, nnn = thestring_len, ninputs = 0;
+    int lf = 0, op = 0, ile = 0, ils = 0, nnn = thestring_len;
 
     if (nnn <= 2)
     {
@@ -2122,11 +2118,6 @@ int C2F(scistring)(int *ifirst,char *thestring,int *mlhs,int *mrhs,unsigned long
             ils = iadr(lf) + 1;
             moutputs = *istk(ils);
             ile = ils + moutputs * nsiz + 1;
-            ninputs = *istk(ile);
-            /*
-            *   ninputs=actual number of inputs, moutputs=actual number of outputs
-            *   of thestring: checking mlhs=ninputs and mrhs=moutputs not done.
-            */
             ret = C2F(scifunction)(ifirst, &lf, mlhs, mrhs);
         }
         else
@@ -2195,7 +2186,6 @@ int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
     Lhs = *mlhs;
     Rhs = *mrhs;
     C2F(recu).krec = -1;
-    pt0 = C2F(recu).pt;
     ++C2F(recu).niv;
     goto L90;
     /* ***************************** copied from callinter.h  */

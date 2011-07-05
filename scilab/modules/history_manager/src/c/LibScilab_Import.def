@@ -15,5 +15,5 @@ intersci_
 putlhsvar_
 freeArrayOfString
 com_
-callFunctionFromGateway 
+callFunctionFromGateway
 ;

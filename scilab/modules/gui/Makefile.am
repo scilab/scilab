@@ -309,6 +309,7 @@ nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/apps/system-search.png \
+images/icons/16x16/actions/execute-all.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \
 images/icons/16x16/actions/view-refresh.png \

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 02:11+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "\t%s\n"
@@ -40,17 +40,12 @@ msgstr ""
 "\n"
 "为 %s 生成 Scilab 手册的主文档。\n"
 
-#
-# File: macros/xmltoformat.sci, line: 562
-# File: macros/xmltoformat.sci, line: 679
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 674
 #, c-format
 msgid ""
 "\n"
@@ -92,8 +87,6 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和#%d不兼容：应该为同样大小。\n"
 
-#
-# File: macros/xmltoformat.sci, line: 857
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
 msgstr ""
@@ -193,10 +186,9 @@ msgstr "%s：输入参数#%d的值错误：应该为matrix oriented typed list�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
 msgid ""

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 13:13+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #
@@ -57,22 +57,21 @@ msgstr ""
 "\n"
 "%sのScilabマニュアル マスタードキュメントを構築。\n"
 
-#
-# File: macros/xmltoformat.sci, line: 562
-# File: macros/xmltoformat.sci, line: 679
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
 msgstr ""
+"\n"
+"マニュアルファイル [%s] (%s) を構築中.\n"
 
-#
-# File: macros/xmltoformat.sci, line: 674
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s].\n"
 msgstr ""
+"\n"
+"マニュアルファイル　[%s] を構築中.\n"
 
 #
 # File: macros/xmltoformat.sci, line: 391
@@ -122,8 +121,7 @@ msgstr "%s: ファイル %s を開けません。\n"
 # File: macros/xmltoformat.sci, line: 686
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
-msgstr ""
-"%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
+msgstr "%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
 
 #, c-format
 msgid "%s: File skipped %s."
@@ -134,14 +132,11 @@ msgstr "%s: ファイル %s はスキップされました 。"
 # File: macros/xmltoformat.sci, line: 60
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
 
-#
-# File: macros/xmltoformat.sci, line: 857
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
-msgstr ""
+msgstr "%s: %s をクリックしてください, モジュールの数が間違っています.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -175,8 +170,7 @@ msgstr "%s: %s モードで、ヘルプブラウザは無効にされます。\n
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr ""
-"%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
+msgstr "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
 # File: macros/xmltochm.sci, line: 13
@@ -278,11 +272,9 @@ msgstr "%s: 入力引数 #%d で不正な型: 行列志向型のリストを想�
 # File: macros/help.sci, line: 24
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定しま"
-"す。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定します。\n"
 
 #
 # File: macros/help.sci, line: 24
@@ -298,8 +290,7 @@ msgstr "%s: 入力引数 #%d で不正な値: CHAPTERで文字列の終了を想
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
 
 #
 # File: macros/help.sci, line: 24

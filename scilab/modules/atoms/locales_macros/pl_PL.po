@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 22:53+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -128,7 +128,8 @@ msgstr "%s: Moduł ''%s'' nie jest zainstalowany.\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr "%s: Nie znaleziono Wget ani Curl: Proszę zainstalować jeden z nich.\n"
+msgstr ""
+"%s: Nie znaleziono Wget ani Curl: Proszę zainstalować jeden z nich.\n"
 
 #, c-format
 msgid ""
@@ -440,8 +441,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Zły typ parametru wejściowego #%d: oczekiwano typu mlist.\n"
 
-#
-# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -462,7 +461,8 @@ msgstr ""
 "nieprawidłowy adres URL.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr ""
 "%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''all'' "
 "lub ''main''\n"
@@ -488,8 +488,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''filter:"
-"all'',''filter:main'' albo prawidłowej nazwy kategorii głównej\n"
+"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano "
+"''filter:all'',''filter:main'' albo prawidłowej nazwy kategorii głównej\n"
 
 #, c-format
 msgid ""
@@ -537,7 +537,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
-msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"
+msgstr ""
+"%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"
 
 #, c-format
 msgid ""
@@ -562,14 +563,15 @@ msgstr ""
 "''I''.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Musi byc nazwa pakietu atoms.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego  nr %d: Oczekiwano ciągu "
 "znaków zakończonego .tar.gz, .tgz lub .zip\n"
@@ -611,25 +613,26 @@ msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: Zła wartość parametru wejściowego nr %d: Ten ("
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Nieprawidłowy argument dla wartości wejściowych nr %d: To nie jest "
 "prawidłowa wersja.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego nr %d: To nie jest prawidłowa wersja/"
-"zależność.\n"
+"%s: Zła wartość parametru wejściowego nr %d: To nie jest prawidłowa "
+"wersja/zależność.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
 msgstr ""
-"%s: Nieprawidłowy argument dla wartości wejściowych #%d: Oczekiwano ''error"
-"\" lub ''warning\".\n"
+"%s: Nieprawidłowy argument dla wartości wejściowych #%d: Oczekiwano "
+"''error\" lub ''warning\".\n"
 
 #, c-format
 msgid ""
@@ -728,7 +731,8 @@ msgstr "Zainstaluj"
 msgid "Install Directory"
 msgstr "Katalog instalacyjny"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalacja zakończona! Uruchom ponownie Scilab aby zmiany zostały "
 "uwzględnione."

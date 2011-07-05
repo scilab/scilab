@@ -74,7 +74,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
     String* pOut    = new String(pS->getRows(), pS->getCols());
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
-        pOut->set(i, basenameW(pS->get(i), iExpand));
+        pOut->set(i, basenameW(pS->get(i), (BOOL) iExpand));
     }
 
 

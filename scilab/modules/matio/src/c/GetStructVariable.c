@@ -39,7 +39,7 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return NULL;
     }
 
     /* FIRST LIST ENTRY: fieldnames --> NO NEED TO BE READ */
@@ -84,7 +84,7 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
             if(sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                return 0;
+                return NULL;
             }
 
             for (valueIndex = 0; valueIndex < prodDims; valueIndex++)

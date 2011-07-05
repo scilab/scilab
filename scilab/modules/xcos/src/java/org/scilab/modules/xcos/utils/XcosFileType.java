@@ -75,7 +75,9 @@ public enum XcosFileType {
 		}
 	};
 	
-	
+	private static final String BEFORE_EXT = " (*.";	
+	private static final String AFTER_EXT = ")";
+
 	private String extension;
 	private String description;
 	
@@ -86,7 +88,7 @@ public enum XcosFileType {
 	 */
 	XcosFileType(String extension, String description) {
 		this.extension = extension;
-		this.description = description + " (*." + extension + ")";
+		this.description = description + BEFORE_EXT + extension + AFTER_EXT;
 	}
 	
 	/**
@@ -139,32 +141,44 @@ public enum XcosFileType {
 		}
 		
 		/* Validate xml header */
-		if (retValue == XcosFileType.XCOS) {
-			byte[] xmlMagic = "<?xml".getBytes();
-			byte[] readMagic = new byte[xmlMagic.length];
+		if (retValue == XCOS) {
+			retValue = checkXmlHeader(theFile);
+		}
+		
+		return retValue;
+	}
 
-			FileInputStream stream = null;
-			try {
-				stream = new FileInputStream(theFile);
-				int length;
-				length = stream.read(readMagic);
-				if (length != xmlMagic.length
-						|| !Arrays.equals(xmlMagic, readMagic)) {
-					retValue = null;
-				}
-			} catch (IOException e) {
-				retValue = null;
-			} finally {
-				if (stream != null) {
-					try {
-						stream.close();
-					} catch (IOException e) {
-						LogFactory.getLog(XcosFileType.class).error(e);
-					}
+	/**
+	 * Check the XML header
+	 * @param theFile the file to check
+	 * @return the found file type
+	 */
+	private static XcosFileType checkXmlHeader(File theFile) {
+		XcosFileType retValue = null;
+		
+		final byte[] xmlMagic = "<?xml".getBytes();
+		final byte[] readMagic = new byte[xmlMagic.length];
+
+		FileInputStream stream = null;
+		try {
+			stream = new FileInputStream(theFile);
+			int length;
+			length = stream.read(readMagic);
+			if (length == xmlMagic.length
+					&& Arrays.equals(xmlMagic, readMagic)) {
+				retValue = XCOS;
+			}
+		} catch (IOException e) {
+			retValue = null;
+		} finally {
+			if (stream != null) {
+				try {
+					stream.close();
+				} catch (IOException e) {
+					LogFactory.getLog(XcosFileType.class).error(e);
 				}
 			}
 		}
-		
 		return retValue;
 	}
 	
@@ -228,7 +242,7 @@ public enum XcosFileType {
 	    String[] result = new String[XcosFileType.values().length - 1];
 	    
 	    for (int i = 0; i < result.length; i++) {
-		result[i] = XcosFileType.values()[i].getDescription() + " (*." + XcosFileType.values()[i].getExtension() + ")";
+		result[i] = XcosFileType.values()[i].getDescription() + BEFORE_EXT + XcosFileType.values()[i].getExtension() + AFTER_EXT;
 	    }
 	    
 	    return result;

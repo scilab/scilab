@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2009-03-04 09:40+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 msgid ""
 "\n"
@@ -190,9 +190,6 @@ msgstr "%s: falscher Typ für erstes Eingangsargument: Skalar erwartet.\n"
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: falscher Typ für viertes Eingangsargument: Skalar erwartet.\n"
 
-#
-# File: sci_gateway/c/sci_grand.c, line: 679
-# File: sci_gateway/c/sci_grand.c, line: 718
 #, c-format
 msgid "%s: Wrong type for input argument. Low < High expected.\n"
 msgstr ""
@@ -207,7 +204,8 @@ msgstr "%s: falscher Typ für Eingangsargument: Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument: quadratische Matrix erwartet.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument: quadratische Matrix erwartet.\n"
 
 #, c-format
 msgid ""
@@ -274,7 +272,8 @@ msgid "%s: Wrong value for second input argument: Must be > %d.\n"
 msgstr "%s: Zweites Eingangsargument hat falschen Wert: Muss > %d sein.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: falscher Wert für zweites Eingangsargument: muß zwischen %d und %d "
 "liegen.\n"
@@ -417,7 +416,8 @@ msgid "The %s option affects only the clcg4 generator\n"
 msgstr "Die %s Option beeinflußt den clcg4 Generator\n"
 
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr "Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
+msgstr ""
+"Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Diese Information betrifft nur deb clcg4 Generator\n"
@@ -430,3 +430,9 @@ msgstr "A und B müssen Integer mit (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 oder R <= 0.0\n"
+
+#~ msgid "Low > High\n"
+#~ msgstr "Minimum > Maximum\n"
+
+#~ msgid "Random"
+#~ msgstr "Zufällig"

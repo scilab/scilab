@@ -61,6 +61,7 @@ public class ConnectPreview extends com.mxgraph.swing.handler.mxConnectPreview {
 	 * Stop the current link creation
 	 * @param commit true if any modification should be performed 
 	 * @param e the mouse event
+	 * @return the cell
 	 */
 	@Override
 	public Object stop(boolean commit, MouseEvent e) {

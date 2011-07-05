@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2011-06-03 06:22+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -82,11 +82,10 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr "%s: не вдалося завантажити блок з %s: не виявлено змінної «scs_m».\n"
 
-#
-# File: macros/generateBlockImage.sci, line: 50
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
 msgstr ""
+"%s: помилковий вхідний параметр %s: мало бути вказано svg, gif або jpg.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -94,7 +93,8 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -115,7 +115,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr "%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
+msgstr ""
+"%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String or diagram structure expected"
@@ -152,7 +153,8 @@ msgstr ""
 "діаграми.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
 "до каталогу.\n"
@@ -183,7 +185,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
 "або шлях до файла.\n"
@@ -217,13 +220,13 @@ msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати вектор "
 "рядків.\n"
 
-#
-# File: macros/xcosPalAddBlock.sci, line: 145
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути вказано коректний "
+"формат файла (png, jpg, gif).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
@@ -231,227 +234,139 @@ msgstr ""
 "%s: помилкове значення вхідного параметра %s: мало бути вказано існуючий "
 "файл.\n"
 
-#
-# File: macros/loadXcosLibs.sci, line: 72
 #, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
 msgstr ""
+"%s: блок %s недоступний, будь ласка, додайте замість нього якийсь сумісний "
+"блок."
 
-#
-# File: demos/mechanical_systems.dem.gateway.sce, line: 7
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "Автомобільна підвіска"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 9
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "Куля на платформі"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 7
 msgid "Basic controller"
-msgstr ""
+msgstr "Базовий регулятор"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 10
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "М’ячик-стрибунець"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 8
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "Зіткнення кульок"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 8
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "Містковий випрямлювач"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 11
 msgid "Chaos Modelica"
-msgstr ""
+msgstr "Modelica (Хаос)"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 15
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "Ємнісна триточка"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 12
 msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
+msgstr "Неперервне спостереження за гілками-гібридами"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 8
-# File: demos/scicos.dem.gateway.sce, line: 8
 msgid "Control Systems"
-msgstr ""
+msgstr "Системи керування"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "Перетворювач DC/DC з підсиленням"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 13
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "Перетворювач DC/DC з послабленням"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 10
 msgid "Differential amplifier"
-msgstr ""
+msgstr "Диференційний підсилювач"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
-msgstr ""
+msgstr "Дискретний регулятор"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 11
 msgid "Discrete Kalman Filter"
-msgstr ""
+msgstr "Дискретний фільтр Калмана"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 9
-# File: demos/scicos.dem.gateway.sce, line: 9
 msgid "Electrical Systems"
-msgstr ""
+msgstr "Електричні системи"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 12
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "Числа Фібоначчі"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 17
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "Блоки переходу/початку"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 12
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "Гідравлічні блоки"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 14
 msgid "Inverted Pendulum"
-msgstr ""
+msgstr "Обернений маятник"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 10
 msgid "Kalman Filter"
-msgstr ""
+msgstr "Фільтр Калмана"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 16
 msgid "Logic AND gate"
-msgstr ""
+msgstr "Логічний шлюз AND"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 17
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "Логічний шлюз NOR"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 15
 msgid "Lorentz butterfly"
-msgstr ""
+msgstr "Метелик Лоренца"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 10
-# File: demos/scicos.dem.gateway.sce, line: 10
 msgid "Mechanical Systems"
-msgstr ""
+msgstr "Механічні системи"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 14
-# File: demos/scicos.dem.gateway.sce, line: 11
 msgid "Modelica demos"
-msgstr ""
+msgstr "Демонстрації Modelica"
 
-#
-# File: demos/old_demos.dem.gateway.sce, line: 7
 msgid "Old Gain Block"
-msgstr ""
+msgstr "Старий блок підсилення"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 18
-# File: demos/scicos.dem.gateway.sce, line: 12
 msgid "Old demos"
-msgstr ""
+msgstr "Старі демонстрації"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 11
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "Операційний підсилювач"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 7
 msgid "RLC Circuit"
-msgstr ""
+msgstr "Коливальний контур"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 13
 msgid "RLC circuit"
-msgstr ""
+msgstr "Коливальний контур"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 13
 msgid "Scilab block"
-msgstr ""
+msgstr "Блок Scilab"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 11
 msgid "Signal Builder"
-msgstr ""
+msgstr "Побудова сигналів"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
-msgstr ""
+msgstr "Проста демонстрація"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "Простий термостат"
 
-#
-# File: macros/xcos_simulate.sci, line: 374
 msgid "Simulation problem"
-msgstr ""
+msgstr "Проблема імітації:"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 7
-# File: demos/scicos.dem.gateway.sce, line: 7
 msgid "Standard demos"
-msgstr ""
+msgstr "Стандартні демонстрації"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 12
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "Інтегральна схема на конденсаторах з перемиканням"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 10
 msgid "Table Lookup"
-msgstr ""
+msgstr "Табличне перетворення"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 13
 msgid "Temperature Controller"
-msgstr ""
+msgstr "Регулятор температури"
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Не завантажено бібліотеки Scicos"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 9
 msgid "Transformer"
-msgstr ""
+msgstr "Перетворювач"
 
 #, c-format
 msgid "Unable to open %s"
@@ -461,25 +376,17 @@ msgstr "Не вдалося відкрити %s"
 msgid "Unable to simulate %s"
 msgstr "Не вдалося імітувати %s"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 8
 msgid "Water tank"
-msgstr ""
+msgstr "Резервуар для води"
 
 msgid "Xcos"
 msgstr "Xcos"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
-msgstr ""
+msgstr "Типи даних Xcos"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 15
 msgid "Zero Crossing"
-msgstr ""
+msgstr "Перетин нульового рівня"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 16
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "Блок _IF_ Xcos"

@@ -18,11 +18,10 @@ import static org.scilab.modules.xcos.utils.FileUtils.delete;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 import java.util.logging.LogManager;
 
@@ -35,10 +34,8 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -46,12 +43,16 @@ import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.view.mxStylesheet;
 
 /**
  * Xcos entry point class
  */
+// CSOFF: ClassFanOutComplexity
+// CSOFF: ClassDataAbstractionCoupling
 public final class Xcos {
 	/**
 	 * The current Xcos version
@@ -62,6 +63,8 @@ public final class Xcos {
 	 */
 	public static final String TRADENAME = "Xcos";
 
+	private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+	
 	/*
 	 * Dependencies version
 	 */
@@ -87,7 +90,6 @@ public final class Xcos {
 	/*
 	 * Instance data
 	 */
-	private final Map<String, SuperBlock> openedSuperBlock;
 	private final List<XcosDiagram> diagrams;
 
 	/*
@@ -121,8 +123,6 @@ public final class Xcos {
 		/*
 		 * Allocate synchronized communications data
 		 */
-		openedSuperBlock = Collections
-				.synchronizedMap(new HashMap<String, SuperBlock>());
 		diagrams = Collections.synchronizedList(new Vector<XcosDiagram>());
 
 		/*
@@ -444,42 +444,18 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos() {
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				@Override
-				public void run() {
-					/*
-					 * The global Xcos instance should be allocated on the EDT
-					 * Thread in order to use the application ClassLoader and
-					 * not sometimes the BootClassLoader.
-					 */
-					final Xcos instance = getInstance();
-					
-					// Dispatch later on the EDT Thread
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							instance.open(null);
-							PaletteManager.setVisible(true);
-						}
-					});
-				}
-			});
-		} catch (final InterruptedException e) {
-			LOG.error(e);
-		} catch (final InvocationTargetException e) {
-			Throwable throwable = e;
-			String firstMessage = null;
-			while (throwable != null) {
-				firstMessage = throwable.getLocalizedMessage();
-				throwable = throwable.getCause();
-			}
-			
-			throw new RuntimeException(firstMessage, e);
-		}
+		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				instance.open(null);
+				PaletteManager.setVisible(true);
+			}
+		});
 	}
 
 	/**
@@ -492,18 +468,17 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
+		final Xcos instance = getInstance();
+		final File filename = new File(fileName);
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
+		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					/*
-					 * The global Xcos instance should be allocated on the EDT
-					 * Thread in order to use the application ClassLoader and
-					 * not sometimes the BootClassLoader.
-					 */
-					final Xcos instance = getInstance();
-					
-					instance.open(new File(fileName));
+					instance.open(filename);
 				}
 			});
 		} catch (final InterruptedException e) {
@@ -518,9 +493,6 @@ public final class Xcos {
 			
 			throw new RuntimeException(firstMessage, e);
 		}
-		
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 	}
 
 	/**
@@ -565,20 +537,81 @@ public final class Xcos {
 	 *            The message to display.
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void warnCellByUID(final String uid, final String message) {
-		final List<XcosDiagram> diagrams = getInstance().diagrams;
-
-		final String localId = uid;
-		final String localMessage = message;
-
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				for (int i = 0; i < diagrams.size(); ++i) {
-					diagrams.get(i).warnCellByUID(localId, localMessage);
+	public static void warnCellByUID(final String[] uid, final String message) {
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
+					
+					String id;
+					BasicBlock block = null;
+					
+					// specific case with an empty array
+					if (deque.isEmpty()) {
+						return;
+					}
+					
+					// first element
+					id = deque.pop();
+					for (XcosDiagram diagram : getInstance().getDiagrams()) {
+						block = (BasicBlock) ((mxGraphModel) diagram.getModel()).getCell(id);
+						if (block != null) {
+							break;
+						}
+					}
+					
+					
+					// loop to get only the last diagram
+					while (block instanceof SuperBlock && !deque.isEmpty()) {
+						block.getParentDiagram()
+								.warnCellByUID(
+										block.getId(),
+										XcosMessages.ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK);
+						
+						final SuperBlock superBlock = (SuperBlock) block;
+						id = deque.pop();
+						
+						if (!Xcos.getInstance().getDiagrams().contains(superBlock.getChild())) {
+							block.openBlockSettings(null);
+						}
+						block = (BasicBlock) ((mxGraphModel) superBlock.getChild().getModel()).getCell(id);
+					}
+					
+					// We are unable to find the block with the right id
+					if (block == null) {
+						return;
+					}
+					
+					
+					// finally perform the action on the last block
+					final XcosDiagram parent = block.getParentDiagram();
+					parent.warnCellByUID(block.getId(), message);
+					
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							/*
+							 * Focus on an existing diagram
+							 */
+							parent.getParentTab().setCurrent();
+						}
+					});
+					
 				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
 			}
-		});
+			
+			throw new RuntimeException(firstMessage, e);
+		}
 	}
 
 	/**
@@ -640,45 +673,45 @@ public final class Xcos {
 	 * This method invoke Xcos operation on the EDT thread.
 	 * 
 	 * @param uid
-	 *            UID diagram to open.
-	 * @param showed
-	 *            True if you want the diagram to be shown, false otherwise.
+	 *            UID path to a block.
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramOpen(final String uid, final boolean showed) {
-		final List<XcosDiagram> diagrams = getInstance().diagrams;
-		final String id = uid;
-		final boolean show = showed;
-
+	public static void xcosDiagramOpen(final String[] uid) {
+		final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
+		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					BasicBlock block = null;
-					for (final XcosDiagram diagram : diagrams) {
-
-						// exclude SuperBlock from parsing
-						if (diagram instanceof SuperBlockDiagram) {
-							continue;
-						}
-
-						block = diagram.getChildById(id);
-						if (block != null) {
-							final SuperBlock newSP = (SuperBlock) BlockFactory
-									.createBlock("SUPER_f");
-							newSP.setRealParameters(block.getRealParameters());
-							newSP.setParentDiagram(block.getParentDiagram());
-
-							if (show) {
-								if (newSP.createChildDiagram()) {
-									new XcosTab(newSP.getChild())
-											.setVisible(true);
-									newSP.getChild().setReadOnly(true);
-								}
-							}
-							getInstance().openedSuperBlock.put(id, newSP);
+					String id;
+					Object block = null;
+					
+					// specific case with an empty array
+					if (deque.isEmpty()) {
+						return;
+					}
+					
+					// first element
+					id = deque.pop();
+					for (XcosDiagram diagram : getInstance().getDiagrams()) {
+						block = ((mxGraphModel) diagram.getModel()).getCell(id);
+						if (block instanceof SuperBlock) {
 							break;
 						}
+					}
+					
+					// loop to get only the last diagram
+					while (block instanceof SuperBlock & !deque.isEmpty()) {
+						final SuperBlock superBlock = (SuperBlock) block;
+						id = deque.pop();
+						
+						superBlock.openBlockSettings(null);
+						block = ((mxGraphModel) superBlock.getChild().getModel()).getCell(id);
+					}
+					
+					// finally perform the action
+					if (block instanceof SuperBlock) {
+						((SuperBlock) block).openBlockSettings(null);
 					}
 				}
 			});
@@ -701,23 +734,45 @@ public final class Xcos {
 	 * 
 	 * This method invoke Xcos operation on the EDT thread.
 	 * 
-	 * @param uid
-	 *            The diagram id
+	 * @param uid The diagram id path
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramClose(final String uid) {
-		final String id = uid;
-
+	public static void xcosDiagramClose(final String[] uid) {
+		final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
+		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-
-					SuperBlock sp = getInstance().openedSuperBlock.get(id);
-					if (sp != null) {
-						getInstance().openedSuperBlock.remove(id);
-						sp.closeBlockSettings();
-						sp = null;
+					String id;
+					Object block = null;
+					
+					// specific case with an empty array
+					if (deque.isEmpty()) {
+						closeSession();
+					}
+					
+					// first element
+					id = deque.pop();
+					for (XcosDiagram diagram : getInstance().getDiagrams()) {
+						block = ((mxGraphModel) diagram.getModel()).getCell(id);
+						if (block instanceof SuperBlock) {
+							break;
+						}
+					}
+					
+					// loop to get only the last diagram
+					while (block instanceof SuperBlock & !deque.isEmpty()) {
+						final SuperBlock superBlock = (SuperBlock) block;
+						id = deque.pop();
+						
+						superBlock.openBlockSettings(null);
+						block = ((mxGraphModel) superBlock.getChild().getModel()).getCell(id);
+					}
+					
+					// finally perform the action
+					if (block instanceof SuperBlock) {
+						((SuperBlock) block).closeBlockSettings();
 					}
 				}
 			});
@@ -744,9 +799,14 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		for (XcosDiagram diag : instance.getDiagrams()) {
 			if (diag.getModel().contains(cell)) {
+				if (cell instanceof BasicBlock) {
+					((BasicBlock) cell).setParentDiagram(diag);
+				}
 				return diag;
 			}
 		}
 		return null;
 	}
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity

@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 22:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -43,9 +43,7 @@ msgstr "%s: ブロックの代わりに ''%s'' が見つかりました.\n"
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr ""
-"%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセ"
-"ス権の有無を確認ください.\n"
+msgstr "%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -77,20 +75,15 @@ msgstr "%s: xcosファイル %s をインポートできません。\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-"%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
+msgstr "%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr ""
-"%s:  %s からブロックをロードできませんでした: `scs_m'' 変数が見つかりませ"
-"ん.\n"
+msgstr "%s:  %s からブロックをロードできませんでした: `scs_m'' 変数が見つかりません.\n"
 
-#
-# File: macros/generateBlockImage.sci, line: 50
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 %s が間違っています : svg, gif または jpg を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -102,8 +95,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -111,8 +103,7 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
@@ -140,27 +131,23 @@ msgstr "%s: 入力引数 %s の型が間違っています: 論理値を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています: ディレクトリパス文字列を指定してくださ"
-"い.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: ディレクトリパス文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています: ファイルパス文字列を指定してください.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: ファイルパス文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
 "full path string expected.\n"
 msgstr ""
-"%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック"
-"(Block)型または完全パス文字列を指定してください.\n"
+"%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック(Block)型または完全パス文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: handle type expected.\n"
@@ -171,10 +158,9 @@ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: パレット型を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています: パレット型またはパスを指定してくださ"
-"い.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: パレット型またはパスを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
@@ -186,8 +172,7 @@ msgstr "%s: 入力引数 %s の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています: 文字列または構造体を指定してください.\n"
+msgstr "%s: 入力引数 %s の型が間違っています: 文字列または構造体を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
@@ -195,243 +180,149 @@ msgstr "%s: 入力引数 %s の型が間違っています: 文字列型を指�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-"%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
+msgstr "%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
 
-#
-# File: macros/xcosPalAddBlock.sci, line: 145
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 %s が間違っています : 有効な形式 (png, jpg, gif) を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
+msgstr "%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
 
-#
-# File: macros/loadXcosLibs.sci, line: 72
 #, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr ""
+msgstr "%s: ブロック %s は利用できなくなりました, ダイアグラムを同等なブロックに更新してください."
 
-#
-# File: demos/mechanical_systems.dem.gateway.sce, line: 7
 msgid "Automotive Suspension"
-msgstr ""
+msgstr "自動車のサスペンション"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 9
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "台上の球"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 7
 msgid "Basic controller"
-msgstr ""
+msgstr "基本的な制御器"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 10
 msgid "Bouncing Ball"
-msgstr ""
+msgstr "弾む球"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 8
 msgid "Bouncing Balls"
-msgstr ""
+msgstr "弾む球"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 8
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "ブリッジ整流器"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 11
 msgid "Chaos Modelica"
-msgstr ""
+msgstr "カオスModelica"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 15
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "Colpitts振動子"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 12
 msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
+msgstr "連続系プラント-複合オブザーバ"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 8
-# File: demos/scicos.dem.gateway.sce, line: 8
 msgid "Control Systems"
-msgstr ""
+msgstr "制御系"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
-msgstr ""
+msgstr "DC/DCブーストコンバータ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 13
 msgid "DC/DC Buck Converter"
-msgstr ""
+msgstr "DC/DCバックコンバータ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 10
 msgid "Differential amplifier"
-msgstr ""
+msgstr "差動アンプ"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
-msgstr ""
+msgstr "離散系制御器"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 11
 msgid "Discrete Kalman Filter"
-msgstr ""
+msgstr "離散系カルマンフィルタ"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 9
-# File: demos/scicos.dem.gateway.sce, line: 9
 msgid "Electrical Systems"
-msgstr ""
+msgstr "電気システム"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 12
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "フィボナッチ数列"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 17
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "Goto/Fromブロック"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 12
 msgid "Hydraulics blocks"
-msgstr ""
+msgstr "水力学ブロック"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 14
 msgid "Inverted Pendulum"
-msgstr ""
+msgstr "倒立振子"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 10
 msgid "Kalman Filter"
-msgstr ""
+msgstr "カルマンフィルタ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 16
 msgid "Logic AND gate"
-msgstr ""
+msgstr "論理ANDゲート"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 17
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "論理NORゲート"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 15
 msgid "Lorentz butterfly"
-msgstr ""
+msgstr "ローレンツバタフライ"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 10
-# File: demos/scicos.dem.gateway.sce, line: 10
 msgid "Mechanical Systems"
-msgstr ""
+msgstr "機械システム"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 14
-# File: demos/scicos.dem.gateway.sce, line: 11
 msgid "Modelica demos"
-msgstr ""
+msgstr "Modelicaデモ"
 
-#
-# File: demos/old_demos.dem.gateway.sce, line: 7
 msgid "Old Gain Block"
-msgstr ""
+msgstr "古いゲインブロック"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 18
-# File: demos/scicos.dem.gateway.sce, line: 12
 msgid "Old demos"
-msgstr ""
+msgstr "古いデモ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 11
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "オペアンプ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 7
 msgid "RLC Circuit"
-msgstr ""
+msgstr "RLC回路"
 
-#
-# File: demos/modelica_demos.dem.gateway.sce, line: 13
 msgid "RLC circuit"
-msgstr ""
+msgstr "RLC回路"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 13
 msgid "Scilab block"
-msgstr ""
+msgstr "Scilabブロック"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 11
 msgid "Signal Builder"
-msgstr ""
+msgstr "信号ビルダ"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
-msgstr ""
+msgstr "簡単なデモ"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
-msgstr ""
+msgstr "簡単なサーモスタット"
 
-#
-# File: macros/xcos_simulate.sci, line: 374
 msgid "Simulation problem"
-msgstr ""
+msgstr "シミュレーション問題"
 
-#
-# File: demos/xcos.dem.gateway.sce, line: 7
-# File: demos/scicos.dem.gateway.sce, line: 7
 msgid "Standard demos"
-msgstr ""
+msgstr "標準デモ"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 12
 msgid "Switched capacitor integrator"
-msgstr ""
+msgstr "スイッチドキャパシタ積分器"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 10
 msgid "Table Lookup"
-msgstr ""
+msgstr "テーブル検索"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 13
 msgid "Temperature Controller"
-msgstr ""
+msgstr "温度制御器"
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Scilabライブラリは取り込めませんでした"
 
-#
-# File: demos/electrical_systems.dem.gateway.sce, line: 9
 msgid "Transformer"
-msgstr ""
+msgstr "変圧器"
 
 #, c-format
 msgid "Unable to open %s"
@@ -441,25 +332,17 @@ msgstr "%s を開けません"
 msgid "Unable to simulate %s"
 msgstr "%s をシュミレートできません"
 
-#
-# File: demos/control_systems.dem.gateway.sce, line: 8
 msgid "Water tank"
-msgstr ""
+msgstr "水タンク"
 
 msgid "Xcos"
 msgstr "Xcos"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
-msgstr ""
+msgstr "Xcosデータ型"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 15
 msgid "Zero Crossing"
-msgstr ""
+msgstr "ゼロ交差"
 
-#
-# File: demos/standard.dem.gateway.sce, line: 16
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "_IF_ Xcos ブロック"

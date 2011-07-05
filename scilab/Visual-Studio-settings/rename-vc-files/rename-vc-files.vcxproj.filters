@@ -36,5 +36,11 @@
     <rename_vc_extension_files Include="..\..\modules\helptools\etc\SciDocConf.xml.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>
+    <rename_vc_extension_files Include="..\..\scilab.properties.vc">
+      <Filter>Rename Header Files</Filter>
+    </rename_vc_extension_files>
+    <rename_vc_extension_files Include="..\..\etc\logging.properties.vc">
+      <Filter>Rename Header Files</Filter>
+    </rename_vc_extension_files>
   </ItemGroup>
 </Project>

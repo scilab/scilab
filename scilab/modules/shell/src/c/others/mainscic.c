@@ -53,6 +53,7 @@ int F77_DUMMY_MAIN() { return 1; }
 
 int main(int argc, char **argv)
 {
+
   int i;
   int no_startup_flag=0;
   int memory = MIN_STACKSIZE;

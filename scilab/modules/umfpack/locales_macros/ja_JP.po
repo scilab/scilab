@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:21+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid ""
@@ -52,9 +52,7 @@ msgstr "              スタックサイズ(3000000);                    "
 
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
-msgstr ""
-"           %d 回の反復では収束しませんでした (%e までしか到達しませんでし"
-"た) \n"
+msgstr "           %d 回の反復では収束しませんでした (%e までしか到達しませんでした) \n"
 
 msgid "           then re enter scisptdemo()                "
 msgstr "           scisptdemo()  に戻ります                "
@@ -102,9 +100,7 @@ msgstr "%s: 第二引数の値か型、またはサイズが不正です。\n"
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入し"
-"てください."
+msgstr "%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入してください."
 
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
@@ -126,16 +122,16 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正方疎行列を指定してください.\n"
 
 #, c-format

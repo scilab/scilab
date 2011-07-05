@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2011-05-31 23:56+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -25,8 +25,6 @@ msgstr "%s n''est pas un module installé"
 msgid "%s is not an installed module or toolbox"
 msgstr "%s n''est pas une toolbox ou un module installé"
 
-#
-# File: macros/test_run.sci, line: 877
 #, c-format
 msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
 msgstr ""
@@ -39,8 +37,6 @@ msgstr "%s : Mauvais premier argument: Fichier avec un suffixe .dia attendu."
 msgid "%s: Wrong size for input argument."
 msgstr "%s : Mauvaise dimension pour l''argument d''entrée."
 
-#
-# File: macros/test_run.sci, line: 873
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""

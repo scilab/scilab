@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 02:04+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -101,8 +101,6 @@ msgstr "   esegue il makefile\n"
 msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 84
 #, c-format
 msgid "%s: %s already loaded in scilab."
 msgstr ""
@@ -135,14 +133,10 @@ msgstr "%s: Comando di creazione: %s\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Non è possibile aprire il file %s.\n"
 
-#
-# File: macros/ilib_compile.sci, line: 184
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
 msgstr ""
 
-#
-# File: macros/ilib_compile.sci, line: 84
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""
@@ -151,8 +145,6 @@ msgstr ""
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr "%s: Errore durante la modifica del Makefile di riferimento:\n"
 
-#
-# File: macros/ilib_include_flag.sci, line: 21
 #, c-format
 msgid "%s: Failed to add include path : %s"
 msgstr ""
@@ -239,7 +231,8 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
@@ -256,10 +249,6 @@ msgstr ""
 "%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
-#
-# File: macros/ilib_build.sci, line: 60
-# File: macros/ilib_mex_build.sci, line: 26
-# File: macros/ilib_for_link.sci, line: 32
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
@@ -270,10 +259,6 @@ msgstr ""
 "%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
 "nell''insieme {%s}.\n"
 
-#
-# File: macros/windows/dlwGenerateMakefile.sci, line: 180
-# File: macros/ilib_gen_Make_unix.sci, line: 153
-# File: macros/ilib_gen_Make_unix.sci, line: 169
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
@@ -281,11 +266,6 @@ msgstr ""
 msgid "A Fortran or C compiler is required."
 msgstr "È richiesto un compilatore per il Fortran o per il C."
 
-#
-# File: macros/ilib_build.sci, line: 55
-# File: macros/ilib_compile.sci, line: 44
-# File: macros/ilib_mex_build.sci, line: 30
-# File: macros/ilib_for_link.sci, line: 43
 #, c-format
 msgid "A managed file extension for input argument #%d"
 msgstr ""
@@ -296,8 +276,6 @@ msgstr "Collegamento dinamico"
 msgid "F2C cannot build fortran 90"
 msgstr "F2C non può creare codice fortran 90"
 
-#
-# File: macros/detectmsifort64tools.sci, line: 34
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
@@ -305,8 +283,6 @@ msgstr ""
 msgid "Output: %s\n"
 msgstr "Risultato: %s\n"
 
-#
-# File: macros/ilib_build.sci, line: 90
 msgid "You need to unload this library before."
 msgstr ""
 

@@ -20,8 +20,9 @@
 //
 
 function unhilite_obj(k,win)
-    xcosClearBlockWarning(k); //** new
-	return;
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+  return;
 
 //
 //** 21 Set 2006:

@@ -72,6 +72,11 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     if ( Display == "iter" ) then
         mprintf ( "%10s   %10s   %10s %17s\n" , "Iteration", "Func-count" , "min f(x)" , "Procedure" );
     end
+    //
+    // Check input arguments
+    assert_typecallable ( fun , "costf" , 1)
+    assert_typereal ( x0 , "x0" , 2 );
+    //
     // Prepare the data structure to pass to the output function
     fmsdata = tlist(["T_FMINSEARCH" 
     "Display" 
@@ -229,9 +234,9 @@ function stop = fminsearch_outputfun ( state , data , fmsdata )
         if ( type ( fmsdata.OutputFcn ) == 13 ) then
             // The output function is a macro
             stop = fmsdata.OutputFcn ( data.x , optimValues , state );
-		//
-		// Backward-compatibility: define the stop variable
-		//
+            //
+            // Backward-compatibility: define the stop variable
+            //
             if ( exists("stop")==0 ) then
                 fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
                 stop = %f
@@ -241,9 +246,9 @@ function stop = fminsearch_outputfun ( state , data , fmsdata )
             for i = 1:length(fmsdata.OutputFcn)
                 stop = fmsdata.OutputFcn(i) ( data.x , optimValues , state );
             end
-		//
-		// Backward-compatibility: define the stop variable
-		//
+            //
+            // Backward-compatibility: define the stop variable
+            //
             if ( exists("stop")==0 ) then
                 fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
                 stop = %f
@@ -277,7 +282,15 @@ endfunction
 //   neldermead requirements.
 //
 function [ f , index , fmsfundata ] = fminsearch_function ( x , index , fmsfundata )
-    f = fmsfundata.Fun ( x )
+    funtype = typeof(fmsfundata.Fun)
+    if ( funtype == "function" ) then
+        __fminsearch_f__ = fmsfundata.Fun
+        __fminsearch_args__ = list()
+    else
+        __fminsearch_f__ = fmsfundata.Fun(1)
+        __fminsearch_args__ = list(fmsfundata.Fun(2:$))
+    end
+    f = __fminsearch_f__ ( x , __fminsearch_args__(:))
 endfunction
 
 function fms_warnheaderobsolete ( oldheader , newheader , removedVersion )
@@ -288,3 +301,24 @@ function fms_warnheaderobsolete ( oldheader , newheader , removedVersion )
 endfunction
 
 
+function assert_typecallable ( var , varname , ivar )
+    // Check that var is a function or a list
+    if ( and ( type ( var ) <> [11 13 15] ) ) then
+        errmsg = msprintf(gettext("%s: Expected function or list for variable %s at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
+        error(errmsg);
+    end
+    if ( type ( var ) == 15 ) then
+        // Check that var(1) is a function
+        if ( and ( type ( var(1) ) <> [11 13] ) ) then
+            errmsg = msprintf(gettext("%s: Expected function for variable %s(1) at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
+            error(errmsg);
+        end
+    end
+endfunction
+// Generates an error if the given variable is not of type real
+function assert_typereal ( var , varname , ivar )
+    if ( type ( var ) <> 1 ) then
+        errmsg = msprintf(gettext("%s: Expected real variable for variable %s at input #%d, but got %s instead."),"assert_typereal", varname , ivar , typeof(var) );
+        error(errmsg);
+    end
+endfunction

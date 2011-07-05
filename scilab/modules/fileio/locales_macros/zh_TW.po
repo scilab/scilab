@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 23:04+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #
@@ -135,18 +135,11 @@ msgstr "%s: 變數型態 (%s) 錯誤(在''%s'' 內). 檔案可能有誤或已破
 msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s: 完成轉換前輸入已結束.\n"
 
-#
-# File: macros/mkdir.sci, line: 132
 msgid "A file with the same name already exists in "
 msgstr ""
 
-#
-# File: macros/mkdir.sci, line: 119
-# File: macros/mkdir.sci, line: 136
 msgid "Impossible to create directory "
 msgstr ""
 
-#
-# File: macros/mkdir.sci, line: 128
 msgid "This directory already exists in "
 msgstr ""

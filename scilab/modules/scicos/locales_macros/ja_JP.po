@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 15:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #
@@ -82,26 +82,17 @@ msgstr "%s: 入力ポートの番号付けが間違っています.\n"
 msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: 出力ポートの番号付けが間違っています.\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 120
-# File: macros/scicos_auto/lincos.sci, line: 131
 #, c-format
 msgid "%s: Unable to find diagram inputs\n"
-msgstr ""
+msgstr "%s: ダイアグラムの入力がありません\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 123
-# File: macros/scicos_auto/lincos.sci, line: 134
 #, c-format
 msgid "%s: Unable to find diagram outputs\n"
-msgstr ""
+msgstr "%s: ダイアグラムの出力がありりません\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 82
-# File: macros/scicos_auto/lincos.sci, line: 95
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #
 # File: macros/scicos_auto/scicos_simulate.sci, line: 181
@@ -113,11 +104,9 @@ msgstr "%s: 入力引数の数が不正です: %d と %d の間である必要�
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 104
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -137,47 +126,33 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: 入力引数 #%d と #%d で不正なサイズです。\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 115
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
 
-#
-# File: macros/scicos_auto/steadycos.sci, line: 85
-# File: macros/scicos_auto/lincos.sci, line: 98
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 119
-# File: macros/scicos_auto/scicos_simulate.sci, line: 123
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 131
-# File: macros/scicos_utils/block_parameter_error.sci, line: 24
-# File: macros/scicos_utils/block_parameter_error.sci, line: 27
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 127
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s''を指定してください.\n"
 
 #
 # File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
@@ -205,43 +180,29 @@ msgstr "ファイル(&F)"
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 140
 #, c-format
 msgid "&nbsp; %s input port size is: %s"
-msgstr ""
+msgstr "&nbsp; %s 入力ポートの大きさは %s です"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 139
 #, c-format
 msgid "&nbsp; %s output port size is: %s"
-msgstr ""
+msgstr "&nbsp; 出力ポート%s の大きさは %s です"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 110
 #, c-format
 msgid "&nbsp;Input port %s size is: %s"
-msgstr ""
+msgstr "&nbsp; 入力ポート%s の大きさは %s です"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 114
-# File: macros/scicos_scicos/bad_connection.sci, line: 144
 #, c-format
 msgid "&nbsp;Input port %s type is: %s"
-msgstr ""
+msgstr "&nbsp:入力ポート %s の型は %s です"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 109
 #, c-format
 msgid "&nbsp;Output port %s size is: %s"
-msgstr ""
+msgstr "&nbsp; 出力ポート%s の大きさは %s です"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 113
-# File: macros/scicos_scicos/bad_connection.sci, line: 143
 #, c-format
 msgid "&nbsp;Output port %s type is: %s"
-msgstr ""
+msgstr "&nbsp; 出力ポート%s の型は %s です"
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr "''scicos''は利用できません、代わりに''xcos'' を使ってください。\n"
@@ -317,10 +278,8 @@ msgstr "Cコード生成"
 msgid "Calc"
 msgstr "Calc(計算)"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 209
 msgid "Can''t convert old diagram (problem in version)"
-msgstr ""
+msgstr "古いダイアグラムを変換できません (バージョンに問題があります)"
 
 msgid "Choose export format:"
 msgstr "エクスポート・フォーマットを選択:"
@@ -332,15 +291,11 @@ msgid "Click block to resize"
 msgstr "ブロックをクリックしてリサイズへ"
 
 msgid "Click object to move, drag and click (left to fix, right to cancel)"
-msgstr ""
-"オブジェクトをクリックして動作、ドラッグしてクリック(左ボタン:確定、右ボタン:"
-"キャンセル)"
+msgstr "オブジェクトをクリックして動作、ドラッグしてクリック(左ボタン:確定、右ボタン:キャンセル)"
 
 msgid ""
 "Click on a Super Block (without activation output) to obtain a coded block!"
-msgstr ""
-"スーパ・ブロックをクリックして(活動化出力無しで)コード化されたブロックを取得"
-"します!"
+msgstr "スーパ・ブロックをクリックして(活動化出力無しで)コード化されたブロックを取得します!"
 
 msgid "Click on a block to set or get its documentation"
 msgstr "文書を設定または取得するブロックをクリックしてください"
@@ -377,9 +332,7 @@ msgstr "オブジェクトをクリックして色を選択します"
 
 msgid ""
 "Click on the object to duplicate, drag, click (left to copy, right to cancel)"
-msgstr ""
-"複製するオブジェクトをクリックして下さい、ドラッグしてクリック(左でコピー、右"
-"でキャンセル)"
+msgstr "複製するオブジェクトをクリックして下さい、ドラッグしてクリック(左でコピー、右でキャンセル)"
 
 msgid "Click to open block or make a link"
 msgstr "クリックしてブロックを開くか、またはリンクを作って下さい"
@@ -402,15 +355,8 @@ msgstr "色"
 msgid "Compile"
 msgstr "コンパイル"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 82
-# File: macros/scicos_scicos/bad_connection.sci, line: 85
-# File: macros/scicos_scicos/bad_connection.sci, line: 110
-# File: macros/scicos_scicos/bad_connection.sci, line: 114
-# File: macros/scicos_scicos/bad_connection.sci, line: 140
-# File: macros/scicos_scicos/bad_connection.sci, line: 144
 msgid "Connection error"
-msgstr ""
+msgstr "接続エラー"
 
 msgid "Context"
 msgstr "コンテキスト"
@@ -466,19 +412,15 @@ msgstr "詳細"
 msgid "Diagram"
 msgstr "図形"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 290
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver"
-msgstr ""
+msgstr "ダイアグラムは明示的なソルバでコンパイルされています."
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 285
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver"
-msgstr ""
+msgstr "ダイアグラムは暗示的なソルバでコンパイルされています."
 
 msgid "Done\n"
 msgstr "完了\n"
@@ -492,10 +434,8 @@ msgstr "重複"
 msgid "Edit"
 msgstr "編集"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 367
 msgid "End problem: "
-msgstr ""
+msgstr "問題を終了: "
 
 msgid "Error\n"
 msgstr "エラー\n"
@@ -546,29 +486,19 @@ msgstr "情報取得"
 msgid "Help"
 msgstr "ヘルプ"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 85
 msgid "Highlighted block has connected ports<br />with  incompatible types."
-msgstr ""
+msgstr "ハイライト表示されたブロックは互換性のない型を有するポートで接続されています."
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 82
 msgid "Highlighted block has connected ports<br />with incompatible sizes."
-msgstr ""
+msgstr "ハイライト表示されたブロックは互換性のない大きさを有するとポートで接続されています."
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 108
-# File: macros/scicos_scicos/bad_connection.sci, line: 138
 msgid ""
 "Highlighted block(s) have connected ports<br />with  incompatible sizes."
-msgstr ""
+msgstr "ハイライト表示されたブロックは互換性のない大きさを有するとポートで接続されています."
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 112
-# File: macros/scicos_scicos/bad_connection.sci, line: 142
 msgid ""
 "Highlighted block(s) have connected ports<br />with  incompatible types."
-msgstr ""
+msgstr "ハイライト表示されたブロックは互換性のない大きさを有するとポートで接続されています."
 
 msgid "ID font definitions"
 msgstr "IDフォント定義"
@@ -585,10 +515,8 @@ msgstr "アイコン編集"
 msgid "Identification"
 msgstr "識別"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 319
 msgid "Initialisation problem:"
-msgstr ""
+msgstr "問題を初期化:"
 
 msgid "It is impossible to set ID for this type of object"
 msgstr "このオブジェクトの型にIDを設定することができません"
@@ -696,9 +624,7 @@ msgstr "ポップアップ"
 
 msgid ""
 "Press left mouse button, drag region and release (right button to cancel)"
-msgstr ""
-"マウスの左ボタンを押し,リージョンをドラッグし,離してください (右ボタンでキャ"
-"ンセル)"
+msgstr "マウスの左ボタンを押し,リージョンをドラッグし,離してください (右ボタンでキャンセル)"
 
 msgid "Problem saving a backup; I cannot activate Scilab\n"
 msgstr "バックアップ保存の問題; Scilabを有効にできません\n"
@@ -709,10 +635,8 @@ msgstr "バックアップ保存の問題; Scilabを有効にできません\n"
 msgid "Problem while building library %s\n"
 msgstr "ライブラリ %s の構築中に問題がありました。\n"
 
-#
-# File: macros/scicos_scicos/bad_connection.sci, line: 164
 msgid "Problem with the block generated from modelica blocks."
-msgstr ""
+msgstr "modelicaブロックから生成されたブロックを有する問題"
 
 msgid "Properties"
 msgstr "プロパティ"
@@ -831,15 +755,11 @@ msgstr "ブロック影表示"
 msgid "Simulate"
 msgstr "シミュレーション"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 314
 msgid "Simulation parameters not set:"
-msgstr ""
+msgstr "シミュレーションパラメータが設定されていません:"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 336
 msgid "Simulation problem: "
-msgstr ""
+msgstr "問題をシミュレーション: "
 
 msgid "Smart"
 msgstr "スマート"
@@ -880,11 +800,9 @@ msgstr ""
 "パラメーター%s\n"
 "が定義されなくてはいけません"
 
-#
-# File: macros/scicos_scicos/script2var.sci, line: 69
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored"
-msgstr ""
+msgstr "変数名 %s はブロックパラメータとして使用できません: 無視します"
 
 msgid "Thickness"
 msgstr "厚さ"
@@ -906,8 +824,7 @@ msgstr "TkPopup "
 
 #, c-format
 msgid "To avoid this message, please update the %s.scicos_pal file."
-msgstr ""
-"メッセージを避けるために、どうぞ %s を更新して下さい。scicos_pal ファイル"
+msgstr "メッセージを避けるために、どうぞ %s を更新して下さい。scicos_pal ファイル"
 
 msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
 msgstr "Scicosを復活させるため、図形または型scicos()をクリックして下さい;\n"
@@ -940,18 +857,16 @@ msgstr "ビュー"
 msgid "Warning %d menus have identical name %s\n"
 msgstr "警告 %d メニューは、同一の名前 %s を持っています\n"
 
-#
-# File: macros/scicos_auto/scicos_simulate.sci, line: 250
 #, c-format
 msgid ""
 "Warning the variable %s do not match any context variable name\n"
 "ignored"
 msgstr ""
+"警告: 変数 %s はコンテキストの変数名に一致しません.\n"
+"無視されます."
 
-#
-# File: macros/scicos_utils/block_parameter_error.sci, line: 31
 msgid "Xcos block parameter error"
-msgstr ""
+msgstr "Xcosブロックパラメータエラー"
 
 msgid "Yes"
 msgstr "はい"

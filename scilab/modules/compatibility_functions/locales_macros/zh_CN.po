@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:36+0000\n"
 "Last-Translator: ilinux <bnufl66@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid ""
@@ -103,7 +103,8 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s：该特点尚未实现：类型为 %d 的参数。\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s：该特点还没有实现：对高维矩阵的支持。\n"
 
 #, c-format
@@ -177,8 +178,7 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 Matlab 字符串向量
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
