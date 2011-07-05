@@ -68,7 +68,7 @@ public final class Xcos {
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.7.0.6", "1.7.0.7");
 	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
@@ -157,8 +157,8 @@ public final class Xcos {
 		try {
 			final Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
 			mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
-				
-			if (!MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
+			
+			if (MXGRAPH_VERSIONS != null && !MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
 				throw new Exception();
 			}
 		} catch (final Throwable e) {

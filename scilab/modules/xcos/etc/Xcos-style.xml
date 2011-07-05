@@ -2,7 +2,7 @@
 <mxStylesheet>
   <!-- *** OVERLOADING DEFINITION *** -->
   <add as="defaultVertex">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="label"/>
     <add as="perimeter" value="rectanglePerimeter"/>
     <add as="strokeColor" value="black"/>
     <add as="strokeWidth" value="0.5"/>
@@ -54,7 +54,6 @@
   </add>
   <!-- Icon -->
   <add as="Icon" extend="block">
-    <add as="shape" value="image"/>
     <add as="imageBorder" value="black"/>
   </add>
   <!-- *** PORT DEFINITION *** -->
