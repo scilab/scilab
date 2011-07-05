@@ -810,8 +810,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   # Please enable  with the right version before the merge
-                   # AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.0],[mxGraph.VERSION],[],[=])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
