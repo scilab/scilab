@@ -466,7 +466,7 @@ SUBDIRS = operations output_stream arnoldi elementary_functions matio \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
 	parameters atoms types hdf5 graph xcos system_env \
-	abstractSyntaxTree symbol parse types scinotes parallel \
+	abstractSyntaxTree symbol parse scinotes parallel \
 	modules_manager ui_data history_browser $(am__append_1) scicos \
 	. $(am__append_2)
 

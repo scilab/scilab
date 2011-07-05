@@ -90,7 +90,6 @@ system_env \
 abstractSyntaxTree \
 symbol \
 parse \
-types \
 scinotes \
 parallel \
 modules_manager \

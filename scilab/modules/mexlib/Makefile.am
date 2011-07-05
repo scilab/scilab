@@ -21,8 +21,7 @@ MEXLIB_DEP =  \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/types/libscitypes.la
+	$(top_builddir)/modules/string/libscistring.la
 
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 
