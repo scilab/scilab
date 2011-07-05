@@ -60,7 +60,6 @@ wchar_t **strsplitfunction(wchar_t * wcstringToSplit, double *indices, int sizeI
 
 		for (i = 0; i < sizeIndices; i++)
 		{
-			lengthToCopy = 0;
 
 			if (i == 0)
 			{

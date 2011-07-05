@@ -1,0 +1,381 @@
+# French translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-06-01 00:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: fr\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s n''est pas un nom valide, changez, svp, le titre du diagramme."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s : Tous les chemins définis par la variable %s doivent exister.\n"
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr "%s: Le fichier ''%s'' n''existe pas.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s : Le fichier ''%s'' n''est pas un fichier de palette valide.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s : ''%s'' trouvé au lieu d''un bloc.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: Le répertoire %s ne peux pas être créé, vérifiez si vous avez les droits "
+" en écriture sur ce répertoire.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s : Impossible d''exporter %s vers %s.\n"
+
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr "%s: Impossible d''exporter ''XX'' vers %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s : Impossible d''exporter la palette vers hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s : Impossible de générer l''image %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s : Impossible de générer l''icône de palette : %s existe déjà.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Impossible d''importer les données de %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr "%s: Impossible d''importer le fichier xcos %s.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : un fichier hdf5 est attendu.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : aucune variable  `scs_m'' "
+"trouvée.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Mauvais nombre d''argument(s) en entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d''arguments de sortie : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d''argument de sortie : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s : Type incorrect pour la variable de %s : Une chaîne de caractères est "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: mauvais type pour l''argument %d: Chaîne ou structure du diagramme "
+"attendue."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s: mauvais type pour l''argument %d: Structure du diagramme attendue."
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : Le type bloc est "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : Fichier non trouvé.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : type diagramme attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : chaîne de chemin "
+"d''annuaire attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : chaîne de chemin "
+"d''accès complet attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l''argument d''entrée %s: fonction sous la forme de "
+"chaîne de caractères ou un type de block ou un chemin complet sous la forme "
+"de chaîne de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: Mauvais type pour l''argument d''entrée %s: un type handle attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : type palette attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : type palette ou chemin "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : chaîne de chemin "
+"d''accès attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : chaîne attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : chaîne ou structure "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : type chaîne attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s : Type incorrect pour l''argument d''entrée %s : vecteur de chaîne "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l''argument d''entrée %s: Un fichier existant "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr ""
+
+msgid "Basic controller"
+msgstr ""
+
+msgid "Bouncing Ball"
+msgstr ""
+
+msgid "Bouncing Balls"
+msgstr ""
+
+msgid "Bridge Rectifer"
+msgstr ""
+
+msgid "Chaos Modelica"
+msgstr ""
+
+msgid "Colpitts oscillator"
+msgstr ""
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
+msgid "Control Systems"
+msgstr ""
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
+
+msgid "Differential amplifier"
+msgstr ""
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
+msgstr ""
+
+msgid "Electrical Systems"
+msgstr ""
+
+msgid "Fibonacci Numbers"
+msgstr ""
+
+msgid "Goto/From blocks"
+msgstr ""
+
+msgid "Hydraulics blocks"
+msgstr ""
+
+msgid "Inverted Pendulum"
+msgstr ""
+
+msgid "Kalman Filter"
+msgstr ""
+
+msgid "Logic AND gate"
+msgstr ""
+
+msgid "Logic NOR gate"
+msgstr ""
+
+msgid "Lorentz butterfly"
+msgstr ""
+
+msgid "Mechanical Systems"
+msgstr ""
+
+msgid "Modelica demos"
+msgstr ""
+
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Old demos"
+msgstr ""
+
+msgid "OpAmp amplifier"
+msgstr ""
+
+msgid "RLC Circuit"
+msgstr ""
+
+msgid "RLC circuit"
+msgstr ""
+
+msgid "Scilab block"
+msgstr ""
+
+msgid "Signal Builder"
+msgstr ""
+
+msgid "Simple Demo"
+msgstr ""
+
+msgid "Simple Thermostat"
+msgstr ""
+
+msgid "Simulation problem"
+msgstr ""
+
+msgid "Standard demos"
+msgstr ""
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr ""
+
+msgid "Temperature Controller"
+msgstr ""
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Les bibliothèques Scicos ne sont pas chargées"
+
+msgid "Transformer"
+msgstr ""
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Impossible d''ouvrir %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Impossible de simuler %s"
+
+msgid "Water tank"
+msgstr ""
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos data types"
+msgstr ""
+
+msgid "Zero Crossing"
+msgstr ""
+
+msgid "_IF_ Xcos block"
+msgstr ""

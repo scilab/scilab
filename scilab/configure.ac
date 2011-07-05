@@ -1,7 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
 #
 # This file must be used under the terms of the CeCILL.
@@ -327,6 +327,13 @@ else
    enable_debug_CXX=no
 fi
 
+if test "$enable_debug_java" = yes; then
+   LOGGING_LEVEL="ALL"
+else
+   LOGGING_LEVEL="INFO"
+fi
+AC_SUBST(LOGGING_LEVEL)
+
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -503,7 +510,7 @@ case "$CXX" in
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
-   clang-* | clang) 
+   clang-* | clang)
            # clang expect an explict declaration
            LDFLAGS="$LDFLAGS -lstdc++"
    ;;
@@ -684,8 +691,8 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 
 ################
 ## SSE
-## By default, for x86 CPU, enable the SSE. 
-## Note that it is already the case with 64 bits CPU 
+## By default, for x86 CPU, enable the SSE.
+## Note that it is already the case with 64 bits CPU
 ## (these extensions are enabled by default by gcc)
 ################
 
@@ -780,6 +787,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
      # by the above --with options
      AC_JAVA_WITH_JDK
      AC_JAVA_DETECT_JVM
+     case "$ac_java_jvm_version" in
+        1.6 | 1.7)
+        ;;
+        *)
+            AC_MSG_ERROR([Wrong version of Java. Expected at least 1.6. Found $ac_java_jvm_version])
+        ;;
+     esac
+
    if test "$ac_java_jvm_name" = "jdk"; then
         JAVA_HOME=$ac_java_jvm_dir
         JAVA_VERSION=$ac_java_jvm_version
@@ -787,9 +802,18 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         AC_JAVA_JNI_INCLUDE
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
-        AC_JAVA_JNI_LIBS
-        JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
-        JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
+        case "$host_os" in
+             *Darwin* | *darwin*)
+               # Mac OS X does not link against the lib but uses -framework
+               JAVA_JNI_LIBS="-framework JavaVM"
+             ;;
+             *)
+               AC_JAVA_JNI_LIBS
+               JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
+               JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
+             ;;
+        esac
+
         AC_JAVA_CLASSPATH
         JAVA_CLASSPATH=$ac_java_classpath
         AC_JAVA_TOOLS
@@ -835,7 +859,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
-                # Named differently under ArchLinux
+                # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
                     AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
@@ -857,7 +881,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
@@ -885,7 +911,9 @@ the the JNI libraries."])],
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
                    AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
                    [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
@@ -897,7 +925,7 @@ the the JNI libraries."])],
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
                 JHALL=$PACKAGE_JAR_FILE
 
-                # Named differently under Mandriva
+                # Named differently under Mandriva or Fedora
                 if test -z "$JHALL"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
                     JHALL=$PACKAGE_JAR_FILE
@@ -1128,6 +1156,9 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
+# Provided by signal.h
+AC_CHECK_FUNCS([strsignal])
+
 
 # Check of the libm (lib math). Macro provided by libtool.
 save_LDFLAGS="$LDFLAGS"
@@ -1348,6 +1379,7 @@ AC_LIBXML2()
 #######################
 
 ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1357,6 +1389,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_SUBST(ALL_LINGUAS_DOC)
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
@@ -1644,6 +1677,7 @@ AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = xxxx)
 AC_C_CONST()
 AC_C_INLINE()
 
+AC_BACKTRACE()
 
 ##########
 ##### Code quality
@@ -1778,6 +1812,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/Info.plist
+etc/logging.properties
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties

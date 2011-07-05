@@ -6,18 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2009-10-23 10:29+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   Dl     Dt     Dc     Dj     Dv    Ds      Dg"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -28,104 +26,15 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s: Hi ha hagut un error: %s\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser entre %d i "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"(m * 3) o de (m * 6).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr ""
-"%s: L'argument d'entrada té una mida incorrecta: Han de tenir la mateixa "
-"mida.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
-"mateixa mida.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"constant de nombres reals.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter o "
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"real.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de nombres reals.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: Els arguments d'entrada són d'un tipus incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser nombres "
-"enters.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser escalars.\n"
-
-#, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser escalars.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: %s ha de ser entre %d i "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
-"''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
@@ -144,106 +53,198 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada té un valor incorrecte: Ha de ser entre %d i %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té valors incorrectes: Han de ser nombres "
 "enters no-negatius.\n"
 
-msgid "Apr"
-msgstr "Abr"
+#~ msgid "Jul"
+#~ msgstr "Jul"
 
-msgid "Aug"
-msgstr "Ago"
+#~ msgid "May"
+#~ msgstr "Mai"
 
-msgid "Day"
-msgstr "Dia"
+#~ msgid "Jun"
+#~ msgstr "Jun"
 
-msgid "Dec"
-msgstr "Des"
+#~ msgid "Jan"
+#~ msgstr "Gen"
 
-msgid "Feb"
-msgstr "Feb"
+#~ msgid "Feb"
+#~ msgstr "Feb"
 
-msgid "Fri"
-msgstr "Dv"
+#~ msgid "Mar"
+#~ msgstr "Mar"
 
-msgid "Friday"
-msgstr "Divendres"
+#~ msgid "Apr"
+#~ msgstr "Abr"
 
-msgid "Hour"
-msgstr "Hora"
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada té un valor incorrecte: Ha de ser entre %d i %d.\n"
 
-msgid "Jan"
-msgstr "Gen"
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
 
-msgid "Jul"
-msgstr "Jul"
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr ""
+#~ "%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser escalars.\n"
 
-msgid "Jun"
-msgstr "Jun"
+#~ msgid "Oct"
+#~ msgstr "Oct"
 
-msgid "Mar"
-msgstr "Mar"
+#~ msgid "Sep"
+#~ msgstr "Set"
 
-msgid "May"
-msgstr "Mai"
+#~ msgid "Aug"
+#~ msgstr "Ago"
 
-msgid "Minute"
-msgstr "Minut"
+#~ msgid "Dec"
+#~ msgstr "Des"
 
-msgid "Mon"
-msgstr "Dl"
+#~ msgid "Nov"
+#~ msgstr "Nov"
 
-msgid "Monday"
-msgstr "Dilluns"
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+#~ "real.\n"
 
-msgid "Month"
-msgstr "Mes"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: %s ha de ser entre %d i "
+#~ "%d.\n"
 
-msgid "Nov"
-msgstr "Nov"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+#~ "(m * 3) o de (m * 6).\n"
 
-msgid "Oct"
-msgstr "Oct"
+#~ msgid "Month"
+#~ msgstr "Mes"
 
-msgid "Sat"
-msgstr "Ds"
+#, c-format
+#~ msgid "%s: Wrong type for input arguments.\n"
+#~ msgstr "%s: Els arguments d'entrada són d'un tipus incorrecte.\n"
 
-msgid "Saturday"
-msgstr "Dissabte"
+#, c-format
+#~ msgid "%s: Wrong size for input argument: Same size expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada té una mida incorrecta: Han de tenir la mateixa "
+#~ "mida.\n"
 
-msgid "Second"
-msgstr "Segon"
+#~ msgid "Day"
+#~ msgstr "Dia"
 
-msgid "Sep"
-msgstr "Set"
+#~ msgid "Minute"
+#~ msgstr "Minut"
 
-msgid "Sun"
-msgstr "Dg"
+#~ msgid "Hour"
+#~ msgstr "Hora"
 
-msgid "Sunday"
-msgstr "Diumenge"
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
-msgid "Thu"
-msgstr "Dj"
+#, c-format
+#~ msgid "%s: Wrong number of input argument.\n"
+#~ msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
 
-msgid "Thursday"
-msgstr "Dijous"
+#~ msgid "Second"
+#~ msgstr "Segon"
 
-msgid "Tue"
-msgstr "Dt"
+#, c-format
+#~ msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#~ msgstr ""
+#~ "%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
+#~ "mateixa mida.\n"
 
-msgid "Tuesday"
-msgstr "Dimarts"
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Integer expected.\n"
+#~ msgstr ""
+#~ "%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser nombres "
+#~ "enters.\n"
 
-msgid "Wed"
-msgstr "Dc"
+#~ msgid "Mon"
+#~ msgstr "Dl"
 
-msgid "Wednesday"
-msgstr "Dimecres"
+#~ msgid "Sun"
+#~ msgstr "Dg"
+
+#~ msgid "Tue"
+#~ msgstr "Dt"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+
+#~ msgid "Sat"
+#~ msgstr "Ds"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+#~ "constant de nombres reals.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
+#~ "''%s''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser entre %d i "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+#~ "de nombres reals.\n"
+
+#~ msgid "Wednesday"
+#~ msgstr "Dimecres"
+
+#~ msgid "Thursday"
+#~ msgstr "Dijous"
+
+#~ msgid "Fri"
+#~ msgstr "Dv"
+
+#~ msgid "Thu"
+#~ msgstr "Dj"
+
+#~ msgid "Wed"
+#~ msgstr "Dc"
+
+#~ msgid "Saturday"
+#~ msgstr "Dissabte"
+
+#~ msgid "Sunday"
+#~ msgstr "Diumenge"
+
+#~ msgid "Monday"
+#~ msgstr "Dilluns"
+
+#~ msgid "Tuesday"
+#~ msgstr "Dimarts"
+
+#~ msgid "Friday"
+#~ msgstr "Divendres"
+
+#~ msgid "   M      Tu     W      Th     F     Sat     Sun"
+#~ msgstr "   Dl     Dt     Dc     Dj     Dv    Ds      Dg"

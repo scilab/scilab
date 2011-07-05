@@ -27,7 +27,7 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/sciprint.c \
 				src/c/sciprint_full.c \
 				src/c/errmds.c \
-				src/c/errmsg.c \
+				src/c/errorTable.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
@@ -104,7 +104,7 @@ modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA =  license.txt version.xml
+libscioutput_stream_la_root_DATA =  license.txt 
 
 
 #### output_stream : init scripts ####

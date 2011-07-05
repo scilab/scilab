@@ -12,7 +12,7 @@ function pie(varargin)
 //
 //
 // syntax : pie(x[,sp[,txt]])
-// Intput : The input arguments must have the same size
+// Input : The input arguments must have the same size
 // x : a scalar or a vector of positive reals. 
 // sp : a scalar or a vector of reals. The sp vector allows to cut one or several parts of the pie
 // txt : a cell or a vector of strings. The txt vector allows to write a text for each part of the pie

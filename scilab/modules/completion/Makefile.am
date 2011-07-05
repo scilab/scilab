@@ -18,7 +18,6 @@ endif
 COMPLETION_C_SOURCES = src/c/completion.c \
 src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
-src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/getfieldsdictionary.c \
 src/c/toolsdictionary.c \
@@ -68,7 +67,7 @@ modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt version.xml
+libscicompletion_la_root_DATA =  license.txt 
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc

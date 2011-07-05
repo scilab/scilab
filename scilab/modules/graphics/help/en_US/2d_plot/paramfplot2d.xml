@@ -16,13 +16,13 @@
   </info>
   <refnamediv>
     <refname>paramfplot2d</refname>
-    <refpurpose> animated 2D plot, curve defined by a function</refpurpose>
+    <refpurpose> animated plot of a 2D parametrized curve.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>paramfplot2d(f,x,theta)
 paramfplot2d(f,x,theta,flag)
-paramfplot2d(f,x,theta,flagrect)</synopsis>
+paramfplot2d(f,x,theta,flag,rect)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -48,7 +48,7 @@ paramfplot2d(f,x,theta,flagrect)</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>string <literal>'no'</literal> or <literal>'yes'</literal>: If "yes" screen is cleared  between two consecutive plots.</para>
+          <para>string <literal>'no'</literal> or <literal>'yes'</literal>: If "yes" screen is not cleared  between two consecutive plots.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,23 +62,49 @@ paramfplot2d(f,x,theta,flagrect)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Animated plot of the function x--&gt;f(x,t) for t=theta(1),theta(2),etc.
-    f can be a either Scilab function or a dynamically linked routine since
-    y=f(x,t) is evaluated as y=feval(x(:),t,f). See feval.
-    f: mapping x,t -&gt; f(x,t) = <literal>R^N</literal>  valued function for x= vector of <literal>R^N</literal>
-    and t=real number. x is a N-vector of x-values and for each t in theta, f(x,t)=N-vector of y-values.</para>
+    Animated plot of the function <literal>x</literal>,
+    <literal>t</literal>--&gt;<literal>f(x,t)</literal> for
+    <literal>t=theta(1),theta(2),etc</literal>.  <literal>f</literal>
+    can be a either Scilab function or a dynamically linked routine
+    since <literal>y=f(x,t)</literal> is evaluated as
+    <literal>y=feval(x(:),t,f)</literal>. See <link
+    linkend="feval">feval</link>.
+  </para>
+  <para>
+    <literal>f</literal> is a mapping <literal>x</literal>,
+    <literal>t</literal>--&gt; <literal>f(x,t) = R^N</literal> valued
+    function for <literal>x</literal> a vector of
+    <literal>R^N</literal> and <literal>t</literal> a real number.
+  </para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 deff('y=f(x,t)','y=t*sin(x)')
 x=linspace(0,2*%pi,50);theta=0:0.05:1;
-paramfplot2d(f,x,theta);
+clf;paramfplot2d(f,x,theta);
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+function V=twosoliton(x,t)
+  a1=6;s1=2;v1=a1^2;
+  a2=4;s2=40;v2=a2^2;
+  
+  f1=exp(-a1*(x-s1-v1*t));
+  f2=exp(-a2*(x-s2-v2*t));
+  r=((a2-1)/(a2+a1))^2;
+  V=2*(v1*f1+v2*f2+2*(a2-a1)^2*f1.*f2+r*(v2*(f1^2).*f2+v1*f1.*(f2^2)))./((1+f1+f2+r*f1.*f2)^2);
+endfunction
+x=linspace(1,100,3000);
+clf;paramfplot2d(twosoliton,x,0:0.05:3);
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
 <title>See Also</title>
     <simplelist type="inline">
+     <member>
+        <link linkend="comet">comet</link>
+      </member>
+
       <member>
         <link linkend="plot2d">plot2d</link>
       </member>

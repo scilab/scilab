@@ -69,7 +69,7 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA =  license.txt version.xml
+libscihelptools_la_root_DATA =  license.txt 
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
@@ -110,7 +110,14 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/scilab.rnc \
+libscihelptools_la_schema_DATA = schema/docbook.rng \
+schema/dbits.rng \
+schema/mathml3-common.rng \
+schema/docbookxi.rng \
+schema/mathml3-content.rng \
+schema/mathml3.rng \
+schema/scilab.rng \
+schema/mathml3-presentation.rng \
 schema/extendedStyle.xsl
 
 #### helptools : pages files ####

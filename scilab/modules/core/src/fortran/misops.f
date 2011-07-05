@@ -14,6 +14,7 @@ c     =============================================================
 c     
       integer iadr,op,rhs1,r
       integer insert,extrac
+      character tmpbuf * (bsiz)
       data insert/2/,extrac/3/
 c     
       iadr(l)=l+l-1
@@ -24,8 +25,8 @@ c
       op=fin
 c     
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' misops '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' misops '//tmpbuf(1:4))
       endif
 c     
       fun=0

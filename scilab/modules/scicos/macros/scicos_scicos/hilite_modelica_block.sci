@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function hilite_modelica_block(k,corinvm)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Copyright INRIA
 //## purpose : hilite a modelica block in the scicos editor
 //##           (only in opened windows)

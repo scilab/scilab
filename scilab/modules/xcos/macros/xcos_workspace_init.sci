@@ -37,7 +37,7 @@ function xcos_workspace_init()
     v=evstr(var);
     if typeof(v)=='st' then
       fn=fieldnames(v)
-      if or(fn==["values";"time"])&or(fn==["time";"value"]) then
+      if and(fn==["values";"time"] | fn==["time";"values"]) then
         if execstr('x=v.values','errcatch')==0 then
           if execstr('t=v.time','errcatch') ==0 then
             execstr('save(""'+path+var+''",x,t)')

@@ -68,10 +68,10 @@ DIST_COMMON = $(libscioutput_stream_la_include_HEADERS) \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/output_stream
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -128,7 +128,7 @@ am__objects_1 = libscioutput_stream_algo_la-erro.lo \
 	libscioutput_stream_algo_la-sciprint.lo \
 	libscioutput_stream_algo_la-sciprint_full.lo \
 	libscioutput_stream_algo_la-errmds.lo \
-	libscioutput_stream_algo_la-errmsg.lo \
+	libscioutput_stream_algo_la-errorTable.lo \
 	libscioutput_stream_algo_la-error.lo \
 	libscioutput_stream_algo_la-error_internal.lo \
 	libscioutput_stream_algo_la-do_xxprintf.lo \
@@ -202,6 +202,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -302,6 +303,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -469,7 +471,7 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 				src/c/sciprint.c \
 				src/c/sciprint_full.c \
 				src/c/errmds.c \
-				src/c/errmsg.c \
+				src/c/errorTable.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
@@ -539,7 +541,7 @@ modulename = output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA = license.txt version.xml
+libscioutput_stream_la_root_DATA = license.txt 
 
 #### output_stream : init scripts ####
 libscioutput_stream_la_etcdir = $(mydatadir)/etc
@@ -712,9 +714,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errmds.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errmsg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-erro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errorTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error_internal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo@am__quote@
@@ -831,12 +833,12 @@ libscioutput_stream_algo_la-errmds.lo: src/c/errmds.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
 
-libscioutput_stream_algo_la-errmsg.lo: src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-errmsg.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Tpo -c -o libscioutput_stream_algo_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Tpo $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libscioutput_stream_algo_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-errorTable.lo: src/c/errorTable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-errorTable.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Tpo -c -o libscioutput_stream_algo_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Tpo $(DEPDIR)/libscioutput_stream_algo_la-errorTable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errorTable.c' object='libscioutput_stream_algo_la-errorTable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errorTable.lo `test -f 'src/c/errorTable.c' || echo '$(srcdir)/'`src/c/errorTable.c
 
 libscioutput_stream_algo_la-error.lo: src/c/error.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-error.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-error.Tpo -c -o libscioutput_stream_algo_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c

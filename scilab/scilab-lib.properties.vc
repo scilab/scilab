@@ -22,7 +22,7 @@ jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
 
 jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
 
-checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
 testng.jar=${thirdparty.dir}/testng.jar
 

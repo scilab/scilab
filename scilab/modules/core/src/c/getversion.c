@@ -27,7 +27,6 @@
 #define PVM_MODULE_NAME "pvm"
 #define PVM_OPTION_STRING "pvm"
 #define TCLTK_OPTION_STRING "tk"
-#define ATLAS_OPTION_STRING "atlas"
 #define MODELICAC_OPTION_STRING "modelicac"
 #define X86_STRING "x86"
 #define X64_STRING "x64"
@@ -196,20 +195,6 @@ char **getScilabVersionOptions(int *sizeArrayReturned)
 			}
 		}
 
-		if (with_atlas())
-		{
-			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
-			if (options)
-			{
-				options[nbOptions] = strdup(ATLAS_OPTION_STRING);
-				nbOptions++;
-			}
-			else
-			{
-				return NULL;
-			}
-		}
-
 		options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
 		if (options)
 		{
@@ -329,14 +314,5 @@ BOOL with_modelica_compiler(void)
 BOOL with_tk(void)
 {
 	return with_module(TCLSCI_MODULE_NAME) && (getScilabMode() != SCILAB_NWNI);
-}
-/*--------------------------------------------------------------------------*/
-BOOL with_atlas(void)
-{
-	#ifdef WITH_ATLAS
-		return TRUE;
-	#else
-		return FALSE;
-	#endif
 }
 /*--------------------------------------------------------------------------*/

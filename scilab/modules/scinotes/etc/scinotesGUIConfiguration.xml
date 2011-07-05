@@ -65,6 +65,7 @@
       <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
       <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
       <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
+      <menuitem action="DoubleQuoteStringAction" label="Single to double quote strings"/>
     </menu>
 
     <menu label="Search" mnemonic="H">
@@ -72,6 +73,9 @@
       <menuitem action="FindNextAction" label="Find Next"/>
       <menuitem action="FindPreviousAction" label="Find Previous"/>
       <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
+      <separator/>
+      <menuitem action="SearchWordInFilesAction" label="Find word in files"/>
+      <menuitem action="SearchFilesAction" label="Find files"/>
       <separator/>
       <menuitem action="SetAnchorAction" label="Set anchor"/>
       <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
@@ -89,8 +93,8 @@
       <menuitem action="PageSetupAction" label="Page Setup"/>
       <menuitem action="HorizontalWrapAction" label="Horizontal wrapping"/>
       <separator/>
-      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
-      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>
+      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (, [, ..."/>
+      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if, function, ..."/>
       <separator/>
       <menuitem action="SuppressCommentsAction" label="Suppress comments when executing selection"/>
       <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
@@ -117,6 +121,9 @@
       <menuitem action="ExecuteFileIntoScilabAction" label="... file with no echo"/>
       <menuitem action="LoadIntoScilabAction" label="... file with echo"/>
       <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
+      <separator/>
+      <menuitem action="SaveAndExecuteFileAction" label="Save and execute"/>
+      <menuitem action="SaveAndExecuteAllFilesAction" label="Save and execute all files"/>
     </menu>
 
     <menu label="?">
@@ -171,6 +178,8 @@
     <button action="IncrementalSearchAction" tooltip="Incremental Search" icon="16x16/actions/go-bottom.png"/>
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
+    <button action="SaveAndExecuteFileAction" tooltip="Execute" icon="16x16/actions/save-and-execute.png"/>
+    <button action="SaveAndExecuteAllFilesAction" tooltip="Execute" icon="16x16/actions/execute-all.png"/>
   </ToolBar>
 
 </Configuration>

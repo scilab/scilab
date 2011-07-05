@@ -102,7 +102,7 @@ const char** getLastErrorMessage(int *iNbLines)
     if (iLastErrorMessageNbLines > 0)
     {
         *iNbLines = iLastErrorMessageNbLines;
-        return strLastErrorMessage;
+        return (const char **)strLastErrorMessage;
     }
     else
     {

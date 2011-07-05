@@ -31,6 +31,7 @@
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
+#include "UpdateBrowseVar.h"
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
@@ -186,7 +187,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER
-    /* if file descriptor returned is -2 stdin is not associated with an intput stream */
+    /* if file descriptor returned is -2 stdin is not associated with an input stream */
     /* example : echo plot3d | scilex -nw -e */
     if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else
@@ -227,6 +228,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
           {
               __WaitThreadDie(WatchGetCmdLineThread);
           }
+	  if (getScilabMode() != SCILAB_NWNI)
+	  {
+              UpdateBrowseVar(TRUE);
+	  }
           __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
           WatchGetCmdLineThreadAlive = TRUE;
       }

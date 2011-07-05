@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -15,7 +15,7 @@
 function this = nmplot_search (this)
   nmplot_log ( this , "nmplot_search")
   this = nmplot_startupfiles ( this )
-  this.nmbase = neldermead_configure ( this.nmbase , "-outputcommandarg" , this );
+  this.nmbase = neldermead_configure ( this.nmbase , "-outputcommand" , list(nmplot_outputcmd,this) );
   this.nmbase = neldermead_search ( this.nmbase )
   this = nmplot_shutdownfiles ( this )
 endfunction

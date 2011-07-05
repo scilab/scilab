@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -53,19 +53,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
-if getos() == 'Windows' then
-  getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
-  getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
-  getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
-  getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
-  getrelativefilename(pwd(),WSCI+'\bin\Wscilex')
-else
-  getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
-  getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
-  getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
-  getrelativefilename(pwd(),SCI+'/bin/scilex')
-end
+    <programlisting role="example"><![CDATA[
+getrelativefilename(pwd(), SCI+'/COPYING')
+getrelativefilename(TMPDIR, SCI+'/COPYING')
+getrelativefilename(SCI+'/bin', SCI+'/COPYING')
+getrelativefilename(pwd(), SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(TMPDIR, SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

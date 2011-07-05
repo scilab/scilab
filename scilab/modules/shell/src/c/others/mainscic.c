@@ -26,6 +26,7 @@
 #include "setgetlanguage.h"
 #include "LaunchScilabSignal.h"
 #include "setenvc.h"
+#include "signal_mgmt.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -52,6 +53,7 @@ int F77_DUMMY_MAIN() { return 1; }
 
 int main(int argc, char **argv)
 {
+
   int i;
   int no_startup_flag=0;
   int memory = MIN_STACKSIZE;
@@ -67,6 +69,9 @@ int main(int argc, char **argv)
 #endif
 
   InitializeLaunchScilabSignal();
+
+/* Management of the signals (seg fault, floating point exception, etc) */
+  base_error_init();
 
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */

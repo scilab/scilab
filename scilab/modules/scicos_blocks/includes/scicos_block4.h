@@ -87,14 +87,18 @@ typedef struct {
 
 /** define scicos flag number */
 typedef enum {
-    DerivativeState         = 0,
-    OutputUpdate            = 1,
-    StateUpdate             = 2,
-    OutputEventTiming       = 3,
-    Initialization          = 4,
-    Ending                  = 5,
-    ReInitialization        = 6,
-    ZeroCrossing            = 9,
+        /* Should not be used directly, set through the API. */
+        CosError                = -5,
+        
+        /* Valid simulation states */
+        DerivativeState         = 0,
+        OutputUpdate            = 1,
+        StateUpdate             = 2,
+        OutputEventTiming       = 3,
+        Initialization          = 4,
+        Ending                  = 5,
+        ReInitialization        = 6,
+        ZeroCrossing            = 9,
 } scicos_flag;
 
 /* utility function for block declaration */

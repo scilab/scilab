@@ -6,24 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: Ascurion <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:56+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Consortium Scilab (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
 
 msgid "  loading initial environment"
 msgstr "  lade Startumgebung"
@@ -31,9 +29,6 @@ msgstr "  lade Startumgebung"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " und %10d Variablen von %10d\n"
-
-msgid " by "
-msgstr " von "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -60,22 +55,6 @@ msgid "%s argument and argument %d"
 msgstr "%s Argument und Argument %d"
 
 #, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s aufgerufen in Zeile %s von %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s aufgerufen in Zeile %s von %s Befehlen."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s aufgerufen in Zeile %s von Makro %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s aufgerufen unter %s"
-
-#, c-format
 msgid "%s module not found.\n"
 msgstr "%s Modul nicht gefunden.\n"
 
@@ -98,10 +77,6 @@ msgstr "%s: %s hat inkompatible Dimensionen (%dx%d) # (%dx%d)\n"
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: %s haben inkompatible Dimension.\n"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s ist eine nicht editierbare hart kodierte Funktion.\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -135,10 +110,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: kann Speicher nicht belegen.\n"
 
 #, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s: Datei existiert nicht: %s"
-
-#, c-format
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr "%s: es ist unmöglich %s Durchgang zu lesen.\n"
 
@@ -157,10 +128,6 @@ msgstr "%s: Speicherreservierungsfehler.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Kein weiterer Speicher verfügbar.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Kein Perl Befehl angegeben."
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -185,20 +152,8 @@ msgid "%s: Out of code.\n"
 msgstr "%s: Außerhalb des Codes.\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: überprüfen Sie: %s.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Rekursions Probleme. Sorry ...\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: benötigt Scilab Editor.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -207,18 +162,6 @@ msgstr "%s: Die Datei %s existiert nicht.\n"
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s: Zu viele Namen.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Kann Perl Datei nicht finden: %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: Perl in ''%s'' nicht auffindbar"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Kann Perl nicht finden.\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
@@ -253,13 +196,6 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: falscher 'von was' Wert %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s: falsches Eingangsargument #%d: Pfad zu einer Scilab Skript Datei "
-"erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: Falscher Modulname %s.\n"
 
@@ -272,22 +208,12 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: falsche Anzahl von EIngangsargumenten.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d or %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Unerwartete Anzahl von Eingangsargumenten: Zumindest %d werden "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -556,6 +482,11 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Falscher Typ des Eingangsarguments #%d: Ein Integer-Wert wird erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: kompiliertes Makro erwartet.\n"
@@ -567,10 +498,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s'.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -640,11 +567,6 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s' oder '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: '0' oder '1' erwartet.\n"
 
@@ -657,13 +579,14 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+"%s: Falscher Wert des Eingangsarguments #%d: Ein Integer-Wert wird "
+"erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: definierte Variable erwartet.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -793,8 +716,8 @@ msgstr "&Werkzeugboxen"
 msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
-msgid "Bytes"
-msgstr "Bytes"
+msgid "Aborting current computation\n"
+msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
@@ -803,15 +726,23 @@ msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "Kann das Modul für Deklarationsdatei nicht laden: %s.\n"
 
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Überprüfe: %s\n"
-
 msgid "Commands:\n"
 msgstr "Befehle:\n"
 
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Willst du die Berechnung wirklich abbrechen (y or n ?) \n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
 
 msgid "Error"
 msgstr "Fehler"
@@ -928,9 +859,6 @@ msgstr "unmöglich %s Bibliothek zu laden: %s\n"
 msgid "Internal Functions:\n"
 msgstr "interne Funktionen:\n"
 
-msgid "Introduction"
-msgstr "Vorwort"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "Ungültige %c,%c Matritzen.\n"
@@ -944,9 +872,6 @@ msgstr "Ungültige Zeitdomäne\n"
 msgid "List full.\n"
 msgstr "Liste voll.\n"
 
-msgid "Name"
-msgstr ""
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Es kann kein Platz im Scilab Stapel belegt werden.\n"
 
@@ -956,14 +881,20 @@ msgstr "Die Liste optionaler Argumente ist leer.\n"
 msgid "Optional arguments list: \n"
 msgstr "Liste optionaler Argmente: \n"
 
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+
 msgid "SCI environment variable not defined.\n"
 msgstr "SCI Umgebungsvariable nicht definiert.\n"
 
 msgid "SCIHOME not defined.\n"
 msgstr "SCIHOME nicht definiert.\n"
-
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: breche Berechnung ab\n"
 
 msgid "Scilab Console"
 msgstr "Scilab-Konsole"
@@ -983,9 +914,6 @@ msgstr ""
 "Scilab Version \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-msgid "Size"
-msgstr "Größe"
-
 msgid "Startup execution:"
 msgstr "Starte Ausführung:"
 
@@ -994,12 +922,6 @@ msgstr "TMPDIR nicht definert\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "Die Sci Umgebungsvariable ist nicht gesetzt.\n"
-
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Versuch Scilab in der Mitte vom Interface anzuhalten.\n"
-
-msgid "Type"
-msgstr "Typ"
 
 #, c-format
 msgid "Undefined variable %s.\n"
@@ -1010,18 +932,11 @@ msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
 
 #, c-format
 msgid "Unqueuing %s - No option.\n"
-msgstr ""
+msgstr "Aufheben der Warteschlangenbildung %s - Keine Option.\n"
 
 #, c-format
 msgid "Unqueuing %s - seq.\n"
-msgstr ""
-
-msgid "User variables are:"
-msgstr "Benutzervariablen:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "Verwende %s aus %s Elementen"
+msgstr "Aufheben der Warteschlangenbildung %s sequentiell.\n"
 
 #, c-format
 msgid "WARNING: %s"
@@ -1035,16 +950,12 @@ msgid "Warning"
 msgstr "Warnung"
 
 #, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+
+#, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Warnung: Problem mit %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Warnung: das operative Team des Scilab Konsortiums\n"
-"bietet keinen und unterstützt diese Version von Scilab nicht, die mit "
-"gebaut\n"
 
 msgid "Your global variables are:"
 msgstr "Ihre globalen Variablen sind:"
@@ -1111,3 +1022,366 @@ msgstr "dritte"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist nicht vollständig gefüllt.\n"
+
+#~ msgid " is already compiled.\n"
+#~ msgstr " ist bereits übersetzt.\n"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Kann Perl Datei nicht finden: %s"
+
+#, c-format
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Kein Perl Befehl angegeben."
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Unerwartete Anzahl von Eingangsargumenten: Zumindest %d werden "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl in ''%s''"
+#~ msgstr "%s: Perl in ''%s'' nicht auffindbar"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Kann Perl nicht finden.\n"
+
+#~ msgid "User variables are:"
+#~ msgstr "Benutzervariablen:"
+
+#, c-format
+#~ msgid "Using %s elements ouf of %s"
+#~ msgstr "Verwende %s aus %s Elementen"
+
+#~ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+#~ msgstr "Obsolet: SCIHOME and HOME vor dem Scilab-Start angeben."
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell nicht gefunden."
+
+#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr "Fehler : Hilfe benützen'';''Überprüfe dein Script ohne Scilab"
+
+#~ msgid "Do you really want to abort computation (y or n ?) \n"
+#~ msgstr "Willst du die Berechnung wirklich abbrechen (y or n ?) \n"
+
+#~ msgid "SIGSTP: aborting current computation\n"
+#~ msgstr "SIGSTP: breche Berechnung ab\n"
+
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: Ein Fehler ist aufgetreten.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: Falsche Dateiversion %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: Falsche Dateiversion in %s.\n"
+
+#, c-format
+#~ msgid "%s called at line %s of %s"
+#~ msgstr "%s aufgerufen in Zeile %s von %s"
+
+#, c-format
+#~ msgid "%s: %s is a uneditable hard coded function.\n"
+#~ msgstr "%s: %s ist eine nicht editierbare hart kodierte Funktion.\n"
+
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: benötigt Scipad.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Please check: %s.\n"
+#~ msgstr "%s: überprüfen Sie: %s.\n"
+
+#, c-format
+#~ msgid "%s: File doesn''t exist: %s"
+#~ msgstr "%s: Datei existiert nicht: %s"
+
+#, c-format
+#~ msgid "Checking: %s\n"
+#~ msgstr "Überprüfe: %s\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Nur für Microsoft Windows"
+
+#, c-format
+#~ msgid "%s called at line %s of %s instruction."
+#~ msgstr "%s aufgerufen in Zeile %s von %s Befehlen."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+#~ msgstr ""
+#~ "%s: falsches Eingangsargument #%d: Pfad zu einer Scilab Skript Datei "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: definierte Variable erwartet.\n"
+
+#, c-format
+#~ msgid "%s called under %s"
+#~ msgstr "%s aufgerufen unter %s"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: ungültiger '%s' Wert.\n"
+
+#, c-format
+#~ msgid "%s called at line %s of macro %s"
+#~ msgstr "%s aufgerufen in Zeile %s von Makro %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: Skalar, '%s' oder '%s' "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+#~ msgstr "%s: falscher Typ für Eingangsargument #%d oder #%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Kann keinen zusätzlichen Speicher belegen.\n"
+#~ "Versuchen Sie Stapelgröße ('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Kann Speicher nicht belegen.\n"
+#~ "Versuchen Sie gstacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Invalid library %s.\n"
+#~ msgstr "%s: ungültige Bibliothek %s.\n"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Version: %s"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Datum des Kompilats: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Zeit für Kompilat: %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Argument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Architektur für Kompilat: %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "Verzeichnis Unterteiler: %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "PCRE Version: %d.%d"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "kompiliert mit %s"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "XML Version: %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#~ msgid "Enable"
+#~ msgstr "Einschalten"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "TCL Version: %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "TK Version: %s"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "Pfad Unterteiler: %s"
+
+#~ msgid "Cannot find Windows temporary directory."
+#~ msgstr "Kann das temporäre Verzeichnis von Windows nicht finden."
+
+#~ msgid "Trying to stop scilab in the middle of an interface.\n"
+#~ msgstr "Versuch Scilab in der Mitte vom Interface anzuhalten.\n"
+
+#~ msgid "Can't get current directory.\n"
+#~ msgstr "Kann das aktuelle Verzeichnis nicht erreichen.\n"
+
+#, c-format
+#~ msgid "Can't go to directory %s.\n"
+#~ msgstr "Kann in Verzeichnis nicht wechseln %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "Fehler: keine gültige Dateiversion %s (sollte mit <MODULE_VERSION> beginnen "
+#~ "und VERSION major='' minor='' maintenance='' revision='' "
+#~ "string=''>enthalten)\n"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "Warnung: das operative Team des Scilab Konsortiums\n"
+#~ "bietet keinen und unterstützt diese Version von Scilab nicht, die mit "
+#~ "gebaut\n"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+
+#, c-format
+#~ msgid ""
+#~ "Type '%s' or '%s' to return to standard level prompt.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Geben Sie '%s' oder '%s', um zur Standarteingabe-Aufforderung "
+#~ "zurückzukehren.\n"
+#~ "\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Consortium Scilab (DIGITEO)\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: benannte Variable erwartet.\n"
+
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "verwendeter Speicher: %*ld%%"
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "Grafikkarte: %s"
+
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "Anzahl der Prozessoren: %d"
+
+#~ msgid "Operating System: "
+#~ msgstr "Betriebssystem: "
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "freier virtueller Speicher (KB): %*I64d"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "freier erweiterter Speicher (KB): %*I64d"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "totaler virtueller Speicher (KB): %*I64d"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "freier physikalischer Speicher (KB): %*I64d"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "gesamte Seitenspeicher (KB): %*I64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "freier Seitenspeicher (KB): %*I64d"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "gesamter physikalischer Speicher (KB): %*I64d"
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+
+#~ msgid "Unknown error.\n"
+#~ msgstr "Unbekannter Fehler.\n"
+
+#~ msgid "Invalid buffer.\n"
+#~ msgstr "Falscher Puffer.\n"
+
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "Grafikkartentreiberversion: %s"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "Bildschirmgröße: %d x %d %d Bits"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Fehler bei der Speicherbelegung.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Requires scilab editor.\n"
+#~ msgstr "%s: benötigt Scilab Editor.\n"
+
+#~ msgid "Introduction"
+#~ msgstr "Vorwort"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Bytes"
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "Size"
+#~ msgstr "Größe"
+
+#~ msgid " by "
+#~ msgstr " von "
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"

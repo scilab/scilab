@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-04-04 22:09+0100\n"
+"Revision-Date: 2011-06-06 15:28+0100\n"
 
 # File: sci_gateway/c/sci_linear_interpn.c, line: 99
 #, c-format
@@ -48,22 +48,17 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 105
 #, c-format
-msgid ""
-"%s: Size incompatibility between grid points and grid values in dimension "
-"%d.\n"
+msgid "%s: Size incompatibility between grid points and grid values in dimension %d.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 120
 #, c-format
-msgid ""
-"%s: Size incompatibility between grid points and values in dimension %d or "
-"%d.\n"
+msgid "%s: Size incompatibility between grid points and values in dimension %d or %d.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 115
 #, c-format
-msgid ""
-"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgid "%s: Size incompatibility between grid points and values in dimension %d.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 87
@@ -77,11 +72,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 #
-# File: macros/interp1.sci, line: 37
-#, c-format
-msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_lsq_splin.c, line: 50
 # File: sci_gateway/c/sci_lsq_splin.c, line: 58
 # File: sci_gateway/c/sci_linear_interpn.c, line: 80
@@ -91,9 +81,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 64
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin.c, line: 89
@@ -106,52 +94,23 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
 msgstr ""
 #
-# File: macros/interpln.sci, line: 24
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 121
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 50
-# File: macros/interp1.sci, line: 118
-# File: macros/interp1.sci, line: 135
-# File: macros/interp1.sci, line: 260
-# File: macros/interp1.sci, line: 312
-# File: macros/interp1.sci, line: 441
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 111
-# File: macros/interp1.sci, line: 115
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 41
-# File: sci_gateway/c/sci_interp.c, line: 47
-# File: sci_gateway/c/sci_linear_interpn.c, line: 61
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 46
+# File: sci_gateway/c/sci_interp.c, line: 47
+# File: sci_gateway/c/sci_lsq_splin.c, line: 41
+# File: sci_gateway/c/sci_linear_interpn.c, line: 61
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin.c, line: 50
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
-"expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Vector of same size expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 52
 # File: sci_gateway/c/sci_interp3d.c, line: 60
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 59
@@ -161,68 +120,25 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 57
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
-"points.\n"
+msgid "%s: Wrong size for input arguments: x, y and z grids must have at least %d points.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 74
-# File: sci_gateway/c/sci_interp3d.c, line: 81
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 66
+# File: sci_gateway/c/sci_interp3d.c, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
 msgstr ""
 #
-# File: macros/interp1.sci, line: 66
-# File: macros/interp1.sci, line: 69
-# File: macros/interp1.sci, line: 92
-# File: macros/interp1.sci, line: 98
-# File: macros/interp1.sci, line: 101
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 183
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 207
-# File: macros/interp1.sci, line: 233
-# File: macros/interp1.sci, line: 272
-# File: macros/interp1.sci, line: 282
-# File: macros/interp1.sci, line: 304
-# File: macros/interp1.sci, line: 325
-# File: macros/interp1.sci, line: 333
-# File: macros/interp1.sci, line: 366
-# File: macros/interp1.sci, line: 372
-# File: macros/interp1.sci, line: 419
-# File: macros/interp1.sci, line: 427
-# File: macros/interp1.sci, line: 444
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 64
 # File: sci_gateway/c/sci_splin.c, line: 62
+# File: sci_gateway/c/sci_lsq_splin.c, line: 64
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
-"detected.\n"
-msgstr ""
-#
-# File: macros/interp1.sci, line: 107
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgid "%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 78
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgid "%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_interp2d.c, line: 56
@@ -248,9 +164,9 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 78
+# File: sci_gateway/c/sci_interp2d.c, line: 67
 # File: sci_gateway/c/sci_linear_interpn.c, line: 133
 # File: sci_gateway/c/sci_interp3d.c, line: 115
-# File: sci_gateway/c/sci_interp2d.c, line: 67
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
 msgstr ""

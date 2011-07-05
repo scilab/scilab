@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran files">
+      <UniqueIdentifier>{bdf70c9f-54e7-4dfc-8f18-4984d0666580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Imports">
+      <UniqueIdentifier>{4cdf94bd-7d8c-4298-838e-fe2df37b32af}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="csslti.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cstblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delay.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delayv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demux.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="diffblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dlradp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dollar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dsslti.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eselect.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="evtdly.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="expblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="forblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fsv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gensin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gensqr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hltblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ifthel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="integr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intplt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intpol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intrp2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intrpl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="invblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iocopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lookup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lsplit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lusat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="maxblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mfclck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mux.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="powblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qzcel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qzflr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qzrnd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qztrn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="readf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rndblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="samphold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sawtth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sciblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="selblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqrblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sum2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sum3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tanblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tcslti.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tcsltj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timblk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writef.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zcross.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="csslti.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="cstblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="delay.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="delayv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="demux.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="diffblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dlradp.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dollar.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dsslti.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="eselect.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="evtdly.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="expblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="forblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fsv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gensin.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gensqr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="hltblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ifthel.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="integr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intplt.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intpol.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intrp2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intrpl.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="invblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="iocopy.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="logblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="lookup.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="lsplit.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="lusat.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="maxblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="memo.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="mfclck.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="minblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="mux.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="pload.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="powblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qzcel.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qzflr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qzrnd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="qztrn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="readf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rndblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="samphold.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sawtth.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sciblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="selblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sinblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sqrblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sum2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sum3.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tanblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tcslti.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tcsltj.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="timblk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="trash.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="writef.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zcross.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Elementary_functions_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Output_stream_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Output_stream_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Scicos_blocks_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Scicos_f_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="Scicos_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="String_Import.def">
+      <Filter>Imports</Filter>
+    </None>
+    <None Include="..\..\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+</Project>

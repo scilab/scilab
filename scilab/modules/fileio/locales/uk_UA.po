@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-10 12:40+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
@@ -108,14 +109,6 @@ msgid ""
 msgstr "%s: помилка під час спроби отримання назви поточного каталогу.\n"
 
 #, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: помилковий формат.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: помилкове перетворення.\n"
-
-#, c-format
 msgid "%s: Invalid format.\n"
 msgstr "%s: некоректний формат.\n"
 
@@ -143,10 +136,6 @@ msgstr "%s: доступну пам’ять вичерпано.\n"
 #, c-format
 msgid "%s: No such file %s.\n"
 msgstr "%s: не виявлено файла з назвою %s.\n"
-
-#, c-format
-msgid "%s: Options ignored.\n"
-msgstr "%s: параметри проігноровано.\n"
 
 #, c-format
 msgid "%s: Specified format cannot include any '\\n'\n"
@@ -194,10 +183,6 @@ msgid "%s: Wrong file mode: READ only.\n"
 msgstr "%s: помилковий режим доступу до файла: можливе лише читання.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: помилкова кількість вхідних параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
@@ -206,10 +191,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -235,32 +216,10 @@ msgstr ""
 "масиви 1xn або mx1.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "булівське значення.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дескриптор файла.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: помилковий розмірність вхідного параметра №%d: слід використовувати "
-"назву файла.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
@@ -272,6 +231,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
@@ -315,40 +279,10 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра: слід використовувати число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«boolean».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати дескриптор "
-"файла.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати назву або "
-"дескриптор файла.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мав бути рядок або ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -359,6 +293,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мав бути рядок або ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -415,11 +359,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати тип «string».\n"
-
-#, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
@@ -430,6 +369,14 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d (%s): слід використовувати "
 "«%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+"directory expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d ('%ls'): слід використовувати "
+"коректну назву файла або каталогу.\n"
 
 #, c-format
 msgid ""
@@ -469,29 +416,22 @@ msgstr ""
 "«w» або «u».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати "
-"коректний дескриптор файла.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
+"%s: Wrong value for input argument #%d: A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d ('%ls'): слід використовувати коректну "
+"%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
 "назву файла або каталогу.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: формат не розпізнано.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: no empty string expected.\n"
@@ -504,26 +444,12 @@ msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: помилкові значення вхідних параметрів.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
-"corrupted.\n"
-msgstr ""
-"%s: помилковий тип змінної (%s), знайденої у «%s». Можливо, файл записано з "
-"помилками або його було пошкоджено.\n"
-
-#, c-format
 msgid "%s: can not open file %s.\n"
 msgstr "%s: не вдалося відкрити файл %s.\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr "%s: не вдалося прочитати файл %s.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr ""
-"%s: отримано символ завершення вхідних параметрів до завершення "
-"перетворення.\n"
 
 #, c-format
 msgid "%s: error.\n"
@@ -597,3 +523,141 @@ msgstr "Попередження: файл з назвою «%s» вже від�
 
 msgid "unclosed [ directive."
 msgstr "незавершена вказівка [."
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid "%s: Cannot open file '%s'.\n"
+#~ msgstr "%s: не вдалося відкрити файл «%s».\n"
+
+#, c-format
+#~ msgid "%s: Cannot read data in file '%s'.\n"
+#~ msgstr "%s: не вдалося прочитати дані з файла «%s».\n"
+
+#, c-format
+#~ msgid "%s: Incorrect format.\n"
+#~ msgstr "%s: помилковий формат.\n"
+
+#, c-format
+#~ msgid "%s: Invalid conversion.\n"
+#~ msgstr "%s: помилкове перетворення.\n"
+
+#, c-format
+#~ msgid "%s: Options ignored.\n"
+#~ msgstr "%s: параметри проігноровано.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s).\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output argument(s).\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+#~ "дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий розмірність вхідного параметра №%d: слід використовувати "
+#~ "назву файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати дескриптор "
+#~ "файла.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A filename or file descriptor "
+#~ "nexpected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати назву або "
+#~ "дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: мав бути рядок або ціле число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра: слід використовувати тип «string».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "коректний дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
+#~ "corrupted.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип змінної (%s), знайденої у «%s». Можливо, файл записано з "
+#~ "помилками або його було пошкоджено.\n"
+
+#, c-format
+#~ msgid "%s: end of input reached before final conversion.\n"
+#~ msgstr ""
+#~ "%s: отримано символ завершення вхідних параметрів до завершення "
+#~ "перетворення.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A filename or file descriptor "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати назву або "
+#~ "дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "коректний формат.\n"
+
+#~ msgid "This directory already exists in "
+#~ msgstr "Такий каталог уже існує у "
+
+#~ msgid "A file with the same name already exists in "
+#~ msgstr "Файл з такою назвою вже існує у "
+
+#~ msgid "Impossible to create directory "
+#~ msgstr "Неможливост створити каталог "

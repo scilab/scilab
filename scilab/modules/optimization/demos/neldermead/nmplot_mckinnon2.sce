@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,6 +11,9 @@
 
 
 function demo_mckinnon2()
+
+    filename = 'nmplot_mckinnon2.sce';
+    dname = get_absolute_file_path(filename);
 
     mprintf(_("Defining McKinnon function...\n"));
 
@@ -93,6 +97,9 @@ function demo_mckinnon2()
             f = theta       *       x(1).^tau   + x(2) * ( 1.0 + x(2) );
         end
     endfunction
+  function y = mckinnon3C ( x1 , x2 )
+    y = mckinnon3 ( [x1 , x2] , 2 )
+  endfunction
 
     lambda1 = (1.0 + sqrt(33.0))/8.0;
     lambda2 = (1.0 - sqrt(33.0))/8.0;
@@ -134,25 +141,39 @@ function demo_mckinnon2()
     //
     mprintf(_("Searching (please wait) ...\n"));
     nm = nmplot_search(nm);
-    nmplot_display(nm);
+    disp(nm);
     
     //
     // Plot
     //
     mprintf(_("Plot contour (please wait) ...\n"));
-    [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
-    f = scf();
+  xmin = -0.2; 
+  xmax = 1.2 ; 
+  ymin = -2.0 ; 
+  ymax = 2.0 ; 
+  nx = 50 ; 
+  ny = 50;
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
+    scf();
+	subplot(2,2,1)
     xset("fpf"," ")
     drawlater();
-    contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
+    contour ( xdata , ydata , mckinnon3C , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
     nmplot_simplexhistory ( nm );
     drawnow();
-    f = scf();
-    nmplot_historyplot ( nm , fbarfn, mytitle = _("Function Value Average") , myxlabel = _("Iterations") );
-    f = scf();
-    nmplot_historyplot ( nm , foptfn, mytitle = _("Minimum Function Value") , myxlabel = _("Iterations") );
-    f = scf();
-    nmplot_historyplot ( nm , sigmafn, mytitle = _("Maximum Oriented length") , myxlabel = _("Iterations") );
+	subplot(2,2,2)
+	mytitle = _("Function Value Average"); 
+	myxlabel = _("Iterations");
+    nmplot_historyplot ( nm , fbarfn, mytitle , myxlabel );
+	subplot(2,2,3)
+	mytitle = _("Minimum Function Value") ; 
+	myxlabel = _("Iterations");
+    nmplot_historyplot ( nm , foptfn, mytitle , myxlabel );
+	subplot(2,2,4)
+	mytitle = _("Maximum Oriented length") ; 
+	myxlabel = _("Iterations") ;
+    nmplot_historyplot ( nm , sigmafn, mytitle , myxlabel );
     deletefile(simplexfn);
     deletefile(fbarfn);
     deletefile(foptfn);
@@ -163,8 +184,6 @@ function demo_mckinnon2()
     //
     // Load this script into the editor
     //
-    filename = 'nmplot_mckinnon2.sce';
-    dname = get_absolute_file_path(filename);
     editor ( dname + filename, "readonly" );
 
 endfunction

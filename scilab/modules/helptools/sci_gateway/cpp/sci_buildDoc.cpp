@@ -49,10 +49,6 @@ extern "C"
     /*--------------------------------------------------------------------------*/
     int sci_buildDoc(char *fname,unsigned long l)
     {
-        static int l1 = 0,n1 = 0,m1 = 0;
-        static int l2 = 0,n2 = 0,m2 = 0;
-        static int l3 = 0,n3 = 0,m3 = 0;
-        static int l4 = 0,n4 = 0,m4 = 0;
         //	static int Row_Output = 0, Col_Output = 0;
         std::string exportFormat;
         std::string SciPath = getSCIpath(); /* Scilab path */
@@ -244,6 +240,7 @@ extern "C"
         {
             Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999,_("%s: Execution Java stack %s.\n"), fname, ex.getJavaStackTrace().c_str());
+            Scierror(999,_("If Scilab is started in a chroot, you might want to try to set the two environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"));
             return FALSE;
         }
 

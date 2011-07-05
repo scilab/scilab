@@ -54,7 +54,8 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes/
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/ui_data/includes/
 if IS_MACOSX
 libscishell_la_CFLAGS += -msse2
 endif
@@ -77,15 +78,17 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 ## Libraries necessary
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD = libscishell-algo.la  	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la \
-							$(top_builddir)/modules/output_stream/libscioutput_stream.la 
-# $(top_builddir)/modules/completion/libscicompletion.la
+libscishell_la_LIBADD = libscishell-algo.la \
+ 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
+
 modulename=shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA =  license.txt version.xml
+libscishell_la_root_DATA =  license.txt 
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

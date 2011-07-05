@@ -7,15 +7,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-10 20:09+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 msgid ""
 "\n"
@@ -216,6 +217,12 @@ msgstr ""
 "число.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра. нижня границя має бути меншою за "
+"верхню.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати тип вектора-"
@@ -349,9 +356,6 @@ msgstr "DF < 1.0, або DF <= 0.0, або Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Кількість степенів свободи не є додатною\n"
 
-msgid "Low > High\n"
-msgstr "Low > High\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "Не вказано A і B для закону бета розподілу\n"
 
@@ -441,9 +445,6 @@ msgstr "Rand(...,'bet',..): A або B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Випадкові величини"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
@@ -481,3 +482,48 @@ msgstr "a і b мають бути цілими числами, такими, щ
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
+
+#~ msgid "Low > High\n"
+#~ msgstr "Low > High\n"
+
+#~ msgid "Random"
+#~ msgstr "Випадкові величини"
+
+#~ msgid "Simulation"
+#~ msgstr "Моделювання"
+
+#~ msgid "discrete random variable"
+#~ msgstr "дискретна випадкова величина"
+
+#~ msgid "geometric random variable"
+#~ msgstr "геометрично розподілена випадкова величина"
+
+#~ msgid "discrete uniform random variable"
+#~ msgstr "рівномірно розподілена дискретна випадкова величина"
+
+#~ msgid "Poisson random variable"
+#~ msgstr "випадкова величина з розподілом Пуассона"
+
+#~ msgid "Simulation of a binomial random variable"
+#~ msgstr "Моделювання біноміально розподіленої випадкової величини"
+
+#~ msgid "binomial random variable"
+#~ msgstr "біноміально розподілена випадкова величина"
+
+#~ msgid "Exponential random variable"
+#~ msgstr "експоненційно розподілена випадкова величина"
+
+#~ msgid "Simulation of a discrete random variable"
+#~ msgstr "Моделювання дискретної випадкової величини"
+
+#~ msgid "Erlang random variable"
+#~ msgstr "Випадкова величина з розподілом Ерланга"
+
+#~ msgid "Weibull random variable"
+#~ msgstr "Випадкова величина з розподілом Вейбулла"
+
+#~ msgid "Theory"
+#~ msgstr "Теорія"
+
+#~ msgid "Hyper geometric random variable"
+#~ msgstr "Випадкова величина з гіпергеометричним розподілом"

@@ -6,84 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-05-27 18:59+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-02-12 16:04+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-msgid ""
-"\n"
-" approximate (lM,vM) with the iterative power method \n"
-msgstr ""
-"\n"
-" приблизно (lM,vM) за використання ітеративного степеневого методу \n"
-
-msgid ""
-"\n"
-" approximate (lm,vm) with the inverse iterative power method \n"
-msgstr ""
-"\n"
-" приблизно (lm,vm) за використання оберненого ітеративного степеневого "
-"методу \n"
-
-msgid "                                                     "
-msgstr "                                                     "
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
 msgstr "                        недодатний опорний елемент у стовпчику %d\n"
 
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               КЛАЦНІТЬ, ЩОБ ПРОДОВЖИТИ                    "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-#, c-format
-msgid "           don''t reached after %d iterations (got only %e) \n"
-msgstr "           не досягнуто після %d ітерацій (маємо лише %e) \n"
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           потім знову введіть scisptdemo()                "
-
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
 msgstr "    Факторизація CC^T: матриця не є додатно визначеною.\n"
-
-msgid "   then click on OK   "
-msgstr "   потім натисніть кнопку «Гаразд»   "
-
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
-msgid " ------------------------------------------------------------\n"
-msgstr " ------------------------------------------------------------\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " Для цієї демонстрації недостатньо поточного розміру стека "
-
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " Попередження: для збіжності lM при rtol = %e \n"
-
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " Попередження: для збіжності lm при rtol = %e \n"
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " введіть таку команду scilab у рядок запрошення:          "
-
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr " ітерація %3d: lM = %e  \n"
-
-#, c-format
-msgid " iteration %3d : lm = %e  \n"
-msgstr " ітерація %3d : lm = %e  \n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -96,11 +35,6 @@ msgstr "%s: сталася помилка: %s\n"
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
 msgstr "%s: сталася помилка: %s: %s\n"
-
-#, c-format
-msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: некоректний тип і/або розмірність і/або значення другого параметра.\n"
 
 #, c-format
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
@@ -118,39 +52,9 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s: у цій матриці немає значень (можна використовувати лише ненульові "
-"структури): додайте десь 1."
-
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: файл містить вектор rhs, але його не буде прочитано!"
-
-#, c-format
-msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s: матриця та елементи розкладу LU мають різну розмірність!\n"
-
-#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилковий вхідний параметр №%d: слід використовувати «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: помилкова кількість вхідних параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -159,13 +63,6 @@ msgstr "%s: помилкова розмірність вхідного пара�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d: %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"розріджену квадратну матрицю.\n"
 
 #, c-format
 msgid ""
@@ -180,25 +77,6 @@ msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів: розмірності мали бути "
 "однаковими.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати розріджену "
-"квадратну матрицю.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати розріджену "
-"матрицю.\n"
 
 #, c-format
 msgid ""
@@ -241,19 +119,8 @@ msgstr ""
 "елементи розкладу Холецького.\n"
 
 #, c-format
-msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-msgstr ""
-"%s: поточна версія не може читати незібрані (елементарні) розріджені матриці."
-
-#, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s: не вистачає пам’яті.\n"
-
-msgid "Choose a sparse matrix"
-msgstr "Вкажіть розріджену матрицю"
-
-msgid "Click to choose a demo"
-msgstr "Клацніть, щоб обрати приклад"
 
 msgid "GENMMD ordering only works on symmetric matrices.\n"
 msgstr "Впорядкування GENMMD працює лише для симетричних матриць.\n"
@@ -279,14 +146,8 @@ msgstr "Цей розклад не є розкладом квадратної м
 msgid "Warning"
 msgstr "Попередження"
 
-msgid "display a speed comparison test"
-msgstr "показ порівняння швидкодії"
-
 msgid "factorization"
 msgstr "факторизація"
-
-msgid "how to use this stuff"
-msgstr "приклади використання"
 
 msgid "internal error"
 msgstr "внутрішня помилка"
@@ -306,8 +167,158 @@ msgstr "числова факторизація"
 msgid "singular matrix"
 msgstr "вироджена матриця"
 
-msgid "small tests for condestsp"
-msgstr "невеличкі тести condestsp"
-
 msgid "symbolic factorization"
 msgstr "аналітична факторизація"
+
+#~ msgid ""
+#~ "\n"
+#~ " approximate (lM,vM) with the iterative power method \n"
+#~ msgstr ""
+#~ "\n"
+#~ " приблизно (lM,vM) за використання ітеративного степеневого методу \n"
+
+#~ msgid ""
+#~ "\n"
+#~ " approximate (lm,vm) with the inverse iterative power method \n"
+#~ msgstr ""
+#~ "\n"
+#~ " приблизно (lm,vm) за використання оберненого ітеративного степеневого "
+#~ "методу \n"
+
+#~ msgid "                                                     "
+#~ msgstr "                                                     "
+
+#~ msgid "               CLICK TO  CONTINUE                    "
+#~ msgstr "               КЛАЦНІТЬ, ЩОБ ПРОДОВЖИТИ                    "
+
+#~ msgid "              stacksize(3000000);                    "
+#~ msgstr "              stacksize(3000000);                    "
+
+#, c-format
+#~ msgid "           don''t reached after %d iterations (got only %e) \n"
+#~ msgstr "           не досягнуто після %d ітерацій (маємо лише %e) \n"
+
+#~ msgid "           then re enter scisptdemo()                "
+#~ msgstr "           потім знову введіть scisptdemo()                "
+
+#~ msgid "   then click on OK   "
+#~ msgstr "   потім натисніть кнопку «Гаразд»   "
+
+#~ msgid " ----------------------------------------------------- \n"
+#~ msgstr " ----------------------------------------------------- \n"
+
+#~ msgid " ------------------------------------------------------------\n"
+#~ msgstr " ------------------------------------------------------------\n"
+
+#~ msgid " For this demo the current stack size is not enought "
+#~ msgstr " Для цієї демонстрації недостатньо поточного розміру стека "
+
+#, c-format
+#~ msgid " Warning : for lM convergence at rtol = %e \n"
+#~ msgstr " Попередження: для збіжності lM при rtol = %e \n"
+
+#, c-format
+#~ msgid " Warning : for lm convergence at rtol = %e \n"
+#~ msgstr " Попередження: для збіжності lm при rtol = %e \n"
+
+#~ msgid " enter the following at the scilab prompt :          "
+#~ msgstr " введіть таку команду scilab у рядок запрошення:          "
+
+#, c-format
+#~ msgid " iteration %3d : lM = %e  \n"
+#~ msgstr " ітерація %3d: lM = %e  \n"
+
+#, c-format
+#~ msgid " iteration %3d : lm = %e  \n"
+#~ msgstr " ітерація %3d : lm = %e  \n"
+
+#, c-format
+#~ msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+#~ msgstr ""
+#~ "%s: некоректний тип і/або розмірність і/або значення другого параметра.\n"
+
+#, c-format
+#~ msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+#~ msgstr ""
+#~ "%s: у цій матриці немає значень (можна використовувати лише ненульові "
+#~ "структури): додайте десь 1."
+
+#, c-format
+#~ msgid "%s: The file contains a rhs but it will not be read !"
+#~ msgstr "%s: файл містить вектор rhs, але його не буде прочитано!"
+
+#, c-format
+#~ msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+#~ msgstr "%s: матриця та елементи розкладу LU мають різну розмірність!\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s).\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+#~ "розріджену квадратну матрицю.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати розріджену "
+#~ "квадратну матрицю.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати розріджену "
+#~ "матрицю.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be symetric positive definite"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "симетричну додатно визначену матрицю"
+
+#, c-format
+#~ msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+#~ msgstr ""
+#~ "%s: поточна версія не може читати незібрані (елементарні) розріджені матриці."
+
+#~ msgid "Choose a sparse matrix"
+#~ msgstr "Вкажіть розріджену матрицю"
+
+#~ msgid "Click to choose a demo"
+#~ msgstr "Клацніть, щоб обрати приклад"
+
+#~ msgid "display a speed comparison test"
+#~ msgstr "показ порівняння швидкодії"
+
+#~ msgid "how to use this stuff"
+#~ msgstr "приклади використання"
+
+#~ msgid "small tests for condestsp"
+#~ msgstr "невеличкі тести condestsp"
+
+#~ msgid " For this demo the current stack size is not enough "
+#~ msgstr " Для цієї демонстрації недостатньо поточного розміру стека "

@@ -21,6 +21,7 @@
 #include "InitializeConsole.h"
 #include "PromptToHome.h"
 #include "MALLOC.h"
+#include "ScilabLinesUpdate.h"
 #include "GetCharWithoutOutput.h"
 #include "ConsoleIsWaitingForInput.h"
 /*--------------------------------------------------------------------------*/
@@ -68,5 +69,10 @@ BOOL InitializeConsole(void)
 BOOL ConsoleIsWaitingForInput(void)
 {
     return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+BOOL ScilabLinesUpdate(void)
+{
+  return FALSE;
 }
 /*--------------------------------------------------------------------------*/

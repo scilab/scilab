@@ -17,6 +17,9 @@
 
 function demo_boxproblemA()
 
+  filename = 'neldermead_boxproblemA.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates Box'' algorithm on Box problem A.\n"));
 
   mprintf("M.J. Box, \n");
@@ -50,7 +53,7 @@ function demo_boxproblemA()
   //   index : the stuff to compute
   //   data : the parameters of Box cost function
   //
-  function [ f , c , index , data ] = boxproblemA ( x , index , data )
+  function [ f , c , index ] = boxproblemA ( x , index , data )
     f = []
     c = []
     b = x(2) + 0.01 * x(3)
@@ -142,18 +145,17 @@ function demo_boxproblemA()
 
   x0 = [2.52 2.0 37.5 9.25 6.8].';
   // Compute f(x0) : should be close to -2351244.0
-  [ fx0 , c , index , data ] = boxproblemA ( x0 , 2 , boxparams );
+  [ fx0 , c , index ] = boxproblemA ( x0 , 2 , boxparams );
   mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -2351244. );
 
   xopt = [4.53743 2.4 60.0 9.3 7.0].';
   // Compute f(xopt) : should be -5280334.0
-  [ fopt , c , index , data ] = boxproblemA ( xopt , 2 , boxparams );
+  [ fopt , c , index ] = boxproblemA ( xopt , 2 , boxparams );
   mprintf("Computed fopt = %e (expected = %e)\n", fopt , -5280334.0 );
 
   nm = neldermead_new ();
   nm = neldermead_configure(nm,"-numberofvariables",5);
-  nm = neldermead_configure(nm,"-function",boxproblemA);
-  nm = neldermead_configure(nm,"-costfargument",boxparams);
+  nm = neldermead_configure(nm,"-function",list(boxproblemA,boxparams));
   nm = neldermead_configure(nm,"-x0",x0);
   nm = neldermead_configure(nm,"-maxiter",300);
   nm = neldermead_configure(nm,"-maxfunevals",1000);
@@ -177,25 +179,26 @@ function demo_boxproblemA()
   mprintf(_("Searching (please wait)...\n"));
   nm = neldermead_search(nm);
   mprintf(_("...Done\n"));
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"neldermead_summary.sci"),-1);
+  neldermead_summary(nm)
   mprintf("==========================\n");
   xcomp = neldermead_get(nm,"-xopt");
-  mprintf("x computed = [%s]\n",strcat(string(xcomp)," "));
   mprintf("x expected = [%s]\n",strcat(string(xopt)," "));
   shift = norm(xcomp-xopt)/norm(xopt);
-  mprintf(_("Relative error = %e\n"),shift);
+  mprintf(_("Relative error on x = %e\n"),shift);
   fcomp = neldermead_get(nm,"-fopt");
-  mprintf("f computed = %f\n",fcomp);
   mprintf("f expected = %f\n",fopt);
   shift = abs(fcomp-fopt)/abs(fopt);
-  mprintf("Relative error = %e\n",shift);
+  mprintf("Relative error on f = %e\n",shift);
   nm = neldermead_destroy(nm);
   mprintf(_("End of demo.\n"));
 
   //
   // Load this script into the editor
   //
-  filename = 'neldermead_boxproblemA.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction 

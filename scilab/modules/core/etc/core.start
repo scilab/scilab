@@ -8,15 +8,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function corelib = startModule()
+
 // =============================================================================
 // Load functions libraries
 // =============================================================================
-load('SCI/modules/core/macros/lib');
+  load('SCI/modules/core/macros/lib');
+endfunction
 
-// Add demos
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/core/demos/intro/dem01.dem",%f,%t);
-	add_demo(gettext("Introduction"),pathdemos);
-end
-
+corelib = startModule();
+clear startModule;

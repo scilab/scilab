@@ -3,16 +3,16 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"
@@ -21,76 +21,84 @@
 #include "BOOL.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static DynLibHandle hLibJVM = NULL;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 typedef jint (JNICALL *JNI_CreateJavaVMPROC) (JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args);
 typedef jint (JNICALL *JNI_GetCreatedJavaVMsPROC)(JavaVM **vmBuf, jsize BufLen, jsize *nVMs);
 typedef jint (JNICALL *JNI_GetDefaultJavaVMInitArgsPROC)(JavaVMInitArgs *args);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static JNI_GetDefaultJavaVMInitArgsPROC ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
 static JNI_CreateJavaVMPROC ptr_JNI_CreateJavaVM  = NULL;
 static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args)
 {
     if (ptr_JNI_GetDefaultJavaVMInitArgs) return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
     return JNI_ERR;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 jint SciJNI_CreateJavaVM(JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args)
 {
     if (ptr_JNI_CreateJavaVM) return (ptr_JNI_CreateJavaVM)(jvm,penv,args);
     return JNI_ERR;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
     if (ptr_JNI_GetCreatedJavaVMs) return (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
     return JNI_ERR;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL FreeDynLibJVM(void)
 {
     if (hLibJVM)
     {
         if (FreeDynLibrary(hLibJVM))
         {
-            ptr_JNI_GetDefaultJavaVMInitArgs = NULL; 
-            ptr_JNI_CreateJavaVM = NULL; 
-            ptr_JNI_GetCreatedJavaVMs = NULL; 
+            ptr_JNI_GetDefaultJavaVMInitArgs = NULL;
+            ptr_JNI_CreateJavaVM = NULL;
+            ptr_JNI_GetCreatedJavaVMs = NULL;
             hLibJVM = NULL;
             return TRUE;
         }
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 BOOL LoadFunctionsJVM(char *filedynlib)
 {
 #ifdef _MSC_VER
     wchar_t * wcfiledynlib = to_wide_string(filedynlib);
     if (wcfiledynlib)
     {
-        hLibJVM = LoadDynLibraryW(wcfiledynlib); 
+        hLibJVM = LoadDynLibraryW(wcfiledynlib);
         FREE(wcfiledynlib);
         wcfiledynlib = NULL;
     }
 #else
-    hLibJVM = LoadDynLibrary(filedynlib); 
+    #ifdef __APPLE__
+    /*
+    ** After MacOSX 10.6.8 manually load libjava.jnilib make JNI_* functions crash
+    ** Rely on OS by using dlopen(NULL) to find correct symbol with dlsym
+    */
+    hLibJVM = LoadDynLibrary(NULL);
+    #else
+    hLibJVM = LoadDynLibrary(filedynlib);
+    #endif
 #endif
 
     if (hLibJVM)
     {
-        ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" ); 
-        ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" ); 
-        ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" ); 
+        ptr_JNI_GetDefaultJavaVMInitArgs = (JNI_GetDefaultJavaVMInitArgsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetDefaultJavaVMInitArgs" );
+        ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" );
+        ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" );
 
         if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) return TRUE;
     }
     return FALSE;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 char *getJniErrorFromStatusCode(long status){
     switch (status){
         case JNI_ERR:
@@ -125,4 +133,4 @@ char *getJniErrorFromStatusCode(long status){
             break;
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

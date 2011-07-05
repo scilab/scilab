@@ -303,3 +303,18 @@ div#cadre_help
     font-size:0.8em;
     color:#0000AA;
 }
+
+table.revhistory
+{ 
+  width:80%;
+  border-color:#CCCCCC ;
+  border-style:solid;
+  border-width:2px medium;
+  margin-bottom: 10px;
+
+}
+
+table.revhistory tr.title td
+{ 
+  background-color: #9999CC;
+}

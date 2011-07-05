@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt version.xml
+libscixcos_la_root_DATA =  license.txt 
 
 
 #### xcos : init scripts ####
@@ -59,8 +59,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
-	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
-	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -230,7 +228,7 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
-images/palettes/CONSTRAINT_f.png \
+images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \

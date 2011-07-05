@@ -1,0 +1,12 @@
+# FOP logging level
+org.apache.fop.level = SEVERE
+org.apache.fop.render.level = SEVERE
+
+org.scilab.level = INFO
+# Release level
+# org.scilab.level = SEVERE
+
+# Xcos logging level
+org.scilab.modules.xcos.level = INFO
+# Release level
+# org.scilab.level = SEVERE

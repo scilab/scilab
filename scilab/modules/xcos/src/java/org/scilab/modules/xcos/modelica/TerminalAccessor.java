@@ -30,6 +30,9 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
 public enum TerminalAccessor {
 	// CSOFF: JavadocVariable
 	// CSOFF: JavadocMethod
+	/**
+	 * Name of the terminal
+	 */
 	NAME(ModelicaMessages.NAME, String.class, false) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -43,6 +46,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * ID of the terminal
+	 */
 	ID(ModelicaMessages.ID, String.class, false) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -56,6 +62,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Kind of the terminal
+	 */
 	KIND(ModelicaMessages.KIND, String.class, false) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -70,6 +79,9 @@ public enum TerminalAccessor {
 
 		}
 	},
+	/**
+	 * Is this value fixed ?
+	 */
 	FIXED(ModelicaMessages.FIXED, Boolean.class, false) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -94,6 +106,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Initial value
+	 */
 	INITIAL(ModelicaMessages.INITIAL, Double.class, true) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -117,6 +132,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Weight of the nominal value
+	 */
 	WEIGHT(ModelicaMessages.WEIGHT, Double.class, true) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -148,6 +166,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Max of the value
+	 */
 	MAX(ModelicaMessages.MAX, Double.class, true) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -170,6 +191,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Min of the value
+	 */
 	MIN(ModelicaMessages.MIN, Double.class, true) {
 		@Override
 		protected Double getData(Terminal terminal) {
@@ -192,6 +216,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Nominal value
+	 */
 	NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
 		@Override
 		protected Double getData(Terminal terminal) {
@@ -215,6 +242,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Comment to the terminal
+	 */
 	COMMENT(ModelicaMessages.COMMENT, String.class, true) {
 		@Override
 		protected Object getData(Terminal terminal) {
@@ -232,6 +262,9 @@ public enum TerminalAccessor {
 			firePropertyChange(terminal, value, aValue);
 		}
 	},
+	/**
+	 * Is the terminal selected ?
+	 */
 	SELECTED(ModelicaMessages.SELECTED, Boolean.class, true) {
 		private static final String TRUE = "y";
 		private static final String FALSE = "n";
@@ -266,9 +299,9 @@ public enum TerminalAccessor {
 	 * Event on model change
 	 */
 	public static class ChangeEvent extends EventObject {
-		private Terminal terminal;
-		private Object oldData;
-		private Object newData;
+		private final Terminal terminal;
+		private final Object oldData;
+		private final Object newData;
 
 		/**
 		 * Default constructor.
@@ -330,7 +363,7 @@ public enum TerminalAccessor {
 	 * Support event notification.
 	 */
 	public static class ChangeSupport {
-		private Map<TerminalAccessor, List<ChangeListener>> listeners;
+		private final Map<TerminalAccessor, List<ChangeListener>> listeners;
 
 		/**
 		 * Default constructor.

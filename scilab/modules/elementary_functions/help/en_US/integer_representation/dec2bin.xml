@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,13 +25,16 @@
   <refnamediv>
     <refname>dec2bin</refname>
 
-    <refpurpose>binary representation</refpurpose>
+    <refpurpose>convert from decimal to binary</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[str]=dec2bin(x[,n])</synopsis>
+    <synopsis>
+	str=dec2bin(x)
+	str=dec2bin(x,n)
+	</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,7 +45,7 @@
         <term>x</term>
 
         <listitem>
-          <para>scalar/vector/matrix of positives integers</para>
+          <para>matrix of doubles, positive integer values</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +61,7 @@
         <term>str</term>
 
         <listitem>
-          <para>a string or a vector of string</para>
+          <para>a matrix of strings</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -66,17 +70,22 @@
   <refsection>
     <title>Description</title>
 
-    <para>Given <literal>x</literal>, a positive (or a vector/matix of
+    <para>
+	Given <literal>x</literal>, a positive (or a vector/matix of
     integers) integer, this function returns a string (or a column vector of
     strings) which is the binary representation of <literal>x. </literal>If
     dimension of <literal>x</literal> is superior than 1 then each component
     of the colums vector <literal>str</literal> is the binary representation
     of the <literal>x</literal> components (i.e <literal>str(i)</literal> is
-    the binary representation of <literal>x(i)</literal>). If the components
-    length of <literal>str</literal> is less than <literal>n</literal> ( i.e
+    the binary representation of <literal>x(i)</literal>). 
+	</para>
+	
+    <para>
+	If the components length of <literal>str</literal> is less than <literal>n</literal> ( i.e
     length str(i) &lt; n ), then add to <literal>str</literal> components the
     characters '0' on the left in order to have componants length equal to
-    <literal>n.</literal></para>
+    <literal>n.</literal>
+	</para>
   </refsection>
 
   <refsection>
@@ -88,9 +97,11 @@ x=86;
 str=dec2bin(x)
 
 // example 2 :
-// the binary representation of 86 is: '1010110'
-// its length is 7(less than n), so we add to str, 8 times the character '0'  (on the left)
-x=86;n=15;
+// The binary representation of 86 is: '1010110'.
+// Its length is 7 (less than n).
+// We add to str 8 times the character '0' (on the left).
+x=86;
+n=15;
 str=dec2bin(x,n)
 
 // example 3 :

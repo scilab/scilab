@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
@@ -11,102 +11,6 @@
 
 // test_run  --
 //   Launch unit tests.
-//   Search for .tst files in the unit test and non-regression test library
-//   execute them, and display a report about success of failures.
-//   The .tst files are searched in directories SCI+"/modules/*/tests/unit_tests"
-//   and SCI+"/modules/*/tests/nonreg_tests".
-//   Whenever a test is executed, a .dia file is generated which contains
-//   the full list of commands executed along with message which appears in the
-//   console. When the script is done, the .dia file is compared with
-//   the .dia.ref file which is expected to be in the same directory
-//   as the .tst file. If the two file are different, the test fails.
-//   Special tags may be inserted in the .tst file, which help to
-//   control the processing of the corresponding test. These tags
-//   are expected to be found in Scilab comments.
-//   These are the available tags :
-//     <-- INTERACTIVE TEST -->
-//       This test will be skipped because it is interactive.
-//     <-- LONG TIME EXECUTION -->
-//       This test will be skipped because it needs long-time duration. It will
-//       launched if the optional argument "enable_lt" is called
-//     <-- NOT FIXED -->
-//       This test will be skipped because it is a known, but unfixed bug.
-//     <-- TEST WITH GRAPHIC -->
-//       This test will not be executed if the option "mode_nwni" is used.
-//     <-- NO TRY CATCH -->
-//     <-- NO CHECK ERROR OUTPUT -->
-//       The error output file is not checked
-//     <-- NO CHECK REF -->
-//       The .dia and the .dia.ref files are not compared.
-//     <-- ENGLISH IMPOSED -->
-//       This test will be executed with the -l en_US option.
-//     <-- FRENCH IMPOSED -->
-//       This test will be executed with the -l fr_FR option.
-//     <-- JVM NOT MANDATORY -->
-//       This test will be executed with the nwni mode by default.
-//     <-- WINDOWS ONLY -->
-//       If the operating system isn't Windows, the test is skipped.
-//     <-- UNIX ONLY -->
-//       If the operating system isn't an unix OS, the test is skipped.
-//     <-- LINUX ONLY -->
-//       If the operating system isn't Linux, the test is skipped.
-//     <-- MACOSX ONLY -->
-//       If the operating system isn't MacOSX, the test is skipped.
-//     <-- XCOS TEST -->
-//       This test will launch all the necessary Xcos libs. This test
-//       will be launched in nw mode.
-//
-//   Each test is executed in a separated process, created with the "host" command.
-//   That enables the current command to continue, even if the test as
-//   created an unstable environment. It also enables the tests to be
-//   independent from one another.
-//
-// Arguments:
-//   modulename, optional : a string or a vector of strings, where
-//     each string is a the name of a module to test
-//   testname, optional : a string, a vector or a matrix of strings, where
-//     each string is a the name of a test. For example, if testname is "foo",
-//     the associated test file is "foo.tst".
-//   options, optional : a string or a vector of strings, where options can
-//     have the following values :
-//       'no_check_ref' : does not check if the .dia and .dia.ref are equal
-//       'no_check_error_output'
-//       'create_ref' : create the .dia.ref file and does not check if the .dia and .dia.ref are equal
-//       'list' : does not process the tests but displays a list of available tests
-//       'mode_nw' : add the "-nw" option to the launch
-//       'mode_nwni' : add the "-nwni" option to the launch
-//       'help' : display some examples about how to use this command
-//       "nonreg_tests" : runs only the non-regression tests, skipping unit tests
-//       "unit_tests" : runs only the unit tests, skipping non-regression tests
-//
-// =============================================================================
-// Launch tests
-// =============================================================================
-// Examples :
-//
-// Launch all tests
-// test_run();
-// test_run([]);
-// test_run([],[]);
-//
-// Test one or several module
-// test_run('core');
-// test_run('core',[]);
-// test_run(['core','string']);
-//
-// Launch one or several test in a specified module
-// test_run('core',['trycatch','opcode']);
-//
-// With options
-// test_run([],[],'no_check_ref');
-// test_run([],[],'no_check_error_output');
-// test_run([],[],'create_ref');
-// test_run([],[],'list');
-// test_run([],[],'mode_nw');
-// test_run([],[],'mode_nwni');
-// test_run([],[],'help');
-// test_run([],[],['no_check_error_output','create_ref']);
-
 
 function test_run(varargin)
 
@@ -131,7 +35,7 @@ function test_run(varargin)
     status.list                 = [];
 
     params.longtime             = %t;
-    params.wanted_mode          = "NW";
+    params.wanted_mode          = "";
     params.error_output         = "check";
     params.reference            = "check";
     params.testTypes            = "all_tests";
@@ -397,12 +301,18 @@ function status = test_module(_params)
     else
         //not empty tests_mat
         for i = 1:size(_params.tests_mat, "*")
+            bFind = %f;
             for j = 1:size(directories, "*")
                 currentDir = directories(j);
                 testFile = currentDir + filesep() + _params.tests_mat(i) + ".tst";
                 if isfile(testFile) then
                     tests($+1, [1,2]) = [currentDir, _params.tests_mat(i)];
+                    bFind = %t;
                 end
+            end
+
+            if bFind == %f then
+                error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"), _params.tests_mat(i), name(1)));
             end
         end
     end
@@ -487,8 +397,8 @@ function status = test_module(_params)
 
         end
     end
-    elapsedTime = toc();
-    status.totalTime = elapsedTime;
+
+    status.totalTime = toc();
     status.test_passed_count  = test_passed_count;
     status.test_failed_count  = test_failed_count;
     status.test_skipped_count = test_skipped_count;
@@ -625,6 +535,7 @@ function status = test_single(_module, _testPath, _testName)
         language = "fr_FR";
     end
 
+
     if ~isempty(grep(sciFile, "<-- ENGLISH IMPOSED -->")) then
         language = "en_US";
     end
@@ -726,9 +637,9 @@ function status = test_single(_module, _testPath, _testName)
     elseif _module.wanted_mode == "NWNI" then
         mode_arg = "-nwni";
     else
-        if mode == "NWNI" then
+        if execMode == "NWNI" then
             mode_arg = "-nwni";
-        elseif mode == "NW" then
+        elseif execMode == "NW" then
             mode_arg = "-nw";
         else
             mode_arg = "-nw";
@@ -872,6 +783,7 @@ function status = test_single(_module, _testPath, _testName)
 
     if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
         //  Do some modification in  dia file
+
         dia(grep(dia, "write(%io(2), tmpdirToPrint")) = [];
         dia(grep(dia, "TMPDIR1")) = [];
         dia(grep(dia, "diary(0)")) = [];

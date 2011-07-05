@@ -191,9 +191,6 @@ static void initial_c1_local(void)
 #define CreateCVar(n,ct,it,mx,nx,lrx,lcx) if(! C2F(createcvar)((c_local=n,&c_local),ct,it,mx,nx,lrx,lcx, 1L))\
         { return 0;  }
 
-/* the real function error is defined in output_stream */
-#define Error(x) SciError(x); sciprint(_("Error(x) is deprecated and will be removed in Scilab 5.4. Please consider SciError(x).\n"));
-
 #define Errorinfo(routinename,info) C2F(errorinfo)(routinename,(c_local=info, &c_local), strlen(routinename));
 
 #define PutLhsVar()  if (! C2F(putlhsvar)()) {	return 0; }

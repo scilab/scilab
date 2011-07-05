@@ -7,29 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-28 01:08+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: src/c/banier.c, line: 36
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Scilab コンソーシアム (DIGITEO)\n"
-
-#
-# File: src/c/banier.c, line: 39
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"コールスタック:\n"
 
 msgid "  loading initial environment"
 msgstr "  初期環境をロードしています"
@@ -37,9 +32,6 @@ msgstr "  初期環境をロードしています"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " 使用中の変数: %10d 個 (全体: %10d 個),\n"
-
-msgid " by "
-msgstr " by "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -67,22 +59,6 @@ msgstr "引数 %s"
 msgid "%s argument and argument %d"
 msgstr "%s 引数および引数 %d"
 
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr "%1$s は, %3$s の %2$s 行目でコールされました."
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%1$s は, 命令 %3$s の %2$s 行目でコールされました."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%1$s は,マクロ %3$s の %2$s 行目でコールされました."
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s は %s からコールされました."
-
 #
 # File: src/c/getmodules.c, line: 213
 #, c-format
@@ -109,15 +85,11 @@ msgstr "%s: %s の次元は互換性がありません (%dx%d) # (%dx%d)\n"
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: %s は次元に互換性がありません.\n"
 
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s は編集できないハードコードされている関数です.\n"
-
 #
 # File: src/c/stack2.c, line: 2066
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
-msgstr "%s: %s はScilab関数ではありません。\n"
+msgstr "%s: %s はScilab関数ではありません.\n"
 
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"
@@ -125,7 +97,7 @@ msgstr "%s: %s は %d 個の要素が %s のリストである必要がありま
 
 #, c-format
 msgid "%s: '%s' already exists.\n"
-msgstr "%s: '%s' は既に存在します。\n"
+msgstr "%s: '%s' は既に存在します.\n"
 
 #, c-format
 msgid "%s: (%s) bad second argument!\n"
@@ -143,12 +115,6 @@ msgstr "%s: (%s) スタック上の引数が多すぎます. stack.h を編集�
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: メモリが確保できません.\n"
-
-#
-# File: macros/check_versions.sci, line: 31
-#, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s: ファイルは存在しません: %s"
 
 #, c-format
 msgid "%s: Impossible to read %s gateway.\n"
@@ -173,10 +139,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Perl コマンドが指定されていません."
-
-#, c-format
 msgid "%s: Old version of if and while not implemented.\n"
 msgstr "%s: 古いバージョンの if および while は実装されていません.\n"
 
@@ -197,29 +159,12 @@ msgid "%s: Out of code.\n"
 msgstr "%s: コード外です\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: %s を確認してください.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: 再帰的呼び出しに問題があります. 申し訳ありません ...\n"
 
 #, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Scilabエディタが必要です.\n"
-
-#
-# File: macros/perl.sci, line: 68
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: システム・エラー: コマンドは実行されました: %s"
-
-#
-# File: macros/add_demo.sci, line: 13
-# File: sci_gateway/c/sci_getmd5.c, line: 82
-#, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s: ファイル %s は、存在しません。\n"
+msgstr "%s: ファイル %s は存在しません.\n"
 
 #
 # File: src/c/stack1.c, line: 234
@@ -250,22 +195,6 @@ msgstr "%s: ファイル %s は、存在しません。\n"
 msgid "%s: Too many names.\n"
 msgstr "%s: 名前が多すぎます。\n"
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Perlファイルが見つかりません: %s"
-
-#
-# File: macros/perl.sci, line: 47
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: ''%s'' でPerlを見つけられません"
-
-#
-# File: macros/perl.sci, line: 63
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perlを見つけられません。\n"
-
 #
 # File: src/c/scicurdir.c, line: 57
 #, c-format
@@ -280,25 +209,19 @@ msgstr "%1$s: index2 %3$d に認識できないコード %2$d があります.\n
 # File: src/c/intmacr2tree.c, line: 1167
 #, c-format
 msgid "%s: Unknown operator %d.\n"
-msgstr "%s: 未知のオペレータ %d です。\n"
+msgstr "%s: 未知のオペレータ %d です.\n"
 
-#
-# File: src/c/stack2.c, line: 342
 #, c-format
 msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr "%s: 承認されていないオプションの引数 %s です。\n"
+msgstr "%s: 認識できないオプション引数 %s です.\n"
 
-#
-# File: src/c/stack2.c, line: 3212
 #, c-format
 msgid "%s: Variable %s not found.\n"
-msgstr "%s: 変数 %s は見つかりません。\n"
+msgstr "%s: 変数 %s が見つかりません.\n"
 
-#
-# File: src/c/intmacr2tree.c, line: 255
 #, c-format
 msgid "%s: Wrong %s value %d instead of %d.\n"
-msgstr "%1$s: %4$d の代わりの値 %3$d は不正 %2$s です。\n"
+msgstr "%s: %s の値は %d ではなく %d である必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
@@ -308,17 +231,12 @@ msgstr "%s: ファイル version.xml %s に誤りがあります.\n"
 msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: fromwhat の値 %s に誤りがあります.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr "%s: 入力引数 #%d に誤りがあります: Scilabスクリプトファイルのパスを指定してください.\n"
-
 #
 # File: sci_gateway/c/sci_getversion.c, line: 227
 # File: sci_gateway/c/sci_getversion.c, line: 313
 #, c-format
 msgid "%s: Wrong module name %s.\n"
-msgstr "%s: %s モジュール名が不正です。\n"
+msgstr "%s: %s モジュール名が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -328,23 +246,13 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
 
-#
-# File: macros/edit.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: 入力引数の数が不正です。\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -468,7 +376,7 @@ msgstr "%s: 引数 %d の型が間違っています: ボックス・ポイン�
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Column vector expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　列ベクトルを指定してください.\n"
+msgstr "%s: 引数 %d の型が間違っています:列ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -512,11 +420,9 @@ msgstr "%s: 引数 %d の型が間違っています:　実数または複素数
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
 
-#
-# File: src/c/stack1.c, line: 2411
 #, c-format
 msgid "%s: Wrong type for argument %d: Row vector expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 行ベクトルを想定します。\n"
+msgstr "%s: 引数 %d の型が間違っています: 行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
@@ -530,7 +436,7 @@ msgstr "%s: 引数 %d の型が間違っています:　疎行列を指定して
 # File: src/c/stack1.c, line: 1216
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
-msgstr "%s: 入力引数 %d で不正な型: 文字行列を想定します。\n"
+msgstr "%s: 入力引数 %d 型が間違っています: 文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -579,6 +485,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: コンパイル済みのマクロを指定してください.\n"
 
@@ -588,10 +498,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラー, '%s'�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -618,11 +524,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定し�
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: src/c/intmacr2tree.c, line: 1091
 #, c-format
 msgid "%s: Wrong type value.\n"
-msgstr "%s: 型の値が不正です。\n"
+msgstr "%s: 型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
@@ -658,10 +562,6 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '0' または '1' を指定してください.\n"
 
@@ -674,12 +574,12 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -823,13 +723,11 @@ msgstr "ツールボックス(&T)"
 msgid "A non square matrix!\n"
 msgstr "正方行列でありません!\n"
 
-msgid "Bytes"
-msgstr "バイト"
+msgid "Aborting current computation\n"
+msgstr "現在の計算を破棄します\n"
 
-#
-# File: src/c/tmpdir.c, line: 63
 msgid "Cannot find Windows temporary directory (1)."
-msgstr "Windows 一時ディレクトリ(1) が見つかりません。"
+msgstr "Windowsテンポラリディレクトリ(1) が見つかりません."
 
 #
 # File: src/c/getmodules.c, line: 100
@@ -837,17 +735,29 @@ msgstr "Windows 一時ディレクトリ(1) が見つかりません。"
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "モジュール宣言ファイルをロードできません: %s\n"
 
-#, c-format
-msgid "Checking: %s\n"
-msgstr "確認中: %s\n"
-
 #
 # File: sci_gateway/c/sci_what.c, line: 104
 msgid "Commands:\n"
 msgstr "コマンド:\n"
 
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "本当に計算を中断しますか ( y または n ?) \n"
+#
+# File: src/c/banier.c, line: 36
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Scilab コンソーシアム (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr "Copyright (c) 1989-2011 (INRIA)\n"
+
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"スタックの終端\n"
+"\n"
 
 #
 # File: src/c/CallScilab.c, line: 51
@@ -874,25 +784,21 @@ msgstr "エラー:  %s を作成できませんでした: %s\n"
 msgid "Error: Could not parse file %s\n"
 msgstr "エラー: ファイル %s の構文解析ができません\n"
 
-#
-# File: src/c/getmodules.c, line: 162
 #, c-format
 msgid "Error: Could not parse file %s.\n"
-msgstr "エラー: ファイル %s の構文解析ができません。\n"
+msgstr "エラー:ファイル %s をパースできません.\n"
 
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
 msgstr "エラー: 環境変数 %s を定義できません.\n"
 
-#
-# File: src/c/readGateway.c, line: 103
 #, c-format
 msgid "Error: Memory allocation.\n"
-msgstr "エラー: メモリ割り当て。\n"
+msgstr "エラー: メモリ確保.\n"
 
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
-msgstr "エラー: 適当な入口の ID %d ではありません。\n"
+msgstr "エラー: 有効なゲートウェイID %d ではありません.\n"
 
 #, c-format
 msgid ""
@@ -937,25 +843,19 @@ msgstr ""
 "エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  <VERSION major='' "
 "minor='' maintenance='' revision='' string=''> を含む必要があります)\n"
 
-#
-# File: src/c/readGateway.c, line: 95
 #, c-format
 msgid "Error: could not parse file %s\n"
-msgstr "エラー: ファイル %s を構文解析できません\n"
+msgstr "エラー: ファイル %s をパースできません.\n"
 
-#
-# File: src/c/InitializeCore.c, line: 35
 msgid "Fatal Error: Can't create table for scilab functions.\n"
-msgstr "致命的エラー: scilab関数のためのテーブルを作ることができません。\n"
+msgstr "致命的なエラー: Scilab関数用のテーブルを作成できません.\n"
 
 msgid "Functions compiled with very old versions are no more handled."
 msgstr "非常に古いバージョンのScilabでコンパイルされた関数は処理できません."
 
-#
-# File: src/c/stack2.c, line: 3160
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
-msgstr "GetDataFromName: 変数 %s は見つかりません。\n"
+msgstr "GetDataFromName: 変数 %s が見つかりません.\n"
 
 #
 # File: src/c/callDynamicGateway.c, line: 134
@@ -984,44 +884,41 @@ msgstr "%s ライブラリをロードできません: %s\n"
 msgid "Internal Functions:\n"
 msgstr "内部関数:\n"
 
-msgid "Introduction"
-msgstr "導入"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "行列 %c, %c が間違っています.\n"
 
-#
-# File: src/c/stack2.c, line: 2370
 msgid "Invalid system.\n"
-msgstr "不正システム。\n"
+msgstr "システムが不正です.\n"
 
 msgid "Invalid time domain.\n"
 msgstr "時間領域が不正です.\n"
 
-#
-# File: src/c/returnPropertyList.c, line: 68
-# File: src/c/returnPropertyList.c, line: 85
-# File: src/c/returnPropertyList.c, line: 101
-# File: src/c/returnPropertyList.c, line: 118
 msgid "List full.\n"
-msgstr "リストが一杯です。\n"
-
-msgid "Name"
-msgstr "名前"
+msgstr "リストに空きがありません.\n"
 
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Scilabスタックを確保するためのメモリが不足しています.\n"
 
-#
-# File: src/c/stack2.c, line: 384
 msgid "Optional argument list is empty.\n"
-msgstr "オプションの引数リストは空です。\n"
+msgstr "オプションの引数リストが空です.\n"
 
 #
 # File: src/c/stack2.c, line: 387
 msgid "Optional arguments list: \n"
 msgstr "オプションの引数リスト: \n"
+
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+"致命的なエラーがScilabにより検出されました.\n"
+"インスタンスが間もなく破壊される可能性があります.\n"
+"以下の条件を付けてバグ報告を %s に行ってください: %s %s\n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "環境変数 SCI が見つかりません.\n"
@@ -1030,12 +927,7 @@ msgstr "環境変数 SCI が見つかりません.\n"
 # File: src/c/inisci-c.c, line: 135
 # File: src/c/inisci-c.c, line: 137
 msgid "SCIHOME not defined.\n"
-msgstr "SCIHOME が見つかりません。\n"
-
-#
-# File: src/c/callinterf.c, line: 149
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: 現在の計算を中止します\n"
+msgstr "SCIHOME が見つかりません.\n"
 
 msgid "Scilab Console"
 msgstr "Scilabコンソール"
@@ -1043,7 +935,7 @@ msgstr "Scilabコンソール"
 #
 # File: src/c/version.c, line: 33
 msgid "Scilab Version Info."
-msgstr "Scilabバージョン情報。"
+msgstr "Scilabバージョン情報."
 
 #
 # File: src/c/version.c, line: 24
@@ -1062,9 +954,6 @@ msgstr ""
 "Scilabバージョン \"%d.%d.%d.%d\"\n"
 "%s\n"
 
-msgid "Size"
-msgstr "サイズ"
-
 msgid "Startup execution:"
 msgstr "スタートアップを実行中:"
 
@@ -1072,18 +961,10 @@ msgstr "スタートアップを実行中:"
 # File: src/c/inisci-c.c, line: 165
 # File: src/c/inisci-c.c, line: 167
 msgid "TMPDIR not defined.\n"
-msgstr "TMPDIR が見つかりません。\n"
+msgstr "TMPDIR が見つかりません.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "環境変数 SCI を設定できません.\n"
-
-#
-# File: src/c/callinterf.c, line: 176
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "インターフェースの途中でscilabの中断を試みます。\n"
-
-msgid "Type"
-msgstr "種類"
 
 #
 # File: src/c/stack3.c, line: 85
@@ -1099,13 +980,10 @@ msgstr "種類"
 # File: src/c/stack3.c, line: 721
 #, c-format
 msgid "Undefined variable %s.\n"
-msgstr "変数 %s は定義されていません。\n"
+msgstr "変数 %s が定義されていません.\n"
 
-#
-# File: src/c/run.c, line: 351
-# File: src/c/run.c, line: 359
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
-msgstr "思いがけないオペレーションコードです、どうぞScilabバグ追跡へ報告して下さい。"
+msgstr "予期せぬオペコードです, Scilab bug tracker に報告してください."
 
 #, c-format
 msgid "Unqueuing %s - No option.\n"
@@ -1114,13 +992,6 @@ msgstr "待ち行列から削除 %s - オプションなし.\n"
 #, c-format
 msgid "Unqueuing %s - seq.\n"
 msgstr "待ち行列から削除 %s - seq.\n"
-
-msgid "User variables are:"
-msgstr "ユーザー変数:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "%s 個の要素メモリを使用中 (全体: %s)"
 
 #
 # File: sci_gateway/c/sci_warning.c, line: 76
@@ -1142,13 +1013,12 @@ msgid "Warning"
 msgstr "警告"
 
 #, c-format
-msgid "Warning: Problems with %s.\n"
-msgstr "警告: %s の問題があります。\n"
+msgid "Warning: Could not find %s\n"
+msgstr "警告: %s が見つかりません\n"
 
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr "警告: Scilabコンソーシアムの運営チームは以下を指定して構築したこのScilabのバージョンを提供/サポートしません.\n"
+#, c-format
+msgid "Warning: Problems with %s.\n"
+msgstr "警告: %s に問題があります.\n"
 
 msgid "Your global variables are:"
 msgstr "グローバル変数:"
@@ -1188,11 +1058,8 @@ msgstr "引数番号 %d"
 msgid "arguments %d and %d"
 msgstr "引数 %d および　%d"
 
-#
-# File: src/c/stack2.c, line: 2182
-# File: src/c/stack2.c, line: 2201
 msgid "built in"
-msgstr "内蔵"
+msgstr "組込"
 
 #
 # File: src/c/stack2.c, line: 2974
@@ -1232,3 +1099,479 @@ msgstr "第3"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist は完全には代入されませんでした.\n"
+
+#
+# File: macros/check_versions.sci, line: 31
+#, c-format
+#~ msgid "%s: File doesn''t exist: %s"
+#~ msgstr "%s: ファイルは存在しません: %s"
+
+#
+# File: macros/edit.sci, line: 18
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: Scipadを必要とします。\n"
+
+#
+# File: macros/perl.sci, line: 68
+#, c-format
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: システム・エラー: コマンドは実行されました: %s"
+
+#
+# File: macros/powershell.sci, line: 14
+#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr "エラー: パワーシェルのヘルプを見てください '';'' scilab 抜きであなたのスクリプトを確認してください。"
+
+#
+# File: macros/powershell.sci, line: 20
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Microsoft Windows のみ"
+
+#
+# File: macros/powershell.sci, line: 27
+#~ msgid "Powershell not found."
+#~ msgstr "パワーシェルが見つかりません。"
+
+#
+# File: macros/sethomedirectory.sci, line: 17
+#~ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+#~ msgstr "慣例: 事前に SCIHOME と HOME を定義して Scilab を始めて下さい。."
+
+#
+# File: macros/toolboxes.sci, line: 120
+#~ msgid " is already compiled.\n"
+#~ msgstr " 既にコンパイルされています。\n"
+
+#
+# File: sci_gateway/c/sci_getcwd.c, line: 34
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: 間違いが起こりました。\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 221
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: %s ファイルバージョンが不正です。\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 307
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: %s のファイルバージョンが不正です。\n"
+
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 106
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: これ以上メモリの確保ができません。\n"
+#~ "gstacksize('max')を試してください。\n"
+
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 230
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 引数 #%d で不正な型: スカラー、 '%s' または '%s' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 87
+#, c-format
+#~ msgid "%s: Invalid library %s.\n"
+#~ msgstr "%s: 無効なライブラリ %s.\n"
+
+#
+# File: sci_gateway/c/sci_newfun.c, line: 98
+#, c-format
+#~ msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+#~ msgstr "%s: 入力引数 #%d または #%d で不正な型です。\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 100
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: これ以上メモリを割り当てできません。\n"
+#~ "スタックサイズ('max')を試みてください。\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 127
+# File: sci_gateway/c/sci_stacksize.c, line: 224
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な値: スカラー '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/banier.c, line: 36
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Scilab コンソーシアム (DIGITEO)\n"
+
+#
+# File: src/c/banier.c, line: 38
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+
+#
+# File: src/c/banier.c, line: 39
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+
+#
+# File: src/c/callinterf.c, line: 149
+#~ msgid "SIGSTP: aborting current computation\n"
+#~ msgstr "SIGSTP: 現在の計算を中止します\n"
+
+#
+# File: src/c/callinterf.c, line: 176
+#~ msgid "Trying to stop scilab in the middle of an interface.\n"
+#~ msgstr "インターフェースの途中でscilabの中断を試みます。\n"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 49
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "使われているメモリ:  %*ld %%"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 59
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "合計物理メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 69
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "空き物理メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 79
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "合計ページファイル(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 89
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "空きページファイル(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 99
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "合計仮想メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 109
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "空き仮想メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 119
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "空き拡張メモリ(キロバイト): %*I64d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 128
+#~ msgid "Operating System: "
+#~ msgstr "オペレーティングシステム: "
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 190
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "プロセッサ数: %d"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 198
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "ビデオカード: %s"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 205
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "ビデオカード ドライバ バージョン: %s"
+
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 300
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 303
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "スクリーン・サイズ: %d x %d %d ビット"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 39
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "バージョン: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 46
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "コンパイル日: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 53
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "コンパイル時間: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 61
+# File: src/c/getstaticDebugInfo_Windows.c, line: 63
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "コンパイラー・アーキテクチャ: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 73
+# File: src/c/getstaticDebugInfo_Windows.c, line: 75
+# File: src/c/getstaticDebugInfo_Windows.c, line: 77
+# File: src/c/getstaticDebugInfo_Windows.c, line: 87
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "%sでコンパイルされました"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 95
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "XML バージョン: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 104
+#~ msgid "Enable"
+#~ msgstr "有効"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 111
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "TCL バージョン: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 118
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "TK バージョン: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 133
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "ディレクトリー・セパレーター: %s"
+
+#
+# File: src/c/getstaticDebugInfo_Windows.c, line: 140
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "PCRE バージョン: %d.%d"
+
+#
+# File: src/c/intmacr2tree.c, line: 89
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 名前変数を想定します。\n"
+
+#
+# File: src/c/prompt.c, line: 38
+#, c-format
+#~ msgid ""
+#~ "Type '%s' or '%s' to return to standard level prompt.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "型 ’%s’ または、’%s’ 標準状態のプロンプトへ戻ります。\n"
+#~ "\n"
+
+#
+# File: src/c/scicurdir.c, line: 42
+# File: src/c/scicurdir.c, line: 51
+#, c-format
+#~ msgid "Can't go to directory %s.\n"
+#~ msgstr "ディレクトリに行けません %s.\n"
+
+#
+# File: src/c/scicurdir.c, line: 54
+#~ msgid "Invalid buffer.\n"
+#~ msgstr "無効なバッファです。\n"
+
+#
+# File: src/c/scicurdir.c, line: 57
+#~ msgid "Unknown error.\n"
+#~ msgstr "不明なエラーです。\n"
+
+#
+# File: src/c/scicurdir.c, line: 74
+#~ msgid "Can't get current directory.\n"
+#~ msgstr "現在のディレクトリを得ることができません。\n"
+
+#
+# File: src/c/tmpdir.c, line: 63
+#~ msgid "Cannot find Windows temporary directory."
+#~ msgstr "Windows 一時ディレクトリが見つかりません。"
+
+#
+# File: src/c/readGateway.c, line: 103
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: メモリの割り当てに失敗しました。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: スカラー、'%s' または '%s' を想定します。\n"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "エラー: 適当な入口のファイル %s ではありません(<MODULE_VERSION>で始まり、<VERSION major='' minor='' "
+#~ "maintenance='' revision='' string=''>を含みます)\n"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "PATH セパレータ: %s"
+
+#~ msgid "User variables are:"
+#~ msgstr "ユーザー変数:"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+
+#, c-format
+#~ msgid "%s: %s is a uneditable hard coded function.\n"
+#~ msgstr "%s: %s は編集できないハードコードされている関数です.\n"
+
+#, c-format
+#~ msgid "%s called under %s"
+#~ msgstr "%s は %s からコールされました."
+
+#, c-format
+#~ msgid "%s called at line %s of %s instruction."
+#~ msgstr "%1$s は, 命令 %3$s の %2$s 行目でコールされました."
+
+#, c-format
+#~ msgid "%s called at line %s of %s"
+#~ msgstr "%1$s は, %3$s の %2$s 行目でコールされました."
+
+#, c-format
+#~ msgid "%s called at line %s of macro %s"
+#~ msgstr "%1$s は,マクロ %3$s の %2$s 行目でコールされました."
+
+#, c-format
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Perl コマンドが指定されていません."
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: 値 '%s' が不正です.\n"
+
+#, c-format
+#~ msgid "%s: Please check: %s.\n"
+#~ msgstr "%s: %s を確認してください.\n"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Perlファイルが見つかりません: %s"
+
+#, c-format
+#~ msgid "%s: Requires scilab editor.\n"
+#~ msgstr "%s: Scilabエディタが必要です.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+#~ msgstr "%s: 入力引数 #%d に誤りがあります: Scilabスクリプトファイルのパスを指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+
+#~ msgid "Do you really want to abort computation (y or n ?) \n"
+#~ msgstr "本当に計算を中断しますか ( y または n ?) \n"
+
+#, c-format
+#~ msgid "Checking: %s\n"
+#~ msgstr "確認中: %s\n"
+
+#~ msgid "Introduction"
+#~ msgstr "導入"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr "警告: Scilabコンソーシアムの運営チームは以下を指定して構築したこのScilabのバージョンを提供/サポートしません.\n"
+
+#, c-format
+#~ msgid "Using %s elements ouf of %s"
+#~ msgstr "%s 個の要素メモリを使用中 (全体: %s)"
+
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#~ msgid " by "
+#~ msgstr " by "
+
+#~ msgid "Type"
+#~ msgstr "種類"
+
+#~ msgid "Size"
+#~ msgstr "サイズ"
+
+#~ msgid "Bytes"
+#~ msgstr "バイト"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています : 整数値を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#
+# File: macros/perl.sci, line: 47
+#, c-format
+#~ msgid "%s: Unable to find Perl in ''%s''"
+#~ msgstr "%s: ''%s'' でPerlが見つかりません"
+
+#
+# File: macros/perl.sci, line: 63
+#, c-format
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Perlが見つかりません.\n"

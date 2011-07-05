@@ -1,0 +1,60 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-31 20:22+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
+
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+msgid "Theory"
+msgstr ""
+
+msgid "Weibull random variable"
+msgstr ""
+
+msgid "binomial random variable"
+msgstr ""
+
+msgid "discrete random variable"
+msgstr ""
+
+msgid "discrete uniform random variable"
+msgstr ""
+
+msgid "geometric random variable"
+msgstr ""

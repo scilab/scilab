@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -71,6 +72,11 @@ public class EditFormatAction extends DefaultAction {
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
+	 * Prefix used to tag text node. 
+	 */
+	public static final String HASH_IDENTIFIER = "#identifier";
+	
+	/**
 	 * The default color used on non initialized border color.
 	 */
 	private static final Color DEFAULT_BORDERCOLOR = Color.BLACK;
@@ -78,9 +84,12 @@ public class EditFormatAction extends DefaultAction {
 	 * The default color used on non initialized filled color.
 	 */
 	private static final Color DEFAULT_FILLCOLOR = Color.WHITE;
+	/**
+	 * Default geometry used while adding a label to a block
+	 * (on the middle and below the bottom of the parent block)
+	 */
+	private static final mxGeometry DEFAULT_LABEL_GEOMETRY = new mxGeometry(0.5, 1.1, 0.0, 0.0);
 
-	private static final String HASH_IDENTIFIER = "#identifier";
-	
 	/**
 	 * Default constructor
 	 * @param scilabGraph the current graph
@@ -103,7 +112,7 @@ public class EditFormatAction extends DefaultAction {
 	 * @param c the current component 
 	 * @param name the window name
 	 * @param selectedCell the selected cell
-	 * @param the current graph
+	 * @param graph the current graph
 	 */
 	public static void showDialog(ScilabComponent c, String name, mxCell selectedCell, XcosDiagram graph) {
 		/*
@@ -126,6 +135,8 @@ public class EditFormatAction extends DefaultAction {
 	 * @param window the current windows
 	 * @return the instantiated dialog
 	 */
+	// CSOFF: NPathComplexity
+	// CSOFF: JavaNCSS
 	private static EditFormatDialog createDialog(final mxCell cell, final XcosDiagram graph, 
 			final Frame window) {
 		String working;
@@ -140,32 +151,20 @@ public class EditFormatAction extends DefaultAction {
 		
 		final mxGraphModel model = (mxGraphModel) graph.getModel();
 		final StyleMap cellStyle = new StyleMap(cell.getStyle());
+		
 		final mxCell identifier;
 		final StyleMap identifierStyle;
-		{
-			if (cell instanceof TextBlock) {
-				identifier = cell;
-				identifierStyle = cellStyle;
-			} else {
-				final String cellId = cell.getId() + HASH_IDENTIFIER;
-				if (model.getCell(cellId) == null) {
-					// create the identifier
-					identifier = new mxCell(null, new mxGeometry(0.5, 1.1, 0.0, 0.0), "noLabel=0;opacity=0;");
-					identifier.getGeometry().setRelative(true);
-					identifier.setVertex(true);
-					identifier.setConnectable(false);
-					identifier.setId(cellId);
-					
-					// add the identifier
-					model.add(cell, identifier, cell.getChildCount());
-				} else {
-					identifier = (mxCell) model.getCell(cellId);
-				}
-				
-				identifierStyle = new StyleMap(identifier.getStyle());
-			}
+		if (cell instanceof TextBlock) {
+			identifier = cell;
+			identifierStyle = cellStyle;
+		} else {
+			identifier = getCellIdentifier(cell, model);
+			identifierStyle = new StyleMap(identifier.getStyle());
 		}
 		
+		/*
+		 * Stroke color
+		 */
 		working = cellStyle.get(mxConstants.STYLE_STROKECOLOR);
 		if (working == null) {
 			border = DEFAULT_BORDERCOLOR;
@@ -173,6 +172,9 @@ public class EditFormatAction extends DefaultAction {
 			border = mxUtils.parseColor(working);
 		}
 		
+		/*
+		 * Fill color
+		 */
 		working = cellStyle.get(mxConstants.STYLE_FILLCOLOR);
 		if (working == null) {
 			fill = DEFAULT_FILLCOLOR;
@@ -180,6 +182,9 @@ public class EditFormatAction extends DefaultAction {
 			fill = mxUtils.parseColor(working);
 		}
 		
+		/*
+		 * Font
+		 */
 		working = identifierStyle.get(mxConstants.STYLE_FONTFAMILY);
 		if (working == null) {
 			font = mxConstants.DEFAULT_FONTFAMILY;
@@ -187,6 +192,9 @@ public class EditFormatAction extends DefaultAction {
 			font = working;
 		}
 		
+		/*
+		 * Font size
+		 */
 		working = identifierStyle.get(mxConstants.STYLE_FONTSIZE);
 		if (working == null) {
 			fontSize = mxConstants.DEFAULT_FONTSIZE;
@@ -194,6 +202,9 @@ public class EditFormatAction extends DefaultAction {
 			fontSize = Integer.parseInt(working);
 		}
 
+		/*
+		 * Font modifier
+		 */
 		working = identifierStyle.get(mxConstants.STYLE_FONTSTYLE);
 		if (working == null) {
 			fontStyle = 0;
@@ -201,6 +212,9 @@ public class EditFormatAction extends DefaultAction {
 			fontStyle = Integer.parseInt(working);
 		}
 		
+		/*
+		 * Font color
+		 */
 		working = identifierStyle.get(mxConstants.STYLE_FONTCOLOR);
 		if (working == null) {
 			textColor = Color.BLACK;
@@ -208,11 +222,17 @@ public class EditFormatAction extends DefaultAction {
 			textColor = mxUtils.parseColor(working);
 		}
 		
+		/*
+		 * Image
+		 */
 		working = cellStyle.get(mxConstants.STYLE_IMAGE);
-		if(working != null) {
+		if (working != null) {
 			image = working;
 		}
 
+		/*
+		 * Text
+		 */
 		final Object current = model.getValue(identifier);
 		if (current == null) {
 			text = "";
@@ -225,6 +245,35 @@ public class EditFormatAction extends DefaultAction {
 		dialog.setGraph(graph);
 		dialog.setCell(cell);
 		return dialog;
+	}
+	// CSON: JavaNCSS
+	// CSON: NPathComplexity
+
+	/**
+	 * Return the identifier for the cell
+	 * 
+	 * @param cell the cell to check
+	 * @param model the current model
+	 * @return the identifier cell
+	 */
+	private static mxCell getCellIdentifier(final mxCell cell,
+			final mxGraphModel model) {
+		final mxCell identifier;
+		final String cellId = cell.getId() + HASH_IDENTIFIER;
+		if (model.getCell(cellId) == null) {
+			// create the identifier
+			identifier = new mxCell(null, (mxGeometry) DEFAULT_LABEL_GEOMETRY.clone(), "noLabel=0;opacity=0;");
+			identifier.getGeometry().setRelative(true);
+			identifier.setVertex(true);
+			identifier.setConnectable(false);
+			identifier.setId(cellId);
+			
+			// add the identifier
+			model.add(cell, identifier, cell.getChildCount());
+		} else {
+			identifier = (mxCell) model.getCell(cellId);
+		}
+		return identifier;
 	}
 	
 	/**
@@ -241,6 +290,7 @@ public class EditFormatAction extends DefaultAction {
 	 * @param text the typed text
 	 * @param image the image URL
 	 */
+	// CSOFF: NPathComplexity
 	private static void updateFromDialog(EditFormatDialog dialog, Color borderColor, Color backgroundColor, 
 				String fontName, int fontSize, Color textColor, boolean isBold, boolean isItalic, String text, String image) {
 		final XcosDiagram graph = dialog.getGraph();
@@ -248,18 +298,15 @@ public class EditFormatAction extends DefaultAction {
 		
 		final mxCell cell = dialog.getCell();
 		final StyleMap cellStyle = new StyleMap(cell.getStyle());
+		
 		final mxCell identifier; 
 		final StyleMap identifierStyle;
-		{
-			if (cell instanceof TextBlock) {
-				identifier = cell;
-				identifierStyle = cellStyle;
-			} else {
-				final String cellId = cell.getId() + HASH_IDENTIFIER;
-				identifier = (mxCell) model.getCell(cellId);
-				
-				identifierStyle = new StyleMap(identifier.getStyle());
-			}
+		if (cell instanceof TextBlock) {
+			identifier = cell;
+			identifierStyle = cellStyle;
+		} else {
+			identifier = getCellIdentifier(cell, model);
+			identifierStyle = new StyleMap(identifier.getStyle());
 		}
 		
 		if (!borderColor.equals(DEFAULT_BORDERCOLOR)) {
@@ -274,17 +321,7 @@ public class EditFormatAction extends DefaultAction {
 			identifierStyle.put(mxConstants.STYLE_FONTFAMILY, fontName);
 		}
 		
-		{
-			int fontStyle = 0;
-			if (isBold) {
-				fontStyle |= mxConstants.FONT_BOLD;
-			}
-			if (isItalic) {
-				fontStyle |= mxConstants.FONT_ITALIC;
-			}
-			
-			identifierStyle.put(mxConstants.STYLE_FONTSTYLE, Integer.toString(fontStyle));
-		}
+		applyFontStyle(isBold, isItalic, identifierStyle);
 		
 		if (fontSize != mxConstants.DEFAULT_FONTSIZE) {
 			identifierStyle.put(mxConstants.STYLE_FONTSIZE, Integer.toString(fontSize));
@@ -294,19 +331,7 @@ public class EditFormatAction extends DefaultAction {
 			identifierStyle.put(mxConstants.STYLE_FONTCOLOR, mxUtils.hexString(textColor));
 		}
 
-		if (image != null && !image.isEmpty()) {
-			String path;
-			try {
-				URL url = new URL(image);
-				path = url.toExternalForm();
-			} catch (MalformedURLException e) {
-				path = image;
-			}
-			
-			cellStyle.put(mxConstants.STYLE_IMAGE, path);
-		} else {
-			cellStyle.remove(mxConstants.STYLE_IMAGE);
-		}
+		applyImage(image, cellStyle);
 			
 		model.setStyle(cell, cellStyle.toString());
 		if (cell != identifier) {
@@ -323,6 +348,49 @@ public class EditFormatAction extends DefaultAction {
 		if (cell instanceof SuperBlock) {
 			graph.cellLabelChanged(cell, text, false);
 		}
+	}
+	// CSON: NPathComplexity
+
+	/**
+	 * Apply image to the identifier style
+	 * 
+	 * @param image the image path
+	 * @param cellStyle the cell style
+	 */
+	private static void applyImage(String image, final StyleMap cellStyle) {
+		if (image != null && !image.isEmpty()) {
+			String path;
+			try {
+				URL url = new URL(image);
+				path = url.toExternalForm();
+			} catch (MalformedURLException e) {
+				path = image;
+			}
+
+			cellStyle.put(mxConstants.STYLE_IMAGE, path);
+		} else {
+			cellStyle.remove(mxConstants.STYLE_IMAGE);
+		}
+	}
+
+	/**
+	 * Apply font style to the identifier style
+	 * 
+	 * @param isBold true if the font is bold
+	 * @param isItalic true is the font is italic
+	 * @param identifierStyle the identifier style 
+	 */
+	private static void applyFontStyle(boolean isBold, boolean isItalic,
+			final StyleMap identifierStyle) {
+		int fontStyle = 0;
+		if (isBold) {
+			fontStyle |= mxConstants.FONT_BOLD;
+		}
+		if (isItalic) {
+			fontStyle |= mxConstants.FONT_ITALIC;
+		}
+		
+		identifierStyle.put(mxConstants.STYLE_FONTSTYLE, Integer.toString(fontStyle));
 	}
 	
 	/**
@@ -697,7 +765,7 @@ public class EditFormatAction extends DefaultAction {
 							// try to handle an absolute URL
 							final URI uri = new URI(current);
 							chooser.setSelectedFile(new File(uri));
-						} catch (Exception e1) {
+						} catch (URISyntaxException e1) {
 							// this is a relative path
 							if (savedFile != null) {
 								final File parent = savedFile.getParentFile();

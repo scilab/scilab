@@ -66,10 +66,10 @@ DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 @NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/shell
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -175,6 +175,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -275,6 +276,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -462,7 +464,8 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
 	-I$(top_srcdir)/modules/fileio/src/c/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/fileio/includes/ $(am__append_2)
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/ $(am__append_2)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -480,16 +483,16 @@ CHECK_SRC = $(libscishell_la_SOURCES)
 INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD = libscishell-algo.la  	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la \
-							$(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscishell_la_LIBADD = libscishell-algo.la \
+ 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
-# $(top_builddir)/modules/completion/libscicompletion.la
 modulename = shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA = license.txt version.xml
+libscishell_la_root_DATA = license.txt 
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

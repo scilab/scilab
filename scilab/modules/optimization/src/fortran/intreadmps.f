@@ -68,12 +68,12 @@ c     . checking variable max (number 3)
          if(ierr.eq.0) then
             call clunit(-lunit,buf,mode)
          elseif(ierr.eq.1) then
-            call writebufspa(buf,line)
+            call writebufspa(buf,fname,line)
             call clunit(-lunit,buf,mode)
             call error(998)
             return
          elseif(ierr.eq.2) then
-            call writebufspb(buf,typrow,line)
+            call writebufspb(buf,fname,typrow,line)
             call clunit(-lunit,buf,mode)
             call error(999)
             return

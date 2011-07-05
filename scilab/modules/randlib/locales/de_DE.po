@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2009-03-04 09:40+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 msgid ""
 "\n"
@@ -190,6 +191,10 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: falscher Typ für viertes Eingangsargument: Skalar erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument: Spaltenvektor erwartet.\n"
 
@@ -306,9 +311,6 @@ msgstr "DF < 1.0 oder DF <= 0.0 oder Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Freiheitsgrade nicht positiv\n"
 
-msgid "Low > High\n"
-msgstr "Minimum > Maximum\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "Fehlendes A und B für ß Gesetz\n"
 
@@ -392,9 +394,6 @@ msgstr "Rand(...,'bet',..): A or B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Zufällig: DF <= 0\n"
 
-msgid "Random"
-msgstr "Zufällig"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
@@ -431,3 +430,9 @@ msgstr "A und B müssen Integer mit (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 oder R <= 0.0\n"
+
+#~ msgid "Low > High\n"
+#~ msgstr "Minimum > Maximum\n"
+
+#~ msgid "Random"
+#~ msgstr "Zufällig"

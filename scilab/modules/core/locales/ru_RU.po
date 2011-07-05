@@ -6,24 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-10 20:41+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Консорциум Scilab (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Авторское право (c) 1989-2010 (INRIA)\n"
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+"\n"
+"Список вызовов:\n"
 
 msgid "  loading initial environment"
 msgstr "  загрузка исходного окружения"
@@ -31,9 +31,6 @@ msgstr "  загрузка исходного окружения"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " и %10d переменных из %10d.\n"
-
-msgid " by "
-msgstr " на "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -60,22 +57,6 @@ msgid "%s argument and argument %d"
 msgstr "параметр %s и параметр номер %d"
 
 #, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s вызван в строке %s из %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s вызван в строке %s команды %s."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s вызван в строке %s макроса %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s вызван из %s"
-
-#, c-format
 msgid "%s module not found.\n"
 msgstr "Модуль %s не найден.\n"
 
@@ -98,10 +79,6 @@ msgstr "%s: размерность %s несовместима (%dx%d) # (%dx%d)
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: размерность %s несовместима.\n"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s является нередактируемой жёстко заданной функцией .\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -135,10 +112,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: Не удалось выделить память.\n"
 
 #, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s: Файл не существует: %s"
-
-#, c-format
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr "%s: Не могу прочитать шлюз %s.\n"
 
@@ -157,10 +130,6 @@ msgstr "%s: Ошибка выделения памяти.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Команда perl не была задана."
 
 #, c-format
 msgid "%s: Old version of if and while not implemented.\n"
@@ -185,20 +154,8 @@ msgid "%s: Out of code.\n"
 msgstr "%s: Вне кода.\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: Проверьте: %s.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Проблемы рекурсии. Простите ...\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Требуется редактор Scilab.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Системная ошибка: выполняемая команда: %s"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -207,18 +164,6 @@ msgstr "%s: Файл %s не существует.\n"
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s: Слишком много имён.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Файл Perl не найден: %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: Perl не найден в «%s»."
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perl не найден.\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
@@ -253,12 +198,6 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: Берется неверное значение %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s: Неверный входной параметр №%d: ожидался путь к файлу сценария Scilab.\n"
-
-#, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: Неверное имя модуля %s.\n"
 
@@ -271,21 +210,12 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Неверное количество входных параметров.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -551,6 +481,10 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась строка или скаляр.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался откомпилированный макрос.\n"
@@ -561,10 +495,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -633,11 +563,6 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «0» или «1».\n"
@@ -653,15 +578,14 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: переменная должна быть "
-"определена.\n"
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -793,8 +717,8 @@ msgstr "&Модули"
 msgid "A non square matrix!\n"
 msgstr "Матрица не является квадратной!\n"
 
-msgid "Bytes"
-msgstr "Байт"
+msgid "Aborting current computation\n"
+msgstr "Прекращение текущего расчёта\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не удалось найти каталог хранения временных файлов Windows (1)."
@@ -803,15 +727,25 @@ msgstr "Не удалось найти каталог хранения врем�
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "Не удалось загрузить файл описаний модуля: %s.\n"
 
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Проверка: %s\n"
-
 msgid "Commands:\n"
 msgstr "Команды:\n"
 
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Вы действительно  хотите завершить вычисление? (y или n) \n"
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Консорциум Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr "Авторское право (c) 1989-2011 (INRIA)\n"
+
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
+"Конец списка вызовов\n"
+"\n"
 
 msgid "Error"
 msgstr "Ошибка"
@@ -928,9 +862,6 @@ msgstr "Не удалось загрузить библиотеку %s: %s\n"
 msgid "Internal Functions:\n"
 msgstr "Внутренние функции:\n"
 
-msgid "Introduction"
-msgstr "Введение"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "Недопустимые %c,%c матрицы.\n"
@@ -944,9 +875,6 @@ msgstr "Недопустимая временная область.\n"
 msgid "List full.\n"
 msgstr "Полный список.\n"
 
-msgid "Name"
-msgstr "Название"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Недостаточно места для размещения стека Scilab.\n"
 
@@ -956,14 +884,25 @@ msgstr "Список необязательных параметров пуст.
 msgid "Optional arguments list: \n"
 msgstr "Необязательные параметры: \n"
 
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+"Scilab обнаружил критическую ошибку.\n"
+"Программа вероятно аварийно завершится скоро.\n"
+"Сообщите об ошибке на %s со следующей\n"
+"информацией:\n"
+"%s %s\n"
+
 msgid "SCI environment variable not defined.\n"
 msgstr "Переменная окружения SCI не задана.\n"
 
 msgid "SCIHOME not defined.\n"
 msgstr "Переменная окружения SCIHOME не задана.\n"
-
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: отменяется текущее вычисление\n"
 
 msgid "Scilab Console"
 msgstr "Командное окно"
@@ -983,9 +922,6 @@ msgstr ""
 "Версия Scilab «%d.%d.%d.%d»\n"
 "%s\n"
 
-msgid "Size"
-msgstr "Размер"
-
 msgid "Startup execution:"
 msgstr "Запуск программы:"
 
@@ -994,12 +930,6 @@ msgstr "Переменная окружения TMPDIR не задана.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "Переменная окружения SCI не установлена.\n"
-
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Пытаюсь остановить scilab во время взаимодействия.\n"
-
-msgid "Type"
-msgstr "Тип"
 
 #, c-format
 msgid "Undefined variable %s.\n"
@@ -1016,13 +946,6 @@ msgstr "Удаление из очереди %s: параметр не зада�
 msgid "Unqueuing %s - seq.\n"
 msgstr "Удаление из очереди %s: последовательность.\n"
 
-msgid "User variables are:"
-msgstr "Пользовательские пременные:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "Используется %s элементов из %s"
-
 #, c-format
 msgid "WARNING: %s"
 msgstr "ВНИМАНИЕ: %s"
@@ -1035,15 +958,12 @@ msgid "Warning"
 msgstr "Внимание"
 
 #, c-format
+msgid "Warning: Could not find %s\n"
+msgstr "Внимание: не удалось найти %s\n"
+
+#, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Внимание: Проблема с %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Внимание: основная команда консорциума Scilab не распространяет и\n"
-"не поддерживает эту версию Scilab, собранную при помощи\n"
 
 msgid "Your global variables are:"
 msgstr "Ваши глобальные переменные:"
@@ -1110,3 +1030,379 @@ msgstr "третий"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist заполнен не до конца.\n"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Файл Perl не найден: %s"
+
+#, c-format
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Команда perl не была задана."
+
+#, c-format
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Perl не найден.\n"
+
+#~ msgid "User variables are:"
+#~ msgstr "Пользовательские пременные:"
+
+#, c-format
+#~ msgid "Using %s elements ouf of %s"
+#~ msgstr "Используется %s элементов из %s"
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell не найден."
+
+#, c-format
+#~ msgid "%s called at line %s of macro %s"
+#~ msgstr "%s вызван в строке %s макроса %s"
+
+#~ msgid "SIGSTP: aborting current computation\n"
+#~ msgstr "SIGSTP: отменяется текущее вычисление\n"
+
+#~ msgid "Can't get current directory.\n"
+#~ msgstr "Не удалось получить текущий каталог.\n"
+
+#, c-format
+#~ msgid "%s: Invalid library %s.\n"
+#~ msgstr "%s: Некорректная библиотека %s.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: Произошла ошибка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: У файла неверная VERSION %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: У файла неверная VERSION в %s.\n"
+
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: Требуется Scipad.\n"
+
+#, c-format
+#~ msgid "%s: File doesn''t exist: %s"
+#~ msgstr "%s: Файл не существует: %s"
+
+#, c-format
+#~ msgid "Checking: %s\n"
+#~ msgstr "Проверка: %s\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Только для Microsoft Windows."
+
+#, c-format
+#~ msgid "%s: %s is a uneditable hard coded function.\n"
+#~ msgstr "%s: %s является нередактируемой жёстко заданной функцией .\n"
+
+#, c-format
+#~ msgid "%s: Please check: %s.\n"
+#~ msgstr "%s: Проверьте: %s.\n"
+
+#, c-format
+#~ msgid "%s called under %s"
+#~ msgstr "%s вызван из %s"
+
+#, c-format
+#~ msgid "%s called at line %s of %s instruction."
+#~ msgstr "%s вызван в строке %s команды %s."
+
+#~ msgid " is already compiled.\n"
+#~ msgstr " уже откомпилирован.\n"
+
+#~ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+#~ msgstr ""
+#~ "Устарело: Переменные окружения SCIHOME и HOME должны быть определены до "
+#~ "запуска Scilab."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Не удалось выделить больше памяти.\n"
+#~ "Попробуйте gstacksize('max').\n"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Архитектура компилятора: %s"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Дата компиляции: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Время компиляции: %s"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Версия: %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "Разделитель каталогов: %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "Версия PCRE: %d.%d"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "Откомпилирован с помощью %s"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "Версия XML: %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#~ msgid "Enable"
+#~ msgstr "Включено"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "Версия TCL: %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "Версия TK: %s"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "Разделитель пути: %s"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "Ошибка: Неправильный файл версии %s (файл должен начинаться с "
+#~ "<MODULE_VERSION> и содержать строчку <VERSION major='' minor='' "
+#~ "maintenance='' revision='' string=''>)\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Консорциум Scilab (DIGITEO)\n"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "Внимание: основная команда консорциума Scilab не распространяет и\n"
+#~ "не поддерживает эту версию Scilab, собранную при помощи\n"
+
+#~ msgid "Trying to stop scilab in the middle of an interface.\n"
+#~ msgstr "Пытаюсь остановить scilab во время взаимодействия.\n"
+
+#, c-format
+#~ msgid "Can't go to directory %s.\n"
+#~ msgstr "Не удалось перейти в каталог %s.\n"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Свободной физической памяти (Кбайт): %*I64d"
+
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "Используемая память: %*ld %%"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Всего физической памяти (Кбайт): %*I64d"
+
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "Количество процессоров: %d"
+
+#~ msgid "Operating System: "
+#~ msgstr "Операционная система: "
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "Видеокарта: %s"
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Свободной виртуальной памяти (Кбайт): %*I64d"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "Свободной расширенной памяти (Кбайт): %*I64d"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "Общий размер файла подкачки (Кбайт): %*I64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "Свободно в файле подкачки (Кбайт): %*I64d"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Всего виртуальной памяти (Кбайт): %*I64d"
+
+#~ msgid "Invalid buffer.\n"
+#~ msgstr "Неработающий буфер.\n"
+
+#~ msgid "Unknown error.\n"
+#~ msgstr "Неизвестная ошибка.\n"
+
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "Версия драйвера видеокарты: %s"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "Размер экрана: %d x %d %d bits"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный входной параметр №%d: ожидался путь к файлу сценария Scilab.\n"
+
+#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr ""
+#~ "Ошибка: посмотрите справку по powershell и проверьте свой сценарий вне "
+#~ "Scilab."
+
+#, c-format
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Системная ошибка: выполняемая команда: %s"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"
+
+#, c-format
+#~ msgid "%s: Unable to find Perl in ''%s''"
+#~ msgstr "%s: Perl не найден в «%s»."
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: переменная должна быть "
+#~ "определена.\n"
+
+#, c-format
+#~ msgid "%s called at line %s of %s"
+#~ msgstr "%s вызван в строке %s из %s"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался скаляр, «%s» или «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался скаляр, «%s» или «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидался скаляр, «%s» или "
+#~ "«%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d или №%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Не удалось выделить больше памяти.\n"
+#~ "Попробуйте stacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: Недопустимое значение «%s».\n"
+
+#~ msgid "Do you really want to abort computation (y or n ?) \n"
+#~ msgstr "Вы действительно  хотите завершить вычисление? (y или n) \n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась именованная переменная.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Type '%s' or '%s' to return to standard level prompt.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
+#~ "\n"
+
+#~ msgid "Cannot find Windows temporary directory."
+#~ msgstr "Не удалось найти каталог хранения временных файлов Windows."
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+#~ msgid "%s: Requires scilab editor.\n"
+#~ msgstr "%s: Требуется редактор Scilab.\n"
+
+#~ msgid "Introduction"
+#~ msgstr "Введение"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Авторское право (c) 1989-2009 (INRIA)\n"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Авторское право (c) 1989-2007 (ENPC)\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Авторское право (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "Name"
+#~ msgstr "Название"
+
+#~ msgid "Bytes"
+#~ msgstr "Байт"
+
+#~ msgid " by "
+#~ msgstr " на "
+
+#~ msgid "Type"
+#~ msgstr "Тип"
+
+#~ msgid "Size"
+#~ msgstr "Размер"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Авторское право (c) 1989-2010 (INRIA)\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалось вещественное число "
+#~ "двойной точности.\n"

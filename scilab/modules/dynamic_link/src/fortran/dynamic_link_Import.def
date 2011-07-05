@@ -1,0 +1,9 @@
+	LIBRARY    dynamic_link.dll
+
+
+EXPORTS
+;
+;dynamic_link
+;
+ibfu_
+cinter_

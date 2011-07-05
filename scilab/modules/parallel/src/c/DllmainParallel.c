@@ -13,6 +13,9 @@
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/libintl.lib")
+#ifdef __INTEL_COMPILER
+#pragma comment(lib,"libiomp5md.lib")
+#endif
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

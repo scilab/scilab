@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="f2c_rule">
+      <Targets>_f2c_rule</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="f2c_rule"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_f2c_rule"
+    BeforeTargets="$(f2c_ruleBeforeTargets)"
+    AfterTargets="$(f2c_ruleAfterTargets)"
+    Condition="'@(f2c_rule)' != ''"
+    DependsOnTargets="$(f2c_ruleDependsOn);Computef2c_ruleOutput"
+    Outputs="%(f2c_rule.Outputs)"
+    Inputs="%(f2c_rule.Identity);%(f2c_rule.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <f2c_rule
+        Remove="@(f2c_rule)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <f2c_rule_tlog
+        Include="%(f2c_rule.Outputs)"
+        Condition="'%(f2c_rule.Outputs)' != '' and '%(f2c_rule.ExcludedFromBuild)' != 'true'">
+        <Source>@(f2c_rule, '|')</Source>
+      </f2c_rule_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(f2c_rule.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(f2c_rule_tlog)' != '' and '%(f2c_rule_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(f2c_rule_tlog.Source);@(f2c_rule_tlog-&gt;'%(Fullpath)')" />
+    <f2c_rule
+      Condition="'@(f2c_rule)' != '' and '%(f2c_rule.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(f2c_rule.CommandLineTemplate)"
+      AdditionalOptions="%(f2c_rule.AdditionalOptions)"
+      Inputs="%(f2c_rule.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            Computef2c_ruleOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            Computef2c_ruleOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="Computef2c_ruleOutput"
+    Condition="'@(f2c_rule)' != ''">
+    <ItemGroup>
+      <f2c_ruleDirsToMake
+        Condition="'@(f2c_rule)' != '' and '%(f2c_rule.ExcludedFromBuild)' != 'true'"
+        Include="%(f2c_rule.Outputs)" />
+      <Link
+        Include="%(f2c_ruleDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(f2c_ruleDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(f2c_ruleDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(f2c_ruleDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

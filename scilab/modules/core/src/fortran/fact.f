@@ -27,6 +27,7 @@ c
       integer setgetmode
       integer minus,plus
       integer iadr,sadr
+      character tmpbuf * (bsiz)      
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
       data comma/52/,lparen/41/,rparen/42/, hat/62/,dot/51/,equal/50/
@@ -43,9 +44,9 @@ c
       r = rstk(pt)
 c     
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') pt,r,sym
-         call basout(io,wte,' factor pt:'//buf(1:4)//' rstk(pt):'//
-     &        buf(5:8)//' sym:'//buf(9:12))
+         write(tmpbuf(1:12),'(3i4)') pt,r,sym
+         call basout(io,wte,' factor pt:'//tmpbuf(1:4)//' rstk(pt):'//
+     &        tmpbuf(5:8)//' sym:'//tmpbuf(9:12))
       endif
 c     
       nullarg=.true.

@@ -69,6 +69,7 @@ Scilab.ncb
 Release
 Debug
 *.icproj
+*.vcproj
 *.user
 *.u2d
 *.suo
@@ -90,22 +91,20 @@ modules/*/sci_gateway/fortran/*.c
 #
 # VS 2010 files
 # 
-*.filters
-*.vcxproj
 *.opensdf
 *.sdf
 *.old
+ipch
 _UpgradeReport_Files/
 UpgradeLog.XML
-Visual-Studio-settings/f2c.props
-Visual-Studio-settings/f2c.targets
-Visual-Studio-settings/f2c.xml
+
 
 # eclipse temp files
 workspace/
 .checkstyle
 .classpath
 .project
+.cproject
 
 # MacOS files
 .DS_Store
@@ -168,3 +167,6 @@ modules/types/src/jni/sci_types_wrap.c
 *.gcov
 *.gcno
 *.gcda
+
+# clang / scan-build generated temporary files
+modules/*/*.plist

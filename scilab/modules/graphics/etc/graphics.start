@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2011 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,24 +8,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+function [graphicslib, datatipslib] = startModule()
+
 //Load  functions libraries
 // =============================================================================
+  load(SCI+"/modules/graphics/macros/lib");
+  load(SCI+"/modules/graphics/macros/datatips/lib");
+
+endfunction
+
 if (getscilabmode() <> 'NWNI') then
-	load(SCI+"/modules/graphics/macros/lib");
-	load(SCI+"/modules/graphics/macros/datatips/lib");
+  [graphicslib, datatipslib] = startModule();
 end
 
-// check bug 7575 on Windows
-// =============================================================================
-if getos() == "Windows" then
-  exec(SCI+"/modules/graphics/etc/nvidia_bug_7575.sce", -1);
-  exec(SCI+"/modules/graphics/etc/intel_bug_7526.sce", -1);
-end
-
-// Add demo
-// =============================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/graphics/demos/graphics.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Graphics"),pathdemos);
-	clear pathdemos;
-end
+clear startModule;

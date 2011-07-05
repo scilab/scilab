@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran files">
+      <UniqueIdentifier>{18349bb6-3f1d-4951-99a5-aeac4980248c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="amell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="belan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bgety.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bldenz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blnumz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bounn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chebc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cheby.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmpse2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmpse3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coeft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="degree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deli1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deli11.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deli2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dellk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi00.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi01.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi11.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi12.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi14.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi21.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi22.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desi24.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desia.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="desib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dfft2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dfftbi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dfftmx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgee01.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dpspln.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dsn2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dspln.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dsqrtc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\Ex-corr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fft842.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filbut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="freque.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gee.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hammin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ino.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kaiser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nstabl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ouch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parcha.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="poles.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="r2tx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="r4tx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="r8tx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="remez.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="romeg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rpem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="snell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syredi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tg02ad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tranpo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tranze.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trbipo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trbize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tscccf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_amell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_corr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fiir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_remez.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rpem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_syredi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="amell.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="belan.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bgety.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="bldenz.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="blnumz.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="bounn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="chebc.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="cheby.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="cmpse2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="cmpse3.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="coeft.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="compel.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="degree.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="deli1.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="deli11.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="deli2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="delip.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dellk.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi00.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi01.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi11.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi12.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi14.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi21.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi22.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desi24.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desia.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="desib.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dfft2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dfftbi.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dfftmx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgee01.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dpspln.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dsn2.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dspln.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dsqrtc.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-corr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="fft842.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="filbut.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="freque.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gee.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="hammin.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ino.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="kaiser.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="nstabl.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ouch.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="parcha.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="poles.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="r2tx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="r4tx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="r8tx.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="remez.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="romeg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="rpem.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="sn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="snell.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="syredi.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tg02ad.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tranpo.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="transn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tranze.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="trbipo.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="trbize.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="tscccf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_amell.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_corr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delip.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fft.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fiir.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_remez.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rpem.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_syredi.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
+  </ItemGroup>
+</Project>

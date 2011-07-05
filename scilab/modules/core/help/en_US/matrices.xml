@@ -29,7 +29,8 @@ E=[e11,e12,...,e1n;
     <programlisting role="example"><![CDATA[ 
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
-s=poly(0,'s');E=[s,s^2;1,1+s]
+s=poly(0,'s');
+E=[s,s^2;1,1+s]
 E=[1/s,0;s,1/(s+1)]
 E=['A11','A12';'A21','A22']
  ]]></programlisting>

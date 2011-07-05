@@ -52,7 +52,7 @@
 	ディレクトリ名を返します.</para>
     <para>
     <literal>flag</literal> が真の場合, files は
-	<literal>MSDOS</literal>変数で指定した目標型にまず
+	<literal>getos() == 'Windows'</literal>変数で指定した目標型にまず
 	変換されます.
 	更に, <literal>flagexpand</literal> が真の場合,
 	<literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
@@ -61,7 +61,7 @@
     <para>
     <literal>dirname(files,%f)</literal> は,
 	files に指定したパス名が
-	<literal>MSDOS</literal>変数により指定される変換に従わない
+	<literal>getos() == 'Windows'</literal>変数により指定される変換に従わない
 	場合に間違った結果を出力することがあるため,注意を要します.
 	</para>
   </refsection>

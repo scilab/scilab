@@ -17,6 +17,11 @@
 //   available directly to the user interface, but are computed internally.
 //
 function value = optimbase_get (this,key)
+    [lhs,rhs]=argn();
+    if ( rhs <> 2 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_get", 2);
+        error(errmsg)
+    end
   select key
   case "-funevals" then
     value = this.funevals;

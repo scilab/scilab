@@ -26,6 +26,10 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
+if IS_MACOSX
+bin_SCRIPTS 		+= bin/checkmacosx.applescript
+endif
+
 scilab_bin_LDFLAGS 		=
 scilab_cli_bin_LDFLAGS		=
 
@@ -130,18 +134,25 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/icons/
-icons_DATA = $(top_srcdir)/icons/scilab.xpm \
-$(top_srcdir)/icons/puffin_128.xpm \
-$(top_srcdir)/icons/puffin_256.xpm \
-$(top_srcdir)/icons/puffin_32.xpm \
-$(top_srcdir)/icons/puffin_48.xpm \
-$(top_srcdir)/icons/puffin.png \
-$(top_srcdir)/icons/puffin.icns \
-$(top_srcdir)/icons/scilab.icns
+iconsdir=$(pkgdatadir)/desktop/
+icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
+$(top_srcdir)/desktop/puffin_128.xpm \
+$(top_srcdir)/desktop/puffin_256.xpm \
+$(top_srcdir)/desktop/puffin_32.xpm \
+$(top_srcdir)/desktop/puffin_48.xpm \
+$(top_srcdir)/desktop/puffin.png \
+$(top_srcdir)/desktop/puffin.icns \
+$(top_srcdir)/desktop/scilab.icns
 
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
+
+# Desktop file
+# Note that here, it is datadir and NOT pkgdatadir
+desktopdir = $(datadir)/applications
+desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
+$(top_srcdir)/desktop/scilab-cli.desktop \
+$(top_srcdir)/desktop/scilab.desktop
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
@@ -309,7 +320,7 @@ check-java:
 if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
-	MASK="modules/*/locales/"; \
+	MASK="modules/*/locales*/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	EXTENSION="*.po"; \
@@ -327,6 +338,20 @@ localization:
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;
+
+
+localization-status:
+	@for LOCALE in $(ALL_LINGUAS_DOC); do \
+		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+		if test ! -d $$PATHTO; then \
+			echo "        Creating $$PATHTO"; \
+			mkdir -p $$PATHTO; \
+		fi; \
+		echo "Building $$LOCALE"; \
+		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
+	done; 
+
 endif
 
 # Misc variable for the documentation installation

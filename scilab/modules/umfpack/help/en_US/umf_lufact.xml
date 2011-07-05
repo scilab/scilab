@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>umf_lufact</refname>
-    <refpurpose> lu factorisation of a sparse matrix  </refpurpose>
+    <refpurpose> lu factorisation of a sparse matrix</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -33,7 +33,7 @@
     <para>
     This function computes a LU factorisation of the sparse matrix A 
     () and return at the scilab level, 
-    a pointer (LU_ptr) to an handle of the LU factors (L,U,p,q,R) 
+    a pointer (LU_ptr) to a handle of the LU factors (L,U,p,q,R) 
     (the memory used for them is "outside" scilab stack). 
   </para>
     <para>

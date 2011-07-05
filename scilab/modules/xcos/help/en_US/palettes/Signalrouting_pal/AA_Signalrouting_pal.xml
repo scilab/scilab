@@ -70,6 +70,16 @@
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
+        <imagedata linkend="CLKFROM" fileref="../../../../../../modules/xcos/images/palettes/CLKFROM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLKGOTO" fileref="../../../../../../modules/xcos/images/palettes/CLKGOTO.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
         <imagedata linkend="GotoTagVisibility" fileref="../../../../../../modules/xcos/images/palettes/GotoTagVisibility.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
@@ -181,6 +191,20 @@
 	  <listitem>
         <para>
           <link linkend="GOTOMO">GOTOMO — Pass block input to FROMMO
+          block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CLKFROM">CLKFROM — Pass event output to CLKGOTO
+          block</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="CLKGOTO">CLKGOTO — Pass event input to CLKFROM
           block</link>
         </para>
       </listitem>

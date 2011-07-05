@@ -64,4 +64,3 @@ public final class CloseAction extends DefaultAction {
         return createMenu(label, null, new CloseAction(label, editor), key);
     }
 }
-

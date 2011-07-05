@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab"
+  xml:id="complex"
+  xml:lang="en"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>complex</refname>
+
+    <refpurpose>Create a complex number.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+	c=complex(a)
+	c=complex(a,b)
+	</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>
+		  a 1-by-1 or a n-by-m real matrix of doubles, the real part.
+		  If <literal>a</literal> has an imaginary part, an error 
+		  is generated.
+		  </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>
+		  a 1-by-1 or a n-by-m real matrix of doubles, the imaginary part (default b=0).
+		  If <literal>b</literal> has an imaginary part, an error 
+		  is generated.
+		  </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c</term>
+
+        <listitem>
+          <para>a n-by-m complex matrix of doubles, the complex number.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      c=complex(a) creates a complex number from its real part <literal>a</literal> 
+	  and zero as the imaginary part.
+    </para>
+
+    <para>
+      c=complex(a,b) creates a complex number from its real part <literal>a</literal> 
+	  and imaginary part <literal>b</literal>.
+    </para>
+
+    <para>
+      This function is a substitute for expressions such as <literal>a+%i*b</literal>,
+      especially in cases where the complex arithmetic interferes with particular
+      floating point numbers such as <literal>%inf</literal> or
+      <literal>%nan</literal>.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>
+      In the following example, we create a complex number from
+      its real and imaginary parts.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+complex(1,2)
+complex([1 2],[3 4])
+ ]]>
+    </programlisting>
+
+	<para>
+      If <literal>a</literal> only is specified, then the imaginary 
+	  part is set to zero.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+complex([1 2 3])
+ ]]>
+    </programlisting>
+
+    <para>
+	If <literal>a</literal> is a scalar and <literal>b</literal> 
+	is a matrix, then the result <literal>c</literal> has the same 
+	size as <literal>b</literal>.
+	Similarily, if <literal>b</literal> is a scalar and <literal>a</literal> 
+	is a matrix, then the result <literal>c</literal> has the same 
+	size as <literal>a</literal>.
+    </para>
+	
+    <programlisting role="example">
+      <![CDATA[ 
+c = complex([1 2 3], 4)
+c = complex(1, [2 3 4])
+ ]]>
+    </programlisting>
+
+    <para>
+	If <literal>a</literal> and <literal>b</literal> are two 
+	matrices with different sizes, an error is generated, as in the 
+	following session.
+    </para>
+
+    <screen>
+      <![CDATA[ 
+-->complex(ones(2,3),ones(4,5))
+ !--error 10000 
+complex: Incompatible input arguments #1 and #2: Same sizes expected.
+at line      33 of function complex called by :  
+complex(ones(2,3),ones(4,5))
+ ]]>
+      </screen>
+	
+    <para>
+	The purpose of the <literal>complex</literal> function is to manage 
+	IEEE floating point numbers such as Nans or Infinities. 
+      In the following example, we show that creating a complex number where
+      the real and imaginary parts are complex is not straightforward if
+      we use the complex arithmetic.
+      This is because the product <literal>%i</literal> times <literal>%inf</literal>
+      is evaluated as <literal>(0+%i) * (%inf+%i*0)</literal>.
+      This produces the intermediate expression <literal>0*%inf</literal>,
+      which is <literal>%nan</literal>.
+    </para>
+
+    <screen>
+      <![CDATA[ 
+-->%inf+%i*%inf
+ ans  =
+    Nan + Inf 
+ ]]>
+    </screen>
+
+    <para>
+      The solution of this issue is to use the <literal>complex</literal>
+      function.
+    </para>
+
+    <screen>
+      <![CDATA[ 
+-->complex(%inf,%inf)
+ ans  =
+    Inf + Inf 
+ ]]>
+    </screen>
+
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="imult">imult</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>INRIA - Farid Belahcene</para>
+    <para>2011 - DIGITEO - Michael Baudin</para>
+  </refsection>
+</refentry>

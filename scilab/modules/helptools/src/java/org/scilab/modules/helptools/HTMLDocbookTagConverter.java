@@ -44,6 +44,7 @@ import org.scilab.modules.helptools.XML.HTMLXMLCodeHandler;
 import org.scilab.modules.helptools.c.CLexer;
 import org.scilab.modules.helptools.c.HTMLCCodeHandler;
 import org.scilab.modules.helptools.java.JavaLexer;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class to convert DocBook to HTML
@@ -52,6 +53,8 @@ import org.scilab.modules.helptools.java.JavaLexer;
 public class HTMLDocbookTagConverter extends DocbookTagConverter implements TemplateFiller {
 
     private static final String LATEXBASENAME = "Equation_LaTeX_";
+    private static final String VERSION = Messages.gettext("Version");
+    private static final String DESCRIPTION = Messages.gettext("Description");
 
     private StringBuffer buffer = new StringBuffer(8192);
     private int latexCompt;
@@ -91,6 +94,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
+    protected boolean isToolbox;
+
     /**
      * Constructor
      * @param inName the name of the input stream
@@ -118,6 +123,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         scilabLexer = new ScilabLexer(primConf, macroConf);
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
+        this.isToolbox = isToolbox;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                     public String getLink(String id) {
@@ -753,14 +759,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String role = attributes.get("role");
         String str;
         if (role == null) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
-                if (prependToProgramListing != null) {
-                    code = prependToProgramListing + code;
-                }
-                if (appendToProgramListing != null) {
-                    code += appendToProgramListing;
-                }
-                str = encloseContents("div", "programlisting", code);
+            String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
+            if (prependToProgramListing != null) {
+                code = prependToProgramListing + code;
+            }
+            if (appendToProgramListing != null) {
+                code += appendToProgramListing;
+            }
+            str = encloseContents("div", "programlisting", code);
         } else {
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
@@ -769,7 +775,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             } else if (role.equals("java")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
@@ -778,7 +784,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
@@ -1000,7 +1006,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTerm(Map<String, String> attributes, String contents) throws SAXException {
-        return encloseContents("span", "term", contents);
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("span", "term", contents);
+        } else {
+            return encloseContents("span", "term", contents);
+        }
     }
 
     /**
@@ -1441,5 +1452,55 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTh(Map<String, String> attributes, String contents) throws SAXException {
         return encloseContents("th", contents);
+    }
+
+    /**
+     * Handle a revhistory
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevhistory(Map<String, String> attributes, String contents) throws SAXException {
+        String id = attributes.get("id");
+        String str = "<table class=\"revhistory\"><tr class=\"title\"><td>" + VERSION + "</td><td>" + DESCRIPTION + "</td></tr>" + contents + "</table>";
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + str;
+        } else {
+            return str;
+        }
+    }
+
+    /**
+     * Handle a revision
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevision(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("tr", contents);
+    }
+
+    /**
+     * Handle a revnumber
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevnumber(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("td", "revnumber", contents);
+    }
+
+    /**
+     * Handle a revremark
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleRevremark(Map<String, String> attributes, String contents) throws SAXException {
+        return encloseContents("td", "revremark", contents);
     }
 }

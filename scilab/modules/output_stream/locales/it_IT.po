@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: Matteo Ruffini <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-30 12:50+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -110,14 +111,14 @@ msgstr "%s: Si è verificato il seg. errore: %s\n"
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
-"con la direttiva 'c'.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato con la "
+"direttiva 'c'.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
-"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato "
-"con la direttiva 's'.\n"
+"%s: Conversione sbagliata: il flag 'l' o quello 'h' è stato mischiato con la "
+"direttiva 's'.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -206,32 +207,12 @@ msgid ""
 msgstr "%s: Sono state trovate troppe soluzioni.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Il tipo %s non è gestito : defnire la funzione %sa%s"
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Formato di esportazione sbagliato: %s"
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: I parametri in ingresso sono sbagliati.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi da %d "
-"a %d."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: erano attesi da %d a "
-"%d"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -244,6 +225,12 @@ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: i dati non concordano "
+"con il formato.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -281,12 +268,6 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
-"booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -375,22 +356,8 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
-"''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -531,10 +498,6 @@ msgstr "%s: il problema è singolare o asimmetrico.\n"
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) deve essere inferiore a 40.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: il sistema non può essere mostrato in questa pagina.\n"
 
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -928,8 +891,9 @@ msgstr "Non è sviluppato in Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Una variabile nulla non può essere usata qui.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
 msgstr ""
+"Gli operandi delle operazioni / e \\ non devono contenere NaN o Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -1139,7 +1103,7 @@ msgid "Uncontrollable system.\n"
 msgstr "Il sistema non è controllabile.\n"
 
 msgid "Undefined display for this data type.\n"
-msgstr ""
+msgstr "Il modo display non è definito per questo tipo di dato.\n"
 
 msgid "Undefined fonction.\n"
 msgstr "La funzione non è definita.\n"
@@ -1212,7 +1176,7 @@ msgstr ""
 "questo messaggio"
 
 msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "Attenzine c'è una singolarità della funzione 'log' o 'tan'.\n"
+msgstr "Attenzione c'è una singolarità della funzione 'log' o 'tan'.\n"
 
 msgid "Warning:\n"
 msgstr "Attenzione:\n"
@@ -1559,3 +1523,129 @@ msgstr "il dominio temporale dell'argomento %d non è definito.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "la parola-chiave varargout non può essere usata qui.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Errore di allocazione della memoria\n"
+
+#, c-format
+#~ msgid "%s: system cannot be displayed in this page.\n"
+#~ msgstr "%s: il sistema non può essere mostrato in questa pagina.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: deve essere > 0.\n"
+
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: Questo metodo NON è implementato.\n"
+
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: La matrice di collocazione è singolare.\n"
+
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: il problema è singolare o asimmetrico.\n"
+
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr ""
+#~ "Una voce della matrice sparsa è definita con due valori differenti.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "il formato ''o'' non è permesso."
+
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr ""
+#~ "Al tempo: %s, troppe iterazioni per raggiungere la precisione richiesta.\n"
+
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr ""
+#~ "Errore durante la scrittura su file, (disco pieno o file eliminato).\n"
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Errore fatale!!! Le variabili dell'utente sono state salvate nel file : %s\n"
+#~ "C'è stata una chiamata sbagliata ad una funzione di Scilab?\n"
+#~ "Altrimenti, inviare un rapporto sul bug a :\n"
+
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr ""
+#~ "Gli operandi delle operazioni / e \\ non devono contenere NaN o Inf.\n"
+
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "Il rango è inadeguato. rank = %d\n"
+
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "Ci sono troppe variabili globali ! , il numero max è %d.\n"
+
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "Ci sono troppe voci di ingresso(uscita) per il blocco evidenziato.\n"
+
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr ""
+#~ "Ci sono troppe porte di ingresso(uscita) per il blocco evidenziato.\n"
+
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr ""
+#~ "Attenzione: l'integrazione non è completa! Controllare i parametri di "
+#~ "tolleranza o la dimensione del passo.\n"
+
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "Attenzione: è stato fornito uno jacobiano esterno,\n"
+#~ " ma non è usato!, vedere %ODEOPTIONS(6).\n"
+
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "Attenzione: uso obsoleto di eye rand o di ones.\n"
+
+#, c-format
+#~ msgid "%s: Wrong export format: %s"
+#~ msgstr "%s: Formato di esportazione sbagliato: %s"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi da %d "
+#~ "a %d."
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
+#~ "booleano.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+#~ "stringa.\n"
+
+#, c-format
+#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
+#~ msgstr "%s: Il tipo %s non è gestito : defnire la funzione %sa%s"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: erano attesi da %d a "
+#~ "%d"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+#~ "''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
+#~ "''%s'',''%s'',''%s'',''%s'',''%s'' o ''%s''.\n"

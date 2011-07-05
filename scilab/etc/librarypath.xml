@@ -33,6 +33,12 @@
 <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
 <path value="/usr/lib/jni/"/>
 
+<!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
+<path value="/usr/lib/jogl/"/>
+<path value="/usr/lib64/jogl/"/>
+<path value="/usr/lib/gluegen/"/>
+<path value="/usr/lib64/gluegen/"/>
+
 <!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
 <path value="/usr/lib" />
 

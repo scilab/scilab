@@ -15,7 +15,7 @@ modulename=graph
 
 #### graph : Conf files ####
 libscigraph_la_rootdir = $(mydatadir)
-libscigraph_la_root_DATA =  license.txt version.xml
+libscigraph_la_root_DATA =  license.txt 
 
 
 #### graph : init scripts ####

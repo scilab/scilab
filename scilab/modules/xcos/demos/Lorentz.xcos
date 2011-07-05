@@ -19,6 +19,7 @@
     <add value=";"/>
     <add value="//set end simulation time;"/>
     <add value="Tfin=30;"/>
+    <add value=""/>
   </Array>
   <mxGraphModel as="model">
     <root>

@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4FC72D4A-80EE-4B1A-8724-0201C1A35621}</ProjectGuid>
+    <RootNamespace>fileio</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;io.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;io.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;io.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;io.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\c\addfile.c" />
+    <ClCompile Include="src\c\basename.c" />
+    <ClCompile Include="src\c\cluni0.c" />
+    <ClCompile Include="src\c\copyfile_windows.c" />
+    <ClCompile Include="src\c\createdirectory.c" />
+    <ClCompile Include="src\c\deleteafile.c" />
+    <ClCompile Include="src\c\delfile.c" />
+    <ClCompile Include="src\c\DllmainFileio.c" />
+    <ClCompile Include="src\c\do_xxscanf.c" />
+    <ClCompile Include="src\c\expandPathVariable.c" />
+    <ClCompile Include="src\c\FileExist.c" />
+    <ClCompile Include="src\c\fileinfo.c" />
+    <ClCompile Include="src\c\filesmanagement.c" />
+    <ClCompile Include="src\c\FindFileExtension.c" />
+    <ClCompile Include="src\c\findfiles.c" />
+    <ClCompile Include="src\c\fprintfMat.c" />
+    <ClCompile Include="src\c\fscanfMat.c" />
+    <ClCompile Include="src\c\fullpath.c" />
+    <ClCompile Include="src\c\getdrives.c" />
+    <ClCompile Include="src\c\getfiledesc.c" />
+    <ClCompile Include="src\c\getfileinfo.c" />
+    <ClCompile Include="src\c\getfiletype.c" />
+    <ClCompile Include="src\c\getFullFilename.c" />
+    <ClCompile Include="src\c\getlongpathname.c" />
+    <ClCompile Include="src\c\getrelativefilename.c" />
+    <ClCompile Include="src\c\getshortpathname.c" />
+    <ClCompile Include="sci_gateway\c\gw_fileio.c" />
+    <ClCompile Include="src\c\isdir.c" />
+    <ClCompile Include="src\c\isDrive.c" />
+    <ClCompile Include="src\c\mclearerr.c" />
+    <ClCompile Include="src\c\mclose.c" />
+    <ClCompile Include="src\c\meof.c" />
+    <ClCompile Include="src\c\merror.c" />
+    <ClCompile Include="src\c\mget.c" />
+    <ClCompile Include="src\c\mgeti.c" />
+    <ClCompile Include="src\c\mgetl.c" />
+    <ClCompile Include="src\c\mgetstr.c" />
+    <ClCompile Include="src\c\mopen.c" />
+    <ClCompile Include="src\c\movefile.c" />
+    <ClCompile Include="src\c\mput.c" />
+    <ClCompile Include="src\c\mputi.c" />
+    <ClCompile Include="src\c\mputl.c" />
+    <ClCompile Include="src\c\mputstr.c" />
+    <ClCompile Include="src\c\mseek.c" />
+    <ClCompile Include="src\c\mtell.c" />
+    <ClCompile Include="src\c\pathconvert.c" />
+    <ClCompile Include="src\c\readline.c" />
+    <ClCompile Include="src\c\removedir.c" />
+    <ClCompile Include="src\c\scanf_functions.c" />
+    <ClCompile Include="sci_gateway\c\sci_basename.c" />
+    <ClCompile Include="sci_gateway\c\sci_chdir.c" />
+    <ClCompile Include="sci_gateway\c\sci_copyfile.c" />
+    <ClCompile Include="sci_gateway\c\sci_createdir.c" />
+    <ClCompile Include="sci_gateway\c\sci_deletefile.c" />
+    <ClCompile Include="sci_gateway\c\sci_fileext.c" />
+    <ClCompile Include="sci_gateway\c\sci_fileinfo.c" />
+    <ClCompile Include="sci_gateway\c\sci_fileparts.c" />
+    <ClCompile Include="sci_gateway\c\sci_filesep.c" />
+    <ClCompile Include="sci_gateway\c\sci_findfiles.c" />
+    <ClCompile Include="sci_gateway\c\sci_fprintfMat.c" />
+    <ClCompile Include="sci_gateway\c\sci_fscanfMat.c" />
+    <ClCompile Include="sci_gateway\c\sci_fullpath.c" />
+    <ClCompile Include="sci_gateway\c\sci_get_absolute_file_path.c" />
+    <ClCompile Include="sci_gateway\c\sci_getdrives.c" />
+    <ClCompile Include="sci_gateway\c\sci_getlongpathname.c" />
+    <ClCompile Include="sci_gateway\c\sci_getrelativefilename.c" />
+    <ClCompile Include="sci_gateway\c\sci_getshortpathname.c" />
+    <ClCompile Include="sci_gateway\c\sci_isdir.c" />
+    <ClCompile Include="sci_gateway\c\sci_isfile.c" />
+    <ClCompile Include="sci_gateway\c\sci_maxfiles.c" />
+    <ClCompile Include="sci_gateway\c\sci_mclearerr.c" />
+    <ClCompile Include="sci_gateway\c\sci_mclose.c" />
+    <ClCompile Include="sci_gateway\c\sci_merror.c" />
+    <ClCompile Include="sci_gateway\c\sci_mfprintf.c" />
+    <ClCompile Include="sci_gateway\c\sci_mfscanf.c" />
+    <ClCompile Include="sci_gateway\c\sci_mget.c" />
+    <ClCompile Include="sci_gateway\c\sci_mgetl.c" />
+    <ClCompile Include="sci_gateway\c\sci_mgetstr.c" />
+    <ClCompile Include="sci_gateway\c\sci_moef.c" />
+    <ClCompile Include="sci_gateway\c\sci_mopen.c" />
+    <ClCompile Include="sci_gateway\c\sci_movefile.c" />
+    <ClCompile Include="sci_gateway\c\sci_mput.c" />
+    <ClCompile Include="sci_gateway\c\sci_mputl.c" />
+    <ClCompile Include="sci_gateway\c\sci_mputstr.c" />
+    <ClCompile Include="sci_gateway\c\sci_mscanf.c" />
+    <ClCompile Include="sci_gateway\c\sci_mseek.c" />
+    <ClCompile Include="sci_gateway\c\sci_msscanf.c" />
+    <ClCompile Include="sci_gateway\c\sci_mtell.c" />
+    <ClCompile Include="sci_gateway\c\sci_newest.c" />
+    <ClCompile Include="sci_gateway\c\sci_pathconvert.c" />
+    <ClCompile Include="sci_gateway\c\sci_pathsep.c" />
+    <ClCompile Include="sci_gateway\c\sci_pwd.c" />
+    <ClCompile Include="sci_gateway\c\sci_removedir.c" />
+    <ClCompile Include="src\c\scicurdir.c" />
+    <ClCompile Include="src\c\splitpath.c" />
+    <ClCompile Include="src\c\Status2Mode.c" />
+    <ClCompile Include="src\c\URIFileToFilename.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\addfile.h" />
+    <ClInclude Include="includes\mgetl.h" />
+    <ClInclude Include="src\c\basename.h" />
+    <ClInclude Include="includes\cluni0.h" />
+    <ClInclude Include="src\c\copyfile.h" />
+    <ClInclude Include="includes\createdirectory.h" />
+    <ClInclude Include="includes\delfile.h" />
+    <ClInclude Include="src\c\do_xxscanf.h" />
+    <ClInclude Include="includes\dynlib_fileio.h" />
+    <ClInclude Include="includes\expandPathVariable.h" />
+    <ClInclude Include="includes\FileExist.h" />
+    <ClInclude Include="src\c\fileinfo.h" />
+    <ClInclude Include="includes\filesmanagement.h" />
+    <ClInclude Include="includes\FindFileExtension.h" />
+    <ClInclude Include="includes\findfiles.h" />
+    <ClInclude Include="src\c\fprintfMat.h" />
+    <ClInclude Include="src\c\fscanfMat.h" />
+    <ClInclude Include="src\c\fullpath.h" />
+    <ClInclude Include="src\c\getdrives.h" />
+    <ClInclude Include="includes\getfiledesc.h" />
+    <ClInclude Include="includes\getfileinfo.h" />
+    <ClInclude Include="includes\getfiletype.h" />
+    <ClInclude Include="includes\getFullFilename.h" />
+    <ClInclude Include="src\c\getlongpathname.h" />
+    <ClInclude Include="src\c\getrelativefilename.h" />
+    <ClInclude Include="includes\gw_fileio.h" />
+    <ClInclude Include="includes\isdir.h" />
+    <ClInclude Include="src\c\isDrive.h" />
+    <ClInclude Include="src\c\mclearerr.h" />
+    <ClInclude Include="includes\mclose.h" />
+    <ClInclude Include="src\c\meof.h" />
+    <ClInclude Include="src\c\merror.h" />
+    <ClInclude Include="includes\mget.h" />
+    <ClInclude Include="src\c\mgeti.h" />
+    <ClInclude Include="src\c\mgetstr.h" />
+    <ClInclude Include="includes\mopen.h" />
+    <ClInclude Include="src\c\movefile.h" />
+    <ClInclude Include="includes\mput.h" />
+    <ClInclude Include="src\c\mputi.h" />
+    <ClInclude Include="src\c\mputl.h" />
+    <ClInclude Include="src\c\mputstr.h" />
+    <ClInclude Include="includes\mseek.h" />
+    <ClInclude Include="includes\mtell.h" />
+    <ClInclude Include="src\c\pathconvert.h" />
+    <ClInclude Include="includes\removedir.h" />
+    <ClInclude Include="src\c\scanf_functions.h" />
+    <ClInclude Include="includes\scicurdir.h" />
+    <ClInclude Include="includes\splitpath.h" />
+    <ClInclude Include="src\c\Status2Mode.h" />
+    <ClInclude Include="includes\URIFileToFilename.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\c\fileio.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="locales\en_US\fileio.pot" />
+    <None Include="io_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Localization_Import.def" />
+    <None Include="Scilab_windows_Import.def" />
+    <None Include="fileio.iss" />
+    <None Include="sci_gateway\fileio_gateway.xml" />
+    <None Include="Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\libst\libst.vcxproj">
+      <Project>{fbf44619-6c9b-4400-940c-9147d81eb340}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\shell\src\c\shell.vcxproj">
+      <Project>{805aa73f-ef7b-4177-bf46-200b72d8f83a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\string\src\c\string.vcxproj">
+      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -20,8 +20,7 @@ function answ = edit_error(clearerror)
     else
       p = get_function_path(func);
       if (p <> []) then
-        editor(p);
-        // TODO: add command to hilite line
+        editor(p, line, func);
         answ = gettext('opening file ') + p + gettext(' on line ') + ..
                  msprintf("%d",line) + gettext(' of the source file of the function ') + func;
       else

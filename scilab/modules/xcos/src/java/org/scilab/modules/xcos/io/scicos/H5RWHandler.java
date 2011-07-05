@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.io.File;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -70,8 +71,9 @@ public class H5RWHandler {
 	 * Decode an Xcos block
 	 * 
 	 * @return the decoded block
+	 * @throws ScicosFormatException on decoding error
 	 */
-	public BasicBlock readBlock() {
+	public BasicBlock readBlock() throws ScicosFormatException {
 		return readBlock(null);
 	}
 	
@@ -79,8 +81,9 @@ public class H5RWHandler {
 	 * Decode an Xcos block into an instance
 	 * @param into the instance to update
 	 * @return the updated instance.
+	 * @throws ScicosFormatException on decoding error
 	 */
-	public BasicBlock readBlock(BasicBlock into) {
+	public BasicBlock readBlock(BasicBlock into) throws ScicosFormatException {
 		final ScilabMList data = new ScilabMList();
 		final BlockElement element = new BlockElement();
 		BasicBlock instance;
@@ -99,9 +102,6 @@ public class H5RWHandler {
 			style.put(instance.getInterfaceFunctionName(), null);
 			instance.setStyle(style.toString());
 
-		} catch (ScicosFormatException e) {
-			LOG.error(e);
-			instance = null;
 		} catch (HDF5Exception e) {
 			LOG.error(e);
 			instance = null;
@@ -119,9 +119,9 @@ public class H5RWHandler {
 	 * 
 	 * @return the decoded context
 	 */
-	public LinkedHashMap<String, String> readContext() {
+	public Map<String, String> readContext() {
 		final ScilabList list = new ScilabList();
-		final LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
+		final Map<String, String> result = new LinkedHashMap<String, String>();
 
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("Reading context from " + h5File);
