@@ -83,7 +83,7 @@ public class";
  }";
 
 /* JavaDoc */
-%javamethodmodifiers getSCIHOME() "
+%javamethodmodifiers isEmptyDirectory(String dirName) "
  /**
    * Test if a directory is empty or not
    * @param dirName the directory name

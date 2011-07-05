@@ -28,15 +28,18 @@ libsciui_data_la_etc_DATA = etc/ui_data.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
-					  src/jni/EditVar.cpp
+		      src/jni/EditVar.cpp \
+		      src/jni/FileBrowser.cpp
 
 UI_DATA_C_SOURCES = 
 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
+UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
-src/jni/EditVar.giws.xml
+src/jni/EditVar.giws.xml \
+src/jni/FileBrowser.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -45,8 +48,9 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
+		      sci_gateway/cpp/sci_browsevar.cpp \
+		      sci_gateway/cpp/sci_filebrowser.cpp
 
 libsciui_data_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

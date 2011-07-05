@@ -33,6 +33,8 @@
 #include "TermReadAndProcess.h"
 #include "../../../jvm/includes/InitializeJVM.h"
 #include "UpdateBrowseVar.h"
+#include "scicurdir.h"
+#include "FileBrowserChDir.h"
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
@@ -239,7 +241,16 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
           }
 	  if (getScilabMode() != SCILAB_NWNI)
 	  {
+	      char *cwd = NULL;
+	      int err = 0;
+
               UpdateBrowseVar(TRUE);
+	      cwd = scigetcwd(&err);
+	      if (cwd)
+	      {
+		  FileBrowserChDir(cwd);
+		  FREE(cwd);
+	      }
 	  }
           __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
           WatchGetCmdLineThreadAlive = TRUE;

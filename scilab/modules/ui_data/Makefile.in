@@ -119,8 +119,10 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciui_data_algo_la_LIBADD =
 am__objects_1 =
 am__objects_2 = libsciui_data_algo_la-BrowseVar.lo \
-	libsciui_data_algo_la-EditVar.lo
-am__objects_3 = libsciui_data_algo_la-UpdateBrowseVar.lo
+	libsciui_data_algo_la-EditVar.lo \
+	libsciui_data_algo_la-FileBrowser.lo
+am__objects_3 = libsciui_data_algo_la-UpdateBrowseVar.lo \
+	libsciui_data_algo_la-FileBrowserChDir.lo
 am_libsciui_data_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libsciui_data_algo_la_OBJECTS = $(am_libsciui_data_algo_la_OBJECTS)
@@ -140,7 +142,8 @@ libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_5 = libsciui_data_la-gw_ui_data.lo
 am__objects_6 = libsciui_data_la-sci_editvar.lo \
-	libsciui_data_la-sci_browsevar.lo
+	libsciui_data_la-sci_browsevar.lo \
+	libsciui_data_la-sci_filebrowser.lo
 am_libsciui_data_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
 libsciui_data_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -513,18 +516,23 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
-					  src/jni/EditVar.cpp
+		      src/jni/EditVar.cpp \
+		      src/jni/FileBrowser.cpp
 
 UI_DATA_C_SOURCES = 
-UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
+UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+		      src/cpp/FileBrowserChDir.cpp
+
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
-src/jni/EditVar.giws.xml
+src/jni/EditVar.giws.xml \
+src/jni/FileBrowser.giws.xml
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
-						sci_gateway/cpp/sci_browsevar.cpp
+		      sci_gateway/cpp/sci_browsevar.cpp \
+		      sci_gateway/cpp/sci_filebrowser.cpp
 
 libsciui_data_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -686,11 +694,14 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-BrowseVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-EditVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-FileBrowser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-FileBrowserChDir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_disable_la-noui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_browsevar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_filebrowser.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -762,12 +773,26 @@ libsciui_data_algo_la-EditVar.lo: src/jni/EditVar.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
 
+libsciui_data_algo_la-FileBrowser.lo: src/jni/FileBrowser.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-FileBrowser.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-FileBrowser.Tpo -c -o libsciui_data_algo_la-FileBrowser.lo `test -f 'src/jni/FileBrowser.cpp' || echo '$(srcdir)/'`src/jni/FileBrowser.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-FileBrowser.Tpo $(DEPDIR)/libsciui_data_algo_la-FileBrowser.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/FileBrowser.cpp' object='libsciui_data_algo_la-FileBrowser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-FileBrowser.lo `test -f 'src/jni/FileBrowser.cpp' || echo '$(srcdir)/'`src/jni/FileBrowser.cpp
+
 libsciui_data_algo_la-UpdateBrowseVar.lo: src/cpp/UpdateBrowseVar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-UpdateBrowseVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Tpo -c -o libsciui_data_algo_la-UpdateBrowseVar.lo `test -f 'src/cpp/UpdateBrowseVar.cpp' || echo '$(srcdir)/'`src/cpp/UpdateBrowseVar.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Tpo $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UpdateBrowseVar.cpp' object='libsciui_data_algo_la-UpdateBrowseVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-UpdateBrowseVar.lo `test -f 'src/cpp/UpdateBrowseVar.cpp' || echo '$(srcdir)/'`src/cpp/UpdateBrowseVar.cpp
+
+libsciui_data_algo_la-FileBrowserChDir.lo: src/cpp/FileBrowserChDir.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-FileBrowserChDir.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-FileBrowserChDir.Tpo -c -o libsciui_data_algo_la-FileBrowserChDir.lo `test -f 'src/cpp/FileBrowserChDir.cpp' || echo '$(srcdir)/'`src/cpp/FileBrowserChDir.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-FileBrowserChDir.Tpo $(DEPDIR)/libsciui_data_algo_la-FileBrowserChDir.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/FileBrowserChDir.cpp' object='libsciui_data_algo_la-FileBrowserChDir.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-FileBrowserChDir.lo `test -f 'src/cpp/FileBrowserChDir.cpp' || echo '$(srcdir)/'`src/cpp/FileBrowserChDir.cpp
 
 libsciui_data_la-sci_editvar.lo: sci_gateway/cpp/sci_editvar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_editvar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_editvar.Tpo -c -o libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp
@@ -782,6 +807,13 @@ libsciui_data_la-sci_browsevar.lo: sci_gateway/cpp/sci_browsevar.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_browsevar.cpp' object='libsciui_data_la-sci_browsevar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_browsevar.lo `test -f 'sci_gateway/cpp/sci_browsevar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_browsevar.cpp
+
+libsciui_data_la-sci_filebrowser.lo: sci_gateway/cpp/sci_filebrowser.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_filebrowser.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_filebrowser.Tpo -c -o libsciui_data_la-sci_filebrowser.lo `test -f 'sci_gateway/cpp/sci_filebrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_filebrowser.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-sci_filebrowser.Tpo $(DEPDIR)/libsciui_data_la-sci_filebrowser.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_filebrowser.cpp' object='libsciui_data_la-sci_filebrowser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_filebrowser.lo `test -f 'sci_gateway/cpp/sci_filebrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_filebrowser.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

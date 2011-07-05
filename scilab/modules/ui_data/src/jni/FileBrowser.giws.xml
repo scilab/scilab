@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package name="org.scilab.modules.ui_data">
+  <object name="FileBrowser">
+    <method name="openFileBrowser" returnType="void" modifier="static" />
+    <method name="setBaseDir" returnType="void" modifier="static" >
+      <parameter type="String" name="baseDir"/>
+    </method>
+  </object>
+</package>
