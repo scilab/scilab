@@ -95,10 +95,11 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 * Pass {@link TerminalAccessor} change events to {@link TableModelEvent}.
 	 */
 	private static class ModelChangeListener implements TerminalAccessor.ChangeListener {
-		final TerminalTableModel model;
+		private final TerminalTableModel model;
 		
 		/**
 		 * Default Constructor
+		 * @param model the model
 		 */
 		public ModelChangeListener(TerminalTableModel model) {
 			this.model = model; 
@@ -240,7 +241,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
 				columnIndex, true));
-		values()[columnIndex].setData(aValue,terminals.get(rowIndex));
+		values()[columnIndex].setData(aValue, terminals.get(rowIndex));
 		fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
 				columnIndex, false));
 	}

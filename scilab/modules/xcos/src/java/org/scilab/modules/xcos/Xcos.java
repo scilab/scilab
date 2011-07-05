@@ -51,6 +51,8 @@ import com.mxgraph.view.mxStylesheet;
 /**
  * Xcos entry point class
  */
+// CSOFF: ClassFanOutComplexity
+// CSOFF: ClassDataAbstractionCoupling
 public final class Xcos {
 	/**
 	 * The current Xcos version
@@ -61,6 +63,8 @@ public final class Xcos {
 	 */
 	public static final String TRADENAME = "Xcos";
 
+	private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+	
 	/*
 	 * Dependencies version
 	 */
@@ -443,7 +447,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -468,7 +472,7 @@ public final class Xcos {
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -698,7 +702,7 @@ public final class Xcos {
 					
 					// loop to get only the last diagram
 					while (block instanceof SuperBlock & !deque.isEmpty()) {
-						final SuperBlock superBlock = (SuperBlock)block;
+						final SuperBlock superBlock = (SuperBlock) block;
 						id = deque.pop();
 						
 						superBlock.openBlockSettings(null);
@@ -730,11 +734,10 @@ public final class Xcos {
 	 * 
 	 * This method invoke Xcos operation on the EDT thread.
 	 * 
-	 * @param uid[]
-	 *            The diagram id path
+	 * @param uid The diagram id path
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramClose(final String uid[]) {
+	public static void xcosDiagramClose(final String[] uid) {
 		final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 		
 		try {
@@ -760,7 +763,7 @@ public final class Xcos {
 					
 					// loop to get only the last diagram
 					while (block instanceof SuperBlock & !deque.isEmpty()) {
-						final SuperBlock superBlock = (SuperBlock)block;
+						final SuperBlock superBlock = (SuperBlock) block;
 						id = deque.pop();
 						
 						superBlock.openBlockSettings(null);
@@ -805,3 +808,5 @@ public final class Xcos {
 		return null;
 	}
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity

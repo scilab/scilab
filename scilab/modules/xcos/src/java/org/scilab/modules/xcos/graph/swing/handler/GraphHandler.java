@@ -82,6 +82,7 @@ public class GraphHandler extends mxGraphHandler {
 	 * @param e the mouse event
 	 * @see com.mxgraph.swing.util.mxMouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 	 */
+	// CSOFF: CyclomaticComplexity
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (graphComponent.isEnabled() && isEnabled() && !e.isConsumed()
@@ -127,7 +128,8 @@ public class GraphHandler extends mxGraphHandler {
 			super.mouseClicked(e);
 		}
 	}
-
+	// CSON: CyclomaticComplexity
+	
 	/**
 	 * Create a new text block at the point.
 	 * @param e the current point

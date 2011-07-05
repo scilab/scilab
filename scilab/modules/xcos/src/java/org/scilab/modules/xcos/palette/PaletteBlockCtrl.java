@@ -47,13 +47,6 @@ import com.mxgraph.util.mxConstants;
  * operations there are used to render, load and put (on a diagram) a block.
  */
 public final class PaletteBlockCtrl {
-	private static final double BLOCK_DEFAULT_POSITION = 10.0;
-	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
-	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
-	
-	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
-	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
-	
 	/**
 	 * Internal graph used to render each block.
 	 */
@@ -62,6 +55,13 @@ public final class PaletteBlockCtrl {
 		INTERNAL_GRAPH = new XcosDiagram();
 		INTERNAL_GRAPH.installListeners();
 	}
+	
+	private static final double BLOCK_DEFAULT_POSITION = 10.0;
+	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
+	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
+	
+	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
 	
 	private static PaletteBlockCtrl previouslySelected;
 	
@@ -148,7 +148,7 @@ public final class PaletteBlockCtrl {
 
 	/**
 	 * @return the loaded block.
-	 * @throws ScicosFormatException 
+	 * @throws ScicosFormatException on error
 	 */
 	private BasicBlock loadBlock() throws ScicosFormatException {
 		BasicBlock block;

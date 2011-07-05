@@ -37,7 +37,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Load a diagram on the palette.
  * 
  * It will load each block as an independent block and produce a visible panel
- * similar to {@link XcosPalette}.
+ * similar to {@link org.scilab.modules.xcos.palette.model.Palette}.
  */
 public final class LoadAsPalAction extends DefaultAction {
 	/** Name of the action */

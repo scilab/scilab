@@ -26,10 +26,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.IllegalFormatException;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
@@ -124,6 +125,87 @@ public class XcosDiagram extends ScilabGraph {
 	private static final String MODIFIED = "modified";
 	private static final String CELLS = "cells";
 	
+	/*
+	 * diagram data
+	 */
+	
+	// the associated parameters
+	private ScicosParameters scicosParameters;
+	
+	// the scicos engine current status
+	private final transient CompilationEngineStatus engine;
+	
+    //private Window palette;
+    private Tab viewPort;
+
+    private CheckBoxMenuItem viewPortMenu;
+	
+    /**
+     * Constructor
+     */
+    public XcosDiagram() {
+	super();
+	
+	// Scicos related setup
+	engine = new CompilationEngineStatus();
+	setScicosParameters(new ScicosParameters());
+	
+	// Add a default listener to update the modification status when
+	// something has changed on the ScicosParameters
+	scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
+		@Override
+		public void propertyChange(final PropertyChangeEvent evt) {
+			setModified(true);
+		}
+	});
+
+	setComponent(new GraphComponent(this));
+	initComponent();
+	installStylesheet();
+
+	// Forbid disconnecting cells once it is connected.
+	setCellsDisconnectable(false);
+
+	// Forbid pending edges.
+	setAllowDanglingEdges(false);
+
+	// Cannot connect port to itself.
+	setAllowLoops(false);
+
+	// Override isCellResizable to filter what the user can resize
+	setCellsResizable(true);
+
+	/* Labels use HTML if not equal to interface function name */
+	setHtmlLabels(true);
+	/*
+	 * by default every label is movable, see
+	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
+	 */
+	setVertexLabelsMovable(true);
+	setEdgeLabelsMovable(true);
+	
+	// 
+	setCloneInvalidEdges(true);
+
+	// Override isCellEditable to filter what the user can edit
+	setCellsEditable(true);
+
+	setConnectableEdges(true);
+	
+	// Do not clear edge points on connect
+	setResetEdgesOnConnect(false);
+
+	setMultiplicities();
+	
+	setAutoOrigin(true);
+	
+	// Add a listener to track when model is changed
+	getModel().addListener(mxEvent.CHANGE, ModelTracker.getInstance());
+	
+	((mxCell) getDefaultParent()).setId((new UID()).toString());
+	((mxCell) getModel().getRoot()).setId((new UID()).toString());
+    }
+    
 	/*
 	 * Static helpers
 	 */
@@ -462,6 +544,11 @@ public class XcosDiagram extends ScilabGraph {
 		private static RefreshBlockTracker instance;
 
 		/**
+		 * Default constructor
+		 */
+		private RefreshBlockTracker() { }
+		
+		/**
 		 * @return the instance
 		 */
 		public static RefreshBlockTracker getInstance() {
@@ -495,21 +582,6 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		}
 	}
-	
-	/*
-	 * diagram data
-	 */
-	
-	// the associated parameters
-	private ScicosParameters scicosParameters;
-	
-	// the scicos engine current status
-	private final transient CompilationEngineStatus engine;
-	
-    //private Window palette;
-    private Tab viewPort;
-
-    private CheckBoxMenuItem viewPortMenu;
 
 	/**
 	 * Hook method that creates the new edge for insertEdge. This implementation
@@ -587,7 +659,7 @@ public class XcosDiagram extends ScilabGraph {
 	/**
 	 * Add an edge from a source to the target.
 	 * 
-	 * @param edge the edge to add (may be null)
+	 * @param cell the edge to add (may be null)
 	 * @param parent the parent of the source and the target
 	 * @param source the source cell
 	 * @param target the target cell
@@ -738,7 +810,6 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param splitPoint the split point (center of the split block) 
      * @param link source link
-     * @param port target port
      * @return split block
      */
 	public SplitBlock addSplitEdge(final mxPoint splitPoint, final BasicLink link) {
@@ -812,97 +883,31 @@ public class XcosDiagram extends ScilabGraph {
 	 *            the target port
 	 * @param points
 	 *            the points
-	 * @param the origin point (may be (0,0))
+	 * @param orig the origin point (may be (0,0))
 	 */
 	public void connect(BasicPort src, BasicPort trg, List<mxPoint> points, mxPoint orig) {
+		mxGeometry geometry;
+		
 		/*
 		 * Add the link with a default geometry
 		 */
 		final Object newLink1 = createEdge(null, null, null, src, trg, null);
 		addCell(newLink1, null, null, src, trg);
-		{
-			final mxGeometry geometry = getModel().getGeometry(newLink1);
-			geometry.setPoints(points);
-			getModel().setGeometry(newLink1, geometry);
-		}
+		geometry = getModel().getGeometry(newLink1);
+		geometry.setPoints(points);
+		getModel().setGeometry(newLink1, geometry);
 
 		/*
 		 * Update the geometry
 		 */
 		// should be cloned to generate an event
-		final mxGeometry geometry = (mxGeometry) getModel().getGeometry(newLink1).clone();
+		geometry = (mxGeometry) getModel().getGeometry(newLink1).clone();
 		final double dx = orig.getX();
 		final double dy = orig.getY();
 		
 		geometry.translate(dx, dy);
 		getModel().setGeometry(newLink1, geometry);
 	}
-    
-    /**
-     * Constructor
-     */
-    public XcosDiagram() {
-	super();
-	
-	// Scicos related setup
-	engine = new CompilationEngineStatus();
-	setScicosParameters(new ScicosParameters());
-	
-	// Add a default listener to update the modification status when
-	// something has changed on the ScicosParameters
-	scicosParameters.addPropertyChangeListener(new PropertyChangeListener() {
-		@Override
-		public void propertyChange(final PropertyChangeEvent evt) {
-			setModified(true);
-		}
-	});
-
-	setComponent(new GraphComponent(this));
-	initComponent();
-	installStylesheet();
-
-	// Forbid disconnecting cells once it is connected.
-	setCellsDisconnectable(false);
-
-	// Forbid pending edges.
-	setAllowDanglingEdges(false);
-
-	// Cannot connect port to itself.
-	setAllowLoops(false);
-
-	// Override isCellResizable to filter what the user can resize
-	setCellsResizable(true);
-
-	/* Labels use HTML if not equal to interface function name */
-	setHtmlLabels(true);
-	/*
-	 * by default every label is movable, see
-	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
-	 */
-	setVertexLabelsMovable(true);
-	setEdgeLabelsMovable(true);
-	
-	// 
-	setCloneInvalidEdges(true);
-
-	// Override isCellEditable to filter what the user can edit
-	setCellsEditable(true);
-
-	setConnectableEdges(true);
-	
-	// Do not clear edge points on connect
-	setResetEdgesOnConnect(false);
-
-	setMultiplicities();
-	
-	setAutoOrigin(true);
-	
-	// Add a listener to track when model is changed
-	getModel().addListener(mxEvent.CHANGE, ModelTracker.getInstance());
-	
-	((mxCell) getDefaultParent()).setId((new UID()).toString());
-	((mxCell) getModel().getRoot()).setId((new UID()).toString());
-    }
 
     /**
      * Initialize component settings for a graph.
@@ -955,19 +960,19 @@ public class XcosDiagram extends ScilabGraph {
      * Install the multiplicities (use for link checking)
      */
     private void setMultiplicities() {
-	final mxMultiplicity[] multiplicities = new mxMultiplicity[10];
+	final List<mxMultiplicity> multiplicities = new ArrayList<mxMultiplicity>();
 
 	
 	// Input data port
-	multiplicities[0] = new PortCheck(ExplicitInputPort.class, Collections
+	multiplicities.add(new PortCheck(ExplicitInputPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = -4987163442006736665L;
 		    {
 			add(ExplicitOutputPort.class);
 			add(ExplicitLink.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EXPLICIT_IN);
-	multiplicities[1] = new PortCheck(ImplicitInputPort.class, Collections
+		}), XcosMessages.LINK_ERROR_EXPLICIT_IN));
+	multiplicities.add(new PortCheck(ImplicitInputPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 886376532181210926L;
 		    {
@@ -975,17 +980,17 @@ public class XcosDiagram extends ScilabGraph {
 			add(ImplicitInputPort.class);
 			add(ImplicitLink.class);
 		    }
-		}), XcosMessages.LINK_ERROR_IMPLICIT_IN);
+		}), XcosMessages.LINK_ERROR_IMPLICIT_IN));
 
 	// Output data port
-	multiplicities[2] = new PortCheck(ExplicitOutputPort.class, Collections
+	multiplicities.add(new PortCheck(ExplicitOutputPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 4594127972486054821L;
 		    {
 			add(ExplicitInputPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EXPLICIT_OUT);
-	multiplicities[3] = new PortCheck(ImplicitOutputPort.class, Collections
+		}), XcosMessages.LINK_ERROR_EXPLICIT_OUT));
+	multiplicities.add(new PortCheck(ImplicitOutputPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = -3719677806532507973L;
 		    {
@@ -993,39 +998,39 @@ public class XcosDiagram extends ScilabGraph {
 			add(ImplicitOutputPort.class);
 			add(ImplicitLink.class);
 		    }
-		}), XcosMessages.LINK_ERROR_IMPLICIT_OUT);
+		}), XcosMessages.LINK_ERROR_IMPLICIT_OUT));
 
 	// Control port
-	multiplicities[4] = new PortCheck(ControlPort.class, Collections
+	multiplicities.add(new PortCheck(ControlPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 2941077191386058497L;
 		    {
 			add(CommandPort.class);
 			add(CommandControlLink.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EVENT_IN);
+		}), XcosMessages.LINK_ERROR_EVENT_IN));
 
 	// Command port
-	multiplicities[5] = new PortCheck(CommandPort.class, Collections
+	multiplicities.add(new PortCheck(CommandPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = -3470370027962480362L;
 		    {
 			add(ControlPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+		}), XcosMessages.LINK_ERROR_EVENT_OUT));
 
 	// ExplicitLink connections
-	multiplicities[6] = new PortCheck(ExplicitLink.class, Collections
+	multiplicities.add(new PortCheck(ExplicitLink.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 7423543162930147373L;
 
 		    {
 			add(ExplicitInputPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+		}), XcosMessages.LINK_ERROR_EVENT_OUT));
 
 	// ImplicitLink connections
-	multiplicities[7] = new PortCheck(ImplicitLink.class, Collections
+	multiplicities.add(new PortCheck(ImplicitLink.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 7775100011122283282L;
 
@@ -1033,29 +1038,29 @@ public class XcosDiagram extends ScilabGraph {
 			add(ImplicitInputPort.class);
 			add(ImplicitOutputPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+		}), XcosMessages.LINK_ERROR_EVENT_OUT));
 
 	// CommandControlLink connections
-	multiplicities[8] = new PortCheck(CommandControlLink.class, Collections
+	multiplicities.add(new PortCheck(CommandControlLink.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 3260421433507192386L;
 
 		    {
 			add(ControlPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_EVENT_OUT);
+		}), XcosMessages.LINK_ERROR_EVENT_OUT));
 
 	// Already connected port
-	multiplicities[9] = new PortCheck(BasicPort.class, Collections
+	multiplicities.add(new PortCheck(BasicPort.class, Collections
 		.unmodifiableList(new ArrayList<Class< ? extends mxCell>>() {
 		    private static final long serialVersionUID = 6376349598052836660L;
 
 		    {
 			add(BasicPort.class);
 		    }
-		}), XcosMessages.LINK_ERROR_ALREADY_CONNECTED);
+		}), XcosMessages.LINK_ERROR_ALREADY_CONNECTED));
 
-	setMultiplicities(multiplicities);
+	setMultiplicities(multiplicities.toArray(new mxMultiplicity[multiplicities.size()]));
     }
 
     /**
@@ -1129,19 +1134,19 @@ public class XcosDiagram extends ScilabGraph {
 		}
 		
 		// stash used on the loop
-		final LinkedList<Object> loopCells = new LinkedList<Object>(Arrays.asList(initialCells));
+		final Queue<Object> loopCells = new LinkedList<Object>(Arrays.asList(initialCells));
 		// the cells that need to be really 
-		final HashSet<Object> removedCells = new HashSet<Object>(loopCells);
+		final Set<Object> removedCells = new HashSet<Object>(loopCells);
 		// couple of cells to reconnect
-		final ArrayList<BasicPort[]> connectedCells = new ArrayList<BasicPort[]>();
-		final ArrayList<List<mxPoint>> connectedPoints = new ArrayList<List<mxPoint>>();
+		final List<BasicPort[]> connectedCells = new ArrayList<BasicPort[]>();
+		final List<List<mxPoint>> connectedPoints = new ArrayList<List<mxPoint>>();
 		
 		/*
 		 * Then loop on the algorithm to select the right edges
 		 */
 		// /!\ not bounded algorithm
 		while (loopCells.size() > 0) {
-			Object cell = loopCells.pop();
+			Object cell = loopCells.remove();
 			
 			if (cell instanceof BasicLink) {
 				/*
@@ -1250,10 +1255,10 @@ public class XcosDiagram extends ScilabGraph {
 	 * @param removedCells the "to be removed" set
 	 * @param loopCells the "while loop" set
 	 */
-	private final void addTerminalParent(mxICell terminal, Collection<Object> removedCells, Collection<Object> loopCells) {
-		assert(terminal == null || terminal instanceof BasicPort);
-		assert(removedCells != null);
-		assert(loopCells != null);
+	private void addTerminalParent(mxICell terminal, Collection<Object> removedCells, Collection<Object> loopCells) {
+		assert (terminal == null || terminal instanceof BasicPort);
+		assert (removedCells != null);
+		assert (loopCells != null);
 		
 		// getting terminal parent
 		mxICell target = null;
@@ -1281,7 +1286,7 @@ public class XcosDiagram extends ScilabGraph {
 	 * @param removedCells the set of removed objects
 	 * @return the {source, target} connection
 	 */
-	private BasicPort[] findTerminals(final mxICell linkSource, final mxICell linkTerminal, final HashSet<Object> removedCells) {
+	private BasicPort[] findTerminals(final mxICell linkSource, final mxICell linkTerminal, final Set<Object> removedCells) {
 		BasicPort src = (BasicPort) linkSource.getTerminal(true);
 		BasicPort tgt = (BasicPort) linkTerminal.getTerminal(false);
 		if (linkSource instanceof ImplicitLink) {
@@ -1352,11 +1357,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	@Override
 	public boolean isLabelMovable(Object cell) {
-		if (cell instanceof BasicBlock) {
-			return false;
-		} else {
-			return true;
-		}
+		return !(cell instanceof BasicBlock);
 	}
 	
 	/**
@@ -1792,15 +1793,13 @@ public class XcosDiagram extends ScilabGraph {
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
 	    
 	    // Xcos files or anything are supported
-	    {
-			final XcosFileType defaultFileType = XcosFileType.getDefault();
-			final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(
-					defaultFileType.getDescription(),
-					defaultFileType.getExtension());
-			fc.addChoosableFileFilter(xcosFilter);
-			fc.setAcceptAllFileFilterUsed(true);
-			fc.setFileFilter(xcosFilter);
-	    }
+		final XcosFileType defaultFileType = XcosFileType.getDefault();
+		final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(
+				defaultFileType.getDescription(),
+				defaultFileType.getExtension());
+		fc.addChoosableFileFilter(xcosFilter);
+		fc.setAcceptAllFileFilterUsed(true);
+		fc.setFileFilter(xcosFilter);
 	    
 	    fc.setMultipleSelection(false);
 	    if (getSavedFile() != null) {
@@ -2131,7 +2130,7 @@ public class XcosDiagram extends ScilabGraph {
 			} else {
 				// we have a hidden SuperBlock, create a real one
 				final SuperBlock newSP = (SuperBlock) BlockFactory
-						.createBlock("SUPER_f");
+						.createBlock(SuperBlock.INTERFUNCTION_NAME);
 				newSP.setRealParameters(block.getRealParameters());
 				newSP.createChildDiagram(true);
 				newSP.setParentDiagram(this);
@@ -2252,8 +2251,8 @@ public class XcosDiagram extends ScilabGraph {
      * @return The resulting data. Keys are variable names and Values are 
      *         evaluated values. 
      */
-	public LinkedHashMap<String, String> evaluateContext() {
-		LinkedHashMap<String, String> result = null;
+	public Map<String, String> evaluateContext() {
+		Map<String, String> result = null;
 		
 		try {
 			final Pattern p = Pattern.compile("('|\")");
@@ -2313,7 +2312,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		    } else if (block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
-			SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
+			SuperBlock newSP = (SuperBlock) BlockFactory.createBlock(SuperBlock.INTERFUNCTION_NAME);
 			newSP.setParentDiagram(block.getParentDiagram());
 			newSP.setRealParameters(block.getRealParameters());
 			newSP.createChildDiagram();

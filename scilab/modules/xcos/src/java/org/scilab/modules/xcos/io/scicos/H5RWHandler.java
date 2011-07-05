@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.io.File;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -118,9 +119,9 @@ public class H5RWHandler {
 	 * 
 	 * @return the decoded context
 	 */
-	public LinkedHashMap<String, String> readContext() {
+	public Map<String, String> readContext() {
 		final ScilabList list = new ScilabList();
-		final LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
+		final Map<String, String> result = new LinkedHashMap<String, String>();
 
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("Reading context from " + h5File);

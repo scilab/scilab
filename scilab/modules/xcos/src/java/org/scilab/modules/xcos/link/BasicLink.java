@@ -28,7 +28,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
-import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
@@ -49,6 +48,7 @@ import com.mxgraph.util.mxRectangle;
  * 
  * A link is always oriented from Input to Output or from Command to Control. 
  */
+// CSOFF: ClassDataAbstractionCoupling
 public abstract class BasicLink extends ScilabGraphUniqueObject {
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
 	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
@@ -297,7 +297,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	 * @param from The source
 	 * @param to The target
 	 * @return The new link
-	 * @deprecated Prefer using {@link XcosDiagram#createEdge(Object, String, Object, Object, Object, String)}
+	 * @deprecated Prefer using {@link org.scilab.modules.xcos.graph.XcosDiagram#createEdge(Object, String, Object, Object, Object, String)}
 	 */
     @Deprecated
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
@@ -350,7 +350,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     /**
      * @return always true
      * @see com.mxgraph.model.mxCell#isConnectable()
-     * @see XcosDiagram#isValidSource(Object)
+     * @see org.scilab.modules.xcos.graph.XcosDiagram#isValidSource(Object)
      */
     @Override
     public boolean isConnectable() {
@@ -363,19 +363,22 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     @Override
     public String toString() {
     	final StringBuilder str = new StringBuilder();
+    	final String linkSep = " -> ";
+    	
     	str.append(source);
     	
-    	str.append(" -> ");
+		str.append(linkSep);
     	if (getChildCount() > 0) {
     		// append the label
     		str.append(getChildAt(0).getValue());
     	} else {
     		str.append(getClass().getSimpleName());
     	}
-    	str.append(" -> ");
+    	str.append(linkSep);
     	
     	str.append(target);
     	
     	return str.toString();
     }
 }
+//CSON: ClassDataAbstractionCoupling

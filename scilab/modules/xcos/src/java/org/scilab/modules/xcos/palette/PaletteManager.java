@@ -28,9 +28,9 @@ import javax.xml.validation.SchemaFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -44,8 +44,12 @@ import org.xml.sax.SAXException;
  * All the palette are described in the configuration file.
  */
 public final class PaletteManager {
-	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
+	/**
+	 * Model class package
+	 */
 	public static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
+	
+	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
 	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
 
@@ -213,7 +217,7 @@ public final class PaletteManager {
 	}
 
 	/**
-	 * Save {@link #root} on the configuration file.
+	 * Save the configuration file.
 	 */
 	public void saveConfig() {
 		try {

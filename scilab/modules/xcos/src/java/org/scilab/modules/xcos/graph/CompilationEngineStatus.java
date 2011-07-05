@@ -46,14 +46,16 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 *            otherwise.
 	 */
 	public void setCompilationNeeded(boolean status) {
-		compilationNeeded = status;
+		// compilationNeeded = status;
+		
+		compilationNeeded = true;
 	}
 
 	/**
 	 * @return always true as we don't use scicos internal modification checking
 	 */
 	public boolean isCompilationNeeded() {
-		return true;
+		return compilationNeeded;
 	}
 
 	/**

@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +36,7 @@ import org.scilab.modules.xcos.modelica.view.MainPanel;
 /**
  * Implement a controller which wrap the marshaled model trough interface.
  */
+// CSOFF: ClassDataAbstractionCoupling
 public final class ModelicaController {
 	private static final String VARIABLE = "variable";
 	private static final String FIXED_PARAMETER = "fixed_parameter";
@@ -81,8 +83,7 @@ public final class ModelicaController {
 	}
 
 	private final Model root;
-	private TerminalTableModel model;
-	private ModelStatistics statistics = new ModelStatistics();
+	private final ModelStatistics statistics = new ModelStatistics();
 
 	private boolean compileNeeded;
 	private String error;
@@ -91,7 +92,7 @@ public final class ModelicaController {
 	private boolean jacobianEnable;
 	private ComputationMethod computeMethod;
 
-	private EventListenerList listenerList = new EventListenerList();
+	private final EventListenerList listenerList = new EventListenerList();
 	private transient ChangeEvent changeEvent; // = null
 
 	/**
@@ -162,13 +163,6 @@ public final class ModelicaController {
 	 */
 	public Model getRoot() {
 		return root;
-	}
-
-	/**
-	 * @param model the model to set
-	 */
-	public void setModel(TerminalTableModel model) {
-		this.model = model;
 	}
 	
 	/**
@@ -480,7 +474,7 @@ public final class ModelicaController {
 	 */
 	private void updateWeight(final Struct struct, double derivative,
 			double state) {
-		final HashSet<String> localVarName = new HashSet<String>();
+		final Set<String> localVarName = new HashSet<String>();
 
 		for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
 			if (child instanceof Terminal) {
@@ -563,3 +557,4 @@ public final class ModelicaController {
 		}
 	}
 }
+//CSON: ClassDataAbstractionCoupling

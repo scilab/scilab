@@ -49,6 +49,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default view for the palette
  */
 public class PaletteManagerView extends ScilabTab {
+	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png";
+	
 	private final PaletteManager controller;
 	private PaletteManagerPanel panel;
 
@@ -58,8 +60,7 @@ public class PaletteManagerView extends ScilabTab {
 	 */
 	public PaletteManagerView(final PaletteManager controller) {
 		super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME);
-		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-										+ "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png").getImage());
+		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(ICON_PATH).getImage());
 		this.controller = controller;
 		initComponents();
 	}

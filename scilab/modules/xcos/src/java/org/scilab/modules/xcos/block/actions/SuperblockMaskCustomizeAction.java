@@ -17,8 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
@@ -60,6 +60,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
+	
+	private static final String TERMINATE_EDIT_ON_FOCUS_LOST = "terminateEditOnFocusLost";
 	
 	/**
 	 * Private constructor
@@ -114,6 +116,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 */
 	// CSOFF: ClassDataAbstractionCoupling
 	private class CustomizeFrame extends JFrame {
+
 		private final CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
@@ -197,7 +200,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			varCustomizeTable
 					.setModel(controler.getModel().customizeTableModel);
-			varCustomizeTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+			varCustomizeTable.putClientProperty(TERMINATE_EDIT_ON_FOCUS_LOST, Boolean.TRUE);
 			customizeScrollPane.setViewportView(varCustomizeTable);
 			// setAutoCreateRowSorter is java 1.6
 			// varCustomizeTable.setAutoCreateRowSorter(true);
@@ -271,7 +274,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			tabbedPane.addTab(XcosMessages.MASK_VARSETTINGS, varSettings);
 
 			defaultValueTable.setModel(controler.getModel().valuesTableModel);
-			defaultValueTable.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+			defaultValueTable.putClientProperty(TERMINATE_EDIT_ON_FOCUS_LOST, Boolean.TRUE);
 			defaultValuesScrollPane.setViewportView(defaultValueTable);
 
 			// setAutoCreateRowSorter is java 1.6
@@ -679,7 +682,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						}
 					}
 					
-					model.customizeTableModel.addRow(new Object[] { nextKey, nextKey, true });
+					model.customizeTableModel.addRow(new Object[] {nextKey, nextKey, true });
 					varCustomizeTable.changeSelection(model.customizeTableModel
 							.getRowCount() - 1, 1, false, false);
 				}
@@ -738,7 +741,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					case TableModelEvent.INSERT:
 						String key = (String) customModel.getValueAt(row, 0);
 						String value = context.get(key);
-						valuesModel.addRow(new Object[] { key , value });
+						valuesModel.addRow(new Object[] {key , value });
 						break;
 
 					case TableModelEvent.DELETE:
@@ -766,7 +769,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				}
 			};
 
-			private final LinkedHashMap<String, String> context;
+			private final Map<String, String> context;
 			private Iterator<String> keyIterator;
 
 			/**
@@ -787,6 +790,12 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				return model;
 			}
 			
+			/**
+			 * Swap two table rows
+			 * @param model the model
+			 * @param row1 the first row
+			 * @param row2 th second row
+			 */
 			private void swapTableRow(DefaultTableModel model, int row1, int row2) {
 				/*
 				 * doesn't need to be checked as the operation doesn't

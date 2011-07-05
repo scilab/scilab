@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlValue;
 /**
  * Modelica String assignation.
  * 
- * The data is on the {@link #value} property and the {@link #content} doesn't
+ * The data is on the value property and the content doesn't
  * contains any data. 
  */
 @XmlAccessorType(XmlAccessType.FIELD)

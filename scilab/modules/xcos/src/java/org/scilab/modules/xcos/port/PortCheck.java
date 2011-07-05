@@ -29,9 +29,9 @@ import com.mxgraph.view.mxMultiplicity;
  */
 public class PortCheck extends mxMultiplicity {
 
-    private Class< ? extends mxCell> sourceTemplate;
-    private List<Class< ? extends mxCell>> targetTemplateList;
-    private String errorMessage;
+    private final Class< ? extends mxCell> sourceTemplate;
+    private final List<Class< ? extends mxCell>> targetTemplateList;
+    private final String errorMessage;
 
     /**
      * Construct a new connection rule.
@@ -48,31 +48,6 @@ public class PortCheck extends mxMultiplicity {
 	this.max = "n";
 
     }
-
-	/**
-	 * Special case used in {@link XcosDiagram#checkMultiplicities}. In this
-	 * case, source is already connected.
-	 * 
-	 * @param source The source port
-	 * @param target The target port
-	 * @param sourceOut Number of connections at the source port
-	 * @param targetIn Number of connections at the target port
-	 * @return An error message or null when the link is valid
-	 */
-    public String checkDrawLink(Object source, Object target, int sourceOut, int targetIn) {
-	// maybe there is a better way to check this
-	if (sourceOut > 1 || targetIn > 0) {
-	    if (errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
-		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
-	    }
-	    return null;
-	}
-
-	if (isTypeCompatible(source, target)) { return null; }
-	
-	return errorMessage;
-    }
-    
     
     /**
      * Check for the rule.

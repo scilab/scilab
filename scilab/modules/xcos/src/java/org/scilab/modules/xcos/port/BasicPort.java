@@ -324,7 +324,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 		}
     	if (getEdgeCount() == 1) {
     		str.append(" (connected)"); 
-    	} else if (getEdgeCount() > 1){
+    	} else if (getEdgeCount() > 1) {
     		str.append(" - multiple links (");
     		str.append(getEdgeCount());
     		str.append(')');

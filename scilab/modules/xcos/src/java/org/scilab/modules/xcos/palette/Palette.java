@@ -98,15 +98,15 @@ public final class Palette {
 		for (int categoryCounter = 0; categoryCounter < path.length; categoryCounter++) {
 
 			for (final PaletteNode next : node.getNode()) {
-if (next.toString().equals(path[categoryCounter])
-				&& next instanceof Category) {
-			node = (Category) next;
-			break;
-} else if (next.toString().equals(path[categoryCounter])
-				&& (categoryCounter == path.length - 1)) {
-			return next; // found the terminal Palette instance
-}
-}
+				if (next.toString().equals(path[categoryCounter])
+						&& next instanceof Category) {
+					node = (Category) next;
+					break;
+				} else if (next.toString().equals(path[categoryCounter])
+						&& (categoryCounter == path.length - 1)) {
+					return next; // found the terminal Palette instance
+				}
+			}
 
 			if (!node.toString().equals(path[categoryCounter])) {
 				if (create) {
@@ -125,7 +125,7 @@ if (next.toString().equals(path[categoryCounter])
 		}
 		return node;
 	}
-
+	
 	/**
 	 * Load an xcos palette into the palette manager
 	 * 

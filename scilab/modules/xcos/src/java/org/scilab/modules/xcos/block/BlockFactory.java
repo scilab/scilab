@@ -50,6 +50,7 @@ public final class BlockFactory {
 		SUPER_f(new SuperBlock()),
 		/** @see ConstBlock */
 		CONST_m(new ConstBlock()),
+		/** @see ConstBlock */
 		CONST(CONST_m.getSharedInstance()),
 		/** @see ConstBlock */
 		CONST_f(CONST_m.getSharedInstance()),

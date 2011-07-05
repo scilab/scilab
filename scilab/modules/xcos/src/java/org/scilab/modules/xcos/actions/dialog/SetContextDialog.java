@@ -57,6 +57,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 //CSOFF: ClassFanOutComplexity
 //CSOFF: MagicNumber
 public class SetContextDialog extends JDialog {
+	private static final String SHARED_NEW_LINE = "\n";
+
 	private final ScicosParameters parameters;
 	
 	private JTextArea contextArea;
@@ -94,7 +96,7 @@ public class SetContextDialog extends JDialog {
         for (int i = 0; i < parameters.getContext().length; i++) {
         	contextBuilder.append(parameters.getContext()[i]);
         	// The '\n' is used on JTextArea for new lines.
-        	contextBuilder.append("\n");
+        	contextBuilder.append(SHARED_NEW_LINE);
         }
         
         contextArea = new JTextArea(contextBuilder.toString());
@@ -197,7 +199,7 @@ public class SetContextDialog extends JDialog {
 						ScilabInterpreterManagement
 								.putCommandInScilabQueue(ctx
 										.trim()
-										.replaceAll("\n", "; ") + ";");
+										.replaceAll(SHARED_NEW_LINE, "; ") + ";");
 					}
 					
 					

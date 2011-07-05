@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 
 import com.mxgraph.model.mxICell;

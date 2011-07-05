@@ -232,7 +232,13 @@ public abstract class ContextUpdate extends BasicBlock {
 			return ret;
 		}
 		
-		public static List<mxICell> getPorts(SuperBlock parent, Class<? extends ContextUpdate> klass) {
+		/**
+		 * Get the ports of the super blocks with kind klass
+		 * @param parent the parent {@link SuperBlock}
+		 * @param klass the filter klass
+		 * @return the list of ports
+		 */
+		public static List<mxICell> getPorts(SuperBlock parent, Class< ? extends ContextUpdate> klass) {
 			List<mxICell> ret = new ArrayList<mxICell>();
 			
 			/* Get the corresponding klass */
@@ -262,7 +268,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		 * @param klass the klass
 		 * @return the opposite of klass
 		 */
-		public static Class<? extends BasicPort> getOpposite(Class<? extends BasicPort> klass) {
+		public static Class< ? extends BasicPort> getOpposite(Class< ? extends BasicPort> klass) {
 			for (IOBlocks b : IOBlocks.values()) {
 				if (b.getReferencedPortClass() == klass) {
 					return b.getOppositeClass();
@@ -316,7 +322,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		/**
 		 * Create a corresponding I/O block
 		 * @param port the port used as an output 
-		 * @return 
+		 * @return the corresponding block
 		 */
 		public static ContextUpdate createBlock(BasicPort port) {
 			for (IOBlocks io : IOBlocks.values()) {

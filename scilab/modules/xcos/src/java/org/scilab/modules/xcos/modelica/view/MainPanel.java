@@ -101,9 +101,6 @@ public final class MainPanel extends JPanel {
 		this.controller = controller;
 		initComponents();
 		installListeners();
-
-		// register the model to the controller
-		controller.setModel(tableModel);
 		
 		fireChange();
 	}

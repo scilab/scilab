@@ -13,12 +13,10 @@
 package org.scilab.modules.xcos.link.implicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 /**
- * An implicit link connect an {@link ImplicitOutputPort} to an
- * {@link ImplicitInputPort}.
+ * An implicit link connect an {@link org.scilab.modules.xcos.port.output.ImplicitOutputPort} to an
+ * {@link org.scilab.modules.xcos.port.input.ImplicitInputPort}.
  */
 public class ImplicitLink extends BasicLink {
     

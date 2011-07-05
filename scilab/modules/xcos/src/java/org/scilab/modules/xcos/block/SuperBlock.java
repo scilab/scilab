@@ -29,7 +29,6 @@ import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
-import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
@@ -62,7 +61,7 @@ import com.mxgraph.util.mxEventObject;
  * customized by the user.
  * 
  * A SuperBlock can be created from any part of the diagram y selecting blocks
- * and applying the {@link RegionToSuperblockAction}.
+ * and applying the {@link org.scilab.modules.xcos.block.actions.RegionToSuperblockAction}.
  * 
  * It can also appear to users as a normal block by applying a mask on it. In
  * this case the creator can use any SuperBlock context defined variable on a
@@ -73,16 +72,18 @@ import com.mxgraph.util.mxEventObject;
  * @see SuperblockMaskCustomizeAction
  * @see SuperblockMaskRemoveAction
  */
+// CSOFF: ClassDataAbstractionCoupling
+// CSOFF: ClassFanOutComplexity
 public final class SuperBlock extends BasicBlock {
-	private static final long serialVersionUID = 3005281208417373333L;
+	/**
+	 * The interfunction name (linked to Xcos-core)
+	 */
+	public static final String INTERFUNCTION_NAME = "SUPER_f";
+	
 	/**
 	 * The simulation name (linked to Xcos-core)
 	 */
 	private static final String SIMULATION_NAME = "super";
-	/**
-	 * The interfunction name (linked to Xcos-core)
-	 */
-	private static final String INTERFUNCTION_NAME = "SUPER_f";
 	/**
 	 * The simulation name on a masked status (linked to Xcos-core)
 	 */
@@ -151,7 +152,7 @@ public final class SuperBlock extends BasicBlock {
 	 * openBlockSettings this method is called when a double click occurred on a
 	 * super block 
 	 * @param context parent diagram context
-	 * @see BasicBlock.openBlockSettings
+	 * @see BasicBlock#openBlockSettings(String[])
 	 */
 	@Override
 	public void openBlockSettings(String[] context) {
@@ -360,6 +361,7 @@ public final class SuperBlock extends BasicBlock {
 	 * @param klass the class instance to work on
 	 * @return list of typed block
 	 */
+	@SuppressWarnings("unchecked")
 	protected < T extends BasicBlock> List<T> getAllTypedBlock(Class<T> klass) {
 		List<T> list = new ArrayList<T>();
 		if (child == null) {
@@ -601,10 +603,21 @@ public final class SuperBlock extends BasicBlock {
 	 * Serializable custom implementation need to handle any copy / DnD case.
 	 */
 	
+	/**
+	 * Encode the block as xml
+	 * @param out the output stream
+	 * @throws IOException on error
+	 */
 	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
 		out.writeObject(new XcosCodec().encode(this));
 	}
 
+	/**
+	 * Decode the block as xml
+	 * @param in the input stream
+	 * @throws IOException on error
+	 * @throws ClassNotFoundException on error
+	 */
 	private void readObject(java.io.ObjectInputStream in) throws IOException,
 			ClassNotFoundException {
 		new XcosCodec().decode((Node) in.readObject(), this);
@@ -621,3 +634,5 @@ public final class SuperBlock extends BasicBlock {
 		this.child.installSuperBlockListeners();
 	}
 }
+// CSON: ClassDataAbstractionCoupling
+// CSON: ClassFanOutComplexity
