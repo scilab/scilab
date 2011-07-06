@@ -22,11 +22,11 @@
 #include "windows.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
-#include "sci_tmpdir.h"
 #endif
 
 extern "C"
 {
+#include "sci_tmpdir.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "os_swprintf.h"
@@ -154,9 +154,12 @@ void ParserSingleInstance::parse(char *command)
 #ifdef __APPLE__
     char szFile[PATH_MAX];
     char* pstTmpDIr = "/tmp";
-    sprintf(szFile, "%s/%s", pstTmpDIr, "command.temp");
+    sprintf(szFile, "%s/%s", getTMPDIR(), "command.temp");
     //FREE(pstTmpDIr);
-    fclose(fileLocker);
+    if(fileLocker)
+    {
+        fclose(fileLocker);
+    }
     yyin = fopen(szFile, "w");
     fwrite(command, 1, strlen(command), yyin);
     fclose(yyin);
