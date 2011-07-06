@@ -315,4 +315,5 @@ Bug fixes:
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
+* bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
