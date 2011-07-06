@@ -204,6 +204,7 @@
     <ClInclude Include="includes\functiondec.hxx" />
     <ClInclude Include="includes\ifexp.hxx" />
     <ClInclude Include="includes\intexp.hxx" />
+    <ClInclude Include="includes\stepvisitor.hxx" />
     <ClInclude Include="src\cpp\libAst.hxx" />
     <ClInclude Include="includes\listexp.hxx" />
     <ClInclude Include="includes\logicalopexp.hxx" />

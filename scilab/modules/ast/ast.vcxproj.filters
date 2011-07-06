@@ -222,6 +222,7 @@
     <ClInclude Include="src\cpp\libAst.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\stepvisitor.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

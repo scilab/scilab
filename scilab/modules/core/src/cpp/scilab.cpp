@@ -107,6 +107,7 @@ bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
 bool ASTtimed = false;
+bool execVerbose = false;
 bool consoleMode = false;
 bool noJvm = false;
 bool noStart = false;
@@ -167,6 +168,7 @@ static void usage (void)
     std::cerr << "Developer Debug arguments:" << std::endl;
     std::cerr << "      --no-exec        : Only do Lexing/parsing do not execute instructions." << std::endl;
     std::cerr << "      --context-dump   : Display context status." << std::endl;
+    std::cerr << "      --exec-verbose   : Display command before running it." << std::endl;
 }
 
 
@@ -243,6 +245,9 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
         }
         else if (!strcmp("-nb", argv[i])) {
             noBanner = true;
+        }
+        else if (!strcmp("--exec-verbose", argv[i])) {
+            execVerbose = true;
         }
     }
 
@@ -399,7 +404,7 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
-                execAstTask(parser->getTree(), timed, ASTtimed);
+                execAstTask(parser->getTree(), timed, ASTtimed, execVerbose);
             }
 
             /*

@@ -770,6 +770,7 @@ do_help()
         echo     "Developer Debug arguments:"
         echo     "      --no-exec        : Only do Lexing/parsing do not execute instructions."
         echo     "      --context-dump   : Display context status."
+        echo     "      --exec-verbose   : Display command before execute it."
 	    echo     " "
     fi
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
@@ -884,7 +885,7 @@ if test "$rest" = "yes"; then
                     exit 5
                 fi
                 ;;
-            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--timed|--AST-timed)
+            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed)
 	    #This are Scilab6 dedicated options.
 	            ;;
             -psn_*)

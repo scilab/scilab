@@ -18,6 +18,7 @@
 #include "execvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
+#include "stepvisitor.hxx"
 #include "configvariable.hxx"
 
 #include "scilabWrite.hxx"
@@ -132,7 +133,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
+void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
 {
     if(tree == NULL)
     {
@@ -149,10 +150,17 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed)
     {
         exec = (ast::ExecVisitor*)new ast::TimedVisitor();
     }
-    else
+
+    if(execVerbose)
+    {
+        exec = (ast::ExecVisitor*)new ast::StepVisitor();
+    }
+
+    if(!execVerbose && !ASTtimed)
     {
         exec = new ast::ExecVisitor();
     }
+
 
     Runner::execAndWait(tree, exec);
     //delete exec;
@@ -202,7 +210,7 @@ void execScilabStartTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false);
+    execAstTask(parse.getTree(), false, false, false);
 }
 
 /*
