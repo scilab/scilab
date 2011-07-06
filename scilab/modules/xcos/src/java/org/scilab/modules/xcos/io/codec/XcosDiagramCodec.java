@@ -55,13 +55,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     // CSOFF: MultipleStringLiterals
     private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
             "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-            "savedFile", "multiplicities", "opened", "modified", "undoManager" };
+            "savedFile", "multiplicities", "opened", "modified", "undoManager",
+            "background" };
     private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
             "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
             "selectionModel", "multiplicities", "opened", "modified",
             "undoManager", "savedFile", "container",
             "integratorAbsoluteTolerance", "integratorRelativeTolerance",
-            "maxIntegrationTimeInterval", "toleranceOnTime" };
+            "maxIntegrationTimeInterval", "toleranceOnTime", "background"};
     // CSON: MultipleStringLiterals
 
     /**
