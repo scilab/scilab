@@ -99,6 +99,8 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import sun.org.mozilla.javascript.InterfaceAdapter;
+
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
@@ -112,6 +114,10 @@ import com.mxgraph.util.mxUtils;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
+	/*
+	 * Property names
+	 */
+	
 	/**
 	 * Property name of interfaceFunctionName
 	 */
@@ -181,6 +187,24 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 */
 	public static final String EQUATIONS = "equations";
 	
+	/*
+	 * Default values
+	 */
+	
+	/**
+	 * Default interface function name
+	 */
+	public static final String DEFAULT_INTERFACE_FUNCTION = "xcos_block";
+	/**
+	 * Default simulation function name
+	 */
+	public static final String DEFAULT_SIMULATION_FUNCTION = "xcos_simulate";
+	
+	
+	/*
+	 * Local constants
+	 */
+	
 	private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
 	private static final double DEFAULT_POSITION_X = 10.0;
 	private static final double DEFAULT_POSITION_Y = 10.0;
@@ -216,8 +240,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 */
 	private PropertyChangeSupport parametersPCS = new PropertyChangeSupport(this);
 	
-    private String interfaceFunctionName = "xcos_block";
-    private String simulationFunctionName = "xcos_simulate";
+    private String interfaceFunctionName = DEFAULT_INTERFACE_FUNCTION;
+    private String simulationFunctionName = DEFAULT_SIMULATION_FUNCTION;
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram;   
     
