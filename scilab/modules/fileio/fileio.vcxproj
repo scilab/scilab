@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -371,54 +371,41 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
-    <ClInclude Include="includes\mgetl.h" />
-    <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="includes\cluni0.h" />
-    <ClInclude Include="src\c\copyfile.h" />
     <ClInclude Include="includes\createdirectory.h" />
+    <ClInclude Include="includes\deleteafile.h" />
     <ClInclude Include="includes\delfile.h" />
-    <ClInclude Include="src\c\do_xxscanf.h" />
+    <ClInclude Include="includes\do_xxscanf.h" />
     <ClInclude Include="includes\dynlib_fileio.h" />
     <ClInclude Include="includes\expandPathVariable.h" />
     <ClInclude Include="includes\FileExist.h" />
-    <ClInclude Include="src\c\fileinfo.h" />
+    <ClInclude Include="includes\fileio_gw.hxx" />
+    <ClInclude Include="includes\filemanager.hxx" />
     <ClInclude Include="includes\filesmanagement.h" />
     <ClInclude Include="includes\FindFileExtension.h" />
     <ClInclude Include="includes\findfiles.h" />
-    <ClInclude Include="src\c\fprintfMat.h" />
-    <ClInclude Include="src\c\fscanfMat.h" />
-    <ClInclude Include="src\c\fullpath.h" />
-    <ClInclude Include="src\c\getdrives.h" />
+    <ClInclude Include="includes\fullpath.h" />
     <ClInclude Include="includes\getfiledesc.h" />
     <ClInclude Include="includes\getfileinfo.h" />
     <ClInclude Include="includes\getfiletype.h" />
     <ClInclude Include="includes\getFullFilename.h" />
-    <ClInclude Include="src\c\getlongpathname.h" />
-    <ClInclude Include="src\c\getrelativefilename.h" />
+    <ClInclude Include="includes\getshortpathname.h" />
     <ClInclude Include="includes\gw_fileio.h" />
     <ClInclude Include="includes\isdir.h" />
-    <ClInclude Include="src\c\isDrive.h" />
-    <ClInclude Include="src\c\mclearerr.h" />
     <ClInclude Include="includes\mclose.h" />
-    <ClInclude Include="src\c\meof.h" />
-    <ClInclude Include="src\c\merror.h" />
     <ClInclude Include="includes\mget.h" />
-    <ClInclude Include="src\c\mgeti.h" />
-    <ClInclude Include="src\c\mgetstr.h" />
+    <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="includes\mopen.h" />
-    <ClInclude Include="src\c\movefile.h" />
     <ClInclude Include="includes\mput.h" />
-    <ClInclude Include="src\c\mputi.h" />
-    <ClInclude Include="src\c\mputl.h" />
-    <ClInclude Include="src\c\mputstr.h" />
     <ClInclude Include="includes\mseek.h" />
     <ClInclude Include="includes\mtell.h" />
-    <ClInclude Include="src\c\pathconvert.h" />
+    <ClInclude Include="includes\newest.h" />
+    <ClInclude Include="includes\os_wfopen.h" />
+    <ClInclude Include="includes\readline.h" />
     <ClInclude Include="includes\removedir.h" />
-    <ClInclude Include="src\c\scanf_functions.h" />
+    <ClInclude Include="includes\scanf_functions.h" />
     <ClInclude Include="includes\scicurdir.h" />
     <ClInclude Include="includes\splitpath.h" />
-    <ClInclude Include="src\c\Status2Mode.h" />
     <ClInclude Include="includes\URIFileToFilename.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
