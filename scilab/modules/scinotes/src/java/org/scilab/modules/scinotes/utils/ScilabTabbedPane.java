@@ -100,6 +100,15 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         DragSource dragsource = DragSource.getDefaultDragSource();
         dragsource.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, this);
         DropTarget droptarget = new DropTarget(this, this);
+        addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
+                        int index = indexAtLocation(e.getX(), e.getY());
+                        ((CloseTabButton) getTabComponentAt(index)).closeTab();
+                        e.consume();
+                    }
+                }
+            });
     }
 
     /**
@@ -395,13 +404,6 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             add(label);
             add(new JLabel("   "));
             add(new CloseButton());
-            addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
-                            closeTab();
-                        }
-                    }
-                });
         }
 
         /**
