@@ -5,7 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
 // <-- TEST WITH XCOS -->
 //
 // <-- Non-regression test for bug 8658 -->
@@ -16,12 +15,12 @@
 // <-- Short Description -->
 // Modelica compiler fail for a diagram with accentuated filename.
 
-diagram = TMPDIR + "/Schéma électrique.xcos";
+diagram = TMPDIR + "/Schema-@-electrique.xcos";
 [status,message] = copyfile(SCI + "/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos", diagram);
 if ~status then pause, end
 
 if ~importXcosDiagram(diagram) then pause, end
-if ~isempty(strstr(scs_m.props.title, "é")) then pause, end
+if ~isempty(strstr(scs_m.props.title, "@")) then pause, end
 
 deletefile(diagram);
 

@@ -27,14 +27,14 @@ function result = importXcosDiagram(xcosFile)
 		// open the file to check for permissions
 		[a, err] = mopen(xcosFile, "r");
 		if (err <> 0) then
-			error(msprintf(gettext("Unable to open %s"), xcosFile));
+			error(msprintf(gettext("Unable to open %s" + '\n'), xcosFile));
 			return;
 		end
 		// construct a full path string
 		fullPathName = get_absolute_file_path(fname + extension) + fname + extension;
 		mclose(a);
 	else
-		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importXcosDiagram", 1));
+		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected." + '\n'), "importXcosDiagram", 1));
 		return;
 	end
 	
@@ -42,11 +42,11 @@ function result = importXcosDiagram(xcosFile)
 	convertStatus = xcosDiagramToHDF5(fullPathName, h5File, %t);
 
 	if(convertStatus <> 0) then
-		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
+		error(msprintf(gettext("%s: Unable to import xcos file ""%s""." + '\n'), "importXcosDiagram", xcosFile));
 	end
 	
 	if(import_from_hdf5(h5File) == %f) then
-		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
+		error(msprintf(gettext("%s: Unable to import xcos file ""%s""." + '\n'), "importXcosDiagram", xcosFile));
 		return;
 	end
 

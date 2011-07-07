@@ -623,16 +623,15 @@ public final class Xcos {
 	 *            The xcos diagram file
 	 * @param h5File
 	 *            The target file
-	 * @param forceOverwrite
+	 * @param overwrite
 	 *            Does the file will be overwritten ?
 	 * @return Not used (compatibility)
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
-			final boolean forceOverwrite) {
+			final boolean overwrite) {
 		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
-		final boolean overwrite = forceOverwrite;
 
 		if (temp.exists()) {
 			if (!overwrite) {
@@ -640,6 +639,10 @@ public final class Xcos {
 			} else {
 				delete(temp);
 			}
+		}
+		
+		if (!file.exists()) {
+			return 1;
 		}
 		
 		try {
