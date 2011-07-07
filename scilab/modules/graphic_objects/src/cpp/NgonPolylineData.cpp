@@ -97,7 +97,7 @@ int NgonPolylineData::getPropertyFromName(char* propertyName)
     }
     else
     {
-        NgonGeneralData::getPropertyFromName(propertyName);
+        return NgonGeneralData::getPropertyFromName(propertyName);
     }
 
 }
