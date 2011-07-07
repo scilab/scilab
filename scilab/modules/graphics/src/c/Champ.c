@@ -36,6 +36,8 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
 
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -57,6 +59,9 @@
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1,
 	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
+    char* psubwinUID = NULL;
+    char* newSegsUID = NULL;
+
     int clipState;
     char textLogFlags[3];
     double xx[2];
@@ -70,9 +75,6 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     int firstPlot = 0;
     int* piFirstPlot = &firstPlot;
     int logFlags[3];
-    /* NG */
-    sciPointObj * psubwin = NULL;
-    sciPointObj * newSegs = NULL;
     int flag,type =1;
     double arsize1;
     int *style;
@@ -100,24 +102,24 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
     arsize1 = *arfact;
 
-    psubwin = sciGetCurrentSubWin();
+    psubwinUID = getCurrentSubWin();
 
     /* then modify subwindow if needed */
     checkRedrawing();
 
     /* Force clipping to CLIPGRF (1) */
     clipState = 1;
-    setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     for(i=0;i<(*n1);i++)
     {
         style[i] = i;
     }
 
-    newSegs = ConstructSegs(psubwin,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
+    newSegsUID = ConstructSegs(psubwinUID,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
                             style,arsize1,colored,typeofchamp);
 
-    if (newSegs == NULL)
+    if (newSegsUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "champg");
         if (style != NULL)
@@ -128,7 +130,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         return;
     }
 
-    sciSetCurrentObj(newSegs);
+    setCurrentObject(newSegsUID);
 
     if( style != NULL )
     {
@@ -138,7 +140,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
     /* Force clipping to CLIPGRF (1) */
     clipState = 1;
-    setGraphicObjectProperty(newSegs->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(newSegsUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
   /* Deactivated since it tells the renderer module that the object has changed */
 #if 0
@@ -146,7 +148,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 #endif
 
     /* Get segs bounding box */
-    getGraphicObjectProperty(newSegs->UID, __GO_BOUNDING_BOX__, jni_double_vector, &boundingBox);
+    getGraphicObjectProperty(newSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, &boundingBox);
 
     xx[0] = boundingBox[0];
     xx[1] = boundingBox[1];
@@ -171,11 +173,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     rotationAngles[0] = 0.0;
     rotationAngles[1] = 270.0;
 
-    setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+    setGraphicObjectProperty(psubwinUID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+    getGraphicObjectProperty(psubwinUID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
 
-    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+    getGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
 
     if (autoScale)
     {
@@ -191,11 +193,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
           break;
         case '2' : case '4' : case '6' : case '8': case '9':
 
-          getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
           logFlags[0] = iTmp;
-          getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
           logFlags[1] = iTmp;
-          getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
           logFlags[2] = iTmp;
 
           /* Conversion required by compute_data_bounds2 */
@@ -214,7 +216,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         {
             double* dataBounds;
 
-            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+            getGraphicObjectProperty(psubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
 
             drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
             drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
@@ -224,7 +226,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
         if (strflag[1] != '0')
         {
-            bounds_changed = update_specification_bounds(psubwin, drect,2);
+            bounds_changed = update_specification_bounds(psubwinUID, drect,2);
         }
 
     }
@@ -234,11 +236,11 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
         bounds_changed = TRUE;
     }
 
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    axes_properties_changed = strflag2axes_properties(psubwinUID, strflag);
 
     /* just after strflag2axes_properties */
     firstPlot = 0;
-    setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
+    setGraphicObjectProperty(psubwinUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
   /*
    * Deactivated since it tells the renderer module that the object has changed

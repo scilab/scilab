@@ -24,6 +24,10 @@
 #include "Champ.h"
 #include "localization.h"
 #include "Scierror.h"
+
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_champ (char *fname,unsigned long fname_len)
 {
@@ -49,6 +53,9 @@ int sci_champ_G(char *fname,
 
   char   * strf = NULL ;
   double * rect = NULL ;
+
+  char * pfigureUID = NULL;
+  char * psubwinUID = NULL;
 
   CheckRhs(-1,7) ;
   CheckLhs(0,1) ;
@@ -87,7 +94,14 @@ int sci_champ_G(char *fname,
   GetRect(fname,6,opts,&rect);
   GetStrf(fname,7,opts,&strf);
 
-  SciWin();
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* No default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
 
   if ( isDefStrf( strf ) )
   {
