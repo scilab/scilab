@@ -52,7 +52,10 @@ int AxesTicksComputer::getNbTicks(void)
   sciAxes * ppAxes = pAXES_FEATURE(pAxes);
   double * positions = NULL;
 
+  /* Deactivated since ComputeXIntervals' prototype has changed */
+#if 0
   ComputeXIntervals(pAxes, ppAxes->tics, &positions, &nbTicks, 0);
+#endif
   
   destroyGraphicPointer(positions);
   positions = NULL;
@@ -68,7 +71,11 @@ void AxesTicksComputer::getTicksPosition(double positions[], char * labels[], ch
 
   // get ticks
   double * tempPos = NULL;
+
+  /* Deactivated since ComputeXIntervals' prototype has changed */
+#if 0
   ComputeXIntervals(pAxes, ppAxes->tics, &tempPos, &nbTicks, 0);
+#endif
 
   // copy back temp pos
   for (int i = 0; i < nbTicks; i++)
@@ -83,8 +90,14 @@ void AxesTicksComputer::getTicksPosition(double positions[], char * labels[], ch
     // get labels
     if (ppAxes->str == NULL)
     {
+
+      /* Deactivated as computeDefaultTicsLabels' prototype has changed */
+#if 0
       // we need to rebuild it
       StringMatrix * defaultLabels = computeDefaultTicsLabels(pAxes);
+#else
+      StringMatrix * defaultLabels = NULL;
+#endif
 
       for (int i = 0; i < nbTicks; i++)
       {

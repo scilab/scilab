@@ -53,7 +53,10 @@ void AxesPositioner::getAxisBounds(double startBound[3], double endBound[3])
     // compute X ticks
     int nbTicks;
     double * tempPos = NULL;
+    /* Deactivated since ComputeXIntervals' prototype has changed */
+#if 0
     ComputeXIntervals(pAxes, ppAxes->tics, &tempPos, &nbTicks, 0);
+#endif
 
     // get the first and the last one
     xStart = tempPos[0];
@@ -73,7 +76,10 @@ void AxesPositioner::getAxisBounds(double startBound[3], double endBound[3])
     // compute Y ticks
     int nbTicks;
     double * tempPos = NULL;
+    /* Deactivated since ComputeXIntervals' prototype has changed */
+#if 0
     ComputeXIntervals(pAxes, ppAxes->tics, &tempPos, &nbTicks, 0);
+#endif
 
     // get the first and the last one
     yStart = tempPos[0];

@@ -430,7 +430,7 @@ void destroyGraphicPointer(void * pointer)
 
 }
 /*--------------------------------------------------------------------------*/
-int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
+int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim )
 {
 	return -1;
 }
@@ -445,7 +445,7 @@ char * getStrMatElement( const StringMatrix * mat, int row, int col )
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
+StringMatrix * computeDefaultTicsLabels( char * pobjUID )
 {
 	return NULL;
 }

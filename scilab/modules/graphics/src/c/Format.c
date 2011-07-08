@@ -1076,7 +1076,7 @@ int sciGetLogExponent( double minBound, double maxBound, double * expMin, double
  * default labels for the Axis object. The algorithm is left untouched.
  * Its code ought to be put within the Java part of the Model.
  */
-int ComputeC_format(sciPointObj * pobj, char * c_format)
+int ComputeC_format(char * pobjUID, char * c_format)
 {
 	int i,j;
 	int pos = 0;
@@ -1097,7 +1097,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 	int logFlag = 0;
 	int* piLogFlag = &logFlag;
 
-	getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+	getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
 	if(strcmp(type, __GO_AXIS__) != 0)
 	{
@@ -1105,13 +1105,13 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 		return -1;
 	}
 
-	getGraphicObjectProperty(pobj->UID, __GO_PARENT_AXES__, jni_string, &parentAxesID);
+	getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, &parentAxesID);
 
-	getGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, jni_int, &piPos);
-	getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piXy_type);
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, &piPos);
+	getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piXy_type);
 
-	getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
-	getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
+	getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
 
 	/* Allocating space before re-copying values to not pollute the good values
 	that will be used inside Axes.c */
@@ -1125,8 +1125,8 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 		return -1;
 	}
 
-	getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &tmpx);
-	getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector, &tmpy);
+	getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, &tmpx);
+	getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &tmpy);
 
 	for(i=0;i<nx;i++)
 	{
@@ -1143,7 +1143,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 	{
 		if (pos == 0 || pos == 1)
 		{
-			getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
+			getGraphicObjectProperty(pobjUID, __GO_X_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
 
 			if(logFlag == 0)
 			{
@@ -1167,7 +1167,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 		}
 		else if (pos == 2 || pos == 3)
 		{
-			getGraphicObjectProperty(pobj->UID, __GO_Y_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
+			getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_int, &piLogFlag);
 
 			if(logFlag == 0)
 			{
@@ -1283,7 +1283,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
  * This function has been updated for the MVC (property get calls).
  * Its code ought to be put within the Java part of the Model.
  */
-int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
+int ComputeXIntervals( char * pobjUID, char xy_type, double ** vector, int * N, int checkdim )
 {
   int i;
   double * val = NULL; /* represents the x or y ticks coordinates */
@@ -1296,20 +1296,20 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
   int* piNy = &ny;
   BOOL ishoriz;
 
-  getGraphicObjectProperty(pobj->UID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
-  getGraphicObjectProperty(pobj->UID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
+  getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, &piNx);
+  getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, &piNy);
 
   /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
   ishoriz = (nx > ny)? TRUE : FALSE;
 
   if(ishoriz == TRUE)
   {
-    getGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, jni_double_vector, &val);
+    getGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, jni_double_vector, &val);
     nval = nx;
   }
   else
   {
-    getGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, jni_double_vector, &val);
+    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, &val);
     nval = ny;
   }
 
@@ -1396,11 +1396,11 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
 /*--------------------------------------------------------------------------*/
 /**
  * Compute the default labels of an axis from the positions of the ticks.
- * @param[in/out] pobj the axis object
+ * @param[in/out] pobjUID the axis object UID
  * @return a string matrix containing the labels.
  *         Actually it is a row vector.
  */
-StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
+StringMatrix * computeDefaultTicsLabels( char * pobjUID )
 {
   StringMatrix * ticsLabels = NULL   ;
   int            nbTics     = 0      ;
@@ -1414,7 +1414,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   int* piTmp = &tmp;
   char ticksStyle;
 
-  getGraphicObjectProperty(pobj->UID, __GO_FORMATN__, jni_string, &c_format);
+  getGraphicObjectProperty(pobjUID, __GO_FORMATN__, jni_string, &c_format);
 
   /*
    * If different from the empty string, the format is already specified,
@@ -1422,11 +1422,11 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
    */
   if (strcmp(c_format, "") == 0)
   {
-      ComputeC_format( pobj, tempFormat );
+      ComputeC_format( pobjUID, tempFormat );
       c_format = tempFormat;
   }
 
-  getGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, jni_int, &piTmp);
+  getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, &piTmp);
 
   if (tmp == 0)
   {
@@ -1442,7 +1442,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   }
 
   /* vector is allocated here */
-  if ( ComputeXIntervals( pobj, ticksStyle, &vector, &nbTics, 1 ) != 0 )
+  if ( ComputeXIntervals( pobjUID, ticksStyle, &vector, &nbTics, 1 ) != 0 )
   {
       Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
       return 0;
