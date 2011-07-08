@@ -1,0 +1,53 @@
+
+// ============================================================================
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+
+//
+
+//  This file is distributed under the same license as the Scilab package.
+
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- ENGLISH IMPOSED -->
+
+// ============================================================================
+
+// Unitary tests for mexIsGlobal mex function
+
+// ============================================================================
+
+cd(TMPDIR);
+
+mputl([ '#include ""mex.h""';
+        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+        '{';
+        '    mexPrintf(""The quick brown fox jumps over the lazy dog.\n"");';
+        '    mexPrintf(""Some UTF-8 chars are áãâéíóúü.\n"");';
+        '    mexPrintf(""Printing %s %s."", ""with"", ""parameters"");';
+        '}'],'mexprintf.c');
+
+ilib_mex_build('libmextest', ['mprintf', 'mexprintf', 'cmex'], 'mexprintf.c', [], 'Makelib', '', '', '');
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy mexprintf.c to TMPDIR
+   ilib_gen_Make: Copy libmextest.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+
+exec('loader.sce');
+Shared archive loaded.
+Link done.
+
+mprintf();
+The quick brown fox jumps over the lazy dog.
+Some UTF-8 chars are áãâéíóúü.
+Printing with parameters.

@@ -1,0 +1,33 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// ============================================================================
+// Unitary tests for mxCreateStructMatrix and mxCreateStructArray mex functions
+// ============================================================================
+
+cd(TMPDIR);
+
+mputl(['#include ""mex.h""';
+       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+       '{';
+       '    int dims[2] = {3, 3};';
+       '    char *fields[2];';
+       '    fields[0] = ""f1"";';
+       '    fields[1] = ""f2"";';
+       '    plhs[0] = mxCreateStructArray(2, dims, 2, fields);';
+       '    plhs[1] = mxCreateStructMatrix(2, 2, 2, fields);';
+       '}'],'mexcreateStruct.c');
+ilib_mex_build('libmextest',['createStruct','mexcreateStruct','cmex'], 'mexcreateStruct.c',[],'Makelib','','','');
+exec('loader.sce');
+
+[out1, out2] = createStruct();
+
+if size(out1, "*") <> 9 then pause end
+
+if size(out2, "*") <> 4 then pause end

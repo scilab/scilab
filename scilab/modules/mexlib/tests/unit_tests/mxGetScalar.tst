@@ -36,7 +36,7 @@ if getScalar(a) <> 1 then pause end
 if getScalar(int8(a)) <> 1 then pause end
 if getScalar(uint8(a)) <> 1 then pause end
 if getScalar(int16(a)) <> 1 then pause end
-if getScalar( uint16(a)) <> 1 then pause end
+if getScalar(uint16(a)) <> 1 then pause end
 if getScalar(int32(a)) <> 1 then pause end
 if getScalar(uint32(a)) <> 1 then pause end
 if getScalar(int64(a)) <> 1 then pause end

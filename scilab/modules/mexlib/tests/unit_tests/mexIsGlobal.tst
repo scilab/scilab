@@ -1,0 +1,27 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// ============================================================================
+// Unitary tests for mexIsGlobal mex function
+// ============================================================================
+
+cd(TMPDIR);
+mputl([ '#include ""mex.h""';
+        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+        '{';
+        '    plhs[0] = mxCreateLogicalScalar(mexIsGlobal(prhs[0]));';
+        '}'],'mexisGlobal.c');
+ilib_mex_build('libmextest', ['isGlobal', 'mexisGlobal', 'cmex'], 'mexisGlobal.c', [], 'Makelib', '', '', '');
+exec('loader.sce');
+
+global globalvar;
+globalvar = 1;
+localvar = "s";
+if isGlobal(globalvar) <> %t then pause end
+if isGlobal(localvar) <> %f then pause end

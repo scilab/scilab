@@ -1,0 +1,63 @@
+
+// ============================================================================
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+
+//
+
+//  This file is distributed under the same license as the Scilab package.
+
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- ENGLISH IMPOSED -->
+
+// ============================================================================
+
+// Unitary tests for mxGetField mex function
+
+// ============================================================================
+
+cd(TMPDIR);
+
+mputl(['#include ""mex.h""';
+       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+       '{';
+       '    mxArray *value = mxGetField(prhs[0], 0, ""a"");';
+       '    if (value == NULL) value = mxCreateDoubleScalar(-1);';
+       '    plhs[0] = value;';
+       '}'],'mexgetField.c');
+ilib_mex_build('libmextest',['getField','mexgetField','cmex'], 'mexgetField.c',[],'Makelib','','','');
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy mexgetField.c to TMPDIR
+   ilib_gen_Make: Copy libmextest.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+
+exec('loader.sce');
+Shared archive loaded.
+Link done.
+
+c = struct("a", 5, "b", 2);
+
+r = getField(c);
+
+if r <> 5 then pause end
+
+c = struct("b", 32);
+
+r = getField(c);
+
+if r <> -1 then pause end
+
+r = getField(1);
+
+if r <> -1 then pause end

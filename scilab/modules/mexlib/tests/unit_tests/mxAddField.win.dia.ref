@@ -1,0 +1,52 @@
+
+// ============================================================================
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+
+//
+
+//  This file is distributed under the same license as the Scilab package.
+
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- ENGLISH IMPOSED -->
+
+// ============================================================================
+
+// Unitary tests for mxAddField mex function
+
+// ============================================================================
+
+cd(TMPDIR);
+
+mputl([ '#include ""mex.h""';
+        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+        '{';
+        '    mxArray *ptr = prhs[0];'
+        '    int fieldnumber = mxAddField(ptr, ""another"");';
+        '    mxSetFieldByNumber(ptr, 0, fieldnumber, mxCreateDoubleScalar(3));';
+        '}'],'mexaddField.c');
+
+ilib_mex_build('libmextest', ['addField', 'mexaddField', 'cmex'], 'mexaddField.c', [], 'Makelib', '', '', '');
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
+   Compilation of mexaddField.c
+   Building shared library (be patient)
+   Generate a cleaner file
+
+exec('loader.sce');
+Shared archive loaded.
+Link done.
+
+s = struct();
+
+addField(s);
+
+if s("another") <> 3 then pause end
+
