@@ -62,6 +62,7 @@
 #include "completeLine.h"
 #include "TermReadAndProcess.h"
 #include "sciquit.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 #define ATTUNIX
@@ -262,15 +263,9 @@ static void updateToken(char *linebuffer)
 {
     if (linebuffer)
     {
-        char *token = NULL;
-        token = (char*)MALLOC(sizeof(char)*(strlen(linebuffer)+1));
-        if (token)
-        {
-            strcpy(token,linebuffer);
-            setSearchedTokenInScilabHistory(token);
-            FREE(token);
-            token = NULL;
-        }
+        char *token = os_strdup(linebuffer);
+        setSearchedTokenInScilabHistory(token);
+        FREE(token);
     }
 }
 /***********************************************************************
@@ -442,7 +437,7 @@ char *TermReadAndProcess(void)
                 erase_nchar(1);
                 /* backspace to proper cursor position */
                 backspace(cursor_max - cursor);
-                //updateToken(wk_buf);
+                updateToken(wk_buf);
                 break;
 
             case BS: case DEL: /* backspace with delete */
@@ -463,7 +458,7 @@ char *TermReadAndProcess(void)
                 erase_nchar(1);
                 /* backspace to proper cursor position */
                 backspace(cursor_max - cursor);
-                //updateToken(wk_buf);
+                updateToken(wk_buf);
                 break;
 
             case CTRL_K: /* delete to end of line */
@@ -480,7 +475,7 @@ char *TermReadAndProcess(void)
                 /* backspace to proper cursor position */
                 wk_buf[cursor] = NUL;
                 cursor_max = cursor;
-                //updateToken(wk_buf);
+                updateToken(wk_buf);
                 break;
 
             case CTRL_Y: /* Paste at the current point */
@@ -506,7 +501,7 @@ char *TermReadAndProcess(void)
                         cursor=cursor+yank_len;
                     }
                 }
-                //updateToken(wk_buf);
+                updateToken(wk_buf);
                 break;
 
             case CTRL_Z:

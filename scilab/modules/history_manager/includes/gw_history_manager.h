@@ -19,8 +19,9 @@
 /*--------------------------------------------------------------------------*/
 HISTORY_MANAGER_IMPEXP int gw_history_manager(void);
 /*--------------------------------------------------------------------------*/
+
 /* Declaration of all the profile function declared and */
-/* used in sci_gateway */
+/* used in sci_gateway 
 HISTORY_MANAGER_IMPEXP int sci_loadhistory(char *fname,unsigned long fname_len);
 HISTORY_MANAGER_IMPEXP int sci_savehistory(char *fname,unsigned long fname_len);
 HISTORY_MANAGER_IMPEXP int sci_gethistory(char *fname,unsigned long fname_len);

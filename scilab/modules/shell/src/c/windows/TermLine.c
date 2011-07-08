@@ -174,6 +174,7 @@ void deletePreviousChar(void)
 		for (i = cur_pos; i < max_pos; i++) cur_line[i] = cur_line[i + 1];
 		max_pos -= 1;
 		refreshLine();
+        setSearchedTokenInScilabHistory(cur_line);
 	}
 	else TerminalBeep();
 }
@@ -193,6 +194,7 @@ void deleteCurrentChar(void)
 			for (i = cur_pos; i < max_pos; i++) cur_line[i] = cur_line[i + 1];
 			max_pos -= 1;
 			refreshLine();
+            setSearchedTokenInScilabHistory(cur_line);
 		}
 	}
 }

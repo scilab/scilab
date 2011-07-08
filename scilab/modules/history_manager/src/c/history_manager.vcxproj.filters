@@ -26,9 +26,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\CommandLine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainHistory_Manager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cpp\CommandLine.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_history_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

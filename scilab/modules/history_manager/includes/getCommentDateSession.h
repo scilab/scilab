@@ -21,9 +21,10 @@ extern "C" {
 /*------------------------------------------------------------------------*/
 #include "dynlib_history_manager.h"
 #include "BOOL.h" /* BOOL */
+#include <wchar.h>
 /*------------------------------------------------------------------------*/
-#define SESSION_PRAGMA_BEGIN "// -- "
-#define SESSION_PRAGMA_END " -- //"
+#define SESSION_PRAGMA_BEGIN    "// -- "
+#define SESSION_PRAGMA_END      " -- //"
 /*------------------------------------------------------------------------*/
 HISTORY_MANAGER_IMPEXP char *getCommentDateSession(void);
 /*------------------------------------------------------------------------*/

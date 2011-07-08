@@ -647,6 +647,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "threads", "modules\threads\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcxproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager_gw", "modules\history_manager\sci_gateway\cpp\history_manager_gw.vcxproj", "{CE49C183-2ECE-4EA4-B289-D74E2E664164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2059,6 +2061,14 @@ Global
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Debug|Win32.Build.0 = Debug|Win32
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Debug|x64.ActiveCfg = Debug|x64
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Debug|x64.Build.0 = Debug|x64
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Release|Win32.ActiveCfg = Release|Win32
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Release|Win32.Build.0 = Release|Win32
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Release|x64.ActiveCfg = Release|x64
+		{CE49C183-2ECE-4EA4-B289-D74E2E664164}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

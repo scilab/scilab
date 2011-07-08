@@ -39,7 +39,6 @@ int sci_saveafterncommands(char *fname,unsigned long fname_len)
 			int num = FALSE;
 			char *filename = getFilenameScilabHistory();
 
-			filename = getFilenameScilabHistory();
 			if (filename == NULL)
 			{
 				setDefaultFilenameScilabHistory();

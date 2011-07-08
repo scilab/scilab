@@ -14,13 +14,14 @@
 #define __COMMANDHISTORY_WRAP_H__
 
 #ifdef __cplusplus
+
 extern "C"
 {
 #endif
 
 #include "dynlib_history_browser.h"
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryAppendLine (char * lineToAppend);
+HISTORY_BROWSER_IMPEXP void CommandHistoryAppendLine (char* _pstLine);
 
 HISTORY_BROWSER_IMPEXP void CommandHistoryLoadFromFile (void);
 

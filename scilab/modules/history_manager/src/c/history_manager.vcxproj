@@ -254,7 +254,6 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\CommandLine.cpp" />
     <ClCompile Include="DllmainHistory_Manager.c" />
     <ClCompile Include="getCommentDateSession.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_history_manager.c" />
@@ -277,7 +276,6 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\..\sci_gateway\c\sci_sethistoryfile.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cpp\CommandLine.hxx" />
     <ClInclude Include="..\..\includes\dynlib_history_manager.h" />
     <ClInclude Include="..\..\includes\getCommentDateSession.h" />
     <ClInclude Include="..\..\includes\gw_history_manager.h" />

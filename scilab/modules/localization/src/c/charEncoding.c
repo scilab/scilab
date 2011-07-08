@@ -90,6 +90,7 @@ int wcstat(char* filename, struct _stat *st)
 #else //Linux check for MAC OS X
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
+    if(_wide == NULL) return NULL;
     char* pOutSave = NULL;
     wchar_t* pSaveIn = _wide;
     size_t iSize = 0;
@@ -117,6 +118,7 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
 /*--------------------------------------------------------------------------*/
 wchar_t *to_wide_string(const char *_UTFStr)
 {
+    if(_UTFStr == NULL) return NULL;
     wchar_t* pOutSave = NULL;
     char* pInSave = _UTFStr;
     size_t iSize = 0;

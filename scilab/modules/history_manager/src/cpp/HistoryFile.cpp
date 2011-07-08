@@ -11,9 +11,11 @@
 *
 */
 /*------------------------------------------------------------------------*/
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
 #include "HistoryFile.hxx"
-#include "MALLOC.h"
-#include "BOOL.h"
 /*------------------------------------------------------------------------*/
 extern "C"
 {
@@ -21,6 +23,8 @@ extern "C"
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+#include "MALLOC.h"
+#include "BOOL.h"
 #include "sciprint.h"
 #include "PATH_MAX.h"
 #include "sci_home.h"
@@ -32,118 +36,142 @@ extern "C"
 #include "mgetl.h"
 #include "mclose.h"
 #include "freeArrayOfString.h"
+#include "os_wfopen.h"
 };
 /*------------------------------------------------------------------------*/
 #define DEFAULT_HISTORY_FILE_MAX_LINES 20000
 /*------------------------------------------------------------------------*/
 HistoryFile::HistoryFile()
 {
-    MaxLinesToRead = DEFAULT_HISTORY_FILE_MAX_LINES;
-    my_history_filename.erase();
+    m_iMaxLines = DEFAULT_HISTORY_FILE_MAX_LINES;
+    m_stFilename.erase();
 }
 /*------------------------------------------------------------------------*/
 HistoryFile::~HistoryFile()
 {
-    this->reset();
+    reset();
 }
 /*------------------------------------------------------------------------*/
 std::string HistoryFile::getFilename(void)
 {
-    if (this->my_history_filename.empty()) this->setDefaultFilename();
-    return this->my_history_filename;
+    if(m_stFilename.empty())
+    {
+        setDefaultFilename();
+    }
+    return m_stFilename;
 }
 /*------------------------------------------------------------------------*/
-void HistoryFile::setFilename(std::string filename)
+void HistoryFile::setFilename(std::string _stFilename)
 {
-    if (!filename.empty())
+    if (_stFilename.empty() == false)
     {
-        this->my_history_filename.erase();
-        this->my_history_filename = filename;
+        m_stFilename = _stFilename;
     }
     else
     {
-        this->setDefaultFilename();
+        setDefaultFilename();
     }
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::setDefaultFilename(void)
 {
     BOOL bOK = FALSE;
-    char *SCIHOME = getSCIHOME();
-    std::string defaultfilename;
-    std::string defautlhistoryfile;
+    char* SCIHOME = getSCIHOME();
+    std::string stDefaultFilename;
 
-    defautlhistoryfile.assign(DEFAULT_HISTORY_FILE);
+    stDefaultFilename = std::string(getSCIHOME());
+    stDefaultFilename += std::string(DIR_SEPARATOR);
+    stDefaultFilename += std::string(DEFAULT_HISTORY_FILE);
 
-    if (SCIHOME)
-    {
-        std::string sep;
-        std::string scihome;
-
-        sep.assign(DIR_SEPARATOR);
-        scihome.assign(SCIHOME);
-
-        defaultfilename = scihome + sep + defautlhistoryfile;
-
-        FREE(SCIHOME);
-        SCIHOME = NULL;
-        bOK = TRUE;
-    }
-    else
-    {
-        defaultfilename = defautlhistoryfile;
-        bOK = FALSE;
-        /* this isn't the standard path for history file */
-        /* but we set a filename */
-    }
-
-    this->setFilename(defaultfilename);
-
-    return bOK;
+    setFilename(stDefaultFilename);
+    return TRUE;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::writeToFile(std::string filename)
+BOOL HistoryFile::writeToFile(std::string _stFilename)
 {
-    BOOL bOK = FALSE;
-
-    if (this->Commands.empty()) return bOK;
+    if (m_Commands.empty())
+    {
+        return FALSE;
+    }
     else
     {
-        FILE *pFile = NULL;
+        std::ofstream fOut;
 
-        if (filename.empty())  return bOK;
-
-        wcfopen(pFile , (char*)filename.c_str(), "wt");
-
-        if (pFile)
+        if(_stFilename.empty())
         {
-            list<CommandLine>::iterator it_commands;
-            for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
-            {
-                std::string line = (*it_commands).get();
-                if (!line.empty())
-                {
-                    fputs(line.c_str(),pFile);
-                    fputs("\n",pFile);
-                }
-            }
-            fclose(pFile);
-            bOK = TRUE;
+            return FALSE;
         }
+
+        fOut.open(_stFilename.c_str(), std::ios::trunc);
+        if(fOut.is_open() == false)
+        {
+            return FALSE;
+        }
+
+        std::list<std::string>::const_iterator it;
+        for(it = m_Commands.begin(); it != m_Commands.end(); it++)
+        {
+            fOut << (*it).c_str() << std::endl;
+        }
+        fOut.close();
     }
-    return bOK;
+    return TRUE;
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::writeToFile(void)
 {
-    BOOL bOK = FALSE;
-    if (!this->my_history_filename.empty()) bOK = this->writeToFile(my_history_filename);
-    return bOK;
+    if(m_stFilename.empty() == false)
+    {
+        return writeToFile(m_stFilename);
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/
-errorLoadHistoryCode HistoryFile::loadFromFile(std::string filename)
+
+errorLoadHistoryCode HistoryFile::loadFromFile(std::string _stFilename)
 {
     errorLoadHistoryCode returnedError = ERROR_HISTORY_NOT_LOADED;
+    std::ifstream fIn;
+    std::vector<std::string> vstLines;
+
+    fIn.open(_stFilename.c_str());  
+    if(fIn.is_open() == false)
+    {
+        return returnedError;
+    }
+
+    //read entire file and store it in vstLines.
+    while(fIn.eof() == false)
+    {
+        std::string stLine;
+        std::getline(fIn, stLine);
+        
+        if(stLine.empty())
+        {
+            continue;
+        }
+        vstLines.push_back(stLine);
+    }        
+    fIn.close();
+
+    //fill history list
+    int iStart = 0;
+    int iEnd = (int)vstLines.size();
+    returnedError = NO_ERROR_HISTORY_LOADED;
+
+    if(vstLines.size() > getDefaultMaxNbLines())
+    {
+        iStart = (int)vstLines.size() - getDefaultMaxNbLines();
+        returnedError = HISTORY_TRUNCATED;
+    }
+
+    for(int i = iStart ; i < iEnd ; i++)
+    {
+       m_Commands.push_back(vstLines[i]);
+    }
+ 
+    return returnedError;
+
 /*
     int fd = 0;
     int f_swap = 0;
@@ -151,10 +179,10 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string filename)
     int errMOPEN = MOPEN_INVALID_STATUS;
     double dErrClose = 0.;
 
-
     C2F(mopen)(&fd, (char*)filename.c_str(), "rt", &f_swap, &res, &errMOPEN);
     if (errMOPEN == MOPEN_NO_ERROR)
     {
+
         int errMGETL = MGETL_ERROR;
         int nblines = 0;
         char **lines = mgetl(fd, -1, &nblines, &errMGETL);
@@ -181,82 +209,67 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string filename)
                 for (int i = iStart; i < iEnd; i++)
                 {
                     CommandLine Line(lines[i]);
-                    this->Commands.push_back(Line);
+                    Commands.push_back(Line);
                 }
                 freeArrayOfString(lines, nblines);
                 lines = NULL;
             }
         }
     }
-*/
     return returnedError;
+*/
 }
 /*------------------------------------------------------------------------*/
 errorLoadHistoryCode HistoryFile::loadFromFile(void)
 {
     errorLoadHistoryCode returnedError = ERROR_HISTORY_NOT_LOADED;
-    if (!this->my_history_filename.empty()) returnedError = this->loadFromFile(my_history_filename);
+    if (m_stFilename.empty() == false)
+    {
+        returnedError = loadFromFile(m_stFilename);
+    }
     return returnedError;
 }
 /*------------------------------------------------------------------------*/
-list<CommandLine> HistoryFile::getHistory(void)
+std::list<std::string> HistoryFile::getHistory(void)
 {
-    list <CommandLine> lines(Commands);
-    return lines;
+    return m_Commands;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::setHistory(list<CommandLine> commands)
+BOOL HistoryFile::setHistory(std::list<std::string> _lstCommands)
 {
     BOOL bOK = FALSE;
-    list<CommandLine>::iterator it_commands;
+    std::list<std::string>::const_iterator it;
 
-    if (!this->Commands.empty()) this->Commands.clear();
-
-    for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands)
+    if(m_Commands.empty() == false)
     {
-        std::string line = (*it_commands).get();
-        if (!line.empty())
-        {
-            CommandLine Line(line);
-            this->Commands.push_back(Line);
-        }
+        m_Commands.clear();
+    }
+
+    for(it = _lstCommands.begin(); it != _lstCommands.end(); it++)
+    {
+        m_Commands.push_back(*it);
     }
     return bOK;
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::reset(void)
 {
-    BOOL bOK = FALSE;
-    BOOL check1 = FALSE,check2 = FALSE;
-
-    if (!this->Commands.empty())
-    {
-        this->Commands.clear();
-        check1 = TRUE;
-    }
-
-    if (!my_history_filename.empty())
-    {
-        my_history_filename.erase();
-        check2 = TRUE;
-    }
-
-    if (check1 && check2) bOK = TRUE;
-
-    return bOK;
+    m_Commands.clear();
+    m_stFilename.erase();
+    return TRUE;
 }
 /*------------------------------------------------------------------------*/
 int HistoryFile::getDefaultMaxNbLines(void)
 {
-    return MaxLinesToRead;
+    return m_iMaxLines;
 }
 /*------------------------------------------------------------------------*/
-BOOL HistoryFile::setDefaultMaxNbLines(int nbLinesMax)
+BOOL HistoryFile::setDefaultMaxNbLines(int _iMaxLines)
 {
     BOOL bOK = FALSE;
-    if (nbLinesMax > 0)
+    if(_iMaxLines > 0)
     {
-        MaxLinesToRead = nbLinesMax;
+        m_iMaxLines = _iMaxLines;
         bOK = TRUE;
     }
     return bOK;

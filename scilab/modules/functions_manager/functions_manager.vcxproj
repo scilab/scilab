@@ -237,6 +237,9 @@
       <Project>{bed4a0f2-5129-487f-9f94-ec09480f04d7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\history_manager\sci_gateway\cpp\history_manager_gw.vcxproj">
+      <Project>{ce49c183-2ece-4ea4-b289-d74e2e664164}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\integer\src\cpp\integer_gw.vcxproj">
       <Project>{215274d7-05ec-4d1e-b7bb-b2c957da960b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

@@ -13,7 +13,12 @@
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
+
+extern "C"
+{
+#include "dynlib_history_manager.h"
+#include "BOOL.h"
+}
 /*------------------------------------------------------------------------*/
 typedef enum 
 {
@@ -22,9 +27,7 @@ typedef enum
     HISTORY_TRUNCATED
 } errorLoadHistoryCode;
 /*------------------------------------------------------------------------*/
-using namespace std;
-/*------------------------------------------------------------------------*/
-class HistoryFile
+class HISTORY_MANAGER_IMPEXP HistoryFile
 {
 public:
     /**
@@ -38,18 +41,6 @@ public:
     ~HistoryFile();
 
     /**
-    * get filename used by history
-    * @return a string (filenam)
-    */
-    std::string getFilename(void);
-
-    /**
-    * set filename used by history
-    * @param a string (filename)
-    */
-    void setFilename(std::string filename);
-
-    /**
     * set default filename used by history
     * SCIHOME/history.scilab
     * @return TRUE or FALSE
@@ -61,7 +52,19 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(std::string filename);
+    BOOL writeToFile(std::string _stFilename);
+
+	/**
+	* get filename used by history
+	* @return a string (filenam)
+	*/
+	std::string getFilename(void);
+
+	/**
+	* set filename used by history
+	* @param a string (filename)
+	*/
+	void setFilename(std::string _stFilename);
 
     /**
     * write history to a file
@@ -75,7 +78,8 @@ public:
     * @param a string the filename
     * @return TRUE or FALSE
     */
-    errorLoadHistoryCode loadFromFile(std::string filename);
+    errorLoadHistoryCode loadFromFile(std::string _stFilename);
+
 
     /**
     * load history from a file
@@ -83,19 +87,6 @@ public:
     * @return TRUE or FALSE
     */
     errorLoadHistoryCode loadFromFile(void);
-
-    /**
-    * get loaded history
-    * @return a list of CommandLine
-    */
-    list<CommandLine> getHistory(void);
-
-    /**
-    * set History to save
-    * @param a list of CommandLine
-    * @return TRUE or FALSE
-    */
-    BOOL setHistory(list<CommandLine> commands);
 
     /**
     * reset HistoryFile Object
@@ -108,15 +99,29 @@ public:
     */
     int getDefaultMaxNbLines(void);
 
+	/**
+	* get loaded history
+	* @return a list of CommandLine
+	*/
+	std::list<std::string> getHistory(void);
+
+	/**
+	* set History to save
+	* @param a list of CommandLine
+	* @return TRUE or FALSE
+	*/
+	BOOL setHistory(std::list<std::string> _lstCommands);
+
     /**
     *
     */
-    BOOL setDefaultMaxNbLines(int nbLinesMax);
+    BOOL setDefaultMaxNbLines(int _iMaxLines);
 
 protected:
 private:
-    std::string my_history_filename;
-    list<CommandLine> Commands;
-    int MaxLinesToRead;
+
+    int m_iMaxLines;
+	std::string m_stFilename;
+	std::list<std::string> m_Commands;
 };
 /*------------------------------------------------------------------------*/

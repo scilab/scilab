@@ -302,6 +302,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"hdf5", &Hdf5Module::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"dynamic_link", &DynamicLinkModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"action_binding", &ActionBindingModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"history_manager", &HistoryManagerModule::Load));
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
         m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jvm", &JvmModule::Load));

@@ -23,13 +23,13 @@ extern "C"
 using namespace org_scilab_modules_history_browser;
 static BOOL alreadyLoadedJava = FALSE;
 /*------------------------------------------------------------------------*/
-void CommandHistoryAppendLine (char * lineToAppend)
+void CommandHistoryAppendLine (char* _pstLine)
 {
     if (getScilabMode() == SCILAB_STD)
     {
-        if (strcmp(lineToAppend, "") != 0)
+        if (strlen(_pstLine) != 0)
         {
-            CommandHistory::appendLine(getScilabJavaVM(), lineToAppend);
+            CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
         }
     }
 }

@@ -12,10 +12,15 @@
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
-using namespace std;
+#include <vector>
+#include <string>
+extern "C"
+{
+#include "dynlib_history_manager.h"
+#include "BOOL.h"
+}
 /*------------------------------------------------------------------------*/
-class HistorySearch
+class HISTORY_MANAGER_IMPEXP HistorySearch
 {
 	public:
 		/**
@@ -30,17 +35,17 @@ class HistorySearch
 
 		/**
 		* set History to search
-		* @param a list of CommandLine
+		* @param a list of std::string
 		* @return TRUE or FALSE
 		*/
-		BOOL setHistory(list<CommandLine> commands);
+		BOOL setHistory(std::list<std::string> _lstCommands);
 
 		/**
 		* set new token to search in history
 		* @param token (a string)
 		* @return TRUE or FALSE
 		*/
-		BOOL setToken(std::string token);
+		BOOL setToken(std::string _stToken);
 
 		/**
 		* get token searched in history
@@ -74,19 +79,11 @@ class HistorySearch
 	protected:
 
 	private:
-		list<CommandLine> Commands;
-		std::string my_token;
-		char **my_lines;
-		int *my_linenumbers;
-		int my_sizearray;
-		int current_position;
-		BOOL moveOnNext;
+		std::list<std::string> m_Commands;
+		std::string m_stToken;
+		std::vector<std::string> m_vstLines;
+		int m_iPosition;
 
 		BOOL search(void);
-
-		BOOL freeMyToken(void);
-		BOOL freeMylines(void);
-		BOOL freeMylinenumbers(void);
-
 };
 /*------------------------------------------------------------------------*/

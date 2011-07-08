@@ -314,14 +314,6 @@ static int interactiveMain (void)
     }
 
     InitializeHistoryManager();
-    /* add date & time @ begin session */
-    char *commentbeginsession = getCommentDateSession();
-    if (commentbeginsession)
-    {
-        appendLineToScilabHistory(commentbeginsession);
-        FREE(commentbeginsession);
-        commentbeginsession=NULL;
-    }
 
     //before calling reader, try to call %onprompt function
     callOnPrompt();

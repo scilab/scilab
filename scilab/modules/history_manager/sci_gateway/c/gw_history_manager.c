@@ -16,26 +16,25 @@
  * native function (C, fortran, whatever) and the function offered into Scilab
  */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
 #include "gw_history_manager.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_loadhistory,"loadhistory"},
-	{sci_savehistory,"savehistory"},
-	{sci_gethistory,"gethistory"},
-	{sci_resethistory,"resethistory"},
-	{sci_displayhistory,"displayhistory"},
-	{sci_addhistory,"addhistory"},
-	{sci_saveconsecutivecommands,"saveconsecutivecommands"},
-	{sci_saveafterncommands,"saveafterncommands"},
-	{sci_gethistoryfile,"gethistoryfile"},
-	{sci_sethistoryfile,"sethistoryfile"},
-	{sci_removelinehistory,"removelinehistory"},
-	{sci_historysize,"historysize"},
-	{sci_historymanager,"historymanager"}
+	{NULL,""}, // loadhistory
+	{NULL,""}, // savehistory
+	{NULL,""}, // gethistory
+	{NULL,""}, // resethistory
+	{NULL,""}, // displayhistory
+	{NULL,""}, // addhistory
+	{NULL,""}, // saveconsecutivecommands
+	{NULL,""}, // saveafterncommands
+	{NULL,""}, // gethistoryfile
+	{NULL,""}, // sethistoryfile
+	{NULL,""}, // removelinehistory
+	{NULL,""}, // historysize
+	{NULL,""}  // historymanager
 };
 /*--------------------------------------------------------------------------*/
 int gw_history_manager(void)

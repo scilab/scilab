@@ -59,7 +59,9 @@ build_triplet = @build@
 host_triplet = @host@
 
 # List of the c files
-@GUI_TRUE@am__append_1 = src/jni/HistoryManagement_wrap.c
+@GUI_TRUE@am__append_1 = \
+@GUI_TRUE@    src/jni/HistoryManagement_wrap.c
+
 DIST_COMMON = $(libscihistory_manager_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -117,14 +119,13 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihistory_manager_algo_la_LIBADD =
 am__libscihistory_manager_algo_la_SOURCES_DIST =  \
 	src/c/getCommentDateSession.c src/jni/HistoryManagement_wrap.c \
-	src/cpp/CommandLine.cpp src/cpp/HistoryFile.cpp \
-	src/cpp/HistoryManager.cpp src/cpp/HistorySearch.cpp
+	src/cpp/HistoryFile.cpp src/cpp/HistoryManager.cpp \
+	src/cpp/HistorySearch.cpp
 @GUI_TRUE@am__objects_1 = libscihistory_manager_algo_la-HistoryManagement_wrap.lo
 am__objects_2 =  \
 	libscihistory_manager_algo_la-getCommentDateSession.lo \
 	$(am__objects_1)
-am__objects_3 = libscihistory_manager_algo_la-CommandLine.lo \
-	libscihistory_manager_algo_la-HistoryFile.lo \
+am__objects_3 = libscihistory_manager_algo_la-HistoryFile.lo \
 	libscihistory_manager_algo_la-HistoryManager.lo \
 	libscihistory_manager_algo_la-HistorySearch.lo
 am_libscihistory_manager_algo_la_OBJECTS = $(am__objects_2) \
@@ -135,27 +136,29 @@ libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/fileio/libscifileio.la
-am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
-	libscihistory_manager_la-sci_addhistory.lo \
+am__objects_4 = libscihistory_manager_la-gw_history_manager.lo
+am__objects_5 = libscihistory_manager_la-history_manager_gw.lo \
+	libscihistory_manager_la-sci_loadhistory.lo \
 	libscihistory_manager_la-sci_displayhistory.lo \
 	libscihistory_manager_la-sci_gethistory.lo \
 	libscihistory_manager_la-sci_gethistoryfile.lo \
+	libscihistory_manager_la-sci_historymanager.lo \
 	libscihistory_manager_la-sci_historysize.lo \
-	libscihistory_manager_la-sci_loadhistory.lo \
 	libscihistory_manager_la-sci_removelinehistory.lo \
 	libscihistory_manager_la-sci_resethistory.lo \
 	libscihistory_manager_la-sci_saveafterncommands.lo \
 	libscihistory_manager_la-sci_saveconsecutivecommands.lo \
 	libscihistory_manager_la-sci_savehistory.lo \
 	libscihistory_manager_la-sci_sethistoryfile.lo \
-	libscihistory_manager_la-sci_historymanager.lo
-am_libscihistory_manager_la_OBJECTS = $(am__objects_4)
+	libscihistory_manager_la-sci_addhistory.lo
+am_libscihistory_manager_la_OBJECTS = $(am__objects_4) \
+	$(am__objects_5)
 libscihistory_manager_la_OBJECTS =  \
 	$(am_libscihistory_manager_la_OBJECTS)
-libscihistory_manager_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libscihistory_manager_la_CFLAGS) $(CFLAGS) \
-	$(libscihistory_manager_la_LDFLAGS) $(LDFLAGS) -o $@
+libscihistory_manager_la_LINK = $(LIBTOOL) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(AM_CXXFLAGS) $(CXXFLAGS) $(libscihistory_manager_la_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -450,55 +453,74 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 
 # List of the cpp files
-HISTORY_MANAGER_CPP_SOURCES = src/cpp/CommandLine.cpp \
-src/cpp/HistoryFile.cpp \
-src/cpp/HistoryManager.cpp \
-src/cpp/HistorySearch.cpp
+HISTORY_MANAGER_CPP_SOURCES = \
+    src/cpp/HistoryFile.cpp \
+    src/cpp/HistoryManager.cpp \
+    src/cpp/HistorySearch.cpp
 
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
 	$(am__append_1)
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c \
-sci_gateway/c/sci_addhistory.c  \
-sci_gateway/c/sci_displayhistory.c  \
-sci_gateway/c/sci_gethistory.c  \
-sci_gateway/c/sci_gethistoryfile.c  \
-sci_gateway/c/sci_historysize.c  \
-sci_gateway/c/sci_loadhistory.c  \
-sci_gateway/c/sci_removelinehistory.c  \
-sci_gateway/c/sci_resethistory.c  \
-sci_gateway/c/sci_saveafterncommands.c  \
-sci_gateway/c/sci_saveconsecutivecommands.c  \
-sci_gateway/c/sci_savehistory.c  \
-sci_gateway/c/sci_sethistoryfile.c  \
-sci_gateway/c/sci_historymanager.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_history_manager.c
+
+#sci_gateway/c/sci_displayhistory.c  \
+#sci_gateway/c/sci_gethistory.c  \
+#sci_gateway/c/sci_gethistoryfile.c  \
+#sci_gateway/c/sci_historysize.c  \
+#sci_gateway/c/sci_removelinehistory.c  \
+#sci_gateway/c/sci_resethistory.c  \
+#sci_gateway/c/sci_saveafterncommands.c  \
+#sci_gateway/c/sci_saveconsecutivecommands.c  \
+#sci_gateway/c/sci_savehistory.c  \
+#sci_gateway/c/sci_sethistoryfile.c  \
+#sci_gateway/c/sci_historymanager.c
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/history_manager_gw.cpp \
+    sci_gateway/cpp/sci_loadhistory.cpp \
+    sci_gateway/cpp/sci_displayhistory.cpp \
+    sci_gateway/cpp/sci_gethistory.cpp \
+    sci_gateway/cpp/sci_gethistoryfile.cpp \
+    sci_gateway/cpp/sci_historymanager.cpp \
+    sci_gateway/cpp/sci_historysize.cpp \
+    sci_gateway/cpp/sci_removelinehistory.cpp \
+    sci_gateway/cpp/sci_resethistory.cpp \
+    sci_gateway/cpp/sci_saveafterncommands.cpp \
+    sci_gateway/cpp/sci_saveconsecutivecommands.cpp \
+    sci_gateway/cpp/sci_savehistory.cpp \
+    sci_gateway/cpp/sci_sethistoryfile.cpp \
+    sci_gateway/cpp/sci_addhistory.cpp
 
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@GIWS_WRAPPERS = 
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 libscihistory_manager_la_CFLAGS = \
--I$(top_srcdir)/modules/string/includes/
+    -I$(top_srcdir)/modules/string/includes/
 
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/cpp/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/jni/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/console/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/history_browser/includes/ \
--I$(top_srcdir)/modules/string/includes/
+libscihistory_manager_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/libs/MALLOC/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/system_env/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/history_browser/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+    -I$(top_srcdir)/modules/string/includes/
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -509,7 +531,7 @@ libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES)
-libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscihistory_manager_algo_la_CFLAGS = $(libscihistory_manager_la_CFLAGS)
 libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
@@ -691,13 +713,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-CommandLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-HistoryFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-HistoryManagement_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-HistoryManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-HistorySearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_algo_la-getCommentDateSession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-history_manager_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_addhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihistory_manager_la-sci_gethistory.Plo@am__quote@
@@ -754,97 +776,6 @@ libscihistory_manager_la-gw_history_manager.lo: sci_gateway/c/gw_history_manager
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-gw_history_manager.lo `test -f 'sci_gateway/c/gw_history_manager.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_manager.c
 
-libscihistory_manager_la-sci_addhistory.lo: sci_gateway/c/sci_addhistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_addhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Tpo -c -o libscihistory_manager_la-sci_addhistory.lo `test -f 'sci_gateway/c/sci_addhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addhistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addhistory.c' object='libscihistory_manager_la-sci_addhistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_addhistory.lo `test -f 'sci_gateway/c/sci_addhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addhistory.c
-
-libscihistory_manager_la-sci_displayhistory.lo: sci_gateway/c/sci_displayhistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_displayhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Tpo -c -o libscihistory_manager_la-sci_displayhistory.lo `test -f 'sci_gateway/c/sci_displayhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_displayhistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_displayhistory.c' object='libscihistory_manager_la-sci_displayhistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_displayhistory.lo `test -f 'sci_gateway/c/sci_displayhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_displayhistory.c
-
-libscihistory_manager_la-sci_gethistory.lo: sci_gateway/c/sci_gethistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_gethistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Tpo -c -o libscihistory_manager_la-sci_gethistory.lo `test -f 'sci_gateway/c/sci_gethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gethistory.c' object='libscihistory_manager_la-sci_gethistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_gethistory.lo `test -f 'sci_gateway/c/sci_gethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistory.c
-
-libscihistory_manager_la-sci_gethistoryfile.lo: sci_gateway/c/sci_gethistoryfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_gethistoryfile.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Tpo -c -o libscihistory_manager_la-sci_gethistoryfile.lo `test -f 'sci_gateway/c/sci_gethistoryfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistoryfile.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Tpo $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_gethistoryfile.c' object='libscihistory_manager_la-sci_gethistoryfile.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_gethistoryfile.lo `test -f 'sci_gateway/c/sci_gethistoryfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_gethistoryfile.c
-
-libscihistory_manager_la-sci_historysize.lo: sci_gateway/c/sci_historysize.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_historysize.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_historysize.Tpo -c -o libscihistory_manager_la-sci_historysize.lo `test -f 'sci_gateway/c/sci_historysize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_historysize.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_historysize.Tpo $(DEPDIR)/libscihistory_manager_la-sci_historysize.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_historysize.c' object='libscihistory_manager_la-sci_historysize.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_historysize.lo `test -f 'sci_gateway/c/sci_historysize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_historysize.c
-
-libscihistory_manager_la-sci_loadhistory.lo: sci_gateway/c/sci_loadhistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_loadhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Tpo -c -o libscihistory_manager_la-sci_loadhistory.lo `test -f 'sci_gateway/c/sci_loadhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadhistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_loadhistory.c' object='libscihistory_manager_la-sci_loadhistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_loadhistory.lo `test -f 'sci_gateway/c/sci_loadhistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadhistory.c
-
-libscihistory_manager_la-sci_removelinehistory.lo: sci_gateway/c/sci_removelinehistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_removelinehistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Tpo -c -o libscihistory_manager_la-sci_removelinehistory.lo `test -f 'sci_gateway/c/sci_removelinehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_removelinehistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_removelinehistory.c' object='libscihistory_manager_la-sci_removelinehistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_removelinehistory.lo `test -f 'sci_gateway/c/sci_removelinehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_removelinehistory.c
-
-libscihistory_manager_la-sci_resethistory.lo: sci_gateway/c/sci_resethistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_resethistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Tpo -c -o libscihistory_manager_la-sci_resethistory.lo `test -f 'sci_gateway/c/sci_resethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_resethistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_resethistory.c' object='libscihistory_manager_la-sci_resethistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_resethistory.lo `test -f 'sci_gateway/c/sci_resethistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_resethistory.c
-
-libscihistory_manager_la-sci_saveafterncommands.lo: sci_gateway/c/sci_saveafterncommands.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_saveafterncommands.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Tpo -c -o libscihistory_manager_la-sci_saveafterncommands.lo `test -f 'sci_gateway/c/sci_saveafterncommands.c' || echo '$(srcdir)/'`sci_gateway/c/sci_saveafterncommands.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Tpo $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_saveafterncommands.c' object='libscihistory_manager_la-sci_saveafterncommands.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_saveafterncommands.lo `test -f 'sci_gateway/c/sci_saveafterncommands.c' || echo '$(srcdir)/'`sci_gateway/c/sci_saveafterncommands.c
-
-libscihistory_manager_la-sci_saveconsecutivecommands.lo: sci_gateway/c/sci_saveconsecutivecommands.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_saveconsecutivecommands.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Tpo -c -o libscihistory_manager_la-sci_saveconsecutivecommands.lo `test -f 'sci_gateway/c/sci_saveconsecutivecommands.c' || echo '$(srcdir)/'`sci_gateway/c/sci_saveconsecutivecommands.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Tpo $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_saveconsecutivecommands.c' object='libscihistory_manager_la-sci_saveconsecutivecommands.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_saveconsecutivecommands.lo `test -f 'sci_gateway/c/sci_saveconsecutivecommands.c' || echo '$(srcdir)/'`sci_gateway/c/sci_saveconsecutivecommands.c
-
-libscihistory_manager_la-sci_savehistory.lo: sci_gateway/c/sci_savehistory.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_savehistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Tpo -c -o libscihistory_manager_la-sci_savehistory.lo `test -f 'sci_gateway/c/sci_savehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savehistory.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_savehistory.c' object='libscihistory_manager_la-sci_savehistory.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_savehistory.lo `test -f 'sci_gateway/c/sci_savehistory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_savehistory.c
-
-libscihistory_manager_la-sci_sethistoryfile.lo: sci_gateway/c/sci_sethistoryfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_sethistoryfile.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Tpo -c -o libscihistory_manager_la-sci_sethistoryfile.lo `test -f 'sci_gateway/c/sci_sethistoryfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sethistoryfile.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Tpo $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sethistoryfile.c' object='libscihistory_manager_la-sci_sethistoryfile.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_sethistoryfile.lo `test -f 'sci_gateway/c/sci_sethistoryfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sethistoryfile.c
-
-libscihistory_manager_la-sci_historymanager.lo: sci_gateway/c/sci_historymanager.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -MT libscihistory_manager_la-sci_historymanager.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Tpo -c -o libscihistory_manager_la-sci_historymanager.lo `test -f 'sci_gateway/c/sci_historymanager.c' || echo '$(srcdir)/'`sci_gateway/c/sci_historymanager.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Tpo $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_historymanager.c' object='libscihistory_manager_la-sci_historymanager.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(libscihistory_manager_la_CFLAGS) $(CFLAGS) -c -o libscihistory_manager_la-sci_historymanager.lo `test -f 'sci_gateway/c/sci_historymanager.c' || echo '$(srcdir)/'`sci_gateway/c/sci_historymanager.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -866,13 +797,6 @@ libscihistory_manager_la-sci_historymanager.lo: sci_gateway/c/sci_historymanager
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscihistory_manager_algo_la-CommandLine.lo: src/cpp/CommandLine.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_algo_la-CommandLine.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_algo_la-CommandLine.Tpo -c -o libscihistory_manager_algo_la-CommandLine.lo `test -f 'src/cpp/CommandLine.cpp' || echo '$(srcdir)/'`src/cpp/CommandLine.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_algo_la-CommandLine.Tpo $(DEPDIR)/libscihistory_manager_algo_la-CommandLine.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CommandLine.cpp' object='libscihistory_manager_algo_la-CommandLine.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_algo_la-CommandLine.lo `test -f 'src/cpp/CommandLine.cpp' || echo '$(srcdir)/'`src/cpp/CommandLine.cpp
-
 libscihistory_manager_algo_la-HistoryFile.lo: src/cpp/HistoryFile.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_algo_la-HistoryFile.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_algo_la-HistoryFile.Tpo -c -o libscihistory_manager_algo_la-HistoryFile.lo `test -f 'src/cpp/HistoryFile.cpp' || echo '$(srcdir)/'`src/cpp/HistoryFile.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_algo_la-HistoryFile.Tpo $(DEPDIR)/libscihistory_manager_algo_la-HistoryFile.Plo
@@ -893,6 +817,104 @@ libscihistory_manager_algo_la-HistorySearch.lo: src/cpp/HistorySearch.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/HistorySearch.cpp' object='libscihistory_manager_algo_la-HistorySearch.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_algo_la-HistorySearch.lo `test -f 'src/cpp/HistorySearch.cpp' || echo '$(srcdir)/'`src/cpp/HistorySearch.cpp
+
+libscihistory_manager_la-history_manager_gw.lo: sci_gateway/cpp/history_manager_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-history_manager_gw.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-history_manager_gw.Tpo -c -o libscihistory_manager_la-history_manager_gw.lo `test -f 'sci_gateway/cpp/history_manager_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/history_manager_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-history_manager_gw.Tpo $(DEPDIR)/libscihistory_manager_la-history_manager_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/history_manager_gw.cpp' object='libscihistory_manager_la-history_manager_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-history_manager_gw.lo `test -f 'sci_gateway/cpp/history_manager_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/history_manager_gw.cpp
+
+libscihistory_manager_la-sci_loadhistory.lo: sci_gateway/cpp/sci_loadhistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_loadhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Tpo -c -o libscihistory_manager_la-sci_loadhistory.lo `test -f 'sci_gateway/cpp/sci_loadhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadhistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_loadhistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_loadhistory.cpp' object='libscihistory_manager_la-sci_loadhistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_loadhistory.lo `test -f 'sci_gateway/cpp/sci_loadhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadhistory.cpp
+
+libscihistory_manager_la-sci_displayhistory.lo: sci_gateway/cpp/sci_displayhistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_displayhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Tpo -c -o libscihistory_manager_la-sci_displayhistory.lo `test -f 'sci_gateway/cpp/sci_displayhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displayhistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_displayhistory.cpp' object='libscihistory_manager_la-sci_displayhistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_displayhistory.lo `test -f 'sci_gateway/cpp/sci_displayhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displayhistory.cpp
+
+libscihistory_manager_la-sci_gethistory.lo: sci_gateway/cpp/sci_gethistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_gethistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Tpo -c -o libscihistory_manager_la-sci_gethistory.lo `test -f 'sci_gateway/cpp/sci_gethistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gethistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_gethistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_gethistory.cpp' object='libscihistory_manager_la-sci_gethistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_gethistory.lo `test -f 'sci_gateway/cpp/sci_gethistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gethistory.cpp
+
+libscihistory_manager_la-sci_gethistoryfile.lo: sci_gateway/cpp/sci_gethistoryfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_gethistoryfile.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Tpo -c -o libscihistory_manager_la-sci_gethistoryfile.lo `test -f 'sci_gateway/cpp/sci_gethistoryfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gethistoryfile.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Tpo $(DEPDIR)/libscihistory_manager_la-sci_gethistoryfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_gethistoryfile.cpp' object='libscihistory_manager_la-sci_gethistoryfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_gethistoryfile.lo `test -f 'sci_gateway/cpp/sci_gethistoryfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_gethistoryfile.cpp
+
+libscihistory_manager_la-sci_historymanager.lo: sci_gateway/cpp/sci_historymanager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_historymanager.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Tpo -c -o libscihistory_manager_la-sci_historymanager.lo `test -f 'sci_gateway/cpp/sci_historymanager.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_historymanager.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Tpo $(DEPDIR)/libscihistory_manager_la-sci_historymanager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_historymanager.cpp' object='libscihistory_manager_la-sci_historymanager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_historymanager.lo `test -f 'sci_gateway/cpp/sci_historymanager.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_historymanager.cpp
+
+libscihistory_manager_la-sci_historysize.lo: sci_gateway/cpp/sci_historysize.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_historysize.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_historysize.Tpo -c -o libscihistory_manager_la-sci_historysize.lo `test -f 'sci_gateway/cpp/sci_historysize.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_historysize.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_historysize.Tpo $(DEPDIR)/libscihistory_manager_la-sci_historysize.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_historysize.cpp' object='libscihistory_manager_la-sci_historysize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_historysize.lo `test -f 'sci_gateway/cpp/sci_historysize.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_historysize.cpp
+
+libscihistory_manager_la-sci_removelinehistory.lo: sci_gateway/cpp/sci_removelinehistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_removelinehistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Tpo -c -o libscihistory_manager_la-sci_removelinehistory.lo `test -f 'sci_gateway/cpp/sci_removelinehistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removelinehistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_removelinehistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_removelinehistory.cpp' object='libscihistory_manager_la-sci_removelinehistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_removelinehistory.lo `test -f 'sci_gateway/cpp/sci_removelinehistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_removelinehistory.cpp
+
+libscihistory_manager_la-sci_resethistory.lo: sci_gateway/cpp/sci_resethistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_resethistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Tpo -c -o libscihistory_manager_la-sci_resethistory.lo `test -f 'sci_gateway/cpp/sci_resethistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_resethistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_resethistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_resethistory.cpp' object='libscihistory_manager_la-sci_resethistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_resethistory.lo `test -f 'sci_gateway/cpp/sci_resethistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_resethistory.cpp
+
+libscihistory_manager_la-sci_saveafterncommands.lo: sci_gateway/cpp/sci_saveafterncommands.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_saveafterncommands.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Tpo -c -o libscihistory_manager_la-sci_saveafterncommands.lo `test -f 'sci_gateway/cpp/sci_saveafterncommands.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveafterncommands.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Tpo $(DEPDIR)/libscihistory_manager_la-sci_saveafterncommands.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_saveafterncommands.cpp' object='libscihistory_manager_la-sci_saveafterncommands.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_saveafterncommands.lo `test -f 'sci_gateway/cpp/sci_saveafterncommands.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveafterncommands.cpp
+
+libscihistory_manager_la-sci_saveconsecutivecommands.lo: sci_gateway/cpp/sci_saveconsecutivecommands.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_saveconsecutivecommands.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Tpo -c -o libscihistory_manager_la-sci_saveconsecutivecommands.lo `test -f 'sci_gateway/cpp/sci_saveconsecutivecommands.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveconsecutivecommands.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Tpo $(DEPDIR)/libscihistory_manager_la-sci_saveconsecutivecommands.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_saveconsecutivecommands.cpp' object='libscihistory_manager_la-sci_saveconsecutivecommands.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_saveconsecutivecommands.lo `test -f 'sci_gateway/cpp/sci_saveconsecutivecommands.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveconsecutivecommands.cpp
+
+libscihistory_manager_la-sci_savehistory.lo: sci_gateway/cpp/sci_savehistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_savehistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Tpo -c -o libscihistory_manager_la-sci_savehistory.lo `test -f 'sci_gateway/cpp/sci_savehistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_savehistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_savehistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_savehistory.cpp' object='libscihistory_manager_la-sci_savehistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_savehistory.lo `test -f 'sci_gateway/cpp/sci_savehistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_savehistory.cpp
+
+libscihistory_manager_la-sci_sethistoryfile.lo: sci_gateway/cpp/sci_sethistoryfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_sethistoryfile.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Tpo -c -o libscihistory_manager_la-sci_sethistoryfile.lo `test -f 'sci_gateway/cpp/sci_sethistoryfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sethistoryfile.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Tpo $(DEPDIR)/libscihistory_manager_la-sci_sethistoryfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_sethistoryfile.cpp' object='libscihistory_manager_la-sci_sethistoryfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_sethistoryfile.lo `test -f 'sci_gateway/cpp/sci_sethistoryfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sethistoryfile.cpp
+
+libscihistory_manager_la-sci_addhistory.lo: sci_gateway/cpp/sci_addhistory.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihistory_manager_la-sci_addhistory.lo -MD -MP -MF $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Tpo -c -o libscihistory_manager_la-sci_addhistory.lo `test -f 'sci_gateway/cpp/sci_addhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addhistory.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Tpo $(DEPDIR)/libscihistory_manager_la-sci_addhistory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_addhistory.cpp' object='libscihistory_manager_la-sci_addhistory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihistory_manager_la-sci_addhistory.lo `test -f 'sci_gateway/cpp/sci_addhistory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addhistory.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
