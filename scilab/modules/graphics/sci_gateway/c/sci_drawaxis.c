@@ -23,9 +23,12 @@
 #include "sciCall.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "BuildObjects.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "CurrentSubwin.h"
+#include "callJoGLView.h"
 
 /*--------------------------------------------------------------------------*/
 static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
@@ -53,6 +56,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     {-1,NULL,NULL,0,0}
   };
 
+  char* pfigureUID = NULL;
+  char* psubwinUID = NULL;
   int minrhs = -1,maxrhs = 0,minlhs=0,maxlhs=1,nopt;
   char dir = 'l', *format = NULL, tics = 'v', **val = NULL;
   int fontsize = 0, sub_int=2, seg_flag = 1,textcolor = -1,ticscolor=-1;
@@ -70,6 +75,16 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 		/* error */
 		return 0;
 	}
+
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
+  {
+      /* No default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
+
   if ( opts[0].position != -1 )
   {
     CheckLength(opts[0].position,opts[0].m,1);
@@ -130,8 +145,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   {
     static double x_def[1];
 	double* bounds;
-	sciPointObj * currentSubwin = sciGetCurrentSubWin();
-	getGraphicObjectProperty(currentSubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
+	char * currentSubwinUID = getCurrentSubWin();
+	getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
     nx = 1;
     x = x_def ;
     if ( dir == 'l' )
@@ -149,8 +164,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   {
     static double y_def[1];
 	double* bounds;
-	sciPointObj * currentSubwin = sciGetCurrentSubWin();
-	getGraphicObjectProperty(currentSubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
+	char * currentSubwinUID = getCurrentSubWin();
+	getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, &bounds);
     ny = 1;
     y = y_def ;
     if ( dir == 'd' )

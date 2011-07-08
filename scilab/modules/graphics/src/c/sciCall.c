@@ -1027,27 +1027,29 @@ void Objdrawaxis ( char     dir    ,
                    int      seg    ,
                    int      nb_tics_labels )
 {
-#if 0
-    sciPointObj* pobj = NULL;
+    char* pobjUID = NULL;
+    char* psubwinUID = NULL;
+
+    psubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
-    pobj = ConstructAxes(
-               (sciPointObj *) sciGetCurrentSubWin(),
+    pobjUID = ConstructAxis(
+               psubwinUID,
                dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels);
 
-    if (pobj == NULL)
+    if (pobjUID == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "Objdrawaxis");
         return;
     }
 
-    sciSetCurrentObj(pobj);
+    setCurrentObject(pobjUID);
 
     /* Deactivated (uses the former renderer) */
+#if 0
     sciDrawObjIfRequired(sciGetCurrentObj ());
 #endif
-
 }
 
 /*-----------------------------------------------------------

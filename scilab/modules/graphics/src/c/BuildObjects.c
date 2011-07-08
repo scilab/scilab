@@ -1959,20 +1959,19 @@ ConstructGrayplot (char * pparentsubwinUID, double *pvecx, double *pvecy,
 }
 
 
-/**ConstructAxes
+/**ConstructAxis
  * This function creates an Axis object
- * To do: rename to ConstructAxis
  * @author Djalel ABDEMOUCHE
  * @see sciSetCurrentObj
  *
  */
-sciPointObj *
-ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
+char *
+ConstructAxis (char * pparentsubwinUID, char dir, char tics, double *vx,
 	       int nx, double *vy, int ny,char **str, int subint, char *format,
 	       int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels)
 {
     char* parentType;
-    sciPointObj *pobj = (sciPointObj *) NULL;
+    char *pobjUID = NULL;
     int i;
     int clipRegionSet;
     int clipState;
@@ -1981,23 +1980,18 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     double* clipRegion;
     double doubleFontSize;
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_TYPE__, jni_string, &parentType);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
 
     if (strcmp(parentType, __GO_AXES__) != 0)
     {
         Scierror(999, _("The parent has to be a SUBWIN\n"));
-        return (sciPointObj*) NULL;
+        return (char*) NULL;
     }
 
-    if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-    {
-        return (sciPointObj *) NULL;
-    }
-
-    pobj->UID = (char*) createGraphicObject(__GO_AXIS__);
+    pobjUID = (char*) createGraphicObject(__GO_AXIS__);
 
     /* Required to initialize the default contour properties */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, pparentsubwin->UID, jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
     /* To be implemented */
 #if 0
@@ -2009,14 +2003,14 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 
     /* Clipping: to be checked for consistency */
     clipRegionSet = 0;
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
 
-    getGraphicObjectProperty(pparentsubwin->UID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, &clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
 
     /* 0: OFF */
     clipState = 0;
-    setGraphicObjectProperty(pobj->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
     /* The ticks style and direction MVC properties are Integers */
     if (dir == 'u')
@@ -2057,11 +2051,17 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
         ticksStyle = 0;
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, &ticksDirection, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, &ticksStyle, jni_int, 1);
 
-    setGraphicObjectProperty(pobj->UID, __GO_X_TICKS_COORDS__, vx, jni_double_vector, nx);
-    setGraphicObjectProperty(pobj->UID, __GO_Y_TICKS_COORDS__, vy, jni_double_vector, ny);
+    setGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, vx, jni_double_vector, nx);
+    setGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, vy, jni_double_vector, ny);
+
+    /* FORMATN must be set before Labels are computed. */
+    if (format != NULL)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_FORMATN__, format, jni_string, 1);
+    }
 
     /*
      * Labels are computed automatically depending on the ticks coordinates.
@@ -2077,13 +2077,12 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
         char** matData;
         StringMatrix* tics_labels;
 
-        tics_labels = computeDefaultTicsLabels(pobj);
+        tics_labels = computeDefaultTicsLabels(pobjUID);
 
         if (tics_labels == NULL)
         {
-            deleteGraphicObject(pobj->UID);
-            FREE(pobj);
-            return (sciPointObj*) NULL;
+            deleteGraphicObject(pobjUID);
+            return (char*) NULL;
         }
 
         matData = getStrMatData(tics_labels);
@@ -2092,7 +2091,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
          * The labels vector size must be computed using the matrix's dimensions.
          * To be modified when the labels computation is moved to the Model.
          */
-        setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol*tics_labels->nbRow);
+        setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol*tics_labels->nbRow);
 
         deleteMatrix(tics_labels);
     }
@@ -2107,48 +2106,33 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
         if(nb_tics_labels == -1)
         {
             Scierror(999, _("Impossible case when building axis\n"));
-            deleteGraphicObject(pobj->UID);
-            FREE(pobj);
-            return (sciPointObj*) NULL;
+            deleteGraphicObject(pobjUID);
+            return (char*) NULL;
         }
 
         for (i = 0; i < nb_tics_labels; i++)
         {
             if (str[i] == NULL)
             {
-                deleteGraphicObject(pobj->UID);
-                FREE(pobj);
-                return (sciPointObj*) NULL;
+                deleteGraphicObject(pobjUID);
+                return (char*) NULL;
             }
         }
 
-        setGraphicObjectProperty(pobj->UID, __GO_TICKS_LABELS__, str, jni_string_vector, nb_tics_labels);
+        setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, str, jni_string_vector, nb_tics_labels);
     }
 
-    setGraphicObjectProperty(pobj->UID, __GO_SUBTICKS__, &subint, jni_int, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_TICKS_SEGMENT__, &seg, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, &subint, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_TICKS_SEGMENT__, &seg, jni_bool, 1);
 
-    if (format != NULL)
-    {
-        setGraphicObjectProperty(pobj->UID, __GO_FORMATN__, format, jni_string, 1);
-    }
+    /* Initializes the default Contour values */
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
-
-    if ( sciInitFontContext( pobj ) == -1 )
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
+    /* Initializes the default Font values */
+    cloneFontContext(pparentsubwinUID, pobjUID);
 
     /* Parent reset to the null object */
-    setGraphicObjectProperty(pobj->UID, __GO_PARENT__, "", jni_string, 1);
+    setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
 
 //    if (sciAddNewHandle(pobj) == -1)
 //    {
@@ -2158,15 +2142,15 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 //        return (sciPointObj*) NULL;
 //    }
 
-    setGraphicObjectRelationship(pparentsubwin->UID, pobj->UID);
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
 
     doubleFontSize = (double) fontsize;
 
-    setGraphicObjectProperty(pobj->UID, __GO_FONT_SIZE__, &doubleFontSize, jni_double, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_FONT_COLOR__, &textcolor, jni_int, 1);
-    setGraphicObjectProperty(pobj->UID, __GO_TICKS_COLOR__, &ticscolor, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, &doubleFontSize, jni_double, 1);
+    setGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, &textcolor, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_TICKS_COLOR__, &ticscolor, jni_int, 1);
 
-    return pobj;
+    return pobjUID;
 }
 
 
