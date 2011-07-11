@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- NOT FIXED -->
 
 if amell(10,[1:10])<> 0 then pause,end
 if or(size(amell([1:10],[1:10])) <> [1 10]) then pause,end
