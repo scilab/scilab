@@ -1449,26 +1449,30 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	@Override
 	public String convertValueToString(Object cell) {
+		String ret = null;
+		
 		if (cell != null) {
 			final Map<String, Object> style = getCellStyle(cell);
 			
 			final String customLabel = (String) style.get("displayedLabel");
 			if (customLabel != null && cell instanceof BasicBlock) {
 				try {
-					return String.format(customLabel, ((BasicBlock) cell).getExprsFormat());
+					ret = String.format(customLabel, ((BasicBlock) cell).getExprsFormat());
 				} catch (IllegalFormatException e) {
 					LOG.error(e);
+					ret = customLabel;
 				}
 			} else {
 				final String label = super.convertValueToString(cell);
 				if (label.isEmpty() && cell instanceof BasicBlock) {
-					return ((BasicBlock) cell).getInterfaceFunctionName();
+					ret = ((BasicBlock) cell).getInterfaceFunctionName();
+				} else {
+					ret = label;
 				}
-				return label;
 			}
-			
 		}
-		return null;
+		
+		return ret;
 	}
 	
 	/**
