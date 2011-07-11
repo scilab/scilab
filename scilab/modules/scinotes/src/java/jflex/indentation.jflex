@@ -17,8 +17,6 @@ import javax.swing.text.BadLocationException;
 %char
 %type int
 
-%switch
-
 %{
     private ScilabDocument doc;
     private Element elem;
@@ -119,14 +117,14 @@ string = (([^\'\"\r\n]*)|([\'\"]{2}))+
 qstring = (\"|\'){string}(\"|\')
 transp = ({spec} | ")" | "]" | "}") "'"
 
-indentP = ("function" | "if" | "for" | "while" | "try" | "select")
+indentP = ("function" | "if" | "for" | "while" | "try" | "select" | "switch")
 indentPx = {indentP}{spec}+
 xindentP = {spec}{indentP}
 
 indentM = ("endfunction" | "end")
 indentMx = {indentM}{spec}+
 xindentM = {spec}{indentM}
-indentMP = ("else" | "elseif" | "catch" | "case")
+indentMP = ("else" | "elseif" | "catch" | "case" | "otherwise")
 indentMPx = {indentMP}{spec}+
 xindentMP = {spec}{indentMP}
 
