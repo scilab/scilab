@@ -20,6 +20,9 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 
+//import org.scilab.modules.gui.bridge.tab.SwingScilabScrollPane;
+// TODO how to set a container inside?
+
 /** Implementation of Scroll compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -31,6 +34,19 @@ public class Scroll extends JScrollPane implements XComponent {
      *
      */
     private static final long serialVersionUID = -6203963304355019727L;
+
+    /** Constructor.
+    *
+    * @param peer : associated view DOM node.
+    * @param component : parent component.
+    */
+    public Scroll(final Node peer, final Component component) {
+        super(component);
+        insideContainer = (Container) component;
+        insideContainer.setLayout(new BorderLayout());
+        XConfigManager.setDimension(this, peer);
+        XConfigManager.drawConstructionBorders(this);
+    }
 
    /** Define the set of actuators.
      *
@@ -103,19 +119,6 @@ public class Scroll extends JScrollPane implements XComponent {
         return insideContainer.getComponent(index);
     }
 
-    /** Constructor.
-    *
-    * @param peer : associated view DOM node.
-    * @param container : parent container.
-    */
-    public Scroll(final Node peer, final Component component) {
-        super(component);
-        insideContainer = (Container) component;
-        insideContainer.setLayout(new BorderLayout());
-        XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
-    }
-
     /** Refresh the component by the use of actuators.
     *
     * @param peer the corresponding view DOM node
@@ -133,3 +136,4 @@ public class Scroll extends JScrollPane implements XComponent {
         return signature;
     }
 }
+

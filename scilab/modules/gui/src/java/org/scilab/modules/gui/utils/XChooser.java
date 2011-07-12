@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - INRIA - Pierre GRADIT
+ * Copyright (C) 2011 - Pierre GRADIT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +12,28 @@
 
 package org.scilab.modules.gui.utils;
 
-import org.w3c.dom.Node;
 import java.awt.event.ActionListener;
 
+/** XChooser implements an XComponent giving a response.
+ *
+ * @author Pierre GRADIT
+ *
+ **/
 public interface XChooser {
 
-	void addActionListener(ActionListener actionListener);
-	String choose();
-	
+
+    /** Subscription for an action listener.
+     *
+     * @param actionListener : subscribing listener.
+     */
+    void addActionListener(ActionListener actionListener);
+
+    /** Actual response read by the listener.
+     *
+     * @return response read by the listener.
+     */
+    String choose();
+
 }
+
 

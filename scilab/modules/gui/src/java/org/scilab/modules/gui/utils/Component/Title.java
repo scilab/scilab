@@ -21,6 +21,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import java.awt.BorderLayout;
 
+// TODO ScilabSwing class for this?
+
 /** Implementation of Title compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -80,3 +82,4 @@ public class Title extends JPanel implements XComponent {
         return signature;
     }
 }
+

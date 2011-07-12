@@ -15,7 +15,8 @@ package org.scilab.modules.gui.utils.Component;
 import org.scilab.modules.gui.utils.XComponent;
 import org.scilab.modules.gui.utils.XChooser;
 import org.scilab.modules.gui.utils.XConfigManager;
-import javax.swing.JCheckBox;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+
 import org.w3c.dom.Node;
 
 /** Implementation of Checkbox compliant with extended management.
@@ -23,7 +24,7 @@ import org.w3c.dom.Node;
 * @author Pierre GRADIT
 *
 */
-public class Checkbox extends JCheckBox implements XComponent, XChooser {
+public class Checkbox extends SwingScilabCheckBox implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -78,3 +79,4 @@ public class Checkbox extends JCheckBox implements XComponent, XChooser {
         return signature;
     }
 }
+

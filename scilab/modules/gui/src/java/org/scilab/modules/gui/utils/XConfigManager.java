@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - INRIA - Pierre GRADIT
+ * Copyright (C) 2011 - INRIA - Vincent COUVERT
+ * Copyright (C) 2011 -         Pierre GRADIT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,14 +17,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Component;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.ActionListener;
 import java.awt.Dimension;
 
 import java.io.File;
@@ -31,13 +27,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.net.URL;
 import java.util.Hashtable;
-import java.util.Arrays;
-import java.util.EventObject;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Constructor;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -53,6 +43,8 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.scilab.modules.localization.Messages;
+
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
@@ -67,616 +59,280 @@ import org.scilab.modules.gui.console.ScilabConsole;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JComponent;
-import javax.swing.AbstractButton;
-import javax.swing.JComboBox;
-import javax.swing.Box;
-import javax.swing.text.html.StyleSheet;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-
-import org.scilab.modules.gui.utils.Component.SCROLL;
 
 /**
- * Extended management of the Console configuration file
- * @author Pierre Gradit
+ * Extended management of the Console configuration file.
+ *
+ * @author Pierre GRADIT
+ * @author Vincent COUVERT *
  */
+public final class XConfigManager /*extends ConfigManager */ {
 
-/* 
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    VIEW HIERARCHY       CONTROL SYSTEM      MODEL HIERARCHY
-                                          .peer
-   	Component ------------>  XSentinel -----------> Node
-                Hashtable
-                    =
-      XUpdateVisitor.correspondance
-
-	XConfigManager runs XUpdateVisitor.visit(_,_) 
-		that initiates correspondance.
-	while True:
-		XSentinel receives events.
-		XConfigManager may runs XUpdateVisitor.visit(_,_) 
-			when correspondance needs to be refreshed.
-
-	To avoid interface blinking, the set of add/remove is minimized, 
-	   and the number of "actuations" (i.e. affectations) maximized.
-
-   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-*/
-
-class XSentinel implements MouseListener, ActionListener {
-	/**
-	  *    XSentinel is a class associated through a HashTable in 1-1 
-	  *    correspondance with view component, this correspondance
- 	  *    maintained after each observable event by XUpdateVisitor.
-	  *
-	  *    XSentinel has two functions :
-	  *    - Checks if a given node is reachability through actuators
-	  *        from the former one.
-	  *    - Interprets incoming events and transmit corresponding  
-	  *        action to XConfigManager.
-	  *
-      **/
-
-	protected Node      peer;
-	protected String [] actuators;
-	public    String    reduced = null;
-
-	public XSentinel(Component component, Node node) {
-		peer = node;
-		if (component instanceof XComponent) { 
-			XComponent  xComponent = (XComponent) component;
-			actuators = xComponent.actuators();
-		} else {
-			actuators = new String[0];
-		}	
-	}
-
-	public static String signature(Node node, String [] actuators) {
-		/**
-		  *   Provide a signature string by reduction verifying that
-		  *		string equality implies reachability through actuators.
-		  *
-		  *     i.e. node peer component can be updated
-		  *     i.e. node peer component should not be deleted 
-		  *
-		  **/
-		String signature        = "";
-		if (!node.hasAttributes()) return "";
-		NamedNodeMap attributes = node.getAttributes();
-		int size                = attributes.getLength();
-		String [] keys          = new String[size];
-
-		for (int i=0; i< size; i++) {
-			Node item = attributes.item(i);
-			keys[i]   = item.getNodeName();
-		}
-		Arrays.sort(keys);
-			/* as DOM attributes are not ordered, 
-			   sort is needed to acheive proper reduction.
-			*/
-		signature += node.getNodeName();
-		for (int i=0; i< size; i++) {
-			String attrName = keys[i];
-			if (Arrays.binarySearch(actuators, attrName)>=0) {
-				signature   += " " + attrName;
-			} else {
-				Node item    = attributes.getNamedItem(attrName);
-				String value = item.getNodeValue().replaceAll("[ \t\n]+"," ");
-				signature   += " " + attrName + "='" + value + "'";				
-			}
-		}
-		return signature;
-	}	
-
-	public boolean checks(Node next) {
-		String             checker  = signature(next, actuators);
-		if (reduced==null) reduced  = signature(peer, actuators);
-		return reduced.equals(checker);
-	}
-
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-	void triggerEventNode(EventObject e, Node peer, String type) {
-		/**
-		  *  returns the first event node of given type.
-		  **/
-		NodeList nodelist = peer.getChildNodes();
-		for (int i = 0; i < nodelist.getLength(); i++) {
-			Node node = nodelist.item(i);
-			if (node.getNodeName().equals(type))
-				XConfigManager.xEvent(node, (Component) e.getSource());
-				return;
-		}
-		return;//TODO: Exception or authorize multiple actions ?
-	}
-
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	//     M O U S E   L I S T E N E R
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-	public void mouseClicked(MouseEvent e) {
-		//System.err.println(e);
-		triggerEventNode(e, peer, "mouseClicked");
-	}
-	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
-	public void mouseReleased(MouseEvent e) {}
-
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	//     A C T I O N   L I S T E N E R
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-	public void actionPerformed(ActionEvent e) {
-		//System.err.println(e);
-		triggerEventNode(e,peer, "actionPerformed");
-	}
-}
-
-class XUpdateVisitor {
-    /**
-      *   XUpdateVisitor unfolds update after each generation of model nodes.
-      *
-      *   At the end of the update, view and dom are in 1-1 correspondance,
-      *     this correspondance is memorized in an hashtable storing one 
-	  *     XSentinel par 1-1 edge.
-      *
-      *   This update recursively :
-      *       - adds/deletes to reach tree structure correspondance
-      *       - run the update method to reach attribute correspondance 
-      *
-      **/
-	Hashtable correspondance;
-
-	public XUpdateVisitor(Hashtable table) {
-		// Table initialized by manager with dialog content panel
-		//                   associated with document node.
-		correspondance = table;
-	}
-
-	public Component build(Container view, Node peer, Node item, int index) {
-		Component component  = buildPeerFor(item);
-		Object constraints   = getLayoutConstraints(peer, item); 
-		if (index>-1) {
-			view.add(component, constraints, index);
-		} else {
-			view.add(component, constraints);
-		}	
-		return component;
-	}
-
-	public void forget(Container view, Component component) {
-		/* removal alert
-			if (!(sentinel==null) && !sentinel.checks(item)) 
-				System.err.println("Replace:" +	sentinel.reduced 
-				 +" by "+ XSentinel.signature(item, new String[0]));
-		*/
-		view.remove(component);
-		correspondance.remove(component);
-	}
-
-	public void visit(Container view, Node peer) {
-		/**
-		  *  Computes a simple diff on tree structure.
-		  *
-		  **/
-		int allIndex     = 0;
-		int visibleIndex = 0;
-		NodeList nodes = peer.getChildNodes();
-		Component component;
-		XSentinel sentinel;
-		while (allIndex < nodes.getLength()) {
-			Node item = nodes.item(allIndex);
-			if (isVisible(item)) { 
-				if (visibleIndex < view.getComponentCount()) {
-					component = view.getComponent(visibleIndex);
-					sentinel  = (XSentinel) correspondance.get(component);
-					if (sentinel==null || !sentinel.checks(item)) {
-						forget(view, component);
-						component = build(view, peer, item, visibleIndex);
-					}
-				} else {
-					component = build(view, peer, item, -1);
-				}
-				if (component instanceof Container) {
-					// Rebuild container children.
-					Container container = (Container) component;
-					visit(container, item);
-				} 
-				visibleIndex += 1;
-			} 
-			allIndex += 1;
-		}
-		while (visibleIndex < view.getComponentCount()) {		
-			component = view.getComponent(visibleIndex);			
-			forget(view, component);		}			
-		if (view instanceof XComponent) { 
-			// Attribute correspondance once children rebuilt.
-			XComponent xView = (XComponent) view;
-			xView.refresh(peer);
-			// Sentinel sets watch.
-			sentinel   = new XSentinel(view, peer);
-			correspondance.put(view, sentinel);
-			addListeners(view, peer, sentinel);
-		}
-	}
-
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	Object getLayoutConstraints(Node parent, Node current) {
-		if (XConfigManager.getAttribute(parent, "layout").equals("border"))
-			return XConfigManager.getAttribute(current, "border-side");
-		return null;
-		} 
-
-	public boolean isVisible(Node node) {
-		// a. Event nodes are invisibles.
-		if (node.getNodeName().equals("mouseClicked"))    return false;
-		if (node.getNodeName().equals("actionPerformed")) return false;
-
-		// b. Text nodes with only invisible characters are invisible.
-		if (node.getNodeName().equals("#text"))
-			if (node.getNodeValue().replaceAll("^[ \t\n]+$","").equals(""))
-				return false;
-
-		// c. Chooser options are invisible.
-		if (node.getNodeName().equals("option"))          return false;
-
-		return true;
-
-
-	}
-
-	public void addListeners(Component component, Node node, XSentinel sentinel) {
-		String listener = XConfigManager.getAttribute(node, "listener");
-		if (listener.equals("MouseListener")) {
-			 component.addMouseListener(sentinel);
-		}
-		if (listener.equals("ActionListener")) {
-			if (component instanceof AbstractButton) {
-				AbstractButton button = (AbstractButton) component;
-				button.addActionListener(sentinel);
-			}
-			if (component instanceof XChooser) {
-				XChooser chooser = (XChooser) component;
-				chooser.addActionListener(sentinel);
-			}
-
-		}
-	}
-
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	static String xPackageName = "org.scilab.modules.gui.utils.Component.";
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	public Component buildPeerFor(Node node) {
-		//System.err.println( "buildPeerFor:" + node);
-
-		String tag = node.getNodeName();
-
-		// Specific treatment for scrolls...
-		if (tag.equals("SCROLL")) {
-			JPanel container = new JPanel();
-			return new SCROLL(node, container);
-		}
-
-		//1. Find the class with the same name.
-		Class componentClass;
-		try {
-			componentClass    = Class.forName(xPackageName + tag);
-		} catch (ClassNotFoundException e) {
-			// Some classes are made directly
-			//  - here labels for text node.
-			if (tag.equals("#text")) {
-				String value = node.getNodeValue();
-				return new JLabel(value);
-			}
-			// - here boxes.
-			if (tag.equals("HBOX")) {
-				Box hbox = Box.createHorizontalBox();
-				XConfigManager.drawConstructionBorders(hbox);
-				XConfigManager.setDimension(hbox, node);
-				return hbox;
-			}
-			if (tag.equals("VBOX")) {
-				Box vbox          = Box.createVerticalBox();
-				String background = XConfigManager.getAttribute(node, "background");
-				if (!(background.equals(XConfigManager.NAV))) {
-					Color color = XConfigManager.getColor(background);
-					vbox.setOpaque(true);
-					vbox.setBackground(color);
-				}
-				XConfigManager.drawConstructionBorders(vbox);
-				XConfigManager.setDimension(vbox, node);
-				return vbox;
-			}
-			if (tag.equals("VSPACE")) {
-				int height = XConfigManager.getInt(node, "height", 5);
-				return Box.createVerticalStrut(height);
-			}
-			if (tag.equals("HSPACE")) {
-				int width = XConfigManager.getInt(node, "width", 5);
-				return Box.createHorizontalStrut(width);
-			}
-			if (tag.equals("GLUE")) 
-				return Box.createGlue();
-			if (tag.equals("VGLUE")) 
-				return Box.createVerticalGlue();
-
-			// Declare failure due to class absence
-			// System.err.println( "ClassNotFoundException:" + e);			
-			return new XStub(tag, "ClassNotFoundException");
-		}
-
-		//2. Find the constructor.
-		Constructor constructor;
-		try {
-				// First with a Node,
-				constructor = componentClass.getConstructor(new Class[]{Node.class});
-		} catch (NoSuchMethodException e) {
-			try {
-				// then without anything.
-				constructor = componentClass.getConstructor(new Class[]{});
-			} catch (NoSuchMethodException f) {
-				// Declare failure due to constructor absence
-				System.err.println( "NoSuchMethodException:" + f);			
-				return new XStub(tag, "NoSuchMethodException");
-			}
-		} catch (SecurityException e) {
-			// Declare failure due to constructor rights (it must be public)
-			System.err.println( "SecurityException:" + e);			
-			return new XStub(tag, "SecurityException");
-		}
-
-		//3. Invoke the constructor.
-		Component component;
-		try {		
-			component = (Component) constructor.newInstance(new Object[]{node});
-		} catch (InstantiationException e) {
-			System.err.println( "InstantiationException:" + e);			
-			return new XStub(tag, "InstantiationException");
-		} catch (IllegalAccessException e) {
-			System.err.println( "IllegalAccessException:" + e);			
-			return new XStub(tag, "IllegalAccessException");
-		} catch (IllegalArgumentException e) {
-			System.err.println( "IllegalArgumentException:" + e);			
-			return new XStub(tag, "IllegalArgumentException");
-		} catch (InvocationTargetException e) {
-			System.err.println( "InvocationTargetException:" + e);			
-			return new XStub(tag, "InvocationTargetException");
-		}
-		return component;
-	}
-}
-
-class XStub extends JPanel {
-	/**
-	  *    XStub indicates how it goes wrong in buildPeerFor(Node).
-      **/
-
-	public XStub(String tag, String cause) {
-		super();
-		Border       black  = BorderFactory.createLineBorder(Color.blue);
-		TitledBorder title  = BorderFactory.createTitledBorder(black, tag);
-		Dimension dimension = new Dimension(100, 50);
-		setPreferredSize(dimension);
-		setOpaque(false);
-
-		title.setTitleColor(Color.blue);
-		setBorder(title);
-		setLayout(new FlowLayout());
-		add(new JLabel(cause));
-	}
-
-	public String toString() {
-		return "STUB";
-	}
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-public final class XConfigManager /**extends ConfigManager **/ {
-
+    /** Buffer size.*/
     private static final int BUFSIZE = 1024;
-
+    /** Margin size.*/
     private static final int MARGIN = 20;
-
+    /** Message for read error.*/
     private static final String ERROR_READ = "Could not load file: ";
+    /** Message for write error.*/
     private static final String ERROR_WRITE = "Could not save file: ";
+    /** Message for version.*/
     private static final String VERSION = "version";
+    /** Message for value.*/
     private static final String VALUE = "value";
+    /** Message for width.*/
     private static final String WIDTH = "width";
+    /** Message for height.*/
     private static final String HEIGHT = "height";
+    /** Message for x coordinate.*/
     private static final String XCOORD = "x";
+    /** Message for y coordinate.*/
     private static final String YCOORD = "y";
+    /** Message for main window position.*/
     private static final String MAINWINPOSITION = "MainWindowPosition";
+    /** Message for main widow size.*/
     private static final String MAINWINSIZE = "MainWindowSize";
+    /** Message for help window position.*/
     private static final String HELPWINPOSITION = "HelpWindowPosition";
+    /** Message for help widow size.*/
     private static final String HELPWINSIZE = "HelpWindowSize";
+    /** Message for help font size.*/
     private static final String HELPFONTSIZE = "HelpFontSize";
+    /** Message for profile.*/
     private static final String PROFILE = "Profile";
+    /** Message for foreground color.*/
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
+    /** Message for background color.*/
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
+    /** Message for color prefix.*/
     private static final String COLORPREFIX = "#";
+    /** Message for maximum output size.*/
     private static final String MAXOUTPUTSIZE = "MaxOutputSize";
+    /** Message for last opened dir.*/
     private static final String LASTOPENEDDIR = "LastOpenedDirectory";
-
+    /** Default Width.*/
     private static final int DEFAULT_WIDTH = 650;
+    /** Default height.*/
     private static final int DEFAULT_HEIGHT = 550;
-
+    /** Default max output size.*/
     private static final int DEFAULT_MAXOUTPUTSIZE = 10000;
+    /** Default help font size.*/
     private static final int DEFAULT_HELPFONTSIZE = 2;
 
-    /** -----------------------------------------------------------------------------------*/
+    /** Scilab configuration file.*/
+    private static final   String   SCILAB_CONFIG_FILE =
+        System.getenv("SCI") + "/modules/console/etc/XConfiguration.xml";
+    /** Scilab configuration stylesheet.*/
+    private static final   String   SCILAB_CONFIG_XSL  =
+        System.getenv("SCI") + "/modules/gui/src/xslt/XConfiguration.xsl";
+    /** User configuration file.*/
+    private static final   String   USER_CONFIG_FILE   =
+        ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
 
-    private static final   String   SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/XConfiguration.xml";
-    private static final   String   SCILAB_CONFIG_XSL  = System.getenv("SCI") + "/modules/gui/src/xslt/XConfiguration.xsl";
-
-    private static final   String   USER_CONFIG_FILE   = ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
-
-    protected static       JDialog  dialog;
+    /** Main dialog.*/
+    private static       JDialog  dialog;
+    //private static SwingScilabTab dialog;
+    /** DOM Document.*/
     private static         Document document;
+    /** Up-to-date flag.*/
     private static         boolean  updated            = false;
 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to display the view object model (V-DOM) ?
-      *
-     \*/
+    /** Top level DOM Node.*/
+    private static Node topDOM;
+    /** Top level Swing container.*/
+    private static Container topSwing;
+    /** Container-Sentinel correspondence.*/
+    private static Hashtable<Component, XSentinel> correspondance;
+    /** Last visitor.*/
+    private static XUpdateVisitor visitor;
 
-    static Node           topDOM;
-    static Container      topSwing;
-    static Hashtable      correspondance;
-	static XUpdateVisitor visitor;
+    /** Display dialog and wait for events.
+     *
+     */
+    public static void displayAndWait() {
 
-	public static void displayAndWait() {
+        reloadTransformer();
 
-		reloadTransformer();
+        // Set up Swing Side
+        dialog      = new JDialog(getTopLevel(), "Scilab Preferences", true);
+        topSwing    = dialog.getContentPane();
+        //dialog = new SwingScilabTab("Scilab Preferences");
+        //topSwing = new JPanel();
+        dialog.setContentPane(topSwing);
+        topSwing.setLayout(new BorderLayout());
+        // AWT implies to set layout at construction time.
 
-		// Set up Swing Side
-		dialog          = new JDialog(getTopLevel(), "Scilab Preferences",true);
-		topSwing        = dialog.getContentPane();		
-		topSwing.setLayout(new BorderLayout());// AWT implies to set layout at construction time.
+        // Set up DOM Side
+        readDocument();
+        updated = false;
 
-		// Set up DOM Side
-		readDocument();
-		updated = false;
+        // Set up correspondence
+        correspondance = new Hashtable<Component, XSentinel>();
 
-		// Set up correspondance
-		correspondance = new Hashtable();
-
-		// Let the show begin!
-		if (refreshDisplay())
-			dialog.setVisible(true);
+        // Let the show begin!
+        if (refreshDisplay()) {
+            dialog.setVisible(true);
+        }
     }
 
-	public static boolean refreshDisplay() {
+    /** Launch swing hierarchy update.
+     *
+     * @return whether XSL return a node or not.
+     */
+    public static boolean refreshDisplay() {
 
-		// Generate new view DOM.
-		topDOM = generateViewDOM().getNode().getFirstChild();
-		if (topDOM == null) {
-			System.err.println("XSL does not give a node!");
-			return false; 
-		}
+        // Generate new view DOM.
+        topDOM = generateViewDOM().getNode().getFirstChild();
+        if (topDOM == null) {
+            System.err.println("XSL does not give a node!");
+            return false;
+        }
 
-		// Refresh correspondance
-		//    TODO: top layout changes
-		correspondance.put(topSwing, topDOM); 
-		visitor = new XUpdateVisitor(correspondance);
-		visitor.visit(topSwing, topDOM);
-		dialog.pack();
+        // Refresh correspondence
+        //    TODO top layout changes
+        visitor = new XUpdateVisitor(correspondance);
+        visitor.visit(topSwing, topDOM);
+        dialog.pack();
 
-		// Refresh contextual help
-		if (!(help==null)) {
-			help();
-		} else {
-			//System.err.println(ViewDOM(document.getDocumentElement(),""));
-			//System.err.println(ViewDOM());
-			//System.err.println(SwingComposite());			
-		}
-		System.err.println("Refresh!");
-		return true;
-	}
+        // Refresh contextual help
+        if (!(help == null)) {
+            help();
+        } else {
+            /** TODO remove this! */
+            //viewDOM and swingComposite code are intentionally homologous.
+            //System.err.println(viewDOM());
+            //System.err.println(swingComposite());
+        }
+        return true;
+    }
 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to display the help ?
-      *
-     \*/
+    /** Secondary dialog for help.*/
+    private static JDialog  help = null;
+    /** Help component.*/
+    private static JTextArea xml = null;
+    /** Help component text size.*/
+    private static final int TEXT_SIZE = 30;
 
-	static JDialog  help = null;
-	static JTextArea xml = null;
+    /** Contextual help meant for developer so far.
+     *
+     *  TODO should display the View DOM and the Swing composite
+     *       on single scrolled pair of textarea to manifest correspondence
+     *
+     *  TODO build proper user contextual help.
+     *
+     */
     public static void help() {
-		/**
-		  *  Help is meant for developper so far, 
-		  *    it displays an XML control string.
-		  **/
-		if (help==null) {
-			JScrollPane scroll = new JScrollPane();
-		    help               = new JDialog(getTopLevel(), "XML view", false);
-			xml                = new JTextArea(30,30);
-			scroll.add(xml);
-			help.add(scroll);
-			help.setVisible(true);
-		}
-		String  view       = ViewDOM();
-		xml.setText(view);
+        if (help == null) {
+            JScrollPane scroll = new JScrollPane();
+            help               = new JDialog(getTopLevel(), "XML view", false);
+            xml                = new JTextArea(TEXT_SIZE, TEXT_SIZE);
+            scroll.add(xml);
+            help.add(scroll);
+            help.setVisible(true);
+        }
+        String  view       = viewDOM();
+        xml.setText(view);
     }
 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to produce contextual help for designers?
-	  *
-      *        It should display the View DOM and the Swing composite
-	  *	       on single scrolled pair of textarea to manifest correspondance
-	  *
-	  *        ViewDOM and SwingComposite code are intentionally stricly homologous.
-	  *
-	  *        TODO: invisible View nodes used for control shall be replaced
-	  *				 by blank lines in Swing composite
-	  *
-     \*/
+    /** Horizontal space between parent and child in String representations.
+     *
+     */
+    public static final String INCREMENT = "    ";
 
-	public static final String Increment = "    ";
-
-    private static String ViewDOM(Node node, String indent) {
-		String signature = indent;
-		if (node.hasAttributes()) {
-			signature += XSentinel.signature(node, new String[0]);
-		} else {
-			signature += (node.getNodeName() + ": " + node.getNodeValue()).replaceAll("[ \t\n]+"," ");
-		}
-		signature   += "\n";
-		NodeList nodelist = node.getChildNodes();
-		if (true) {
-			for (int i=0; i< nodelist.getLength(); i++) {
-				Node item  = nodelist.item(i); 
-				signature += ViewDOM(item, indent+Increment);
-			}
-		}
-		return signature;
-	}
-    private static String ViewDOM() {
-		return ViewDOM(topDOM, "");
+    /** Compute recursive string representation of DOM view tree.
+     *
+     * @param node : current node
+     * @param indent : current indentation
+     * @return node representation
+     *
+     * TODO invisible View nodes used for control shall be replaced
+     *       by blank lines in Swing composite
+     */
+    private static String viewDOM(final Node node, final String indent) {
+        String signature = indent;
+        if (node.hasAttributes()) {
+            signature += XSentinel.signature(node, new String[0]);
+        } else {
+            String single = node.getNodeName() + ": " + node.getNodeValue();
+            signature    += single.replaceAll("[ \t\n]+", " ");
+        }
+        signature += "\n";
+        NodeList nodelist = node.getChildNodes();
+        if (true) {
+            for (int i = 0; i < nodelist.getLength(); i++) {
+                Node item  = nodelist.item(i);
+                signature += viewDOM(item, indent + INCREMENT);
+            }
+        }
+        return signature;
     }
 
-    private static String SwingComposite(Component component, String indent) {
-		String signature = indent;
-		if (true) {
-			signature       += component.toString();
-		}
-		signature       += "\n";
-		if (component instanceof Container) {
-			Container container = (Container) component;
-			Component [] components = container.getComponents();
-			for (int i=0; i < components.length; i++) {
-				Component child = components[i];
-				signature      += SwingComposite(child, indent+Increment);		
-			}
-		}
-		return signature;
-	}
-    private static String SwingComposite() {
-		return SwingComposite(topSwing, "");
+    /** Compute top-level string representation of DOM view tree.
+     *
+     * @return document representation
+     */
+    private static String viewDOM() {
+        return viewDOM(topDOM, "");
     }
-				 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to produce the view object model (V-DOM) ?
-      *
-     \*/
 
-    private static TransformerFactory     factory  = ScilabTransformerFactory.newInstance();
-    private static DocumentBuilderFactory builder  = ScilabDocumentBuilderFactory.newInstance();
+    /** Compute recursive string representation of Swing tree.
+    *
+    * @param component : current component
+    * @param indent : current indentation
+    * @return component representation
+    *
+    * TODO invisible View nodes used for control shall be replaced
+    *       by blank lines in Swing composite
+    */
+    private static String swingComposite(
+            final Component component,
+            final String indent) {
+        String signature = indent;
+        if (true) {
+            signature       += component.toString();
+        }
+        signature       += "\n";
+        if (component instanceof Container) {
+            Container container = (Container) component;
+            Component [] components = container.getComponents();
+            for (int i = 0; i < components.length; i++) {
+                Component child = components[i];
+                signature += swingComposite(child, indent + INCREMENT);
+            }
+        }
+        return signature;
+    }
 
-	static Transformer transformer = null;
+    /** Compute top-level string representation of swing composite.
+    *
+    * @return Graphical interface representation
+    */
+    private static String swingComposite() {
+        return swingComposite(topSwing, "");
+    }
 
+    /** XSL Transformer factory.
+     *
+     */
+    private static TransformerFactory
+         factory  = ScilabTransformerFactory.newInstance();
+    /** XML Document builder factory.
+     *
+     */
+    private static DocumentBuilderFactory
+         builder  = ScilabDocumentBuilderFactory.newInstance();
+
+    /** XSL Transformer.
+     *
+     */
+    private static Transformer transformer = null;
+
+    /** Load XSL as XSL Transformer.
+     *
+     */
     private static void reloadTransformer() {
         try {
             StreamSource source = new StreamSource(SCILAB_CONFIG_XSL);
@@ -686,9 +342,13 @@ public final class XConfigManager /**extends ConfigManager **/ {
         } catch (TransformerFactoryConfigurationError e1) {
             System.out.println(ERROR_READ + SCILAB_CONFIG_XSL);
         }
-		System.out.println("XSL reloaded!");
-	}
+        System.out.println("XSL reloaded!");
+    }
 
+    /** Generate view by application of XSL on XConfiguration file.
+     *
+     * @return View DOM.
+     */
     private static DOMResult generateViewDOM() {
         DOMResult result    = new DOMResult();
         DOMSource source    = new DOMSource(document);
@@ -697,234 +357,281 @@ public final class XConfigManager /**extends ConfigManager **/ {
         } catch (TransformerException e) {
             System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
         }
-		return result;
+        return result;
     }
 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to identify an element with its context string ?
-      *
-      *
-     \*/
-
-	public static Element getElementByContext(String context) {
-		String [] id = context.split("#");
-		NodeList elements = document.getElementsByTagName(id[0]);
-		if (elements.getLength()==1)
-			return (Element) elements.item(0); 
-		if (elements.getLength()==0) {
-			System.err.println("'" + context + "' has no image in document!");
-			return null;
-			}
-		if (id.length == 1) {
-			System.err.println("'" + context + "' has not a unique response (use unique-id template)!");
-			return null;
-			}
-		Integer integer = Integer.parseInt(id[1]);
-		int occurence = integer.intValue();
-		if (elements.getLength() <= occurence) {
-			System.err.println("'" + context + "' has no image in document!");
-			return null;
-			}
-		return (Element) elements.item(occurence);
-	}
-
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to manage incoming xEvent from sentinels ?
-      *
-      *
-     \*/
-
-	public static void xEvent(Node action, Component source) {
-
-		if (!getAttribute(action,"set").equals(NAV)) {
-			String context   = getAttribute(action,"context");
-			Element element  = getElementByContext(context);
-
-			String value     = getAttribute(action,"value");
-			String attribute = getAttribute(action,"set");
-			if (! (element==null)) {
-				//System.err.println(context + "." + element + "@" + attribute + "= " + value);
-				element.setAttribute(attribute, value);
-			}
-			refreshDisplay();
-			updated = true;
-			return;
-		}
-
-		if (!getAttribute(action,"choose").equals(NAV)) {
-			String context   = getAttribute(action,"context");
-			Element element  = getElementByContext(context);
-
-			if (source instanceof XChooser) {
-				XChooser chooser   = (XChooser) source;
-				String   value     = chooser.choose();
-				String   attribute = getAttribute(action,"choose");
-				if (! (element==null)) {
-					//System.err.println(context + "." + element + "@" + attribute + "= " + value);
-					element.setAttribute(attribute, value);
-				}
-				refreshDisplay();
-				updated = true;//TODO: not always real modification...
-			} else {
-				System.err.println("Choose attribute only valid on choosers (SELECT, COLOR, FILE, ENTRY,...)");
-			}
-			return;
-		}
-
-		String callback = getAttribute(action,"callback");
-		if (callback.equals("Help")) {
-			// TODO: it can be a contextual help.
-			System.err.println("Help not implemented yet!");
-			return;
-		}
-		if (callback.equals("Ok")) {
-			writeDocument();
-			dialog.dispose(); 
-            updated = false;
-			return;
-		}
-		if (callback.equals("Apply")) {
-			System.err.println("User XML saved!");
-            updated = false;
-			writeDocument();
-			return;
-		}
-		if (callback.equals("Default")) {
-			System.out.println("Scilab XML reloaded!");
-			reloadTransformer();
-			refreshUserCopy();
-			readDocument();
-            updated = false;
-			refreshDisplay();
-			return;
-		}
-		if (callback.equals("Cancel")) {
-			System.err.println("User XML reloaded!");
-			readDocument();
-			if (updated) {
-				//TODO: advertise it!
-				}
-            updated = false;
-			refreshDisplay();
-			return;
-		}
-	}
-
-    /** -----------------------------------------------------------------------------------
+    /** Identify an element with its context string.
      *
-     * Manage attribute consultation
-     */
-
-	public static final String NAV = "\"not an value'";
-
-	public static final String getAttribute(Node node, String name, String value) {
-		String response = getAttribute(node, name);
-		if (response==NAV) return value;
-		return response;
-	}
-
-	public static final String getAttribute(Node node, String name) {
-		NamedNodeMap attrs = node.getAttributes();
-		if (attrs==null)   return NAV;
-		Node attr = attrs.getNamedItem(name);
-		if (attr==null)	   return NAV;
-		return attr.getNodeValue();
-	}
-
-	public static final int getInt(Node node, String name, int value) {
-		String response = getAttribute(node, name);
-		if (response==NAV) return value;
-		Integer integer = Integer.parseInt(response);
-		return integer.intValue();
-	}
-
-    /** -----------------------------------------------------------------------------------
+     *     TODO logarithmic id (3/3/6/1...) instead of linear (SELECT[3]) one!
      *
-     * Manage [0-9a-f]{6} color representation 
+     * @param context : the context string used to catch the element.
+     * @return the corresponding node
      */
-
-	public static final String getColor(Color source) {
-		return Integer.toHexString(source.getRGB());
-	}
-
-	public static final Color getColor(String source) {
-		return Color.decode(source);
-	}
-
-  /** -----------------------------------------------------------------------------------
-      *
-      *   TODO: How to impact modification of preferences ?
-      *
-     \*/
-    public static void subscribeUpdate() {
+    public static Element getElementByContext(final String context) {
+        String [] id = context.split("#");
+        NodeList elements = document.getElementsByTagName(id[0]);
+        if (elements.getLength() == 1) {
+            return (Element) elements.item(0);
+        }
+        if (elements.getLength() == 0) {
+            System.err.println("'" + context + "' has no image in document!");
+            return null;
+            }
+        if (id.length == 1) {
+            System.err.println("'" + context + "' has not a unique response "
+                                             + "(use unique-id template)!");
+            return null;
+            }
+        Integer integer = Integer.parseInt(id[1]);
+        int occurence = integer.intValue();
+        if (elements.getLength() <= occurence) {
+            System.err.println("'" + context + "' has no image in document!");
+            return null;
+            }
+        return (Element) elements.item(occurence);
     }
 
-    public static void notifyUpdate() {
-    }
 
-    /** -----------------------------------------------------------------------------------
-      *
-      *   How to get top-level window identifier to open pop-up ?
-      *
-     \*/
-
-    private static Frame getTopLevel() {
-	Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
-	return (Frame)main.getParent().getParent().getParent().getParent().getParent().getParent();
-    }
-
- 
-    /** -----------------------------------------------------------------------------------
+    /** Interpret action.
      *
-     * Create a copy of Scilab configuration file in the user directory
+     * @param action : to be interpreted.
+     * @param source : component source of the action (only class is needed).
      */
-    public static void createUserCopy() {
-        File fileConfig = new File(USER_CONFIG_FILE);
-        if (!fileConfig.exists()/*|| (fileConfig.length() == 0) || checkVersion()*/) {
-			refreshUserCopy();
+    public static void xEvent(final Node action, final Component source) {
+
+        if (!getAttribute(action, "set").equals(NAV)) {
+            String context   = getAttribute(action, "context");
+            Element element  = getElementByContext(context);
+
+            String value     = getAttribute(action, "value");
+            String attribute = getAttribute(action, "set");
+            if (!(element == null)) {
+                element.setAttribute(attribute, value);
+            }
+            refreshDisplay();
+            updated = true;
+            return;
+        }
+
+        if (!getAttribute(action, "choose").equals(NAV)) {
+            String context   = getAttribute(action, "context");
+            Element element  = getElementByContext(context);
+
+            if (source instanceof XChooser) {
+                XChooser chooser   = (XChooser) source;
+                String   value     = chooser.choose();
+                String   attribute = getAttribute(action, "choose");
+                if (!(element == null)) {
+                    element.setAttribute(attribute, value);
+                }
+                refreshDisplay();
+                updated = true;
+                //TODO not always real modification...
+            } else {
+                System.err.println("Choose attribute only valid on choosers "
+                                 + "(SELECT, COLOR, FILE, ENTRY,...)");
+            }
+            return;
+        }
+
+        String callback = getAttribute(action, "callback");
+        if (callback.equals("Help")) {
+            // TODO it can be a contextual help.
+            //System.err.println("Help not implemented yet!");
+            return;
+        }
+        if (callback.equals("Ok")) {
+            writeDocument();
+            dialog.dispose();
+            updated = false;
+            return;
+        }
+        if (callback.equals("Apply")) {
+            //System.err.println("User XML saved!");
+            updated = false;
+            writeDocument();
+            return;
+        }
+        if (callback.equals("Default")) {
+            //System.out.println("Scilab XML reloaded!");
+            reloadTransformer();
+            refreshUserCopy();
+            readDocument();
+            updated = false;
+            refreshDisplay();
+            return;
+        }
+        if (callback.equals("Cancel")) {
+            //System.err.println("User XML reloaded!");
+            readDocument();
+            if (updated) {
+                //TODO advertise it!
+                }
+            updated = false;
+            refreshDisplay();
+            return;
         }
     }
 
-   /**
-     * Refresh configuration file in the user directory with Scilab defaults
+
+     /** Sentinel string for attribute consulting.
+      *
+      */
+     public static final String NAV = "\"not an value'";
+
+     /** Attribute consulting with default.
+      *
+      * @param node : consulted node
+      * @param name : attribute key
+      * @param value : default value
+      * @return the consulted value
+      */
+    public static String getAttribute(
+            final Node node,
+            final String name,
+            final String value
+            ) {
+        String response = getAttribute(node, name);
+        if (response == NAV) {
+            return value;
+        }
+        return response;
+    }
+
+    /** Attribute consulting without default.
+     *
+     * @param node : consulted node.
+     * @param name : attribute key.
+     * @return the consulted value (or NAV if attribute key is absent)
+     */
+    public static String getAttribute(final Node node, final String name) {
+        NamedNodeMap attrs = node.getAttributes();
+        if (attrs == null) {
+            return NAV;
+        }
+        Node attr = attrs.getNamedItem(name);
+        if (attr == null) {
+            return NAV;
+        }
+        return attr.getNodeValue();
+    }
+
+    /** Typed attribute consulting with default.
+     *
+     * @param node : consulted node.
+     * @param name : attribute key.
+     * @param value : default value.
+     * @return the value.
+     */
+    public static int getInt(
+            final Node node,
+            final String name,
+            final int value
+            ) {
+        String response = getAttribute(node, name);
+        if (response == NAV) {
+            return value;
+        }
+        Integer integer = Integer.parseInt(response);
+        return integer.intValue();
+    }
+
+
+    /** Manage color representation.
+     *
+     * @param source : the color.
+     * @return the string representation.
+     */
+    public static String getColor(final Color source) {
+        return Integer.toHexString(source.getRGB());
+    }
+
+    /** Manage color representation.
+     *
+     * @param source : the string representation.
+     * @return the corresponding color
+     */
+    public static Color getColor(final String source) {
+        return Color.decode(source);
+    }
+
+    /** TODO How to impact modification of preferences ?
+     *
+     */
+    public static void subscribeUpdate() {
+    }
+
+    /** TODO How to impact modification of preferences ?
+    *
+    */
+    public static void notifyUpdate() {
+    }
+
+    /** Get top level window for correct dialog opening.
+     *
+     * @return top-level frame.
+     */
+    private static Frame getTopLevel() {
+        Container main = (Container) ScilabConsole.getConsole().getAsSimpleConsole();
+        return (Frame)main.getParent().getParent().getParent().getParent().getParent().getParent();
+    }
+
+    /** Create a copy of Scilab configuration file in the user directory.
+     *
+     */
+    public static void createUserCopy() {
+        File fileConfig = new File(USER_CONFIG_FILE);
+        if (!fileConfig.exists()
+            /*|| (fileConfig.length() == 0) || checkVersion()*/
+            ) {
+            refreshUserCopy();
+        }
+    }
+
+    /** Refresh configuration file in the user directory with Scilab defaults.
+     *
      */
     public static void refreshUserCopy() {
             /* Create a local copy of the configuration file */
             try {
-                copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
+                copyFile(new File(SCILAB_CONFIG_FILE),
+                         new File(USER_CONFIG_FILE));
             } catch (FileNotFoundException e) {
                 System.out.println(ERROR_READ + USER_CONFIG_FILE);
             }
     }
 
-   /**
-     * draw construction borders for layout debug
+   /** draw construction borders for layout debug.
+    *
+    * @param component : the marked component.
+    */
+    public static void drawConstructionBorders(final JComponent component) {
+        if (false) {
+            // hard-coded flag.
+            Border construction = BorderFactory.createLineBorder(Color.red);
+            component.setBorder(construction);
+        }
+    }
+
+    /** Set a dimension for a component.
+     *
+     * @param component : the resized component.
+     * @param peer : the node having the dimension information.
      */
+    public static void setDimension(
+            final JComponent component,
+            final Node peer) {
+        int      height     = XConfigManager.getInt(peer , "height", 0);
+        int       width     = XConfigManager.getInt(peer , "width",  0);
+        if (height > 0 && width > 0) {
+            //System.err.println("Dimension: " + width + "x" + height);
+            Dimension dimension = new Dimension(width, height);
+            component.setPreferredSize(dimension);
+        }
+    }
 
-	public static void drawConstructionBorders(JComponent component) {
-		if (false) {
-			Border       construction = BorderFactory.createLineBorder(Color.red);
-			component.setBorder(construction);	
-		}
-	}
-	
-	public static void setDimension(JComponent component, Node peer) {
-		int      height     = XConfigManager.getInt(peer , "height", 0);
-		int       width     = XConfigManager.getInt(peer , "width",  0);
-		if (height>0 && width>0) {
-			//System.err.println("Dimension: " + width + "x" + height);
-			Dimension dimension = new Dimension(width, height);
-			component.setPreferredSize(dimension);
-		}
-	}
+    // BELOW THIS LINE IS THE ORIGINAL CODE LEFT FOR REUSE.
 
-    /** =================================================================================== **/
-
-    /** =================================================================================== **/
-
-    /** =================================================================================== **/
     /**
      * Constructor blocked, singleton pattern.
      */
@@ -938,9 +645,9 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @param out dest file
      * @throws FileNotFoundException
      */
-    private static void copyFile(File in, File out) throws FileNotFoundException {
+    private static void copyFile(final File in, final File out) throws FileNotFoundException {
         FileInputStream fis = new FileInputStream(in);
-        FileOutputStream fos = new FileOutputStream(out);;
+        FileOutputStream fos = new FileOutputStream(out);
 
         byte[] buf = new byte[BUFSIZE];
         int i = 0;
@@ -959,7 +666,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
     /**
      * Read the file to modify
      */
-    private static Document readDocument(String fileName) {
+    private static Document readDocument(final String fileName) {
         File xml = null;
         DocumentBuilder docBuilder = null;
 
@@ -1012,7 +719,8 @@ public final class XConfigManager /**extends ConfigManager **/ {
 
     }
     /**
-     * @return true if configuration.xml in etc has a version different of the version in home
+     * @return true if configuration.xml in etc has a version different.
+     * of the version in home
      */
     public static boolean checkVersion() {
         if (updated) {
@@ -1040,21 +748,18 @@ public final class XConfigManager /**extends ConfigManager **/ {
         return true;
     }
 
-    /**
-     * Get the name of the user configuration file
+    /** Get the name of the user configuration file.
      * @return the name of the configuration file
      */
     public static String getUserConfigFile() {
         return USER_CONFIG_FILE;
     }
 
-    /** ----------------------------------------------------------------------------------- **/
-    /**
-     * Save a new font setting
+    /** Save a new font setting.
      * @param font the new font
      * @deprecated
      */
-    public static void saveFont(Font font) {
+    public static void saveFont(final Font font) {
 
         /* Load file */
         readDocument();
@@ -1144,7 +849,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * Get the font size in the help viewer
      * @return the font size
      */
-    public static void setHelpFontSize(int size) {
+    public static void setHelpFontSize(final int size) {
 
         /* Load file */
         readDocument();
@@ -1170,7 +875,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * Save the console Foreground Color
      * @param color the new Color
      */
-    public static void saveConsoleForeground(Color color) {
+    public static void saveConsoleForeground(final Color color) {
 
         /* Load file */
         readDocument();
@@ -1196,7 +901,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * Save the console Background Color
      * @param color the new Color
      */
-    public static void saveConsoleBackground(Color color) {
+    public static void saveConsoleBackground(final Color color) {
 
         /* Load file */
         readDocument();
@@ -1217,9 +922,11 @@ public final class XConfigManager /**extends ConfigManager **/ {
             writeDocument();
         }
     }
-    /** ----------------------------------------------------------------------------------- **/
-    /**         D E P R E C A T E D   S E S S I O N   P A R A M E T E R S                   **/
-    /** ----------------------------------------------------------------------------------- **/
+
+
+    // BELOW THIS LINE IS THE ORIGINAL CODE LEFT FOR SESSION PARAMETERS.
+
+    
     /**
      * Get the position of Scilab Main Window
      * @return the position
@@ -1256,7 +963,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @param position the position of Scilab main Window
      * @deprecated session parameter
      */
-    public static void saveMainWindowPosition(Position position) {
+    public static void saveMainWindowPosition(final Position position) {
 
         /* Load file */
         readDocument();
@@ -1289,7 +996,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @param size the size of Scilab main Window
      * @deprecated session parameter
      */
-    public static void saveMainWindowSize(Size size) {
+    public static void saveMainWindowSize( final Size size) {
 
         /* Load file */
         readDocument();
@@ -1378,7 +1085,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @param position the position of Scilab help Window
      * @deprecated session parameter
      */
-    public static void saveHelpWindowPosition(Position position) {
+    public static void saveHelpWindowPosition(final Position position) {
 
         /* Load file */
         readDocument();
@@ -1411,7 +1118,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @param size the size of Scilab help Window
      * @deprecated session parameter
      */
-    public static void saveHelpWindowSize(Size size) {
+    public static void saveHelpWindowSize(final Size size) {
 
         /* Load file */
         readDocument();
@@ -1470,7 +1177,7 @@ public final class XConfigManager /**extends ConfigManager **/ {
      * @deprecated session parameter
      */
 
-    public static void saveLastOpenedDirectory(String path ){
+    public static void saveLastOpenedDirectory(final String path ){
         /* Load file */
         readDocument();
 
@@ -1531,5 +1238,6 @@ public final class XConfigManager /**extends ConfigManager **/ {
         return path ;
     }
 }
+
 
 

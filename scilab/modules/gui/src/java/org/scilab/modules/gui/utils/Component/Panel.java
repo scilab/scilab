@@ -18,6 +18,8 @@ import org.w3c.dom.Node;
 import org.scilab.modules.gui.utils.XConfigManager;
 import java.awt.BorderLayout;
 
+//TODO ScilabSwing class for this?
+
 /** Implementation of Panel compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -67,3 +69,4 @@ public class Panel extends JPanel implements XComponent {
         return signature;
     }
 }
+

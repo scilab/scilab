@@ -19,6 +19,8 @@ import javax.swing.JComboBox;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+//TODO ScilabSwing class for this?
+
 /** Implementation of Select compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -89,3 +91,4 @@ public class Select extends JComboBox implements XComponent, XChooser {
         return signature;
     }
 }
+

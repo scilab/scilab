@@ -12,8 +12,7 @@
 
 package org.scilab.modules.gui.utils.Component;
 
-import javax.swing.JButton;
-//import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 
 import org.scilab.modules.gui.utils.XComponent;
 import org.scilab.modules.gui.utils.XConfigManager;
@@ -24,8 +23,8 @@ import org.w3c.dom.Node;
  * @author Pierre GRADIT
  *
  */
-public class Button extends JButton implements XComponent {
-//public class Button extends SwingScilabPushButton implements XComponent {
+//public class Button extends JButton implements XComponent {
+public class Button extends SwingScilabPushButton implements XComponent {
 
     /** Universal identifier for serialization.
      *
@@ -100,4 +99,5 @@ public class Button extends JButton implements XComponent {
 
 
 }
+
 

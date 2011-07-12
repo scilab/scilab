@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='iso-8859-1'?>
-<INTERFACE id="root" path="INTERFACE/fonts/">
+<interface id="root" path="interface/fonts/">
 	<general>
-		<BODY maturity="B">
+		<body maturity="B">
 			<environment 
 				floating-point-exception="Produces a warning" 
 				printing-format="long"
@@ -10,9 +10,9 @@
 			<java-heap-memory 
 				heap-size="128"
 				/>
-		</BODY>
+		</body>
 		<confirmation-dialogs>
-			<BODY maturity="B">
+			<body maturity="B">
 				<tools order="ascending">
 					<tool 
 						state="checked"   
@@ -29,10 +29,10 @@
 						description="Warn before deleting Command History items"
 					/>
 				</tools>		
-			</BODY>
+			</body>
 		</confirmation-dialogs>		
 		<shortcuts>
-			<BODY maturity="B">
+			<body maturity="B">
 				<actions active="scilab" filter="">
 					<action-folder name="Console" state="open">
 						<action 
@@ -51,18 +51,50 @@
 						<action 
 							ctrl="O"   
 							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
+						<action 
+							ctrl="O"   
+
+							description="Open..."/>
 					</action-folder>
 				</actions>		
-			</BODY>
+			</body>
 		</shortcuts>		
 		<current-directory>
-			<BODY>
+			<body>
 				<TBS/>
-			</BODY>
+			</body>
 		</current-directory>		
 	</general>
 	<fonts>
-		<BODY maturity="B">
+		<body maturity="B">
 			<desktop-font use-system-font="checked">
 				<font family="system" face="plain" size="10pt"/>
 			</desktop-font>
@@ -86,10 +118,10 @@
 					<font family="arial" face="bold italic" size="12pt"/>
 				</font-type>
 			</custom-font>
-		</BODY>
+		</body>
 	</fonts>
 	<colors>
-		<BODY>
+		<body>
 			<desktop-colors 
 				use-system-color="checked" 
 				text="#000000"
@@ -109,77 +141,77 @@
 					underline="unchecked" strinke-through="unchecked">
 				</item>
 			</syntax-highlighting-colors>
-		</BODY>
+		</body>
 	</colors>
 	<console>
-		<BODY>
+		<body>
 			<display wrap-lines="checked" columns-to-display="100"
 				tab-size="4" scroll-size = "3000">
 			</display>
 			<accessibility/>
-		</BODY>
+		</body>
 	</console>
 	<command-history>
-		<BODY>
+		<body>
 			<saving kind="quit">
 				<after volume="1"/>				
 			</saving>
 			<settings history-file="" history-lines="1000"/>
-		</BODY>
+		</body>
 	</command-history>
 	<scinotes>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 		<display>
-			<BODY maturity="I">
+			<body maturity="I">
 				<TBD/>
-			</BODY>
+			</body>
 		</display>		
 		<tab>
-			<BODY maturity="I">
+			<body maturity="I">
 				<TBD/>
-			</BODY>
+			</body>
 		</tab>		
 		<language>
-			<BODY maturity="I">
+			<body maturity="I">
 				<TBD/>
-			</BODY>
+			</body>
 		</language>		
 		<autosave>
-			<BODY maturity="I">
+			<body maturity="I">
 				<TBD/>
-			</BODY>
+			</body>
 		</autosave>		
 	</scinotes>
 	<help>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</help>
 	<variable-browser>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</variable-browser>
 	<variable-editor>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</variable-editor>
 	<xcos>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</xcos>
 	<toolbars>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</toolbars>
 	<toolboxes>
-		<BODY maturity="I">
+		<body maturity="I">
 			<TBD/>
-		</BODY>
+		</body>
 	</toolboxes>
-</INTERFACE>
+</interface>

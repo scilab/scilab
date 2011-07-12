@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import org.w3c.dom.Node;
 
+//TODO import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+// - setIcon() and getIcon() not reachable...
+
 /** Implementation of Label compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -97,3 +100,4 @@ public class Icon extends JLabel implements XComponent {
         return signature;
     }
 }
+

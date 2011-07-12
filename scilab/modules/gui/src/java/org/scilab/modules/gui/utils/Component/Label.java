@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import org.w3c.dom.Node;
 
+//TODO import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+// - text does not appear.
+
 /** Implementation of Label compliant with extended management.
 *
 * @author Pierre GRADIT
@@ -167,3 +170,4 @@ public class Label extends JLabel implements XComponent {
         return signature;
     }
 }
+

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - INRIA - Pierre GRADIT
+ * Copyright (C) 2011 - Pierre GRADIT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,11 +14,25 @@ package org.scilab.modules.gui.utils;
 
 import org.w3c.dom.Node;
 
+/** XComponent implements scilab components compliant with XManagement.
+ *
+ * @author Pierre GRADIT
+ */
 public interface XComponent {
 
-	// CAUTION : Layout information have to be set in constructor!
+    // CAUTION : Layout information have to be set in constructor!
 
-	String [] actuators();
-	void refresh(Node peer);
+    /** Define the set of actuators.
+     *
+     * @return array of actuator names.
+     */
+    String [] actuators();
+
+    /** Refresh the component by the use of actuators.
+     *
+     * @param peer the corresponding view DOM node
+     */
+    void refresh(Node peer);
 }
+
 
