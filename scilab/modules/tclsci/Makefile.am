@@ -63,6 +63,7 @@ libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
+			-I$(top_srcdir)/modules/threads/includes \
 			-I$(top_srcdir)/modules/string/includes
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)

@@ -11,8 +11,11 @@
 */
 
 #include "filemanager.hxx"
+extern "C"
+{
 #include "os_wcsdup.h"
 #include <stdio.h>
+}
 
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;

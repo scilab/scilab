@@ -55,6 +55,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/ui_data/includes/ \
+            -I$(top_srcdir)/modules/threads/includes/ \
 			-I$(top_srcdir)/modules/types/includes/
 
 if IS_MACOSX
@@ -81,6 +82,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
 libscishell_la_LIBADD = libscishell-algo.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 

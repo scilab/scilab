@@ -43,14 +43,16 @@ scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
-$(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(LTLIBINTL)
+COMMON_LIBS = \
+    $(top_builddir)/modules/threads/libscithreads.la \
+    $(top_builddir)/modules/shell/libscishell.la \
+    $(top_builddir)/modules/core/libscicore.la \
+    $(top_builddir)/modules/completion/libscicompletion.la \
+    $(top_builddir)/modules/localization/libscilocalization.la \
+    $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+    $(top_builddir)/modules/io/libsciio.la \
+    $(top_builddir)/modules/output_stream/libscioutput_stream.la \
+    $(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
@@ -69,6 +71,7 @@ COMMON_CPPFLAGS = 		-I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/fileio/includes/ \
 						-I$(top_srcdir)/modules/string/includes/ \
 						-I$(top_srcdir)/modules/history_manager/includes/ \
+						-I$(top_srcdir)/modules/threads/includes/ \
 						-I$(top_srcdir)/modules/api_scilab/includes/
 
 scilab_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \

@@ -42,6 +42,7 @@ libscidynamic_link_la_CFLAGS = \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/api_scilab/includes \
     -I$(top_srcdir)/modules/system_env/includes \
+    -I$(top_srcdir)/modules/threads/includes \
     -I$(srcdir)/includes/
 
 libscidynamic_link_la_CPPFLAGS = \
@@ -58,7 +59,8 @@ libscidynamic_link_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/system_env/includes
+    -I$(top_srcdir)/modules/system_env/includes \
+    -I$(top_srcdir)/modules/threads/includes
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
 noinst_LTLIBRARIES = libscidynamic_link-algo.la

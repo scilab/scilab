@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../windows_tools/src/c/scilab_windows/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -99,7 +99,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -124,7 +124,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../windows_tools/src/c/scilab_windows/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -151,7 +151,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../windows_tools/src/c/scilab_windows/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\core\includes;../symbol/includes;../types/includes;../abstractSyntaxTree/includes;../windows_tools/includes;../localization/includes;../io/includes;../../libs/MALLOC/includes;../../libs/intl;../fileio/includes;../string/includes;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SYSTEM_ENV_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -234,6 +234,9 @@
     <ProjectReference Include="..\symbol\symbol.vcxproj">
       <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

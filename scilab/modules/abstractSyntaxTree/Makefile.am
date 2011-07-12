@@ -23,17 +23,18 @@ libsciabstractSyntaxTree_la_SOURCES = \
 				src/cpp/scilabexception.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS = \
-			-I $(top_srcdir)/modules/symbol/includes \
-			-I $(top_srcdir)/modules/types/includes \
-			-I $(top_srcdir)/modules/functions_manager/includes \
-			-I $(top_srcdir)/modules/elementary_functions/includes \
-			-I $(top_srcdir)/modules/operations/includes \
-			-I $(top_srcdir)/modules/output_stream/includes \
-			-I includes \
-			-I src/cpp \
-			-I $(top_srcdir)/modules/system_env/includes \
-			-I $(top_srcdir)/modules/api_scilab/includes \
-			-I $(top_srcdir)/modules/string/includes
+	-I includes \
+	-I src/cpp \
+    -I $(top_srcdir)/modules/symbol/includes \
+	-I $(top_srcdir)/modules/types/includes \
+	-I $(top_srcdir)/modules/functions_manager/includes \
+	-I $(top_srcdir)/modules/elementary_functions/includes \
+	-I $(top_srcdir)/modules/operations/includes \
+	-I $(top_srcdir)/modules/output_stream/includes \
+	-I $(top_srcdir)/modules/system_env/includes \
+	-I $(top_srcdir)/modules/api_scilab/includes \
+	-I $(top_srcdir)/modules/string/includes \
+	-I $(top_srcdir)/modules/threads/includes
 
 
 

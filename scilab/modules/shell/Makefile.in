@@ -132,6 +132,7 @@ libscishell_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 libscishell_la_DEPENDENCIES = libscishell-algo.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
@@ -476,6 +477,7 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ $(am__append_1)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -496,6 +498,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
 libscishell_la_LIBADD = libscishell-algo.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 

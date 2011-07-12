@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -99,7 +99,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -120,7 +120,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -146,7 +146,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../abstractSyntaxTree/includes;../../../elementary_functions/includes;../../../operations/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../system_env/includes;../../../../libs/MALLOC/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -248,6 +248,9 @@
     <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>

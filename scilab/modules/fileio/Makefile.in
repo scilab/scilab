@@ -609,6 +609,7 @@ libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/shell/includes \
+				-I$(top_srcdir)/modules/threads/includes \
 				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \

@@ -1766,6 +1766,7 @@ libs/doublylinkedlist/Makefile
 libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
+modules/threads/Makefile
 modules/abstractSyntaxTree/Makefile
 modules/parse/Makefile
 modules/symbol/Makefile

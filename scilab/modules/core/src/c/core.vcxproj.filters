@@ -591,9 +591,6 @@
     <ClInclude Include="..\..\includes\texmacs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\Thread_Wrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\timer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

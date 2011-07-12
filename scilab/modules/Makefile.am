@@ -16,6 +16,7 @@
 # since it already linked almost the whole world
 
 SUBDIRS = \
+threads \
 operations \
 output_stream \
 arnoldi \

@@ -502,6 +502,7 @@ libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_builddir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/threads/includes/ \
 			$(XML_FLAGS)
 
 pkglib_LTLIBRARIES = libsciio.la

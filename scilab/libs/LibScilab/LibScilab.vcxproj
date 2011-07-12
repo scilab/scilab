@@ -524,6 +524,9 @@
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\time\time.vcxproj">
       <Project>{05d8f60b-332a-4161-b946-b8ab30ed439c}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
