@@ -236,7 +236,7 @@ double getDoubleFromStack( size_t stackPointer )
 	return 0.;
 }
 /*--------------------------------------------------------------------------*/
-sciPointObj * getFigureFromIndex(int figNum)
+char * getFigureFromIndex(int figNum)
 {
 	return NULL;
 }

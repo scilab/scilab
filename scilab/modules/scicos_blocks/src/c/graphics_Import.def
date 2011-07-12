@@ -25,7 +25,6 @@ sciSetBoxType
 sciInitFontSize
 ConstructSubWin
 sciGetFirstTypedSelectedSon
-getFigureFromIndex
 sciIsExistingFigure
 sciSetSelectedSubWin
 sciSetIsClipping
@@ -59,7 +58,6 @@ sciSetStrings
 newMatrix
 newEmptyStringMatrix
 sciGetText
-getFigureFromIndex
 printStrMat
 copyStrMatElement
 sciSetVisibility

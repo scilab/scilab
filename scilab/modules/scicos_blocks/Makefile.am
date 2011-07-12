@@ -336,11 +336,7 @@ src/c/zcross2.c
 SCICOS_BLOCKS_CPP_SOURCES = \
 src/cpp/affich2.cpp
 
-NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
-src/c/scoSetProperty.c \
-src/c/scoMisc.c \
-src/c/scoMemoryScope.c\
-src/c/scoWindowScope.c \
+NON_BLOCK_C_SOURCES =  src/c/scoUtils.c \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 

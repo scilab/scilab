@@ -794,21 +794,6 @@
     <ClCompile Include="scicosexit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scoGetProperty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoMemoryScope.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoMisc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoSetProperty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scoWindowScope.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="selector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -986,6 +971,9 @@
     <ClCompile Include="zcross2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scoUtils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\AfficheBlock.hxx">
@@ -1000,22 +988,7 @@
     <ClInclude Include="..\..\includes\scicos_block4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scoBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scoGetProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scoMemoryScope.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scoMisc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scoSetProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scoWindowScope.h">
+    <ClInclude Include="scoUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
