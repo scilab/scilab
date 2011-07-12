@@ -47,7 +47,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut;';
         '}'],'mexswapRI.c');
 
-ilib_mex_build('libmex',['swapRI','mexswapRI','cmex'], 'mexswapRI.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['swapRI','mexswapRI','cmex'], 'mexswapRI.c',[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

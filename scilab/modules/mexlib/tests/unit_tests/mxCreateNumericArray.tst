@@ -31,7 +31,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateNumericArray(iDims, piDims, (mxClassID)pdblType[0], mxREAL);';
         '   plhs[0] = pOut;';
         '}'],'mexCreateNumericArray.c');
-ilib_mex_build('libmex',['createNumericArray','mexCreateNumericArray','cmex'], 'mexCreateNumericArray.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['createNumericArray','mexCreateNumericArray','cmex'], 'mexCreateNumericArray.c',[],'Makelib','','','');
 exec('loader.sce');
 
 ref_int8 = int8(1);

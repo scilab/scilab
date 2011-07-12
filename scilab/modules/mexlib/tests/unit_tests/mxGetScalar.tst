@@ -28,7 +28,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateDoubleScalar(dblScalar);';
         '   plhs[0] = pOut;';
         '}'],'mexGetScalar.c');
-ilib_mex_build('libmex',['getScalar','mexGetScalar','cmex'], 'mexGetScalar.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['getScalar','mexGetScalar','cmex'], 'mexGetScalar.c',[],'Makelib','','','');
 exec('loader.sce');
 
 a = 1:10;

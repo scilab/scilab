@@ -28,7 +28,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateLogicalScalar(bEmpty);';
         '   plhs[0] = pOut;';
         '}'],'mexIsEmpty.c');
-ilib_mex_build('libmex',['isEmpty','mexIsEmpty','cmex'], 'mexIsEmpty.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['isEmpty','mexIsEmpty','cmex'], 'mexIsEmpty.c',[],'Makelib','','','');
 exec('loader.sce');
 
 a = list();

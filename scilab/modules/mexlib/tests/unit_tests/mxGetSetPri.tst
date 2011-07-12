@@ -35,7 +35,7 @@ mputl([ '#include ""mex.h""';
         '   mxSetPi(pOut, pDblR);';
         '   plhs[0] = pOut;';
         '}'],'mexswapRI.c');
-ilib_mex_build('libmex',['swapRI','mexswapRI','cmex'], 'mexswapRI.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['swapRI','mexswapRI','cmex'], 'mexswapRI.c',[],'Makelib','','','');
 exec('loader.sce');
 
 a = 1:8;

@@ -42,7 +42,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut;';
         '}'],'mexCreateLogicalMatrix.c');
 
-ilib_mex_build('libmex',['createLogicalMatrix', 'mexCreateLogicalMatrix', 'cmex'], 'mexCreateLogicalMatrix.c', [], 'Makelib', '', '', '');
+ilib_mex_build('libmextest',['createLogicalMatrix', 'mexCreateLogicalMatrix', 'cmex'], 'mexCreateLogicalMatrix.c', [], 'Makelib', '', '', '');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

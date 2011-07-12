@@ -38,13 +38,13 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut;';
         '}'],'mexCreateString.c');
 
-ilib_mex_build('libmex',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy mexCreateString.c to TMPDIR
-   ilib_gen_Make: Copy libmex.c to TMPDIR
+   ilib_gen_Make: Copy libmextest.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile

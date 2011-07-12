@@ -35,7 +35,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut1;';
         '   plhs[1] = pOut2;';
         '}'],'mexCreateLogicalScalar.c');
-ilib_mex_build('libmex', ['createLogicalScalar', 'mexCreateLogicalScalar', 'cmex'], 'mexCreateLogicalScalar.c', [], 'Makelib', '', '', '');
+ilib_mex_build('libmextest', ['createLogicalScalar', 'mexCreateLogicalScalar', 'cmex'], 'mexCreateLogicalScalar.c', [], 'Makelib', '', '', '');
 exec('loader.sce');
 
 [out1, out2] = createLogicalScalar(%t, %f);

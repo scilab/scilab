@@ -41,7 +41,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut1;';
         '   plhs[1] = pOut2;';
         '}'],'mexCreateDoubleScalar.c');
-ilib_mex_build('libmex',['createDouble','mexCreateDoubleScalar','cmex'],'mexCreateDoubleScalar.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['createDouble','mexCreateDoubleScalar','cmex'],'mexCreateDoubleScalar.c',[],'Makelib','','','');
 exec('loader.sce');
 
 m = 3;

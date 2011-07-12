@@ -30,7 +30,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateLogicalMatrix((int)pdblM[0], (int)pdblN[0]);';
         '   plhs[0] = pOut;';
         '}'],'mexCreateLogicalMatrix.c');
-ilib_mex_build('libmex',['createLogicalMatrix', 'mexCreateLogicalMatrix', 'cmex'], 'mexCreateLogicalMatrix.c', [], 'Makelib', '', '', '');
+ilib_mex_build('libmextest',['createLogicalMatrix', 'mexCreateLogicalMatrix', 'cmex'], 'mexCreateLogicalMatrix.c', [], 'Makelib', '', '', '');
 exec('loader.sce');
 
 a = createLogicalMatrix(4,3);

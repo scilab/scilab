@@ -26,7 +26,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateString(""Create new String"");';
         '   plhs[0] = pOut;';
         '}'],'mexCreateString.c');
-ilib_mex_build('libmex',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
 exec('loader.sce');
 
 ref = "Create new String";

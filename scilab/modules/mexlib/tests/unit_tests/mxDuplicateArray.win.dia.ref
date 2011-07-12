@@ -38,7 +38,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut;';
         '}'],'mexDuplicateArray.c');
 
-ilib_mex_build('libmex',['duplicateArray','mexDuplicateArray','cmex'], 'mexDuplicateArray.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['duplicateArray','mexDuplicateArray','cmex'], 'mexDuplicateArray.c',[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

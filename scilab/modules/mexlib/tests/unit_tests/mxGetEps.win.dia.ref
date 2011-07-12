@@ -31,7 +31,7 @@ mputl(['#include ""mex.h""';
        '    plhs[0] = pOut;';
        '}'],'mexgetEps.c');
 
-ilib_mex_build('libmex',['getEps','mexgetEps','cmex'], 'mexgetEps.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['getEps','mexgetEps','cmex'], 'mexgetEps.c',[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

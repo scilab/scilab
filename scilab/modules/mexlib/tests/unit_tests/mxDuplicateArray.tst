@@ -26,7 +26,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxDuplicateArray(prhs[0]);';
         '   plhs[0] = pOut;';
         '}'],'mexDuplicateArray.c');
-ilib_mex_build('libmex',['duplicateArray','mexDuplicateArray','cmex'], 'mexDuplicateArray.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['duplicateArray','mexDuplicateArray','cmex'], 'mexDuplicateArray.c',[],'Makelib','','','');
 exec('loader.sce');
 
 a = rand(4,3);

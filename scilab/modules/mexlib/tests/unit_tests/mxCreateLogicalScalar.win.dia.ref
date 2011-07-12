@@ -47,7 +47,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[1] = pOut2;';
         '}'],'mexCreateLogicalScalar.c');
 
-ilib_mex_build('libmex', ['createLogicalScalar', 'mexCreateLogicalScalar', 'cmex'], 'mexCreateLogicalScalar.c', [], 'Makelib', '', '', '');
+ilib_mex_build('libmextest', ['createLogicalScalar', 'mexCreateLogicalScalar', 'cmex'], 'mexCreateLogicalScalar.c', [], 'Makelib', '', '', '');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

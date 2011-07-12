@@ -38,7 +38,7 @@ mputl([ '#include ""mex.h""';
         '   plhs[0] = pOut;';
         '}'],'mexCreateString.c');
 
-ilib_mex_build('libmex',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['createString','mexCreateString','cmex'], 'mexCreateString.c',[],'Makelib','','','');
    Generate a gateway file
    Generate a loader file
    Generate a Makefile: Makelib

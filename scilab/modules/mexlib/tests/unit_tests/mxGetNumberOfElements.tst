@@ -27,7 +27,7 @@ mputl([ '#include ""mex.h""';
         '   pOut = mxCreateDoubleScalar((double)iSize);';
         '   plhs[0] = pOut;';
         '}'],'mexGetNumberOfElements.c');
-ilib_mex_build('libmex',['getNumberOfElements','mexGetNumberOfElements','cmex'], 'mexGetNumberOfElements.c',[],'Makelib','','','');
+ilib_mex_build('libmextest',['getNumberOfElements','mexGetNumberOfElements','cmex'], 'mexGetNumberOfElements.c',[],'Makelib','','','');
 exec('loader.sce');
 
 a = ones(1);
