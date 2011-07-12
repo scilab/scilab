@@ -13,15 +13,15 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.legend.Legend;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.legend.Legend;
 
 /**
  * GraphicObject class
@@ -312,13 +312,7 @@ public abstract class GraphicObject implements Cloneable {
 	 * @return the children
 	 */
 	public String[] getChildren() {
-		String[] result = new String[children.size()];
-	    
-		for (int i = 0; i < children.size(); ++i) {
-	        result[i] = children.get(i);
-	    }
-		
-		return result;
+        return children.toArray(new String[children.size()]);
 	}
 
     /**
