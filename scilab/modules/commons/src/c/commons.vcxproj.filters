@@ -29,9 +29,18 @@
     <ClCompile Include="..\jni\ScilabCommons_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\CommonFileUtils_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\fileutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

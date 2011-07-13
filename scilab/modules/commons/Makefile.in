@@ -125,7 +125,9 @@ libscicommons_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 libscicommons_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo
+am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo \
+	libscicommons_la-CommonFileUtils_wrap.lo \
+	libscicommons_la-fileutils.lo
 am__objects_2 = empty.lo
 am_libscicommons_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscicommons_la_OBJECTS = $(am_libscicommons_la_OBJECTS)
@@ -491,9 +493,14 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c
+COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
+		     src/jni/CommonFileUtils_wrap.c \
+		     src/c/fileutils.c
+
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
-libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE)
+libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
+						 -I$(srcdir)/includes/
+
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_2)
@@ -505,7 +512,9 @@ CHECK_SRC = $(COMMONS_C_SOURCES)
 INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabCommons.i
+SWIG_WRAPPERS = src/jni/ScilabCommons.i \
+		src/jni/CommonFileUtils.i
+
 @SWIG_TRUE@BUILT_SOURCES = swig
 libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
@@ -592,7 +601,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-fileutils.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -621,6 +632,20 @@ libscicommons_la-ScilabCommons_wrap.lo: src/jni/ScilabCommons_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/ScilabCommons_wrap.c' object='libscicommons_la-ScilabCommons_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
+
+libscicommons_la-CommonFileUtils_wrap.lo: src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -MT libscicommons_la-CommonFileUtils_wrap.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Tpo $(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/CommonFileUtils_wrap.c' object='libscicommons_la-CommonFileUtils_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-CommonFileUtils_wrap.lo `test -f 'src/jni/CommonFileUtils_wrap.c' || echo '$(srcdir)/'`src/jni/CommonFileUtils_wrap.c
+
+libscicommons_la-fileutils.lo: src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -MT libscicommons_la-fileutils.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-fileutils.Tpo -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicommons_la-fileutils.Tpo $(DEPDIR)/libscicommons_la-fileutils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fileutils.c' object='libscicommons_la-fileutils.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-fileutils.lo `test -f 'src/c/fileutils.c' || echo '$(srcdir)/'`src/c/fileutils.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

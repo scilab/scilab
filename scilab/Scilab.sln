@@ -575,6 +575,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core-Ant", "modules\core\src\java\core-JAVA.vcxproj", "{78D8B862-964A-4D0E-93D2-CA8A25BA1207}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "commons", "modules\commons\src\c\commons.vcxproj", "{ECA09A1E-6D12-4A47-92E1-A671C181DF77}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECFFEB0C-1EDA-45EE-9A10-B18143852E17} = {ECFFEB0C-1EDA-45EE-9A10-B18143852E17}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-JAVA-tests", "modules\javasci\tests\java\javasci-JAVA-tests.vcxproj", "{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}"
 EndProject
