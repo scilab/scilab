@@ -20,6 +20,7 @@
 #define ACTION_BINDING "action_binding"
 ;
 Source: bin\sciaction_binding.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\sciaction_binding_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#ACTION_BINDING}\jar\org.scilab.modules.{#ACTION_BINDING}.jar;DestDir: {app}\modules\{#ACTION_BINDING}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
