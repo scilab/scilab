@@ -29,9 +29,6 @@ import com.mxgraph.view.mxGraph;
 
 /**
  * Connection handler used to handle multi point links.
- * 
- * @see <a
- *      href="http://www.jgraph.org/bugzilla/show_bug.cgi?id=20">http://www.jgraph.org/bugzilla/show_bug.cgi?id=20</a>
  */
 public class ConnectionHandler extends mxConnectionHandler {
 	private boolean multiPointLinkStarted;

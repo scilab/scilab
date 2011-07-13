@@ -1,13 +1,7 @@
-// -*- scilab -*-
-
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - Digiteo - unknown author
-// Copyright (C) 2009 - Digiteo - Vincent LIARD
-//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // 'syredi' unit tests
@@ -21,11 +15,14 @@ exec(test_path + 'test_utilities.sci');
 // * Part I: defining the tests                                   *
 // * Part II: performing the tests                                *
 // ****************************************************************
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- NOT FIXED -->
 
 // **** Part I: defining the tests ****
 
 // old tests wrapped
-function test_syredi_old() 
+function test_syredi_old()
 [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(1,4,[2*%pi/10,4*%pi/10,0,0],0.02,0.001);
 ref_fact = 0.005976;
 if norm(fact-ref_fact) > 0.0000037 then pause,end;

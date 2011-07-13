@@ -269,6 +269,8 @@ Bug fixes:
 
 * bug 9045 fixed - plot2d did not support overloading.
 
+* bug 9098 fixed - demo CACSD --> Robust control failed on Windows 64 bit.
+
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
 
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
@@ -288,6 +290,8 @@ Bug fixes:
 
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
                    a wrong error message on Windows.
+
+* bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
 
 * bug 9479 fixed - Typo fixed (intput => input).
 
@@ -313,4 +317,6 @@ Bug fixes:
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
+* bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
+* bug 9717 fixed - dllinfo.tst failed with Windows binary versions.

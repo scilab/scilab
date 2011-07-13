@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- NOT FIXED -->
 
 deff('[ok]=cmpr(h1,h2,eps)',['h1=h1-h2;';
          'if norm(coeff(h1(2)))>eps then ok=0,else ok=1,end'])

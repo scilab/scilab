@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011  - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,35 +14,36 @@ function dllinfolist = dlwDllInfo(dllname, options)
     symbolslist = list();
     [result,bOK] = dos('dumpbin /IMPORTS ""' + dllname +'""');
     if bOK == %T then
+      // cleaning output
+      result = stripblanks(result);
       result(5) = '';
-      indicedotdll = grep(result, getdynlibext());
+      result(result == '') = [];
+      result(grep(result, 'Import Address')) = [];
+      result(grep(result, 'Import Name')) = [];
+      result(grep(result, 'Index of first')) = [];
+      result(grep(result, 'time date stamp')) = [];
+      dllext = grep(result, getdynlibext());
+      result(1:dllext(1) - 1) = [];
+      result(grep(result, '.data') - 1 : $) = [];
 
+      indicedotdll = grep(result, getdynlibext())
       if (indicedotdll <> []) then
         dlllist = result(indicedotdll);
-
-        symbolslist = list();
-
-        for i = 1:size(dlllist,'*')-1
+        for i = 1:size(dlllist, '*')
           symbolsdll = [];
-          symbolsdllstr = result(indicedotdll(i) + 6:indicedotdll(i + 1) - 2);
+          if (i == size(dlllist,'*')) then
+            symbolsdllstr = result(indicedotdll(i) + 1:$);
+          else
+            symbolsdllstr = result(indicedotdll(i) + 1:indicedotdll(i + 1) - 1);
+          end
           for j = 1: size(symbolsdllstr, '*')
             tok = tokens(symbolsdllstr(j), ' ');
-            if size(tok, '*') >=2 then
+            if size(tok, '*') >= 2 then
               symbolsdll(j) = tok(2);
             end
           end
           symbolslist(i)= list(dlllist(i), symbolsdll);
         end
-
-        symbolsdllstr = result(indicedotdll(size(dlllist, '*')) + 6:grep(result, '.data') - 4);
-        for j = 1: size(symbolsdllstr, '*')
-          symbolsdll = [];
-          tok = tokens(symbolsdllstr(j), ' ');
-          if size(tok,'*') >=2 then
-            symbolsdll(j) = tok(2);
-          end
-        end
-        symbolslist(size(dlllist, '*'))= list(dlllist(size(dlllist, '*')), symbolsdll);
       end
     end
   endfunction
@@ -50,17 +51,15 @@ function dllinfolist = dlwDllInfo(dllname, options)
   function symbolslist = dllinfoexports(dllname)
     symbolslist = list();
     symbolsdll = [];
-    [result,bOK] = dos('dumpbin /EXPORTS ""' + dllname +'""');
+    [result, bOK] = dos('dumpbin /EXPORTS ""' + dllname +'""');
     if bOK == %T then
-      if size(result,'*') > 20 then
-        indicenumberfunctstr = 15;
-        numberfunctstr = result(indicenumberfunctstr);
-        numberfunct = sscanf(numberfunctstr, '%d');
-
-        indicefirstsymbolstr = 20;
-        firstsymbolstr = result(indicefirstsymbolstr);
-        for i = 0:numberfunct
-          tok = tokens(result(indicefirstsymbolstr + i), ' ');
+      result(result == '') = [];
+      ilastcomment = grep(result, 'ordinal hint RVA');
+      if ilastcomment <> [] then
+        result(1:ilastcomment) = [];
+        result(grep(result, '.data') - 1 : $) = [];
+        for i = 1:size(result, '*')
+          tok = tokens(result(i), ' ');
           if size(tok,'*') >=4 then
             symbolsdll = [symbolsdll; tok(4)];
           end
@@ -76,9 +75,9 @@ function dllinfolist = dlwDllInfo(dllname, options)
     machine = '';
     [result,bOK] = dos('dumpbin /HEADERS ""' + dllname +'""');
     if bOK == %T then
-      if size(result, '*') > 20 then
-        indiceinfomachine = 12;
-        infomachinestr = result(indiceinfomachine);
+      iMachine = grep(result, "machine (");
+      if iMachine <> [] then
+        infomachinestr = result(iMachine(1));
         tok = tokens(infomachinestr, ' ');
         if size(tok, '*') == 3 then
           machine = strsubst(tok(3), ')', '');
