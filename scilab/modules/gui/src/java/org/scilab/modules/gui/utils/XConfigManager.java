@@ -362,33 +362,37 @@ public final class XConfigManager /*extends ConfigManager */ {
 
     /** Identify an element with its context string.
      *
-     *     TODO logarithmic id (3/3/6/1...) instead of linear (SELECT[3]) one!
-     *
+     * @see XConfiguration.xsl#context
      * @param context : the context string used to catch the element.
      * @return the corresponding node
      */
     public static Element getElementByContext(final String context) {
-        String [] id = context.split("#");
-        NodeList elements = document.getElementsByTagName(id[0]);
-        if (elements.getLength() == 1) {
-            return (Element) elements.item(0);
+        String [] ids    = context.split("/");
+        Element element = (Element) document.getDocumentElement();
+        for (int i = 0; i < ids.length; i++) {
+            Integer integer     = Integer.parseInt(ids[i]);
+            int index           = integer.intValue();
+            // get the element with corresponding index (filter text nodes)
+            NodeList childNodes = element.getChildNodes();
+            Node node           = null;
+            int j = 0;
+            while (index > 0 && j < childNodes.getLength()) {
+                node = childNodes.item(j);
+                if (node.getNodeName() != "#text") {
+                    index--;
+                }
+                j++;
+            }
+            if (index == 0) {
+                element = (Element) node;
+            } else {
+                // j == childNodes.getLength()
+                System.err.println("'" + context + "' out of document!");
+                return null;
+            }
+            //System.err.println( i + " = " + element.getNodeName());
         }
-        if (elements.getLength() == 0) {
-            System.err.println("'" + context + "' has no image in document!");
-            return null;
-            }
-        if (id.length == 1) {
-            System.err.println("'" + context + "' has not a unique response "
-                                             + "(use unique-id template)!");
-            return null;
-            }
-        Integer integer = Integer.parseInt(id[1]);
-        int occurence = integer.intValue();
-        if (elements.getLength() <= occurence) {
-            System.err.println("'" + context + "' has no image in document!");
-            return null;
-            }
-        return (Element) elements.item(occurence);
+        return element;
     }
 
 
@@ -398,9 +402,11 @@ public final class XConfigManager /*extends ConfigManager */ {
      * @param source : component source of the action (only class is needed).
      */
     public static void xEvent(final Node action, final Component source) {
+        System.err.print(action.getNodeName());
 
         if (!getAttribute(action, "set").equals(NAV)) {
             String context   = getAttribute(action, "context");
+            System.err.println(" hits " + context);
             Element element  = getElementByContext(context);
 
             String value     = getAttribute(action, "value");
@@ -416,6 +422,7 @@ public final class XConfigManager /*extends ConfigManager */ {
         if (!getAttribute(action, "choose").equals(NAV)) {
             String context   = getAttribute(action, "context");
             Element element  = getElementByContext(context);
+            System.err.println(" hits " + context);
 
             if (source instanceof XChooser) {
                 XChooser chooser   = (XChooser) source;
@@ -438,22 +445,26 @@ public final class XConfigManager /*extends ConfigManager */ {
         if (callback.equals("Help")) {
             // TODO it can be a contextual help.
             //System.err.println("Help not implemented yet!");
+            System.err.println(": Help.");
             return;
         }
         if (callback.equals("Ok")) {
             writeDocument();
             dialog.dispose();
             updated = false;
+            System.err.println(": Ok.");
             return;
         }
         if (callback.equals("Apply")) {
             //System.err.println("User XML saved!");
             updated = false;
             writeDocument();
+            System.err.println(": Apply.");
             return;
         }
         if (callback.equals("Default")) {
             //System.out.println("Scilab XML reloaded!");
+            System.err.println(": Default.");
             reloadTransformer();
             refreshUserCopy();
             readDocument();
@@ -469,6 +480,7 @@ public final class XConfigManager /*extends ConfigManager */ {
                 }
             updated = false;
             refreshDisplay();
+            System.err.println(": Cancel.");
             return;
         }
     }

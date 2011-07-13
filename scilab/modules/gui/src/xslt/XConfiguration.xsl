@@ -43,11 +43,13 @@
 	  :: </{event-callback}>
 	  :: 
       -->
-	<xsl:variable name="local-name" select="local-name()"/>
 	<xsl:attribute name="context">
-		<xsl:value-of select="$local-name"/>
-		<xsl:text>#</xsl:text>
-		<xsl:value-of select="count(preceding::*[local-name()=$local-name])"/>
+		<xsl:for-each select="ancestor-or-self::*">
+			<xsl:if test="not(.=/)">
+				<xsl:value-of select="count(preceding-sibling::*)+1"/>
+				<xsl:text>/</xsl:text>
+			</xsl:if>
+		</xsl:for-each>
 	</xsl:attribute>
 </xsl:template>
 
@@ -104,7 +106,7 @@
 		<VBox background="#ffffff" border-side="West" scroll="vertical">
 			<xsl:apply-templates select="." mode="left-tree">
 				<xsl:with-param name="path" select="$path"/>
-				<xsl:with-param name="top-id" select="local-name()"/>
+				<xsl:with-param name="top-id" select="'/'"/>
 			</xsl:apply-templates>
 			<Glue/>
 		</VBox>
