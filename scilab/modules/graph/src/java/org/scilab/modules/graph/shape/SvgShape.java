@@ -21,7 +21,7 @@ import org.apache.batik.ext.awt.RenderingHintsKeyExt;
 import org.scilab.modules.graph.ScilabCanvas;
 
 import com.mxgraph.canvas.mxGraphics2DCanvas;
-import com.mxgraph.shape.mxImageShape;
+import com.mxgraph.shape.mxLabelShape;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
@@ -29,8 +29,7 @@ import com.mxgraph.view.mxCellState;
 /**
  * Add the SVG capability to the standard Image shape
  */
-public class SvgShape extends mxImageShape {
-
+public class SvgShape extends mxLabelShape {
 	/**
 	 * Paint the shape
 	 * 
@@ -55,6 +54,11 @@ public class SvgShape extends mxImageShape {
 			canvas.getGraphics().translate(rect.x, rect.y);
 			
 			((ScilabCanvas) canvas).paintSvgForegroundImage(rect.width, rect.height, image);
+			
+			if (mxUtils.isTrue(state.getStyle(), mxConstants.STYLE_GLASS, false))
+			{
+				drawGlassEffect(canvas, state);
+			}
 		} else {
 			super.paintShape(canvas, state);
 		}

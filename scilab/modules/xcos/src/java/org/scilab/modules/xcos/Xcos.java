@@ -68,7 +68,7 @@ public final class Xcos {
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.7.0.6", "1.7.0.7");
 	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
@@ -157,8 +157,8 @@ public final class Xcos {
 		try {
 			final Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
 			mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
-				
-			if (!MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
+			
+			if (MXGRAPH_VERSIONS != null && !MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
 				throw new Exception();
 			}
 		} catch (final Throwable e) {
@@ -623,16 +623,15 @@ public final class Xcos {
 	 *            The xcos diagram file
 	 * @param h5File
 	 *            The target file
-	 * @param forceOverwrite
+	 * @param overwrite
 	 *            Does the file will be overwritten ?
 	 * @return Not used (compatibility)
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
-			final boolean forceOverwrite) {
+			final boolean overwrite) {
 		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
-		final boolean overwrite = forceOverwrite;
 
 		if (temp.exists()) {
 			if (!overwrite) {
@@ -640,6 +639,10 @@ public final class Xcos {
 			} else {
 				delete(temp);
 			}
+		}
+		
+		if (!file.exists()) {
+			return 1;
 		}
 		
 		try {

@@ -123,12 +123,16 @@ public abstract class PaletteNode implements TreeNode {
 	}
 
 	/**
-	 * @return the localized name of the Palette.
+	 * @return the name of the Palette.
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return Messages.gettext(getName());
+		if (getName() != null && !getName().isEmpty()) {
+			return Messages.gettext(getName());
+		} else {
+			return getName();
+		}
 	}
 
 	/*

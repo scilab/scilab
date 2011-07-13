@@ -64,7 +64,7 @@ libsciumfpack_algo_la_CFLAGS = $(libsciumfpack_la_CFLAGS)
 CHECK_SRC= $(libsciumfpack_la_SOURCES)
 INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
 
-libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
+libsciumfpack_la_LIBADD =  libsciumfpack-algo.la $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/sparse/libscisparse.la \
 $(top_builddir)/modules/mexlib/libmex.la \

@@ -1,22 +1,22 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT
+// Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- NOT FIXED -->
-
+//
 // <-- JVM NOT MANDATORY -->
-
-// <-- Non-regression test for bug 2391 -->
+//
+// <-- Non-regression test for bug 9098 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=2391
+// http://bugzilla.scilab.org/show_bug.cgi?id=9098
 //
 // <-- Short Description -->
-//     pol2str produces empty output (instead of '0') for null polynomials
+// demo CACSD --> Robust control failed on Windows 64 bit
+// decrease optimization on sci_f_linmeq.f
 
-p = poly([0,10,1+%i,1-%i],"x");
-if stripblanks(pol2str(p))<>"-20*x+22*x^2-12*x^3+x^4" then pause,end
-if pol2str(0*p)<>"0" then pause,end
+s = poly(0,'s');
+[N, M] = lcf(tf2ss(1/s^3));
+nk = hankelsv([N, M]);
+assert_checktrue(size(nk,'*') == 6);

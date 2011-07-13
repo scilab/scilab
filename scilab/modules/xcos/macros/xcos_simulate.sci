@@ -105,13 +105,13 @@ end
   
   [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters evaluation."), "xcos_simulate"));
+    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
   end
   
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters update."), "xcos_simulate"));
+    error(msprintf(gettext("%s: Error during block parameters update.\n"), "xcos_simulate"));
   end
 
   //** if alreadyran then set the var choice

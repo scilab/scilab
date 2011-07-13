@@ -96,7 +96,7 @@ AC_DEFUN([AC_JNI_HDF5], [
 
       LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
       LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni:"
-      LD_LIBRARY_PATH="/usr/lib/jhdf5:/usr/lib64/jhdf5:"
+      LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/jhdf5:/usr/lib64/jhdf5:"
       LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
       export LD_LIBRARY_PATH
       AC_JAVA_CHECK_VERSION_PACKAGE([hdf5],[import ncsa.hdf.hdf5lib.H5;],$JHDF5,[1.8.4],[ver],[int[] vers = new int[3];

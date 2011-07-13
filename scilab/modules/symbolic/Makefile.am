@@ -28,14 +28,14 @@ noinst_LTLIBRARIES = libscisymbolic-algo.la
 
 libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscisymbolic_algo_la_SOURCES = $(GATEWAY_C_SOURCES)
-libscisymbolic_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
 
-libscisymbolic_la_LIBADD =  $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 

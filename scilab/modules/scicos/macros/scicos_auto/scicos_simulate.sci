@@ -253,7 +253,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   if ierr == 0 then //++ no error
     [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr,%scicos_context)
     if ~ok then
-      error(msprintf(gettext("%s: Error during block parameters evaluation."), "scicos_simulate"));
+      error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "scicos_simulate"));
     end
     if needcompile <> 4 & size(%cpr) > 0 then
       %state0 = %cpr.state
@@ -273,7 +273,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
                                                   %state0, needcompile)
 
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters update."), "scicos_simulate"));
+    error(msprintf(gettext("%s: Error during block parameters update.\n"), "scicos_simulate"));
   end
 
   if or(%state0_n <> %state0) then //initial state has been changed
@@ -282,12 +282,12 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     choix = []
   end
   if (%cpr.sim.xptr($) - 1) < size(%cpr.state.x,'*') & solver < 100 then
-    warning(msprintf(_("Diagram has been compiled for implicit solver\nswitching to implicit solver")))
+    warning(msprintf(_("Diagram has been compiled for implicit solver\nswitching to implicit solver.\n")))
     solver = 100
     tolerances(6) = solver
   elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,'*') & ...
         solver == 100 & size(%cpr.state.x,'*') <> 0 then
-    warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver")))
+    warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver.\n")))
     solver = 0
     tolerances(6) = solver
   end

@@ -1696,7 +1696,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		
 		return clone;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -1712,26 +1712,6 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		}
 		
 		return super.insert(child, index);
-	}
-	
-	/**
-	 * Overriden to correct jgraphx bug fixed in 1.4.0.4
-	 * 
-	 * @param child the child to insert
-	 * @return the previous child
-	 * @see com.mxgraph.model.mxCell#insert(com.mxgraph.model.mxICell)
-	 * @deprecated Will be left after the switch to jgraphx >= 1.4.0.4
-	 */
-	@Deprecated
-	@Override
-	public mxICell insert(mxICell child) {
-		int index = getChildCount();
-		
-		if (child.getParent() == this) {
-			index--;
-		}
-		
-		return insert(child, index);
 	}
 }
 // CSON: ClassDataAbstractionCoupling

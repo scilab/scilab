@@ -110,7 +110,7 @@ AC_ARG_ENABLE(debug-linker,
 AC_ARG_ENABLE(code-coverage,
    AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
-AC_ARG_ENABLE(stopOnWarning,
+AC_ARG_ENABLE(stop-on-warning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
 AC_ARG_WITH(gcc,
@@ -834,7 +834,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
@@ -1727,8 +1727,8 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
+   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
 fi
 
 AC_CONFIG_FILES([

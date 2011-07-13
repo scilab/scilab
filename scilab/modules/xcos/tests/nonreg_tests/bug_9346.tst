@@ -15,6 +15,8 @@
 // <-- Short Description -->
 // FROMWS block does not works
 
+loadXcosLibs;
+
 status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.xcos");
 if ~status then pause, end;
 
