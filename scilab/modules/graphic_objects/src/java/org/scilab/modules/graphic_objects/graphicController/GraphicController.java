@@ -238,4 +238,26 @@ public class GraphicController {
 
         objectUpdate(childId, GraphicObjectProperties.__GO_PARENT__);
     }
+
+    /**
+     * Remove relationship between given object and is parent.
+     * Then delete it.
+     * TODO : Manage children of deleted object.
+     * @param id deleted object identifier.
+     */
+    public void removeRelationShipAndDelete(String id) {
+        Object parent = getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+        if ((parent != null) && (parent instanceof String)) {
+            String parentId = (String) parent;
+            if (!parentId.equals("")) {
+                getObjectFromId(parentId).removeChild(id);
+                setProperty(id, GraphicObjectProperties.__GO_PARENT__, "");
+
+                objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
+                objectUpdate(id, GraphicObjectProperties.__GO_PARENT__);
+            }
+        }
+
+        deleteObject(id);
+    }
 }

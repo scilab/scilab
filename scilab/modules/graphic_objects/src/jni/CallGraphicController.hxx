@@ -68,6 +68,7 @@ jmethodID voiddeleteGraphicObjectjstringID; // cache method id
 jmethodID jstringcloneGraphicObjectjstringID; // cache method id
 jmethodID jstringaskGraphicObjectjstringID; // cache method id
 jmethodID voidsetGraphicObjectRelationshipjstringjstringID; // cache method id
+jmethodID voidremoveRelationShipAndDeletejstringID; // cache method id
 jmethodID jstringgetGraphicObjectPropertyAsStringjstringjstringID; // cache method id
 jmethodID jbooleansetGraphicObjectPropertyjstringjstringjstringID; // cache method id
 jmethodID jobjectArray_getGraphicObjectPropertyAsStringVectorjstringjstringID; // cache method id
@@ -149,6 +150,8 @@ static char * cloneGraphicObject(JavaVM * jvm_, char * id);
 static char * askGraphicObject(JavaVM * jvm_, char * typeName);
 
 static void setGraphicObjectRelationship(JavaVM * jvm_, char * parentId, char * childId);
+
+static void removeRelationShipAndDelete(JavaVM * jvm_, char * id);
 
 static char * getGraphicObjectPropertyAsString(JavaVM * jvm_, char * id, char * propertyName);
 

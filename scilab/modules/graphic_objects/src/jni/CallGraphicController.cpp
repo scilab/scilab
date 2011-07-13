@@ -108,6 +108,7 @@ voiddeleteGraphicObjectjstringID=NULL;
 jstringcloneGraphicObjectjstringID=NULL; 
 jstringaskGraphicObjectjstringID=NULL; 
 voidsetGraphicObjectRelationshipjstringjstringID=NULL; 
+voidremoveRelationShipAndDeletejstringID=NULL; 
 jstringgetGraphicObjectPropertyAsStringjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjstringID=NULL; 
 jobjectArray_getGraphicObjectPropertyAsStringVectorjstringjstringID=NULL; 
@@ -151,6 +152,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 jstringcloneGraphicObjectjstringID=NULL; 
 jstringaskGraphicObjectjstringID=NULL; 
 voidsetGraphicObjectRelationshipjstringjstringID=NULL; 
+voidremoveRelationShipAndDeletejstringID=NULL; 
 jstringgetGraphicObjectPropertyAsStringjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjstringID=NULL; 
 jobjectArray_getGraphicObjectPropertyAsStringVectorjstringjstringID=NULL; 
@@ -317,6 +319,32 @@ throw GiwsException::JniBadAllocException(curEnv);
                          curEnv->CallStaticVoidMethod(cls, voidsetGraphicObjectRelationshipjstringjstringID ,parentId_, childId_);
                         curEnv->DeleteLocalRef(parentId_);
 curEnv->DeleteLocalRef(childId_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallGraphicController::removeRelationShipAndDelete (JavaVM * jvm_, char * id){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveRelationShipAndDeletejstringID = curEnv->GetStaticMethodID(cls, "removeRelationShipAndDelete", "(Ljava/lang/String;)V" ) ;
+if (voidremoveRelationShipAndDeletejstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeRelationShipAndDelete");
+}
+
+jstring id_ = curEnv->NewStringUTF( id );
+if (id_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveRelationShipAndDeletejstringID ,id_);
+                        curEnv->DeleteLocalRef(id_);
 curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

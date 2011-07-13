@@ -43,6 +43,12 @@ public class PanelLayout implements LayoutManager, Serializable{
                 child.setBounds(0, 0, parent.getWidth(), parent.getHeight());
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
             }
+
+            /* Here you can perform the layout of UI object.
+            if (child instanceof SwingViewObject) {
+                String id = ((SwingViewObject) child).getId());
+            }
+            */
         }
     }
 }

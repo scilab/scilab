@@ -42,9 +42,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 /**
@@ -56,12 +54,21 @@ public class FigureBridge implements GraphicView {
 
     private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
     private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
-    private static final String FIGURE_TITLE = "Graphic window number ";
+
+    /**
+     * Set of property having an effect on the GUI aspect.
+     */
+    private static final Set<String> GUI_PROPERTY_SET = new HashSet<String>(Arrays.asList(
+            __GO_INFO_MESSAGE__,
+            __GO_NAME__,
+            __GO_ID__
+    ));
+
+    private final FigureInteraction figureInteraction;
 
     private final GLCanvas glCanvas = new GLCanvas();
     private final JPanel panel;
-    private FigureInteraction figureInteraction;
-    private final String id;
+    private final Figure figure;
 
     private Window window = null;
     private MenuBar menuBar = null;
@@ -77,141 +84,48 @@ public class FigureBridge implements GraphicView {
      * @throws Exception when the given id is not a figure id.
      */
     private FigureBridge(final String id) throws Exception {
+
+        if (id == null) {
+            throw new Exception("null is not an id");
+        }
+
+        Object type = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        // TODO : use static Figure.type instead of "Figure".
+        if (!"Figure".equals(type)) {
+            throw new Exception("this id is not a figure");
+        }
+
+        Object object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Figure) {
+            figure = (Figure) object;
+        } else {
+            throw new Exception("model is corrupted");
+        }
+
         panel = new JPanel(new PanelLayout());
         panel.add(glCanvas, PanelLayout.GL_CANVAS);
 
-        Object type = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if ("Figure".equals(type)) {
-            // TODO : use static Figure.type instead of "Figure".
-            if (id == null) {
-                throw new Exception("null is not an id");
-            }
-            this.id = id;
-            Object object = GraphicController.getController().getObjectFromId(id);
+        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
+        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
+        figureInteraction = new FigureInteraction(glCanvas, id);
+        figureInteraction.setEnable(true);
 
-            if (object instanceof Figure) {
-                final Figure figure = (Figure) object;
-
-                Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
-
-                canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
-
-                figureInteraction = new FigureInteraction(glCanvas, id);
-                figureInteraction.setEnable(true);
-
-                int figureIndex = figure.getId();
-                
-                window = ScilabWindow.createWindow();
-
-                window.setTitle(FIGURE_TITLE + figureIndex);
-                /* MENUBAR */
-                menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
-                /* TOOLBAR */
-                toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
-                /* INFOBAR */
-                infoBar = ScilabTextBox.createTextBox();
-                
-                tab = ScilabTab.createTab(FIGURE_TITLE + figureIndex, figureIndex);
-                String closingCommand =
-                    "if (get_figure_handle(" + figureIndex + ") <> []) then"
-                    +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
-                    +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
-                    +      "  end;"
-                    +      "  delete(get_figure_handle(" + figureIndex + "));"
-                    +      "end;";
-                tab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
-                tab.addMenuBar(menuBar);
-                tab.addToolBar(toolBar);
-                tab.addInfoBar(infoBar);
-                ((SwingScilabTab) tab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-                                                                                           + "/modules/gui/images/icons/graphic-window.png").getImage());
-               
-                ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(panel);
-                window.addTab(tab);
-                GraphicController.getController().register(this);
-                window.setVisible(true);
-                tab.setVisible(true);
-                panel.setVisible(true);
-                updateGUI();
-            }
-        } else {
-            throw new Exception("this id is not a figure");
-        }
-    }
-
-    /**
-     * This method update the figure name showed on the frame.
-     * For compatibility, it replace the first occurrence of "%d" by the figure id.
-     */
-    private void updateGUI() {
-
-        Object object = GraphicController.getController().getObjectFromId(id);
-        if (object != null && (object instanceof Figure)) {
-            Figure figure = (Figure) object;
-
-            String name = figure.getName();
-            Integer figureId = figure.getId();
-            if ((name != null) && (figureId != null)) {
-                name = name.replaceFirst("%d", figureId.toString());
-                tab.setName(name);
-            }
-
-            String infoMessage = figure.getInfoMessage();
-            if ((infoMessage == null) || (infoMessage.length()==0)) {
-                infoBar.setText("");
-            } else {
-                infoBar.setText(infoMessage);
-            }
-        }
+        /**
+         * Build the GUI.
+         */
+        buildGUI();
     }
 
     @Override
     public void updateObject(String id, String property) {
         DEBUG("FigureBridge", "[UPDATE] "+id+ ((String) GraphicController.getController().getProperty(id, __GO_TYPE__))+" Property = "+property);       
-        
-        /*
-         * Check if someone is not adding me a child
-         */
-        if ((this.id.equals(id)) && property.equals(__GO_CHILDREN__)) {
 
-            String[] childrenId =  (String []) GraphicController.getController().getProperty(id,__GO_CHILDREN__);
-
-            for (String childId : childrenId) {
-                if (!uiElementsMap.containsKey(childId)) {
-                    String childType = (String) GraphicController.getController().getProperty(childId,__GO_TYPE__);
-                    if (childType.equals(__GO_UICONTROL__)) {
-                        DEBUG("FigureBridge", "[!!!!!] I Have a new Uicontrol Child !!!");
-                        //SwingScilabPushButton button = new SwingScilabPushButton();
-                        //button.setText("Hello...");
-                        //button.setVisible(true);
-                        //button.setDims(new Size(200, 200));
-                        //button.setPosition(new Position(0, 0));
-
-                        //uiElements.put(childrenId[i], button);
-                        //((SwingScilabTab) tab.getAsSimpleTab()).addMember(button);
-                        //panel.remove(glCanvas);
-                        Component component = (Component) SwingView.getFromId(childId);
-                        panel.add(component);
-                        uiElementsMap.put(childId, component);
-                    }
-                }
+        if (figure.getIdentifier().equals(id) && (property != null)) {
+            if (property.equals(__GO_CHILDREN__)) {
+                updateUIChildren();
+            } else if (GUI_PROPERTY_SET.contains(property)) {
+                updateGUI();
             }
-
-            System.out.println("map : " + uiElementsMap.size() + " / " + childrenId.length);
-            if (uiElementsMap.size() > childrenId.length) {
-                Set<String> excessKey = new HashSet<String>(uiElementsMap.keySet());
-                excessKey.removeAll(Arrays.asList(childrenId));
-                for (String childId : excessKey) {
-                    panel.remove(uiElementsMap.get(childId));
-                }
-                uiElementsMap.keySet().removeAll(excessKey);
-            }
-
-            panel.validate();
-        }
-        
-        if(uiElementsMap.containsKey(id)) {
-            updateGUI();
         }
     }
 
@@ -232,5 +146,116 @@ public class FigureBridge implements GraphicView {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Update UIControl object showed on the panel.
+     */
+    private void updateUIChildren() {
+        boolean panelChanged = false;
+        String[] childrenId =  figure.getChildren();
+
+        /**
+         * Add new children.
+         */
+        for (String childId : childrenId) {
+            if (!uiElementsMap.containsKey(childId)) {
+                String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                if (childType.equals(__GO_UICONTROL__)) {
+                    DEBUG("FigureBridge", "[!!!!!] I Have a new Uicontrol Child !!!");
+                    Component component = (Component) SwingView.getFromId(childId);
+                    panel.add(component);
+                    panelChanged = true;
+                    uiElementsMap.put(childId, component);
+                }
+            }
+        }
+
+        /**
+         * Remove old children.
+         */
+        Set<String> excessKey = new HashSet<String>(uiElementsMap.keySet());
+        excessKey.removeAll(Arrays.asList(childrenId));
+        for (String childId : excessKey) {
+            panel.remove(uiElementsMap.get(childId));
+            panelChanged = true;
+        }
+        uiElementsMap.keySet().removeAll(excessKey);
+
+        /**
+         * If something new panel need to be redrawn.
+         */
+        if (panelChanged) {
+            panel.revalidate();
+        }
+    }
+
+
+    /**
+     * This method update the figure name showed on the frame.
+     * For compatibility, it replace the first occurrence of "%d" by the figure id.
+     */
+    private void updateGUI() {
+        tab.setName(getFigureTitle());
+
+        String infoMessage = figure.getInfoMessage();
+        if ((infoMessage == null) || (infoMessage.length()==0)) {
+            infoBar.setText("");
+        } else {
+            infoBar.setText(infoMessage);
+        }
+    }
+
+    /**
+     * Build the GUI.
+     */
+    private void buildGUI() {
+        int figureIndex = figure.getId();
+
+        window = ScilabWindow.createWindow();
+
+        window.setTitle(getFigureTitle());
+        /* MENUBAR */
+        menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
+        /* TOOLBAR */
+        toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
+        /* INFOBAR */
+        infoBar = ScilabTextBox.createTextBox();
+
+        tab = ScilabTab.createTab(getFigureTitle(), figureIndex);
+        String closingCommand =
+            "if (get_figure_handle(" + figureIndex + ") <> []) then"
+            +      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
+            +      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)', 'errcatch', 'm');"
+            +      "  end;"
+            +      "  delete(get_figure_handle(" + figureIndex + "));"
+            +      "end;";
+        tab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
+        tab.addMenuBar(menuBar);
+        tab.addToolBar(toolBar);
+        tab.addInfoBar(infoBar);
+        ((SwingScilabTab) tab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
+
+        ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(panel);
+        window.addTab(tab);
+        GraphicController.getController().register(this);
+        window.setVisible(true);
+        tab.setVisible(true);
+        panel.setVisible(true);
+        updateGUI();
+    }
+
+    /**
+     * Build and return the figure title.
+     * @return the figure title.
+     */
+    public String getFigureTitle() {
+        String name = figure.getName();
+        Integer figureId = figure.getId();
+        if ((name != null) && (figureId != null)) {
+            name = name.replaceFirst("%d", figureId.toString());
+        }
+        return name;
     }
 }

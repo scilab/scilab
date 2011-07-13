@@ -14,6 +14,9 @@
       <parameter name="parentId" type="String"/>
       <parameter name="childId" type="String"/>
     </method>
+    <method name="removeRelationShipAndDelete" returnType="void" modifier="static">
+      <parameter name="id" type="String" />
+    </method>
 
     <method name="getGraphicObjectPropertyAsString" returnType="String" modifier="static">
       <parameter name="id" type="String"/>

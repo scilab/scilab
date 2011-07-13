@@ -27,6 +27,10 @@ public final class CallGraphicController {
         GraphicController.getController().setGraphicObjectRelationship(parentId, childId);
     }
 
+    public static void removeRelationShipAndDelete(String parentId) {
+        GraphicController.getController().removeRelationShipAndDelete(parentId);
+    }
+
     public static String cloneGraphicObject(String id) {
         return GraphicController.getController().cloneObject(id);
     }

@@ -23,7 +23,7 @@ using namespace org_scilab_modules_graphic_objects;
 
 void deleteGraphicObject(char *_sId)
 {
-    CallGraphicController::deleteGraphicObject(getScilabJavaVM(), _sId);
+    CallGraphicController::removeRelationShipAndDelete(getScilabJavaVM(), _sId);
 }
 
 void deleteDataObject(char* _sId)
