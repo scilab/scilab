@@ -110,7 +110,7 @@ AC_ARG_ENABLE(debug-linker,
 AC_ARG_ENABLE(code-coverage,
    AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
-AC_ARG_ENABLE(stopOnWarning,
+AC_ARG_ENABLE(stop-on-warning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
 AC_ARG_WITH(gcc,
@@ -1719,8 +1719,8 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
+   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
 fi
 
 AC_CONFIG_FILES([
