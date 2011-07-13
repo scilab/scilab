@@ -149,6 +149,17 @@ public final class XConfigManager /*extends ConfigManager */ {
     /** Last visitor.*/
     private static XUpdateVisitor visitor;
 
+    /** Show performances.
+    *
+    */
+    private static long time = System.currentTimeMillis();
+    public static void printTimeStamp(String msg) {
+        long nextTime  = System.currentTimeMillis();
+        long deltaTime = nextTime - time;
+        System.err.println((msg.startsWith("*")?"":"\t") + msg + " in " + deltaTime + " ms.");
+        time   = nextTime;
+    }
+
     /** Display dialog and wait for events.
      *
      */
@@ -185,7 +196,9 @@ public final class XConfigManager /*extends ConfigManager */ {
     public static boolean refreshDisplay() {
 
         // Generate new view DOM.
+        printTimeStamp("Context found");
         topDOM = generateViewDOM().getNode().getFirstChild();
+        printTimeStamp("XML generated");
         if (topDOM == null) {
             System.err.println("XSL does not give a node!");
             return false;
@@ -195,7 +208,9 @@ public final class XConfigManager /*extends ConfigManager */ {
         //    TODO top layout changes
         visitor = new XUpdateVisitor(correspondance);
         visitor.visit(topSwing, topDOM);
+        printTimeStamp("SWING refreshed");
         dialog.pack();
+        printTimeStamp("Packing done");
 
         // Refresh contextual help
         if (!(help == null)) {
@@ -402,6 +417,7 @@ public final class XConfigManager /*extends ConfigManager */ {
      * @param source : component source of the action (only class is needed).
      */
     public static void xEvent(final Node action, final Component source) {
+        printTimeStamp("*Event occured");
         System.err.print(action.getNodeName());
 
         if (!getAttribute(action, "set").equals(NAV)) {
@@ -421,8 +437,8 @@ public final class XConfigManager /*extends ConfigManager */ {
 
         if (!getAttribute(action, "choose").equals(NAV)) {
             String context   = getAttribute(action, "context");
-            Element element  = getElementByContext(context);
             System.err.println(" hits " + context);
+            Element element  = getElementByContext(context);
 
             if (source instanceof XChooser) {
                 XChooser chooser   = (XChooser) source;
@@ -449,17 +465,17 @@ public final class XConfigManager /*extends ConfigManager */ {
             return;
         }
         if (callback.equals("Ok")) {
+            System.err.println(": Ok.");
             writeDocument();
             dialog.dispose();
             updated = false;
-            System.err.println(": Ok.");
             return;
         }
         if (callback.equals("Apply")) {
             //System.err.println("User XML saved!");
             updated = false;
-            writeDocument();
             System.err.println(": Apply.");
+            writeDocument();
             return;
         }
         if (callback.equals("Default")) {
@@ -479,8 +495,8 @@ public final class XConfigManager /*extends ConfigManager */ {
                 //TODO advertise it!
                 }
             updated = false;
-            refreshDisplay();
             System.err.println(": Cancel.");
+            refreshDisplay();
             return;
         }
     }
