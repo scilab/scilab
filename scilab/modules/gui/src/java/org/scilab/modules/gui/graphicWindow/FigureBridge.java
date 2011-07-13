@@ -18,7 +18,6 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.SwingView;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,10 +32,15 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
-import javax.media.opengl.GLJPanel;
+import javax.media.opengl.GLCanvas;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import java.awt.Component;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
@@ -54,7 +58,8 @@ public class FigureBridge implements GraphicView {
     private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
     private static final String FIGURE_TITLE = "Graphic window number ";
 
-    private final GLJPanel glPanel = new GLJPanel();
+    private final GLCanvas glCanvas = new GLCanvas();
+    private final JPanel panel;
     private FigureInteraction figureInteraction;
     private final String id;
 
@@ -64,7 +69,7 @@ public class FigureBridge implements GraphicView {
     private Tab tab = null;
     private TextBox infoBar = null;
 
-    private final HashMap<String,SwingScilabPushButton> children = new HashMap<String, SwingScilabPushButton>();
+    private final Map<String, Component> uiElementsMap = new HashMap<String, Component>();
 
     /**
      * Default constructor.
@@ -72,40 +77,26 @@ public class FigureBridge implements GraphicView {
      * @throws Exception when the given id is not a figure id.
      */
     private FigureBridge(final String id) throws Exception {
+        panel = new JPanel(new PanelLayout());
+        panel.add(glCanvas, PanelLayout.GL_CANVAS);
 
         Object type = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if (type instanceof String && type.equals("Figure")) {
+        if ("Figure".equals(type)) {
             // TODO : use static Figure.type instead of "Figure".
-
+            if (id == null) {
+                throw new Exception("null is not an id");
+            }
             this.id = id;
             Object object = GraphicController.getController().getObjectFromId(id);
 
             if (object instanceof Figure) {
                 final Figure figure = (Figure) object;
 
-                Canvas rendererCanvas = JoGLCanvasFactory.createCanvas(glPanel);
+                Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
 
-                rendererCanvas.setMainDrawer(new DrawerVisitor(rendererCanvas, figure));
+                canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
 
-                /*
-                IGLCanvas page = new AbstractGLCanvas(canvas) {
-                    private IVisitor visitor = null;
-
-                    @Override
-                    public void performDraw() {
-                        figure.accept(getVisitor());
-                    }
-
-                    private IVisitor getVisitor() {
-                        if (visitor == null) {
-                            visitor = new DrawerVisitor(this);
-                        }
-                        return visitor;
-                    }
-                };
-                */
-
-                figureInteraction = new FigureInteraction(glPanel, id);
+                figureInteraction = new FigureInteraction(glCanvas, id);
                 figureInteraction.setEnable(true);
 
                 int figureIndex = figure.getId();
@@ -135,12 +126,12 @@ public class FigureBridge implements GraphicView {
                 ((SwingScilabTab) tab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
                                                                                            + "/modules/gui/images/icons/graphic-window.png").getImage());
                
-                ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(glPanel);
+                ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(panel);
                 window.addTab(tab);
                 GraphicController.getController().register(this);
                 window.setVisible(true);
                 tab.setVisible(true);
-                glPanel.setVisible(true);
+                panel.setVisible(true);
                 updateGUI();
             }
         } else {
@@ -181,38 +172,45 @@ public class FigureBridge implements GraphicView {
         /*
          * Check if someone is not adding me a child
          */
-        if (id != null && id.equals(this.id) && property.equals(__GO_CHILDREN__))
-        {
-            
-            String[] allChildren =  (String []) GraphicController.getController().getProperty(id,__GO_CHILDREN__);
-            
-            for (int i = 0; i < allChildren.length ; ++i) {
-                   if (!children.containsKey(allChildren[i])) {                        
-                       
-                       String childType = (String) GraphicController.getController().getProperty(allChildren[i],__GO_TYPE__);
-                       
-                       if (childType.equals(__GO_UICONTROL__)) {
-                           DEBUG("FigureBridge", "[!!!!!] I Have a new Uicontrol Child !!!");
-                           //SwingScilabPushButton button = new SwingScilabPushButton();
-                           //button.setText("Hello...");
-                           //button.setVisible(true);
-                           //button.setDims(new Size(200, 200));
-                           //button.setPosition(new Position(0, 0));
-                       
-                           //children.put(allChildren[i], button);
-                           //((SwingScilabTab) tab.getAsSimpleTab()).addMember(button);
-                           glPanel.setLayout(null);
-                           glPanel.add((Component) SwingView.getFromId(allChildren[i]));
-                       }
-                       else {
-                          children.put(allChildren[i],null);
-                       }
-                   }
-               }
+        if ((this.id.equals(id)) && property.equals(__GO_CHILDREN__)) {
+
+            String[] childrenId =  (String []) GraphicController.getController().getProperty(id,__GO_CHILDREN__);
+
+            for (String childId : childrenId) {
+                if (!uiElementsMap.containsKey(childId)) {
+                    String childType = (String) GraphicController.getController().getProperty(childId,__GO_TYPE__);
+                    if (childType.equals(__GO_UICONTROL__)) {
+                        DEBUG("FigureBridge", "[!!!!!] I Have a new Uicontrol Child !!!");
+                        //SwingScilabPushButton button = new SwingScilabPushButton();
+                        //button.setText("Hello...");
+                        //button.setVisible(true);
+                        //button.setDims(new Size(200, 200));
+                        //button.setPosition(new Position(0, 0));
+
+                        //uiElements.put(childrenId[i], button);
+                        //((SwingScilabTab) tab.getAsSimpleTab()).addMember(button);
+                        //panel.remove(glCanvas);
+                        Component component = (Component) SwingView.getFromId(childId);
+                        panel.add(component);
+                        uiElementsMap.put(childId, component);
+                    }
+                }
             }
+
+            System.out.println("map : " + uiElementsMap.size() + " / " + childrenId.length);
+            if (uiElementsMap.size() > childrenId.length) {
+                Set<String> excessKey = new HashSet<String>(uiElementsMap.keySet());
+                excessKey.removeAll(Arrays.asList(childrenId));
+                for (String childId : excessKey) {
+                    panel.remove(uiElementsMap.get(childId));
+                }
+                uiElementsMap.keySet().removeAll(excessKey);
+            }
+
+            panel.validate();
+        }
         
-        if(children.containsKey(id))
-        {
+        if(uiElementsMap.containsKey(id)) {
             updateGUI();
         }
     }

@@ -12,6 +12,15 @@
  */
 package org.scilab.modules.gui;
 
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
@@ -33,15 +42,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 
 /**
  * @author Bruno JOFRET
@@ -104,6 +104,7 @@ public final class SwingView implements GraphicView {
 
     private Map<String, TypedObject> allObjects;
 
+    @Override
     public void createObject(String id) {
 
         String objectType = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
@@ -187,12 +188,14 @@ public final class SwingView implements GraphicView {
         }
     }
 
+    @Override
     public void deleteObject(String id) {
         TypedObject requestedObject = allObjects.get(id);
 
 
     }
 
+    @Override
     public void updateObject(String id, String property) {
         TypedObject registeredObject = allObjects.get(id);
         

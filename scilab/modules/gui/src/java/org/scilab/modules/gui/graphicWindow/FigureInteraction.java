@@ -5,7 +5,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import javax.media.opengl.GLAutoDrawable;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,6 +13,9 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 
 /**
  * This class manage figure interaction.
@@ -27,15 +30,15 @@ public class FigureInteraction {
     private final MouseWheelListener mouseWheelListener;
     private final MouseMotionListener mouseMotionListener;
 
-    private final GLAutoDrawable panel;
+    private final Component component;
     private final String figureId;
 
     private boolean isEnable = false;
 
     private MouseEvent previousEvent;
 
-    public FigureInteraction(GLAutoDrawable panel, String figureId) {
-        this.panel = panel;
+    public FigureInteraction(Component component, String figureId) {
+        this.component = component;
         this.figureId = figureId;
 
         mouseListener = createMouseListener();
@@ -57,14 +60,14 @@ public class FigureInteraction {
     }
 
     private void disable() {
-        panel.removeMouseListener(mouseListener);
-        panel.removeMouseMotionListener(mouseMotionListener);
-        panel.removeMouseWheelListener(mouseWheelListener);
+        component.removeMouseListener(mouseListener);
+        component.removeMouseMotionListener(mouseMotionListener);
+        component.removeMouseWheelListener(mouseWheelListener);
     }
 
     private void enable() {
-        panel.addMouseListener(mouseListener);
-        panel.addMouseWheelListener(mouseWheelListener);
+        component.addMouseListener(mouseListener);
+        component.addMouseWheelListener(mouseWheelListener);
     }
 
     private MouseListener createMouseListener() {
@@ -74,7 +77,7 @@ public class FigureInteraction {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (pressedButtons == 0) {
-                    panel.addMouseMotionListener(mouseMotionListener);
+                    component.addMouseMotionListener(mouseMotionListener);
                     previousEvent = e;
                 }
                 pressedButtons++;
@@ -84,7 +87,7 @@ public class FigureInteraction {
             public void mouseReleased(MouseEvent e) {
                 pressedButtons--;
                 if (pressedButtons == 0) {
-                    panel.removeMouseMotionListener(mouseMotionListener);
+                    component.removeMouseMotionListener(mouseMotionListener);
                 }
             }
         };
@@ -242,10 +245,13 @@ public class FigureInteraction {
                 // TODO : picking to find current children
                 String[] children = (String[]) GraphicController.getController().getProperty(figureId, GraphicObjectProperties.__GO_CHILDREN__);
                 for (String child : children) {
-                    Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
-                    angles[0] -= dy / 4.0;
-                    angles[1] -= dx / 4.0;
-                    GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                    String childType = (String) GraphicController.getController().getProperty(child, __GO_TYPE__);
+                    if (__GO_AXES__.equals(childType)) {
+                        Double[] angles = (Double[]) GraphicController.getController().getProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
+                        angles[0] -= dy / 4.0;
+                        angles[1] -= dx / 4.0;
+                        GraphicController.getController().setProperty(child, GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                    }
                 }
             }
 
