@@ -36,7 +36,7 @@
  */
 GRAPHICS_IMPEXP char *createNewFigureWithAxes(void);
 
-GRAPHICS_IMPEXP sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
+GRAPHICS_IMPEXP char *ConstructSubWin (char * pparentfigure); /* BUILD */
 
 GRAPHICS_IMPEXP char * allocateText( char    * pparentsubwinUID,
                                    char             ** text          ,

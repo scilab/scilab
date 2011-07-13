@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,35 +27,46 @@
 #include "localization.h"
 #include "HandleManagement.h"
 
+#include "CurrentFigure.h"
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_newaxes( char * fname,unsigned long fname_len )
 {
-    // ???
-    abort();
-#if 0
+  char *psubwinUID;
+  char *pfigureUID;
   int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
-  sciPointObj *masousfen;
   int outindex,numrow   = 1,numcol   = 1;
   CheckRhs(0, 0);
   CheckLhs(0, 1);
 
-
-  if ((masousfen = ConstructSubWin (sciGetCurrentFigure())) != NULL)
+  psubwinUID = getCurrentSubWin();
+  if (psubwinUID == NULL)
   {
-    sciSetCurrentObj(masousfen);
-    sciSetSelectedSubWin(masousfen);
+      /* No default figure nor axes: create one */
+      pfigureUID = createNewFigureWithAxes();
+      createJoGLView(pfigureUID);
+      psubwinUID = getCurrentSubWin();
+  }
+
+  if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
+  {
+    setCurrentObject(psubwinUID);
+    sciSetSelectedSubWin(psubwinUID);
+    setCurrentSubWin(psubwinUID);
+
     CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
-    *hstk(outindex) = sciGetHandle(masousfen);
+
+    *hstk(outindex) = getHandle(psubwinUID);
 
     LhsVar(1) = 1;
-	PutLhsVar();
+    PutLhsVar();
   }
   else
   {
     Scierror(999,_("%s: No more memory.\n"),fname);
   }
-#endif
   return 0;
-
 }
 /*--------------------------------------------------------------------------*/

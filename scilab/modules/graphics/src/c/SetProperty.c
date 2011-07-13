@@ -2304,7 +2304,7 @@ int sciInitSelectedSubWin( char * psubwinobj )
  * It has been adapted to the MVC. Its should be implemented entirely
  * within the MVC (as the setGraphicObjectRelationship function).
  * @param char * psubwinobj: the pointer to the entity sub window
- * @return 1 if OK or -1 if NOT OK
+ * @return 0 if OK or -1 if NOT OK
  */
 int
 sciSetSelectedSubWin (char * psubwinobjUID)
@@ -2325,25 +2325,7 @@ sciSetSelectedSubWin (char * psubwinobjUID)
 
     setGraphicObjectProperty(parent, __GO_SELECTED_CHILD__, psubwinobjUID, jni_string, 1);
 
-    /* To be deleted */
-#if 0
-    /* on verifie que l'entite passee en argument est bien une sous fenetre */
-    if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
-    {
-        Scierror(999, _("Handle is not a SubWindow.\n"));
-        return -1;
-    }
-
-    /* on verifie que la sous fenetre donnee n'est pas deja selectionnee */
-    /* No need to check anymore, as we set it anyway. */
-    if (sciGetIsSelected(psubwinobj))
-    {
-        /* nothing to do then */
-        return 1 ;
-    }
-
-    return sciInitSelectedSubWin( psubwinobj );
-#endif
+    return 0;
 }
 
 /*-------------------------------------------------------------------------------*/
