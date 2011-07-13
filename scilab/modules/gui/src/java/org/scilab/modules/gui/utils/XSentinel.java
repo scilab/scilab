@@ -46,6 +46,10 @@ class XSentinel implements MouseListener, ActionListener {
      * TODO Add accessors for this attribute. */
     public    String    reduced = null;
 
+    /** Last time-stamp to avoid event duplication.
+     */
+    private   long    timestamp = 0;
+    
     /** Construction of a correspondence.
      *
      * @param component : Swing component
@@ -138,7 +142,11 @@ class XSentinel implements MouseListener, ActionListener {
 
     /** Mouse listener callback. @param e : event*/
     public void mouseClicked(final MouseEvent e) {
-        triggerEventNode(e, peer, "mouseClicked");
+        long when = e.getWhen();
+        if (when != timestamp) {
+            triggerEventNode(e, peer, "mouseClicked");
+            timestamp = when;
+        }
     }
     /** Mouse listener callback. @param e : event*/
     public void mouseEntered(final MouseEvent e) {
@@ -155,7 +163,11 @@ class XSentinel implements MouseListener, ActionListener {
 
     /** Action listener callback. @param e : event*/
     public void actionPerformed(final ActionEvent e) {
-        triggerEventNode(e, peer, "actionPerformed");
+        long when = e.getWhen();
+        if (when != timestamp) {
+            triggerEventNode(e, peer, "actionPerformed");
+            timestamp = when;
+        }
     }
 }
 
