@@ -13,12 +13,10 @@
 package org.scilab.modules.xcos.link.explicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 
 /**
- * An explicit link connect an {@link ExplicitOutputPort} to an
- * {@link ExplicitInputPort}.
+ * An explicit link connect an {@link org.scilab.modules.xcos.port.output.ExplicitOutputPort} to an
+ * {@link org.scilab.modules.xcos.port.input.ExplicitInputPort}.
  */
 public class ExplicitLink extends BasicLink {
     

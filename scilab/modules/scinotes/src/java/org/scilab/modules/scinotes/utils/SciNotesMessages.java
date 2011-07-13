@@ -200,6 +200,7 @@ public class SciNotesMessages {
     public static final String OPENSOURCE = Messages.gettext("Open the source of the macro ");
     public static final String SHOWSOURCE = Messages.gettext("Show the definition of the macro ");
     public static final String POSFUN_IN_DOC = Messages.gettext("Line %s, Column %s. Function '%s' at Line %s.");
+    public static final String UNKNOWN_FUNCTION = Messages.gettext("Unknown function");
     public static final String POS_IN_DOC = Messages.gettext("Line %s, Column %s.");
 
     /* About box */

@@ -65,8 +65,7 @@ endfunction
 opt = optimbase_new ();
 opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
-[ opt , isok ] = optimbase_checkx0 ( opt );
-assert_checkequal ( isok , %T );
+opt = optimbase_checkx0 ( opt );
 opt = optimbase_destroy(opt);
 //
 // Test with satisfied/unsatisfied bounds constraints
@@ -76,11 +75,11 @@ opt = optimbase_configure ( opt , "-verbose",1);
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 opt = optimbase_configure ( opt , "-x0", [1.0 1.0]' );
-[ opt , isok ] = optimbase_checkx0 ( opt );
-assert_checkequal ( isok , %T );
+opt = optimbase_checkx0 ( opt );
 opt = optimbase_configure ( opt , "-x0",[-6.0 1.0]');
-[ opt , isok ] = optimbase_checkx0 ( opt );
-assert_checkequal ( isok , %F );
+instr = "opt = optimbase_checkx0 ( opt )";
+lclmsg = gettext("%s: Initial guess is not feasible.");
+assert_checkerror(instr,lclmsg,[],"optimbase_checkx0" );
 opt = optimbase_destroy(opt);
 //
 // Test with satisfied/unsatisfied nonlinear inequality constraints
@@ -90,10 +89,10 @@ opt = optimbase_configure ( opt , "-verbose",1);
 opt = optimbase_configure ( opt , "-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.8429636 ]');
-[ opt , isok ] = optimbase_checkx0 ( opt );
-assert_checkequal ( isok , %T );
+opt = optimbase_checkx0 ( opt );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.0 ]');
-[ opt , isok ] = optimbase_checkx0 ( opt );
-assert_checkequal ( isok , %F );
+instr = "opt = optimbase_checkx0 ( opt )";
+lclmsg = gettext("%s: Initial guess is not feasible.");
+assert_checkerror(instr,lclmsg,[],"optimbase_checkx0" );
 opt = optimbase_destroy(opt);
 

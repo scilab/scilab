@@ -10,3 +10,4 @@ GetCharWithoutOutput
 ConsolePrintf
 ConsoleIsWaitingForInput
 PromptToHome
+ScilabLinesUpdate

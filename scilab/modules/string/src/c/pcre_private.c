@@ -167,8 +167,7 @@ static void *new_malloc(size_t size)
 
 static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
 {
-	int rc = 0;
-	rc = pcre_fullinfo(re, study, option, ptr);
+	pcre_fullinfo(re, study, option, ptr);
 }
 
 /*************************************************
@@ -299,7 +298,6 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		char *pp = NULL;
 		char *ppp = NULL;
 		const unsigned char *tables = NULL;
-		unsigned long int true_size = 0;
 		int do_G = 0;
 		int do_g = 0;
 		int erroroffset = 0, len = 0, delimiter;
@@ -450,8 +448,6 @@ SKIP_DATA:
 				return CAN_NOT_COMPILE_PATTERN;
 			}
 
-			true_size = ((real_pcre *)re)->size;
-
 		}        /* End of non-POSIX compile */
 
 		/* Read data lines and test them */
@@ -484,7 +480,6 @@ SKIP_DATA:
 			callout_fail_id = -1;
 
 			if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
-			len = 0;
 			p = buffer;
 			bptr = q = buffer;
 			while ((c = *p++) != 0)
@@ -541,7 +536,7 @@ SKIP_DATA:
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
-						n = pcre_get_stringnumber(re, (char *)copynamesptr);
+						pcre_get_stringnumber(re, (char *)copynamesptr);
 						copynamesptr = npp;
 					}
 					else if (*p == '+')
@@ -588,7 +583,7 @@ SKIP_DATA:
 						while (isalnum(*p)) *npp++ = *p++;
 						*npp++ = 0;
 						*npp = 0;
-						n = pcre_get_stringnumber(re, (char *)getnamesptr);
+						pcre_get_stringnumber(re, (char *)getnamesptr);
 						getnamesptr = npp;
 					}
 					continue;

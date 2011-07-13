@@ -90,23 +90,25 @@ public final class Palette {
 		}
 
 		Category node = PaletteManager.getInstance().getRoot();
-
-		if (path == null) {
+		
+		if (path == null || 
+				path.length == 0 ||
+				(path.length == 1 && path[0].isEmpty())) {
 			return node;
 		}
 
 		for (int categoryCounter = 0; categoryCounter < path.length; categoryCounter++) {
 
 			for (final PaletteNode next : node.getNode()) {
-if (next.toString().equals(path[categoryCounter])
-				&& next instanceof Category) {
-			node = (Category) next;
-			break;
-} else if (next.toString().equals(path[categoryCounter])
-				&& (categoryCounter == path.length - 1)) {
-			return next; // found the terminal Palette instance
-}
-}
+				if (next.getName().equals(path[categoryCounter])
+						&& next instanceof Category) {
+					node = (Category) next;
+					break;
+				} else if (next.getName().equals(path[categoryCounter])
+						&& (categoryCounter == path.length - 1)) {
+					return next; // found the terminal Palette instance
+				}
+			}
 
 			if (!node.toString().equals(path[categoryCounter])) {
 				if (create) {
@@ -125,7 +127,7 @@ if (next.toString().equals(path[categoryCounter])
 		}
 		return node;
 	}
-
+	
 	/**
 	 * Load an xcos palette into the palette manager
 	 * 
@@ -328,8 +330,7 @@ if (next.toString().equals(path[categoryCounter])
 	 * @param source
 	 *            TreePath of the palette or category
 	 * @param target
-	 *            TreePath of the category
-	 * @link TreePath} of the destination
+	 *            TreePath of the destination
 	 */
 	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void move(final String[] source, final String[] target) {

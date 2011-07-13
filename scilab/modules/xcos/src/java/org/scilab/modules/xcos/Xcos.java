@@ -51,6 +51,8 @@ import com.mxgraph.view.mxStylesheet;
 /**
  * Xcos entry point class
  */
+// CSOFF: ClassFanOutComplexity
+// CSOFF: ClassDataAbstractionCoupling
 public final class Xcos {
 	/**
 	 * The current Xcos version
@@ -61,10 +63,12 @@ public final class Xcos {
 	 */
 	public static final String TRADENAME = "Xcos";
 
+	private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+	
 	/*
 	 * Dependencies version
 	 */
-	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.4.1.0");
+	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.7.0.6", "1.7.0.7");
 	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
@@ -153,8 +157,8 @@ public final class Xcos {
 		try {
 			final Class< ? > klass = loader.loadClass("com.mxgraph.view.mxGraph");
 			mxGraphVersion = (String) klass.getDeclaredField("VERSION").get(null);
-				
-			if (!MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
+			
+			if (MXGRAPH_VERSIONS != null && !MXGRAPH_VERSIONS.contains(mxGraphVersion)) {
 				throw new Exception();
 			}
 		} catch (final Throwable e) {
@@ -443,7 +447,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -468,7 +472,7 @@ public final class Xcos {
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+		InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -619,16 +623,15 @@ public final class Xcos {
 	 *            The xcos diagram file
 	 * @param h5File
 	 *            The target file
-	 * @param forceOverwrite
+	 * @param overwrite
 	 *            Does the file will be overwritten ?
 	 * @return Not used (compatibility)
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
-			final boolean forceOverwrite) {
+			final boolean overwrite) {
 		final File file = new File(xcosFile);
 		final File temp = new File(h5File);
-		final boolean overwrite = forceOverwrite;
 
 		if (temp.exists()) {
 			if (!overwrite) {
@@ -636,6 +639,10 @@ public final class Xcos {
 			} else {
 				delete(temp);
 			}
+		}
+		
+		if (!file.exists()) {
+			return 1;
 		}
 		
 		try {
@@ -698,7 +705,7 @@ public final class Xcos {
 					
 					// loop to get only the last diagram
 					while (block instanceof SuperBlock & !deque.isEmpty()) {
-						final SuperBlock superBlock = (SuperBlock)block;
+						final SuperBlock superBlock = (SuperBlock) block;
 						id = deque.pop();
 						
 						superBlock.openBlockSettings(null);
@@ -730,11 +737,10 @@ public final class Xcos {
 	 * 
 	 * This method invoke Xcos operation on the EDT thread.
 	 * 
-	 * @param uid[]
-	 *            The diagram id path
+	 * @param uid The diagram id path
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcosDiagramClose(final String uid[]) {
+	public static void xcosDiagramClose(final String[] uid) {
 		final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 		
 		try {
@@ -760,7 +766,7 @@ public final class Xcos {
 					
 					// loop to get only the last diagram
 					while (block instanceof SuperBlock & !deque.isEmpty()) {
-						final SuperBlock superBlock = (SuperBlock)block;
+						final SuperBlock superBlock = (SuperBlock) block;
 						id = deque.pop();
 						
 						superBlock.openBlockSettings(null);
@@ -805,3 +811,5 @@ public final class Xcos {
 		return null;
 	}
 }
+//CSON: ClassDataAbstractionCoupling
+//CSON: ClassFanOutComplexity

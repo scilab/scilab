@@ -110,7 +110,7 @@ AC_ARG_ENABLE(debug-linker,
 AC_ARG_ENABLE(code-coverage,
    AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
-AC_ARG_ENABLE(stopOnWarning,
+AC_ARG_ENABLE(stop-on-warning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
 AC_ARG_WITH(gcc,
@@ -510,7 +510,7 @@ case "$CXX" in
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
-   clang-* | clang) 
+   clang-* | clang)
            # clang expect an explict declaration
            LDFLAGS="$LDFLAGS -lstdc++"
    ;;
@@ -691,8 +691,8 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 
 ################
 ## SSE
-## By default, for x86 CPU, enable the SSE. 
-## Note that it is already the case with 64 bits CPU 
+## By default, for x86 CPU, enable the SSE.
+## Note that it is already the case with 64 bits CPU
 ## (these extensions are enabled by default by gcc)
 ################
 
@@ -803,7 +803,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
         case "$host_os" in
-             *Darwin* | *darwin*) 
+             *Darwin* | *darwin*)
                # Mac OS X does not link against the lib but uses -framework
                JAVA_JNI_LIBS="-framework JavaVM"
              ;;
@@ -834,7 +834,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
@@ -881,7 +881,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
@@ -909,7 +911,9 @@ the the JNI libraries."])],
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
                    AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
                    [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
@@ -1375,6 +1379,7 @@ AC_LIBXML2()
 #######################
 
 ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1384,6 +1389,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_SUBST(ALL_LINGUAS_DOC)
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
@@ -1713,8 +1719,8 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
+   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
 fi
 
 AC_CONFIG_FILES([

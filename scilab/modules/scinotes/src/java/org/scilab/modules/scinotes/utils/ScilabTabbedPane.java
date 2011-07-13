@@ -39,6 +39,7 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -113,6 +114,15 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         DragSource dragsource = DragSource.getDefaultDragSource();
         dragsource.createDefaultDragGestureRecognizer(this, DnDConstants.ACTION_MOVE, this);
         DropTarget droptarget = new DropTarget(this, this);
+        addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 1 && SwingUtilities.isMiddleMouseButton(e)) {
+                        int index = indexAtLocation(e.getX(), e.getY());
+                        ((CloseTabButton) getTabComponentAt(index)).closeTab();
+                        e.consume();
+                    }
+                }
+            });
     }
 
     /**
@@ -426,6 +436,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             return label.getText();
         }
 
+        public void closeTab() {
+            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
+            if (getTabCount() == 0) {
+                editor.addEmptyTab();
+            }
+        }
+
         /**
          * Inner class for the close-button
          */
@@ -444,10 +461,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(CloseTabButton.this));
-                            if (getTabCount() == 0) {
-                                editor.addEmptyTab();
-                            }
+                            closeTab();
                         }
                     });
             }

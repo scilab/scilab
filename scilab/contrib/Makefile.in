@@ -69,6 +69,7 @@ DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -411,7 +412,8 @@ xcos_toolbox_skeleton/src/c/business.h \
 xcos_toolbox_skeleton/src/c/business_sum.c \
 xcos_toolbox_skeleton/src/c/.gitignore \
 xcos_toolbox_skeleton/src/cleaner_src.sce \
-xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst
+xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst \
+loader.sce
 
 all: all-am
 

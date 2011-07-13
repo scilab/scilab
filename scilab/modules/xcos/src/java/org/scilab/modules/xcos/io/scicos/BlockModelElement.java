@@ -244,16 +244,16 @@ class BlockModelElement extends BlockPartsElement {
 	private void fillSecondRawParameters(BasicBlock into) throws WrongStructureException {
 		// dep-ut
 		int field = DEPENDU_INDEX;
-		final boolean[][] dep_ut = ((ScilabBoolean) data.get(field)).getData();
+		final boolean[][] dependsOn = ((ScilabBoolean) data.get(field)).getData();
 
-		if (dep_ut.length == 1 && dep_ut[0].length == 2) {
-			into.setDependsOnU(dep_ut[0][0]);
-			into.setDependsOnT(dep_ut[0][1]);
-		} else if (dep_ut.length == 2
-				&& dep_ut[0].length == 1
-				&& dep_ut[1].length == 1) {
-			into.setDependsOnU(dep_ut[0][0]);
-			into.setDependsOnT(dep_ut[1][0]);
+		if (dependsOn.length == 1 && dependsOn[0].length == 2) {
+			into.setDependsOnU(dependsOn[0][0]);
+			into.setDependsOnT(dependsOn[0][1]);
+		} else if (dependsOn.length == 2
+				&& dependsOn[0].length == 1
+				&& dependsOn[1].length == 1) {
+			into.setDependsOnU(dependsOn[0][0]);
+			into.setDependsOnT(dependsOn[1][0]);
 		} else {
 			throw new WrongStructureException(
 					((ScilabString) data.get(0)).getData()[0][DEPENDU_INDEX]);
@@ -500,6 +500,7 @@ class BlockModelElement extends BlockPartsElement {
 	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	// CSOFF: JavaNCSS
+	// CSOFF: NPathComplexity
 	@Override
 	public ScilabType encode(BasicBlock from, ScilabType element) {
 		data = (ScilabMList) element;
@@ -623,6 +624,7 @@ class BlockModelElement extends BlockPartsElement {
 		
 		return data;
 	}
+	// CSON: NPathComplexity
 	// CSON: JavaNCSS
 	
 	/**

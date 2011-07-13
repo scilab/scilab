@@ -17,6 +17,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ public abstract class DefaultAction extends CallBack {
 		addIconPath(System.getenv("SCI") + "/modules/gui/images/icons/");
 	}
 	
-	private ScilabGraph scilabGraph;
+	private final ScilabGraph scilabGraph;
 
 	/**
 	 * Default constructor.
@@ -85,6 +86,19 @@ public abstract class DefaultAction extends CallBack {
 		ICON_PATH.add(path);
 	}
 
+	/**
+	 * Add an icon path to the default icon path.
+	 * 
+	 * @param path the icon path (with the trailing /)
+	 */
+	public static void addIconPath(File path) {
+		if (path.isDirectory()) {
+			try {
+				ICON_PATH.add(path.getCanonicalPath() + File.separatorChar);
+			} catch (IOException e) { }
+		}
+	}
+	
 	/**
 	 * Install the static actions properties on the instance
 	 */

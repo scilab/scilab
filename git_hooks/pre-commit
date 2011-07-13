@@ -3,27 +3,73 @@
 # Hook used to indent all xcos files before commiting
 #
 
-XMLLINT="$(git config hooks.xmllint)"
+
+#
+# Pre-conditions
+#
+if test -d ".git/rebase-merge"          || \
+   test -d ".git/rebase-apply"          || \
+   test -f ".git/MERGE_HEAD"            || \
+   test -f ".git/CHERRY_PICK_HEAD"      || \
+   test -f ".git/BISECT_LOG"            
+then
+	exit 0
+fi
+
+#
+# Configuration check
+#
+XMLLINT="$(git config --get hooks.xmllint)"
+
 if test ! -x "$XMLLINT"
 then
 	echo "Unable to find xmllint executable on the configuration."
 	echo
 	echo "Please configure it with :"
-	echo "  git config hooks.xmllint C:/path/to/xmllint"
+	echo "  git config --global hooks.xmllint C:/path/to/xmllint"
 	echo
 fi
 
-INDENT="$(git config hooks.indent)"
+if test -z "$(git config --get-all xmllint.ignored)"
+then
+	echo "Unable to find xmllint ignored list on the configuration, ignored"
+	echo
+	echo "You can configure it with :"
+	echo "  git config --add xmllint.ignored 'scilab/Visual-Studio-settings/*.xml' "
+	echo "  git config --add xmllint.ignored 'scilab/checkstyle/*.xml' "
+	echo
+	
+	XMLLINT_IGNORED=""
+else
+	XMLLINT_IGNORED="$(find $(git config --get-all xmllint.ignored))"
+fi
+
+INDENT="$(git config --get hooks.indent)"
 if test ! -x "$INDENT"
 then
 	echo "Unable to find indent executable on the configuration."
 	echo
 	echo "Please configure it with :"
-	echo "  git config hooks.indent C:/path/to/indent"
+	echo "  git config --global hooks.indent C:/path/to/indent"
 	echo
 fi
 
+if test -z "$(git config --get-all indent.ignored)"
+then
+	echo "Unable to find indent ignored list on the configuration, ignored"
+	echo
+	echo "You can configure it with :"
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.hxx' "
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.cpp' "
+	echo
+	
+	INDENT_IGNORED=""
+else
+	INDENT_IGNORED="$(find $(git config --get-all indent.ignored))"
+fi
+
 # indent / format file by type
+#
 indent() {
 	# getting against as the current commit
 	if git rev-parse --verify HEAD >/dev/null 2>&1
@@ -72,7 +118,18 @@ __indent_Xml() {
 		return;
 	fi
 
-	echo "Formatting " $file
+	# ignored globs
+	if test -n "$XMLLINT_IGNORED"
+	then
+		echo $XMLLINT_IGNORED |grep -q $file
+		if test $? -eq 0
+		then
+			echo "Formatting" $file	": ignored"
+			return
+		fi
+	fi
+
+	echo "Formatting" $file
 	"$XMLLINT" --format -o "$file" "$file"
 	git add "$file"
 }
@@ -88,9 +145,22 @@ __indent_C() {
 		return;
 	fi
 
-	echo "Indenting " $file
+	# ignored globs
+	if test -n "$INDENT_IGNORED"
+	then
+		echo $INDENT_IGNORED |grep -q "$file"
+		if test $? -eq 0
+		then
+			echo "Indenting" $file	": ignored"
+			return
+		fi
+	fi
+        
+
+	echo "Indenting" $file
 	"$INDENT" -npro --braces-after-if-line -i4 -ts4 -sob -ss -ncs -sc --no-space-after-parentheses -cp1 --no-tabs -bap -bad -npcs --dont-break-function-decl-args --dont-break-procedure-type -bli0 -l150 -il0 "$file"
 	git add "$file"
 }
 
 indent
+

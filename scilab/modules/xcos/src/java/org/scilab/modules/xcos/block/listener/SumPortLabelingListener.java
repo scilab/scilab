@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 
 import com.mxgraph.model.mxICell;
@@ -92,18 +91,7 @@ public class SumPortLabelingListener implements PropertyChangeListener, Serializ
 		/**
 		 * Check if all the values are equals to the default one.
 		 */
-		boolean allPortIsDefaultLabel = true;
-		for (InputPort port : ports) {
-			if (port.getValue() instanceof String) {
-				String current = port.getValue().toString();
-				if (!NOT_PRINTED_LABEL.equals(current)) {
-					allPortIsDefaultLabel = false;
-					break;
-				}
-			}
-		}
-
-		if (!allPortIsDefaultLabel) {
+		if (!hasDefaultValue(ports)) {
 			return;
 		}
 		
@@ -115,6 +103,25 @@ public class SumPortLabelingListener implements PropertyChangeListener, Serializ
 		for (InputPort port : ports) {
 			port.setValue("");
 		}
+	}
+
+	/**
+	 * Has all the ports have the defualt value ?
+	 * @param ports the ports list
+	 * @return true if they all have the default values
+	 */
+	private boolean hasDefaultValue(final List<InputPort> ports) {
+		boolean allPortIsDefaultLabel = true;
+		for (InputPort port : ports) {
+			if (port.getValue() instanceof String) {
+				String current = port.getValue().toString();
+				if (!NOT_PRINTED_LABEL.equals(current)) {
+					allPortIsDefaultLabel = false;
+					break;
+				}
+			}
+		}
+		return allPortIsDefaultLabel;
 	}
 	
 	/**
