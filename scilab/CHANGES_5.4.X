@@ -5,6 +5,9 @@
 SciNotes:
 =========
 
+* Add marks in the vertical scrollbar to see the positions of matching words
+  when an incremental search is done (via F3 or in selecting text).
+
 * In the find/grep tools, add the possibility to use ~ as a joker for user home
   dir. and SCI for Scilab data base dir.
 
