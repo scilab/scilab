@@ -36,6 +36,8 @@ SciNotes:
 * bug 9597 fixed - It was not possible to navigate across the tabs with
                    <CTRL>+(PAGE_UP | PAGE_DOWN).
 
+* bug 9740 fixed - There was no way to have \n in replacement string.
+
 
 Graphical User Interface:
 =========================
