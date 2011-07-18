@@ -25,6 +25,7 @@
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )
 {

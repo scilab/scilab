@@ -19,6 +19,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "SetProperty.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xname(char *fname,unsigned long fname_len)

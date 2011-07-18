@@ -32,6 +32,7 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "callJoGLView.h"
+#include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xrect( char *fname, unsigned long fname_len )

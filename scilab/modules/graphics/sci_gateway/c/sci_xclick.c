@@ -24,6 +24,7 @@
 #include "ObjectSelection.h"
 #include "FigureList.h"
 #include "axesScale.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)

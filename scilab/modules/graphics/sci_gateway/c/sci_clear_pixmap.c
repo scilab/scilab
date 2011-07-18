@@ -18,6 +18,7 @@
 #include "gw_graphics.h"
 #include "stack-c.h"
 #include "DrawObjects.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_clear_pixmap(char *fname, unsigned long fname_len )

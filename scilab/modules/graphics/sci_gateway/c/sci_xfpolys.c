@@ -25,6 +25,7 @@
 #include "DrawObjects.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpolys( char *fname, unsigned long fname_len )

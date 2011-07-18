@@ -20,6 +20,7 @@
 #include "stack-c.h"
 #include "GraphicSynchronizerInterface.h"
 #include "SetProperty.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_drawlater( char * fname, unsigned long fname_len )

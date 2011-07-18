@@ -18,6 +18,7 @@
 #include "stack-c.h"
 #include "gw_graphics.h"
 #include "GetProperty.h"
+#include "HandleManagement.h"
 
 int geom3d(double *x, double *y, double *z, int n) ;
 

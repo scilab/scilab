@@ -22,6 +22,7 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfpoly(char *fname,unsigned long fname_len)

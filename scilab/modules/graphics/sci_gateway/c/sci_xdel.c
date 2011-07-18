@@ -23,6 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "FigureList.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xdel(char *fname,unsigned long fname_len)

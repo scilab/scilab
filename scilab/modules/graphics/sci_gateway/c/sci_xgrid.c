@@ -20,6 +20,7 @@
 #include "stack-c.h"
 #include "SetProperty.h"
 #include "DrawingBridge.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xgrid(char *fname,unsigned long fname_len)

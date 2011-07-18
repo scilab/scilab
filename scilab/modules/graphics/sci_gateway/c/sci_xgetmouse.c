@@ -28,6 +28,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_xgetmouse( char *fname,unsigned long fname_len )
 {

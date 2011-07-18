@@ -28,6 +28,7 @@
 
 #include "BuildObjects.h"
 #include "HandleManagement.h"
+#include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "callJoGLView.h"
 

@@ -20,6 +20,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "Interaction.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 static int getInitialRectangle(double initRect[4]);

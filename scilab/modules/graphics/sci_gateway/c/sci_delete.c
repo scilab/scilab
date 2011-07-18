@@ -37,6 +37,7 @@
 #include "HandleManagement.h"
 #include "FigureList.h"
 #include "deleteGraphicObject.h"
+#include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {

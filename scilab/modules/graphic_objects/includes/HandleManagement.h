@@ -77,8 +77,6 @@ GRAPHIC_OBJECTS_IMPEXP int swapHandles(long firstHandle, long secondHandle);
 
 // DEPRECATED functions : Should be removed
 GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP long sciGetHandle(void* pobj);
-GRAPHIC_OBJECTS_IMPEXP void* sciGetParent(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetParent(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetSons(void* pobj);
 GRAPHIC_OBJECTS_IMPEXP void* sciGetCurrentFigure(void);

@@ -30,6 +30,7 @@
 
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
+#include "HandleManagement.h"
 #include "callJoGLView.h"
 
 /*--------------------------------------------------------------------------*/

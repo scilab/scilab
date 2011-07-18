@@ -51,6 +51,8 @@
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
 
+#include "Format.h" // computeDefaultTicsLabels
+
 #include "createGraphicObject.h"
 #include "deleteGraphicObject.h"
 #include "returnType.h"
@@ -58,7 +60,8 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "callJoGLView.h"
-
+#include "CurrentSubwin.h"
+#include "CurrentObject.h"
 #include "FigureModel.h"
 #include "AxesModel.h"
 

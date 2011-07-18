@@ -34,6 +34,7 @@
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
 #include "callJoGLView.h"
+#include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )

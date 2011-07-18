@@ -21,7 +21,7 @@
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "SetProperty.h"
-
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)
 {

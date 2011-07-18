@@ -22,6 +22,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "DrawingBridge.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {

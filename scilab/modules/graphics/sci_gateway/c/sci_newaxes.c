@@ -27,6 +27,7 @@
 #include "localization.h"
 #include "HandleManagement.h"
 
+#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"

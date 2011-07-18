@@ -22,6 +22,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 
 /*--------------------------------------------------------------------------*/

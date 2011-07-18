@@ -26,6 +26,7 @@
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_xrects( char *fname, unsigned long fname_len )
 {

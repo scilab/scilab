@@ -25,6 +25,7 @@
 #include "ObjectSelection.h"
 #include "localization.h"
 #include "returnProperty.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xgetg)( char * str, char * str1, int * len,int  lx0,int lx1);
 /*--------------------------------------------------------------------------*/

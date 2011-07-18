@@ -17,6 +17,9 @@
 /* desc : function to modify in Scilab the parent field of                */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
+
+#include <string.h>
+
 #include "sci_types.h"
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -25,8 +28,11 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "InitUIMenu.h"
+#include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "HandleManagement.h"
+#include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
 int set_parent_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )

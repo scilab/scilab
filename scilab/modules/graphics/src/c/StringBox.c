@@ -25,6 +25,7 @@
 #include "DestroyObjects.h"
 #include "GraphicSynchronizerInterface.h"
 #include "SetProperty.h"
+#include "HandleManagement.h"
 
 /*-------------------------------------------------------------------------------*/
 void getTextBoundingBox(char ** text, int nbRow, int nbCol,

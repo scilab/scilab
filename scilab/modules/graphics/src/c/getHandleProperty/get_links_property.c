@@ -27,6 +27,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
 int get_links_property(char *pobjUID)

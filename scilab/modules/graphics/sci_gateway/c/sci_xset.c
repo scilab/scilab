@@ -36,6 +36,7 @@
 #include "setGraphicObjectProperty.h"
 #include "FigureList.h"
 #include "CurrentFigure.h"
+#include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xsetg)(char * str,char * str1,int lx0,int lx1) ;
 /*--------------------------------------------------------------------------*/

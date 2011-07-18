@@ -66,6 +66,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "FigureModel.h"
+#include "AxesModel.h"
 
 #define MAX_MARK_STYLE 14
 

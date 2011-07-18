@@ -20,6 +20,8 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "getHandleProperty.h"
 #include "HandleManagement.h"
 #include "returnProperty.h"
