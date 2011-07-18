@@ -381,6 +381,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell", "modules\shell\src\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\src\java\jvm-JAVA.vcxproj", "{E9783492-017E-4811-9CC7-6B71856F847C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcxproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 EndProject
@@ -523,6 +526,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hdf5-Ant", "modules\hdf5\src\java\hdf5-JAVA.vcxproj", "{9B6500B0-66F6-44F0-910D-47A1435B4E02}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scinotes-Ant", "modules\scinotes\src\java\scinotes-JAVA.vcxproj", "{43B095CB-B86C-44CB-BCE8-87FE8E7D2A0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78D8B862-964A-4D0E-93D2-CA8A25BA1207} = {78D8B862-964A-4D0E-93D2-CA8A25BA1207}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scinotes", "modules\scinotes\src\c\scinotes.vcxproj", "{BAE68B54-2C1A-44D0-A0E9-05156A784E79}"
 EndProject

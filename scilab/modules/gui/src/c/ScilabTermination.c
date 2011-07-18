@@ -10,12 +10,9 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "sciquit.h"
-#include "exitCodeValue.h"
+#include "storeCommand.h"
 /*--------------------------------------------------------------------------*/
 void ScilabExit(void)
 {
-    setExitCodeValue(0);
-    sciquit();
-    exit(0);
+    StoreCommand("quit");
 }

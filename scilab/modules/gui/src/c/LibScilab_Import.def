@@ -35,3 +35,4 @@ IsAScalar
 overload_
 getlistrhsvar_
 getWarningMode
+StoreCommand

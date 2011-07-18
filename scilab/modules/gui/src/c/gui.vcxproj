@@ -232,6 +232,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
@@ -342,6 +343,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_x_dialog.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c" />
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp" />
+    <ClCompile Include="ScilabTermination.c" />
     <ClCompile Include="setMainWindowTitle.c" />
     <ClCompile Include="..\cpp\SetUicontrolBackgroundColor.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolFontAngle.cpp" />
@@ -494,6 +496,7 @@
     <ClInclude Include="..\..\includes\RadioButton.h" />
     <ClInclude Include="..\cpp\RadioButton.hxx" />
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
+    <ClInclude Include="ScilabTermination.h" />
     <ClInclude Include="setMainWindowTitle.h" />
     <ClInclude Include="..\..\includes\SetUicontrolBackgroundColor.h" />
     <ClInclude Include="..\cpp\SetUicontrolBackgroundColor.hxx" />

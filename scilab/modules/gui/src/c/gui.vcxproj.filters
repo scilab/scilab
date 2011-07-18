@@ -455,6 +455,12 @@
     <ClCompile Include="..\cpp\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\ScilabTermination_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScilabTermination.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle.h">
@@ -986,6 +992,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\Widget.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScilabTermination.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
