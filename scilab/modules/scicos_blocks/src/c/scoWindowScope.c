@@ -46,6 +46,7 @@
 #include "ObjectSelection.h"
 #include "scicos_block4.h"
 #include "localization.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(dcopy)();
 /*--------------------------------------------------------------------------*/

@@ -29,6 +29,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "scoGetProperty.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 //** Added for real time functions
 //**
