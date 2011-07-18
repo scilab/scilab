@@ -300,18 +300,18 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 pwstSlash = NULL;
             }
         }
-        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
-        {
-            if(pwstTemp[2] != '\0')
-            {
-                (*_piOutputRows)++;
-                pwstSlash = pwstTemp + 2;
-            }
-            else
-            {//end of string, so don't need to increament nulber of lines
-                pwstSlash = NULL;
-            }
-        }
+        //else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
+        //{
+        //    if(pwstTemp[2] != '\0')
+        //    {
+        //        (*_piOutputRows)++;
+        //        pwstSlash = pwstTemp + 2;
+        //    }
+        //    else
+        //    {//end of string, so don't need to increament nulber of lines
+        //        pwstSlash = NULL;
+        //    }
+        //}
         else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL)
         {
             if(pwstTemp[2] != '\0')
@@ -388,12 +388,12 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             idx = pwstTemp - pwstSlash;
             pwstTemp += 4;
         }
-        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
-        {
-            bNewLine = true;
-            idx = pwstTemp - pwstSlash;
-            pwstTemp += 2;
-        }
+        //else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
+        //{
+        //    bNewLine = true;
+        //    idx = pwstTemp - pwstSlash;
+        //    pwstTemp += 2;
+        //}
         else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL)
         {
             bNewLine = true;

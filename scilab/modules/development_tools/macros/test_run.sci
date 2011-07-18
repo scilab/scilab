@@ -659,7 +659,7 @@ function status = test_single(_module, _testPath, _testName)
         language_arg = "LANG=" + language + " ; ";
     end
 
-    execCmd = sprintf("try exec(\""%s\"", -1);catch exit;end", tmp_tst);
+    execCmd = "try exec(''" + tmp_tst + "'', -1);catch exit;end";
     //Buld final command
     if getos() == 'Windows' then
         //test_cmd = "( """ + SCI_BIN + "\bin\YaSp.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
@@ -692,7 +692,6 @@ function status = test_single(_module, _testPath, _testName)
             
     //execute test
     host(test_cmd);
-
     //Check errors
     if (error_output == "check") & (_module.error_output == "check") then
         if getos() == "Darwin" then
