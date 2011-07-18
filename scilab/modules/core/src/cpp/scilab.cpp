@@ -250,6 +250,7 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
     std::cerr << "File : " << argv[ *_piFileIndex] << std::endl;
 #endif
 
+    ConfigVariable::setCommandLineArgs(argc, argv);
     return 0;
 }
 

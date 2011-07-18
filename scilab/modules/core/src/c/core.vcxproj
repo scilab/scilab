@@ -330,7 +330,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_readgateway.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_resume.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_return.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sciargs.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_setbpt.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_stacksize.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_type.c" />

@@ -287,9 +287,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_return.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_sciargs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_setbpt.c">
       <Filter>Source Files</Filter>
     </ClCompile>

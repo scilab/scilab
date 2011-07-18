@@ -707,6 +707,31 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
     return &m_EntryPointList;
 }
 
+
+    // Command Line Arguments
+std::vector<std::wstring> ConfigVariable::m_Args;
+
+void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
+{
+    m_Args.clear();
+    for(int i = 0 ; i < _iArgs ; i++)
+    {
+        m_Args.push_back(to_wide_string(_pstArgs[i]));
+    }
+}
+
+wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
+{
+    wchar_t** pwstArgs = (wchar_t**)MALLOC(m_Args.size() * sizeof(wchar_t*));
+    for(int i = 0 ; i < m_Args.size() ; i++)
+    {
+        pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
+    }
+
+    *_piCount = m_Args.size();
+    return pwstArgs;
+}
+
 /*
 ** \}
 */

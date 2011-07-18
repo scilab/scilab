@@ -255,6 +255,16 @@ public :
     static void removeEntryPoint(int _iEntryPointIndex);
     static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
     static std::vector<std::wstring> getEntryPointNameList();
+
+    // Command Line Arguments
+private :
+    static std::vector<std::wstring> m_Args;
+public :
+    static void setCommandLineArgs(int _iArgs, char** _pstArgs);
+    static wchar_t** getCommandLineArgs(int* _piCount);
+
+
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

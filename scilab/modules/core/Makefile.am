@@ -270,7 +270,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_resume.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_stacksize.cpp
+	sci_gateway/cpp/sci_stacksize.cpp \
+	sci_gateway/cpp/sci_sciargs.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -297,7 +298,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	$(XML_FLAGS)
 
 libscicore_la_CPPFLAGS = \
- 	-I$(srcdir)/includes/ \
+	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
