@@ -70,6 +70,7 @@ int wcstat(char* filename, struct _stat *st);
 #ifdef _MSC_VER
 #define wcsicmp _wcsicmp
 #else
+int wcsicmp_others(const wchar_t* s1, const wchar_t* s2);
 #define wcsicmp wcsicmp_others
 #endif
 

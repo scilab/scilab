@@ -18,6 +18,9 @@
 /* desc : function to modify in Scilab the log_flags field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+#define _GNU_SOURCE
+#endif
 #include <string.h>
 #include <math.h>
 #include "setHandleProperty.h"
@@ -49,17 +52,17 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
     int cmpteur = 0, cmpteur2 = 0, offset = 0;
 
 
-    for(i=0;i<nbtics;i++)
-    {
-        if(u_xgrads[i]<=0){
-            sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n",i);
-        }
-        else
-        {
-            u_xgrads[cmpteur] = log10(u_xgrads[i]);
-            cmpteur++;
-        }
+  for(i=0;i<nbtics;i++)
+  {
+    if(u_xgrads[i]<=0){
+      sciprint("Warning: graduation number %d is ignored : when switching to logarithmic scale, we must have strictly positive graduations!\n",i);
     }
+    else
+    {
+        u_xgrads[cmpteur] = log10(u_xgrads[i]);
+        cmpteur++;
+    }
+  }
 
     if(cmpteur != nbtics)
     {

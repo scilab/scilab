@@ -2,14 +2,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include <stdlib.h>
 #include "api_scilab.h"
 #include "sci_types.h"
@@ -112,7 +113,7 @@ static char **getmacrosonstacklist(int *sizearray)
         {
             macroslist = (char**)MALLOC(sizeof(char*) * nbMacros);
         }
-        
+
         if (macroslist)
         {
             nbMacros = 0;
@@ -122,7 +123,7 @@ static char **getmacrosonstacklist(int *sizearray)
                 SciErr sciErr = getNamedVarType(pvApiCtx, localvariables[i], &iType);
                 if (!sciErr.iErr)
                 {
-                    if (iType == sci_c_function) 
+                    if (iType == sci_c_function)
                     {
                         macroslist[nbMacros++] = strdup(localvariables[i]);
                     }
@@ -259,9 +260,9 @@ static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
     }
     *SizeStrings = newsize;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static int cmpstr( const void *a ,const void *b)
 {
     return strcmp(*(const char **)a, *(const char **)b );
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

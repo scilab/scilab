@@ -1107,7 +1107,7 @@ msgid "Maintainer(s)"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 23
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid "No ATOMS module is available. Please, check your Internet connection or make sure your OS is compatible with ATOMS."
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 25
