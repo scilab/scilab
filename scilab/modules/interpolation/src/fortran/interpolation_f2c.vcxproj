@@ -287,6 +287,8 @@ copy interpolation_f_header.def+interpolation_f.vcdef interpolation_f.def &gt;nu
   <ItemGroup>
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="interpolation_Import.def" />
+    <None Include="LibScilab_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

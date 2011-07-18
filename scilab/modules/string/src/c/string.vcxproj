@@ -339,6 +339,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   <ItemGroup>
     <None Include="..\..\locales\en_US\string.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="linpack_f_Import.def" />
     <None Include="localization_Import.def" />
     <None Include="Scilab_windows_Import.def" />
     <None Include="string_f_Import.def" />

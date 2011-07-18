@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="11.0" ProjectIdGuid="{F0F55692-0355-4BC3-BE9D-552C8AAC5238}">
 	<Platforms>
 		<Platform Name="Win32"/>
@@ -79,6 +79,8 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Library dependencies">
+		<File RelativePath=".\Elementary_functions_f_Import.def"/>
+		<File RelativePath=".\Elementary_functions_Import.def"/>
 		<File RelativePath=".\LibScilab_Import.def"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\linpack_f.rc"/></Filter>

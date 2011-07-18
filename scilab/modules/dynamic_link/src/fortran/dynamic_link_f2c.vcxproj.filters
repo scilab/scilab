@@ -19,6 +19,9 @@
     <Filter Include="Import">
       <UniqueIdentifier>{f0f1c6a1-d374-425f-8ed2-5eb3de854a5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Librairies Dependencies">
+      <UniqueIdentifier>{66bc8d2f-1ba7-4d73-9308-65ed76763bf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_fort.c">

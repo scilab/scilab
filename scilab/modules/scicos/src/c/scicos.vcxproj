@@ -373,6 +373,7 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <None Include="Graphics_Import.def" />
     <None Include="Intersci_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="Localization_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="Scicos_blocks_f_Import.def" />
     <None Include="scicos_f_Import.def" />

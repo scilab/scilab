@@ -16,6 +16,9 @@
     <Filter Include="Fortran files">
       <UniqueIdentifier>{32640072-6dde-43c7-bce7-aca043fc9c12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{7c98ca61-fefd-46ae-9a7d-e3e8bf012d07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\intfile.c">
@@ -88,5 +91,29 @@
   <ItemGroup>
     <None Include="..\..\sci_gateway\io_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="Elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="fileio_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="io_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="output_stream_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="String_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

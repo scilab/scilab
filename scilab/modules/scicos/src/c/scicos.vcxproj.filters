@@ -274,6 +274,9 @@
     <None Include="..\..\scicos.iss" />
     <None Include="..\..\sci_gateway\scicos_gateway.xml" />
     <None Include="..\..\version.xml" />
+    <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">
