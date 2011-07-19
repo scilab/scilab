@@ -76,7 +76,7 @@ public class Scilab {
 
     /**
      * Creator of the Scilab Javasci object in advanced mode<br />
-     * Scilab data path is autodetected 
+     * Scilab data path is autodetected
      * <br />
      * Example:<br />
      * <code>
@@ -160,7 +160,7 @@ public class Scilab {
     public boolean open() throws JavasciException {
         int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
         switch (res) {
-            case -1: 
+            case -1:
                 throw new AlreadyRunningException("Javasci already running.");
             case -2:
                 /* Should not occurd (processed before) */
@@ -307,7 +307,7 @@ public class Scilab {
      * ScilabDouble aOriginal = new ScilabDouble(a);<br />
      * sci.put("a",aOriginal);<br />
      * assert sci.isExistingVariable("a") == true;<br />
-     * <br />     
+     * <br />
      * </code>
      * @param varname the variable to check
      * @return if the variable exists or not
@@ -324,7 +324,7 @@ public class Scilab {
      * Example:<br />
      * <code>
      * sci.close();<br />
-     * <br />     
+     * <br />
      * </code>
      * @return if the operation is successful
      */
@@ -341,7 +341,7 @@ public class Scilab {
      * <code>
      * sci.open("a=1+"); // Wrong operation<br />
      * sci.getLastErrorCode() // Returns 2<br />
-     * <br />     
+     * <br />
      * </code>
      * @return the error code
      */
@@ -357,7 +357,7 @@ public class Scilab {
      * <code>
      * sci.open("a=1+");<br />
      * System.err.println(sci.getLastErrorMessage());<br />
-     * <br />     
+     * <br />
      * </code>
      * @return the error message itself
      */
@@ -374,7 +374,7 @@ public class Scilab {
      * <code>
      * sci.exec("plot3d();");<br />
      * sci.isGraphicOpened();<br />
-     * <br />     
+     * <br />
      * </code>
      * @return if the graphic is open or not
      */
@@ -391,7 +391,7 @@ public class Scilab {
      * if (sci.getVariableType("a") == ScilabTypeEnum.sci_matrix) {<br />
      *      System.out.println("a is a double matrix");<br />
      * }<br />
-     * <br />     
+     * <br />
      * </code>
      * @param varName the name of the variable
      * @return the type of the variable
@@ -430,7 +430,7 @@ public class Scilab {
      * <br />
      * </code>
      * @param varname the name of the variable
-     * @return return the variable 
+     * @return return the variable
      * @throws UnsupportedTypeException Type not managed yet.
      */
     public ScilabType get(String varname) throws JavasciException {
@@ -442,31 +442,31 @@ public class Scilab {
                 } else {
                     return new ScilabDouble(Call_Scilab.getDoubleComplexReal(varname), Call_Scilab.getDoubleComplexImg(varname));
                 }
-  
+
             case sci_boolean:
                 return new ScilabBoolean(Call_Scilab.getBoolean(varname));
- 
+
             case sci_strings:
                 return new ScilabString(Call_Scilab.getString(varname));
- 
+
             case sci_ints:
                 ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
- 
+
                 switch (typeInt) {
-                    case sci_int8:
+                    case sci_integer8:
                         return new ScilabInteger(Call_Scilab.getByte(varname), false);
-                    case sci_uint8:
+                    case sci_uinteger8:
                         return new ScilabInteger(Call_Scilab.getUnsignedByte(varname), true);
-                    case sci_int16:
+                    case sci_integer16:
                         return new ScilabInteger(Call_Scilab.getShort(varname), false);
-                    case sci_uint16:
+                    case sci_uinteger16:
                         return new ScilabInteger(Call_Scilab.getUnsignedShort(varname), true);
-                    case sci_int32:
+                    case sci_integer32:
                         return new ScilabInteger(Call_Scilab.getInt(varname), false);
-                    case sci_uint32:
+                    case sci_uinteger32:
                         return new ScilabInteger(Call_Scilab.getUnsignedInt(varname), true);
-                    case sci_int64:
-                    case sci_uint64:
+                    case sci_integer64:
+                    case sci_uinteger64:
                         // will be available in Scilab 6
                         throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
 
@@ -474,7 +474,7 @@ public class Scilab {
 
             default:
                 throw new UnsupportedTypeException("Type not managed: " + sciType);
-        
+
         }
     }
 
@@ -515,27 +515,27 @@ public class Scilab {
         if (theVariable instanceof ScilabInteger) {
             ScilabInteger sciInteger = (ScilabInteger)theVariable;
             switch (sciInteger.getPrec()) {
-                case sci_uint8:
+                case sci_uinteger8:
                     err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
                     break;
-                case sci_int8:
+                case sci_integer8:
                     err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
                     break;
-                case sci_uint16:
+                case sci_uinteger16:
                     err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
                     break;
-                case sci_int16:
+                case sci_integer16:
                     err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
                     break;
-                case sci_uint32:
+                case sci_uinteger32:
                     err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
                     break;
-                case sci_int32:
+                case sci_integer32:
                     err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
                     break;
-                case sci_uint64:
+                case sci_uinteger64:
 //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
-                case sci_int64:
+                case sci_integer64:
 //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
                     break;
             }
