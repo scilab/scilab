@@ -25,6 +25,7 @@ public :
 
     /**
      * Tests whether a scalar value is valid.
+     * The value is valid if it is neither infinite nor a NaN.
      * @param[in] the scalar value to test.
      * @return 1 if the value is valid, 0 if it is not.
      */
@@ -32,6 +33,7 @@ public :
 
     /**
      * Tests whether a point is valid.
+     * The point is valid if none of its coordinates is infinite or a NaN.
      * @param[in] the point's x-coordinate.
      * @param[in] the point's y-coordinate.
      * @param[in] the point's z-coordinate.

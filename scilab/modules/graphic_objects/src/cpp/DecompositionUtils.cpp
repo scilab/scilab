@@ -23,7 +23,7 @@ extern "C"
 
 int DecompositionUtils::isValid(double x)
 {
-    if (isnan(x))
+    if (isnan(x) || isinf(x))
     {
         return 0;
     }
@@ -35,7 +35,7 @@ int DecompositionUtils::isValid(double x)
 
 int DecompositionUtils::isValid(double x, double y, double z)
 {
-    if (isnan(x) || isnan(y) || isnan(z))
+    if (isnan(x) || isnan(y) || isnan(z) || isinf(x) || isinf(y) || isinf(z))
     {
         return 0;
     }
