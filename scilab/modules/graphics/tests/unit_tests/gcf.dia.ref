@@ -1,0 +1,72 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test gcf()
+// Check each current figure property
+f = gcf();
+//assert_checkequal(f.figure_position, [200,200])
+//assert_checkequal(f.figure_size, [614,568])
+assert_checkequal(f.axes_size, [610,460])
+ ans  =
+ 
+  T  
+assert_checkequal(f.auto_resize, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(f.viewport, [0,0])
+ ans  =
+ 
+  T  
+assert_checkequal(f.figure_name, gettext("Graphic window number %d"))
+ ans  =
+ 
+  T  
+assert_checkequal(f.figure_id, 0)
+ ans  =
+ 
+  T  
+assert_checkequal(f.pixmap, "off")
+ ans  =
+ 
+  T  
+assert_checkequal(f.pixel_drawing_mode, "copy")
+ ans  =
+ 
+  T  
+assert_checkequal(f.anti_aliasing, "off")
+ ans  =
+ 
+  T  
+assert_checkequal(f.immediate_drawing, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(f.background, -2)
+ ans  =
+ 
+  T  
+assert_checkequal(f.visible, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(f.rotation_style, "unary")
+ ans  =
+ 
+  T  
+assert_checkequal(f.event_handler, "")
+ ans  =
+ 
+  T  
+assert_checkequal(f.event_handler_enable, "off")
+ ans  =
+ 
+  T  
+assert_checkequal(f.user_data, [])
+ ans  =
+ 
+  T  
