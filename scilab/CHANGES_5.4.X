@@ -322,11 +322,13 @@ Bug fixes:
 
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
+* bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
+
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
 
-* bug 9719 fixed - delip.tst execution frozed under Windows.
+* bug 9719 fixed - delip.tst execution froze under Windows.
 
-* bug 9725 fixed - syredi.tst execution frozed under Windows.
+* bug 9725 fixed - syredi.tst execution froze under Windows.
 
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
                    was not ignored (generated file)
