@@ -1,4 +1,4 @@
-            Changes between version 5.3.2 and 5.4.0 of Scilab
+            Changes between version 5.3.3 and 5.4.0 of Scilab
             =================================================
 
 
@@ -324,7 +324,7 @@ Bug fixes:
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
 
+* bug 9725 fixed - syredi.tst execution frozed under Windows.
+
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
                    was not ignored (generated file)
-
-
