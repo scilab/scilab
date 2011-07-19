@@ -324,6 +324,8 @@ Bug fixes:
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
 
+* bug 9719 fixed - delip.tst execution frozed under Windows.
+
 * bug 9725 fixed - syredi.tst execution frozed under Windows.
 
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
