@@ -42,6 +42,7 @@ extern "C"
     typedef char mxChar;
     typedef int mwSize;
     typedef int mwIndex;
+    typedef int mwSignedIndex;
     typedef mxArray *mwPointer;
 #endif
 
@@ -131,7 +132,7 @@ extern "C"
     int C2F(mexcallscilab)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs, char *name, int namelen);
     int C2F(mxcopyptrtoreal8)(mxArray *ptr, double *y, int *n);
     int C2F(mxcopyreal8toptr)(double *y, mxArray *ptr, int *n);
-    int mexAtExit(mxArray *ptr);
+    int mexAtExit(void (*func)(void));
     int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
     int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
     int mxGetElementSize(const mxArray *ptr);
@@ -285,11 +286,30 @@ extern "C"
 #endif
 //define mxAssert in order to benefit user compilation flag ( debug or not )
 #define mxAssert(/* int */expr, /*char* */error_message) if (!expr){mexPrintf("Assertion Error: %s\n", error_message); assert(expr);}
-//void mxAssert(int expr, char *error_message);
-void mxAssertS(int expr, char *error_message);
+#define mxAssertS(/* int */expr, /*char* */error_msesage) assert(expr);
+
 mxChar *mxGetChars(mxArray *array_ptr);
 const char *mxGetClassName(const mxArray *ptr);
 int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm);
-void mxSetImagData(mxArray * array_ptr, void *data_ptr);
+void mxSetImagData(mxArray *array_ptr, void *data_ptr);
 int mxAddField(mxArray *pm, const char *fieldname);
 mxArray *mxCreateLogicalArray(mwSize ndim, const mwSize *dims);
+
+// new functions to be implemented
+mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax);
+mxArray *mxGetProperty(const mxArray *pa, mwIndex index, const char *propname);
+void mxSetProperty(mxArray *pa, mwIndex index, const char *propname, const mxArray *value);
+bool mxIsFromGlobalWS(const mxArray *pm);
+void mxRemoveField(mxArray *pm, int fieldnumber);
+int mxSetClassName(mxArray *array_ptr, const char *classname);
+void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...);
+void mexErrMsgIdAndTxt(const char *errorid, const char *errormsg, ...);
+mxArray *mexCallMATLABWithTrap(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[], const char *functionName);
+mxArray *mexEvalStringWithTrap(const char *command);
+void mexSetTrapFlag(int trapflag);
+const mxArray *mexGet(double handle, const char *property);
+int mexSet(double handle, const char *property, mxArray *value);
+bool mexIsLocked(void);
+void mexLock(void);
+void mexUnlock(void);
+void mexMakeArrayPersistent(mxArray *pm);

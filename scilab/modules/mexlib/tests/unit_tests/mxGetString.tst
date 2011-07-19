@@ -30,3 +30,7 @@ if out2 <> "String to copy." then pause end
 [out3, out4] = getString("A string bigger than 20 chars.");
 if out3 <> 1 then pause end
 if out4 <> "A string bigger tha" then pause end
+
+[out5, out6] = getString(["multiline"; "string"]);
+if out5 <> 0 then pause end
+if out6 <> "multilinestring" then pause end

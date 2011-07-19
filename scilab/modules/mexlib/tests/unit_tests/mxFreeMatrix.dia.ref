@@ -1,0 +1,68 @@
+
+// ============================================================================
+
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+// Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+
+//
+
+//  This file is distributed under the same license as the Scilab package.
+
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- ENGLISH IMPOSED -->
+
+// ============================================================================
+
+// Unitary tests for mxFreeMatrix mex function
+
+// ============================================================================
+
+cd(TMPDIR);
+
+ilib_verbose(0);
+
+mputl(['#include ""mex.h""';
+       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
+       '{';
+       '    mxArray *d = prhs[0];'
+       '    mxFreeMatrix(d);';
+       '    if (*d == NULL)';
+       '    {';
+       '        mexPrintf(""It works."");';
+       '    }';
+       '}'],'mexfreeMatrix.c');
+
+ilib_mex_build('libmextest',['freeMatrix','mexfreeMatrix','cmex'], 'mexfreeMatrix.c',[],'Makelib','','','');
+
+exec('loader.sce');
+
+freeMatrix(cell());
+It works.
+freeMatrix('s');
+It works.
+freeMatrix(double(1));
+It works.
+freeMatrix(int8(1));
+It works.
+freeMatrix(int16(1));
+It works.
+freeMatrix(int32(1));
+It works.
+freeMatrix(int64(1));
+It works.
+freeMatrix(%t);
+It works.
+freeMatrix(struct());
+It works.
+freeMatrix(uint8(1));
+It works.
+freeMatrix(uint16(1));
+It works.
+freeMatrix(uint32(1));
+It works.
+freeMatrix(uint64(1));
+It works.

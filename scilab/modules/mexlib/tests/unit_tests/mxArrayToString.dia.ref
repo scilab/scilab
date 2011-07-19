@@ -38,3 +38,5 @@ exec('loader.sce');
 
 arrayToString("hello world");
 hello world
+arrayToString(["two"; "lines"]);
+twolines

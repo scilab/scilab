@@ -8,7 +8,7 @@
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 // ============================================================================
-// Unitary tests for mxArrayToString mex function
+// Unitary tests for mexCallMATLAB mex function
 // ============================================================================
 
 cd(TMPDIR);
@@ -16,11 +16,10 @@ ilib_verbose(0);
 mputl([ '#include ""mex.h""';
         'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
         '{';
-        '    char *str = mxArrayToString(prhs[0]);';
-        '    mexPrintf(""%s"", str);';
-        '}'],'mexArrayToString.c');
-ilib_mex_build('libmextest', ['arrayToString', 'mexArrayToString', 'cmex'], 'mexArrayToString.c', [], 'Makelib', '', '', '');
+        '    mexCallMATLAB(nlhs, plhs, nrhs, prhs, ""sum"");';
+        '}'],'mexcallMATLAB.c');
+ilib_mex_build('libmextest', ['callMATLAB', 'mexcallMATLAB', 'cmex'], 'mexcallMATLAB.c', [], 'Makelib', '', '', '');
 exec('loader.sce');
 
-arrayToString("hello world");
-arrayToString(["two"; "lines"]);
+res = callMATLAB([1 2 3 4]);
+if res <> 10 then pause end

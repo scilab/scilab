@@ -30,9 +30,12 @@ if isglobal('globalvar') <> %t then pause end
 
 othervar = 1;
 putVariable("base", "othervar", 3);
+if othervar <> 1 then pause end
+if isglobal('othervar') <> %f then pause end
+
+putVariable("caller", "othervar", 3);
 if othervar <> 3 then pause end
 if isglobal('othervar') <> %f then pause end
 
-putVariable("caller", "defined_in_C", 0);
-if exists('defined_in_C') <> 1 then pause end
-
+putVariable("caller", "caller_defined_in_C", 0);
+if exists('caller_defined_in_C') <> 1 then pause end
