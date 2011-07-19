@@ -645,6 +645,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "action_binding_gw", "module
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "threads", "modules\threads\threads.vcxproj", "{50A1FFC8-ADC2-4D9E-A2D0-5DCD63188AE9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcxproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2053,6 +2055,10 @@ Global
 		{50A1FFC8-ADC2-4D9E-A2D0-5DCD63188AE9}.Release|Win32.Build.0 = Release|Win32
 		{50A1FFC8-ADC2-4D9E-A2D0-5DCD63188AE9}.Release|x64.ActiveCfg = Release|x64
 		{50A1FFC8-ADC2-4D9E-A2D0-5DCD63188AE9}.Release|x64.Build.0 = Release|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
