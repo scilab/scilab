@@ -271,6 +271,8 @@ returns the value of the ScilabTypeEnum enum.
                    EDT was crashing the execution of a java program.
 
 
+* bug 9679 fixed - atomsSystemUpdate checks that Scilab is not in offLine mode, else writes a message.
+
 Misc:
 =====
 
