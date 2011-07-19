@@ -7,20 +7,3 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-function startModule()
-
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-
-  args = sciargs();
-  larg = find(args == "-l");
-  
-  if larg<>[] & larg <= size(args, "*") then
-    L = args(larg + 1);
-    setlanguage(L);
-  end
-endfunction
-
-startModule();
-clear startModule;

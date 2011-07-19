@@ -69,5 +69,5 @@ void dumpStackTask(bool timed);
 **
 */
 void execScilabStartTask(void);
-
+void execScilabQuitTask(void);
 #endif /* !__TASKS_HXX__ */

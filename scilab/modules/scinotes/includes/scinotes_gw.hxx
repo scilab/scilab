@@ -13,23 +13,20 @@
 #ifndef __SCINOTES_GW_HXX__
 #define __SCINOTES_GW_HXX__
 
-#ifdef _MSC_VER
-   #if SCINOTES_GW_EXPORTS
-      #define EXTERN_SCINOTES_GW __declspec (dllexport)
-   #else
-      #define EXTERN_SCINOTES_GW __declspec (dllimport)
-   #endif
-#else
-   #define EXTERN_SCINOTES_GW
-#endif
+#include "dynlib_scinotes.h"
 
 class ScinotesModule
 {
 private :
    ScinotesModule() {};
    ~ScinotesModule() {};
+   
+   static bool loadedDep;
+   static void LoadDeps(void);
+
 public :
-   EXTERN_SCINOTES_GW static int Load();
+   SCINOTES_IMPEXP static int Load();
 };
+
 
 #endif /* !__SCINOTES_GW_HXX__ */

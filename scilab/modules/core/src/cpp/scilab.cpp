@@ -310,7 +310,7 @@ static int interactiveMain (void)
 
     if(noBanner == false)
     {
-        banner();
+        //banner();
     }
 
     InitializeHistoryManager();
@@ -644,6 +644,11 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
         iMainRet = batchMain(argv[iFileIndex]);
     }
 
+    //execute scilab.quit
+    if(noStart == false)
+    {
+        execScilabQuitTask();
+    }
     //close main scope
     symbol::Context::getInstance()->scope_end();
     delete pFM;

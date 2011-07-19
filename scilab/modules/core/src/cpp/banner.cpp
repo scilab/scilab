@@ -28,33 +28,33 @@ void banner(void)
     wchar_t *line = L"        ___________________________________________        ";
     int startVersion = (int)(floor((double)(wcslen(line)/2)) - floor((double)(wcslen(SCI_VERSION_WIDE_STRING)/2)));
 
-    YaspWriteW(line);
-    YaspWriteW(L"\n");
+    YaspForcedWriteW(line);
+    YaspForcedWriteW(L"\n");
 
     /* To center the version name */
     for(i = 0 ; i < startVersion ; i++ )
     {
-        YaspWriteW(L" ");
+        YaspForcedWriteW(L" ");
     }
 
-    YaspWriteW(SCI_VERSION_WIDE_STRING);
-    YaspWriteW(L"\n\n");
+    YaspForcedWriteW(SCI_VERSION_WIDE_STRING);
+    YaspForcedWriteW(L"\n\n");
 
-    YaspWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));
+    YaspForcedWriteW(_W("                 Consortium Scilab (DIGITEO)\n"));
 
-    YaspWriteW(_W("               Copyright (c) 1989-2011 (INRIA)\n"));
-    YaspWriteW(_W("               Copyright (c) 1989-2007 (ENPC)\n"));
-    YaspWriteW(line);
-    YaspWriteW(L"\n");
-    YaspWriteW(L"\n");
-    YaspWriteW(L"                     -*- THIS IS YaSp -*-\n");
-    YaspWriteW(L"\n");
-    YaspWriteW(line);
-    YaspWriteW(L"\n");
+    YaspForcedWriteW(_W("               Copyright (c) 1989-2011 (INRIA)\n"));
+    YaspForcedWriteW(_W("               Copyright (c) 1989-2007 (ENPC)\n"));
+    YaspForcedWriteW(line);
+    YaspForcedWriteW(L"\n");
+    YaspForcedWriteW(L"\n");
+    YaspForcedWriteW(L"                     -*- THIS IS YaSp -*-\n");
+    YaspForcedWriteW(L"\n");
+    YaspForcedWriteW(line);
+    YaspForcedWriteW(L"\n");
 
 #if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
-    YaspWriteW(L"\n\n");
-    YaspWriteW(_W("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
-    YaspWriteW(L"   ");
+    YaspForcedWriteW(L"\n\n");
+    YaspForcedWriteW(_W("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
+    YaspForcedWriteW(L"   ");
 #endif
 }

@@ -276,17 +276,6 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\..\sci_gateway\c\sci_sethistoryfile.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\dynlib_history_manager.h" />
-    <ClInclude Include="..\..\includes\getCommentDateSession.h" />
-    <ClInclude Include="..\..\includes\gw_history_manager.h" />
-    <ClInclude Include="..\cpp\HistoryFile.hxx" />
-    <ClInclude Include="..\..\includes\HistoryManager.h" />
-    <ClInclude Include="..\cpp\HistoryManager.hxx" />
-    <ClInclude Include="..\cpp\HistorySearch.hxx" />
-    <ClInclude Include="..\..\includes\InitializeHistoryManager.h" />
-    <ClInclude Include="..\..\includes\TerminateHistoryManager.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\locales\history_manager.pot" />
     <None Include="..\jni\HistoryManagement.i" />
     <None Include="fileio_Import.def" />
@@ -318,6 +307,15 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_history_manager.h" />
+    <ClInclude Include="..\..\includes\dynlib_history_manager_gw.h" />
+    <ClInclude Include="..\..\includes\getCommentDateSession.h" />
+    <ClInclude Include="..\..\includes\gw_history_manager.h" />
+    <ClInclude Include="..\..\includes\HistoryManager.h" />
+    <ClInclude Include="..\..\includes\InitializeHistoryManager.h" />
+    <ClInclude Include="..\..\includes\TerminateHistoryManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

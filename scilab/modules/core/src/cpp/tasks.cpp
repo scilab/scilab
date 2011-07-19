@@ -23,7 +23,8 @@
 #include "yaspio.hxx"
 #include "runner.hxx"
 
-#define SCILAB_START L"/etc/scilab.start"
+#define SCILAB_START    L"/etc/scilab.start"
+#define SCILAB_QUIT     L"/etc/scilab.quit"
 
 Timer _timer;
 
@@ -188,7 +189,6 @@ void dumpStackTask(bool timed)
 */
 void execScilabStartTask(void)
 {
-    return;
     Parser parse;
     wstring stSCI = ConfigVariable::getSCIPath();
 
@@ -204,3 +204,27 @@ void execScilabStartTask(void)
 
     execAstTask(parse.getTree(), false, false);
 }
+
+/*
+** Execute scilab.start
+**
+*/
+void execScilabQuitTask(void)
+{
+    Parser parse;
+    wstring stSCI = ConfigVariable::getSCIPath();
+
+    stSCI += SCILAB_QUIT;
+    parse.parseFile(stSCI, L"");
+
+    if(parse.getExitStatus() != Parser::Succeded)
+    {
+        YaspWriteW(parse.getErrorMessage());
+        YaspWriteW(L"Failed to parse scilab.start");
+        return;
+    }
+
+    execAstTask(parse.getTree(), false, false);
+}
+
+

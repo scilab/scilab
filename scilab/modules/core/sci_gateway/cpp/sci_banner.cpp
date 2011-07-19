@@ -19,7 +19,6 @@
 types::Function::ReturnValue sci_banner(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     banner();
-
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

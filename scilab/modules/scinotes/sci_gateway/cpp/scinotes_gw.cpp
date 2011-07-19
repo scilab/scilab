@@ -19,10 +19,24 @@
 extern "C"
 {
 #include "gw_scinotes.h"
+#include "loadOnUseClassPath.h"
 }
 
-int  ScinotesModule::Load()
+bool ScinotesModule::loadedDep = false;
+
+void ScinotesModule::LoadDeps(void)
 {
-    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"editor", &sci_scinotes, MODULE_NAME));
+    if (loadedDep == false)
+    {
+        loadOnUseClassPath("SciNotes");
+        loadedDep = true;
+    }
+}
+
+int ScinotesModule::Load()
+{
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"editor", &sci_scinotes, &ScinotesModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"closeEditor", &sci_closeSciNotesFromScilab, &ScinotesModule::LoadDeps, MODULE_NAME));
+    
     return 1;
 }

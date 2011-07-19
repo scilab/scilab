@@ -250,6 +250,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\callscinotes.h" />
     <ClInclude Include="..\..\includes\dynlib_scinotes.h" />
+    <ClInclude Include="..\..\includes\scinotes_gw.hxx" />
     <ClInclude Include="..\jni\GiwsException.hxx" />
     <ClInclude Include="..\..\includes\gw_scinotes.h" />
     <ClInclude Include="ScilabKeywords.h" />

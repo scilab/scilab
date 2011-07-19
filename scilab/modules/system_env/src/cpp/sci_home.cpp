@@ -75,7 +75,7 @@ wchar_t* computeSCIHOMEW(void)
 #ifdef _MSC_VER
 char* computeSCIHOME(void)
 {
-#define BASEDIR L"Scilab"
+#define BASEDIR "Scilab"
     int ierr = 0;
     int buflen = PATH_MAX;
     int iflag = 0;

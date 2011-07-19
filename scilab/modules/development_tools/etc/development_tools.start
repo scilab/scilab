@@ -10,5 +10,5 @@
 
 // Load  functions libraries
 // =============================================================================
-  load('SCI/modules/development_tools/macros/lib');
-  load('SCI/modules/development_tools/macros/assert/lib');
+load('SCI/modules/development_tools/macros/lib');
+load('SCI/modules/development_tools/macros/assert/lib');
