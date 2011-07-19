@@ -2714,9 +2714,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(REGIONCOMMENT):
 {
-    std::string str = "unexpected end of file in a comment";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+      yy_pop_state();
+//    std::string str = "unexpected end of file in a comment";
+//    exit_status = SCAN_ERROR;
+//    scan_error(str);
   }
 	YY_BREAK
 

@@ -282,7 +282,7 @@ sub good()
 	    }
 	    else
 	    {
-		$RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-file " . $nextname);
+		$RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-file " . $nextname);
 		if($RetVal == 0)
 		{
 		    GoodMsg("Test Passed\n\n");
@@ -294,7 +294,7 @@ sub good()
 		    BadMsg("Test Failed\n\n");
 		    if($progress == 1)
 		    {
-			$RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-trace --parse-file " . $nextname);
+			$RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-trace --parse-file " . $nextname);
 			exit;
 		    }
 		}
@@ -320,7 +320,7 @@ sub control()
 	}
 	else
 	{
-	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-file " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-file " . $nextname);
 	    if($RetVal == 0)
 	    {
 		GoodMsg("Test Passed\n\n");
@@ -331,7 +331,7 @@ sub control()
 		BadMsg("Test Failed\n\n");
 		if($progress == 1)
 		{
-		    $RetVal = system($Yasp_Path .  $Yasp_Bin . " -nwni --parse-trace --parse-file " . $nextname);
+		    $RetVal = system($Yasp_Path .  $Yasp_Bin . " -ns -nwni --parse-trace --parse-file " . $nextname);
 		    exit;
 		}
 	    }
@@ -358,7 +358,7 @@ sub cira()
 	}
 	else
 	{
-	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-file " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-file " . $nextname);
 	    if($RetVal == 0)
 	    {
 		GoodMsg("Test Passed\n\n");
@@ -369,7 +369,7 @@ sub cira()
 		BadMsg("Test Failed\n\n");
 		if($progress == 1)
 		{
-		    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-trace --parse-file " . $nextname);
+		    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-trace --parse-file " . $nextname);
 		}
 	    }
 	}
@@ -389,11 +389,11 @@ sub syntax()
 	InfoMsg("\n[ ----==== Running Test $nextname ====---- ]\n");
 	if($quiet == 0)
 	{
-	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-file " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-file " . $nextname);
 	}
 	else
 	{
-	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --parse-file " . $nextname);
+	    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --parse-file " . $nextname);
 	}
 	if($RetVal != 0)
 	{
@@ -551,7 +551,7 @@ sub display_tree()
 {
     $sci_file = $_[0];
     $output_file = $_[1];
-    $RetVal = system($Yasp_Path . $Yasp_Bin . " -nwni --pretty-print --parse-file " . $sci_file . " > " . $output_file);
+    $RetVal = system($Yasp_Path . $Yasp_Bin . " -ns -nwni --pretty-print --parse-file " . $sci_file . " > " . $output_file);
 }
 ####################################
 ##              }                 ##
