@@ -23,7 +23,7 @@ function CreateModulesFile: Boolean;
         setArrayLength(ModulesXmlFileLines, 256);
         for d := 0 to GetArrayLength(ModulesXmlFileLines)-1 do
           begin
-            ModulesXmlFileLines[i] := '';
+            ModulesXmlFileLines[d] := '';
           end;
 
         ModuleFileName := ExpandConstant('{app}') +'\etc\modules.xml';
@@ -313,11 +313,13 @@ function CreateModulesFile: Boolean;
             begin
                 ModulesXmlFileLines[i] := '<module name="scinotes" activate="yes"/>'; i := i + 1;
             end;
-
+            
+#ifndef SCILAB_F2C
         if IsComponentSelected( ExpandConstant('{#COMPN_PARALLEL}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
             end;
+#endif
 
         ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 

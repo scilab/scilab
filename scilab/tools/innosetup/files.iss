@@ -89,7 +89,9 @@
 #include BinariesSourcePath + "\modules\scinotes\scinotes.iss"
 #include BinariesSourcePath + "\modules\xcos\xcos.iss"
 #include BinariesSourcePath + "\modules\graph\graph.iss"
+#ifndef SCILAB_F2C
 #include BinariesSourcePath + "\modules\parallel\parallel.iss"
+#endif
 #include BinariesSourcePath + "\modules\modules_manager\modules_manager.iss"
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"

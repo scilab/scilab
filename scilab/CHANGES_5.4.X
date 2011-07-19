@@ -291,6 +291,8 @@ Bug fixes:
 
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
                    a wrong error message on Windows.
+                   
+* bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
 
