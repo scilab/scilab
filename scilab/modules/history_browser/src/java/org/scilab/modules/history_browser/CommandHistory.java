@@ -15,13 +15,18 @@
 package org.scilab.modules.history_browser;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.JViewport;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -88,11 +93,6 @@ public final class CommandHistory {
 
     static {
         ScilabTabFactory.getInstance().addTabFactory(CommandHistoryTabFactory.getInstance());
-        Scilab.registerInitialHook(new Runnable() {
-                public void run() {
-                    expandAll();
-                }
-            });
     }
 
     /**
@@ -108,13 +108,13 @@ public final class CommandHistory {
         if (!initialized) {
             scilabHistoryRootNode = new DefaultMutableTreeNode(Messages.gettext("History loading in progress..."));
             scilabHistoryTreeModel = new DefaultTreeModel(scilabHistoryRootNode);
-            scilabHistoryTree = new JTree(scilabHistoryTreeModel);
+            scilabHistoryTree = new HistoryTree(scilabHistoryTreeModel);
             scilabHistoryTree.setShowsRootHandles(true);
             scilabHistoryTree.setDragEnabled(true);
             scilabHistoryTree.setEnabled(true);
-            scilabHistoryTree.setRootVisible(true);
+            scilabHistoryTree.setRootVisible(false);
             scilabHistoryTree.setScrollsOnExpand(true);
-	    scilabHistoryTree.setVisible(false);
+            scilabHistoryTree.setVisible(false);
 
             // Under Windows the directory icon is used: bad....
             DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) scilabHistoryTree.getCellRenderer();
@@ -146,6 +146,7 @@ public final class CommandHistory {
         CloseAction.registerKeyAction();
 
         scrollPane = new JScrollPane(scilabHistoryTree);
+        scrollPane.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.add(scrollPane);
         ((SwingScilabTab) browserTab.getAsSimpleTab()).setContentPane(contentPane);
@@ -174,7 +175,10 @@ public final class CommandHistory {
             // put the expansion in an invokeLater to avoid some kind of freeze with huge history
             SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-			scilabHistoryTree.setVisible(true);
+                        scilabHistoryTree.setVisible(true);
+                        scilabHistoryTree.setRowHeight(16);
+                        scilabHistoryTree.setLargeModel(true);
+
                         if (!modelLoaded) {
                             scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
                             modelLoaded = true;
@@ -184,10 +188,13 @@ public final class CommandHistory {
                             scilabHistoryTree.expandRow(i);
                         }
 
-                        scilabHistoryTree.setRootVisible(false);
-                        scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
+                        SwingUtilities.invokeLater(new Runnable() {
+                                public void run() {
+                                    scilabHistoryTree.scrollPathToVisible(scilabHistoryTree.getPathForRow(scilabHistoryTree.getRowCount() - 1));
+                                }
+                            });
                         scrollPane.getHorizontalScrollBar().setValue(0);
-			WindowsConfigurationManager.restorationFinished(getBrowserTab());
+                        WindowsConfigurationManager.restorationFinished(getBrowserTab());
                     }
                 });
         }
@@ -417,11 +424,7 @@ public final class CommandHistory {
 
         for (int i = 0; i < selectedPaths.length; i++) {
             Object obj = ((DefaultMutableTreeNode) selectedPaths[i].getLastPathComponent()).getUserObject();
-            if (obj instanceof SessionString) {
-                selectedEntries += ((SessionString) obj).getString();
-            } else {
-                selectedEntries += obj.toString();
-            }
+            selectedEntries += obj.toString();
 
             if (i < selectedPaths.length - 1) {
                 selectedEntries += NEWLINE;
@@ -442,12 +445,45 @@ public final class CommandHistory {
             this.s = s;
         }
 
-        String getString() {
+        public String toString() {
             return s;
         }
+    }
 
-        public String toString() {
-            return "<html><font color=\"#01a801\">" + s + "</font></html>";
+    static class HistoryTree extends JTree {
+
+        private boolean first = true;
+        private Color defaultColor;
+        private Color sessionColor = new Color(1, 168, 1);
+
+        HistoryTree(TreeModel model) {
+            super(model);
+            setCellRenderer(new DefaultTreeCellRenderer() {
+                        {
+                            defaultColor = getTextNonSelectionColor();
+                        }
+
+                    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+                        if (((DefaultMutableTreeNode) value).getUserObject() instanceof SessionString) {
+                            setTextNonSelectionColor(sessionColor);
+                        } else {
+                            setTextNonSelectionColor(defaultColor);
+                        }
+
+                        return this;
+                    }
+                });
+        }
+
+        public void paint (Graphics g) {
+            if (first) {
+                g.setFont(getFont());
+                setRowHeight(g.getFontMetrics().getHeight());
+                setLargeModel(true);
+                first = false;
+            }
+            super.paint(g);
         }
     }
 }
