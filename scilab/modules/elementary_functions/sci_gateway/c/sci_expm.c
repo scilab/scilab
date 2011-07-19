@@ -18,6 +18,8 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "api_oldstack.h"
+#include "msgs.h"
+#include "elem_common.h"
 
 #ifdef _MSC_VER
 /* BUG 3863 */

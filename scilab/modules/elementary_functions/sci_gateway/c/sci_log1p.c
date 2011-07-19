@@ -17,6 +17,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "api_oldstack.h"
+#include "msgs.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_log1p(char *fname, int* _piKey)

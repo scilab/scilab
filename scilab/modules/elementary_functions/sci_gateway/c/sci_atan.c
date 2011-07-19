@@ -18,6 +18,7 @@
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"
+#include "msgs.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_atan(char *fname, int*_piKey)

@@ -51,7 +51,7 @@
 #define getRelativeMachinePrecision()		C2F(dlamch)((char*)"e", 1L)
 #define isZero(x)							(fabs((double)x) <= getRelativeMachinePrecision())
 #define ZeroIsZero(x)						(fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x)
-#endif 
+#endif
 
 #define getUnderflowThreshold()					C2F(dlamch)((char*)"u", 1L)
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
@@ -79,5 +79,8 @@ extern int C2F(zgecon)();
 extern int C2F(zgetrs)();
 extern int C2F(zgelsy1)();
 extern double C2F(ddot)(int *_ipSize, double *_pdblVal1, int *_piInc1, double *_pdblVal2, int *_piInc2);
+extern void C2F(wmul)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
+extern void C2F(wdiv)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
+extern void C2F(dad)(double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r, int *isw);
 
 #endif /* __COMMON_H__ */
