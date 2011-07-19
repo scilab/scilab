@@ -14,6 +14,8 @@ Bug fixes:
 
 * Bug 9590 fixed - Xcos examples were not embedded in Windows binary versions.
 
+* Bug 9670 fixed - Scilab crashed under Mac OS X 10.6.8.
+
 
             Changes between versions 5.3.1 and 5.3.2 of Scilab
             =================================================
