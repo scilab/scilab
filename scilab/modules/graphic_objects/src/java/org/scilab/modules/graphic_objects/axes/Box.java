@@ -167,7 +167,8 @@ public class Box {
 	 * @param dataBounds the dataBounds to set
 	 */
 	public void setDataBounds(Double[] dataBounds) {
-		for (int i = 0; i < this.dataBounds.length; i++) {
+		final int len = Math.min(this.dataBounds.length, dataBounds.length);
+		for (int i = 0; i < len; i++) {
 			this.dataBounds[i] = dataBounds[i];
 		}
 	}
@@ -203,7 +204,8 @@ public class Box {
 	 * @param realDataBounds the realDataBounds to set
 	 */
 	public void setRealDataBounds(Double[] realDataBounds) {
-		for (int i = 0; i < this.realDataBounds.length; i++) {
+		final int len = Math.min(this.realDataBounds.length, realDataBounds.length);
+		for (int i = 0; i < len; i++) {
 			this.realDataBounds[i] = realDataBounds[i];
 		}
 	}
@@ -253,7 +255,8 @@ public class Box {
 	 * @param zoomBox the zoomBox to set
 	 */
 	public void setZoomBox(Double[] zoomBox) {
-		for (int i = 0; i < this.zoomBox.length; i++) {
+		final int len = Math.min(this.zoomBox.length, zoomBox.length);
+		for (int i = 0; i < len; i++) {
 			this.zoomBox[i] = zoomBox[i];
 		}
 	}
