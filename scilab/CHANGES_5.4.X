@@ -291,7 +291,7 @@ Bug fixes:
 
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
                    a wrong error message on Windows.
-                   
+
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
@@ -302,8 +302,6 @@ Bug fixes:
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
-
-* bug 9527 fixed - Problem when a text was exported in SVG from the gui.
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
