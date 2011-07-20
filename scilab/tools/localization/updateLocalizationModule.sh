@@ -2,6 +2,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2011-2011 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -11,9 +12,9 @@
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code
 
-# TODO : 
+# TODO :
 # * Write Small documentation
-# 
+#
 
 if test $# -ne 1; then
     echo "This script goes into a module and updates the localization file "
@@ -28,7 +29,7 @@ if test $# -ne 1; then
 fi
 
 if test -z "$SCI"; then
-    echo "Please define the variable SCI" 
+    echo "Please define the variable SCI"
     exit 42
 fi
 
@@ -54,7 +55,7 @@ FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
 # Gettext arg
 XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --sort-output --no-wrap "
-    
+
 process_XML_files() {
 # First expression => remove line which does NOT contain label
 # Second expression =>  extract the content of the label and switch it to a gettext fake instruction
@@ -139,7 +140,7 @@ function process_module {
         echo "..... Parsing all sources in $PATHTOPROCESS"
     fi
 # Parse all the sources and get the string which should be localized
-    
+
 
     if test $IS_MACROS -eq 1; then
         MODULE_NAME=$MODULE_NAME-macros
@@ -158,6 +159,18 @@ function process_module {
     fi
 
     $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
+
+    # We need C strings format to be used as gettext key
+    # "" -> \"
+    # '' -> '
+    # '" -> \"
+    # "' -> '
+    sed -e "s/\"\"/\\\"/g" -e "s/''/'/g" -e "s/'\"/\\\"/g" -e "s/\"'/'/g" $TARGETDIR/$MODULE_NAME.pot.tmp > $TARGETDIR/$MODULE_NAME.pot.tmp2
+    # We introduced invalid tag [msgstr "] and [msgid "]
+    # restore them [msgstr ""] and [msgid ""]
+    sed -e "s/msgstr \"$/msgstr \"\"/" -e "s/msgid \"$/msgid \"\"/" $TARGETDIR/$MODULE_NAME.pot.tmp2 > $TARGETDIR/$MODULE_NAME.pot.tmp
+    rm $TARGETDIR/$MODULE_NAME.pot.tmp2 2> /dev/null
+
     if test  -z "$CreationDate"; then
         # File not existing before ... Set the current date a POT-Creation-Date
         sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
