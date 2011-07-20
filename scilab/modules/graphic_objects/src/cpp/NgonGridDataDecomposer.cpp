@@ -584,14 +584,17 @@ void NgonGridDataDecomposer::computeMinMaxZValues(double* z, int numX, int numY,
             currentPoint = getPointIndex(numX, numY, i, j);
             zi = z[currentPoint];
 
-            if(zi < tmpZMin)
+            if (DecompositionUtils::isValid(zi))
             {
-                tmpZMin = zi;
-            }
+                if(zi < tmpZMin)
+                {
+                    tmpZMin = zi;
+                }
 
-            if (zi > tmpZMax)
-            {
-                tmpZMax = zi;
+                if (zi > tmpZMax)
+                {
+                    tmpZMax = zi;
+                }
             }
         }
     }
