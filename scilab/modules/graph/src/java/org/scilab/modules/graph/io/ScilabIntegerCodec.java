@@ -118,7 +118,7 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 			if (precNode != null) {
 				precision = ScilabIntegerTypeEnum.valueOf(precNode.getNodeValue());
 			} else {
-				precision = ScilabIntegerTypeEnum.sci_uint8;
+				precision = ScilabIntegerTypeEnum.sci_uinteger8;
 			}
 
 			/* Compatibility for pre-5.2.2 version */
@@ -140,28 +140,28 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 
 
 			switch (precision) {
-				case sci_int8:
-				case sci_uint8:
+				case sci_integer8:
+				case sci_uinteger8:
 					final byte[][] data8 = new byte[height][width];
 					fillData(node, data8);
-					obj.setData(data8, precision == ScilabIntegerTypeEnum.sci_uint8);
+					obj.setData(data8, precision == ScilabIntegerTypeEnum.sci_uinteger8);
 					break;
-				case sci_int16:
-				case sci_uint16:
+				case sci_integer16:
+				case sci_uinteger16:
 					final short[][] data16 = new short[height][width];
 					fillData(node, data16);
-					obj.setData(data16, precision == ScilabIntegerTypeEnum.sci_uint16);
+					obj.setData(data16, precision == ScilabIntegerTypeEnum.sci_uinteger16);
 					break;
-				case sci_int32:
-				case sci_uint32:
+				case sci_integer32:
+				case sci_uinteger32:
 					final int[][] data32 = new int[height][width];
 					fillData(node, data32);
-					obj.setData(data32, precision == ScilabIntegerTypeEnum.sci_uint32);
+					obj.setData(data32, precision == ScilabIntegerTypeEnum.sci_uinteger32);
 					break;
 				default:
 					final long[][] data64 = new long[height][width];
 					fillData(node, data64);
-					obj.setData(data64, precision == ScilabIntegerTypeEnum.sci_uint64);
+					obj.setData(data64, precision == ScilabIntegerTypeEnum.sci_uinteger64);
 					break;
 			}
 
