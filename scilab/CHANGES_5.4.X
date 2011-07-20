@@ -332,3 +332,6 @@ Bug fixes:
 
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
                    was not ignored (generated file)
+
+* bug 9730 fixed - lines() returned an int32 and not a double value.
+
