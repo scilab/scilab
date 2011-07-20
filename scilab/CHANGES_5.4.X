@@ -213,6 +213,11 @@ Statistics:
 
 * bug 9846 fixed - stdevf() gives zero result when a single row matrix is evaluated.
 
+Linear Algebra:
+==============
+
+* bug 9749 fixed - expm reported non convergence problem.
+
 
 Documentation:
 ==============
@@ -529,5 +534,4 @@ Bug fixes:
                    and getAllocatedNamedMatrixOfWideString.
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
-
 
