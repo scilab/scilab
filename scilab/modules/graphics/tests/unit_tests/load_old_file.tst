@@ -62,7 +62,7 @@ segs = axes.children(2);
 if segs.type <> "Segs" then pause; end
 if segs.segs_color <> [5,5,5,5,5,5,5,5] then pause; end
 if segs.arrow_size <> 1 then pause; end
-if segs.line_style <> 0 then pause; end
+if segs.line_style <> 1 then pause; end
 if size(segs.data) <> [16, 2] then pause; end
 
 // check first rectangle

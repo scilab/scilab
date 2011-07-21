@@ -16,7 +16,7 @@ e = gce();
 assert_checkequal(e.parent.type, "Axes")
 assert_checkequal(e.children, [])
 assert_checkequal(e.thickness, 1)
-assert_checkequal(e.line_style, 0)
+assert_checkequal(e.line_style, 1)
 assert_checkequal(e.line_mode, "on")
 assert_checkequal(e.fill_mode, "off")
 assert_checkequal(e.foreground, -1)

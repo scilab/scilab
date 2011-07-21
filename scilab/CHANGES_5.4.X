@@ -230,6 +230,10 @@ Compilation:
 Graphics:
 =========
 
+* Obsolete value for line_style property:
+  0 and 1 are equivalent values for SOLID rendering.
+  A warning message will be displayed if the user tries to set this property to 0.
+  Setting this property to 0 will no more be supported in Scilab 5.4.1.
 
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.

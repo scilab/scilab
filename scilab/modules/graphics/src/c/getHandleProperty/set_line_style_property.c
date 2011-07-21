@@ -25,6 +25,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "sciprint.h"
+#include "warningmode.h"
 
 /*------------------------------------------------------------------------*/
 int set_line_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -35,6 +37,15 @@ int set_line_style_property(char* pobjUID, size_t stackPointer, int valueType, i
         return SET_PROPERTY_ERROR;
     }
 
-    return sciSetLineStyle(pobjUID, (int) getDoubleFromStack(stackPointer));
+    int iLineStyle = (int) getDoubleFromStack(stackPointer);
+
+    if (iLineStyle == 0 && getWarningMode())
+    {
+        sciprint(_("WARNING: %s\n"), _("{0,1} values are equivalent for line_style property."));
+        sciprint(_("WARNING: %s\n"), _("0 will be removed after Scilab 5.4.0."));
+        sciprint(_("WARNING: %s\n"), _("Please use 1 instead."));
+    }
+
+    return sciSetLineStyle(pobjUID, iLineStyle);
 }
 /*------------------------------------------------------------------------*/
