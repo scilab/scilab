@@ -45,7 +45,7 @@ int get_line_mode_property(char *pobjUID)
         return -1;
     }
 
-    if (*lineMode)
+    if (iLineMode)
     {
         return sciReturnString( "on" );
     }

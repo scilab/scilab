@@ -50,7 +50,7 @@ int get_tight_limits_property(char *pobjUID)
         return -1;
     }
 
-    if (piTightLimits)
+    if (iTightLimits)
     {
         return sciReturnString( "on" );
     }
