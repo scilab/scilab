@@ -421,6 +421,8 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
     int currentEdgeValid;
     int nextEdgeValid;
 
+    int currentFacetValid;
+
     int ij;
     int ip1j;
     int ip1jp1;
@@ -484,9 +486,9 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
             ip1j = getPointIndex(numX, numY, i+1, j);
             ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
 
-            nextEdgeValid = isFacetEdgeValid(z, numX, numY, i+1, j, logMask & 0x4);
+            currentFacetValid = isFacetValid(z, numX, numY, i, j, logMask & 0x4, currentEdgeValid, &nextEdgeValid);
 
-            if (currentColumnValid && nextColumnValid && (currentEdgeValid && nextEdgeValid))
+            if (currentColumnValid && nextColumnValid && (currentFacetValid))
             {
                 /*
                  * All facets are currently decomposed the same way.
@@ -524,6 +526,20 @@ int NgonGridDataDecomposer::fillTriangleIndices(int* buffer, int bufferLength, i
     }
 
     return bufferOffset;
+}
+
+int NgonGridDataDecomposer::isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+{
+    *nextEdgeValid = isFacetEdgeValid(z, numX, numY, i+1, j, logUsed);
+
+    if (currentEdgeValid && *nextEdgeValid)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int NgonGridDataDecomposer::isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed)

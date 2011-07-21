@@ -24,6 +24,8 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
+NgonGridMatplotDataDecomposer* NgonGridMatplotDataDecomposer::decomposer = NULL;
+
 /*
  * To do:
  * -clean-up: replace explicitely computed z indices by getPointIndex calls
@@ -164,22 +166,9 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
     int numY = 0;
     int* piNumY = &numY;
 
-    int i;
-    int j;
-    int bufferOffset = 0;
+    int numberIndices;
 
-    int currentRowValid;
-    int nextRowValid;
-
-    int currentColumnValid;
-    int nextColumnValid;
-
-    int ij;
-    int ip1j;
-    int ip1jp1;
-    int ijp1;
-
-    int facetValid;
+    NgonGridMatplotDataDecomposer* decomposer = get();
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
@@ -194,91 +183,27 @@ int NgonGridMatplotDataDecomposer::fillIndices(char* id, int* buffer, int buffer
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
-    /* First line */
-    currentRowValid = DecompositionUtils::isValid(y[0]);
+    numberIndices = decomposer->fillTriangleIndices(buffer, bufferLength, logMask, x, y, z, numX, numY);
 
-    if (logMask & 0x2)
-    {
-        currentRowValid &= DecompositionUtils::isLogValid(y[0]);
-    }
+    return numberIndices;
+}
 
-    /* To do: optimize */
-    for (j = 0; j < numY-1; j++)
-    {
-        nextRowValid = DecompositionUtils::isValid(y[j+1]);
+int NgonGridMatplotDataDecomposer::isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
+{
+    int facetValid;
 
-        if (logMask & 0x2)
-        {
-            nextRowValid &= DecompositionUtils::isLogValid(y[j+1]);
-        }
+    /* Transposed relative to Grayplot */
+    facetValid = DecompositionUtils::isValid(z[getPointIndex(numY-1, numX-1, numY-2-j, i)]);
 
-        if (!currentRowValid || !nextRowValid)
-        {
-            currentRowValid = nextRowValid;
-            continue;
-        }
-        else
-        {
-            currentRowValid = nextRowValid;
-        }
+    /* Edge validity is always 1 since it is not used at all to determine facet validity for Matplot decomposition */
+    *nextEdgeValid = 1;
 
-        currentColumnValid = DecompositionUtils::isValid(x[0]);
+    return facetValid;
+}
 
-        if (logMask & 0x1)
-        {
-            currentColumnValid &= DecompositionUtils::isLogValid(x[0]);
-        }
-
-        ij = getPointIndex(numX, numY, 0, j);
-        ijp1 = getPointIndex(numX, numY, 0, j+1);
-
-        for (i = 0; i < numX-1; i++)
-        {
-            nextColumnValid = DecompositionUtils::isValid(x[i+1]);
-
-            if (logMask & 0x1)
-            {
-                nextColumnValid &= DecompositionUtils::isLogValid(x[i+1]);
-            }
-
-            ip1j = getPointIndex(numX, numY, i+1, j);
-            ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
-
-            /* Transposed relative to Grayplot */
-            facetValid = DecompositionUtils::isValid(z[getPointIndex(numY-1, numX-1, numY-2-j, i)]);
-
-            if (currentColumnValid && nextColumnValid && facetValid)
-            {
-                /* All facets are decomposed the same way */
-#if PER_VERTEX_VALUES
-                buffer[bufferOffset] = ij;
-                buffer[bufferOffset+1] = ip1j;
-                buffer[bufferOffset+2] = ip1jp1;
-                buffer[bufferOffset+3] = ij;
-                buffer[bufferOffset+4] = ip1jp1;
-                buffer[bufferOffset+5] = ijp1;
-#else
-                int firstVertexIndex;
-                firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
-
-                buffer[bufferOffset] = firstVertexIndex;
-                buffer[bufferOffset+1] = firstVertexIndex +1;
-                buffer[bufferOffset+2] = firstVertexIndex +3;
-                buffer[bufferOffset+3] = firstVertexIndex;
-                buffer[bufferOffset+4] = firstVertexIndex +3;
-                buffer[bufferOffset+5] = firstVertexIndex +2;
-#endif
-
-                bufferOffset += 6;
-            }
-
-            currentColumnValid = nextColumnValid;
-
-            ij = ip1j;
-            ijp1 = ip1jp1;
-        }
-    }
-
-    return bufferOffset;
+int NgonGridMatplotDataDecomposer::isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed)
+{
+    /* Always considered valid since not used at all to determine facet validity */
+    return 1;
 }
 

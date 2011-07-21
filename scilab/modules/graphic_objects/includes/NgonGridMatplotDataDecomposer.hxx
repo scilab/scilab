@@ -19,14 +19,64 @@
  * NgonGridMatplotData decomposer class
  * Determines the vertices and the segments indices to be rendered
  * as a function of the decomposed Matplot object's properties.
- * It only has static member functions since it stores no actual state.
  *
  */
 
 class NgonGridMatplotDataDecomposer : public NgonGridDataDecomposer
 {
 
+private :
+
+    /** NgonGridMatplotData decomposer instance */
+    static NgonGridMatplotDataDecomposer* decomposer;
+
+protected :
+
+    /**
+     * Determines whether a facet is valid.
+     * The facet is identified by its lower left-corner (i,j).
+     * For a Matplot object, facet validity depends only on its z(i,j) value, edge validity
+     * being therefore irrelevant.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[in] a flag specifying whether logarithmic coordinates are used. Unused.
+     * @param[in] (i,j) to (i,j+1) edge validity flag. Unused.
+     * @param[out] a pointer to the output (i+1,j) to (i+1,j+1) edge validity flag. Always set to 1.
+     * @return 1 if the facet is valid, 0 if it is not.
+     */
+    virtual int isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
+
+    /**
+     * Determines whether the left edge of a facet is valid.
+     * For a Matplot object, edge validity is irrelevant, it is therefore always equal to 1.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[in] a flag specifying whether logarithmic coordinates are used.
+     * @return Always 1.
+     */
+    virtual int isFacetEdgeValid(double* z, int numX, int numY, int i, int j, int logUsed);
+
 public :
+
+    /**
+     * Returns the class single instance.
+     * @return the class instance.
+     */
+    static NgonGridMatplotDataDecomposer* get(void)
+    {
+        if (decomposer == NULL)
+        {
+            decomposer = new NgonGridMatplotDataDecomposer();
+        }
+
+        return decomposer;
+    }
 
     /**
      * Fills the given buffer with color data from the given object.

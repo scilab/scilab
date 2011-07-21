@@ -135,6 +135,23 @@ protected :
     int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, int numX, int numY);
 
     /**
+     * Determines whether a facet is valid.
+     * The facet is identified by its lower left-corner (i,j). It requires a flag (computed beforehand)
+     * as an input which indicates whether the (i,j) to (i,j+1) edge is valid or not, and outputs
+     * another flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid or not.
+     * @param[in] the grid z-coordinate array.
+     * @param[in] the grid's number of vertices along the x-axis.
+     * @param[in] the grid's number of vertices along the y-axis.
+     * @param[in] the lower-left corner's x index.
+     * @param[in] the lower-left corner's y index.
+     * @param[in] a flag specifying whether logarithmic coordinates are used.
+     * @param[in] a flag indicating whether the (i,j) to (i,j+1) edge is valid.
+     * @param[out] a pointer to the output flag indicating whether the (i+1,j) to (i+1,j+1) edge is valid.
+     * @return 1 if the facet is valid, 0 if it is not.
+     */
+    virtual int isFacetValid(double* z, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid);
+
+    /**
      * Determines whether the left edge of a facet is valid.
      * The left edge is between the lower-left corner (i,j) and the
      * upper-left corner (i,j+1).
