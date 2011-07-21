@@ -75,4 +75,27 @@ namespace types
         }
         return pOut;
     }
+
+    bool checkArgValidity(typed_list& _Arg)
+    {
+        for(int i = 0 ; i < _Arg.size() ; i++)
+        {
+            Double* pDbl = _Arg[i]->getAs<Double>();
+            if(pDbl == NULL)
+            {
+                return false;
+            }
+
+            double* pdbl = pDbl->get();
+            for(int j = 0 ; j < pDbl->getSize() ; j++)
+            {
+                if(pdbl[j] <= 0)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }

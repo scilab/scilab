@@ -138,7 +138,7 @@ void visitprivate(const AssignExp  &e)
             {
                 //manage error
                 std::wostringstream os;
-                os << _W("Submatrix incorrectly defined.\n");
+                os << _W("Invalid Index.\n");
                 //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
@@ -526,7 +526,7 @@ void visitprivate(const AssignExp  &e)
             {
                 //manage error
                 std::wostringstream os;
-                os << _W("Submatrix incorrectly defined.\n");
+                os << _W("Invalid index.\n");
                 //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }

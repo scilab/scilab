@@ -39,6 +39,7 @@ namespace types
     TYPES_IMPEXP InternalType* createDoubleVector(int _iSize);
     TYPES_IMPEXP int getIntValueFromDouble(InternalType* _pIT, int _iPos);
     TYPES_IMPEXP double* getDoubleArrayFromDouble(InternalType* _pIT);
+    TYPES_IMPEXP bool checkArgValidity(typed_list& _pArg);
 
     template <typename T>
     class TYPES_IMPEXP ArrayOf : public GenericType
@@ -587,6 +588,10 @@ namespace types
                 }
             }
 
+            if(checkArgValidity(pArg) == false)
+            {//contain bad index, like <= 0, ...
+                return NULL;
+            }
 
             if(iDims == 1)
             {
