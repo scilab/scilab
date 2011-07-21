@@ -35,7 +35,7 @@ int get_segs_color_property(char * pobjUID)
 {
     int* segsColors = NULL;
     int iNbSegs = 0;
-    int piNbSegs = &iNbSegs;
+    int *piNbSegs = &iNbSegs;
     int i;
     int status = -1;
 

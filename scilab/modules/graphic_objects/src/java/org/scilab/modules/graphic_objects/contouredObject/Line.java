@@ -103,7 +103,7 @@ public class Line {
 		mode = false;
 		lineStyle = LineType.SOLID;
 		thickness = 0.0;
-		color = 0;
+		color = -1;
 	}
 
 	/**
