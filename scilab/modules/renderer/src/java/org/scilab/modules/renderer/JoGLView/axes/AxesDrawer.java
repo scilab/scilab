@@ -37,7 +37,7 @@ import java.awt.geom.Rectangle2D;
  */
 public class AxesDrawer {
     private static final double DEFAULT_THETA = 270.0;
-    private static final Line.LineType HIDDEN_BORDER_PATTERN = Line.LineType.STYLE1;
+    private static final Line.LineType HIDDEN_BORDER_PATTERN = Line.LineType.DASH;
 
     private final DrawerVisitor visitor;
     private final Geometries geometries;

@@ -21,7 +21,7 @@ public class Line {
 	public enum LinePropertyType { MODE, LINESTYLE, THICKNESS, COLOR };
 	
 	/** Line style */
-	public enum LineType { SOLID, STYLE1, STYLE2, STYLE3, STYLE4, STYLE5, STYLE6, STYLE7;
+	public enum LineType { SOLID, DASH, DASH_DOT, LONG_DASH_DOT, BIG_DASH_DOT, BIG_DASH_LONG_DASH, DOT, DOUBLE_DOT;
 
 		/**
 		 * Converts a scilab line style index to the corresponding line type.
@@ -33,19 +33,19 @@ public class Line {
 				case 1:
 					return SOLID;
 				case 2:
-					return STYLE1;
+					return DASH;
 				case 3:
-					return STYLE2;
+					return DASH_DOT;
 				case 4:
-					return STYLE3;
+					return LONG_DASH_DOT;
 				case 5:
-					return STYLE4;
+					return BIG_DASH_DOT;
 				case 6:
-					return STYLE5;
+					return BIG_DASH_LONG_DASH;
 				case 7:
-					return STYLE6;
+					return DOT;
 				case 8:
-					return STYLE7;
+					return DOUBLE_DOT;
 				default:
 					return SOLID;
 			}
@@ -65,21 +65,20 @@ public class Line {
          */
         public short asPattern() {
             switch (this) {
-                case STYLE1:
+                case DASH:
                     return (short) 0x07FF; // 5 blanks, 11 solids
-                case STYLE2:
+                case DASH_DOT:
                     return (short) 0x0F0F; // 4 blanks, 4 solids, 4 blanks, 4 solids
-                case STYLE3:
+                case LONG_DASH_DOT:
                     return (short) 0x1FC2; // 3 blanks, 3 solids, 3 blanks, 7 solids
-                case STYLE4:
+                case BIG_DASH_DOT:
                     return (short) 0x3FC9; // 2 blanks, 8 solids, 2 blanks, 1 solid, 2 blanks, 1 solid
-                case STYLE5:
+                case BIG_DASH_LONG_DASH:
                     return (short) 0x3FC6; // 3 blanks, 8 solids, 3 blanks, 2 solids
-                case STYLE6:
+                case DOT:
                     return (short) 0x5555; // (1 blank, 1 solid) x 8
-		case STYLE7:
+                case DOUBLE_DOT:
                     return (short) 0x3333; // (2 blanks, 2 solids) x 4
-
                 default:
                 case SOLID:
                     return (short) 0xFFFF; // 16 solids, unused equivalent to no stipple
