@@ -65,7 +65,7 @@ public class Polyline extends ClippableContouredObject {
 		super();
 		closed = false;
 		arrowSizeFactor = 0.0;
-		polylineStyle = 0;
+		polylineStyle = 1;
 		interpColorVector = new int[4];
 		interpColorVectorSet = false;
 		interpColorMode = false;
