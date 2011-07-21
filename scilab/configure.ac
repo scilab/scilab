@@ -19,8 +19,6 @@ AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.62)
 AC_CONFIG_MACRO_DIR([m4/])
 
-AC_PROG_RANLIB
-
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"

@@ -421,7 +421,7 @@ libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLA
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la
+libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la $(srcdir)/src/c/fdlibm/libfdlibm.la
 
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la

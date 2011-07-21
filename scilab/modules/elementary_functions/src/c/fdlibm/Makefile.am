@@ -19,5 +19,5 @@ libfdlibm_la_SOURCES= k_standard.c k_rem_pio2.c \
         s_log1p.c s_logb.c s_matherr.c s_modf.c s_nextafter.c \
         s_rint.c s_scalbn.c s_signgam.c s_significand.c s_sin.c \
         s_tan.c s_tanh.c
-libfdlibm_la_CFLAGS= -D_IEEE_LIBM
+libfdlibm_la_CFLAGS= -D_IEEE_LIBM -fno-strict-aliasing
 include_HEADERS=fdlibm.h
