@@ -36,9 +36,9 @@ public class Font {
 
 	/** Constructor */
 	public Font() {
-		this.style = 0;
-		this.size = 0.0;
-		this.color = 0;
+		this.style = 6;
+		this.size = 1.0;
+		this.color = -1;
 		this.fractional = false;
 	}
 
