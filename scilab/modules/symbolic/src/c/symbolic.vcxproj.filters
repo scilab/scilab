@@ -61,6 +61,9 @@
     <None Include="..\..\symbolic.iss" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
     <None Include="..\..\version.xml" />
+    <None Include="symbolic_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="symbolic.rc">

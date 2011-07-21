@@ -57,6 +57,9 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />
+    <None Include="output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

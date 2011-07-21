@@ -431,6 +431,10 @@ copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="output_stream_Import.def" />
+    <None Include="signal_processing_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

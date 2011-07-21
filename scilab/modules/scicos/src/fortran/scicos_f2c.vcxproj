@@ -324,6 +324,7 @@ copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul
     <f2c_rule Include="vvtosci.f" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="elementary_functions_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="Scicos_Import.def" />

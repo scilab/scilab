@@ -3,13 +3,13 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
 ;core
-com_
-intersci_
 callFunctionFromGateway
+com_
 StoreCommand
 StoreCommandWithFlag
 sigbas_
+putlhsvar_
+intersci_
 freeArrayOfString
 checklhs_
 checkrhs_
-putlhsvar_

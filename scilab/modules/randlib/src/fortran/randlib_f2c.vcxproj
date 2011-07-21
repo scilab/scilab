@@ -308,6 +308,9 @@ copy randlib_f_header.def+randlib_f.vcdef randlib_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="randlib_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

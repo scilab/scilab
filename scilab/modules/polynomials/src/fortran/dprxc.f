@@ -41,7 +41,10 @@ c     .    infinite roots gives zero high degree coeff
             ninf=ninf+1
          else
             nj=n+1-j
-            call daxpy(j,-roots(j),coeff(nj+1),1,coeff(nj),1)
+c            call daxpy(j,-roots(j),coeff(nj+1),1,coeff(nj),1)
+            do k=nj,nj+j-1
+                coeff(k)=coeff(k)-roots(j)*coeff(1+k)
+            enddo
          endif
  10   continue
       if (ninf.gt.0) then

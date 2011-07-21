@@ -138,6 +138,12 @@ zh_TW.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and
 ;
 zh_TW.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
 zh_TW.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
+zh_TW.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
+;
+zh_TW.DownloadCHMLabel =Downloading CHM files for Scilab.
+zh_TW.DownloadCHMDescription =Please wait while Setup is downloading extra files to your computer.
+zh_TW.DoTasksJustAfterInstallMsg4 =CHM files not installed.
+zh_TW.DescriptionCHM=Download scilab help as CHM
 ;
 zh_TW.DescriptionAtoms =ATOMS
 ;

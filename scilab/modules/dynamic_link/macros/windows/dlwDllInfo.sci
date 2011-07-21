@@ -24,8 +24,8 @@ function dllinfolist = dlwDllInfo(dllname, options)
       result(grep(result, 'time date stamp')) = [];
       dllext = grep(result, getdynlibext());
       result(1:dllext(1) - 1) = [];
-      result(grep(result, '.data') - 1 : $) = [];
-
+      data_index = grep(result, '.data');
+      result(data_index(1) - 1 : $) = [];
       indicedotdll = grep(result, getdynlibext())
       if (indicedotdll <> []) then
         dlllist = result(indicedotdll);
@@ -57,7 +57,8 @@ function dllinfolist = dlwDllInfo(dllname, options)
       ilastcomment = grep(result, 'ordinal hint RVA');
       if ilastcomment <> [] then
         result(1:ilastcomment) = [];
-        result(grep(result, '.data') - 1 : $) = [];
+        data_index = grep(result, '.data');
+        result(data_index(1) - 1 : $) = [];
         for i = 1:size(result, '*')
           tok = tokens(result(i), ' ');
           if size(tok,'*') >=4 then

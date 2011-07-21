@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -14,12 +14,9 @@
 ;-------------------------------------------------------------------------------
 
 Type: files; Name: {app}\scilabwebsite.url
-Type: files; Name: {app}\bin\SetupAtlas.log
-Type: files; Name: {app}\bin\blasplus.dll
-Type: files; Name: {app}\bin\blasplus.lib
-Type: files; Name: {app}\bin\libguide40.dll
-Type: files; Name: {app}\bin\libiomp5md.dll
-Type: files; Name: {app}\bin\readme-mkl.txt
+Type: files; Name: {app}\bin\*.dll
+Type: files; Name: {app}\bin\*.txt
+Type: files; Name: {app}\bin
 Type: filesandordirs; Name: {app}\bin\fftw
 Type: filesandordirs; Name: {app}\contrib
 Type: filesandordirs; Name: {app}\.atoms

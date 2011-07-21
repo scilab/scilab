@@ -517,6 +517,11 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
+    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="Sparse_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

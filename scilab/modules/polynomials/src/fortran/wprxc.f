@@ -44,8 +44,14 @@ c     .    infinite roots gives zero high degree coeff
             ninf=ninf+1
          else
             nj=n+1-j
-            call waxpy(j,-rootr(j),-rooti(j),coeffr(nj+1),coeffi(nj+1),1
-     $           ,coeffr(nj),coeffi(nj),1)
+c            call waxpy(j,-rootr(j),-rooti(j),coeffr(nj+1),coeffi(nj+1),1
+c     $           ,coeffr(nj),coeffi(nj),1)
+            do k=nj,nj+j-1
+               coeffr(k)=coeffr(k)-rootr(j)*coeffr(1+k)+
+     $              rooti(j)*coeffi(1+k)
+               coeffi(k)=coeffi(k)-rootr(j)*coeffi(1+k)-
+     $              rooti(j)*coeffr(1+k)
+            enddo
          endif
    10 continue
 

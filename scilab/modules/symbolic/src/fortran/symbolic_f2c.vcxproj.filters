@@ -16,6 +16,9 @@
     <Filter Include="Fortran files">
       <UniqueIdentifier>{7cc81742-468b-4d7e-a1c3-5655b6e1cd5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{a51b6d5f-0a8f-405b-bc0b-8d8191a6fe2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libf2c.lib" />
@@ -23,6 +26,12 @@
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_addsubf.f">

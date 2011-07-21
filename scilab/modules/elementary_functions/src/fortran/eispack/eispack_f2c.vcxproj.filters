@@ -16,6 +16,9 @@
     <Filter Include="Fortran Files">
       <UniqueIdentifier>{c77d7188-05f8-4f96-8960-70e791094670}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{ae47bd4c-a08a-4040-9548-238932d156f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="balbak.c">
@@ -36,5 +39,10 @@
   <ItemGroup>
     <Library Include="..\..\..\..\..\bin\lapack.lib" />
     <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

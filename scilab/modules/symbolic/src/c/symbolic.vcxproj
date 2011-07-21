@@ -250,6 +250,7 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="..\..\symbolic.iss" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
     <None Include="..\..\version.xml" />
+    <None Include="symbolic_f_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="symbolic.rc" />

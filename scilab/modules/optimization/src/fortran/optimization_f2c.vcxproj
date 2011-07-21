@@ -491,6 +491,12 @@ copy optimization_f_header.def+optimization_f.vcdef optimization_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\optimization_gateway.xml" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="io_f_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Optimization_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="String_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

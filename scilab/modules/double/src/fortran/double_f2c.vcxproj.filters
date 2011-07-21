@@ -16,6 +16,9 @@
     <Filter Include="Fortran files">
       <UniqueIdentifier>{4f017134-4f47-43ec-9c1a-a60a19efc4c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{64a9d246-1353-4174-ab5b-058a68495a10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\matadd.c">
@@ -155,5 +158,20 @@
   <ItemGroup>
     <None Include="..\..\sci_gateway\double_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="double_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Linear_algebra_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

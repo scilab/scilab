@@ -53,28 +53,22 @@ static int sci_lines_no_rhs(char *fname)
     /* for compatibility BUT order should be [nl, nc] */
     /* input/output not coherents */
     SciErr sciErr;
+    double returnedDouble[2];
     int n1 = 0,m1 = 0;
-    int *paramoutINT = NULL;
-    paramoutINT = (int*)MALLOC(sizeof(int)*2);
-    if (paramoutINT)
+
+    returnedDouble[0] = (double)getColumnsSize();
+    returnedDouble[1] = (double)getLinesSize();
+
+    n1 = 1; m1 = 2;
+    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, n1, m1, returnedDouble);
+
+    if (sciErr.iErr)
     {
-        paramoutINT[0] = getColumnsSize();
-        paramoutINT[1] = getLinesSize();
-
-        n1 = 1; m1 = 2;
-        sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1, n1, m1, paramoutINT);
-
-        FREE(paramoutINT);
-        paramoutINT = NULL;
-
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        LhsVar(1) = Rhs + 1;
+        printError(&sciErr, 0);
+        return 0;
     }
+
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;

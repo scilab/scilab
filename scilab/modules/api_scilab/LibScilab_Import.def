@@ -3,18 +3,17 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
 ;core
-com_
-vstk_
 intersci_
-iop_
-stack_
 str2name_
-cvnamel_
+vstk_
+com_
+stack_
+cvnamel_ 
 stackg_
+iop_
 stackp_
-oGetDoubleComplexFromPointer
 vGetPointerFromDoubleComplex
-getstackinfo_
+oGetDoubleComplexFromPointer
 getExecMode
-iArraySum 
+getstackinfo_
 freeArrayOfString

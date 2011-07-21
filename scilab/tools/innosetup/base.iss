@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -15,7 +15,9 @@
 ; default files embedded with scilab
 ;-------------------------------------------------------------------------------
 ;
+Source: tools\zip\unzip.exe; Flags: dontcopy
 Source: tools\innosetup\isxdl.dll; DestDir: {tmp}; Flags: dontcopy
+
 ;
 ; etc directory
 Source: etc\scilab.start; DestDir: {app}\etc; Components: {#COMPN_SCILAB}

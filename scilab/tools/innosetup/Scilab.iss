@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -16,20 +16,24 @@
 #define ScilabBaseFilename "scilab-master"
 #define ScilabBaseDirectory "scilab-master"
 #define ScilabName "scilab-master"
-#define ScilabVersion "5.3.0"
-#define CurrentYear "2010"
+#define ScilabVersion "5.4.0"
+#define CurrentYear "2011"
 #define javaSpecificationVersion "1.6"
+#define javaUsed "1.6.0_XX"
 #define TESTS_SIZE 14364741
+#define CHM_SIZE 28135014
 ;#define WITH_MODELICAC
-;#define WITH_CHM
 ;#define SCILAB_X64
 ;#define SCILAB_WITHOUT_JRE
+;#define SCILAB_F2C
 ;-------------------------------------------------------------------------------
-#define MKL_DOWNLOAD_HTTP 'http://www.scilab.org/download/master'
-#define MKL_FFTW_DOWNLOAD_HTTP 'http://www.scilab.org/download/master'
-#define FFTW_WEB_PAGE 'http://www.scilab.org/download/index_download.php'
 #define MODULES_LIST_WEB_PAGE 'http://wiki.scilab.org/howto/install/windows'
-#define DOTNET_WEB_PAGE 'http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&DisplayLang=en'
+#define MKL_DOWNLOAD_HTTP 'http://fileexchange.scilab.org/toolboxes/MKL'
+#define MKL_BLASLAPACK_PACKAGENAME 'blas-lapack-mkl-5.4-win32.zip'
+#define MKL_COMMONS_PACKAGENAME 'commons-mkl-5.4-win32.zip'
+#define MKL_FFTW_PACKAGENAME 'fftw-mkl-5.4-win32.zip'
+#define CHM_DOWNLOAD_HTTP 'http://fileexchange.scilab.org/toolboxes/CHM'
+#define CHM_PACKAGENAME 'scilab-help-chm-5.4.zip'
 ;-------------------------------------------------------------------------------
 [CustomMessages]
 #include BinariesSourcePath + "\tools\innosetup\custommessages.iss"
@@ -64,6 +68,7 @@
 #include BinariesSourcePath + "\tools\innosetup\registry.iss"
 ;-------------------------------------------------------------------------------
 [Code]
+#include BinariesSourcePath + "\tools\innosetup\code_unzip.iss"
 #include BinariesSourcePath + "\tools\innosetup\code_download.iss"
 #include BinariesSourcePath + "\tools\innosetup\code_modules.iss"
 #include BinariesSourcePath + "\tools\innosetup\code.iss"

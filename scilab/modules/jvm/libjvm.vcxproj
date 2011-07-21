@@ -315,6 +315,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="locales\en_US\jvm.pot" />
     <None Include="Call_scilab_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="Scilab_Windows_Import.def" />
     <None Include="string_Import.def" />
     <None Include="libjvm_export.def" />
     <None Include="jvm.iss" />

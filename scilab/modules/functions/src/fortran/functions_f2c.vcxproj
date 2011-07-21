@@ -302,6 +302,12 @@ copy functions_f_header.def+functions_f.vcdef functions_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\sci_gateway\functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="fileio_Import.def" />
+    <None Include="io_f_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="output_stream_Import.def" />
+    <None Include="string_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

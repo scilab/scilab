@@ -321,6 +321,11 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\sci_gateway\double_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="double_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Linear_algebra_Import.def" />
+    <None Include="Output_stream_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

@@ -17,11 +17,9 @@ Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Work
 ;
 Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{app}"
 Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "{app}"
-
-#ifdef WITH_CHM
-Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}";
-#endif
-
+;
+Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}"; Components: {#COMPN_CHM};
+;
 Name: "{group}\{cm:WebIconScilab}"; Filename: "{app}\scilabwebsite.url";
 
 Name: {group}\{cm:UnInstallIcon}; Filename: {uninstallexe};
