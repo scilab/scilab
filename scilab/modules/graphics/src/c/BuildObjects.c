@@ -60,6 +60,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "callJoGLView.h"
+#include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
 #include "FigureModel.h"
@@ -69,7 +70,7 @@
  * If a current figure exists : return it
  * Otherwise create a new one.
  */
-GRAPHICS_IMPEXP char *createNewFigureWithAxes()
+char *createNewFigureWithAxes()
 {
     int iID = 0;
     char *pFigureUID = NULL;
@@ -96,7 +97,25 @@ GRAPHICS_IMPEXP char *createNewFigureWithAxes()
     return pFigureUID;
 }
 
+/**
+ * If a current subwin exists: return it
+ * Otherwise create a new figure with JoGLView.
+ **/
+GRAPHICS_IMPEXP char *getOrCreateDefaultSubwin(void)
+{
+    char *pFigureUID = NULL;
+    char *pSubWinUID = getCurrentSubWin();
 
+    if (pSubWinUID == NULL)
+    {
+        pFigureUID = createNewFigureWithAxes();
+        createJoGLView(pFigureUID);
+        setCurrentFigure(pFigureUID);
+        pSubWinUID = getCurrentSubWin();
+    }
+
+    return pSubWinUID;
+}
 /*-----------------------------------------------------------------------------*/
 
 /**ConstructSubWin

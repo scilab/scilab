@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,133 +31,134 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "CurrentFigure.h"
-#include "CurrentSubwin.h"
 #include "CurrentObject.h"
-#include "callJoGLView.h"
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )
 {
-  char* pfigureUID = NULL;
-  char* psubwinUID = NULL;
-  char* pobjUID = NULL;
+    char *psubwinUID = NULL;
+    char* pobjUID = NULL;
 
-  int m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
+    int m1,n1,l1 ,m2 ,n2 ,l2,m3,n3,l3,m4,n4,l4,close=0,mn2;
 
-  long hdl;/* NG */
-  int mark;/* NG */
-  int markMode;
-  int lineMode;
-  int foreground;
-  int iTmp = 0;
-  int* piTmp = &iTmp;
+    long hdl;/* NG */
+    int mark;/* NG */
+    int markMode;
+    int lineMode;
+    int foreground;
+    int iTmp = 0;
+    int* piTmp = &iTmp;
 
-  CheckRhs(2,4);
-  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-  CheckSameDims(1,2,m1,n1,m2,n2);
-  mn2 = m2 * n2;
+    CheckRhs(2,4);
+    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+    CheckSameDims(1,2,m1,n1,m2,n2);
+    mn2 = m2 * n2;
 
-  if (Rhs >= 3) {
-    GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-    if ( strcmp(cstk(l3),"lines") == 0) {
-      strcpy(C2F(cha1).buf,"xlines");
-      mark=1; /* NG */
-    } else if (strcmp(cstk(l3),"marks") == 0) {
-      strcpy(C2F(cha1).buf,"xmarks");
-      mark=0; /* NG */
-    } else {
-      Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3, "lines","marks");
-      return 0;
+    if (Rhs >= 3)
+    {
+        GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+        if ( strcmp(cstk(l3),"lines") == 0)
+        {
+            strcpy(C2F(cha1).buf,"xlines");
+            mark=1; /* NG */
+        }
+        else if (strcmp(cstk(l3),"marks") == 0)
+        {
+            strcpy(C2F(cha1).buf,"xmarks");
+            mark=0; /* NG */
+        }
+        else
+        {
+            Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname,3, "lines","marks");
+            return 0;
+        }
     }
-  }
-  else {
-    strcpy(C2F(cha1).buf,"xlines");
-    mark=1; /* NG */
-  }
+    else
+    {
+        strcpy(C2F(cha1).buf,"xlines");
+        mark=1; /* NG */
+    }
 
-  if (Rhs >= 4) { GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (int)  *stk(l4);}
-  /* NG beg */
+    if (Rhs >= 4)
+    {
+        GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
+        CheckScalar(4,m4,n4);
+        close = (int)  *stk(l4);
+    }
+    /* NG beg */
 
-  /* Deactivated for now (synchronization) */
+    /* Deactivated for now (synchronization) */
 #if 0
-  startGraphicDataWriting();
+    startGraphicDataWriting();
 #endif
 
-  psubwinUID = getCurrentSubWin();
-  if (psubwinUID == NULL)
-  {
-      /* no default figure nor axes: create one */
-      pfigureUID = createNewFigureWithAxes();
-      createJoGLView(pfigureUID);
-      psubwinUID = getCurrentSubWin();
-  }
+    psubwinUID = getOrCreateDefaultSubwin();
 
-  /* Deactivated for now (synchronization) */
+    /* Deactivated for now (synchronization) */
 #if 0
-  endGraphicDataWriting();
+    endGraphicDataWriting();
 #endif
 
-  Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+    Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
-  pobjUID = getCurrentObject(); /* the polyline newly created */
+    pobjUID = getCurrentObject(); /* the polyline newly created */
 
-  /* Deactivated for now (synchronization) */
+    /* Deactivated for now (synchronization) */
 #if 0
-  startFigureDataWriting(pFigure);
+    startFigureDataWriting(pFigure);
 #endif
 
-  /*
-   * The contour properties set calls below were
-   * already present and have been updated for the MVC.
-   */
-  if(mark == 0)
-  {
-    /* marks are enabled but markstyle & foreground
-    is determined by parents' markstyle & foreground */
+    /*
+     * The contour properties set calls below were
+     * already present and have been updated for the MVC.
+     */
+    if(mark == 0)
+    {
+        /* marks are enabled but markstyle & foreground
+           is determined by parents' markstyle & foreground */
 
-    markMode = 1;
-    lineMode = 0;
+        markMode = 1;
+        lineMode = 0;
 
-    getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, &piTmp);
-    sciInitMarkStyle(pobjUID, iTmp);
-  }
-  else
-  {
-    markMode = 0;
-    lineMode = 1;
+        getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, &piTmp);
+        sciInitMarkStyle(pobjUID, iTmp);
+    }
+    else
+    {
+        markMode = 0;
+        lineMode = 1;
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, &piTmp);
-    sciInitLineStyle(pobjUID, iTmp);
-  }
+        getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, &piTmp);
+        sciInitLineStyle(pobjUID, iTmp);
+    }
 
-  getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piTmp);
-  foreground = iTmp;
+    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, &piTmp);
+    foreground = iTmp;
 
-  setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-  setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-  setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
 
 
- /*
-  * Deactivated for now as it performs drawing operations
-  * To be implemented
-  */
+    /*
+     * Deactivated for now as it performs drawing operations
+     * To be implemented
+     */
 #if 0
-  endFigureDataWriting(pFigure);
+    endFigureDataWriting(pFigure);
 
-  startFigureDataReading(pFigure);
-  sciDrawObjIfRequired(pobj);
-  endFigureDataReading(pFigure);
+    startFigureDataReading(pFigure);
+    sciDrawObjIfRequired(pobj);
+    endFigureDataReading(pFigure);
 #endif
 
-  /* NG end */
-  LhsVar(1)=0;
-	C2F(putlhsvar)();
-  return 0;
+    /* NG end */
+    LhsVar(1)=0;
+	PutLhsVar();
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

@@ -18,6 +18,11 @@ extern "C"
 #include <float.h>
 #ifdef _MSC_VER
 #define isnan _isnan
+    // isinf(x)
+    // | +%inf -> 1
+    // | -%inf -> -1
+    // | _ -> 0
+#define isinf(x) (_fpclass(x)==_FPCLASS_PINF?1:(_fpclass(x)==_FPCLASS_NINF?-1:0))
 #endif
 }
 

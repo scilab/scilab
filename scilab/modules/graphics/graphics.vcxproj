@@ -251,7 +251,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\CloneObjects.c" />
     <ClCompile Include="src\c\ColorMapManagement.c" />
     <ClCompile Include="src\c\Contour.c" />
-    <ClCompile Include="src\c\CurrentObjectsManagement.c" />
     <ClCompile Include="src\c\DefaultCommandArg.c" />
     <ClCompile Include="src\c\DestroyObjects.c" />
     <ClCompile Include="src\c\DllmainGraphics.c" />

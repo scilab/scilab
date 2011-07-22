@@ -24,9 +24,6 @@
 #include "DrawingBridge.h"
 #include "HandleManagement.h"
 #include "BuildObjects.h"
-#include "CurrentFigure.h"
-#include "CurrentSubwin.h"
-#include "callJoGLView.h"
 /*--------------------------------------------------------------------------*/
 int sci_xarrows(char *fname,unsigned long fname_len)
 {
@@ -34,9 +31,6 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     int *style,flag;
     int m4,n4,l4,mn2;
     double arsize=-1.0;
-
-    char *pFigureUID = NULL;
-    char *pSubWinUID = NULL;
 
     CheckRhs(2,4);
 
@@ -83,14 +77,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
         flag = 0;
     }
 
-    pSubWinUID = getCurrentSubWin();
-
-    if (pSubWinUID == NULL)
-    {
-        pFigureUID = createNewFigureWithAxes();
-        createJoGLView(pFigureUID);
-        setCurrentFigure(pFigureUID);
-    }
+    getOrCreateDefaultSubwin();
 
     Objsegs(style,flag,mn2,stk(l1),stk(l2),NULL,arsize);
 

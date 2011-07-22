@@ -27,7 +27,6 @@
 #include "localization.h"
 #include "HandleManagement.h"
 
-#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
@@ -35,39 +34,32 @@
 /*--------------------------------------------------------------------------*/
 int sci_newaxes( char * fname,unsigned long fname_len )
 {
-  char *psubwinUID;
-  char *pfigureUID;
-  int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
-  int outindex,numrow   = 1,numcol   = 1;
-  CheckRhs(0, 0);
-  CheckLhs(0, 1);
+    char *psubwinUID;
+    char *pfigureUID;
+    int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1;
+    int outindex,numrow   = 1,numcol   = 1;
+    CheckRhs(0, 0);
+    CheckLhs(0, 1);
 
-  psubwinUID = getCurrentSubWin();
-  if (psubwinUID == NULL)
-  {
-      /* No default figure nor axes: create one */
-      pfigureUID = createNewFigureWithAxes();
-      createJoGLView(pfigureUID);
-      psubwinUID = getCurrentSubWin();
-  }
+    psubwinUID = getOrCreateDefaultSubwin();
 
-  if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
-  {
-    setCurrentObject(psubwinUID);
-    sciSetSelectedSubWin(psubwinUID);
-    setCurrentSubWin(psubwinUID);
+    if ((psubwinUID = ConstructSubWin (getCurrentFigure())) != NULL)
+    {
+        setCurrentObject(psubwinUID);
+        sciSetSelectedSubWin(psubwinUID);
+        setCurrentSubWin(psubwinUID);
 
-    CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
+        CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
 
-    *hstk(outindex) = getHandle(psubwinUID);
+        *hstk(outindex) = getHandle(psubwinUID);
 
-    LhsVar(1) = 1;
-    PutLhsVar();
-  }
-  else
-  {
-    Scierror(999,_("%s: No more memory.\n"),fname);
-  }
-  return 0;
+        LhsVar(1) = 1;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999,_("%s: No more memory.\n"),fname);
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

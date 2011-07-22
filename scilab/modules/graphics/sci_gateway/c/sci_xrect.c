@@ -29,9 +29,6 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "CurrentFigure.h"
-#include "CurrentSubwin.h"
-#include "callJoGLView.h"
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
@@ -40,7 +37,6 @@ int sci_xrect( char *fname, unsigned long fname_len )
     long hdl;
     int m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
     char* psubwinUID = NULL;
-    char* pfigureUID = NULL;
 
     int foreground = 0;
     int *piForeground = &foreground;
@@ -52,15 +48,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     startGraphicDataWriting();
 #endif
 
-    psubwinUID = getCurrentSubWin();
-    if (psubwinUID == NULL)
-    {
-        /* no default figure nor axes: create one */
-        pfigureUID = createNewFigureWithAxes();
-        createJoGLView(pfigureUID);
-        psubwinUID = getCurrentSubWin();
-    }
-
+    psubwinUID = getOrCreateDefaultSubwin();
 
     /* Deactivated (synchronization) */
 #if 0

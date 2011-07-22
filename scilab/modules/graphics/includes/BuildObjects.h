@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,6 +36,8 @@
  * Otherwise create a new one.
  */
 GRAPHICS_IMPEXP char *createNewFigureWithAxes(void);
+
+GRAPHICS_IMPEXP char *getOrCreateDefaultSubwin(void);
 
 GRAPHICS_IMPEXP char *ConstructSubWin (char * pparentfigure); /* BUILD */
 

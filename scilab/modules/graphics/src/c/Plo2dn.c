@@ -3,6 +3,7 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -129,14 +130,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
     startGraphicDataWriting();
 #endif
 
-    psubwinUID = getCurrentSubWin();
-    if (psubwinUID == NULL)
-    {
-        curFigureUID = createNewFigureWithAxes();
-        createJoGLView(curFigureUID);
-        psubwinUID = getCurrentSubWin();
-    }
-
+    psubwinUID = getOrCreateDefaultSubwin();
 
 #if 0
     ppsubwin = pSUBWIN_FEATURE(psubwin);

@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -50,7 +50,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	if ( m3*n3 == 0 )
 	{
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -70,14 +70,14 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	{
 		Scierror(999,_("%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"), fname, 1, 2);
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
 	if(nbElement == 0)
 	{
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -88,18 +88,18 @@ int sci_xstring( char *fname, unsigned long fname_len )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 4, 1, nbElement);
 			LhsVar(1)=0;
-			C2F(putlhsvar)();
+            PutLhsVar();
 			return 0;
 		}
 	}
 	if (Rhs >= 5)
-	{ 
+	{
 		GetRhsVar(5,MATRIX_OF_DOUBLE_DATATYPE,&m5,&n5,&l5);
 		if(m5*n5 != 1 && m5*n5 != nbElement)
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 5, 1, nbElement);
 			LhsVar(1)=0;
-			C2F(putlhsvar)();
+            PutLhsVar();
 			return 0;
 		}
 	}
@@ -113,13 +113,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	if (Rhs >= 4) angle = DEG2RAD(*stk(l4));
 	if (Rhs >= 5) isboxed = (*stk(l5) != 0);
 
-	psubwinUID = getCurrentSubWin();
-	if (psubwinUID == NULL)
-	{
-		/* No default figure nor axes: create one */
-		pfigureUID = createNewFigureWithAxes();
-		createJoGLView(pfigureUID);
-	}
+	getOrCreateDefaultSubwin();
 
 	if(nbElement == 1)
 	{
@@ -150,12 +144,12 @@ int sci_xstring( char *fname, unsigned long fname_len )
 		ConstructCompoundSeq(nbElement);
 	}
 
-	/* we must free Str memory */ 
+	/* we must free Str memory */
 
 	freeArrayOfString(Str,m3*n3);
 
 	LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
-} 
+}
 /*--------------------------------------------------------------------------*/
