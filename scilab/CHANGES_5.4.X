@@ -269,6 +269,8 @@ Bug fixes:
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
+* bug 7901 fixed - besselh.tst failed on Windows.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,16 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_special_functions.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "msgs.h"
-/*--------------------------------------------------------------------------*/
-extern void  C2F(zbeshv) (double *xr,double *xi,int* nx, double *alpha,
-                          int *na,int *kode, int *K, double *rr,double *ri,
-                          double *wr, double *wi, int *ierr);
+#include "zbeshv.h"
 /*--------------------------------------------------------------------------*/
 int sci_besselh(char *fname,unsigned long fname_len)
 {
@@ -82,13 +80,23 @@ int sci_besselh(char *fname,unsigned long fname_len)
     { 
         /*bessely(scalar,matrix) */
         double wr[3],wi[3];
+        double *xr = stk(l2);
+        double *xi = stk(l2i);
+        double *alpha = stk(l1);
+        double *yr = NULL;
+        double *yi = NULL;
+
         mr = m2;
         nr = n2;    
         CreateCVar(lpos+1,MATRIX_OF_DOUBLE_DATATYPE,&itr,&mr,&nr,&lr,&li);
-        LhsVar(1) = lpos + 1;
+        yr = stk(lr);
+        yi = stk(li);
+
         nx = m2*n2;
         na = 1;
-        C2F(zbeshv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),wr,wi,&ierr);
+
+        zbeshv(xr, xi, &nx, alpha, &na, &kode, &K, yr, yi, wr, wi, &ierr);
+        LhsVar(1) = lpos + 1;
     }
     else if (m2*n2 == 1) 
     { 
@@ -101,7 +109,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
         na = m1*n1;
         nw = 3*na;
         CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&nx,&nw,&llwr,&llwi);
-        C2F(zbeshv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),stk(llwr),stk(llwi),&ierr);
+        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),stk(llwr),stk(llwi),&ierr);
         LhsVar(1) = lpos + 1;
     }
     else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) 
@@ -115,7 +123,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
         na = m1*n1;
         nw = 3*na;
         CreateCVar(lpos+2,MATRIX_OF_DOUBLE_DATATYPE,&itr,&lun,&nw,&lwr,&lwi);
-        C2F(zbeshv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
 
         LhsVar(1) = lpos + 1;
     }
@@ -130,7 +138,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
         LhsVar(1) = lpos + 1;
         nx = mr * nr;
         na = -1;
-        C2F(zbeshv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),wr,wi,&ierr);
+        zbeshv (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,&K,stk(lr),stk(li),wr,wi,&ierr);
     }
     if (ierr == 2) 
     {
@@ -147,7 +155,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
     }
     else if (ierr == 3) 
     {
-        /* inacurate result */
+        /* inaccurate result */
         ierr = 4;
         C2F(msgs)(&ierr,&un);
     }

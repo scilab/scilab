@@ -33,6 +33,30 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lgamma.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dbesig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesjg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbeskg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dbesyg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesjg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbeskg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbesyg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_calerf.f">
@@ -45,6 +69,30 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lgamma.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesig.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesjg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbeskg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dbesyg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesig.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesjg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbeskg.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="zbesyg.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

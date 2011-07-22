@@ -164,7 +164,6 @@ src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/wdpow1.f \
-src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
 src/fortran/dlgama.f \
 src/fortran/exch.f \
@@ -172,7 +171,6 @@ src/fortran/wsign.f \
 src/fortran/kronr.f \
 src/fortran/wrscal.f \
 src/fortran/pythag.f \
-src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
 src/fortran/wmmul.f \
@@ -199,13 +197,11 @@ src/fortran/ddrdiv.f \
 src/fortran/dipow.f \
 src/fortran/wshrsl.f \
 src/fortran/wwrdiv.f \
-src/fortran/zbeshg.f \
 src/fortran/coshin.f \
 src/fortran/iwamax.f \
 src/fortran/dipowe.f \
 src/fortran/getorient.f \
 src/fortran/cusum.f \
-src/fortran/dbesig.f \
 src/fortran/d1mach.f \
 src/fortran/wbdiag.f \
 src/fortran/ddpow1.f \
@@ -217,11 +213,9 @@ src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \
 src/fortran/drdiv.f \
 src/fortran/wmsum.f \
-src/fortran/dbesyg.f \
 src/fortran/corth.f \
 src/fortran/mtran.f \
 src/fortran/wwpow.f \
-src/fortran/zbeskg.f \
 src/fortran/dvmul.f \
 src/fortran/wclmat.f \
 src/fortran/dsort.f \
@@ -248,14 +242,11 @@ src/fortran/wipow.f \
 src/fortran/wlog.f \
 src/fortran/infinity.f \
 src/fortran/dwpow1.f \
-src/fortran/zbesig.f \
 src/fortran/wmul.f \
 src/fortran/dad.f \
-src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
 src/fortran/i1mach.f \
-src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
 src/fortran/ortran.f \
 src/fortran/bdiag.f \
@@ -264,10 +255,6 @@ src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
 src/fortran/rat.f \
-src/fortran/ribesl.f \
-src/fortran/rjbesl.f \
-src/fortran/rkbesl.f \
-src/fortran/rybesl.f \
 src/fortran/sdot.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
