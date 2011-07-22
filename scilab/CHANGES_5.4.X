@@ -238,6 +238,18 @@ ATOMS:
 
 * bug 8664 fixed - Message error updated for non supported OS.
 
+Javasci:
+========
+
+* Java mapping of Scilab data has now a new method called getType() which
+returns the value of the ScilabTypeEnum enum.
+
+* bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
+
+* bug 9544 fixed - Calling graphic with Javasci from a SWING application from
+                   EDT was crashing the execution of a java program.
+
+
 Misc:
 =====
 
@@ -306,8 +318,6 @@ Bug fixes:
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
-* bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
-
 * bug 9479 fixed - Typo fixed (intput => input).
 
 * bug 9498 fixed - A long history caused Scilab startup to be very long.
@@ -322,9 +332,6 @@ Bug fixes:
 
 * bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
                    to parse XML configuration files.
-
-* bug 9544 fixed - Calling graphic with Javasci from a SWING application from
-                   EDT was crashing the execution of a java program.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
 

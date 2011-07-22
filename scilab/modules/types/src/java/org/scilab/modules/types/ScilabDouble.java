@@ -39,6 +39,7 @@ public class ScilabDouble implements ScilabType {
 	private static final long serialVersionUID = 879624048944109684L;
 	private double[][] realPart;
 	private double[][] imaginaryPart;
+	private ScilabTypeEnum type = ScilabTypeEnum.sci_matrix;
 
 	/**
 	 * Default constructor
@@ -91,6 +92,15 @@ public class ScilabDouble implements ScilabType {
 		realPart = realData;
 		imaginaryPart = imagData;
 	}
+
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType() {
+        return type;
+    }
 
 	/**
 	 * Check the emptiness of the associated data.
