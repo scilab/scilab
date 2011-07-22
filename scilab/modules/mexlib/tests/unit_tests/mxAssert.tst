@@ -13,6 +13,7 @@
 // ============================================================================
 
 cd(TMPDIR);
+ilib_verbose(0);
 mputl(['#include ""mex.h""';
        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
        '{';

@@ -12,6 +12,9 @@
 // ============================================================================
 
 cd(TMPDIR);
+ilib_verbose(0);
+
+ilib_verbose(0);
 mputl([ '#include ""mex.h""';
         '#include ""localization.h""';
         '';

@@ -12,12 +12,12 @@
 // ============================================================================
 
 cd(TMPDIR);
+ilib_verbose(0);
 mputl(['#include ""mex.h""';
        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
        '{';
-       '    int strl = 20;';
-       '    char string[strl];';
-       '    plhs[0] = mxCreateDoubleScalar(mxGetString(prhs[0], string, strl));';
+       '    char string[20];';
+       '    plhs[0] = mxCreateDoubleScalar(mxGetString(prhs[0], string, 20));';
        '    plhs[1] = mxCreateString(string);';
        '}'],'mexgetString.c');
 ilib_mex_build('libmextest',['getString','mexgetString','cmex'], 'mexgetString.c',[],'Makelib','','','');
