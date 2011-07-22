@@ -338,3 +338,5 @@ Bug fixes:
 
 * bug 9730 fixed - lines() returned an int32 and not a double value.
 
+* bug 9756 fixed - polelm.tst unitary test failed on Windows 64 bit.
+
