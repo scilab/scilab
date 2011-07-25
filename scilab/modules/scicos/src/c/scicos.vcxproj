@@ -324,7 +324,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClCompile Include="..\..\sci_gateway\c\sci_getscicosvars.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_haltscicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_permutobj.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_phase_simulation.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug.c" />
