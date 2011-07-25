@@ -14,6 +14,9 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NAME__;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -32,10 +35,11 @@ import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingPort;
-import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.activation.ActiveDockableTracker;
+import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.View;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -43,16 +47,16 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
-import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
-import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
+import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -62,24 +66,24 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
-import org.scilab.modules.gui.uitable.UiTable;
-import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.SciClosingAction;
+import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -100,7 +104,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
     private static final String UNDOCK = "undock";
     
-    private String id = null;
+    private String id;
 
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
@@ -145,42 +149,6 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
     }
 
     /**
-     * @param e the FocusEvent
-     */
-    public void focusGained(FocusEvent e) {
-        if (contentPane != null) {
-            contentPane.requestFocus();
-        } else if (getContentPane() != null) {
-            getContentPane().requestFocus();
-        } else {
-            SwingScilabTab.this.requestFocusInWindow();
-        }
-    }
-
-    /**
-     * @return the window icon associated with this tab
-     */
-    public Image getWindowIcon() {
-        if (icon ==null) {
-            return SCILAB_ICON;
-        } else {
-            return icon;
-        }
-    }
-
-    /**
-     * @param the window icon associated with this tab
-     */
-    public void setWindowIcon(Image icon) {
-        this.icon = icon;
-    }
-
-    /**
-     * @param e the FocusEvent
-     */
-    public void focusLost(FocusEvent e) { }
-
-    /**
      * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
      * @param name name of the tab
      * @param figureId id of the displayed figure
@@ -208,6 +176,42 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
     }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusGained(FocusEvent e) {
+        if (contentPane != null) {
+            contentPane.requestFocus();
+        } else if (getContentPane() != null) {
+            getContentPane().requestFocus();
+        } else {
+            SwingScilabTab.this.requestFocusInWindow();
+        }
+    }
+
+    /**
+     * @return the window icon associated with this tab
+     */
+    public Image getWindowIcon() {
+        if (icon == null) {
+            return SCILAB_ICON;
+        } else {
+            return icon;
+        }
+    }
+
+    /**
+     * @param icon the window icon associated with this tab
+     */
+    public void setWindowIcon(Image icon) {
+        this.icon = icon;
+    }
+
+    /**
+     * @param e the FocusEvent
+     */
+    public void focusLost(FocusEvent e) { }
 
     /**
      * {@inheritDoc}
@@ -647,7 +651,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return index of member in ArrayList
      */
     public int addMember(ImageRenderer member) {
-	return this.addMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
+    	return this.addMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
     }
 
     /**
@@ -656,7 +660,7 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabImageRenderer member) {
-	return contentPane.addWidget(member);
+    	return contentPane.addWidget(member);
     }
 
     /**
@@ -675,17 +679,38 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 	contentPane.removeWidget(member);
     }
 	
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
     public int addMember(UiDisplayTree member) {
- 	return this.addMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    	return this.addMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
     }
+    
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
     private int addMember(SwingScilabUiDisplayTree member) {
-	return contentPane.addWidget(member);
+    	return contentPane.addWidget(member);
     }
+    
+    /**
+     * Remove a Tree from its container
+     * @param member the Tree to remove
+     */
     public void removeMember(UiDisplayTree member) {
-	this.removeMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    	this.removeMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
     }
+    
+    /**
+     * Remove a Tree from its container
+     * @param member the Tree to remove
+     */
     private void removeMember(SwingScilabUiDisplayTree member) {
-	contentPane.removeWidget(member);
+    	contentPane.removeWidget(member);
     }
 
     /**
@@ -1167,14 +1192,49 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
         super.paintChildren(g);
     }
 
+    /**
+     * Update the tab after a modification of its properties
+     * @param property the property name
+     * @param value the property value
+     * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String, java.lang.Object)
+     */
     public void update(String property, Object value) {
-        //TODO : Some parameters can be update from MVC. 
+    	if (property.equals(__GO_NAME__)) {
+    		String name = ((String) value);
+            Integer figureId = (Integer) GraphicController.getController().getProperty(getId(), __GO_ID__);
+            updateTitle(name, figureId);
+    	} else if (property.equals(__GO_ID__)) {
+    		Integer figureId = ((Integer) value);
+            String name = (String) GraphicController.getController().getProperty(getId(), __GO_NAME__);
+            updateTitle(name, figureId);
+    	}
+    }
+    
+    /**
+     * Update the title of the Tab
+     * @param figureName figure_name property
+     * @param figureId figure_id property
+     */
+    private void updateTitle(String figureName, Integer figureId) {
+        if ((figureName != null) && (figureId != null)) {
+        	String figureTitle = figureName.replaceFirst("%d", figureId.toString());
+    		setName(figureTitle);
+        }
     }
 
+    /**
+     * Get the tab UID
+     * @return the UID
+     * @see org.scilab.modules.gui.SwingViewObject#getId()
+     */
     public String getId() {
         return id;
     }
 
+    /** Set the tab UID
+     * @param id the UID
+     * @see org.scilab.modules.gui.SwingViewObject#setId(java.lang.String)
+     */
     public void setId(String id) {
         this.id = id;
     }

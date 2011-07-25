@@ -59,7 +59,6 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
@@ -109,7 +108,6 @@ GRAPHICS_IMPEXP char *getOrCreateDefaultSubwin(void)
     if (pSubWinUID == NULL)
     {
         pFigureUID = createNewFigureWithAxes();
-        createJoGLView(pFigureUID);
         setCurrentFigure(pFigureUID);
         pSubWinUID = getCurrentSubWin();
     }

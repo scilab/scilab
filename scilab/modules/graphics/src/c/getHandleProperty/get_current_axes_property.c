@@ -30,7 +30,6 @@
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
-#include "callJoGLView.h"
 
 /*------------------------------------------------------------------------*/
 int get_current_axes_property(char *pobjUID)
@@ -50,7 +49,6 @@ int get_current_axes_property(char *pobjUID)
     if (pSubWinUID == NULL)
     {
         pFigureUID = createNewFigureWithAxes();
-        createJoGLView(pFigureUID);
         setCurrentFigure(pFigureUID);
     }
 

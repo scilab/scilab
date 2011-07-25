@@ -104,7 +104,6 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-voidcreateJoGLViewjstringID=NULL; 
 voidcreateSwingViewID=NULL; 
 
 
@@ -128,8 +127,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        voidcreateJoGLViewjstringID=NULL; 
-voidcreateSwingViewID=NULL; 
+        voidcreateSwingViewID=NULL; 
 
 
 }
@@ -148,32 +146,6 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "CallGraphicJoGLView")
 }
 }
 // Method(s)
-
-void CallGraphicJoGLView::createJoGLView (JavaVM * jvm_, char * id){
-
-JNIEnv * curEnv = NULL;
-jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-jclass cls = curEnv->FindClass( className().c_str() );
-
-jmethodID voidcreateJoGLViewjstringID = curEnv->GetStaticMethodID(cls, "createJoGLView", "(Ljava/lang/String;)V" ) ;
-if (voidcreateJoGLViewjstringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "createJoGLView");
-}
-
-jstring id_ = curEnv->NewStringUTF( id );
-if (id_ == NULL)
-{
-throw GiwsException::JniBadAllocException(curEnv);
-}
-
-
-                         curEnv->CallStaticVoidMethod(cls, voidcreateJoGLViewjstringID ,id_);
-                        curEnv->DeleteLocalRef(id_);
-curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
-}
-}
 
 void CallGraphicJoGLView::createSwingView (JavaVM * jvm_){
 

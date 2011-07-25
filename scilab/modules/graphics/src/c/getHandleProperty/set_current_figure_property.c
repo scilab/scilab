@@ -36,7 +36,6 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "callJoGLView.h"
 #include "FigureList.h"
 
 
@@ -104,7 +103,6 @@ int set_current_figure_property(char* pobjUID, size_t stackPointer, int valueTyp
         // No Figure available with this index, should create it  !!
         pFigureUID = createNewFigureWithAxes();
         setGraphicObjectProperty(pFigureUID, __GO_ID__, &figNum, jni_int, 1);
-        createJoGLView(pFigureUID);
     }
     setCurrentFigure(pFigureUID);
 

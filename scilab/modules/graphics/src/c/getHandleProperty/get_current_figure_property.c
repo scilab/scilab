@@ -31,7 +31,6 @@
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
 #include "HandleManagement.h"
-#include "callJoGLView.h"
 
 /*--------------------------------------------------------------------------*/
 int get_current_figure_property(char *pobjUID)
@@ -51,9 +50,6 @@ int get_current_figure_property(char *pobjUID)
     {
         /* return handle on the current figure if none : create it */
         pstCurrentFigureId = createNewFigureWithAxes();
-
-        /* Create openGL View (may be disabled for off-screen use ??? */
-        createJoGLView(pstCurrentFigureId);
         setCurrentFigure(pstCurrentFigureId);
     }
 

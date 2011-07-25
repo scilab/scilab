@@ -82,7 +82,6 @@ setFigureEventHandler
 setFigureEventHandlerEnabled
 deleteMenuCallBack
 destroyUiobjectTag
-createJoGLView
 GetUiobjectTableData
 GetUiobjectColumnNames
 GetUiobjectRowNames

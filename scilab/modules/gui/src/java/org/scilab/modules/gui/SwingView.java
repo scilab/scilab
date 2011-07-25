@@ -12,15 +12,44 @@
  */
 package org.scilab.modules.gui;
 
+import org.flexdock.docking.DockingManager;
+import org.flexdock.docking.activation.ActiveDockableTracker;
+import org.flexdock.view.View;
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
+import org.scilab.modules.gui.graphicWindow.FigureInteraction;
+import org.scilab.modules.gui.graphicWindow.PanelLayout;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import javax.media.opengl.GLCanvas;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
@@ -49,6 +78,11 @@ import static org.scilab.modules.gui.utils.Debug.DEBUG;
  */
 public final class SwingView implements GraphicView {
 
+    private static final String SCIDIR = System.getenv("SCI");
+
+    private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
+    private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
+
     private static SwingView me;
 
     /**
@@ -56,7 +90,7 @@ public final class SwingView implements GraphicView {
      */
     private SwingView() {
         GraphicController.getController().register(this);
-        allObjects = new HashMap<String, TypedObject>();
+        allObjects = Collections.synchronizedMap(new HashMap<String, TypedObject>());
     }
 
     public static void registerSwingView() {
@@ -86,10 +120,12 @@ public final class SwingView implements GraphicView {
     private class TypedObject {
         private UielementType   _type;
         private SwingViewObject _value;
+        private Set<String> _children;
 
         public TypedObject(UielementType _type, SwingViewObject _value) {
             this._type = _type;
             this._value = _value;
+            this._children = new HashSet<String>();
         }
 
         public UielementType getType() {
@@ -100,7 +136,22 @@ public final class SwingView implements GraphicView {
             return _value;
         }
          
-    }
+        public Set<String> getChildren() {
+            return _children;
+        }
+
+        public void addChild(String childUID) {
+            _children.add(childUID);
+        }
+        
+        public void removeChild(String childUID) {
+            _children.remove(childUID);
+        }
+        
+        public boolean hasChild(String childUID) {
+            return _children.contains(childUID);
+        }
+    };
 
     private Map<String, TypedObject> allObjects;
 
@@ -150,13 +201,73 @@ public final class SwingView implements GraphicView {
     private SwingViewObject CreateObjectFromType(UielementType type, String id) {
         switch (type) {
         case Figure:
-        	// TODO
-        	// Add here the code in FigureBridge
-        	// This code created an invisible Windows which was never used...
-            //SwingScilabWindow win = new SwingScilabWindow();
-            //SwingScilabTab tab = new SwingScilabTab("");
-            //DockingManager.dock(tab, win.getDockingPort());
-            return null;
+            Figure figure = (Figure) GraphicController.getController().getObjectFromId(id);
+            String figureTitle = figure.getName();
+            Integer figureId = figure.getId();
+            if ((figureTitle != null) && (figureId != null)) {
+            	figureTitle = figureTitle.replaceFirst("%d", figureId.toString());
+            }
+        	/* OpenGL context */
+        	JPanel panel = new JPanel(new PanelLayout());
+        	GLCanvas glCanvas = new GLCanvas();
+            panel.add(glCanvas, PanelLayout.GL_CANVAS);
+
+            Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
+            canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
+            FigureInteraction figureInteraction = new FigureInteraction(glCanvas, id);
+            figureInteraction.setEnable(true);
+
+            SwingScilabWindow window = new SwingScilabWindow();
+
+            window.setTitle(figureTitle);
+            /* MENUBAR */
+            MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureId);
+            /* TOOLBAR */
+            ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureId);
+            /* INFOBAR */
+            TextBox infoBar = ScilabTextBox.createTextBox();
+
+            SwingScilabTab tab = new SwingScilabTab(figureTitle, figureId);
+            tab.setId(id);
+            String closingCommand =
+                "if (get_figure_handle(" + figureId + ") <> []) then"
+                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                +      "  end;"
+                +      "  delete(get_figure_handle(" + figureId + "));"
+                +      "end;";
+            tab.setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
+            
+            tab.setMenuBar(menuBar);
+            tab.setToolBar(toolBar);
+            tab.setInfoBar(infoBar);
+            window.addMenuBar(menuBar);
+            window.addToolBar(toolBar);
+            window.addInfoBar(infoBar);
+            
+            tab.setWindowIcon(new ImageIcon(SCIDIR + "/modules/gui/images/icons/graphic-window.png").getImage());
+
+            tab.setContentPane(panel);
+
+            tab.setParentWindowId(window.getElementId());
+            
+            DockingManager.dock(tab, window.getDockingPort());
+            ActiveDockableTracker.requestDockableActivation(tab);
+            
+            //GraphicController.getController().register(this);
+            
+            window.setVisible(true);
+            tab.setVisible(true);
+            panel.setVisible(true);
+            tab.setName(figureTitle);
+
+            String infoMessage = figure.getInfoMessage();
+            if ((infoMessage == null) || (infoMessage.length() == 0)) {
+                infoBar.setText("");
+            } else {
+                infoBar.setText(infoMessage);
+            }
+            return tab; // TODO
         case ImageRenderer:
         	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
         	imageRenderer.setId(id);
@@ -198,11 +309,53 @@ public final class SwingView implements GraphicView {
     @Override
     public void updateObject(String id, String property) {
         TypedObject registeredObject = allObjects.get(id);
+		DEBUG("SwingView", "Update" + property);
         
         /* On uicontrol style is set after object creation */
         if (registeredObject == null && property.equals(__GO_STYLE__)) {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
             allObjects.put(id, CreateObjectFromType(style, id));
+        }
+
+        /* On uicontrol style is set after object creation */
+        if (registeredObject != null && property.equals(__GO_CHILDREN__)) {
+            String[] newChildren = (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
+            String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
+            
+            if (type.equals(__GO_FIGURE__)) {
+                TypedObject updatedObject = allObjects.get(id);
+    			Container updatedComponent = null;
+                boolean needRevalidate = false;
+                // Add new children
+                for (String childId : newChildren) {
+            		String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+            		if (childType.equals(__GO_UICONTROL__)) {
+            			if (!updatedObject.hasChild(childId)) {
+            				// Add the child
+            				updatedObject.addChild(childId);
+            				updatedComponent = (SwingScilabTab) updatedObject.getValue();
+            				Component childComponent = (Component) allObjects.get(childId).getValue();
+            				updatedComponent.add(childComponent);
+            				needRevalidate = true;
+            			}
+            		}
+            	}
+                // Remove children which have been deleted
+                Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
+            	for (String childId : updatedObject.getChildren()) {
+            		if (!newChildrenSet.contains(childId)) {
+            			// Add the child
+            			updatedObject.removeChild(childId);
+            			updatedComponent = (SwingScilabTab) updatedObject.getValue();
+            			Component childComponent = (Component) allObjects.get(childId).getValue();
+            			updatedComponent.remove(childComponent);
+            			needRevalidate = true;
+            		}
+            	}
+            	if (needRevalidate && updatedComponent != null) {
+            		((View) updatedComponent).revalidate();
+            	}
+            }
         }
 
         if (registeredObject != null) {
@@ -216,5 +369,4 @@ public final class SwingView implements GraphicView {
             //System.err.println("[DEBUG] registeredObject (" + id + ") is null.");   
         }
     }
-
 }

@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "BuildObjects.h"
-#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "setGraphicObjectProperty.h"
 }
@@ -39,7 +38,6 @@ int setCurentFigureAsPushButtonParent(char *sciObjUID)
   if (pstCurrentFigure == NULL)
   {
       pstCurrentFigure = createNewFigureWithAxes();
-      createJoGLView(pstCurrentFigure);
   }
   setGraphicObjectRelationship(pstCurrentFigure, sciObjUID);
 

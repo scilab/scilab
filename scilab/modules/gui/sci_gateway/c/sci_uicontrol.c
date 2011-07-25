@@ -45,7 +45,6 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "callJoGLView.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
@@ -359,7 +358,6 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
           if (pstCurrentFigure == NULL)
           {
               pstCurrentFigure = createNewFigureWithAxes();
-              createJoGLView(pstCurrentFigure);
           }
           setGraphicObjectRelationship(pstCurrentFigure, graphicObjectUID);
           // TODO Remove following code and called functions in src/cpp/*.cpp

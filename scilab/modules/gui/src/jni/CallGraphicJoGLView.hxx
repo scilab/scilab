@@ -64,7 +64,6 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidcreateJoGLViewjstringID; // cache method id
 jmethodID voidcreateSwingViewID; // cache method id
 
 
@@ -122,8 +121,6 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void createJoGLView(JavaVM * jvm_, char * id);
-
 static void createSwingView(JavaVM * jvm_);
 
 
