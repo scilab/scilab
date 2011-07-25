@@ -133,25 +133,28 @@ void api_OverLoad(int _iVal, int* _piKey)
 {
     GatewayStruct* pStr = (GatewayStruct*)_piKey;
     Function::ReturnValue callResult;
+    typed_list tlReturnedValues;
 
-    if (_iVal == 0)
+    std::wstring wsFunName;
+
+    if(_iVal == 0)
     {
-        typed_list tlReturnedValues;
-        typed_list::iterator it;
-        int i = 0;
-        std::wstring wsFunName = std::wstring(L"%_") + std::wstring(pStr->m_pstName);
-
-        callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount),
-                                    tlReturnedValues, pStr->m_pVisitor);
-
-        if (callResult == Function::OK)
-        {
-            for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
-            {
-                (pStr->m_pOut)[i] = *it;
-                pStr->m_pOutOrder[i] = pStr->m_pIn->size() + i + 1;
-            }
-        }
+        wsFunName = std::wstring(L"%_") + std::wstring(pStr->m_pstName);
+    }
+    else
+    {
+        wsFunName = std::wstring(L"%") + (*pStr->m_pIn)[_iVal - 1]->getShortTypeStr() + L"_" + std::wstring(pStr->m_pstName);
     }
 
+    callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues, pStr->m_pVisitor);
+    if (callResult == Function::OK)
+    {
+        int i = 0;
+        typed_list::iterator it;
+        for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
+        {
+            (pStr->m_pOut)[i] = *it;
+            pStr->m_pOutOrder[i] = pStr->m_pIn->size() + i + 1;
+        }
+    }
 }
