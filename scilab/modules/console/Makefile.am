@@ -4,6 +4,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# Copyright (C) DIGITEO - 2011 - Allan CORNET
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -23,7 +24,6 @@ libsciconsole_la_root_DATA =  license.txt
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
 libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
-
 
 
 #### console : List of the cpp files ####
@@ -46,7 +46,29 @@ src/jni/DropFiles_wrap.c
 
 CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
 src/c/GuiManagement.c \
-src/c/dropFiles.c
+src/c/dropFiles.c \
+src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/scilines.c \
+src/c/GetCommandLine.c \
+src/c/others/zzledt.c \
+src/c/others/gotoxy_nw.c \
+src/c/others/clrscr_nw.c \
+src/c/prompt.c \
+src/c/promptecho.c
+
+if IS_MACOSX
+CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
+
+# List of the gateway c files
+CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
+sci_gateway/c/sci_clc.c \
+sci_gateway/c/sci_tohome.c \
+sci_gateway/c/sci_lines.c \
+sci_gateway/c/sci_prompt.c \
+sci_gateway/c/sci_iswaitingforinput.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
@@ -62,20 +84,69 @@ endif
 
 
 # List of the c files
-libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
-libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
+libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
+sci_gateway/c/gw_console.c \
+sci_gateway/c/sci_clc.c \
+sci_gateway/c/sci_tohome.c \
+sci_gateway/c/sci_lines.c \
+sci_gateway/c/sci_prompt.c \
+sci_gateway/c/sci_iswaitingforinput.c \
+src/c/clc.c \
+src/c/tohome.c \
+src/c/more.c \
+src/c/scilines.c \
+src/c/GetCommandLine.c \
+src/c/others/zzledt.c \
+src/c/others/gotoxy_nw.c \
+src/c/others/clrscr_nw.c \
+src/c/prompt.c \
+src/c/promptecho.c
+
+if IS_MACOSX
+libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
+endif
+
+
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/history_manager/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/core/includes \
+				-I$(top_srcdir)/modules/completion/includes \
+				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/fileio/src/c/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/ui_data/includes/
 
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
 
 # Includes need for the compilation
-libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/history_manager/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/core/includes \
+				-I$(top_srcdir)/modules/completion/includes \
+				-I$(top_srcdir)/modules/localization/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/fileio/src/c/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/ui_data/includes/
+if IS_MACOSX
+libsciconsole_la_CFLAGS += -msse2
+endif
 
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole-disable.la
@@ -87,7 +158,7 @@ endif
 libsciconsole_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
@@ -95,9 +166,8 @@ INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciconsole_la_LIBADD =  	$(top_builddir)/modules/shell/libscishell.la \
-							$(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la 
+libsciconsole_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la \
+			$(top_builddir)/libs/MALLOC/libscimalloc.la 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 

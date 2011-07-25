@@ -209,7 +209,7 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/shell/includes/ \
+			-I$(top_srcdir)/modules/console/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \

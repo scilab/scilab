@@ -508,7 +508,7 @@ libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/shell/includes \
+-I$(top_srcdir)/modules/console/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes
 
@@ -534,8 +534,8 @@ CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
 
 # Many stuff depends on this one ... commented
-libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la
-#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
+libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la 
+#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename = output_stream
 

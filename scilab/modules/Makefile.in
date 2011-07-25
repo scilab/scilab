@@ -157,7 +157,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = output_stream arnoldi elementary_functions string \
 	api_scilab dynamic_link fileio history_manager spreadsheet \
-	tclsci localization commons jvm action_binding renderer shell \
+	tclsci localization commons jvm action_binding renderer \
 	completion console graphic_export gui graphics optimization \
 	symbolic randlib statistics special_functions interpolation \
 	linear_algebra integer data_structures mexlib \
@@ -450,9 +450,9 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = output_stream arnoldi elementary_functions string api_scilab \
 	dynamic_link fileio history_manager spreadsheet tclsci \
-	localization commons jvm action_binding renderer shell \
-	completion console graphic_export gui graphics optimization \
-	symbolic randlib statistics special_functions interpolation \
+	localization commons jvm action_binding renderer completion \
+	console graphic_export gui graphics optimization symbolic \
+	randlib statistics special_functions interpolation \
 	linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci signal_processing core call_scilab interpolation \
@@ -528,7 +528,6 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \

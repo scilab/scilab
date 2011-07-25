@@ -75,14 +75,12 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="boolean" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="cacsd" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="data_structures" activate="yes"/>'; i := i + 1;
-                ModulesXmlFileLines[i] := '<module name="shell" activate="yes"/>'; i := i + 1;
-
+                ModulesXmlFileLines[i] := '<module name="console" activate="yes"/>'; i := i + 1;
             end;
 
         if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then
             begin
                 ModulesXmlFileLines[i] := '<module name="action_binding" activate="yes"/>'; i := i + 1;
-                ModulesXmlFileLines[i] := '<module name="console" activate="yes"/>'; i := i + 1;
             end;
 
         if (IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') )) then

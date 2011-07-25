@@ -1738,7 +1738,6 @@ modules/optimization/Makefile
 modules/elementary_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
-modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile

@@ -31,7 +31,6 @@ commons \
 jvm \
 action_binding \
 renderer \
-shell \
 completion \
 console \
 graphic_export \
@@ -185,7 +184,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
