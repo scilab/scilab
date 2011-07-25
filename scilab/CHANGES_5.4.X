@@ -324,7 +324,7 @@ Bug fixes:
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
-* bug 9647 fixed - error message "at line ... of function ... called by" was
+* bug 9599 fixed - error message "at line ... of function ... called by" was
                    printed directly on the same line.
 
 * bug 9675 fixed - iir generated bad results.
