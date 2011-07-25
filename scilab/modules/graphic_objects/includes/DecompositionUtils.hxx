@@ -24,6 +24,14 @@ class DecompositionUtils
 public :
 
     /**
+     * Tests whether a scalar value is a valid number,
+     * that is, not a NaN.
+     * @param[in] the scalar value to test.
+     * @return 1 if the value is not a Nan, 0 if it is.
+     */
+    static int isANumber(double x);
+
+    /**
      * Tests whether a scalar value is valid.
      * The value is valid if it is neither infinite nor a NaN.
      * @param[in] the scalar value to test.
