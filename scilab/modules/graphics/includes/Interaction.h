@@ -3,17 +3,17 @@
  * Copyright (C) 2001 - 2002 - INRIA - Mathieu Philipe
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    Comment:
  *    This file contains all functions used to INTERACT with the graphic
  *    window (zoom by pressing button, callbacks...)
@@ -92,7 +92,7 @@ GRAPHICS_IMPEXP void interactiveSubwinRotation(sciPointObj * pSubwin);
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
-GRAPHICS_IMPEXP void showWindow(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void showWindow(char* pFigureUID);
 
 /**
  * Modify a subwin viewing angles by a certain amount.

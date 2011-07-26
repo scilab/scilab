@@ -4,17 +4,17 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    Comment:
  *    This file contains all functions used to INTERACT with the graphic
  *    window (zoom by pressing button, callbacks...)
@@ -53,10 +53,10 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pSUBWIN_FEATURE (pthis)->callback, code, len);
-	  pSUBWIN_FEATURE (pthis)->callbacklen = len; 
+	  pSUBWIN_FEATURE (pthis)->callbacklen = len;
 	  pSUBWIN_FEATURE (pthis)->callbackevent = mevent;
 	}
       break;
@@ -66,12 +66,12 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pARC_FEATURE (pthis)->callback, code, len);
 	  pARC_FEATURE (pthis)->callbacklen = len;
 	  pARC_FEATURE (pthis)->callbackevent = mevent;
-                     
+
 	}
       break;
     case SCI_RECTANGLE:
@@ -80,54 +80,54 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pRECTANGLE_FEATURE (pthis)->callback, code, len);
 	  pRECTANGLE_FEATURE (pthis)->callbacklen = len;
 	  pRECTANGLE_FEATURE (pthis)->callbackevent = mevent;
-                       
+
 	}
       break;
-    case SCI_SEGS:  
+    case SCI_SEGS:
       if ((pSEGS_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pSEGS_FEATURE (pthis)->callback, code, len);
 	  pPOLYLINE_FEATURE (pthis)->callbacklen = len;
 	  pPOLYLINE_FEATURE (pthis)->callbackevent = mevent;
-                       
+
 	}
       break;
-    case SCI_FEC:  
+    case SCI_FEC:
       if ((pFEC_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pFEC_FEATURE (pthis)->callback, code, len);
 	  pPOLYLINE_FEATURE (pthis)->callbacklen = len;
 	  pPOLYLINE_FEATURE (pthis)->callbackevent = mevent;
-                       
+
 	}
       break;
-    case SCI_GRAYPLOT: 
+    case SCI_GRAYPLOT:
       if ((pGRAYPLOT_FEATURE (pthis)->callback = CALLOC (len+1, sizeof (char))) == NULL)
 	{
 	  Scierror(999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pGRAYPLOT_FEATURE (pthis)->callback, code, len);
 	  pPOLYLINE_FEATURE (pthis)->callbacklen = len;
 	  pPOLYLINE_FEATURE (pthis)->callbackevent = mevent;
-                       
+
 	}
       break;
     case SCI_POLYLINE:
@@ -136,12 +136,12 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
 	  Scierror(9999, _("%s: No more memory.\n"),"sciAddCallback");
 	  return -1;
 	}
-      else 
+      else
 	{
 	  strncpy(pPOLYLINE_FEATURE (pthis)->callback, code, len);
 	  pPOLYLINE_FEATURE (pthis)->callbacklen = len;
 	  pPOLYLINE_FEATURE (pthis)->callbackevent = mevent;
-                        
+
 	}
       break;
     case SCI_UICONTROL:
@@ -154,7 +154,7 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
     case SCI_FIGURE:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
-	
+
     default:
       Scierror(999, _("No Callback is associated with this Entity.\n"));
       return -1;
@@ -179,13 +179,13 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_ARC:
       return (char *)(pARC_FEATURE(pthis)->callback);
       break;
-    case SCI_SEGS: 
+    case SCI_SEGS:
       return (char *)(pSEGS_FEATURE(pthis)->callback);
-      break; 
-    case SCI_FEC: 
+      break;
+    case SCI_FEC:
       return (char *)(pFEC_FEATURE(pthis)->callback);
-      break; 
-    case SCI_GRAYPLOT: 
+      break;
+    case SCI_GRAYPLOT:
       return (char *)(pGRAYPLOT_FEATURE(pthis)->callback);
       break;
     case SCI_POLYLINE:
@@ -200,7 +200,7 @@ char *sciGetCallback(sciPointObj * pthis)
     case SCI_SURFACE:
       return (char *)(pSURFACE_FEATURE(pthis)->callback);
       break;
-    case SCI_AXES:	
+    case SCI_AXES:
       return (char *)(pAXES_FEATURE(pthis)->callback);
       break;
     case SCI_UIMENU:
@@ -234,13 +234,13 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_ARC:
       return pARC_FEATURE(pthis)->callbackevent;
       break;
-    case SCI_SEGS: 
+    case SCI_SEGS:
       return pSEGS_FEATURE(pthis)->callbackevent;
-      break; 
-    case SCI_FEC: 
+      break;
+    case SCI_FEC:
       return pFEC_FEATURE(pthis)->callbackevent;
-      break; 
-    case SCI_GRAYPLOT: 
+      break;
+    case SCI_GRAYPLOT:
       return pGRAYPLOT_FEATURE(pthis)->callbackevent;
       break;
     case SCI_POLYLINE:
@@ -255,7 +255,7 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_SURFACE:
       return pSURFACE_FEATURE(pthis)->callbackevent;
       break;
-    case SCI_AXES:	
+    case SCI_AXES:
       return pAXES_FEATURE(pthis)->callbackevent;
       break;
     case SCI_UIMENU:
@@ -284,13 +284,13 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_ARC:
       pARC_FEATURE(pthis)->callbackevent = mevent;
       break;
-    case SCI_SEGS: 
+    case SCI_SEGS:
       pSEGS_FEATURE(pthis)->callbackevent = mevent;
-      break; 
-    case SCI_FEC: 
+      break;
+    case SCI_FEC:
       pFEC_FEATURE(pthis)->callbackevent = mevent;
-      break; 
-    case SCI_GRAYPLOT: 
+      break;
+    case SCI_GRAYPLOT:
       pGRAYPLOT_FEATURE(pthis)->callbackevent = mevent;
       break;
     case SCI_POLYLINE:
@@ -305,7 +305,7 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
     case SCI_SURFACE:
       pSURFACE_FEATURE(pthis)->callbackevent = mevent;
       break;
-    case SCI_AXES:	
+    case SCI_AXES:
       pAXES_FEATURE(pthis)->callbackevent = mevent;
       break;
     case SCI_LEGEND:
@@ -349,7 +349,7 @@ sciDelCallback (sciPointObj * pthis)
       FREE(pRECTANGLE_FEATURE (pthis)->callback);
       pRECTANGLE_FEATURE (pthis)->callback = NULL;
       break;
-    case SCI_SEGS:  
+    case SCI_SEGS:
       pSEGS_FEATURE (pthis)->callbacklen = 0;
       pSEGS_FEATURE (pthis)->callbackevent = 100;
       FREE(pSEGS_FEATURE (pthis)->callback);
@@ -360,13 +360,13 @@ sciDelCallback (sciPointObj * pthis)
       pFEC_FEATURE (pthis)->callbackevent = 100;
       FREE(pFEC_FEATURE (pthis)->callback);
       pFEC_FEATURE (pthis)->callback = NULL;
-      break;  
+      break;
     case SCI_GRAYPLOT:
-      pGRAYPLOT_FEATURE (pthis)->callbacklen = 0; 
+      pGRAYPLOT_FEATURE (pthis)->callbacklen = 0;
       pGRAYPLOT_FEATURE (pthis)->callbackevent = 100;
       FREE(pGRAYPLOT_FEATURE (pthis)->callback);
       pGRAYPLOT_FEATURE (pthis)->callback = NULL;
-      break; 
+      break;
     case SCI_POLYLINE:
       pPOLYLINE_FEATURE (pthis)->callbacklen = 0;
       pPOLYLINE_FEATURE (pthis)->callbackevent = 100;
@@ -406,7 +406,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
   double z = (displacementSize == 3? displacement[2] : 0.0);
 
   switch (sciGetEntityType (pobj))
-  {    
+  {
   case SCI_SUBWIN:
     {
       sciSons * psonstmp = sciGetSons(pobj);
@@ -419,15 +419,15 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     break;
   case SCI_ARC:
     pARC_FEATURE(pobj)->x +=x;
-    pARC_FEATURE(pobj)->y += y; 
+    pARC_FEATURE(pobj)->y += y;
     if (displacementSize == 3) pARC_FEATURE(pobj)->z += z;
     break;
-  case SCI_RECTANGLE: 
-    pRECTANGLE_FEATURE(pobj)->x += x;  
-    pRECTANGLE_FEATURE(pobj)->y += y; 
+  case SCI_RECTANGLE:
+    pRECTANGLE_FEATURE(pobj)->x += x;
+    pRECTANGLE_FEATURE(pobj)->y += y;
     if (displacementSize == 3) pRECTANGLE_FEATURE(pobj)->z += z;
-    break; 
-  case SCI_AGREG: 
+    break;
+  case SCI_AGREG:
     {
       sciSons * psonstmp = sciGetSons(pobj);
       while ((psonstmp != NULL) && (psonstmp->pointobj != NULL))
@@ -437,48 +437,48 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
       }
     }
     break;
-  case SCI_TEXT:  
-    pTEXT_FEATURE(pobj)->x += x; 
+  case SCI_TEXT:
+    pTEXT_FEATURE(pobj)->x += x;
     pTEXT_FEATURE(pobj)->y += y;
     if (displacementSize == 3) pTEXT_FEATURE(pobj)->z += z;
     break;
   case SCI_SEGS:
-    n=pSEGS_FEATURE(pobj)->Nbr1;   
+    n=pSEGS_FEATURE(pobj)->Nbr1;
     for (i=0;i<n;i++) {
-      pSEGS_FEATURE(pobj)->vx[i] += x; 
+      pSEGS_FEATURE(pobj)->vx[i] += x;
       pSEGS_FEATURE(pobj)->vy[i] += y;
     }
     if (displacementSize == 3) {
       if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL) {
         if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL) return -1;
-        for (i=0;i<n;i++) 
-          pSEGS_FEATURE(pobj)->vz[i] = z; 
+        for (i=0;i<n;i++)
+          pSEGS_FEATURE(pobj)->vz[i] = z;
       }
       else
-        for (i=0;i<n;i++) 
-          pSEGS_FEATURE(pobj)->vz[i] += z; 
+        for (i=0;i<n;i++)
+          pSEGS_FEATURE(pobj)->vz[i] += z;
     }
     break;
-  case SCI_POLYLINE: 
+  case SCI_POLYLINE:
     n=pPOLYLINE_FEATURE(pobj)->n1;
     for (i=0;i<n;i++) {
-      pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
+      pPOLYLINE_FEATURE(pobj)->pvx[i] += x;
       pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
     }
     if (displacementSize == 3) {
       if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL) {
         if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL) return -1;
-        for (i=0;i<n;i++) 
-          pPOLYLINE_FEATURE(pobj)->pvz[i] = z; 
+        for (i=0;i<n;i++)
+          pPOLYLINE_FEATURE(pobj)->pvz[i] = z;
       }
       else
-        for (i=0;i<n;i++) 
-          pPOLYLINE_FEATURE(pobj)->pvz[i] += z; 
+        for (i=0;i<n;i++)
+          pPOLYLINE_FEATURE(pobj)->pvz[i] += z;
     }
     break;
-  case SCI_FEC: 
+  case SCI_FEC:
     for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++) {
-      pFEC_FEATURE(pobj)->pvecx[i] += x; 
+      pFEC_FEATURE(pobj)->pvecx[i] += x;
       pFEC_FEATURE(pobj)->pvecy[i] += y;
     }
     break;
@@ -495,7 +495,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     {
       /* Grayplot */
       for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
-        pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
+        pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x;
       for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
         pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
     }
@@ -504,43 +504,43 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
       Scierror(999, _("This object can not be moved.\n"));
       return -1;
     }
-    
+
     break;
-  case SCI_SURFACE: 
+  case SCI_SURFACE:
     switch(pSURFACE_FEATURE (pobj)->typeof3d)
     {
-    case SCI_FAC3D: 
+    case SCI_FAC3D:
       n= pSURFACE_FEATURE (pobj)->dimzx* pSURFACE_FEATURE (pobj)->dimzy;
       for (i=0;i<n;i++) {
-        pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
+        pSURFACE_FEATURE(pobj)->pvecx[i] += x;
         pSURFACE_FEATURE(pobj)->pvecy[i] += y;
       }
       if (displacementSize == 3) {
         if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
           if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
-          for (i=0;i<n;i++) 
-            pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+          for (i=0;i<n;i++)
+            pSURFACE_FEATURE(pobj)->pvecz[i] = z;
         }
         else
-          for (i=0;i<n;i++) 
-            pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
+          for (i=0;i<n;i++)
+            pSURFACE_FEATURE(pobj)->pvecz[i] += z;
       }
       break;
     case SCI_PLOT3D:
-      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzx;i++) 
-        pSURFACE_FEATURE(pobj)->pvecx[i] += x; 
-      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
+      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzx;i++)
+        pSURFACE_FEATURE(pobj)->pvecx[i] += x;
+      for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++)
         pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
       if (displacementSize == 3) {
         n=pSURFACE_FEATURE (pobj)->dimzx*pSURFACE_FEATURE (pobj)->dimzy;
         if  (pSURFACE_FEATURE(pobj)->pvecz == (double *)NULL) {
           if ((pSURFACE_FEATURE(pobj)->pvecz = MALLOC (n * sizeof (double)))==NULL) return -1;
-          for (i=0;i<n;i++) 
-            pSURFACE_FEATURE(pobj)->pvecz[i] = z; 
+          for (i=0;i<n;i++)
+            pSURFACE_FEATURE(pobj)->pvecz[i] = z;
         }
         else
-          for (i=0;i<n;i++) 
-            pSURFACE_FEATURE(pobj)->pvecz[i] += z; 
+          for (i=0;i<n;i++)
+            pSURFACE_FEATURE(pobj)->pvecz[i] += z;
       }
       break;
     case SCI_CONTOUR:
@@ -565,8 +565,8 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
     Scierror(999, _("This object can not be moved.\n"));
     return -1;
     break;
-  }    
-  
+  }
+
   /* update the object */
   forceMove(pobj, x, y, z);
 
@@ -574,7 +574,7 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
 }
 
 int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
-{   
+{
   int status = moveObj(pobj, d, m);
 
 	if (status < 0)
@@ -591,7 +591,7 @@ int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
   {
     sciDrawObj(sciGetParentFigure(pobj));
   }
-    
+
   return status;
 }
 
@@ -671,9 +671,9 @@ void interactiveSubwinRotation(sciPointObj * pSubwin)
   interactiveJavaSubwinRotation(pSubwin);
 }
 /*---------------------------------------------------------------------------------*/
-void showWindow(sciPointObj * pFigure)
+void showWindow(char * pFigureUID)
 {
-  javaShowWindow(pFigure);
+    // @TODO: Call SwingView to raise window.
 }
 /*---------------------------------------------------------------------------------*/
 void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta)
