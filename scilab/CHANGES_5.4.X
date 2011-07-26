@@ -349,6 +349,8 @@ Bug fixes:
 
 * bug 9730 fixed - lines() returned an int32 and not a double value.
 
+* bug 9755 fixed - Completion on paths was not case insensitive on Windows.
+
 * bug 9756 fixed - polelm.tst unitary test failed on Windows 64 bit.
 
 * bug 9765 fixed - remove ref to scicos_pal in sci_f_clear.f
