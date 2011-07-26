@@ -215,14 +215,6 @@ public final class SwingView implements GraphicView {
 
             SwingScilabTab tab = new SwingScilabTab(figureTitle, figureId, figure);
             tab.setId(id);
-            String closingCommand =
-                "if (get_figure_handle(" + figureId + ") <> []) then"
-                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                +      "  end;"
-                +      "  delete(get_figure_handle(" + figureId + "));"
-                +      "end;";
-            tab.setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
 
             tab.setMenuBar(menuBar);
             tab.setToolBar(toolBar);
