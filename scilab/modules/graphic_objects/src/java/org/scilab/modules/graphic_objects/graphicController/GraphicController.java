@@ -12,16 +12,18 @@
 
 package org.scilab.modules.graphic_objects.graphicController;
 
-import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-
 import java.rmi.server.UID;
 import java.util.Collections;
+import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
+
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 
 
 /**
@@ -38,7 +40,7 @@ public class GraphicController {
     /**
      * Set of all views attached to this controller.
      */
-    private static Set<GraphicView> allViews = Collections.synchronizedSet(new HashSet<GraphicView>());
+    private volatile static Set<GraphicView> allViews =  Collections.synchronizedSet(new HashSet<GraphicView>());
 
     /**
      * Graphic controller singleton.
@@ -164,11 +166,24 @@ public class GraphicController {
      * Notifies the existing views that an object has been created
      * @param id the created object's id
      */
-    public void objectCreated(String id) {
-        DEBUG("create object : "+id);
-        DEBUG("type is : " + getProperty(id, "Type"));
-        for (GraphicView view : allViews) {
-            view.createObject(id);
+    public void objectCreated(final String id) {
+        DEBUG("### Create object : "+id);
+        DEBUG("### type is : " + getProperty(id, "Type"));
+        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+
+        try {
+            for (final GraphicView view : allViews) {
+                broadCastVector.add(new Runnable() {
+                    public void run() {
+                        view.createObject(id);
+                    }
+                });
+            }
+            for (final Runnable runMe : broadCastVector) {
+                runMe.run();
+            }
+        } catch (ConcurrentModificationException e) {
+            e.printStackTrace();
         }
     }
 
@@ -177,22 +192,50 @@ public class GraphicController {
      * @param id the updated object's id
      * @param prop the property that has been updated
      */
-    public void objectUpdate(String id, String prop) {
+    public void objectUpdate(final String id, final String prop) {
         DEBUG("### Update object : "+id);
         DEBUG("### type is : " + getProperty(id, "Type"));
         DEBUG("### prop is : " + prop);
-        for (GraphicView view : allViews) {
-            view.updateObject(id, prop);
-        }
+
+        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+        try {
+            for (final GraphicView view : allViews) {
+                broadCastVector.add(new Runnable() {
+                    public void run() {
+                        view.updateObject(id, prop);
+                    }
+                });
+            }
+            for (final Runnable runMe : broadCastVector) {
+                runMe.run();
+            }
+        } catch (ConcurrentModificationException e) {
+            e.printStackTrace();
+        } 
     }
 
     /**
      * Notified the existing views that an object has been deleted
      * @param id the deleted object's id
      */
-    public void objectDeleted(String id) {
-        for (GraphicView view : allViews) {
-            view.deleteObject(id);
+    public void objectDeleted(final String id) {
+        DEBUG("### Delete object : "+id);
+        DEBUG("### type is : " + getProperty(id, "Type"));
+        Vector<Runnable> broadCastVector= new Vector<Runnable>();
+
+        try {
+            for (final GraphicView view : allViews) {
+                broadCastVector.add(new Runnable() {
+                    public void run() {
+                        view.deleteObject(id);
+                    }
+                });
+            }
+            for (final Runnable runMe : broadCastVector) {
+                runMe.run();
+            }
+        } catch (ConcurrentModificationException e) {
+            e.printStackTrace();
         }
     }
 
