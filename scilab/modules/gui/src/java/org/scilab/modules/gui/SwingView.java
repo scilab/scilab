@@ -45,9 +45,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.media.opengl.GLCanvas;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
@@ -207,15 +205,6 @@ public final class SwingView implements GraphicView {
             if ((figureTitle != null) && (figureId != null)) {
             	figureTitle = figureTitle.replaceFirst("%d", figureId.toString());
             }
-        	/* OpenGL context */
-        	JPanel panel = new JPanel(new PanelLayout());
-        	GLCanvas glCanvas = new GLCanvas();
-            panel.add(glCanvas, PanelLayout.GL_CANVAS);
-
-            Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
-            canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
-            FigureInteraction figureInteraction = new FigureInteraction(glCanvas, id);
-            figureInteraction.setEnable(true);
 
             SwingScilabWindow window = new SwingScilabWindow();
 
@@ -227,7 +216,7 @@ public final class SwingView implements GraphicView {
             /* INFOBAR */
             TextBox infoBar = ScilabTextBox.createTextBox();
 
-            SwingScilabTab tab = new SwingScilabTab(figureTitle, figureId);
+            SwingScilabTab tab = new SwingScilabTab(figureTitle, figureId, figure);
             tab.setId(id);
             String closingCommand =
                 "if (get_figure_handle(" + figureId + ") <> []) then"
@@ -247,8 +236,6 @@ public final class SwingView implements GraphicView {
             
             tab.setWindowIcon(new ImageIcon(SCIDIR + "/modules/gui/images/icons/graphic-window.png").getImage());
 
-            tab.setContentPane(panel);
-
             tab.setParentWindowId(window.getElementId());
             
             DockingManager.dock(tab, window.getDockingPort());
@@ -258,7 +245,6 @@ public final class SwingView implements GraphicView {
             
             window.setVisible(true);
             tab.setVisible(true);
-            panel.setVisible(true);
             tab.setName(figureTitle);
 
             String infoMessage = figure.getInfoMessage();

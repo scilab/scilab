@@ -29,8 +29,10 @@ import java.awt.event.FocusListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 
+import javax.media.opengl.GLCanvas;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -39,8 +41,11 @@ import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.View;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -65,6 +70,8 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
+import org.scilab.modules.gui.graphicWindow.FigureInteraction;
+import org.scilab.modules.gui.graphicWindow.PanelLayout;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.imagerenderer.ImageRenderer;
 import org.scilab.modules.gui.label.Label;
@@ -85,6 +92,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -175,6 +183,14 @@ public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, 
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+    }
+
+    public SwingScilabTab(String figureTitle, int figureId, Figure figure) {
+        this(figureTitle, figureId);
+        /* OpenGL context */
+        SwingScilabCanvas canvas = new SwingScilabCanvas(figureId, figure);
+        setContentPane(canvas);
+        canvas.setVisible(true);
     }
 
     /**

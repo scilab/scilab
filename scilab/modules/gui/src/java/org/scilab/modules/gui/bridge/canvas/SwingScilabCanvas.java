@@ -24,21 +24,30 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
+import javax.media.opengl.GL;
+import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabRubberBox;
+import org.scilab.modules.gui.graphicWindow.FigureInteraction;
+import org.scilab.modules.gui.graphicWindow.PanelLayout;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.figureDrawing.SciRenderer;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 import com.sun.opengl.util.Screenshot;
 
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.lang.reflect.InvocationTargetException;
 
@@ -50,7 +59,7 @@ import java.lang.reflect.InvocationTargetException;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste Silvy
  */
-public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCanvas {
+public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
 	
@@ -58,7 +67,17 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 
 	private GLEventListener renderer;
 	
-	
+	public SwingScilabCanvas(int figureId, Figure figure)
+	{
+	    super(new PanelLayout());
+	    GLCanvas glCanvas = new GLCanvas();
+        add(glCanvas, PanelLayout.GL_CANVAS);
+        
+        Canvas canvas = JoGLCanvasFactory.createCanvas(glCanvas);
+        canvas.setMainDrawer(new DrawerVisitor(canvas, figure));
+        FigureInteraction figureInteraction = new FigureInteraction(glCanvas, figure.getIdentifier());
+        figureInteraction.setEnable(true);
+	}
 	/**
 	 * Constructor
 	 * 
@@ -68,18 +87,6 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 *            index of the displayed figure
 	 */
 	public SwingScilabCanvas(GLCapabilities cap, int figureIndex) {
-		super(cap);
-		
-		// create the GLEventListener
-		renderer = new SciRenderer(figureIndex);
-		this.addGLEventListener(renderer);
-		
-		// to avoid focusing on canvas
-		setFocusable(false);
-		
-		// to avoid mouse events on canvas
-		//setEnabled(false);
-		
 		
 	}
 
@@ -92,29 +99,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * @return the created canvas
 	 */
 	public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
-		GLCapabilities cap = new GLCapabilities();
-		
-		if (antialiasingQuality > 0) {
-			// try to enable both
-			// multisampling and accumulation buffers
-			// since we don't know the one that will be choose for now.
-			
-			// According to SEP 16, disable multsampling because of its stability issues
-			//cap.setSampleBuffers(true);
-			//cap.setNumSamples(antialiasingQuality);
-			
-			// request accumulation buffer
-			cap.setAccumRedBits(ACCUM_BUFFER_BITS);
-			cap.setAccumGreenBits(ACCUM_BUFFER_BITS);
-			cap.setAccumBlueBits(ACCUM_BUFFER_BITS);
-		}
-		
-		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
-		
-		// I do this here and not in the ScilabCanvas because it is JOGL related stuff
-		FigureMapper.getCorrespondingFigure(figureIndex).setRenderingTarget(newCanvas);
-		
-		return newCanvas;
+	    return null;
 	}
 
 	/**
@@ -220,30 +205,6 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * Disable the canvas befor closing
 	 */
 	public void close() {
-		// remove the event listener
-		// so we won't have useless redraw
-		
-		removeGLEventListener(renderer);
-		renderer = null;
-		
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					// context need to be destroyed
-					// otherwise there are some memory leaks
-					getContext().destroy();
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// if the context is not created, the context destruction
-			// will raise a NullPointerException
-			if (!(e.getCause() instanceof NullPointerException)) {
-				// throw again the exception
-				throw (GLException) e.getCause();
-			}
-		}
 	}
 	
 	/**
@@ -251,11 +212,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * @return a BufferedImage
 	 */
 	public BufferedImage dumpAsBufferedImage() {			
-		getContext().makeCurrent();		
-		BufferedImage dump = Screenshot.readToBufferedImage(getWidth(), getHeight());		
-		getContext().release();		
-
-		return dump;
+		return null;
 	}
 	
 	/**
@@ -263,35 +220,14 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * @param useSingleBuffer if true use single buffer if false use double buffering
 	 */
 	public void setSingleBuffered(boolean useSingleBuffer) {
-		// When in single buffer
-		// we need to be sure that no incoming modifications will occur on the canvas
-		// such as resize, needed repaint, etc...
-		// Otherwise it might mess up the draw, specially with scicos.
-		// So we wait until the event queue is totally empty.
-		if (useSingleBuffer && getChosenGLCapabilities().getDoubleBuffered()) {
-    		Object lock = new Object();
-    		// Check if there are still events on the queue
-    		while(Toolkit.getDefaultToolkit().getSystemEventQueue().peekEvent() != null) {
-    			// if yes, wait a little to avoid consuming CPU.
-    			synchronized (lock) {
-					try {
-						lock.wait(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-    		}
-  	
-    	}
-		// nothing to do when switching back to double buffer
-		// or if already in single buffer mode
+
 	}
 	
 	/**
 	 * @return the axes object containing the canvas
 	 */
 	private SwingScilabAxes getParentAxes() {
-		return (SwingScilabAxes) getAsComponent().getParent();
+		return null;
 	}
 	
 	/**
@@ -350,6 +286,26 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	public void removeMouseMotionListener(MouseMotionListener listener) {
 		getParentAxes().removeMouseMotionListener(listener);
 	}
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public boolean getAutoSwapBufferMode() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    @Override
+    public GL getGL() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public void setAutoSwapBufferMode(boolean onOrOff) {
+        // TODO Auto-generated method stub
+        
+    }
 	
 	
 
