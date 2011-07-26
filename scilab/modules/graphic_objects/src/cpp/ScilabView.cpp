@@ -106,7 +106,7 @@ void ScilabView::createObject(char* pstId)
     if(pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
         m_figureList[strdup(pstId)] = -1;
-        //setCurrentFigure(strdup(pstId));
+        setCurrentFigure(pstId);
     }
 
     // Register object handle.
@@ -122,6 +122,17 @@ void ScilabView::deleteObject(char* pstId)
     if(pstType != NULL && strcmp(pstType, __GO_FIGURE__) == 0)
     {
         m_figureList.erase(pstId);
+        if (strcmp(pstId, getCurrentFigure()) == 0) // Deleting current figure
+        {
+            if (getNbFigure() != 0)
+            {
+                setCurrentFigure(m_figureList.begin()->first);
+            }
+            else
+            {
+                setCurrentFigure(NULL);
+            }
+        }
     }
 }
 
@@ -159,7 +170,14 @@ void ScilabView::registerToController(void)
 */
 void ScilabView::setCurrentFigure(char* UID)
 {
-    m_currentFigure = strdup(UID);
+    if (UID != NULL)
+    {
+        m_currentFigure = strdup(UID);
+    }
+    else
+    {
+        m_currentFigure = NULL;
+    }
 }
 
 /*

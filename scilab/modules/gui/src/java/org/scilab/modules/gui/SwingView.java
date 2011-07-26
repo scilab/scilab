@@ -12,41 +12,6 @@
  */
 package org.scilab.modules.gui;
 
-import org.flexdock.docking.DockingManager;
-import org.flexdock.docking.activation.ActiveDockableTracker;
-import org.flexdock.view.View;
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicView.GraphicView;
-import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
-import org.scilab.modules.gui.graphicWindow.FigureInteraction;
-import org.scilab.modules.gui.graphicWindow.PanelLayout;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.MenuBarBuilder;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import javax.swing.ImageIcon;
-
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
@@ -69,6 +34,38 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
+
+import java.awt.Component;
+import java.awt.Container;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.ImageIcon;
+
+import org.flexdock.docking.Dockable;
+import org.flexdock.docking.DockingManager;
+import org.flexdock.docking.activation.ActiveDockableTracker;
+import org.flexdock.view.View;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * @author Bruno JOFRET
@@ -100,14 +97,14 @@ public final class SwingView implements GraphicView {
 
     public static SwingViewObject getFromId(String id) {
         TypedObject typedObject = me.allObjects.get(id);
-        
+
         if (typedObject == null) {
             return null;
         }
-        
+
         return typedObject.getValue();
     }
-    
+
     private enum UielementType {
         Figure,
         ImageRenderer,
@@ -133,7 +130,7 @@ public final class SwingView implements GraphicView {
         public SwingViewObject getValue() {
             return _value;
         }
-         
+
         public Set<String> getChildren() {
             return _children;
         }
@@ -141,11 +138,11 @@ public final class SwingView implements GraphicView {
         public void addChild(String childUID) {
             _children.add(childUID);
         }
-        
+
         public void removeChild(String childUID) {
             _children.remove(childUID);
         }
-        
+
         public boolean hasChild(String childUID) {
             return _children.contains(childUID);
         }
@@ -203,7 +200,7 @@ public final class SwingView implements GraphicView {
             String figureTitle = figure.getName();
             Integer figureId = figure.getId();
             if ((figureTitle != null) && (figureId != null)) {
-            	figureTitle = figureTitle.replaceFirst("%d", figureId.toString());
+                figureTitle = figureTitle.replaceFirst("%d", figureId.toString());
             }
 
             SwingScilabWindow window = new SwingScilabWindow();
@@ -226,23 +223,23 @@ public final class SwingView implements GraphicView {
                 +      "  delete(get_figure_handle(" + figureId + "));"
                 +      "end;";
             tab.setCallback(ScilabCloseCallBack.create(figureId, closingCommand));
-            
+
             tab.setMenuBar(menuBar);
             tab.setToolBar(toolBar);
             tab.setInfoBar(infoBar);
             window.addMenuBar(menuBar);
             window.addToolBar(toolBar);
             window.addInfoBar(infoBar);
-            
+
             tab.setWindowIcon(new ImageIcon(SCIDIR + "/modules/gui/images/icons/graphic-window.png").getImage());
 
-            tab.setParentWindowId(window.getElementId());
-            
+            tab.setParentWindowId(window.getId());
+
             DockingManager.dock(tab, window.getDockingPort());
             ActiveDockableTracker.requestDockableActivation(tab);
-            
+
             //GraphicController.getController().register(this);
-            
+
             window.setVisible(true);
             tab.setVisible(true);
             tab.setName(figureTitle);
@@ -255,9 +252,9 @@ public final class SwingView implements GraphicView {
             }
             return tab; // TODO
         case ImageRenderer:
-        	SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
-        	imageRenderer.setId(id);
-        	return imageRenderer;
+            SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
+            imageRenderer.setId(id);
+            return imageRenderer;
         case PushButton:
             SwingScilabPushButton button = new SwingScilabPushButton();
             button.setId(id);
@@ -277,9 +274,9 @@ public final class SwingView implements GraphicView {
             SwingScilabWidget.update(button, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
             return button;
         case Table:
-        	SwingScilabUiTable table = new SwingScilabUiTable();
-        	table.setId(id);
-        	return table;
+            SwingScilabUiTable table = new SwingScilabUiTable();
+            table.setId(id);
+            return table;
         default:
             return null;
         }
@@ -288,15 +285,25 @@ public final class SwingView implements GraphicView {
     @Override
     public void deleteObject(String id) {
         TypedObject requestedObject = allObjects.get(id);
-
+        switch (requestedObject.getType()) {
+        case Figure:
+            SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+            DockingManager.close(tab);
+            DockingManager.unregisterDockable((Dockable) tab);
+            tab.close();
+            break;
+        default:
+            ((Widget) requestedObject.getValue()).destroy();
+            break;
+        }
 
     }
 
     @Override
     public void updateObject(String id, String property) {
         TypedObject registeredObject = allObjects.get(id);
-		DEBUG("SwingView", "Update" + property);
-        
+        DEBUG("SwingView", "Update" + property);
+
         /* On uicontrol style is set after object creation */
         if (registeredObject == null && property.equals(__GO_STYLE__)) {
             String style = (String) GraphicController.getController().getProperty(id, __GO_STYLE__);
@@ -307,40 +314,40 @@ public final class SwingView implements GraphicView {
         if (registeredObject != null && property.equals(__GO_CHILDREN__)) {
             String[] newChildren = (String[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
             String type = (String) GraphicController.getController().getProperty(id, __GO_TYPE__);
-            
+
             if (type.equals(__GO_FIGURE__)) {
                 TypedObject updatedObject = allObjects.get(id);
-    			Container updatedComponent = null;
+                Container updatedComponent = null;
                 boolean needRevalidate = false;
                 // Add new children
                 for (String childId : newChildren) {
-            		String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
-            		if (childType.equals(__GO_UICONTROL__)) {
-            			if (!updatedObject.hasChild(childId)) {
-            				// Add the child
-            				updatedObject.addChild(childId);
-            				updatedComponent = (SwingScilabTab) updatedObject.getValue();
-            				Component childComponent = (Component) allObjects.get(childId).getValue();
-            				updatedComponent.add(childComponent);
-            				needRevalidate = true;
-            			}
-            		}
-            	}
+                    String childType = (String) GraphicController.getController().getProperty(childId, __GO_TYPE__);
+                    if (childType.equals(__GO_UICONTROL__)) {
+                        if (!updatedObject.hasChild(childId)) {
+                            // Add the child
+                            updatedObject.addChild(childId);
+                            updatedComponent = (SwingScilabTab) updatedObject.getValue();
+                            Component childComponent = (Component) allObjects.get(childId).getValue();
+                            updatedComponent.add(childComponent);
+                            needRevalidate = true;
+                        }
+                    }
+                }
                 // Remove children which have been deleted
                 Set<String> newChildrenSet = new HashSet<String>(Arrays.asList(newChildren));
-            	for (String childId : updatedObject.getChildren()) {
-            		if (!newChildrenSet.contains(childId)) {
-            			// Add the child
-            			updatedObject.removeChild(childId);
-            			updatedComponent = (SwingScilabTab) updatedObject.getValue();
-            			Component childComponent = (Component) allObjects.get(childId).getValue();
-            			updatedComponent.remove(childComponent);
-            			needRevalidate = true;
-            		}
-            	}
-            	if (needRevalidate && updatedComponent != null) {
-            		((View) updatedComponent).revalidate();
-            	}
+                for (String childId : updatedObject.getChildren()) {
+                    if (!newChildrenSet.contains(childId)) {
+                        // Add the child
+                        updatedObject.removeChild(childId);
+                        updatedComponent = (SwingScilabTab) updatedObject.getValue();
+                        Component childComponent = (Component) allObjects.get(childId).getValue();
+                        updatedComponent.remove(childComponent);
+                        needRevalidate = true;
+                    }
+                }
+                if (needRevalidate && updatedComponent != null) {
+                    ((View) updatedComponent).revalidate();
+                }
             }
         }
 

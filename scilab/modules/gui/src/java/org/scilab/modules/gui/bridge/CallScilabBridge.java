@@ -3,7 +3,7 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
- * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -53,8 +53,8 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -77,6 +77,8 @@ import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.imagerenderer.ScilabImageRenderer;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
 import org.scilab.modules.gui.listbox.ListBox;
@@ -95,12 +97,6 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
-import org.scilab.modules.gui.imagerenderer.ImageRenderer;
-import org.scilab.modules.gui.imagerenderer.ScilabImageRenderer;
-import org.scilab.modules.gui.uitable.UiTable;
-import org.scilab.modules.gui.uitable.ScilabUiTable;
-import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -108,6 +104,10 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uitable.ScilabUiTable;
+import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
@@ -127,7 +127,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 
 /**
@@ -2440,7 +2439,7 @@ public class CallScilabBridge {
     public static void saveMainWindowSettings() {
         SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
         SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-        Window mainWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+        SwingScilabWindow mainWindow = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
 
         ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
         ConfigManager.saveMainWindowSize(mainWindow.getDims());
@@ -2451,12 +2450,12 @@ public class CallScilabBridge {
      * Save the help Window size and position
      */
     public static void saveHelpWindowSettings() {
-        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null )  {
+        if (ScilabHelpBrowser.getHelpBrowserWithoutCreation() != null) {
             SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
             if (sciHelpBrowser != null) {
                 SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
                 if (consoleTab != null) {
-                    Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+                    SwingScilabWindow helpWindow = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
 
                     ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
                     ConfigManager.saveHelpWindowSize(helpWindow.getDims());

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,8 +29,6 @@ import org.flexdock.docking.event.DockingListener;
 import org.flexdock.docking.floating.frames.FloatingDockingPort;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 
 /**
  * Listener for docking operations in Scilab
@@ -38,7 +37,7 @@ import org.scilab.modules.gui.window.Window;
  */
 public class SciDockingListener implements DockingListener {
 
-	private int associatedScilabWindowId;
+	private String associatedScilabWindowId;
 	private int nbDockedObjects;
 
 	/**
@@ -65,7 +64,7 @@ public class SciDockingListener implements DockingListener {
 	 */
 	public void dockingComplete(DockingEvent e) {
 		debug("dockingComplete");
-		int newId = 0;
+		String newId;
 
 		DockingListener[] newListeners = e.getNewDockingPort().getDockingListeners();
 		SwingScilabTab dockedTab = (SwingScilabTab) e.getDockable();
@@ -105,12 +104,12 @@ public class SciDockingListener implements DockingListener {
 					newY += (int) (((DefaultDockingPort) e.getNewDockingPort()).getParent().getParent().getParent().getY());
 				}
 
-				Window newWindow = ScilabWindow.createWindow();
+				SwingScilabWindow newWindow = new SwingScilabWindow();
 				newWindow.setPosition(new Position(newX, newY));
-				newWindow.setDims(UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId).getDims());
-				DockingManager.dock(dockedTab, ((SwingScilabWindow) newWindow.getAsSimpleWindow()).getDockingPort());
+				newWindow.setDims(SwingScilabWindow.allScilabWindows.get(associatedScilabWindowId).getDims());
+				DockingManager.dock(dockedTab, newWindow.getDockingPort());
 				newWindow.setVisible(true);
-				newId = newWindow.getAsSimpleWindow().getElementId();
+				newId = newWindow.getId();
 			}
 		}
 		dockedTab.setParentWindowId(newId);
@@ -151,7 +150,7 @@ public class SciDockingListener implements DockingListener {
 		debug("undockingComplete");
 		// If the dock is empty, we close the parent Window
 		if (e.getOldDockingPort().getDockables().isEmpty()) {
-			((Window) UIElementMapper.getCorrespondingUIElement(associatedScilabWindowId)).getAsSimpleWindow().close();
+			SwingScilabWindow.allScilabWindows.get(associatedScilabWindowId).close();
 		}
 
 		// one tab left
@@ -172,7 +171,7 @@ public class SciDockingListener implements DockingListener {
 	 * Set the window object associated to this docking listener
 	 * @param id the id of the window associated
 	 */
-	public void setAssociatedWindowId(int id) {
+	public void setAssociatedWindowId(String id) {
 		this.associatedScilabWindowId = id;
 	}
 
@@ -180,7 +179,7 @@ public class SciDockingListener implements DockingListener {
 	 * Get the window object associated to this docking listener
 	 * @return the id of the window associated
 	 */
-	public int getAssociatedWindowId() {
+	public String getAssociatedWindowId() {
 		return this.associatedScilabWindowId;
 	}
 

@@ -4,6 +4,7 @@
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU (Mac OS X port)
+ * Copyright (C) 2011 - DIGITEO - Vincent Couvert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,7 +23,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.rmi.server.UID;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.ImageIcon;
@@ -74,6 +79,8 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private static final int DEFAULTWIDTH = 500;
     private static final int DEFAULTHEIGHT = 500;
 
+    public static Map<String, SwingScilabWindow> allScilabWindows = Collections.synchronizedMap(new HashMap<String, SwingScilabWindow>());
+
     private DefaultDockingPort sciDockingPort;
     private SciDockingListener sciDockingListener;
     private SimpleMenuBar menuBar;
@@ -81,6 +88,10 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private SimpleTextBox infoBar;
 
     private int elementId; // the id of the Window which contains this SimpleWindow
+    
+    private String windowUID;
+    
+    
     boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
 
     /**
@@ -139,7 +150,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
                     }
 
                     //if dock stay open, do not close main window
-                    if(dockArray.length == 0){
+                    if (dockArray.length == 0){
                         removeWindowListener(this);
                     }
                 }
@@ -148,6 +159,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         if (MAC_OS_X) {
             registerForMacOSXEvents();
         }
+        
+        windowUID = new UID().toString();
+
+        sciDockingListener.setAssociatedWindowId(windowUID);
+        
+        allScilabWindows.put(windowUID, this);
     }
 
     /**
@@ -327,7 +344,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public void addTab(Tab newTab) {
         final SwingScilabTab tabImpl = ((SwingScilabTab) newTab.getAsSimpleTab());
 
-        tabImpl.setParentWindowId(this.elementId);
+        tabImpl.setParentWindowId(this.windowUID);
         DockingManager.dock(tabImpl, this.getDockingPort());
         ActiveDockableTracker.requestDockableActivation(tabImpl);
     }
@@ -464,7 +481,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     public void setElementId(int id) {
         this.elementId = id;
-        sciDockingListener.setAssociatedWindowId(id);
+        //sciDockingListener.setAssociatedWindowId(id);
     }
 
     /**
@@ -473,6 +490,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     public void close() {
         dispose();
+        allScilabWindows.remove(this);
     }
 
     /**
@@ -516,5 +534,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     public void windowNormal() {
         super.setState(Frame.NORMAL);
+    }
+    
+    /**
+     * Get the window UID
+     * @return the UID
+     */
+    public String getId() {
+    	return windowUID;
     }
 }

@@ -140,7 +140,7 @@ public class ScilabWindowBridge {
 	 */
 	public static void addTab(Window window, Tab newTab) {
 		window.getAsSimpleWindow().addTab(newTab);
-		newTab.getAsSimpleTab().setParentWindowId(window.getAsSimpleWindow().getElementId());
+		//newTab.getAsSimpleTab().setParentWindowId(window.getAsSimpleWindow().getElementId());
 	}
 	
 	/**

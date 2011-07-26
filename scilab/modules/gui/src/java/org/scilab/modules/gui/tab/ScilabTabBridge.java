@@ -445,7 +445,7 @@ public class ScilabTabBridge {
 	 * @param id the id of the parent window
 	 */
 	public static void setParentWindowId(Tab tab, int id) {
-		tab.getAsSimpleTab().setParentWindowId(id);
+		//tab.getAsSimpleTab().setParentWindowId(id);
 	}
 	
 	/**
@@ -454,7 +454,7 @@ public class ScilabTabBridge {
 	 * @return the id of the parent window
 	 */
 	public static int getParentWindowId(Tab tab) {
-		return tab.getAsSimpleTab().getParentWindowId();
+		return 0;//tab.getAsSimpleTab().getParentWindowId();
 	}
 	
 	/**
