@@ -137,7 +137,6 @@ libsciscicos_la_LIBADD = libsciscicos-algo.la $(top_builddir)/modules/string/lib
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/intersci/libsciintersci.la \
-$(top_builddir)/modules/graphics/libscigraphics.la \
 $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 $(top_builddir)/modules/time/libscitime.la \
 $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
@@ -148,6 +147,10 @@ $(top_builddir)/modules/mexlib/libmex.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/arnoldi/libsciarnoldi.la
+
+if GUI
+libsciscicos_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la 
+endif
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
