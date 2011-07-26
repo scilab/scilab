@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,28 +19,31 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "GraphicSynchronizerInterface.h"
-#include "SetProperty.h"
-#include "HandleManagement.h"
-
+#include "CurrentFigure.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
 int sci_drawlater( char * fname, unsigned long fname_len )
 {
-	sciPointObj *pfigure = NULL;
+    int iFalse =  (int)FALSE;
+    char* pFigureUID = NULL;
 
-	CheckRhs(0,0);
-	CheckLhs(0,1);
+    CheckRhs(0,0);
+    CheckLhs(0,1);
 
-	if (Rhs <= 0)
-	{
-		startGraphicDataWriting();
-		pfigure = sciGetCurrentFigure ();
-		sciSetImmediateDrawingMode(pfigure, FALSE);
-		endGraphicDataWriting();
-	}
+    if (Rhs <= 0)
+    {
+        //startGraphicDataWriting();
+        pFigureUID = getCurrentFigure();
+        if (pFigureUID != NULL)
+        {
+            setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+        }
+        //endGraphicDataWriting();
+    }
 
-	LhsVar(1) = 0;
-	C2F(putlhsvar)();
-	return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

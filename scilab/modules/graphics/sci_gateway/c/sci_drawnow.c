@@ -18,29 +18,30 @@
 
 #include "gw_graphics.h"
 #include "stack-c.h"
-#include "DrawingBridge.h"
-#include "GraphicSynchronizerInterface.h"
-#include "SetProperty.h"
-#include "HandleManagement.h"
+#include "CurrentFigure.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)
 {
-	sciPointObj *pfigure = NULL;
-	CheckRhs(0,0);
-	CheckLhs(0,1);
+    int iTrue =  (int)TRUE;
+    char* pFigureUID = NULL;
+    CheckRhs(0,0);
+    CheckLhs(0,1);
 
-	if (Rhs <= 0)
-	{
-		startGraphicDataWriting();
-		pfigure = sciGetCurrentFigure() ;
-		sciSetImmediateDrawingMode(pfigure, TRUE);
-		endGraphicDataWriting();
+    if (Rhs <= 0)
+    {
+        //startGraphicDataWriting();
+        pFigureUID = getCurrentFigure();
+        if (pFigureUID != NULL)
+        {
+            setGraphicObjectProperty(pFigureUID, __GO_IMMEDIATE_DRAWING__, &iTrue, jni_bool, 1);
+        }
+        //endGraphicDataWriting();
+    }
 
-		sciDrawObj(pfigure);
-	}
-
-	LhsVar(1) = 0;
-	C2F(putlhsvar)();
-	return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
