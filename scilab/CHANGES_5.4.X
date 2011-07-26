@@ -278,6 +278,8 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 8963 fixed - mtlb_mode test failed on Windows.
+
 * bug 9045 fixed - plot2d did not support overloading.
 
 * bug 9098 fixed - demo CACSD --> Robust control failed on Windows 64 bit.
