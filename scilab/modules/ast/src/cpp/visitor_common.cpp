@@ -527,6 +527,10 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
         if(bOK)
         {
             pVar    = dynamic_cast<const SimpleVar*>(pField->tail_get());
+
+            //clone _pIT BEFORE addField in case of st.b = st
+            types::InternalType* pIT = _pIT->clone();
+            
             //create field "x"
             bool bOK = pCurrent->addField(pVar->name_get().name_get());
             if(*_pMain == NULL && _pIT != NULL)
@@ -535,17 +539,17 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 if(pArgs != NULL)
                 {//args returned by "parent"
                     Struct *pStr = pCurrent->extract(pArgs)->getAs<Struct>();
-                    pStr->get(0)->set(pVar->name_get().name_get(), _pIT);
+                    pStr->get(0)->set(pVar->name_get().name_get(), pIT);
                 }
                 else if(_pArgs == NULL || *_pArgs == NULL)
                 {
-                    pCurrent->get(0)->set(pVar->name_get().name_get(), _pIT);
+                    pCurrent->get(0)->set(pVar->name_get().name_get(), pIT);
                 }
                 else
                 {
                     Struct* pStr = new Struct(1,1);
                     pStr->addField(pVar->name_get().name_get());
-                    pStr->get(0)->set(pVar->name_get().name_get(), _pIT);
+                    pStr->get(0)->set(pVar->name_get().name_get(), pIT);
                     pCurrent->insert(*_pArgs, pStr->get(0));
                 }
             }

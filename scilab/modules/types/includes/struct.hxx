@@ -66,9 +66,6 @@ namespace types
         virtual std::wstring        toString(int _iPrecision, int _iLineLen);
         std::vector<InternalType*>  extractFields(std::list<std::wstring> _wstFields);
 
-        virtual void                IncreaseRef();
-        virtual void                DecreaseRef();
-
     private :
         virtual SingleStruct*       getNullValue();
         virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

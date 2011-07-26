@@ -73,7 +73,7 @@ namespace types
 
         for(int i = 0 ; i < getSize() ; i++)
         {
-            set(i, _oStructCopyMe->get(i)->clone());
+            pIT[i] = _oStructCopyMe->get(i)->clone();
         }
     }
 
@@ -113,8 +113,7 @@ namespace types
                 }
             }
 
-            _pIT->IncreaseRef();
-            m_pRealData[_iIndex] = _pIT;
+            m_pRealData[_iIndex] = _pIT->clone();
             return true;
         }
         return false;
@@ -133,8 +132,7 @@ namespace types
                 }
             }
 
-            const_cast<SingleStruct*>(_pIT)->IncreaseRef();
-            m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT);
+            m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
             return true;
         }
         return false;
@@ -220,8 +218,7 @@ namespace types
 
     SingleStruct* Struct::copyValue(SingleStruct* _pData)
     {
-        _pData->IncreaseRef();
-        return _pData;
+        return _pData->clone();
     }
 
     void Struct::deleteAll()
@@ -296,7 +293,7 @@ namespace types
                 InternalType* pIT = pSS->get(wstField);
 
 //                ostr << L"  " << wstField << ": ";
-                ostr << L"  " << wstField << "[" << pIT->getRef() << "]: ";
+                ostr << L"  " << wstField << L": ";
                 ostr << pIT->toStringInLine(_iPrecision, _iLineLen);
                 ostr << std::endl;
             }
@@ -343,25 +340,5 @@ namespace types
             }
         }
         return ResultList;
-    }
-
-    void Struct::IncreaseRef()
-    {
-        m_iRef++;
-        //increaseRef of children too
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            get(i)->IncreaseRef();
-        }
-    }
-
-    void Struct::DecreaseRef()
-    {
-        m_iRef--;
-        //increaseRef of children too
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            get(i)->DecreaseRef();
-        }
     }
 }

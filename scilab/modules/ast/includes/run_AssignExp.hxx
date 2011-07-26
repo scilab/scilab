@@ -331,6 +331,9 @@ void visitprivate(const AssignExp  &e)
                 case InternalType::RealUInt64 :
                     pOut = UInt64::insertNew(pArgs, pITR);
                     break;
+                case InternalType::RealStruct:
+                    pOut = Struct::insertNew(pArgs, pITR);
+                    break;
                 default :
                     {
                         //manage error
@@ -671,7 +674,7 @@ void visitprivate(const AssignExp  &e)
             else if(pIT->isContainer())
             {//if assigned value is a container, copy it before assign.
                 //std::cout << "assign container type to field" << std::endl;
-                pIT = pIT->clone();
+                //pIT = pIT->clone();
             }
 
             //assign result to new field
