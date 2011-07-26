@@ -99,7 +99,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -175,7 +175,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -220,7 +220,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>

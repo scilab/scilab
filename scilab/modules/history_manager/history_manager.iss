@@ -19,6 +19,7 @@
 #define HISTORY_MANAGER "history_manager"
 ;
 Source: bin\sci{#HISTORY_MANAGER}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\sci{#HISTORY_MANAGER}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.{#HISTORY_MANAGER}.jar;DestDir: {app}\modules\{#HISTORY_MANAGER}\jar; Components: {#COMPN_SCILAB}
 ;
