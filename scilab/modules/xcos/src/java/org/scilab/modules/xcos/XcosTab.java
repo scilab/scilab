@@ -39,6 +39,7 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -185,13 +186,18 @@ public class XcosTab extends ScilabTab {
 
 		// Get the palette window position and align on it.
 		if (PaletteManager.isVisible()) {
-			final Window win = PaletteManager.getInstance().getView()
-					.getParentWindow();
-			final Position palPosition = win.getPosition();
-			final Size palSize = win.getDims();
+			final SwingScilabWindow palWin = SwingScilabWindow.allScilabWindows
+					.get(((SwingScilabTab) PaletteManager.getInstance()
+							.getView().getAsSimpleTab()).getParentWindowId());
+			final Position palPosition = palWin.getPosition();
+			final Size palSize = palWin.getDims();
 			final Position mainPosition = new Position(palPosition.getX()
 					+ palSize.getWidth(), palPosition.getY());
-			getParentWindow().setPosition(mainPosition);
+			
+			final SwingScilabWindow xcosWin = SwingScilabWindow.allScilabWindows
+					.get(((SwingScilabTab) this.getAsSimpleTab()).getParentWindowId());
+			
+			xcosWin.setPosition(mainPosition);
 		}
 
 		/*
@@ -231,8 +237,6 @@ public class XcosTab extends ScilabTab {
 		addInfoBar(ScilabTextBox.createTextBox());
 
 		window.addTab(this);
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(),
-				getInfoBar(), getName());
 	}
 
 	/**
@@ -573,8 +577,10 @@ public class XcosTab extends ScilabTab {
 	 */
 	@Override
 	public void setVisible(final boolean newVisibleState) {
-		if (getParentWindow().getNbDockedObjects() == 1) {
-			getParentWindow().setVisible(newVisibleState);
+		final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
+				.get(((SwingScilabTab) getAsSimpleTab()).getParentWindowId());
+		if (win != null && win.getNbDockedObjects() == 1) {
+			win.setVisible(newVisibleState);
 		}
 
 		super.setVisible(newVisibleState);

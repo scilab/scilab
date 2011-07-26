@@ -52,6 +52,8 @@ import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -1660,17 +1662,21 @@ public class XcosDiagram extends ScilabGraph {
      * Manage the visibility of the associated viewport
      * @param status new status
      */
-    public void setViewPortVisible(final boolean status) {
-	// Hide/Show parent window if the viewport is the only tab
-	if (viewPort.getParentWindow().getNbDockedObjects() == 1) {
-	    viewPort.getParentWindow().setVisible(status);
-	}
-	// Hide/Show viewport tab
-	viewPort.setVisible(status);
+	public void setViewPortVisible(final boolean status) {
+		final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
+				.get(((SwingScilabTab) viewPort.getAsSimpleTab())
+						.getParentWindowId());
 
-	// (Un)Check the corresponding menu
-	viewPortMenu.setChecked(status);
-    }
+		// Hide/Show parent window if the viewport is the only tab
+		if (win.getNbDockedObjects() == 1) {
+			win.setVisible(status);
+		}
+		// Hide/Show viewport tab
+		viewPort.setVisible(status);
+
+		// (Un)Check the corresponding menu
+		viewPortMenu.setChecked(status);
+	}
 
     /**
      * Set menu used to manage Viewport visibility
@@ -1679,6 +1685,7 @@ public class XcosDiagram extends ScilabGraph {
     public void setViewPortMenuItem(final CheckBoxMenuItem menu) {
 	viewPortMenu = menu;
     }
+    
     /**
      * Manage the visibility of the grid and the associated menu
      * @param status new status
@@ -1750,12 +1757,12 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void close() {
 		if (getParentTab() != null) {
-			getParentTab().close();
+			SwingScilabWindow.allScilabWindows.get(((SwingScilabTab) getParentTab().getAsSimpleTab()).getParentWindowId()).close(); 
 			setParentTab(null);
 		}
 		
 		if (viewPort != null) {
-		    viewPort.close();
+			SwingScilabWindow.allScilabWindows.get(((SwingScilabTab) viewPort.getAsSimpleTab()).getParentWindowId()).close(); 
 		    viewPort = null;
 		}
 	}

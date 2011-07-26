@@ -24,6 +24,7 @@ import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -125,8 +126,6 @@ public class PaletteManagerView extends ScilabTab {
 		
 		setCallback(new ClosePalettesAction(null));
 		window.addTab(this);
-		BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(),
-				getInfoBar(), getName());
 		window.setVisible(true);
 		
 		getTree().revalidate();
@@ -188,23 +187,31 @@ public class PaletteManagerView extends ScilabTab {
 	public void setVisible(final boolean newVisibleState) {
 		super.setVisible(newVisibleState);
 		
+		SwingScilabWindow win = SwingScilabWindow.allScilabWindows
+				.get(((SwingScilabTab) getAsSimpleTab())
+						.getParentWindowId());
+		
 		/*
 		 * Recreate the window if applicable
 		 */
-		if (newVisibleState && getParentWindow() == null) {
+		if (newVisibleState && win == null) {
 			final Window paletteWindow = ScilabWindow.createWindow();
 			paletteWindow.setVisible(true);
 			super.setVisible(true);
 			paletteWindow.addTab(this);
+			
+			win = SwingScilabWindow.allScilabWindows
+					.get(((SwingScilabTab) getAsSimpleTab())
+							.getParentWindowId());
 		}
 		
-		if (getParentWindow() != null) {
-			if (getParentWindow().getNbDockedObjects() == 1) {
-				getParentWindow().setVisible(newVisibleState);
+		if (win != null) {
+			if (win.getNbDockedObjects() == 1) {
+				win.setVisible(newVisibleState);
 			} else {
 				if (!newVisibleState) {
 					DockingManager.undock((Dockable) getAsSimpleTab());
-					setParentWindowId(-1);
+					((SwingScilabTab) getAsSimpleTab()).setParentWindowId(null);
 				}
 			}
 		}

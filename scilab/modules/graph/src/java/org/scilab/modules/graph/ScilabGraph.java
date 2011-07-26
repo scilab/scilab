@@ -23,6 +23,8 @@ import java.util.List;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.graph.view.ScilabGraphView;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -277,9 +279,10 @@ public class ScilabGraph extends mxGraph {
 	 */
 	public void setVisible(boolean visible) {
 		if (parentTab != null) {
-			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
-					.getCorrespondingUIElement(parentTab.getParentWindowId());
-			xcosWindow.setVisible(visible);
+			final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
+					.get(((SwingScilabTab) parentTab.getAsSimpleTab())
+							.getParentWindowId());
+			win.setVisible(visible);
 		}
 	}
 
@@ -290,9 +293,10 @@ public class ScilabGraph extends mxGraph {
 	 */
 	public boolean isVisible() {
 		if (parentTab != null) {
-			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
-					.getCorrespondingUIElement(parentTab.getParentWindowId());
-			return xcosWindow.isVisible();
+			final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
+					.get(((SwingScilabTab) parentTab.getAsSimpleTab())
+							.getParentWindowId());
+			return win.isVisible();
 		}
 
 		return false;

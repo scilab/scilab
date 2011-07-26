@@ -32,6 +32,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.utils.ScilabExported;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -404,7 +406,9 @@ public final class Xcos {
 
 		if (instance.palette.getView() != null 
 				&& instance.palette.getView().isVisible()) {
-			instance.palette.getView().close();
+			SwingScilabWindow.allScilabWindows.get(
+					((SwingScilabTab) instance.palette.getView()
+							.getAsSimpleTab()).getParentWindowId()).close();
 			instance.palette.setView(null);
 		}
 		
