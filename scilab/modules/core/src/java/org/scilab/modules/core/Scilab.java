@@ -22,11 +22,11 @@ import org.flexdock.docking.DockingConstants;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.jvm.LoadClassPath;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -34,8 +34,6 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -68,7 +66,7 @@ public class Scilab {
 
     private static String TOOLBARXMLFILE;
 
-    private Window mainView;
+    private SwingScilabWindow mainView;
 
     /**
      * Constructor Scilab Class.
@@ -150,7 +148,7 @@ public class Scilab {
             ConfigManager.createUserCopy();
 
             try {
-                mainView = ScilabWindow.createWindow();
+                mainView = new SwingScilabWindow();
             } catch (NoClassDefFoundError exception) {
                 System.err.println("Cannot create Scilab Window.\n"
                         + "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
@@ -175,12 +173,12 @@ public class Scilab {
             ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE);
 
             /* Create the console */
-            Tab consoleTab = null;
+            SwingScilabTab consoleTab = null;
             try {
                 /* CONSOLE */
                 /* Create a tab to put console into */
                 LoadClassPath.loadOnUse("Console");
-                consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"));
+                consoleTab = new SwingScilabTab(Messages.gettext("Scilab Console"));
                 /* Exit Scilab when the console is closed */
                 consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
 
@@ -196,9 +194,14 @@ public class Scilab {
 
             /** Adding content into container */
             toolBar.setVisible(false); // Enabled in scilab.start
-            ScilabConsole.getConsole().addToolBar(toolBar);
-            ScilabConsole.getConsole().addMenuBar(menuBar);
-            ScilabConsole.getConsole().addInfoBar(infoBar);
+
+	    consoleTab.setToolBar(toolBar);
+	    consoleTab.setMenuBar(menuBar);
+	    consoleTab.setInfoBar(infoBar);
+	    
+	    ScilabConsole.getConsole().addToolBar(toolBar);
+	    ScilabConsole.getConsole().addMenuBar(menuBar);
+	    ScilabConsole.getConsole().addInfoBar(infoBar);
             ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
             consoleTab.addMember(ScilabConsole.getConsole());
             mainView.addTab(consoleTab);

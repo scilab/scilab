@@ -28,10 +28,9 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.SimpleTree;
@@ -39,8 +38,6 @@ import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -189,8 +186,8 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		// Scilab tree
 		SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 		
-		Window window = ScilabWindow.createWindow();
-		final Tab tab = ScilabTab.createTab(Messages.gettext("Tree Overview"));
+		SwingScilabWindow window = new SwingScilabWindow();
+		final SwingScilabTab tab = new SwingScilabTab(Messages.gettext("Tree Overview"));
 		tab.setCallback(new CallBack(null) {
 			private static final long serialVersionUID = 8418506008885202932L;
 
@@ -198,7 +195,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 				tab.close();
 			}
 		});
-		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
+		tab.addTree(swingScilabTree);
 		window.addTab(tab);
 		tab.setVisible(true);
 		window.setVisible(true);

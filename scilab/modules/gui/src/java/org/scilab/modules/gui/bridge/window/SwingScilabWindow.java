@@ -51,7 +51,7 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.SimpleTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
@@ -341,12 +341,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @param newTab the Scilab tab to add to the Scilab window
      * @see org.scilab.modules.gui.window.Window#addTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void addTab(Tab newTab) {
-        final SwingScilabTab tabImpl = ((SwingScilabTab) newTab.getAsSimpleTab());
-
-        tabImpl.setParentWindowId(this.windowUID);
-        DockingManager.dock(tabImpl, this.getDockingPort());
-        ActiveDockableTracker.requestDockableActivation(tabImpl);
+    public void addTab(SimpleTab newTab) {
+	SwingScilabTab tab = (SwingScilabTab) newTab;
+        tab.setParentWindowId(this.windowUID);
+        DockingManager.dock(tab, this.getDockingPort());
+        ActiveDockableTracker.requestDockableActivation(tab);
     }
 
     /**
@@ -354,10 +353,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @param tab the Scilab tab to remove from the Scilab window
      * @see org.scilab.modules.gui.window.Window#removeTab(org.scilab.modules.gui.tab.Tab)
      */
-    public void removeTab(Tab tab) {
-        DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
-        DockingManager.unregisterDockable((Dockable) ((SwingScilabTab) tab.getAsSimpleTab()));
-        ((SwingScilabTab) tab.getAsSimpleTab()).close();
+    public void removeTab(SimpleTab oldTab) {
+	SwingScilabTab tab = (SwingScilabTab) oldTab;
+        DockingManager.close(tab);
+        DockingManager.unregisterDockable((Dockable) tab);
+        tab.close();
         if (getDockingPort().getDockables().isEmpty()) {
             // remove xxxBars
             if (toolBar != null) {

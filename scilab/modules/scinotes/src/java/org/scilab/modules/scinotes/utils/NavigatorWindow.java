@@ -57,11 +57,7 @@ import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.defaults.DockingSplitPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -73,7 +69,6 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -84,8 +79,7 @@ import org.scilab.modules.scinotes.SciNotes;
  *
  * @author Calixte DENIZET
  */
-public final class NavigatorWindow extends SwingScilabTab implements Tab, DocumentListener,
-                                                               TreeExpansionListener {
+public final class NavigatorWindow extends SwingScilabTab implements DocumentListener, TreeExpansionListener {
 
     private static final String EMPTY = "";
 
@@ -99,7 +93,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     private static Map<ScilabEditorPane, TreePath> mapFunPath = new HashMap();
     private static Map<ScilabEditorPane, TreePath> mapAnchorPath = new HashMap();
 
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
     private boolean isAbsolute = true;
     private boolean lineNumberActive = true;
     private boolean locked;
@@ -164,21 +158,6 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
     }
 
     /**
-     * Get the parent window id for this tab
-     * @return the id of the parent window
-     */
-    public Window getParentWindow() {
-        return this.parentWindow;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public void addInfoBar(TextBox infoBarToAdd) {
@@ -209,7 +188,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * Close this Navigator.
      */
     public void closeNavigator() {
-        ScilabWindow win = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+	SwingScilabWindow win = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
         win.removeTab(this);
         setVisible(false);
         close();
@@ -353,7 +332,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * initialize the form.
      */
     private void initComponents() {
-        parentWindow = ScilabWindow.createWindow();
+        parentWindow = new SwingScilabWindow();
         parentWindow.addTab(this);
         labelNumerotation = new JLabel();
         lineNumber = new JTextField();
@@ -443,7 +422,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                                                           .addComponent(lineNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
                                                                           .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                             .addContainerGap())
-                                  );
+            );
         layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                                           .addContainerGap()
@@ -459,7 +438,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                                                     .addComponent(labelNumerotation)
                                                     .addComponent(numType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                           .addContainerGap())
-                                );
+            );
         /* End NetBeans */
 
         List<Component> components = new ArrayList(3);
@@ -472,8 +451,8 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
 
         setMinimumSize(new Dimension(224, 0));
         setPreferredSize(new Dimension(224, 543));
-        ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).pack();
-        ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).setVisible(true);
+        parentWindow.pack();
+        parentWindow.setVisible(true);
 
         CallBack callback = new CallBack(null) {
                 public void callBack() {

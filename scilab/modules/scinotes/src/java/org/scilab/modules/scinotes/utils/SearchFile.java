@@ -42,11 +42,7 @@ import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.defaults.DockingSplitPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
@@ -58,7 +54,6 @@ import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotesGUI;
@@ -69,13 +64,13 @@ import org.scilab.modules.scinotes.SearchManager;
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
  * @author Calixte DENIZET
  */
-public class SearchFile extends SwingScilabTab implements Tab {
+public class SearchFile extends SwingScilabTab {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
 
     private static SearchFile instance;
 
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
     private SciNotes editor;
 
     /**
@@ -86,23 +81,8 @@ public class SearchFile extends SwingScilabTab implements Tab {
     private SearchFile(SciNotes editor, String title) {
         super(title);
         this.editor = editor;
-        parentWindow = ScilabWindow.createWindow();
+        parentWindow = new SwingScilabWindow();
         instance = this;
-    }
-
-    /**
-     * Get the parent window id for this tab
-     * @return the id of the parent window
-     */
-    public Window getParentWindow() {
-        return this.parentWindow;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public SimpleTab getAsSimpleTab() {
-        return this;
     }
 
     /**
@@ -154,7 +134,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
      * Close the current window
      */
     public void closeWindow() {
-        ScilabWindow win = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
+        SwingScilabWindow win = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
         win.removeTab(this);
         setVisible(false);
         parentWindow = null;
@@ -449,17 +429,17 @@ public class SearchFile extends SwingScilabTab implements Tab {
                 title += ", " + SciNotesMessages.WHOLE_WORD + ": " + wholeWord;
             }
 
-            Window parentWindow;
+            SwingScilabWindow parentWindow;
 
             if (!preexist) {
                 tab = new SearchFile(editor, title);
-                parentWindow = tab.getParentWindow();
+		parentWindow = SwingScilabWindow.allScilabWindows.get(tab.getParentWindowId());
                 parentWindow.setTitle(title);
                 parentWindow.addTab(tab);
                 tab.setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
             } else {
                 tab = instance;
-                parentWindow = tab.getParentWindow();
+                parentWindow = SwingScilabWindow.allScilabWindows.get(tab.getParentWindowId());
             }
 
             tab.updateUI();
@@ -496,8 +476,8 @@ public class SearchFile extends SwingScilabTab implements Tab {
 
             if (!preexist) {
                 tab.setPreferredSize(new Dimension(650, 250));
-                ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).pack();
-                ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).setVisible(true);
+                parentWindow.pack();
+                parentWindow.setVisible(true);
             }
 
             SwingUtilities.invokeLater(new Runnable() {

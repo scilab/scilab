@@ -13,7 +13,6 @@
 package org.scilab.modules.ui_data;
 
 import org.scilab.modules.ui_data.variableeditor.ScilabVariableEditor;
-import org.scilab.modules.ui_data.variableeditor.VariableEditor;
 
 /**
  * Static class to open/close Scilab Variable Editor
@@ -82,7 +81,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(DOUBLE, dataDouble, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(DOUBLE, dataDouble, variableName);
     }
 
     /**
@@ -102,7 +101,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -122,7 +121,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -142,7 +141,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -162,7 +161,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -182,7 +181,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -202,7 +201,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(INTEGER, dataInteger, variableName);
     }
 
     /**
@@ -222,7 +221,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(STRING, dataString, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(STRING, dataString, variableName);
     }
 
     /**
@@ -244,7 +243,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(COMPLEX, dataDoubleComplex, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(COMPLEX, dataDoubleComplex, variableName);
     }
 
     /**
@@ -264,7 +263,7 @@ public final class EditVar {
             }
         }
 
-        VariableEditor editvar = ScilabVariableEditor.getVariableEditor(BOOLEAN, dataBool, variableName);
+        ScilabVariableEditor editvar = ScilabVariableEditor.getVariableEditor(BOOLEAN, dataBool, variableName);
     }
 
     /**

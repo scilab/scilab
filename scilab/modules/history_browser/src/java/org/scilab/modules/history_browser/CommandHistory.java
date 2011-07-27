@@ -26,20 +26,17 @@ import javax.swing.tree.TreePath;
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.MessageBox;
 import org.scilab.modules.gui.messagebox.ScilabMessageBox;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 import org.scilab.modules.history_browser.CommandHistoryMouseListener;
@@ -72,7 +69,7 @@ public final class CommandHistory {
 
         private static DefaultTreeModel scilabHistoryTreeModel;
 
-        private static Tab browserTab;
+        private static SwingScilabTab browserTab;
 
         private static JScrollPane scrollPane;
 
@@ -87,14 +84,14 @@ public final class CommandHistory {
          * Called directly from Scilab
          */
         public static void initialize() {
-                Window browserWindow = ScilabWindow.createWindow();
+                SwingScilabWindow browserWindow = new SwingScilabWindow();
                 browserWindow.setDims(new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
-                browserTab = ScilabTab.createTab(CommandHistoryMessages.TITLE);
+                browserTab = new SwingScilabTab(CommandHistoryMessages.TITLE);
                 browserTab.setCallback(CloseAction.getCallBack());
-                browserTab.addMenuBar(createMenuBar());
-                browserTab.addToolBar(createToolBar());
-                browserTab.addInfoBar(ScilabTextBox.createTextBox());
+                browserTab.setMenuBar(createMenuBar());
+                browserTab.setToolBar(createToolBar());
+                browserTab.setInfoBar(ScilabTextBox.createTextBox());
 
                 browserWindow.addTab(browserTab);
 
@@ -118,7 +115,7 @@ public final class CommandHistory {
                 scrollPane = new JScrollPane(scilabHistoryTree);
                 JPanel contentPane = new JPanel(new BorderLayout());
                 contentPane.add(scrollPane);
-                ((SwingScilabTab) browserTab.getAsSimpleTab()).setContentPane(contentPane);
+                browserTab.setContentPane(contentPane);
                 setVisible(false);
         }
 
@@ -247,18 +244,18 @@ public final class CommandHistory {
          * @param status visibility status
          */
         public static void setVisible(boolean status) {
-                if (status && browserTab.getParentWindow() == null) {
-                    Window browserWindow = ScilabWindow.createWindow();
-                    browserWindow.setVisible(true);
-                    browserWindow.addTab(browserTab);
+	        SwingScilabWindow parentWindow =  SwingScilabWindow.allScilabWindows.get(browserTab.getParentWindowId());
+                if (status && parentWindow == null) {
+                    parentWindow = new SwingScilabWindow();
+                    parentWindow.setVisible(true);
+                    parentWindow.addTab(browserTab);
                 }
 
-                if (browserTab.getParentWindow() != null) {
-                    if (browserTab.getParentWindow().getNbDockedObjects() == 1) {
-                        browserTab.getParentWindow().setVisible(status);
+                if (parentWindow != null) {
+                    if (parentWindow.getNbDockedObjects() == 1) {
+                        parentWindow.setVisible(status);
                     } else {
-                        DockingManager.undock((Dockable) browserTab.getAsSimpleTab());
-                        browserTab.setParentWindowId(-1);
+                        DockingManager.undock((Dockable) browserTab);
                     }
                 }
 

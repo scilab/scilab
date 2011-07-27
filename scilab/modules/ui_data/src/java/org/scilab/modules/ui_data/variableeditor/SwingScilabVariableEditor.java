@@ -32,12 +32,9 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
@@ -60,7 +57,7 @@ import org.scilab.modules.ui_data.variableeditor.undo.CellsUndoManager;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
-public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, SimpleVariableEditor {
+public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleVariableEditor {
 
     /**
      * Prefix used in the tabs titles.
@@ -103,7 +100,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
                             String type = ((SwingEditvarTableModel) getCurrentModel()).getType();
                             String title = UiDataMessages.VARIABLE_EDITOR + " - " + name + "  (" + type + ")";
                             setName(title);
-                            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
+                            SwingScilabWindow window = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
                             if (window != null) {
                                 window.setTitle(title);
                             }
@@ -260,20 +257,6 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
      */
     public RowHeader getRowHeader() {
         return (RowHeader) scrollPane.getRowHeader().getView();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Window getParentWindow() {
-        return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
     }
 
     /**

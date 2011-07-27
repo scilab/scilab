@@ -36,13 +36,9 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.actions.BooleanFilteringAction;
@@ -73,7 +69,7 @@ import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFi
  * Swing implementation of Scilab Variable browser
  * uses JTable
  */
-public final class SwingScilabVariableBrowser extends SwingScilabTab implements Tab, SimpleVariableBrowser {
+public final class SwingScilabVariableBrowser extends SwingScilabTab implements SimpleVariableBrowser {
 
     private static final long serialVersionUID = 2169382559550113917L;
 
@@ -177,23 +173,6 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         rowFilter = new VariableBrowserRowFilter(filteredValues);
         rowSorter.setRowFilter(rowFilter);
         table.setRowSorter(rowSorter);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    /**
-     * {@inheritDoc}
-     */
-    public Window getParentWindow() {
-        return (Window) UIElementMapper.getCorrespondingUIElement(getParentWindowId());
     }
 
     /**
@@ -477,7 +456,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      * Get this browser as a Tab object
      * @return the tab
      */
-    public Tab getBrowserTab() {
+    public SwingScilabTab getBrowserTab() {
         return this;
     }
 }

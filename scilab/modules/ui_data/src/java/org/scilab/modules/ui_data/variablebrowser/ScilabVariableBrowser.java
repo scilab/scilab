@@ -16,7 +16,6 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -27,11 +26,11 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Implements a ScilabWindow containing Variable Browser (JTable)
  *
  */
-public final class ScilabVariableBrowser extends ScilabWindow implements VariableBrowser {
+public final class ScilabVariableBrowser extends SwingScilabWindow {
 
-    private static VariableBrowser instance;
+    private static ScilabVariableBrowser instance;
 
-    private static SimpleVariableBrowser browserTab;
+    private static SwingScilabVariableBrowser browserTab;
 
     /**
      * Constructor
@@ -61,8 +60,8 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * @param data : data from scilab (type, name, size, ...)
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, String[] columnNames, Object[][] data) {
-        VariableBrowser variableBrowser = getVariableBrowser(update, columnNames);
+    public static ScilabVariableBrowser getVariableBrowser(boolean update, String[] columnNames, Object[][] data) {
+        ScilabVariableBrowser variableBrowser = getVariableBrowser(update, columnNames);
         variableBrowser.setData(data);
         return variableBrowser;
     }
@@ -71,7 +70,7 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * Get the variable browser singleton
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser() {
+    public static ScilabVariableBrowser getVariableBrowser() {
         return instance;
     }
 
@@ -80,12 +79,12 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * @param columnNames : the columns title
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, String[] columnNames) {
+    public static ScilabVariableBrowser getVariableBrowser(boolean update, String[] columnNames) {
         if (instance == null) {
             instance = new ScilabVariableBrowser(columnNames);
             instance.setVisible(true);
         } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabVariableBrowser) browserTab);
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
             if (!update) {
                 window.setVisible(true);
                 window.toFront();
@@ -99,8 +98,8 @@ public final class ScilabVariableBrowser extends ScilabWindow implements Variabl
      * Close Variable Browser
      */
     public void close() {
-        ScilabWindow editvarWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(browserTab.getParentWindowId());
-        editvarWindow.removeTab(browserTab);
+        SwingScilabWindow browsevarWindow = SwingScilabWindow.allScilabWindows.get(browserTab.getParentWindowId());
+        browsevarWindow.removeTab(browserTab);
         browserTab.setVisible(false);
         browserTab.close();
         instance = null;

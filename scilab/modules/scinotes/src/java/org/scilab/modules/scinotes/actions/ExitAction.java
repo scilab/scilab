@@ -16,8 +16,7 @@ package org.scilab.modules.scinotes.actions;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
@@ -53,29 +52,27 @@ public final class ExitAction extends DefaultAction {
      * @param editor SciNotes
      */
     public static void doExit(SciNotes editor) {
-        ScilabWindow scinotesWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(editor.getParentWindowId());
-
+        SwingScilabWindow scinotesWindow = editor.getSwingParentWindow();
         int numberOfTab = editor.getTabPane().getTabCount();
-
         boolean wantToClose = true;
         int k = 0;
 
         editor.setProtectOpenFileList(true);
 
         for (int i = 0; i < numberOfTab; i++) {
-                //close and save all editors if they are modified
-                boolean response = editor.closeTabAt(k);
-                if (!response) {
-                        k++;
-                }
-                wantToClose &= response;
+            //close and save all editors if they are modified
+            boolean response = editor.closeTabAt(k);
+            if (!response) {
+                k++;
+            }
+            wantToClose &= response;
         }
 
         editor.setProtectOpenFileList(false);
 
         if (wantToClose) {
-                scinotesWindow.getAsSimpleWindow().removeTab(editor);
-                editor.closeSciNotes();
+            scinotesWindow.removeTab(editor);
+            editor.closeSciNotes();
         }
     }
 

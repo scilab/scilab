@@ -51,6 +51,7 @@ import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -64,16 +65,13 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
@@ -102,7 +100,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Bruno JOFRET
  * @author Calixte DENIZET
  */
-public class SciNotes extends SwingScilabTab implements Tab {
+public class SciNotes extends SwingScilabTab {
 
     private static final long serialVersionUID = -6410183357490518676L;
 
@@ -129,7 +127,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static List<SciNotes> scinotesList = new ArrayList<SciNotes>();
     private static SciNotes editor;
 
-    private final Window parentWindow;
+    private final SwingScilabWindow parentWindow;
     private UUID uuid;
 
     private ScilabTabbedPane tabPane;
@@ -150,7 +148,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Create SciNotes instance inside parent Window
      * @param parentWindow the parent Window
      */
-    public SciNotes(Window parentWindow) {
+    public SciNotes(SwingScilabWindow parentWindow) {
         super(SCINOTES);
         setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
         scinotesList.add(this);
@@ -158,11 +156,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
         editorKit = new ScilabEditorKit(!ConfigSciNotesManager.getHorizontalWrap());
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
-        window.setLocation(pos.getX(), pos.getY());
+        parentWindow.setLocation(pos.getX(), pos.getY());
         Size size = ConfigSciNotesManager.getMainWindowSize();
-        window.setSize(size.getWidth(), size.getHeight());
+        parentWindow.setSize(size.getWidth(), size.getHeight());
         protectOpenFileList = false;
         contentPane = new SciNotesContents(this);
         tabPane = contentPane.getScilabTabbedPane();
@@ -186,6 +183,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         this.setContentPane(contentPane);
     }
 
+    public SwingScilabWindow getSwingParentWindow() {
+	return SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -199,13 +200,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     public void insertBottomComponent(Component c) {
         contentPane.insertBottomComponent(c);
-    }
-
-    /**
-     * @return the SwingScilabWindow containing this editor
-     */
-    public SwingScilabWindow getSwingParentWindow() {
-        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
     /**
@@ -379,7 +373,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     return editor; // Exit without restoring files
                 }
 
-                RestoreOpenedFilesAction.displayDialog((JFrame) editor.parentWindow.getAsSimpleWindow());
+                RestoreOpenedFilesAction.displayDialog((JFrame) editor.parentWindow);
                 List<List<File>> list = RestoreOpenedFilesAction.getSelectedFiles();
 
                 if (list != null) {
@@ -482,7 +476,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             SearchFile.closeCurrent();
         }
         editor = null;
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
+        SwingScilabWindow window = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
         Point p = window.getLocation();
         ConfigSciNotesManager.saveMainWindowPosition(new Position(p.x, p.y));
         Dimension d = window.getSize();
@@ -496,7 +490,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     private static SciNotes createEditor() {
         ConfigSciNotesManager.createUserCopy();
-        Window mainWindow = ScilabWindow.createWindow();
+        SwingScilabWindow mainWindow = new SwingScilabWindow();
 
         final SciNotes editorInstance = new SciNotes(mainWindow);
 
@@ -1276,7 +1270,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                      * Create a new messagebox to know what the user wants to do
                      * if the file has been modified outside SciNotes
                      */
-                    MessageBox messageBox = ScilabMessageBox.createMessageBox();
+                    SwingScilabMessageBox messageBox = new SwingScilabMessageBox();
                     messageBox.setTitle(SciNotesMessages.REPLACE_FILE_TITLE);
                     messageBox.setMessage(String.format(SciNotesMessages.EXTERNAL_MODIFICATION, textPaneAt.getName()));
 
@@ -1543,24 +1537,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
         Color[] arr = ConfigSciNotesManager.getHighlightColors();
         sep.setHighlightedLineColor(arr[0]);
         sep.setHighlightedContourColor(arr[1]);
-    }
-
-    /**
-     * Get SciNotes as a Tab.
-     * @return SciNotes instance
-     * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()
-     */
-    public SimpleTab getAsSimpleTab() {
-        return this;
-    }
-
-    /**
-     * Get SciNotes parent Window.
-     * @return parent Window
-     * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
-     */
-    public Window getParentWindow() {
-        return parentWindow;
     }
 
     /**
