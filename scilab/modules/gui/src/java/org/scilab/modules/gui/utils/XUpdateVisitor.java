@@ -88,12 +88,15 @@ public class XUpdateVisitor {
      * @param view : the visited container.
      * @param peer : the visited node.
      */
-    public final void visit(final Container view, final Node peer) {
+    public final void visit(final Container view, final Node peer, String tab) {
         int allIndex     = 0;
         int visibleIndex = 0;
         NodeList nodes = peer.getChildNodes();
         Component component;
-        XSentinel sentinel;
+        XSentinel sentinel = null;
+        String indent;
+        // Show update:
+        // System.out.println(tab + peer.getNodeName());
         while (allIndex < nodes.getLength()) {
             Node item = nodes.item(allIndex);
             if (isVisible(item)) {
@@ -103,31 +106,47 @@ public class XUpdateVisitor {
                     if (sentinel == null || !sentinel.checks(item)) {
                         forget(view, component);
                         component = build(view, peer, item, visibleIndex);
+                        if (sentinel == null) {
+                            indent = "0 ";
+                        } else {
+                            indent = "# ";
+                        }
+                    } else {
+                        indent = "| ";
                     }
                 } else {
+                    indent = "+ ";
                     component = build(view, peer, item, -1);
                 }
                 if (component instanceof Container) {
                     // Rebuild container children.
                     Container container = (Container) component;
-                    visit(container, item);
+                    visit(container, item, tab + indent);
                 }
                 visibleIndex += 1;
             }
             allIndex += 1;
         }
+        // Children rebuilt.
         while (visibleIndex < view.getComponentCount()) {
             component = view.getComponent(visibleIndex);
             forget(view, component);
         }
-        if (view instanceof XComponent) {
-            // Attribute correspondence once children rebuilt.
-            XComponent xView = (XComponent) view;
-            xView.refresh(peer);
-            // Sentinel sets watch.
+        // Sentinel sets watch.
+        sentinel  = (XSentinel) correspondance.get(view);
+        if (sentinel == null) {
             sentinel   = new XSentinel(view, peer);
             correspondance.put(view, sentinel);
-            addListeners(view, peer, sentinel);
+            if (view instanceof XComponent) {
+                addListeners(view, peer, sentinel);
+            }
+        } else {
+            sentinel.setPeer(peer);
+        }
+        // Attribute correspondence once children rebuilt.
+        if (view instanceof XComponent) {
+            XComponent xView = (XComponent) view;
+            xView.refresh(peer);
         }
     }
 

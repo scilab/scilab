@@ -70,7 +70,11 @@ import javax.swing.border.Border;
  * @author Vincent COUVERT *
  */
 public final class XConfigManager /*extends ConfigManager */ {
-
+    
+    /** XConfiguration management verbosity.*/
+    public static final boolean performances = false;
+    public static final boolean differential = false;
+    
     /** Buffer size.*/
     private static final int BUFSIZE = 1024;
     /** Margin size.*/
@@ -156,7 +160,9 @@ public final class XConfigManager /*extends ConfigManager */ {
     public static void printTimeStamp(String msg) {
         long nextTime  = System.currentTimeMillis();
         long deltaTime = nextTime - time;
-        System.err.println((msg.startsWith("*")?"":"\t") + msg + " in " + deltaTime + " ms.");
+        if (performances) {
+            System.out.println((msg.startsWith("*")?"":" |  ") + msg + " in " + deltaTime + " ms.");
+        }
         time   = nextTime;
     }
 
@@ -164,8 +170,10 @@ public final class XConfigManager /*extends ConfigManager */ {
      *
      */
     public static void displayAndWait() {
+        printTimeStamp("XSystem launched");
 
         reloadTransformer();
+        printTimeStamp("XSL loaded");
 
         // Set up Swing Side
         dialog      = new JDialog(getTopLevel(), "Scilab Preferences", true);
@@ -179,6 +187,7 @@ public final class XConfigManager /*extends ConfigManager */ {
         // Set up DOM Side
         readDocument();
         updated = false;
+        printTimeStamp("Model XML loaded");
 
         // Set up correspondence
         correspondance = new Hashtable<Component, XSentinel>();
@@ -194,11 +203,10 @@ public final class XConfigManager /*extends ConfigManager */ {
      * @return whether XSL return a node or not.
      */
     public static boolean refreshDisplay() {
-
         // Generate new view DOM.
         printTimeStamp("Context found");
         topDOM = generateViewDOM().getNode().getFirstChild();
-        printTimeStamp("XML generated");
+        printTimeStamp("View XML generated");
         if (topDOM == null) {
             System.err.println("XSL does not give a node!");
             return false;
@@ -207,7 +215,7 @@ public final class XConfigManager /*extends ConfigManager */ {
         // Refresh correspondence
         //    TODO top layout changes
         visitor = new XUpdateVisitor(correspondance);
-        visitor.visit(topSwing, topDOM);
+        visitor.visit(topSwing, topDOM, "\t");
         printTimeStamp("SWING refreshed");
         dialog.pack();
         printTimeStamp("Packing done");
@@ -357,7 +365,6 @@ public final class XConfigManager /*extends ConfigManager */ {
         } catch (TransformerFactoryConfigurationError e1) {
             System.out.println(ERROR_READ + SCILAB_CONFIG_XSL);
         }
-        System.out.println("XSL reloaded!");
     }
 
     /** Generate view by application of XSL on XConfiguration file.
@@ -417,14 +424,17 @@ public final class XConfigManager /*extends ConfigManager */ {
      * @param source : component source of the action (only class is needed).
      */
     public static void xEvent(final Node action, final Component source) {
-        printTimeStamp("*Event occured");
-        System.err.print(action.getNodeName());
+        printTimeStamp("*** Event occured");
+        if (differential) {
+            System.out.print("*** " + action.getNodeName());
+        }
 
         if (!getAttribute(action, "set").equals(NAV)) {
             String context   = getAttribute(action, "context");
-            System.err.println(" hits " + context);
+            if (differential) {
+                System.out.println(" hits " + context);
+            }
             Element element  = getElementByContext(context);
-
             String value     = getAttribute(action, "value");
             String attribute = getAttribute(action, "set");
             if (!(element == null)) {
@@ -437,9 +447,10 @@ public final class XConfigManager /*extends ConfigManager */ {
 
         if (!getAttribute(action, "choose").equals(NAV)) {
             String context   = getAttribute(action, "context");
-            System.err.println(" hits " + context);
+            if (differential) {
+                System.out.println(" hits " + context);
+            }
             Element element  = getElementByContext(context);
-
             if (source instanceof XChooser) {
                 XChooser chooser   = (XChooser) source;
                 String   value     = chooser.choose();
@@ -451,7 +462,7 @@ public final class XConfigManager /*extends ConfigManager */ {
                 updated = true;
                 //TODO not always real modification...
             } else {
-                System.err.println("Choose attribute only valid on choosers "
+                System.err.println("@choose attribute only valid on choosers "
                                  + "(SELECT, COLOR, FILE, ENTRY,...)");
             }
             return;
@@ -461,11 +472,15 @@ public final class XConfigManager /*extends ConfigManager */ {
         if (callback.equals("Help")) {
             // TODO it can be a contextual help.
             //System.err.println("Help not implemented yet!");
-            System.err.println(": Help.");
+            if (differential) {
+                System.out.println(": Help.");
+            }
             return;
         }
         if (callback.equals("Ok")) {
-            System.err.println(": Ok.");
+            if (differential) {
+                System.out.println(": Ok.");
+            }
             writeDocument();
             dialog.dispose();
             updated = false;
@@ -474,16 +489,21 @@ public final class XConfigManager /*extends ConfigManager */ {
         if (callback.equals("Apply")) {
             //System.err.println("User XML saved!");
             updated = false;
-            System.err.println(": Apply.");
+            if (differential) {
+                System.out.println(": Apply.");
+            }
             writeDocument();
             return;
         }
         if (callback.equals("Default")) {
             //System.out.println("Scilab XML reloaded!");
-            System.err.println(": Default.");
+            if (differential) {
+                System.out.println(": Default.");
+            }
             reloadTransformer();
             refreshUserCopy();
             readDocument();
+            printTimeStamp("XSL Reloaded");
             updated = false;
             refreshDisplay();
             return;
@@ -495,7 +515,9 @@ public final class XConfigManager /*extends ConfigManager */ {
                 //TODO advertise it!
                 }
             updated = false;
-            System.err.println(": Cancel.");
+            if (differential) {
+                System.out.println(": Cancel.");
+            }
             refreshDisplay();
             return;
         }

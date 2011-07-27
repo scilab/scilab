@@ -103,6 +103,10 @@ class XSentinel implements MouseListener, ActionListener {
         return signature;
     }
 
+    public void setPeer(final Node next) {
+        peer = next;
+    }
+    
     /** Check whether the next node can be reached through actuators.
      *
      * @param next : the node to be reached.
@@ -146,6 +150,10 @@ class XSentinel implements MouseListener, ActionListener {
         if (when != timestamp) {
             triggerEventNode(e, peer, "mouseClicked");
             timestamp = when;
+        } else {
+            if (XConfigManager.differential) {
+                System.out.println(" |  dummy mouseClicked discarded!");
+            }
         }
     }
     /** Mouse listener callback. @param e : event*/
@@ -167,6 +175,10 @@ class XSentinel implements MouseListener, ActionListener {
         if (when != timestamp) {
             triggerEventNode(e, peer, "actionPerformed");
             timestamp = when;
+        } else {
+            if (XConfigManager.differential) {
+                System.out.println(" |  dummy actionPerformed discarded!");
+            }
         }
     }
 }
