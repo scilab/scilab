@@ -268,16 +268,20 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     public void setDims(Size newWindowSize) {
 
-        // get the greatest size we can use
-        int[] maxSize = RenderingCapabilities.getMaxWindowSize();
+        if (!SwingUtilities.isEventDispatchThread()) {
+            if (getDims().getWidth() != newWindowSize.getWidth() || getDims().getHeight() != newWindowSize.getHeight()) {
+                // get the greatest size we can use
+                int[] maxSize = RenderingCapabilities.getMaxWindowSize();
 
-        // make suze size is not greater than the max size
-        Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
-                                           Math.min(newWindowSize.getHeight(), maxSize[1]));
+                // make suze size is not greater than the max size
+                Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
+                        Math.min(newWindowSize.getHeight(), maxSize[1]));
 
-        setSize(finalDim);
-        // validate so the new values are taken into account immediately
-        validate();
+                setSize(finalDim);
+                // validate so the new values are taken into account immediately
+                validate();
+            }
+        }
     }
 
     /**
@@ -295,9 +299,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
     public void setPosition(Position newWindowPosition) {
-        this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
-    }
-
+        if (!SwingUtilities.isEventDispatchThread()) {
+            if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
+                this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
+            }   
+        }   
+    }   
+    
     /**
      * Gets the title of a swing Scilab window
      * @return the title of the window

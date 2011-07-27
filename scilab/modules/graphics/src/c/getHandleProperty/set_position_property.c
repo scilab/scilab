@@ -78,6 +78,12 @@ int set_position_property(char* pobjUID, size_t stackPointer, int valueType, int
         int figureSize[2];
         int status1, status2;
 
+        if(nbCol != 4 || nbRow != 1)
+        {
+            Scierror(999, _("Wrong size for '%s' property: A 1 x %d real row vector expected.\n"), "position", 4);
+            return SET_PROPERTY_ERROR;
+        }
+
         values = getDoubleMatrixFromStack( stackPointer );
 
         figurePosition[0] = (int) values[0];

@@ -12,9 +12,11 @@
  */
 package org.scilab.modules.gui;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
@@ -58,7 +60,6 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -230,8 +231,6 @@ public final class SwingView implements GraphicView {
             DockingManager.dock(tab, window.getDockingPort());
             ActiveDockableTracker.requestDockableActivation(tab);
 
-            //GraphicController.getController().register(this);
-
             window.setVisible(true);
             tab.setVisible(true);
             tab.setName(figureTitle);
@@ -242,7 +241,11 @@ public final class SwingView implements GraphicView {
             } else {
                 infoBar.setText(infoMessage);
             }
-            return tab; // TODO
+            tab.update(__GO_SIZE__, (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__));
+            tab.update(__GO_POSITION__, (Integer[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
+            tab.update(__GO_AXES_SIZE__, (Integer[]) GraphicController.getController().getProperty(id, __GO_AXES_SIZE__));
+            // TODO set other default properties
+            return tab;
         case ImageRenderer:
             SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
             imageRenderer.setId(id);
@@ -277,19 +280,16 @@ public final class SwingView implements GraphicView {
     @Override
     public void deleteObject(String id) {
         TypedObject requestedObject = allObjects.get(id);
-        if (requestedObject != null)
-        {
-            switch (requestedObject.getType()) {
-            case Figure:
-                SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
-                DockingManager.close(tab);
-                DockingManager.unregisterDockable((Dockable) tab);
-                tab.close();
-                break;
-            default:
-                ((Widget) requestedObject.getValue()).destroy();
-                break;
-            }
+        switch (requestedObject.getType()) {
+        case Figure:
+            SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+            DockingManager.close(tab);
+            DockingManager.unregisterDockable((Dockable) tab);
+            tab.close();
+            break;
+        default:
+            ((Widget) requestedObject.getValue()).destroy();
+            break;
         }
 
     }
