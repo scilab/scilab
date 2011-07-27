@@ -1720,11 +1720,11 @@ public class XcosDiagram extends ScilabGraph {
 			// Ask the user want he want to do !
 			final AnswerOption answer;
 			if (force) {
-				answer = ScilabModalDialog.show(getParentTab(),
+				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(),
 						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO);
 			} else {
-				answer = ScilabModalDialog.show(getParentTab(),
+				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(),
 						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 			}
@@ -2026,7 +2026,7 @@ public class XcosDiagram extends ScilabGraph {
 		} else {
 			AnswerOption answer;
 			try {
-				answer = ScilabModalDialog.show(getParentTab(), String.format(
+				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(), String.format(
 						XcosMessages.FILE_DOESNT_EXIST,
 						diagram.getCanonicalFile()), XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO);

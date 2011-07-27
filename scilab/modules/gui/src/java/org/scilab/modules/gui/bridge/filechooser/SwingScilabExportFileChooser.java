@@ -18,10 +18,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -29,6 +27,7 @@ import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
@@ -280,7 +279,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
      * @param userExtension extension caught by the user
      */
     public void vectorialExport(String userExtension) {
-        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureId).getRendererProperties()).getParentTab();
+        SimpleTab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureId).getRendererProperties()).getParentTab().getAsSimpleTab();
         ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
         ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);
         exportOptionWindow.displayOptionWindow(parentTab);

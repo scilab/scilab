@@ -169,7 +169,7 @@ public final class PaletteManager {
 						+ "Switching to the default one."
 						+ e);
 
-				ScilabModalDialog.show(getView(),
+				ScilabModalDialog.show(getView().getAsSimpleTab(),
 						XcosMessages.ERR_CONFIG_PALETTE_INVALID,
 						XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 

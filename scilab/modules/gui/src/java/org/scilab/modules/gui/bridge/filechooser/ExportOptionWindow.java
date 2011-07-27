@@ -30,13 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.tab.SimpleTab;
 
 /**
  * Window in which we can configure option for the selected format
@@ -50,7 +48,7 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
 
     private ExportData exportData;
     private Window parentWindow;
-    private Tab parentTab;
+    private SimpleTab parentTab;
     private JDialog optionDialog;
     private JRadioButton portrait;
     private JRadioButton landscape;
@@ -68,9 +66,9 @@ public class ExportOptionWindow extends JDialog implements ActionListener {
     /**
      * Display the option window
      */
-    public void displayOptionWindow(Tab tab) {
+    public void displayOptionWindow(SimpleTab tab) {
         parentTab = tab;
-        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab.getAsSimpleTab());
+        parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle("Option for " + exportData.getExportExtension().toUpperCase() + " format");
         optionDialog.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());

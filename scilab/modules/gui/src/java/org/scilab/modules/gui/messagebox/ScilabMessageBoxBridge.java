@@ -204,7 +204,7 @@ public class ScilabMessageBoxBridge {
 	 * @param parent the tab to be set as parent
 	 */
 	public static void setParentForLocation(MessageBox messageBox, Tab parent) {
-		messageBox.getAsSimpleMessageBox().setParentForLocation(parent);
+		//messageBox.getAsSimpleMessageBox().setParentForLocation(parent);
 	}
 
 }
