@@ -527,7 +527,7 @@ libscioutput_stream_la_CFLAGS = \
 	-I$(top_srcdir)/modules/core/includes \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/shell/includes \
+	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/operations/includes
 
@@ -546,7 +546,7 @@ libscioutput_stream_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/threads/includes \
-	-I$(top_srcdir)/modules/shell/includes
+	-I$(top_srcdir)/modules/console/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 noinst_LTLIBRARIES = libscioutput_stream-algo.la
@@ -562,8 +562,8 @@ CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
-libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la
-#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
+libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la 
+#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename = output_stream
 

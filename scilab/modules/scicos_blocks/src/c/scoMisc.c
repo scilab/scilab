@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file scoMisc.c
    \author Benoit Bayol
@@ -26,7 +26,7 @@
    \date September 2006 - January 2007
    \brief Source Code for Misc function (not only for the sco lib)
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scoBase.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
@@ -36,7 +36,7 @@
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {
 
@@ -65,25 +65,4 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 
 	set_block_error(-16);
 }
-
-/*--------------------------------------------------------------------------*/ 
-/* permut pobj_1/pobj_2 ptrs coming from
-* pparent_1/pparent_2 hdl(s)
-*/
-int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
-			  sciPointObj *pobj_2, sciPointObj *pparent_2)
-{
-	sciSons *OneSon, *OneSon2;
-
-	OneSon=(sciGetRelationship (pparent_1)->psons);
-	while (OneSon->pointobj!=pobj_1)
-		OneSon=(sciSons *)OneSon->pnext;
-	OneSon2=(sciGetRelationship (pparent_2)->psons);
-	while (OneSon2->pointobj!=pobj_2)
-		OneSon2=(sciSons *)OneSon2->pnext;
-	OneSon->pointobj=pobj_2;
-	OneSon2->pointobj=pobj_1;
-
-	return 0;
-}
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

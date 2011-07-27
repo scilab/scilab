@@ -326,7 +326,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClCompile Include="..\..\sci_gateway\c\sci_haltscicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_permutobj.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_phase_simulation.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug.c" />
@@ -375,6 +374,7 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <None Include="Graphics_Import.def" />
     <None Include="Intersci_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="Localization_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="Scicos_blocks_f_Import.def" />
     <None Include="scicos_f_Import.def" />

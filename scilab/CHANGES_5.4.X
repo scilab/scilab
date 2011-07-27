@@ -1,9 +1,12 @@
-            Changes between version 5.3.2 and 5.4.0 of Scilab
+            Changes between version 5.3.3 and 5.4.0 of Scilab
             =================================================
 
 
 SciNotes:
 =========
+
+* Add marks in the vertical scrollbar to see the positions of matching words
+  when an incremental search is done (via F3 or in selecting text).
 
 * In the find/grep tools, add the possibility to use ~ as a joker for user home
   dir. and SCI for Scilab data base dir.
@@ -65,6 +68,8 @@ Xcos:
                    palette.
 
 * bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
+
+* bug 9532 fixed - Users defined blocks had no icons when saved
 
 * bug 9547 fixed - The about box was not localized due to a multi-line string.
 
@@ -231,6 +236,7 @@ ATOMS:
 
 * bug 9127 fixed - "Home" item renamed to "Installed Modules".
 
+* bug 8664 fixed - Message error updated for non supported OS.
 
 Misc:
 =====
@@ -238,6 +244,9 @@ Misc:
 * Change the buffering display mode.
 
 * SEP 67: lines(0) by default at startup.
+
+* Options -disable-exception-catching added under GNU/Linux & Mac OS X.
+  Disables the Scilab exception catching system.
 
 
 Bug fixes:
@@ -291,6 +300,8 @@ Bug fixes:
 * bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
                    a wrong error message on Windows.
 
+* bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
+
 * bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
 
 * bug 9479 fixed - Typo fixed (intput => input).
@@ -299,8 +310,6 @@ Bug fixes:
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
-
-* bug 9527 fixed - Problem when a text was exported in SVG from the gui.
 
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
@@ -317,6 +326,31 @@ Bug fixes:
 
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
+* bug 9599 fixed - error message "at line ... of function ... called by" was
+                   printed directly on the same line.
+
+* bug 9647 fixed - On Scilab startup, the variable fft was declared by default
+                   while it should not.
+
+* bug 9675 fixed - iir generated bad results.
+
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
+* bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
+
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
+
+* bug 9719 fixed - delip.tst execution froze under Windows.
+
+* bug 9725 fixed - syredi.tst execution froze under Windows.
+
+* bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
+                   was not ignored (generated file)
+
+* bug 9730 fixed - lines() returned an int32 and not a double value.
+
+* bug 9755 fixed - Completion on paths was not case insensitive on Windows.
+
+* bug 9756 fixed - polelm.tst unitary test failed on Windows 64 bit.
+
+* bug 9765 fixed - remove ref to scicos_pal in sci_f_clear.f

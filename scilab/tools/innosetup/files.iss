@@ -43,7 +43,6 @@
 #include BinariesSourcePath + "\modules\completion\completion.iss"
 #include BinariesSourcePath + "\modules\history_manager\history_manager.iss"
 #include BinariesSourcePath + "\modules\action_binding\action_binding.iss"
-#include BinariesSourcePath + "\modules\shell\shell.iss"
 #include BinariesSourcePath + "\modules\console\console.iss"
 #include BinariesSourcePath + "\modules\special_functions\special_functions.iss"
 #include BinariesSourcePath + "\modules\linear_algebra\linear_algebra.iss"
@@ -89,7 +88,9 @@
 #include BinariesSourcePath + "\modules\scinotes\scinotes.iss"
 #include BinariesSourcePath + "\modules\xcos\xcos.iss"
 #include BinariesSourcePath + "\modules\graph\graph.iss"
+#ifndef SCILAB_F2C
 #include BinariesSourcePath + "\modules\parallel\parallel.iss"
+#endif
 #include BinariesSourcePath + "\modules\modules_manager\modules_manager.iss"
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"

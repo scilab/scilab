@@ -1,3 +1,0 @@
-xinit('d7-1.ps');
-exec('../diary/simple.code')
-xend()

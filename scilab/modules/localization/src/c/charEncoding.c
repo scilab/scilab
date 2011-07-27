@@ -11,13 +11,13 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-
 #ifndef _MSC_VER
     #include <iconv.h>
     #include <errno.h>
 #endif
 
 #include <wchar.h>
+#include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

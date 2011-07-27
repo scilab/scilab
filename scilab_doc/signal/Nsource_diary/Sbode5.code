@@ -1,4 +1,0 @@
-//Bode plot
-a=-2*%pi;b=1;c=18*%pi;d=1;
-sl=syslin('c',a,b,c,d);
-bode(sl,.1,100);

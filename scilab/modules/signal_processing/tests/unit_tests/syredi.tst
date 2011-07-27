@@ -17,7 +17,6 @@ exec(test_path + 'test_utilities.sci');
 // ****************************************************************
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 
 // **** Part I: defining the tests ****
 

@@ -275,6 +275,9 @@ copy eispack_f_header.def+eispack_f.vcdef eispack_f.def &gt;nul
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LibScilab_Import.def" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.targets" />

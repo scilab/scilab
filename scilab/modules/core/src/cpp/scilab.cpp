@@ -38,7 +38,6 @@ extern "C"
 #include "../../../console/includes/InitializeConsole.h"
 #include "../../../jvm/includes/InitializeJVM.h"
 #include "InitializeCore.h"
-#include "../../../shell/includes/InitializeShell.h"
 #include "../../../console/includes/InitializeConsole.h"
 #include "../../../tclsci/includes/InitializeTclTk.h"
 #include "../../../localization/includes/InitializeLocalization.h"
@@ -570,8 +569,6 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
 
     //InitializeCore();
 
-    InitializeShell();
-
     if (!noJvm)
     {
         /* bug 3702 */
@@ -586,15 +583,16 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
         /* create needed data structure if not already created */
         loadGraphicModule() ;
 
-        /* Standard mode -> init Java Console */
-        if ( !consoleMode )
-        {
-            /* Initialize console: lines... */
-            InitializeConsole();
-        }
-
         loadBackGroundClassPath();
     }
+
+    /* Standard mode -> init Java Console */
+    if ( !consoleMode )
+    {
+        /* Initialize console: lines... */
+        InitializeConsole();
+    }
+
 
     /* set current language of scilab */
     FuncManager *pFM = new FuncManager();

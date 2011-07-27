@@ -78,6 +78,9 @@
     <None Include="..\..\action_binding.iss" />
     <None Include="..\..\sci_gateway\action_binding_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\MALLOC.lib">

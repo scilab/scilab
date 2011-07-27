@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 
 a=amell(10,0.1);
 if a > 3.693 then pause,end

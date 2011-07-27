@@ -203,7 +203,7 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/sci_getblocklabel.c \
 	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_haltscicos.c sci_gateway/c/sci_loadScicos.c \
-	sci_gateway/c/sci_model2blk.c sci_gateway/c/sci_permutobj.c \
+	sci_gateway/c/sci_model2blk.c \
 	sci_gateway/c/sci_phase_simulation.c \
 	sci_gateway/c/sci_pointer_xproperty.c \
 	sci_gateway/c/sci_scicos_debug.c \
@@ -244,7 +244,6 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 @XCOS_TRUE@	libsciscicos_la-sci_haltscicos.lo \
 @XCOS_TRUE@	libsciscicos_la-sci_loadScicos.lo \
 @XCOS_TRUE@	libsciscicos_la-sci_model2blk.lo \
-@XCOS_TRUE@	libsciscicos_la-sci_permutobj.lo \
 @XCOS_TRUE@	libsciscicos_la-sci_phase_simulation.lo \
 @XCOS_TRUE@	libsciscicos_la-sci_pointer_xproperty.lo \
 @XCOS_TRUE@	libsciscicos_la-sci_scicos_debug.lo \
@@ -890,7 +889,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@sci_gateway/c/sci_haltscicos.c \
 @XCOS_TRUE@sci_gateway/c/sci_loadScicos.c \
 @XCOS_TRUE@sci_gateway/c/sci_model2blk.c \
-@XCOS_TRUE@sci_gateway/c/sci_permutobj.c \
 @XCOS_TRUE@sci_gateway/c/sci_phase_simulation.c \
 @XCOS_TRUE@sci_gateway/c/sci_pointer_xproperty.c \
 @XCOS_TRUE@sci_gateway/c/sci_scicos_debug.c \
@@ -948,7 +946,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 # For the code check (splint)
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-@XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
+@XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 @XCOS_TRUE@libsciscicos_la_LIBADD = libsciscicos-algo.la $(top_builddir)/modules/string/libscistring.la \
 @XCOS_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
 @XCOS_TRUE@$(top_builddir)/modules/mexlib/libmx.la \
@@ -963,12 +961,12 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@$(top_builddir)/modules/core/libscicore.la \
 @XCOS_TRUE@$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @XCOS_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
+@XCOS_TRUE@$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 
 #### scicos : Conf files ####
 @XCOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
-@XCOS_TRUE@libsciscicos_la_root_DATA = license.txt 
+@XCOS_TRUE@libsciscicos_la_root_DATA = license.txt
 
 #### scicos : init scripts ####
 @XCOS_FALSE@libsciscicos_la_etcdir = $(mydatadir)/etc
@@ -1240,7 +1238,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_haltscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_loadScicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_model2blk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_permutobj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_phase_simulation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_pointer_xproperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_scicos_debug.Plo@am__quote@
@@ -1563,13 +1560,6 @@ libsciscicos_la-sci_model2blk.lo: sci_gateway/c/sci_model2blk.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_model2blk.c' object='libsciscicos_la-sci_model2blk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sci_model2blk.lo `test -f 'sci_gateway/c/sci_model2blk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_model2blk.c
-
-libsciscicos_la-sci_permutobj.lo: sci_gateway/c/sci_permutobj.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-sci_permutobj.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-sci_permutobj.Tpo -c -o libsciscicos_la-sci_permutobj.lo `test -f 'sci_gateway/c/sci_permutobj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_permutobj.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_la-sci_permutobj.Tpo $(DEPDIR)/libsciscicos_la-sci_permutobj.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_permutobj.c' object='libsciscicos_la-sci_permutobj.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sci_permutobj.lo `test -f 'sci_gateway/c/sci_permutobj.c' || echo '$(srcdir)/'`sci_gateway/c/sci_permutobj.c
 
 libsciscicos_la-sci_phase_simulation.lo: sci_gateway/c/sci_phase_simulation.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-sci_phase_simulation.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-sci_phase_simulation.Tpo -c -o libsciscicos_la-sci_phase_simulation.lo `test -f 'sci_gateway/c/sci_phase_simulation.c' || echo '$(srcdir)/'`sci_gateway/c/sci_phase_simulation.c

@@ -484,10 +484,6 @@
       <Project>{34f8e361-d2d9-43b0-93d2-f6cf5faf6ceb}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\shell\src\c\shell.vcxproj">
-      <Project>{805aa73f-ef7b-4177-bf46-200b72d8f83a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\signal_processing\src\c\signal_processing.vcxproj">
       <Project>{a3ad381e-c0dd-45bb-acb2-c0a0db33a606}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

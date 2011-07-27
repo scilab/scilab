@@ -314,6 +314,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   <ItemGroup>
     <None Include="..\..\locales\string.pot" />
     <None Include="LibScilab_Import.def" />
+    <None Include="linpack_f_Import.def" />
     <None Include="localization_Import.def" />
     <None Include="string_f_Import.def" />
     <None Include="System_env_Import.def" />

@@ -80,6 +80,7 @@ lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Library Dependencies">
 		<File RelativePath=".\LibScilab_Import.def"/>
+		<File RelativePath=".\output_stream_Import.def"/>
 		<File RelativePath=".\special_functions_Import.def"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\special_functions_f.rc"/></Filter>

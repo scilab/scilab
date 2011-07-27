@@ -417,7 +417,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                         if (n != 0) {
                             return n;
                         }
-                        return l1.getStart() - l2.getStart();
+                        return l1.getStartOffset() - l2.getStartOffset();
                     }
 
                     public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
@@ -471,7 +471,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                         if (n != 0) {
                             return n;
                         }
-                        return l1.getStart() - l2.getStart();
+                        return l1.getStartOffset() - l2.getStartOffset();
                     }
 
                     public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
@@ -796,7 +796,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private boolean visible = true;
         private int type;
         private FunctionScanner.FunctionInfo info;
-        private int start;
         private boolean broken;
         private boolean brokenString;
 
@@ -812,7 +811,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
             super(parent, a, p0, p1);
-            start = p0;
             type = funScanner.getLineType(p0, p1);
             if ((type & BROKEN) == BROKEN) {
                 broken = true;
@@ -946,13 +944,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if (b) {
                 broken = true;
             }
-        }
-
-        /**
-         * @return the position of the beginning of this element
-         */
-        public int getStart() {
-            return start;
         }
 
         /**

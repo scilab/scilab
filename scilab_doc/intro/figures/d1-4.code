@@ -1,2 +1,0 @@
-p=poly([1 2 3],'z','coeff')
-//p is the polynomial in z with coefficients 1,2,3.

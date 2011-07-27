@@ -1,15 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
@@ -33,7 +34,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     {
       nbRow = matVariable->dims[0];
       nbCol = nbRow==0 ? 0 : 1; /* In Scilab empty string has size 0x0 */
-      
+
       if (nbRow != 0)
 	{
 	  charData =  (char**) MALLOC(sizeof(char*) * nbRow);
@@ -43,7 +44,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 	      return FALSE;
 	    }
 	}
-      
+
       for (K=0; K<nbRow; K++)
 	{
 	  charData[K] =  (char*) MALLOC(sizeof(char*) * (matVariable->dims[1] + 1));
@@ -53,7 +54,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 	      return FALSE;
 	    }
 	}
-      
+
       /* Fill items: data in Matlab file is stored columnwise */
       for(K=0; K<matVariable->dims[0]; K++) /* Loop over items */
 	{
@@ -70,7 +71,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 	    }
 	  charData[K][L] = '\0';
 	}
-      
+
       if (nbRow*nbCol != 0)
 	{
 	  if (parent==NULL)
@@ -96,7 +97,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 	      freeArrayOfString(tmp_char, 1);
 	    }
 	}
-      
+
       freeArrayOfString(charData,nbRow*nbCol);
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
@@ -104,6 +105,6 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
       Scierror(999, _("%s: N-D arrays of chars not implemented.\n"), "CreateCharVariable");
       return FALSE;
     }
-  
+
   return TRUE;
 }

@@ -136,8 +136,14 @@ uk_UA.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Ke
 uk_UA.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 uk_UA.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
 ;
+uk_UA.DownloadCHMLabel =Downloading CHM files for Scilab.
+uk_UA.DownloadCHMDescription =Please wait while Setup is downloading extra files to your computer.
+uk_UA.DoTasksJustAfterInstallMsg4 =CHM files not installed.
+uk_UA.DescriptionCHM=Download scilab help as CHM
+;
 uk_UA.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
 uk_UA.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
+uk_UA.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
 ;
 uk_UA.DescriptionAtoms =ATOMS
 ;

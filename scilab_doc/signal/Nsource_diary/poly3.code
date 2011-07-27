@@ -1,7 +1,0 @@
-//exec('poly3.code')
-//list elements for a rational polynomial
-   p=poly([1 2],'x')./poly([3 4 5],'x')
-   p(1)
-   p(2)
-   p(3)
-   p(4)

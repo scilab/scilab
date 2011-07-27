@@ -5,10 +5,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
-
+//
 // <-- JVM NOT MANDATORY -->
-
+//
 if getos() == 'Windows' then
   info = dllinfo(SCI+'\bin\scilex.exe','machine');
   if info(2) <> 'x86' & info(2) <> 'x64' then pause,end

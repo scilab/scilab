@@ -1,2 +1,0 @@
-Params.tol=[0.01,0.002]; Params.errmsg='error message';
-Params.tol(2)

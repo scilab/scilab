@@ -77,7 +77,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -112,7 +112,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -148,7 +148,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -191,7 +191,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../c;../../../system_env/includes;../../../threads/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -226,15 +226,68 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\c\gw_console.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_clc.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_iswaitingforinput.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_lines.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_prompt.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_tohome.c" />
+    <ClCompile Include="..\c\clc.c" />
+    <ClCompile Include="..\c\DllmainConsole.c" />
+    <ClCompile Include="..\c\GetCommandLine.c" />
+    <ClCompile Include="..\c\more.c" />
+    <ClCompile Include="..\c\prompt.c" />
+    <ClCompile Include="..\c\promptecho.c" />
+    <ClCompile Include="..\c\scilines.c" />
+    <ClCompile Include="..\c\tohome.c" />
+    <ClCompile Include="..\c\windows\clrscrPart_nw.c" />
+    <ClCompile Include="..\c\windows\clrscr_nw.c" />
+    <ClCompile Include="..\c\windows\TermCommand.c" />
+    <ClCompile Include="..\c\windows\TermCompletion.c" />
+    <ClCompile Include="..\c\windows\TermConsole.c" />
+    <ClCompile Include="..\c\windows\TermLine.c" />
+    <ClCompile Include="..\c\windows\TermPosition.c" />
+    <ClCompile Include="..\c\windows\TermPrintf.c" />
+    <ClCompile Include="..\c\windows\TermReadAndProcess.c" />
     <ClCompile Include="noconsole.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="noconsole.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\libs\LibScilab\LibScilab.vcxproj">
+      <Project>{64bc155e-292f-484f-9404-76ee6ae67a43}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\completion\src\c\completion.vcxproj">
+      <Project>{ccce1ead-8e62-4dc0-ab17-972c06ef0c89}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\history_manager\src\c\history_manager.vcxproj">
+      <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ui_data\src\c\ui_data.vcxproj">
+      <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

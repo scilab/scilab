@@ -40,6 +40,7 @@ libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/call_scilab/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/console/includes \
 				-I$(top_srcdir)/modules/localization/includes \
 				-I$(top_srcdir)/modules/operations/includes
 
@@ -55,7 +56,7 @@ libscifunctions_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/string/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/shell/includes \
+				-I$(top_srcdir)/modules/console/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/threads/includes/ \

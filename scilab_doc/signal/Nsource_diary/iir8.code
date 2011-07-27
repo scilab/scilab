@@ -1,4 +1,0 @@
-//exec('iir8.code')
-exec('iir6.code');
-z=poly(0,'z');
-hz=horner(hs,2*(z-1)/(z+1))

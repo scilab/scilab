@@ -316,5 +316,19 @@ char ** getString(char* variableName, int *nbRow, int *nbCol);
  */
 int putString(char* variableName, char **variable, int nbRow, int nbCol);
 
+/**
+ * Chek if a variable exists in Context
+ *
+ * @param variableName The name of the variable
+ * @return TRUE if the given variable exists, FALSE otherwise
+ */
+BOOL isExistingVariable(char* variableName);
 
+/**
+ * Chek if a variable is complex.
+ *
+ * @param variableName The name of the variable
+ * @return TRUE if the given variable is complex, FALSE otherwise
+ */
+BOOL isComplexVar(char *variableName);
 #endif /* __JAVASCI2_HELPER_H__ */

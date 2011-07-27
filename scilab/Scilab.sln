@@ -340,11 +340,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nosound", "modules\sound\sr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "norandlib", "modules\randlib\src\norandlib\norandlib.vcxproj", "{E5038304-761D-448C-B358-48CA2883778A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell", "modules\shell\src\c\shell.vcxproj", "{805AA73F-EF7B-4177-BF46-200B72D8F83A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm-Ant", "modules\jvm\src\java\jvm-JAVA.vcxproj", "{E9783492-017E-4811-9CC7-6B71856F847C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9188FA91-E039-485D-AF1D-781CEA92F541} = {9188FA91-E039-485D-AF1D-781CEA92F541}
@@ -353,8 +348,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-Ant", "modules\javasci\src\java\javasci-JAVA.vcxproj", "{6182A20D-8111-41C1-9713-CD2A4725057C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui-Ant", "modules\gui\src\java\gui-JAVA.vcxproj", "{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shell-Ant", "modules\shell\src\java\shell-JAVA.vcxproj", "{2EA61E81-0F0C-4006-985C-12785093CD2F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamiclibrary", "libs\dynamiclibrary\dynamiclibrary.vcxproj", "{77154919-8A20-4F35-B7C7-6B3B957BDCA1}"
 EndProject
@@ -1285,14 +1278,6 @@ Global
 		{E5038304-761D-448C-B358-48CA2883778A}.Release|Win32.Build.0 = Release|Win32
 		{E5038304-761D-448C-B358-48CA2883778A}.Release|x64.ActiveCfg = Release|x64
 		{E5038304-761D-448C-B358-48CA2883778A}.Release|x64.Build.0 = Release|x64
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Debug|Win32.Build.0 = Debug|Win32
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Debug|x64.ActiveCfg = Debug|x64
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Debug|x64.Build.0 = Debug|x64
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Release|Win32.ActiveCfg = Release|Win32
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Release|Win32.Build.0 = Release|Win32
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Release|x64.ActiveCfg = Release|x64
-		{805AA73F-EF7B-4177-BF46-200B72D8F83A}.Release|x64.Build.0 = Release|x64
 		{E9783492-017E-4811-9CC7-6B71856F847C}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E9783492-017E-4811-9CC7-6B71856F847C}.Debug|Win32.Build.0 = Debug|Win32
 		{E9783492-017E-4811-9CC7-6B71856F847C}.Debug|x64.ActiveCfg = Debug|x64
@@ -1317,14 +1302,6 @@ Global
 		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}.Release|Win32.Build.0 = Release|Win32
 		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}.Release|x64.ActiveCfg = Release|x64
 		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}.Release|x64.Build.0 = Release|x64
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Debug|Win32.Build.0 = Debug|Win32
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Debug|x64.ActiveCfg = Debug|x64
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Debug|x64.Build.0 = Debug|x64
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Release|Win32.ActiveCfg = Release|Win32
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Release|Win32.Build.0 = Release|Win32
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Release|x64.ActiveCfg = Release|x64
-		{2EA61E81-0F0C-4006-985C-12785093CD2F}.Release|x64.Build.0 = Release|x64
 		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Debug|Win32.Build.0 = Debug|Win32
 		{77154919-8A20-4F35-B7C7-6B3B957BDCA1}.Debug|x64.ActiveCfg = Debug|x64
