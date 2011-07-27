@@ -59,5 +59,6 @@ GetVarDimension
 GetData
 GetDataSize
 getmatdims_
+getWarningMode
 
 

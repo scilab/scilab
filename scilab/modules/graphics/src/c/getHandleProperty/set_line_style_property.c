@@ -31,13 +31,15 @@
 /*------------------------------------------------------------------------*/
 int set_line_style_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+    int iLineStyle = 1;
+
     if ( !isParameterDoubleMatrix( valueType ) )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "line_style");
         return SET_PROPERTY_ERROR;
     }
 
-    int iLineStyle = (int) getDoubleFromStack(stackPointer);
+    iLineStyle = (int) getDoubleFromStack(stackPointer);
 
     if (iLineStyle == 0 && getWarningMode())
     {
