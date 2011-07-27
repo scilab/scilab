@@ -170,6 +170,9 @@ libsciconsole_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la \
 			$(top_builddir)/libs/MALLOC/libscimalloc.la 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
+#### console : gateway declaration ####
+libsciconsole_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciconsole_la_sci_gateway_DATA = sci_gateway/console_gateway.xml
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i \
