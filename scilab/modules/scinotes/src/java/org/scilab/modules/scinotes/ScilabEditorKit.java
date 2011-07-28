@@ -110,7 +110,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
         return getStylePreferences();
     }
 
-   /**
+    /**
      * The read method is used to read the file and to write its contents
      * in the document at position pos
      * @param file the file to read
@@ -121,18 +121,21 @@ public class ScilabEditorKit extends DefaultEditorKit {
      * @throws BadLocationException if the pos is invalid
      */
     public void read(SciNotes editor, File file, Document doc, int pos) throws IOException, BadLocationException {
-	Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
-	try {
-	    charset = DefaultEncodingAction.tryToGuessEncoding(file);
-	} catch (CharacterCodingException e) {
-	    ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
-	}
-	((ScilabDocument) doc).setEncoding(charset.toString());
-	EncodingAction.updateEncodingMenu((ScilabDocument) doc);
-	FileInputStream fis = new FileInputStream(file);
-	InputStreamReader isr = new InputStreamReader(fis, charset);
-	BufferedReader br = new BufferedReader(isr);
-	read(br, doc, pos);
+        Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
+        try {
+            charset = DefaultEncodingAction.tryToGuessEncoding(file);
+        } catch (CharacterCodingException e) {
+            ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+        }
+        ((ScilabDocument) doc).setEncoding(charset.toString());
+        EncodingAction.updateEncodingMenu((ScilabDocument) doc);
+        FileInputStream fis = new FileInputStream(file);
+        InputStreamReader isr = new InputStreamReader(fis, charset);
+        BufferedReader br = new BufferedReader(isr);
+        read(br, doc, pos);
+        try {
+            br.close();
+        } catch (IOException e) { }
     }
 
     /**
@@ -153,7 +156,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
         boolean mac = false;
         boolean first = true;
         boolean binary = false;
-	StringBuilder sbuf = new StringBuilder(buffer.length);
+        StringBuilder sbuf = new StringBuilder(buffer.length);
         while ((nch = in.read(buffer, 0, buffer.length)) != -1) {
             if (first) {
                 /* We try to know if we have a binary file
