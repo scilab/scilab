@@ -36,6 +36,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
@@ -156,6 +157,8 @@ public class SwingScilabWidget {
     	} else if (property.equals(__GO_STYLE__)) {
     	} else if (property.equals(__GO_UI_STRING__)) {
     		uiControl.setText(((String[]) value)[0]);
+        } else if (property.equals(__GO_TAG__)) {
+            /* Nothing to do */ 
     	} else if (property.equals(__GO_UI_TABLEDATA__)) {
     		((SwingScilabUiTable) uiControl).setData((String[]) value);
     	} else if (property.equals(__GO_UI_UNITS__)) {

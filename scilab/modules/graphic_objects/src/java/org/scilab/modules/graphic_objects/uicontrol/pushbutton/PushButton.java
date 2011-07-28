@@ -21,12 +21,17 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
  */
 public class PushButton extends Uicontrol {
 
-	/**
+    private static final double BUTTON_RED_BACKGROUND = 0.6;
+    private static final double BUTTON_GREEN_BACKGROUND = 0.6;
+    private static final double BUTTON_BLUE_BACKGROUND = 0.6;
+
+    /**
 	 * Constructor
 	 */
 	public PushButton() {
 		super();
 		setStyle(__GO_UI_PUSHBUTTON__);
+		setBackgroundColor(new Double[]{BUTTON_RED_BACKGROUND, BUTTON_GREEN_BACKGROUND, BUTTON_BLUE_BACKGROUND});
 	}
 
 }

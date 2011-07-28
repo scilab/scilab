@@ -253,8 +253,8 @@ public final class SwingView implements GraphicView {
         case PushButton:
             SwingScilabPushButton button = new SwingScilabPushButton();
             button.setId(id);
-            Double[] defaultButtonBackground = {0.6, 0.6, 0.6};
-            GraphicController.getController().setProperty(id, __GO_UI_BACKGROUNDCOLOR__, defaultButtonBackground);
+            SwingScilabWidget.update(button, __GO_UI_BACKGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
+            SwingScilabWidget.update(button, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
             SwingScilabWidget.update(button, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
             SwingScilabWidget.update(button, __GO_UI_FONTANGLE__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
             SwingScilabWidget.update(button, __GO_UI_FONTNAME__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));

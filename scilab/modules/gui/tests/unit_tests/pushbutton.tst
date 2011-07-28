@@ -12,22 +12,25 @@ clear uicontrol_generic_test
 exec("SCI/modules/gui/tests/unit_tests/uicontrol_generic_test.sci");
 if uicontrol_generic_test("pushbutton") <> 0 then pause; end
 
-// Default relief value
 h = uicontrol("parent", scf(), "style", "pushbutton");
-if get(h, "relief") <> "raised" then pause; end
+
+// Default backgroundcolor value
+assert_checkequal(get(h, "backgroundcolor"), [0.6 0.6 0.6]); // Default value
+
+// Default relief value
+assert_checkequal(get(h, "relief"), "raised");
 
 // --- Value tests ---
-// Default value
-if ~isempty(get(h, "value")) then pause; end
+assert_checkequal(get(h, "value"), []); // Default value
 
 set(h, "value", [1]);
-if get(h, "value") <> 1 then pause; end
+assert_checkequal(get(h, "value"), 1);
 
 set(h, "value", [1 2 3]);
-if ~and(get(h, "value") == [1 2 3]) then pause; end
+assert_checkequal(get(h, "value"), [1 2 3]);
 
 set(h, "value", []);
-if ~isempty(get(h, "value")) then pause; end
+assert_checkequal(get(h, "value"), []);
 
 // TODO test with wrong values
 

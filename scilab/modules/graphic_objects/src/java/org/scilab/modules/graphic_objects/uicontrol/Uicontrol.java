@@ -58,22 +58,38 @@ import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
  */
 public class Uicontrol extends GraphicObject {
 
-	private UicontrolStyle style;
-	private Double[] backgroundColor = {0.0, 0.0, 0.0};
+    private static final double DEFAULT_RED_BACKGROUND = 0.8;
+    private static final double DEFAULT_GREEN_BACKGROUND = 0.8;
+    private static final double DEFAULT_BLUE_BACKGROUND = 0.8;
+    
+    private static final double DEFAULT_X = 20.0;
+    private static final double DEFAULT_Y = 40.0;
+    private static final double DEFAULT_WIDTH = 40.0;
+    private static final double DEFAULT_HEIGHT = 20.0;
+
+    private static final double DEFAULTFONTSIZE = 10;
+    private static final String DEFAULTFONTNAME = "helvetica";
+    private static final String DEFAULTFONTWEIGHT = "normal";
+    private static final String DEFAULTFONTANGLE = DEFAULTFONTWEIGHT;
+
+    private static final String DEFAULTRELIEF = "raised";
+
+    private UicontrolStyle style;
+	private Double[] backgroundColor = {DEFAULT_RED_BACKGROUND, DEFAULT_GREEN_BACKGROUND, DEFAULT_BLUE_BACKGROUND};
 	private String[] columnnames = {""};
 	private boolean enable = true;
-	private String fontAngle = "normal";
-	private String fontName = "helvetica";
-	private double fontSize = 10.0;
+	private String fontAngle = DEFAULTFONTANGLE;
+	private String fontName = DEFAULTFONTNAME;
+	private double fontSize = DEFAULTFONTSIZE;
 	private String fontUnits = "points";
-	private String fontWeight = "normal";
+	private String fontWeight = DEFAULTFONTWEIGHT;
 	private Double[] foregroundColor = {0.0, 0.0, 0.0};
 	private String horizontalAlignment = "center";
 	private Integer[] listboxTop; 
 	private int max = 1; 
 	private int min; 
-	private Double[] position = {20.0, 40.0, 40.0, 20.0};
-	private String relief = "raised";
+	private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
+	private String relief = DEFAULTRELIEF;
 	private String[] rownames = {""};
 	private Double[] scale = {1.0, 1.0};
 	private Double[] shear = {0.0, 0.0};
