@@ -251,10 +251,12 @@ lib /DEF:"$(ProjectDir)special_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     <ClCompile Include="..\..\sci_gateway\c\sci_gamma.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_legendre.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lgamma.c" />
+    <ClCompile Include="zbeshv.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_special_functions.h" />
     <ClInclude Include="..\..\includes\gw_special_functions.h" />
+    <ClInclude Include="zbeshv.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\special_functions.pot" />

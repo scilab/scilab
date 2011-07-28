@@ -238,6 +238,18 @@ ATOMS:
 
 * bug 8664 fixed - Message error updated for non supported OS.
 
+Javasci:
+========
+
+* Java mapping of Scilab data has now a new method called getType() which
+returns the value of the ScilabTypeEnum enum.
+
+* bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
+
+* bug 9544 fixed - Calling graphic with Javasci from a SWING application from
+                   EDT was crashing the execution of a java program.
+
+
 Misc:
 =====
 
@@ -269,12 +281,16 @@ Bug fixes:
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
+* bug 7901 fixed - besselh.tst failed on Windows.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 
 * bug 8684 fixed - 'wfir' function produced an error message when used interactively.
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
+
+* bug 8963 fixed - mtlb_mode test failed on Windows.
 
 * bug 9045 fixed - plot2d did not support overloading.
 
@@ -302,8 +318,6 @@ Bug fixes:
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
-* bug 9467 fixed - unnecessary declarations in MAKE.BAT of javasci examples.
-
 * bug 9479 fixed - Typo fixed (intput => input).
 
 * bug 9498 fixed - A long history caused Scilab startup to be very long.
@@ -318,9 +332,6 @@ Bug fixes:
 
 * bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
                    to parse XML configuration files.
-
-* bug 9544 fixed - Calling graphic with Javasci from a SWING application from
-                   EDT was crashing the execution of a java program.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
 
@@ -352,5 +363,8 @@ Bug fixes:
 * bug 9755 fixed - Completion on paths was not case insensitive on Windows.
 
 * bug 9756 fixed - polelm.tst unitary test failed on Windows 64 bit.
+
+* bug 9761 fixed - "NDEBUG" was not defined for dynamic link (by default) in
+                   release mode on Windows.
 
 * bug 9765 fixed - remove ref to scicos_pal in sci_f_clear.f

@@ -32,6 +32,8 @@ public class ScilabBoolean implements ScilabType {
 	/* the boolean data */
 	private boolean[][] data;
 
+	private ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
+
 	/**
 	 * Create an empty object
 	 */
@@ -75,6 +77,15 @@ public class ScilabBoolean implements ScilabType {
 	public boolean[][] getData() {
 		return data;
 	}
+
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType() {
+        return type;
+    }
 
 	/**
 	 * Return the height (number of element) of the stored data
