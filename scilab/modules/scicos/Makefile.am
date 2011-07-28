@@ -194,7 +194,6 @@ palettes/Threshold.cosf
 
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \
-macros/scicos_menus \
 macros/scicos_scicos \
 macros/scicos_utils
 

@@ -998,7 +998,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### scicos : MACROS ####
 @XCOS_TRUE@MACROSDIRSEXT = macros/scicos_auto \
-@XCOS_TRUE@macros/scicos_menus \
 @XCOS_TRUE@macros/scicos_scicos \
 @XCOS_TRUE@macros/scicos_utils
 
