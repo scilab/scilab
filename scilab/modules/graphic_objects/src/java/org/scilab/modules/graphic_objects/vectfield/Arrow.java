@@ -38,17 +38,17 @@ public class Arrow extends ContouredObject {
 	/** Constructor */
 	public Arrow() {
 		super();
-		base = new double[3];
-		direction = new double[3];
-		arrowSize = -1.0;
+		base = new double[] {0.0, 0.0, 0.0};
+		direction = new double[] {0.0, 0.0, 0.0};
+		arrowSize = 0.0;
 	}
 
 	/** Clone method */
         public Arrow clone() {
 		Arrow copy = (Arrow) super.clone();
 
-		copy.base = new double[3];
-		copy.direction = new double[3];
+		copy.base = new double[] {0.0, 0.0, 0.0};
+		copy.direction = new double[] {0.0, 0.0, 0.0};
 
 		return copy;
         }
