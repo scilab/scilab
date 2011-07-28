@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
+* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -63,8 +63,8 @@ static int signbit(double x)
 #endif /* signbit */
 /*--------------------------------------------------------------------------*/
 fprintfMatError fprintfMat(char *filename, char *format, char *separator,
-                           double *MatrixValues, int m, int n,
-                           char **textAdded, int sizeTextAdded)
+    double *MatrixValues, int m, int n,
+    char **textAdded, int sizeTextAdded)
 {
 #if _MSC_VER
 #define MODEFD "wt"
@@ -190,16 +190,12 @@ static char *replaceInFormat(char *format)
     char *newFormat = NULL;
     if (format)
     {
-        int i = 0;
-        for (i = 0; i < NB_FORMAT_SUPPORTED; i++)
+        char *cleanedFormat = getCleanedFormat(format);
+        if (cleanedFormat)
         {
-            char *cleanedFormat = getCleanedFormat(format);
-            if (cleanedFormat)
-            {
-                newFormat = strdup("%s");
-                FREE(cleanedFormat);
-                cleanedFormat = NULL;
-            }
+            newFormat = strsub(format, cleanedFormat, "%s");
+            FREE(cleanedFormat);
+            cleanedFormat = NULL;
         }
     }
     return newFormat;

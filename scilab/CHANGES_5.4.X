@@ -338,6 +338,9 @@ Bug fixes:
 
 * bug 9555 fixed - Typo in the 'deff' help page.
 
+* bug 9570 fixed - fprintfMat did not use the good format argument with nan and
+                   inf in a matrix.
+
 * bug 9571 fixed - "error(144)" returned a wrong variable name.
 
 * bug 9599 fixed - error message "at line ... of function ... called by" was
