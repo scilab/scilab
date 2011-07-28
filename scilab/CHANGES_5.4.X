@@ -308,6 +308,9 @@ Bug fixes:
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
+* bug 9253 fixed - fscanfMat failed to read a file with some lines
+                   of text at the end (backward compatibility).
+
 * bug 9266 fixed - fftw crashed on Windows when using MKL wrapper.
 
 * bug 9268 fixed - Scilab was overridding a predefined variable JAVA_HOME.
