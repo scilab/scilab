@@ -1,7 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/break_data.ref','rb');
-k = 0;while 1 == 1 then  k = k + 1;if k > 100 then   break,end,end,
-xdel_run(winsid());
-
-mclose(%U);

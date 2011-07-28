@@ -23,7 +23,7 @@
 \author Benoit Bayol
 \version 1.0
 \date September 2006 - January 2007
-\brief Header File of the scoMisc.c file 
+\brief Header File of the scoMisc.c file
 */
 
 #ifndef __SCO_MISC_H__
@@ -39,8 +39,4 @@
 */
 SCICOS_BLOCKS_IMPEXP void scoScopeError(ScopeMemory * pScopeMemory, int code_error);
 
-/**
-*/
-SCICOS_BLOCKS_IMPEXP int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
-			  sciPointObj *pobj_2, sciPointObj *pparent_2);
 #endif

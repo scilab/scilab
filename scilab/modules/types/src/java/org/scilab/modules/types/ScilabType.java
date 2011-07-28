@@ -19,6 +19,13 @@ import java.io.Serializable;
  */
 public interface ScilabType extends Serializable, Cloneable {
 
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType();
+
 	/**
 	 * Return the width (number of elements) of the stored data
 	 *

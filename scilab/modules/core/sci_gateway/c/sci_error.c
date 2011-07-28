@@ -53,7 +53,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                     if (msg)
                     {
                         C2F(iop).err = errorPosition;
-                        Scierror(defaultErrorCode, "%s", msg);
+                        Scierror(defaultErrorCode, "%s\n", msg);
                         FREE(msg);
                         msg = NULL;
                     }
@@ -133,7 +133,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                         if (msg)
                         {
                             C2F(iop).err = errorPosition;
-                            Scierror(errorCode, "%s", msg);
+                            Scierror(errorCode, "%s\n", msg);
                             FREE(msg);
                             msg = NULL;
                         }
@@ -225,7 +225,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
                         char *msg = strsub(InputString_Parameter2[0], "%", "%%");
                         if (msg)
                         {
-                            Scierror(errorCode, msg);
+                            Scierror(errorCode, "%s\n", msg);
                             FREE(msg);
                             msg = NULL;
                         }

@@ -22,7 +22,7 @@
         <refname>Sparse matrix reading (Scilab gateway)</refname>
 
         <refpurpose>
-            How to read sparse matric in a gateway.
+            How to read sparse matrices in a gateway.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

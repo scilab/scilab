@@ -1,8 +1,0 @@
-//exec('remez.5.ex')
-nc=21;
-ngrid=nc*16;
-fg=(0:-1+ngrid/2)*.24*2/(ngrid-2);
-fg(ngrid/2+1:ngrid)=fg(1:ngrid/2)+.26*ones(1:ngrid/2);
-ds(1:ngrid/2)=ones(1:ngrid/2);
-ds(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
-wt=ones(fg);

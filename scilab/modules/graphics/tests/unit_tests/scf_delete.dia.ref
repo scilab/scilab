@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test scf gcf and delete behaviour
+scf(3);
+scf(2);
+scf(1);
+f = gcf();
+assert_checkequal(f.figure_id, 1);
+delete(f);
+f = gcf();
+assert_checkequal(f.figure_id, 3);
+delete(f);
+f = gcf();
+assert_checkequal(f.figure_id, 2);
+delete(f);
+f = gcf();
+assert_checkequal(f.figure_id, 0);
+delete(f);

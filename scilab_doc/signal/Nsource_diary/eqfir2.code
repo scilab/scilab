@@ -1,5 +1,0 @@
-//exec('eqfir2.code')
-nf=33;
-bedge=[0 .35;.38 .5];
-des=[0 1];
-wate=[1 1];

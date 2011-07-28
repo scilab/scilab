@@ -40,11 +40,9 @@ endif
 scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
 
-# libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
-$(top_builddir)/modules/core/libscicore.la \
+COMMON_LIBS = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la \
@@ -54,12 +52,12 @@ SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)

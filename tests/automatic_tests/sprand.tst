@@ -1,7 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/sprand_data.ref','rb');
-W = sprand(100, 1000, 0.001);
-xdel_run(winsid());
-
-mclose(%U);

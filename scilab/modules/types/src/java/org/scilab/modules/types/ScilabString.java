@@ -30,6 +30,7 @@ public class ScilabString implements ScilabType {
 
 	private String[][] data;
 
+	private ScilabTypeEnum type = ScilabTypeEnum.sci_strings;
 	/**
 	 * Default constructor
 	 */
@@ -84,6 +85,15 @@ public class ScilabString implements ScilabType {
 	public void setData(String[][] data) {
 		this.data = data;
 	}
+
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType() {
+        return type;
+    }
 
 	/**
 	 * @return the associated values

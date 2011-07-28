@@ -74,7 +74,7 @@
 /* 50 */						#include "../../localization/includes/gw_localization.h"
 /* 51 */						#include "../../fftw/includes/gw_fftw.h"
 /* 52 */						#include "../../jvm/includes/gw_jvm.h"
-/* 53 */						#include "../../shell/includes/gw_shell.h"
+/* 53 */						#include "../../console/includes/gw_console.h"
 /* 54 */						#include "../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../history_manager/includes/gw_history_manager.h"
 /* 56 */						#include "dynamic_gateways.h" /* spreadsheet */

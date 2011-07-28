@@ -1,9 +1,0 @@
-//exec('rand1.code')
-//create normally distributed N(m,L) random vector y
-m=[-2;1;10];
-L=[3 2 1;2 3 2;1 2 3];
-L2=chol(L);
-rand('seed');
-rand('normal');
-x=rand(3,1)
-y=L2'*x+m

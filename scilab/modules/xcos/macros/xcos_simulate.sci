@@ -12,46 +12,16 @@
 
 function %cpr = xcos_simulate(scs_m, needcompile)
 
-//-- BJ : Alias Warning Function
+// Load the block libs if not defined
   prot = funcprot();
   funcprot(0);
-
-if ~isdef('scicos_menuslib') then
-  load('SCI/modules/scicos/macros/scicos_menus/lib')
-end
-
-if exists('scicos_scicoslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-end
-
-if exists('scicos_autolib')==0 then
-    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-end
-
-if exists('scicos_utilslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
-end
-
-// Define Scicos data tables ===========================================
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
-  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
-// =====================================================================
-
-if ~exists("scicos_diagram") then
-    loadXcosLibs();
-end
-
+    if ~exists("scicos_diagram") then
+        loadXcosLibs();
+    end
   funcprot(prot);
-  //-- end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-   xcos_workspace_init()
+  xcos_workspace_init()
 
  
 //** extract tolerances from scs_m.props.tol

@@ -380,7 +380,6 @@ param3d1
 part
 pathconvert
 pathsep
-permutobj
 phase_simulation
 plot2d
 plot2d1

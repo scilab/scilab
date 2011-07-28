@@ -1,4 +1,0 @@
-//Demonstrate function plzr
-xinit('plot4.ps');
-exec('SCI/doc/signal/Nsource_diary/Splot4.code')
-xend(),

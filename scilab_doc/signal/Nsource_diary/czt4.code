@@ -1,4 +1,0 @@
-//exec('czt4.code')
-x=0:9;
-[czx]=czt(x,5,1,%pi/8,1,-%pi/4);
-czx'

@@ -48,14 +48,6 @@ function check_help(dirs)
 		%HELPS=[%helps_modules;%helps];
 		dirs_to_build = %HELPS;
 		clear %HELPS;
-		
-		//----------------------------------------------------------------------
-		// Special case because scicos is not written in xml
-		//----------------------------------------------------------------------
-		scs = grep(dirs_to_build,'scicos');
-		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
-		// End of patch --------------------------------------------------------
-		
 		dirs = gsort(dirs_to_build(:,1),"lr","i");
 	end
 	

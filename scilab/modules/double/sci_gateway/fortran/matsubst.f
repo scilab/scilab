@@ -13,6 +13,10 @@ c
 c     matrix substraction
 
       include 'stack.h'
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
       common /mtlbc/ mmode
 c     
       double precision cstr,csti,sr,si

@@ -1,4 +1,0 @@
- p=poly([1 2 3],'s')
- roots(p)
- q=poly([1 2 3],'s','c')
- coeff(q)

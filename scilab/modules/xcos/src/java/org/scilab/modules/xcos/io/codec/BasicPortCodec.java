@@ -48,7 +48,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 
 	private static final Log LOG = LogFactory.getLog(BasicPortCodec.class);
 	private static final String DATA_TYPE = "dataType";
-    private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE};
+	private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE, "connectedLinkId"};
 
 	/**
 	 * The constructor used on for configuration

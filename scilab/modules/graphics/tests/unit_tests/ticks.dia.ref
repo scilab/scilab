@@ -1,0 +1,120 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test ticks
+a = gca();
+assert_checkequal(typeof(a.x_ticks), "ticks")
+ ans  =
+ 
+  T  
+assert_checkequal(typeof(a.y_ticks), "ticks")
+ ans  =
+ 
+  T  
+assert_checkequal(typeof(a.z_ticks), "ticks")
+ ans  =
+ 
+  T  
+assert_checkequal(a.auto_ticks, ["on" "on" "on"])
+ ans  =
+ 
+  T  
+assert_checkequal(a.view, "2d")
+ ans  =
+ 
+  T  
+assert_checkalmostequal(a.x_ticks.locations, [0:0.1:1]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.x_ticks.labels, ["0.0", string(0.1:0.1:0.9), "1.0"]')
+ ans  =
+ 
+  T  
+assert_checkalmostequal(a.y_ticks.locations, [0:0.1:1]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.y_ticks.labels, ["0.0", string(0.1:0.1:0.9), "1.0"]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.z_ticks.locations, [])
+ ans  =
+ 
+  T  
+assert_checkequal(a.z_ticks.labels, [])
+ ans  =
+ 
+  T  
+newTicks = tlist(["ticks" "locations" "labels"], [0:0.01:1]', string([0:0.01:1])');
+// Change x_ticks
+// auto_ticks wil move to ["off" "on" "on"]
+a.x_ticks = newTicks;
+assert_checkalmostequal(a.x_ticks.locations, [0:0.01:1]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.x_ticks.labels, string([0:0.01:1])')
+ ans  =
+ 
+  T  
+assert_checkequal(a.auto_ticks, ["off" "on" "on"])
+ ans  =
+ 
+  T  
+// Try to change z_ticks
+// View is "2d" => no changes made !!!
+// except auto_ticks wil move to ["off" "on" "off"]
+a.z_ticks = newTicks;
+assert_checkequal(a.z_ticks.locations, [])
+ ans  =
+ 
+  T  
+assert_checkequal(a.z_ticks.labels, [])
+ ans  =
+ 
+  T  
+assert_checkequal(a.auto_ticks, ["off" "on" "off"])
+ ans  =
+ 
+  T  
+// Reset auto_ticks and move to 3d view
+a.auto_ticks = ["on" "on" "on"];
+a.view = "3d";
+assert_checkequal(a.auto_ticks, ["on" "on" "on"])
+ ans  =
+ 
+  T  
+assert_checkequal(a.view, "3d")
+ ans  =
+ 
+  T  
+// z_ticks now have default values
+assert_checkalmostequal(a.z_ticks.locations, [-1:0.2:1]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.z_ticks.labels, ["-1.0", string(-0.8:0.2:-0.2),"0.0", string(0.2:0.2:0.8)  "1.0"]')
+ ans  =
+ 
+  T  
+// Try to change z_ticks
+// auto_ticks wil move to ["on" "on" "off"]
+a.z_ticks = newTicks;
+assert_checkequal(a.auto_ticks, ["on" "on" "off"])
+ ans  =
+ 
+  T  
+assert_checkalmostequal(a.z_ticks.locations, [0:0.01:1]')
+ ans  =
+ 
+  T  
+assert_checkequal(a.z_ticks.labels, [string(0:0.01:1)]')
+ ans  =
+ 
+  T  

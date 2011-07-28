@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "GuiManagement.h"
-#include "../../../shell/includes/scilines.h"
+#include "scilines.h"
 /*--------------------------------------------------------------------------*/
 void setScilabLines(int nbRows, int nbCols)
 {

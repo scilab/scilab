@@ -1,3 +1,0 @@
-xinit('bode7.ps');
-exec('SCI/doc/signal/Nsource_diary/Sbode7.code')
-xend(),

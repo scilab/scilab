@@ -1103,7 +1103,8 @@ pal = xcosPalAddBlock(pal, block, pal_block_img, style);]]></synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <para>
+      <programlisting role="example"><![CDATA[
 loadXcosLibs();
 pal = xcosPal();
 
@@ -1119,7 +1120,9 @@ pal = xcosPalAddBlock(pal, sumPath);
 pal = xcosPalAddBlock(pal, bigSomPath);
 
 xcosPalAdd(pal);]]></programlisting>
-    <programlisting role="example"><![CDATA[
+    </para>
+    <para>
+      <programlisting role="example"><![CDATA[
 loadXcosLibs;
 //Create a simple custom block.
 function [x,y,typ]=MyBlock(job,arg1,arg2)
@@ -1144,13 +1147,56 @@ export_to_hdf5(TMPDIR + "/MyBlock.h5", "scs_m");
 //create a new palette
 pal = xcosPal("My palette");
 //add block to this palette using e.g. RAMP icon
-pal = xcosPalAddBlock(pal, TMPDIR + "/MyBlock.h5", "SCI\modules\xcos\images\palettes\RAMP.png", "SCI\modules\xcos\images\blocks\RAMP.svg");
+pal = xcosPalAddBlock(pal,..
+        TMPDIR + "/MyBlock.h5",..
+        SCI + "/modules/xcos/images/palettes/RAMP.png",..
+        SCI + "/modules/xcos/images/blocks/RAMP.svg");
 
 //deploy palette
 xcosPalAdd(pal);]]></programlisting>
+    </para>
+    <para>
+      <programlisting role="example"><![CDATA[
+loadXcosLibs;
+//Create a simple custom block.
+function [x,y,typ]=MyBlock(job,arg1,arg2)
+  x=[];y=[];typ=[];
+  select job
+    case 'set' then
+      x=arg1;
+      messagebox('No settings for a MyBlock block type');
+    case 'define' then
+      model = scicos_model();
+      model.sim = list('ramp',4);
+      model.blocktype = 'c';
+      model.out = 1;
+      x=standard_define([2 2],model,[],[])
+  end
+endfunction
+
+// Customize the style
+style = struct();
+style.fillColor="red";
+style.image="file://" + SCI + "/modules/xcos/images/blocks/RAMP.svg";
+
+//create an instance of a new block
+scs_m = MyBlock("define");
+export_to_hdf5(TMPDIR + "/MyBlock.h5", "scs_m");
+
+//create a new palette
+pal = xcosPal("My palette");
+//add block to this palette using e.g. RAMP icon
+pal = xcosPalAddBlock(pal,..
+        TMPDIR + "/MyBlock.h5",..
+        SCI + "/modules/xcos/images/palettes/RAMP.png",..
+        style);
+
+//deploy palette
+xcosPalAdd(pal);]]></programlisting>
+    </para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xcosPal">xcosPal</link>

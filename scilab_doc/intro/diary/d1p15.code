@@ -1,7 +1,0 @@
-//Saving the environment in a file named : myfile
-save('myfile')
-//Request to the host system to perform a system command
-unix_s('rm myfile')   //unix_s('del myfile');
-//Request to the host system with output in this Scilab window
-unix_w('date')    //unix_w('dir')
-

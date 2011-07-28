@@ -24,6 +24,7 @@
 #include "ScilabLinesUpdate.h"
 #include "GetCharWithoutOutput.h"
 #include "ConsoleIsWaitingForInput.h"
+#include "scilines.h"
 /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
@@ -63,7 +64,8 @@ BOOL SetConsolePrompt(char *Sci_prompt)
 /*--------------------------------------------------------------------------*/
 BOOL InitializeConsole(void)
 {
-    return FALSE;
+    scilinesdefault();
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL ConsoleIsWaitingForInput(void)

@@ -1,8 +1,0 @@
-//exec('cheb2.code')
-n=10;
-omegar=6;
-A=1/0.2;
-[z,p,gain]=zpch2(n,A,omegar);
-num=real(poly(z,'s'));   //Numerator
-den=real(poly(p,'s'));   //Denominator
-transf=gain*num./den    //Transfer function

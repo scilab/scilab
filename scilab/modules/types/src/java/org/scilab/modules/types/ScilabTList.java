@@ -30,6 +30,8 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 
 	private static final long serialVersionUID = 8080160982092586620L;
 
+	private ScilabTypeEnum type = ScilabTypeEnum.sci_tlist;
+
 	/**
 	 * Construct an empty tlist.
 	 * 
@@ -72,6 +74,15 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 		addAll(c);
 	}
 	
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType() {
+        return type;
+    }
+
 	/**
 	 * @return 1 when there is data on the list, 0 otherwise.
 	 * @see org.scilab.modules.types.ScilabType#getHeight()

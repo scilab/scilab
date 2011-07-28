@@ -1,6 +1,0 @@
-//exec('fir9.code')
- xinit('fir9.ps')
-[wft,wfm,fr]=wfir('bp',55,[.15 .35],'ch',[.001 -1]);
-plot(fr,log(wfm))
-xend();
-

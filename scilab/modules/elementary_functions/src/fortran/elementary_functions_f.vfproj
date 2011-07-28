@@ -112,10 +112,6 @@ lib /DEF:&quot;$(InputDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<File RelativePath=".\d1mach.f"/>
 		<File RelativePath=".\dad.f"/>
 		<File RelativePath=".\dadd.f"/>
-		<File RelativePath=".\dbesig.f"/>
-		<File RelativePath=".\dbesjg.f"/>
-		<File RelativePath=".\dbeskg.f"/>
-		<File RelativePath=".\dbesyg.f"/>
 		<File RelativePath=".\dclmat.f"/>
 		<File RelativePath=".\ddif.f"/>
 		<File RelativePath=".\ddpow.f"/>
@@ -175,11 +171,7 @@ lib /DEF:&quot;$(InputDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<File RelativePath=".\rat.f"/>
 		<File RelativePath=".\rcopy.f"/>
 		<File RelativePath=".\rcsort.f"/>
-		<File RelativePath=".\ribesl.f"/>
-		<File RelativePath=".\rjbesl.f"/>
-		<File RelativePath=".\rkbesl.f"/>
 		<File RelativePath=".\round.f"/>
-		<File RelativePath=".\rybesl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_abs.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_acos.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_asin.f"/>
@@ -269,12 +261,7 @@ lib /DEF:&quot;$(InputDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<File RelativePath=".\wwpow.f"/>
 		<File RelativePath=".\wwpow1.f"/>
 		<File RelativePath=".\wwpowe.f"/>
-		<File RelativePath=".\wwrdiv.f"/>
-		<File RelativePath=".\zbeshg.f"/>
-		<File RelativePath=".\zbesig.f"/>
-		<File RelativePath=".\zbesjg.f"/>
-		<File RelativePath=".\zbeskg.f"/>
-		<File RelativePath=".\zbesyg.f"/></Filter>
+		<File RelativePath=".\wwrdiv.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/>

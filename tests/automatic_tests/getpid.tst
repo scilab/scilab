@@ -1,9 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/getpid_data.ref','rb');
-d = 'SD_' + string(getpid()) + '_';
-if load_ref_nocheck('d') then   pause,end,
-
-xdel_run(winsid());
-
-mclose(%U);

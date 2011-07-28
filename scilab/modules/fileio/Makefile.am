@@ -133,7 +133,7 @@ libscifileio_algo_la_CFLAGS = $(libscifileio_la_CFLAGS)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
-# pb of order $(top_builddir)/modules/shell/libscishell.la
+# pb of order $(top_builddir)/modules/console/libsciconsole.la
 libscifileio_la_LIBADD = libscifileio-algo.la \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \

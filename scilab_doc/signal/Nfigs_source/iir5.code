@@ -1,7 +1,0 @@
-xinit('iir5.ps')
-hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
-fr=0:.002:.5;
-hzm=abs(freq(hz(2),hz(3),exp(2*%pi*%i*fr)));
-plot(fr,hzm)
-xend()
-

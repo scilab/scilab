@@ -11,7 +11,6 @@
  */
 #include "InitScilab.h"
 #include "InitializeCore.h"
-#include "../../../shell/includes/InitializeShell.h"
 #include "../../../console/includes/InitializeConsole.h"
 #include "../../../tclsci/includes/InitializeTclTk.h"
 #include "../../../localization/includes/InitializeLocalization.h"
@@ -41,26 +40,26 @@ int C2F(initscilab)(void)
 
     InitializeCore();
 
-    InitializeShell();
-
     if ( getScilabMode() != SCILAB_NWNI )
-    {
-        InitializeJVM();
+	{
+		InitializeJVM();
 
-        /* create needed data structure if not already created */
-        loadGraphicModule() ;
+		/* create needed data structure if not already created */
+		loadGraphicModule() ;
 
-        InitializeGUI();
+		InitializeGUI();
 
-        /* Standard mode -> init Java Console */
-        if ( getScilabMode() == SCILAB_STD )
-        {
-            /* Initialize console: lines... */
-            InitializeConsole();
-        }
-
-        loadBackGroundClassPath();
+		/* create needed data structure if not already created */
+		loadGraphicModule() ;
     }
-    return 0;
+
+    /* Initialize console: lines... */
+    InitializeConsole();
+
+	if ( getScilabMode() != SCILAB_NWNI )
+    {
+		loadBackGroundClassPath();
+	}
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

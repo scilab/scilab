@@ -138,7 +138,7 @@ m2sci_info(gettext("M-file reading: Done"),-1);
 txt=strsubst(txt,code2str(-40),"")
 
 if txt==[] then
-  m2sci_infos(msprintf(gettext("File %s is an empty file ! Nothing done..."),fil),-1);
+  m2sci_infos(msprintf(gettext("File %s is an empty file.\n"),fil),-1);
   return
 end
 tmptxt=txt

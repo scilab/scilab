@@ -27,8 +27,6 @@
    \brief Source Code for Misc function (not only for the sco lib)
 */
 /*--------------------------------------------------------------------------*/
-#include <stdlib.h>
-
 #include "scoBase.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
@@ -65,29 +63,5 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 	}
 
 	set_block_error(-16);
-}
-
-/*--------------------------------------------------------------------------*/
-/* permut pobj_1/pobj_2 ptrs coming from
-* pparent_1/pparent_2 hdl(s)
-*/
-int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
-			  sciPointObj *pobj_2, sciPointObj *pparent_2)
-{
-    abort();
-// ???
-#if 0
-	sciSons *OneSon, *OneSon2;
-
-	OneSon=(sciGetRelationship (pparent_1)->psons);
-	while (OneSon->pointobj!=pobj_1)
-		OneSon=(sciSons *)OneSon->pnext;
-	OneSon2=(sciGetRelationship (pparent_2)->psons);
-	while (OneSon2->pointobj!=pobj_2)
-		OneSon2=(sciSons *)OneSon2->pnext;
-	OneSon->pointobj=pobj_2;
-	OneSon2->pointobj=pobj_1;
-#endif
-	return 0;
 }
 /*--------------------------------------------------------------------------*/

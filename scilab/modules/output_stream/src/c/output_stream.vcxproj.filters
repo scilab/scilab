@@ -213,9 +213,6 @@
     <None Include="Scilab_Windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Shell_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="String_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

@@ -1,7 +1,0 @@
-xinit('d1-7.ps');
-exec('d1-4.code',-1);
-exec('d1-5.code',-1);
-f21=f(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
-response=freq(f21(2),f21(3),frequencies);
-plot2d(v,abs(response),rect=[0,0,3.5,0.7],nax=[5,4,5,7]);
-xtitle(' ','radians','magnitude');

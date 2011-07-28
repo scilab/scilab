@@ -1,6 +1,0 @@
-getf("../macros/make_macro.sci");
-s=poly(0,'s');
-t=poly(0,'t');
-p=list(t^2+2*t^3,-t-t^2,t,1+0*t);
-pst=makefunction(p)
-pst(1)

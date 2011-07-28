@@ -17,23 +17,6 @@ function [%DAEOPTIONS] = daeoptions(%DAEOPTIONS)
 // This variables sets a number of optional parameters 
 // for the lsod* fortran routines.
 
-//** This function can be (ab)used from the Scilab command line and 
-//** inside a Scicos "context". In order to handle the different situations,
-//** the required library are loaded if not already present in the 
-//** "semiglobal-local-environment".  
-
-//if exists('scicos_scicoslib')==0 then
-//    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-//end
-
-//if exists('scicos_autolib')==0 then
-//    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-//end
-
-//if exists('scicos_utilslib')==0 then
-//    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
-//end
-
   //options = [1,0,0,%inf,0,2,500,12,5,0,-1,-1];
   options = list ([],0,[],[],[],0,0);
   //default = [string(options(1:10)),sci2exp(options(11:12))]

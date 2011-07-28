@@ -1,5 +1,5 @@
 
-DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
+DUMPEXTS="$(SCIDIR)\bin\dumpexts"
 SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 all :: $(LIBRARY).dll

@@ -1,4 +1,0 @@
-a=[0 1 0;0 0 0;0 0 1]
-x=rand(3,3)
-a=x\a*x
-[ab,x,bs]=bdiag(a)

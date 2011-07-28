@@ -1,9 +1,0 @@
- s=poly(0,'s')
- ft=syslin('c',1/(s-1))
- fs=tf2ss(ft);
- ssprint(fs)
- f2=fs+fs;
- ssprint(f2)
- a=f2(2)
- b=f2(3)
- contr(a,b)

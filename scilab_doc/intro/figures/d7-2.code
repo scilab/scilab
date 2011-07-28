@@ -1,5 +1,0 @@
-xinit('d7-2.ps');
- t=(0:.05:1)';ct=0.2*cos(2*%pi*t);st=0.2*sin(2*%pi*t);
- plot2d(t,0.2*st,style=[-1,1],leg='0.2sin(t) ',rect=[0,-1,1,1]);
- plot2d(t,ct    ,style=[-2,4],leg='0.3cos(t) ');
-

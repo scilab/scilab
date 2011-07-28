@@ -1,4 +1,0 @@
-//exec('remez8.code')
-hn(1:nc-1)=an(nc:-1:2)/2;
-hn(nc)=an(1);
-hn(nc+1:2*nc-1)=an(2:nc)/2;

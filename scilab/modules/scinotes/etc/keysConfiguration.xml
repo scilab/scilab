@@ -23,8 +23,8 @@
   <entry key="CopyAsHTMLAction">OSSCKEY C</entry>
   <entry key="CutAction">OSSCKEY X</entry>
   <entry key="PasteAction">OSSCKEY V</entry>
-  <entry key="PasteColumnAction">control shift V</entry>
-  <entry key="RepeatSelectionOnColumnAction">control shift Z</entry>
+  <entry key="PasteColumnAction">OSSCKEY shift V</entry>
+  <entry key="RepeatSelectionOnColumnAction">OSSCKEY shift Z</entry>
   <entry key="UndoAction">OSSCKEY Z</entry>
   <entry key="RedoAction">OSSCKEY Y</entry>
 
@@ -70,8 +70,8 @@
   <entry key="HelpAction">F1</entry>
   <entry key="AboutAction">shift F1</entry>
 
-  <entry key="NextTabAction">ctrl PAGE_UP</entry>
-  <entry key="PreviousTabAction">ctrl PAGE_DOWN</entry>
+  <entry key="NextTabAction">OSSCKEY PAGE_DOWN</entry>
+  <entry key="PreviousTabAction">OSSCKEY PAGE_UP</entry>
 
   <entry key="DeleteAction">DELETE</entry>
 

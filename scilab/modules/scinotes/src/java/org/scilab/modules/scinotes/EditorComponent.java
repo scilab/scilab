@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import org.scilab.modules.scinotes.utils.ScilabScrollPane;
+
 /**
  * @author Calixte DENIZET
  */
@@ -38,7 +40,7 @@ public class EditorComponent extends JPanel {
     public EditorComponent(ScilabEditorPane editor) {
         super(new BorderLayout());
         this.editor = editor;
-        scroll = new JScrollPane(editor);
+        scroll = new ScilabScrollPane(editor);
         add(scroll);
     }
 

@@ -184,7 +184,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.svg"/>
   </add>
   <add as="Modulo_Count" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="displayedLabel" value="Counter&lt;BR&gt;Modulo %2$s"/>
   </add>
   <add as="Sigbuilder" extend="blockWithLabel">
@@ -197,7 +196,7 @@
     <add as="displayedLabel" value="TK Scale"/>
   </add>
   <add as="FROMWSB" extend="blockWithLabel">
-    <!-- FIXME : Show workspace under block  -->
+    <!-- FIXME: update label from parameters (not as exprs) -->
     <add as="displayedLabel" value="From workspace"/>
   </add>
   <!-- CONTINUOUS -->
@@ -402,17 +401,16 @@
     <add as="displayedLabel" value="Modelica&lt;BR;&gt;         generic"/>
   </add>
   <add as="FROMMO" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="%s"/>
   </add>
   <add as="GOTOMO" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
+    <add as="displayedLabel" value="%s"/>
   </add>
   <add as="GotoTagVisibilityMO" extend="blockWithLabel">
-    <!-- TODO: icon to be verified -->
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{%s}&lt;/FONT&gt;"/>
     <add as="shape" value="ellipse"/>
     <add as="strokeColor" value="green"/>
@@ -424,26 +422,23 @@
   </add>
   <!-- INTEGER -->
   <add as="BITCLEAR" extend="blockWithLabel">
-    <add as="displayedLabel" value="Clear bit"/>
-    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Clear bit %2$s"/>
   </add>
   <add as="BITSET" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
-    <add as="displayedLabel" value="Set bit"/>
+    <add as="displayedLabel" value="Set bit %2$s"/>
   </add>
   <add as="CONVERT" extend="blockWithLabel">
+    <!-- FIXME: update label from parameters -->
     <add as="displayedLabel" value="Convert to"/>
-    <!-- FIXME : Show parameters over block  -->
   </add>
   <add as="EXTRACTBITS" extend="blockWithLabel">
-    <add as="displayedLabel" value="Extract Bits"/>
-    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Extract Bits %2$s"/>
   </add>
   <add as="INTMUL" extend="blockWithLabel">
     <add as="displayedLabel" value="INTMUL"/>
   </add>
   <add as="SHIFT" extend="blockWithLabel">
-    <add as="displayedLabel" value="Arithmetic&lt;BR&gt;         shift"/>
+    <add as="displayedLabel" value="Arithmetic&lt;BR&gt;         shift %2$s"/>
   </add>
   <add as="LOGIC" extend="blockWithLabel">
     <add as="displayedLabel" value="LOGIC"/>
@@ -529,7 +524,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg"/>
   </add>
   <add as="TOWS_c" extend="blockWithLabel">
-    <!-- FIXME : Show workspace under block  -->
     <add as="displayedLabel" value="To workspace&lt;BR&gt;%2$s [%1$s]"/>
   </add>
   <add as="CMAT3D" extend="blockWithLabel">
@@ -617,8 +611,7 @@
     <add as="spacingRight" value="6"/>
   </add>
   <add as="EVTGEN_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="Event at&lt;BR&gt;         time 0"/>
-    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Event at&lt;BR&gt;         time %s"/>
   </add>
   <add as="EVTVARDLY" extend="blockWithLabel">
     <add as="displayedLabel" value="Event&lt;BR&gt;         delay"/>
@@ -639,8 +632,7 @@
     <add as="displayedLabel" value="LOGICAL&lt;BR&gt;         AND"/>
   </add>
   <add as="EVTDLY_c" extend="blockWithLabel">
-    <add as="displayedLabel" value="Delay"/>
-    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="Delay: %s"/>
   </add>
   <add as="CEVENTSCOPE" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.svg"/>
@@ -666,8 +658,7 @@
     <add as="displayedLabel" value="Control&lt;BR&gt;         M_Port&lt;BR&gt;         Switch"/>
   </add>
   <add as="SWITCH_f" extend="blockWithLabel">
-    <add as="displayedLabel" value="SWITCH&lt;BR&gt;         1"/>
-    <!-- FIXME : Show parameters over block  -->
+    <add as="displayedLabel" value="SWITCH&lt;BR&gt;         %1$s"/>
   </add>
   <add as="SWITCH2_m" extend="blockWithLabel">
     <add as="displayedLabel" value="SWITCH"/>
@@ -786,7 +777,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.svg"/>
   </add>
   <add as="VsourceAC" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="textAlign" value="center"/>
@@ -799,7 +789,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.svg"/>
   </add>
   <add as="SineVoltage" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="shape" value="ellipse"/>
     <add as="perimeter" value="ellipsePerimeter"/>
     <add as="displayedLabel" value="%s V&lt;br/&gt;~"/>
@@ -907,7 +896,6 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.svg"/>
   </add>
   <add as="Counter" extend="blockWithLabel">
-    <!-- FIXME : Show parameters over block  -->
     <add as="displayedLabel" value="Counter&lt;BR&gt;%s &amp;#8594; %s"/>
   </add>
   <add as="CLOCK_f" extend="Icon">

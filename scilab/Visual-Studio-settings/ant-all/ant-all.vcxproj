@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -73,9 +73,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -99,9 +98,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -126,9 +124,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -158,9 +155,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -184,9 +180,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -211,9 +206,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -243,9 +237,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -269,9 +262,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -296,9 +288,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -328,9 +319,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -354,9 +344,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -381,9 +370,8 @@ set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\graphic_objects &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean

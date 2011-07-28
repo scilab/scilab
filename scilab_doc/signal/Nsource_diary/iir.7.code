@@ -1,5 +1,0 @@
-//exec('iir.7.ex')
-exec('iir.6.code');
-fr=0:.05:3*%pi;
-hsm=abs(freq(hs(2),hs(3),%i*fr));
-plot(fr,hsm)

@@ -1,7 +1,0 @@
-//exec('fft1.code')
-y1=matrix(1:6,2,3)
-y2=matrix(7:12,2,3)
-y=matrix([y1,y2],1,12)
-yf=mfft(y,-1,[2 3 2])
-yf1=matrix(yf(1:6),2,3)
-yf2=matrix(yf(7:12),2,3)

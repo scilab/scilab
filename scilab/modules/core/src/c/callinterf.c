@@ -88,7 +88,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 50  */ {gw_localization},
     /* 51  */ {gw_fftw},
     /* 52  */ {gw_jvm},
-    /* 53  */ {gw_shell},
+    /* 53  */ {gw_console},
     /* 54  */ {gw_completion},
     /* 55  */ {gw_history_manager},
     /* 56  */ {gw_dynamic_spreadsheet},

@@ -1,2 +1,0 @@
-  [ce0,f0,ze0,po0]=eqiir('lp','ellip',%pi*[.5;.65;0;0],.1,.01);
-  hz0=f0*prod(ce0(2))./prod(ce0(3))

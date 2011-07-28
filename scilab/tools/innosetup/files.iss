@@ -43,7 +43,6 @@
 #include BinariesSourcePath + "\modules\completion\completion.iss"
 #include BinariesSourcePath + "\modules\history_manager\history_manager.iss"
 #include BinariesSourcePath + "\modules\action_binding\action_binding.iss"
-#include BinariesSourcePath + "\modules\shell\shell.iss"
 #include BinariesSourcePath + "\modules\console\console.iss"
 #include BinariesSourcePath + "\modules\special_functions\special_functions.iss"
 #include BinariesSourcePath + "\modules\linear_algebra\linear_algebra.iss"
