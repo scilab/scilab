@@ -250,7 +250,7 @@ void Fac3DDecomposer::fillConstantColors(float* buffer, int bufferLength, int el
 
     float color[3];
 
-    ColorComputer::getDirectColor(colorValue - 1.0, colormap, colormapSize, color);
+    ColorComputer::getClampedDirectColor(colorValue - 1.0, colormap, colormapSize, color);
 
     for (i = 0; i < numGons*numVerticesPerGon; i++)
     {
@@ -362,7 +362,7 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
             if (dataMapping == 1)
             {
                 double tmpColor = DecompositionUtils::getAbsoluteValue(color);
-                ColorComputer::getDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
+                ColorComputer::getClampedDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
             }
             else if (dataMapping == 0)
             {

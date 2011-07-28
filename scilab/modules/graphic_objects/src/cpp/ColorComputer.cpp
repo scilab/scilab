@@ -18,7 +18,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colorMap, int colormapSize, float* returnedColor)
+void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colormap, int colormapSize, float* returnedColor)
 {
     double value;
     int index;
@@ -36,12 +36,12 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
         index = colormapSize - 1;
     }
 
-    returnedColor[0] = colorMap[index];
-    returnedColor[1] = colorMap[colormapSize+index];
-    returnedColor[2] = colorMap[2*colormapSize+index];
+    returnedColor[0] = colormap[index];
+    returnedColor[1] = colormap[colormapSize+index];
+    returnedColor[2] = colormap[2*colormapSize+index];
 }
 
-void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colorMap, int minIndex, int maxIndex, int colormapSize, float* returnedColor)
+void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colormap, int minIndex, int maxIndex, int colormapSize, float* returnedColor)
 {
     double value;
     int index;
@@ -59,12 +59,45 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
         index = maxIndex;
     }
 
-    returnedColor[0] = colorMap[index];
-    returnedColor[1] = colorMap[colormapSize+index];
-    returnedColor[2] = colorMap[2*colormapSize+index];
+    returnedColor[0] = colormap[index];
+    returnedColor[1] = colormap[colormapSize+index];
+    returnedColor[2] = colormap[2*colormapSize+index];
 }
 
-void ColorComputer::getDirectColor(double s, double* colorMap, int colormapSize, float* returnedColor)
+void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)
+{
+    int index;
+
+    if (s <= (double) BLACK_LOWER_INDEX)
+    {
+        /* Clamp to white */
+        returnedColor[0] = MAX_COMPONENT_VALUE;
+        returnedColor[1] = MAX_COMPONENT_VALUE;
+        returnedColor[2] = MAX_COMPONENT_VALUE;
+    }
+    else if (((double) BLACK_LOWER_INDEX < s) && (s < (double) BLACK_UPPER_INDEX))
+    {
+        /* Black */
+        returnedColor[0] = MIN_COMPONENT_VALUE;
+        returnedColor[1] = MIN_COMPONENT_VALUE;
+        returnedColor[2] = MIN_COMPONENT_VALUE;
+    }
+    else
+    {
+        if (s > (double)(colormapSize - 1))
+        {
+            s = (double) (colormapSize - 1);
+        }
+
+        index = (int) s;
+
+        returnedColor[0] = colormap[index];
+        returnedColor[1] = colormap[colormapSize+index];
+        returnedColor[2] = colormap[2*colormapSize+index];
+    }
+}
+
+void ColorComputer::getClampedDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)
 {
     int index;
 
@@ -80,8 +113,8 @@ void ColorComputer::getDirectColor(double s, double* colorMap, int colormapSize,
 
     index = (int) s;
 
-    returnedColor[0] = colorMap[index];
-    returnedColor[1] = colorMap[colormapSize+index];
-    returnedColor[2] = colorMap[2*colormapSize+index];
+    returnedColor[0] = colormap[index];
+    returnedColor[1] = colormap[colormapSize+index];
+    returnedColor[2] = colormap[2*colormapSize+index];
 }
 

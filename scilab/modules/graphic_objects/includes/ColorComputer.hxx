@@ -52,18 +52,31 @@ public :
      * @param[in] the index specifying the colormap sub-interval's upper bound.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      */
-    static void getColor(double s, double smin, double srange, double indexOffset, double* colorMap, int minIndex, int maxIndex,
+    static void getColor(double s, double smin, double srange, double indexOffset, double* colormap, int minIndex, int maxIndex,
         int colormapSize, float* returnedColor);
 
     /**
      * Outputs an RGB color directly mapped to a scalar value s.
      * The output color is looked up in an RGB colormap, using s as a direct index.
+     * White and black are respectively output when s <= -3 and -3 < s < 0 ; s is also
+     * clamped to the colormap's upper bound (colormapSize-1).
      * @param[in] the scalar value used as an index.
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      */
-    static void getDirectColor(double s, double* colorMap, int colorMapSize, float* returnedColor);
+    static void getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
+
+    /**
+     * Outputs an RGB color directly mapped to a scalar value s.
+     * The output color is looked up in an RGB colormap, using s as a direct index,
+     * which is clamped to the colormap bounds, that is [0, colormapSize-1] .
+     * @param[in] the scalar value used as an index.
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     */
+    static void getClampedDirectColor(double s, double* colormap, int colormapSize, float* returnedColor);
 };
 
 /**
@@ -75,5 +88,24 @@ public :
  * Offset passed to the getColor function for linearly mapped colors.
  */
 #define COLOR_OFFSET      0.1
+
+/**
+ * Special color index values.
+ */
+enum SpecialColorIndexValues {
+    WHITE_LOWER_INDEX = -4,
+    BLACK_LOWER_INDEX = -3,
+    BLACK_UPPER_INDEX = 0
+};
+
+/**
+ * The minimum value of a single R, G or B component.
+ */
+#define MIN_COMPONENT_VALUE    0.0
+
+/**
+ * The maximum value of a single R, G or B component.
+ */
+#define MAX_COMPONENT_VALUE    1.0
 
 #endif
