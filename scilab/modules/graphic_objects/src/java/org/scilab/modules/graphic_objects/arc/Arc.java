@@ -69,7 +69,7 @@ public class Arc extends ClippableContouredObject {
 	public Arc() {
 		super();
 		arcDrawingMethod = ArcDrawingMethod.LINES;
-		upperLeftPoint = new double[3];
+		upperLeftPoint = new double[] {0, 0, 0};
 		width = 0.0;
 		height = 0.0;
 		startAngle = 0.0;
@@ -77,8 +77,9 @@ public class Arc extends ClippableContouredObject {
 	}
 
 	public Arc clone() {
-	    Object copy = super.clone();
-	    return (Arc) copy;
+		Arc copy = (Arc) super.clone();
+	    copy.upperLeftPoint = new double[] {0, 0, 0};
+	    return copy;
 	}
 
     @Override
