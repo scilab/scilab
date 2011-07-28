@@ -138,7 +138,7 @@ public class XcosDiagram extends ScilabGraph {
 	private final transient CompilationEngineStatus engine;
 	
     //private Window palette;
-    private Tab viewPort;
+    private SwingScilabTab viewPort;
 
     private CheckBoxMenuItem viewPortMenu;
 	
@@ -1650,7 +1650,7 @@ public class XcosDiagram extends ScilabGraph {
      * Set the associated ViewPort
      * @param viewPort the Viewport
      */
-    public void setViewPort(final Tab viewPort) {
+    public void setViewPort(final SwingScilabTab viewPort) {
 	this.viewPort = viewPort;
     }
 
@@ -1658,7 +1658,7 @@ public class XcosDiagram extends ScilabGraph {
      * Get the associated ViewPort
      * @return the Viewport
      */
-    public Tab getViewPort() {
+    public SwingScilabTab getViewPort() {
 	return viewPort;
     }
 
@@ -1668,8 +1668,7 @@ public class XcosDiagram extends ScilabGraph {
      */
 	public void setViewPortVisible(final boolean status) {
 		final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-				.get(((SwingScilabTab) viewPort.getAsSimpleTab())
-						.getParentWindowId());
+				.get(viewPort.getParentWindowId());
 
 		// Hide/Show parent window if the viewport is the only tab
 		if (win.getNbDockedObjects() == 1) {
@@ -1724,11 +1723,11 @@ public class XcosDiagram extends ScilabGraph {
 			// Ask the user want he want to do !
 			final AnswerOption answer;
 			if (force) {
-				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(),
+				answer = ScilabModalDialog.show(getParentTab(),
 						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO);
 			} else {
-				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(),
+				answer = ScilabModalDialog.show(getParentTab(),
 						XcosMessages.DIAGRAM_MODIFIED, XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
 			}
@@ -1761,12 +1760,12 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void close() {
 		if (getParentTab() != null) {
-			SwingScilabWindow.allScilabWindows.get(((SwingScilabTab) getParentTab().getAsSimpleTab()).getParentWindowId()).close(); 
+			SwingScilabWindow.allScilabWindows.get(getParentTab().getParentWindowId()).close(); 
 			setParentTab(null);
 		}
 		
 		if (viewPort != null) {
-			SwingScilabWindow.allScilabWindows.get(((SwingScilabTab) viewPort.getAsSimpleTab()).getParentWindowId()).close(); 
+			SwingScilabWindow.allScilabWindows.get(viewPort.getParentWindowId()).close(); 
 		    viewPort = null;
 		}
 	}
@@ -2030,7 +2029,7 @@ public class XcosDiagram extends ScilabGraph {
 		} else {
 			AnswerOption answer;
 			try {
-				answer = ScilabModalDialog.show(getParentTab().getAsSimpleTab(), String.format(
+				answer = ScilabModalDialog.show(getParentTab(), String.format(
 						XcosMessages.FILE_DOESNT_EXIST,
 						diagram.getCanonicalFile()), XcosMessages.XCOS,
 						IconType.QUESTION_ICON, ButtonType.YES_NO);

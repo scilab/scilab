@@ -232,10 +232,10 @@ public final class PaletteBlockCtrl {
 						throw new InvalidDnDOperationException();
 					}
 				} catch (InvalidDnDOperationException exception) {
-					ScilabModalDialog.show(winView.getAsSimpleTab(), msg,
+					ScilabModalDialog.show(winView, msg,
 							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 				} catch (ScicosFormatException ex) {
-					ScilabModalDialog.show(winView.getAsSimpleTab(), ex.getMessage(),
+					ScilabModalDialog.show(winView, ex.getMessage(),
 							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 				} finally {
 					winView.setInfo(XcosMessages.EMPTY_INFO);

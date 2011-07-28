@@ -25,9 +25,6 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.graph.view.ScilabGraphView;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
 
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
@@ -52,7 +49,7 @@ import com.mxgraph.view.mxGraphView;
  * Represent the base diagram of Xcos.
  * 
  * It performs generic operations like undo/redo management, action clean-up,
- * modification state management, Tab association, etc...
+ * modification state management, SwingScilabTab association, etc...
  */
 public class ScilabGraph extends mxGraph {
 	/**
@@ -65,7 +62,7 @@ public class ScilabGraph extends mxGraph {
 	private String title = ScilabGraphMessages.UNTITLED;
 	private File savedFile;
 	private boolean modified;
-	private Tab parentTab;
+	private SwingScilabTab parentTab;
 	private boolean opened;
 	private boolean readOnly;
 
@@ -210,7 +207,7 @@ public class ScilabGraph extends mxGraph {
 	}
 
 	/**
-	 * @return The current Tab title
+	 * @return The current SwingScilabTab title
 	 */
 	public String getTitle() {
 		return title;
@@ -238,23 +235,23 @@ public class ScilabGraph extends mxGraph {
 	}
 
 	/**
-	 * @return The associated Tab
+	 * @return The associated SwingScilabTab
 	 */
-	public Tab getParentTab() {
+	public SwingScilabTab getParentTab() {
 		return parentTab;
 	}
 
 	/**
-	 * @param parentTab
-	 *            The new associated Tab
+	 * @param parentSwingScilabTab
+	 *            The new associated SwingScilabTab
 	 */
-	public void setParentTab(Tab parentTab) {
+	public void setParentTab(SwingScilabTab parentTab) {
 		this.parentTab = parentTab;
 	}
 
 	/**
 	 * The instance can be not visible but used (when using SuperBlock). The
-	 * openned flag is true in this case and also when the Window/Tab is
+	 * openned flag is true in this case and also when the Window/SwingScilabTab is
 	 * visible.
 	 * 
 	 * @param opened
@@ -272,7 +269,7 @@ public class ScilabGraph extends mxGraph {
 	}
 
 	/**
-	 * Set the associated Window/Tab visible or not.
+	 * Set the associated Window/SwingScilabTab visible or not.
 	 * 
 	 * @param visible
 	 *            State of visibility
@@ -280,22 +277,20 @@ public class ScilabGraph extends mxGraph {
 	public void setVisible(boolean visible) {
 		if (parentTab != null) {
 			final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-					.get(((SwingScilabTab) parentTab.getAsSimpleTab())
-							.getParentWindowId());
+					.get(parentTab.getParentWindowId());
 			win.setVisible(visible);
 		}
 	}
 
 	/**
-	 * Check if the associated Window/Tab is visible
+	 * Check if the associated Window/SwingScilabTab is visible
 	 * 
 	 * @return State of visibility
 	 */
 	public boolean isVisible() {
 		if (parentTab != null) {
 			final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-					.get(((SwingScilabTab) parentTab.getAsSimpleTab())
-							.getParentWindowId());
+					.get(parentTab.getParentWindowId());
 			return win.isVisible();
 		}
 

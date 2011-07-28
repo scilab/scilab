@@ -406,9 +406,7 @@ public final class Xcos {
 
 		if (instance.palette.getView() != null 
 				&& instance.palette.getView().isVisible()) {
-			SwingScilabWindow.allScilabWindows.get(
-					((SwingScilabTab) instance.palette.getView()
-							.getAsSimpleTab()).getParentWindowId()).close();
+			SwingScilabWindow.allScilabWindows.get(instance.palette.getView().getParentWindowId()).close();
 			instance.palette.setView(null);
 		}
 		

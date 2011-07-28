@@ -38,6 +38,8 @@ import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -47,16 +49,11 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.tab.ScilabTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.AboutXcosAction;
 import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CloseViewportAction;
@@ -121,7 +118,7 @@ import com.mxgraph.swing.mxGraphOutline;
  */
 //CSOFF: ClassFanOutComplexity
 //CSOFF: ClassDataAbstractionCoupling
-public class XcosTab extends ScilabTab {
+public class XcosTab extends SwingScilabTab {
 
 	static {
 		DefaultAction.addIconPath(new File(ScilabConstants.SCI,
@@ -173,29 +170,27 @@ public class XcosTab extends ScilabTab {
 
 		initComponents(diagram);
 
-		((SwingScilabTab) getAsSimpleTab())
-				.setWindowIcon(new ImageIcon(
+		setWindowIcon(new ImageIcon(
 						System.getenv("SCI")
 								+ "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png")
 						.getImage());
 
 		// No SimpleTab.addMember(ScilabComponent ...) so perform a raw
 		// association.
-		((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram
+		setContentPane(diagram
 				.getAsComponent());
 
 		// Get the palette window position and align on it.
 		if (PaletteManager.isVisible()) {
 			final SwingScilabWindow palWin = SwingScilabWindow.allScilabWindows
-					.get(((SwingScilabTab) PaletteManager.getInstance()
-							.getView().getAsSimpleTab()).getParentWindowId());
+					.get(PaletteManager.getInstance().getView().getParentWindowId());
 			final Position palPosition = palWin.getPosition();
 			final Size palSize = palWin.getDims();
 			final Position mainPosition = new Position(palPosition.getX()
 					+ palSize.getWidth(), palPosition.getY());
 			
 			final SwingScilabWindow xcosWin = SwingScilabWindow.allScilabWindows
-					.get(((SwingScilabTab) this.getAsSimpleTab()).getParentWindowId());
+					.get(getParentWindowId());
 			
 			xcosWin.setPosition(mainPosition);
 		}
@@ -217,24 +212,23 @@ public class XcosTab extends ScilabTab {
 	 *            the diagram
 	 */
 	private void initComponents(final XcosDiagram diagram) {
-		final Window window = ScilabWindow.createWindow();
+		final SwingScilabWindow window = new SwingScilabWindow();
 
 		final ConfigurationManager manager = ConfigurationManager.getInstance();
 		final PositionType p = manager.getSettings().getWindows().getDiagram();
 
-		window.setDims(new Size(p.getWidth(), p.getHeight()));
-		window.setPosition(new Position(p.getX(), p.getY()));
+		window.setBounds(p.getX(), p.getY(), p.getWidth(), p.getHeight());
 
 		/* Create the menu bar */
 		menuBar = createMenuBar(diagram);
-		addMenuBar(menuBar);
+		setMenuBar(menuBar);
 
 		/* Create the toolbar */
 		final ToolBar toolBar = createToolBar(diagram);
-		addToolBar(toolBar);
+		setToolBar(toolBar);
 
 		/* Create the infoBar */
-		addInfoBar(ScilabTextBox.createTextBox());
+		setInfoBar(ScilabTextBox.createTextBox());
 
 		window.addTab(this);
 	}
@@ -536,13 +530,13 @@ public class XcosTab extends ScilabTab {
 	 *            diagram
 	 */
 	private static void createViewPort(final ScilabGraph xcosDiagramm) {
-		final Window outline = ScilabWindow.createWindow();
-		final Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
+		final SwingScilabWindow outline = new SwingScilabWindow();
+		final SwingScilabTab outlineTab = new SwingScilabTab(XcosMessages.VIEWPORT);
 
 		outlineTab.setCallback(new CloseViewportAction(xcosDiagramm));
 
 		final MenuBar vpMenuBar = ScilabMenuBar.createMenuBar();
-		outlineTab.addMenuBar(vpMenuBar);
+		outlineTab.setMenuBar(vpMenuBar);
 
 		final Menu vpMenu = ScilabMenu.createMenu();
 		vpMenu.setText(XcosMessages.VIEWPORT);
@@ -551,7 +545,7 @@ public class XcosTab extends ScilabTab {
 
 		vpMenu.add(CloseViewportAction.createMenu(xcosDiagramm));
 
-		outlineTab.getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+		outlineTab.setInfoBar(ScilabTextBox.createTextBox());
 
 		((XcosDiagram) xcosDiagramm).setViewPort(outlineTab);
 
@@ -561,9 +555,9 @@ public class XcosTab extends ScilabTab {
 
 		graphOutline.setDrawLabels(true);
 
-		((SwingScilabTab) outlineTab.getAsSimpleTab())
-				.setContentPane(graphOutline);
+		outlineTab.setContentPane(graphOutline);
 		outline.addTab(outlineTab);
+		outline.setBounds(0, 0, 200, 320);
 		outline.setVisible(false);
 		outlineTab.setVisible(false);
 	}
@@ -578,7 +572,7 @@ public class XcosTab extends ScilabTab {
 	@Override
 	public void setVisible(final boolean newVisibleState) {
 		final SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-				.get(((SwingScilabTab) getAsSimpleTab()).getParentWindowId());
+				.get(getParentWindowId());
 		if (win != null && win.getNbDockedObjects() == 1) {
 			win.setVisible(newVisibleState);
 		}

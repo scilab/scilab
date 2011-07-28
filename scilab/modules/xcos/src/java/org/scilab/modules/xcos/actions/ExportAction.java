@@ -160,7 +160,7 @@ public final class ExportAction extends DefaultAction {
 				/* Export the file */
 				if (selected.exists()) {
 					final boolean overwrite = ScilabModalDialog.show(
-							graph.getParentTab().getAsSimpleTab(),
+							graph.getParentTab(),
 							XcosMessages.OVERWRITE_EXISTING_FILE,
 							XcosMessages.XCOS, IconType.QUESTION_ICON,
 							ButtonType.YES_NO) == AnswerOption.YES_OPTION;
@@ -250,7 +250,7 @@ public final class ExportAction extends DefaultAction {
 		Color bg = null;
 
 		if ((!fileFormat.equalsIgnoreCase("gif") && !fileFormat.equalsIgnoreCase("png"))
-			|| ScilabModalDialog.show(graph.getParentTab().getAsSimpleTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
+			|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
 				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			bg = graphComponent.getBackground();
 		}

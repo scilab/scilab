@@ -29,15 +29,11 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.PositionType;
@@ -49,7 +45,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the default view for the palette
  */
-public class PaletteManagerView extends ScilabTab {
+public class PaletteManagerView extends SwingScilabTab {
 	private static final String ICON_PATH = System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/utilities-system-monitor.png";
 	
 	private final PaletteManager controller;
@@ -61,7 +57,7 @@ public class PaletteManagerView extends ScilabTab {
 	 */
 	public PaletteManagerView(final PaletteManager controller) {
 		super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME);
-		((SwingScilabTab) getAsSimpleTab()).setWindowIcon(new ImageIcon(ICON_PATH).getImage());
+		setWindowIcon(new ImageIcon(ICON_PATH).getImage());
 		this.controller = controller;
 		initComponents();
 	}
@@ -89,13 +85,12 @@ public class PaletteManagerView extends ScilabTab {
 	
 	/** Instantiate and setup all the components */
 	private void initComponents() {
-		final Window window = ScilabWindow.createWindow();
+		final SwingScilabWindow window = new SwingScilabWindow();
 		
 		final ConfigurationManager manager = ConfigurationManager.getInstance();
 		final PositionType p = manager.getSettings().getWindows().getPalette();
 		
-		window.setDims(new Size(p.getWidth(), p.getHeight()));
-		window.setPosition(new Position(p.getX(), p.getY()));
+		window.setBounds(p.getX(), p.getY(), p.getWidth(), p.getHeight());
 		
 		/* Create the menu bar */
 		final MenuBar menuBar = ScilabMenuBar.createMenuBar();
@@ -109,20 +104,20 @@ public class PaletteManagerView extends ScilabTab {
 		menu.addSeparator();
 		menu.add(ClosePalettesAction.createMenu(null));
 		
-		addMenuBar(menuBar);
+		setMenuBar(menuBar);
 
 		/* Create the toolbar */
 		final ToolBar toolbar = ScilabToolBar.createToolBar();
 		toolbar.add(LoadAsPalAction.createButton(null));
 		
-		addToolBar(toolbar);
+		setToolBar(toolbar);
 
 		/* Create the content pane */
 		panel = new PaletteManagerPanel(getController());
-		((SwingScilabTab) getAsSimpleTab()).setContentPane(panel);
+		setContentPane(panel);
 		
 		/* Create the infobar */
-		getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+		setInfoBar(ScilabTextBox.createTextBox());
 		
 		setCallback(new ClosePalettesAction(null));
 		window.addTab(this);
@@ -166,15 +161,14 @@ public class PaletteManagerView extends ScilabTab {
 	
 	/** @param info the information to write on the infobar */
 	public void setInfo(final String info) {
-		getAsSimpleTab().getInfoBar().setText(info);
+		getInfoBar().setText(info);
 		
 		/*
 		 * Force repaint
 		 */
-		((SwingScilabTextBox) getAsSimpleTab().getInfoBar()
+		((SwingScilabTextBox) getInfoBar()
 				.getAsSimpleTextBox()).repaint();
-		RepaintManager.currentManager((SwingScilabTab) this.getAsSimpleTab())
-				.paintDirtyRegions();
+		RepaintManager.currentManager(this).paintDirtyRegions();
 	}
 	
 	/**
@@ -188,21 +182,18 @@ public class PaletteManagerView extends ScilabTab {
 		super.setVisible(newVisibleState);
 		
 		SwingScilabWindow win = SwingScilabWindow.allScilabWindows
-				.get(((SwingScilabTab) getAsSimpleTab())
-						.getParentWindowId());
+				.get(getParentWindowId());
 		
 		/*
 		 * Recreate the window if applicable
 		 */
 		if (newVisibleState && win == null) {
-			final Window paletteWindow = ScilabWindow.createWindow();
+			final SwingScilabWindow paletteWindow = new SwingScilabWindow();
 			paletteWindow.setVisible(true);
 			super.setVisible(true);
 			paletteWindow.addTab(this);
 			
-			win = SwingScilabWindow.allScilabWindows
-					.get(((SwingScilabTab) getAsSimpleTab())
-							.getParentWindowId());
+			win = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
 		}
 		
 		if (win != null) {
@@ -210,8 +201,8 @@ public class PaletteManagerView extends ScilabTab {
 				win.setVisible(newVisibleState);
 			} else {
 				if (!newVisibleState) {
-					DockingManager.undock((Dockable) getAsSimpleTab());
-					((SwingScilabTab) getAsSimpleTab()).setParentWindowId(null);
+					DockingManager.undock((Dockable) this);
+					setParentWindowId(null);
 				}
 			}
 		}
