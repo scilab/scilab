@@ -143,7 +143,7 @@ int sci_get(char *fname,unsigned long fname_len)
                 /* Test debug F.Leray 13.04.04 */
                 if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0))
                 {
-                    SciWin();
+                    getOrCreateDefaultSubwin();
                     hdl = getHandle(getCurrentObject());
                 }
                 else

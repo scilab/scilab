@@ -38,7 +38,8 @@ int get_current_entity_property(char *pobjUID)
         return -1;
     }
     /* To be sure that there is at least one opened figure */
-    SciWin();
+    getOrCreateDefaultSubwin();
+
     return sciReturnHandle(getHandle(getCurrentObject()));
 }
 /*--------------------------------------------------------------------------*/
