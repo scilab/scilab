@@ -27,13 +27,13 @@ import java.util.Arrays;
 public class ScilabInteger implements ScilabType {
 
 	private static final long serialVersionUID = 1759633801332932450L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_ints;
 
 	private long[][] longData = null;
 	private short[][] shortData = null;
 	private int[][] intData = null;
 	private byte[][] byteData = null;
 	private ScilabIntegerTypeEnum precision;
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_ints;
 	
 	/**
 	 * Default constructor
@@ -191,7 +191,8 @@ public class ScilabInteger implements ScilabType {
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 
@@ -421,6 +422,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @return true, if there is no values; false otherwise.
 	 */
+	@Override
 	public boolean isEmpty() {
 		if (this.getPrec() == null) {
 			return true;
@@ -446,6 +448,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabInteger) {
 			return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());

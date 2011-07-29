@@ -37,9 +37,10 @@ import java.util.Arrays;
 public class ScilabDouble implements ScilabType {
 
 	private static final long serialVersionUID = 879624048944109684L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_matrix;
+	
 	private double[][] realPart;
 	private double[][] imaginaryPart;
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_matrix;
 
 	/**
 	 * Default constructor
@@ -98,7 +99,8 @@ public class ScilabDouble implements ScilabType {
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 
@@ -106,6 +108,7 @@ public class ScilabDouble implements ScilabType {
 	 * Check the emptiness of the associated data.
 	 * @return true, if the associated data array is empty. 
 	 */
+	@Override
 	public boolean isEmpty() {
 		return (realPart == null && imaginaryPart == null);
 	}
@@ -203,6 +206,7 @@ public class ScilabDouble implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabDouble) {
 			ScilabDouble sciDouble = ((ScilabDouble)obj);

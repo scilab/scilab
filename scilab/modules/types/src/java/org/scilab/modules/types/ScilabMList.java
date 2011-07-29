@@ -29,7 +29,7 @@ import java.util.Collection;
 public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
    
 	private static final long serialVersionUID = 3224510024213901841L;
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_mlist;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_mlist;
 
 	/**
 	 * Construct an empty mlist.
@@ -90,7 +90,8 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 

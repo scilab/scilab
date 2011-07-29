@@ -28,11 +28,10 @@ import java.util.Arrays;
 public class ScilabBoolean implements ScilabType {
 
 	private static final long serialVersionUID = 6511497080095473901L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
 
 	/* the boolean data */
 	private boolean[][] data;
-
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
 
 	/**
 	 * Create an empty object
@@ -83,7 +82,8 @@ public class ScilabBoolean implements ScilabType {
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 
@@ -92,6 +92,7 @@ public class ScilabBoolean implements ScilabType {
 	 *
 	 * @return the height
 	 */
+	@Override
 	public int getHeight() {
 		if (data == null) {
 			return 0;
@@ -104,6 +105,7 @@ public class ScilabBoolean implements ScilabType {
 	 *
 	 * @return the width
 	 */
+	@Override
 	public int getWidth() {
 		if (data == null) {
 			return 0;
@@ -116,6 +118,7 @@ public class ScilabBoolean implements ScilabType {
 	 *
 	 * @return true if empty
 	 */
+	@Override
 	public boolean isEmpty() {
 		return (data == null);
 	}
@@ -124,6 +127,7 @@ public class ScilabBoolean implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabBoolean) {
 			return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
@@ -138,6 +142,7 @@ public class ScilabBoolean implements ScilabType {
      *
 	 * @return the pretty print
 	 */
+	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		
