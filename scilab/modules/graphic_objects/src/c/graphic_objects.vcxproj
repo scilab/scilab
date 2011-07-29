@@ -232,6 +232,7 @@
     <ClCompile Include="..\cpp\CurrentFigure.cpp" />
     <ClCompile Include="..\cpp\CurrentObject.cpp" />
     <ClCompile Include="..\cpp\CurrentSubwin.cpp" />
+    <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
@@ -268,6 +269,7 @@
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
     <ClInclude Include="..\..\includes\FigureList.h" />
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />
