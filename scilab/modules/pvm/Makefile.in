@@ -560,7 +560,8 @@ yacc_present = @yacc_present@
 @PVM_TRUE@	-I$(top_srcdir)/modules/fileio/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/modules/api_scilab/includes \
 @PVM_TRUE@	-I$(top_srcdir)/modules/operations/includes/ \
-@PVM_TRUE@	-I$(top_srcdir)/modules/system_env/includes/
+@PVM_TRUE@	-I$(top_srcdir)/modules/system_env/includes/ \
+@PVM_TRUE@	$(PVM_INCLUDE)
 
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
@@ -1525,7 +1526,6 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-@PVM_TRUE@	$(PVM_INCLUDE)
 
 # This target enables tests for Scilab
 @PVM_TRUE@check-local: $(top_builddir)/scilab-bin test

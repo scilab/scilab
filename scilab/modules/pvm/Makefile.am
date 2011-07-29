@@ -56,7 +56,7 @@ libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/
+	-I$(top_srcdir)/modules/system_env/includes/ \
 	$(PVM_INCLUDE)
 
 pkglib_LTLIBRARIES = libscipvm.la
