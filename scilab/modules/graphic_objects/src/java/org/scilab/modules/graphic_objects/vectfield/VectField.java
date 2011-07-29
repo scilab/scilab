@@ -228,7 +228,8 @@ public abstract class VectField extends GraphicClippableObject {
 	public void setBase(Double[] bases) {
 		Double[] arrowBase = new Double[3];
 
-		for (int i = 0; i < arrows.size(); i++) {
+		final int len = Math.min(bases.length / 3, arrows.size());
+		for (int i = 0; i < len; i++) {
 			arrowBase[0] = bases[3*i];
 			arrowBase[1] = bases[3*i+1];
 			arrowBase[2] = bases[3*i+2];
@@ -308,7 +309,8 @@ public abstract class VectField extends GraphicClippableObject {
 	public void setDirection(Double[] directions) {
 		Double[] arrowDirection = new Double[3];
 
-		for (int i = 0; i < arrows.size(); i++) {
+		final int len = Math.min(directions.length / 3, arrows.size());
+		for (int i = 0; i < len; i++) {
 			arrowDirection[0] = directions[3*i];
 			arrowDirection[1] = directions[3*i+1];
 			arrowDirection[2] = directions[3*i+2];
@@ -336,7 +338,8 @@ public abstract class VectField extends GraphicClippableObject {
 	 * @param directionX the arrow direction x coordinates to set
 	 */
 	public void setDirectionX(Double[] directionX) {
-		for (int i = 0; i < arrows.size(); i++) {
+		final int len = Math.min(directionX.length, arrows.size());
+		for (int i = 0; i < len; i++) {
 			Double[] direction = arrows.get(i).getDirection();
 			direction[0] = directionX[i];
 			arrows.get(i).setDirection(direction);
@@ -363,7 +366,8 @@ public abstract class VectField extends GraphicClippableObject {
 	 * @param directionY the arrow direction y coordinates to set
 	 */
 	public void setDirectionY(Double[] directionY) {
-		for (int i = 0; i < arrows.size(); i++) {
+		final int len = Math.min(directionY.length, arrows.size());
+		for (int i = 0; i < len; i++) {
 			Double[] direction = arrows.get(i).getDirection();
 			direction[1] = directionY[i];
 			arrows.get(i).setDirection(direction);
@@ -392,7 +396,8 @@ public abstract class VectField extends GraphicClippableObject {
 	 * @param directionZ the arrow direction z coordinates to set
 	 */
 	public void setDirectionZ(Double[] directionZ) {
-		for (int i = 0; i < arrows.size(); i++) {
+		final int len = Math.min(directionZ.length, arrows.size());
+		for (int i = 0; i < len; i++) {
 			Double[] direction = arrows.get(i).getDirection();
 			direction[2] = directionZ[i];
 			arrows.get(i).setDirection(direction);
