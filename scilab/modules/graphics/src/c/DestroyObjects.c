@@ -533,51 +533,6 @@ DestroySegs (sciPointObj * pthis)
   return sciStandardDestroyOperations(pthis) ;
 }
 
-/**DestroyCompound
- * @memo This function destroy the Compound and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- */
-int DestroyCompound (sciPointObj * pthis)
-{
-  return sciStandardDestroyOperations(pthis) ;
-}
-
-/**sciUnCompound
- * @memo This function destroies the Compound and  and unpackes the elementaries structures to associates them to its parent
- */
-int
-sciUnCompound (sciPointObj * pobj)
-{
-    abort();
-    // ???
-#if 0
-  sciPointObj *pparent, *pobjson;
-  sciSons *psons = (sciSons *)NULL;
-
-  if (sciGetEntityType(pobj) != SCI_AGREG)
-    return -1;
-
-  psons = sciGetLastSons(pobj);
-  pobjson = psons->pointobj;
-  pparent = sciGetParent(pobj);
-  while ((psons != (sciSons *) NULL) && (pobjson != (sciPointObj *) NULL))
-    {
-      /* we delete this son to this */
-      pobjson = psons->pointobj;
-      /* take the previous sons before the current is freed */
-      psons = psons->pprev;
-      //sciDelThisToItsParent (pobjson, pobj);
-      /* and link to its old parent */
-      //sciAddThisToItsParent (pobjson, pparent);
-    }
-
-  sciSetCurrentObj(pparent); /* pparent is the new current object */
-
-  DestroyCompound(pobj);
-#endif
-  return 0;
-}
-
-
 /**DestroyTitle
  * @memo This function destroies the Subwindow (the Axe) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity

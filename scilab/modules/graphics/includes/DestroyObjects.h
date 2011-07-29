@@ -4,21 +4,21 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
- *    This file contains all functions used to BUILD new objects : 
- - break the binding between the deleted object and its parent in the 
+ *    This file contains all functions used to BUILD new objects :
+ - break the binding between the deleted object and its parent in the
  existing hierarchy
  - freeing memory
  --------------------------------------------------------------------------*/
@@ -52,9 +52,6 @@ GRAPHICS_IMPEXP int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
 GRAPHICS_IMPEXP int DestroyAxes (sciPointObj * pthis); /* DESTROY */
 GRAPHICS_IMPEXP int DestroyFec (sciPointObj * pthis); /* DESTROY */
 GRAPHICS_IMPEXP int DestroySegs (sciPointObj * pthis); /* DESTROY */
-GRAPHICS_IMPEXP int DestroyCompound (sciPointObj * pthis);
-
-GRAPHICS_IMPEXP int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 
 GRAPHICS_IMPEXP int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 

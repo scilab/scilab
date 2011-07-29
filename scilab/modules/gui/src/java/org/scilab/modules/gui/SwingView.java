@@ -280,18 +280,19 @@ public final class SwingView implements GraphicView {
     @Override
     public void deleteObject(String id) {
         TypedObject requestedObject = allObjects.get(id);
-        switch (requestedObject.getType()) {
-        case Figure:
-            SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
-            DockingManager.close(tab);
-            DockingManager.unregisterDockable((Dockable) tab);
-            tab.close();
-            break;
-        default:
-            ((Widget) requestedObject.getValue()).destroy();
-            break;
+        if (requestedObject != null) {
+            switch (requestedObject.getType()) {
+            case Figure:
+                SwingScilabTab tab = (SwingScilabTab) requestedObject.getValue();
+                DockingManager.close(tab);
+                DockingManager.unregisterDockable((Dockable) tab);
+                tab.close();
+                break;
+            default:
+                ((Widget) requestedObject.getValue()).destroy();
+                break;
+            }
         }
-
     }
 
     @Override

@@ -131,8 +131,6 @@ GRAPHICS_IMPEXP char sciGetxLocation(sciPointObj * pObj);
 GRAPHICS_IMPEXP char sciGetyLocation(sciPointObj * pObj);
 
 
-GRAPHICS_IMPEXP int CheckForCompound (long *tabpointobj, int number); /* GET */
-
 /* UNUSED ? */
 GRAPHICS_IMPEXP sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
 
