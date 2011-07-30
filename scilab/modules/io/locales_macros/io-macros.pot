@@ -14,21 +14,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:28+0100\n"
+"Revision-Date: 2011-07-30 11:30+0100\n"
 
-# File: macros/unix_s.sci, line: 52
-# File: macros/unix_w.sci, line: 55
-# File: macros/unix_x.sci, line: 61
 # File: macros/unix_g.sci, line: 82
 # File: macros/unix_g.sci, line: 84
+# File: macros/unix_s.sci, line: 52
+# File: macros/unix_x.sci, line: 61
+# File: macros/unix_w.sci, line: 55
 #, c-format
 msgid "%s: The system interpreter does not answer..."
 msgstr ""
 #
-# File: macros/unix_s.sci, line: 29
-# File: macros/unix_w.sci, line: 30
-# File: macros/unix_x.sci, line: 30
 # File: macros/unix_g.sci, line: 32
+# File: macros/unix_s.sci, line: 29
+# File: macros/unix_x.sci, line: 30
+# File: macros/unix_w.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -43,24 +43,24 @@ msgstr ""
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 #
+# File: macros/unix_g.sci, line: 40
 # File: macros/halt.sci, line: 30
 # File: macros/unix_s.sci, line: 37
+# File: macros/unix_x.sci, line: 38
+# File: macros/unix_w.sci, line: 38
 # File: macros/input.sci, line: 19
 # File: macros/input.sci, line: 33
-# File: macros/unix_w.sci, line: 38
-# File: macros/unix_x.sci, line: 38
-# File: macros/unix_g.sci, line: 40
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
+# File: macros/unix_g.sci, line: 36
 # File: macros/halt.sci, line: 26
 # File: macros/unix_s.sci, line: 33
+# File: macros/unix_x.sci, line: 34
+# File: macros/unix_w.sci, line: 34
 # File: macros/input.sci, line: 15
 # File: macros/input.sci, line: 29
-# File: macros/unix_w.sci, line: 34
-# File: macros/unix_x.sci, line: 34
-# File: macros/unix_g.sci, line: 36
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -72,8 +72,8 @@ msgstr ""
 #
 # File: macros/unix_s.sci, line: 44
 # File: macros/unix_s.sci, line: 56
-# File: macros/unix_w.sci, line: 44
 # File: macros/unix_x.sci, line: 47
+# File: macros/unix_w.sci, line: 44
 #, c-format
 msgid "%s: error during %s execution"
 msgstr ""

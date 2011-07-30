@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:29+0100\n"
+"Revision-Date: 2011-07-30 11:30+0100\n"
 
-# File: etc/pvm.start, line: 20
+# File: demos/pvm.dem.gateway.sce, line: 12
+msgid "Master and slave"
+msgstr ""
+#
+# File: demos/pvm.dem.gateway.sce, line: 10
 msgid "PVM parallel Toolbox"
 msgstr ""

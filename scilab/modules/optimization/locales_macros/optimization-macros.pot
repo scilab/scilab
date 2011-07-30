@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-07 13:23+0100\n"
+"Revision-Date: 2011-07-30 11:30+0100\n"
 
 # File: macros/lmisolver.sci, line: 310
 #, c-format
@@ -46,38 +46,9 @@ msgstr ""
 msgid "%s: Cannot check cost function when x0 is empty"
 msgstr ""
 #
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 31
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 72
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 94
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 115
 #, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr ""
-#
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 39
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 80
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 102
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr ""
-#
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 111
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr ""
-#
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 120
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr ""
-#
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 48
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr ""
-#
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 57
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgid "%s: Cannot evaluate cost function with %s."
 msgstr ""
 #
 # File: macros/lmisolver.sci, line: 83
@@ -95,42 +66,69 @@ msgstr ""
 msgid "%s: Empty function (use -function option)."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 253
-# File: macros/optimbase/optimbase_configure.sci, line: 150
+# File: macros/optimbase/optimbase_configure.sci, line: 155
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 612
+# File: macros/neldermead/neldermead_configure.sci, line: 254
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 246
-# File: macros/optimbase/optimbase_configure.sci, line: 143
+# File: macros/optimbase/optimbase_configure.sci, line: 203
+# File: macros/neldermead/neldermead_configure.sci, line: 288
+#, c-format
+msgid "%s: Expected floating point integer for input argument %s at input #%d, but entry #%d is equal to %s."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 148
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 605
+# File: macros/neldermead/neldermead_configure.sci, line: 247
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
-# File: macros/optimbase/optimbase_configure.sci, line: 170
+# File: macros/optimbase/optimbase_configure.sci, line: 175
+# File: macros/neldermead/fminsearch.sci, line: 313
 #, c-format
 msgid "%s: Expected function for variable %s(1) at input #%d, but got %s instead."
 msgstr ""
 #
-# File: macros/optimbase/optimbase_configure.sci, line: 164
+# File: macros/optimbase/optimbase_configure.sci, line: 169
+# File: macros/neldermead/fminsearch.sci, line: 307
 #, c-format
 msgid "%s: Expected function or list for variable %s at input #%d, but got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 232
-# File: macros/optimbase/optimbase_configure.sci, line: 129
+# File: macros/optimbase/optimbase_configure.sci, line: 134
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 591
+# File: macros/neldermead/neldermead_configure.sci, line: 233
+# File: macros/neldermead/fminsearch.sci, line: 321
 #, c-format
 msgid "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 239
-# File: macros/optimbase/optimbase_configure.sci, line: 136
+# File: macros/optimbase/optimbase_configure.sci, line: 141
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 598
+# File: macros/neldermead/neldermead_configure.sci, line: 240
 #, c-format
 msgid "%s: Expected string variable for variable %s at input #%d, but got %s instead."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 194
+# File: macros/neldermead/neldermead_configure.sci, line: 279
+#, c-format
+msgid "%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 185
+# File: macros/neldermead/neldermead_configure.sci, line: 270
+#, c-format
+msgid "%s: Expected that all entries of input argument %s at input #%d are in the range [%s,%s], but entry #%d is equal to %s."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 220
+# File: macros/neldermead/neldermead_configure.sci, line: 305
+#, c-format
+msgid "%s: Expected value [%s] for input argument %s at input #%d, but got %s instead."
 msgstr ""
 #
 # File: macros/derivative.sci, line: 125
@@ -144,11 +142,11 @@ msgstr ""
 msgid "%s: History disabled ; enable -storehistory option."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_get.sci, line: 22
-# File: macros/optimbase/optimbase_histget.sci, line: 22
-# File: macros/optimbase/optimbase_histset.sci, line: 23
 # File: macros/optimbase/optimbase_set.sci, line: 32
 # File: macros/optimbase/optimbase_set.sci, line: 39
+# File: macros/optimbase/optimbase_histget.sci, line: 22
+# File: macros/optimbase/optimbase_histset.sci, line: 23
+# File: macros/neldermead/neldermead_get.sci, line: 22
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
@@ -158,14 +156,14 @@ msgstr ""
 msgid "%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
 msgstr ""
 #
+# File: macros/neldermead/neldermead_search.sci, line: 1022
+# File: macros/neldermead/neldermead_search.sci, line: 1066
 # File: macros/neldermead/neldermead_updatesimp.sci, line: 81
-# File: macros/neldermead/neldermead_search.sci, line: 1024
-# File: macros/neldermead/neldermead_search.sci, line: 1068
 #, c-format
 msgid "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 975
+# File: macros/neldermead/neldermead_search.sci, line: 973
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
 msgstr ""
@@ -173,6 +171,11 @@ msgstr ""
 # File: macros/lmisolver.sci, line: 303
 #, c-format
 msgid "%s: Initial guess feasible."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkx0.sci, line: 19
+#, c-format
+msgid "%s: Initial guess is not feasible."
 msgstr ""
 #
 # File: macros/fit_dat.sci, line: 100
@@ -275,7 +278,7 @@ msgstr ""
 msgid "%s: Order must be 1, 2 or 4.\n"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 429
+# File: macros/neldermead/neldermead_search.sci, line: 430
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
 msgstr ""
@@ -285,7 +288,7 @@ msgstr ""
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 1219
+# File: macros/neldermead/neldermead_search.sci, line: 1217
 #, c-format
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
@@ -295,8 +298,8 @@ msgstr ""
 msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 #
+# File: macros/neldermead/neldermead_search.sci, line: 956
 # File: macros/neldermead/neldermead_updatesimp.sci, line: 44
-# File: macros/neldermead/neldermead_search.sci, line: 958
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
@@ -381,14 +384,19 @@ msgstr ""
 msgid "%s: The len vector is not consistent with the x0 point. Current shape of x0 is %d x %d while current shape of len is %d x %d."
 msgstr ""
 #
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 140
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 131
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
 msgstr ""
 #
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 136
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 127
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkbounds.sci, line: 35
+#, c-format
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 #
 # File: macros/optimsimplex/optimsimplex_setallfv.sci, line: 26
@@ -416,6 +424,16 @@ msgstr ""
 msgid "%s: The number of variable is zero."
 msgstr ""
 #
+# File: macros/optimbase/optimbase_checkbounds.sci, line: 22
+#, c-format
+msgid "%s: The number of variables %d does not match the number of max bounds: %d.\n"
+msgstr ""
+#
+# File: macros/optimbase/optimbase_checkbounds.sci, line: 27
+#, c-format
+msgid "%s: The number of variables %d does not match the number of min bounds: %d.\n"
+msgstr ""
+#
 # File: macros/optimsimplex/optimsimplex_setall.sci, line: 26
 #, c-format
 msgid "%s: The number of vertices (i.e. the number of rows) is %d which is smaller than the number of columns %d (i.e. n+1)."
@@ -431,37 +449,22 @@ msgstr ""
 msgid "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 108
-#, c-format
-msgid "%s: The restarteps option is expected to be a scalar, but current shape is %d x %d"
-msgstr ""
-#
-# File: macros/neldermead/neldermead_configure.sci, line: 112
-#, c-format
-msgid "%s: The restarteps option is expected to be positive"
-msgstr ""
-#
-# File: macros/neldermead/neldermead_configure.sci, line: 128
-#, c-format
-msgid "%s: The restartstep vector is expected to be positive"
-msgstr ""
-#
-# File: macros/neldermead/neldermead_configure.sci, line: 123
+# File: macros/neldermead/neldermead_configure.sci, line: 111
 #, c-format
 msgid "%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 253
+# File: macros/neldermead/fminsearch.sci, line: 258
 #, c-format
 msgid "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 269
+# File: macros/neldermead/fminsearch.sci, line: 274
 #, c-format
 msgid "%s: The value of the ''PlotFcns'' option is neither a function nor a list."
 msgstr ""
 #
-# File: macros/optimbase/optimbase_configure.sci, line: 38
+# File: macros/optimbase/optimbase_configure.sci, line: 45
 #, c-format
 msgid "%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"
 msgstr ""
@@ -487,11 +490,6 @@ msgstr ""
 # File: macros/neldermead/fminsearch.sci, line: 58
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
-msgstr ""
-#
-# File: macros/neldermead/neldermead_configure.sci, line: 172
-#, c-format
-msgid "%s: Unexpected negative value %s for %s option"
 msgstr ""
 #
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 55
@@ -545,14 +543,14 @@ msgstr ""
 msgid "%s: Unknown -method %s"
 msgstr ""
 #
-# File: macros/neldermead/nmplot_configure.sci, line: 26
-# File: macros/optimbase/optimbase_histget.sci, line: 35
-# File: macros/optimbase/optimbase_histset.sci, line: 36
-# File: macros/optimbase/optimbase_get.sci, line: 55
-# File: macros/optimbase/optimbase_configure.sci, line: 122
-# File: macros/optimbase/optimbase_cget.sci, line: 67
 # File: macros/optimbase/optimbase_set.sci, line: 49
+# File: macros/optimbase/optimbase_histget.sci, line: 35
+# File: macros/optimbase/optimbase_get.sci, line: 55
+# File: macros/optimbase/optimbase_histset.sci, line: 36
+# File: macros/optimbase/optimbase_cget.sci, line: 67
+# File: macros/optimbase/optimbase_configure.sci, line: 127
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 194
+# File: macros/neldermead/nmplot_configure.sci, line: 26
 #, c-format
 msgid "%s: Unknown key %s"
 msgstr ""
@@ -562,7 +560,7 @@ msgstr ""
 msgid "%s: Unknown method %s"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 829
+# File: macros/neldermead/neldermead_search.sci, line: 830
 #, c-format
 msgid "%s: Unknown restart detection %s"
 msgstr ""
@@ -577,29 +575,28 @@ msgstr ""
 msgid "%s: Unknown simplex size method %s"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 136
+# File: macros/neldermead/fminsearch.sci, line: 141
 #, c-format
 msgid "%s: Unknown status %s"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 204
+# File: macros/neldermead/fminsearch.sci, line: 209
 #, c-format
 msgid "%s: Unknown step %s"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 263
-# File: macros/optimbase/optimbase_configure.sci, line: 157
+# File: macros/optimbase/optimbase_configure.sci, line: 162
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 619
 #, c-format
 msgid "%s: Unknown value %s for %s option"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 984
+# File: macros/neldermead/neldermead_search.sci, line: 982
 #, c-format
 msgid "%s: Unknown value %s for -scalingsimplex0 option"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_search.sci, line: 964
+# File: macros/neldermead/neldermead_search.sci, line: 962
 #, c-format
 msgid "%s: Unknown value %s for -simplex0method option"
 msgstr ""
@@ -629,19 +626,20 @@ msgstr ""
 msgid "%s: Wrong number of elements in input argument #%d: At least %d elements expected, but current number is %d.\n"
 msgstr ""
 #
-# File: macros/bvodeS.sci, line: 30
 # File: macros/fit_dat.sci, line: 78
+# File: macros/bvodeS.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 #
+# File: macros/optimbase/optimbase_destroy.sci, line: 18
+# File: macros/optimbase/optimbase_set.sci, line: 20
 # File: macros/optimbase/optimbase_new.sci, line: 18
 # File: macros/optimbase/optimbase_log.sci, line: 19
 # File: macros/optimbase/optimbase_get.sci, line: 22
-# File: macros/optimbase/optimbase_configure.sci, line: 18
-# File: macros/optimbase/optimbase_destroy.sci, line: 18
 # File: macros/optimbase/optimbase_cget.sci, line: 20
-# File: macros/optimbase/optimbase_set.sci, line: 20
+# File: macros/optimbase/optimbase_configure.sci, line: 19
+# File: macros/neldermead/neldermead_configure.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
@@ -671,6 +669,12 @@ msgstr ""
 # File: macros/karmarkar.sci, line: 184
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+#
+# File: macros/optimbase/optimbase_configure.sci, line: 211
+# File: macros/neldermead/neldermead_configure.sci, line: 296
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 #
 # File: macros/derivative.sci, line: 46
@@ -827,8 +831,8 @@ msgstr ""
 msgid "A new method of constrained optimization \n"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 284
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 57
+# File: macros/neldermead/fminsearch.sci, line: 297
 #, c-format
 msgid "Calling sequence %s is obsolete."
 msgstr ""
@@ -858,9 +862,9 @@ msgid "Configuring nmplot object...\n"
 msgstr ""
 #
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 27
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 28
 # File: demos/neldermead/nmplot_han2.sce, line: 49
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 27
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 28
 msgid "Creating nmplot object ...\n"
 msgstr ""
 #
@@ -882,8 +886,8 @@ msgstr ""
 msgid "Defining Han function...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 17
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 18
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 17
 msgid "Defining McKinnon function...\n"
 msgstr ""
 #
@@ -921,29 +925,29 @@ msgstr ""
 msgid "End of Optimization\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxpost.sce, line: 142
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 182
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 152
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 74
-# File: demos/neldermead/neldermead_dimension.sce, line: 89
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 182
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 73
-# File: demos/neldermead/neldermead_boxbounds.sce, line: 106
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 74
-# File: demos/neldermead/neldermead_outputcmd.sce, line: 68
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 152
 # File: demos/neldermead/nmplot_han2.sce, line: 100
-# File: demos/neldermead/neldermead_rosenbrock.sce, line: 35
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 74
+# File: demos/neldermead/neldermead_boxpost.sce, line: 142
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 182
+# File: demos/neldermead/neldermead_dimension.sce, line: 89
+# File: demos/neldermead/neldermead_outputcmd.sce, line: 68
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 74
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 106
 # File: demos/neldermead/nmplot_han1.sce, line: 101
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 197
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 35
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 182
 msgid "End of demo.\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 166
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 166
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 166
 msgid "Function Value Average"
 msgstr ""
 #
-# File: demos/optimization.dem.gateway.sce, line: 13
+# File: demos/optimization.dem.gateway.sce, line: 18
 msgid "Genetic algorithms"
 msgstr ""
 #
@@ -1003,12 +1007,12 @@ msgstr ""
 msgid "Initialization\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 167
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 171
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 175
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 167
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 171
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 175
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 167
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 171
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 175
 msgid "Iterations"
 msgstr ""
 #
@@ -1016,8 +1020,8 @@ msgstr ""
 msgid "LQV"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 174
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 174
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 174
 msgid "Maximum Oriented length"
 msgstr ""
 #
@@ -1026,12 +1030,12 @@ msgstr ""
 msgid "Maximum dimension:%d\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 170
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 170
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 170
 msgid "Minimum Function Value"
 msgstr ""
 #
-# File: demos/optimization.dem.gateway.sce, line: 7
+# File: demos/optimization.dem.gateway.sce, line: 12
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 msgid "Non linear data fitting"
 msgstr ""
@@ -1045,15 +1049,15 @@ msgstr ""
 msgid "Number of parameters"
 msgstr ""
 #
-# File: demos/optimization.dem.gateway.sce, line: 8
+# File: demos/optimization.dem.gateway.sce, line: 13
 msgid "Optimisation"
 msgstr ""
 #
-# File: etc/optimization.start, line: 22
+# File: demos/optimization.dem.gateway.sce, line: 10
 msgid "Optimization and Simulation"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 268
+# File: macros/neldermead/neldermead_configure.sci, line: 260
 #, c-format
 msgid "Option %s is obsolete."
 msgstr ""
@@ -1062,9 +1066,9 @@ msgstr ""
 msgid "Output"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 285
-# File: macros/neldermead/neldermead_configure.sci, line: 269
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 58
+# File: macros/neldermead/neldermead_configure.sci, line: 261
+# File: macros/neldermead/fminsearch.sci, line: 298
 #, c-format
 msgid "Please use %s instead."
 msgstr ""
@@ -1073,8 +1077,8 @@ msgstr ""
 msgid "Plot"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 149
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 149
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 149
 msgid "Plot contour (please wait) ...\n"
 msgstr ""
 #
@@ -1082,12 +1086,12 @@ msgstr ""
 msgid "Plot contour (please wait)...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 55
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 56
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 58
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 55
 # File: demos/neldermead/nmplot_han2.sce, line: 81
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 55
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 59
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 58
 msgid "Plotting contour (please wait) ...\n"
 msgstr ""
 #
@@ -1122,32 +1126,32 @@ msgstr ""
 msgid "Rosenbrock"
 msgstr ""
 #
-# File: demos/optim/optim_plot.sce, line: 13
+# File: demos/optim/optim_rosenbrock.sce, line: 13
 # File: demos/optim/optim_withderivative.sce, line: 13
 # File: demos/optim/optim_output.sce, line: 13
-# File: demos/optim/optim_rosenbrock.sce, line: 13
-# File: demos/neldermead/fminsearch_display.sce, line: 13
-# File: demos/neldermead/fminsearch_rosenbrock.sce, line: 12
-# File: demos/neldermead/fminsearch_optimplotfval.sce, line: 14
-# File: demos/neldermead/fminsearch_optimplotfunccount.sce, line: 13
-# File: demos/neldermead/fminsearch_optimplotx.sce, line: 14
+# File: demos/optim/optim_plot.sce, line: 13
 # File: demos/neldermead/fminsearch_tolx.sce, line: 14
+# File: demos/neldermead/fminsearch_rosenbrock.sce, line: 12
+# File: demos/neldermead/fminsearch_optimplotfunccount.sce, line: 13
+# File: demos/neldermead/fminsearch_display.sce, line: 13
+# File: demos/neldermead/fminsearch_optimplotfval.sce, line: 14
 # File: demos/neldermead/fminsearch_outputfunction.sce, line: 13
+# File: demos/neldermead/fminsearch_optimplotx.sce, line: 14
 msgid "Running optimization ...\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxpost.sce, line: 124
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 139
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 135
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 46
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 142
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 47
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 49
-# File: demos/neldermead/neldermead_boxbounds.sce, line: 66
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 46
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 135
 # File: demos/neldermead/nmplot_han2.sce, line: 70
-# File: demos/neldermead/neldermead_rosenbrock.sce, line: 26
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 46
+# File: demos/neldermead/neldermead_boxpost.sce, line: 124
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 142
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 46
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 66
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 48
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 49
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 26
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 139
 msgid "Searching (please wait) ...\n"
 msgstr ""
 #
@@ -1160,7 +1164,7 @@ msgstr ""
 msgid "Setup output files...\n"
 msgstr ""
 #
-# File: demos/optimization.dem.gateway.sce, line: 18
+# File: demos/optimization.dem.gateway.sce, line: 23
 msgid "Simulated Annealing"
 msgstr ""
 #
@@ -1168,9 +1172,9 @@ msgstr ""
 msgid "Spaceship landing trajectory"
 msgstr ""
 #
-# File: macros/neldermead/fminsearch.sci, line: 286
-# File: macros/neldermead/neldermead_configure.sci, line: 270
 # File: macros/optimbase/optimbase_outputcmd.sci, line: 59
+# File: macros/neldermead/neldermead_configure.sci, line: 262
+# File: macros/neldermead/fminsearch.sci, line: 299
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr ""
@@ -1185,7 +1189,7 @@ msgstr ""
 msgid "f expected = %f\n"
 msgstr ""
 #
-# File: demos/optimization.dem.gateway.sce, line: 9
+# File: demos/optimization.dem.gateway.sce, line: 14
 msgid "fminsearch"
 msgstr ""
 #

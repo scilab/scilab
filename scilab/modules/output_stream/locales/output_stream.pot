@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:29+0100\n"
+"Revision-Date: 2011-07-30 11:30+0100\n"
 
 # File: src/c/msgs.c, line: 922
 #, c-format
@@ -31,7 +31,7 @@ msgstr ""
 msgid "  (cont'd) %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1393
+# File: src/c/errorTable.c, line: 1388
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
@@ -41,7 +41,7 @@ msgstr ""
 msgid " and %s variables out of %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 383
+# File: src/c/errorTable.c, line: 384
 msgid " end or else is missing...\n"
 msgstr ""
 #
@@ -50,52 +50,52 @@ msgstr ""
 msgid " has been truncated to: %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 390
+# File: src/c/errorTable.c, line: 391
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 486
+# File: src/c/errorTable.c, line: 487
 #, c-format
 msgid "%d graphic terminal?\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 496
+# File: src/c/errorTable.c, line: 497
 #, c-format
 msgid "%d: logical unit already used.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1200
+# File: src/c/errorTable.c, line: 1196
 #, c-format
 msgid "%dth argument type must be boolean.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1504
+# File: src/c/errorTable.c, line: 1499
 #, c-format
 msgid "%s and %s must have equal dimensions.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1499
+# File: src/c/errorTable.c, line: 1494
 #, c-format
 msgid "%s and %s must have equal number of columns.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1494
+# File: src/c/errorTable.c, line: 1489
 #, c-format
 msgid "%s and %s must have equal number of rows.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 539
+# File: src/c/errorTable.c, line: 540
 #, c-format
 msgid "%s is not valid in this context.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1240
+# File: src/c/errorTable.c, line: 1236
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 810
+# File: src/c/errorTable.c, line: 811
 #, c-format
 msgid "%s was a function when compiled but is now a primitive!\n"
 msgstr ""
@@ -128,7 +128,7 @@ msgstr ""
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 949
+# File: src/c/errorTable.c, line: 950
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
 msgstr ""
@@ -140,7 +140,7 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1332
+# File: src/c/errorTable.c, line: 1328
 #, c-format
 msgid "%s: First argument cannot be a number.\n"
 msgstr ""
@@ -152,17 +152,17 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 969
+# File: src/c/errorTable.c, line: 970
 #, c-format
 msgid "%s: Incorrect bounds.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 964
+# File: src/c/errorTable.c, line: 965
 #, c-format
 msgid "%s: Incorrect stopping parameters.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1566
+# File: src/c/errorTable.c, line: 1561
 #, c-format
 msgid "%s: Input arguments should have the same formal variable name.\n"
 msgstr ""
@@ -172,6 +172,9 @@ msgstr ""
 msgid "%s: Loop on two orders detected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_msprintf.c, line: 107
+# File: sci_gateway/c/sci_msprintf.c, line: 113
+# File: sci_gateway/c/sci_msprintf.c, line: 126
 # File: sci_gateway/cpp/sci_diary.cpp, line: 135
 # File: sci_gateway/cpp/sci_diary.cpp, line: 179
 # File: sci_gateway/cpp/sci_diary.cpp, line: 625
@@ -184,9 +187,6 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 926
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1186
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1229
-# File: sci_gateway/c/sci_msprintf.c, line: 107
-# File: sci_gateway/c/sci_msprintf.c, line: 113
-# File: sci_gateway/c/sci_msprintf.c, line: 126
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -214,27 +214,27 @@ msgstr ""
 msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1327
+# File: src/c/errorTable.c, line: 1323
 #, c-format
 msgid "%s: Only one entry point allowed on this operating system.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 944
+# File: src/c/errorTable.c, line: 945
 #, c-format
 msgid "%s: Problem with initial constants in simul.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 929
+# File: src/c/errorTable.c, line: 930
 #, c-format
 msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1468
+# File: src/c/errorTable.c, line: 1463
 #, c-format
 msgid "%s: The colocation matrix is singular.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 954
+# File: src/c/errorTable.c, line: 955
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
 msgstr ""
@@ -246,23 +246,23 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 934
+# File: src/c/errorTable.c, line: 935
 #, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 570
+# File: src/c/errorTable.c, line: 571
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_mprintf.c, line: 64
 # File: sci_gateway/c/sci_msprintf.c, line: 153
-# File: sci_gateway/c/sci_mprintf.c, line: 60
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_mprintf.c, line: 87
+# File: sci_gateway/c/sci_mprintf.c, line: 91
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
@@ -272,17 +272,17 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 581
+# File: src/c/errorTable.c, line: 582
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1102
+# File: src/c/errorTable.c, line: 1098
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1089
+# File: src/c/errorTable.c, line: 1085
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
@@ -294,10 +294,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_msprintf.c, line: 101
 # File: sci_gateway/cpp/sci_diary.cpp, line: 829
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1327
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1395
-# File: sci_gateway/c/sci_msprintf.c, line: 101
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -309,66 +309,66 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1124
+# File: src/c/errorTable.c, line: 1120
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1157
+# File: src/c/errorTable.c, line: 1153
 #, c-format
 msgid "%s: Wrong type for argument %d: Function or string (external function) expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1146
+# File: src/c/errorTable.c, line: 1142
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1135
+# File: src/c/errorTable.c, line: 1131
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1113
+# File: src/c/errorTable.c, line: 1109
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1168
+# File: src/c/errorTable.c, line: 1164
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 613
-# File: src/c/errorTable.c, line: 1051
+# File: src/c/errorTable.c, line: 614
+# File: src/c/errorTable.c, line: 1047
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 602
-# File: src/c/errorTable.c, line: 1038
+# File: src/c/errorTable.c, line: 603
+# File: src/c/errorTable.c, line: 1034
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 624
-# File: src/c/errorTable.c, line: 1064
+# File: src/c/errorTable.c, line: 625
+# File: src/c/errorTable.c, line: 1060
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 635
-# File: src/c/errorTable.c, line: 1075
+# File: src/c/errorTable.c, line: 636
+# File: src/c/errorTable.c, line: 1071
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1190
+# File: src/c/errorTable.c, line: 1186
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1179
+# File: src/c/errorTable.c, line: 1175
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
@@ -462,7 +462,7 @@ msgstr ""
 msgid "%s: both actual and predicted relative reductions in the criterion at most %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 997
+# File: src/c/errorTable.c, line: 998
 #, c-format
 msgid "%s: df0 must be positive !\n"
 msgstr ""
@@ -486,32 +486,32 @@ msgstr ""
 msgid "%s: error can not create diary: %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1312
+# File: src/c/errorTable.c, line: 1308
 #, c-format
 msgid "%s: expecting more than one argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1438
+# File: src/c/errorTable.c, line: 1433
 #, c-format
 msgid "%s: fixpnt must be of size ipar(11).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1458
+# File: src/c/errorTable.c, line: 1453
 #, c-format
 msgid "%s: input data error.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1428
+# File: src/c/errorTable.c, line: 1423
 #, c-format
 msgid "%s: ipar dimensioned at least 11.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1433
+# File: src/c/errorTable.c, line: 1428
 #, c-format
 msgid "%s: ltol must be of size ipar(4).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1448
+# File: src/c/errorTable.c, line: 1443
 #, c-format
 msgid "%s: m must be of size ncomp.\n"
 msgstr ""
@@ -521,17 +521,17 @@ msgstr ""
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1443
+# File: src/c/errorTable.c, line: 1438
 #, c-format
 msgid "%s: ncomp < 20 requested.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1463
+# File: src/c/errorTable.c, line: 1458
 #, c-format
 msgid "%s: no. of subintervals exceeds storage.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1317
+# File: src/c/errorTable.c, line: 1313
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr ""
@@ -541,12 +541,12 @@ msgstr ""
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 658
+# File: src/c/errorTable.c, line: 659
 #, c-format
 msgid "%s: singular or asymmetric problem.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1453
+# File: src/c/errorTable.c, line: 1448
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr ""
@@ -576,7 +576,7 @@ msgstr ""
 msgid "%s: the cosine of the angle between %s and any column of the jacobian is at most %s in absolute value.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1322
+# File: src/c/errorTable.c, line: 1318
 #, c-format
 msgid "%s: the shared archive was not loaded.\n"
 msgstr ""
@@ -586,11 +586,11 @@ msgstr ""
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1235
+# File: src/c/errorTable.c, line: 1231
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1204
+# File: src/c/errorTable.c, line: 1200
 msgid "Argument type must be boolean.\n"
 msgstr ""
 #
@@ -599,11 +599,11 @@ msgstr ""
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 513
+# File: src/c/errorTable.c, line: 514
 msgid "Bad call to a scilab function ?\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 226
+# File: src/c/errorTable.c, line: 227
 #, c-format
 msgid "Bad call to primitive: %s\n"
 msgstr ""
@@ -613,7 +613,7 @@ msgstr ""
 msgid "Bad conversion."
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1366
+# File: src/c/errorTable.c, line: 1362
 msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
 #
@@ -626,7 +626,7 @@ msgstr ""
 msgid "Buffer too small."
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1371
+# File: src/c/errorTable.c, line: 1367
 msgid "C file logical unit not allowed here.\n"
 msgstr ""
 #
@@ -634,49 +634,49 @@ msgstr ""
 msgid "Commands:\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 218
+# File: src/c/errorTable.c, line: 219
 msgid "Convergence problem...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 914
+# File: src/c/errorTable.c, line: 915
 msgid "Degenerate starting point.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 476
+# File: src/c/errorTable.c, line: 477
 msgid "Direct access : give format.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 243
+# File: src/c/errorTable.c, line: 244
 msgid "Division by zero...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 103
+# File: src/c/errorTable.c, line: 104
 msgid "Dot cannot be used as modifier for this operator.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 727
+# File: src/c/errorTable.c, line: 728
 #, c-format
 msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 715
+# File: src/c/errorTable.c, line: 716
 #, c-format
 msgid "Elements of %dth argument must be in increasing order.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 719
+# File: src/c/errorTable.c, line: 720
 msgid "Elements of first argument are not (strictly) increasing.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 731
+# File: src/c/errorTable.c, line: 732
 msgid "Elements of first argument are not in (strictly) decreasing order.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 248
+# File: src/c/errorTable.c, line: 249
 msgid "Empty function...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 481
+# File: src/c/errorTable.c, line: 482
 #, c-format
 msgid "End of file at line %d.\n"
 msgstr ""
@@ -689,38 +689,38 @@ msgstr ""
 msgid "End of optimization.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1302
+# File: src/c/errorTable.c, line: 1298
 msgid "Entry name not found.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 547
+# File: src/c/errorTable.c, line: 548
 msgid "Error while linking.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1484
+# File: src/c/errorTable.c, line: 1479
 msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 138
+# File: src/c/errorTable.c, line: 139
 msgid "Eye variable undefined in this context.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 512
+# File: src/c/errorTable.c, line: 513
 #, c-format
 msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1346
+# File: src/c/errorTable.c, line: 1342
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1358
+# File: src/c/errorTable.c, line: 1354
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 521
+# File: src/c/errorTable.c, line: 522
 msgid "Floating point exception.\n"
 msgstr ""
 #
@@ -728,20 +728,20 @@ msgstr ""
 msgid "Formal variable name has been truncated.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1376
+# File: src/c/errorTable.c, line: 1372
 msgid "Fortran file logical unit not allowed here.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 787
+# File: src/c/errorTable.c, line: 788
 msgid "Function name already used.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 888
+# File: src/c/errorTable.c, line: 889
 msgid "Function not bounded from below.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1392
-# File: src/c/errorTable.c, line: 1402
+# File: src/c/errorTable.c, line: 1387
+# File: src/c/errorTable.c, line: 1397
 msgid "Function not defined for given argument type(s),\n"
 msgstr ""
 #
@@ -754,11 +754,11 @@ msgstr ""
 msgid "Help file inconsistent...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 643
+# File: src/c/errorTable.c, line: 644
 msgid "Host does not answer...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 992
+# File: src/c/errorTable.c, line: 993
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
@@ -772,184 +772,184 @@ msgstr ""
 msgid "Impossible to load variable %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 878
+# File: src/c/errorTable.c, line: 879
 msgid "Incompatible indices for non-zero elements.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 349
+# File: src/c/errorTable.c, line: 350
 msgid "Incompatible input argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 344
+# File: src/c/errorTable.c, line: 345
 msgid "Incompatible output argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 108
+# File: src/c/errorTable.c, line: 109
 msgid "Inconsistent addition.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 93
+# File: src/c/errorTable.c, line: 94
 msgid "Inconsistent column/row dimensions.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 904
+# File: src/c/errorTable.c, line: 905
 msgid "Inconsistent constraints.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 128
+# File: src/c/errorTable.c, line: 129
 msgid "Inconsistent left division.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 118
+# File: src/c/errorTable.c, line: 119
 msgid "Inconsistent multiplication.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 123
+# File: src/c/errorTable.c, line: 124
 msgid "Inconsistent right division.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 98
+# File: src/c/errorTable.c, line: 99
 msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 113
+# File: src/c/errorTable.c, line: 114
 msgid "Inconsistent subtraction.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 54
+# File: src/c/errorTable.c, line: 55
 msgid "Incorrect assignment.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 148
+# File: src/c/errorTable.c, line: 149
 msgid "Incorrect command!\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 280
+# File: src/c/errorTable.c, line: 281
 msgid "Incorrect control instruction syntax.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 395
+# File: src/c/errorTable.c, line: 396
 msgid "Incorrect file or format.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 594
-# File: src/c/errorTable.c, line: 987
+# File: src/c/errorTable.c, line: 595
+# File: src/c/errorTable.c, line: 988
 #, c-format
 msgid "Incorrect function (argument n: %d).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 320
+# File: src/c/errorTable.c, line: 321
 #, c-format
 msgid "Incorrect function at line %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 322
+# File: src/c/errorTable.c, line: 323
 msgid "Incorrect function.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 332
+# File: src/c/errorTable.c, line: 333
 msgid "Incorrect number of input arguments.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 263
+# File: src/c/errorTable.c, line: 264
 msgid "Incorrect string.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 376
+# File: src/c/errorTable.c, line: 377
 msgid "Incorrect syntax.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 589
+# File: src/c/errorTable.c, line: 590
 msgid "Indexing not allowed for output arguments of resume.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 873
+# File: src/c/errorTable.c, line: 874
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1266
+# File: src/c/errorTable.c, line: 1262
 msgid "Inequality comparison with empty matrix.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1570
+# File: src/c/errorTable.c, line: 1565
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1534
+# File: src/c/errorTable.c, line: 1529
 msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1539
+# File: src/c/errorTable.c, line: 1534
 msgid "Instruction left hand side: waiting for a name.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 491
+# File: src/c/errorTable.c, line: 492
 msgid "Integration fails.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1473
+# File: src/c/errorTable.c, line: 1468
 msgid "Interface property table is full.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 170
+# File: src/c/errorTable.c, line: 171
 #, c-format
 msgid "Intermediate memory needed: %d\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 258
+# File: src/c/errorTable.c, line: 259
 msgid "Invalid exponent.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 59
+# File: src/c/errorTable.c, line: 60
 msgid "Invalid factor.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 203
+# File: src/c/errorTable.c, line: 204
 msgid "Invalid index.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1509
+# File: src/c/errorTable.c, line: 1504
 #, c-format
 msgid "Invalid return value for function passed in arg %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1248
+# File: src/c/errorTable.c, line: 1244
 #, c-format
 msgid "It is not possible to redefine the %s primitive this way (see clearfun).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 739
+# File: src/c/errorTable.c, line: 740
 #, c-format
 msgid "Last element of %dth argument <> first.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 743
+# File: src/c/errorTable.c, line: 744
 msgid "Last element of first argument does not match the first one.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 552
+# File: src/c/errorTable.c, line: 553
 msgid "Leading coefficient is zero.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 857
+# File: src/c/errorTable.c, line: 858
 #, c-format
 msgid "List element number %d is Undefined.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 883
+# File: src/c/errorTable.c, line: 884
 #, c-format
 msgid "Logical unit number should be larger than %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 253
+# File: src/c/errorTable.c, line: 254
 msgid "Matrix is not positive definite.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 213
+# File: src/c/errorTable.c, line: 214
 msgid "Matrix norms available are 1, 2, inf, and fro.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1307
+# File: src/c/errorTable.c, line: 1303
 msgid "Maximum number of dynamic interfaces reached.\n"
 msgstr ""
 #
@@ -958,37 +958,37 @@ msgstr ""
 msgid "Maximum size of buffer : %d characters.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 167
+# File: src/c/errorTable.c, line: 168
 #, c-format
 msgid "Memory used for variables: %d\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1271
+# File: src/c/errorTable.c, line: 1267
 msgid "Missing index.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1549
+# File: src/c/errorTable.c, line: 1544
 msgid "Missing operator, comma, or semicolon.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 959
+# File: src/c/errorTable.c, line: 960
 msgid "NO hot restart available in this method.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 919
+# File: src/c/errorTable.c, line: 920
 msgid "No feasible point has been found.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 909
+# File: src/c/errorTable.c, line: 910
 msgid "No feasible solution.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1381
+# File: src/c/errorTable.c, line: 1377
 #, c-format
 msgid "No input file associated to logical unit %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 829
+# File: src/c/errorTable.c, line: 830
 msgid "No more memory.\n"
 msgstr ""
 #
@@ -1010,15 +1010,15 @@ msgstr ""
 msgid "Not enough memory to perform simplification.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 354
+# File: src/c/errorTable.c, line: 355
 msgid "Not implemented in scilab...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1230
+# File: src/c/errorTable.c, line: 1226
 msgid "Null variable cannot be used here.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1287
+# File: src/c/errorTable.c, line: 1283
 msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
 #
@@ -1034,7 +1034,7 @@ msgstr ""
 msgid "Optim stops: too small variations in gradient direction.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 924
+# File: src/c/errorTable.c, line: 925
 msgid "Optimization fails: back to initial point.\n"
 msgstr ""
 #
@@ -1042,7 +1042,7 @@ msgstr ""
 msgid "Optimization stops because too small variations for x.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 514
+# File: src/c/errorTable.c, line: 515
 msgid "Otherwise, send a bug report to :"
 msgstr ""
 #
@@ -1050,15 +1050,15 @@ msgstr ""
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 186
+# File: src/c/errorTable.c, line: 187
 msgid "Problem is singular.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 899
+# File: src/c/errorTable.c, line: 900
 msgid "Problem may be unbounded: too high distance between two consecutive iterations.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 442
+# File: src/c/errorTable.c, line: 443
 msgid "Problem with comparison symbol...\n"
 msgstr ""
 #
@@ -1085,15 +1085,15 @@ msgstr ""
 msgid "Rebuild your function libraries.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 208
+# File: src/c/errorTable.c, line: 209
 msgid "Recursion problems. Sorry...\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1423
+# File: src/c/errorTable.c, line: 1418
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 133
+# File: src/c/errorTable.c, line: 134
 msgid "Redefining permanent variable.\n"
 msgstr ""
 #
@@ -1103,11 +1103,11 @@ msgid ""
 " in the Schur form no longer satisfy criterion.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 270
+# File: src/c/errorTable.c, line: 271
 msgid "Singularity of log or tan function.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1524
+# File: src/c/errorTable.c, line: 1519
 #, c-format
 msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
@@ -1116,7 +1116,7 @@ msgstr ""
 msgid "Some data have not been computed they are replaced by NaN.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 845
+# File: src/c/errorTable.c, line: 846
 msgid ""
 "Stack problem detected within a loop.\n"
 "A primitive function has been called with a wrong number of output arguments.\n"
@@ -1137,13 +1137,13 @@ msgstr ""
 msgid "Stop during calculation of estimated hessian.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 143
+# File: src/c/errorTable.c, line: 144
 msgid "Submatrix incorrectly defined.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 290
-# File: src/c/errorTable.c, line: 294
-# File: src/c/errorTable.c, line: 298
+# File: src/c/errorTable.c, line: 291
+# File: src/c/errorTable.c, line: 295
+# File: src/c/errorTable.c, line: 299
 #, c-format
 msgid "Syntax error in a '%s' instruction.\n"
 msgstr ""
@@ -1174,56 +1174,56 @@ msgstr ""
 msgid "The top %d x %d block may not be in Schur form.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1261
+# File: src/c/errorTable.c, line: 1257
 msgid "This data type is already defined.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 531
+# File: src/c/errorTable.c, line: 532
 msgid "This variable is not valid in fort.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 797
+# File: src/c/errorTable.c, line: 798
 msgid "Too complex for scilab, may be a too long control instruction.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 234
+# File: src/c/errorTable.c, line: 235
 msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 557
+# File: src/c/errorTable.c, line: 558
 msgid "Too high degree (max 100).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 834
+# File: src/c/errorTable.c, line: 835
 msgid "Too large string.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 802
+# File: src/c/errorTable.c, line: 803
 msgid "Too large, can't be displayed.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 275
+# File: src/c/errorTable.c, line: 276
 msgid "Too many ':'\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 526
+# File: src/c/errorTable.c, line: 527
 msgid "Too many arguments in fort (max 30).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1556
+# File: src/c/errorTable.c, line: 1551
 msgid "Too many commands defined.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 501
+# File: src/c/errorTable.c, line: 502
 msgid "Too many files opened!\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 792
+# File: src/c/errorTable.c, line: 793
 #, c-format
 msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1479
+# File: src/c/errorTable.c, line: 1474
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
 msgstr ""
@@ -1236,33 +1236,33 @@ msgstr ""
 msgid "Too many input/output ports for highlighted block.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 839
+# File: src/c/errorTable.c, line: 840
 msgid "Too many linked routines.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 181
+# File: src/c/errorTable.c, line: 182
 msgid "Too many variables!\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 939
+# File: src/c/errorTable.c, line: 940
 msgid "Too small memory.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 173
+# File: src/c/errorTable.c, line: 174
 #, c-format
 msgid "Total memory available: %d\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 821
+# File: src/c/errorTable.c, line: 822
 #, c-format
 msgid "Trying to re-define function %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1256
+# File: src/c/errorTable.c, line: 1252
 msgid "Type data base is full.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 648
+# File: src/c/errorTable.c, line: 649
 msgid "Uncontrollable system.\n"
 msgstr ""
 #
@@ -1270,28 +1270,28 @@ msgstr ""
 msgid "Undefined display for this data type.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 782
+# File: src/c/errorTable.c, line: 783
 msgid "Undefined fonction.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1008
+# File: src/c/errorTable.c, line: 1007
 msgid "Undefined operation for the given operands.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 88
+# File: src/c/errorTable.c, line: 89
 msgid "Undefined variable.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 79
+# File: src/c/errorTable.c, line: 80
 #, c-format
 msgid "Undefined variable: %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1669
+# File: src/c/errorTable.c, line: 1664
 msgid "Unknown data.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 506
+# File: src/c/errorTable.c, line: 507
 msgid "Unknown file format.\n"
 msgstr ""
 #
@@ -1300,11 +1300,11 @@ msgstr ""
 msgid "Unknown key <%s> ignored.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 653
+# File: src/c/errorTable.c, line: 654
 msgid "Unobservable system.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 165
+# File: src/c/errorTable.c, line: 166
 msgid "Use stacksize function to increase it.\n"
 msgstr ""
 #
@@ -1313,35 +1313,35 @@ msgstr ""
 msgid "Using %s elements out of %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 763
+# File: src/c/errorTable.c, line: 764
 #, c-format
 msgid "Variable %s is not a valid rational function.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 774
+# File: src/c/errorTable.c, line: 775
 #, c-format
 msgid "Variable %s is not a valid state space representation.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 978
+# File: src/c/errorTable.c, line: 979
 #, c-format
 msgid "Variable : %s must be a list\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 752
+# File: src/c/errorTable.c, line: 753
 #, c-format
 msgid "Variable or function %s are not in file.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 708
+# File: src/c/errorTable.c, line: 709
 msgid "Variable returned by scilab argument function is incorrect.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 337
+# File: src/c/errorTable.c, line: 338
 msgid "Waiting for end of command.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 66
+# File: src/c/errorTable.c, line: 67
 msgid "Waiting for right parenthesis.\n"
 msgstr ""
 #
@@ -1449,184 +1449,184 @@ msgstr ""
 msgid "Warning: variable %%ODEOPTIONS not found.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 365
+# File: src/c/errorTable.c, line: 366
 #, c-format
 msgid "Wrong argument %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 327
+# File: src/c/errorTable.c, line: 328
 msgid "Wrong file name.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 309
-# File: src/c/errorTable.c, line: 361
+# File: src/c/errorTable.c, line: 310
+# File: src/c/errorTable.c, line: 362
 msgid "Wrong first argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 313
+# File: src/c/errorTable.c, line: 314
 #, c-format
 msgid "Wrong input argument %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 453
+# File: src/c/errorTable.c, line: 454
 msgid "Wrong number of input arguments."
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 449
+# File: src/c/errorTable.c, line: 450
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 465
+# File: src/c/errorTable.c, line: 466
 msgid "Wrong number of output arguments.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 461
+# File: src/c/errorTable.c, line: 462
 msgid "Wrong number of output arguments: This function has no output argument.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 663
+# File: src/c/errorTable.c, line: 664
 #, c-format
 msgid "Wrong size for argument %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 471
+# File: src/c/errorTable.c, line: 472
 msgid "Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1225
+# File: src/c/errorTable.c, line: 1221
 #, c-format
 msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 703
+# File: src/c/errorTable.c, line: 704
 #, c-format
 msgid "Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1210
+# File: src/c/errorTable.c, line: 1206
 #, c-format
 msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1220
+# File: src/c/errorTable.c, line: 1216
 #, c-format
 msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 683
+# File: src/c/errorTable.c, line: 684
 #, c-format
 msgid "Wrong type for argument %d: In continuous time expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 688
+# File: src/c/errorTable.c, line: 689
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 673
+# File: src/c/errorTable.c, line: 674
 #, c-format
 msgid "Wrong type for argument %d: In state space form expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 437
+# File: src/c/errorTable.c, line: 438
 #, c-format
 msgid "Wrong type for argument %d: List expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 862
+# File: src/c/errorTable.c, line: 863
 #, c-format
 msgid "Wrong type for argument %d: Named variable not an expression expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 678
+# File: src/c/errorTable.c, line: 679
 #, c-format
 msgid "Wrong type for argument %d: Rational matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 417
+# File: src/c/errorTable.c, line: 418
 #, c-format
 msgid "Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 693
+# File: src/c/errorTable.c, line: 694
 #, c-format
 msgid "Wrong type for argument %d: SISO expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1215
+# File: src/c/errorTable.c, line: 1211
 #, c-format
 msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 197
+# File: src/c/errorTable.c, line: 198
 #, c-format
 msgid "Wrong type for argument %d: Square matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 432
+# File: src/c/errorTable.c, line: 433
 #, c-format
 msgid "Wrong type for argument %d: String expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 668
+# File: src/c/errorTable.c, line: 669
 #, c-format
 msgid "Wrong type for argument %d: Transfer matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 193
+# File: src/c/errorTable.c, line: 194
 msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1297
+# File: src/c/errorTable.c, line: 1293
 msgid "Wrong type for first input argument: Single string expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 427
+# File: src/c/errorTable.c, line: 428
 #, c-format
 msgid "Wrong type for input argument %d: Polynomial expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 422
+# File: src/c/errorTable.c, line: 423
 #, c-format
 msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 852
+# File: src/c/errorTable.c, line: 853
 #, c-format
 msgid "Wrong value for argument %d.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1418
+# File: src/c/errorTable.c, line: 1413
 #, c-format
 msgid "Wrong value for argument %d: Empty string expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1489
+# File: src/c/errorTable.c, line: 1484
 #, c-format
 msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1413
+# File: src/c/errorTable.c, line: 1408
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1519
+# File: src/c/errorTable.c, line: 1514
 #, c-format
 msgid "Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1514
+# File: src/c/errorTable.c, line: 1509
 #, c-format
 msgid "Wrong value for argument %d: eigenvalues must have negative real parts.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1408
+# File: src/c/errorTable.c, line: 1403
 #, c-format
 msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1337
+# File: src/c/errorTable.c, line: 1333
 msgid "You cannot link more functions, maxentry reached.\n"
 msgstr ""
 #
@@ -1643,7 +1643,7 @@ msgstr ""
 msgid "at last iteration f decreases by less than %s.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1009
+# File: src/c/errorTable.c, line: 1007
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr ""
@@ -1656,11 +1656,11 @@ msgstr ""
 msgid "eigenvectors are badly conditioned.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1529
+# File: src/c/errorTable.c, line: 1524
 msgid "endfunction is missing.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 562
+# File: src/c/errorTable.c, line: 563
 #, c-format
 msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
 msgstr ""
@@ -1676,7 +1676,7 @@ msgstr ""
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 371
+# File: src/c/errorTable.c, line: 372
 #, c-format
 msgid "null matrix (argument # %d).\n"
 msgstr ""
@@ -1685,7 +1685,7 @@ msgstr ""
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1279
+# File: src/c/errorTable.c, line: 1275
 #, c-format
 msgid "reference to the cleared global variable %s.\n"
 msgstr ""
@@ -1695,7 +1695,7 @@ msgstr ""
 msgid "results may be inaccurate. rcond = %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1292
+# File: src/c/errorTable.c, line: 1288
 msgid "semi def fails.\n"
 msgstr ""
 #
@@ -1704,7 +1704,7 @@ msgstr ""
 msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 164
+# File: src/c/errorTable.c, line: 165
 msgid "stack size exceeded!\n"
 msgstr ""
 #
@@ -1712,16 +1712,16 @@ msgstr ""
 msgid "stepsize not significant in rkqc.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 403
+# File: src/c/errorTable.c, line: 404
 #, c-format
 msgid "subroutine not found: %s\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 698
+# File: src/c/errorTable.c, line: 699
 #, c-format
 msgid "time domain of argument %d is not defined.\n"
 msgstr ""
 #
-# File: src/c/errorTable.c, line: 1544
+# File: src/c/errorTable.c, line: 1539
 msgid "varargout keyword cannot be used here.\n"
 msgstr ""

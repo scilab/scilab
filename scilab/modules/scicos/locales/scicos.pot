@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-06-06 15:29+0100\n"
+"Revision-Date: 2011-07-30 11:30+0100\n"
 
 # File: src/c/scicos.c, line: 3061
 msgid ""
@@ -183,16 +183,6 @@ msgstr ""
 msgid "%s : Allocation error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_permutobj.c, line: 68
-#, c-format
-msgid "%s : Bad size for Rhs(1).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_permutobj.c, line: 84
-#, c-format
-msgid "%s : Bad size for Rhs(2).\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_getscicosvars.c, line: 511
 #, c-format
 msgid "%s : Error.\n"
@@ -227,8 +217,8 @@ msgstr ""
 msgid "%s : First argument must be a scicos_block typed list.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_coserror.c, line: 67
 # File: sci_gateway/c/sci_getscicosvars.c, line: 171
+# File: sci_gateway/c/sci_coserror.c, line: 67
 #, c-format
 msgid "%s : First argument must be a string.\n"
 msgstr ""
@@ -287,8 +277,8 @@ msgstr ""
 msgid "%s : Second argument must be a real.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_data2sig.c, line: 152
 # File: sci_gateway/c/sci_scicosim.c, line: 476
+# File: sci_gateway/c/sci_data2sig.c, line: 152
 #, c-format
 msgid "%s : Second argument must be a scalar.\n"
 msgstr ""
@@ -444,16 +434,10 @@ msgstr ""
 msgid "%s : type 2 function not allowed for scilab blocks\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_model2blk.c, line: 196
 # File: sci_gateway/c/sci_scicosim.c, line: 1372
+# File: sci_gateway/c/sci_model2blk.c, line: 196
 #, c-format
 msgid "%s : unknown block : %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_permutobj.c, line: 75
-# File: sci_gateway/c/sci_permutobj.c, line: 91
-#, c-format
-msgid "%s :the handle is not or no more valid.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_duplicate.c, line: 56
@@ -545,12 +529,12 @@ msgstr ""
 msgid "%s: error %d. Undefined error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_phase_simulation.c, line: 38
-# File: sci_gateway/c/sci_coserror.c, line: 59
-# File: sci_gateway/c/sci_set_blockerror.c, line: 41
-# File: sci_gateway/c/sci_set_xproperty.c, line: 38
 # File: sci_gateway/c/sci_pointer_xproperty.c, line: 43
+# File: sci_gateway/c/sci_set_xproperty.c, line: 38
+# File: sci_gateway/c/sci_phase_simulation.c, line: 38
 # File: sci_gateway/c/sci_end_scicosim.c, line: 43
+# File: sci_gateway/c/sci_set_blockerror.c, line: 41
+# File: sci_gateway/c/sci_coserror.c, line: 59
 #, c-format
 msgid "%s: scicosim is not running.\n"
 msgstr ""
