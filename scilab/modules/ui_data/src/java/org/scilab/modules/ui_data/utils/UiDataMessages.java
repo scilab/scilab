@@ -74,12 +74,12 @@ public final class UiDataMessages {
     public static final String LASTMODIF_COLUMN = Messages.gettext("Last modified");
     public static final String DIRECTORY = Messages.gettext("Directory");
     public static final String FILETYPE = Messages.gettext("%s File");
-    public static final String FILEFILTER = Messages.gettext("Enter a file filter");
+    public static final String FILEFILTER = Messages.gettext("File/directory filter");
     public static final String CWD = Messages.gettext("Enter your working folder");
     public static final String CASESENSITIVE = Messages.gettext("Case sensitive");
     public static final String REGEXP = Messages.gettext("Regular expression");
     public static final String SELECTADIR = Messages.gettext("Select a directory");
-    public static final String USERHOME = Messages.gettext("User home");
+    public static final String USERHOME = Messages.gettext("Home");
     public static final String SCIFOLDER = Messages.gettext("Scilab");
 
     public static final String CANNOTREAD = Messages.gettext("Cannot edit the file %s");
