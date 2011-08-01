@@ -284,27 +284,7 @@ char * allocateText( char       * pparentsubwinUID,
 
     cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    /* To be deleted */
-#if 0
-    if ( sciInitGraphicContext( pObj ) == -1)
-    {
-        deleteGraphicObject(pobjUID);
-        FREE(pObj);
-        return NULL;
-    }
-#endif
-
     cloneFontContext(pparentsubwinUID, pobjUID);
-
-    /* To be deleted */
-#if 0
-    if ( sciInitFontContext( pObj ) == -1 )
-    {
-        deleteGraphicObject(pobjUID);
-        FREE(pObj);
-        return NULL;
-    }
-#endif
 
     setGraphicObjectProperty(pobjUID, __GO_BOX__, &isboxed, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
@@ -507,27 +487,7 @@ ConstructLegend (char * pparentsubwinUID, char **text, long long tabofhandles[],
     /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    /* To be deleted */
-#if 0
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
-#endif
-
     cloneFontContext(pparentsubwinUID, pobjUID);
-
-    /* To be deleted */
-#if 0
-    if (sciInitFontContext (pobj) == -1)
-    {
-        deleteGraphicObject(pobj->UID);
-        FREE(pobj);
-        return (sciPointObj*) NULL;
-    }
-#endif
 
     fillMode = TRUE;
     setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &fillMode, jni_bool, 1);
@@ -594,20 +554,9 @@ char* allocatePolyline(char* pparentsubwinUID, double *pvecx, double *pvecy, dou
         return NULL;
     }
 
-    /* To be deleted */
-#if 0
-    /* Create the default relationShip */
-    createDefaultRelationShip(pobj);
-#endif
-
-    /* To be deleted */
-#if 0
-    sciSetParent( pobj, pparentsubwin );
-#endif
-
     /*
      * Sets the polyline's parent in order to initialize the former's Contoured properties
-     * with the latter's values (sciInitGraphicContext call below)
+     * with the latter's values
      */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, pparentsubwinUID, jni_string, 1);
 
@@ -767,22 +716,7 @@ char* allocatePolyline(char* pparentsubwinUID, double *pvecx, double *pvecy, dou
      */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    // FIXME ???
-    //sciInitGraphicContext(pobj);
-
-    /* To be deleted */
-#if 0
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-        FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-        FREE(pPOLYLINE_FEATURE(pobj));
-        FREE(pobj);
-        return NULL;
-    }
-#endif
-
-  /* colors and marks setting */
+    /* colors and marks setting */
     setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &ismark, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
@@ -793,32 +727,18 @@ char* allocatePolyline(char* pparentsubwinUID, double *pvecx, double *pvecy, dou
     if(foreground != NULL)
     {
         setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, foreground, jni_int, 1);
-
-        /* To be fully implemented within the MVC framework since it performs color range checks */
-#if 0
-        sciInitForeground(pobj,(*foreground));
-#endif
     }
 
-    if(background != NULL){
+    if(background != NULL)
+    {
         if(isinterpshaded == TRUE)
         { /* 3 or 4 values to store */
 
             setGraphicObjectProperty(pobjUID, __GO_INTERP_COLOR_VECTOR__, background, jni_int_vector, n1);
-
-            /* To be deleted */
-#if 0
-            sciSetInterpVector(pobj,n1,background);
-#endif
         }
         else
         {
             setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, background, jni_int, 1);
-
-            /* To be fully implemented within the MVC framework since it performs color range checks */
-#if 0
-            sciInitBackground(pobj,(*background));
-#endif
         }
     }
 
@@ -834,32 +754,12 @@ char* allocatePolyline(char* pparentsubwinUID, double *pvecx, double *pvecy, dou
     if(mark_foreground != NULL)
     {
         setGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, mark_foreground, jni_int, 1);
-
-        /* To be fully implemented within the MVC framework since it performs color range checks */
-#if 0
-        sciInitMarkForeground(pobj,(*mark_foreground));
-#endif
     }
 
     if(mark_background != NULL)
     {
         setGraphicObjectProperty(pobjUID, __GO_MARK_BACKGROUND__, mark_background, jni_int, 1);
-
-        /* To be fully implemented within the MVC framework since it performs color range checks */
-#if 0
-        sciInitMarkBackground(pobj,(*mark_background));
-#endif
     }
-
-    /* no sons for now */
-    /* To be deleted */
-#if 0
-    sciInitSelectedSons( pobj ) ;
-
-    sciGetRelationship(pobj)->psons        = NULL ;
-    sciGetRelationship(pobj)->plastsons    = NULL ;
-    sciGetRelationship(pobj)->pSelectedSon = NULL ;
-#endif
 
     /* Parent reset to the null object */
     setGraphicObjectProperty(pobjUID, __GO_PARENT__, "", jni_string, 1);
@@ -894,26 +794,6 @@ char *ConstructPolyline (char *pparentsubwinUID, double *pvecx, double *pvecy, d
     {
         return NULL;
     }
-
-    /* allocatePolyline created a "fake" relationship, destroy it */
-    /*
-     * Deactivated since the sciPolyline struct is not used anymore
-     * and sciStandardBuildOperations uses the obsolete C hierarchical
-     * relationships.
-     * The operations still relevant are performed below
-     * (sciStandardBuildOperations should be updated as to include them).
-     */
-#if 0
-    FREE(pobj->relationShip);
-
-    if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
-    {
-        FREE(pobj->pfeatures);
-        FREE(pobj);
-        return NULL;
-    }
-#endif
-
 
 //  if (sciAddNewHandle(pobj) == -1)
 //  {
@@ -1158,16 +1038,6 @@ ConstructRectangle (char * pparentsubwinUID, double x, double y,
      */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
 
-    /* To be deleted */
-#if 0
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        deleteGraphicObject(pobjUID);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
-#endif
-
     /* Contour settings */
     setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &isline, jni_bool, 1);
     setGraphicObjectProperty(pobjUID, __GO_FILL_MODE__, &isfilled, jni_bool, 1);
@@ -1215,12 +1085,6 @@ ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typeof3d,
 		  int *n2, int *m3, int *n3, int *m3n, int *n3n)
 {
     char *pobjUID = NULL;
-    /*debug F.Leray*/
-    /* To be deleted */
-#if 0
-    sciSurface *psurf;
-#endif
-
     char* parentType;
     char* surfaceID;
     char* surfaceTypes[2] = {__GO_PLOT3D__, __GO_FAC3D__};
@@ -1420,7 +1284,7 @@ ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typeof3d,
 
     /*
      * surfaceMode set to "on", was previously done by InitGraphicContext, by setting
-     * the graphic context's line_mode to on, which previously stood for the surface_mode.
+     * the graphic context's line_mode to on, which stood for the surface_mode.
      */
     surfaceMode = 1;
 
@@ -1443,16 +1307,6 @@ ConstructSurface (char * pparentsubwinUID, sciTypeOf3D typeof3d,
     // Here we init old 'graphicContext' by cloning it from parent.
     cloneGraphicContext(pparentsubwinUID, pobjUID);
     setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
-
-//    if (sciInitGraphicContext (pobj) == -1)
-//    {
-//        setGraphicObjectRelationship("", pobjUID);
-//        deleteGraphicObject(pobjUID);
-//        deleteDataObject(pobjUID);
-//        // sciDelHandle(pobj);
-//
-//        return NULL;
-//    }
 
     return pobjUID;
 }
@@ -1618,20 +1472,6 @@ ConstructGrayplot (char * pparentsubwinUID, double *pvecx, double *pvecy,
 
     /* Initializes the default Contour values */
     cloneGraphicContext(pparentsubwinUID, pobjUID);
-
-    /* To be deleted */
-#if 0
-    if (sciInitGraphicContext (pobj) == -1)
-    {
-        setGraphicObjectRelationship("", pobj->UID);
-        deleteGraphicObject(pobj->UID);
-        deleteDataObject(pobj->UID);
-        // sciDelHandle(pobj);
-
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-    }
-#endif
 
     return pobjUID;
 }
@@ -2445,20 +2285,6 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
 
   return pObj ;
 
-}
-/*----------------------------------------------------------------------------*/
-/**
- * Create a figure if none exists.
- */
-void SciWin(void)
-{
-// ???
-#if 0
-  if (!sciHasFigures())
-  {
-    sciGetCurrentFigure();
-  }
-#endif
 }
 /*----------------------------------------------------------------------------*/
 /**
