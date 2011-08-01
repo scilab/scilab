@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+//
 // <-- Non-regression test for bug 1604 -->
 //
 // <-- Bugzilla URL -->
@@ -12,8 +13,11 @@
 //
 // <-- Short Description -->
 //Bug in parser while manipulating tlist inside list.
-//Note that the bug is only visible/reproducible in release mode under
+//Note that the bug is only visible/reproducible in release mode under 
 //Windows. It should also happen in debug but can't be easily seen...
 t=list(gca());//create the data
 R = t(1).data_bounds(:,1); //crash
-if R<> [0;1] then bugmes();quit;end
+Warning !!!
+Scilab has found a critical error (EXCEPTION_ACCESS_VIOLATION).
+Save your data and restart Scilab.
+exec('SCI/etc/scilab.quit',-1);quit;

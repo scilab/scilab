@@ -119,7 +119,8 @@ libdummy_data_structures_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(LDFLAGS) -o $@
 libscidata_structures_algo_la_LIBADD =
 am__objects_1 = libscidata_structures_algo_la-stcreate.lo \
-	libscidata_structures_algo_la-hmops.lo
+	libscidata_structures_algo_la-hmops.lo \
+	libscidata_structures_algo_la-strpos.lo
 am__objects_2 = extractfields.lo forcerhs.lo intl_i.lo lsstyp.lo \
 	udptr.lo followpath.lo rattyp.lo lstops.lo gratyp.lo mlist.lo \
 	insertfield.lo
@@ -444,7 +445,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
-src/c/hmops.c
+src/c/hmops.c \
+src/c/strpos.c
 
 DATA_STRUCTURES_FORTRAN_SOURCES = src/fortran/extractfields.f \
 src/fortran/forcerhs.f \
@@ -670,6 +672,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-hmops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-stcreate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_algo_la-strpos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-gw_data_structures1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-gw_data_structures2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidata_structures_la-sci_definedfields.Plo@am__quote@
@@ -718,6 +721,13 @@ libscidata_structures_algo_la-hmops.lo: src/c/hmops.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hmops.c' object='libscidata_structures_algo_la-hmops.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_algo_la-hmops.lo `test -f 'src/c/hmops.c' || echo '$(srcdir)/'`src/c/hmops.c
+
+libscidata_structures_algo_la-strpos.lo: src/c/strpos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_algo_la-strpos.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_algo_la-strpos.Tpo -c -o libscidata_structures_algo_la-strpos.lo `test -f 'src/c/strpos.c' || echo '$(srcdir)/'`src/c/strpos.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidata_structures_algo_la-strpos.Tpo $(DEPDIR)/libscidata_structures_algo_la-strpos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strpos.c' object='libscidata_structures_algo_la-strpos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_algo_la_CFLAGS) $(CFLAGS) -c -o libscidata_structures_algo_la-strpos.lo `test -f 'src/c/strpos.c' || echo '$(srcdir)/'`src/c/strpos.c
 
 libscidata_structures_la-sci_lsslist.lo: sci_gateway/c/sci_lsslist.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidata_structures_la_CFLAGS) $(CFLAGS) -MT libscidata_structures_la-sci_lsslist.lo -MD -MP -MF $(DEPDIR)/libscidata_structures_la-sci_lsslist.Tpo -c -o libscidata_structures_la-sci_lsslist.lo `test -f 'sci_gateway/c/sci_lsslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsslist.c

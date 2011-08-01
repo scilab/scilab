@@ -267,9 +267,10 @@ Misc:
 Bug fixes:
 ==========
 
+* bug 1604 fixed - list extraction failed.
+
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
-
 
 * bug 4847 fixed - In uigetfile, there was no way to select files with a given
                    pattern.

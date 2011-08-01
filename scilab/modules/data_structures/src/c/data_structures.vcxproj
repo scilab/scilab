@@ -254,6 +254,7 @@ lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_setfield.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_tlist.c" />
+    <ClCompile Include="strpos.c" />
     <ClCompile Include="stcreate.c" />
   </ItemGroup>
   <ItemGroup>
