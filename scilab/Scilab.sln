@@ -415,6 +415,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager-Ant", "modules\history_manager\src\java\history_manager-JAVA.vcxproj", "{63965A84-E354-4CBC-BFAC-FDFC8224573F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noconsole", "modules\console\src\noconsole\noconsole.vcxproj", "{A1E6DC43-B0B9-4871-9DE5-7940B80A703E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows_tools", "modules\windows_tools\src\c\windows_tools.vcxproj", "{9594AC02-20EE-4FBF-95B4-BFA5865ED7CA}"
 EndProject
