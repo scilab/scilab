@@ -89,6 +89,7 @@
 /* 65 */						#include "dynamic_gateways.h" /* action_binding */
 /* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
+/* 68 */                        #include "../../xml/includes/gw_xml.h" /* xml */
 
 
 

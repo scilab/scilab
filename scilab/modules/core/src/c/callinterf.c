@@ -34,7 +34,7 @@ jmp_buf jmp_env;
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 67
+#define INTERFACES_MAX 68
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
     /* 02  */ {gw_linear_algebra},
@@ -102,7 +102,8 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 64  */ {gw_dynamic_xcos},
     /* 65  */ {gw_dynamic_action_binding},
     /* 66  */ {gw_dynamic_parallel},
-    /* 67  */ {gw_dynamic_ui_data}
+    /* 67  */ {gw_dynamic_ui_data},
+    /* 68  */ {gw_xml},
 };
 /*--------------------------------------------------------------------------*/
 /**
