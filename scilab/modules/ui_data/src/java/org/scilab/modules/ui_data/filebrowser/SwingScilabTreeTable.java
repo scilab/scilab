@@ -21,6 +21,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -152,13 +154,11 @@ public class SwingScilabTreeTable extends JTable {
             }
         });
 
-
         setShowGrid(false);
         setFillsViewportHeight(true);
         setIntercellSpacing(new Dimension(0, 0));
         setRowSorter(new FileBrowserRowSorter(tree, this));
         setAutoResizeMode(AUTO_RESIZE_NEXT_COLUMN);
-
 
         try {
             isLocationInExpandControl = BasicTreeUI.class.getDeclaredMethod("isLocationInExpandControl", new Class[]{TreePath.class, int.class, int.class});
@@ -186,6 +186,35 @@ public class SwingScilabTreeTable extends JTable {
                     }
                 }
             });
+
+        addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if (Character.isLetter(c)) {
+                        int step = 1;
+                        if (Character.isUpperCase(c)) {
+                            step = -1;
+                        }
+                        c = Character.toLowerCase(c);
+                        int[] rows = getSelectedRows();
+                        int count = getRowCount();
+                        int start = 0;
+                        if (rows != null && rows.length != 0) {
+                            start = modulo(rows[0] + step, count);
+                        }
+                        for (int i = start; i != start - step; i = modulo(i + step, count)) {
+                            char first = ((FileNode) tree.getPathForRow(i).getLastPathComponent()).toString().charAt(0);
+                            first = Character.toLowerCase(first);
+                            if (first == c) {
+                                scrollRectToVisible(tree.getRowBounds(i));
+                                setRowSelectionInterval(i, i);
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+
 
         initActions();
         setComponentPopupMenu(createPopup());
@@ -417,4 +446,18 @@ public class SwingScilabTreeTable extends JTable {
 
         return popup;
     }
+
+    /**
+     * A modulo for negative numbers
+     * @param n an int
+     * @param p an other int
+     * @return n modulo p
+     */
+    private static final int modulo(int n, int p) {
+        if (n >= 0) {
+            return n % p;
+        }
+        return p - (-n % p);
+    }
+
 }
