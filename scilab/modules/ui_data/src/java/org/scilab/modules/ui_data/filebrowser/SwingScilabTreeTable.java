@@ -52,7 +52,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.tree.TreePath;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
@@ -303,15 +302,15 @@ public class SwingScilabTreeTable extends JTable {
     public void setBaseDir(String baseDir, boolean addInHistory) {
         ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
         combobox.setBaseDir(baseDir);
-        File f = new File(baseDir);
-        if (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead()) {
-            tree.setModel(null);
-            if (addInHistory) {
-                history.addPathInHistory(baseDir);
-            } else {
-                InterpreterManagement.requestScilabExec("chdir('" + baseDir + "')");
+        if (model != null) {
+            File f = new File(baseDir);
+            if (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead()) {
+                tree.setModel(null);
+                if (addInHistory) {
+                    history.addPathInHistory(baseDir);
+                }
+                model.setBaseDir(baseDir, this);
             }
-            model.setBaseDir(baseDir, this);
         }
     }
 
@@ -344,6 +343,9 @@ public class SwingScilabTreeTable extends JTable {
         tree.collapsePath(path);
         ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
         tree.expandPath(path);
+	if (getRowCount() >= 1) {
+	    repaint(tree.getRowBounds(1));
+	}
         editingRow = 0;
     }
 

@@ -172,6 +172,9 @@
         <submenu label="&amp;Command History">
             <callback instruction='org.scilab.modules.history_browser.CommandHistory.setVisible' type="3"/>
         </submenu>
+        <submenu label="&amp;File Browser">
+            <callback instruction='filebrowser()' type="0"/>
+        </submenu>
     </menu>
 
     <!-- Help menu -->

@@ -15,7 +15,7 @@ package org.scilab.modules.ui_data.filebrowser;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -145,6 +146,7 @@ public class ScilabFileBrowserHistory {
                 item.addActionListener(new CallBack(null) {
                         public void callBack() {
                             ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
+                            chDir(history.get(j));
                             setPositionInHistory(j);
                         }
                     });
@@ -157,6 +159,7 @@ public class ScilabFileBrowserHistory {
                 item.addActionListener(new CallBack(null) {
                         public void callBack() {
                             ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(j), false);
+                            chDir(history.get(j));
                             setPositionInHistory(j);
                         }
                     });
@@ -173,6 +176,13 @@ public class ScilabFileBrowserHistory {
         }
 
         popup.show(button, 0, button.getBounds(null).height);
+    }
+
+    private static final void chDir(String path) {
+        File f = new File(path);
+        if (f.exists() && f.isDirectory() && f.canRead()) {
+            InterpreterManagement.requestScilabExec("chdir('" + path + "')");
+        }
     }
 
     /**

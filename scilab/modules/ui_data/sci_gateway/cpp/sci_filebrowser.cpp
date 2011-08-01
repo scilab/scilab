@@ -17,6 +17,7 @@ extern "C"
 #include "gw_ui_data.h"
 #include "getScilabJavaVM.h"
 #include "stack-c.h"
+#include "scicurdir.h"
 }
 
 using namespace org_scilab_modules_ui_data;
@@ -24,10 +25,19 @@ using namespace org_scilab_modules_ui_data;
 /*--------------------------------------------------------------------------*/
 int sci_filebrowser(char *fname, unsigned long fname_len)
 {
+    char * cwd = NULL;
+    int err = 0;
+
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
     FileBrowser::openFileBrowser(getScilabJavaVM());
+
+    cwd = scigetcwd(&err);
+    if (cwd)
+    {
+        FileBrowser::setBaseDir(getScilabJavaVM(), cwd);
+    }
 
     LhsVar(1) = 0;
     PutLhsVar();
