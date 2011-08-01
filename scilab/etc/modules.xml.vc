@@ -69,7 +69,6 @@
 <module name="scicos" activate="yes"/>
 <module name="scicos_blocks" activate="yes"/>
 <!-- comments -->
-<module name="pvm" activate="yes"/>
 <module name="fftw" activate="yes"/>
 <module name="umfpack" activate="yes"/>
 <module name="module_skeleton" activate="no"/>

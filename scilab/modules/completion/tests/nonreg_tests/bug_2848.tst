@@ -38,7 +38,6 @@ ref_d = ["with_foo"; ..
          "with_javasci"; ..
          "with_macros_source"; ..
          "with_modelica_compiler"; ..
-         "with_pvm"; ..
          "with_texmacs"; ..
          "with_tk"];
 

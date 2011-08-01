@@ -23,7 +23,6 @@ SCI
 %inf
 COMPILER
 %gtk
-%pvm
 %tk
 %t
 %f

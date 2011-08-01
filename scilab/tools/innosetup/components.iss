@@ -47,7 +47,6 @@
 #define COMPN_SCINOTES 'scinotes'
 
 #define COMPN_SOUND 'sound'
-#define COMPN_PVM 'pvm'
 #define COMPN_RANDLIB 'randlib'
 #define COMPN_MEXLIB 'mexlib'
 #define COMPN_TEXMACS 'texmacs'
@@ -131,8 +130,6 @@ Name: {#COMPN_MAP2SCI}; Description: {cm:DescriptionMaple2sci}; Types: default f
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full custom;
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: default full custom;
-;
-;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types: default full custom;
 ;
 Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;

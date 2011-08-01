@@ -263,6 +263,9 @@ Misc:
 * Options -disable-exception-catching added under GNU/Linux & Mac OS X.
   Disables the Scilab exception catching system.
 
+* PVM module moved as ATOMS module.
+  atomsInstall('PVM')
+
 
 Bug fixes:
 ==========

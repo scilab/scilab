@@ -77,7 +77,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 39  */ {gw_dynamic_special_functions},
     /* 40  */ {gw_dynamic_tclsci},
     /* 41  */ {gw_data_structures2},
-    /* 42  */ {gw_dynamic_pvm},
+    /* 42  */ {gw_user}, /* free position may be used */
     /* 43  */ {gw_integer},
     /* 44  */ {gw_linear_algebra2},
     /* 45  */ {gw_dynamic_scicos},

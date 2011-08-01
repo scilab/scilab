@@ -261,11 +261,6 @@ function CreateModulesFile: Boolean;
 
         ModulesXmlFileLines[i] := '<!-- comments -->'; i := i + 1;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_PVM}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="pvm" activate="yes"/>'; i := i + 1;
-            end;
-
         if IsComponentSelected( ExpandConstant('{#COMPN_FFTW}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;

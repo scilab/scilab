@@ -49,8 +49,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization_f", "modules\o
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "polynomials_f", "modules\polynomials\src\fortran\polynomials_f2c.vcxproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm", "modules\pvm\pvm.vcxproj", "{63352867-3983-48E3-94FE-DD8F0D6E921F}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "modules\randlib\src\c\randlib.vcxproj", "{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib_f", "modules\randlib\src\fortran\randlib_f2c.vcxproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
@@ -519,14 +517,6 @@ Global
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release|Win32.Build.0 = Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release|x64.ActiveCfg = Release|x64
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release|x64.Build.0 = Release|x64
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug|Win32.Build.0 = Debug|Win32
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug|x64.ActiveCfg = Debug|x64
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug|x64.Build.0 = Debug|x64
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release|Win32.ActiveCfg = Release|Win32
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release|Win32.Build.0 = Release|Win32
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release|x64.ActiveCfg = Release|x64
-		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release|x64.Build.0 = Release|x64
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug|Win32.Build.0 = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug|x64.ActiveCfg = Debug|x64

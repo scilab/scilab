@@ -613,17 +613,6 @@ cd "$LOCALOLDPWD"
 #fi
 #export DISPLAY
 
-#if test "$PVM_ROOT" = ""; then
-#  PVM_ROOT="@PVMROOTR@"
-#fi
-#export PVM_ROOT
-
-#if test "$PVM_ARCH" = ""; then
-#  PVM_ARCH=$($PVM_ROOT/lib/pvmgetarch)
-#fi
-#export PVM_ARCH
-
-
 #
 # Scilab will not work on some Mac OSX version
 # Check version number and ask user if he wants to go on.

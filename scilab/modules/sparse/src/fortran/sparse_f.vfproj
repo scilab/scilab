@@ -142,7 +142,6 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath="lsposp.f"/>
 		<File RelativePath="lspt.f"/>
 		<File RelativePath="lspxsp.f"/>
-		<File RelativePath="mycmatptr.f"/>
 		<File RelativePath="ordmmd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bfinit.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_blkfc1i.f"/>

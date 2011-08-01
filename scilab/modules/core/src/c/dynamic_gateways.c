@@ -33,22 +33,6 @@ int gw_dynamic_special_functions(void)
         &ptr_gw_special_functions);
 }
 /*--------------------------------------------------------------------------*/
-/* pvm module */
-#define PVM_MODULE_NAME "pvm"
-static DynLibHandle hPvmLib = NULL;
-static PROC_GATEWAY ptr_gw_pvm = NULL;
-static char* dynlibname_pvm = NULL;
-static char* gatewayname_pvm = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_pvm(void)
-{
-    return gw_dynamic_generic(PVM_MODULE_NAME,
-        &dynlibname_pvm,
-        &gatewayname_pvm,
-        &hPvmLib,
-        &ptr_gw_pvm);
-}
-/*--------------------------------------------------------------------------*/
 /* helptools module */
 #define HELPTOOLS_MODULE_NAME "helptools"
 static DynLibHandle hHelptoolsLib = NULL;
@@ -407,11 +391,6 @@ void freeAllDynamicGateways(void)
         &gatewayname_special_functions,
         &hSpecial_functionsLib,
         &ptr_gw_special_functions);
-
-    freeDynamicGateway(&dynlibname_pvm,
-        &gatewayname_pvm,
-        &hPvmLib,
-        &ptr_gw_pvm);
 
     freeDynamicGateway(&dynlibname_helptools,
         &gatewayname_helptools,

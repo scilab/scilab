@@ -51,7 +51,6 @@ cacsd \
 polynomials \
 boolean \
 double \
-pvm \
 io \
 intersci \
 signal_processing \
@@ -190,7 +189,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/fftw/libscifftw.la
 
 

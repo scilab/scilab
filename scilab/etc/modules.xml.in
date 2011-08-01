@@ -67,7 +67,6 @@
 <module name="scicos" activate="@XCOS_ENABLE@"/>
 <module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
 <!-- comments -->
-<module name="pvm" activate="@PVM_ENABLE@"/>
 <module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>
