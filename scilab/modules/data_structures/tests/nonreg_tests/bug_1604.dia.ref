@@ -17,7 +17,4 @@
 //Windows. It should also happen in debug but can't be easily seen...
 t=list(gca());//create the data
 R = t(1).data_bounds(:,1); //crash
-Warning !!!
-Scilab has found a critical error (EXCEPTION_ACCESS_VIOLATION).
-Save your data and restart Scilab.
-exec('SCI/etc/scilab.quit',-1);quit;
+if R<> [0;1] then bugmes();quit;end

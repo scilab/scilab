@@ -10,6 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "dynlib_data_structures.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
@@ -24,17 +25,10 @@ DATA_STRUCTURES_IMPEXP int C2F(strpos)(const int *ptr, const int *ns, const int 
 
         if ((l - k) == *n) 
         {
-            int j = 0;
-            int doReturn = 1;
-            for (j = 1; j <= *n; ++j) 
+            if (memcmp(str, &chars[k - 1], sizeof(int) * (*n)) == 0) 
             {
-                if (str[j - 1] != chars[k - 2 + j]) 
-                {
-                    doReturn = 0;
-                    break;
-                }
+                return i;
             }
-            if (doReturn) return i;
         }
     }
     return 0;
