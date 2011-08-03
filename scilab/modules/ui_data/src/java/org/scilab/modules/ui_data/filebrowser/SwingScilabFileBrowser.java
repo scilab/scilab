@@ -64,6 +64,7 @@ public final class SwingScilabFileBrowser extends SwingScilabTab implements Tab 
 
         addToolBar(toolBar);
         setContentPane(filebrowser);
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**

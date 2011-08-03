@@ -38,6 +38,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
@@ -127,6 +128,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         toolBar.add(undoButton);
         toolBar.add(redoButton);
         addToolBar(toolBar);
+        WindowsConfigurationManager.restorationFinished(this);
     }
 
     /**
