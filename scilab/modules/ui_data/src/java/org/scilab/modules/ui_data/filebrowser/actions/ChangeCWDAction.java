@@ -86,7 +86,7 @@ public class ChangeCWDAction extends CallBack {
                     File f = new File(table.getComboBox().getBaseDir());
                     if (f.exists()) {
                         File parent = f.getParentFile();
-                        if (parent.exists() && parent.canRead()) {
+                        if (parent != null && parent.exists() && parent.canRead()) {
                             changeDir(parent.getAbsolutePath());
                         }
                     }
