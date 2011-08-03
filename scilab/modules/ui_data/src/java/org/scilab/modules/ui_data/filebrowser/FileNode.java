@@ -203,7 +203,7 @@ public class FileNode {
     public String toString() {
         String name = file.getName();
         if (name.isEmpty()) {
-            name = "/";
+            name = file.toString();
         }
         return name;
     }
