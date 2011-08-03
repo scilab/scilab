@@ -1948,30 +1948,33 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
     getGraphicObjectProperty(pthis, __GO_TYPE__, jni_string, &type);
 
-//    switch (sciGetEntityType (pthis))
-
     /*
-     * switch over sciGetEntityType replaced by object type string comparisons
+     * Object type determined by string comparisons
      * Required as we have no better way to do this for the moment
      */
     if (strcmp(type, __GO_FIGURE__) == 0)
     {
-            int posX ;
-            int posY ;
-            *numrow = 2;
-            *numcol = 2;
-            if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return NULL;
-            }
-            sciGetScreenPosition( pthis, &posX, &posY ) ;
-            tab[0] = (double) posX ;
-            tab[1] = (double) posY ;
-            tab[2] = (double)sciGetWidth (pthis);
-            tab[3] = (double)sciGetHeight (pthis);
-            return tab;
+        int* figurePosition;
+        int* axesSize;
+
+        *numrow = 2;
+        *numcol = 2;
+        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return NULL;
+        }
+
+        getGraphicObjectProperty(pthis, __GO_POSITION__, jni_int_vector, &figurePosition);
+        getGraphicObjectProperty(pthis, __GO_AXES_SIZE__, jni_int_vector, &axesSize);
+
+        tab[0] = (double) figurePosition[0];
+        tab[1] = (double) figurePosition[1];
+        tab[2] = (double) axesSize[0];
+        tab[3] = (double) axesSize[1];
+
+        return tab;
     }
     else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
@@ -2274,8 +2277,6 @@ double *sciGetPoint(char * pthis, int *numrow, int *numcol)
 
         return (double*)tab;
     }
-    /* F.Leray 17.03.04*/
-    /* SCI_SURFACE replaced by FAC3D and PLOT3D in the MVC framework */
     else if (strcmp(type, __GO_FAC3D__) == 0)
     {
         *numrow = -1;
