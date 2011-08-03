@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import javax.swing.Icon;
@@ -23,7 +24,6 @@ import javax.swing.SortOrder;
 
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.core.Scilab;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -37,27 +37,24 @@ public class FileNode {
     public static final int DATEORDER = 3;
     public static final int TYPEORDER = 4;
 
-    private final FileFilter FILTER = new FileFilter() {
-            public boolean accept(File f) {
-                return !f.isHidden() && f.canRead() && (f.isFile() || f.isDirectory()) && (pat == null || pat.matcher(f.getName()).matches());
-            }
-        };
-
     private static final File userHomeDir = new File(ScilabConstants.USERHOME);
     private static final File SCIDIR = new File(System.getenv("SCI"));
-    private static boolean isWindows = Scilab.isWindowsPlateform();
+
+    private static Comparator<FileNode> comparator = FileComparators.ASCENDING_ALPHA;
 
     protected File file;
     protected Icon icon;
-    protected Object[] children;
-    protected File[] childrenFiles;
+    protected FileNode[] children;
     protected long lastModified;
     protected boolean isFile;
     protected boolean canRead;
     protected boolean canWrite;
     protected boolean isEmpty;
-    private boolean userHome;
-    private boolean sci;
+    protected boolean userHome;
+    protected boolean sci;
+    protected long length;
+    protected String name;
+    protected String extension;
     private int order = 1;
     private Pattern pat;
     private int position;
@@ -67,9 +64,24 @@ public class FileNode {
      * @param file the file in this node
      */
     public FileNode(File file, int position) {
-        this.file = file;
+        this(file, file.getName(), file.canRead(), file.isFile());
         this.position = position;
-        init();
+    }
+
+    public FileNode(File file, String name, boolean canRead, boolean isFile) {
+        this.file = file;
+        this.name = name;
+        this.isFile = isFile;
+        this.canRead = canRead;
+        this.canWrite = file.canWrite();
+        this.lastModified = file.lastModified();
+        this.userHome = file.equals(userHomeDir);
+        if (isFile) {
+            this.length = file.length();
+        }
+        this.extension = FileUtils.getFileExtension(file);
+        this.sci = file.equals(SCIDIR);
+        this.isEmpty = isFile || CommonFileUtils.isEmptyDirectory(file.getAbsolutePath()) == 1;
     }
 
     public int getPosition() {
@@ -81,7 +93,7 @@ public class FileNode {
      */
     public void setFilter(Pattern pat) {
         this.pat = pat;
-        reset();
+        resetChildren();
     }
 
     /**
@@ -89,6 +101,32 @@ public class FileNode {
      */
     public void setOrder(int order) {
         this.order = order;
+        switch (order) {
+        case NAMEORDER:
+            comparator = FileComparators.ASCENDING_ALPHA;
+            break;
+        case -NAMEORDER:
+            comparator = FileComparators.DESCENDING_ALPHA;
+            break;
+        case TYPEORDER:
+            comparator = FileComparators.ASCENDING_TYPE;
+            break;
+        case -TYPEORDER:
+            comparator = FileComparators.DESCENDING_TYPE;
+            break;
+        case DATEORDER:
+            comparator = FileComparators.ASCENDING_DATE;
+            break;
+        case -DATEORDER:
+            comparator = FileComparators.DESCENDING_DATE;
+            break;
+        case SIZEORDER:
+            comparator = FileComparators.ASCENDING_SIZE;
+            break;
+        case -SIZEORDER:
+            comparator = FileComparators.DESCENDING_SIZE;
+            break;
+        }
     }
 
     /**
@@ -145,109 +183,18 @@ public class FileNode {
      * @param files the files to order
      * @return the ordered FileNodes
      */
-    protected static FileNode[] orderFiles(int order, File[] files) {
-        final Comparator alpha;
-        if (isWindows) {
-            alpha = new Comparator<File>() {
-                public int compare(File f1, File f2) {
-                    if ((f1.isFile() && f2.isFile()) || (f1.isDirectory() && f2.isDirectory())) {
-                        int diff = f1.getName().compareToIgnoreCase(f2.getName());
-                        if (diff == 0) {
-                            diff = f1.getName().compareTo(f2.getName());
-                        }
-                        return diff;
-                    } else if (f1.isFile()) {
-                        return 1;
-                    }
-                    return -1;
-                }
-
-                public boolean equals(Object obj) {
-                    return false;
-                }
-            };
-        } else {
-            alpha = new Comparator<File>() {
-                public int compare(File f1, File f2) {
-                    if ((f1.isFile() && f2.isFile()) || (f1.isDirectory() && f2.isDirectory())) {
-                        return f1.getName().compareTo(f2.getName());
-                    } else if (f1.isFile()) {
-                        return 1;
-                    }
-                    return -1;
-                }
-
-                public boolean equals(Object obj) {
-                    return false;
-                }
-            };
-        }
-
-        switch (Math.abs(order)) {
-        case SIZEORDER :
-            Arrays.sort(files, new Comparator<File>() {
-                    public int compare(File f1, File f2) {
-                        int diff = new Long(f1.length()).compareTo(f2.length());
-                        if (diff == 0 || f1.isDirectory() || f2.isDirectory()) {
-                            return alpha.compare(f1, f2);
-                        } else {
-                            return diff;
-                        }
-                    }
-
-                    public boolean equals(Object obj) {
-                        return false;
-                    }
-                });
-            break;
-        case DATEORDER :
-            Arrays.sort(files, new Comparator<File>() {
-                    public int compare(File f1, File f2) {
-                        int diff = new Long(f1.lastModified()).compareTo(f2.lastModified());
-                        if (diff == 0) {
-                            return alpha.compare(f1, f2);
-                        } else {
-                            return diff;
-                        }
-                    }
-
-                    public boolean equals(Object obj) {
-                        return false;
-                    }
-                });
-            break;
-        case TYPEORDER :
-            Arrays.sort(files, new Comparator<File>() {
-                    public int compare(File f1, File f2) {
-                        int diff = FileUtils.getFileExtension(f1).compareTo(FileUtils.getFileExtension(f2));
-                        if (diff == 0) {
-                            return alpha.compare(f1, f2);
-                        } else {
-                            return diff;
-                        }
-                    }
-
-                    public boolean equals(Object obj) {
-                        return false;
-                    }
-                });
-            break;
-        default :
-            Arrays.sort(files, alpha);
-        }
-
-        FileNode[] nodes = new FileNode[files.length];
-        if (order > 0) {
-            for (int i = 0; i < files.length; i++) {
-                nodes[i] = new FileNode(files[i], i);
+    protected void orderFiles() {
+        if (children != null) {
+            TreeSet<FileNode> set = new TreeSet<FileNode>(comparator);
+            for (FileNode fn : children) {
+                set.add(fn);
             }
-        } else {
-            for (int i = 0; i < files.length; i++) {
-                nodes[i] = new FileNode(files[files.length - 1 - i], i);
+
+            children = set.toArray(children);
+            for (int i = 0; i < children.length; i++) {
+                children[i].position = i;
             }
         }
-
-        return nodes;
     }
 
     /**
@@ -311,16 +258,16 @@ public class FileNode {
      * @return the number of files in the directory representated by this file
      */
     public int getChildrenCount() {
-        if (childrenFiles == null && !isEmpty) {
+        if (children == null && !isEmpty) {
             synchronized(file) {
-                if (childrenFiles == null) {
-                    childrenFiles = file.listFiles(FILTER);
+                if (children == null) {
+                    children = listFiles();
                 }
             }
         }
 
-        if (childrenFiles != null) {
-            return childrenFiles.length;
+        if (children != null) {
+            return children.length;
         }
 
         return 0;
@@ -331,22 +278,46 @@ public class FileNode {
      */
     protected Object[] getChildren() {
         if (children == null && !isEmpty) {
-            try {
-                children = orderFiles(order, childrenFiles);
-            } catch (SecurityException se) { }
+            children = listFiles();
         }
 
         return children;
     }
 
-    /**
-     * Reset this FileNode
-     */
-    public void reset() {
-        children = null;
-        icon = null;
-        childrenFiles = null;
-        init();
+    public FileNode[] listFiles() {
+        String[] filesName = file.list();
+        if (filesName != null) {
+            TreeSet<FileNode> nodes = new TreeSet<FileNode>(comparator);
+            for (String fileName : filesName) {
+                File f = new File(file, fileName);
+                if (pat != null && !pat.matcher(fileName).matches()) {
+                    continue;
+                }
+                if (f.isHidden()) {
+                    continue;
+                }
+                boolean canRead = f.canRead();
+                if (!canRead) {
+                    continue;
+                }
+                boolean isFile = f.isFile();
+                if (!isFile && !f.isDirectory()) {
+                    continue;
+                }
+                nodes.add(new FileNode(f, fileName, canRead, isFile));
+            }
+
+            FileNode[] fnodes = new FileNode[nodes.size()];
+            fnodes = nodes.toArray(fnodes);
+
+            for (int i = 0; i < fnodes.length; i++) {
+                fnodes[i].position = i;
+            }
+
+            return fnodes;
+        }
+
+        return null;
     }
 
     /**
@@ -368,18 +339,5 @@ public class FileNode {
      */
     public int hashCode() {
         return file.hashCode();
-    }
-
-    /**
-     * Init
-     */
-    private void init() {
-        isFile = file.isFile();
-        lastModified = file.lastModified();
-        canRead = file.canRead();
-        canWrite = file.canWrite();
-        userHome = file.equals(userHomeDir);
-        sci = file.equals(SCIDIR);
-        isEmpty = isFile || CommonFileUtils.isEmptyDirectory(file.getAbsolutePath()) == 1;
     }
 }

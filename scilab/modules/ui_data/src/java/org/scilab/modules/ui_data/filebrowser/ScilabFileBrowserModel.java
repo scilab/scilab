@@ -48,7 +48,6 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
      */
     public ScilabFileBrowserModel() {
         super();
-        setRoot(new RootNode());
     }
 
     /**
@@ -77,6 +76,13 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
             }
         };
         worker.execute();
+    }
+
+    public void setRoot(Object root) {
+        super.setRoot(root);
+
+        // Force the root to load its children in the SwingWorker thread rather than in EDT
+        ((FileNode) root).getChildrenCount();
     }
 
     /**
@@ -206,35 +212,6 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
         catch (SecurityException se) { }
 
         return null;
-    }
-
-    /**
-     * Inner class to represent a root
-     */
-    public class RootNode extends FileNode {
-
-        /**
-         * {@inheritDoc}
-         */
-        public RootNode() {
-            super(new File(""), -1);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        protected Object[] getChildren() {
-            if (children == null) {
-                try {
-                    File[] files = File.listRoots();
-                    if (files != null) {
-                        children = orderFiles(order, files);
-                    }
-                } catch (SecurityException se) { }
-            }
-
-            return children;
-        }
     }
 
     /**

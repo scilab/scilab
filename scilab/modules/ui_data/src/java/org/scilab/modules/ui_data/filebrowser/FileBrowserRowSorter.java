@@ -136,16 +136,15 @@ public class FileBrowserRowSorter extends RowSorter<TableModel> {
      */
     public void toggleSortOrder(int column) {
         SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, table).setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
         ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
         FileNode root = (FileNode) model.getRoot();
-        Enumeration<TreePath> en = tree.getExpandedDescendants(new TreePath(model.getRoot()));
+        Enumeration<TreePath> en = tree.getExpandedDescendants(new TreePath(root));
         root.toggleSortOrder(table.getColumnName(column));
 
-        root.resetChildren();
+        root.orderFiles();
         for (int i = 0; i < tree.getRowCount(); i++) {
             FileNode fn = (FileNode) tree.getPathForRow(i).getLastPathComponent();
-            fn.resetChildren();
+            fn.orderFiles();
         }
 
         model.fireTreeStructureChanged(model, new TreePath(root).getPath(), null, null);
