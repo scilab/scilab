@@ -210,7 +210,7 @@ int TriangleMeshData::setNumVertices(unsigned int numVertices)
 
         try
         {
-            newValues = new double[3*numVertices];
+            newValues = new double[numVertices];
         }
         catch (const std::exception& e)
         {
@@ -307,11 +307,9 @@ double* TriangleMeshData::getVertices(void)
 
 void TriangleMeshData::setVertices(double* vertices, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberVertices)
     {
-        this->vertices[3*i] = vertices[3*i];
-        this->vertices[3*i+1] = vertices[3*i+1];
-        this->vertices[3*i+2] = vertices[3*i+2];
+        memcpy(this->vertices, vertices, numElements * 3 * sizeof(double));
     }
 }
 
@@ -322,43 +320,50 @@ unsigned int* TriangleMeshData::getIndices(void)
 
 void TriangleMeshData::setIndices(unsigned int* indices, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberTriangles)
     {
-        this->indices[3*i] = indices[3*i];
-        this->indices[3*i+1] = indices[3*i+1];
-        this->indices[3*i+2] = indices[3*i+2];
+        memcpy(this->indices, indices, numElements * 3 * sizeof(unsigned int));
     }
 }
 
 void TriangleMeshData::setDataX(double* data, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberVertices)
     {
-        vertices[3*i] = data[i];
+        for (int i = 0 ; i < numElements ; i++)
+        {
+            vertices[3*i] = data[i];
+        }
     }
 }
 
 void TriangleMeshData::setDataY(double* data, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberVertices)
     {
-        vertices[3*i+1] = data[i];
+        for (int i = 0 ; i < numElements ; i++)
+        {
+            vertices[3*i + 1] = data[i];
+        }
     }
 }
 
 void TriangleMeshData::setDataZ(double* data, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberVertices)
     {
-        vertices[3*i+2] = data[i];
+        for (int i = 0; i < numElements; i++)
+        {
+            vertices[3*i + 2] = data[i];
+        }
     }
 }
 
 void TriangleMeshData::setValues(double* data, unsigned int numElements)
 {
-    for (int i = 0; i < numElements; i++)
+    if (numElements <= numberVertices)
     {
-        values[i] = data[i];
+        memcpy(this->values, data, numElements * sizeof(double));
     }
 }
 

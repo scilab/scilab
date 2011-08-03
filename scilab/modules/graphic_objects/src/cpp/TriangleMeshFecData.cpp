@@ -185,6 +185,11 @@ int TriangleMeshFecData::setNumIndices(unsigned int numIndices)
 
 void TriangleMeshFecData::setFecTriangles(double* data, int numElements)
 {
+    if (numElements > numberTriangles)
+    {
+        return;
+    }
+
     for (int i = 0; i < numElements; i++)
     {
         indices[3*i] =  scilabIndexToIndex((unsigned int) data[numElements+i]);
