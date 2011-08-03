@@ -79,7 +79,7 @@ public class ConsoleTab {
                 });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
-	    WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
+            WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
 
             return tab;
         }
@@ -108,7 +108,9 @@ public class ConsoleTab {
                     }
 
                     public void destroy() {
-                        ScilabTermination.ScilabExit();
+                        if (!Scilab.getExitCalled()) {
+                            ScilabTermination.ScilabExit();
+                        }
                     }
 
                     public String askForClosing() {
@@ -135,7 +137,7 @@ public class ConsoleTab {
         ScilabConsole.getConsole().addInfoBar(infoBar);
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
-	WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
+        WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
 
         return consoleTab;
     }

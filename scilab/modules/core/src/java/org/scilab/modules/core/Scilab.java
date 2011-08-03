@@ -73,6 +73,7 @@ public class Scilab {
 
     private static boolean success;
     private static boolean finish;
+    private static boolean exitCalled;
     private static int mode;
 
     private static List<Runnable> finalhooks = new ArrayList<Runnable>();
@@ -235,7 +236,9 @@ public class Scilab {
     public static boolean canClose() {
         SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    exitCalled = true;
                     success = ClosingOperationsManager.startClosingOperationOnRoot();
+                    exitCalled = false;
                     finish = true;
                 }
             });
@@ -251,6 +254,13 @@ public class Scilab {
         finish = false;
 
         return success;
+    }
+
+    /**
+     * @return true if exit has been called from command line
+     */
+    public static boolean getExitCalled() {
+        return exitCalled;
     }
 
     /**

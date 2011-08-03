@@ -75,10 +75,13 @@ public class ClosingOperationsManager {
      * @return true if the closing operation succeeded
      */
     public static boolean startClosingOperationOnRoot() {
-        SwingScilabWindow win = null;
         if (root != null) {
             // STD mode
-            return startClosingOperation(getWindow(root));
+            SwingScilabWindow win = getWindow(root);
+            if (win == null) {
+                return true;
+            }
+            return startClosingOperation(win);
         } else if (deps.get(null).size() != 0) {
             // NW mode
             List<SwingScilabTab> list = new ArrayList<SwingScilabTab>();
@@ -484,6 +487,10 @@ public class ClosingOperationsManager {
      */
     private static final SwingScilabWindow getWindow(SwingScilabTab tab) {
         Window win = (Window) UIElementMapper.getCorrespondingUIElement(tab.getParentWindowId());
+        if (win == null) {
+            return null;
+        }
+
         return (SwingScilabWindow) win.getAsSimpleWindow();
     }
 
