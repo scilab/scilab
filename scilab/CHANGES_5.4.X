@@ -380,3 +380,7 @@ Bug fixes:
 * bug 9765 fixed - remove ref to scicos_pal in sci_f_clear.f
 
 * bug 9791 fixed - toolbar visible state change crash Scilab in NW mode.
+
+* bug 9804 fixed - Starting Scilab with a external module emptied the
+                   demo list menu.
+
