@@ -17,6 +17,7 @@ import java.io.File;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.core.Scilab;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -29,6 +30,8 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * @author Calixte DENIZET
  */
 public class EditFileWithDefaultAppAction extends CallBack {
+
+    private static final boolean isWindows = Scilab.isWindowsPlateform();
 
     private SwingScilabTreeTable table;
 
@@ -56,7 +59,12 @@ public class EditFileWithDefaultAppAction extends CallBack {
         File[] files = table.getSelectedFiles();
         for (File file : files) {
             try {
-                dt.edit(file);
+                if (isWindows) {
+                    String cmd = "rundll32 url.dll,FileProtocolHandler " + file.getCanonicalPath();
+                    Runtime.getRuntime().exec(cmd);
+                } else {
+                    dt.edit(file);
+                }
             } catch (Exception e) {
                 ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
             }
