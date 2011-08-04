@@ -705,7 +705,7 @@ msgid ""
 "Unable to load the hdf5-java (jhdf5) library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
-"Impossible de charger la librairie hdf5-java (jhdf5).\n"
+"Impossible de charger la bibliothèque hdf5-java (jhdf5).\n"
 "Version attendue %s ; Version obtenue %s."
 
 #, c-format
@@ -717,7 +717,7 @@ msgstr ""
 "Version attendue %s ; Obtention de la version %s."
 
 msgid "Unable to load the native HDF5 library."
-msgstr "Impossible de charger la librairie HDF5 native."
+msgstr "Impossible de charger la bibliothèque HDF5 native."
 
 msgid "Unknown Diagram Version : "
 msgstr "Version inconnue de diagramme : "
