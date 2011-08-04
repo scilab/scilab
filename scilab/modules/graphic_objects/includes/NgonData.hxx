@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef NGON_DATA_H
-#define NGON_DATA_H
+#ifndef NGON_DATA_HXX
+#define NGON_DATA_HXX
 
 #include <string>
 
@@ -38,51 +38,62 @@ protected :
     int numVerticesPerGon;
 
 public :
+    /**
+     * Constructor
+     */
     NgonData(void);
 
+    /**
+     * Destructor
+     */
     ~NgonData(void);
 
     /**
-     * Returns the value corresponding to a property name
+     * Returns the identifier associated to a property name
+     * @param[in] propertyName the property name
+     * @return the property identifier
      */
     int getPropertyFromName(char* propertyName);
 
     /**
-     * Sets the data property
+     * Sets a data property
+     * @param[in] property the property identifier
+     * @param[in] value a pointer to the property values
+     * @param[in] numElements the number of elements to set
+     * @return 1 if the property has been successfully set, 0 otherwise
      */
     int setDataProperty(int property, void* value, int numElements);
 
     /**
-     * Returns the data property
+     * Returns a data property
+     * @param[in] property the property identifier
+     * @param[out] a pointer to a pointer to the returned property values
      */
     void getDataProperty(int property, void **_pvData);
 
     /**
      * Sets the number of n-gons
+     * @param[in] the number of n-gons
      */
     void setNumGons(int numGons);
 
     /**
      * Returns the number of n-gons
+     * @return the number of n-gons
      */
     int getNumGons(void);
 
     /**
      * Sets the number of vertices making up a single n-gon
+     * @param[in] the number of vertices per n-gon
      */
     void setNumVerticesPerGon(int numVerticesPerGon);
 
     /**
      * Returns the number of vertices making up a single n-gon
+     * @return the number of vertices per n-gon
      */
     int getNumVerticesPerGon(void);
-
-#if 0
-    virtual double* getData();
-
-    virtual void setData(double* data);
-#endif
-
 };
 
 #endif

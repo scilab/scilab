@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef NGON_GRID_DATA_H
-#define NGON_GRID_DATA_H
+#ifndef NGON_GRID_DATA_HXX
+#define NGON_GRID_DATA_HXX
 
 #include <string>
 
@@ -69,25 +69,25 @@ public :
     ~NgonGridData(void);
 
     /**
-     * Returns the value corresponding to a property name
-     * @param propertyName the property name
-     * @return the property value
+     * Returns the identifier associated to a property name
+     * @param[in] propertyName the property name
+     * @return the property identifier
      */
     int getPropertyFromName(char* propertyName);
 
     /**
      * Sets a data property
-     * @param property the property value
-     * @param value pointer to the property
-     * @param numElements the number of elements to set
+     * @param[in] property the property identifier
+     * @param[in] value a pointer to the property values
+     * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
     int setDataProperty(int property, void* value, int numElements);
 
     /**
      * Returns a data property
-     * @param property the property value
-     * @return a pointer to the property
+     * @param[in] property the property identifier
+     * @param[out] a pointer to a pointer to the returned property values
      */
     void getDataProperty(int property, void **_pvData);
 
@@ -125,29 +125,29 @@ public :
      * Sets the grid's x and y vectors dimensions
      * Resizes the x, y, and z data coordinates arrays if required
      * and must therefore be called prior to any setData call
-     * @param gridSize 4-element array: x vector (nb rows, nb cols) and y vector (nb rows, nb cols) dimensions
+     * @param[in] gridSize a pointer to a 4-element array: x vector (nb rows, nb cols) and y vector (nb rows, nb cols) dimensions
      * @return 1 if the property has been successfully set, 0 otherwise (failed allocation)
      */
     int setGridSize(int* gridSize);
 
     /**
      * Sets the grid's x data
-     * @param data the data (numElements values)
-     * @param numElements the number of elements to set
+     * @param[in] data a pointer to the x data (numElements values)
+     * @param[in] numElements the number of elements to set
      */
     void setDataX(double* data, int numElements);
 
     /**
      * Sets the grid's y data
-     * @param data the data (numElements values)
-     * @param numElements the number of elements to set
+     * @param[in] data a pointer to the y data (numElements values)
+     * @param[in] numElements the number of elements to set
      */
     void setDataY(double* data, int numElements);
 
     /**
      * Sets the grid's z data
-     * @param data the data (numElements values)
-     * @param numElements the number of elements to set
+     * @param[in] data a pointer to the z data (numElements values)
+     * @param[in] numElements the number of elements to set
      */
     void setDataZ(double* data, int numElements);
 

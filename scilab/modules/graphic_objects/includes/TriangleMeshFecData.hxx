@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef TRIANGLE_MESH_FEC_DATA_H
-#define TRIANGLE_MESH_FEC_DATA_H
+#ifndef TRIANGLE_MESH_FEC_DATA_HXX
+#define TRIANGLE_MESH_FEC_DATA_HXX
 
 #include "Data3D.hxx"
 #include "TriangleMeshData.hxx"
@@ -39,32 +39,42 @@ private:
     double* fecValues;
 
 public:
+    /**
+     * Constructor
+     */
     TriangleMeshFecData(void);
 
-    /* To be implemented */
+    /**
+     * Constructor
+     * To be implemented
+     */
     TriangleMeshFecData(unsigned int numberVertices, unsigned int numberTriangles);
 
+    /**
+     * Destructor
+     */
     virtual ~TriangleMeshFecData();
 
     /**
-     * Returns the property value (identifier) associated to a name
+     * Returns the identifier associated to a property name
+     * @param[in] propertyName the property name
      * @return the property identifier
      */
     int getPropertyFromName(char* propertyName);
 
     /**
      * Sets a data property
-     * @param property the property identifier
-     * @param value the property values
-     * @param numElements the number of elements to set
-     * @return 1 if the property has correctly been set, 0 otherwise
+     * @param[in] property the property identifier
+     * @param[in] value a pointer to the property values
+     * @param[in] numElements the number of elements to set
+     * @return 1 if the property has been successfully set, 0 otherwise
      */
     int setDataProperty(int property, void* value, int numElements);
 
     /**
      * Returns a data property
-     * @param property the property identifier
-     * @return a pointer to the data property
+     * @param[in] property the property identifier
+     * @param[out] a pointer to a pointer to the returned property values
      */
     void getDataProperty(int property, void **_pvData);
 
@@ -77,21 +87,21 @@ public:
     /**
      * Sets the number of number of index triplets (number of triangles)
      * Resizes the arrays of indices and fec triangle values if required
-     * @param numIndices the number of index triplets to set
-     * @return 1 if the number of index triplets has been correctly set, 0 otherwise (failed allocation)
+     * @param[in] numIndices the number of index triplets to set
+     * @return 1 if the number of index triplets has been successfully set, 0 otherwise (failed allocation)
      */
     int setNumIndices(unsigned int numIndices);
 
     /**
      * Sets the array of fec triangle values
-     * @param the array of fec triangles values
-     * @param numElements the number of triangles to set
+     * @param[in] a pointer to the array of fec triangles values
+     * @param[in] numElements the number of triangles to set
      */
     void setFecTriangles(double* data, int numElements);
 
     /**
      * Returns the array of fec triangle values
-     * @return the array of fec triangle values
+     * @return a pointer to the array of fec triangle values
      */
     double* getFecTriangles(void);
 };

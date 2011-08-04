@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef NGON_GENERAL_DATA_H
-#define NGON_GENERAL_DATA_H
+#ifndef NGON_GENERAL_DATA_HXX
+#define NGON_GENERAL_DATA_HXX
 
 #include <string>
 
@@ -52,31 +52,31 @@ public :
     virtual ~NgonGeneralData(void);
 
     /**
-     * Returns the value corresponding to a property name
-     * @param propertyName the property name
-     * @return the property value
+     * Returns the identifier associated to a property name
+     * @param[in] propertyName the property name
+     * @return the property identifier
      */
     int getPropertyFromName(char* propertyName);
 
     /**
      * Sets a data property
-     * @param property the property value
-     * @param value pointer to the property
-     * @param numElements the number of elements to set
+     * @param[in] property the property identifier
+     * @param[in] value a pointer to the property values
+     * @param[in] numElements the number of elements to set
      * @return 1 if the property has been successfully set, 0 otherwise
      */
     int setDataProperty(int property, void* value, int numElements);
 
     /**
      * Returns a data property
-     * @param property the property value
-     * @return a pointer to the property
+     * @param[in] property the property identifier
+     * @param[out] a pointer to a pointer to the returned property values
      */
     void getDataProperty(int property, void **_pvData);
 
     /**
      * Returns the data coordinates array
-     * @return pointer to the coordinates array
+     * @return a pointer to the coordinates array
      */
     double* getData();
 
@@ -100,34 +100,35 @@ public :
 
     /**
      * Sets the coordinates data
-     * @param data the data (3 * numElements values)
-     * @param numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
+     * @param[in] data a pointer to the data (3 * numElements values)
+     * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
     void setData(double* data, int numElements);
 
     /**
      * Sets the x coordinates data
-     * @param data the data (numElements values)
-     * @param numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
+     * @param[in] data a pointer to the data (numElements values)
+     * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
     void setDataX(double* data, int numElements);
 
     /**
      * Sets the y coordinates data
-     * @param data the data (numElements values)
-     * @param numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
+     * @param[in] data a pointer to the data (numElements values)
+     * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
     void setDataY(double* data, int numElements);
 
     /**
      * Sets the z coordinates data
-     * @param data the data (numElements values)
-     * @param numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
+     * @param[in] data a pointer to the data (numElements values)
+     * @param[in] numElements the number of points in the data array ( #n-gons * #vertices per n-gon)
      */
     void setDataZ(double* data, int numElements);
 
     /**
      * Returns the number of elements (number of n-gons)
+     * @return the number of n-gons
      */
     int getNumElements(void);
 
@@ -136,7 +137,7 @@ public :
      * number of vertices per n-gon, and number of color values)
      * Resizes the data coordinates array if required, must therefore
      * be called before any setData call.
-     * @param numElementsArray 3-element array (# n-gons, # vertices per n-gon, # color values)
+     * @param[in] numElementsArray a pointer to a 3-element array (# n-gons, # vertices per n-gon, # color values)
      * @return 1 if it succeeded, 0 if the allocation failed
      */
     int setNumElementsArray(int* numElementsArray);
@@ -149,8 +150,8 @@ public :
 
     /**
      * Sets the color values array
-     * @param colors the color values array
-     * @param numElements the number of color values in the data array
+     * @param[in] colors a pointer to the color values array
+     * @param[in] numElements the number of color values in the data array
      */
     void setColors(double* colors, int numElements);
 
