@@ -188,6 +188,10 @@ Documentation:
 * Bug 9417 fixed - In English, api_scilab polynom help pages updated to the word
                    polynomial
 
+* Bug 7134 fixed - help_from_sci produced an invalid .xml file.
+
+* Bug 7133 fixed - help_from_sci function did not return the function template.
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
