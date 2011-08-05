@@ -287,7 +287,7 @@ static int sci_strcat_three_rhs(char *fname)
         break;
 
     }
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }
 /*-------------------------------------------------------------------------------------*/
@@ -350,11 +350,12 @@ static int sci_strcat_two_rhs(char *fname)
                     int m1 = 0, n1 = 0, l1 = 0;
 
                     CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
-                    LhsVar(1)=Rhs+1;
-                    C2F(putlhsvar)();
-
+                    
                     freeArrayOfString(Input_String_Two,Number_Inputs_Two);
                     freeArrayOfString(Input_String_One,Number_Inputs_One);
+
+                    LhsVar(1)=Rhs+1;
+                    PutLhsVar();
                     return 0;
                 }
                 else
@@ -395,10 +396,11 @@ static int sci_strcat_two_rhs(char *fname)
                     ( i < Number_Inputs_OneLessOne )? strcat(Output_String,Input_String_Two[0]):0;
                 }
 
-                LhsVar(1) = Rhs+1;
-                C2F(putlhsvar)();
                 freeArrayOfString(Input_String_One,Row_One*Col_One);
                 freeArrayOfString(Input_String_Two,Number_Inputs_Two);
+
+                LhsVar(1) = Rhs+1;
+                PutLhsVar();
             }
             else
             {
@@ -410,11 +412,12 @@ static int sci_strcat_two_rhs(char *fname)
 
                     CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
                     strcpy(cstk(outIndex),EMPTY_CHAR);
-                    LhsVar(1) = Rhs+1 ;
-                    C2F(putlhsvar)();
 
                     freeArrayOfString(Input_String_Two,Number_Inputs_Two);
                     freeArrayOfString(Input_String_One,Number_Inputs_One);
+
+                    LhsVar(1) = Rhs+1 ;
+                    PutLhsVar();
                 }
                 else
                 {
@@ -488,10 +491,10 @@ static int sci_strcat_one_rhs(char *fname)
                 }
 
                 FREE(lengths); lengths = NULL;
+                if (Input_String_One) freeArrayOfString(Input_String_One,mn);
 
                 LhsVar(1) = Rhs+1;
-                C2F(putlhsvar)();
-                if (Input_String_One) freeArrayOfString(Input_String_One,mn);
+                PutLhsVar();
             }
             else
             {
@@ -524,7 +527,7 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
         CreateVar(Rhs+1,STRING_DATATYPE,&len,&one,&outIndex);
         strcpy(cstk(outIndex),EMPTY_CHAR);
         LhsVar(1) = Rhs+1 ;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {

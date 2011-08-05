@@ -62,7 +62,7 @@ int C2F(intand)(char *fname,unsigned long l)
 
  if (Rhs==2 && m1*n1==0) {
    LhsVar(1)= 1;
-   C2F(putlhsvar)();
+   PutLhsVar();
    return 0;
  }
 
@@ -83,7 +83,7 @@ int C2F(intand)(char *fname,unsigned long l)
  }/* named: x */
  vect_and(istk(l1),m1,n1,istk(l2),opt);
  LhsVar(1)= 2+nopt;
- C2F(putlhsvar)();
+ PutLhsVar();
  return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -258,10 +258,10 @@ static int lengthStrings(int *piAddressVar)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1; 
-    C2F(putlhsvar)();
-
     FREE(pdOut); pdOut = NULL;
+
+    LhsVar(1) = Rhs + 1; 
+    PutLhsVar();
     return 0;	
 }
 /*--------------------------------------------------------------------------*/
@@ -307,10 +307,10 @@ static int lengthSparse(int *piAddressVar)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1; 
-    C2F(putlhsvar)();
-
     FREE(pdOut); pdOut = NULL;
+
+    LhsVar(1) = Rhs + 1; 
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -345,10 +345,11 @@ static int lengthList(int *piAddressVar)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1; 
-    C2F(putlhsvar)();
-
     FREE(pdOut); pdOut = NULL;
+
+    LhsVar(1) = Rhs + 1; 
+    PutLhsVar();
+    
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -383,10 +384,10 @@ static int lengthDefault(int *piAddressVar)
         return 0;
     }
 
-    LhsVar(1) = Rhs + 1; 
-    C2F(putlhsvar)();
-
     FREE(pdOut); pdOut = NULL;
+
+    LhsVar(1) = Rhs + 1; 
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

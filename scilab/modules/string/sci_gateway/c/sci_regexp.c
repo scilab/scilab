@@ -326,7 +326,7 @@ int sci_regexp(char *fname,unsigned long fname_len)
 	if (wcvalues_start) {FREE(wcvalues_start); wcvalues_start = NULL;}
 	if (wcvalues_end) {FREE(wcvalues_end); wcvalues_end = NULL;}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

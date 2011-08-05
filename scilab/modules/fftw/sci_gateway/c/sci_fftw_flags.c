@@ -217,11 +217,11 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 
 	n1=1;
 	CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
+	freeArrayOfString(Str3,j);
+
 	LhsVar(1)=Rhs+2;
 	LhsVar(2)=Rhs+3;
 	PutLhsVar();
-
-	freeArrayOfString(Str3,j);
 	return(0);
 }
 /*--------------------------------------------------------------------------*/ 

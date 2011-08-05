@@ -231,7 +231,34 @@ int sci_fileparts(char *fname, unsigned long fname_len)
         if (createSingleWideString(pvApiCtx, Rhs + 1, output_value) == 0)
         {
             LhsVar(1) = Rhs + 1;
-            C2F(putlhsvar) ();
+
+            if (drv)
+            {
+                FREE(drv);
+                drv = NULL;
+            }
+            if (dir)
+            {
+                FREE(dir);
+                dir = NULL;
+            }
+            if (name)
+            {
+                FREE(name);
+                name = NULL;
+            }
+            if (ext)
+            {
+                FREE(ext);
+                ext = NULL;
+            }
+            if (path_out)
+            {
+                FREE(path_out);
+                path_out = NULL;
+            }
+
+            PutLhsVar();
         }
 
         if (drv)
@@ -343,7 +370,7 @@ int sci_fileparts(char *fname, unsigned long fname_len)
             ext = NULL;
         }
         LhsVar(3) = Rhs + 3;
-        C2F(putlhsvar) ();
+        PutLhsVar();
     }
     return 0;
 }

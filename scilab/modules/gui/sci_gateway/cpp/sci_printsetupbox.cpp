@@ -38,7 +38,7 @@ int sci_printsetupbox(char *fname,unsigned long l)
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1,&paramoutINT);
 	LhsVar(1)=Rhs+1;
 	delete[] paramoutINT;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

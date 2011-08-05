@@ -30,7 +30,7 @@ int sci_getdynlibext(char *fname,unsigned long fname_len)
 	strcpy(cstk(outIndex), SHARED_LIB_EXT );
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

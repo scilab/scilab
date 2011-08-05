@@ -44,10 +44,11 @@ int sci_host(char *fname,unsigned long fname_len)
 			C2F(systemc)(Str[0], &stat);
 			CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l1);
 			*istk(l1) = (int) stat;
+            freeArrayOfString(Str,m1*n1);
 
 			LhsVar(1)= Rhs+1;
-			C2F(putlhsvar)();
-			freeArrayOfString(Str,m1*n1);
+			PutLhsVar();
+			
 		}
 	}
 	else

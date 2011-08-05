@@ -92,7 +92,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 							CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
 							LhsVar(2) = Rhs+2 ;
 						}
-						C2F(putlhsvar)();
+						PutLhsVar();
 						return 0;
 					}
 				}
@@ -203,8 +203,8 @@ int sci_gsort(char *fname, unsigned long fname_len)
 					}
 					LhsVar(2)= Rhs+2 ;
 				}
-				C2F(putlhsvar)();
 				if (indices) {FREE(indices); indices = NULL;}
+                PutLhsVar();
 			}
 		}
 		break;
@@ -289,7 +289,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 				LhsVar(2)= Rhs+2 ;
 			}
 			if (indices) {FREE(indices); indices = NULL;}
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		break;
 
@@ -312,9 +312,9 @@ int sci_gsort(char *fname, unsigned long fname_len)
 				}
 				LhsVar(2)= Rhs+2 ;
 			}
-			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
 			freeArrayOfString(S,m1*n1);
+            PutLhsVar();
 		}
 		break;
 

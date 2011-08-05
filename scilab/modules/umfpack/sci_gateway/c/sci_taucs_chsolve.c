@@ -164,6 +164,6 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
   
 	FREE(wk);
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

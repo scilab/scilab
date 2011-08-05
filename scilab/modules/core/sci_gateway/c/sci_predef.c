@@ -35,7 +35,7 @@ int C2F(sci_predef)(char *fname,unsigned long fname_len)
 		*istk(l) = (int) previous_n_var_protected;
 
 		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else /* Rhs == 1 */
 	{
@@ -109,7 +109,7 @@ int C2F(sci_predef)(char *fname,unsigned long fname_len)
 		if (out_values) {FREE(out_values); out_values = NULL;}
 
 		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

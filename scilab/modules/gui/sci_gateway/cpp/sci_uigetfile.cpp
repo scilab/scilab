@@ -293,8 +293,9 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 			FREE(tmp); tmp = NULL;
 			LhsVar(3) = Rhs + 3 ;
 		}
-		C2F(putlhsvar)();
+		
 		freePointersUigetfile();
+        PutLhsVar();
 		return 0;
 	}
 
@@ -303,8 +304,9 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 	{
           CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
           LhsVar(1) = Rhs + 1 ;
-          C2F(putlhsvar)();
+          
 		  freePointersUigetfile();
+          PutLhsVar();
           return 0;
 	}
 
@@ -331,9 +333,9 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 		LhsVar(3) = Rhs + 3 ;
 	}
         
-	C2F(putlhsvar)();
-
+	
 	freePointersUigetfile();
+    PutLhsVar();
 
 	return 0;
 }

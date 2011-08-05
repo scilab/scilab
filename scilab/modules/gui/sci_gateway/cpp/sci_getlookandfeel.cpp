@@ -41,7 +41,7 @@ int sci_getlookandfeel(char *fname,unsigned long fname_len)
 			if (look) {delete [] look; look = NULL;}
 			delete lnf;
 			LhsVar(1) = Rhs+1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{

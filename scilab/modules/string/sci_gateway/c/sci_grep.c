@@ -62,7 +62,7 @@ int sci_grep(char *fname,unsigned long fname_len)
 			int l = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 
 			return 0;
 		}
@@ -258,9 +258,10 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 				}
 				LhsVar(2) = Rhs+2;
 			}
-			C2F(putlhsvar)();
+			
 			if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
 			if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
+            PutLhsVar();
 		}
 		break;
 

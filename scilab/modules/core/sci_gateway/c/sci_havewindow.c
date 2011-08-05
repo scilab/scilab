@@ -29,9 +29,9 @@ int C2F(sci_havewindow)(char *fname,unsigned long fname_len)
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 	LhsVar(1)=Rhs+1;
 
-	C2F(putlhsvar)();
-
 	if (Status) {FREE(Status);Status=NULL;}
+
+    PutLhsVar();
 
 	return 0;
 }

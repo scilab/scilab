@@ -45,10 +45,11 @@ int sci_getdrives(char *fname,unsigned long l)
 	}
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
-
+	
 	freeArrayOfString(Drives, nbDrives);
 	nbDrives = 0;
+
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

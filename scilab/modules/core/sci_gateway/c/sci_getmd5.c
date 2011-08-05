@@ -93,7 +93,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 
 				CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else
 			{
@@ -143,7 +143,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 
 					CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
 					LhsVar(1) = Rhs + 1 ;
-					C2F(putlhsvar)();
+					PutLhsVar();
 				}
 				else
 				{

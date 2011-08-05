@@ -67,7 +67,7 @@ int sci_TCL_DeleteInterp(char *fname,unsigned long l)
     }
 
   LhsVar(1)=0;
-  C2F(putlhsvar)();
+  PutLhsVar();
 
   return 0;
 }

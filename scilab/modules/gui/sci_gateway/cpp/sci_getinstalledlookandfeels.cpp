@@ -55,7 +55,7 @@ int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 		delete lnf;
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

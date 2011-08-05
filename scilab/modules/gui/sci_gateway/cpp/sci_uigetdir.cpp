@@ -141,10 +141,9 @@ int sci_uigetdir(char *fname,unsigned long l)
     }
 
   LhsVar(1)=Rhs+1;
-  PutLhsVar();
-
-  if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
   
+  if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
+  PutLhsVar();
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

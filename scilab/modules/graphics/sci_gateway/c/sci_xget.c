@@ -77,7 +77,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     CreateVar(Rhs+1,STRING_DATATYPE,&bufl,&one,&l3);
     strncpy(cstk(l3),C2F(cha1).buf,bufl);
     LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
     return 0;
   }
   else if ( strcmp(cstk(l1),"colormap") == 0) 
@@ -294,7 +294,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     LhsVar(1)=Rhs+1;
   }
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

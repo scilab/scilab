@@ -91,9 +91,10 @@ static int sci_gstacksizeNoRhs(char *fname)
     CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
     LhsVar(1) = Rhs + 1;
-    C2F(putlhsvar)();
-
+    
     if (paramoutINT) {FREE(paramoutINT); paramoutINT = NULL;}
+
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -121,7 +122,7 @@ static int sci_gstacksizeOneRhs(char *fname)
                         if (setGStacksize(NEWMEMSTACKSIZE))
                         {
                             LhsVar(1) = 0;
-                            C2F(putlhsvar)();
+                            PutLhsVar();
                             return 0;
                         }
                         else
@@ -185,7 +186,7 @@ static int sci_gstacksizeMax(char *fname)
     if (setGStacksizeMax(fname))
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {
@@ -200,7 +201,7 @@ static int sci_gstacksizeMin(char *fname)
     if (setGStacksizeMin(fname))
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {

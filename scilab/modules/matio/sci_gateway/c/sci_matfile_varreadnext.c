@@ -127,9 +127,7 @@ int sci_matfile_varreadnext(char *fname,unsigned long fname_len)
       LhsVar(3) = Rhs+3;
     }
   
-  PutLhsVar();
-  
   Mat_VarFree(matvar);
-  
+  PutLhsVar();
   return TRUE;
 }

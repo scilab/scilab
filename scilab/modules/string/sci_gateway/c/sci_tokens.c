@@ -114,7 +114,7 @@ int sci_tokens(char *fname,unsigned long fname_len)
 
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Output,&Col_Output,&l);
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else
 			{
@@ -127,17 +127,16 @@ int sci_tokens(char *fname,unsigned long fname_len)
 
 					CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Output,&Col_Output,&l);
 					LhsVar(1) = Rhs+1 ;
-					C2F(putlhsvar)();
+					PutLhsVar();
 				}
 				else
 				{
 					Row_Output = sizeOutput_Strings;
 					Col_Output = one;
 					CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_Output, &Col_Output, Output_Strings );
+                    freeArrayOfString(Output_Strings,sizeOutput_Strings);
 					LhsVar(1) = Rhs+1 ;
-					C2F(putlhsvar)();
-
-					freeArrayOfString(Output_Strings,sizeOutput_Strings);
+					PutLhsVar();
 				}
 			}
 
