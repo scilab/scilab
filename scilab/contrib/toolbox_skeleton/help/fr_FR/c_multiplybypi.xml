@@ -13,10 +13,10 @@
   </info>
   <refnamediv>
     <refname>c_multiplybypi</refname>
-    <refpurpose>multiply by %pi a number</refpurpose>
+    <refpurpose>Multiple par %pi un nombre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Calling Sequence</title>
+    <title>Séquence d'appel</title>
     <synopsis>a = multiplybypi(b)</synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -25,28 +25,28 @@
       <varlistentry>
         <term>b</term>
         <listitem>
-          <para>first input argument</para>
+          <para>Premier argument d'entrée</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>output argument</para>
+          <para>Argument de sortie</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Do a special multiplication.</para>
-    <para>Add here a paragraph of the function description </para>
+    <para>Fait une multiplication particulière.</para>
+    <para>Ajoutez ici plus d'informations sur cette fonction </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Exemples</title>
     <programlisting role="example">c_multiplybypi(3)</programlisting>
   </refsection>
   <refsection role="see also">
-    <title>See Also</title>
+    <title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="c_sum">c_sum</link>
@@ -54,7 +54,7 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
+    <title>Auteurs</title>
     <simplelist type="vert">
       <member>Allan CORNET</member>
     </simplelist>
