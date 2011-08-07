@@ -613,6 +613,7 @@ cd "$LOCALOLDPWD"
 #fi
 #export DISPLAY
 
+
 #
 # Scilab will not work on some Mac OSX version
 # Check version number and ask user if he wants to go on.
@@ -620,6 +621,9 @@ cd "$LOCALOLDPWD"
 check_macosx_version()
 {
     macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
+    if test "${macosxVersion}" = ""; then
+      macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*'`
+    fi
     macosxMajorVersion=`echo $macosxVersion | cut -d . -f 1`
     macosxMinorVersion=`echo $macosxVersion | cut -d . -f 2`
     macosxBuildVersion=`echo $macosxVersion | cut -d . -f 3`
@@ -631,6 +635,14 @@ check_macosx_version()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
+                7)
+                   # We force to install JRE on Lion
+                   /usr/libexec/java_home --request
+
+                   # We remove if it exists with 10.7
+		               rm -rf $BINPATH/../lib/thirdparty/libiconv.2.4.0.dylib
+                   ;;
+
                 6)
                     if test $macosxBuildVersion -le 4; then
                         # Version <= 10.6.4
