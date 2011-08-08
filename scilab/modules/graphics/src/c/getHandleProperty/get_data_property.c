@@ -221,88 +221,57 @@ int get3ddata(char *pobjUID)
     return 0;
 }
 /*------------------------------------------------------------------------*/
-/*
- * This version of get_data_property corresponds to the first data model
- * implementation (now obsolete)
- * To be deleted
- */
-#if 0
 int get_data_property(char *pobjUID)
 {
-    double *pdblData = getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, jni_double);
+    char* type;
 
-    if (pdblData == NULL)
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
+
+    if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
-        return -1;
+        return get3ddata(pobjUID);
     }
-
-    return sciReturnDouble(*pdblData);
-
-}
-#endif
-
-/*
- * This version of get_data_property allows to get data from the data model.
- * It currently only works for a Polyline object.
- */
-
-int get_data_property(char *pobjUID)
-{
-  char* type;
-
-  getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
-
-  /*
-   * 0 values put within the conditional expressions to prevent calling sciGetEntityType
-   * The last else block allows to get Polyline data (via sciGetPoint)
-   * To be implemented with string comparisons using the GO_TYPE property (see the sciGetPoint function)
-   */
-  if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
-  {
-    return get3ddata(pobjUID);
-  }
-  else if (strcmp(type, __GO_CHAMP__) == 0)
-  {
-    return getchampdata(pobjUID);
-  }
-  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-  {
-      return getgrayplotdata(pobjUID);
-  }
-  else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-  {
-    int nbRow  =  0 ;
-    int nbCol  =  0 ;
-    int status = SET_PROPERTY_ERROR ;
-    /* Warning the following function allocate data */
-    double * data = sciGetPoint( pobjUID, &nbRow, &nbCol ) ;
-
-    if (data == NULL && nbRow == 0 && nbCol == 0)
+    else if (strcmp(type, __GO_CHAMP__) == 0)
     {
-      /* Empty data */
-      sciReturnEmptyMatrix();
-      status = SET_PROPERTY_SUCCEED;
+        return getchampdata(pobjUID);
     }
-    else if (data == NULL && nbRow == -1 && nbCol == -1)
+    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
-      /* data allocation failed */
-      Scierror(999, _("%s: No more memory."), "get_data_property") ;
-      status = SET_PROPERTY_ERROR;
+        return getgrayplotdata(pobjUID);
     }
-    else if (data == NULL)
+    else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
-        return -1;
-    }
-    else
-    {
-      status = sciReturnMatrix( data, nbRow, nbCol ) ;
-      FREE( data ) ;
-    }
+        int nbRow  =  0;
+        int nbCol  =  0;
+        int status = SET_PROPERTY_ERROR;
+        /* Warning the following function allocates data */
+        double * data = sciGetPoint( pobjUID, &nbRow, &nbCol );
 
-    return status ;
-  }
+        if (data == NULL && nbRow == 0 && nbCol == 0)
+        {
+            /* Empty data */
+            sciReturnEmptyMatrix();
+            status = SET_PROPERTY_SUCCEED;
+        }
+        else if (data == NULL && nbRow == -1 && nbCol == -1)
+        {
+            /* data allocation failed */
+            Scierror(999, _("%s: No more memory."), "get_data_property");
+            status = SET_PROPERTY_ERROR;
+        }
+        else if (data == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+            return -1;
+        }
+        else
+        {
+            status = sciReturnMatrix( data, nbRow, nbCol );
+            FREE( data );
+        }
+
+        return status;
+    }
 
 }
 /*------------------------------------------------------------------------*/

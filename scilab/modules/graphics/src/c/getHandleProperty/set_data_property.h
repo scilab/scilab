@@ -21,10 +21,4 @@ int setgrayplotdata(char* pobjUID, AssignedList * tlist);
 
 int set3ddata(char* pobjUID, AssignedList * tlist);
 
-int CheckAndUpdate_x_shift(char* pobjUID, int numrow);
-
-int CheckAndUpdate_y_shift(char* pobjUID, int numrow);
-
-int CheckAndUpdate_z_shift(char* pobjUID, int numrow);
-
 #endif /* ! __SET_DATA_PROPERTY_H__ */

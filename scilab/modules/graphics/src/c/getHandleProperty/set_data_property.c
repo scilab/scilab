@@ -425,151 +425,12 @@ int set3ddata( char* pobjUID, AssignedList * tlist )
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
-/*
- * This function is now useless since the Polyline data model
- * updates the x-shift coordinate array, if necessary, when polyline point coordinates are set.
- * To be deleted.
- */
-int CheckAndUpdate_x_shift(char* pobjUID, int numrow)
-{
-// FIXME
-    abort();
-#if 0
-    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-    double * new_bar = NULL ;
-
-    if( ppolyline->x_shift == NULL )
-    {
-        return SET_PROPERTY_ERROR ;
-    }
-
-    if( ppolyline->n1 == numrow )
-    {
-        return SET_PROPERTY_UNCHANGED ;
-    }
-
-    new_bar = createNewArrayFromSource( numrow, ppolyline->x_shift, ppolyline->n1 ) ;
-
-    if ( new_bar == NULL )
-    {
-        Scierror(999, _("%s: No more memory.\n"),"set_data_property") ;
-        return SET_PROPERTY_ERROR ;
-    }
-
-    FREE( ppolyline->x_shift ) ;
-    ppolyline->x_shift = new_bar ;
-#endif
-    return SET_PROPERTY_ERROR;
-}
-/*--------------------------------------------------------------------------*/
-/*
- * This function is now useless since the Polyline data model
- * updates the y-shift coordinate array, if necessary, when polyline point coordinates are set.
- * To be deleted.
- */
-int CheckAndUpdate_y_shift(char* pobjUID, int numrow)
-{
-// FIXME
-    abort();
-#if 0
-    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-    double * new_bar = NULL ;
-
-    if( ppolyline->y_shift == NULL )
-    {
-        return SET_PROPERTY_ERROR ;
-    }
-
-    if( ppolyline->n1 == numrow )
-    {
-        return SET_PROPERTY_UNCHANGED ;
-    }
-
-    new_bar = createNewArrayFromSource( numrow, ppolyline->y_shift, ppolyline->n1 ) ;
-
-    if ( new_bar == NULL )
-    {
-        Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_y_shift") ;
-        return SET_PROPERTY_ERROR ;
-    }
-
-    FREE( ppolyline->y_shift ) ;
-    ppolyline->y_shift = new_bar ;
-#endif
-    return SET_PROPERTY_ERROR;
-}
-/*--------------------------------------------------------------------------*/
-/*
- * This function is now useless since the Polyline data model
- * updates the z-shift coordinate array, if necessary, when polyline point coordinates are set.
- * To be deleted.
- */
-int CheckAndUpdate_z_shift(char* pobjUID, int numrow)
-{
-// FIXME
-    abort();
-#if 0
-    sciPolyline * ppolyline = pPOLYLINE_FEATURE(pobj) ;
-    double * new_bar = NULL ;
-
-    if( ppolyline->z_shift == NULL )
-    {
-        return SET_PROPERTY_ERROR ;
-    }
-
-    if( ppolyline->n1 == numrow )
-    {
-        return SET_PROPERTY_UNCHANGED ;
-    }
-
-    new_bar = createNewArrayFromSource( numrow, ppolyline->z_shift, ppolyline->n1 ) ;
-
-    if ( new_bar == NULL )
-    {
-        Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_z_shift") ;
-        return SET_PROPERTY_ERROR ;
-    }
-
-    FREE( ppolyline->z_shift ) ;
-    ppolyline->z_shift = new_bar ;
-#endif
-    return SET_PROPERTY_ERROR;
-}
-/*------------------------------------------------------------------------*/
-/*
- * This version of set_data_property corresponds to the first data model
- * implementation (now obsolete)
- * To be deleted
- */
-#if 0
-int set_data_property( char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
-{
-    double *pdblValue = getDoubleMatrixFromStack(stackPointer);
-    BOOL bResult = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COORDINATES__, pdblValue, jni_double, 1);
-
-    if (bResult == FALSE)
-    {
-        return SET_PROPERTY_ERROR;
-    }
-
-    return SET_PROPERTY_SUCCEED;
-}
-#endif
-
-/*
- * This version of set_data_property allows to set data within the data model.
- * It currently only works for a Polyline object.
- */
 int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
 {
     char* type;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &type);
 
-    /*
-     * The tests using the sciGetEntityType value have been replaced by string comparisons
-     * using the GO_TYPE property and must therefore be deleted.
-     */
     if (strcmp(type, __GO_CHAMP__) == 0)
     {
         AssignedList* tlist = NULL;
@@ -592,8 +453,6 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
         destroyAssignedList( tlist );
         return status;
     }
-//  else if(0 && (sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-  /* Only works for Grayplot (type 0) for now */
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         AssignedList * tlist = NULL;
@@ -606,7 +465,7 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
         }
 
         /* we should have 3 properties in the tlist */
-        tlist = createAssignedList( 3, 3 ) ;
+        tlist = createAssignedList( 3, 3 );
         if ( tlist == NULL )
         {
             return SET_PROPERTY_ERROR;
@@ -616,12 +475,11 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
         destroyAssignedList( tlist );
         return status;
     }
-//  else if(0 && sciGetEntityType(pobj) == SCI_SURFACE)
     else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
     {
-        AssignedList * tlist = NULL ;
-        int status = -1 ;
-        int listSize = 0 ;
+        AssignedList * tlist = NULL;
+        int status = -1;
+        int listSize = 0;
 
         if( !isParameterTlist( valueType ) )
         {
@@ -629,56 +487,43 @@ int set_data_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
             return SET_PROPERTY_ERROR ;
         }
 
-        listSize = getStackListNbElement( 3 ) ;
+        listSize = getStackListNbElement( 3 );
 
         if ( listSize == 3 )
         {
-            tlist = createAssignedList( 3, 3 ) ;
+            tlist = createAssignedList( 3, 3 );
         }
         else if ( listSize == 4 )
         {
-            tlist = createAssignedList( 3, 4 ) ;
+            tlist = createAssignedList( 3, 4 );
         }
         else
         {
             Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"),4,5);
-            return SET_PROPERTY_ERROR ;
+            return SET_PROPERTY_ERROR;
         }
 
         if ( tlist == NULL )
         {
-            return SET_PROPERTY_ERROR ;
+            return SET_PROPERTY_ERROR;
         }
 
-        status = set3ddata( pobjUID, tlist ) ;
-        destroyAssignedList( tlist ) ;
-        return status ;
+        status = set3ddata( pobjUID, tlist );
+        destroyAssignedList( tlist );
+        return status;
 
     }
     else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
         if ( !isParameterDoubleMatrix( valueType ) )
         {
-            Scierror(999, _("Incompatible type for property %s.\n"),"data") ;
-            return SET_PROPERTY_ERROR ;
+            Scierror(999, _("Incompatible type for property %s.\n"),"data");
+            return SET_PROPERTY_ERROR;
         }
-
-        /*
-         * Deactivated, since the update of the shift coordinates arrays is now implemented within the data model
-         * To be deleted.
-         */
-#if 0
-        if ( sciGetEntityType(pobj) == SCI_POLYLINE )
-        {
-            CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
-            CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
-            CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
-        }
-#endif
 
         return sciSetPoint( pobjUID, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
     }
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
 
 }
 /*------------------------------------------------------------------------*/
