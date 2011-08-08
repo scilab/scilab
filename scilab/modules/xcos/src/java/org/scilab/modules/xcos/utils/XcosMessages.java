@@ -270,8 +270,8 @@ public final class XcosMessages {
     public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
     
     /* Blocks values */
-    public static final String BLOCK_FROM = "From %s";
-    public static final String BLOCK_GOTO = "Goto %s";
+    public static final String BLOCK_FROM = Messages.gettext("From %s");
+    public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
 
     /* Errors */
 	public static final String ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK = Messages.gettext("Error: unable to compile this SuperBlock");
