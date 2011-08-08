@@ -192,6 +192,8 @@ Documentation:
 
 * Bug 7133 fixed - help_from_sci function did not return the function template.
 
+* Bug 9790 fixed - windows_tools help were not available on all platforms.
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
