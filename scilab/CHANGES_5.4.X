@@ -320,6 +320,8 @@ Bug fixes:
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
+* bug 9214 fixed - abaque replaced by nicholschart in the black.sci comments
+
 * bug 9253 fixed - fscanfMat failed to read a file with some lines
                    of text at the end (backward compatibility).
 
@@ -398,4 +400,3 @@ Bug fixes:
 
 * bug 9804 fixed - Starting Scilab with a external module emptied the
                    demo list menu.
-
