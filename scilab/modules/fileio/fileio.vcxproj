@@ -252,11 +252,13 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_tempname.c" />
     <ClCompile Include="src\c\addfile.c" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />
     <ClCompile Include="src\c\copyfile_windows.c" />
     <ClCompile Include="src\c\createdirectory.c" />
+    <ClCompile Include="src\c\createtempfilename.c" />
     <ClCompile Include="src\c\deleteafile.c" />
     <ClCompile Include="src\c\delfile.c" />
     <ClCompile Include="src\c\DllmainFileio.c" />
@@ -352,6 +354,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
+    <ClInclude Include="includes\createtempfilename.h" />
     <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="includes\cluni0.h" />

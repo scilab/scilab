@@ -81,6 +81,8 @@ File input/output:
 
 * mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
 
+* tempname function added (SEP 68).
+
 
 New functions
 =============

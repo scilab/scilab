@@ -54,7 +54,8 @@ src/c/copyfile_others.c \
 src/c/getFullFilename.c \
 src/c/mputl.c \
 src/c/fscanfMat.c \
-src/c/fprintfMat.c
+src/c/fprintfMat.c \
+src/c/createtempfilename.c
 
 
 GATEWAY_SOURCES = \
@@ -102,7 +103,8 @@ sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c \
-sci_gateway/c/sci_mputl.c
+sci_gateway/c/sci_mputl.c \
+sci_gateway/c/sci_tempname.c
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
