@@ -386,6 +386,8 @@ Bug fixes:
 * bug 9761 fixed - "NDEBUG" was not defined for dynamic link (by default) in
                    release mode on Windows.
 
+* bug 9763 fixed - comet3d did not check input argument presence.
+
 * bug 9765 fixed - remove ref to scicos_pal in sci_f_clear.f
 
 * bug 9766 fixed - Scilab on Mac OS X 10.7 did not start.
