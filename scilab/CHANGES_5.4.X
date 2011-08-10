@@ -247,9 +247,12 @@ Graphics:
 ATOMS:
 ======
 
+* bug 8664 fixed - Message error updated for non supported OS.
+
 * bug 9127 fixed - "Home" item renamed to "Installed Modules".
 
-* bug 8664 fixed - Message error updated for non supported OS.
+* bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
+
 
 Javasci:
 ========
