@@ -38,6 +38,18 @@ int DecompositionUtils::isANumber(double x)
     }
 }
 
+int DecompositionUtils::isFinite(double x)
+{
+    if (isinf(x))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 int DecompositionUtils::isValid(double x)
 {
     if (isnan(x) || isinf(x))

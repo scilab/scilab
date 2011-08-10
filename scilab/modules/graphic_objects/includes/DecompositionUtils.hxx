@@ -32,6 +32,13 @@ public :
     static int isANumber(double x);
 
     /**
+     * Tests whether a scalar value is finite.
+     * @param[in] the scalar value to test.
+     * @return 1 if the value is finite, 0 if it is infinite.
+     */
+    static int isFinite(double x);
+
+    /**
      * Tests whether a scalar value is valid.
      * The value is valid if it is neither infinite nor a NaN.
      * @param[in] the scalar value to test.
