@@ -20,6 +20,7 @@ c     ----------------------------
       double precision eps,rcond,ur,ui,vr,vi,xr,xi
       integer p,ind,q,job,ido,n,top1
       integer iadr,sadr
+      logical first
 
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -144,6 +145,7 @@ c
       lfr = sadr(ifr+4)
       if (rhs.eq.5) ld=sadr(id+4)
       job = 0
+      first=.true.
       do 42 ind = 1,ido
 
          ig = (ind-1)*p*q
@@ -156,9 +158,11 @@ c
             call dfrmg(job,n,n,q,q,p,n,stk(la),stk(lb),stk(lc),stk(lf),
      &           0.0d0,stk(lwgr+ig),stk(lwgi+ig),rcond,stk(lw),stk(lw1))
          endif
-         if (1.0d+0+rcond.eq.1.0d+0) then
-            call error(19)
-            return
+         if ((1.0d+0+rcond.eq.1.0d+0).and.first) then
+            buf=' '
+            write(buf(1:13),'(1pd13.4)') rcond
+            call msgs(5,0)
+            first=.false.
          endif
          if(rhs.eq.5) call dadd(p*q,stk(ld),1,stk(lwgr+ig),1)
  42   continue
