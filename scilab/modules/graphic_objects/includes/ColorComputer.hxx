@@ -27,6 +27,7 @@ public :
      * Ouputs an RGB color mapped to a scalar value s belonging to an [smin, smax] interval.
      * The output color is looked up in an RGB colormap, using a linear mapping between the latter and s.
      * It does not currently check whether srange is greater than 0.
+     * If s is a Nan value, the black color is output.
      * @param[in] the scalar value.
      * @param[in] the interval's minimum value.
      * @param[in] the interval's range (smax-smin).
@@ -42,6 +43,7 @@ public :
      * The output color is looked up in an RGB colormap, using a linear mapping between a sub-interval of the latter and s.
      * It neither checks whether srange is greater than 0 nor verifies that the sub-interval is included within the colormap's
      * range (which must be ensured when specifying the sub-interval's bounds).
+     * If s is a Nan value, the black color is output.
      * @param[in] the scalar value.
      * @param[in] the interval's minimum value.
      * @param[in] the interval's range (smax-smin).
@@ -59,7 +61,8 @@ public :
      * Outputs an RGB color directly mapped to a scalar value s.
      * The output color is looked up in an RGB colormap, using s as a direct index.
      * White and black are respectively output when s <= -3 and -3 < s < 0 ; s is also
-     * clamped to the colormap's upper bound (colormapSize-1).
+     * clamped to the colormap's upper bound (colormapSize-1). If s is a Nan value, black is also
+     * output.
      * @param[in] the scalar value used as an index.
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
@@ -70,7 +73,8 @@ public :
     /**
      * Outputs an RGB color directly mapped to a scalar value s.
      * The output color is looked up in an RGB colormap, using s as a direct index,
-     * which is clamped to the colormap bounds, that is [0, colormapSize-1] .
+     * which is clamped to the colormap bounds, that is [0, colormapSize-1] . If s is a Nan value,
+     * the black color is output.
      * @param[in] the scalar value used as an index.
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.

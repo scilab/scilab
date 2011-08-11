@@ -11,6 +11,7 @@
  */
 
 #include "ColorComputer.hxx"
+#include  "DecompositionUtils.hxx"
 
 extern "C"
 {
@@ -23,22 +24,32 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
     double value;
     int index;
 
-    value = (s - smin) / (srange);
-    index = (int) ((double)(colormapSize-1)*value + indexOffset);
-
-    /* Clamp */
-    if (index < 0)
+    if (!DecompositionUtils::isANumber(s))
     {
-        index = 0;
+        /* Black is output if s is a Nan */
+        returnedColor[0] = MIN_COMPONENT_VALUE;
+        returnedColor[1] = MIN_COMPONENT_VALUE;
+        returnedColor[2] = MIN_COMPONENT_VALUE;
     }
-    else if (index > colormapSize - 1)
+    else
     {
-        index = colormapSize - 1;
-    }
+        value = (s - smin) / (srange);
+        index = (int) ((double)(colormapSize-1)*value + indexOffset);
 
-    returnedColor[0] = colormap[index];
-    returnedColor[1] = colormap[colormapSize+index];
-    returnedColor[2] = colormap[2*colormapSize+index];
+        /* Clamp */
+        if (index < 0)
+        {
+            index = 0;
+        }
+        else if (index > colormapSize - 1)
+        {
+            index = colormapSize - 1;
+        }
+
+        returnedColor[0] = colormap[index];
+        returnedColor[1] = colormap[colormapSize+index];
+        returnedColor[2] = colormap[2*colormapSize+index];
+    }
 }
 
 void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colormap, int minIndex, int maxIndex, int colormapSize, float* returnedColor)
@@ -46,22 +57,32 @@ void ColorComputer::getColor(double s, double smin, double srange, double indexO
     double value;
     int index;
 
-    value = (s - smin) / (srange);
-    index = (int) ((double)(maxIndex - minIndex)*value + indexOffset + (double) minIndex);
-
-    /* Clamp */
-    if (index < minIndex)
+    if (!DecompositionUtils::isANumber(s))
     {
-        index = minIndex;
+        /* Black is output if s is a Nan */
+        returnedColor[0] = MIN_COMPONENT_VALUE;
+        returnedColor[1] = MIN_COMPONENT_VALUE;
+        returnedColor[2] = MIN_COMPONENT_VALUE;
     }
-    else if (index > maxIndex)
+    else
     {
-        index = maxIndex;
-    }
+        value = (s - smin) / (srange);
+        index = (int) ((double)(maxIndex - minIndex)*value + indexOffset + (double) minIndex);
 
-    returnedColor[0] = colormap[index];
-    returnedColor[1] = colormap[colormapSize+index];
-    returnedColor[2] = colormap[2*colormapSize+index];
+        /* Clamp */
+        if (index < minIndex)
+        {
+            index = minIndex;
+        }
+        else if (index > maxIndex)
+        {
+            index = maxIndex;
+        }
+
+        returnedColor[0] = colormap[index];
+        returnedColor[1] = colormap[colormapSize+index];
+        returnedColor[2] = colormap[2*colormapSize+index];
+    }
 }
 
 void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor)
@@ -75,9 +96,9 @@ void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize,
         returnedColor[1] = MAX_COMPONENT_VALUE;
         returnedColor[2] = MAX_COMPONENT_VALUE;
     }
-    else if (((double) BLACK_LOWER_INDEX < s) && (s < (double) BLACK_UPPER_INDEX))
+    else if ((((double) BLACK_LOWER_INDEX < s) && (s < (double) BLACK_UPPER_INDEX)) || !DecompositionUtils::isANumber(s))
     {
-        /* Black */
+        /* Black is also output for Nan values */
         returnedColor[0] = MIN_COMPONENT_VALUE;
         returnedColor[1] = MIN_COMPONENT_VALUE;
         returnedColor[2] = MIN_COMPONENT_VALUE;
@@ -101,20 +122,30 @@ void ColorComputer::getClampedDirectColor(double s, double* colormap, int colorm
 {
     int index;
 
-    /* Clamp */
-    if (s < 0.0)
+    if (!DecompositionUtils::isANumber(s))
     {
-        s = 0.0;
+        /* Black is output if s is a Nan */
+        returnedColor[0] = MIN_COMPONENT_VALUE;
+        returnedColor[1] = MIN_COMPONENT_VALUE;
+        returnedColor[2] = MIN_COMPONENT_VALUE;
     }
-    else if (s > (double)(colormapSize - 1))
+    else
     {
-        s = (double) (colormapSize - 1);
+        /* Clamp */
+        if (s < 0.0)
+        {
+            s = 0.0;
+        }
+        else if (s > (double)(colormapSize - 1))
+        {
+            s = (double) (colormapSize - 1);
+        }
+
+        index = (int) s;
+
+        returnedColor[0] = colormap[index];
+        returnedColor[1] = colormap[colormapSize+index];
+        returnedColor[2] = colormap[2*colormapSize+index];
     }
-
-    index = (int) s;
-
-    returnedColor[0] = colormap[index];
-    returnedColor[1] = colormap[colormapSize+index];
-    returnedColor[2] = colormap[2*colormapSize+index];
 }
 
