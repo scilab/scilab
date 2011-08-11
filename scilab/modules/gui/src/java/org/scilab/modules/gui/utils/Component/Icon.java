@@ -36,7 +36,7 @@ public class Icon extends JLabel implements XComponent {
     /** Path for icons.
     *
     */
-    private static final   String   SCILAB_XICONS  = System.getenv("SCI")
+    public static final   String   SCILAB_XICONS  = System.getenv("SCI")
         + "/modules/gui/images/icons/16x16/actions/";
 
     /** Define the set of actuators.

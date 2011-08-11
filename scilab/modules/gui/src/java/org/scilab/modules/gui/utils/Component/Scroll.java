@@ -99,7 +99,7 @@ public class Scroll extends JScrollPane implements XComponent {
     * @param component : associated view DOM node.
      */
     public final void remove(final Component component) {
-    	insideContainer.remove(component);
+        insideContainer.remove(component);
     }
 
     /** Children consultation.

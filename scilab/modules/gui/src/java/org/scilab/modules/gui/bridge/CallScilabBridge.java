@@ -114,6 +114,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.gui.utils.XWizardManager;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
@@ -2327,11 +2328,18 @@ public class CallScilabBridge {
     }
 
     /**
-     * Opens a dialog to selected a new Foreground Color for the console
+     * Opens a dialog to setup preferences.
      */
     public static void openPreferences() {
-	//TODO
         XConfigManager.displayAndWait();
+    }
+
+    /**
+     * Opens a dialog to setup user blocks.
+     */
+    public static void openUserBlockWizard() {
+        //TODO temporary plug.
+        XWizardManager.displayAndWait();
     }
 
     /**

@@ -20,6 +20,11 @@ import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.EventObject;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+
+import org.scilab.modules.gui.utils.Component.Table;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -35,7 +40,7 @@ import org.w3c.dom.NodeList;
  * @author Pierre GRADIT
  *
  **/
-class XSentinel implements MouseListener, ActionListener {
+class XSentinel implements MouseListener, ActionListener, TableModelListener {
     /** Associated DOM Node.
      * TODO Add accessors for this attribute. */
     protected Node      peer;
@@ -86,15 +91,16 @@ class XSentinel implements MouseListener, ActionListener {
             keys[i]   = item.getNodeName();
         }
         Arrays.sort(keys);
-            /* as DOM attributes are not ordered,
-               sort is needed to achieve proper reduction.
-            */
+        /* as DOM attributes are not ordered,
+         *   sort is needed to achieve proper reduction.
+         */
         signature += node.getNodeName();
         for (int i = 0; i < size; i++) {
             String attrName = keys[i];
-            if (Arrays.binarySearch(actuators, attrName) >= 0) {
-                signature   += " " + attrName;
-            } else {
+            if (Arrays.binarySearch(actuators, attrName) == -1 ) {
+            	/* As actuators can be performed without deleting node
+            	 * their value is removed from signature.
+            	 */
                 Node item    = attributes.getNamedItem(attrName);
                 String value = item.getNodeValue().replaceAll("[ \t\n]+", " ");
                 signature   += " " + attrName + "='" + value + "'";
@@ -119,36 +125,61 @@ class XSentinel implements MouseListener, ActionListener {
         }
         return reduced.equals(checker);
     }
-    /** Returns the first event node of the given type.
+    /** Process event node through component.
      *
-     * @param e : the event.
-     * @param node : the node to browse.
-     * @param type : the seek type in peer children.
+     * @param component : the source of the action.
+     * @param node : the node embedding the action.
      */
-    void triggerEventNode(
-            final EventObject e,
-            final Node node,
-            final String type) {
-        /**
-          *  returns the first event node of given type.
-          **/
-        NodeList nodelist = node.getChildNodes();
-        for (int i = 0; i < nodelist.getLength(); i++) {
-            Node child = nodelist.item(i);
-            if (child.getNodeName().equals(type)) {
-                XConfigManager.xEvent(child, (Component) e.getSource());
-                // TODO authorize multiple actions ?
-                return;
-            }
+    boolean triggerEventNodes(
+            final Component component,
+            final Node [] nodes) {
+        if (XConfigManager.active) {
+            return XConfigManager.xEvent(nodes, component);
         }
-        return;
+        if (XWizardManager.active) {
+            return XWizardManager.xEvent(nodes, component);
+        }
+        return false;
     }
+
+//
+    /** Returns the first event node of the given type.
+    *
+    * @param node : the node to browse.
+    * @param type : the seek type in peer children.
+    */
+   Node [] getEventNodes(
+           final Node node,
+           final String type) {
+       /**
+         *  returns the first event node of given type.
+         **/
+       NodeList nodelist = node.getChildNodes();
+       int size = 0;
+       for (int i = 0; i < nodelist.getLength(); i++) {
+           Node child = nodelist.item(i);
+           if (child.getNodeName().equals(type)) {
+               size ++;
+           }
+       }
+       Node [] result = new Node[size];
+       int j = 0;
+       for (int i = 0; i < nodelist.getLength(); i++) {
+           Node child = nodelist.item(i);
+           if (child.getNodeName().equals(type)) {
+               result[j] = child;
+               j ++;
+           }
+       }
+       return result;
+   }
 
     /** Mouse listener callback. @param e : event*/
     public void mouseClicked(final MouseEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
-            triggerEventNode(e, peer, "mouseClicked");
+            Node [] action = getEventNodes(peer, "mouseClicked");
+            triggerEventNodes((Component) e.getSource(),action) ;
             timestamp = when;
         } else {
             if (XConfigManager.differential) {
@@ -173,13 +204,33 @@ class XSentinel implements MouseListener, ActionListener {
     public void actionPerformed(final ActionEvent e) {
         long when = e.getWhen();
         if (when != timestamp) {
-            triggerEventNode(e, peer, "actionPerformed");
-            timestamp = when;
+            Node [] actions = {};
+            if (actions.length == 0) {
+                actions = getEventNodes(peer, "actionPerformed");
+            }
+            if (actions.length == 0) {
+                actions = getEventNodes(peer, "tableSelect");
+            }
+            if (actions.length > 0) {
+                triggerEventNodes((Component) e.getSource(),actions) ;
+                timestamp = when;
+            } else {
+                
+            }
+            return;
         } else {
             if (XConfigManager.differential) {
                 System.out.println(" |  dummy actionPerformed discarded!");
             }
         }
+    }
+
+    /** Table listener callback. @param e : event*/
+    public void tableChanged(final TableModelEvent e) {
+        Node [] actions = getEventNodes(peer, "tableChanged");
+        Table.processModelEvent(e, actions);
+        triggerEventNodes(null, actions);
+        // source is used for "choose" behavior not "set" ones.
     }
 }
 

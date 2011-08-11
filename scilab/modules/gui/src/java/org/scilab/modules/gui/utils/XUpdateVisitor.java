@@ -30,6 +30,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.gui.utils.Component.Scroll;
+import org.scilab.modules.gui.utils.Component.Table;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -79,7 +80,7 @@ public class XUpdateVisitor {
      */
     public final void forget(final Container view, final Component component) {
        view.remove(component);
-        correspondance.remove(component);
+       correspondance.remove(component);
     }
 
     /** Computes a recursive diff on both tree structure
@@ -127,10 +128,12 @@ public class XUpdateVisitor {
             }
             allIndex += 1;
         }
-        // Children rebuilt.
-        while (visibleIndex < view.getComponentCount()) {
-            component = view.getComponent(visibleIndex);
-            forget(view, component);
+        // Clean children list.
+        if (! (view instanceof Table)) {
+            while (visibleIndex < view.getComponentCount()) {
+                component = view.getComponent(visibleIndex);
+                forget(view, component);
+            }
         }
         // Sentinel sets watch.
         sentinel  = (XSentinel) correspondance.get(view);
@@ -186,6 +189,10 @@ public class XUpdateVisitor {
         if (node.getNodeName().equals("option")) {
             return false;
         }
+        // d. Table descriptors are invisible.
+        if (node.getNodeName().startsWith("table")) {
+            return false;
+        }
         return true;
     }
 
@@ -200,21 +207,34 @@ public class XUpdateVisitor {
             final Node node,
             final XSentinel sentinel
             ) {
-        String listener = XConfigManager.getAttribute(node, "listener");
+        String listener = XCommonManager.getAttribute(node, "listener");
+        //System.out.println("... " + listener + " on " + node);
         if (listener.equals("MouseListener")) {
              component.addMouseListener(sentinel);
+             return;
         }
         if (listener.equals("ActionListener")) {
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
                 button.addActionListener(sentinel);
+                return;
             }
             if (component instanceof XChooser) {
                 XChooser chooser = (XChooser) component;
                 chooser.addActionListener(sentinel);
+                return;
             }
-
+            System.out.println("----> Action listener works on buttons and choosers only!");
         }
+        if (listener.equals("TableListener")) {
+            if (component instanceof Table) {
+                Table table = (Table) component;
+                table.addTableModelListener(sentinel);
+                return;
+            }
+            System.out.println("----> Table listener works on tables only!");
+       }
+
     }
 
     /** Address for dynamic class loading.
@@ -233,7 +253,8 @@ public class XUpdateVisitor {
      * @param node : description of component
      * @return the built component
      */
-    public final Component buildPeerFor(final Node node) {
+    @SuppressWarnings("unchecked")
+	public final Component buildPeerFor(final Node node) {
 
         String tag = node.getNodeName();
         if (tag.equals("Scroll")) {
@@ -291,7 +312,7 @@ public class XUpdateVisitor {
             }
 
             // Declare failure due to class absence
-            return new XStub(tag, "ClassNotFoundException");
+            return new XStub(node, "ClassNotFoundException");
         }
 
         //2. Find the constructor.
@@ -307,12 +328,12 @@ public class XUpdateVisitor {
             } catch (NoSuchMethodException f) {
                 // Declare failure due to constructor absence
                 System.err.println("NoSuchMethodException:" + f);
-                return new XStub(tag, "NoSuchMethodException");
+                return new XStub(node, "NoSuchMethodException");
             }
         } catch (SecurityException e) {
             // Declare failure due to constructor rights (it must be public)
             System.err.println("SecurityException:" + e);
-            return new XStub(tag, "SecurityException");
+            return new XStub(node, "SecurityException");
         }
 
         //3. Invoke the constructor.
@@ -321,16 +342,16 @@ public class XUpdateVisitor {
             component = (Component) constructor.newInstance(new Object[]{node});
         } catch (InstantiationException e) {
             System.err.println("InstantiationException:" + e);
-            return new XStub(tag, "InstantiationException");
+            return new XStub(node, "InstantiationException");
         } catch (IllegalAccessException e) {
             System.err.println("IllegalAccessException:" + e);
-            return new XStub(tag, "IllegalAccessException");
+            return new XStub(node, "IllegalAccessException");
         } catch (IllegalArgumentException e) {
             System.err.println("IllegalArgumentException:" + e);
-            return new XStub(tag, "IllegalArgumentException");
+            return new XStub(node, "IllegalArgumentException");
         } catch (InvocationTargetException e) {
             System.err.println("InvocationTargetException:" + e);
-            return new XStub(tag, "InvocationTargetException");
+            return new XStub(node, "InvocationTargetException");
         }
         return component;
     }
@@ -360,18 +381,18 @@ class XStub extends JPanel {
      * @param cause : description of the error
      *
      */
-    public XStub(final String tag, final String cause) {
+    public XStub(final Node node, final String cause) {
         super();
         Border       black  = BorderFactory.createLineBorder(Color.blue);
-        TitledBorder title  = BorderFactory.createTitledBorder(black, tag);
+        TitledBorder title  = BorderFactory.createTitledBorder(black, node.getNodeName());
         Dimension dimension = new Dimension(D_WIDTH, D_HEIGHT);
         setPreferredSize(dimension);
         setOpaque(false);
+        XConfigManager.setDimension(this, node);
 
         title.setTitleColor(Color.blue);
         setBorder(title);
         setLayout(new FlowLayout());
-        add(new JLabel(cause));
     }
 
     /** Output method.

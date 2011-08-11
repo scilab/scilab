@@ -12,14 +12,14 @@
 
 package org.scilab.modules.gui.utils.Component;
 
+import org.scilab.modules.gui.utils.XCommonManager;
 import org.scilab.modules.gui.utils.XComponent;
 import org.scilab.modules.gui.utils.XConfigManager;
 import javax.swing.JLabel;
 import java.awt.Color;
-import org.w3c.dom.Node;
+import java.awt.Font;
 
-//TODO import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
-// - text does not appear.
+import org.w3c.dom.Node;
 
 /** Implementation of Label compliant with extended management.
 *
@@ -57,6 +57,16 @@ public class Label extends JLabel implements XComponent {
 
         String foreground = XConfigManager.getAttribute(peer , "foreground");
         foreground(foreground);
+
+        String fontFamily = XConfigManager.getAttribute(peer , "font-family", fontFamily());
+        fontFamily(fontFamily);
+
+        String fontFace = XConfigManager.getAttribute(peer , "font-face", fontFace());
+        fontFace(fontFace);
+
+        String fontSize = XConfigManager.getAttribute(peer , "font-size", fontSize());
+        fontSize(fontSize);
+
     }
 
     /** Refresh the component by the use of actuators.
@@ -79,6 +89,22 @@ public class Label extends JLabel implements XComponent {
         if (!foreground.equals(foreground())) {
             foreground(foreground);
         }
+
+        String fontFamily = XConfigManager.getAttribute(peer , "font-family", fontFamily());
+        if (!fontFamily.equals(fontFamily())) {
+            fontFamily(fontFamily);
+        }
+
+        String fontFace = XConfigManager.getAttribute(peer , "font-face", fontFace());
+        if (!fontFace.equals(fontFace())) {
+            foreground(fontFace);
+        }
+
+        String fontSize = XConfigManager.getAttribute(peer , "font-size", fontSize());
+        if (!fontSize.equals(fontSize())) {
+        	fontSize(fontSize);
+        }
+
     }
 
     /** Sensor for 'text' attribute.
@@ -111,6 +137,84 @@ public class Label extends JLabel implements XComponent {
         } else {
             return XConfigManager.getColor(getBackground());
         }
+    }
+
+    /** Sensor for 'font-family' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String fontFamily() {
+        return getFont().getFamily();
+    }
+
+    /** Sensor for 'font-size' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String fontSize() {
+        return "" + getFont().getSize();
+    }
+
+    /** Sensor for 'font-face' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String fontFace() {
+        switch (getFont().getStyle()) {
+        case Font.PLAIN :  return "plain";
+        case Font.ITALIC : return "italic";
+        case Font.BOLD :   return "bold";
+        case 3 :           return "bold italic";
+        }
+        return XCommonManager.NAV;
+    }
+
+    /** Actuator for 'font-family' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final void fontFamily(String fontFamily) {
+        Font font = new Font(
+            fontFamily,
+            getFont().getStyle(),
+            getFont().getSize());
+        setFont(font);
+    }
+
+    /** Actuator for 'font-size' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final void fontSize(String fontSize) {
+        Font font = new Font(
+            getFont().getFamily(), 
+            getFont().getStyle(), 
+            Integer.parseInt(fontSize));
+        setFont(font);
+    }
+
+    /** Accelerator for 'font-face' actuator.
+     * 
+     * @param xFace
+     * @return
+     */
+    private int getStyle(String xFace) {
+        if (xFace.equals("plain"))       return Font.PLAIN;
+        if (xFace.equals("italic"))      return Font.ITALIC;
+        if (xFace.equals("bold"))        return Font.BOLD;
+        if (xFace.equals("bold italic")) return Font.BOLD + Font.ITALIC;
+        return -1;
+    }
+    /** Actuator for 'font-face' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final void fontFace(String fontFace) {
+        Font font = new Font(
+                getFont().getFamily(), 
+                getStyle(fontFace), 
+                getFont().getSize());
+        setFont(font);
     }
 
     /** Actuator for 'text' attribute.
@@ -166,6 +270,15 @@ public class Label extends JLabel implements XComponent {
         }
         if (!foreground().equals(XConfigManager.NAV)) {
             signature += " foreground='" + foreground() + "'";
+        }
+        if (!fontFamily().equals(XConfigManager.NAV)) {
+            signature += " font-family='" + fontFamily() + "'";
+        }
+        if (!fontFace().equals(XConfigManager.NAV)) {
+            signature += " font-face='" + fontFace() + "'";
+        }
+        if (!fontSize().equals(XConfigManager.NAV)) {
+            signature += " font-size='" + fontSize() + "'";
         }
         return signature;
     }

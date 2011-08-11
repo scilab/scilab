@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.utils.Component;
 
+import java.awt.Dimension;
+
 import org.scilab.modules.gui.utils.XComponent;
 import org.scilab.modules.gui.utils.XChooser;
 import org.scilab.modules.gui.utils.XConfigManager;
@@ -48,6 +50,8 @@ public class Select extends JComboBox implements XComponent, XChooser {
     */
     public Select(final Node peer) {
         super();
+        setMinimumSize(new Dimension(200,30));
+        setPreferredSize(new Dimension(200,30));
         NodeList nodelist = peer.getChildNodes();
         int select = 0;
         int index = 0;
@@ -72,6 +76,25 @@ public class Select extends JComboBox implements XComponent, XChooser {
     * @param peer the corresponding view DOM node
     */
     public void refresh(final Node peer) {
+        NodeList nodelist = peer.getChildNodes();
+        int select = 0;
+        int index = 0;
+        for (int i = 0; i < nodelist.getLength(); i++) {
+            Node node = nodelist.item(i);
+            if (node.getNodeName().equals("option")) {
+                String selected = XConfigManager.getAttribute(node ,"selected");
+                if (selected.equals("selected")) {
+                    select = index;
+                }
+                index += 1;
+            }
+        }
+        if (select != getSelectedIndex()) {
+            setEnabled(false);
+            setSelectedIndex(select);
+        }
+        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
+        setEnabled(enable.equals("true"));
     }
 
     /** Actual response read by the listener.
@@ -79,7 +102,10 @@ public class Select extends JComboBox implements XComponent, XChooser {
     * @return response read by the listener.
     */
     public final String choose() {
-        return (String) getSelectedItem();
+        if (isEnabled()) {
+            return (String) getSelectedItem();
+        }
+        return null;
     }
 
     /** Developer serialization method.
