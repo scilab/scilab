@@ -201,6 +201,13 @@ Optimization:
 * Bug 9607 fixed - The optimsimplex_new function poorly managed the
                    variable number of arguments.
 
+Statistics:
+==============
+
+* bug 9357 fixed - stdevf returned zero for row vector arguments.
+
+* bug 9846 fixed - stdevf() gives zero result when a single row matrix is evaluated.
+
 
 Documentation:
 ==============
