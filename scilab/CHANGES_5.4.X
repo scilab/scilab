@@ -222,6 +222,8 @@ Documentation:
 * Bug 9299 fixed - Fix a typo in the cspect, pspect and window help pages
                    (Hanning changed to Hann)
 
+* Bug 9320 fixed - analpf help page give wrong frequency units of omega (Hz instead of rd/s)
+
 * Bug 9417 fixed - In English, api_scilab polynom help pages updated to the word
                    polynomial
 
