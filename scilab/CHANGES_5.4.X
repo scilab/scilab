@@ -415,6 +415,8 @@ Bug fixes:
 * bug 9804 fixed - Starting Scilab with a external module emptied the
                    demo list menu.
 
+* bug 9833 fixed - percent was badly formatted by Scierror function.
+
 * bug 9836 fixed - repfreq failed due to "singular problem".
 
 * bug 9838 fixed - evstr froze on some specific strings.
