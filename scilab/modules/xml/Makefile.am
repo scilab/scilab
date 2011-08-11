@@ -28,23 +28,48 @@ include $(top_srcdir)/Makefile.incl.am
 
 XML_JNI_SOURCES = 
 
-XML_C_SOURCES = 
+XML_C_SOURCES = src/c/createMlists.c
 
-XML_CPP_SOURCES = 
-
+XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
+		  src/cpp/XMLObject.cpp \
+		  src/cpp/XMLDocument.cpp \
+                  src/cpp/XMLElement.cpp \
+                  src/cpp/XMLAttr.cpp \
+                  src/cpp/XMLNs.cpp \
+                  src/cpp/XMLNodeList.cpp \
+                  src/cpp/XMLNodeSet.cpp \
+                  src/cpp/XMLXPath.cpp \
+                  src/cpp/XMLList.cpp \
+                  src/cpp/XMLNotHandledElement.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
-sci_gateway/cpp/sci_xmlXPath.cpp
+                      sci_gateway/cpp/sci_xmlXPath.cpp \
+		      sci_gateway/cpp/sci_extraction.cpp \
+		      sci_gateway/cpp/sci_print.cpp \
+		      sci_gateway/cpp/sci_xmlGetOpenStreams.cpp \
+		      sci_gateway/cpp/sci_xmlClose.cpp \
+		      sci_gateway/cpp/sci_xmlDump.cpp \
+		      sci_gateway/cpp/sci_percent_XMLList_e.cpp \
+		      sci_gateway/cpp/sci_percent_XMLAttr_e.cpp \
+		      sci_gateway/cpp/sci_percent_XMLList_size.cpp
 
-libscixml_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ \
-    -I$(top_srcdir)/modules/core/includes
+libscixml_la_CFLAGS= -I$(srcdir)/includes/ \
+		     -I$(top_srcdir)/libs/MALLOC/includes/ \
+                     -I$(top_srcdir)/modules/core/includes \
+	             -I$(top_srcdir)/modules/api_scilab/includes \
+	             -I$(top_srcdir)/modules/output_stream/includes \
+	             -I$(top_srcdir)/modules/fileio/includes
+
 
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    $(XML_FLAGS)
 
 # Without the xml module 
 libscixml_disable_la_CFLAGS = -Iincludes/
@@ -72,8 +97,9 @@ INCLUDE_FLAGS = $(libscixml_la_CFLAGS)
 
 
 libscixml_la_LIBADD = libscixml-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la
-
+    $(top_builddir)/libs/MALLOC/libscimalloc.la \
+    $(top_builddir)/modules/output_stream/libscioutput_stream.la \
+    $(top_builddir)/modules/fileio/libscifileio.la
 
 #### xml : gateway declaration ####
 libscixml_la_sci_gatewaydir = $(mydatadir)/sci_gateway

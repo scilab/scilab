@@ -21,7 +21,21 @@
 static gw_generic_table Tab[] =
 {
     {sci_xmlRead, "xmlRead"},
-    {sci_xmlXPath, "xmlXPath"}
+    {sci_xmlClose, "xmlClose"},
+    {sci_xmlDump, "xmlDump"},
+    {sci_xmlGetOpenStreams, "xmlGetOpenStreams"},
+    {sci_xmlXPath, "xmlXPath"},
+    {sci_percent_XMLDoc_e, "%XMLDoc_e"},
+    {sci_percent_XMLElem_e, "%XMLElem_e"},
+    {sci_percent_XMLNs_e, "%XMLNs_e"},
+    {sci_percent_XMLAttr_e, "%XMLAttr_e"},
+    {sci_percent_XMLList_e, "%XMLList_e"},
+    {sci_percent_XMLDoc_p, "%XMLDoc_p"},
+    {sci_percent_XMLElem_p, "%XMLElem_p"},
+    {sci_percent_XMLNs_p, "%XMLNs_p"},
+    {sci_percent_XMLList_p, "%XMLList_p"},
+    {sci_percent_XMLAttr_p, "%XMLAttr_p"},
+    {sci_percent_XMLList_size, "%XMLList_size"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_xml(void)

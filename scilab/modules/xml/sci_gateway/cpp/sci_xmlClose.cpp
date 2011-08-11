@@ -12,7 +12,6 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
-#include <iostream>
 
 extern "C"
 {
@@ -26,18 +25,16 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char *fname, unsigned long fname_len)
+int sci_xmlClose(char * fname, unsigned long fname_len)
 {
-    XMLDocument *doc;
     int id;
     SciErr err;
-    int *addr = 0;
-    char *path = 0;
-    char *error = 0;
-    
+    int * addr = 0;
+    XMLDocument * doc;
+
     CheckLhs(1, 1);
     CheckRhs(1, 1);
-   
+
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
@@ -45,30 +42,24 @@ int sci_xmlRead(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (isXMLDoc(addr))
     {
-        Scierror(999, "%s: Wrong type for input argument %i: String expected\n", fname, 1);
+        id = getXMLObjectId(addr);
+        doc = XMLObject::getFromId<XMLDocument>(id);
+        if (!doc)
+        {
+            Scierror(999, "%s: XML document does not exist\n", fname);
+            return 0;
+        }
+        delete doc;
+    }
+    else
+    {
+        Scierror(999, "%s: Wrong type for input argument %i: %s expected\n", fname, 1, "XMLDoc");
         return 0;
     }
-    
-    getAllocatedSingleString(pvApiCtx, addr, &path);
-    
-    doc = new XMLDocument((const char *) path, &error);
-    freeAllocatedSingleString(path);
 
-    if (error)
-    {
-	delete doc;
-	Scierror(999, "%s: Cannot read the file:\n%s", fname, error);
-        return 0;
-    }
-
-    if (!doc->createOnStack(Rhs + 1))
-    {
-	return 0;
-    }
-
-    LhsVar(1) = Rhs + 1;
+    LhsVar(1) = 0;
     PutLhsVar();
     return 0;
 }

@@ -12,7 +12,9 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
-#include <iostream>
+#include "XMLElement.hxx"
+#include "XMLNs.hxx"
+#include "XMLAttr.hxx"
 
 extern "C"
 {
@@ -26,18 +28,18 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char *fname, unsigned long fname_len)
+int sci_xmlDump(char *fname, unsigned long fname_len)
 {
-    XMLDocument *doc;
     int id;
+    int type;
     SciErr err;
     int *addr = 0;
-    char *path = 0;
-    char *error = 0;
-    
+    const char * dump;
+    std::string * str;
+
     CheckLhs(1, 1);
     CheckRhs(1, 1);
-   
+
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
     {
@@ -45,27 +47,23 @@ int sci_xmlRead(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    type = isXMLObject(addr);
+    if (!type)
     {
-        Scierror(999, "%s: Wrong type for input argument %i: String expected\n", fname, 1);
-        return 0;
-    }
-    
-    getAllocatedSingleString(pvApiCtx, addr, &path);
-    
-    doc = new XMLDocument((const char *) path, &error);
-    freeAllocatedSingleString(path);
-
-    if (error)
-    {
-	delete doc;
-	Scierror(999, "%s: Cannot read the file:\n%s", fname, error);
-        return 0;
-    }
-
-    if (!doc->createOnStack(Rhs + 1))
-    {
+	Scierror(999, "%s: Wrong type for input argument %i: %s expected\n", fname, 1, "XML object");
 	return 0;
+    }
+
+    id = getXMLObjectId(addr);
+    str = XMLObject::getFromId<XMLObject>(id)->dump();
+    dump = str->c_str();
+    
+    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast<const char * const *>(&dump));
+    delete str;
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return 0;
     }
 
     LhsVar(1) = Rhs + 1;

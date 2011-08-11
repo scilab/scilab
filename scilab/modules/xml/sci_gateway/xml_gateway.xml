@@ -30,6 +30,19 @@
 
 -->
 <PRIMITIVE gatewayId="68" primitiveId="1" primitiveName="xmlRead" />
-<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlXPath" />
-
+<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="xmlClose" />
+<PRIMITIVE gatewayId="68" primitiveId="3" primitiveName="xmlDump" />
+<PRIMITIVE gatewayId="68" primitiveId="4" primitiveName="xmlGetOpenStreams" />
+<PRIMITIVE gatewayId="68" primitiveId="5" primitiveName="xmlXPath" />
+<PRIMITIVE gatewayId="68" primitiveId="6" primitiveName="%XMLDoc_e" />
+<PRIMITIVE gatewayId="68" primitiveId="7" primitiveName="%XMLElem_e" />
+<PRIMITIVE gatewayId="68" primitiveId="8" primitiveName="%XMLNs_e" />
+<PRIMITIVE gatewayId="68" primitiveId="9" primitiveName="%XMLAttr_e" />
+<PRIMITIVE gatewayId="68" primitiveId="10" primitiveName="%XMLList_e" />
+<PRIMITIVE gatewayId="68" primitiveId="11" primitiveName="%XMLDoc_p" />
+<PRIMITIVE gatewayId="68" primitiveId="12" primitiveName="%XMLElem_p" />
+<PRIMITIVE gatewayId="68" primitiveId="13" primitiveName="%XMLNs_p" />
+<PRIMITIVE gatewayId="68" primitiveId="14" primitiveName="%XMLList_p" />
+<PRIMITIVE gatewayId="68" primitiveId="15" primitiveName="%XMLAttr_p" />
+<PRIMITIVE gatewayId="68" primitiveId="16" primitiveName="%XMLList_size" />
 </GATEWAY>
