@@ -911,7 +911,7 @@
                         </listitem>
                         <listitem>
                           <para>
-                            "tocentroid": scales the vertices toward the centroid, as recommended by Box.
+                            "tocenter": scales the vertices toward the centroid, as recommended by Box.
                           </para>
                         </listitem>
                       </itemizedlist>

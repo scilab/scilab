@@ -51,11 +51,11 @@ nm = neldermead_configure(nm,"-verbose",1);
 // Set the relative size to zero: it should never stop...
 nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
 nm = neldermead_search(nm);
-Function Evaluation #1 at [1 1]
-Function Evaluation #2 at [1 1]
-Function Evaluation #3 at [1 1]
-Function Evaluation #4 at [2 1]
-Function Evaluation #5 at [1 2]
+Function Evaluation #1, index=1, x= [1 1]
+Function Evaluation #2, index=2, x= [1 1]
+Function Evaluation #3, index=2, x= [1 1]
+Function Evaluation #4, index=2, x= [2 1]
+Function Evaluation #5, index=2, x= [1 2]
 Sort
 =================================================================
 Iteration #1 (total = 1)
@@ -73,7 +73,7 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=1.5 1
-Function Evaluation #6 at [2 0]
+Function Evaluation #6, index=2, x= [2 0]
 xr=2 0, f(xr)=4.000000
   > Perform reflect
 =================================================================
@@ -92,7 +92,7 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=1.5 0.5
-Function Evaluation #7 at [1 0]
+Function Evaluation #7, index=2, x= [1 0]
 xr=1 0, f(xr)=1.000000
   > Perform reflect
 =================================================================
@@ -111,7 +111,7 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=1 0.5
-Function Evaluation #8 at [0 1]
+Function Evaluation #8, index=2, x= [0 1]
 xr=0 1, f(xr)=1.000000
   > Perform reflect
 =================================================================
@@ -130,7 +130,7 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=0.5 0.5
-Function Evaluation #9 at [0 0]
+Function Evaluation #9, index=2, x= [0 0]
 xr=0 0, f(xr)=0.000000
   > Perform reflect
 =================================================================
@@ -198,11 +198,11 @@ nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
-Function Evaluation #1 at [-1.2 1]
-Function Evaluation #2 at [-1.2 1]
-Function Evaluation #3 at [-1.2 1]
-Function Evaluation #4 at [-0.2 1]
-Function Evaluation #5 at [-1.2 2]
+Function Evaluation #1, index=1, x= [-1.2 1]
+Function Evaluation #2, index=2, x= [-1.2 1]
+Function Evaluation #3, index=2, x= [-1.2 1]
+Function Evaluation #4, index=2, x= [-0.2 1]
+Function Evaluation #5, index=2, x= [-1.2 2]
 Sort
 =================================================================
 Iteration #1 (total = 1)
@@ -220,10 +220,10 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=-1.2 1.5
-Function Evaluation #6 at [-2.2 2]
+Function Evaluation #6, index=2, x= [-2.2 2]
 xr=-2.2 2, f(xr)=816.800000
 xbar2=-0.7 1
-Function Evaluation #7 at [-0.2 0]
+Function Evaluation #7, index=2, x= [-0.2 0]
 xr2=-0.2 0, f(xr2)=1.600000
   > Perform reflect / next
 =================================================================
@@ -242,14 +242,14 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=-0.7 0.5
-Function Evaluation #8 at [-1.2 0]
+Function Evaluation #8, index=2, x= [-1.2 0]
 xr=-1.2 0, f(xr)=212.200000
 xbar2=-0.2 0.5
-Function Evaluation #9 at [0.8 0]
+Function Evaluation #9, index=2, x= [0.8 0]
 xr2=0.8 0, f(xr2)=41.000000
   > Perform Shrink
-Function Evaluation #10 at [-0.7 0.5]
-Function Evaluation #11 at [-0.2 0.5]
+Function Evaluation #10, index=2, x= [-0.7 0.5]
+Function Evaluation #11, index=2, x= [-0.2 0.5]
 =================================================================
 Iteration #3 (total = 3)
 Function Eval #11
@@ -266,10 +266,10 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=-0.45 0.25
-Function Evaluation #12 at [-0.7 0]
+Function Evaluation #12, index=2, x= [-0.7 0]
 xr=-0.7 0, f(xr)=26.900000
 xbar2=-0.2 0.25
-Function Evaluation #13 at [0.3 0]
+Function Evaluation #13, index=2, x= [0.3 0]
 xr2=0.3 0, f(xr2)=1.300000
   > Perform reflect / next
 =================================================================
@@ -288,14 +288,14 @@ x: 3-by-2 matrix
 fv: 3-by-1 matrix
 Reflect
 xbar=0.05 0
-Function Evaluation #14 at [0.3 -0.5]
+Function Evaluation #14, index=2, x= [0.3 -0.5]
 xr=0.3 -0.5, f(xr)=35.300000
 xbar2=0.05 0.25
-Function Evaluation #15 at [0.3 0.5]
+Function Evaluation #15, index=2, x= [0.3 0.5]
 xr2=0.3 0.5, f(xr2)=17.300000
   > Perform Shrink
-Function Evaluation #16 at [0.05 0]
-Function Evaluation #17 at [0.05 0.25]
+Function Evaluation #16, index=2, x= [0.05 0]
+Function Evaluation #17, index=2, x= [0.05 0.25]
 =================================================================
 Iteration #5 (total = 5)
 Function Eval #17
