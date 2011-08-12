@@ -16,8 +16,15 @@ function [gm]=fspecg(g)
 // Imaginary-axis poles are forbidden.
 //
 //!
+  if typeof(g)<>'state-space' then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear system expected.\n"),"fspecg",1))
+  end
+  if g.dt<>"c" then
+    error(msprintf(gettext("%s: Wrong type for argument %d: In continuous time expected.\n"),"fspecg",1))
+  end
 
-[a,b,c,d]=g(2:5),g=[];
+[a,b,c,d]=abcd(g),
+g=[];
 a=-a;
 b=-b;
 h=[-a',c'*c;
