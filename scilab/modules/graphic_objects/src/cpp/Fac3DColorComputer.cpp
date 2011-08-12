@@ -23,6 +23,7 @@ Fac3DColorComputer::Fac3DColorComputer(void)
     colors = NULL;
     numColors = 0;
     colorFlag = 0;
+    /* 1: direct mapping */
     dataMapping = 1;
     numGons = 0;
     numVerticesPerGon = 0;
@@ -32,7 +33,7 @@ Fac3DColorComputer::Fac3DColorComputer(void)
     maxColorValue = 0.0;
     colorRange = 0.0;
     usedMinColorValue = 0.0;
-    colorRangeValid = 0.0;
+    colorRangeValid = 0;
 }
 
 Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorFlag, int dataMapping, int numGons, int numVerticesPerGon)
@@ -65,7 +66,11 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
         colorRange = maxColorValue - minColorValue;
         usedMinColorValue = minColorValue;
 
-        /* To be verified */
+        /*
+         * The color range is invalid when its minimum and maximum values are equal.
+         * This does not matter when all the color values are either infinite or Nans,
+         * as facets will be considered as invalid anyway.
+         */
         if (colorRange < DecompositionUtils::getMinDoubleValue())
         {
             colorRangeValid = 0;
@@ -84,6 +89,23 @@ Fac3DColorComputer::~Fac3DColorComputer(void)
 
 }
 
+double Fac3DColorComputer::getOutputFacetColor(int facetIndex, int vertexIndex)
+{
+    /*
+     * Special case for scaled colors: return the color at half
+     * the used color range if it is not value, whatever perVertex's value.
+     */
+    if (dataMapping == 0 && colorRangeValid == 0)
+    {
+        return 0.5 * (colorRange);
+    }
+    else
+    {
+        return getFacetColor(facetIndex, vertexIndex);
+    }
+
+}
+
 /* To do:
  * -rename getFacetColor to getFacetValue.
  * -streamline.
@@ -91,15 +113,6 @@ Fac3DColorComputer::~Fac3DColorComputer(void)
 double Fac3DColorComputer::getFacetColor(int facetIndex, int vertexIndex)
 {
     double color = 0.0;
-
-    /*
-     * Special case for scaled colors: return the color at half the actually used color range.
-     * To be fully implemented.
-     */
-    if (dataMapping == 0 && colorRangeValid == 0)
-    {
-        return 0.5 * (colorRange);
-    }
 
     if (perVertex == 1)
     {
@@ -126,7 +139,6 @@ double Fac3DColorComputer::getFacetColor(int facetIndex, int vertexIndex)
 
 /*
  * To do:
- * -complete and implement the scaled colors case.
  * -streamline.
  */
 int Fac3DColorComputer::isFacetColorValid(int facetIndex)
@@ -140,23 +152,22 @@ int Fac3DColorComputer::isFacetColorValid(int facetIndex)
         return 1;
     }
 
-    /* Special case for colorFlag == 3 && perVertex == 1 */
+    /* Special case for colorFlag == 3 and perVertex color values */
     if (colorFlag == 3 && perVertex == 1)
     {
-        /* To do: implement according to data mapping */
         valid = 0;
 
         for (int i = 0; i < numVerticesPerGon; i++)
         {
             color = getFacetColor(facetIndex, i);
 
-            /*
-             * The facet is valid if at least one of its vertex colors is different from 0
-             * and is a valid number (direct mapping).
-             */
             if (dataMapping == 1)
             {
-                if (color != 0.0 && DecompositionUtils::isANumber(color))
+                /*
+                 * The facet is valid if at least one of its vertex colors is not in the interval
+                 * [0,1) and is a valid number.
+                 */
+                if ((int) color != 0 && DecompositionUtils::isANumber(color))
                 {
                     valid = 1;
                     break;
@@ -164,27 +175,52 @@ int Fac3DColorComputer::isFacetColorValid(int facetIndex)
             }
             else if (dataMapping == 0)
             {
-                if (DecompositionUtils::isANumber(color))
+                /* If at least one color value is infinite, the facet is considered as invalid. */
+                if (!DecompositionUtils::isFinite(color))
                 {
-                    valid = 1;
+                    valid = 0;
                     break;
                 }
+
+                /* If at least one value is a number, the facet is valid, provided it has no infinite values. */
+                if (DecompositionUtils::isANumber(color) && valid == 0)
+                {
+                    valid = 1;
+                }
+
             }
         }
 
     }
     else
     {
-        /* Vertex index set to 0 */
+        /* Vertex index set to 0 as all the vertices of a given facet have the same color value */
         color = getFacetColor(facetIndex, 0);
 
-        if (color == 0.0 || DecompositionUtils::isANumber(color) == 0)
+        if (dataMapping == 1)
         {
-            valid = 0;
+            /* The facet is valid if its color value is not in the interval [0,1) and is a valid number. */
+            if ((int) color == 0 || DecompositionUtils::isANumber(color) == 0)
+            {
+                valid = 0;
+            }
+            else
+            {
+                valid = 1;
+            }
         }
-        else
+        else if (dataMapping == 0)
         {
-            valid = 1;
+            /* The facet is valid if its color value is valid. */
+            if (DecompositionUtils::isValid(color))
+            {
+                valid = 1;
+            }
+            else
+            {
+                valid = 0;
+            }
+
         }
     }
 
@@ -213,7 +249,6 @@ void Fac3DColorComputer::computeMinMaxValues(void)
     double maxDouble;
     double tmpValueMin;
     double tmpValueMax;
-    double value;
 
     int i;
 

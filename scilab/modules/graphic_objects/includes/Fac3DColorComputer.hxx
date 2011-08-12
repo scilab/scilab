@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef FAC3DCOLORCOMPUTER_H
-#define FAC3DCOLORCOMPUTER_H
+#ifndef FAC3DCOLORCOMPUTER_HXX
+#define FAC3DCOLORCOMPUTER_HXX
 
 #include <string>
 
@@ -20,15 +20,13 @@ extern "C" {
 }
 
 /**
- * Fac3D color computer class draft implementation.
+ * Fac3D color computer class
  * Outputs color values depending on the corresponding Fac3D objects's color
  * values and properties (color_flag, data_mapping, etc.).
  *
  * To do:
- * -complete computeMinMaxValues and isFacetColorValid's implementation to correctly
- *  manage the different cases (scaled mapping, 0, infinite and nan values).
- * -extend to take into account constant or z-mapped colors (respectively color_flag == 1
- *  and color_flag == 2).
+ * -extend to take into account constant or z-mapped colors (respectively color_flag == 0
+ *  and color_flag == 1).
  */
 
 class Fac3DColorComputer
@@ -79,7 +77,7 @@ private :
     /** The actual minimum value used */
     double usedMinColorValue;
 
-    /* A flag specifying whether the min to max color range is valid or not */
+    /* A flag specifying whether the color range's min and max bounds are different (1) or not (0) */
     int colorRangeValid;
 
 public :
@@ -106,6 +104,19 @@ public :
      * Fac3DColorComputer destructor.
      */
     ~Fac3DColorComputer();
+
+    /**
+     * Returns the color of facet i at vertex j which is actually output for rendering,
+     * where 0 <= j < numVerticesPerGon.
+     * The colors actually output for rendering may differ from the facet's color values for scaled
+     * colors if the color range is invalid, that is, if the min and max color
+     * values are equal. In this case, it returns the color at half the actually used color range.
+     * In any other case, it returns the facet's color values by calling getFacetColor.
+     * @param[in] the facet index.
+     * @param[in] the vertex index j.
+     * @return the facet color at vertex j.
+     */
+    double getOutputFacetColor(int facetIndex, int vertexIndex);
 
     /**
      * Returns the color of facet i at vertex j,

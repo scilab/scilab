@@ -12,6 +12,7 @@
 
 #include "DecompositionUtils.hxx"
 #include "ColorComputer.hxx"
+#include "Fac3DColorComputer.hxx"
 #include "Fac3DDecomposer.hxx"
 
 extern "C"
@@ -168,7 +169,10 @@ void Fac3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int 
     }
     else if (colorFlag > 1 && numColors == 0)
     {
-        /* The color buffer must be filled with the color_mode value. */
+        /*
+         * The color buffer must be filled with the color_mode value.
+         * To do: correctly take into account Nan and infinite values.
+         */
         int colorMode = 0;
         int* piColorMode = &colorMode;
 
@@ -272,97 +276,44 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
     double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon)
 {
     double colMin;
-    double colMax;
     double colRange;
     double color;
 
-    int colorRangeValid;
     int i;
     int j;
     int bufferOffset = 0;
 
-    colorRangeValid = 1;
+    int numColors;
+
+    Fac3DColorComputer colorComputer;
+
+    if (perVertex)
+    {
+        numColors = numGons*numVerticesPerGon;
+    }
+    else
+    {
+        numColors = numGons;
+    }
+
+    colorComputer = Fac3DColorComputer(colors, numColors, colorFlag, dataMapping, numGons, numVerticesPerGon);
 
     /* 0: colors are scaled */
     if (dataMapping == 0)
     {
-        int minMaxComputation;
-        int numColors;
-
-        minMaxComputation = ALL_VALUES;
-
-        if (perVertex)
-        {
-            numColors = numGons*numVerticesPerGon;
-
-            if (colorFlag == 2)
-            {
-                minMaxComputation = FACE_AVERAGE;
-            }
-            else if (colorFlag == 4)
-            {
-                minMaxComputation = FIRST_VERTEX_VALUE;
-            }
-        }
-        else
-        {
-            numColors = numGons;
-        }
-
-        computeMinMaxValues(colors, numColors, numGons, numVerticesPerGon, minMaxComputation, &colMin, &colMax);
-
-        colRange = colMax - colMin;
-
-        /* To be verified */
-        if (colRange < DecompositionUtils::getMinDoubleValue())
-        {
-            /*
-             * The color range is invalid only if the minimum and maximum color values
-             * are equal (for scaled colors only). In this case, the colormap's
-             * middle color is used.
-             */
-            colorRangeValid = 0;
-
-            colMin = 0.0;
-            colRange = (double) (colormapSize-1);
-            color = 0.5*(colRange);
-        }
-
+        colorComputer.getColorRangeValue(&colMin, &colRange);
     }
 
     for (i = 0; i < numGons; i++)
     {
-        if (colorRangeValid)
-        {
-            /* Per-face average */
-            if (perVertex == 1 && colorFlag == 2)
-            {
-                color = computeAverageValue(&colors[i*numVerticesPerGon], numVerticesPerGon);
-            }
-            else if (perVertex == 0)
-            {
-                color = colors[i];
-            }
-        }
-
         for (j = 0; j < numVerticesPerGon; j++)
         {
-            if (colorRangeValid && perVertex == 1)
-            {
-                if (colorFlag == 3)
-                {
-                    color = colors[i*numVerticesPerGon+j];
-                }
-                else if (colorFlag == 4)
-                {
-                    color = colors[i*numVerticesPerGon];
-                }
-            }
+            color = colorComputer.getOutputFacetColor(i, j);
 
             if (dataMapping == 1)
             {
                 double tmpColor = DecompositionUtils::getAbsoluteValue(color);
-                ColorComputer::getClampedDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
+                ColorComputer::getDirectColor(tmpColor - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
             }
             else if (dataMapping == 0)
             {
@@ -377,7 +328,6 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
             bufferOffset += elementsSize;
         }
     }
-
 }
 
 double Fac3DDecomposer::computeAverageValue(double* values, int numVertices)
@@ -437,14 +387,17 @@ void Fac3DDecomposer::computeMinMaxValues(double* values, int numValues, int num
             value = values[i];
         }
 
-        if (value < tmpValueMin)
+        if (DecompositionUtils::isValid(value))
         {
-            tmpValueMin = value;
-        }
+            if (value < tmpValueMin)
+            {
+                tmpValueMin = value;
+            }
 
-        if (value > tmpValueMax)
-        {
-            tmpValueMax = value;
+            if (value > tmpValueMax)
+            {
+                tmpValueMax = value;
+            }
         }
     }
 
@@ -484,10 +437,21 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
     double yc;
     double zc;
 
+    double* colors;
+
     int numVerticesPerGon = 0;
     int* piNumVerticesPerGon = &numVerticesPerGon;
     int numGons = 0;
     int* piNumGons = &numGons;
+
+    int numColors = 0;
+    int* piNumColors = &numColors;
+
+    int colorFlag = 0;
+    int* piColorFlag = &colorFlag;
+
+    int dataMapping =  0;
+    int* piDataMapping = &dataMapping;
 
     int i;
     int j;
@@ -495,14 +459,25 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
     int bufferOffset = 0;
     int vertexOffset = 0;
 
+    Fac3DColorComputer colorComputer;
+
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &piNumGons);
+
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**) &piNumColors);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void**) &colors);
+
+    getGraphicObjectProperty(id, __GO_COLOR_FLAG__, jni_int, (void**) &piColorFlag);
+
+    getGraphicObjectProperty(id, __GO_DATA_MAPPING__, jni_int, (void**) &piDataMapping);
 
     /* At least 3 vertices per N-gon are required to output triangles. */
     if (numVerticesPerGon < 3)
     {
         return 0;
     }
+
+    colorComputer = Fac3DColorComputer(colors, numColors, colorFlag, dataMapping, numGons, numVerticesPerGon);
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_X__, jni_double_vector, (void**) &x);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &y);
@@ -525,7 +500,7 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
             }
         }
 
-        if (isValid == 0)
+        if (isValid == 0 || colorComputer.isFacetColorValid(i) == 0)
         {
             vertexOffset += numVerticesPerGon;
             continue;
