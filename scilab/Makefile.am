@@ -260,7 +260,7 @@ clean-macros:
 clean-doc: clean-help
 
 clean-help:
-	@if test -x $(top_builddir)/scilab-cli-bin; then \
+	-@if test -x $(top_builddir)/scilab-cli-bin; then \
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
 		for l in $(LANGDOC); do \
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
