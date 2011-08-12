@@ -178,6 +178,10 @@ Optimization:
 * Bug 9578 fixed - The optimbase_configure function does not check the
                    values of input arguments.
 
+* Bug 9607 fixed - The optimsimplex_new function poorly managed the
+                   variable number of arguments.
+
+
 Documentation:
 ==============
 
