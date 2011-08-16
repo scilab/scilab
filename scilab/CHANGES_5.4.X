@@ -374,6 +374,8 @@ Bug fixes:
 
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
+* bug 9696 fixed - An error in an if expression inside a try make Scilab froze
+
 * bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
