@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='iso-8859-1'?>
-<interface id="root" path="interface/fonts/">
+<interface path="interface/fonts/">
 	<general>
 		<body maturity="B">
 			<environment 
@@ -14,173 +14,104 @@
 		<confirmation-dialogs>
 			<body maturity="B">
 				<tools order="ascending">
-					<tool 
-						state="checked"   
-						name="Scinotes"        
-						description="Prompt"/>
-					<tool 
-						state="unchecked" 
-						name="Console"         
-						description="Warn before clearing the Console"
-					/>
-					<tool 
-						state="checked"
-						name="Command History"
-						description="Warn before deleting Command History items"
-					/>
+					<tool state="checked"    name="Scinotes"        description="Prompt"/>
+					<tool state="unchecked"  name="Console"         description="Warn before clearing the Console"/>
+					<tool state="checked"    name="Command History" description="Warn before deleting Command History items"/>
 				</tools>		
 			</body>
 		</confirmation-dialogs>		
 		<shortcuts>
 			<body maturity="B">
-				<actions active="scilab" filter="">
+				<actions active="scilab" browse="--choose a file --" filter="">
 					<action-folder name="Console" state="open">
-						<action 
-							name="console-execute"   
-							ctrl="E"   
-							description="Execute..."/>
-						<action 
-							name="console-open"   
-							ctrl="O"   
-							description="Open a file"/>
+						<action ctrl="E" description="Execute..."/>
+						<action ctrl="N" description="New..."/>
+						<action ctrl="O" description="Open a file"/>
 					</action-folder>
 					<action-folder name="Scinotes" state="close">
-						<action 
-							ctrl="N"   
-							description="New..."/>
-						<action 
-							ctrl="O"   
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
-						<action 
-							ctrl="O"   
-
-							description="Open..."/>
+						<action ctrl="A" description="Abort..."/>
+						<action ctrl="B" description="Battle"/>
+						<action ctrl="C" description="Copy"/>
+						<action ctrl="D" description="Delete"/>
+						<action ctrl="E" description="Erase..."/>
+						<action ctrl="F" description="Flush"/>
+						<action ctrl="G" description="Giggle..."/>
+						<action ctrl="H" description="Help"/>
+						<action ctrl="I" description="Ignite"/>
 					</action-folder>
 				</actions>		
 			</body>
 		</shortcuts>		
-		<current-directory>
-			<body>
-				<TBS/>
-			</body>
-		</current-directory>		
 	</general>
 	<fonts>
 		<body maturity="B">
-			<desktop-font use-system-font="checked">
-				<font family="system" face="plain" size="10pt"/>
-			</desktop-font>
-			<custom-font selected="Help">
-				<font-type name="Console"  font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-				<font-type name="Command History"  font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-				<font-type name="Variable Browser" font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-				<font-type name="Help"  font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-				<font-type name="Scinotes"  font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-				<font-type name="Variables Editor" font-to-use="desktop">
-					<font family="arial" face="bold italic" size="12pt"/>
-				</font-type>
-			</custom-font>
+			<fonts  item="1"                system ="true"    font-family="Monospaced" font-face="plain" font-size="10">
+				<item name="Console"          desktop="false"   font-family="Monospaced" font-face="plain" font-size="10"/>
+				<item name="Command History"  desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
+				<item name="Variable Browser" desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
+				<item name="Help"             desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
+				<item name="Scinotes"         desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
+				<item name="Variables Editor" desktop="true"    font-family="Monospaced" font-face="plain" font-size="10"/>
+			</fonts>
 		</body>
 	</fonts>
 	<colors>
-		<body>
+		<body maturity="B">
 			<desktop-colors 
-				use-system-color="checked" 
+				use-system-color="true" 
 				text="#000000"
 				background="#ffffff"
 				cursor="#000000"/>
-			<syntax-highlighting-colors select="Default">
-				<item title="Default" color="#345678" 
-					bold="unchecked" itali="unchecked"
-					underline="unchecked" strinke-through="unchecked">
-				</item>
-				<item title="String" color="#345678" 
-					bold="unchecked" itali="unchecked"
-					underline="unchecked" strinke-through="unchecked">
-				</item>
-				<item title="Commands" color="#345678" 
-					bold="unchecked" itali="unchecked"
-					underline="unchecked" strinke-through="unchecked">
-				</item>
+			<syntax-highlighting-colors item="1">
+				<item name="Default"   color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Strings"   color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Commands"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Macros"    color="#678345" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Errors"    color="#783456" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Functions" color="#834567" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Variables" color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Operators" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Comments"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
 			</syntax-highlighting-colors>
 		</body>
 	</colors>
 	<console>
-		<body>
-			<display wrap-lines="checked" columns-to-display="100"
+		<body maturity="B">
+			<display wrap-lines="true" lines-to-display="100" columns-to-display="100"
 				tab-size="4" scroll-size = "3000">
 			</display>
 			<accessibility/>
 		</body>
 	</console>
 	<command-history>
-		<body>
-			<saving kind="quit">
-				<after volume="1"/>				
-			</saving>
-			<settings history-file="" history-lines="1000"/>
+		<body maturity="B">
+			<history-save kind="quit" after="1"/>
+			<history-settings history-file="" history-lines="1000"/>
 		</body>
 	</command-history>
 	<scinotes>
-		<body maturity="I">
-			<TBD/>
+		<body maturity="B">
+			<scinotes-preferences restart-reopen="true" reload-unedited="true" add-line-termination="true"
+				number-of-entries="5" encoding="utf-8" eol="Unix(LF)"/>
 		</body>
 		<display>
-			<body maturity="I">
-				<TBD/>
+			<body maturity="B">
+				<scinotes-display highlight-current-line="true" current-line-color="#facade" show-line-numbers="true" wrap-lines="true"/>
 			</body>
 		</display>		
-		<tab>
-			<body maturity="I">
-				<TBD/>
+		<syntax>
+			<body maturity="B">
+				<scinotes-syntax highlight="true" hightlight-brackets="true"
+					tab-size="4" use-spaces="true" indent-size="4"
+					automatic-indent="true"/>
 			</body>
-		</tab>		
-		<language>
-			<body maturity="I">
-				<TBD/>
-			</body>
-		</language>		
+		</syntax>		
 		<autosave>
-			<body maturity="I">
-				<TBD/>
+			<body maturity="B">
+				<scinotes-autosave enable="true" 
+					save-every="5" save-untitled="true" automatic-delete="true"
+					append-flag="true" append-with="~" replace-with="tmp"
+					source-flag="true" single-directory=""/>
 			</body>
 		</autosave>		
 	</scinotes>
@@ -190,18 +121,19 @@
 		</body>
 	</help>
 	<variable-browser>
-		<body maturity="I">
-			<TBD/>
+		<body maturity="B">
+			<variable-browser maximum-array-size="500000"/>
 		</body>
 	</variable-browser>
 	<variable-editor>
-		<body maturity="I">
-			<TBD/>
+		<body maturity="B">
+			<variable-editor default-array-format="short" move-selection-after-enter="true"
+				direction="Down" decimal-separator=","/>
 		</body>
 	</variable-editor>
 	<xcos>
-		<body maturity="I">
-			<TBD/>
+		<body maturity="B">
+			<xcos/>
 		</body>
 	</xcos>
 	<toolbars>
