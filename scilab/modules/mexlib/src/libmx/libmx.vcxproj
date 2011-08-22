@@ -90,14 +90,16 @@
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmxtemp.def &gt;nul
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul
+cd ..
 </Command>
+      <Message>Build $(ProjectName).def</Message>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -135,14 +137,16 @@ del libmxtemp.def &gt;nul
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmxtemp.def &gt;nul
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul
+cd ..
 </Command>
+      <Message>Build $(ProjectName).def</Message>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -176,14 +180,16 @@ del libmxtemp.def &gt;nul
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmxtemp.def &gt;nul
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul
+cd ..
 </Command>
+      <Message>Build $(ProjectName).def</Message>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -220,14 +226,16 @@ del libmxtemp.def &gt;nul
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Command>cd $(IntDir) &gt; nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul
-copy *.def ..\libmxtemp.def &gt;nul
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
-copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul
+cd ..
 </Command>
+      <Message>Build $(ProjectName).def</Message>
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>../../../../bin/libintl.lib;%(AdditionalDependencies)</AdditionalDependencies>
