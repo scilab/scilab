@@ -15,8 +15,6 @@
 <xsl:import href="XConfiguration/XConfiguration-variables.xsl"/>
 <xsl:import href="XConfiguration/XConfiguration-xcos.xsl"/>
 
-<!-- TODO: Integer chooser (Spinner) -->
-
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
   ::
@@ -129,6 +127,12 @@
 						<xsl:attribute name="foreground">#ffffff</xsl:attribute>
 					</xsl:when>
 					<xsl:otherwise>
+						<xsl:variable name="tooltip">
+							<xsl:apply-templates select="body/*" mode="tooltip"/>
+						</xsl:variable>
+						<xsl:if test="not($tooltip='')">
+							<xsl:attribute name="tooltip"><xsl:value-of select="$tooltip"/></xsl:attribute>
+						</xsl:if>
 						<xsl:attribute name="listener">MouseListener</xsl:attribute>
 						<mouseClicked set="path" context="{$top-id}" value="{$local-path}"/>
 					</xsl:otherwise>

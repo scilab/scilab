@@ -52,6 +52,9 @@ public class Label extends JLabel implements XComponent {
         String text = XConfigManager.getAttribute(peer , "text");
         text(text);
 
+        String tooltip = XConfigManager.getAttribute(peer , "tooltip");
+        tooltip(tooltip);
+
         String background = XConfigManager.getAttribute(peer , "background");
         background(background);
 
@@ -78,6 +81,11 @@ public class Label extends JLabel implements XComponent {
         String text = XConfigManager.getAttribute(peer , "text");
         if (!text.equals(text())) {
             text(text);
+        }
+
+        String tooltip = XConfigManager.getAttribute(peer , "tooltip");
+        if (!tooltip.equals(tooltip())) {
+            tooltip(tooltip);
         }
 
         String background = XConfigManager.getAttribute(peer , "background");
@@ -113,6 +121,18 @@ public class Label extends JLabel implements XComponent {
     */
     public final String text() {
         return getText();
+    }
+
+    /** Sensor for 'tooltip' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String tooltip() {
+        String tooltip = getToolTipText();
+        if (tooltip == null) {
+                return "";
+               }
+        return tooltip;
     }
 
     /** Sensor for 'foreground' attribute.
@@ -223,6 +243,19 @@ public class Label extends JLabel implements XComponent {
     */
     public final void text(final String text) {
         setText(text);
+    }
+
+    /** Actuator for 'tooltip' attribute.
+    *
+    * @param text : the attribute value.
+    */
+    public final void tooltip(String tooltip) {
+        if (tooltip.equals(XCommonManager.NAV)
+         || tooltip.equals("")
+         ) {
+            tooltip = null;
+        }
+        setToolTipText(tooltip);
     }
 
     /** Actuator for 'foreground' attribute.

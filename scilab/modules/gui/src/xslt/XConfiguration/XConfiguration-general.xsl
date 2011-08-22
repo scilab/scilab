@@ -6,6 +6,7 @@
   ::     M A I N   P A N E L :   G E N E R A L
   ::
   -->
+  <xsl:template match="environment" mode="tooltip">Settings environment</xsl:template>
 	<xsl:template match="environment">
 		<VSpace height="25"/>
 		<Title text="Environment">
@@ -68,6 +69,7 @@
 		</Title>
 	</xsl:template>
 
+  <xsl:template match="java-heap-memory" mode="tooltip"> and java heap size.</xsl:template>
 	<xsl:template match="java-heap-memory">
 		<VSpace height="25"/>
 		<Title text="Java Heap Memory">	
