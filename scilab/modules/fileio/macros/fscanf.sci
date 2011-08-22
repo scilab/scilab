@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
-// Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2008-2011 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -15,6 +15,10 @@ function varargout = fscanf(fil, frmt)
 //!
 
   [lhs, rhs] = argn(0);
+
+  if rhs <> 2 then
+    error(999, msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"fscanf", 2));
+  end
 
   MAXLHS = 50;
   if lhs > MAXLHS then

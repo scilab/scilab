@@ -411,4 +411,5 @@ Bug fixes:
 
 * bug 9838 fixed - evstr froze on some specific strings.
 
+* bug 9869 fixed - fscanf did not check number of input arguments.
 
