@@ -21,6 +21,7 @@ c     ----------------------------
       integer p,ind,q,job,ido,n,top1
       integer iadr,sadr
       logical first
+      character bufstr*(4096)
 
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -160,7 +161,8 @@ c
          endif
          if ((1.0d+0+rcond.eq.1.0d+0).and.first) then
             buf=' '
-            write(buf(1:13),'(1pd13.4)') rcond
+            write(bufstr(1:13),'(1pd13.4)') rcond
+            buf = bufstr
             call msgs(5,0)
             first=.false.
          endif
