@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='iso-8859-1'?>
+<?xml version='1.0' encoding='utf-8'?>
 <user-block-wizard select="xcos">
 	<kind name="xcos" title="XCos super block">&lt;HTML&gt;
 		Some explanatory text about &lt;U&gt;XCos super block&lt;/U&gt;.
