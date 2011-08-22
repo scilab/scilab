@@ -148,5 +148,21 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- 
+	  :: 
+	  :: Common vocabulary
+		:: 
+    -->
+
+<xsl:template match="TBD">
+	<Glue/>
+	<HBox>
+		<Glue/>
+		Implemented soon...
+		<Glue/>
+	</HBox>
+	<Glue/>
+</xsl:template>
+
 </xsl:stylesheet>
 
