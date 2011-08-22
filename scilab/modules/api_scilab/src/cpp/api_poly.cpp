@@ -264,8 +264,14 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfPoly");
+        return sciErr;
+    }
+
 	C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
