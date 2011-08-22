@@ -56,9 +56,9 @@
 			</VBox>
 		</Panel>
 		<HBox border-side="South">
-			<Button text="Help"    listener="ActionListener"> 
+			<!--Button text="Help"    listener="ActionListener"> 
 				<actionPerformed   callback="Help"/>
-			</Button>
+			</Button -->
 			<Glue/>
 			<Button text="Default" listener="ActionListener">
 				<actionPerformed   callback="Default"/>

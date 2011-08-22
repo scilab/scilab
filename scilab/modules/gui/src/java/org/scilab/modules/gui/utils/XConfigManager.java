@@ -103,7 +103,7 @@ public final class XConfigManager extends XCommonManager {
     private static final int TEXT_SIZE = 30;
 
     /** Contextual help meant for developer so far.
-     *
+     *  @deprecated
      *  TODO should display the View DOM and the Swing composite
      *       on single scrolled pair of textarea to manifest correspondence
      *
@@ -142,6 +142,7 @@ public final class XConfigManager extends XCommonManager {
         }
         Node action = actions[0];
         String callback = getAttribute(action, "callback");
+        /** help deprecated
         if (callback.equals("Help")) {
             // TODO it can be a contextual help.
             //System.err.println("Help not implemented yet!");
@@ -150,6 +151,7 @@ public final class XConfigManager extends XCommonManager {
             }
             return true;
         }
+        **/
         if (callback.equals("Ok")) {
             if (differential) {
                 System.out.println(": Ok.");
