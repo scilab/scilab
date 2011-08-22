@@ -254,6 +254,9 @@ ATOMS:
 * bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
 
 
+* bug 8763 fixed - ATOMS installation path was shared on Windows 64 with 32 bits.
+
+
 Javasci:
 ========
 
