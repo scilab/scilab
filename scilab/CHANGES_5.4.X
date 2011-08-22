@@ -719,6 +719,9 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 8874 fixed - Display of Complex numbers with Inf or Nan for real or Imaginary 
+                   parts was broken.
+
 * bug 8963 fixed - mtlb_mode test failed on Windows.
 
 * bug 8797 fixed - Update of the help pages of getdate('s') to detail that
