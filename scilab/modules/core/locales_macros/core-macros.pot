@@ -14,9 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-07-30 11:30+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 72
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -74,7 +74,7 @@ msgstr ""
 msgid "%s: System error: Command executed: %s"
 msgstr ""
 #
-# File: macros/add_demo.sci, line: 21
+# File: macros/add_demo.sci, line: 38
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -94,7 +94,7 @@ msgstr ""
 msgid "%s: Unable to find Perl.\n"
 msgstr ""
 #
-# File: macros/add_demo.sci, line: 25
+# File: macros/add_demo.sci, line: 42
 #, c-format
 msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
@@ -139,38 +139,38 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 157
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 156
 msgid "&?"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 144
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 146
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 149
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 152
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 155
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 143
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 145
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 148
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 151
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 154
 msgid "&Applications"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 143
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 142
 msgid "&Control"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 141
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 140
 msgid "&Edit"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 140
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 139
 msgid "&File"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 142
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 141
 msgid "&Preferences"
 msgstr ""
 #
 # File: macros/toolboxes.sci, line: 43
 # File: macros/toolboxes.sci, line: 44
 # File: macros/toolboxes.sci, line: 48
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 158
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 157
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 71
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 #

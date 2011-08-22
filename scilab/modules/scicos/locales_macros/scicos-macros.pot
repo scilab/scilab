@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-07-30 11:30+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: macros/scicos_auto/steadycos.sci, line: 131
 # File: macros/scicos_auto/steadycos.sci, line: 138
@@ -216,11 +216,11 @@ msgstr ""
 msgid "Initialisation problem:"
 msgstr ""
 #
+# File: macros/scicos_scicos/bad_connection.sci, line: 88
+# File: macros/scicos_scicos/bad_connection.sci, line: 113
 # File: macros/scicos_scicos/c_pass2.sci, line: 2073
 # File: macros/scicos_scicos/c_pass2.sci, line: 2093
 # File: macros/scicos_scicos/c_pass2.sci, line: 2110
-# File: macros/scicos_scicos/bad_connection.sci, line: 88
-# File: macros/scicos_scicos/bad_connection.sci, line: 113
 #, c-format
 msgid "Input port %s size is: %s"
 msgstr ""
@@ -241,10 +241,10 @@ msgstr ""
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2092
-# File: macros/scicos_scicos/c_pass2.sci, line: 2109
 # File: macros/scicos_scicos/bad_connection.sci, line: 86
 # File: macros/scicos_scicos/bad_connection.sci, line: 112
+# File: macros/scicos_scicos/c_pass2.sci, line: 2092
+# File: macros/scicos_scicos/c_pass2.sci, line: 2109
 #, c-format
 msgid "Output port %s size is: %s"
 msgstr ""

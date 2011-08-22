@@ -120,7 +120,7 @@ function process_module {
         generate_find_command EXTENSIONS
     fi
 
-    FILES=`eval $FILESCMD|tr "\n" " "`
+    FILES=`eval $FILESCMD|tr "\n" " "|sort`
 
     if test "$MODULE" = "core" -o "$MODULE" = "./core"; then
         # We want some strings from the ROOTDIR when it is the core module

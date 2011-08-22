@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-07-30 11:30+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: macros/Sources/tkscaleblk.sci, line: 52
 msgid "&?"
@@ -84,8 +84,8 @@ msgstr ""
 msgid "&nbsp;- Bits to Extract:"
 msgstr ""
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
 msgid "&nbsp;- Negative values are considered as int8(0)"
 msgstr ""
 #
@@ -93,8 +93,8 @@ msgstr ""
 msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
 msgstr ""
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
 msgid "&nbsp;- Positive values are considered as int8(1)"
 msgstr ""
 #
@@ -151,18 +151,18 @@ msgstr ""
 msgid "Boundary condition on b"
 msgstr ""
 #
+# File: macros/Sources/READC_f.sci, line: 59
+# File: macros/Sources/READC_f.sci, line: 87
+# File: macros/Sources/READC_f.sci, line: 118
+# File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WRITEC_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 81
 # File: macros/Sinks/WRITEAU_f.sci, line: 43
 # File: macros/Sinks/WRITEAU_f.sci, line: 53
 # File: macros/Sinks/WRITEAU_f.sci, line: 57
 # File: macros/Sinks/WFILE_f.sci, line: 46
 # File: macros/Sinks/WFILE_f.sci, line: 79
-# File: macros/Sinks/WRITEC_f.sci, line: 46
-# File: macros/Sinks/WRITEC_f.sci, line: 67
-# File: macros/Sinks/WRITEC_f.sci, line: 81
-# File: macros/Sources/READC_f.sci, line: 59
-# File: macros/Sources/READC_f.sci, line: 87
-# File: macros/Sources/READC_f.sci, line: 118
-# File: macros/Sources/READAU_f.sci, line: 67
 msgid "Buffer Size"
 msgstr ""
 #
@@ -205,25 +205,25 @@ msgstr ""
 msgid "Constant value must have at least one element."
 msgstr ""
 #
+# File: macros/IntegerOp/INTMUL.sci, line: 102
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
-# File: macros/IntegerOp/BITSET.sci, line: 83
 # File: macros/IntegerOp/BITCLEAR.sci, line: 87
 # File: macros/IntegerOp/SHIFT.sci, line: 106
-# File: macros/IntegerOp/INTMUL.sci, line: 102
+# File: macros/IntegerOp/BITSET.sci, line: 83
 msgid "Data Type"
 msgstr ""
 #
+# File: macros/IntegerOp/INTMUL.sci, line: 43
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
-# File: macros/IntegerOp/BITSET.sci, line: 40
 # File: macros/IntegerOp/BITCLEAR.sci, line: 42
 # File: macros/IntegerOp/SHIFT.sci, line: 44
-# File: macros/IntegerOp/INTMUL.sci, line: 43
+# File: macros/IntegerOp/BITSET.sci, line: 40
 #, c-format
 msgid "Data Type %s"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 70
 # File: macros/Sinks/WRITEC_f.sci, line: 77
+# File: macros/Sinks/WFILE_f.sci, line: 70
 #, c-format
 msgid "Directory ''%s'' does not exist"
 msgstr ""
@@ -240,13 +240,13 @@ msgstr ""
 msgid "Display step value"
 msgstr ""
 #
-# File: macros/IntegerOp/CONVERT.sci, line: 53
 # File: macros/IntegerOp/INTMUL.sci, line: 50
+# File: macros/IntegerOp/CONVERT.sci, line: 53
 msgid "Do on Overflow"
 msgstr ""
 #
-# File: macros/IntegerOp/CONVERT.sci, line: 45
 # File: macros/IntegerOp/INTMUL.sci, line: 43
+# File: macros/IntegerOp/CONVERT.sci, line: 45
 msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
 msgstr ""
 #
@@ -259,19 +259,19 @@ msgstr ""
 msgid "Elements must be in the interval %s."
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 54
-# File: macros/Sinks/WRITEC_f.sci, line: 68
 # File: macros/Sources/READC_f.sci, line: 88
+# File: macros/Sinks/WRITEC_f.sci, line: 68
+# File: macros/Sinks/WRITEAU_f.sci, line: 54
 msgid "End current simulation first"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 57
-# File: macros/Sinks/WFILE_f.sci, line: 60
-# File: macros/Sinks/WRITEC_f.sci, line: 64
 # File: macros/Sources/READC_f.sci, line: 84
 # File: macros/Sources/READC_f.sci, line: 92
 # File: macros/Sources/READAU_f.sci, line: 58
 # File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEC_f.sci, line: 64
+# File: macros/Sinks/WFILE_f.sci, line: 57
+# File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
 msgstr ""
 #
@@ -316,19 +316,19 @@ msgstr ""
 msgid "Implicit output port"
 msgstr ""
 #
-# File: macros/IntegerOp/BITSET.sci, line: 47
-# File: macros/IntegerOp/BITSET.sci, line: 53
-# File: macros/IntegerOp/BITSET.sci, line: 63
-# File: macros/IntegerOp/BITSET.sci, line: 74
 # File: macros/IntegerOp/BITCLEAR.sci, line: 49
 # File: macros/IntegerOp/BITCLEAR.sci, line: 55
 # File: macros/IntegerOp/BITCLEAR.sci, line: 66
 # File: macros/IntegerOp/BITCLEAR.sci, line: 77
+# File: macros/IntegerOp/BITSET.sci, line: 47
+# File: macros/IntegerOp/BITSET.sci, line: 53
+# File: macros/IntegerOp/BITSET.sci, line: 63
+# File: macros/IntegerOp/BITSET.sci, line: 74
 msgid "Index of Bit"
 msgstr ""
 #
-# File: macros/IntegerOp/BITSET.sci, line: 40
 # File: macros/IntegerOp/BITCLEAR.sci, line: 42
+# File: macros/IntegerOp/BITSET.sci, line: 40
 msgid "Index of Bit (0 is least significant)"
 msgstr ""
 #
@@ -348,10 +348,10 @@ msgstr ""
 msgid "Initial State (zero or positive number)"
 msgstr ""
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 46
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
 # File: macros/Sources/RAMP.sci, line: 40
 # File: macros/Sources/STEP.sci, line: 42
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 46
 msgid "Initial Value"
 msgstr ""
 #
@@ -371,18 +371,18 @@ msgstr ""
 msgid "Input File Name"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 75
-# File: macros/Sinks/WRITEC_f.sci, line: 59
-# File: macros/Sinks/WRITEC_f.sci, line: 63
 # File: macros/Sources/READC_f.sci, line: 59
 # File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sinks/WRITEC_f.sci, line: 63
+# File: macros/Sinks/WFILE_f.sci, line: 75
 msgid "Input Format"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 45
-# File: macros/Sinks/WFILE_f.sci, line: 83
 # File: macros/Sinks/WRITEC_f.sci, line: 45
 # File: macros/Sinks/WRITEC_f.sci, line: 85
+# File: macros/Sinks/WFILE_f.sci, line: 45
+# File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
 msgstr ""
 #
@@ -451,39 +451,39 @@ msgstr ""
 msgid "Must be greater than 1."
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 63
-# File: macros/Sinks/WRITEC_f.sci, line: 90
-# File: macros/IntegerOp/LOGIC.sci, line: 60
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 59
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 63
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 212
-# File: macros/IntegerOp/CONVERT.sci, line: 54
-# File: macros/IntegerOp/CONVERT.sci, line: 58
-# File: macros/IntegerOp/CONVERT.sci, line: 62
-# File: macros/IntegerOp/BITSET.sci, line: 54
-# File: macros/IntegerOp/BITSET.sci, line: 64
-# File: macros/IntegerOp/BITSET.sci, line: 75
-# File: macros/IntegerOp/BITSET.sci, line: 84
-# File: macros/IntegerOp/BITCLEAR.sci, line: 56
-# File: macros/IntegerOp/BITCLEAR.sci, line: 67
-# File: macros/IntegerOp/BITCLEAR.sci, line: 78
-# File: macros/IntegerOp/BITCLEAR.sci, line: 88
-# File: macros/IntegerOp/SHIFT.sci, line: 51
-# File: macros/IntegerOp/SHIFT.sci, line: 107
-# File: macros/IntegerOp/INTMUL.sci, line: 51
-# File: macros/IntegerOp/INTMUL.sci, line: 103
-# File: macros/Sources/Counter.sci, line: 63
 # File: macros/Sources/READC_f.sci, line: 103
 # File: macros/Sources/READC_f.sci, line: 111
 # File: macros/Sources/READC_f.sci, line: 115
 # File: macros/Sources/READC_f.sci, line: 123
+# File: macros/Sources/Counter.sci, line: 63
 # File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/IntegerOp/INTMUL.sci, line: 51
+# File: macros/IntegerOp/INTMUL.sci, line: 103
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 59
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 63
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 212
+# File: macros/IntegerOp/BITCLEAR.sci, line: 56
+# File: macros/IntegerOp/BITCLEAR.sci, line: 67
+# File: macros/IntegerOp/BITCLEAR.sci, line: 78
+# File: macros/IntegerOp/BITCLEAR.sci, line: 88
+# File: macros/IntegerOp/CONVERT.sci, line: 54
+# File: macros/IntegerOp/CONVERT.sci, line: 58
+# File: macros/IntegerOp/CONVERT.sci, line: 62
+# File: macros/IntegerOp/SHIFT.sci, line: 51
+# File: macros/IntegerOp/SHIFT.sci, line: 107
+# File: macros/IntegerOp/LOGIC.sci, line: 60
+# File: macros/IntegerOp/BITSET.sci, line: 54
+# File: macros/IntegerOp/BITSET.sci, line: 64
+# File: macros/IntegerOp/BITSET.sci, line: 75
+# File: macros/IntegerOp/BITSET.sci, line: 84
+# File: macros/Sinks/WRITEC_f.sci, line: 90
+# File: macros/Sinks/WRITEAU_f.sci, line: 63
 #, c-format
 msgid "Must be in the interval %s."
 msgstr ""
 #
-# File: macros/IntegerOp/BITSET.sci, line: 48
 # File: macros/IntegerOp/BITCLEAR.sci, line: 50
+# File: macros/IntegerOp/BITSET.sci, line: 48
 msgid "Must be integer."
 msgstr ""
 #
@@ -522,16 +522,16 @@ msgstr ""
 msgid "Ordering:"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 45
-# File: macros/Sinks/WFILE_f.sci, line: 69
 # File: macros/Sinks/WRITEC_f.sci, line: 45
 # File: macros/Sinks/WRITEC_f.sci, line: 71
 # File: macros/Sinks/WRITEC_f.sci, line: 76
+# File: macros/Sinks/WFILE_f.sci, line: 45
+# File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 46
 # File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WFILE_f.sci, line: 46
 msgid "Output Format"
 msgstr ""
 #
@@ -618,33 +618,33 @@ msgstr ""
 msgid "Same sizes expected."
 msgstr ""
 #
-# File: macros/Sinks/OUT_f.sci, line: 107
-# File: macros/Sinks/WRITEAU_f.sci, line: 42
-# File: macros/Sinks/CLKOUTV_f.sci, line: 87
-# File: macros/Sinks/OUTIMPL_f.sci, line: 40
-# File: macros/Sinks/WFILE_f.sci, line: 43
-# File: macros/Sinks/WRITEC_f.sci, line: 44
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
-# File: macros/IntegerOp/LOGIC.sci, line: 39
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
-# File: macros/IntegerOp/CONVERT.sci, line: 43
-# File: macros/IntegerOp/BITSET.sci, line: 39
-# File: macros/IntegerOp/BITCLEAR.sci, line: 41
-# File: macros/IntegerOp/SHIFT.sci, line: 43
-# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
-# File: macros/IntegerOp/INTMUL.sci, line: 42
-# File: macros/Sources/Counter.sci, line: 49
-# File: macros/Sources/GENSIN_f.sci, line: 39
-# File: macros/Sources/CLOCK_c.sci, line: 44
-# File: macros/Sources/READC_f.sci, line: 57
-# File: macros/Sources/READAU_f.sci, line: 48
-# File: macros/Sources/RAMP.sci, line: 39
 # File: macros/Sources/CLKINV_f.sci, line: 81
-# File: macros/Sources/Modulo_Count.sci, line: 40
-# File: macros/Sources/STEP.sci, line: 40
 # File: macros/Sources/CONST_m.sci, line: 40
+# File: macros/Sources/RAMP.sci, line: 39
 # File: macros/Sources/INIMPL_f.sci, line: 40
+# File: macros/Sources/READC_f.sci, line: 57
+# File: macros/Sources/STEP.sci, line: 40
+# File: macros/Sources/GENSIN_f.sci, line: 39
+# File: macros/Sources/Counter.sci, line: 49
+# File: macros/Sources/READAU_f.sci, line: 48
 # File: macros/Sources/IN_f.sci, line: 95
+# File: macros/Sources/Modulo_Count.sci, line: 40
+# File: macros/Sources/CLOCK_c.sci, line: 44
+# File: macros/IntegerOp/INTMUL.sci, line: 42
+# File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
+# File: macros/IntegerOp/BITCLEAR.sci, line: 41
+# File: macros/IntegerOp/CONVERT.sci, line: 43
+# File: macros/IntegerOp/SHIFT.sci, line: 43
+# File: macros/IntegerOp/LOGIC.sci, line: 39
+# File: macros/IntegerOp/BITSET.sci, line: 39
+# File: macros/Sinks/OUT_f.sci, line: 107
+# File: macros/Sinks/CLKOUTV_f.sci, line: 87
+# File: macros/Sinks/WRITEC_f.sci, line: 44
+# File: macros/Sinks/OUTIMPL_f.sci, line: 40
+# File: macros/Sinks/WRITEAU_f.sci, line: 42
+# File: macros/Sinks/WFILE_f.sci, line: 43
 #, c-format
 msgid "Set %s block parameters"
 msgstr ""
@@ -697,22 +697,22 @@ msgstr ""
 msgid "Step Time"
 msgstr ""
 #
-# File: macros/Sinks/OUT_f.sci, line: 113
-# File: macros/Sinks/WRITEAU_f.sci, line: 58
-# File: macros/Sinks/CLKOUTV_f.sci, line: 93
-# File: macros/Sinks/OUTIMPL_f.sci, line: 46
-# File: macros/Sinks/WFILE_f.sci, line: 84
-# File: macros/Sinks/WRITEC_f.sci, line: 82
-# File: macros/Sinks/WRITEC_f.sci, line: 86
-# File: macros/Sources/GENSIN_f.sci, line: 46
+# File: macros/Sources/CLKINV_f.sci, line: 88
+# File: macros/Sources/INIMPL_f.sci, line: 46
 # File: macros/Sources/READC_f.sci, line: 99
 # File: macros/Sources/READC_f.sci, line: 107
 # File: macros/Sources/READC_f.sci, line: 119
 # File: macros/Sources/READC_f.sci, line: 127
-# File: macros/Sources/CLKINV_f.sci, line: 88
-# File: macros/Sources/Modulo_Count.sci, line: 52
-# File: macros/Sources/INIMPL_f.sci, line: 46
+# File: macros/Sources/GENSIN_f.sci, line: 46
 # File: macros/Sources/IN_f.sci, line: 102
+# File: macros/Sources/Modulo_Count.sci, line: 52
+# File: macros/Sinks/OUT_f.sci, line: 113
+# File: macros/Sinks/CLKOUTV_f.sci, line: 93
+# File: macros/Sinks/WRITEC_f.sci, line: 82
+# File: macros/Sinks/WRITEC_f.sci, line: 86
+# File: macros/Sinks/OUTIMPL_f.sci, line: 46
+# File: macros/Sinks/WRITEAU_f.sci, line: 58
+# File: macros/Sinks/WFILE_f.sci, line: 84
 msgid "Strictly positive integer expected."
 msgstr ""
 #
@@ -720,22 +720,22 @@ msgstr ""
 msgid "Strictly positive number expected."
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 62
-# File: macros/Sinks/WRITEC_f.sci, line: 89
 # File: macros/Sources/READC_f.sci, line: 122
 # File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
 msgid "Swap Mode"
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 43
-# File: macros/Sinks/WRITEC_f.sci, line: 46
 # File: macros/Sources/READC_f.sci, line: 60
 # File: macros/Sources/READAU_f.sci, line: 50
+# File: macros/Sinks/WRITEC_f.sci, line: 46
+# File: macros/Sinks/WRITEAU_f.sci, line: 43
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
 #
-# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 44
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 42
+# File: macros/IntegerOp/JKFLIPFLOP.sci, line: 44
 msgid "The ''Initial Value'' must be 0 or 1 of type int8"
 msgstr ""
 #
@@ -779,8 +779,8 @@ msgstr ""
 msgid "Upper Limit (positive number)"
 msgstr ""
 #
-# File: macros/Sinks/WRITEC_f.sci, line: 60
 # File: macros/Sources/READC_f.sci, line: 80
+# File: macros/Sinks/WRITEC_f.sci, line: 60
 msgid "Valid formats are: "
 msgstr ""
 #
@@ -833,8 +833,8 @@ msgstr ""
 msgid "Wrong type for ''%s'' parameter"
 msgstr ""
 #
-# File: macros/IntegerOp/BITSET.sci, line: 47
 # File: macros/IntegerOp/BITCLEAR.sci, line: 49
+# File: macros/IntegerOp/BITSET.sci, line: 47
 #, c-format
 msgid "Wrong type for ''%s'' parameter: %5.1f."
 msgstr ""
@@ -845,43 +845,17 @@ msgstr ""
 msgid "Wrong value for  ''%s'' parameter: %d."
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 69
-# File: macros/Sinks/WRITEC_f.sci, line: 71
-# File: macros/Sinks/WRITEC_f.sci, line: 76
-# File: macros/IntegerOp/LOGIC.sci, line: 55
 # File: macros/Sources/READC_f.sci, line: 75
 # File: macros/Sources/READC_f.sci, line: 95
 # File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+# File: macros/Sinks/WRITEC_f.sci, line: 76
+# File: macros/Sinks/WFILE_f.sci, line: 69
 #, c-format
 msgid "Wrong value for ''%s'' parameter."
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 57
-# File: macros/Sinks/WRITEAU_f.sci, line: 62
-# File: macros/Sinks/WFILE_f.sci, line: 79
-# File: macros/Sinks/WFILE_f.sci, line: 83
-# File: macros/Sinks/WRITEC_f.sci, line: 81
-# File: macros/Sinks/WRITEC_f.sci, line: 85
-# File: macros/Sinks/WRITEC_f.sci, line: 89
-# File: macros/IntegerOp/LOGIC.sci, line: 59
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
-# File: macros/IntegerOp/CONVERT.sci, line: 53
-# File: macros/IntegerOp/CONVERT.sci, line: 57
-# File: macros/IntegerOp/CONVERT.sci, line: 61
-# File: macros/IntegerOp/BITSET.sci, line: 53
-# File: macros/IntegerOp/BITSET.sci, line: 63
-# File: macros/IntegerOp/BITSET.sci, line: 74
-# File: macros/IntegerOp/BITSET.sci, line: 83
-# File: macros/IntegerOp/BITCLEAR.sci, line: 55
-# File: macros/IntegerOp/BITCLEAR.sci, line: 66
-# File: macros/IntegerOp/BITCLEAR.sci, line: 77
-# File: macros/IntegerOp/BITCLEAR.sci, line: 87
-# File: macros/IntegerOp/SHIFT.sci, line: 50
-# File: macros/IntegerOp/SHIFT.sci, line: 106
-# File: macros/IntegerOp/INTMUL.sci, line: 50
-# File: macros/IntegerOp/INTMUL.sci, line: 102
 # File: macros/Sources/READC_f.sci, line: 98
 # File: macros/Sources/READC_f.sci, line: 106
 # File: macros/Sources/READC_f.sci, line: 110
@@ -889,16 +863,42 @@ msgstr ""
 # File: macros/Sources/READC_f.sci, line: 126
 # File: macros/Sources/READAU_f.sci, line: 65
 # File: macros/Sources/READAU_f.sci, line: 69
+# File: macros/IntegerOp/INTMUL.sci, line: 50
+# File: macros/IntegerOp/INTMUL.sci, line: 102
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
+# File: macros/IntegerOp/BITCLEAR.sci, line: 55
+# File: macros/IntegerOp/BITCLEAR.sci, line: 66
+# File: macros/IntegerOp/BITCLEAR.sci, line: 77
+# File: macros/IntegerOp/BITCLEAR.sci, line: 87
+# File: macros/IntegerOp/CONVERT.sci, line: 53
+# File: macros/IntegerOp/CONVERT.sci, line: 57
+# File: macros/IntegerOp/CONVERT.sci, line: 61
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+# File: macros/IntegerOp/SHIFT.sci, line: 106
+# File: macros/IntegerOp/LOGIC.sci, line: 59
+# File: macros/IntegerOp/BITSET.sci, line: 53
+# File: macros/IntegerOp/BITSET.sci, line: 63
+# File: macros/IntegerOp/BITSET.sci, line: 74
+# File: macros/IntegerOp/BITSET.sci, line: 83
+# File: macros/Sinks/WRITEC_f.sci, line: 81
+# File: macros/Sinks/WRITEC_f.sci, line: 85
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 57
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+# File: macros/Sinks/WFILE_f.sci, line: 79
+# File: macros/Sinks/WFILE_f.sci, line: 83
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 75
-# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sources/READC_f.sci, line: 79
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 95
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 134
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 173
-# File: macros/Sources/READC_f.sci, line: 79
+# File: macros/Sinks/WRITEC_f.sci, line: 59
+# File: macros/Sinks/WFILE_f.sci, line: 75
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %s."
 msgstr ""
@@ -917,11 +917,11 @@ msgstr ""
 msgid "Wrong value for ''Output File Name'' parameter"
 msgstr ""
 #
+# File: macros/Sources/INIMPL_f.sci, line: 45
+# File: macros/Sources/IN_f.sci, line: 101
 # File: macros/Sinks/OUT_f.sci, line: 112
 # File: macros/Sinks/CLKOUTV_f.sci, line: 92
 # File: macros/Sinks/OUTIMPL_f.sci, line: 45
-# File: macros/Sources/INIMPL_f.sci, line: 45
-# File: macros/Sources/IN_f.sci, line: 101
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr ""
@@ -966,16 +966,16 @@ msgstr ""
 msgid "Wrong values for ''Upper Limit'' parameter: %d."
 msgstr ""
 #
-# File: macros/Sinks/WRITEC_f.sci, line: 63
 # File: macros/Sources/READC_f.sci, line: 83
+# File: macros/Sinks/WRITEC_f.sci, line: 63
 #, c-format
 msgid "You cannot modify ''%s'' when running"
 msgstr ""
 #
-# File: macros/Sinks/WRITEAU_f.sci, line: 53
 # File: macros/Sources/READC_f.sci, line: 87
 # File: macros/Sources/READC_f.sci, line: 91
 # File: macros/Sources/READAU_f.sci, line: 67
+# File: macros/Sinks/WRITEAU_f.sci, line: 53
 #, c-format
 msgid "You cannot modify ''%s'' when running."
 msgstr ""
@@ -996,9 +996,9 @@ msgstr ""
 msgid "You must provide a file name."
 msgstr ""
 #
-# File: macros/Sinks/WFILE_f.sci, line: 63
-# File: macros/Sinks/WRITEC_f.sci, line: 71
 # File: macros/Sources/READAU_f.sci, line: 63
+# File: macros/Sinks/WRITEC_f.sci, line: 71
+# File: macros/Sinks/WFILE_f.sci, line: 63
 msgid "You must provide a filename."
 msgstr ""
 #

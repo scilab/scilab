@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-07-30 11:30+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: src/c/signal_mgmt.c, line: 75
 #, c-format
@@ -23,7 +23,7 @@ msgid ""
 "Call stack:\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 72
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 71
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -172,8 +172,8 @@ msgstr ""
 msgid "%s: Invalid module name : %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 100
-# File: sci_gateway/c/sci_getmd5.c, line: 150
+# File: tests/nonreg_tests/bug_7974.c, line: 47
+# File: tests/nonreg_tests/bug_7974.c, line: 76
 # File: sci_gateway/c/sci_newfun.c, line: 133
 # File: sci_gateway/c/sci_getversion.c, line: 68
 # File: sci_gateway/c/sci_getversion.c, line: 95
@@ -182,15 +182,24 @@ msgstr ""
 # File: sci_gateway/c/sci_getversion.c, line: 203
 # File: sci_gateway/c/sci_getversion.c, line: 310
 # File: sci_gateway/c/sci_getversion.c, line: 316
-# File: tests/nonreg_tests/bug_7974.c, line: 47
-# File: tests/nonreg_tests/bug_7974.c, line: 76
+# File: sci_gateway/c/sci_getmd5.c, line: 100
+# File: sci_gateway/c/sci_getmd5.c, line: 150
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_typename.c, line: 176
 # File: sci_gateway/c/sci_getos.c, line: 49
 # File: sci_gateway/c/sci_getos.c, line: 57
-# File: sci_gateway/c/sci_typename.c, line: 176
+# File: src/c/stack1.c, line: 2238
+# File: src/c/stack1.c, line: 2320
+# File: src/c/stack1.c, line: 2351
+# File: src/c/stack2.c, line: 1902
+# File: src/c/stack2.c, line: 2182
+# File: src/c/storeCommand.c, line: 98
+# File: src/c/storeCommand.c, line: 106
+# File: src/c/storeCommand.c, line: 143
+# File: src/c/storeCommand.c, line: 151
 # File: src/c/intmacr2tree.c, line: 133
 # File: src/c/intmacr2tree.c, line: 150
 # File: src/c/intmacr2tree.c, line: 155
@@ -234,15 +243,6 @@ msgstr ""
 # File: src/c/intmacr2tree.c, line: 2069
 # File: src/c/intmacr2tree.c, line: 2074
 # File: src/c/intmacr2tree.c, line: 2138
-# File: src/c/stack1.c, line: 2238
-# File: src/c/stack1.c, line: 2320
-# File: src/c/stack1.c, line: 2351
-# File: src/c/storeCommand.c, line: 98
-# File: src/c/storeCommand.c, line: 106
-# File: src/c/storeCommand.c, line: 143
-# File: src/c/storeCommand.c, line: 151
-# File: src/c/stack2.c, line: 1902
-# File: src/c/stack2.c, line: 2182
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -430,22 +430,22 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_funcprot.c, line: 85
-# File: sci_gateway/c/sci_mode.c, line: 64
-# File: sci_gateway/c/sci_mode.c, line: 70
-# File: sci_gateway/c/sci_format.c, line: 151
-# File: sci_gateway/c/sci_format.c, line: 271
-# File: sci_gateway/c/sci_format.c, line: 291
-# File: sci_gateway/c/sci_predef.c, line: 65
 # File: sci_gateway/c/sci_newfun.c, line: 110
+# File: sci_gateway/c/sci_funcprot.c, line: 85
 # File: sci_gateway/c/sci_error.c, line: 95
 # File: sci_gateway/c/sci_error.c, line: 151
 # File: sci_gateway/c/sci_error.c, line: 195
 # File: sci_gateway/c/sci_error.c, line: 200
 # File: sci_gateway/c/sci_error.c, line: 250
+# File: sci_gateway/c/sci_typename.c, line: 109
+# File: sci_gateway/c/sci_predef.c, line: 65
 # File: sci_gateway/c/sci_errclear.c, line: 47
 # File: sci_gateway/c/sci_exit.c, line: 71
-# File: sci_gateway/c/sci_typename.c, line: 109
+# File: sci_gateway/c/sci_mode.c, line: 64
+# File: sci_gateway/c/sci_mode.c, line: 70
+# File: sci_gateway/c/sci_format.c, line: 151
+# File: sci_gateway/c/sci_format.c, line: 271
+# File: sci_gateway/c/sci_format.c, line: 291
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 48
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 66
 #, c-format
@@ -473,10 +473,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 #
+# File: tests/nonreg_tests/bug_7974.c, line: 41
 # File: sci_gateway/c/sci_getversion.c, line: 123
 # File: sci_gateway/c/sci_getversion.c, line: 242
 # File: sci_gateway/c/sci_getversion.c, line: 248
-# File: tests/nonreg_tests/bug_7974.c, line: 41
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -667,10 +667,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_funcprot.c, line: 70
 # File: sci_gateway/c/sci_newfun.c, line: 84
-# File: sci_gateway/c/sci_exit.c, line: 58
+# File: sci_gateway/c/sci_funcprot.c, line: 70
 # File: sci_gateway/c/sci_typename.c, line: 96
+# File: sci_gateway/c/sci_exit.c, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -680,8 +680,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 #
-# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
 # File: tests/nonreg_tests/bug_6830.c, line: 35
+# File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
 msgstr ""
@@ -719,8 +719,8 @@ msgstr ""
 # File: sci_gateway/c/sci_readgateway.c, line: 124
 # File: sci_gateway/c/sci_funptr.c, line: 49
 # File: sci_gateway/c/sci_getversion.c, line: 209
-# File: sci_gateway/c/sci_clearfun.c, line: 65
 # File: sci_gateway/c/sci_with_module.c, line: 47
+# File: sci_gateway/c/sci_clearfun.c, line: 65
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -751,8 +751,8 @@ msgstr ""
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getmd5.c, line: 105
 # File: tests/nonreg_tests/bug_7974.c, line: 53
+# File: sci_gateway/c/sci_getmd5.c, line: 105
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
@@ -810,9 +810,9 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_predef.c, line: 57
 # File: sci_gateway/c/sci_mode.c, line: 48
 # File: sci_gateway/c/sci_format.c, line: 220
-# File: sci_gateway/c/sci_predef.c, line: 57
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
@@ -950,7 +950,6 @@ msgstr ""
 msgid "%s: intersiz is too small.\n"
 msgstr ""
 #
-# File: src/c/intmacr2tree.c, line: 217
 # File: src/c/stack1.c, line: 272
 # File: src/c/stack1.c, line: 537
 # File: src/c/stack1.c, line: 726
@@ -968,6 +967,7 @@ msgstr ""
 # File: src/c/stack1.c, line: 2692
 # File: src/c/stack1.c, line: 3034
 # File: src/c/stack1.c, line: 3059
+# File: src/c/intmacr2tree.c, line: 217
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
 msgstr ""
@@ -977,35 +977,35 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 157
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 156
 msgid "&?"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 144
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 146
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 149
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 152
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 155
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 143
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 145
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 148
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 151
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 154
 msgid "&Applications"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 143
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 142
 msgid "&Control"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 141
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 140
 msgid "&Edit"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 140
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 139
 msgid "&File"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 142
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 141
 msgid "&Preferences"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 158
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 157
 msgid "&Toolboxes"
 msgstr ""
 #
@@ -1239,7 +1239,7 @@ msgid ""
 "%s\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/inria/scilab/scilab/etc/scilab.start, line: 71
+# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 70
 msgid "Startup execution:"
 msgstr ""
 #
