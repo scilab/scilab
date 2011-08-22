@@ -223,7 +223,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 		<HBox>
-			Search by action name or shortcut:
+			Strike return to search by action name or shortcut:
 			<Glue/>	
 		</HBox>
 		<Entry text="{@filter}" listener="ActionListener">
@@ -234,7 +234,15 @@
 		<Title width="650" height="250" background="#ffffff" text="General shortcuts preferences">
 			<VBox>
 				<xsl:variable name="filtered-actions" 
-					select="action-folder/action[contains(concat(@description,@ctrl),current()/@filter)]"/>
+					select="action-folder/action[contains(
+						translate(
+							concat(@description,@ctrl), 
+							'abcdefghijklmnopqrstuvwxyz', 
+							'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+						translate(current()/@filter,
+							'abcdefghijklmnopqrstuvwxyz', 
+							'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+						)]"/>
 				<xsl:variable name="filtered-folder" 
 					select="action-folder[action [@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]]"/>
 				<HBox>&lt;HTML&gt;&lt;B&gt;Action name 
