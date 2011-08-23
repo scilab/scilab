@@ -164,6 +164,8 @@ public class XUpdateVisitor {
             XComponent xView = (XComponent) view;
             xView.refresh(peer);
         }
+        //view.setAlignmentX(0.0);
+        //view.setAlignmentY(0.0);
     }
 
     /** Builds the layout constraint object.

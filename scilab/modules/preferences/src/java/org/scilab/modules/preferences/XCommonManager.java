@@ -52,6 +52,7 @@ import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -307,6 +308,7 @@ public abstract class XCommonManager {
      *
      * @param action : to be interpreted.
      * @param source : component source of the action (only class is needed).
+     * @return if the event is handled here
      */
     protected static boolean generixEvent(
             final Node [] actions,
@@ -342,7 +344,52 @@ public abstract class XCommonManager {
             updated = true;
             return true;
         }
+        if (!getAttribute(action, "insert").equals(NAV)) {
+            for (int i=0; i < actions.length; i++) {
+                action = actions[i];
+                String context   = getAttribute(action, "context");
+                if (differential) {
+                    System.out.println(" hits " + context);
+                }
+                Element element           = getElementByContext(context);
+                int insert                = XCommonManager.getInt(action, "insert", -1);
+                Node   hook               = element.getChildNodes().item(insert);
+                DocumentFragment fragment = document.createDocumentFragment();
+                while (action.hasChildNodes()) {
+                    Node transferred = action.getFirstChild();
+                    action.removeChild(transferred);
+                    transferred = document.importNode(transferred, true);
+                    fragment.appendChild(transferred);
+                }
+                if (!(element == null)) {
+                    element.insertBefore(fragment, hook);
+                }
+            }
+            refreshDisplay();
+            updated = true;
+            return true;
+        }
 
+        if (!getAttribute(action, "delete").equals(NAV)) {
+            for (int i=0; i < actions.length; i++) {
+                action = actions[i];
+                String context   = getAttribute(action, "context");
+                if (differential) {
+                    System.out.println(" hits " + context);
+                }
+                Element element           = getElementByContext(context);
+                int delete                = XCommonManager.getInt(action, "delete", -1);
+                Node   deleted            = element.getChildNodes().item(delete);
+                if (!(element == null)) {
+                    element.removeChild(deleted);
+                }
+            }
+            refreshDisplay();
+            updated = true;
+            return true;
+        }
+
+        
         if (source==null) {
             System.out.println(" lost! ");
             return false;

@@ -154,11 +154,22 @@
 			<xcos/>
 		</body>
 	</xcos>
-	<toolbars>
+	<toolbar>
 		<body maturity="I">
-			<TBD/>
+			<toolbars select="scilab">
+				<toolbar title="scilab" position="1" item="0">
+					<item title="Cut"/>
+					<separator/>
+					<item title="Paste"/>
+				</toolbar>
+				<toolbar title="scinotes" position="2" item="2">
+					<item title="Cut"/>
+					<separator/>
+					<item title="Paste"/>
+				</toolbar>
+			</toolbars>
 		</body>
-	</toolbars>
+	</toolbar>
 	<toolboxes>
 		<body maturity="I">
 			<TBD/>

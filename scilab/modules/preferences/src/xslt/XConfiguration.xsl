@@ -14,6 +14,7 @@
 <xsl:import href="XConfiguration/XConfiguration-scinotes.xsl"/>
 <xsl:import href="XConfiguration/XConfiguration-variables.xsl"/>
 <xsl:import href="XConfiguration/XConfiguration-xcos.xsl"/>
+<xsl:import href="XConfiguration/XConfiguration-toolbars.xsl"/>
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
