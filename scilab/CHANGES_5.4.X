@@ -318,6 +318,9 @@ Bug fixes:
 
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
 
+* bug 9104 fixed - 'warning' used in a diary scilab session added timestamp
+                   twice in the diary.
+
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
                    by default.
 
