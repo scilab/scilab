@@ -1,10 +1,11 @@
 #
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2011 - Allan CORNET
+# Copyright (C) DIGITEO - 2011 - Antoine ELIAS
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -27,48 +28,59 @@ libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration
 
 
 #### console : List of the cpp files ####
-CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
-src/jni/GiwsException.cpp
+CONSOLE_CPP_JNI_SOURCES = \
+    src/jni/CallScilabBridge.cpp \
+    src/jni/GiwsException.cpp
 
-CONSOLE_CPP_SOURCES =  src/cpp/ClearConsole.cpp \
-src/cpp/ClearConsolePart.cpp \
-src/cpp/ConsolePrintf.cpp \
-src/cpp/ConsoleRead.cpp \
-src/cpp/ConsoleIsWaitingForInput.cpp \
-src/cpp/GetCharWithoutOutput.cpp \
-src/cpp/PromptToHome.cpp \
-src/cpp/ScilabLinesUpdate.cpp \
-src/cpp/SetConsolePrompt.cpp
+CONSOLE_CPP_SOURCES =  \
+    src/cpp/ClearConsole.cpp \
+    src/cpp/ClearConsolePart.cpp \
+    src/cpp/ConsolePrintf.cpp \
+    src/cpp/ConsoleRead.cpp \
+    src/cpp/ConsoleIsWaitingForInput.cpp \
+    src/cpp/GetCharWithoutOutput.cpp \
+    src/cpp/PromptToHome.cpp \
+    src/cpp/ScilabLinesUpdate.cpp \
+    src/cpp/SetConsolePrompt.cpp \
+    src/cpp/scilabRead.cpp
 
 #### console : List of the c files ####
-CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
-src/jni/DropFiles_wrap.c
+CONSOLE_C_JNI_SOURCES = \
+    src/jni/GuiManagement_wrap.c \
+    src/jni/DropFiles_wrap.c
 
-CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-src/c/GuiManagement.c \
-src/c/dropFiles.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/zzledt.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c
+CONSOLE_C_SOURCES = \
+    src/c/InitializeConsole.c \
+    src/c/GuiManagement.c \
+    src/c/dropFiles.c \
+    src/c/clc.c \
+    src/c/tohome.c \
+    src/c/more.c \
+    src/c/scilines.c \
+    src/c/GetCommandLine.c \
+    src/c/others/zzledt.c \
+    src/c/others/gotoxy_nw.c \
+    src/c/others/clrscr_nw.c \
+    src/c/prompt.c \
+    src/c/promptecho.c
 
 if IS_MACOSX
 CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
+# List of the gateway cpp files
+CONSOLE_GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/console_gw.cpp \
+    sci_gateway/cpp/sci_clc.cpp \
+    sci_gateway/cpp/sci_iswaitingforinput.cpp \
+    sci_gateway/cpp/sci_lines.cpp \
+    sci_gateway/cpp/sci_prompt.cpp \
+    sci_gateway/cpp/sci_tohome.cpp
+    
+
 # List of the gateway c files
-CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
-sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_lines.c \
-sci_gateway/c/sci_prompt.c \
-sci_gateway/c/sci_iswaitingforinput.c
+CONSOLE_GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_console.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
@@ -84,88 +96,124 @@ endif
 
 
 # List of the c files
-libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c \
-sci_gateway/c/gw_console.c \
-sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_lines.c \
-sci_gateway/c/sci_prompt.c \
-sci_gateway/c/sci_iswaitingforinput.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/zzledt.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c
+libsciconsole_disable_la_SOURCES = \
+    src/noconsole/noconsole.c \
+    src/cpp/scilabRead.cpp \
+    sci_gateway/cpp/console_gw.cpp \
+    sci_gateway/cpp/sci_clc.cpp \
+    sci_gateway/cpp/sci_tohome.cpp \
+    sci_gateway/cpp/sci_lines.cpp \
+    sci_gateway/cpp/sci_prompt.cpp \
+    sci_gateway/cpp/sci_iswaitingforinput.cpp \
+    sci_gateway/c/gw_console.c \
+    src/c/clc.c \
+    src/c/tohome.c \
+    src/c/more.c \
+    src/c/scilines.c \
+    src/c/GetCommandLine.c \
+    src/c/others/zzledt.c \
+    src/c/others/gotoxy_nw.c \
+    src/c/others/clrscr_nw.c \
+    src/c/prompt.c \
+    src/c/promptecho.c
 
 if IS_MACOSX
 libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
 
-libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/core/includes \
-				-I$(top_srcdir)/modules/completion/includes \
-				-I$(top_srcdir)/modules/localization/includes \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/threads/includes \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/ui_data/includes/
+libsciconsole_disable_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/fileio/src/c/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/threads/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/
+
+# Includes need for the compilation
+libsciconsole_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/jni/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/threads/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/string/includes
 
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
-								-I$(top_srcdir)/modules/api_scilab/includes \
-								-I$(srcdir)/includes/ \
-								-I$(srcdir)/src/cpp/ \
-								-I$(srcdir)/src/c/ \
-								-I$(srcdir)/src/jni/ \
-								-I$(top_srcdir)/libs/MALLOC/includes/ \
-								-I$(top_srcdir)/modules/jvm/includes/ \
-								-I$(top_srcdir)/modules/action_binding/includes \
-								-I$(top_srcdir)/modules/history_manager/includes/ \
-								-I$(top_srcdir)/modules/operations/includes \
-								-I$(top_srcdir)/modules/system_env/includes \
-								-I$(top_srcdir)/modules/ui_data/includes/ \
-								-I$(top_srcdir)/modules/threads/includes \
-								-I$(top_srcdir)/modules/completion/includes \
-								-I$(top_srcdir)/modules/string/includes
+libsciconsole_disable_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/jni/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/ \
+	-I$(top_srcdir)/modules/threads/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/string/includes
 
 # Includes need for the compilation
-libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/system_env/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/string/includes
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/core/includes \
-				-I$(top_srcdir)/modules/completion/includes \
-				-I$(top_srcdir)/modules/localization/includes \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/ui_data/includes/
+libsciconsole_la_CFLAGS= \
+    $(JAVA_JNI_INCLUDE) \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/system_env/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/string/includes
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/fileio/src/c/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/ui_data/includes/
+
 if IS_MACOSX
 libsciconsole_la_CFLAGS += -msse2
 endif
@@ -181,7 +229,7 @@ endif
 libsciconsole_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES) $(CONSOLE_GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)

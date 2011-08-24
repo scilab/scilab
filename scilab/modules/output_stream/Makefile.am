@@ -1,6 +1,7 @@
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+# Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -10,14 +11,14 @@
 
 OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/Diary.cpp \
-	src/cpp/yaspio.cpp \
+	src/cpp/scilabWrite.cpp \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getFullFilename.cpp \
 	src/cpp/scilab_sprintf.cpp
 
-#
+
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_diary.cpp \
 	sci_gateway/cpp/sci_disp.cpp \

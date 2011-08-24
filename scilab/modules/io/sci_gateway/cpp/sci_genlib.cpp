@@ -28,7 +28,7 @@
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "setenvvar.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
 #include "string.hxx"
@@ -123,7 +123,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         int oldVal = ConfigVariable::getPromptMode();
         //set mode silent for errors
         ConfigVariable::setPromptMode(0);
-        YaspWriteW(pstVerbose);
+        scilabWriteW(pstVerbose);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
@@ -138,7 +138,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     if(pWriter == NULL)
     {
         os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
-        YaspWriteW(pstVerbose);
+        scilabWriteW(pstVerbose);
 
         out.push_back(new Bool(0));
         FREE(pstParsePath);
@@ -161,7 +161,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
                 os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
-                YaspWriteW(pstVerbose);
+                scilabWriteW(pstVerbose);
                 delete parser.getTree();
                 continue;
             }
@@ -177,7 +177,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPath[k])) == false)
                     {
                         os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
-                        YaspWriteW(pstVerbose);
+                        scilabWriteW(pstVerbose);
                     }
 				}
 			}

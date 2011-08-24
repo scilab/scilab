@@ -14,7 +14,7 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "context.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 
 using namespace types;
 
@@ -23,7 +23,7 @@ Function::ReturnValue sci_who(typed_list& in, int iRetCount, typed_list& out)
     std::wstringstream wstream;
     wstream << *(symbol::Context::getInstance()) << std::endl;
 
-    YaspWriteW(wstream.str().c_str());
+    scilabWriteW(wstream.str().c_str());
 
     return Function::OK;
 }

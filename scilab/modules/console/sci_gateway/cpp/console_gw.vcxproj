@@ -18,9 +18,44 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="console_gw.cpp" />
+    <ClCompile Include="sci_clc.cpp" />
+    <ClCompile Include="sci_iswaitingforinput.cpp" />
+    <ClCompile Include="sci_lines.cpp" />
+    <ClCompile Include="sci_prompt.cpp" />
+    <ClCompile Include="sci_tohome.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\console_gw.hxx" />
+    <ClInclude Include="..\..\includes\dynlib_console_gw.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
+      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\libintl.lib" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6D9647CE-9CB9-4B16-B34D-8542484EFBB0}</ProjectGuid>
-    <RootNamespace>fileio_gw</RootNamespace>
+    <ProjectGuid>{273B1F5C-C137-46D1-B516-FFE5764FABE5}</ProjectGuid>
+    <RootNamespace>console_gw</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,8 +111,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes;../../../threads/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../types/includes;../../../ast/includes;../../../api_scilab/includes;../../../symbol/includes;../../../core/includes;../../../localization/includes;../../../../libs/intl;../../../operations/includes;../../../output_stream/includes;../../../system_env/includes;../../../threads/includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -99,8 +134,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes;../../../threads/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../types/includes;../../../ast/includes;../../../api_scilab/includes;../../../symbol/includes;../../../core/includes;../../../localization/includes;../../../../libs/intl;../../../operations/includes;../../../output_stream/includes;../../../system_env/includes;../../../threads/includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -120,8 +155,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes;../../../threads/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../types/includes;../../../ast/includes;../../../api_scilab/includes;../../../symbol/includes;../../../core/includes;../../../localization/includes;../../../../libs/intl;../../../operations/includes;../../../output_stream/includes;../../../system_env/includes;../../../threads/includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -146,8 +181,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../core/includes;../../../ast/includes;../../../symbol/includes;../../../api_scilab/includes;../../../operations/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../system_env/includes;../../../string/includes;../../../windows_tools/includes;../../../threads/includes;../../../console/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FILEIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../types/includes;../../../ast/includes;../../../api_scilab/includes;../../../symbol/includes;../../../core/includes;../../../localization/includes;../../../../libs/intl;../../../operations/includes;../../../output_stream/includes;../../../system_env/includes;../../../threads/includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -165,110 +200,6 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="fileio_gw.cpp" />
-    <ClCompile Include="sci_basename.cpp" />
-    <ClCompile Include="sci_createdir.cpp" />
-    <ClCompile Include="sci_deletefile.cpp" />
-    <ClCompile Include="sci_fileext.cpp" />
-    <ClCompile Include="sci_fileinfo.cpp" />
-    <ClCompile Include="sci_fileparts.cpp" />
-    <ClCompile Include="sci_filesep.cpp" />
-    <ClCompile Include="sci_findfiles.cpp" />
-    <ClCompile Include="sci_fullpath.cpp" />
-    <ClCompile Include="sci_getdrives.cpp" />
-    <ClCompile Include="sci_get_absolute_file_path.cpp" />
-    <ClCompile Include="sci_getlongpathname.cpp" />
-    <ClCompile Include="sci_getrelativefilename.cpp" />
-    <ClCompile Include="sci_getshortpathname.cpp" />
-    <ClCompile Include="sci_isdir.cpp" />
-    <ClCompile Include="sci_isfile.cpp" />
-    <ClCompile Include="sci_mclearerr.cpp" />
-    <ClCompile Include="sci_mclose.cpp" />
-    <ClCompile Include="sci_meof.cpp" />
-    <ClCompile Include="sci_merror.cpp" />
-    <ClCompile Include="sci_mfprintf.cpp" />
-    <ClCompile Include="sci_mfscanf.cpp" />
-    <ClCompile Include="sci_mget.cpp" />
-    <ClCompile Include="sci_mgetl.cpp" />
-    <ClCompile Include="sci_mgetstr.cpp" />
-    <ClCompile Include="sci_mopen.cpp" />
-    <ClCompile Include="sci_mput.cpp" />
-    <ClCompile Include="sci_mputl.cpp" />
-    <ClCompile Include="sci_mputstr.cpp" />
-    <ClCompile Include="sci_mscanf.cpp" />
-    <ClCompile Include="sci_mseek.cpp" />
-    <ClCompile Include="sci_msscanf.cpp" />
-    <ClCompile Include="sci_mtell.cpp" />
-    <ClCompile Include="sci_newest.cpp" />
-    <ClCompile Include="sci_pathconvert.cpp" />
-    <ClCompile Include="sci_pathsep.cpp" />
-    <ClCompile Include="sci_removedir.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\includes\fileio_gw.hxx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\libintl.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\LibScilab\LibScilab.vcxproj">
-      <Project>{64bc155e-292f-484f-9404-76ee6ae67a43}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
-      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
-      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\console\src\c\console.vcxproj">
-      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
-      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\output_stream\sci_gateway\cpp\output_stream_gw\output_stream_gw.vcxproj">
-      <Project>{c000fdf7-4d32-4630-9595-560d9cc66d11}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
-      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
-      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
-      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\fileio.vcxproj">
-      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

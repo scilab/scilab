@@ -12,7 +12,7 @@
 
 #include "function.hxx"
 #include "funcmanager.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "configvariable.hxx"
 #include "output_stream_gw.hxx"
 
@@ -36,10 +36,10 @@ Function::ReturnValue sci_disp(typed_list &in, int _piRetCount, typed_list &out)
 
 	for(it = in.rbegin() ; it != in.rend() ; it++)
 	{
-        YaspForcedWriteW(L"\n");
-		YaspForcedWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
+        scilabForcedWriteW(L"\n");
+		scilabForcedWriteW((*it)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()).c_str());
 	}
 
-	YaspForcedWriteW(L"\n");
+	scilabForcedWriteW(L"\n");
     return Function::OK;
 }

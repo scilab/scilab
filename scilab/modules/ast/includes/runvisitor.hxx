@@ -51,7 +51,7 @@ extern "C" {
 #include "timer.hxx"
 #include "localization.h"
 
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "context.hxx"
 
 #include "all.hxx"
@@ -365,7 +365,7 @@ namespace ast
                     ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
                     ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                    YaspWriteW(ostr.str().c_str());
+                    scilabWriteW(ostr.str().c_str());
                 }
             }
             else
@@ -1058,7 +1058,7 @@ namespace ast
                                 std::wostringstream ostr;
                                 ostr << L"ans = " << std::endl << std::endl;
                                 ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
-                                YaspWriteW(ostr.str().c_str());
+                                scilabWriteW(ostr.str().c_str());
                             }
                         }
 
@@ -1085,7 +1085,7 @@ namespace ast
                 }
                 catch(ScilabMessage sm)
                 {
-                    YaspErrorW(sm.GetErrorMessage().c_str());
+                    scilabErrorW(sm.GetErrorMessage().c_str());
 
                     CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
                     if(pCall != NULL)
@@ -1135,7 +1135,7 @@ namespace ast
                                 pCall->accept(printMe);
                                 os << std::endl << std::endl;
                                 ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
-                                YaspErrorW(se.GetErrorMessage().c_str());
+                                scilabErrorW(se.GetErrorMessage().c_str());
                                 throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                             }
                         }
@@ -1144,7 +1144,7 @@ namespace ast
                         }
                     }
 
-                    YaspErrorW(se.GetErrorMessage().c_str());
+                    scilabErrorW(se.GetErrorMessage().c_str());
                     throw ScilabMessage((*itExp)->location_get());
                 }
             }

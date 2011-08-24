@@ -15,7 +15,7 @@
 #include "string.hxx"
 #include "bool.hxx"
 
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {

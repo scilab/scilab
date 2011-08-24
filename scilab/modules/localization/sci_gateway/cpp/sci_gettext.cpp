@@ -52,7 +52,7 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
     bool bConveted      = false;
     wchar_t* pwstCIn    = ScilabStringToCString(in[0]->getAs<types::String>()->get()[0], &bConveted);
     char* pstCIn        = wide_string_to_UTF8(pwstCIn);
-    wchar_t* pwstOut   = to_wide_string(gettext(pstCIn));
+    wchar_t* pwstOut    = _W(pstCIn);
     if(bConveted)
     {
         wchar_t* pwstTemp    = CStringToScilabString(pwstOut);

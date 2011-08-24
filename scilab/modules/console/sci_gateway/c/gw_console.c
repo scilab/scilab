@@ -17,11 +17,11 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-{sci_clc,"clc"},
-{sci_tohome,"tohome"},
-//{sci_lines,"lines"},
-{sci_prompt,"prompt"},
-{sci_iswaitingforinput,"iswaitingforinput"}
+{NULL, ""}, //clc
+{NULL, ""}, //tohome
+{NULL, ""}, //lines
+{NULL, ""}, //prompt
+{NULL, ""} //iswaitingforinput
 };
 /*--------------------------------------------------------------------------*/
 int gw_console(void)

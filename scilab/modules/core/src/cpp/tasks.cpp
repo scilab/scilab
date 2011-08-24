@@ -20,7 +20,7 @@
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
 
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "runner.hxx"
 
 #define SCILAB_START    L"/etc/scilab.start"
@@ -197,8 +197,8 @@ void execScilabStartTask(void)
 
     if(parse.getExitStatus() != Parser::Succeded)
     {
-        YaspWriteW(parse.getErrorMessage());
-        YaspWriteW(L"Failed to parse scilab.start");
+        scilabWriteW(parse.getErrorMessage());
+        scilabWriteW(L"Failed to parse scilab.start");
         return;
     }
 
@@ -219,8 +219,8 @@ void execScilabQuitTask(void)
 
     if(parse.getExitStatus() != Parser::Succeded)
     {
-        YaspWriteW(parse.getErrorMessage());
-        YaspWriteW(L"Failed to parse scilab.start");
+        scilabWriteW(parse.getErrorMessage());
+        scilabWriteW(L"Failed to parse scilab.start");
         return;
     }
 

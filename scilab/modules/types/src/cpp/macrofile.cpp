@@ -15,7 +15,7 @@
 #include "macrofile.hxx"
 #include "context.hxx"
 #include "localization.h"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "parser.hxx"
 #include "configvariable.hxx"
 
@@ -89,10 +89,10 @@ namespace types
             parser.parseFile(m_stPath, L"parse macro file");
             if(parser.getExitStatus() !=  Parser::Succeded)
             {
-                YaspWriteW(L"Unable to parse ");
-                YaspWriteW(m_stPath.c_str());
-                YaspWriteW(L"\n\n");
-                YaspWriteW(parser.getErrorMessage());
+                scilabWriteW(L"Unable to parse ");
+                scilabWriteW(m_stPath.c_str());
+                scilabWriteW(L"\n\n");
+                scilabWriteW(parser.getErrorMessage());
                 return false;
             }
 

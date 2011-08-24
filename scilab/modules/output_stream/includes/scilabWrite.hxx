@@ -20,26 +20,20 @@ extern "C"
 {
 #endif
 
+typedef void (*SCILAB_OUTPUT_METHOD)(char *text);
 
-typedef void (*YASP_OUTPUT)(char *text);
-typedef char *(*YASP_INPUT)(void);
+OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
 
-OUTPUT_STREAM_IMPEXP void setYaspOutputMethod(YASP_OUTPUT writer);
+OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
 
-OUTPUT_STREAM_IMPEXP void setYaspInputMethod(YASP_INPUT reader);
+OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
 
-OUTPUT_STREAM_IMPEXP char *YaspRead();
-
-OUTPUT_STREAM_IMPEXP void YaspWrite(const char* _pstText);
-
-OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* _pwstText);
-
-OUTPUT_STREAM_IMPEXP void YaspError(const char* _pstText);
-OUTPUT_STREAM_IMPEXP void YaspErrorW(const wchar_t* _pwstText);
+OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
 
 /* functions write in "console" without take care of mode*/
-OUTPUT_STREAM_IMPEXP void YaspForcedWriteW(const wchar_t* _pwsText);
-OUTPUT_STREAM_IMPEXP void YaspForcedWrite(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
+OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
 
 #ifdef __cplusplus
 }

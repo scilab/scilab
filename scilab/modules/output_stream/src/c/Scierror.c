@@ -16,7 +16,7 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "lasterror.h"
 
 /*--------------------------------------------------------------------------*/
@@ -50,9 +50,9 @@ int  Scierror(int iv,const char *fmt,...)
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
 
-    YaspErrorW(L"Error: ");
-    YaspErrorW(pwstError);
-    YaspErrorW(L"\n");
+    scilabErrorW(L"Error: ");
+    scilabErrorW(pwstError);
+    scilabErrorW(L"\n");
     FREE(pwstError);
   return retval;
 }
@@ -78,9 +78,9 @@ int ScierrorW(int iv, const wchar_t *fmt,...)
 
 
     setLastError(iv, s_buf, 0, NULL);
-    YaspWriteW(L"Error: ");
-    YaspWriteW(s_buf);
-    YaspWriteW(L"\n");
+    scilabWriteW(L"Error: ");
+    scilabWriteW(s_buf);
+    scilabWriteW(L"\n");
 
   return retval;
 }

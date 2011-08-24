@@ -62,6 +62,7 @@ extern "C"
 #include "sci_tmpdir.h"
 #include "deleteafile.h"
 #include "setgetlanguage.h"
+#include "scilabRead.h"
 
 #include "elem_common.h"
 
@@ -74,7 +75,7 @@ extern "C"
     extern char *TermReadAndProcess(void);
 }
 
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "tasks.hxx"
 #include "exit_status.hxx"
 #include "parser.hxx"
@@ -334,12 +335,12 @@ static int interactiveMain (void)
                 FREE(command);
                 command = NULL;
             }
-            YaspWriteW(L"\n");
-            command = YaspRead();
+            scilabWriteW(L"\n");
+            command = scilabRead();
         }
         else
         {
-            char* pstRead = YaspRead();
+            char* pstRead = scilabRead();
             //+1 for null termination and +1 for '\n'
             size_t iLen = strlen(command) + strlen(pstRead) + 2;
             char* pstNewCommand = (char*)MALLOC(iLen * sizeof(char));
@@ -417,7 +418,7 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
                 callOnPrompt();
             }
 
-            YaspWriteW(parser->getErrorMessage());
+            scilabWriteW(parser->getErrorMessage());
         }
 
         FREE(pwstCommand);
@@ -469,8 +470,8 @@ int main(int argc, char *argv[])
 #ifndef WITHOUT_GUI
     if (consoleMode)
     {
-        setYaspInputMethod(&TermReadAndProcess);
-        setYaspOutputMethod(&TermPrintf);
+        setScilabInputMethod(&TermReadAndProcess);
+        setScilabOutputMethod(&TermPrintf);
   #if defined(__APPLE__)
         if(!noJvm)
         {
@@ -481,8 +482,8 @@ int main(int argc, char *argv[])
     }
     else
     {
-        setYaspInputMethod(&ConsoleRead);
-        setYaspOutputMethod(&ConsolePrintf);
+        setScilabInputMethod(&ConsoleRead);
+        setScilabOutputMethod(&ConsolePrintf);
   #if defined(__APPLE__)
         return initMacOSXEnv(argc, argv, iFileIndex);
   #else
@@ -490,8 +491,8 @@ int main(int argc, char *argv[])
   #endif // !defined(__APPLE__)
     }
 #else
-        setYaspInputMethod(&TermReadAndProcess);
-        setYaspOutputMethod(&TermPrintf);
+        setScilabInputMethod(&TermReadAndProcess);
+        setScilabOutputMethod(&TermPrintf);
         return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
 #endif // defined(WITHOUT_GUI)
 }
@@ -535,7 +536,7 @@ static int batchMain(char *pstFileName)
     }
     else
     {
-        YaspWriteW(parser->getErrorMessage());
+        scilabWriteW(parser->getErrorMessage());
     }
 
 #ifdef DEBUG
@@ -626,7 +627,7 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
     }
     catch(ScilabException se)
     {
-        YaspErrorW(se.GetErrorMessage().c_str());
+        scilabErrorW(se.GetErrorMessage().c_str());
     }
 
     ConfigVariable::setPromptMode(2);

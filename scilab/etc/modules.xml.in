@@ -43,5 +43,6 @@
     <module name="mexlib" activate="yes"/>
     <module name="history_manager" activate="yes"/>
     <module name="parse" activate="yes"/>
+    <module name="console" activate="yes"/>
 </modules>
 

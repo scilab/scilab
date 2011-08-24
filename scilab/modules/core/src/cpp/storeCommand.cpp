@@ -19,7 +19,7 @@ extern "C"
 #include "parser.hxx"
 #include "execvisitor.hxx"
 #include "tasks.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 
 /*--------------------------------------------------------------------------*/
@@ -75,23 +75,23 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
     }
     catch(ScilabException se)
     {
-        YaspErrorW(L"\n");
-        YaspErrorW(L"\n");
-        YaspErrorW(command);
-        YaspErrorW(L"\n");
-        YaspErrorW(se.GetErrorMessage().c_str());
-        YaspErrorW(L"\n");
-        YaspErrorW(_W("while executing a callback"));
+        scilabErrorW(L"\n");
+        scilabErrorW(L"\n");
+        scilabErrorW(command);
+        scilabErrorW(L"\n");
+        scilabErrorW(se.GetErrorMessage().c_str());
+        scilabErrorW(L"\n");
+        scilabErrorW(_W("while executing a callback"));
     }
     catch(ScilabMessage sm)
     {
-        YaspErrorW(L"\n");
-        YaspErrorW(L"\n");
-        YaspErrorW(command);
-        YaspErrorW(L"\n");
-        YaspErrorW(sm.GetErrorMessage().c_str());
-        YaspErrorW(L"\n");
-        YaspErrorW(_W("while executing a callback"));
+        scilabErrorW(L"\n");
+        scilabErrorW(L"\n");
+        scilabErrorW(command);
+        scilabErrorW(L"\n");
+        scilabErrorW(sm.GetErrorMessage().c_str());
+        scilabErrorW(L"\n");
+        scilabErrorW(_W("while executing a callback"));
     }
 
     delete parser.getTree();
@@ -122,23 +122,23 @@ int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
     }
     catch(ScilabException se)
     {
-        YaspErrorW(L"\n");
-        YaspErrorW(L"\n");
-        YaspErrorW(command);
-        YaspErrorW(L"\n");
-        YaspErrorW(se.GetErrorMessage().c_str());
-        YaspErrorW(L"\n");
-        YaspErrorW(_W("while executing a callback"));
+        scilabErrorW(L"\n");
+        scilabErrorW(L"\n");
+        scilabErrorW(command);
+        scilabErrorW(L"\n");
+        scilabErrorW(se.GetErrorMessage().c_str());
+        scilabErrorW(L"\n");
+        scilabErrorW(_W("while executing a callback"));
     }
     catch(ScilabMessage sm)
     {
-        YaspErrorW(L"\n");
-        YaspErrorW(L"\n");
-        YaspErrorW(command);
-        YaspErrorW(L"\n");
-        YaspErrorW(sm.GetErrorMessage().c_str());
-        YaspErrorW(L"\n");
-        YaspErrorW(_W("while executing a callback"));
+        scilabErrorW(L"\n");
+        scilabErrorW(L"\n");
+        scilabErrorW(command);
+        scilabErrorW(L"\n");
+        scilabErrorW(sm.GetErrorMessage().c_str());
+        scilabErrorW(L"\n");
+        scilabErrorW(_W("while executing a callback"));
     }
 
     delete parser.getTree();

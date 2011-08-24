@@ -303,6 +303,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"dynamic_link", &DynamicLinkModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"action_binding", &ActionBindingModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"history_manager", &HistoryManagerModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"console", &ConsoleModule::Load));
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
         m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jvm", &JvmModule::Load));
@@ -363,7 +364,7 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
     {
         std::wostringstream ostr;
         ostr << _W("Unable to execute : ") << stPath << endl;
-        YaspWriteW(ostr.str().c_str());
+        scilabWriteW(ostr.str().c_str());
         delete parser.getTree();
         return false;
     }
@@ -381,11 +382,11 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
     }
     catch(ast::ScilabMessage sm)
     {
-        YaspWriteW(sm.GetErrorMessage().c_str());
+        scilabWriteW(sm.GetErrorMessage().c_str());
     }
     catch(ast::ScilabError se)
     {
-        YaspWriteW(se.GetErrorMessage().c_str());
+        scilabWriteW(se.GetErrorMessage().c_str());
     }
 
     //restore previous prompt mode

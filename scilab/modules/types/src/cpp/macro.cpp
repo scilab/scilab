@@ -18,7 +18,7 @@
 #include "context.hxx"
 #include "symbol.hxx"
 #include "localization.h"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "mutevisitor.hxx"

@@ -35,5 +35,6 @@
 #include "../../dynamic_link/includes/dynamic_link_gw.hxx"
 #include "../../action_binding/includes/action_binding_gw.hxx"
 #include "../../history_manager/includes/history_manager_gw.hxx"
+#include "../../console/includes/console_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

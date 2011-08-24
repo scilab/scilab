@@ -93,6 +93,14 @@ public :
     static void setConsoleWidth(int _iConsoleWidth);
     static int getConsoleWidth(void);
 
+    // Screen console lines
+private :
+    static int m_iConsoleLines;
+
+public :
+    static void setConsoleLines(int _iConsoleLines);
+    static int getConsoleLines(void);
+
     // Scilab mode
 private :
     static int m_iScilabMode;
@@ -263,6 +271,19 @@ public :
     static void setCommandLineArgs(int _iArgs, char** _pstArgs);
     static wchar_t** getCommandLineArgs(int* _piCount);
 
+//    //input function
+//private :
+//    static SCILAB_INPUT_METHOD m_pInputMethod;
+//public :
+//    static void setInputMethod(SCILAB_INPUT_METHOD _pInputMethod);
+//    static SCILAB_INPUT_METHOD getInputMethod(void);
+//
+//    //output function
+//private :
+//    static SCILAB_OUTPUT_METHOD m_pOutputMethod;
+//public :
+//    static void setOutputMethod(SCILAB_OUTPUT_METHOD _pOutputMethod);
+//    static SCILAB_OUTPUT_METHOD getOutputMethod(void);
 
 
 };

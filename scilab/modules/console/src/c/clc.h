@@ -13,13 +13,14 @@
 #define __CLC_H__
 /*--------------------------------------------------------------------------*/
 #include "BOOL.h"
+#include "dynlib_console.h"
 /*--------------------------------------------------------------------------*/
 /**
 * clc function 
 * @param nblines numbers of lines -1 --> all
 * @return a boolean
 */
-BOOL clc(int nblines);
+CONSOLE_IMPEXP BOOL clc(int nblines);
 /*--------------------------------------------------------------------------*/
 #endif /* __CLC_H__ */
 

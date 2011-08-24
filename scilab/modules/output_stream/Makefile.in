@@ -16,16 +16,6 @@
 @SET_MAKE@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2007 - INRIA - Bruno JOFRET
-# Copyright (C) 2010 - DIGITEO - Bruno JOFRET
-#
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 #
@@ -133,7 +123,7 @@ am__objects_1 = libscioutput_stream_algo_la-erro.lo \
 	libscioutput_stream_algo_la-do_xxprintf.lo \
 	libscioutput_stream_algo_la-set_xxprintf.lo
 am__objects_2 = libscioutput_stream_algo_la-Diary.lo \
-	libscioutput_stream_algo_la-yaspio.lo \
+	libscioutput_stream_algo_la-scilabWrite.lo \
 	libscioutput_stream_algo_la-DiaryList.lo \
 	libscioutput_stream_algo_la-diary_manager.lo \
 	libscioutput_stream_algo_la-getDiaryDate.lo \
@@ -460,17 +450,24 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
+# Copyright (C) 2007 - INRIA - Bruno JOFRET
+# Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+# Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/Diary.cpp \
-	src/cpp/yaspio.cpp \
+	src/cpp/scilabWrite.cpp \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getFullFilename.cpp \
 	src/cpp/scilab_sprintf.cpp
 
-
-#
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_diary.cpp \
 	sci_gateway/cpp/sci_disp.cpp \
@@ -747,11 +744,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-scilabWrite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-yaspio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-gw_output_stream.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-output_stream_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_diary.Plo@am__quote@
@@ -928,12 +925,12 @@ libscioutput_stream_algo_la-Diary.lo: src/cpp/Diary.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
 
-libscioutput_stream_algo_la-yaspio.lo: src/cpp/yaspio.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-yaspio.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Tpo -c -o libscioutput_stream_algo_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Tpo $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/yaspio.cpp' object='libscioutput_stream_algo_la-yaspio.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-scilabWrite.lo: src/cpp/scilabWrite.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-scilabWrite.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-scilabWrite.Tpo -c -o libscioutput_stream_algo_la-scilabWrite.lo `test -f 'src/cpp/scilabWrite.cpp' || echo '$(srcdir)/'`src/cpp/scilabWrite.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-scilabWrite.Tpo $(DEPDIR)/libscioutput_stream_algo_la-scilabWrite.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilabWrite.cpp' object='libscioutput_stream_algo_la-scilabWrite.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-scilabWrite.lo `test -f 'src/cpp/scilabWrite.cpp' || echo '$(srcdir)/'`src/cpp/scilabWrite.cpp
 
 libscioutput_stream_algo_la-DiaryList.lo: src/cpp/DiaryList.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-DiaryList.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Tpo -c -o libscioutput_stream_algo_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
@@ -1366,6 +1363,7 @@ uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+ Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

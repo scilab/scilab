@@ -38,7 +38,7 @@ void *Runner::launch(void *args)
     }
     catch(ScilabException se)
     {
-        YaspErrorW(se.GetErrorMessage().c_str());
+        scilabErrorW(se.GetErrorMessage().c_str());
     }
 
     __threadKey currentThreadKey = __GetCurrentThreadKey();

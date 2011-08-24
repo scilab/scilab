@@ -77,21 +77,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_console.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_clc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_iswaitingforinput.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lines.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_tohome.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -140,6 +125,9 @@
     <ClCompile Include="windows\TermReadAndProcess.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\scilabRead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="console.rc">
@@ -147,6 +135,93 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\jni\DropFiles.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="..\jni\GuiManagement.i">
+      <Filter>Swig Files</Filter>
+    </None>
+    <None Include="libjvm_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\console.iss" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\en_US\console.pot" />
+    <None Include="..\..\console.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\ConsolePrintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\ConsoleRead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetCommandLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitializeConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\more.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\prompt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\scilines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\zzledt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearConsolePart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleIsWaitingForInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dropFiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GetCharWithoutOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="promptecho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PromptToHome.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PutChar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScilabLinesUpdate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TermReadAndProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tohome.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\cpp\ClearConsole.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -174,92 +249,14 @@
     <ClInclude Include="..\cpp\SetConsolePrompt.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clc.h">
+    <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClearConsole.h">
+    <ClInclude Include="..\..\includes\SetConsolePrompt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClearConsolePart.h">
+    <ClInclude Include="..\..\includes\scilabRead.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleIsWaitingForInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleRead.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dropFiles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GetCharWithoutOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GuiManagement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="promptecho.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PromptToHome.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PutChar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScilabLinesUpdate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SetConsolePrompt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TermReadAndProcess.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tohome.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\clrscrPart_nw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\clrscr_nw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermCompletion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermConsole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermPosition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\TermPrintf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\jni\DropFiles.i">
-      <Filter>Swig Files</Filter>
-    </None>
-    <None Include="..\jni\GuiManagement.i">
-      <Filter>Swig Files</Filter>
-    </None>
-    <None Include="libjvm_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\..\console.iss" />
-    <None Include="..\..\Makefile.am" />
-    <None Include="..\..\locales\en_US\console.pot" />
-    <None Include="..\..\console.xml" />
   </ItemGroup>
 </Project>

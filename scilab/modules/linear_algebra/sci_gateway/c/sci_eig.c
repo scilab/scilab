@@ -1,10 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-<<<<<<< HEAD:scilab/modules/linear_algebra/sci_gateway/c/sci_eig.c
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
-=======
 * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
->>>>>>> origin/sas:scilab/modules/linear_algebra/sci_gateway/c/sci_eig.c
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -131,8 +127,8 @@ int sci_eig(char *fname, int* _piKey)
 							double* pEigenVectorsReal= NULL;
 							double* pEigenVectorsImg= NULL;
 							int symmetric= 0; /* bool in fact */
-							int const eigenValuesCols= (Lhs==1) ? 1 : iCols ;
-							int const totalSize= iRows * iCols;
+							int eigenValuesCols= (Lhs==1) ? 1 : iCols ;
+							int totalSize= iRows * iCols;
 							if ( !(complexArg
 								? C2F(vfiniteComplex)(&totalSize, pData)
 								: C2F(vfinite)(&totalSize, pDataReal)))
@@ -141,9 +137,7 @@ int sci_eig(char *fname, int* _piKey)
 								return 0;
 							}
 
-
-							//if(symmetric=isSymmetric(&Rhs))
-							if(1 /*replug previous test*/)
+							if(symmetric = isSymmetric(pDataReal, pDataImg, complexArg, iRows, iCols))
 							{
 								allocMatrixOfDouble(_piKey, 2, iCols, eigenValuesCols, &pEigenValuesReal);
 								/* if matrix is symmetric, the eigenvectors can reuse Rhs because the matrix is of the same type & dimensions */

@@ -17,7 +17,7 @@
 #include "functions_gw.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 
@@ -125,7 +125,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         FREE(pwstTemp);
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
-			YaspWriteW(parser.getErrorMessage());
+			scilabWriteW(parser.getErrorMessage());
 			delete parser.getTree();
             mclose(iID);
 			return Function::Error;
@@ -302,18 +302,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 					ostr << L"ans = " << std::endl;
 					ostr << std::endl;
 					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-					YaspWriteW(ostr.str().c_str());
+					scilabWriteW(ostr.str().c_str());
 				}
 			}
 
 			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) && bErrCatch == false)
 			//{
-			//	YaspWriteW(L"\n");
+			//	scilabWriteW(L"\n");
 			//}
 		}
         catch(ScilabMessage sm)
         {
-            YaspErrorW(sm.GetErrorMessage().c_str());
+            scilabErrorW(sm.GetErrorMessage().c_str());
 
             CallExp* pCall = dynamic_cast<CallExp*>(*j);
             if(pCall != NULL)
@@ -367,8 +367,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             if(bErrCatch == false)
             {
                 //write error
-                YaspErrorW(se.GetErrorMessage().c_str());
-                YaspErrorW(L"\n");
+                scilabErrorW(se.GetErrorMessage().c_str());
+                scilabErrorW(L"\n");
 
                 //write positino
                 wchar_t szError[bsiz];
@@ -529,7 +529,7 @@ void printLine(char* _stPrompt, char* _stLine, bool _bLF)
         strcat(sz, "\n");
     }
 
-    YaspWrite(sz);
+    scilabWrite(sz);
     FREE(sz);
 }
 /*--------------------------------------------------------------------------*/

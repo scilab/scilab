@@ -194,6 +194,9 @@
       <Project>{09e6cf32-ef2f-4c63-a2b8-b04964768bd6}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\console\sci_gateway\cpp\console_gw.vcxproj">
+      <Project>{273b1f5c-c137-46d1-b516-ffe5764fabe5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\src\cpp\core_gw.vcxproj">
       <Project>{3e933eb6-d427-4828-9b30-b6b9987491f6}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

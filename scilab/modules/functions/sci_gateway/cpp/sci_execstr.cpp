@@ -15,7 +15,7 @@
 #include "functions_gw.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 
@@ -253,21 +253,21 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 					ostr << L"ans = " << std::endl;
 					ostr << std::endl;
 					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-					YaspWriteW(ostr.str().c_str());
+					scilabWriteW(ostr.str().c_str());
 				}
 			}
 
 			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
    //             bErrCatch == false)
 			//{
-			//	YaspWriteW(L"\n");
+			//	scilabWriteW(L"\n");
 			//}
 		}
         catch(ScilabMessage sm)
         {
             if(bErrCatch  == false && bMute == false)
             {
-                YaspErrorW(sm.GetErrorMessage().c_str());
+                scilabErrorW(sm.GetErrorMessage().c_str());
 
                 CallExp* pCall = dynamic_cast<CallExp*>(*j);
                 if(pCall != NULL)
@@ -325,8 +325,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
                 //write error
-                YaspErrorW(se.GetErrorMessage().c_str());
-                YaspErrorW(L"\n");
+                scilabErrorW(se.GetErrorMessage().c_str());
+                scilabErrorW(L"\n");
 
                 //write positino
                 wchar_t szError[bsiz];

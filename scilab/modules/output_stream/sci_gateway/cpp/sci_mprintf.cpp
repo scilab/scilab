@@ -14,7 +14,7 @@
 #include "funcmanager.hxx"
 #include "output_stream_gw.hxx"
 #include "scilab_sprintf.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
@@ -122,10 +122,10 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
 
     for(int i = 0 ; i < iOutputRows ; i++)
     {
-        YaspForcedWriteW(pwstOutput[i]);
+        scilabForcedWriteW(pwstOutput[i]);
         if(iOutputRows != 1)
         {
-            //YaspWriteW(L"\n");
+            //scilabWriteW(L"\n");
         }
         fflush(NULL);
         FREE(pwstOutput[i]);

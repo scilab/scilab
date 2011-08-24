@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "string.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "cell.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -27,6 +27,7 @@ extern "C"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
+#include "scilabRead.h"
 }
 
 types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -78,7 +79,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if ((iNiter >= 0) && (rowcount >= iNiter)) break;
         // get data
-        wcsRead = to_wide_string(YaspRead());
+        wcsRead = to_wide_string(scilabRead());
         int err = do_xxscanf(L"sscanf",(FILE *)0,wcsFormat,&args,wcsRead,&retval,buf,type);
         if(err < 0) return types::Function::Error;
         err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args);

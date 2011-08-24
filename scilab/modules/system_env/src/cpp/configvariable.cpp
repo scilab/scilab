@@ -189,6 +189,26 @@ int ConfigVariable::getConsoleWidth(void)
 */
 
 /*
+** Screen console lines
+** \{
+*/
+
+int ConfigVariable::m_iConsoleLines = 28; //console lines default value
+
+void ConfigVariable::setConsoleLines(int _iConsoleLines)
+{
+    m_iConsoleLines = _iConsoleLines;
+}
+
+int ConfigVariable::getConsoleLines(void)
+{
+    return m_iConsoleLines;
+}
+/*
+** \}
+*/
+
+/*
 ** Scilab mode
 ** \{
 */
@@ -610,7 +630,7 @@ int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynam
     }
 
     m_DynLibList.push_back(_pDynamicLibrary);
-    return m_DynLibList.size() - 1;
+    return (int)m_DynLibList.size() - 1;
 }
 
 void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
@@ -729,10 +749,53 @@ wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
         pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
     }
 
-    *_piCount = m_Args.size();
+    *_piCount = (int)m_Args.size();
     return pwstArgs;
 }
 
 /*
 ** \}
 */
+
+
+///*
+//** Input Method
+//** \{
+//*/
+//
+//SCILAB_INPUT_METHOD ConfigVariable::m_pInputMethod = NULL;
+//
+//void ConfigVariable::setInputMethod(SCILAB_INPUT_METHOD _pInputMethod)
+//{
+//    m_pInputMethod = _pInputMethod;
+//}
+//
+//SCILAB_INPUT_METHOD ConfigVariable::getInputMethod(void)
+//{
+//    return m_pInputMethod;
+//}
+//
+///*
+//** \}
+//*/
+//
+///*
+//** Output Method
+//** \{
+//*/
+//
+//SCILAB_OUTPUT_METHOD ConfigVariable::m_pOutputMethod = NULL;
+//
+//void ConfigVariable::setOutputMethod(SCILAB_OUTPUT_METHOD _pOutputMethod)
+//{
+//    m_pOutputMethod = _pOutputMethod;
+//}
+//
+//SCILAB_OUTPUT_METHOD ConfigVariable::getOutputMethod(void)
+//{
+//    return m_pOutputMethod;
+//}
+//
+///*
+//** \}
+//*/

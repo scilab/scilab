@@ -12,6 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/
+
 #include <stdlib.h>
 #include "ConsolePrintf.h"
 #include "ConsoleRead.h"
@@ -25,6 +26,7 @@
 #include "GetCharWithoutOutput.h"
 #include "ConsoleIsWaitingForInput.h"
 #include "scilines.h"
+
 /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {

@@ -49,7 +49,7 @@
 
 #include <limits>
 
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
 #include "parser.hxx"
@@ -1337,15 +1337,15 @@ int mexPrintf(const char *format, ...)
     va_start(arg_ptr, format);
     vsnprintf(string, 1024, format, arg_ptr);
     va_end(arg_ptr);
-    YaspWrite(string);
+    scilabWrite(string);
     return 0;
 }
 
 void mexWarnMsgTxt(const char *error_msg)
 {
-    YaspError(_("Warning: "));
-    YaspError(error_msg);
-    YaspError("\n\n");
+    scilabError(_("Warning: "));
+    scilabError(error_msg);
+    scilabError("\n\n");
 }
 
 int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
@@ -1610,7 +1610,7 @@ int mexEvalString(const char *name)
                     ostr << L"ans = " << std::endl;
                     ostr << std::endl;
                     ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
-                    YaspWriteW(ostr.str().c_str());
+                    scilabWriteW(ostr.str().c_str());
                 }
             }
         }
@@ -1618,7 +1618,7 @@ int mexEvalString(const char *name)
         {
             if(bErrCatch  == false && bMute == false)
             {
-                YaspErrorW(sm.GetErrorMessage().c_str());
+                scilabErrorW(sm.GetErrorMessage().c_str());
 
                 CallExp* pCall = dynamic_cast<CallExp*>(*j);
                 if(pCall != NULL)
@@ -1676,8 +1676,8 @@ int mexEvalString(const char *name)
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
                 //write error
-                YaspErrorW(se.GetErrorMessage().c_str());
-                YaspErrorW(L"\n");
+                scilabErrorW(se.GetErrorMessage().c_str());
+                scilabErrorW(L"\n");
 
                 //write positino
                 wchar_t szError[bsiz];
@@ -2048,6 +2048,7 @@ mxLogical *mxGetLogicals(const mxArray *ptr)
 void mexInfo(char *str)
 {
     mexPrintf("mexInfo: %s", str);
+    // FIXME : Use scilabWrite
 }
 
 int mexCheck(char *str, int nbvars)

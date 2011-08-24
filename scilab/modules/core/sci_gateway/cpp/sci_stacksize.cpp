@@ -13,7 +13,7 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
-#include "yaspio.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -37,7 +37,7 @@ Function::ReturnValue sci_stacksize(types::typed_list &in, int _iRetCount, types
         return types::Function::Error;
     }
 
-    YaspWriteW(_W("[WARNING]: stakcsize: No more need to change Scilab stack size. Function will be remove in version 6.1.\n"));
+    scilabWriteW(_W("[WARNING]: stakcsize: No more need to change Scilab stack size. Function will be remove in version 6.1.\n"));
 
     if(in.size() == 0)
     {

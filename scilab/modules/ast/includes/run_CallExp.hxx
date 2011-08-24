@@ -191,7 +191,7 @@ void visitprivate(const CallExp &e)
 
                 if(bTypeSet == true && execArg.result_get()->getType() != rtIndex)
                 {//TODO: error
-                    YaspWriteW(L"merdouille");
+                    scilabWriteW(L"merdouille");
                 }
 
                 if(execArg.result_get()->isString())
