@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry version="5.0-subset Scilab" xml:id="XMLObjects" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>XML Objects</refname>
+    <refpurpose>Describe the properties of the different XML objects</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="XMLDocument">XML Document</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLElement">XML Element</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLAttributes">XML Attributes</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLNamespace">XML Namespace</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLNodeList">XML Node List</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLNodeSet">XML XPath result set</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The nodes and their properties can be accessed and modified.</para>
+  </refsection>
+
+  <refsection id="XMLDocument">
+    <title>XML Document</title>
+
+    <para>A XML Document has two properties: root and url
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">root</emphasis>: the root element of the document, it is a XML Element;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">url</emphasis>: the url, as a string, of the document if it exist or an empty string if it is undefined.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
+    doc.root = doc.root.children(1);
+    xmlDump(doc)
+    doc.url = "/tmp/foo.xml";
+    doc
+    xmlWrite(doc);
+    xmlClose(doc);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection id="XMLElement">
+    <title>XML Element</title>
+
+    <para>A XML Element has seven properties:
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">name</emphasis>: the tag name;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">namespace</emphasis>: a XML Namespace object;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">content</emphasis>: the node content as a string. For example, the content of the node A in &lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; will be the string "hello world";
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">type</emphasis>: the type of the node as a string. It can be on of the following values: "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">parent</emphasis>: the parent XML Element;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">attributes</emphasis>: the node attributes as a XML Attributes object;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">children</emphasis>: the children elements as a XML Node List object.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    first = doc.root.children(1);
+    b = first.children(1);
+
+    // Add a new attribute named "new_attribute"
+    first.attributes.new_attribute = "value";
+
+    // Display the first child namespace
+    first.namespace
+
+    // Display the node content
+    first.content
+
+    // b has a parent
+    b.parent
+
+    // You can add a new child to first
+    first.children(3) = b
+
+    // non-integer index can be used to make insertion
+    first.children(1.5) = "<d> Scilab</d>"
+
+    xmlDump(first)
+    xmlClose(doc);
+    ]]></programlisting>
+    </para>
+  </refsection>
+
+  <refsection id="XMLAttributes">
+    <title>XML Attributes</title>
+
+    <para>A XML Attributes is a kind of hashtable which maps attributes name to attributes value. An attribute value can be accessed or modified in using the attribute name as field of this object.</para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    first = doc.root.children(1);
+
+    // Read an attribute
+    first.attributes.att
+
+    // Remove an attribute
+    first.attributes.att = "";
+
+    // Add a new attribute
+    first.attributes.hello = "world";
+
+    xmlDump(first)
+    xmlClose(doc);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection id="XMLNamespace">
+    <title>XML Namespace</title>
+
+    <para>A XML Namespace has two properties: href and prefix
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">href</emphasis>: the namespace href as a string;
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">prefix</emphasis>: the prefix to use for this namespace, as a string.
+        </para>
+      </listitem>
+    </itemizedlist>
+    </para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    ns = doc.root.children(1).namespace;
+    ns.href
+    ns.prefix
+
+    xmlClose(doc);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection id="XMLNodeList">
+    <title>XML Node List</title>
+
+    <para>A XML Node List is a type used to enumerate the children of an element. Each element can be accessed with an integer index. Since this is a list, it is possible to make insertion of new element in it, in using double index.</para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
+    c = doc.root.children;
+
+    // Read the first element
+    xmlDump(c(1))
+
+    // Replace an element by another one
+    c(1) = "<c>Hello</c>"
+
+    // Insert a new element between the first and the second
+    c(1.5) = "<d> Scilab</d>" // 1.5 or 1.234...
+
+    // Insert a new element at the tail or at the head of the list
+    c(0) = "<e>Head </e>"
+    c(217) = "<f> Tail</f>"
+
+    xmlDump(c)
+
+    xmlClose(doc);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection id="XMLNodeSet">
+    <title>XML XPath result set</title>
+
+    <para>A XML Node Set is an object returned by a XPath query. It is not possible to insert new elements or to replace existing ones. It is just possible to get them in using an integer index.</para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a><b>Hello</b></a><a>World</a></root>");
+    s = xmlXPath(doc, "//a")
+    s(1).content
+    s(2).content
+
+    xmlClose(doc);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xmlRead">xmlRead</link>
+      </member>
+      <member>
+        <link linkend="xmlReadStr">xmlReadStr</link>
+      </member>
+      <member>
+        <link linkend="xmlElement">xmlElement</link>
+      </member>
+      <member>
+        <link linkend="xmlDocument">xmlDocument</link>
+      </member>
+      <member>
+        <link linkend="xmlNs">xmlNs</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Author</title>
+    <para>Calixte DENIZET</para>
+  </refsection>
+</refentry>
