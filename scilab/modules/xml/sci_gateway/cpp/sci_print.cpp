@@ -25,6 +25,7 @@ extern "C"
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "xml_mlist.h"
+#include "localization.h"
 }
 
 using namespace org_modules_xml;
@@ -35,7 +36,7 @@ int sci_print(char * fname, unsigned long fname_len)
     XMLObject * obj;
     int id;
     SciErr err;
-    int *mlistaddr = 0;
+    int * mlistaddr = 0;
 
     CheckRhs(1, 1);
 
@@ -50,13 +51,12 @@ int sci_print(char * fname, unsigned long fname_len)
     obj = XMLObject::getFromId<XMLObject>(id);
     if (!obj)
     {
-        Scierror(999, "%s: XML object does not exist\n", fname);
+        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
 
-    std::string * str = obj->toString();
-    sciprint("%s\n", str->c_str());
-    delete str;
+    const std::string str = obj->toString();
+    sciprint("%s\n", str.c_str());
 
     return 0;
 }
@@ -82,6 +82,11 @@ int sci_percent_XMLList_p(char *fname, unsigned long fname_len)
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLAttr_p(char *fname, unsigned long fname_len)
+{
+    return sci_print(fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_percent_XMLSet_p(char *fname, unsigned long fname_len)
 {
     return sci_print(fname, fname_len);
 }

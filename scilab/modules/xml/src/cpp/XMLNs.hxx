@@ -10,27 +10,66 @@
  *
  */
 
+#ifndef __XMLNS_HXX__
+#define __XMLNS_HXX__
+
 #include <string>
 
 #include "xml.h"
 
 namespace org_modules_xml
 {
+
     class XMLElement;
     class XMLObject;
-    
+
+    /**
+     * @file
+     * @author Calixte DENIZET <calixte.denizet@scilab.org>
+     *
+     * Class to wrap a namespace xmlNs.
+     * @see http://xmlsoft.org/html/libxml-tree.html#xmlNs
+     */
     class XMLNs : public XMLObject
     {
-	XMLObject * parent;
-	xmlNs * ns;
-	
+        const XMLObject & parent;
+        xmlNs * ns;
+
     public:
-	XMLNs(XMLObject * parent, xmlNs * ns);
-	~XMLNs();
-	
-	const char * getURI(void) { return ns == 0 ? "" : (const char *)ns->href; }
-	const char * getPrefix(void) { return ns == 0 ? "" : (const char *)ns->prefix; }
-	XMLObject * getXMLObjectParent();
-	std::string * toString();
+
+        /**
+         * @param parent the parent XML object
+         * @param ns the xml namespace
+         */
+        XMLNs(const XMLObject & parent, xmlNs * ns);
+
+        /**
+         * @param elem the parent XMLElement
+         * @param prefix the namespace prefix
+         * @param href the namespace href
+         */
+        XMLNs(const XMLElement & elem, char * prefix, char * href);
+
+        ~XMLNs();
+
+        /**
+         * @return the namespace href
+         */
+        const char * getHref() const { return ns == 0 ? "" : (const char *)ns->href; }
+
+        /**
+         * @return the namespace prefix
+         */
+        const char * getPrefix() const { return ns == 0 ? "" : (const char *)ns->prefix; }
+
+        /**
+         * @return the xmlNs behind this object
+         */
+        xmlNs * getRealNs() const { return ns; }
+
+        const XMLObject * getXMLObjectParent() const;
+        const std::string toString() const;
     };
 }
+
+#endif

@@ -28,9 +28,4 @@ int sci_percent_XMLNs_e(char *fname, unsigned long fname_len)
 {
     return sci_extraction<XMLNs>(fname, fname_len);
 }
-/*--------------------------------------------------------------------------
-int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
-{
-    return sci_extraction<XMLAttr>(fname, fname_len);
-}
 /*--------------------------------------------------------------------------*/

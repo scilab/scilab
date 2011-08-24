@@ -10,25 +10,43 @@
  *
  */
 
-#include "xml.h"
+#ifndef __XMLNODESET_HXX__
+#define __XMLNODESET_HXX__
+
 #include "XMLList.hxx"
+#include "xml.h"
 
 namespace org_modules_xml
 {
     class XMLDocument;
     class XMLElement;
 
+    /**
+     * @file
+     * @author Calixte DENIZET <calixte.denizet@scilab.org>
+     *
+     * Class to wrap the list of the elements returned by a XPath query
+     */
     class XMLNodeSet : public XMLList
     {
 
-        XMLDocument * doc;
+        const XMLDocument & doc;
         xmlNodeSet * nodeSet;
 
     public :
-        XMLNodeSet(XMLDocument * doc, xmlNodeSet * nodeSet);
+
+        /**
+         * Default constructor
+         * @param doc the document where the node set is existing
+         * @param nodeSet a xmlNodeSet
+         */
+        XMLNodeSet(const XMLDocument & doc, xmlNodeSet * nodeSet);
+
         ~XMLNodeSet();
 
-	XMLObject * getXMLObjectParent();
-        XMLObject * getListElement(int index);
+        const XMLObject * getXMLObjectParent() const;
+        const XMLObject * getListElement(int index);
     };
 }
+
+#endif

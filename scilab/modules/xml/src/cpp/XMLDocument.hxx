@@ -10,11 +10,22 @@
  *
  */
 
+#ifndef __XMLDOCUMENT_HXX__
+#define __XMLDOCUMENT_HXX__
+
 #include <cstdio>
 #include <list>
+#include <cstring>
 #include <string>
 
 #include "xml.h"
+
+extern "C"
+{
+#ifndef XML_XPATH_CHECKNS
+#define XML_XPATH_CHECKNS
+#endif
+}
 
 namespace org_modules_xml
 {
@@ -22,31 +33,145 @@ namespace org_modules_xml
     class XMLObject;
     class XMLXPath;
 
+    /**
+     * @file
+     * @author Calixte DENIZET <calixte.denizet@scilab.org>
+     *
+     * Class to wrap a xmlDoc
+     * @see http://xmlsoft.org/html/libxml-tree.html#xmlDoc
+     */
     class XMLDocument : public XMLObject
     {
-	static std::list<XMLDocument *> & openDocs;
+        static std::list<XMLDocument *> & openDocs;
         xmlDoc * document;
-	
+
     public :
-        XMLDocument(const char * path, char **error);
-	~XMLDocument();
 
-	static std::list<XMLDocument *> & getOpenDocuments();
+        /**
+         * Gets the list of open docs
+         * @return the list
+         */
+        static std::list<XMLDocument *> & getOpenDocuments();
 
-	xmlDoc * getRealDocument() { return document; }
-        XMLElement * getRoot();
-	XMLXPath * makeXPathQuery(const char * query, char ** error);
-        const char * getDocumentURL() { return (const char *)document->URL; }
-        XMLObject * getXMLObjectParent();
-	std::string * dump();
-	std::string * toString();
+        /**
+         * Closes all the open documents
+         */
+        static void closeAllDocuments();
+
+        /**
+         * Builds a document with a given path (can be an url)
+         * @param path the document path
+         * @param validate a boolean to indicate if the document must be validated in using a DTD
+         * @param error a pointer to a string which will receive the error message
+         */
+        XMLDocument(const char * path, bool validate, char ** error);
+
+        /**
+         * Builds a document with a given code
+         * @param xmlCode the XML code
+         * @param validate a boolean to indicate if the document must be validated in using a DTD
+         * @param error a pointer to a string which will receive the error message
+         */
+        XMLDocument(const std::string & xmlCode, bool validate, char ** error);
+
+        /**
+         * Builds a simple document
+         * @param uri the document uri
+         * @param version the xml version
+         */
+        XMLDocument(char * uri, char * version);
+
+        ~XMLDocument();
+
+        /**
+         * @return the xmlDoc behind this XMLDocument
+         */
+        xmlDoc * getRealDocument() const { return document; }
+
+        /**
+         * @return the document root
+         */
+        const XMLElement * getRoot() const;
+
+        /**
+         * @param value the root to set
+         */
+        void setRoot(const XMLElement & value) const;
+
+        /**
+         * Replaces the root element by the the root of the xmlCode/
+         * @param xmlCode the XML code
+         * @param error a pointer to a string which will receive the error message
+         */
+        void setRoot(const std::string & xmlCode, char ** error) const;
+
+        /**
+         * @return the document URL
+         */
+        const char * getDocumentURL() const;
+
+        /**
+         * @param value the document URL to set
+         */
+        void setDocumentURL(const std::string & value) const;
+
+        /**
+         * Makes an XPath query on the document
+         * @param query the XPath query
+         * @param namespaces an a matrix nx2 containing mapping between prefix and href
+         * @param length the number of namespaces
+         * @param error a pointer to a string which will receive the error message
+         * @return a pointer on a XPath object
+         */
+        const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, char ** error);
+
+        const XMLObject * getXMLObjectParent() const;
+        const std::string dump() const;
+        const std::string toString() const;
 
     private :
-	static void errorFunction(void * ctx, const char * msg, ...);
-	static void errorXPathFunction(void * ctx, xmlError * error);
-	static xmlDoc * readDocument(const char * filename, char ** error);
 
-	static std::string * errorBuffer;
-	static std::string * errorXPathBuffer;
+        /**
+         * Error function for the XML parser
+         * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlGenericErrorFunc
+         */
+        static void errorFunction(void * ctx, const char * msg, ...);
+
+        /**
+         * Error function used when the XPath query is compiled/
+         * @see http://xmlsoft.org/html/libxml-xmlerror.html#xmlStructuredErrorFunc
+         */
+        static void errorXPathFunction(void * ctx, xmlError * error);
+
+        /**
+         * Reads and parses a document given in a file.
+         * @param filename the file name
+         * @param validate a boolean to indicate if the document must be validated in using a DTD
+         * @param error a string where to write the parsing errors
+         * @return a pointer on a xmlDoc
+         */
+        static xmlDoc * readDocument(const char * filename, bool validate, char ** error);
+
+        /**
+         * Read and parse a document given in a string.
+         * @param xmlCode the XML code
+         * @param validate a boolean to indicate if the document must be validated in using a DTD
+         * @param error a string where to write the parsing errors
+         * @return a pointer on a xmlDoc
+         */
+        static xmlDoc * readDocument(const std::string & xmlCode, bool validate, char ** error);
+
+        /**
+         * Initializes the context
+         * @param error a string where to write the parsing errors
+         * @param validate a boolean to indicate if the document must be validated in using a DTD
+         * @return a pointer on a context
+         */
+        static xmlParserCtxt * initContext(char ** error, bool validate);
+
+        static std::string * errorBuffer;
+        static std::string * errorXPathBuffer;
     };
 }
+
+#endif

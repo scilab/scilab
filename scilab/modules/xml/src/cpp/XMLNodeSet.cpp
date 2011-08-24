@@ -24,57 +24,60 @@
 namespace org_modules_xml
 {
 
-    XMLNodeSet::XMLNodeSet(XMLDocument * doc, xmlNodeSet * nodeSet)
-        : XMLList()
+    XMLNodeSet::XMLNodeSet(const XMLDocument & _doc, xmlNodeSet * _nodeSet) : XMLList(), doc(_doc)
     {
-        this->doc = doc;
-        this->nodeSet = nodeSet;
-	if (nodeSet)
-	{
-	    this->size = nodeSet->nodeNr;
-	}
-	else
-	{
-	    this->size = 0;
-	}
+        nodeSet = _nodeSet;
+        if (nodeSet)
+        {
+            scope.registerPointers(nodeSet, this);
+            size = nodeSet->nodeNr;
+        }
+        else
+        {
+            size = 0;
+        }
+        scilabType = XMLSET;
     }
 
     XMLNodeSet::~XMLNodeSet()
     {
+        scope.unregisterPointer(nodeSet);
         scope.removeId<XMLNodeSet>(id);
     }
 
-    XMLObject * XMLNodeSet::getXMLObjectParent()
+    const XMLObject * XMLNodeSet::getXMLObjectParent() const
     {
-        return doc;
+        return &doc;
     }
 
-    XMLObject * XMLNodeSet::getListElement(int index)
+    const XMLObject * XMLNodeSet::getListElement(int index)
     {
         if (nodeSet && index >= 1 && index <= size)
         {
-	    xmlNode * node = nodeSet->nodeTab[index - 1];
-	    switch (node->type)
-	    {
-	    case XML_ELEMENT_NODE :
-	    case XML_TEXT_NODE :
-	    case XML_CDATA_SECTION_NODE :
-	    case XML_COMMENT_NODE :
-		return new XMLElement(doc, node);
-	    case XML_ATTRIBUTE_NODE :
-		return new XMLAttr(new XMLElement(doc, node->parent));
-	    case XML_NAMESPACE_DECL :
-		return new XMLNs(doc, (xmlNs *) node);
-	    case XML_ELEMENT_DECL :
-	    case XML_ATTRIBUTE_DECL :
-	    case XML_ENTITY_DECL :
-	    case XML_XINCLUDE_START :
-	    case XML_XINCLUDE_END:
-		return new XMLNotHandledElement(doc, node);
-	    }
+            xmlNode * node = nodeSet->nodeTab[index - 1];
+            switch (node->type)
+            {
+            case XML_ELEMENT_NODE :
+            case XML_TEXT_NODE :
+            case XML_CDATA_SECTION_NODE :
+            case XML_COMMENT_NODE :
+                return new XMLElement(doc, node);
+            case XML_ATTRIBUTE_NODE :
+                return new XMLAttr(XMLElement(doc, node->parent));
+            case XML_NAMESPACE_DECL :
+                return new XMLNs(doc, (xmlNs *)node);
+            case XML_ELEMENT_DECL :
+            case XML_ATTRIBUTE_DECL :
+            case XML_ENTITY_DECL :
+            case XML_XINCLUDE_START :
+            case XML_XINCLUDE_END :
+            case XML_DOCUMENT_NODE :
+                return new XMLNotHandledElement(doc, node);
+            default :
+                break;
+            }
+        }
 
-	}
-	
         return 0;
     }
 }

@@ -10,6 +10,9 @@
  *
  */
 
+#ifndef __XMLNOTHANDLEDELEMENT_HXX__
+#define __XMLNOTHANDLEDELEMENT_HXX__
+
 #include <string>
 
 #include "xml.h"
@@ -17,17 +20,32 @@
 namespace org_modules_xml
 {
     class XMLObject;
-    
+
+    /**
+     * @file
+     * @author Calixte DENIZET <calixte.denizet@scilab.org>
+     *
+     * Class for not handled nodes.
+     */
     class XMLNotHandledElement : public XMLObject
     {
-	XMLObject * parent;
-	xmlNode * node;
-	
+        const XMLObject & parent;
+        xmlNode * node;
+
     public:
-	XMLNotHandledElement(XMLObject * parent, xmlNode * node);
-	~XMLNotHandledElement();
-	
-	XMLObject * getXMLObjectParent();
-	std::string * toString();
+        /**
+         * Default constructor
+         * @param parent the parent
+         * @param node the not handled node
+         */
+        XMLNotHandledElement(const XMLObject & parent, xmlNode * node);
+
+        ~XMLNotHandledElement();
+
+        const XMLObject * getXMLObjectParent() const;
+        const std::string toString() const;
     };
 }
+
+#endif
+

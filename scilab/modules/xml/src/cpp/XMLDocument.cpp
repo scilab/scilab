@@ -25,33 +25,63 @@ extern "C" {
 
 namespace org_modules_xml
 {
+
     std::string * XMLDocument::errorBuffer = 0;
     std::string * XMLDocument::errorXPathBuffer = 0;
     std::list<XMLDocument *> & XMLDocument::openDocs = *new std::list<XMLDocument *>();
 
-    /**
-     * Default constructor
-     * @param path the path to the file (can be an url)
-     * @param error will contain parsing errors if exists
-     */
-    XMLDocument::XMLDocument(const char * path, char ** error)
-        : XMLObject()
+    XMLDocument::XMLDocument(const char * path, bool validate, char ** error) : XMLObject()
     {
         char * expandedPath = expandPathVariable(const_cast<char *>(path));
-        document = readDocument(const_cast<const char *>(expandedPath), error);
+        document = readDocument(const_cast<const char *>(expandedPath), validate, error);
         FREE(expandedPath);
         if (document)
         {
             openDocs.push_back(this);
         }
-	scilabType = XMLDOCUMENT;
+        scope.registerPointers(document, this);
+        scilabType = XMLDOCUMENT;
     }
 
-    /**
-     * Destructor
-     */
+    XMLDocument::XMLDocument(const std::string & xmlCode, bool validate, char ** error) : XMLObject()
+    {
+        document = readDocument(xmlCode, validate, error);
+        if (document)
+        {
+            openDocs.push_back(this);
+        }
+        scope.registerPointers(document, this);
+        scilabType = XMLDOCUMENT;
+    }
+
+    XMLDocument::XMLDocument(char * uri, char * version) : XMLObject()
+    {
+        char * newUri = 0;
+        char * expandedPath = 0;
+
+        if (!version)
+        {
+            version = const_cast<char *>("1.0");
+        }
+        document = xmlNewDoc((xmlChar *)version);
+        openDocs.push_back(this);
+        scope.registerPointers(document, this);
+        scilabType = XMLDOCUMENT;
+
+        expandedPath = expandPathVariable(const_cast<char *>(uri));
+
+        if (expandedPath)
+        {
+            newUri = (char *)xmlMalloc(sizeof(char *) * (strlen(expandedPath) + 1));
+            memcpy(newUri, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
+            document->URL = (xmlChar *)newUri;
+            FREE(expandedPath);
+        }
+    }
+
     XMLDocument::~XMLDocument()
     {
+        scope.unregisterPointer(document);
         scope.removeId<XMLDocument>(id);
         if (document)
         {
@@ -70,7 +100,7 @@ namespace org_modules_xml
         }
     }
 
-    XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** error)
+    const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, char ** error)
     {
         if (errorXPathBuffer)
         {
@@ -83,6 +113,14 @@ namespace org_modules_xml
         {
             *error = const_cast<char *>("Cannot create a parser context");
             return 0;
+        }
+
+        if (namespaces)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                xmlXPathRegisterNs(ctxt, (const xmlChar *)namespaces[i], (const xmlChar *)namespaces[i + length]);
+            }
         }
 
         xmlSetStructuredErrorFunc(ctxt, XMLDocument::errorXPathFunction);
@@ -100,44 +138,132 @@ namespace org_modules_xml
             return 0;
         }
 
-        return new XMLXPath(this, xpath);
+        return new XMLXPath(*this, xpath);
     }
 
-    XMLObject * XMLDocument::getXMLObjectParent()
+    const XMLObject * XMLDocument::getXMLObjectParent() const
     {
         return 0;
     }
 
-    std::string  * XMLDocument::toString()
+    const std::string XMLDocument::toString() const
     {
         std::string str = "XML Document\n";
         str += "URL: " + std::string(getDocumentURL());
 
-        return new std::string(str);
+        return str;
     }
 
-    std::string * XMLDocument::dump()
+    const std::string XMLDocument::dump() const
     {
         xmlChar * buffer = 0;
         int size = 0;
         xmlDocDumpFormatMemory(document, &buffer, &size, 1);
-        std::string * str = new std::string((const char *)buffer);
+        std::string str = std::string((const char *)buffer);
         xmlFree(buffer);
 
         return str;
     }
 
-    /**
-     * @return the root element of this XMLDocument
-     */
-    XMLElement * XMLDocument::getRoot(void)
+    const XMLElement * XMLDocument::getRoot() const
     {
-        return new XMLElement(this, xmlDocGetRootElement(document));
+        return new XMLElement(*this, xmlDocGetRootElement(document));
+    }
+
+    void XMLDocument::setRoot(const XMLElement & elem) const
+    {
+        xmlNode * root = xmlDocGetRootElement(document);
+        if (root != elem.getRealNode())
+        {
+            xmlNode * cpy = xmlCopyNodeList(elem.getRealNode());
+            xmlUnlinkNode(cpy);
+            xmlDocSetRootElement(document, cpy);
+        }
+    }
+
+    void XMLDocument::setRoot(const std::string & xmlCode, char ** error) const
+    {
+        XMLDocument doc = XMLDocument(xmlCode, false, error);
+
+        if (!*error)
+        {
+            setRoot(*doc.getRoot());
+        }
+    }
+
+    const char * XMLDocument::getDocumentURL() const
+    {
+        if (document->URL)
+        {
+            return (const char *)document->URL;
+        }
+        else
+        {
+            return "Undefined";
+        }
+    }
+
+    void XMLDocument::setDocumentURL(const std::string & url) const
+    {
+        char * expandedPath = 0;
+        char * newURL = 0;
+        expandedPath = expandPathVariable(const_cast<char *>(url.c_str()));
+
+        if (expandedPath)
+        {
+            xmlFree((void *)document->URL);
+            newURL = (char *)xmlMalloc(sizeof(char *) * (strlen(expandedPath) + 1));
+            memcpy(newURL, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
+            document->URL = (xmlChar *)newURL;
+            FREE(expandedPath);
+        }
     }
 
     std::list<XMLDocument *> & XMLDocument::getOpenDocuments()
     {
         return openDocs;
+    }
+
+    void XMLDocument::closeAllDocuments()
+    {
+        int size = openDocs.size();
+        XMLDocument * arr[size];
+        int j = 0;
+        for (std::list<XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
+        {
+            arr[j] = *i;
+        }
+        for (j = 0; j < size; j++)
+        {
+            delete arr[j];
+        }
+    }
+
+    xmlDoc * XMLDocument::readDocument(const char * filename, bool validate, char ** error)
+    {
+        xmlParserCtxt * ctxt = initContext(error, validate);
+        xmlDoc * doc;
+        int options = XML_PARSE_NSCLEAN;
+
+        if (validate)
+        {
+            options = options | XML_PARSE_DTDVALID;
+        }
+
+        if (!ctxt)
+        {
+            return 0;
+        }
+
+        doc = xmlCtxtReadFile(ctxt, filename, 0, options);
+        if (!doc || !ctxt->valid)
+        {
+            *error = const_cast<char *>(errorBuffer->c_str());
+        }
+
+        xmlFreeParserCtxt(ctxt);
+
+        return doc;
     }
 
     /**
@@ -146,10 +272,36 @@ namespace org_modules_xml
      * @param error a string where to write the parsing errors
      * @return a pointer on a xmlDoc
      */
-    xmlDoc * XMLDocument::readDocument(const char * filename, char **error)
+    xmlDoc * XMLDocument::readDocument(const std::string & xmlCode, bool validate, char ** error)
     {
-        xmlParserCtxtPtr ctxt;
+        xmlParserCtxt * ctxt = initContext(error, validate);
         xmlDoc * doc;
+        int options = XML_PARSE_NSCLEAN;
+
+        if (validate)
+        {
+            options = options | XML_PARSE_DTDVALID;
+        }
+
+        if (!ctxt)
+        {
+            return 0;
+        }
+
+        doc = xmlCtxtReadDoc(ctxt, (const xmlChar *)xmlCode.c_str(), 0, 0, options);
+        if (!doc || !ctxt->valid)
+        {
+            *error = const_cast<char *>(errorBuffer->c_str());
+        }
+
+        xmlFreeParserCtxt(ctxt);
+
+        return doc;
+    }
+
+    xmlParserCtxt * XMLDocument::initContext(char ** error, bool validate)
+    {
+        xmlParserCtxt * ctxt;
 
         if (errorBuffer)
         {
@@ -164,23 +316,16 @@ namespace org_modules_xml
             return 0;
         }
 
-        xmlSetGenericErrorFunc(ctxt, XMLDocument::errorFunction);
-
-        doc = xmlCtxtReadFile(ctxt, filename, 0, 0);
-        if (!doc)
+        if (validate)
         {
-            *error = const_cast<char *>(errorBuffer->c_str());
+            ctxt->vctxt.error = (xmlValidityErrorFunc) errorFunction;
         }
 
-        return doc;
+        xmlSetGenericErrorFunc(ctxt, XMLDocument::errorFunction);
+
+        return ctxt;
     }
 
-    /**
-     * Error function to use in the parser (see xmlSetGenericErrorFunc)
-     * @param ctx the context
-     * @param msg the error message
-     * @param ... the arguments to format the error message
-     */
     void XMLDocument::errorFunction(void * ctx, const char * msg, ...)
     {
         char str[BUFFER_SIZE];

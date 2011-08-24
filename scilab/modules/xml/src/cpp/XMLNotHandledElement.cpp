@@ -20,12 +20,10 @@ extern "C" {
 
 namespace org_modules_xml
 {
-    XMLNotHandledElement::XMLNotHandledElement(XMLObject * parent_, xmlNode * node_)
-        : XMLObject()
+    XMLNotHandledElement::XMLNotHandledElement(const XMLObject & _parent, xmlNode * _node) : XMLObject(), parent(_parent)
     {
-        this->parent = parent_;
-	this->node = node_;
-	scilabType = XMLNOTHANDLED;
+        node = _node;
+        scilabType = XMLNOTHANDLED;
     }
 
     XMLNotHandledElement::~XMLNotHandledElement()
@@ -33,13 +31,13 @@ namespace org_modules_xml
         scope.removeId<XMLNotHandledElement>(id);
     }
 
-    XMLObject * XMLNotHandledElement::getXMLObjectParent()
+    const XMLObject * XMLNotHandledElement::getXMLObjectParent() const
     {
-        return parent;
+        return &parent;
     }
 
-    std::string * XMLNotHandledElement::toString()
+    const std::string XMLNotHandledElement::toString() const
     {
-        return new std::string("Not handled XML Element\ntype" + std::string(nodes_type[node->type - 1]));
+        return std::string("Not handled XML Element\ntype") + std::string(nodes_type[node->type - 1]);
     }
 }

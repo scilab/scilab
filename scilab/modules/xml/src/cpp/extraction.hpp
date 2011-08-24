@@ -10,6 +10,8 @@
  *
  */
 
+#include <vector>
+
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
 #include "XMLElement.hxx"
@@ -26,11 +28,20 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "xml_constants.h"
+#include "localization.h"
 }
 
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Creates a string on stack
+ * @param fname the function name
+ * @param str the string to put
+ * @param pos the stack position
+ * @return 1 if all is ok, else 0
+ */
 int createStringOnStack(char * fname, const char * str, int pos)
 {
     SciErr err;
@@ -39,7 +50,36 @@ int createStringOnStack(char * fname, const char * str, int pos)
     {
         str = "";
     }
-    err = createMatrixOfString(pvApiCtx, pos, 1, 1, const_cast<const char * const *>(&str));
+
+    if (strchr(str, '\n'))
+    {
+        char * tok = strdup(str);
+        char * stok = tok;
+        std::vector<char *> vector = std::vector<char *>();
+
+        tok = strtok(tok, "\n");
+        while (tok)
+        {
+            vector.push_back(tok);
+            tok = strtok(0, "\n");
+        }
+
+        if (vector.size())
+        {
+            err = createMatrixOfString(pvApiCtx, pos, vector.size(), 1, const_cast<const char * const *>(&(vector[0])));
+        }
+        else
+        {
+            err = createMatrixOfDouble(pvApiCtx, pos, 0, 0, 0);
+        }
+
+        free(stok);
+    }
+    else
+    {
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, const_cast<const char * const *>(&str));
+    }
+
     if (err.iErr)
     {
         printError(&err, 0);
@@ -49,11 +89,19 @@ int createStringOnStack(char * fname, const char * str, int pos)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos)
+/**
+ * Creates a new variable on stack according to the requested field
+ * @param fname the function name
+ * @param doc the document
+ * @param field the field name
+ * @param pos the stack position
+ * @return 1 if all is ok, else 0
+ */
+int createVariableOnStack(char * fname, XMLDocument & doc, const char * field, int pos)
 {
     if (!strcmp("root", field))
     {
-	return doc.getRoot()->createOnStack(pos);
+        return doc.getRoot()->createOnStack(pos);
     }
     else if (!strcmp("url", field))
     {
@@ -61,13 +109,20 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
     }
     else
     {
-        Scierror(999, "%s: Unknown field: %s\n", fname, field);
+        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
         return 0;
     }
-
-    return 1;
 }
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Creates a new variable on stack according to the requested field
+ * @param fname the function name
+ * @param elem the element
+ * @param field the field name
+ * @param pos the stack position
+ * @return 1 if all is ok, else 0
+ */
 int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos)
 {
     if (!strcmp("name", field))
@@ -76,14 +131,23 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     }
     else if (!strcmp("namespace", field))
     {
-        return elem.getNodeNameSpace()->createOnStack(pos);
+        const XMLNs * ns = elem.getNodeNameSpace();
+        if (ns)
+        {
+            return ns->createOnStack(pos);
+        }
+        else
+        {
+            createMatrixOfDouble(pvApiCtx, pos, 0, 0, 0);
+            return 1;
+        }
     }
     else if (!strcmp("content", field))
     {
         const char * content = elem.getNodeContent();
-        int ierr = createStringOnStack(fname, content, pos);
+        int ret = createStringOnStack(fname, content, pos);
         xmlFree(const_cast<char *>(content));
-        return ierr;
+        return ret;
     }
     else if (!strcmp("type", field))
     {
@@ -91,7 +155,16 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     }
     else if (!strcmp("parent", field))
     {
-        return elem.getParentElement()->createOnStack(pos);
+        const XMLElement * parent = elem.getParentElement();
+        if (parent)
+        {
+            return parent->createOnStack(pos);
+        }
+        else
+        {
+            createMatrixOfDouble(pvApiCtx, pos, 0, 0, 0);
+            return 1;
+        }
     }
     else if (!strcmp("attributes", field))
     {
@@ -103,42 +176,58 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     }
     else
     {
-        Scierror(999, "%s: Unknown field: %s\n", fname, field);
+        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Creates a new variable on stack according to the requested field
+ * @param fname the function name
+ * @param ns the namespace
+ * @param field the field name
+ * @param pos the stack position
+ * @return 1 if all is ok, else 0
+ */
 int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos)
 {
-    if (!strcmp("uri", field))
+    if (!strcmp("href", field))
     {
-        createStringOnStack(fname, ns.getURI(), pos);
+        return createStringOnStack(fname, ns.getHref(), pos);
     }
     else if (!strcmp("prefix", field))
     {
-        createStringOnStack(fname, ns.getPrefix(), pos);
+        return createStringOnStack(fname, ns.getPrefix(), pos);
     }
     else
     {
-        Scierror(999, "%s: Unknown field: %s\n", fname, field);
+        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
         return 0;
     }
-
-    return 1;
 }
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Creates a new variable on stack according to the requested field
+ * @param fname the function name
+ * @param attr the attributes
+ * @param field the field name
+ * @param pos the stack position
+ * @return 1 if all is ok, else 0
+ */
 int createVariableOnStack(char * fname, XMLAttr & attr, const char * field, int pos)
 {
     const char * value = attr.getAttributeValue(field);
-    int ret = createStringOnStack(fname, value, pos);
-    if (value)
-    {
-        xmlFree(const_cast<char *>(value));
-    }
-
-    return ret;
+    return createStringOnStack(fname, value, pos);
 }
 /*--------------------------------------------------------------------------*/
+
+/**
+ * Function to handle extraction in different XMLObjects
+ * @param fname the function name
+ * @param fname_len the function name length
+ */
 template<class T>
 int sci_extraction(char * fname, unsigned long fname_len)
 {
@@ -162,7 +251,7 @@ int sci_extraction(char * fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, "%s: Wrong type for input argument %i: String expected\n", fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
         return 0;
     }
 
@@ -177,10 +266,9 @@ int sci_extraction(char * fname, unsigned long fname_len)
     id = getXMLObjectId(mlistaddr);
 
     t = XMLObject::getFromId<T>(id);
-
     if (!t)
     {
-        Scierror(999, "%s: XML object does not exist\n", fname);
+        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
 

@@ -10,7 +10,8 @@
  *
  */
 
-#include <string>
+#ifndef __XMLXPATH_HXX__
+#define __XMLXPATH_HXX__
 
 #include "xml.h"
 
@@ -22,18 +23,21 @@ namespace org_modules_xml
 
     class XMLXPath : public XMLObject
     {
-        XMLDocument * doc;
+        const XMLDocument & doc;
         xmlXPathObject * xpath;
 
     public:
-        XMLXPath(XMLDocument * doc, xmlXPathObject * xpath);
-        ~XMLXPath();
+        XMLXPath(const XMLDocument & doc, xmlXPathObject * xpath);
+	~XMLXPath();
 
-        int getBooleanValue(void) { return xpath->boolval; }
-        double getFloatValue(void) { return xpath->floatval; }
-        const char * getStringValue(void) { return (const char *)xpath->stringval; }
-        int getResultType(void) { return xpath->type; }
-        XMLNodeSet * getNodeSet(void);
-        XMLObject * getXMLObjectParent();
+        int getBooleanValue() const { return xpath->boolval; }
+        double getFloatValue() const { return xpath->floatval; }
+        const char * getStringValue() const { return (const char *)xpath->stringval; }
+        int getResultType() const { return xpath->type; }
+        const XMLNodeSet * getNodeSet() const;
+        const XMLObject * getXMLObjectParent() const;
+
     };
 }
+
+#endif

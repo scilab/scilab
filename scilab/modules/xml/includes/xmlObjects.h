@@ -10,21 +10,15 @@
  *
  */
 
+#ifndef __XML_OBJECTS__
+#define __XML_OBJECTS__
 #include "XMLObject.hxx"
-#include "XMLList.hxx"
-
-namespace org_modules_xml
-{
-    XMLList::XMLList() : XMLObject()
-    {
-        scilabType = XMLLIST;
-    }
-
-    const std::string XMLList::toString() const
-    {
-        std::string str = "XML List\n";
-        str += "size: " + intToStr(getSize());
-
-        return str;
-    }
-}
+#include "XMLNodeList.hxx"
+#include "XMLNodeSet.hxx"
+#include "XMLAttr.hxx"
+#include "XMLNs.hxx"
+#include "XMLDocument.hxx"
+#include "XMLElement.hxx"
+#include "XMLNotHandledElement.hxx"
+#include "XMLXPath.hxx"
+#endif

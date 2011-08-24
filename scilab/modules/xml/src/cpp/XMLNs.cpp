@@ -17,30 +17,38 @@
 
 namespace org_modules_xml
 {
-    XMLNs::XMLNs(XMLObject * parent, xmlNs * ns)
-        : XMLObject()
+
+    XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns) : XMLObject(), parent(_parent)
     {
-        this->ns = ns;
-        this->parent = parent;
-	scilabType = XMLNAMESPACE;
+        ns = _ns;
+        scope.registerPointers(ns, this);
+        scilabType = XMLNAMESPACE;
+    }
+
+    XMLNs::XMLNs(const XMLElement & elem, char * prefix, char * href) : XMLObject(), parent(elem)
+    {
+        ns = xmlNewNs(elem.getRealNode(), (const xmlChar *)href, (const xmlChar *)prefix);
+        scope.registerPointers(ns, this);
+        scilabType = XMLNAMESPACE;
     }
 
     XMLNs::~XMLNs()
     {
+        scope.unregisterPointer(ns);
         scope.removeId<XMLNs>(id);
     }
 
-    XMLObject * XMLNs::getXMLObjectParent()
+    const XMLObject * XMLNs::getXMLObjectParent() const
     {
-        return parent;
+        return &parent;
     }
 
-    std::string * XMLNs::toString()
+    const std::string XMLNs::toString() const
     {
         std::string str = "XML Namespace\n";
-        str += "uri: " + std::string(this->getURI()) + "\n";
-        str += "prefix: " + std::string(this->getPrefix());
+        str += "href: " + std::string(getHref()) + "\n";
+        str += "prefix: " + std::string(getPrefix());
 
-        return new std::string(str);
+        return str;
     }
 }

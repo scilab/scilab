@@ -21,14 +21,15 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
+#include "localization.h"
 }
 
 using namespace org_modules_xml;
 
 int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
 {
-    XMLList * xmlList = 0;
-    XMLObject * elem;
+    XMLList * list = 0;
+    const XMLObject * elem;
     int id;
     SciErr err;
     double * dvalue = 0;
@@ -65,13 +66,13 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
 
     if (row != 1 || col != 1 || typ != sci_matrix)
     {
-        Scierror(999, "%s: Wrong dimension for input argument %i: Single double expected\n", fname, 1);
+        Scierror(999, gettext("%s: Wrong dimension for input argument #%i: Single double expected.\n"), fname, 1);
         return 0;
     }
 
     if (isVarComplex(pvApiCtx, daddr))
     {
-        Scierror(999, "%s: Wrong type for input argument %i: double expected\n", fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: Double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -90,18 +91,18 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(mlistaddr);
-    xmlList = XMLObject::getFromId<XMLList>(id);
-    if (!xmlList)
+    list = XMLObject::getFromId<XMLList>(id);
+    if (!list)
     {
-        Scierror(999, "%s: XML object do not exist\n", fname);
+        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
 
     index = (int)(*dvalue);
-    elem = xmlList->getListElement(index);
+    elem = list->getListElement(index);
     if (!elem)
     {
-        Scierror(999, "%s: Wrong index\n", fname);
+        Scierror(999, gettext("%s: Wrong index in the XMLList.\n"), fname);
         return 0;
     }
 

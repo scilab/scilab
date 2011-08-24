@@ -19,25 +19,25 @@
 
 namespace org_modules_xml
 {
-    XMLXPath::XMLXPath(XMLDocument * doc, xmlXPathObject * xpath)
-        : XMLObject()
+    XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLObject(), doc(_doc)
     {
-        this->doc = doc;
-        this->xpath = xpath;
+        xpath = _xpath;
+        scope.registerPointers(xpath, this);
     }
 
     XMLXPath::~XMLXPath()
     {
+        scope.unregisterPointer(xpath);
         scope.removeId<XMLXPath>(id);
     }
 
-    XMLObject * XMLXPath::getXMLObjectParent()
+    const XMLObject * XMLXPath::getXMLObjectParent() const
     {
-        return doc;
+        return &doc;
     }
 
-    XMLNodeSet * XMLXPath::getNodeSet()
+    const XMLNodeSet * XMLXPath::getNodeSet() const
     {
-	return new XMLNodeSet(doc, xpath->nodesetval);
+        return new XMLNodeSet(doc, xpath->nodesetval);
     }
 }

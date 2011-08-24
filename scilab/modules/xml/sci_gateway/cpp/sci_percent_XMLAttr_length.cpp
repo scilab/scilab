@@ -10,12 +10,7 @@
  *
  */
 
-#include <vector>
-
 #include "XMLObject.hxx"
-#include "XMLDocument.hxx"
-#include "XMLElement.hxx"
-#include "XMLNs.hxx"
 #include "XMLAttr.hxx"
 
 extern "C"
@@ -31,16 +26,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDump(char *fname, unsigned long fname_len)
+int sci_percent_XMLAttr_length(char * fname, unsigned long fname_len)
 {
-    XMLObject * obj = 0;
     int id;
-    int type;
     SciErr err;
+    double d;
     int * addr = 0;
-    char * dump;
-    std::string str;
-    std::vector<char *> vector;
+    XMLAttr * attrs;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -52,46 +44,23 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    type = isXMLObject(addr);
-    if (!type)
+    if (!isXMLAttr(addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XML object");
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLAttr");
         return 0;
+
     }
 
     id = getXMLObjectId(addr);
-    obj = XMLObject::getFromId<XMLObject>(id);
-    if (!obj)
+    attrs = XMLObject::getFromId<XMLAttr>(id);
+    if (!attrs)
     {
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML Attributes does not exist.\n"), fname);
         return 0;
     }
 
-    str = obj->dump();
-    dump = const_cast<char *>(str.c_str());
-    vector = std::vector<char *>();
-
-    dump = strtok(dump, "\n\r");
-    while (dump)
-    {
-        vector.push_back(dump);
-        dump = strtok(0, "\n\r");
-    }
-
-    if (vector.size())
-    {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, vector.size(), 1, const_cast<const char * const *>(&(vector[0])));
-    }
-    else
-    {
-        err = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
-    }
-
-    if (err.iErr)
-    {
-        printError(&err, 0);
-        return 0;
-    }
+    d = (double)attrs->getSize();
+    createScalarDouble(pvApiCtx, Rhs + 1, d);
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();

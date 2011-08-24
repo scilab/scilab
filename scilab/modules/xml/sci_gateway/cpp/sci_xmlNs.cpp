@@ -11,11 +11,11 @@
  */
 
 #include "XMLObject.hxx"
-#include "XMLDocument.hxx"
+#include "XMLNs.hxx"
+#include "XMLElement.hxx"
 
 extern "C"
 {
-#include "xml.h"
 #include "gw_xml.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -24,25 +24,22 @@ extern "C"
 #include "localization.h"
 }
 
-#include "XMLObject.hxx"
-#include "XMLDocument.hxx"
-
-
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char * fname, unsigned long fname_len)
+int sci_xmlNs(char * fname, unsigned long fname_len)
 {
-    org_modules_xml::XMLDocument * doc;
-    SciErr err;
     int * addr = 0;
-    char * path = 0;
-    char * error = 0;
-    bool validate = false;
-    int validateParam;
+    SciErr err;
+    XMLNs * ns = 0;
+    XMLElement * elem = 0;
+    char * prefix = 0;
+    char * href = 0;
+    int i = 0;
+    char ** vars[] = {&prefix, &href};
 
     CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckRhs(3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -51,51 +48,52 @@ int sci_xmlRead(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    if (!isStringType(pvApiCtx, addr))
+    if (!isXMLElem(addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: A %s expected.\n"), fname, 1, "XMLElem");
         return 0;
     }
-    getAllocatedSingleString(pvApiCtx, addr, &path);
 
-    if (Rhs == 2)
+    elem = XMLObject::getFromId<XMLElement>(getXMLObjectId(addr));
+    if (!elem)
     {
-        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+        Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
+        return 0;
+    }
+
+    for (; i < Rhs - 1; i++)
+    {
+        err = getVarAddressFromPosition(pvApiCtx, i + 2, &addr);
         if (err.iErr)
         {
-            freeAllocatedSingleString(path);
             printError(&err, 0);
             return 0;
         }
 
-        if (!isBooleanType(pvApiCtx, addr))
+        if (!isStringType(pvApiCtx, addr))
         {
-            freeAllocatedSingleString(path);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A boolean expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, i + 2);
             return 0;
         }
 
-        getScalarBoolean(pvApiCtx, addr, &validateParam);
-        validate = validateParam != 0;
+        getAllocatedSingleString(pvApiCtx, addr, vars[i]);
     }
 
-    doc = new org_modules_xml::XMLDocument((const char *)path, validate, &error);
-    freeAllocatedSingleString(path);
+    ns = new XMLNs(*elem, prefix, href);
 
-    if (error)
+    for (i = 0; i < Rhs - 1; i++)
     {
-        delete doc;
-        Scierror(999, gettext("%s: Cannot read the file:\n%s"), fname, error);
-        return 0;
+        freeAllocatedSingleString(*(vars[i]));
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!ns->createOnStack(Rhs + 1))
     {
         return 0;
     }
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

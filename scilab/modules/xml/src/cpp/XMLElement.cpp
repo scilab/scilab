@@ -24,84 +24,199 @@ extern "C" {
 
 namespace org_modules_xml
 {
-    XMLElement::XMLElement(XMLDocument * doc, xmlNode * node)
-        : XMLObject()
+
+    XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node) : XMLObject(), doc(_doc)
     {
-        this->node = node;
-        this->doc = doc;
-	scilabType = XMLELEMENT;
+        node = _node;
+        scope.registerPointers(node, this);
+        scilabType = XMLELEMENT;
+    }
+
+    XMLElement::XMLElement(const XMLDocument & _doc, const char * name) : XMLObject(), doc(_doc)
+    {
+        node = xmlNewNode(0, (const xmlChar *)name);
+        scope.registerPointers(node, this);
+        scilabType = XMLELEMENT;
     }
 
     XMLElement::~XMLElement()
     {
+        scope.unregisterPointer(node);
         scope.removeId<XMLElement>(id);
     }
 
-    XMLObject * XMLElement::getXMLObjectParent()
+    const XMLObject * XMLElement::getXMLObjectParent() const
     {
-        return doc;
+        return &doc;
     }
 
-    const char * XMLElement::getNodeContent()
+    const char * XMLElement::getNodeContent() const
     {
         return (const char *)xmlNodeGetContent(node);
     }
 
-    std::string * XMLElement::dump()
+    void XMLElement::setNodeName(const std::string & name) const
+    {
+        xmlNodeSetName(node, (const xmlChar *)name.c_str());
+    }
+
+    void XMLElement::setNodeNameSpace(const XMLNs & ns) const
+    {
+        xmlNs * n = ns.getRealNs();
+        if (n)
+        {
+            if (!n->prefix || !xmlSearchNs(doc.getRealDocument(), node, n->prefix))
+            {
+                n = xmlNewNs(node, (const xmlChar *)ns.getHref(), (const xmlChar *)ns.getPrefix());
+            }
+            xmlSetNs(node, n);
+        }
+    }
+
+    void XMLElement::setNodeContent(const std::string & content) const
+    {
+        xmlNodeSetContent(node, (const xmlChar *)content.c_str());
+    }
+
+    void XMLElement::setAttributes(const XMLAttr & attrs) const
+    {
+        xmlNode * attrNode = attrs.getElement().getRealNode();
+        if (node != attrNode)
+        {
+            xmlFreePropList(node->properties);
+            node->properties = 0;
+            xmlCopyPropList(node, attrNode->properties);
+        }
+    }
+
+    void XMLElement::setChildren(const XMLElement & elem) const
+    {
+        xmlNode * n = elem.getRealNode();
+        if (n && n->parent != node)
+        {
+            xmlNode * cpy = xmlCopyNode(n, 1);
+            xmlUnlinkNode(cpy);
+            xmlUnlinkNode(node->children);
+            xmlFreeNodeList(node->children);
+            node->children = 0;
+            xmlAddChild(node, cpy);
+            xmlMemoryDump();
+        }
+    }
+
+    void XMLElement::setChildren(const XMLNodeList & list) const
+    {
+        xmlNode * n = list.getRealNode();
+        if (n && n->parent != node)
+        {
+            xmlNode * cpy = xmlCopyNodeList(n);
+            xmlUnlinkNode(node->children);
+            xmlFreeNodeList(node->children);
+            node->children = 0;
+            xmlAddChildList(node, cpy);
+        }
+    }
+
+    void XMLElement::setChildren(const std::string & xmlCode) const
+    {
+        char * error = 0;
+        XMLDocument document = XMLDocument(xmlCode, false, &error);
+
+        if (!error)
+        {
+            setChildren(*document.getRoot());
+        }
+        else
+        {
+            xmlNode * n = xmlNewText((xmlChar *)xmlCode.c_str());
+            setChildren(XMLElement(doc, n));
+        }
+    }
+
+    void XMLElement::addNamespace(const XMLNs & ns) const
+    {
+        xmlNewNs(node, (const xmlChar *)ns.getHref(), (const xmlChar *)ns.getPrefix());
+    }
+
+    const XMLNs * XMLElement::getNamespaceByPrefix(const char * prefix) const
+    {
+        return new XMLNs(*this, xmlSearchNs(doc.getRealDocument(), node, (const xmlChar *)prefix));
+    }
+
+    const XMLNs * XMLElement::getNamespaceByHref(const char * href) const
+    {
+        return new XMLNs(*this, xmlSearchNsByHref(doc.getRealDocument(), node, (const xmlChar *)href));
+    }
+
+    const std::string XMLElement::dump() const
     {
         xmlBufferPtr buffer = xmlBufferCreate();
-        xmlNodeDump(buffer, doc->getRealDocument(), node, 0, 1);
-	std::string * str = new std::string((const char *)buffer->content);
+        xmlNodeDump(buffer, doc.getRealDocument(), node, 0, 1);
+        std::string str = std::string((const char *)buffer->content);
         xmlBufferFree(buffer);
 
         return str;
     }
 
-    std::string * XMLElement::toString()
+    const std::string XMLElement::toString() const
     {
-	std::string ns = "";
-	std::string prefix = "";
+        std::string ns = "";
+        std::string prefix = "";
 
-	if (node->ns)
-	{
-	    if (node->ns->href)
-	    {
-		ns = std::string((const char *)node->ns->href);
-	    }
+        if (node->ns)
+        {
+            if (node->ns->href)
+            {
+                ns = std::string((const char *)node->ns->href);
+            }
 
-	    if (node->ns->prefix)
-	    {
-		prefix = std::string((const char *)node->ns->prefix);
-	    }
-	}
+            if (node->ns->prefix)
+            {
+                prefix = std::string((const char *)node->ns->prefix);
+            }
+        }
 
         std::string str = "XML Element\n";
         str += "name: " + std::string(getNodeName()) + "\n";
-	str += "namespace URI: " + ns + "\n";
+        str += "namespace href: " + ns + "\n";
         str += "namespace prefix: " + prefix + "\n";
-	str += "type: " + std::string(nodes_type[getNodeType() - 1]) + "\n";
+        str += "type: " + std::string(nodes_type[getNodeType() - 1]) + "\n";
         str += "definition line: " + intToStr(node->line);
-	
-        return new std::string(str);
+
+        return str;
     }
 
-    XMLNs * XMLElement::getNodeNameSpace(void)
+    const XMLNs * XMLElement::getNodeNameSpace() const
     {
-        return new XMLNs(this, node->ns);
+        if (node->ns)
+        {
+            return new XMLNs(*this, node->ns);
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    XMLNodeList * XMLElement::getChildren(void)
+    const XMLNodeList * XMLElement::getChildren() const
     {
-        return new XMLNodeList(new XMLElement(doc, node->children));
+        return new XMLNodeList(doc, node);
     }
 
-    XMLAttr * XMLElement::getAttributes(void)
+    const XMLAttr * XMLElement::getAttributes() const
     {
-        return new XMLAttr(this);
+        return new XMLAttr(*this);
     }
 
-    XMLElement * XMLElement::getParentElement(void)
+    const XMLElement * XMLElement::getParentElement() const
     {
-        return new XMLElement(doc, node->parent);
+        if (node->parent && node->parent->type == XML_ELEMENT_NODE)
+        {
+            return new XMLElement(doc, node->parent);
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

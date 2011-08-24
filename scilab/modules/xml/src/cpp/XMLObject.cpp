@@ -21,22 +21,22 @@ namespace org_modules_xml
 
     XMLObject::XMLObject()
     {
-	this->id = scope.getVariableId(*this);
-	scilabType = -1;
+        id = scope.getVariableId(*this);
+        scilabType = -1;
     }
 
     XMLObject * XMLObject::getVariableFromId(int id)
     {
-	return scope.getVariableFromId(id);
+        return scope.getVariableFromId(id);
     }
 
-    int XMLObject::createOnStack(int pos)
+    int XMLObject::createOnStack(int pos) const
     {
-	if (scilabType != -1)
-	{
-	    return createXMLObjectAtPos(scilabType, pos, id);
-	}
+        if (scilabType != -1)
+        {
+            return createXMLObjectAtPos(scilabType, pos, id);
+        }
 
-	return 0;
+        return 0;
     }
 }
