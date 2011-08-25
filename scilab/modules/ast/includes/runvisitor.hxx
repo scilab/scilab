@@ -277,7 +277,13 @@ namespace ast
                 {
                     T execMe;
                     (*col)->accept(execMe);
-                    pC->set(i,j, execMe.result_get());
+                    InternalType *pIT = execMe.result_get();
+                    if(pIT->isImplicitList())
+                    {
+                        pIT = pIT->getAsImplicitList()->extractFullMatrix();
+                    }
+
+                    pC->set(i,j, pIT);
                 }
             }
 
