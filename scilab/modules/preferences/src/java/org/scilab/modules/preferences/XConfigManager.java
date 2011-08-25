@@ -78,6 +78,8 @@ public final class XConfigManager extends XCommonManager {
         // Set up Swing Side
         dialog      = new JDialog(getTopLevel(), "Scilab Preferences", true);
         topSwing    = dialog.getContentPane();
+	//dialog.setResizable(false);
+
         //dialog = new SwingScilabTab("Scilab Preferences");
         //topSwing = new JPanel();
         dialog.setContentPane(topSwing);

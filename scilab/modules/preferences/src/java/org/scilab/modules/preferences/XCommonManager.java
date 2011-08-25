@@ -149,8 +149,6 @@ public abstract class XCommonManager {
      * @param indent : current indentation
      *   @return node representation
      *
-     * TODO invisible View nodes used for control shall be replaced
-     *       by blank lines in Swing composite
      */
     private static String viewDOM(final Node node, final String indent) {
         String signature = indent;
@@ -185,8 +183,6 @@ public abstract class XCommonManager {
      * @param indent : current indentation
      * @return component representation
      *
-     * TODO invisible View nodes used for control shall be replaced
-     *       by blank lines in Swing composite
      */
     private static String swingComposite(
           final Component component,

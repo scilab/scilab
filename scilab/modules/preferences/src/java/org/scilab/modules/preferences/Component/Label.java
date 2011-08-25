@@ -38,7 +38,8 @@ public class Label extends JLabel implements XComponent {
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {"text", "foreground", "background"};
+        String [] actuators = {"text", "foreground", "background", 
+            "tooltip", "font-family", "font-face", "font-size"};//TODO
         return actuators;
     }
 

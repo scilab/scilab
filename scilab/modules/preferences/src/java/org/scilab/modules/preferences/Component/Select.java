@@ -50,8 +50,8 @@ public class Select extends JComboBox implements XComponent, XChooser {
     */
     public Select(final Node peer) {
         super();
-        setMinimumSize(new Dimension(200,30));
-        setPreferredSize(new Dimension(200,30));
+        //setMinimumSize(new Dimension(200,30));
+        //setPreferredSize(new Dimension(200,30));
         NodeList nodelist = peer.getChildNodes();
         int select = 0;
         int index = 0;

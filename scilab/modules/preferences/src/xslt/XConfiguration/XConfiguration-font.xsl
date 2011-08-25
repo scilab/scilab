@@ -202,7 +202,7 @@
 							<xsl:call-template name="InvertedCheckBox">
 								<xsl:with-param name="attr-name" select="'desktop'"/>
 							</xsl:call-template>
-							Custom: <Label text="{@desktop}"/>
+							Custom:
 							<Glue/>
 						</HBox>
 						<xsl:choose>
@@ -235,7 +235,7 @@
 							</xsl:otherwise>
 						</xsl:choose>
 						<HBox>
-							Sample <Label text="{@font-family}"/>
+							Sample
 							<Glue/>
 						</HBox>
 						<Panel width="300" height="40">

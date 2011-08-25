@@ -126,7 +126,7 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
         return reduced.equals(checker);
     }
     /** Process event node through component.
-     *
+     *  (must be updated if a new manager is created)
      * @param component : the source of the action.
      * @param node : the node embedding the action.
      */

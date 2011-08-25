@@ -124,9 +124,7 @@
 
 			<Title text="Confirmation dialogs">
 				<VBox>
-					<HBox>&lt;HTML&gt;&lt;B&gt;State
-						<HSpace width="150"/>
-						<Glue/>&lt;HTML&gt;&lt;B&gt;Dialog box description
+					<HBox>&lt;HTML&gt;&lt;B&gt;Dialog box description
 						<HSpace width="150"/>
 						<Glue/>&lt;HTML&gt;&lt;B&gt;Tool
 						<HSpace width="15"/>
@@ -159,13 +157,15 @@
 					<xsl:for-each select="tool">
 						<xsl:sort order="{@order}" select="@name"/>
 						<HBox>
-							<Checkbox listener="ActionListener" checked="{@state}">
+							<Checkbox 
+								listener="ActionListener" 
+								checked="{@state}" 
+								text="{@description}"
+								>
 								<actionPerformed choose="state">
 									<xsl:call-template name="context"/>
 								</actionPerformed>
 							</Checkbox>
-							<HSpace width="30"/>
-							<Label text="{@description}"/>
 							<Glue/>
 							<Label text="{@name}"/>
 						</HBox>

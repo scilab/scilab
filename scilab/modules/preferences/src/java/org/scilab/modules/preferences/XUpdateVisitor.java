@@ -31,6 +31,8 @@ import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.preferences.Component.Scroll;
 import org.scilab.modules.preferences.Component.Table;
+import org.scilab.modules.preferences.Component.Select;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -101,6 +103,14 @@ public class XUpdateVisitor {
         while (allIndex < nodes.getLength()) {
             Node item = nodes.item(allIndex);
             if (isVisible(item)) {
+                /* TODO: correct these lines.
+                while (visibleIndex < view.getComponentCount()) {
+                    component = view.getComponent(visibleIndex);
+                    if (component instanceof XComponent) {
+                        break;
+                    }
+                    visibleIndex++;
+                } */                 
                 if (visibleIndex < view.getComponentCount()) {
                     component = view.getComponent(visibleIndex);
                     sentinel  = (XSentinel) correspondance.get(component);
@@ -129,10 +139,13 @@ public class XUpdateVisitor {
             allIndex += 1;
         }
         // Clean children list.
-        if (! (view instanceof Table)) {
-            while (visibleIndex < view.getComponentCount()) {
-                component = view.getComponent(visibleIndex);
+        while (visibleIndex < view.getComponentCount()) {
+            component = view.getComponent(visibleIndex);
+            if (component instanceof XComponent) {
                 forget(view, component);
+            } else {
+                // hidden swing node (Table, Select, ...)
+                visibleIndex++;
             }
         }
         // Sentinel sets watch.
@@ -163,6 +176,7 @@ public class XUpdateVisitor {
         if (XConfigManager.getAttribute(parent, "layout").equals("border")) {
             return XConfigManager.getAttribute(current, "border-side");
         }
+        //TODO: grid bag constraints!
         return null;
         }
 
@@ -263,18 +277,6 @@ public class XUpdateVisitor {
             return new Scroll(node, container);
         }
 
-        //1. Find the class with the same name.
-        Class<Component> componentClass;
-        try {
-            componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);
-        } catch (ClassNotFoundException e) {
-            // Some classes are made directly
-            //  - here labels for text node.
-            if (tag.equals("#text")) {
-                String value = node.getNodeValue();
-                return new JLabel(value);
-            }
-            // - here boxes.
             if (tag.equals("HBox")) {
                 Box hbox = Box.createHorizontalBox();
                 XConfigManager.drawConstructionBorders(hbox);
@@ -296,19 +298,34 @@ public class XUpdateVisitor {
                 XConfigManager.setDimension(vbox, node);
                 return vbox;
             }
+
+
+        //1. Find the class with the same name.
+        Class<Component> componentClass;
+        try {
+            componentClass = (Class<Component>) Class.forName(X_PACKAGE + tag);
+        } catch (ClassNotFoundException e) {
+            // Some classes are made directly
+            //  - here labels for text node.
+            if (tag.equals("#text")) {
+                String value = node.getNodeValue();
+                return new JLabel(value);
+            }
+            // - here boxes.
+                      
             if (tag.equals("VSpace")) {
                 int height = XConfigManager.getInt(node, "height", S_DIM);
                 return Box.createVerticalStrut(height);
+                //return new JPanel();
             }
             if (tag.equals("HSpace")) {
                 int width = XConfigManager.getInt(node, "width", S_DIM);
                 return Box.createHorizontalStrut(width);
+		//return new JPanel();
             }
             if (tag.equals("Glue")) {
+		//return new JPanel();
                 return Box.createGlue();
-            }
-            if (tag.equals("VGLUE")) {
-                return Box.createVerticalGlue();
             }
 
             // Declare failure due to class absence
@@ -350,7 +367,8 @@ public class XUpdateVisitor {
             System.err.println("IllegalArgumentException:" + e);
             return new XStub(node, "IllegalArgumentException");
         } catch (InvocationTargetException e) {
-            System.err.println("InvocationTargetException:" + e);
+            System.err.println("InvocationTargetException:" + e.getTargetException());
+            e.getTargetException().printStackTrace();
             return new XStub(node, "InvocationTargetException");
         }
         return component;

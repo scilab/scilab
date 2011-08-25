@@ -2055,6 +2055,11 @@ public final class ConfigSciNotesManager {
      * Read the file to modify
      */
     private static void readDocument(String pathConfSci, String pathConfKeys) {
+        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
+        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+        if (!keyConfig.exists() || !fileConfig.exists()) {
+            createUserCopy();
+        }
         File xml = null;
         DocumentBuilder docBuilder = null;
         String factoryName = ScilabDocumentBuilderFactory.useDefaultDocumentBuilderFactoryImpl();

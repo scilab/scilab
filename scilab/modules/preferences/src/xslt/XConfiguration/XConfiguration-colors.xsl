@@ -41,11 +41,18 @@
 	</xsl:template>
 
 	<xsl:template match="syntax-highlighting-colors">
+		<xsl:variable name="item">
+			<xsl:for-each select="item">
+				<xsl:if test="@name = ../@name">
+					<xsl:value-of select="position()"/>
+				</xsl:if>
+			</xsl:for-each>
+		</xsl:variable> 
 		<Title text="Syntax highlighting colors">
 			<VBox>
 				<HBox>
-					<Table item="{@item}" mode="select" listener="TableListener">
-						<tableSelect choose="item">
+					<Table item="{$item}" mode="select" listener="TableListener" column="name">
+						<tableSelect choose="name">
 							<xsl:call-template name="context"/>
 						</tableSelect>
 						<tableCol title="Item"        attr="name"/>
@@ -55,25 +62,18 @@
 						</xsl:for-each>
 					</Table>
 					<HSpace width="20"/>
-					<VBox>
-						<HBox><Label text="//comment with whites spaces" foreground="{item[@name='Comments']/@color}"/><HSpace width="5"/><Label text="and tabulations" foreground="{item[@name='Comments']/@color}"/><Glue/></HBox>
-						<HBox><Label text="// Scilab editor: http://www.scilab.org/" foreground="{item[@name='Comments']/@color}"/><Glue/></HBox>
-						<HBox>function [a,b] = myfunction(d,e,f)<Glue/></HBox>
-						<HBox><HSpace width="5"/>a = 2.71828 + %pi + f($,:);<Glue/></HBox>
-						<HBox><HSpace width="5"/>b = cos(a) + cosh(a);<Glue/></HBox>
-						<HBox><HSpace width="5"/>if d==e then<Glue/></HBox>
-						<HBox><HSpace width="5"/><HSpace width="5"/>b=10 - e.field;<Glue/></HBox>
-						<HBox><HSpace width="5"/>else<Glue/></HBox>
-						<HBox><HSpace width="5"/><HSpace width="5"/>b = "		test      " + home<Glue/></HBox>
-						<HBox><HSpace width="5"/><HSpace width="5"/>return<Glue/></HBox>
-						<HBox><HSpace width="5"/>end<Glue/></HBox>
-						<HBox><HSpace width="5"/>myvar = 1.23e-45;<Glue/></HBox>
-						<HBox>endfunction<Glue/></HBox>
-					</VBox>
+					<PreviewCode listener="ActionListener">
+						<actionPerformed choose="name">
+							<xsl:call-template name="context"/>
+						</actionPerformed>
+						<xsl:for-each select="item">
+							<tableRow name="{@name}" color="{@color}"/>
+						</xsl:for-each>
+					</PreviewCode>
 				</HBox>
 
 				<HBox>
-					<xsl:for-each select="item[ position()=current()/@item]">
+					<xsl:for-each select="item[ position()=$item]">
 						<VBox>
 							<HBox>
 								<Color color="{@color}" listener="ActionListener">

@@ -62,16 +62,34 @@
 				text="#000000"
 				background="#ffffff"
 				cursor="#000000"/>
-			<syntax-highlighting-colors item="1">
+			<syntax-highlighting-colors name="Special">
 				<item name="Default"   color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Strings"   color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Commands"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Macros"    color="#678345" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Errors"    color="#783456" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Functions" color="#834567" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Variables" color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Operators" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
-				<item name="Comments"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Special"   color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Operator"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Primitive" color="#678345" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Macro"            color="#783456" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="MacroInFile"      color="#834567" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="String"           color="#345678" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="ExternalVariable" color="#456783" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="InputOutputArgs"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Identifier"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Comment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Field"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="FunctionKwd"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Url"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Mail"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Number"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Control"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Structure"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Constantes"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="White"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="WhiteInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="WhiteInString"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="Tabulation"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="TabulationInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="LaTeXInComment"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="TabulationInString"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
+				<item name="OpenClose"  color="#567834" bold="false" italic="false" underline="false" strinke-through="false"/>
 			</syntax-highlighting-colors>
 		</body>
 	</colors>

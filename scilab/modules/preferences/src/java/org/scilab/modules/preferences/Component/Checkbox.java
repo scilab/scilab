@@ -36,7 +36,7 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {};
+        String [] actuators = {"text", "checked"};
         return actuators;
     }
 
@@ -54,7 +54,61 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     * @param peer the corresponding view DOM node
     */
     public final void refresh(final Node peer) {
-        String checked  = XConfigManager.getAttribute(peer , "checked");
+        String text = XConfigManager.getAttribute(peer , "text");
+        if (!text.equals(text())) {
+            text(text);
+        }
+
+        String checked = XConfigManager.getAttribute(peer , "checked");
+        if (!checked.equals(checked())) {
+            checked(checked);
+        }
+
+    }
+
+    /** Sensor for 'text' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String text() {
+        String text = getText();
+        if (text != null) {
+            return text;
+        } else {
+            return XConfigManager.NAV;
+        }
+    }
+
+    /** Actuator for 'text' attribute.
+    *
+    * @param text : the attribute value.
+    */
+    public final void text(final String text) {
+	if (text!=XConfigManager.NAV) {
+            setText(text);
+        } else {
+            setText(null);
+        }
+    }
+
+    /** Sensor for 'checked' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String checked() {
+        boolean state = isSelected();
+        if (state) {
+            return "checked";
+        } else {
+            return "unchecked";
+        }
+    }
+
+    /** Actuator for 'checked' attribute.
+    *
+    * @param text : the attribute value.
+    */
+    public final void checked(final String checked) {
         boolean state =  checked.equals("checked");
         setSelected(state);
     }
@@ -76,6 +130,12 @@ public class Checkbox extends SwingScilabCheckBox implements XComponent, XChoose
     */
     public final String toString() {
         String signature = "CHECKBOX";
+        if (!text().equals(XConfigManager.NAV)) {
+            signature += " text='" + text() + "'";
+        }
+        if (!checked().equals(XConfigManager.NAV)) {
+            signature += " checked='" + checked() + "'";
+        }
         return signature;
     }
 }

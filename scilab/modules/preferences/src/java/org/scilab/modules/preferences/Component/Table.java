@@ -62,6 +62,11 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
     JTable table;
     JScrollPane scrollPane;
 
+    /** The attribute column indicates which column has to be chosen.
+    *    if this attribute is not set, the chosen value is the selected index (as a string).
+    */
+    String column;
+
     //begin Dynamic_controller
     // TODO separate class.
     ImageIcon icons[] = {
@@ -156,12 +161,13 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         super(new BorderLayout());
         model        = new Model(peer);
         table        = new JTable (model);
-        table.setPreferredScrollableViewportSize(new Dimension(500,70));
         table.setFillsViewportHeight(true);
         table.getSelectionModel().addListSelectionListener(this);
         table.getTableHeader().setReorderingAllowed(false);
         setupOpenMask(peer);
         setupControls(peer);
+
+        column = XCommonManager.getAttribute(peer , "column");
 
         if (XCommonManager.getAttribute(peer , "mode").equals("select")) {
             table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -210,7 +216,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         if (!item.equals(item())) {
             item(item);
         }
-        table.updateUI();
+        repaint();
     }
 
     /** Row selection management.
@@ -220,9 +226,15 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
 
     /** Actual response read by the listener.
     *
-    * @return index of the selected line.
+    * @return the chosen value.
     */
     public final String choose() {
+        if (! column.equals(XCommonManager.NAV)) {
+            int row      = table.getSelectedRow();
+            Node record  = model.getRowRecord(row);
+            String value = XCommonManager.getAttribute(record , column);
+            return value;
+        }
         return item();
     }
 
@@ -254,7 +266,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         return "" + (table.getSelectedRow() + 1);
     }
 
-    /** Actuator for 'color' attribute.
+    /** Actuator for 'item' attribute.
     *
     * @param text : the attribute value.
     */
