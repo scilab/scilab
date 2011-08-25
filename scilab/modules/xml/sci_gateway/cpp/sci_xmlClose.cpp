@@ -30,7 +30,7 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
-    XMLDocument * doc;
+    org_modules_xml::XMLDocument * doc;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -45,7 +45,7 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
     if (isXMLDoc(addr))
     {
         id = getXMLObjectId(addr);
-        doc = XMLObject::getFromId<XMLDocument>(id);
+        doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
         if (!doc)
         {
             Scierror(999, "%s: XML document does not exist\n", fname);

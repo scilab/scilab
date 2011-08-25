@@ -16,7 +16,7 @@ using namespace org_modules_xml;
 
 int sci_percent_XMLDoc_e(char *fname, unsigned long fname_len)
 {
-    return sci_extraction<XMLDocument>(fname, fname_len);
+    return sci_extraction<org_modules_xml::XMLDocument>(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_e(char *fname, unsigned long fname_len)

@@ -10,6 +10,9 @@
  *
  */
 
+#ifndef __XML_CONSTANTS_H__
+#define __XML_CONSTANTS_H__
+
 const char * nodes_type[] = { "XML_ELEMENT_NODE",
                               "XML_ATTRIBUTE_NODE",
                               "XML_TEXT_NODE",
@@ -31,3 +34,5 @@ const char * nodes_type[] = { "XML_ELEMENT_NODE",
                               "XML_XINCLUDE_START",
                               "XML_XINCLUDE_END",
                               "XML_DOCB_DOCUMENT_NODE" };
+
+#endif /* __XML_CONSTANTS_H__ */

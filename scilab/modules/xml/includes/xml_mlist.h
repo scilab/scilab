@@ -10,6 +10,9 @@
  *
  */
 
+#ifndef __XML_MLIST_H__
+#define __XML_MLIST_H__
+
 #define XMLDOCUMENT 1
 #define XMLELEMENT 2
 #define XMLATTRIBUTE 3
@@ -17,8 +20,6 @@
 #define XMLLIST 5
 #define XMLNOTHANDLED 6
 
-#ifndef XML_MLIST_H
-#define XML_MLIST_H
 int createXMLObjectAtPos(int type, int pos, int id);
 int createXMLObjectAtPosInList(int * list, int stackPos, int type, int pos, int id);
 int isXMLDoc(int * mlist);
@@ -30,4 +31,4 @@ int isXMLObject(int * mlist);
 int isXMLNotHandled(int * mlist);
 int getXMLObjectId(int * mlist);
 
-#endif
+#endif /* __XML_MLIST_H__ */

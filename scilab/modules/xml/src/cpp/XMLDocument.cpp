@@ -187,7 +187,7 @@ namespace org_modules_xml
         va_list args;
 
         va_start(args, msg);
-        std::vsnprintf(str, BUFFER_SIZE, msg, args);
+        vsnprintf(str, BUFFER_SIZE, msg, args);
         va_end(args);
         errorBuffer->append(str);
     }

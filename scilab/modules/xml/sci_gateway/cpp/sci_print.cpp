@@ -36,7 +36,6 @@ int sci_print(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int *mlistaddr = 0;
-    int ret;
 
     CheckRhs(1, 1);
 

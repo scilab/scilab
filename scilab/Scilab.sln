@@ -577,6 +577,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-all", "Visual-Studio-s
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noui_data", "modules\ui_data\src\noui_data\noui_data.vcxproj", "{337A52F8-310E-49E3-A2BA-F19CA32EB617}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "modules\xml\xml.vcxproj", "{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1805,6 +1807,14 @@ Global
 		{337A52F8-310E-49E3-A2BA-F19CA32EB617}.Release|Win32.Build.0 = Release|Win32
 		{337A52F8-310E-49E3-A2BA-F19CA32EB617}.Release|x64.ActiveCfg = Release|x64
 		{337A52F8-310E-49E3-A2BA-F19CA32EB617}.Release|x64.Build.0 = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.Build.0 = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.ActiveCfg = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.Build.0 = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.ActiveCfg = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.Build.0 = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.ActiveCfg = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

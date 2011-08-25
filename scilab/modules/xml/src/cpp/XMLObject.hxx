@@ -29,7 +29,7 @@ namespace org_modules_xml
         virtual ~XMLObject() { }
 
         virtual XMLObject * getXMLObjectParent() = 0;
-	virtual std::string * toString() { }
+	virtual std::string * toString() {return new std::string("");};
 	virtual std::string * dump() { return new std::string(""); }
 
 	int getId() { return id; }

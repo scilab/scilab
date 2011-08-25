@@ -10,12 +10,11 @@
  *
  */
 
-#include "XMLObject.hxx"
-#include "XMLDocument.hxx"
 #include <iostream>
 
 extern "C"
 {
+#include "xml.h"
 #include "gw_xml.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -23,13 +22,17 @@ extern "C"
 #include "xml_mlist.h"
 }
 
+#include "XMLObject.hxx"
+#include "XMLDocument.hxx"
+
+
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
 int sci_xmlRead(char *fname, unsigned long fname_len)
 {
-    XMLDocument *doc;
-    int id;
+    org_modules_xml::XMLDocument *doc;
+    
     SciErr err;
     int *addr = 0;
     char *path = 0;
@@ -53,7 +56,7 @@ int sci_xmlRead(char *fname, unsigned long fname_len)
     
     getAllocatedSingleString(pvApiCtx, addr, &path);
     
-    doc = new XMLDocument((const char *) path, &error);
+    doc = new org_modules_xml::XMLDocument((const char *) path, &error);
     freeAllocatedSingleString(path);
 
     if (error)

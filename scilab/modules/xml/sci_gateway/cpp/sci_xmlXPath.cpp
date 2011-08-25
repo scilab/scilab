@@ -10,19 +10,21 @@
  *
  */
 
-#include "XMLObject.hxx"
-#include "XMLDocument.hxx"
-#include "XMLXPath.hxx"
-#include "XMLNodeSet.hxx"
 
 extern "C"
 {
+#include "xml.h"
 #include "gw_xml.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 }
+
+#include "XMLObject.hxx"
+#include "XMLDocument.hxx"
+#include "XMLXPath.hxx"
+#include "XMLNodeSet.hxx"
 
 using namespace org_modules_xml;
 
@@ -31,7 +33,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
 {
     int id;
     SciErr err;
-    XMLDocument * doc;
+    org_modules_xml::XMLDocument * doc;
     XMLXPath * xpath;
     XMLNodeSet * set;
     int b;
@@ -58,7 +60,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     }
 
     id = getXMLObjectId(addr);
-    doc = XMLObject::getFromId<XMLDocument>(id);
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
 
     if (!doc)
     {

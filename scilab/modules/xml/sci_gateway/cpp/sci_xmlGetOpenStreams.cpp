@@ -27,7 +27,6 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len)
 {
-    int id;
     int j = 1;
     SciErr err;
     int *addr = 0;
@@ -35,16 +34,16 @@ int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
     CheckRhs(0, 0);
 
-    std::list<XMLDocument *> & openDocs = XMLDocument::getOpenDocuments();
+    std::list<org_modules_xml::XMLDocument *> & openDocs = org_modules_xml::XMLDocument::getOpenDocuments();
 
-    err = createList(pvApiCtx, Rhs + 1, openDocs.size(), &addr);
+    err = createList(pvApiCtx, Rhs + 1, (int)openDocs.size(), &addr);
     if (err.iErr)
     {
         printError(&err, 0);
         return 0;
     }
 
-    for (std::list<XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
+    for (std::list<org_modules_xml::XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
     {
         createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId());
     }

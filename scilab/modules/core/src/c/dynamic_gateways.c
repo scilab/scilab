@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
+* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -385,6 +385,22 @@ int gw_dynamic_ui_data(void)
         &ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
+/* xml module */
+#define XML_MODULE_NAME "xml"
+static DynLibHandle hXmlLib = NULL;
+static PROC_GATEWAY ptr_gw_xml = NULL;
+static char* dynlibname_xml = NULL;
+static char* gatewayname_xml = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_xml(void)
+{
+    return gw_dynamic_generic(XML_MODULE_NAME,
+        &dynlibname_xml,
+        &gatewayname_xml,
+        &hXmlLib,
+        &ptr_gw_xml);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -492,6 +508,11 @@ void freeAllDynamicGateways(void)
         &gatewayname_ui_data,
         &hUi_dataLib,
         &ptr_gw_ui_data);
+
+    freeDynamicGateway(&dynlibname_xml,
+        &gatewayname_xml,
+        &hXmlLib,
+        &ptr_gw_xml);
 }
 /*--------------------------------------------------------------------------*/
 

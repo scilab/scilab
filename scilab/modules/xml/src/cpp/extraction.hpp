@@ -49,7 +49,7 @@ int createStringOnStack(char * fname, const char * str, int pos)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int createVariableOnStack(char * fname, XMLDocument & doc, const char * field, int pos)
+int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos)
 {
     if (!strcmp("root", field))
     {
@@ -72,7 +72,7 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
 {
     if (!strcmp("name", field))
     {
-        createStringOnStack(fname, elem.getNodeName(), pos);
+        return createStringOnStack(fname, elem.getNodeName(), pos);
     }
     else if (!strcmp("namespace", field))
     {
@@ -81,12 +81,13 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     else if (!strcmp("content", field))
     {
         const char * content = elem.getNodeContent();
-        createStringOnStack(fname, content, pos);
+        int ierr = createStringOnStack(fname, content, pos);
         xmlFree(const_cast<char *>(content));
+        return ierr;
     }
     else if (!strcmp("type", field))
     {
-        createStringOnStack(fname, nodes_type[elem.getNodeType() - 1], pos);
+        return createStringOnStack(fname, nodes_type[elem.getNodeType() - 1], pos);
     }
     else if (!strcmp("parent", field))
     {
@@ -103,14 +104,12 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     else
     {
         Scierror(999, "%s: Unknown field: %s\n", fname, field);
-        return 0;
     }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos)
 {
-    SciErr err;
-
     if (!strcmp("uri", field))
     {
         createStringOnStack(fname, ns.getURI(), pos);
