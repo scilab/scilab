@@ -49,8 +49,8 @@ Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 
 ;YaSp files
-Source: bin\abstractSyntaxTree.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\abstractSyntaxTree-tools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\ast.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\ast-tools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\operations.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\functions_manager.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\symbol.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

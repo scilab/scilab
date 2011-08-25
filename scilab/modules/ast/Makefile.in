@@ -39,9 +39,9 @@ check_PROGRAMS = testConstExp$(EXEEXT) testVarExp$(EXEEXT) \
 	testControlExp$(EXEEXT)
 TESTS = testConstExp$(EXEEXT) testVarExp$(EXEEXT) \
 	testControlExp$(EXEEXT)
-subdir = modules/abstractSyntaxTree
-DIST_COMMON = $(libsciabstractSyntaxTree_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+subdir = modules/ast
+DIST_COMMON = $(libsciast_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
@@ -86,23 +86,18 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)"
+	"$(DESTDIR)$(libsciast_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciabstractSyntaxTree_la_LIBADD =
-am_libsciabstractSyntaxTree_la_OBJECTS =  \
-	libsciabstractSyntaxTree_la-libAst.lo \
-	libsciabstractSyntaxTree_la-visitor_common.lo \
-	libsciabstractSyntaxTree_la-printvisitor.lo \
-	libsciabstractSyntaxTree_la-debugvisitor.lo \
-	libsciabstractSyntaxTree_la-mutevisitor.lo \
-	libsciabstractSyntaxTree_la-shortcutvisitor.lo \
-	libsciabstractSyntaxTree_la-scilabexception.lo
-libsciabstractSyntaxTree_la_OBJECTS =  \
-	$(am_libsciabstractSyntaxTree_la_OBJECTS)
-libsciabstractSyntaxTree_la_LINK = $(LIBTOOL) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+libsciast_la_LIBADD =
+am_libsciast_la_OBJECTS = libsciast_la-libAst.lo \
+	libsciast_la-visitor_common.lo libsciast_la-printvisitor.lo \
+	libsciast_la-debugvisitor.lo libsciast_la-mutevisitor.lo \
+	libsciast_la-shortcutvisitor.lo \
+	libsciast_la-scilabexception.lo
+libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
+libsciast_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(libsciast_la_CXXFLAGS) \
+	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 am_testConstExp_OBJECTS = testConstExp-testConstExp.$(OBJEXT)
 testConstExp_OBJECTS = $(am_testConstExp_OBJECTS)
 testConstExp_DEPENDENCIES = $(check_LDADD)
@@ -135,13 +130,11 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciabstractSyntaxTree_la_SOURCES) \
-	$(testConstExp_SOURCES) $(testControlExp_SOURCES) \
-	$(testVarExp_SOURCES)
-DIST_SOURCES = $(libsciabstractSyntaxTree_la_SOURCES) \
-	$(testConstExp_SOURCES) $(testControlExp_SOURCES) \
-	$(testVarExp_SOURCES)
-HEADERS = $(libsciabstractSyntaxTree_la_include_HEADERS)
+SOURCES = $(libsciast_la_SOURCES) $(testConstExp_SOURCES) \
+	$(testControlExp_SOURCES) $(testVarExp_SOURCES)
+DIST_SOURCES = $(libsciast_la_SOURCES) $(testConstExp_SOURCES) \
+	$(testControlExp_SOURCES) $(testVarExp_SOURCES)
+HEADERS = $(libsciast_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 am__tty_colors = \
@@ -406,8 +399,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-pkglib_LTLIBRARIES = libsciabstractSyntaxTree.la
-libsciabstractSyntaxTree_la_SOURCES = \
+pkglib_LTLIBRARIES = libsciast.la
+libsciast_la_SOURCES = \
 				src/cpp/libAst.cpp \
 				src/cpp/visitor_common.cpp \
 				src/cpp/printvisitor.cpp \
@@ -416,7 +409,7 @@ libsciabstractSyntaxTree_la_SOURCES = \
 				src/cpp/shortcutvisitor.cpp \
 				src/cpp/scilabexception.cpp
 
-libsciabstractSyntaxTree_la_CXXFLAGS = \
+libsciast_la_CXXFLAGS = \
 	-I includes \
 	-I src/cpp \
     -I $(top_srcdir)/modules/symbol/includes \
@@ -430,8 +423,8 @@ libsciabstractSyntaxTree_la_CXXFLAGS = \
 	-I $(top_srcdir)/modules/string/includes \
 	-I $(top_srcdir)/modules/threads/includes
 
-libsciabstractSyntaxTree_la_includedir = $(pkgincludedir)/abstractSyntaxTree
-libsciabstractSyntaxTree_la_include_HEADERS = 
+libsciast_la_includedir = $(pkgincludedir)/ast
+libsciast_la_include_HEADERS = 
 
 ####################
 ####################
@@ -440,7 +433,7 @@ check_INCLUDES = -I$(top_srcdir)/modules/symbol/includes \
 			-Isrc/cpp
 
 check_LDADD = $(top_builddir)/modules/symbol/libsciSymbol.la \
-			$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
+			$(top_builddir)/modules/ast/libsciast.la \
 			$(top_builddir)/modules/types/libsciTypes.la
 
 testConstExp_SOURCES = src/cpp/testConstExp.cpp
@@ -465,9 +458,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/abstractSyntaxTree/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/ast/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign modules/abstractSyntaxTree/Makefile
+	  $(AUTOMAKE) --foreign modules/ast/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -517,8 +510,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsciabstractSyntaxTree.la: $(libsciabstractSyntaxTree_la_OBJECTS) $(libsciabstractSyntaxTree_la_DEPENDENCIES) 
-	$(libsciabstractSyntaxTree_la_LINK) -rpath $(pkglibdir) $(libsciabstractSyntaxTree_la_OBJECTS) $(libsciabstractSyntaxTree_la_LIBADD) $(LIBS)
+libsciast.la: $(libsciast_la_OBJECTS) $(libsciast_la_DEPENDENCIES) 
+	$(libsciast_la_LINK) -rpath $(pkglibdir) $(libsciast_la_OBJECTS) $(libsciast_la_LIBADD) $(LIBS)
 
 clean-checkPROGRAMS:
 	@list='$(check_PROGRAMS)'; test -n "$$list" || exit 0; \
@@ -544,13 +537,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-debugvisitor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-scilabexception.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-libAst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-mutevisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-printvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-scilabexception.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testConstExp-testConstExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testControlExp-testControlExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testVarExp-testVarExp.Po@am__quote@
@@ -576,54 +569,54 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciabstractSyntaxTree_la-libAst.lo: src/cpp/libAst.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-libAst.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Tpo -c -o libsciabstractSyntaxTree_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/libAst.cpp' object='libsciabstractSyntaxTree_la-libAst.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-libAst.lo: src/cpp/libAst.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-libAst.lo -MD -MP -MF $(DEPDIR)/libsciast_la-libAst.Tpo -c -o libsciast_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-libAst.Tpo $(DEPDIR)/libsciast_la-libAst.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/libAst.cpp' object='libsciast_la-libAst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
 
-libsciabstractSyntaxTree_la-visitor_common.lo: src/cpp/visitor_common.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-visitor_common.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Tpo -c -o libsciabstractSyntaxTree_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/visitor_common.cpp' object='libsciabstractSyntaxTree_la-visitor_common.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-visitor_common.lo: src/cpp/visitor_common.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-visitor_common.lo -MD -MP -MF $(DEPDIR)/libsciast_la-visitor_common.Tpo -c -o libsciast_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-visitor_common.Tpo $(DEPDIR)/libsciast_la-visitor_common.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/visitor_common.cpp' object='libsciast_la-visitor_common.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
 
-libsciabstractSyntaxTree_la-printvisitor.lo: src/cpp/printvisitor.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-printvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Tpo -c -o libsciabstractSyntaxTree_la-printvisitor.lo `test -f 'src/cpp/printvisitor.cpp' || echo '$(srcdir)/'`src/cpp/printvisitor.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/printvisitor.cpp' object='libsciabstractSyntaxTree_la-printvisitor.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-printvisitor.lo: src/cpp/printvisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-printvisitor.lo -MD -MP -MF $(DEPDIR)/libsciast_la-printvisitor.Tpo -c -o libsciast_la-printvisitor.lo `test -f 'src/cpp/printvisitor.cpp' || echo '$(srcdir)/'`src/cpp/printvisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-printvisitor.Tpo $(DEPDIR)/libsciast_la-printvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/printvisitor.cpp' object='libsciast_la-printvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-printvisitor.lo `test -f 'src/cpp/printvisitor.cpp' || echo '$(srcdir)/'`src/cpp/printvisitor.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-printvisitor.lo `test -f 'src/cpp/printvisitor.cpp' || echo '$(srcdir)/'`src/cpp/printvisitor.cpp
 
-libsciabstractSyntaxTree_la-debugvisitor.lo: src/cpp/debugvisitor.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-debugvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-debugvisitor.Tpo -c -o libsciabstractSyntaxTree_la-debugvisitor.lo `test -f 'src/cpp/debugvisitor.cpp' || echo '$(srcdir)/'`src/cpp/debugvisitor.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-debugvisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-debugvisitor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/debugvisitor.cpp' object='libsciabstractSyntaxTree_la-debugvisitor.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-debugvisitor.lo: src/cpp/debugvisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-debugvisitor.lo -MD -MP -MF $(DEPDIR)/libsciast_la-debugvisitor.Tpo -c -o libsciast_la-debugvisitor.lo `test -f 'src/cpp/debugvisitor.cpp' || echo '$(srcdir)/'`src/cpp/debugvisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-debugvisitor.Tpo $(DEPDIR)/libsciast_la-debugvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/debugvisitor.cpp' object='libsciast_la-debugvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-debugvisitor.lo `test -f 'src/cpp/debugvisitor.cpp' || echo '$(srcdir)/'`src/cpp/debugvisitor.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-debugvisitor.lo `test -f 'src/cpp/debugvisitor.cpp' || echo '$(srcdir)/'`src/cpp/debugvisitor.cpp
 
-libsciabstractSyntaxTree_la-mutevisitor.lo: src/cpp/mutevisitor.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-mutevisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Tpo -c -o libsciabstractSyntaxTree_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/mutevisitor.cpp' object='libsciabstractSyntaxTree_la-mutevisitor.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-mutevisitor.lo: src/cpp/mutevisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-mutevisitor.lo -MD -MP -MF $(DEPDIR)/libsciast_la-mutevisitor.Tpo -c -o libsciast_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-mutevisitor.Tpo $(DEPDIR)/libsciast_la-mutevisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/mutevisitor.cpp' object='libsciast_la-mutevisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
 
-libsciabstractSyntaxTree_la-shortcutvisitor.lo: src/cpp/shortcutvisitor.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-shortcutvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Tpo -c -o libsciabstractSyntaxTree_la-shortcutvisitor.lo `test -f 'src/cpp/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/shortcutvisitor.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/shortcutvisitor.cpp' object='libsciabstractSyntaxTree_la-shortcutvisitor.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-shortcutvisitor.lo: src/cpp/shortcutvisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-shortcutvisitor.lo -MD -MP -MF $(DEPDIR)/libsciast_la-shortcutvisitor.Tpo -c -o libsciast_la-shortcutvisitor.lo `test -f 'src/cpp/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/shortcutvisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-shortcutvisitor.Tpo $(DEPDIR)/libsciast_la-shortcutvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/shortcutvisitor.cpp' object='libsciast_la-shortcutvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-shortcutvisitor.lo `test -f 'src/cpp/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/shortcutvisitor.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-shortcutvisitor.lo `test -f 'src/cpp/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/shortcutvisitor.cpp
 
-libsciabstractSyntaxTree_la-scilabexception.lo: src/cpp/scilabexception.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-scilabexception.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-scilabexception.Tpo -c -o libsciabstractSyntaxTree_la-scilabexception.lo `test -f 'src/cpp/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/scilabexception.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-scilabexception.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-scilabexception.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilabexception.cpp' object='libsciabstractSyntaxTree_la-scilabexception.lo' libtool=yes @AMDEPBACKSLASH@
+libsciast_la-scilabexception.lo: src/cpp/scilabexception.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-scilabexception.lo -MD -MP -MF $(DEPDIR)/libsciast_la-scilabexception.Tpo -c -o libsciast_la-scilabexception.lo `test -f 'src/cpp/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/scilabexception.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-scilabexception.Tpo $(DEPDIR)/libsciast_la-scilabexception.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilabexception.cpp' object='libsciast_la-scilabexception.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-scilabexception.lo `test -f 'src/cpp/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/scilabexception.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciast_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-scilabexception.lo `test -f 'src/cpp/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/scilabexception.cpp
 
 testConstExp-testConstExp.o: src/cpp/testConstExp.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testConstExp_CXXFLAGS) $(CXXFLAGS) -MT testConstExp-testConstExp.o -MD -MP -MF $(DEPDIR)/testConstExp-testConstExp.Tpo -c -o testConstExp-testConstExp.o `test -f 'src/cpp/testConstExp.cpp' || echo '$(srcdir)/'`src/cpp/testConstExp.cpp
@@ -672,26 +665,26 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciabstractSyntaxTree_la_includeHEADERS: $(libsciabstractSyntaxTree_la_include_HEADERS)
+install-libsciast_la_includeHEADERS: $(libsciast_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciabstractSyntaxTree_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)"
-	@list='$(libsciabstractSyntaxTree_la_include_HEADERS)'; test -n "$(libsciabstractSyntaxTree_la_includedir)" || list=; \
+	test -z "$(libsciast_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsciast_la_includedir)"
+	@list='$(libsciast_la_include_HEADERS)'; test -n "$(libsciast_la_includedir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)" || exit $$?; \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciast_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciast_la_includedir)" || exit $$?; \
 	done
 
-uninstall-libsciabstractSyntaxTree_la_includeHEADERS:
+uninstall-libsciast_la_includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciabstractSyntaxTree_la_include_HEADERS)'; test -n "$(libsciabstractSyntaxTree_la_includedir)" || list=; \
+	@list='$(libsciast_la_include_HEADERS)'; test -n "$(libsciast_la_includedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(libsciast_la_includedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciast_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -873,7 +866,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciabstractSyntaxTree_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciast_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -924,7 +917,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libsciabstractSyntaxTree_la_includeHEADERS
+install-data-am: install-libsciast_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -970,7 +963,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciabstractSyntaxTree_la_includeHEADERS \
+uninstall-am: uninstall-libsciast_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -983,14 +976,13 @@ uninstall-am: uninstall-libsciabstractSyntaxTree_la_includeHEADERS \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am \
-	install-libsciabstractSyntaxTree_la_includeHEADERS install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am \
-	uninstall-libsciabstractSyntaxTree_la_includeHEADERS \
+	install-libsciast_la_includeHEADERS install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libsciast_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 

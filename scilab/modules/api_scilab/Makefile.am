@@ -32,7 +32,7 @@ libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+-I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/operations/includes
 
 libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
@@ -45,7 +45,7 @@ libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+-I$(top_srcdir)/modules/ast/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes \
 -I$(top_srcdir)/modules/string/includes
 

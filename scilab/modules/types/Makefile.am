@@ -97,7 +97,7 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes \
 				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/symbol/includes \
-				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+				-I$(top_srcdir)/modules/ast/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/parse/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
@@ -159,7 +159,7 @@ endif
 ####################
 check_INCLUDES 		= -Iincludes/ \
 			-Isrc/cpp \
-			-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+			-I$(top_srcdir)/modules/ast/includes
 
 check_PROGRAMS 		= testTypes
 
@@ -168,5 +168,5 @@ TESTS			= testTypes
 testTypes_SOURCES 	= src/cpp/test-types.cpp
 testTypes_CPPFLAGS 	= $(check_INCLUDES)
 testTypes_LDADD	= 	$(top_builddir)/modules/types/libscitypes-algo.la \
-					$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
+					$(top_builddir)/modules/ast/libsciast.la
 

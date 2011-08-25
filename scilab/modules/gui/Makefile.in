@@ -841,7 +841,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
@@ -855,7 +855,7 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 libscigui_disable_la_CPPFLAGS = -Iincludes/ \
-								-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+								-I$(top_srcdir)/modules/ast/includes/ \
 								-I$(top_srcdir)/modules/types/includes/
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c

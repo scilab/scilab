@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -97,7 +97,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -146,7 +146,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\abstractSyntaxTree\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\includes;..\..\..\functions_manager\includes;..\..\..\types\includes;..\..\..\core\includes;..\..\..\symbol\includes;..\..\..\ast\includes;../../../system_env/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../string/includes;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

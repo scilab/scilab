@@ -87,7 +87,7 @@ hdf5 \
 graph \
 xcos \
 system_env \
-abstractSyntaxTree \
+ast \
 symbol \
 parse \
 scinotes \
@@ -200,7 +200,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
+	$(top_builddir)/modules/ast/libsciast.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \

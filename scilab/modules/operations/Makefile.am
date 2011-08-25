@@ -33,7 +33,7 @@ libscioperations_la_CFLAGS = 	-I$(top_srcdir)/modules/operations/includes \
 libscioperations_la_CXXFLAGS = 	-I$(top_srcdir)/modules/operations/includes \
 						-I$(top_srcdir)/modules/types/includes \
 						-I$(top_srcdir)/modules/symbol/includes \
-						-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+						-I$(top_srcdir)/modules/ast/includes \
 						-I$(top_srcdir)/modules/core/includes \
 						-I$(top_srcdir)/modules/string/includes
 

@@ -487,7 +487,7 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/
+				-I$(top_srcdir)/modules/ast/includes/
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)

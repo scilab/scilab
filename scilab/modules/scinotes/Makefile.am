@@ -76,7 +76,7 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/operations/includes \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/symbol/includes

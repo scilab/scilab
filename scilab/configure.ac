@@ -1767,7 +1767,7 @@ libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
 modules/threads/Makefile
-modules/abstractSyntaxTree/Makefile
+modules/ast/Makefile
 modules/parse/Makefile
 modules/symbol/Makefile
 modules/functions_manager/Makefile

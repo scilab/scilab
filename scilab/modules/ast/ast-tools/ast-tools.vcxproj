@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1F4A0344-99ED-461B-BD53-1593788FB34D}</ProjectGuid>
-    <RootNamespace>abstractSyntaxTree_tools</RootNamespace>
+    <RootNamespace>ast_tools</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>abstractSyntaxTree-tools</ProjectName>
+    <ProjectName>ast-tools</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

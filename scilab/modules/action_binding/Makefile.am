@@ -59,7 +59,7 @@ libsciaction_binding_disable_la_SOURCES = \
 libsciaction_binding_disable_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
-    -I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+    -I$(top_srcdir)/modules/ast/includes \
     -I$(top_srcdir)/modules/symbol/includes \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/types/includes
@@ -89,7 +89,7 @@ libsciaction_binding_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/symbol/includes \
     -I$(top_srcdir)/modules/functions_manager/includes \
-    -I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+    -I$(top_srcdir)/modules/ast/includes \
     -I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/types/includes
 

@@ -485,7 +485,7 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/system_env/includes/
 
 libscijvm_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -555,7 +555,7 @@ libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \

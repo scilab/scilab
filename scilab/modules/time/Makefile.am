@@ -32,7 +32,7 @@ libscitime_la_CPPFLAGS=  	-I$(srcdir)/includes/ \
 							-I$(top_srcdir)/modules/functions_manager/includes \
 							-I$(top_srcdir)/modules/symbol/includes \
 							-I$(top_srcdir)/modules/types/includes \
-							-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+							-I$(top_srcdir)/modules/ast/includes
 
 pkglib_LTLIBRARIES = libscitime.la
 noinst_LTLIBRARIES = libscitime-algo.la

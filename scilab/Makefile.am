@@ -58,7 +58,7 @@ SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 COMMON_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 						-I$(top_srcdir)/modules/output_stream/includes/ \
 						-I$(top_srcdir)/modules/parse/includes/ \
-						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+						-I$(top_srcdir)/modules/ast/includes/ \
 						-I$(top_srcdir)/modules/symbol/includes/ \
 						-I$(top_srcdir)/modules/functions_manager/includes/ \
 						-I$(top_srcdir)/modules/types/includes/ \

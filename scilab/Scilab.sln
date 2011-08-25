@@ -622,13 +622,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "localization_gw", "modules\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjvm_gw", "modules\jvm\sci_gateway\cpp\libjvm_gw.vcxproj", "{2D02DD0E-CBF5-493E-AA06-1E289ED24666}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree", "modules\abstractSyntaxTree\abstractSyntaxTree.vcxproj", "{0D3FA25B-8116-44EC-A45E-260789DAA3D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ast", "modules\ast\ast.vcxproj", "{0D3FA25B-8116-44EC-A45E-260789DAA3D9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1F4A0344-99ED-461B-BD53-1593788FB34D} = {1F4A0344-99ED-461B-BD53-1593788FB34D}
 		{7CA60AEF-9AFA-4D06-AF28-613C0AA27640} = {7CA60AEF-9AFA-4D06-AF28-613C0AA27640}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abstractSyntaxTree-tools", "modules\abstractSyntaxTree\abstractSyntaxTree-tools\abstractSyntaxTree-tools.vcxproj", "{1F4A0344-99ED-461B-BD53-1593788FB34D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ast-tools", "modules\ast\ast-tools\ast-tools.vcxproj", "{1F4A0344-99ED-461B-BD53-1593788FB34D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamic_link_gw", "modules\dynamic_link\sci_gateway\cpp\dynamic_link_gw.vcxproj", "{F93FF3EE-217A-4554-AB17-2F8D56B4BF4B}"
 EndProject

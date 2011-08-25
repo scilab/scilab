@@ -175,7 +175,7 @@ am_testTypes_OBJECTS = testTypes-test-types.$(OBJEXT)
 testTypes_OBJECTS = $(am_testTypes_OBJECTS)
 testTypes_DEPENDENCIES =  \
 	$(top_builddir)/modules/types/libscitypes-algo.la \
-	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
+	$(top_builddir)/modules/ast/libsciast.la
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -609,7 +609,7 @@ libscitypes_la_CPPFLAGS = -Iincludes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes \
 				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/symbol/includes \
-				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+				-I$(top_srcdir)/modules/ast/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/parse/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
@@ -652,12 +652,12 @@ libscitypes_la_sci_gateway_DATA =
 ####################
 check_INCLUDES = -Iincludes/ \
 			-Isrc/cpp \
-			-I$(top_srcdir)/modules/abstractSyntaxTree/includes
+			-I$(top_srcdir)/modules/ast/includes
 
 testTypes_SOURCES = src/cpp/test-types.cpp
 testTypes_CPPFLAGS = $(check_INCLUDES)
 testTypes_LDADD = $(top_builddir)/modules/types/libscitypes-algo.la \
-					$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
+					$(top_builddir)/modules/ast/libsciast.la
 
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
