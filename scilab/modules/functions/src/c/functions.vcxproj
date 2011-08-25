@@ -259,6 +259,7 @@ cd .. &gt;nul
     <ClCompile Include="DllmainFunctions.c" />
     <ClCompile Include="getmacroslist.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_functions.c" />
+    <ClCompile Include="isScilabFunction.c" />
     <ClCompile Include="librarieslist.c" />
     <ClCompile Include="libraryinfo.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_deff.c" />
@@ -274,6 +275,7 @@ cd .. &gt;nul
     <ClInclude Include="..\..\includes\dynlib_functions.h" />
     <ClInclude Include="..\..\includes\getmacroslist.h" />
     <ClInclude Include="..\..\includes\gw_functions.h" />
+    <ClInclude Include="..\..\includes\isScilabFunction.h" />
     <ClInclude Include="..\..\includes\librarieslist.h" />
     <ClInclude Include="..\..\includes\libraryinfo.h" />
     <ClInclude Include="searchmacroinlibraries.h" />

@@ -6,6 +6,7 @@
 FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
+	src/c/isScilabFunction.c \
 	src/c/searchmacroinlibraries.c
 
 FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
