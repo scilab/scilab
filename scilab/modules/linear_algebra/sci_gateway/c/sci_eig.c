@@ -141,7 +141,9 @@ int sci_eig(char *fname, int* _piKey)
 								return 0;
 							}
 
-							if( (symmetric=C2F(issymmetric)(&Rhs) ) )
+
+							//if(symmetric=isSymmetric(&Rhs))
+							if(1 /*replug previous test*/)
 							{
 								allocMatrixOfDouble(_piKey, 2, iCols, eigenValuesCols, &pEigenValuesReal);
 								/* if matrix is symmetric, the eigenvectors can reuse Rhs because the matrix is of the same type & dimensions */
