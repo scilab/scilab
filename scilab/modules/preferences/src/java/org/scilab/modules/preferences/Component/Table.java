@@ -13,14 +13,10 @@
 package org.scilab.modules.preferences.Component;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import org.scilab.modules.preferences.XComponent;
-import org.scilab.modules.preferences.XChooser;
-import org.scilab.modules.preferences.XCommonManager;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +30,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XCommonManager;
+import org.scilab.modules.preferences.XComponent;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -51,6 +51,8 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
      */
     private static final long serialVersionUID = -6127289363733321914L;
 
+    private final CustomTableCellRenderer customTableCellRenderer = new CustomTableCellRenderer();
+    
     /** Define the set of actuators.
     *
     * @return array of actuator names.
@@ -168,6 +170,19 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         }
     }
     //end Dynamic_controller
+    
+    private final class CustomTableCellRenderer extends DefaultTableCellRenderer{
+        public Component getTableCellRendererComponent (JTable table, 
+                Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component cell = super.getTableCellRendererComponent(table, obj, isSelected, hasFocus, row, column);
+            if (obj instanceof java.awt.Color) {
+                    cell.setBackground((java.awt.Color) obj);
+                    cell.setForeground((java.awt.Color) obj);
+            } 
+       
+            return cell;
+        }
+    }
 
     /** Constructor.
     *
@@ -178,6 +193,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         model        = new Model(peer);
         table        = new JTable (model);
         table.setFillsViewportHeight(true);
+       
         table.getSelectionModel().addListSelectionListener(this);
         table.getTableHeader().setReorderingAllowed(false);
         setupOpenMask(peer);
@@ -231,6 +247,9 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         setupOpenMask(peer);
         if (!item.equals(item())) {
             item(item);
+        }
+        for (int j = 0; j < model.getColumnCount(); j++) {
+            table.getColumnModel().getColumn(j).setCellRenderer(new CustomTableCellRenderer());
         }
         repaint();
     }
@@ -460,6 +479,10 @@ class Model extends AbstractTableModel {
         String attr  = getColumnAttr(col);
         Node record  = getRowRecord(row);
         String value = XCommonManager.getAttribute(record , attr);
+        if (value.startsWith("#"))
+        {
+            return XCommonManager.getColor(value);
+        }
         return value;
     }
 
