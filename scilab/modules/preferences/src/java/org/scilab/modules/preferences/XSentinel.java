@@ -209,13 +209,13 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
                 actions = getEventNodes(peer, "actionPerformed");
             }
             if (actions.length == 0) {
-                actions = getEventNodes(peer, "tableSelect");
+                actions = getEventNodes(peer, e.getActionCommand());
             }
             if (actions.length > 0) {
                 triggerEventNodes((Component) e.getSource(),actions) ;
                 timestamp = when;
             } else {
-                
+                //TODO : add something here
             }
             return;
         } else {

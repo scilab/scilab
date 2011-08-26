@@ -22,17 +22,18 @@ import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XCommonManager;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -139,8 +140,16 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
             }
         }
         switch (id) {
-        case 0: break;
-        case 1: break;
+        case 0:
+            // Add new row
+            if (actionListener != null) {
+                ActionEvent transmit  = new ActionEvent(this, 0,"tableAdd", e.getWhen(), 0);
+                actionListener.actionPerformed(transmit);
+            }
+            break;
+        case 1: 
+            // Move row upper
+            break;
         case 2:
             table.getSelectionModel().clearSelection();
             for (int i=0; i<controls.length; i++) {
@@ -148,7 +157,14 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
             }
             break;
         case 3: break;
-        case 4: break;
+        case 4:
+            // Delete row
+                System.out.println("[DEBUG] calling actionPerformed(deleteRow)");
+            if (actionListener != null) {
+                ActionEvent transmit  = new ActionEvent(this, 0,"tableDel", e.getWhen(), 0);
+                actionListener.actionPerformed(transmit);
+            }
+        break;
         }
     }
     //end Dynamic_controller
@@ -252,7 +268,7 @@ public class Table extends JPanel implements XComponent, XChooser, ListSelection
         if (externalChange) {
             openControls();
             if (actionListener != null) {
-                ActionEvent transmit  = new ActionEvent(this, 0,"Row change", table.getSelectedRow() + 1, 0);
+                ActionEvent transmit  = new ActionEvent(this, 0,"tableSelect", table.getSelectedRow() + 1, 0);
                 actionListener.actionPerformed(transmit);
             }
         }

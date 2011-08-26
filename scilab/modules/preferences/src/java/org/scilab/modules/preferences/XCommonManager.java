@@ -351,8 +351,18 @@ public abstract class XCommonManager {
                 if (differential) {
                     System.out.println(" hits " + context);
                 }
-                Element element           = getElementByContext(context);
-                int insert                = XCommonManager.getInt(action, "insert", -1);
+                Element element           = getElementByContext(context);            
+                String insertValue             = XCommonManager.getAttribute(action, "insert");
+                int insert = 0;
+                try {
+                    insert = Integer.decode(insertValue);
+                  
+                }
+                catch (NumberFormatException e) {
+                    XChooser chooser   = (XChooser) source;
+                    insertValue        = chooser.choose();
+                    insert = Integer.decode(insertValue) + 1;
+                }
                 Node   hook               = element.getChildNodes().item(insert);
                 DocumentFragment fragment = document.createDocumentFragment();
                 while (action.hasChildNodes()) {
@@ -378,7 +388,18 @@ public abstract class XCommonManager {
                     System.out.println(" hits " + context);
                 }
                 Element element           = getElementByContext(context);
-                int delete                = XCommonManager.getInt(action, "delete", -1);
+                String xDelete            = XCommonManager.getAttribute(action, "delete");
+                int delete = 0;
+                try {
+                    delete = Integer.decode(xDelete);
+                  
+                }
+                catch (NumberFormatException e) {
+                    XChooser chooser   = (XChooser) source;
+                    xDelete            = chooser.choose();
+                    delete = Integer.decode(xDelete);
+                }
+                System.out.println("[DEBUG] delete = "+delete);
                 Node   deleted            = element.getChildNodes().item(delete);
                 if (!(element == null)) {
                     element.removeChild(deleted);

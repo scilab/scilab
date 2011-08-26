@@ -18,11 +18,14 @@
                             <tableChanged>
                                 <xsl:call-template name="context"/>
                             </tableChanged>
-                            <tableAdd>
+                            <tableAdd insert="selection">
 								<xsl:call-template name="context"/>
 								<item value="0.0"/>
 							</tableAdd>
-							<tableCol title=""     width="30"       attr="label"/>
+                            <tableDel delete="selection">
+								<xsl:call-template name="context"/>
+                            </tableDel>
+                            <tableCol title=""     width="30"       attr="label"/>
 							<tableCol title="Values"       attr="value" editable="true"/>
 							<xsl:for-each select="item">
 								<tableRow label="{concat('y', format-number(position(), '0'))}" value="{@value}"/>
