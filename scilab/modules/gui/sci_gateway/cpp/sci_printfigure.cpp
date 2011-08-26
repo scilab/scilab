@@ -56,8 +56,8 @@ int sci_printfigure(char *fname,unsigned long l)
               n1=1;
               CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,  &m1, &n1, &status);
               LhsVar(1)=Rhs+1;
-              C2F(putlhsvar)();	
               delete[] status;
+              PutLhsVar();	
               return TRUE;
             }
           else

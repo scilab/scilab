@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: macros/atomsAutoloadAdd.sci, line: 168
 # File: macros/atomsAutoloadAdd.sci, line: 173
@@ -183,7 +183,7 @@ msgstr ""
 msgid "%s: Several versions of a package (%s) cannot be loaded at the same scilab session :\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsGetConfig.sci, line: 86
+# File: macros/atomsGetConfig.sci, line: 91
 #, c-format
 msgid "%s: The config file (''%s'') is not well formated at line %d\n"
 msgstr ""
@@ -378,7 +378,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsDepTreeFlat.sci, line: 52
 # File: macros/atoms_internals/atomsCategoryGet.sci, line: 61
 # File: macros/atoms_internals/atomsDepTreeExt.sci, line: 52
-# File: macros/atoms_internals/atomsGetConfig.sci, line: 22
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 23
 # File: macros/atoms_internals/atomsSaveInstalleddeps.sci, line: 39
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 23
@@ -391,6 +390,7 @@ msgstr ""
 # File: macros/atomsRepositoryDel.sci, line: 33
 # File: macros/atomsAutoloadAdd.sci, line: 36
 # File: macros/atomsCategoryList.sci, line: 29
+# File: macros/atomsGetConfig.sci, line: 27
 # File: macros/atomsIsInstalled.sci, line: 38
 # File: macros/atomsAutoloadDel.sci, line: 35
 #, c-format
@@ -498,7 +498,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsDepTreeExt.sci, line: 70
 # File: macros/atoms_internals/atomsDepTreeExt.sci, line: 74
 # File: macros/atoms_internals/atomsVersionCompare.sci, line: 44
-# File: macros/atoms_internals/atomsGetConfig.sci, line: 36
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 50
 # File: macros/atoms_internals/atomsSaveInstalleddeps.sci, line: 54
 # File: macros/atoms_internals/atomsPackageIsCompatible.sci, line: 73
@@ -510,6 +509,7 @@ msgstr ""
 # File: macros/atomsRepositoryList.sci, line: 43
 # File: macros/atomsSearch.sci, line: 46
 # File: macros/atomsCategoryList.sci, line: 43
+# File: macros/atomsGetConfig.sci, line: 41
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
@@ -636,7 +636,6 @@ msgstr ""
 # File: macros/atoms_internals/atomsDepTreeExt.sci, line: 63
 # File: macros/atoms_internals/atomsVersionCompare.sci, line: 33
 # File: macros/atoms_internals/atomsVersionCompare.sci, line: 37
-# File: macros/atoms_internals/atomsGetConfig.sci, line: 29
 # File: macros/atoms_internals/atomsGetDepChilds.sci, line: 46
 # File: macros/atoms_internals/atomsSaveInstalleddeps.sci, line: 50
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 30
@@ -663,6 +662,7 @@ msgstr ""
 # File: macros/atomsAutoloadAdd.sci, line: 78
 # File: macros/atomsRemove.sci, line: 101
 # File: macros/atomsCategoryList.sci, line: 36
+# File: macros/atomsGetConfig.sci, line: 34
 # File: macros/atomsIsInstalled.sci, line: 76
 # File: macros/atomsInstall.sci, line: 97
 #, c-format
@@ -1055,10 +1055,6 @@ msgstr ""
 msgid "File"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 87
-msgid "Home"
-msgstr ""
-#
 # File: macros/atoms_gui/atomsGui.sci, line: 221
 msgid "Install"
 msgstr ""
@@ -1073,6 +1069,10 @@ msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 83
 msgid "Installation failed!"
+msgstr ""
+#
+# File: macros/atoms_gui/atomsGui.sci, line: 87
+msgid "Installed modules"
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 79
@@ -1107,7 +1107,7 @@ msgid "Maintainer(s)"
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 23
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid "No ATOMS module is available. Please, check your Internet connection or make sure that your OS is compatible with ATOMS."
 msgstr ""
 #
 # File: macros/atoms_gui/atomsGui.sci, line: 25

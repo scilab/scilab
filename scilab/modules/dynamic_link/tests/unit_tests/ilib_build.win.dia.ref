@@ -46,7 +46,7 @@ files=['fun1.c','fun2.c','intfun1.c'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
    Running the makefile
    Compilation of fun1.c
    Compilation of fun2.c

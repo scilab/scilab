@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: io-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-02-15 22:13+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
@@ -69,11 +69,13 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "File \"%s\" already exists.\n"
@@ -96,3 +98,101 @@ msgstr "Переменная окружения не определена %s.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "неуправляемая ошибка при v2cunit.\n"
+
+#, c-format
+#~ msgid "%s: error during %s execution"
+#~ msgstr "%s: ошибка во время выполнения %s"
+
+#, c-format
+#~ msgid "%s: The system interpreter does not answer..."
+#~ msgstr "%s: Системный интерпретатор не отвечает..."
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#, c-format
+#~ msgid "%s: Incorrect format.\n"
+#~ msgstr "%s: Некорректный формат.\n"
+
+#, c-format
+#~ msgid "%s: end of input reached before final conversion.\n"
+#~ msgstr "%s: входной поток закончился до окончания преобразования.\n"
+
+#, c-format
+#~ msgid "%s: Invalid conversion.\n"
+#~ msgstr "%s: Неправильное преобразование.\n"
+
+#, c-format
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: Файл %s не существует.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument.\n"
+#~ msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output argument(s).\n"
+#~ msgstr "%s: Неверное количество выходных параметров.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидался корректный дескриптор "
+#~ "файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидался дескриптор файла.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: no empty string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра: ожидались непустые строки\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+#~ msgid "%s: system cannot be displayed in this page.\n"
+#~ msgstr "%s: не удалось отобразить систему на этой странице.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался целочисленный скаляр.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: должно быть меньше, чем %d "
+#~ "символов.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
+#~ msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"

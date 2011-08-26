@@ -24,9 +24,6 @@
 
 /*
 Commented for now
-#ifdef WITH_PVM
-// #include <pvm.h>
-#endif 
 
 #ifdef WITH_UMFPACK
 #ifdef UMFPACK_SUITESPARSE
@@ -87,12 +84,6 @@ char **getStaticDebugInfo(int *sizeArray)
 #ifdef WITH_FFTW
 		{"FFTW","Enable"},
 #endif
-#ifdef WITH_PVM
-		{"PVM","Enable"},
-#ifdef PVM_VER
-		{"PVM version",PVM_VER},
-#endif
-#endif	
 #ifdef PATH_SEPARATOR
 		{"Path separator",PATH_SEPARATOR},
 #endif

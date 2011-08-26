@@ -124,7 +124,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 
 	freeArrayOfString(FilesList,sizeListReturned);
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

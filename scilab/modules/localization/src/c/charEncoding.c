@@ -11,7 +11,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-
+#include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -61,10 +61,10 @@ wchar_t *to_wide_string(const char *_UTFStr)
 	int nwide = 0;
 	wchar_t *_buf = NULL;
 
-	/* About MultiByteToWideChar : 
-	Starting with Windows Vista, 
-	the function does not drop illegal code points 
-	if the application does not set this flag. 
+	/* About MultiByteToWideChar :
+	Starting with Windows Vista,
+	the function does not drop illegal code points
+	if the application does not set this flag.
 
 	Windows XP: To prevent the security problem of the non-shortest-form
 	versions of UTF-8 characters, MultiByteToWideChar deletes these characters.
@@ -106,9 +106,9 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
 		return NULL;
 	}
 
-	/* The value of MB_CUR_MAX is the maximum number of bytes 
+	/* The value of MB_CUR_MAX is the maximum number of bytes
 	   in a multibyte character for the current locale. */
-	int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ; 
+	int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ;
 	pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
 	if(pchar == NULL)
 	{
@@ -186,7 +186,7 @@ static int ReadUTF8Character(const char* str, int *nBytes)
 	}
 	else if (c < 0xE0)
 	{
-		if (s[1] == 0 || (s[1] ^ 0x80) >= 0x40) 
+		if (s[1] == 0 || (s[1] ^ 0x80) >= 0x40)
 		{
 			return -1;
 		}

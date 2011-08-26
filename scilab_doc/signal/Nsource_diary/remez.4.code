@@ -1,3 +1,0 @@
-//exec('remez.4.ex')
-exec('remez.3.code');
-an=remez(nc,fg,ds,wt)

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:11+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 msgid "&?"
 msgstr "&?"
@@ -29,18 +29,12 @@ msgstr "&Archivo"
 msgid "&Tools"
 msgstr "Herramien&tas"
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 44
 msgid "&nbsp; - A binary file if no format given"
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 45
 msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
 msgstr ""
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 45
 msgid "&nbsp; Do not start if ''Initialisation Time'' is negative"
 msgstr ""
 
@@ -97,13 +91,9 @@ msgstr "''Mínimo'' debe ser menor que Máximo."
 msgid "''Start'' must be less than ''End''."
 msgstr "''Inicio'' debe ser menor que ''Final''."
 
-#
-# File: macros/Sources/READAU_f.sci, line: 49
 msgid "(Read Audio File)"
 msgstr ""
 
-#
-# File: macros/IntegerOp/LOGIC.sci, line: 59
 msgid "Accepts Inherited Events"
 msgstr ""
 
@@ -119,8 +109,6 @@ msgstr "Automático"
 msgid "Bits Extraction"
 msgstr "Extracción de bits"
 
-#
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
 msgid "Bits to Extract"
 msgstr ""
 
@@ -133,22 +121,9 @@ msgstr "Condición contorno en a"
 msgid "Boundary condition on b"
 msgstr "Condición contorno en b"
 
-#
-# File: macros/Sources/READAU_f.sci, line: 67
-# File: macros/Sinks/WRITEC_f.sci, line: 46
-# File: macros/Sinks/WRITEC_f.sci, line: 67
-# File: macros/Sinks/WRITEC_f.sci, line: 81
-# File: macros/Sinks/WRITEAU_f.sci, line: 43
-# File: macros/Sinks/WRITEAU_f.sci, line: 53
-# File: macros/Sinks/WRITEAU_f.sci, line: 57
-# File: macros/Sinks/WFILE_f.sci, line: 46
-# File: macros/Sinks/WFILE_f.sci, line: 79
 msgid "Buffer Size"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 50
-# File: macros/Sources/READAU_f.sci, line: 65
 msgid "Buffer size"
 msgstr ""
 
@@ -164,42 +139,25 @@ msgstr "Limpiar un bit"
 msgid "Combinatorial logic"
 msgstr "Lógica combinatoria"
 
-#
-# File: macros/Sources/CONST_m.sci, line: 41
-# File: macros/Sources/CONST_m.sci, line: 46
-# File: macros/Sources/CONST_m.sci, line: 69
 msgid "Constant Value"
 msgstr ""
 
 msgid "Constant discriminant"
 msgstr "Discriminante contanste"
 
-#
-# File: macros/Sources/CONST_m.sci, line: 41
 msgid "Constant value generator"
 msgstr ""
 
-#
-# File: macros/Sources/CONST_m.sci, line: 46
 msgid "Constant value must have at least one element."
 msgstr ""
 
 msgid "Data Type"
 msgstr "Tipo de dato"
 
-#
-# File: macros/IntegerOp/INTMUL.sci, line: 43
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
-# File: macros/IntegerOp/BITCLEAR.sci, line: 42
-# File: macros/IntegerOp/SHIFT.sci, line: 44
-# File: macros/IntegerOp/BITSET.sci, line: 40
 #, c-format
 msgid "Data Type %s"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 77
-# File: macros/Sinks/WFILE_f.sci, line: 70
 #, c-format
 msgid "Directory ''%s'' does not exist"
 msgstr ""
@@ -222,29 +180,16 @@ msgstr "Hacer en desbordamiento (0:Nada, 1:Saturar, 2:Error)"
 msgid "Domain"
 msgstr "Dominio"
 
-#
-# File: macros/IntegerOp/LOGIC.sci, line: 56
 #, c-format
 msgid "Elements must be in the interval %s."
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 68
-# File: macros/Sinks/WRITEAU_f.sci, line: 54
 msgid "End current simulation first"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 58
-# File: macros/Sources/READAU_f.sci, line: 67
-# File: macros/Sinks/WRITEC_f.sci, line: 64
-# File: macros/Sinks/WFILE_f.sci, line: 57
-# File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "End current simulation first."
 msgstr ""
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 44
 msgid "Event clock generator"
 msgstr ""
 
@@ -275,15 +220,6 @@ msgstr "Puerto de entrada implicito"
 msgid "Implicit output port"
 msgstr "Puerto de salida implicito"
 
-#
-# File: macros/IntegerOp/BITCLEAR.sci, line: 49
-# File: macros/IntegerOp/BITCLEAR.sci, line: 55
-# File: macros/IntegerOp/BITCLEAR.sci, line: 66
-# File: macros/IntegerOp/BITCLEAR.sci, line: 77
-# File: macros/IntegerOp/BITSET.sci, line: 47
-# File: macros/IntegerOp/BITSET.sci, line: 53
-# File: macros/IntegerOp/BITSET.sci, line: 63
-# File: macros/IntegerOp/BITSET.sci, line: 74
 msgid "Index of Bit"
 msgstr ""
 
@@ -303,34 +239,18 @@ msgstr "Valor inicial"
 msgid "Initial conditions"
 msgstr "Condiciones iniciales"
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 45
 msgid "Initialisation Time"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 50
-# File: macros/Sources/READAU_f.sci, line: 63
 msgid "Input File Name"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 59
-# File: macros/Sinks/WRITEC_f.sci, line: 63
-# File: macros/Sinks/WFILE_f.sci, line: 75
 msgid "Input Format"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 45
-# File: macros/Sinks/WRITEC_f.sci, line: 85
-# File: macros/Sinks/WFILE_f.sci, line: 45
-# File: macros/Sinks/WFILE_f.sci, line: 83
 msgid "Input Size"
 msgstr ""
 
-#
-# File: macros/IntegerOp/CONVERT.sci, line: 57
 msgid "Input Type"
 msgstr ""
 
@@ -367,14 +287,10 @@ msgstr ""
 msgid "Must be a single value."
 msgstr "Debe ser un solo valor."
 
-#
-# File: macros/Sources/READAU_f.sci, line: 65
 #, c-format
 msgid "Must be greater than %d."
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 80
 msgid "Must be greater than 1."
 msgstr ""
 
@@ -408,23 +324,12 @@ msgstr "El número de filas debe ser una potencia de dos."
 msgid "Ordering:"
 msgstr "Orden:"
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 45
-# File: macros/Sinks/WRITEC_f.sci, line: 71
-# File: macros/Sinks/WRITEC_f.sci, line: 76
-# File: macros/Sinks/WFILE_f.sci, line: 45
-# File: macros/Sinks/WFILE_f.sci, line: 69
 msgid "Output File Name"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 46
-# File: macros/Sinks/WFILE_f.sci, line: 46
 msgid "Output Format"
 msgstr ""
 
-#
-# File: macros/IntegerOp/CONVERT.sci, line: 61
 msgid "Output Type"
 msgstr ""
 
@@ -440,9 +345,6 @@ msgstr "Especificación PDE"
 msgid "PDE block"
 msgstr "Bloque PDE"
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 45
-# File: macros/Sources/CLOCK_c.sci, line: 49
 msgid "Period"
 msgstr ""
 
@@ -455,8 +357,6 @@ msgstr "Puerto número"
 msgid "Ramp function"
 msgstr "Funcion rampa"
 
-#
-# File: macros/Sources/READAU_f.sci, line: 49
 msgid "Read is done on a binary ''.au'' file"
 msgstr ""
 
@@ -485,8 +385,6 @@ msgstr "Asignar %s parámetros de bloque"
 msgid "Set a bit"
 msgstr "Asignar un bit"
 
-#
-# File: macros/IntegerOp/SHIFT.sci, line: 50
 msgid "Shift Type"
 msgstr ""
 
@@ -496,13 +394,9 @@ msgstr "Tipo de desplazamiento (0:Aritmético, 1:Circular)"
 msgid "Shift/Rotates bits"
 msgstr "Desplazar/rotar bits"
 
-#
-# File: macros/Sources/READAU_f.sci, line: 57
 msgid "Simulation running !!! You cannot modify Input file name"
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 57
 msgid ""
 "Simulation running !!! You cannot switch<br />between formatted and "
 "unformatted when running"
@@ -529,27 +423,15 @@ msgstr ""
 msgid "Strictly positive integer expected."
 msgstr "Se esperaba un entero estrictamente positivo."
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 49
 msgid "Strictly positive number expected."
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 69
-# File: macros/Sinks/WRITEC_f.sci, line: 89
-# File: macros/Sinks/WRITEAU_f.sci, line: 62
 msgid "Swap Mode"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 50
 msgid "Swap Mode (0:No 1:Yes)"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 50
-# File: macros/Sinks/WRITEC_f.sci, line: 46
-# File: macros/Sinks/WRITEAU_f.sci, line: 43
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
 
@@ -559,17 +441,12 @@ msgstr "El ''Valor inicial'' debe ser 0 o 1 del tipo int8"
 msgid "The measurement points"
 msgstr "Los puntos de medida"
 
-#
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
 msgid "Treat Bit Field as an Integer"
 msgstr ""
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Tratar al campo del bit como a un entero (0:No, 1:Sí)"
 
-#
-# File: macros/IntegerOp/LOGIC.sci, line: 51
-# File: macros/IntegerOp/LOGIC.sci, line: 55
 msgid "Truth Table"
 msgstr ""
 
@@ -585,143 +462,74 @@ msgstr "Tipo:"
 msgid "Upper Limit (positive number)"
 msgstr "Límite superior (número positivo)"
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 60
 msgid "Valid formats are: "
 msgstr ""
 
 msgid "Validate"
 msgstr "Validar"
 
-#
-# File: macros/Sources/CONST_m.sci, line: 70
 msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
 msgstr ""
 
 msgid "Variable discriminant:"
 msgstr "Variable discriminante:"
 
-#
-# File: macros/Sinks/WRITEAU_f.sci, line: 43
 msgid "Write ''.au'' sound file on audio device"
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 44
 msgid "Write is done on:"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 45
 msgid "Write to C binary file"
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 43
 msgid "Write to output file"
 msgstr ""
 
-#
-# File: macros/Sources/CONST_m.sci, line: 46
 #, c-format
 msgid "Wrong size for ''%s'' parameter"
 msgstr ""
 
-#
-# File: macros/IntegerOp/LOGIC.sci, line: 51
 #, c-format
 msgid "Wrong size for ''%s'' parameter: %d."
 msgstr ""
 
-#
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 71
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 78
 #, c-format
 msgid "Wrong size for ''%s'' parameter: %s."
 msgstr ""
 
-#
-# File: macros/Sources/CONST_m.sci, line: 69
 #, c-format
 msgid "Wrong type for ''%s'' parameter"
 msgstr ""
 
-#
-# File: macros/IntegerOp/BITCLEAR.sci, line: 49
-# File: macros/IntegerOp/BITSET.sci, line: 47
 #, c-format
 msgid "Wrong type for ''%s'' parameter: %5.1f."
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 89
-# File: macros/Sinks/WRITEAU_f.sci, line: 62
 #, c-format
 msgid "Wrong value for  ''%s'' parameter: %d."
 msgstr ""
 
-#
-# File: macros/Sources/Counter.sci, line: 62
 #, c-format
 msgid "Wrong value for  ''Rule'' parameter: %d"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 63
-# File: macros/Sinks/WRITEC_f.sci, line: 71
 #, c-format
 msgid "Wrong value for ''%s'' parameter"
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 76
-# File: macros/Sinks/WFILE_f.sci, line: 69
 #, c-format
 msgid "Wrong value for ''%s'' parameter."
 msgstr ""
 
-#
-# File: macros/IntegerOp/SHIFT.sci, line: 50
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %d"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 65
-# File: macros/Sources/READAU_f.sci, line: 69
-# File: macros/IntegerOp/INTMUL.sci, line: 50
-# File: macros/IntegerOp/INTMUL.sci, line: 102
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 58
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 62
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
-# File: macros/IntegerOp/BITCLEAR.sci, line: 55
-# File: macros/IntegerOp/BITCLEAR.sci, line: 66
-# File: macros/IntegerOp/BITCLEAR.sci, line: 77
-# File: macros/IntegerOp/BITCLEAR.sci, line: 87
-# File: macros/IntegerOp/CONVERT.sci, line: 53
-# File: macros/IntegerOp/CONVERT.sci, line: 57
-# File: macros/IntegerOp/CONVERT.sci, line: 61
-# File: macros/IntegerOp/SHIFT.sci, line: 106
-# File: macros/IntegerOp/LOGIC.sci, line: 59
-# File: macros/IntegerOp/BITSET.sci, line: 53
-# File: macros/IntegerOp/BITSET.sci, line: 63
-# File: macros/IntegerOp/BITSET.sci, line: 74
-# File: macros/IntegerOp/BITSET.sci, line: 83
-# File: macros/Sinks/WRITEC_f.sci, line: 81
-# File: macros/Sinks/WRITEC_f.sci, line: 85
-# File: macros/Sinks/WRITEAU_f.sci, line: 57
-# File: macros/Sinks/WFILE_f.sci, line: 79
-# File: macros/Sinks/WFILE_f.sci, line: 83
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
 msgstr ""
 
-#
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 95
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 134
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 173
-# File: macros/Sinks/WRITEC_f.sci, line: 59
-# File: macros/Sinks/WFILE_f.sci, line: 75
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %s."
 msgstr ""
@@ -734,8 +542,6 @@ msgstr ""
 msgid "Wrong value for ''Initial State'' parameter: %d."
 msgstr "Valor incorrecto para el parámetro Estado inicial: %d."
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 63
 msgid "Wrong value for ''Output File Name'' parameter"
 msgstr ""
 
@@ -747,20 +553,14 @@ msgstr "Valor incorrecto para el parámetro Puerto número: %d."
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "Valor incorrecto para el parámetro Tiempo inicial: %e."
 
-#
-# File: macros/IntegerOp/LOGIC.sci, line: 55
 #, c-format
 msgid "Wrong value for of ''%s'' parameter."
 msgstr ""
 
-#
-# File: macros/Sources/CLOCK_c.sci, line: 49
 #, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
 msgstr ""
 
-#
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 82
 #, c-format
 msgid "Wrong values for ''%s'' parameter: %s."
 msgstr ""
@@ -777,38 +577,23 @@ msgstr "Valor incorrecto para el parámetro Puerto número: %d."
 msgid "Wrong values for ''Upper Limit'' parameter: %d."
 msgstr "Valor incorrecto para el parámetro : %d."
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 63
 #, c-format
 msgid "You cannot modify ''%s'' when running"
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 67
-# File: macros/Sinks/WRITEAU_f.sci, line: 53
 #, c-format
 msgid "You cannot modify ''%s'' when running."
 msgstr ""
 
-#
-# File: macros/Sinks/WRITEC_f.sci, line: 67
 msgid "You cannot modify ''Buffer Size'' when running."
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 60
 msgid "You cannot modify ''Output File Name'' when running."
 msgstr ""
 
-#
-# File: macros/Sinks/WFILE_f.sci, line: 76
 msgid "You must enclose the format''s string between parentheses."
 msgstr ""
 
-#
-# File: macros/Sources/READAU_f.sci, line: 63
-# File: macros/Sinks/WRITEC_f.sci, line: 71
-# File: macros/Sinks/WFILE_f.sci, line: 63
 msgid "You must provide a filename."
 msgstr ""
 

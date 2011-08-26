@@ -36,6 +36,11 @@ case 'set' then
   y=needcompile // in case leaving with Exit x=arg1
   typ=list()
   graphics=arg1.graphics;
+  if (length(graphics.exprs) == 0) then
+      warnBlockByUID(arg1.model.label, gettext("Invalid masked block."));
+      x=arg1, return;
+  end
+  
   exprs=graphics.exprs(1)
   exprs0=graphics.exprs(2)(1)
   btitre=graphics.exprs(2)(2)(1)

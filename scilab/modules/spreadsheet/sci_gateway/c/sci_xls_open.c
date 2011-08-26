@@ -214,7 +214,7 @@ int sci_xls_open(char *fname,unsigned long fname_len)
 	LhsVar(3)= Rhs+3;
 	LhsVar(4)= Rhs+4;
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

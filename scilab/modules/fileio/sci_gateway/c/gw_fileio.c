@@ -63,7 +63,8 @@ static gw_generic_table Tab[]={
     {sci_pathconvert,"pathconvert"},
     {sci_chdir,"cd"},
     {sci_mgetl,"mgetl"},
-    {sci_mputl,"mputl"}
+    {sci_mputl,"mputl"},
+    {sci_tempname,"tempname"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)

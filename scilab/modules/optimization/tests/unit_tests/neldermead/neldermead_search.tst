@@ -56,35 +56,25 @@ nm = neldermead_configure(nm,"-simplex0length",20.0);
 //
 nm = neldermead_configure(nm,"-boundsmin",[10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
-cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-if getos() == 'Windows' then
-expected = "neldermead_startup: The max bound -1.000000e+001 for variable #1 is lower than the min bound 1.000000e+001.";
-else
-expected = "neldermead_startup: The max bound -1.000000e+01 for variable #1 is lower than the min bound 1.000000e+01.";
-end
-assert_checkequal ( computed , expected );
+instr = "nm = neldermead_search(nm)";
+lclmsg = gettext("%s: The max bound %s for variable #%d is lower than the min bound %s.\n");
+assert_checkerror ( instr , lclmsg , [] , "optimbase_checkbounds","-10",1,"10" );
 //
 // Test with wrong number of min bounds
 //
 nm = neldermead_configure(nm,"-boundsmin",[10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
 cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_startup: The number of variables 4 does not match the number of min bounds 1 from [10]";
-assert_checkequal ( computed , expected );
+lclmsg = gettext("%s: The number of variables %d does not match the number of min bounds: %d.\n");
+assert_checkerror ( cmd , lclmsg , [] , "optimbase_checkbounds" , 4 , 1);
 //
 // Test with wrong number of max bounds
 //
 nm = neldermead_configure(nm,"-boundsmin",[10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[-10.0]);
 cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_startup: The number of variables 4 does not match the number of max bounds 1 from [-10]";
-assert_checkequal ( computed , expected );
+lclmsg = gettext("%s: The number of variables %d does not match the number of max bounds: %d.\n");
+assert_checkerror ( cmd , lclmsg , [] , "optimbase_checkbounds" , 4 , 1);
 //
 // Test with Box algorithm and randomized bounds simplex and no bounds
 //
@@ -110,6 +100,8 @@ nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-logfile" , fullfile(TMPDIR,"search.txt" ));
 nm = neldermead_configure(nm,"-verbosetermination",1);
+nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
 computed = deletefile(fullfile(TMPDIR,"search.txt"));

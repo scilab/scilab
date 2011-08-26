@@ -1,6 +1,7 @@
 @echo off
 rem Scilab ( http://mwww.scilab.org/ ) - This file is part of Scilab
 rem Copyright (C) 2007 - INRIA - Allan CORNET
+rem Copyright (C) 2011 - DIGITEO - Allan CORNET
 rem
 rem This file must be used under the terms of the CeCILL.
 rem This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,7 @@ set SCILAB_ROOT=../../../..
 set PATH=%SCILAB_ROOT%/bin;%PATH%
 set JAVAC="%SCILAB_ROOT%/java/jdk/bin/javac.exe"
 if NOT EXIST %JAVAC% set JAVAC=javac.exe
-set CLASSPATH=%SCILAB_ROOT%/modules/javasci/jar/javasci.jar;%SCILAB_ROOT%/modules/javasci/jar/build/classes;%CLASSPATH%
+set CLASSPATH=%SCILAB_ROOT%/modules/javasci/jar/javasci.jar;%CLASSPATH%
 
 rem build examples
 

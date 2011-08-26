@@ -34,7 +34,8 @@ opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
 opt = optimbase_configure(opt,"-function",rosenbrock2);
 cmd = "opt = optimbase_checkcostfun(opt);";
-assert_checkerror(cmd,"%s: Cannot evaluate cost function from costf(x0,1).",[],"optimbase_checkcostfun");
+lclmsg = "%s: Cannot evaluate cost function with ""%s"".";
+assert_checkerror(cmd,lclmsg,[],"optimbase_checkcostfun","[f,index]=costf(x0,1)");
 opt = optimbase_destroy(opt);
 
 //
@@ -78,6 +79,18 @@ opt = optimbase_configure(opt,"-function",optimtestcase);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
 opt = optimbase_checkcostfun(opt);
+opt = optimbase_destroy(opt);
+
+//
+// Test a wrong configuration: we forgot to configure "-nbineqconst"
+//
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+cmd="opt = optimbase_checkcostfun(opt)";
+errmsg = "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.";
+assert_checkerror(cmd,errmsg,[], "optimbase_checkcostfun" , "index" , 1 , 0 , 1);
 opt = optimbase_destroy(opt);
 
 //

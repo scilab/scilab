@@ -1,4 +1,0 @@
-//Illustrate plot of FIR filter impulse response 'plot.1.code'
-xinit('plot1.ps')
-exec('SCI/doc/signal/Nsource_diary/Splot1.code')
-xend();

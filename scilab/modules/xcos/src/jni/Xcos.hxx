@@ -66,11 +66,12 @@ JavaVM * jvm;
 protected:
 jmethodID voidxcosID; // cache method id
 jmethodID voidxcosjstringID; // cache method id
-jmethodID voidwarnCellByUIDjstringjstringID; // cache method id
+jmethodID voidwarnCellByUIDjobjectArray_jstringID; // cache method id
+jclass stringArrayClass;
 jmethodID voidcloseXcosFromScilabID; // cache method id
 jmethodID jintxcosDiagramToHDF5jstringjstringjbooleanID; // cache method id
-jmethodID voidxcosDiagramOpenjstringjbooleanID; // cache method id
-jmethodID voidxcosDiagramClosejstringID; // cache method id
+jmethodID voidxcosDiagramOpenjobjectArray_ID; // cache method id
+jmethodID voidxcosDiagramClosejobjectArray_ID; // cache method id
 
 
 
@@ -131,15 +132,15 @@ static void xcos(JavaVM * jvm_);
 
 static void xcos(JavaVM * jvm_, char * fileName);
 
-static void warnCellByUID(JavaVM * jvm_, char * UID, char * message);
+static void warnCellByUID(JavaVM * jvm_, char ** uids, int uidsSize, char * message);
 
 static void closeXcosFromScilab(JavaVM * jvm_);
 
 static int xcosDiagramToHDF5(JavaVM * jvm_, char * xcosFile, char * h5File, bool forceOverwrite);
 
-static void xcosDiagramOpen(JavaVM * jvm_, char * UID, bool show);
+static void xcosDiagramOpen(JavaVM * jvm_, char ** UID, int UIDSize);
 
-static void xcosDiagramClose(JavaVM * jvm_, char * UID);
+static void xcosDiagramClose(JavaVM * jvm_, char ** UID, int UIDSize);
 
 
                         /**

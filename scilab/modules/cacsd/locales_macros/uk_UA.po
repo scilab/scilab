@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 04:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -87,7 +87,8 @@ msgstr ""
 "%s: всі стани %s близькі до немінімальних, отже %s майже дорівнює %d.\n"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: всі стани A близькі до немінімальних, отже || G || майже дорівнює 0.\n"
 
@@ -117,7 +118,8 @@ msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s: не вдалося визначити розмірність вектора стану.\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: керований та придатний до спостереження стани %s перебувають поряд з "
 "віссю уявних значень.\n"
@@ -249,7 +251,8 @@ msgstr "%s: потребує %s => буде використано типове 
 
 #, c-format
 msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
-msgstr "%s: від’ємні частоти, менші за частоту Найквіста буде проігноровано.\n"
+msgstr ""
+"%s: від’ємні частоти, менші за частоту Найквіста буде проігноровано.\n"
 
 #, c-format
 msgid "%s: No input found.\n"
@@ -342,7 +345,8 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -383,13 +387,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 16
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
+"%s: помилкова розмірність параметра %d: розмірність мала бути такою: "
+"(%d,%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -593,7 +598,8 @@ msgstr ""
 "раціональних дробів.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати лінійну "
 "динамічну систему.\n"
@@ -658,7 +664,8 @@ msgstr ""
 "з одним входом і одним виходом.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати придатну "
 "до стабілізації систему.\n"
@@ -676,13 +683,13 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: параметр часового діапазону "
 "повинен мати значення «c» (неперервний) або «d» (дискретний).\n"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: second row must be greater than "
 "first one.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення у другому рядку "
+"мають бути більшими за значення у першому.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
@@ -703,7 +710,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
-msgstr "%s: помилкові значення вхідного параметра №%d: %s має неповний ранг.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: %s має неповний ранг.\n"
 
 #, c-format
 msgid ""
@@ -759,8 +767,8 @@ msgid ""
 "The system might be all-pass"
 msgstr ""
 "%s: неможливо обчислити норму. Відносна точність менша за 1e-3.\n"
-"Ймовірно, норма у просторі Харді на нескінченності точно дорівнює max sv"
-"(D).\n"
+"Ймовірно, норма у просторі Харді на нескінченності точно дорівнює max "
+"sv(D).\n"
 "Система може бути всепрохідною (all-pass)."
 
 #, c-format
@@ -865,11 +873,9 @@ msgstr "Неможливий (Гамільтоніан Hy)"
 msgid "Unfeasible (spectral radius)"
 msgstr "Неможливий (спектральний радіус)"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 25
 #, c-format
 msgid "Wrong type for argument %d: SISO expected.\n"
-msgstr ""
+msgstr "Помилковий тип параметра %d: мало бути використано тип SISO.\n"
 
 msgid "Zeros"
 msgstr "Нулі"

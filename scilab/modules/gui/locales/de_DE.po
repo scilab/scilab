@@ -8,24 +8,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2011-03-09 13:28+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ein Fehler ist aufgetreten: %s.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 97
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 150
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 312
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 403
 #, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
@@ -56,12 +51,6 @@ msgstr "%s: Diagrammnummer muß angegeben werden, wenn nicht im '%s' Modus.\n"
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr "%s: diese Funktion ist im MWNI Modus nicht verfügbar.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 119
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 160
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 334
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 369
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 420
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -82,8 +71,6 @@ msgstr "%s: Die Datei %s existiert nicht.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: unbekannte Eigenschaft: %s für '%s' Handhabung.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -102,7 +89,8 @@ msgstr "%s: falsche Eingangsargumente: '%s', '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
+msgstr ""
+"%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -115,10 +103,9 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: %d x %d Matrix mit Zeichenketten "
 "erwartet.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -140,8 +127,6 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: ein 1x %d reeller Reihen-Vektor "
 "erwartet.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
@@ -173,7 +158,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
@@ -182,7 +168,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
@@ -204,11 +191,9 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: Matrix mit Zeichenketten "
 "erwartet.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -221,10 +206,6 @@ msgstr ""
 "%s: falscher Größe für Eingangsargument #%d: Vektor mit Zeichenketten "
 "erwartet.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -381,10 +362,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: '%s', '%s' oder '%s' erwartet.\n"
 
@@ -397,7 +380,8 @@ msgstr ""
 "existiert nicht.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: eine gültige Handhabung '%s' "
 "erwartet.\n"
@@ -408,7 +392,8 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: ein >%d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: es wird => %d erwartet.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: es wird => %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -422,12 +407,8 @@ msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: dieses Alias existiert nicht.\n"
 
-#
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 45
-# File: scilab_fake_localization_file.c, line: 82
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
 msgid "&Abort"
 msgstr "&Abbrechen"
@@ -459,24 +440,18 @@ msgstr "&Schließen"
 msgid "&Colors"
 msgstr "&Farben"
 
-#
-# File: scilab_fake_localization_file.c, line: 81
 msgid "&Command History"
-msgstr ""
+msgstr "&Befehlsspeicher"
 
 msgid "&Control"
 msgstr "&Kontrolle"
 
-#
-# File: scilab_fake_localization_file.c, line: 59
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopieren"
 
 msgid "&Copy to clipboard"
 msgstr "&In die Zwischenablage kopieren"
 
-#
-# File: scilab_fake_localization_file.c, line: 44
 msgid "&Decrease font size"
 msgstr ""
 
@@ -489,11 +464,8 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-#
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 57
 msgid "&Edit"
-msgstr ""
+msgstr "&Editieren"
 
 msgid "&Empty clipboard"
 msgstr "&Zwischenablage leeren"
@@ -510,31 +482,21 @@ msgstr "&FIG"
 msgid "&Figure properties"
 msgstr "&Voreinstellungen der Darstellung"
 
-#
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 47
 msgid "&File"
-msgstr ""
+msgstr "&Datei"
 
-#
-# File: scilab_fake_localization_file.c, line: 90
 msgid "&File Exchange"
 msgstr ""
 
 msgid "&Font..."
 msgstr "&Zeichensatz ..."
 
-#
-# File: scilab_fake_localization_file.c, line: 92
 msgid "&Forge"
 msgstr ""
 
 msgid "&GIF"
 msgstr "&GIF"
 
-#
-# File: scilab_fake_localization_file.c, line: 42
 msgid "&Incremental Search"
 msgstr ""
 
@@ -598,8 +560,6 @@ msgstr "&Umgebung speichern..."
 msgid "&Save..."
 msgstr "&Speichern"
 
-#
-# File: scilab_fake_localization_file.c, line: 76
 msgid "&SciNotes"
 msgstr ""
 
@@ -612,22 +572,15 @@ msgstr "&Alles auswählen"
 msgid "&Select as current figure"
 msgstr "&Als aktuelle Darstellung auswählen"
 
-#
-# File: scilab_fake_localization_file.c, line: 34
 msgid "&Start datatip manager"
 msgstr ""
 
 msgid "&Start entity picker"
 msgstr "&Einheitswähler starten"
 
-#
-# File: scilab_fake_localization_file.c, line: 21
-# File: scilab_fake_localization_file.c, line: 41
 msgid "&Tools"
-msgstr ""
+msgstr "&Zusatzprogramme"
 
-#
-# File: scilab_fake_localization_file.c, line: 24
 msgid "&UnZoom"
 msgstr ""
 
@@ -662,28 +615,18 @@ msgstr "Danksagungen"
 msgid "All %s files"
 msgstr "Alle %s Dateien"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
 msgid "All Encapsulated PS files"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
 msgid "All PDF files"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
 msgid "All PNG image files"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
 msgid "All Postscript files"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
@@ -693,15 +636,11 @@ msgstr "Alle Scilab Dateien"
 msgid "All files"
 msgstr "Alle Dateien"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/PrinterHelper.java, line: 64
 msgid "An error occured: "
-msgstr ""
+msgstr "Ein Fehler ist aufgetreten: "
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
 msgid "Attributes"
-msgstr ""
+msgstr "Attribute"
 
 msgid "Back"
 msgstr "Zurück"
@@ -760,13 +699,9 @@ msgstr "Kopieren"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
 msgid "Copyright (c) 1989-2011 (INRIA)"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 31
 msgid "Could not open: "
 msgstr ""
 
@@ -794,13 +729,9 @@ msgstr "Fehler beim Exportieren"
 msgid "Error. A signal has been caught.\n"
 msgstr "Fehler. Ein Signal wurde aufgehalten.\n"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 137
 msgid "Evaluate selection with echo"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 150
 msgid "Evaluate selection with no echo"
 msgstr ""
 
@@ -816,10 +747,6 @@ msgstr "Exportieren"
 msgid "FIG image"
 msgstr "FIG Bild"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
 msgid "Feature not available in this mode..."
 msgstr ""
 
@@ -835,13 +762,9 @@ msgstr "Datei existiert bereits"
 msgid "File already exists"
 msgstr "Datei existiert bereits"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
 msgid "Font"
-msgstr ""
+msgstr "Schrift"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
 msgid "Font Chooser"
 msgstr ""
 
@@ -866,15 +789,11 @@ msgstr "Hilfe zum ausgewählten Stichwort"
 msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
-#
-# File: scilab_fake_localization_file.c, line: 43
 msgid "In&crease font size"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
 msgid "Italic"
-msgstr ""
+msgstr "Kursiv"
 
 msgid "JPEG image"
 msgstr "JPEG-Bild"
@@ -901,8 +820,6 @@ msgstr "Modul Manager ATOMS"
 msgid "Module manager - ATOMS"
 msgstr "Modulmanager - ATOMS"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
 msgid "Monospaced"
 msgstr ""
 
@@ -917,8 +834,6 @@ msgstr "Keine Eigenschaft '%s' für dieses Objekt.\n"
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr "Keine '%s' Eigenschaft für Uicontrol des Designs: %s.\n"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2487
 msgid "No print service found."
 msgstr ""
 
@@ -979,8 +894,6 @@ msgstr "SVG-Bild"
 msgid "Save and execute"
 msgstr "Speichern und ausführen"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 177
 msgid "SciNotes compatible"
 msgstr ""
 
@@ -996,16 +909,12 @@ msgstr "Sciliab &Demonstrationen"
 msgid "Scilab &Help"
 msgstr "Scilab &Help"
 
-#
-# File: scilab_fake_localization_file.c, line: 87
 msgid "Scilab &Online Help"
 msgstr ""
 
 msgid "Scilab &Web Site"
 msgstr "Scilab &Web Seite"
 
-#
-# File: scilab_fake_localization_file.c, line: 88
 msgid "Scilab &Wiki"
 msgstr ""
 
@@ -1038,8 +947,6 @@ msgstr "Scilab Nachricht"
 msgid "Scilab Multiple Values Request"
 msgstr "Mehrfachwert Anfragen von Scilab"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 64
 msgid "Scilab Quit files"
 msgstr ""
 
@@ -1049,8 +956,6 @@ msgstr "Scilab SCE Dateien"
 msgid "Scilab SCI files"
 msgstr "Scilab SCI Dateien"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 62
 msgid "Scilab Start files"
 msgstr ""
 
@@ -1072,9 +977,6 @@ msgstr "Eine Datei zum Ausführen auswählen"
 msgid "Select a file to load"
 msgstr "Wählen Sie eine Datei zum importieren aus"
 
-#
-# File: etc/main_menubar.xml, line: 25
-# File: etc/main_toolbar.xml, line: 11
 msgid "Select a file to open with SciNotes"
 msgstr ""
 
@@ -1084,15 +986,11 @@ msgstr "Eine Datei zum Schreiben auswählen."
 msgid "Show/Hide &Toolbar"
 msgstr "Anzeigen/Verstecken der Werkzeugleiste"
 
-#
-# File: scilab_fake_localization_file.c, line: 35
 msgid "Stop datatip manager"
 msgstr ""
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 60
 msgid "Test files"
-msgstr ""
+msgstr "Dateien testen"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Das Scilab Konsortium (DIGITEO)"
@@ -1143,7 +1041,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Falsche Größe für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
+msgstr ""
+"Falsche Größe für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
 #, c-format
 msgid ""
@@ -1229,8 +1128,8 @@ msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
 msgstr ""
-"Falscher Typ für Eigenschaft '%s': ein 1 x 3 reeller Vektor oder eine 'R|G|"
-"B' Zeichenkette erwartet.\n"
+"Falscher Typ für Eigenschaft '%s': ein 1 x 3 reeller Vektor oder eine "
+"'R|G|B' Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1243,7 +1142,8 @@ msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "Falscher Typ für Eigenschaft '%s': eine Realzahl erwartet.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Falscher Typ für Eigenschaft '%s': ein reeller Reihenvektor oder eine "
 "Zeichenkette erwartet.\n"
@@ -1290,7 +1190,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Falscher Wert für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
+msgstr ""
+"Falscher Wert für Eigenschaft '%s': '%s', '%s', oder '%s' erwartet.\n"
 
 #, c-format
 msgid ""
@@ -1313,8 +1214,6 @@ msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
 "Falscher Wert für Eigenschaft '%s': ein '%s' oder '%s' Handle erwartet.\n"
 
-#
-# File: src/cpp/SetUicontrolValue.cpp, line: 69
 #, c-format
 msgid ""
 "Wrong value for '%s' property: A String containing a numeric value "
@@ -1337,11 +1236,6 @@ msgstr ""
 "Falscher Wert für Eigenschaft '%s': eine Zeichenkette oder ein 1 x %d "
 "reeller Zeilenvektor erwartet.\n"
 
-#
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
@@ -1374,8 +1268,8 @@ msgid ""
 msgstr ""
 "disp(\"Warnung: auf Grund Ihrer Einschränkungen bei der Konfiguration, hat "
 "Scilab in einen Modus geschaltet, in dem Uicontrols und Grafik nicht "
-"verfügbar sind. Geben Sie \"\"Help Usecanvas\"\" für weitere Information ein."
-"\")"
+"verfügbar sind. Geben Sie \"\"Help Usecanvas\"\" für weitere Information "
+"ein.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
@@ -1386,7 +1280,455 @@ msgstr ""
 "OpenGL nicht einstellen, Scilab wird keine Grafik ausgeben. Bitte "
 "aktualisieren Sie die Treiber.\")"
 
-#
-# File: scilab_fake_localization_file.c, line: 98
 msgid "toggle datatip mode"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s: Falsche Anzahl an Eingansargumenten: %d zu %d erwartet.\n"
+
+#~ msgid ""
+#~ "Some Scilab modules are released under the GPLv2 license.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Einige Scilab Module werden unter der GPLv2 Lizenz veröffentlicht.\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Authors:\n"
+#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Autoren:\n"
+#~ "INRIA und ENPC sind Scilab Unterstützer\n"
+#~ "\n"
+
+#~ msgid "http://www.scilab.org/"
+#~ msgstr "http://www.scilab.org/"
+
+#, c-format
+#~ msgid ""
+#~ "Version %s (%s)\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Version %s (%s)\n"
+#~ "\n"
+
+#~ msgid "&Contributions"
+#~ msgstr "&Beiträge"
+
+#~ msgid "&Editor"
+#~ msgstr "&Editor"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "Scipad starten"
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "&Archive für die Nachrichtengruppen"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&Fehler und Anfrage Datenbank"
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+#~ msgstr "%s: falsche Eingangsargumente: %s, %s oder %s erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: eine Zwei-Objekt Liste erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: %s or %s expected.\n"
+#~ msgstr "%s: falsche Eingangsargumente: %s oder %s erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#~ msgid ""
+#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
+#~ "license.\n"
+#~ msgstr ""
+#~ "Scilab 5.0 und höhere Versionen werden unter den Bedingungen der CeCILL "
+#~ "Lizenz veröffentlicht.\n"
+
+#, c-format
+#~ msgid "%s: Type %s is not implemented.\n"
+#~ msgstr "%s: Typ %s ist nicht implementiert.\n"
+
+#~ msgid "Scilab Contributors..."
+#~ msgstr "Beitragende zu Scilab..."
+
+#, c-format
+#~ msgid "%s: function not available in NWNI mode.\n"
+#~ msgstr "%s: diese Funktion ist im MWNI Modus verfügbar.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " has incorrect type %s.\n"
+#~ msgstr ""
+#~ "Gegebene Antwort für %s \n"
+#~ " hat inkorrekten Typ %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " is incorrect see error message in scilab window.\n"
+#~ msgstr ""
+#~ "Gegebene Antwort für %s \n"
+#~ " ist nicht korrekt. Beachten Sie die Fehlermeldung im Fenster von Scilab.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " has invalid dimension: \n"
+#~ " waiting for dimension %s.\n"
+#~ msgstr ""
+#~ "Gegebene Antwort für %s \n"
+#~ " hat nicht gültige Dimension: \n"
+#~ " warte auf Dimension %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A list expected.\n"
+#~ msgstr "%s: falscher Typ für %s: eine Liste erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+#~ msgstr "%s: falscher Typ für Eingangsargument #%d: eine Liste erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A string expected.\n"
+#~ msgstr "%s: falscher Typ für %s: eine Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for %s: A real expected.\n"
+#~ msgstr "%s: falsche Größe für %s: eine Realzahl erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A real expected.\n"
+#~ msgstr "%s: falscher Typ für %s: eine Realzahl erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+#~ msgstr ""
+#~ "%s: falsche Größe für %s: ein Reihenvektor mit Zeichenketten erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für %s: ein Reihenvektor mit Zeichenketten erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: eine grafische Handhabung oder "
+#~ "Realzahl erwartet.\n"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "Scilab '%s' Modul im -nogui oder .nwmi Modus deaktiviert."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: nicht-negative Integer erwartet.\n"
+
+#~ msgid "GUI"
+#~ msgstr "grafische Oberfläche"
+
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+#~ msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: nicht-negative Integer erwartet.\n"
+
+#~ msgid "File"
+#~ msgstr "Datei"
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "Eine Datei zum Öffnen mit Scipad auswählen"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"Warnung: entgegen der vorherigen Warnung, haben Sie Scilab mit "
+#~ "fortschrittlichen Grafikeigenschaften ausgewählt. Geben Sie \"Help "
+#~ "Usecanvas\" für weitere Information ein.\")"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d oder #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Scilab Editor starten"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr ""
+#~ "Wählen Sie eine Datei aus, die mit Scilab Editor geöffnet werden soll"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: boolscher Wert erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+#~ msgstr ""
+#~ "%s: falscjer Typ für Eingangsargument #%d: Zeichenkette oder Baum erwartet.\n"
+
+#, c-format
+#~ msgid "%s:  #%d matching nodes.\n"
+#~ msgstr "%s: #%d übereinstimmende Knotenpunkte\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: Baum oder Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s:  #%d matching parent nodes.\n"
+#~ msgstr "%s. '%d übereinstimmende Knotenpunkte.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+#~ msgstr "%s: falscher Typ für Eingangsargumente #%d: Baum erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+#~ msgstr "%s: falscher Typ für Eingangsargument #%d: Baum erwartet.\n"
+
+#~ msgid "<Enter color name here>"
+#~ msgstr "<Geben Sie hier einen Farbnamen ein>"
+
+#, c-format
+#~ msgid "%s: can not add a menu in this mode: %s.\n"
+#~ msgstr "%s: kann kein Menu in diesem Modus hinzufügen: %s.\n"
+
+#, c-format
+#~ msgid "%s: can not add a menu in console in this mode: %s.\n"
+#~ msgstr "%s: kann kein Menu in der Konsole in diesem Modus hinzufügen: %s.\n"
+
+#~ msgid "Colors list edition"
+#~ msgstr "Listenedittion der Farbe"
+
+#~ msgid "Add color in listbox"
+#~ msgstr "Füge eine Farbe in der Listbox hinzu"
+
+#~ msgid "All rights reserved"
+#~ msgstr "Alle Rechte vorbehalten"
+
+#~ msgid "Application"
+#~ msgstr "Anwendung"
+
+#~ msgid "Launch plot3d"
+#~ msgstr "Starte plot3d"
+
+#~ msgid "Launch plot2d"
+#~ msgstr "Starte plot2d"
+
+#~ msgid "INRIA / ENPC / Contributors"
+#~ msgstr "INRIA / ENPC / Mitwirkende"
+
+#~ msgid "Menu"
+#~ msgstr "Menü"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Wollen Sie Scilab wirklich verlassen?"
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#~ msgid "Copyright 1989 - 2009"
+#~ msgstr "Copyright 1989 - 2009"
+
+#~ msgid "Display selection"
+#~ msgstr "Auswahl der Anzeige"
+
+#~ msgid "Please enter a color name first."
+#~ msgstr "Geben Sie zuerst einen Farbnamen ein."
+
+#~ msgid "Quit Scilab"
+#~ msgstr "Scilab verlassen"
+
+#~ msgid "Quit demonstration"
+#~ msgstr "Demo verlassen"
+
+#~ msgid "Menu status"
+#~ msgstr "Menustatus"
+
+#~ msgid "Popupmenu selection"
+#~ msgstr "Popupmenu Auswahl"
+
+#~ msgid "Scilab Graphics"
+#~ msgstr "Scilab Grafen"
+
+#~ msgid "Sub-menu 1"
+#~ msgstr "Submenü 1"
+
+#~ msgid "Slider value: "
+#~ msgstr "Slider Wert: "
+
+#~ msgid "Slider demo"
+#~ msgstr "Slider Demo"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Das Scilab Konsortium / DIGITEO"
+
+#~ msgid "Sub-menu 2-2"
+#~ msgstr "Submenü 2-2"
+
+#~ msgid "Sub-menu 2-1"
+#~ msgstr "Submenü 2-1"
+
+#~ msgid "Sub-menu 2"
+#~ msgstr "Submenü 2"
+
+#~ msgid "unchecked"
+#~ msgstr "nicht ausgewählt"
+
+#~ msgid "blue"
+#~ msgstr "blau"
+
+#~ msgid "checked"
+#~ msgstr "markiert"
+
+#~ msgid "green"
+#~ msgstr "grün"
+
+#~ msgid "item1|item2|item3|item4"
+#~ msgstr "item1|item2|item3|item4"
+
+#~ msgid "red"
+#~ msgstr "rot"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2009 (INRIA)"
+
+#~ msgid "Do you really want to quit Scilab?"
+#~ msgstr "Wollen Sie Scilab wirklich verlassen?"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: Ein Ausnahmefehler ist aufgetreten: %s"
+
+#, c-format
+#~ msgid "%s: No matching node.\n"
+#~ msgstr "%s: Kein übereinstimmender Knotenpunkt.\n"
+
+#, c-format
+#~ msgid "%s: Invalid parent node.\n"
+#~ msgstr "%s: Ungültiger Elternknotenpunkt.\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: Keine Ergebnisse gefunden.\n"
+
+#, c-format
+#~ msgid "%s: Invalid position ''%s''.\n"
+#~ msgstr "%s: Ungültige Position ''%s''.\n"
+
+#~ msgid "yellow"
+#~ msgstr "gelb"
+
+#~ msgid "createPopupItems: found an empty cascading menu."
+#~ msgstr "createPopupItems: Leeres kaskadierendes Menü gefunden."
+
+#~ msgid "Uicontrols demo"
+#~ msgstr "Uicontrol-Demo"
+
+#~ msgid "Selected menu"
+#~ msgstr "Ausgewähltes Menü"
+
+#, c-format
+#~ msgid "Selected colors are: %s."
+#~ msgstr "Ausgewählte Farben sind: %s"
+
+#~ msgid "Selected colors"
+#~ msgstr "Ausgewählte Farben"
+
+#~ msgid "No color selected."
+#~ msgstr "Keine Farbe ausgewählt."
+
+#~ msgid "Exit figure"
+#~ msgstr "Diagramm verlassen"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: Keine Ergebnisse für Eigenschaft '%s' und Wert '%s'.\n"
+
+#, c-format
+#~ msgid "%s: No results found.\n"
+#~ msgstr "%s: Kein Ergebnis gefunden.\n"
+
+#~ msgid "&Web links"
+#~ msgstr "&Web-Verweise"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Falsche Größe für Eingangsargument #%d: Eine ''Diagramm'' Handhabung "
+#~ "oder Realzahl erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für ''%s'' Eigenschaft: eine Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
+#~ "''callback''.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: muß eine ''Beschriftung'', "
+#~ "''Bild'' oder ''Rückruf'' sein.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+#~ msgstr "%s: falscher Wert für ''%s'' Eigenschaft: %d, %d oder %d erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'' oder ''%s'' "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "Menu ''%s'' is %s."
+#~ msgstr "Menü ''%s'' ist %s."
+
+#, c-format
+#~ msgid "You clicked on menu ''%s''."
+#~ msgstr "Sie haben auf Menü ''%s'' geklickt."
+
+#, c-format
+#~ msgid "You selected ''%s''."
+#~ msgstr "Sie haben ''%s'' ausgewählt."

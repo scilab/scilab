@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - T. Pettersen
-// Copyright (C) 2010      - DIGITEO - Allan CORNET
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //
 // Calling Sequence
 //  help_from_sci() // generate an empty function template
+//  helptxt = help_from_sci() // generate an empty function template
 //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
 //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
 //  help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
@@ -27,8 +29,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //  demotxt: returns the demo code if demodir is empty, or the path to the .dem.sce file.
 //
 // Description
-//  help_from_sci is a revised version of the help_skeleton function.
-//  Its objective is to generate .xml help files based on the head comments section
+//  The help_from_sci function generates .xml help files based on the head comments section
 //  of .sci source files. Optionally .dem.sce demo files can be generated based on
 //  code from the Examples section in the head comments section of .sci files.
 //
@@ -44,20 +45,20 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //
 //  The following guidelines should be used when writing the source code comments:
 //  <itemizedlist>
-//    <listitem><literal>Calling Sequence</literal> - one example pr. line.</listitem>
-//    <listitem><literal>Parameters</literal> - separate parameter name and
-//    description by a ":". Keep the description of each parameter on the same line.</listitem>
-//    <listitem><literal>Description</literal> - formatting of the text can be done
+//    <listitem><para><literal>Calling Sequence</literal> - one example pr. line.</para></listitem>
+//    <listitem><para><literal>Parameters</literal> - separate parameter name and
+//    description by a ":". Keep the description of each parameter on the same line.</para></listitem>
+//    <listitem><para><literal>Description</literal> - formatting of the text can be done
 //    using XML commands. Compare the output of head_comments("help_from_sci") with help("help_from_sci")
 //    to get some hints.
 //    Adding an empty comment line in the Description section is interpreted as the
-//    start of a new paragraph.</listitem>
-//    <listitem><literal>See also</literal> - list one function name pr line.</listitem>
-//    <listitem><literal>Authors</literal> - write one author on each line following
+//    start of a new paragraph.</para></listitem>
+//    <listitem><para><literal>See also</literal> - list one function name pr line.</para></listitem>
+//    <listitem><para><literal>Authors</literal> - write one author on each line following
 //    the Authors headline. Use ";" to separate the authors name
-//    from any add additional information.</listitem>
-//    <listitem><literal>Bibliography</literal> - write one reference pr line
-//    following the References headline.</listitem>
+//    from any add additional information.</para></listitem>
+//    <listitem><para><literal>Bibliography</literal> - write one reference pr line
+//    following the References headline.</para></listitem>
 //  </itemizedlist>
 //
 // Examples
@@ -82,11 +83,14 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
 //  help
 //  help_skeleton
 //  head_comments
+//
 // Authors
-//  T. Pettersen ; top@tpett.com
+// Copyright (C) 2008-2009 - T. Pettersen
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 
 if argn(2) == 0 then
-  template = [..
+  helptxt = [..
     "function [z] = function_template(x,y)"
     "// Short description on the first line following the function header."
     "//"
@@ -102,28 +106,40 @@ if argn(2) == 0 then
     "// Here is a description of the function."
     "// Add an empty comment line to format the text into separate paragraphs."
     "//"
-    "// Programlisting:"
-    "//   <programlisting>z = test_fun(x, y)</programlisting>"
+    "// XML format commands may also be used directly in the text, "
+	"// as in the following examples."
     "//"
-    "// XML format commands may also be used directly in the text."
+    "// This is an example of a itemized list:"
     "// <itemizedlist>"
-    "// <listitem>An itemized list is shown here</listitem>"
+    "// <listitem><para>An itemized list is shown here</para></listitem>"
     "// </itemizedlist>"
     "// The help text for help_from_sci was generated from the head comments section of help_from_sci.sci"
     "// Compare the output from head_comments(""help_from_sci"") and help(""help_from_sci"")"
     "// to see more examples on how to write the head comments section."
+    "//"
+    "// This is an example of the programlisting tag:"
+    "//   <programlisting>z = test_fun(x, y)</programlisting>"
+	"//"
+	"// This is an example of a latex equation:"
+	"//   <latex>"
+	"//   \begin{eqnarray}"
+	"//   m = |M| \beta^{1-p},"
+	"//   \end{eqnarray}"
+	"//   </latex>"
     "//"
     "// Examples"
     "// [z] = test_fun(1, 2) // examples of use"
     "//"
     "// // An empty comment line in the Examples section will add a halt() statement"
     "// // in the demo file test_fun.dem.sce generated by help_from_sci."
+    "//"
     "// See also"
     "//  help_from_sci"
     "//  help_skeleton"
     "//"
     "// Authors"
     "//  Author name ; should be listed one pr line. Use "";"" to separate names from additional information "
+    "//"
     "// Bibliography"
     "//   Literature references one pr. line"
     ""
@@ -132,10 +148,9 @@ if argn(2) == 0 then
     "endfunction"
   ];
 
-  mputl(template, TMPDIR + filesep() + "function_template.sci");
+  mputl(helptxt, TMPDIR + filesep() + "function_template.sci");
   if (isdef("editor") | (funptr("editor") <> 0)) then
     editor(TMPDIR + filesep() + "function_template.sci");
-    helptxt = [];
   end
   return;
 end

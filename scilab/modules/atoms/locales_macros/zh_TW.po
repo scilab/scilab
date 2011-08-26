@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 00:46+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -173,9 +173,7 @@ msgstr "%s: 此套件的目錄 (%s-%s) 無法刪除, 請檢査是否有寫入 %s
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
-msgstr ""
-"%s: 此套件的目錄 (%s-%s) 不在 SCI 或 SCIHOME 內. 為了安全性理由, ATOMS 拒絕刪"
-"除此目錄.\n"
+msgstr "%s: 此套件的目錄 (%s-%s) 不在 SCI 或 SCIHOME 內. 為了安全性理由, ATOMS 拒絕刪除此目錄.\n"
 
 #, c-format
 msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
@@ -223,9 +221,7 @@ msgstr "%s: 以下檔案未曾下載:\n"
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
-msgstr ""
-"%s: 以下模組使用者決定是否安裝, 你無法將它們加入到為所有使用者自動載入的清單"
-"中:\n"
+msgstr "%s: 以下模組使用者決定是否安裝, 你無法將它們加入到為所有使用者自動載入的清單中:\n"
 
 #, c-format
 msgid "%s: The following module is not installed:\n"
@@ -247,8 +243,7 @@ msgstr "%s: 套件 ''%s'' 未出現在資料結構 (struct) 中.\n"
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
 "check if you have write access on this directory : %s.\n"
-msgstr ""
-"%s: 套件 (%s-%s)  的根目錄未曾刪除, 請檢查你是否有寫入以下目錄的權限: %s.\n"
+msgstr "%s: 套件 (%s-%s)  的根目錄未曾刪除, 請檢查你是否有寫入以下目錄的權限: %s.\n"
 
 #, c-format
 msgid ""
@@ -387,8 +382,6 @@ msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 
-#
-# File: macros/atoms_internals/atomsGetVersions.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -405,7 +398,8 @@ msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr "%s: 第 #%d 輸入參數數值錯誤: ''%s'' 不是正確的 URL.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: ''all'' or ''main'' 才對.\n"
 
 #, c-format
@@ -413,23 +407,20 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
 "''session'' expected.\n"
 msgstr ""
-"%s: 第 #%d 輸入參數數值錯誤: 應為 ''all'',''allusers'',''user'' 或 "
-"''session''.\n"
+"%s: 第 #%d 輸入參數數值錯誤: 應為 ''all'',''allusers'',''user'' 或 ''session''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
 "''official'' expected.\n"
 msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為''all'',''user'',''allusers'' "
-"或''official'' .\n"
+"%s: 第 %d 個輸入參數數值錯誤: 應為''all'',''user'',''allusers'' 或''official'' .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
-msgstr ""
-"%s: 第 #%d個輸入值有誤: ''filter:all'',''filter:main'' 或是有用的分類才對.\n"
+msgstr "%s: 第 #%d個輸入值有誤: ''filter:all'',''filter:main'' 或是有用的分類才對.\n"
 
 #, c-format
 msgid ""
@@ -445,22 +436,19 @@ msgstr "%s: 第 %d 的輸入參數值錯誤: 應該是 ''user'' 或 ''allusers''
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
 "expected.\n"
-msgstr ""
-"%s: 第 %d 個的輸入參數值錯誤: 應該是 ''user'' 或 ''allusers'' 或 ''all''.\n"
+msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 ''user'' 或 ''allusers'' 或 ''all''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
 "expected.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為 ''user'', ''allusers'' 或''all'' .\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''user'', ''allusers'' 或''all'' .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
 "expected.\n"
-msgstr ""
-"%s: 第 %d 的輸入參數值錯誤: 應該是 ''user'', ''allusers'' 或 ''all''.\n"
+msgstr "%s: 第 %d 的輸入參數值錯誤: 應該是 ''user'', ''allusers'' 或 ''all''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -487,23 +475,21 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為字母 ''A'' 或 ''I''\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 須為  atmos 套件名稱 .\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
 "or ''DESCRIPTION'' expected.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤:應為內含 ''TOOLBOXES'' 或''DESCRIPTION'' 的字"
-"串 .\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤:應為內含 ''TOOLBOXES'' 或''DESCRIPTION'' 的字串 .\n"
 
 #, c-format
 msgid ""
@@ -515,9 +501,7 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤:應為結尾為 DESCRIPTION  的�
 msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "''http://'',''ftp://'' or ''file://'' expected.\n"
-msgstr ""
-"%s: 第  %d 輸入參數數值錯誤: 應為 ''http://'',''ftp://'' 或 ''file://'' 起頭"
-"的字串.\n"
+msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 ''http://'',''ftp://'' 或 ''file://'' 起頭的字串.\n"
 
 #, c-format
 msgid ""
@@ -530,13 +514,14 @@ msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: 第 %d 的輸入參數值錯誤: 這 ("
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 版本錯誤.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 版本/相依性不符.\n"
 
 #, c-format
@@ -639,7 +624,8 @@ msgstr "安裝"
 msgid "Install Directory"
 msgstr "安裝目錄"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr "安裝完畢！請重新啟動 Scilab 使變更發生作用."
 
 msgid "Installation failed!"

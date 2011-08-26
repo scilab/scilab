@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
@@ -63,7 +63,7 @@ msgstr ""
 msgid "%s: No results found.\n"
 msgstr ""
 #
-# File: macros/getvalue.sci, line: 184
+# File: macros/getvalue.sci, line: 228
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
 msgstr ""
@@ -323,14 +323,14 @@ msgstr ""
 msgid "Add color in listbox"
 msgstr ""
 #
-# File: macros/getvalue.sci, line: 193
+# File: macros/getvalue.sci, line: 237
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has incorrect type %s.\n"
 msgstr ""
 #
-# File: macros/getvalue.sci, line: 189
+# File: macros/getvalue.sci, line: 233
 #, c-format
 msgid ""
 "Answer given for %s \n"
@@ -338,11 +338,11 @@ msgid ""
 " waiting for dimension %s.\n"
 msgstr ""
 #
-# File: macros/getvalue.sci, line: 195
+# File: macros/getvalue.sci, line: 239
 #, c-format
 msgid ""
 "Answer given for %s \n"
-" is incorrect see error message in scilab window.\n"
+" is incorrect: %s.\n"
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 96
@@ -368,6 +368,10 @@ msgstr ""
 msgid "Control Plot3d"
 msgstr ""
 #
+# File: demos/gui.dem.gateway.sce, line: 14
+msgid "Dialogs"
+msgstr ""
+#
 # File: demos/uicontrol.dem.sce, line: 148
 msgid "Display selection"
 msgstr ""
@@ -388,7 +392,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 #
-# File: etc/gui.start, line: 20
+# File: demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
 msgstr ""
 #
@@ -498,12 +502,24 @@ msgstr ""
 msgid "Sub-menu 2-2"
 msgstr ""
 #
+# File: demos/gui.dem.gateway.sce, line: 15
+msgid "Uicontrols 1"
+msgstr ""
+#
+# File: demos/gui.dem.gateway.sce, line: 19
+msgid "Uicontrols 2"
+msgstr ""
+#
 # File: demos/uicontrol.dem.sce, line: 78
 msgid "Uicontrols demo"
 msgstr ""
 #
 # File: demos/uicontrol_LaTeX.dem.sce, line: 15
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+#
+# File: demos/gui.dem.gateway.sce, line: 23
+msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 #
 # File: macros/about.sci, line: 19

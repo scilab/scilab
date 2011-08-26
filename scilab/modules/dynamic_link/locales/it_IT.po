@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-04-11 13:48+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s : Wrong type for input argument #%d: %s\n"
@@ -58,11 +58,9 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: La libreria condivisa %s non esiste.\n"
 
-#
-# File: src/c/dynamic_link.c, line: 110
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: Il file %s non esiste.\n"
 
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
@@ -196,3 +194,281 @@ msgstr "] : %d librerie.\n"
 #, c-format
 msgid "] : %d library.\n"
 msgstr "] : libreria %d.\n"
+
+#, c-format
+#~ msgid "%s: A Fortran or C compiler is required.\n"
+#~ msgstr "%s: È richiesto un compilatore per il Fortran o per il C.\n"
+
+#~ msgid "Dynamic link"
+#~ msgstr "Collegamento dinamico"
+
+#, c-format
+#~ msgid "%s: Cannot open file %s.\n"
+#~ msgstr "%s: Non è possibile aprire il file %s.\n"
+
+#, c-format
+#~ msgid "%s: This feature has been implemented for Windows.\n"
+#~ msgstr "%s: Questa caratteristica è stata realizzata per Windows.\n"
+
+#, c-format
+#~ msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+#~ msgstr ""
+#~ "%s: Questa caratteristica richiede il compilatore Microsoft visual studio C\n"
+
+#, c-format
+#~ msgid "%s: Feature not available under Microsoft Windows.\n"
+#~ msgstr "%s: Caratteristica non disponibile sotto Microsoft Windows.\n"
+
+#~ msgid "   Generate a loader file"
+#~ msgstr "   Genera un file del loader"
+
+#~ msgid "   Generate a gateway file"
+#~ msgstr "   Genera un file del gateway"
+
+#~ msgid "   Building shared library (be patient)"
+#~ msgstr "   Creazione della libreria condivisa in corso (attendere)"
+
+#~ msgid "   Running the makefile"
+#~ msgstr "   Il makefile è in esecuzione"
+
+#~ msgid "A Fortran or C compiler is required."
+#~ msgstr "È richiesto un compilatore per il Fortran o per il C."
+
+#, c-format
+#~ msgid "   Generate a Makefile: %s"
+#~ msgstr "   Genera un Makefile: %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Warning: No error code returned by the compilation but the error output "
+#~ "is not empty:\n"
+#~ msgstr ""
+#~ "%s: Attenzione: la compilazione non ha restituito alcun errore, ma il "
+#~ "registro d'uscita degli errori non è vuoto:\n"
+
+#, c-format
+#~ msgid "%s: An error occured during the compilation:\n"
+#~ msgstr "%s: Si è verificato un errore durante la compilazione:\n"
+
+#, c-format
+#~ msgid "%s: The command was:\n"
+#~ msgstr "%s: Il comando era:\n"
+
+#~ msgid "   Generate a Makefile"
+#~ msgstr "   Genera un Makefile"
+
+#, c-format
+#~ msgid "   %s: File %s ignored.\n"
+#~ msgstr "   %s: Il file %s è stato ignorato.\n"
+
+#, c-format
+#~ msgid "%s: Error while modifing the reference Makefile:\n"
+#~ msgstr "%s: Errore durante la modifica del Makefile di rirerimento:\n"
+
+#, c-format
+#~ msgid "   %s: Copy %s to TMPDIR\n"
+#~ msgstr "   %s: Copiare %s in TMPDIR\n"
+
+#, c-format
+#~ msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+#~ msgstr ""
+#~ "   %s: Copiare i file di compilazione (Makefile*, libtool...) in TMPDIR\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d.\n"
+#~ msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#~ msgid "   Running the Makefile"
+#~ msgstr "   Esecuzione del Makefile in corso"
+
+#, c-format
+#~ msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+#~ msgstr "   %s: Modifica del Makefile in TMPDIR.\n"
+
+#, c-format
+#~ msgid " results may be inaccurate. rcond = %s\n"
+#~ msgstr " i risultati potrebbero non essere accurati. rcond = %s\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa %d.\n"
+
+#~ msgid "   Compilation of "
+#~ msgstr "   Compilazione di "
+
+#, c-format
+#~ msgid "   %s: Command: %s\n"
+#~ msgstr "   %s: comando: %s\n"
+
+#, c-format
+#~ msgid "   Output: %s\n"
+#~ msgstr "   Risultato: %s\n"
+
+#, c-format
+#~ msgid "Output: %s\n"
+#~ msgstr "Risultato: %s\n"
+
+#, c-format
+#~ msgid "stderr: %s\n"
+#~ msgstr "stderr: %s\n"
+
+#, c-format
+#~ msgid "   Command: %s\n"
+#~ msgstr "   Comando: %s\n"
+
+#, c-format
+#~ msgid "   %s: Substitute the reference by the actual file.\n"
+#~ msgstr "   %s: sostituisce il riferimento con il file attuale.\n"
+
+#, c-format
+#~ msgid ""
+#~ "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+#~ msgstr ""
+#~ "   %s: %s non è stato copiato: la directory di origine e quella di "
+#~ "destinazione coincidono (%s).\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s).\n"
+#~ msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+#~ msgid "   %s: Use the previous detection of compiler.\n"
+#~ msgstr "   %s: usa il compilatore trovato in precedenza.\n"
+
+#~ msgid "   Generate a gateway file\n"
+#~ msgstr "   Genera un file di gateway\n"
+
+#~ msgid "   Generate a loader file\n"
+#~ msgstr "   Genera un file del loader\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+#~ "di stringhe.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+#~ "matrice di stringhe < 999.\n"
+
+#, c-format
+#~ msgid "   stderr: %s\n"
+#~ msgstr "   stderr: %s\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+#~ "stringa.\n"
+
+#~ msgid "   Running the makefile\n"
+#~ msgstr "   esegue il makefile\n"
+
+#~ msgid "   Generate a cleaner file\n"
+#~ msgstr "   Genera un file del pulitore\n"
+
+#~ msgid "   Generate a Makefile\n"
+#~ msgstr "   Genera un makefile\n"
+
+#, c-format
+#~ msgid "   Generate a Makefile: %s\n"
+#~ msgstr "   Genera un makefile: %s\n"
+
+#~ msgid "F2C cannot build fortran 90"
+#~ msgstr "F2C non può creare codice fortran 90"
+
+#~ msgid "   Running the Makefile\n"
+#~ msgstr "   Esecuzione del makefile in corso\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d, "
+#~ "%d o %d.\n"
+
+#, c-format
+#~ msgid "%s: Build command: %s\n"
+#~ msgstr "%s: Comando di creazione: %s\n"
+
+#~ msgid "   Building shared library (be patient)\n"
+#~ msgstr "   Creazione in corso della libreria condivisa (attendere)\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+#~ "stringhe.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+#~ "stringa.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+#~ "Please submit a bug report on http://bugzilla.scilab.org/\n"
+#~ msgstr ""
+#~ "%s: Attenzione: Scilab non è riuscito a localizzare i propri sorgenti. "
+#~ "Inviare un resoconto del bug su http://bugzilla.scilab.org/\n"
+
+#, c-format
+#~ msgid "   %s: Need to run the compiler detection (configure).\n"
+#~ msgstr "   %s: occorre eseguire la ricerca del compilatore (configure).\n"
+
+#, c-format
+#~ msgid "   %s: configure : Generate Makefile.\n"
+#~ msgstr "   %s: configure : genera il Makefile.\n"
+
+#, c-format
+#~ msgid "%s: Error while modifying the reference Makefile:\n"
+#~ msgstr "%s: Errore durante la modifica del Makefile di riferimento:\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation:\n"
+#~ msgstr "%s: Si è verificato un errore durante la compilazione:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+#~ "almeno %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+#~ "di stringhe.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: An error occurred during the detection of the compiler(s). Set "
+#~ "ilib_verbose(2) for more information.\n"
+#~ msgstr ""
+#~ "%s: Si è verificato un errore durante la ricerca dei compilatori. Impostare "
+#~ "ilib_verbose(2) per maggiori informazioni.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+#~ msgid "%s: Error while executing %s.\n"
+#~ msgstr "%s: Errore durante l'esecuzione di %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '''' o "
+#~ "''[]''.\n"
+
+#, c-format
+#~ msgid "%s: %s already loaded in scilab."
+#~ msgstr "%s: %s già caricato in scilab."

@@ -64,7 +64,7 @@ int sci_ClipBoard(char *fname,unsigned long l)
                     FREE(output);
                     LhsVar(1)=Rhs+1;
 
-                    C2F(putlhsvar)();	
+                    PutLhsVar();	
                     return TRUE;
                 }
                 else
@@ -132,7 +132,7 @@ int sci_ClipBoard(char *fname,unsigned long l)
                         n1=0;
                         CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
                         LhsVar(1)=Rhs+1;
-                        C2F(putlhsvar)();	
+                        PutLhsVar();	
                         return TRUE;
                     }
 
@@ -208,7 +208,7 @@ int sci_ClipBoard(char *fname,unsigned long l)
                         n1 = 0;
                         CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
                         LhsVar(1) = Rhs+1;
-                        C2F(putlhsvar)();	
+                        PutLhsVar();		
                         return TRUE;
                     }
                     else
@@ -267,7 +267,7 @@ int sci_ClipBoard(char *fname,unsigned long l)
                             n1=0;
                             CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
                             LhsVar(1)=Rhs+1;
-                            C2F(putlhsvar)();	
+                            PutLhsVar();		
                             return TRUE;
                         }
                         else

@@ -262,7 +262,7 @@ int sci_uigetcolor(char *fname,unsigned long fname_len)
         }
     }
 
-  C2F(putlhsvar)();
+  PutLhsVar();
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

@@ -35,7 +35,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
   if size(%O,'*')==0 then //only feasible point is searched
     if lmicheck(aplat(%E),aplat(%I)) then
       %Xlist=vec2list(%x0,%dim_X,%ind_X);
-      lmisolvertrace(msprintf(_('%s: initial guess is feasible.'),'lmisolver'));
+      lmisolvertrace(msprintf(_("%s: initial guess is feasible."),'lmisolver'));
       // only feasibility claimed and given initial value is feasible, so
       // there in nothoting to do!
       return; 
@@ -80,7 +80,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
   %E=[];%I=[];%O=[]; 
 
-  lmisolvertrace(msprintf(_('%s: Construction of canonical representation.'),'lmisolver'));
+  lmisolvertrace(msprintf(_("%s: Construction of canonical representation."),'lmisolver'));
   %spI0=sparse(%I0v); //the sparse representation of F0
   %spE0=sparse(%E0v); //the sparse representation of C0
   %lX=size(%Xinit)
@@ -125,7 +125,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
   if size(%E,'*')==0 then
     %kerE=speye(%nvars,%nvars);
   else
-    lmisolvertrace(msprintf(_('%s: Basis Construction.'),'lmisolver'));
+    lmisolvertrace(msprintf(_("%s: Basis Construction."),'lmisolver'));
     //reduce the LMEs: all X solution of %E*X  + %E0v can be written
     //  X=X0+ker(%E)*W
     //where 
@@ -153,20 +153,19 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
   if %blck_szs == [] then
     // is objective constant on LME constraint set, Xinit is feasible 
     if max(abs(%O+0)) < %to then
-      lmisolvertrace(msprintf(_('%s: Objective constant.'),'lmisolver'));
+      lmisolvertrace(msprintf(_("%s: Objective constant."),'lmisolver'));
       %Xlist=vec2list(%x0,%dim_X,%ind_X);
       %Xopt=%O0;
       return
     else
-      error(msprintf(_('%s: solution unbounded.'),'lmisolver'));
+      error(msprintf(_("%s: solution unbounded."),'lmisolver'));
     end
   end
 
   [%fm,%m]=size(%I);
   //Testing well-posedness
   if %fm<%m then 
-    error(msprintf(_('%s: Ill-posed problem. Number of unknowns (%s) >"+...
-		     " number of of constraints (%s)'),'lmisolver',%m,%fm));
+    error(msprintf(_("%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"),'lmisolver',%m,%fm));
   end
 
   
@@ -177,14 +176,14 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     if %rk<%m then
       [%P,%L,%U,%Q]=luget(%ptr);%L=[];%U=[];%Q=[];
       %P=%P';%P=%P(1:%rk,1:%m)';
-      warning(msprintf(_('%s: rank deficient problem'),'lmisolver'));
+      warning(msprintf(_("%s: rank deficient problem"),'lmisolver'));
       ludel(%ptr);
       //Testing to see if linobj is in the range of F_is
       if size(%O,'*') <> 0 then
 	[%ptr,%rk2]=lufact([[%I;%O] spzeros(%fm+1,%fm+1-%m)]',[%tol,0.001]);
 	ludel(%ptr);
 	if %rk<%rk2 then
-	  error(msprintf(_('%s: solution unbounded.'),'lmisolver'));
+	  error(msprintf(_("%s: solution unbounded."),'lmisolver'));
 	end
       end
       %O=%O*%P
@@ -200,7 +199,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
   if size(%I,'*')==0 then //the LMI reduces to %I0 >0
     //checking positiveness of  %I0
     if ~lmicheck(list(),vec2list(%I0v,%dim_I))
-      error(msprintf(_('%s: not feasible or badly defined problem.'),'lmisolver'));
+      error(msprintf(_("%s: not feasible or badly defined problem."),'lmisolver'));
     else
       %Xlist=vec2list(%x0,%dim_X,%ind_X);
       return; 
@@ -222,7 +221,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
   if ~(%sm>%to) then
     //given initial point is not feasible. Look for a feasible initial point.
-    lmisolvertrace(msprintf(_('%s:     FEASIBILITY PHASE.'),'lmisolver'));
+    lmisolvertrace(msprintf(_("%s:     FEASIBILITY PHASE."),'lmisolver'));
 
     // mineigI is the smallest eigenvalue of I0
     %mineigI=min(real(flat_block_matrix_eigs(%I0v,%blck_szs)))
@@ -230,7 +229,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     // Id is the identity
     %Id = build_flat_identity(%blck_szs)
     if (%M < %Id'*%I0v+1e-5), 
-      error(msprintf(_('%s: Mbound too small.'),'lmisolver')); 
+      error(msprintf(_("%s: Mbound too small."),'lmisolver')); 
     end;
 
     // initial x0 
@@ -275,40 +274,40 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
 
     select %info(1)
     case 1
-      error(msprintf(_('%s: Max. iters. exceeded.'),'lmisolver'))
+      error(msprintf(_("%s: Max. iters. exceeded."),'lmisolver'))
     case 2 then
-      lmisolvertrace(msprintf(_('%s: Absolute accuracy reached.'),'lmisolver'))
+      lmisolvertrace(msprintf(_("%s: Absolute accuracy reached."),'lmisolver'))
     case 3 then
-      lmisolvertrace(msprintf(_('%s: Relative accuracy reached.'),'lmisolver'))
+      lmisolvertrace(msprintf(_("%s: Relative accuracy reached."),'lmisolver'))
     case 4 then
-      lmisolvertrace(msprintf(_('%s: Target value reached.'),'lmisolver'))
+      lmisolvertrace(msprintf(_("%s: Target value reached."),'lmisolver'))
     case 5 then
-      error(msprintf(_('%s: Target value not achievable.'),'lmisolver'))
+      error(msprintf(_("%s: Target value not achievable."),'lmisolver'))
     else
-      warning(msprintf(_('%s: No feasible solution found.'),'lmisolver'))
+      warning(msprintf(_("%s: No feasible solution found."),'lmisolver'))
     end
 
 
     if %info(2) == %mite then 
-      error(msprintf(_('%s: max number of iterations exceeded.'),'lmisolver'));
+      error(msprintf(_("%s: max number of iterations exceeded."),'lmisolver'));
     end
     if (%ul(1) > %ato) then 
-      error(msprintf(_('%s: No feasible solution exists.'),'lmisolver'));
+      error(msprintf(_("%s: No feasible solution exists."),'lmisolver'));
     end
     //       if (%ul(1) > 0) then %I0v=%I0v+%ato*%Id;end
 
-    lmisolvertrace(msprintf(_('%s: feasible solution found.'),'lmisolver'));
+    lmisolvertrace(msprintf(_("%s: feasible solution found."),'lmisolver'));
 
   else
 
-    lmisolvertrace(msprintf(_('%s: Initial guess feasible.'),'lmisolver'));
+    lmisolvertrace(msprintf(_("%s: Initial guess feasible."),'lmisolver'));
     %xi=zeros(%m,1);
   end
 
 
   if size(%O,'*')<>0 then
 
-    lmisolvertrace(msprintf(_('%s:       OPTIMIZATION PHASE.') ,'lmisolver'));
+    lmisolvertrace(msprintf(_("%s:       OPTIMIZATION PHASE.") ,'lmisolver'));
 
     %M = max(%M, %Mb*sum(abs([%I0v,%I]*[1; %xi])));  
 
@@ -328,7 +327,7 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     %Z0(1:%ka) = %Z0(1:%ka) + %Z0(%ka+1)*%Id; 
 
     if (%M < %Id'*[%I0v,%I]*[1;%xi] + 1e-5), 
-      error(msprintf(_('%s: M must be strictly greater than trace of F(x0).'),'lmisolver')); 
+      error(msprintf(_("%s: M must be strictly greater than trace of F(x0)."),'lmisolver')); 
     end;
 
    
@@ -342,13 +341,13 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     [%xopt,%z,%ul,%info]=semidef(%xi,pack(%Z0,%blck_szs),temp,%blck_szs,full(%O),[%nu,%ato,%rto,0.0,%mite]);
     clear temp
     if %info(2) == %mite then 
-      warning(msprintf(_('%s: max number of iterations exceeded, solution may not be optimal'),'lmisolver'));
+      warning(msprintf(_("%s: max number of iterations exceeded, solution may not be optimal"),'lmisolver'));
     end;
     if sum(abs([%I0v,%I]*[1; %xopt])) > 0.9*%M then 
-      lmisolvertrace(msprintf(_('%s: may be unbounded below'),'lmisolver'));
+      lmisolvertrace(msprintf(_("%s: may be unbounded below"),'lmisolver'));
     end;
     if %xopt<>[]&~(%info(2) == %mite) then 
-      lmisolvertrace(msprintf(_('%s: optimal solution found'),'lmisolver'));
+      lmisolvertrace(msprintf(_("%s: optimal solution found"),'lmisolver'));
     else %xopt=%xi;
     end
   else

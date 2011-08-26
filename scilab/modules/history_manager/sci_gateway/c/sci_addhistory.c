@@ -33,11 +33,10 @@ int sci_addhistory(char *fname,unsigned long fname_len)
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&lines);
 		bOK = appendLinesToScilabHistory(lines,m1*n1);
+		freeArrayOfString(lines, m1*n1);
 
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
-
-		freeArrayOfString(lines, m1*n1);
+		PutLhsVar();
 	}
 	else
 	{

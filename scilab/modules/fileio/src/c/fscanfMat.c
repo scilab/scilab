@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -14,7 +14,9 @@
 #define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
 #endif
 /*--------------------------------------------------------------------------*/
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "fscanfMat.h"
 #include "charEncoding.h"
@@ -40,25 +42,25 @@
 #define READ_ONLY_TEXT_MODE "r"
 #endif
 /*--------------------------------------------------------------------------*/
-#define NB_FORMAT_SUPPORTED 7 
-static char *supportedFormat[NB_FORMAT_SUPPORTED] = 
+#define NB_FORMAT_SUPPORTED 7
+static char *supportedFormat[NB_FORMAT_SUPPORTED] =
 {"lf", "lg", "d", "i", "e", "f", "g"};
 /*--------------------------------------------------------------------------*/
 static BOOL itCanBeMatrixLine(char *line, char *format, char *separator);
 static int getNbColumnsInLine(char *line, char *format, char *separator);
-static int getNumbersColumnsInLines(char **lines, int sizelines, 
-                                    int nbLinesText,
-                                    char *format, char *separator);
+static int getNumbersColumnsInLines(char **lines, int sizelines,
+    int nbLinesText,
+    char *format, char *separator);
 static int getNumbersLinesOfText(char **lines, int sizelines,
-                                 char *format, char *separator);
+    char *format, char *separator);
 static char **splitLine(char *str, char *sep, int *toks, char meta);
-static double *getDoubleValuesFromLines(char **lines, int sizelines, 
-                                        int nbLinesText,
-                                        char *format, char *separator,
-                                        int m, int n);
+static double *getDoubleValuesFromLines(char **lines, int sizelines,
+    int nbLinesText,
+    char *format, char *separator,
+    int m, int n);
 static double *getDoubleValuesInLine(char *line,
-                                     char *format, char *separator, 
-                                     int nbColumnsMax);
+    char *format, char *separator,
+    int nbColumnsMax);
 static double returnINF(BOOL bPositive);
 static double returnNAN(void);
 static BOOL checkFscanfMatFormat(char *format);
@@ -66,6 +68,7 @@ static char *getCleanedFormat(char *format);
 static BOOL isOnlyBlankLine(const char *line);
 static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines);
 static BOOL isValidLineWithOnlyOneNumber(char *line);
+static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *format, char *separator);
 /*--------------------------------------------------------------------------*/
 fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL asDouble)
 {
@@ -91,7 +94,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL a
         return NULL;
     }
 
-    if (!checkFscanfMatFormat(format)) 
+    if (!checkFscanfMatFormat(format))
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
         if (resultFscanfMat)
@@ -140,6 +143,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL a
     }
 
     lines = removeEmptyLinesAtTheEnd(lines, &nblines);
+    lines = removeTextLinesAtTheEnd(lines, &nblines, format, separator);
 
     nbLinesTextDetected = getNumbersLinesOfText(lines, nblines, format, separator);
     nbRows = nblines - nbLinesTextDetected;
@@ -271,7 +275,7 @@ static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 }
 /*--------------------------------------------------------------------------*/
 static int getNumbersLinesOfText(char **lines, int sizelines,
-                                 char *format, char *separator)
+    char *format, char *separator)
 {
     int numberOfLines = 0;
     if (lines)
@@ -292,9 +296,9 @@ static int getNumbersLinesOfText(char **lines, int sizelines,
     return numberOfLines;
 }
 /*--------------------------------------------------------------------------*/
-static int getNumbersColumnsInLines(char **lines, int sizelines, 
-                                    int nbLinesText,
-                                    char *format, char *separator)
+static int getNumbersColumnsInLines(char **lines, int sizelines,
+    int nbLinesText,
+    char *format, char *separator)
 {
     int previousNbColumns = 0;
     int NbColumns = 0;
@@ -493,7 +497,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
     {
         retstr[curr_str] = (char *) MALLOC((sizeof(char) * len) + 1);
 
-        if(retstr[curr_str] == NULL) 
+        if(retstr[curr_str] == NULL)
         {
             *toks = 0;
             return NULL;
@@ -508,9 +512,9 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
 }
 /*--------------------------------------------------------------------------*/
 static double *getDoubleValuesFromLines(char **lines, int sizelines,
-                                        int nbLinesText,
-                                        char *format, char *separator,
-                                        int m, int n)
+    int nbLinesText,
+    char *format, char *separator,
+    int m, int n)
 {
     double *dValues = NULL;
 
@@ -540,8 +544,8 @@ static double *getDoubleValuesFromLines(char **lines, int sizelines,
 }
 /*--------------------------------------------------------------------------*/
 static double *getDoubleValuesInLine(char *line,
-                                     char *format, char *separator,
-                                     int nbColumnsMax)
+    char *format, char *separator,
+    int nbColumnsMax)
 {
     double *dValues = NULL;
 
@@ -667,7 +671,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = (int)(strlen(percent) - strlen(token));          
+                    int nbcharacters = (int)(strlen(percent) - strlen(token));
                     cleanedFormat = strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( (nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1]) ||
@@ -759,5 +763,38 @@ static BOOL isOnlyBlankLine(const char *line)
         }
     }
     return TRUE;
+}
+/*--------------------------------------------------------------------------*/
+static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *format, char *separator)
+{
+    char **linesReturned = NULL;
+    int nbLinesReturned = 0;
+    int i = 0;
+    int nbLinesToRemove = 0;
+
+    for (i = *sizelines - 1; i > 0; i--)
+    {
+        if (itCanBeMatrixLine(lines[i], format, separator) == FALSE)
+        {
+            nbLinesToRemove++;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if (nbLinesToRemove > 0)
+    {
+        linesReturned = (char**)REALLOC(lines, sizeof(char*) * (*sizelines - nbLinesToRemove));
+        *sizelines = *sizelines - nbLinesToRemove;
+    }
+    else
+    {
+        linesReturned = lines;
+    }
+
+    return linesReturned;
+
 }
 /*--------------------------------------------------------------------------*/

@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,in,exprs]=scicos_getvalue('Set MUX block parameters',..
-	'number of input ports or vector of sizes',list('vec',-1),exprs)
+	'number of input ports or vector of sizes',list('intvec',-1),exprs)
     if ~ok then break,end
     if size(in,'*')==1 then
       if in<2|in>31 then

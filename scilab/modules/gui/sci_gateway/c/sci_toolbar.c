@@ -143,7 +143,6 @@ int sci_toolbar(char *fname,unsigned long l)
   nbRow = (int)strlen(Output);
   CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&nbRow,&nbCol,&Output);
   LhsVar(1) = Rhs+1;
-  C2F(putlhsvar)();	
 
   if (Output) 
     {
@@ -151,6 +150,7 @@ int sci_toolbar(char *fname,unsigned long l)
       Output=NULL;
     }
 
+  PutLhsVar();	
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

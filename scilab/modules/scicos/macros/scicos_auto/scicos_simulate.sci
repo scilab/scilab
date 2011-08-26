@@ -156,9 +156,6 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
   //** load the scicos function libraries
   //------------------------------------
-  if exists('scicos_menuslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_menus/lib") ;
-  end
 
   if exists('scicos_scicoslib')==0 then
     load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
@@ -172,16 +169,11 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     load("SCI/modules/scicos/macros/scicos_utils/lib") ;
   end
 
-  //** Define Scicos data tables
-  //----------------------------
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-    [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-  end
+// Define Scicos data tables ===========================================
+if ( ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+end
   // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
@@ -253,7 +245,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
   if ierr == 0 then //++ no error
     [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr,%scicos_context)
     if ~ok then
-      error(['Error during block parameters evaluation , ' + lasterror()])
+      error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "scicos_simulate"));
     end
     if needcompile <> 4 & size(%cpr) > 0 then
       %state0 = %cpr.state
@@ -273,7 +265,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
                                                   %state0, needcompile)
 
   if ~ok then
-    error('Error updating parameters.')
+    error(msprintf(gettext("%s: Error during block parameters update.\n"), "scicos_simulate"));
   end
 
   if or(%state0_n <> %state0) then //initial state has been changed
@@ -282,12 +274,12 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     choix = []
   end
   if (%cpr.sim.xptr($) - 1) < size(%cpr.state.x,'*') & solver < 100 then
-    warning(msprintf(_("Diagram has been compiled for implicit solver\nswitching to implicit solver")))
+    warning(msprintf(_("Diagram has been compiled for implicit solver\nswitching to implicit solver.\n")))
     solver = 100
     tolerances(6) = solver
   elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,'*') & ...
         solver == 100 & size(%cpr.state.x,'*') <> 0 then
-    warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver")))
+    warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver.\n")))
     solver = 0
     tolerances(6) = solver
   end

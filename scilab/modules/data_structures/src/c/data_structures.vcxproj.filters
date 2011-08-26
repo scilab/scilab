@@ -71,6 +71,9 @@
     <ClCompile Include="stcreate.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strpos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_data_structures.h">

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: macros/polfact.sci, line: 29
 #, c-format
@@ -100,10 +100,10 @@ msgstr ""
 msgid "Computing determinant: Be patient...\n"
 msgstr ""
 #
-# File: demos/polynomials.dem.gateway.sce, line: 7
+# File: demos/polynomials.dem.gateway.sce, line: 12
 msgid "Introduction"
 msgstr ""
 #
-# File: etc/polynomials.start, line: 24
+# File: demos/polynomials.dem.gateway.sce, line: 10
 msgid "Polynomials"
 msgstr ""

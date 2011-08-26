@@ -8,23 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 12:35+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #
 # File: macros/recompilefunction.sci, line: 44
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
-"%s は、プロファイルのため既にコンパイル済です、なにもする必要はありません!"
+msgstr "%s は、プロファイルのため既にコンパイル済です、なにもする必要はありません!"
 
 #
 # File: macros/recompilefunction.sci, line: 40
@@ -69,8 +68,7 @@ msgstr "%s: ファイル %s は存在しません。\n"
 # File: macros/getd.sci, line: 45
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
-"%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
+msgstr "%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
 
 #
 # File: macros/genlib.sci, line: 204
@@ -91,11 +89,9 @@ msgstr "%s: 拡張子 %s を有するファイルが %s で見つかりません
 msgid "%s: Please check: %s\n"
 msgstr "%s: %s を確認してください.\n"
 
-#
-# File: macros/warnobsolete.sci, line: 21
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
-msgstr ""
+msgstr "%s: プライベート関数: この関数に直接アクセスできません.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -124,8 +120,7 @@ msgstr "%s: 警告: ファイル %s でエラー : ファイル %s を無視し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -146,19 +141,17 @@ msgstr "%s: 入力引数 #%d の型が間違っています: Scilab関数を指�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"

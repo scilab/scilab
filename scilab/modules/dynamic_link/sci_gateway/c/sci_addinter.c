@@ -90,7 +90,7 @@ int sci_addinter(char *fname,unsigned long fname_len)
 		if (ierr == 0)
 		{
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{

@@ -15,7 +15,10 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a representation on the Scilab Integer datatype
+ * This class provides a representation on the Scilab Integer datatype<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -27,12 +30,13 @@ import java.util.Arrays;
 public class ScilabInteger implements ScilabType {
 
 	private static final long serialVersionUID = 1759633801332932450L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_ints;
 
 	private long[][] longData = null;
 	private short[][] shortData = null;
 	private int[][] intData = null;
 	private byte[][] byteData = null;
-	private ScilabIntegerTypeEnum type;
+	private ScilabIntegerTypeEnum precision;
 	
 	/**
 	 * Default constructor
@@ -89,7 +93,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(byte value) {
 		this.byteData = new byte[1][1];
 		this.byteData[0][0] = value;
-		this.type = ScilabIntegerTypeEnum.sci_int8;
+		this.precision = ScilabIntegerTypeEnum.sci_int8;
 	}
 
 	/**
@@ -100,7 +104,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(short value) {
 		this.shortData = new short[1][1];
 		this.shortData[0][0] = value;
-		this.type = ScilabIntegerTypeEnum.sci_int16;
+		this.precision = ScilabIntegerTypeEnum.sci_int16;
 	}
 
 	/**
@@ -111,7 +115,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(int value) {
 		this.intData = new int[1][1];
 		this.intData[0][0] = value;
-		this.type = ScilabIntegerTypeEnum.sci_int32;
+		this.precision = ScilabIntegerTypeEnum.sci_int32;
 	}
 
 	/**
@@ -122,7 +126,7 @@ public class ScilabInteger implements ScilabType {
 	public ScilabInteger(long value) {
 		this.longData = new long[1][1];
 		this.longData[0][0] = value;
-		this.type = ScilabIntegerTypeEnum.sci_int64;
+		this.precision = ScilabIntegerTypeEnum.sci_int64;
 	}
 
 	/**
@@ -134,9 +138,9 @@ public class ScilabInteger implements ScilabType {
 	public void setData(byte[][] data, boolean bUnsigned) {
 		this.byteData = data;
 		if (bUnsigned) {
-			this.type = ScilabIntegerTypeEnum.sci_uint8;
+			this.precision = ScilabIntegerTypeEnum.sci_uint8;
 		} else {
-			this.type = ScilabIntegerTypeEnum.sci_int8;
+			this.precision = ScilabIntegerTypeEnum.sci_int8;
 		}
 	}
 
@@ -149,9 +153,9 @@ public class ScilabInteger implements ScilabType {
 	public void setData(short[][] data, boolean bUnsigned) {
 		this.shortData = data;
 		if (bUnsigned) {
-			this.type = ScilabIntegerTypeEnum.sci_uint16;
+			this.precision = ScilabIntegerTypeEnum.sci_uint16;
 		} else {
-			this.type = ScilabIntegerTypeEnum.sci_int16;
+			this.precision = ScilabIntegerTypeEnum.sci_int16;
 		}
 	}
 
@@ -164,9 +168,9 @@ public class ScilabInteger implements ScilabType {
 	public void setData(int[][] data, boolean bUnsigned) {
 		this.intData = data;
 		if (bUnsigned) {
-			this.type = ScilabIntegerTypeEnum.sci_uint32;
+			this.precision = ScilabIntegerTypeEnum.sci_uint32;
 		} else {
-			this.type = ScilabIntegerTypeEnum.sci_int32;
+			this.precision = ScilabIntegerTypeEnum.sci_int32;
 		}
 	}
 
@@ -179,11 +183,21 @@ public class ScilabInteger implements ScilabType {
 	public void setData(long[][] data, boolean bUnsigned) {
 		this.longData = data;
 		if (bUnsigned) {
-			this.type = ScilabIntegerTypeEnum.sci_uint64;
+			this.precision = ScilabIntegerTypeEnum.sci_uint64;
 		} else {
-			this.type = ScilabIntegerTypeEnum.sci_int64;
+			this.precision = ScilabIntegerTypeEnum.sci_int64;
 		}
 	}
+
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    @Override
+	public ScilabTypeEnum getType() {
+        return type;
+    }
 
 	/**
 	 * If the precision is not 64, all values will be converted to long 
@@ -264,14 +278,14 @@ public class ScilabInteger implements ScilabType {
 	 * @return the precision of the values
 	 */
 	public ScilabIntegerTypeEnum getPrec() {
-		return type;
+		return precision;
 	}
 
 	/**
 	 * @return true, if the values are signed, false otherwise.
 	 */
 	public boolean isUnsigned() {
-		switch (type) {
+		switch (precision) {
 			case sci_int8:
 			case sci_int16:
 			case sci_int32:
@@ -411,6 +425,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @return true, if there is no values; false otherwise.
 	 */
+	@Override
 	public boolean isEmpty() {
 		if (this.getPrec() == null) {
 			return true;
@@ -436,6 +451,7 @@ public class ScilabInteger implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabInteger) {
 			return Arrays.deepEquals(this.getData(), ((ScilabInteger)obj).getData());

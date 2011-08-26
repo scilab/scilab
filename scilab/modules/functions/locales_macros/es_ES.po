@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-05-31 23:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
@@ -65,8 +65,6 @@ msgstr "%s: No se encontraron archivos con extensión %s en %s\n"
 msgid "%s: Please check: %s\n"
 msgstr "%s: Por favor revise: %s\n"
 
-#
-# File: macros/warnobsolete.sci, line: 21
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr ""
@@ -132,7 +130,8 @@ msgstr ""
 "una función de Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s: Valores incorrectos de argumentos de entrada: No hay perfil de datos en "
 "la función\n"

@@ -110,6 +110,8 @@ function newobj = neldermead_new ()
   newobj.simplex0deltazero = 0.0075;
   // The coordinates of the initial simplex, given by the user
   newobj.coords0 = [];
+  // Initialize the simplex history
+  newobj.historysimplex = [];
   // The Kelley stagnation detection in termination criteria :  0/1
   // (i.e. sufficient decrease of function value)
   newobj.kelleystagnationflag = %f

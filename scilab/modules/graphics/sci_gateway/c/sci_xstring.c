@@ -44,7 +44,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	if ( m3*n3 == 0 )
 	{
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -64,14 +64,14 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	{
 		Scierror(999,_("%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"), fname, 1, 2);
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
 	if(nbElement == 0)
 	{
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -82,7 +82,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 4, 1, nbElement);
 			LhsVar(1)=0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 	}
@@ -93,7 +93,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 5, 1, nbElement);
 			LhsVar(1)=0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 	}
@@ -135,7 +135,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 	freeArrayOfString(Str,m3*n3);
 
 	LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 } 
 /*--------------------------------------------------------------------------*/

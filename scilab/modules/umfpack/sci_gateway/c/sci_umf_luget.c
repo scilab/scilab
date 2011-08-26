@@ -220,7 +220,7 @@ int sci_umf_luget(char* fname, unsigned long l)
 				pl_miss);
 		break;
 	}
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 

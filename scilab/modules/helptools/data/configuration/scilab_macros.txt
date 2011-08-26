@@ -1984,4 +1984,3 @@ edit
 whereami
 with_texmacs
 with_tk
-with_pvm

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:23+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: ru\n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
@@ -155,7 +155,8 @@ msgid "-all option ignored."
 msgstr "Опция -all проигнорирована."
 
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
-msgstr "//  dims(i,:) является вектором размерностей i-го выходного параметром"
+msgstr ""
+"//  dims(i,:) является вектором размерностей i-го выходного параметром"
 
 msgid "//  prop(i) is the ith output argument property"
 msgstr "//  prop(i) является свойством i-го выходного параметра"
@@ -248,7 +249,8 @@ msgstr ""
 "результат установлен в []."
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Как минимум один параметр %s является пустой матрицей, эквивалентом в Scilab "
 "будет []."
@@ -388,7 +390,8 @@ msgstr "Входной файл"
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
-msgstr "L.%d: Неизвестная переменная %s является M-файлом (sci_%s существует)."
+msgstr ""
+"L.%d: Неизвестная переменная %s является M-файлом (sci_%s существует)."
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file."
@@ -492,7 +495,8 @@ msgstr "ВКЛ"
 
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
-msgstr "Один операнд является пустой матрицей в %s, результат установлен в []."
+msgstr ""
+"Один операнд является пустой матрицей в %s, результат установлен в []."
 
 msgid "Only double values used in M-file:"
 msgstr "Только числовые значения использованы в M-file:"
@@ -739,7 +743,8 @@ msgstr "является скаляром."
 msgid "is not a character string matrix."
 msgstr "не является матрицей символьных строк."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal требует, чтобы поля в структурах с одинаковыми порядковыми номерами "
 "были равны."
@@ -785,7 +790,8 @@ msgid "message_id ignored in following line."
 msgstr "message_id проигнорирован в следующей строке."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) может быть заменена с помощью %s() или %s является ли %s M-файлом "
 "или нет."
@@ -801,8 +807,8 @@ msgstr "имя должно быть строкой, а не %s."
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"недостаточно данных, следует указать как минимум variable_name|dimensions|"
-"datatype."
+"недостаточно данных, следует указать как минимум "
+"variable_name|dimensions|datatype."
 
 msgid "not matlab path"
 msgstr "не путь matlab"
@@ -828,11 +834,13 @@ msgid "recursive extraction from a variable %s of type %s."
 msgstr "рекурсивное извлечение из переменной %s типа %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "рекурсивное извлечение с одним индексом типа %s ещё не реализовано."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "рекурсивная вставка в переменную, которая не является ни ячейкой, ни "
 "структурой: %s."

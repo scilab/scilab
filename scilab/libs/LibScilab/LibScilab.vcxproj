@@ -458,10 +458,6 @@
       <Project>{3a72c3ed-98f7-49c7-b59c-2c6c47ff9390}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\shell\src\c\shell.vcxproj">
-      <Project>{805aa73f-ef7b-4177-bf46-200b72d8f83a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\sparse\src\c\sparse.vcxproj">
       <Project>{51240b08-5e4e-439b-b745-c870d5b513bf}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

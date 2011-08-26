@@ -113,7 +113,7 @@ static int returnRectAndButton(const double selectedRect[4], int button)
     LhsVar(2) = Rhs + 2;
   }
 
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

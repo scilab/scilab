@@ -32,6 +32,7 @@ public class GroundBlock extends BasicBlock {
 	 * Set the orientation before calling parent method.
 	 * @param child the port to add.
 	 * @param index the index of the add
+	 * @return the inserted cell
 	 */
 	@Override
 	public mxICell insert(mxICell child, int index) {

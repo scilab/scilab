@@ -1,14 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2008 - INRIA - Allan CORNET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007-2008 - INRIA - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*------------------------------------------------------------------------*/
 #ifndef __HISTORYMANAGER_C_H__
@@ -19,175 +20,189 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*------------------------------------------------------------------------*/
-	/**
-	* get history manager state
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL historyIsEnabled(void);
+    /*------------------------------------------------------------------------*/
+    /**
+    * get history manager state
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL historyIsEnabled(void);
 
-	/**
-	 * append lines to History manager
-	 * @param array of string
-	 * @param size of the array of string
-	 * @return TRUE or FALSE
-	 */
-	HISTORY_MANAGER_IMPEXP BOOL appendLinesToScilabHistory(char **lines_, int numberoflines);
-	// Note it is lines_ because line is a keyword for term stuff
+    /**
+    * append lines to History manager
+    * @param array of string
+    * @param size of the array of string
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL appendLinesToScilabHistory(char **lines_, int numberoflines);
+    // Note it is lines_ because line is a keyword for term stuff
 
-	/**
-	* add a line to History manager
-	* @param a line to add
-	* line isn't added if it is the same as previous (FALSE)
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL appendLineToScilabHistory(char *line);
+    /**
+    * add a line to History manager
+    * @param a line to add
+    * line isn't added if it is the same as previous (FALSE)
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL appendLineToScilabHistory(char *line);
 
-	/**
-	* Display history
-	*/
-	HISTORY_MANAGER_IMPEXP void displayScilabHistory(void);
+    /**
+    * Display history
+    */
+    HISTORY_MANAGER_IMPEXP void displayScilabHistory(void);
 
-	/**
-	* save history in a file
-	* @param a filename if NULL saves in default filename
-	* default filename --> SCIHOME/history.scilab
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char *filename);
+    /**
+    * save history in a file
+    * @param a filename if NULL saves in default filename
+    * default filename --> SCIHOME/history.scilab
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char *filename);
 
-	/**
-	* load history from a file
-	* @param a filename if NULL load from default filename
-	* default filename --> SCIHOME/history.scilab
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL loadScilabHistoryFromFile(char *filename);
+    /**
+    * load history from a file
+    * @param a filename if NULL load from default filename
+    * default filename --> SCIHOME/history.scilab
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL loadScilabHistoryFromFile(char *filename);
 
-	/**
-	* set filename of history
-	* @param filename of history
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL setFilenameScilabHistory(char *filename);
+    /**
+    * set filename of history
+    * @param filename of history
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL setFilenameScilabHistory(char *filename);
 
-	/**
-	* get filename of history
-	* @return a filename
-	*/
-	HISTORY_MANAGER_IMPEXP char *getFilenameScilabHistory(void);
+    /**
+    * get filename of history
+    * @return a filename
+    */
+    HISTORY_MANAGER_IMPEXP char *getFilenameScilabHistory(void);
 
-	/**
-	* set default filename of history
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL setDefaultFilenameScilabHistory(void);
+    /**
+    * set default filename of history
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL setDefaultFilenameScilabHistory(void);
 
-	/**
-	* reset history manager
-	*/
-	HISTORY_MANAGER_IMPEXP void resetScilabHistory(void);
+    /**
+    * get info about history file was or not truncated (too big)
+    * @return TRUE (truncated) or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL isScilabHistoryTruncated(void);
 
-	/**
-	* Get all lines in history
-	* @return a array of string
-	*/
-	HISTORY_MANAGER_IMPEXP char **getAllLinesOfScilabHistory(void);
+    /**
+    * reset history manager
+    */
+    HISTORY_MANAGER_IMPEXP void resetScilabHistory(void);
 
-	/**
-	* Get numbers of lines in history
-	* size of array returned by getAllLinesOfScilabHistory
-	* @return int
-	*/
-	HISTORY_MANAGER_IMPEXP int getSizeAllLinesOfScilabHistory(void);
+    /**
+    * Get all lines in history
+    * @return a array of string
+    */
+    HISTORY_MANAGER_IMPEXP char **getAllLinesOfScilabHistory(void);
 
-	/**
-	* set new token to search in history
-	* @param token (a string)
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL setSearchedTokenInScilabHistory(char *token);
+    /**
+    * Get numbers of lines in history
+    * size of array returned by getAllLinesOfScilabHistory
+    * @return int
+    */
+    HISTORY_MANAGER_IMPEXP int getSizeAllLinesOfScilabHistory(void);
 
-	/**
-	* reset search in history
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL resetSearchedTokenInScilabHistory(void);
+    /**
+    * set new token to search in history
+    * @param token (a string)
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL setSearchedTokenInScilabHistory(char *token);
 
-	/**
-	* get token searched in history
-	* @return token (a string)
-	*/
-	HISTORY_MANAGER_IMPEXP char *getSearchedTokenInScilabHistory(void);
+    /**
+    * reset search in history
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL resetSearchedTokenInScilabHistory(void);
 
-	/**
-	* Get the previous line in Scilab history
-	* @return a line or NULL
-	* after a appendLine iterator go to end
-	*/
-	HISTORY_MANAGER_IMPEXP char *getPreviousLineInScilabHistory(void);
+    /**
+    * get token searched in history
+    * @return token (a string)
+    */
+    HISTORY_MANAGER_IMPEXP char *getSearchedTokenInScilabHistory(void);
 
-	/**
-	* Get the next line in Scilab history
-	* @return a line or NULL
-	* after a appendLine iterator go to end
-	*/
-	HISTORY_MANAGER_IMPEXP char *getNextLineInScilabHistory(void);
+    /**
+    * Get the previous line in Scilab history
+    * @return a line or NULL
+    * after a appendLine iterator go to end
+    */
+    HISTORY_MANAGER_IMPEXP char *getPreviousLineInScilabHistory(void);
 
-	/**
-	* Get numbers of lines in history
-	* @return number of lines
-	*/
-	HISTORY_MANAGER_IMPEXP int getNumberOfLinesInScilabHistory(void);
+    /**
+    * Get the next line in Scilab history
+    * @return a line or NULL
+    * after a appendLine iterator go to end
+    */
+    HISTORY_MANAGER_IMPEXP char *getNextLineInScilabHistory(void);
 
-	/**
-	* set consecutive duplicate lines are added
-	* @param doit (TRUE or FALSE)
-	*/
-	HISTORY_MANAGER_IMPEXP void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit);
+    /**
+    * Get numbers of lines in history
+    * @return number of lines
+    */
+    HISTORY_MANAGER_IMPEXP int getNumberOfLinesInScilabHistory(void);
 
-	/**
-	* indicate if consecutive duplicate lines are added
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void);
+    /**
+    * set consecutive duplicate lines are added
+    * @param doit (TRUE or FALSE)
+    */
+    HISTORY_MANAGER_IMPEXP void setSaveConsecutiveDuplicateLinesInScilabHistory(BOOL doit);
 
-	/**
-	* Set after how many lines history is saved
-	* @param number between 0 and Max
-	* default value is 0 (disabled)
-	*/
-	HISTORY_MANAGER_IMPEXP void setAfterHowManyLinesScilabHistoryIsSaved(int num);
+    /**
+    * indicate if consecutive duplicate lines are added
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL getSaveConsecutiveDuplicateLinesInScilabHistory(void);
 
-	/**
-	* Get after how many lines history is saved
-	* @return number between 0 and Max
-	* default value is 0 (disabled)
-	*/
-	HISTORY_MANAGER_IMPEXP int getAfterHowManyLinesScilabHistoryIsSaved(void);
+    /**
+    * Set after how many lines history is saved
+    * @param number between 0 and Max
+    * default value is 0 (disabled)
+    */
+    HISTORY_MANAGER_IMPEXP void setAfterHowManyLinesScilabHistoryIsSaved(int num);
 
-	/**
-	* Get the Nth Line in history
-	* @param N
-	* @return the Nth Line
-	*/
-	HISTORY_MANAGER_IMPEXP char *getNthLineInScilabHistory(int N);
+    /**
+    * Get after how many lines history is saved
+    * @return number between 0 and Max
+    * default value is 0 (disabled)
+    */
+    HISTORY_MANAGER_IMPEXP int getAfterHowManyLinesScilabHistoryIsSaved(void);
 
-	/**
-	* delete the Nth Line in history
-	* @param N
-	* @return TRUE or FALSE
-	*/
-	HISTORY_MANAGER_IMPEXP BOOL deleteNthLineScilabHistory(int N);
+    /**
+    * Get the Nth Line in history
+    * @param N
+    * @return the Nth Line
+    */
+    HISTORY_MANAGER_IMPEXP char *getNthLineInScilabHistory(int N);
 
-	/**
-	* get number of lines of history
-	* @return a number >= 0
-	*/
-	HISTORY_MANAGER_IMPEXP int getSizeScilabHistory(void);
+    /**
+    * delete the Nth Line in history
+    * @param N
+    * @return TRUE or FALSE
+    */
+    HISTORY_MANAGER_IMPEXP BOOL deleteNthLineScilabHistory(int N);
+
+    /**
+    * get number of lines of history
+    * @return a number >= 0
+    */
+    HISTORY_MANAGER_IMPEXP int getSizeScilabHistory(void);
+
+    /**
+    */
+    BOOL setSizeMaxScilabHistory(int nbLinesMax);
+
+    /**
+    */
+    int getSizeMaxScilabHistory(void);
 
 
-/*------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------*/
 #ifdef __cplusplus
 }
 #endif

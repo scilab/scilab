@@ -267,6 +267,8 @@ copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="output_stream_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

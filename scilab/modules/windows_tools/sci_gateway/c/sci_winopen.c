@@ -35,7 +35,7 @@ int sci_winopen(char *fname,unsigned long l)
 		return 0;
 	}
 	
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -94,7 +94,7 @@ int sci_convstr(char *fname,unsigned long fname_len)
 				int l =0;
 				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&Row_Num_One,&Col_Num_One,&l);
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 				return 0;
 			}
 			else 
@@ -136,11 +136,12 @@ int sci_convstr(char *fname,unsigned long fname_len)
 	numRow   = Row_Num_One; 
 	numCol   = Col_Num_One ;
 	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &numRow, &numCol, Output_Matrix );
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
 	
 	/* free pointers used */
 	freeArrayOfString(Output_Matrix,mn);
+
+    LhsVar(1) = Rhs+1 ;
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

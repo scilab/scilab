@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 22:52+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -30,7 +30,8 @@ msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s：发生了一个错误：不正确的文件格式。读<%s>区块时出错。\n"
 
 #, c-format
@@ -77,8 +78,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
+msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 #, c-format
 msgid ""
@@ -96,8 +96,6 @@ msgstr ".wav文件不包含RIFF标识。"
 msgid ".wav file does not contain the wave identifier."
 msgstr ".wav文件不包含wave标识。"
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
 msgstr ""
 
@@ -119,8 +117,6 @@ msgstr "读wav文件时发生错误。"
 msgid "Error while writing sound file."
 msgstr "写声音文件时出错。"
 
-#
-# File: demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
@@ -136,7 +132,8 @@ msgstr "不正确的采样限制（使用升序）"
 msgid "Invalid wav format."
 msgstr "不正确的wav格式。"
 
-msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
 msgstr "Mu-law只能用于8位数据。使用了method=''linear''。"
 
 msgid "Requires 2-D values only."
@@ -157,7 +154,5 @@ msgstr "无法识别的数据格式。"
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "只能为8/16/24/32位编码。"
 
-#
-# File: demos/sound.dem.sce, line: 36
 msgid "see ''mapsound'' function"
 msgstr ""

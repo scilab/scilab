@@ -1,3 +1,0 @@
-exec('d1p8.code',-1);
-w=(1-s)/(1+s);f=1/p
-horner(f,w)

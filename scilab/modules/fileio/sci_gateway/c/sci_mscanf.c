@@ -21,8 +21,8 @@
 #include "scanf_functions.h"
 #include "StringConvert.h"
 #include "xscion.h"
-#include "../../../shell/includes/zzledt.h"
-#include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */
+#include "../../../console/includes/zzledt.h"
+#include "../../../console/includes/GetCommandLine.h" /* getConsoleInputLine */
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif

@@ -175,7 +175,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     else
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
 
     return 0;

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 22:50+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
@@ -47,7 +47,8 @@ msgstr "%s: Il file %s non esiste.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s: Non è stato possibile trovare alcun file con estensione %s in %s\n"
+msgstr ""
+"%s: Non è stato possibile trovare alcun file con estensione %s in %s\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
@@ -65,8 +66,6 @@ msgstr "%s: Non è stato trovato alcun file con estensione %s in %s\n"
 msgid "%s: Please check: %s\n"
 msgstr "%s: Verificare %s\n"
 
-#
-# File: macros/warnobsolete.sci, line: 21
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr ""
@@ -134,7 +133,8 @@ msgstr ""
 "di una funzione di Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s: L''argomento in ingresso ha dei valori sbagliati: nella funzione non "
 "c''è alcun dato sul profilo\n"

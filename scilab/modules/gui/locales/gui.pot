@@ -14,17 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 97
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 150
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 312
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 403
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 102
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 157
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 328
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 421
 #, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
@@ -67,28 +67,28 @@ msgstr ""
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 119
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 160
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 334
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 369
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 420
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 125
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 167
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 351
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 386
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 439
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 229
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 250
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 261
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 279
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 236
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 257
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 272
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 294
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 62
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 58
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 114
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 291
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 327
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 112
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 288
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 324
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 54
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 73
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 226
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 260
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 69
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 221
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 255
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 52
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 81
 # File: sci_gateway/c/sci_uicontrol.c, line: 150
@@ -99,12 +99,12 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 61
+# File: src/nogui/nogui.c, line: 62
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 105
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 111
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
@@ -114,7 +114,7 @@ msgstr ""
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 433
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -150,7 +150,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 444
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
@@ -173,7 +173,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 227
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 234
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 231
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
 msgstr ""
@@ -233,10 +233,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 172
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 196
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 131
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 155
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 169
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 193
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 126
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 150
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
 msgstr ""
@@ -265,8 +265,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 149
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 108
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 147
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 104
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
@@ -281,13 +281,13 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 172
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 454
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 346
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 363
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
@@ -300,9 +300,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 177
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 449
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 459
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -393,13 +393,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 163
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 187
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 225
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 160
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 184
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 222
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 65
 # File: sci_gateway/cpp/sci_uigetdir.cpp, line: 88
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 122
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 146
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 117
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 141
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 86
 # File: sci_gateway/c/sci_uicontrol.c, line: 236
 # File: sci_gateway/c/sci_uicontrol.c, line: 290
@@ -432,8 +432,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 124
-# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 83
+# File: sci_gateway/cpp/sci_uigetfile.cpp, line: 122
+# File: sci_gateway/cpp/sci_uiputfile.cpp, line: 79
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
@@ -465,7 +465,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 340
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 357
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -534,10 +534,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 134
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 363
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 141
+# File: sci_gateway/cpp/sci_toprint.cpp, line: 380
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 83
@@ -866,7 +866,7 @@ msgstr ""
 msgid "Attributes"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 518
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 550
 msgid "Back"
 msgstr ""
 #
@@ -929,15 +929,15 @@ msgstr ""
 msgid "Console &Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2352
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2358
 msgid "Console Background..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2333
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2339
 msgid "Console Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 540
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 572
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 79
 # File: scilab_fake_localization_file.c, line: 103
 msgid "Copy"
@@ -960,7 +960,7 @@ msgstr ""
 msgid "Cut"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 496
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 528
 msgid "Edit in the Scilab Text Editor"
 msgstr ""
 #
@@ -985,7 +985,7 @@ msgstr ""
 msgid "Error on export"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 119
+# File: src/nogui/nogui.c, line: 120
 msgid "Error. A signal has been caught.\n"
 msgstr ""
 #
@@ -997,7 +997,7 @@ msgstr ""
 msgid "Evaluate selection with no echo"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 476
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 508
 msgid "Execute into Scilab"
 msgstr ""
 #
@@ -1014,9 +1014,9 @@ msgstr ""
 msgid "FIG image"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 293
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 373
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 387
 msgid "Feature not available in this mode..."
 msgstr ""
 #
@@ -1028,11 +1028,8 @@ msgstr ""
 msgid "Figure saved.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 157
-msgid "File already exist"
-msgstr ""
-#
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 151
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 160
 msgid "File already exists"
 msgstr ""
 #
@@ -1044,7 +1041,7 @@ msgstr ""
 msgid "Font Chooser"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 533
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 565
 msgid "Forward"
 msgstr ""
 #
@@ -1058,12 +1055,12 @@ msgstr ""
 msgid "Help Browser"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 577
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 609
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 130
 msgid "Help about '"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 571
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 603
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 124
 msgid "Help about a selected text"
 msgstr ""
@@ -1176,13 +1173,13 @@ msgstr ""
 msgid "No '%s' property for uicontrols of style: %s.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2487
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2493
 msgid "No print service found."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 470
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 489
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 561
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 502
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 521
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 593
 msgid "No text selected"
 msgstr ""
 #
@@ -1243,7 +1240,7 @@ msgid "Print..."
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 150
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 156
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabFileChooser.java, line: 159
 msgid "Replace existing file?"
 msgstr ""
 #
@@ -1300,9 +1297,9 @@ msgstr ""
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 #
-# File: src/nogui/nogui.c, line: 33
-# File: src/nogui/nogui.c, line: 153
-# File: src/nogui/nogui.c, line: 157
+# File: src/nogui/nogui.c, line: 34
+# File: src/nogui/nogui.c, line: 154
+# File: src/nogui/nogui.c, line: 158
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
@@ -1358,7 +1355,7 @@ msgstr ""
 msgid "Scilab binary files"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 550
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 582
 # File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 107
 msgid "Select All"
 msgstr ""
@@ -1706,16 +1703,16 @@ msgstr ""
 msgid "Zoom Area"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 198
-msgid "disp(\"WARNING: Despite of our previous warning, you chose to use Scilab with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more information.\")"
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 192
+msgid "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more information.\")"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 91
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 169
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 167
 msgid "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 177
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 173
 msgid "disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")"
 msgstr ""
 #

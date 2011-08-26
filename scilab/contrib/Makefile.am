@@ -97,7 +97,8 @@ xcos_toolbox_skeleton/src/c/business.h \
 xcos_toolbox_skeleton/src/c/business_sum.c \
 xcos_toolbox_skeleton/src/c/.gitignore \
 xcos_toolbox_skeleton/src/cleaner_src.sce \
-xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst
+xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst \
+loader.sce
 
 install-data-local:
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \

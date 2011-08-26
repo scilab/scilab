@@ -287,6 +287,10 @@ copy string_f_header.def+string_f.vcdef string_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\string_gateway.xml" />
+    <None Include="elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="output_stream_Import.def" />
+    <None Include="string_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

@@ -1,1 +1,3 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
+
+// Some specific hooks can be specify here when the module is unloaded.

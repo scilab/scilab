@@ -33,9 +33,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Launch the modelica compiler configuration TCL UI
  */
 public class InitModelicaAction extends DefaultAction {
+	/** the name */
     public static final String NAME = XcosMessages.INIT_MODELICA;
+	/** no icon */
     public static final String SMALL_ICON = "";
+	/** no mnemonic */
     public static final int MNEMONIC_KEY = 0;
+	/** no accelerator */
     public static final int ACCELERATOR_KEY = 0;
     
     /**

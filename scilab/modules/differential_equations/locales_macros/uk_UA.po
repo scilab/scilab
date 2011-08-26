@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-06-01 04:26+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -129,7 +129,8 @@ msgid "If jactype = 4 the jacobian function must return"
 msgstr "Якщо jactype = 4, функцією якобіана буде повернуто"
 
 msgid "If the function is called without argument, default values are used"
-msgstr "Якщо функцію викликано без параметра, буде використано типові значення"
+msgstr ""
+"Якщо функцію викликано без параметра, буде використано типові значення"
 
 msgid "Lokta-Volterra vector field"
 msgstr "Векторне поле Лотка-Вольтерра"
@@ -152,10 +153,8 @@ msgstr "Значення елементів ml,mu:"
 msgid "ODE 1D vector field"
 msgstr "Одновимірне векторне поле ЗДР"
 
-#
-# File: demos/wheel/wheel.dem.gateway.sce, line: 8
 msgid "Reading a precomputed trajectory"
-msgstr ""
+msgstr "Читання попередньо обчисленої траєкторії"
 
 msgid "Simulation"
 msgstr "Моделювання"
@@ -163,10 +162,8 @@ msgstr "Моделювання"
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "Моделювання механічної системи з голономними в’язями"
 
-#
-# File: demos/wheel/wheel.dem.gateway.sce, line: 9
 msgid "Simulation with ode (needs a Fortran compiler)"
-msgstr ""
+msgstr "Імітація за допомогою ЗДР (потрібен компілятор Fortran)"
 
 msgid "Sphere"
 msgstr "Сфера"
@@ -201,4 +198,5 @@ msgid "spherical pendulum simulation"
 msgstr "моделювання сферичного маятника"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr "так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
+msgstr ""
+"так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"

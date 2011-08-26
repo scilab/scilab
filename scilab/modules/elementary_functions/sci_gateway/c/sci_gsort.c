@@ -44,7 +44,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 	int m1 = 0,n1 = 0,l1 = 0 ;
 	int m2 = 0,n2 = 0,l2 = 0 ;
 	int m3 = 0,n3 = 0,l3 = 0 ;
-	int ind_m1 = 0, ind_n1 = 0, ind_l1 =0;
+	int ind_m1 = 0, ind_n1 = 0;
 	int *indices = NULL;
 	int iflag = 0;
 	int i;
@@ -92,7 +92,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 							CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
 							LhsVar(2) = Rhs+2 ;
 						}
-						C2F(putlhsvar)();
+						PutLhsVar();
 						return 0;
 					}
 				}
@@ -102,13 +102,10 @@ int sci_gsort(char *fname, unsigned long fname_len)
 				GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
 			case sci_sparse:
+            default :
 				OverLoad(1);
 				return 0;
 				break;
-			default :
-				Scierror(999,_("%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix of strings expected.\n"),fname,2);
-				return 0;
-			break;
 		}
     }
 
@@ -148,14 +145,12 @@ int sci_gsort(char *fname, unsigned long fname_len)
 		{
 			ind_m1 = m1;
 			ind_n1 = 1;
-			ind_l1 = 0;
 			if (ind_m1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   /* Only return in row*/
 		}
 		else if (typex[1] == COLUMN_SORT) 
 		{
 			ind_m1 = 1;
 			ind_n1 = n1;
-			ind_l1 = 0;
 			if (ind_n1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  /*Only return in col */
 		}
 		else
@@ -168,7 +163,6 @@ int sci_gsort(char *fname, unsigned long fname_len)
     {
 		ind_m1 = m1;
 		ind_n1 = n1;
-		ind_l1 = 0;
 		if ( ind_m1*ind_n1 != 0 )indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  /* return a matrix*/
     }
 
@@ -206,8 +200,8 @@ int sci_gsort(char *fname, unsigned long fname_len)
 					}
 					LhsVar(2)= Rhs+2 ;
 				}
-				C2F(putlhsvar)();
 				if (indices) {FREE(indices); indices = NULL;}
+                PutLhsVar();
 			}
 		}
 		break;
@@ -292,7 +286,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
 				LhsVar(2)= Rhs+2 ;
 			}
 			if (indices) {FREE(indices); indices = NULL;}
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		break;
 
@@ -315,9 +309,9 @@ int sci_gsort(char *fname, unsigned long fname_len)
 				}
 				LhsVar(2)= Rhs+2 ;
 			}
-			C2F(putlhsvar)();
 			if (indices) {FREE(indices); indices = NULL;}
 			freeArrayOfString(S,m1*n1);
+            PutLhsVar();
 		}
 		break;
 

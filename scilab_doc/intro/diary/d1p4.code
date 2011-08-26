@@ -1,4 +1,0 @@
-p=poly([1 2 3],'z','coeff')
-//p is the polynomial in z with coefficients 1,2,3.
-//p can also be defined by :
-s=poly(0,'s');p=1+2*s+s^2

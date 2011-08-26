@@ -217,7 +217,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
     LhsVar(1)=Rhs+1;
 
-    C2F(putlhsvar)();
+    PutLhsVar();
 
     return TRUE;
 }

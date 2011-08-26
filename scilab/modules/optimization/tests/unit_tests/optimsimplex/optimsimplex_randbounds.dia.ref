@@ -84,10 +84,12 @@ x0 = [1 2];
 boundsmin = [-5 -5 -5];
 boundsmax = [5 5];
 cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
-assert_checkerror ( cmd , "%s: The boundsmin vector is expected to have %d columns, but current shape is %d x %d",[],"optimsimplex_randbounds",2,1,3);
+instr = "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n";
+assert_checkerror ( cmd , instr,[],"optimsimplex_new",4,1,2);
 // Test unconsistent size of boundsmax
 x0 = [1 2];
 boundsmin = [-5 -5];
 boundsmax = [5 5 5];
 cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
-assert_checkerror ( cmd , "%s: The boundsmax vector is expected to have %d columns, but current shape is %d x %d",[],"optimsimplex_randbounds",2,1,3);
+instr = "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n";
+assert_checkerror ( cmd , instr,[],"optimsimplex_new",5,1,2);

@@ -38,7 +38,6 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     private static final int DEFAULT_DATACOLUMNS = -2;
     
     private int ordering;
-    private int connectedLinkId;
     private int dataLines;
     private int dataColumns;
     private DataType dataType = DataType.REAL_MATRIX;
@@ -171,29 +170,20 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	return dataType;
     }
 
-    /**
-     * @param portOrdering a unique order number per type
-     */
-    public void setOrdering(int portOrdering) {
-	ordering = portOrdering;
-    }
+	/**
+	 * @param ordering
+	 *            a unique order number per instance
+	 */
+	public void setOrdering(int ordering) {
+		this.ordering = ordering;
+	}
 
-    /**
-     * @return the unique order number per type
-     */
-    public int getOrdering() {
-	return ordering;
-    }
-    
-    /** @param connectedLinkId the connected link id */
-    public void setConnectedLinkId(int connectedLinkId) {
-    	this.connectedLinkId = connectedLinkId;
-    }
-
-    /** @return the connected link id */
-    public int getConnectedLinkId() {
-	return connectedLinkId;
-    }
+	/**
+	 * @return the unique order number per instance
+	 */
+	public int getOrdering() {
+		return ordering;
+	}
 
     /**
      * @return the type of the port (Explicit or Implicit)
@@ -334,7 +324,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 		}
     	if (getEdgeCount() == 1) {
     		str.append(" (connected)"); 
-    	} else if (getEdgeCount() > 1){
+    	} else if (getEdgeCount() > 1) {
     		str.append(" - multiple links (");
     		str.append(getEdgeCount());
     		str.append(')');

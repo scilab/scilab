@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+//#include <stdio.h>
 #include "Scierror.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
@@ -29,6 +30,9 @@ int sci_mprintf(char *fname,unsigned long fname_len)
 	Nbvars = 0;
 	CheckRhs(1,1000);
 	CheckLhs(0,1);
+
+//    freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
+
 	
 	for (k=2;k<=Rhs;k++)
 	{

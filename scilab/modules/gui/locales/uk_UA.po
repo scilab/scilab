@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"PO-Revision-Date: 2011-05-10 20:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -53,15 +53,9 @@ msgstr ""
 msgid "%s: Function not available in NWNI mode.\n"
 msgstr "%s: У режимі NWNI функція недоступна.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 119
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 160
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 334
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 369
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 420
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -79,15 +73,15 @@ msgstr "%s: файла з назвою %s не існує.\n"
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: невідома властивість: %s для елементів керування «%s».\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 414
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: помилковий вхідний параметр №%d: слід використовувати «%s» або «%s».\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr "%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
+msgstr ""
+"%s: помилкові вхідні параметри: слід використовувати параметр «%s».\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
@@ -119,11 +113,12 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
 "рядків %d x %d.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 425
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано значення "
+"«pos» або «gdi».\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
@@ -145,12 +140,12 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
 "рядок 1 x %d дійсних чисел.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 220
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"масиви 1xn або mx1.\n"
 
 #, c-format
 msgid ""
@@ -214,12 +209,12 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 165
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 435
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано "
+"невід’ємне ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -232,13 +227,9 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
 "рядків.\n"
 
-#
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 170
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 430
-# File: sci_gateway/cpp/sci_toprint.cpp, line: 440
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
@@ -407,7 +398,8 @@ msgstr ""
 "«%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -421,7 +413,8 @@ msgstr ""
 "%d» не існує.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати "
 "коректний елемент керування «%s».\n"
@@ -449,12 +442,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: такого елемента керування не "
 "існує.\n"
 
-#
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 45
-# File: scilab_fake_localization_file.c, line: 82
 msgid "&?"
-msgstr ""
+msgstr "&Довідка"
 
 msgid "&Abort"
 msgstr "П&ерервати"
@@ -498,10 +487,8 @@ msgstr "&Копіювати"
 msgid "&Copy to clipboard"
 msgstr "&Копіювати до буфера"
 
-#
-# File: scilab_fake_localization_file.c, line: 44
 msgid "&Decrease font size"
-msgstr ""
+msgstr "З&меншити розмір шрифту"
 
 msgid "&Display current directory"
 msgstr "П&оказати поточний каталог"
@@ -512,11 +499,8 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-#
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 57
 msgid "&Edit"
-msgstr ""
+msgstr "З&міни"
 
 msgid "&Empty clipboard"
 msgstr "Спо&рожнити буфер обміну даними"
@@ -533,33 +517,23 @@ msgstr "&FIG"
 msgid "&Figure properties"
 msgstr "&Властивості рисунка"
 
-#
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 47
 msgid "&File"
-msgstr ""
+msgstr "&Файл"
 
-#
-# File: scilab_fake_localization_file.c, line: 90
 msgid "&File Exchange"
-msgstr ""
+msgstr "&Обмін файлами"
 
 msgid "&Font..."
 msgstr "&Шрифт…"
 
-#
-# File: scilab_fake_localization_file.c, line: 92
 msgid "&Forge"
-msgstr ""
+msgstr "&Forge"
 
 msgid "&GIF"
 msgstr "&GIF"
 
-#
-# File: scilab_fake_localization_file.c, line: 42
 msgid "&Incremental Search"
-msgstr ""
+msgstr "&Нарощувальний пошук"
 
 msgid "&Interrupt"
 msgstr "П&ризупинити"
@@ -639,11 +613,8 @@ msgstr "&Керування позначками даних"
 msgid "&Start entity picker"
 msgstr "&Дозволити вибір об’єктів"
 
-#
-# File: scilab_fake_localization_file.c, line: 21
-# File: scilab_fake_localization_file.c, line: 41
 msgid "&Tools"
-msgstr ""
+msgstr "&Інструменти"
 
 msgid "&UnZoom"
 msgstr "З&меншити"
@@ -679,30 +650,20 @@ msgstr "Подяки"
 msgid "All %s files"
 msgstr "Всі файли %s"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 74
 msgid "All Encapsulated PS files"
-msgstr ""
+msgstr "Всі файли EPS"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 70
 msgid "All PDF files"
-msgstr ""
+msgstr "Всі файли PDF"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 76
 msgid "All PNG image files"
-msgstr ""
+msgstr "Всі файли зображень PNG"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 72
 msgid "All Postscript files"
-msgstr ""
+msgstr "Всі файли Postscript"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 78
 msgid "All RTF (Rich Text Format) files"
-msgstr ""
+msgstr "Всі файли RTF (Rich Text Format)"
 
 msgid "All Scilab files"
 msgstr "Всі файли Scilab"
@@ -773,10 +734,8 @@ msgstr "Копіювати"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
 
-#
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 50
 msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr ""
+msgstr "© INRIA, 1989–2011"
 
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "
@@ -805,15 +764,11 @@ msgstr "Помилка під час спроби експортування"
 msgid "Error. A signal has been caught.\n"
 msgstr "Помилка. A signal has been caught.\n"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 137
 msgid "Evaluate selection with echo"
-msgstr ""
+msgstr "Обчислити позначення з показом результатів"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 150
 msgid "Evaluate selection with no echo"
-msgstr ""
+msgstr "Обчислити позначене без показу результатів"
 
 msgid "Execute into Scilab"
 msgstr "Виконати у Scilab"
@@ -827,12 +782,8 @@ msgstr "Експортувати"
 msgid "FIG image"
 msgstr "Зображення FIG"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 292
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 372
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 386
 msgid "Feature not available in this mode..."
-msgstr ""
+msgstr "Ця можливість недоступна у поточному режимі…"
 
 msgid "Figure loaded.\n"
 msgstr "Рисунок завантажено.\n"
@@ -873,10 +824,8 @@ msgstr "Довідка щодо позначеного ключового сло
 msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
 
-#
-# File: scilab_fake_localization_file.c, line: 43
 msgid "In&crease font size"
-msgstr ""
+msgstr "З&більшити розмір шрифту"
 
 msgid "Italic"
 msgstr "Курсив"
@@ -996,18 +945,14 @@ msgstr "Де&монстрації Scilab"
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 87
 msgid "Scilab &Online Help"
-msgstr ""
+msgstr "&Інтернет-довідка зі Scilab"
 
 msgid "Scilab &Web Site"
 msgstr "&Веб-сайт Scilab"
 
-#
-# File: scilab_fake_localization_file.c, line: 88
 msgid "Scilab &Wiki"
-msgstr ""
+msgstr "&Вікі Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1251,14 +1196,16 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати вектор-рядок "
 "або рядок.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+msgstr ""
+"Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
 
 #, c-format
 msgid ""
@@ -1349,14 +1296,10 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати рядок або вектор "
 "дійсних значень 1 x %d.\n"
 
-#
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 58
-# File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 88
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 46
-# File: src/cpp/SetUiobjectForegroundColor.cpp, line: 90
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
 msgstr ""
+"Помилкове значення властивості «%s»: слід використовувати число між 0 і 1.\n"
 
 msgid "Xcos"
 msgstr "Xcos"
@@ -1386,8 +1329,8 @@ msgid ""
 msgstr ""
 "disp(\"ПОПЕРЕДЖЕННЯ: через обмеження конфігурації вашого комп’ютера Scilab "
 "було перемкнуто у режим, у якому використання графічних елементів керування "
-"та графіки неможливе. Введіть команду «help usecanvas», щоб дізнатися більше."
-"\")"
+"та графіки неможливе. Введіть команду «help usecanvas», щоб дізнатися "
+"більше.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
@@ -1400,3 +1343,463 @@ msgstr ""
 
 msgid "toggle datatip mode"
 msgstr "перемкнути режим позначок даних"
+
+#~ msgid "File"
+#~ msgstr "Файл"
+
+#~ msgid "http://www.scilab.org/"
+#~ msgstr "http://www.scilab.org/"
+
+#, c-format
+#~ msgid ""
+#~ "Version %s (%s)\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Версія %s (%s)\n"
+#~ "\n"
+
+#, c-format
+#~ msgid "%s:  #%d matching nodes.\n"
+#~ msgstr "%s:  №%d збіг вузлів.\n"
+
+#, c-format
+#~ msgid "%s:  #%d matching parent nodes.\n"
+#~ msgstr "%s:  №%d збіг батьківських вузлів.\n"
+
+#, c-format
+#~ msgid "%s: Invalid node.\n"
+#~ msgstr "%s: Некоректна вершина.\n"
+
+#, c-format
+#~ msgid "%s: Invalid parent node.\n"
+#~ msgstr "%s: Некоректна батьківська вершина.\n"
+
+#, c-format
+#~ msgid "%s: Invalid position ''%s''.\n"
+#~ msgstr "%s: Некоректне розташування «%s».\n"
+
+#, c-format
+#~ msgid "%s: No matching node.\n"
+#~ msgstr "%s: Збігу вузлів не виявлено.\n"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: Для властивості «%s» і значення «%s» результатів не виявлено.\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: відповідників не знайдено.\n"
+
+#, c-format
+#~ msgid "%s: Type %s is not implemented.\n"
+#~ msgstr "%s: тип %s не реалізовано.\n"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&База даних вад і запитів"
+
+#~ msgid "&Contributions"
+#~ msgstr "В&нески"
+
+#~ msgid "&Editor"
+#~ msgstr "&Редактор"
+
+#~ msgid "<Enter color name here>"
+#~ msgstr "<Тут слід ввести назву кольору>"
+
+#~ msgid "Application"
+#~ msgstr "Програма"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Авторські права належать © 1989-2009 (INRIA)"
+
+#~ msgid "Error"
+#~ msgstr "Помилка"
+
+#~ msgid "GUI"
+#~ msgstr "Інтерфейс"
+
+#~ msgid "Menu"
+#~ msgstr "Меню"
+
+#~ msgid "No color selected."
+#~ msgstr "Не вибрано жодного кольору."
+
+#~ msgid "Please enter a color name first."
+#~ msgstr "Будь ласка, спочатку введіть назву кольору."
+
+#~ msgid "Quit Scilab"
+#~ msgstr "Завершити роботу Scilab"
+
+#~ msgid "Quit demonstration"
+#~ msgstr "Закрити вікно демонстрації"
+
+#~ msgid "Scilab Contributors..."
+#~ msgstr "Учасники розробки Scilab…"
+
+#~ msgid "Scilab Graphics"
+#~ msgstr "Графічні дані Scilab"
+
+#~ msgid "Slider demo"
+#~ msgstr "Демонстрація роботи повзунка"
+
+#~ msgid "Sub-menu 1"
+#~ msgstr "Підменю 1"
+
+#~ msgid "Sub-menu 2"
+#~ msgstr "Підменю 2"
+
+#, c-format
+#~ msgid "You selected ''%s''."
+#~ msgstr "Вами вибрано «%s»."
+
+#~ msgid "blue"
+#~ msgstr "синій"
+
+#~ msgid "checked"
+#~ msgstr "позначено"
+
+#~ msgid "green"
+#~ msgstr "зелений"
+
+#~ msgid "red"
+#~ msgstr "червоний"
+
+#~ msgid "unchecked"
+#~ msgstr "не позначено"
+
+#~ msgid "yellow"
+#~ msgstr "жовтий"
+
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
+#~ msgstr ""
+#~ "%s: помилковий вхідний параметр №%d: слід використовувати параметр «%s» або "
+#~ "«%s»"
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: %s or %s expected.\n"
+#~ msgstr ""
+#~ "%s: помилкові вхідні параметри: слід використовувати параметри %s або %s\n"
+
+#, c-format
+#~ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+#~ msgstr ""
+#~ "%s: помилкові вхідні параметри: слід використовувати параметри %s, %s або "
+#~ "%s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for %s: A real expected.\n"
+#~ msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий розмір для %s: слід використовувати вектор-рядок рядків.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+#~ "керування «Figure» або дійсне число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A list expected.\n"
+#~ msgstr "%s: помилковий тип %s: слід використовувати список.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A real expected.\n"
+#~ msgstr "%s: помилковий тип для %s: слід використовувати дійсне число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип для %s: слід використовувати вектор-рядок рядків.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for %s: A string expected.\n"
+#~ msgstr "%s: помилковий тип %s: слід використовувати тип «string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+#~ "керування графічним об’єктом або дійсне число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку з "
+#~ "двох елементів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати булівське "
+#~ "значення.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
+#~ "ціле число.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати невід’ємні "
+#~ "цілі числа\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+#~ "або «tree».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «tree».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «tree» "
+#~ "або «string».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
+#~ "''callback''.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «label», "
+#~ "«icon» або «callback».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідних параметрів з №%d: слід використовувати «tree».\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення властивості «%s»: слід використовувати %d, %d або "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+#~ "«%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+#~ msgstr ""
+#~ "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+#~ "«%s» або «%s».\n"
+
+#, c-format
+#~ msgid "%s: can not add a menu in console in this mode: %s.\n"
+#~ msgstr "%s: у цьому режимі додавати меню у консоль не можна: %s.\n"
+
+#, c-format
+#~ msgid "%s: can not add a menu in this mode: %s.\n"
+#~ msgstr "%s: у цьому режимі додавати меню не можна: %s.\n"
+
+#, c-format
+#~ msgid "%s: function not available in NWNI mode.\n"
+#~ msgstr "%s: у режимі NWNI функцією не можна користуватися.\n"
+
+#~ msgid "&Web links"
+#~ msgstr "&Веб-посилання"
+
+#~ msgid "Add color in listbox"
+#~ msgstr "Додати колір з панелі списку"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " has incorrect type %s.\n"
+#~ msgstr ""
+#~ "Відповідь, дана на %s, \n"
+#~ " належить до помилкового типу %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " has invalid dimension: \n"
+#~ " waiting for dimension %s.\n"
+#~ msgstr ""
+#~ "Відповідь, дана на %s, \n"
+#~ " має некоректну розмірність: \n"
+#~ " слід було використовувати розмірність %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Answer given for %s \n"
+#~ " is incorrect see error message in scilab window.\n"
+#~ msgstr ""
+#~ "Відповідь, дана на %s, \n"
+#~ " є помилковою, див. повідомлення про помилку у вікні scilab.\n"
+
+#~ msgid ""
+#~ "Authors:\n"
+#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Автори:\n"
+#~ "Консорціум Scilab / INRIA / ENPC / Учасники розробки\n"
+#~ "\n"
+
+#~ msgid "Colors list edition"
+#~ msgstr "Редагування списку кольорів"
+
+#~ msgid "Control Plot3d"
+#~ msgstr "Керування Plot3d"
+
+#~ msgid "Display selection"
+#~ msgstr "Показ позначеного"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Ви справді бажаєте завершити роботу Scilab?"
+
+#~ msgid "Exit figure"
+#~ msgstr "Закрити вікно рисунка"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Запустити текстовий редактор Scilab"
+
+#~ msgid "Launch plot2d"
+#~ msgstr "Запустити plot2d"
+
+#~ msgid "Launch plot3d"
+#~ msgstr "Запустити plot3d"
+
+#, c-format
+#~ msgid "Menu ''%s'' is %s."
+#~ msgstr "Меню «%s» %s."
+
+#~ msgid "Menu status"
+#~ msgstr "Стан меню"
+
+#~ msgid "Popupmenu selection"
+#~ msgstr "Вибір у контекстному меню"
+
+#~ msgid ""
+#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
+#~ "license.\n"
+#~ msgstr ""
+#~ "Scilab 5.0 та наступні версії випущено за умов дотримання ліцензії CeCILL.\n"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "Вкажіть файл, який слід відкрити у текстовому редакторі Scilab"
+
+#~ msgid "Selected colors"
+#~ msgstr "Вибрані кольори"
+
+#, c-format
+#~ msgid "Selected colors are: %s."
+#~ msgstr "Вибрані кольори: %s."
+
+#~ msgid "Selected menu"
+#~ msgstr "Позначене меню"
+
+#~ msgid "Slider value: "
+#~ msgstr "Значення на повзунку: "
+
+#~ msgid ""
+#~ "Some Scilab modules are released under the GPLv2 license.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Деякі з модулів Scilab випущено за умов дотримання ліцензії GPLv2.\n"
+#~ "\n"
+
+#~ msgid "Sub-menu 2-1"
+#~ msgstr "Підменю 2-1"
+
+#~ msgid "Sub-menu 2-2"
+#~ msgstr "Підменю 2-2"
+
+#~ msgid "Uicontrols demo"
+#~ msgstr "Демонстрація елементів керування"
+
+#, c-format
+#~ msgid "You clicked on menu ''%s''."
+#~ msgstr "Ви натиснули позначку меню «%s»."
+
+#~ msgid "createPopupItems: found an empty cascading menu."
+#~ msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"ПОПЕРЕДЖЕННЯ: нехтуючи нашим попередженням, ви наказали Scilab "
+#~ "використовувати додаткові графічні властивості. Введіть команду «help "
+#~ "usecanvas», щоб дізнатися більше.\")"
+
+#~ msgid "item1|item2|item3|item4"
+#~ msgstr "елемент1|елемент2|елемент3|елемент4"
+
+#~ msgid "Do you really want to quit Scilab?"
+#~ msgstr "Ви справді хочете вийти зі Scilab?"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "© INRIA, 1989-2010"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: сталася помилка типу «виключення»: %s"
+
+#~ msgid "Uicontrols demo with LaTeX"
+#~ msgstr "Демонстрація елементів керування інтерфейсом з LaTeX"
+
+#, c-format
+#~ msgid "%s: No results found.\n"
+#~ msgstr "%s: нічого не знайдено.\n"
+
+#, c-format
+#~ msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: нічого не знайдено для властивості «%s» і значення «%s».\n"
+
+#~ msgid "Could not find the console nor the InterpreterManagement."
+#~ msgstr "Не вдалося виявити консолі або InterpreterManagement."

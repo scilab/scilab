@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 03:35+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Can''t go to directory ''%s''.\n"
@@ -23,7 +23,8 @@ msgstr "%s: No se puede ir al directorio ''%s''.\n"
 
 #, c-format
 msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: El directorio ''%s'' no existe o no se tiene acceso de lectura.\n"
+msgstr ""
+"%s: El directorio ''%s'' no existe o no se tiene acceso de lectura.\n"
 
 #, c-format
 msgid ""
@@ -49,10 +50,6 @@ msgstr ""
 "%s: Este módulo requiere de un compilador de C o Fortran, pero no fue "
 "encontrado.\n"
 
-#
-# File: macros/tbx_build_blocks.sci, line: 59
-# File: macros/tbx_build_blocks.sci, line: 67
-# File: macros/tbx_build_blocks.sci, line: 74
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
@@ -89,7 +86,8 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
 "strings.\n"
@@ -121,10 +119,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
-msgstr "%s: No puede construir la documentación en este modo de scilab: %s.\n"
+msgstr ""
+"%s: No puede construir la documentación en este modo de scilab: %s.\n"
 
-#
-# File: macros/tbx_build_blocks.sci, line: 40
 msgid "Building blocks...\n"
 msgstr ""
 

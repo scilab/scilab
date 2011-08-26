@@ -20,7 +20,7 @@ function atomsGui()
 
     if errStatus<>0 | size(allModules, "*") == 0 then
         if size(atomsRepositoryList(),"*") > 0 then
-            messagebox(gettext("No ATOMS module is available. Please, check your Internet connection."), gettext("ATOMS error"), "error");
+            messagebox(gettext("No ATOMS module is available. Please, check your Internet connection or make sure that your OS is compatible with ATOMS."), gettext("ATOMS error"), "error");
         else
             messagebox(gettext("No ATOMS module is available: your repository list is empty."), gettext("ATOMS error"), "error");
         end
@@ -81,10 +81,10 @@ function atomsGui()
         "parent"   , atomsfig, ..
         "label"    , gettext("File"));
 
-    // Menu File:Home
+    // Menu File:Installed Modules
     uimenu( ..
         "parent"   , h, ..
-        "label"    , gettext("Home"), ..
+        "label"    , gettext("Installed modules"), ..
         "callback" , "cbAtomsGui", ..
         "tag"      , "homeMenu");
 
@@ -233,7 +233,7 @@ function atomsGui()
         "Enable"             , "off", ..
         "Tag"                , "updateButton");
 
-    // Home: List of installed modules
+    // Installed Modules: List of installed modules
     // =========================================================================
 
     descWidth                = descFrameWidth  - 2*margin;

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-02 20:44+0100\n"
+"PO-Revision-Date: 2011-05-31 23:41+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 13144)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -86,7 +86,8 @@ msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
 msgstr "%s：%s的所有模式都接近非最小，所以%s接近%d。\n"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr "%s：A的所有模式接近nonminimal，使得|| G ||接近0。\n"
 
 #, c-format
@@ -114,7 +115,8 @@ msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s：不能发现状态维数。\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s：%s的可控性和可观测性模式接近虚轴。\n"
 
 #, c-format
@@ -348,8 +350,6 @@ msgstr "%s：输出参数的数目错误：应该介于%d与%d之间。\n"
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s：输出参数的数目错误：至少应有%d个。\n"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 16
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
@@ -500,7 +500,8 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为有理分数数组。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr "%s：输入参数类型错误：应该为线性动态系统。\n"
 
 #, c-format
@@ -546,7 +547,8 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为单输入单输出系统。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为稳定系统。\n"
 
 #, c-format
@@ -558,8 +560,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr "%s：输入参数#%d的值错误：时间域必须为''cc''或''d''。\n"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: second row must be greater than "
@@ -727,8 +727,6 @@ msgstr "不可行(Hy hamiltonian)"
 msgid "Unfeasible (spectral radius)"
 msgstr "不可行（谱半径）"
 
-#
-# File: macros/nyquistfrequencybounds.sci, line: 25
 #, c-format
 msgid "Wrong type for argument %d: SISO expected.\n"
 msgstr ""

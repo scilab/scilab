@@ -80,7 +80,7 @@ int sci_TCL_ExistVar(char *fname,unsigned long l)
 		}
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

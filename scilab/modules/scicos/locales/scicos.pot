@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: src/c/scicos.c, line: 3061
 msgid ""
@@ -181,16 +181,6 @@ msgstr ""
 # File: sci_gateway/c/sci_model2blk.c, line: 1865
 #, c-format
 msgid "%s : Allocation error.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_permutobj.c, line: 68
-#, c-format
-msgid "%s : Bad size for Rhs(1).\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_permutobj.c, line: 84
-#, c-format
-msgid "%s : Bad size for Rhs(2).\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_getscicosvars.c, line: 511
@@ -448,12 +438,6 @@ msgstr ""
 # File: sci_gateway/c/sci_scicosim.c, line: 1372
 #, c-format
 msgid "%s : unknown block : %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_permutobj.c, line: 75
-# File: sci_gateway/c/sci_permutobj.c, line: 91
-#, c-format
-msgid "%s :the handle is not or no more valid.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_duplicate.c, line: 56

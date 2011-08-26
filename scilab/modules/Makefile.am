@@ -31,7 +31,6 @@ commons \
 jvm \
 action_binding \
 renderer \
-shell \
 completion \
 console \
 graphic_export \
@@ -52,7 +51,6 @@ cacsd \
 polynomials \
 boolean \
 double \
-pvm \
 io \
 intersci \
 signal_processing \
@@ -185,14 +183,12 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/fftw/libscifftw.la
 
 

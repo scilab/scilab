@@ -414,6 +414,13 @@ copy integer_f_header.def+integer_f.vcdef integer_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="Fileio_Import.def" />
+    <None Include="Integer_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="String_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

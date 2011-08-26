@@ -69,7 +69,6 @@ ja_JP.DescriptionFortran2sci =Scilab to Fortran Toolbox
 ja_JP.DescriptionTclTK =TCL/TK in Scilab
 ja_JP.DescriptionScipad =Scipad Editor for Scilab
 ja_JP.DescriptionSpreadsheet =Spreadsheet Toolbox
-ja_JP.DescriptionPvm =PVM Parallel Toolbox
 ja_JP.DescriptionJVM =Java Runtime
 ja_JP.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
 ja_JP.DescriptionFftwModule = FFTW interface for Scilab
@@ -131,6 +130,11 @@ ja_JP.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
 ja_JP.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
 ja_JP.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
 ;
+ja_JP.DownloadCHMLabel =Downloading CHM files for Scilab.
+ja_JP.DownloadCHMDescription =Please wait while Setup is downloading extra files to your computer.
+ja_JP.DoTasksJustAfterInstallMsg4 =CHM files not installed.
+ja_JP.DescriptionCHM=Download scilab help as CHM
+;
 ja_JP.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
 ;
 ja_JP.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
@@ -138,6 +142,7 @@ ja_JP.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and
 ;
 ja_JP.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
 ja_JP.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
+ja_JP.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
 ;
 ja_JP.DescriptionAtoms =ATOMS
 ;

@@ -347,7 +347,6 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
     <ClCompile Include="lsposp.c" />
     <ClCompile Include="lspt.c" />
     <ClCompile Include="lspxsp.c" />
-    <ClCompile Include="mycmatptr.c" />
     <ClCompile Include="ordmmd.c" />
     <ClCompile Include="sp2col.c" />
     <ClCompile Include="spcho1.c" />
@@ -463,7 +462,6 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
     <f2c_rule Include="lsposp.f" />
     <f2c_rule Include="lspt.f" />
     <f2c_rule Include="lspxsp.f" />
-    <f2c_rule Include="mycmatptr.f" />
     <f2c_rule Include="ordmmd.f" />
     <f2c_rule Include="sp2col.f" />
     <f2c_rule Include="spcho1.f" />
@@ -517,6 +515,11 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
+    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="Sparse_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

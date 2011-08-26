@@ -80,9 +80,8 @@ int sci_TCL_UnsetVar(char *fname,unsigned long l)
       n1=1;
       CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
       LhsVar(1)=Rhs+1;
-      C2F(putlhsvar)();
       if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-
+      PutLhsVar();
     }
   else
     {

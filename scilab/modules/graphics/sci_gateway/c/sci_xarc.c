@@ -70,7 +70,7 @@ int sci_xarc(char *fname,unsigned long fname_len)
   sciDrawObj(sciGetCurrentObj());
 
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

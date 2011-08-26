@@ -12,73 +12,16 @@
 
 function %cpr = xcos_simulate(scs_m, needcompile)
 
-//-- BJ : Alias Warning Function
+// Load the block libs if not defined
   prot = funcprot();
   funcprot(0);
-//  hilite_obj = xcosShowBlockWarning;
-//  unhilite_obj = xcosClearBlockWarning;
-//  scs_show = xcos_open;
-
-//    function ret = fake_gcf() 
-//        disp("fake_gcf");
-//        ret = [];
-//    endfunction;
-//    gcf = fake_gcf;
-
-//    function ret = fake_scf(id) 
-//        disp("fake_scf");
-//        ret = [];
-//    endfunction;
-//    scf = fake_scf;
-
-//    function ret = fake_gca() 
-//        disp("fake_gca");
-//        ret = [];
-//    endfunction;
-//    gca = fake_gca;
-
-//    function ret = fake_sca(id) 
-//        disp("fake_sca");
-//        ret = [];
-//    endfunction;
-//    sca = fake_sca;
-
-if ~isdef('scicos_menuslib') then
-  load('SCI/modules/scicos/macros/scicos_menus/lib')
-end
-
-if exists('scicos_scicoslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-end
-
-if exists('scicos_autolib')==0 then
-    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-end
-
-if exists('scicos_utilslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
-end
-
-// Define Scicos data tables ===========================================
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
-  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
-// =====================================================================
-
-if ~exists("scicos_diagram") then
-    loadXcosLibs();
-end
-
+    if ~exists("scicos_diagram") then
+        loadXcosLibs();
+    end
   funcprot(prot);
-  //-- end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-   xcos_workspace_init()
+  xcos_workspace_init()
 
  
 //** extract tolerances from scs_m.props.tol
@@ -130,18 +73,15 @@ end
   end
   //end of for backward compatibility for scifuncpagate context values
   
-  [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr);
-  
+  [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
+  if ~ok then
+    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
+  end
   
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
-  
-  //** if an error has ocurred in do_update
-  //** then we exit from do_run
   if ~ok then
-    %tcur      = []
-    alreadyran = %f ;
-    return
+    error(msprintf(gettext("%s: Error during block parameters update.\n"), "xcos_simulate"));
   end
 
   //** if alreadyran then set the var choice

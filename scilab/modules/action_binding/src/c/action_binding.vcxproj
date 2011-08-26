@@ -279,6 +279,7 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <None Include="..\jni\InterpreterManagement.i" />
     <None Include="libjvm_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="localization_Import.def" />
     <None Include="Scilab_windows_Import.def" />
     <None Include="..\..\action_binding.iss" />
     <None Include="..\..\sci_gateway\action_binding_gateway.xml" />

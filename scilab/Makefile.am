@@ -40,11 +40,9 @@ endif
 scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
 
-# libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
-$(top_builddir)/modules/core/libscicore.la \
+COMMON_LIBS = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la \
@@ -54,12 +52,12 @@ SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
 
 scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
@@ -134,7 +132,7 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/icons/
+iconsdir=$(pkgdatadir)/desktop/
 icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
 $(top_srcdir)/desktop/puffin_128.xpm \
 $(top_srcdir)/desktop/puffin_256.xpm \
@@ -262,7 +260,7 @@ clean-macros:
 clean-doc: clean-help
 
 clean-help:
-	@if test -x $(top_builddir)/scilab-cli-bin; then \
+	-@if test -x $(top_builddir)/scilab-cli-bin; then \
 		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
 		for l in $(LANGDOC); do \
 			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
@@ -338,6 +336,20 @@ localization:
 		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;
+
+
+localization-status:
+	@for LOCALE in $(ALL_LINGUAS_DOC); do \
+		PATHTO=$(top_builddir)/locale-status/$$LOCALE/; \
+		if test ! -d $$PATHTO; then \
+			echo "        Creating $$PATHTO"; \
+			mkdir -p $$PATHTO; \
+		fi; \
+		echo "Building $$LOCALE"; \
+		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
+		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
+	done; 
+
 endif
 
 # Misc variable for the documentation installation

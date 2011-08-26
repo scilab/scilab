@@ -35,12 +35,11 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.handler.ConnectionHandler;
 import org.scilab.modules.xcos.graph.swing.handler.GraphHandler;
 
-import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxConnectionHandler;
 import com.mxgraph.swing.handler.mxGraphHandler;
 
 /**
- * Implement a specific {@link mxGraphComponent} for an Xcos diagram.
+ * Implement a specific {@link com.mxgraph.swing.mxGraphComponent} for an Xcos diagram.
  */
 public class GraphComponent extends ScilabComponent {
 

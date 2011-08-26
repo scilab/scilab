@@ -20,14 +20,10 @@ import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
 
 import com.mxgraph.model.mxICell;
-import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraph;
 
 
 /**
- * Implement a workaround for a jgraphx bug.
- * 
- * @see <a href="http://www.jgraph.org/bugzilla/show_bug.cgi?id=47">http://www.jgraph.org/bugzilla/show_bug.cgi?id=47</a>
+ * Create a split on stop if applicable
  */
 public class ConnectPreview extends com.mxgraph.swing.handler.mxConnectPreview {
 	
@@ -41,26 +37,10 @@ public class ConnectPreview extends com.mxgraph.swing.handler.mxConnectPreview {
 	}
 	
 	/**
-	 * Create a new edge on the graph.
-	 * @param startState the startState
-	 * @param style the current style
-	 * @return the new cell
-	 * @see com.mxgraph.swing.handler.mxConnectPreview#createCell(com.mxgraph.view.mxCellState, java.lang.String)
-	 */
-	@Override
-	protected Object createCell(mxCellState startState, String style) {
-		final mxGraph graph = graphComponent.getGraph();
-		final mxICell cell = ((mxICell) graph.createEdge(null, null, "",
-				startState.getCell(), null, style));
-		((mxICell) startState.getCell()).insertEdge(cell, true);
-
-		return cell;
-	}
-	
-	/**
 	 * Stop the current link creation
 	 * @param commit true if any modification should be performed 
 	 * @param e the mouse event
+	 * @return the cell
 	 */
 	@Override
 	public Object stop(boolean commit, MouseEvent e) {

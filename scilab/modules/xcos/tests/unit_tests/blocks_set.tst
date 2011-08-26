@@ -27,8 +27,8 @@ defaultlibs = ["Branching",
                "Threshold"];
 
 defaultlibs  = defaultlibs + "lib";
-notTested = ["SUPER_f" "TEXT_f" "PAL_f", ..         // Specific blocks-
-             "CBLOCK4" "CBLOCK"];                   // buggy blocks #7363
+notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f", ..    // Specific blocks
+            "CBLOCK" "CBLOCK4" "c_block" ];             // native blocks
 
 funcprot(0);
 ilib_verbose(0);
@@ -87,6 +87,7 @@ alreadyran = %f;
 // If the following block display something, the test is failed.
 for i = 1:size(defaultlibs,"*")
     [macros, path] = libraryinfo(defaultlibs(i));
+    macros = gsort(macros);
     for j = 1:size(macros,"*")
         interfunction = macros(j);
 

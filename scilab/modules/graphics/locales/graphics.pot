@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-26 16:58+0100\n"
+"Revision-Date: 2011-08-22 18:53+0100\n"
 
 # File: sci_gateway/c/sci_drawaxis.c, line: 186
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -61,22 +61,22 @@ msgstr ""
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 281
+# File: sci_gateway/c/sci_plot2d.c, line: 272
 #, c-format
 msgid "%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 292
+# File: sci_gateway/c/sci_plot2d.c, line: 283
 #, c-format
 msgid "%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 240
+# File: sci_gateway/c/sci_plot2d.c, line: 231
 #, c-format
 msgid "%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 246
+# File: sci_gateway/c/sci_plot2d.c, line: 237
 #, c-format
 msgid "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
@@ -121,7 +121,7 @@ msgstr ""
 msgid "%s: Handles must be relocated under a single parent.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 234
+# File: sci_gateway/c/sci_plot2d.c, line: 225
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr ""
@@ -234,8 +234,8 @@ msgstr ""
 # File: src/c/getHandleProperty/get_tics_label_property.c, line: 47
 # File: src/c/getHandleProperty/set_x_shift_property.c, line: 69
 # File: src/c/getHandleProperty/get_color_map_property.c, line: 45
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 62
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 70
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 65
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 73
 # File: src/c/Format.c, line: 1093
 # File: src/c/Format.c, line: 1098
 # File: src/c/Format.c, line: 1103
@@ -320,7 +320,7 @@ msgstr ""
 msgid "%s: The handle is not or no more valid.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_delete.c, line: 101
+# File: sci_gateway/c/sci_delete.c, line: 105
 # File: sci_gateway/c/sci_StringBox.c, line: 96
 #, c-format
 msgid "%s: The handle is not valid.\n"
@@ -365,7 +365,7 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 174
+# File: sci_gateway/c/sci_plot2d.c, line: 165
 #, c-format
 msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
@@ -492,7 +492,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 180
+# File: sci_gateway/c/sci_plot2d.c, line: 171
 # File: sci_gateway/c/sci_xfarcs.c, line: 51
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
@@ -579,12 +579,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 86
-# File: sci_gateway/c/sci_plot2d.c, line: 114
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_rubberbox.c, line: 192
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
@@ -649,14 +643,14 @@ msgstr ""
 msgid "%s: Wrong type for input arguments: Handle or vector of double expected.\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 145
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 148
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xstringb.c, line: 68
 # File: sci_gateway/c/sci_move.c, line: 49
-# File: sci_gateway/c/sci_delete.c, line: 74
+# File: sci_gateway/c/sci_delete.c, line: 82
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
@@ -930,7 +924,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_callback_type_property.c, line: 59
 # File: src/c/getHandleProperty/set_surface_mode_property.c, line: 37
 # File: src/c/getHandleProperty/set_zoom_box_property.c, line: 42
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 129
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 132
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
@@ -1010,9 +1004,9 @@ msgstr ""
 msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 158
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 172
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 193
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 161
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 175
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 196
 #, c-format
 msgid "Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"
 msgstr ""
@@ -1364,7 +1358,7 @@ msgstr ""
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
 #
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 135
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 138
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
 msgstr ""
@@ -1520,7 +1514,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_x_location_property.c, line: 36
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 39
 # File: src/c/getHandleProperty/set_alignment_property.c, line: 34
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 123
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 126
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
 msgstr ""

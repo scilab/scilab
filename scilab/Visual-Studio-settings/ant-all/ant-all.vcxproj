@@ -72,9 +72,8 @@
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -97,9 +96,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -123,9 +121,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -145,7 +142,8 @@ cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
 cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 
 </NMakeCleanCommandLine>
-    <NMakeOutput> </NMakeOutput>
+    <NMakeOutput>
+    </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -153,9 +151,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -178,9 +175,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -204,9 +200,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -226,7 +221,8 @@ cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
 cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 
 </NMakeCleanCommandLine>
-    <NMakeOutput> </NMakeOutput>
+    <NMakeOutput>
+    </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -234,9 +230,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -259,9 +254,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -285,9 +279,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -307,7 +300,8 @@ cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
 cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 
 </NMakeCleanCommandLine>
-    <NMakeOutput> </NMakeOutput>
+    <NMakeOutput>
+    </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -315,9 +309,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant
@@ -340,9 +333,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean &amp;&amp;  call ant
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean &amp;&amp;  call ant
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean &amp;&amp;  call ant
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean &amp;&amp;  call ant
@@ -366,9 +358,8 @@ cd $(SolutionDir)modules\core &amp;&amp; call ant clean &amp;&amp;  call ant
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\localization &amp;&amp; call ant clean
 cd $(SolutionDir)modules\renderer &amp;&amp; call ant clean
-cd $(SolutionDir)modules\shell &amp;&amp; call ant clean
-cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\commons &amp;&amp; call ant clean
+cd $(SolutionDir)modules\jvm &amp;&amp; call ant clean
 cd $(SolutionDir)modules\action_binding &amp;&amp; call ant clean
 cd $(SolutionDir)modules\history_manager &amp;&amp; call ant clean
 cd $(SolutionDir)modules\completion &amp;&amp; call ant clean
@@ -388,7 +379,8 @@ cd $(SolutionDir)modules\output_stream &amp;&amp; call ant clean
 cd $(SolutionDir)modules\core &amp;&amp; call ant clean
 
 </NMakeCleanCommandLine>
-    <NMakeOutput> </NMakeOutput>
+    <NMakeOutput>
+    </NMakeOutput>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

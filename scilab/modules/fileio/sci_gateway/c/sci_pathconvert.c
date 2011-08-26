@@ -258,7 +258,7 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 			}
 
 			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -338,11 +338,10 @@ int sci_pathconvert(char *fname,unsigned long fname_len)
 		}
 
 		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
-
 		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
 		freeArrayOfWideString(results, m1 * n1);
 		freeArrayOfWideString(pStVarOne, m1 * n1);
+		PutLhsVar();
 	}
 	else
 	{

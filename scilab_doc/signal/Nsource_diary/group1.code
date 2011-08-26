@@ -1,5 +1,0 @@
-//exec('group1.code')
-[h w]=wfir('lp',7,[.2,0],'hm',[0.01,-1]);
-h'
-[tg,fr]=group(100,h);
-plot2d(fr',tg',-1,'011',' ',[0,2,0.5,4.])

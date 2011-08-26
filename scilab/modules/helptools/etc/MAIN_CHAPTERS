@@ -60,7 +60,6 @@ ui_data
 history_browser
 helptools
 parallel
-pvm
 modules_manager
 localization
 action_binding

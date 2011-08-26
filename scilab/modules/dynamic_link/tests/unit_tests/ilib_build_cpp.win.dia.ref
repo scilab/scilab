@@ -47,7 +47,7 @@ files=['sci_cppfind.cxx'];
 ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
    Running the makefile
    Compilation of sci_cppfind.cxx
    Building shared library (be patient)

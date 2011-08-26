@@ -109,11 +109,7 @@ function ilib_build(ilib_name, ..
 
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then
-      if getos() == "Windows"
-        mprintf(_("   Generate a Makefile: %s\n"), makename);
-      else
-        mprintf(_("   Generate a Makefile\n"));
-      end
+    mprintf(_("   Generate a Makefile\n"));  
   end
 
   if getos() <> "Windows" then // Needs to copy the libfoo.c which contains important stuff

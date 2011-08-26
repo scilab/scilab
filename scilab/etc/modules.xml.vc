@@ -24,7 +24,6 @@
 <module name="boolean" activate="yes"/>
 <module name="cacsd" activate="yes"/>
 <module name="data_structures" activate="yes"/>
-<module name="shell" activate="yes"/>
 <module name="action_binding" activate="yes"/>
 <module name="console" activate="yes"/>
 <module name="completion" activate="yes"/>
@@ -70,7 +69,6 @@
 <module name="scicos" activate="yes"/>
 <module name="scicos_blocks" activate="yes"/>
 <!-- comments -->
-<module name="pvm" activate="yes"/>
 <module name="fftw" activate="yes"/>
 <module name="umfpack" activate="yes"/>
 <module name="module_skeleton" activate="no"/>

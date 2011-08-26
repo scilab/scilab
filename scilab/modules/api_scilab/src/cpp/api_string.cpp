@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -130,43 +130,59 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 /*--------------------------------------------------------------------------*/
 SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, const char* const* _pstStrings, int* _piTotalLen)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int* piOffset = NULL;
-	int* piData		= NULL;
-	int iOffset		= 0;
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    int* piOffset = NULL;
+    int* piData   = NULL;
+    int iOffset   = 0;
+    int iTotalSize = 0;
+    int iMemSize = 0;
+    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
 
-	_piAddress[0]	= sci_strings;
-	_piAddress[1] = _iRows;
-	_piAddress[2] = _iCols;
-	_piAddress[3] = 0; //always 0
+    for (int i = 0; i < _iRows * _iCols; i++)
+    {
+        iTotalSize = iTotalSize + (int)strlen(_pstStrings[i]) + 1;
+    }
 
-	piOffset	= _piAddress + 4;
-	piOffset[0] = 1; //Always 1
-	piData		= piOffset + _iRows * _iCols + 1;
-	
-	if(_pstStrings == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillMatrixOfString");
-		return sciErr;
-	}
+    iMemSize = iTotalSize + 2;
 
-	for(int i = 0 ; i < _iRows * _iCols ; i++)
-	{
-		if(_pstStrings[i] == NULL)
-		{
-			addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-			return sciErr;
-		}
+    if (iMemSize > iFreeSpace)
+    {
+        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+        return sciErr;
+    }
 
-		int iLen = (int)strlen(_pstStrings[i]);
-		str2code(piData + iOffset, &_pstStrings[i]);
-		iOffset += iLen;
-		piData[iOffset] = 0;
-		piOffset[i + 1] = piOffset[i] + iLen;
-	}
+    _piAddress[0] = sci_strings;
+    _piAddress[1] = _iRows;
+    _piAddress[2] = _iCols;
+    _piAddress[3] = 0; //always 0
 
-	*_piTotalLen	= piOffset[_iRows * _iCols] - 1;
-	return sciErr;
+    piOffset  = _piAddress + 4;
+    piOffset[0] = 1; //Always 1
+    piData    = piOffset + _iRows * _iCols + 1;
+
+    if(_pstStrings == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillMatrixOfString");
+        return sciErr;
+    }
+
+    for(int i = 0 ; i < _iRows * _iCols ; i++)
+    {
+        if(_pstStrings[i] == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+            return sciErr;
+        }
+
+        int iLen = (int)strlen(_pstStrings[i]);
+        str2code(piData + iOffset, &_pstStrings[i]);
+        iOffset += iLen;
+        piData[iOffset] = 0;
+        piOffset[i + 1] = piOffset[i] + iLen;
+    }
+
+    *_piTotalLen  = piOffset[_iRows * _iCols] - 1;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)

@@ -75,7 +75,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
 		CreateVarFromPtr(Rhs+3,STRING_DATATYPE,(m1=(int)strlen(result), &m1),&n1,&result);
 		LhsVar(1)=Rhs+3;
 		if (result) {FREE(result);result=NULL;}
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{
