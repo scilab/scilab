@@ -199,6 +199,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/ast/libsciast.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
