@@ -3,7 +3,7 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 >	<!--
 		||
-		||   S P E C I F I C   M A I N   P A N E L S 
+		||   S P E C I F I C   M A I N   P A N E L S
 		||
 		-->
 	<xsl:template match="expression[parent::expression]" mode ="main-panel">
@@ -15,12 +15,15 @@
 					</HBox>
 					<xsl:for-each select="outputs">
 						<Table mode="cell" location="fixed" size="dynamic" listener="TableListener">
-							<tableAdd>
+                            <tableChanged>
+                                <xsl:call-template name="context"/>
+                            </tableChanged>
+                            <tableAdd>
 								<xsl:call-template name="context"/>
 								<item value="0.0"/>
 							</tableAdd>
 							<tableCol title=""     width="30"       attr="label"/>
-							<tableCol title="Values"       attr="value"/>
+							<tableCol title="Values"       attr="value" editable="true"/>
 							<xsl:for-each select="item">
 								<tableRow label="{concat('y', format-number(position(), '0'))}" value="{@value}"/>
 							</xsl:for-each>
@@ -32,14 +35,17 @@
 					</HBox>
 					<xsl:for-each select="inputs">
 						<Table mode="cell" location="fixed" size="dynamic" listener="TableListener">
+                           <tableChanged>
+                                <xsl:call-template name="context"/>
+                            </tableChanged>
 							<tableAdd>
 								<xsl:call-template name="context"/>
 								<item value="0.0"/>
 							</tableAdd>
 							<tableCol title=""     width="30"       attr="label"/>
-							<tableCol title="Values"       attr="value"/>
+							<tableCol title="Values"       attr="value" editable="true" />
 							<xsl:for-each select="item">
-								<tableRow label="{concat('u', format-number(position(), '0'))}" value="{@value}"/>
+								<tableRow label="{concat('u', format-number(position(), '0'))}" value="{@value}" />
 							</xsl:for-each>
 						</Table>
 					</xsl:for-each>
