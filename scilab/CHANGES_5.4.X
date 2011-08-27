@@ -231,6 +231,8 @@ Compilation:
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
 
+* Force the Java class version target to version 6 (or 1.6).
+
 * bug 9782 fixed - configure with --without-gui was failing.
 
 

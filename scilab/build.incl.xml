@@ -159,7 +159,7 @@
   </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources" depends="init">
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
   </target>
   <target name="existing-tests">
     <available property="test-present" file="${src.test.dir}"/>
@@ -167,7 +167,7 @@
   <!-- Compile test sources -->
   <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
     <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5">
+    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6">
       <classpath>
         <path refid="unittest.classpath"/>
         <path refid="compile.classpath"/>
