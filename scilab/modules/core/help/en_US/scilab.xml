@@ -213,6 +213,37 @@ scilab -l ja_JP
     </variablelist>
   </refsection>
   <refsection>
+    <title>Description of environment variables</title>
+    <variablelist>
+      <varlistentry>
+        <term>SCIVERBOSE</term>
+        <listitem>
+          <para>If this variable is present, Scilab startup script will show a startup debug information. Mainly used for bug report and debugging purposes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>JAVA_HOME</term>
+        <listitem>
+          <para>Specify which Java to use. For example, <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SCI_DISABLE_TK</term>
+        <listitem>
+          <para>Disable Tk (but not Tcl) features</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SCI_JAVA_ENABLE_HEADLESS</term>
+        <listitem>
+          <para>Enable Java Headless VM (ie without GUI features)
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Java Virtual Machine options</title>
     <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
     build documentation are based on Java features. In some cases, it can be
