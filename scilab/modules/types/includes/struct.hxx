@@ -66,6 +66,11 @@ namespace types
         virtual std::wstring        toString(int _iPrecision, int _iLineLen);
         std::vector<InternalType*>  extractFields(std::list<std::wstring> _wstFields);
 
+
+        /*specials functions to disable clone operation during copydata*/
+        InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
+        InternalType*               extractWithoutClone(typed_list* _pArgs);
+
     private :
         virtual SingleStruct*       getNullValue();
         virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
@@ -73,6 +78,9 @@ namespace types
         virtual void                deleteAll();
         virtual void                deleteImg();
         virtual SingleStruct**      allocData(int _iSize);
+
+        bool                        m_bDisableCloneInCopyValue;
+        
     };
 }
 

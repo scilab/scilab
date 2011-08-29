@@ -529,28 +529,36 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             pVar    = dynamic_cast<const SimpleVar*>(pField->tail_get());
 
             //clone _pIT BEFORE addField in case of st.b = st
-            types::InternalType* pIT = _pIT->clone();
+            types::InternalType* pIT = _pIT ? _pIT->clone() : NULL;
             
             //create field "x"
+            std::wstring var = pVar->name_get().name_get();
             bool bOK = pCurrent->addField(pVar->name_get().name_get());
             if(*_pMain == NULL && _pIT != NULL)
             {//first stack, assign value to field and return main structure
 
                 if(pArgs != NULL)
                 {//args returned by "parent"
+                    //be careful, extract functions copy values
                     Struct *pStr = pCurrent->extract(pArgs)->getAs<Struct>();
+                    std::wstring var = pVar->name_get().name_get();
                     pStr->get(0)->set(pVar->name_get().name_get(), pIT);
+                    pCurrent->insertWithoutClone(pArgs, pStr);
+                    delete pStr;
                 }
                 else if(_pArgs == NULL || *_pArgs == NULL)
                 {
-                    pCurrent->get(0)->set(pVar->name_get().name_get(), pIT);
+                  std::wstring var = pVar->name_get().name_get();
+                  pCurrent->get(0)->set(pVar->name_get().name_get(), pIT);
                 }
                 else
                 {
                     Struct* pStr = new Struct(1,1);
+                    std::wstring var = pVar->name_get().name_get();
                     pStr->addField(pVar->name_get().name_get());
                     pStr->get(0)->set(pVar->name_get().name_get(), pIT);
-                    pCurrent->insert(*_pArgs, pStr->get(0));
+                    pCurrent->insertWithoutClone(*_pArgs, pStr->get(0));
+                    delete pStr;
                 }
             }
             else
@@ -560,31 +568,43 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 //so assign empty struct and return new pCurrent
                 Struct* pStr = NULL;
 
-                if(bOK)
-                {//field already exists
-                    //InternalType* pIT = pCurrent->
+                /*try to extract field*/
+                if(pArgs == NULL)
+                {//without extract argument
+                    pStr = pCurrent->get(0)->get(pVar->name_get().name_get())->getAs<Struct>();
+                }
+                else
+                {
+                    Struct* pStepStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
+                    pStr = pStepStr->get(0)->get(pVar->name_get().name_get())->getAs<Struct>();
+                    //we can delete pStepStr without deleted its fields
+                    delete pStepStr;
                 }
 
-
-                //be carrefull bOK can change in previous test
-                if(bOK)
-                {
+                if(pStr == NULL)
+                {//new field or not struct field
                     if(_pArgs == NULL || *_pArgs == NULL)
                     {
                         pStr = new Struct(1,1);
                     }
                     else
                     {
-                        pStr = Struct::insertNew(*_pArgs, new Struct(1,1))->getAs<Struct>();
+                        Struct* p = new Struct(1,1);
+                        pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
+                        delete p;
                     }
 
                     if(pArgs != NULL)
                     {
                         Struct* pStepStr = pCurrent->extract(pArgs)->getAs<Struct>();
+                        std::wstring var = pVar->name_get().name_get();
                         pStepStr->get(0)->set(pVar->name_get().name_get(), pStr);
+                        pCurrent->insertWithoutClone(pArgs, pStepStr);
+                        delete pStepStr;
                     }
                     else
                     {
+                        std::wstring var = pVar->name_get().name_get();
                         pCurrent->get(0)->set(pVar->name_get().name_get(), pStr);
                     }
                 }
@@ -605,8 +625,8 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
     {//a.x : with x not only a SimpleVar
         types::Struct *pStr = NULL;
         types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
-        if(pIT == NULL)
-        {//"a" doest not exist, create it with size 1,1 and return it
+        if(pIT == NULL || pIT->isStruct() == false)
+        {//"a" doest not exist or it is another type, create it with size 1,1 and return it
             //create new structure variable
             if(_pArgs == NULL || *_pArgs == NULL)
             {
@@ -614,7 +634,9 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             }
             else
             {
-                pStr = Struct::insertNew(*_pArgs, new Struct(1,1))->getAs<Struct>();
+                Struct* p = new Struct(1,1);
+                pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
+                delete p;
             }
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
@@ -652,6 +674,20 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 return false;
             }
         
+            /*try to extract sub struct, if it fails, resize the struct and try again*/
+
+            InternalType* pIT = pCurrent->extract(pArgs);
+            if(pIT == NULL)
+            {//fail to extract, pCurrent is not enough big, resize it !
+                Struct* p = new Struct(1,1);
+                pCurrent->insertWithoutClone(pArgs, p); //insert empty struct, caller will assign the good value
+                delete p;
+            }
+            else
+            {
+                delete pIT;
+            }
+//            *_pCurrent = pIT->getAs<Struct>();
             *_pArgs = pArgs;
             //const SimpleVar *pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
             //if(pVar)

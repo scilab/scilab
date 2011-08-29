@@ -17,6 +17,7 @@ namespace types
 {
     Struct::Struct()
     {
+        m_bDisableCloneInCopyValue = false;
         SingleStruct** pIT  = NULL;
         int piDims[2] = {0, 0};
 		create(piDims, 2, &pIT, NULL);
@@ -24,6 +25,7 @@ namespace types
 
     Struct::Struct(int _iRows, int _iCols)
     {
+        m_bDisableCloneInCopyValue = false;
         SingleStruct** pIT  = NULL;
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, &pIT, NULL);
@@ -35,6 +37,7 @@ namespace types
 
     Struct::Struct(int _iDims, int* _piDims)
     {
+        m_bDisableCloneInCopyValue = false;
         SingleStruct** pIT  = NULL;
 		create(_piDims, _iDims, &pIT, NULL);
         for(int i = 0 ; i < getSize() ; i++)
@@ -64,6 +67,7 @@ namespace types
 
     Struct::Struct(Struct *_oStructCopyMe)
     {
+        m_bDisableCloneInCopyValue = false;
         SingleStruct** pIT = NULL;
         create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
         for(int i = 0 ; i < getSize() ; i++)
@@ -113,7 +117,7 @@ namespace types
                 }
             }
 
-            m_pRealData[_iIndex] = _pIT->clone();
+            m_pRealData[_iIndex] = copyValue(_pIT);
             return true;
         }
         return false;
@@ -218,7 +222,19 @@ namespace types
 
     SingleStruct* Struct::copyValue(SingleStruct* _pData)
     {
-        return _pData->clone();
+        if(m_bDisableCloneInCopyValue)
+        {
+            //be sure m_iRef >= 2
+            while(_pData->getRef() < 2)
+            {
+                _pData->IncreaseRef();
+            }
+            return _pData;
+        }
+        else
+        {
+            return _pData->clone();
+        }
     }
 
     void Struct::deleteAll()
@@ -341,4 +357,22 @@ namespace types
         }
         return ResultList;
     }
+
+    InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
+    {
+        m_bDisableCloneInCopyValue = true;
+        InternalType* pIT = insert(_pArgs, _pSource);
+        _pSource->IncreaseRef();
+        m_bDisableCloneInCopyValue = false;
+        return pIT;
+    }
+
+    InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
+    {
+        m_bDisableCloneInCopyValue = true;
+        InternalType* pIT = extract(_pArgs);
+        m_bDisableCloneInCopyValue = false;
+        return pIT;
+    }
+
 }

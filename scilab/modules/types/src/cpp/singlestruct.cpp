@@ -34,6 +34,15 @@ namespace types
     {
         if(isDeletable() == true)
         {
+            std::map<std::wstring, InternalType *>::iterator it;
+            for(it = m_pData->begin() ; it != m_pData->end() ; it++)
+            {
+                (*it).second->DecreaseRef();
+                if((*it).second->isDeletable())
+                {
+                    delete (*it).second;
+                }
+            }
             delete m_pData;
         }
     }

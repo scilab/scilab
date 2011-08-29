@@ -462,7 +462,7 @@ namespace ast
                         }
                         else
                         {
-                            InternalType* pIT = psValue->get(0)->get(psvRightMember->name_get().name_get());
+                            InternalType* pIT = psValue->get(0)->get(psvRightMember->name_get().name_get())->clone();
                             result_set(pIT);
                         }
                     }
