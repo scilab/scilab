@@ -186,6 +186,8 @@ Documentation:
 * Management of the revhistory / revision tag to provide information about
   the history of the function.
 
+* Bug 3431 fixed - some helptools functions were obsoletes and not removed.
+
 * Bug 9299 fixed - Fix a typo in the cspect, pspect and window help pages
                    (Hanning changed to Hann)
 

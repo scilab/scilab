@@ -38202,7 +38202,6 @@ do
     "libs/libst/Makefile") CONFIG_FILES="$CONFIG_FILES libs/libst/Makefile" ;;
     "contrib/Makefile") CONFIG_FILES="$CONFIG_FILES contrib/Makefile" ;;
     "modules/helptools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/helptools/Makefile" ;;
-    "modules/helptools/macros/xmlfiletohtml.sci") CONFIG_FILES="$CONFIG_FILES modules/helptools/macros/xmlfiletohtml.sci" ;;
     "modules/data_structures/Makefile") CONFIG_FILES="$CONFIG_FILES modules/data_structures/Makefile" ;;
     "modules/differential_equations/Makefile") CONFIG_FILES="$CONFIG_FILES modules/differential_equations/Makefile" ;;
     "modules/optimization/Makefile") CONFIG_FILES="$CONFIG_FILES modules/optimization/Makefile" ;;
