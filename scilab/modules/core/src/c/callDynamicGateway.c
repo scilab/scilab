@@ -23,6 +23,7 @@
 #include "getshortpathname.h"
 #include "BOOL.h"
 #include "charEncoding.h"
+#include "sci_path.h"
 /*--------------------------------------------------------------------------*/
 dynamic_gateway_error_code callDynamicGateway(char *moduleName,
                                               char *dynLibName,

@@ -11,6 +11,7 @@
 */
 
 #include "double.h"
+#include "msgs.h"
 #include "Scierror.h"
 
 int matldiv()
@@ -179,8 +180,8 @@ int matldiv()
 				double dblRcond = 0;
 				iAllocComplexMatrixOfDouble(Rhs + 1, iCols1, iCols2, &pReturnReal, &pReturnImg);
 				iRet = iLeftDivisionOfComplexMatrix(
-					pReal1, pImg1, iRows1, iCols1, 
-					pReal2, pImg2, iRows2, iCols2, 
+					pReal1, pImg1, iRows1, iCols1,
+					pReal2, pImg2, iRows2, iCols2,
 					pReturnReal, pReturnImg, iCols1, iCols2, &dblRcond);
 
 				if(iRet > 0)
@@ -208,14 +209,14 @@ int matldiv()
 			}
 		}
 		else
-		{// Real \ Matrix 
+		{// Real \ Matrix
 			int iErr = 0;
 			if(iRows1 < 0 && iSize2 != 1)
 			{
 				SciError(14);
 				return 0;
 			}
-			
+
 			if(iGlobalComplex)
 			{
 				iAllocComplexMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pReturnReal, &pReturnImg);
@@ -228,28 +229,28 @@ int matldiv()
 			if(iComplex1 == 0 && iComplex2 == 0)
 			{// Real1 \ Real2 -> Real2 / Real1
 				iErr = iRightDivisionRealMatrixByRealMatrix(
-					pReal2,						1, 
-					pReal1,						0, 
+					pReal2,						1,
+					pReal1,						0,
 					pReturnReal, 1, iSize2);
 			}
 			else if(iComplex1 == 0 && iComplex2 == 1)
 			{// Real \ Complex -> Complex / Real
 				iErr = iRightDivisionComplexMatrixByRealMatrix(
-					pReal2,			pImg2,		1, 
+					pReal2,			pImg2,		1,
 					pReal1,						0,
 					pReturnReal,	pReturnImg, 1, iSize2);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 0)
 			{// Complex \ Real -> Real / Complex
 				iErr = iRightDivisionRealMatrixByComplexMatrix(
-					pReal2,						1, 
-					pReal1,			pImg1,		0, 
+					pReal2,						1,
+					pReal1,			pImg1,		0,
 					pReturnReal,	pReturnImg,	1,  iSize2);
 			}
 			else if(iComplex1 == 1 && iComplex2 == 1)
 			{// Complex \ Complex
 				iErr = iRightDivisionComplexMatrixByComplexMatrix(
-					pReal2,			pImg2,		1, 
+					pReal2,			pImg2,		1,
 					pReal1,			pImg1,		0,
 					pReturnReal,	pReturnImg,	1, iSize2);
 			}
