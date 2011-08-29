@@ -294,6 +294,8 @@ Bug fixes:
 
 * bug 1604 fixed - list extraction failed.
 
+* bug 3291 fixed - SCI/modules/tclsci/tcl/BWidget-1.8.0/ moved as prerequirements.
+
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
