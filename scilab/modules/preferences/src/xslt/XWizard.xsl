@@ -10,21 +10,22 @@
 	<xsl:import href="XWizard/XWizard-any.xsl"/>
   <xsl:import href="XWizard/XWizard-function.xsl"/>
 	<xsl:import href="XWizard/XWizard-expression.xsl"/>
+	<xsl:import href="XWizard/XWizard-xcos.xsl"/>
 
 	<!--
-		||  
+		||
 		||   T E M P O R A R Y   T R E E S
 		||   | wrox book workaround, p.237
-		||  
+		||
 		-->
-	<xsl:variable name="imports" 
+	<xsl:variable name="imports"
 		select="document('')/xsl:stylesheet/xsl:import/@import"/>
-	<xsl:variable name="variables" 
+	<xsl:variable name="variables"
 		select="document($imports)/xsl:stylesheet/descendant::xsl-variable"/>
 
 	<!--
 		||
-		||   N A V I G A T I O N   M A N A G E M E N T 
+		||   N A V I G A T I O N   M A N A G E M E N T
 		||
 		-->
 	<xsl:variable name="current" select="/*/*[local-name()=/*/@step]"/>
@@ -47,7 +48,7 @@
 				</VBox>
 			</Panel>
 			<HBox border-side="South">
-				<Button text="Previous"    listener="ActionListener"> 
+				<Button text="Previous"    listener="ActionListener">
 					<xsl:choose>
 						<xsl:when test="$prev">
 							<actionPerformed   set="step" context="/">
@@ -66,7 +67,7 @@
 					</xsl:choose>
 				</Button>
 				<HSpace width="5"/>
-				<Button text="Next"    listener="ActionListener"> 
+				<Button text="Next"    listener="ActionListener">
 					<xsl:choose>
 						<xsl:when test="$next">
 							<actionPerformed   set="step" context="/">
@@ -114,12 +115,12 @@
 					<actionPerformed   callback="Quit"/>
 				</Button>
 			</HBox>
-		</ISML>							
+		</ISML>
 	</xsl:template>
 
 	<!--
 		||
-		||   L E F T   P A N E L   M A N A G E M E N T 
+		||   L E F T   P A N E L   M A N A G E M E N T
 		||
 		-->
 	<xsl:template match="user-block-wizard" mode="left-panel">
@@ -131,11 +132,11 @@
 			<Icon src="media-playback-start.png"/>
 			<xsl:choose>
 				<xsl:when test="ancestor::user-block-wizard/@select=@name">
-					<Label 
-							text="{@title}" 
-							background="#0000ff" 
-							foreground="#ffffff" 
-							listener="MouseListener">	
+					<Label
+							text="{@title}"
+							background="#0000ff"
+							foreground="#ffffff"
+							listener="MouseListener">
 						<mouseClicked callback="load" name="{@name}"/>
 					</Label>
 				</xsl:when>
@@ -147,7 +148,7 @@
 								<mouseClicked set="select" value="{@name}" context="/"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:attribute name="foreground">#dddddd</xsl:attribute>								
+								<xsl:attribute name="foreground">#dddddd</xsl:attribute>
 							</xsl:otherwise>
 						</xsl:choose>
 					</Label>
@@ -175,13 +176,13 @@
 
 	<!--
 		||
-		||   M E A N   P A N E L   M A N A G E M E N T 
+		||   M E A N   P A N E L   M A N A G E M E N T
 		||
 		-->
 	<xsl:template match="kind" mode="main-panel">
 		<xsl:if test="@name=ancestor::user-block-wizard/@select">
 			<Title text="{@title}">
-				<Label listener="MouseListener">	
+				<Label listener="MouseListener">
 					<xsl:attribute name="text"><xsl:apply-templates/></xsl:attribute>
 					<mouseClicked callback="load" name="{@name}"/>
 				</Label>

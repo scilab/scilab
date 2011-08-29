@@ -9,7 +9,13 @@
 
 	<xsl:template match="*" mode="left-panel">
 		<xsl:apply-templates mode="inner-left-panel"/>
-		<XCosPreview height="200" width="200"/>
+		<XCosPreview height="200" width="200">
+           <tableBlock>
+             <root>
+               <xsl:apply-templates select="." mode="preview"/>
+             </root>
+           </tableBlock>
+        </XCosPreview>
 		<!-- TODO -->
 	</xsl:template>
 
