@@ -390,6 +390,8 @@ Bug fixes:
 * bug 9599 fixed - error message "at line ... of function ... called by" was
                    printed directly on the same line.
 
+* bug 9635 fixed - some temp. variables were not removed when we used test_run.
+
 * bug 9647 fixed - On Scilab startup, the variable fft was declared by default
                    while it should not.
 
