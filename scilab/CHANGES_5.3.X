@@ -4,7 +4,10 @@
 Bug fixes:
 ==========
 
-* bug 9766 fixed - Scilab on Mac OS X 10.7 did not start.
+* Bug 8718 fixed - Scilab on Mac OS X 10.5 did not start.
+
+* Bug 9766 fixed - Scilab on Mac OS X 10.7 did not start.
+
 
 
             Changes between versions 5.3.2 and 5.3.3 of Scilab
