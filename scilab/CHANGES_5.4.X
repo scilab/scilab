@@ -38,6 +38,9 @@ SciNotes:
 
 * bug 9740 fixed - There was no way to have \n in replacement string.
 
+* bug 9897 fixed - With Mac OS, eol was not replaced by \n when code was copyed
+                   from Word to SciNotes.
+
 
 Graphical User Interface:
 =========================
