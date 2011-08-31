@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 01:06+0000\n"
+"PO-Revision-Date: 2011-06-10 10:30+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
 
 #, c-format
@@ -209,49 +209,49 @@ msgid "Arma identification"
 msgstr "Identificazione dello Arma"
 
 msgid "Arma simulation and identification"
-msgstr ""
+msgstr "Simulazione e identificazione con ARMA"
 
 msgid "Arma, Spectral power estimation"
 msgstr ""
 
 msgid "Arma, bidimensional version"
-msgstr ""
+msgstr "ARMA, versione bidimensionale"
 
 msgid "Bode plots"
-msgstr ""
+msgstr "Diagrammi di Bode"
 
 msgid "Discrete IIR filter"
-msgstr ""
+msgstr "Filtro IIR discreto"
 
 msgid "IIR filter design"
-msgstr ""
+msgstr "Disegno di un filtro IIR"
 
 msgid "Identification ARX (least square):"
-msgstr ""
+msgstr "Identificazione di ARX (minimi quadrati)"
 
 msgid "Identification ARX (least square): "
-msgstr ""
+msgstr "Identificazione di ARX (minimi quadrati) "
 
 msgid "Minimax FIR filter"
-msgstr ""
+msgstr "Filtro FIR minimax"
 
 msgid "Minimax FIR filter design"
-msgstr ""
+msgstr "Disegno di un filtro FIR minimax"
 
 msgid "Press Return to continue ... \n"
-msgstr ""
+msgstr "Premere invio per continuare ... \n"
 
 msgid "Signal Processing"
 msgstr "Elaborazione dei segnali"
 
 msgid "Simulation of an ARMAX process:"
-msgstr ""
+msgstr "Simulazione di un processo ARMAX:"
 
 msgid "Simulation of an ARMAX process: "
-msgstr ""
+msgstr "Simulazione di un processo ARMAX: "
 
 msgid "Spectral Estimation"
-msgstr ""
+msgstr "Stima spettrale"
 
 msgid "Spectral power"
 msgstr "Energia spettrale"
@@ -263,10 +263,10 @@ msgid "Using macro mese"
 msgstr "Usando la macro MESE"
 
 msgid "Wiegner filter"
-msgstr ""
+msgstr "Filtro di Wiegner"
 
 msgid "Window FIR filters"
-msgstr ""
+msgstr "Filtri FIR window"
 
 msgid "estimates xf"
 msgstr "stime xf"
@@ -281,7 +281,7 @@ msgid "length 33"
 msgstr ""
 
 msgid "low pass  cut-off in [.23,.27]"
-msgstr ""
+msgstr "valore di soglia del passabasso in [.23,.27]"
 
 msgid "real state"
 msgstr "stato reale"

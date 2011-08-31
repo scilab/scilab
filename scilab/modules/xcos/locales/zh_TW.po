@@ -14,21 +14,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -128,9 +120,6 @@ msgstr ""
 msgid "Continuous time systems"
 msgstr "連續的 time systems"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "版權所有 (c) 1989-2009 (INRIA)"
-
 msgid "Could not save diagram."
 msgstr "無法儲存圖框"
 
@@ -213,6 +202,9 @@ msgstr ""
 msgid "Error on export"
 msgstr ""
 
+msgid "Error: unable to compile this SuperBlock"
+msgstr ""
+
 msgid "Event handling"
 msgstr "事件處理"
 
@@ -288,8 +280,8 @@ msgstr "寄件者 %s"
 msgid "Generate Jacobian"
 msgstr ""
 
-msgid "Generate SuperBlock, please wait ..."
-msgstr "產生 SuperBlock, 請稍待 ..."
+msgid "Generate SuperBlock, please wait"
+msgstr ""
 
 msgid "Generating C Code for SuperBlock"
 msgstr "轉 SuperBlock 成 C 程式碼"
@@ -612,9 +604,6 @@ msgstr ""
 msgid "Text settings"
 msgstr ""
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Scilab 集團組織 (DIGITEO)"
-
 #, c-format
 msgid ""
 "The file %s doesn't exist\n"
@@ -761,7 +750,11 @@ msgstr "Xcos 錯誤"
 msgid "Xcos file"
 msgstr "Xcos 檔"
 
-msgid "You may enter here scilab instructions to define "
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
+"loaded)."
 msgstr ""
 
 msgid "Zero crossing detection"
@@ -813,264 +806,3 @@ msgstr ""
 
 msgid "weight"
 msgstr ""
-
-#, c-format
-#~ msgid "%s: File ''%s'' does not exist.\n"
-#~ msgstr "%s: 檔案''%s''  不存在.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: 輸入參數的個數錯誤: 應該有  %d 個.\n"
-
-#~ msgid "CeCILL License"
-#~ msgstr "CeCILL 授權"
-
-#~ msgid "All rights reserved"
-#~ msgstr "版權所有"
-
-#~ msgid "Copyright 2009"
-#~ msgstr "版權 (c)2009"
-
-#~ msgid "Continuous"
-#~ msgstr "連續"
-
-#~ msgid "Copy"
-#~ msgstr "複制"
-
-#~ msgid "Discontinuous"
-#~ msgstr "非連續"
-
-#~ msgid "Cut"
-#~ msgstr "剪下"
-
-#~ msgid ""
-#~ "Diagram has been modified since last save\n"
-#~ "save it?"
-#~ msgstr ""
-#~ "相較上次存檔,圖框已被修改\n"
-#~ "是否儲存?"
-
-#~ msgid "Events"
-#~ msgstr "事件"
-
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "匯出至 %s 失敗\n"
-
-#~ msgid "Group"
-#~ msgstr "群組"
-
-#~ msgid "Invert selection"
-#~ msgstr "反向選擇"
-
-#~ msgid "Math Operations"
-#~ msgstr "數學運算元"
-
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
-
-#~ msgid "Paste"
-#~ msgstr "貼上"
-
-#~ msgid "Redo"
-#~ msgstr "重複"
-
-#~ msgid "Port Action"
-#~ msgstr "啟動埠"
-
-#~ msgid "Quit"
-#~ msgstr "離開"
-
-#~ msgid "Select all"
-#~ msgstr "全選"
-
-#~ msgid "Set Debug Level"
-#~ msgstr "除錯等級設定"
-
-#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-#~ msgstr "設定除錯等級 (0,1,2,3) </br> 執行 scicos_debu(n)"
-
-#~ msgid "The Scilab Consortium / DIGITEO"
-#~ msgstr "The Scilab Consortium / DIGITEO"
-
-#~ msgid "Undo"
-#~ msgstr "回復"
-
-#~ msgid "Threshold"
-#~ msgstr "閥值"
-
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "圖框版本未知: "
-
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos 版本 1.0"
-
-#~ msgid "Xcos 1.0"
-#~ msgstr "Xcos 1.0"
-
-#~ msgid "Zoom Out"
-#~ msgstr "縮小"
-
-#~ msgid "Zoom In"
-#~ msgstr "放大"
-
-#~ msgid "UnGroup"
-#~ msgstr "未群組化"
-
-#~ msgid "Final inegration time"
-#~ msgstr "最後整合時間"
-
-#~ msgid ""
-#~ "You may enter here scilab instructions to define symbolic parameters used in "
-#~ "block definitions using Scilab instructions.<br/>These instructions are "
-#~ "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-#~ "diagram is loaded.)"
-#~ msgstr ""
-#~ "你應該在scilab 指令處使用 Scilab 指令去定義區塊中的符號式參數.<br/>這些指令已被證實過.(換言之, 當你按 OK, 則圖框就被 "
-#~ "Eval 載入一次.)"
-
-#, c-format
-#~ msgid "%s: Unable to import xcos file %s.\n"
-#~ msgstr "%s: 無法匯入 xcos 檔 %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: diagram structure expected"
-#~ msgstr "%s: 第 %d 個 參數型別有誤: diagram structure才對"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-#~ msgstr "%s: 第 %d 個 參數型別有誤: 字串或 diagram structure才對"
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Scicos 函式庫沒載入"
-
-#~ msgid "Same command executed again"
-#~ msgstr "相同命令再執行一次"
-
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "無法聯繫上interpreter"
-
-#, c-format
-#~ msgid "Unable to open %s"
-#~ msgstr "無法開啟 %s。"
-
-#, c-format
-#~ msgid "Unable to simulate %s"
-#~ msgstr "無法模擬 %s"
-
-#, c-format
-#~ msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-#~ msgstr "%s: 不能載入(load )block 從 %s: hdf5 file 才對.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the image %s.\n"
-#~ msgstr "%s: 不能產生(generate) 圖片( image) %s.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-#~ msgstr "%s: 不能產生(generate)  palette icon : %s 已存在.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export the palette to hdf5.\n"
-#~ msgstr "%s:不能匯出( export) palette到 hdf5.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export %s to %s.\n"
-#~ msgstr "%s: 不能匯出( export) %s 到 %s.\n"
-
-#, c-format
-#~ msgid "%s: File ''%s'' is not a valid palette file.\n"
-#~ msgstr "%s: File ''%s'' 不是個有效的 palette file.\n"
-
-#, c-format
-#~ msgid "%s: All paths defined by %s variable must exist.\n"
-#~ msgstr "%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The directory %s cannot been created, please check if you have write "
-#~ "access on this directory.\n"
-#~ msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權限.\n"
-
-#, c-format
-#~ msgid "%s: Found ''%s'' instead of a block.\n"
-#~ msgstr "%s: 找到 ''%s'' 並不是 block.\n"
-
-#, c-format
-#~ msgid "%s is not a valid name, please change the title of the diagram."
-#~ msgstr "%s 不是個有效的名稱, 請修改這個圖( diagram)的標題( title) ."
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-#~ msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: Wrong input argument %s: svg or gif expected.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: 輸入參數個數錯誤: 應該有 %d 個.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: path string expected.\n"
-#~ msgstr "%s: Wrong type for input argument %s: path string expected.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
-#~ msgstr ""
-#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-#~ msgstr "%s: Wrong type for input argument %s: palette type expected.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: function as string or Block type or "
-#~ "full path string expected.\n"
-#~ msgstr ""
-#~ "%s: 參數 %s 型別有誤: function as string or Block type or full path string "
-#~ "expected.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-#~ msgstr "%s: Wrong type for input argument %s: handle type expected.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-#~ msgstr "%s: 參數 %s 型別有誤: 布林(boolean)才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-#~ msgstr "%s: 參數 %s 型別有誤: diagram 型別才對.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: directory path string expected.\n"
-#~ msgstr "%s: 參數 %s 型別有誤: 目錄路徑字串(directory path string)才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-#~ msgstr "%s: 參數 %s 型別有誤: 完整路徑字串(full path string)才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: File not found.\n"
-#~ msgstr "%s: 參數 %s 型別有誤: 找不到(not found)檔案.\n"
-
-#, c-format
-#~ msgid "%s: Unable to import data from %s"
-#~ msgstr "%s:無法匯入從 %s 匯入資料"
-
-#, c-format
-#~ msgid "%s: Unable to export ''XX'' to %s"
-#~ msgstr "%s: 無法輸出「XX」到 %s"

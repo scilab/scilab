@@ -1,0 +1,143 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-08-12 01:31+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13827)\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "在執行 spline 發生配置問題.\n"
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr "此物件的型態無法使用 %s."
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "在延時區塊中考慮增加緩衝區的長度 \n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr "在變數延時區塊中考慮增加緩衝區的長度\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "無法開啟 /dev/audio!\n"
+
+msgid "Could not open the file!\n"
+msgstr "無法關啟檔案!\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"資料矩陣行列不一致:\n"
+" 變數大小 = [%d, %d] \n"
+"區塊輸出大小 = [%d, %d].\n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "開啟 '%s' 檔案時發生錯誤.\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr "矩陣參數給定的數值無效."
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr "無效的變數型態: 在hypermat scilab 程式中錯誤.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "無效的變數型態.\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "輸出應該是實數型態.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "輸出應該是複數型態.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "輸出應該是 int16(16位元整數) 型態.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "輸出應該是 int32(32位元整數) 型態.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "輸出應該是 int8(8位元整數) 型態.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "輸出應該是 uint16(無號16位元整數) 型態.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "輸出應該是 uint32(無號32位元整數) 型態.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "輸出應該是 uint8(無號8位元整數) 型態.\n"
+
+msgid "Read error\n"
+msgstr "讀取錯誤\n"
+
+msgid "Read error!\n"
+msgstr "讀取錯誤!\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr "SCOPE 錯誤: 配置記憶體錯誤 - 請檢查記憶體\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "SCOPE 錯誤: 呼叫 scoReallocLongDraw() 函數時發生錯誤"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "SCOPE 錯誤: 無法識別的程式碼!\n"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr "SCOPE 錯誤 : 無法執行 sciDrawObj , 不知為何 pShortDraw 是空值!\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "緩衝區大小或輸入大小已經改變!\n"
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "%s 變數不存在.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr "時間向量的大小錯誤, 應該是 [%d, %d] 與 [%d, %d].\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "時間向量型態不是雙精度.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "時間向量應該是遞增向量.\n"
+
+msgid "This scope has the same window id than another."
+msgstr "scope 的 window id 已經與另一相同."
+
+msgid "Trigger block must have discrete time input."
+msgstr "Trigger(觸發) 區塊必需是輸入離散時間."
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "檔案寫入錯誤 '%s'.\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "延遲時間=%f 但是前一儲存時間=%f\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "延遲時間=%f 但是前一儲存時間=%f \n"
+
+msgid "overflow error"
+msgstr "溢位錯誤"

@@ -3,18 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-03 06:31+0000\n"
+"PO-Revision-Date: 2011-07-31 04:28+0000\n"
 "Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "&?"
@@ -234,6 +235,9 @@ msgstr "Позиція біта (0 — менший біт)"
 msgid "Indexes must be in the interval %s."
 msgstr "Позиції мають належати діапазону %s."
 
+msgid "Initial Record Index"
+msgstr "Номер початкового запису"
+
 msgid "Initial State (zero or positive number)"
 msgstr "Початковий стан (нульове або додатне число)"
 
@@ -267,6 +271,9 @@ msgstr "Породжувач цілого лічильника"
 msgid "Integer matrix multiplication"
 msgstr "Множення цілих матриць"
 
+msgid "Invalid masked block."
+msgstr "Некоректно замаскований блок."
+
 msgid "JK flip-flop"
 msgstr "JK-тригер"
 
@@ -287,6 +294,9 @@ msgstr "Мінімум"
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "Модульний лічильник (лічильник від 0 до N)"
+
+msgid "Must be a scalar or an empty matrix."
+msgstr "Має бути число або порожня матриця."
 
 msgid "Must be a single value."
 msgstr "Має бути однобітовим значенням."
@@ -339,6 +349,9 @@ msgstr "Тип вихідних даних"
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
 
+msgid "Outputs Record Selection"
+msgstr "Вибір вихідних записів"
+
 msgid "PDE Expression:"
 msgstr "Вираз ДРЧП:"
 
@@ -360,8 +373,14 @@ msgstr "Номер порту"
 msgid "Ramp function"
 msgstr "Пилкоподібна функція"
 
+msgid "Read from C binary file"
+msgstr "Читати з бінарного файла C"
+
 msgid "Read is done on a binary ''.au'' file"
 msgstr "Читання виконано з файла двійкових даних «.au»"
+
+msgid "Record Size"
+msgstr "Розмір запису"
 
 msgid "Regular input port"
 msgstr "Порт звичайного введення даних"
@@ -434,9 +453,6 @@ msgstr "Мало бути вказано додатне число"
 msgid "Swap Mode"
 msgstr "Режим переставляння"
 
-msgid "Swap Mode (0:No 1:Yes)"
-msgstr "Режим переставляння (0 — ні, 1 — так)"
-
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "Режим переставляння (0 — ні, 1 — так)"
 
@@ -445,6 +461,9 @@ msgstr "«Початкове значення» має бути рівним 0 �
 
 msgid "The measurement points"
 msgstr "Точки вимірювання"
+
+msgid "Time Record Selection"
+msgstr "Вибір запису часу"
 
 msgid "Treat Bit Field as an Integer"
 msgstr "Вважати бітове поле цілим числом"
@@ -517,20 +536,8 @@ msgid "Wrong value for  ''%s'' parameter: %d."
 msgstr "Помилкове значення параметра «%s»: %d."
 
 #, c-format
-msgid "Wrong value for  ''Rule'' parameter: %d"
-msgstr "Помилкове значення параметра «Правило»: %d"
-
-#, c-format
-msgid "Wrong value for ''%s'' parameter"
-msgstr "Помилкове значення параметра «%s»"
-
-#, c-format
 msgid "Wrong value for ''%s'' parameter."
 msgstr "Помилкове значення параметра «%s»."
-
-#, c-format
-msgid "Wrong value for ''%s'' parameter: %d"
-msgstr "Помилкове значення параметра «%s»: %d"
 
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
@@ -556,12 +563,16 @@ msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr "Помилкове значення параметра «Номер порту»: %d."
 
 #, c-format
+msgid "Wrong value for ''Rule'' parameter: %d"
+msgstr "Помилкове значення параметра «Правило»: %d"
+
+#, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "Помилкове значення параметра «Час початку»: %e."
 
 #, c-format
-msgid "Wrong value for of ''%s'' parameter."
-msgstr "Помилкове значення параметра «%s»."
+msgid "Wrong value for indexes in ''%s'' parameter: %s."
+msgstr "Помилкове значення номерів у параметрі «%s»: %s."
 
 #, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
@@ -601,8 +612,14 @@ msgstr ""
 msgid "You must enclose the format''s string between parentheses."
 msgstr "Рядок опису формату слід вказувати у дужках."
 
+msgid "You must provide a file name."
+msgstr "Вам слід вказати назву файла."
+
 msgid "You must provide a filename."
 msgstr "Слід вказати назву файла."
+
+msgid "[1, Record Size = "
+msgstr "[1, розмір запису = "
 
 msgid "degree:"
 msgstr "порядок:"

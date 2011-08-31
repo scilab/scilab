@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 15:09+0000\n"
+"PO-Revision-Date: 2011-08-02 01:46+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ja\n"
 
 msgid "&?"
@@ -228,6 +228,9 @@ msgstr "ビット添字 (0 : LSB)"
 msgid "Indexes must be in the interval %s."
 msgstr "添字は %s の範囲とする必要があります."
 
+msgid "Initial Record Index"
+msgstr "初期レコードインデックス"
+
 msgid "Initial State (zero or positive number)"
 msgstr "状態量初期値 (ゼロまたは正の数)"
 
@@ -261,6 +264,9 @@ msgstr "整数カウンタ生成器"
 msgid "Integer matrix multiplication"
 msgstr "整数行列乗算"
 
+msgid "Invalid masked block."
+msgstr "無効なマスク済みブロック."
+
 msgid "JK flip-flop"
 msgstr "JK フリップ-フロップ"
 
@@ -281,6 +287,9 @@ msgstr "最小値"
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "剰余カウンタ (0 から Nのカウンタ)"
+
+msgid "Must be a scalar or an empty matrix."
+msgstr "スカラーまたは空の行列を指定してください."
 
 msgid "Must be a single value."
 msgstr "単一の値とする必要があります."
@@ -332,6 +341,9 @@ msgstr "出力の型"
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "出力の型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
+msgid "Outputs Record Selection"
+msgstr "出力レコードを選択"
+
 msgid "PDE Expression:"
 msgstr "PDE式:"
 
@@ -353,8 +365,14 @@ msgstr "ポート番号"
 msgid "Ramp function"
 msgstr "ランプ関数"
 
+msgid "Read from C binary file"
+msgstr "Cバイナリファイルから読み込み"
+
 msgid "Read is done on a binary ''.au'' file"
 msgstr "バイナリ ''.au'' ファイルの読込が完了しました"
+
+msgid "Record Size"
+msgstr "レコードの大きさ"
 
 msgid "Regular input port"
 msgstr "標準入力ポート"
@@ -425,9 +443,6 @@ msgstr "厳密に正の数を指定してください."
 msgid "Swap Mode"
 msgstr "スワップモード"
 
-msgid "Swap Mode (0:No 1:Yes)"
-msgstr "スワップモード (0:No 1:Yes)"
-
 msgid "Swap Mode (0:No, 1:Yes)"
 msgstr "スワップモード (0:No 1:Yes)"
 
@@ -436,6 +451,9 @@ msgstr "''初期値''はint8型の0または1とする必要があります"
 
 msgid "The measurement points"
 msgstr "観測点"
+
+msgid "Time Record Selection"
+msgstr "時間レコードを選択"
 
 msgid "Treat Bit Field as an Integer"
 msgstr "ビットフィールドを整数として扱う"
@@ -507,20 +525,8 @@ msgid "Wrong value for  ''%s'' parameter: %d."
 msgstr "''%s'' パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong value for  ''Rule'' parameter: %d"
-msgstr "''Rule'' パラメータの値が間違っています: %d"
-
-#, c-format
-msgid "Wrong value for ''%s'' parameter"
-msgstr "''%s'' パラメータの値が間違っています"
-
-#, c-format
 msgid "Wrong value for ''%s'' parameter."
 msgstr "''%s'' パラメータの値が間違っています."
-
-#, c-format
-msgid "Wrong value for ''%s'' parameter: %d"
-msgstr "''%s'' パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
@@ -546,12 +552,16 @@ msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr "''ポート番号''パラメータの値が間違っています: %d."
 
 #, c-format
+msgid "Wrong value for ''Rule'' parameter: %d"
+msgstr "''Rule'' パラメータの値が間違っています: %d"
+
+#, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "''開始時刻''パラメータの値が間違っています: %e."
 
 #, c-format
-msgid "Wrong value for of ''%s'' parameter."
-msgstr "''%s'' パラメータの値が間違っています."
+msgid "Wrong value for indexes in ''%s'' parameter: %s."
+msgstr "''%s'' パラメータのインデックスの値に誤りがあります: %s."
 
 #, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
@@ -590,8 +600,14 @@ msgstr "実行中に ''出力のファイル名'' を変更できません."
 msgid "You must enclose the format''s string between parentheses."
 msgstr "文字列を括弧で括る必要があります."
 
+msgid "You must provide a file name."
+msgstr "ファイル名を指定してください."
+
 msgid "You must provide a filename."
 msgstr "ファイル名を指定する必要があります."
+
+msgid "[1, Record Size = "
+msgstr "[1, レコードの大きさ = "
 
 msgid "degree:"
 msgstr "度:"

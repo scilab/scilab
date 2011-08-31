@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
 
 msgid ""
@@ -482,48 +482,3 @@ msgstr "a і b мають бути цілими числами, такими, щ
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
-
-#~ msgid "Low > High\n"
-#~ msgstr "Low > High\n"
-
-#~ msgid "Random"
-#~ msgstr "Випадкові величини"
-
-#~ msgid "Simulation"
-#~ msgstr "Моделювання"
-
-#~ msgid "discrete random variable"
-#~ msgstr "дискретна випадкова величина"
-
-#~ msgid "geometric random variable"
-#~ msgstr "геометрично розподілена випадкова величина"
-
-#~ msgid "discrete uniform random variable"
-#~ msgstr "рівномірно розподілена дискретна випадкова величина"
-
-#~ msgid "Poisson random variable"
-#~ msgstr "випадкова величина з розподілом Пуассона"
-
-#~ msgid "Simulation of a binomial random variable"
-#~ msgstr "Моделювання біноміально розподіленої випадкової величини"
-
-#~ msgid "binomial random variable"
-#~ msgstr "біноміально розподілена випадкова величина"
-
-#~ msgid "Exponential random variable"
-#~ msgstr "експоненційно розподілена випадкова величина"
-
-#~ msgid "Simulation of a discrete random variable"
-#~ msgstr "Моделювання дискретної випадкової величини"
-
-#~ msgid "Erlang random variable"
-#~ msgstr "Випадкова величина з розподілом Ерланга"
-
-#~ msgid "Weibull random variable"
-#~ msgstr "Випадкова величина з розподілом Вейбулла"
-
-#~ msgid "Theory"
-#~ msgstr "Теорія"
-
-#~ msgid "Hyper geometric random variable"
-#~ msgstr "Випадкова величина з гіпергеометричним розподілом"

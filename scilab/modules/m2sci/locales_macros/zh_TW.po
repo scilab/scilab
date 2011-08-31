@@ -8,54 +8,54 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 20:26+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2011-08-12 01:06+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
-msgstr ""
+msgstr " -- 每一個函數分別進行轉換: %s --- "
 
 #, c-format
 msgid " -- File %s contains more than one function -- "
-msgstr ""
+msgstr " -- 檔案 %s 中包含一個以上的函數 -- "
 
 #, c-format
 msgid " -- Temporary files put in: %s -- "
-msgstr ""
+msgstr " -- 暫存檔存放在: %s -- "
 
 msgid " may be replaced by:"
-msgstr ""
+msgstr " 可能被覆蓋到:"
 
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
-msgstr ""
+msgstr "%d 個Matlab 函數尚未轉換, 原來的呼叫順序使用:"
 
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
-msgstr ""
+msgstr "%d Matlab 工具箱函數, 原來的呼叫順序使用:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
-msgstr ""
+msgstr "%d 未知的函數, 原來的呼叫順序使用:"
 
 #, c-format
 msgid "%graphicswindow set to default value Handle."
-msgstr ""
+msgstr "%g 圖形視窗 Handle 設定至預設值."
 
 #, c-format
 msgid "%s (See fileinfo() function)."
-msgstr ""
+msgstr "%s (查閱 fileinfo() 函數)."
 
 #, c-format
 msgid "%s considered to be a Scilab macro."
-msgstr ""
+msgstr "%s 認為是 Scilab 巨集."
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
@@ -63,15 +63,15 @@ msgstr ""
 
 #, c-format
 msgid "%s is not implemented."
-msgstr ""
+msgstr "%s 未被實行."
 
 #, c-format
 msgid "%s is not yet implemented."
-msgstr ""
+msgstr "%s 尚未被實行."
 
 #, c-format
 msgid "%s line %s out of %s..."
-msgstr ""
+msgstr "%s 行中的 %s 超出 %s"
 
 #, c-format
 msgid "%s option."
@@ -303,7 +303,7 @@ msgid "File"
 msgstr ""
 
 #, c-format
-msgid "File %s is an empty file ! Nothing done..."
+msgid "File %s is an empty file.\n"
 msgstr ""
 
 msgid "File contains no instruction, no translation made..."

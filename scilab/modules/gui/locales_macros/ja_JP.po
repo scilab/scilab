@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-01 01:32+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-08-02 01:21+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -267,15 +267,11 @@ msgstr ""
 " 無効な次元を持っています:\n"
 " 次元 %s を待ちます。\n"
 
-#
-# File: macros/getvalue.sci, line: 195
 #, c-format
 msgid ""
 "Answer given for %s \n"
-" is incorrect see error message in scilab window.\n"
-msgstr ""
-"%s に与えられた応答\n"
-" 不正確です、scilabウィンドウでエラー・メッセージを見て下さい。\n"
+" is incorrect: %s.\n"
+msgstr "%s に指定された回答は間違っています: %s.\n"
 
 #
 # File: scilab_fake_localization_file.c, line: 69
@@ -305,6 +301,9 @@ msgstr "色一覧"
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
 msgid "Control Plot3d"
 msgstr "Plot3d コントロール"
+
+msgid "Dialogs"
+msgstr "ダイアログ"
 
 #
 # File: scilab_fake_localization_file.c, line: 47
@@ -438,11 +437,20 @@ msgstr "サブ・メニュー 2-1"
 msgid "Sub-menu 2-2"
 msgstr "サブ・メニュー 2-2"
 
+msgid "Uicontrols 1"
+msgstr "UIコントロール 1"
+
+msgid "Uicontrols 2"
+msgstr "UIコントロール 2"
+
 msgid "Uicontrols demo"
 msgstr "UIコントロール・デモ"
 
 msgid "Uicontrols demo with LaTeX"
 msgstr "LaTeXを指定するuicontrolsのデモ"
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr "LaTeX/MathULサポート付きのUIコントロール"
 
 #
 # File: macros/about.sci, line: 19

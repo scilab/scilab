@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
 
 msgid " Flushing starts for queued commands.\n"
@@ -208,68 +208,3 @@ msgstr "Внимание: слишком много обратных вызов�
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] не работает с Tcl/Tk.\n"
-
-#~ msgid "&Edit"
-#~ msgstr "&Правка"
-
-#~ msgid "Tcl/Tk interface not loaded."
-#~ msgstr "Интерфейс Tcl/Tk не загружен."
-
-#, c-format
-#~ msgid "Error %s while loading library %s"
-#~ msgstr "Ошибка %s при загрузке библиотеки %s"
-
-#, c-format
-#~ msgid "%s: Slave interpreter already exists.\n"
-#~ msgstr "%s: Ведомый интерпретатор уже существует.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного аргумента #%d: Ожидалась вещественная или "
-#~ "строковая матрица.\n"
-
-#~ msgid "Open"
-#~ msgstr "Открыть"
-
-#~ msgid "&?"
-#~ msgstr "&Справка"
-
-#~ msgid "&Tools"
-#~ msgstr "&Инструменты"
-
-#~ msgid "&File"
-#~ msgstr "&Файл"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#~ msgid "Updating, please wait"
-#~ msgstr "Идёт обновление, пожалуйста, подождите"
-
-#~ msgid "Scroll"
-#~ msgstr "Прокрутка"
-
-#~ msgid "Scale"
-#~ msgstr "Масштаб"
-
-#~ msgid "Color"
-#~ msgstr "Цвет"
-
-#~ msgid "Puzzle"
-#~ msgstr "Головоломка"

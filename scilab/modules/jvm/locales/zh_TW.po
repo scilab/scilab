@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-23 02:27+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"PO-Revision-Date: 2011-08-05 23:15+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 #, c-format
@@ -66,7 +66,6 @@ msgstr ""
 "\n"
 "JVM 錯誤，連結上目前的執行緒:不能連結到目前的執行緒。\n"
 
-#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -155,6 +154,11 @@ msgstr "錯誤:不是一個有效的設定檔%s (不是用 '%s' 編碼) 目前�
 msgid "Error: could not parse file %s\n"
 msgstr "錯誤: 無法剖析 (parse) 檔案 %s\n"
 
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr "如果 Scilab 是使用 Java, 請確認您的 IDE 是否沒有加入額外相關的執行期函式庫.\n"
+
 #, c-format
 msgid ""
 "If you are using a binary version of Scilab, please report a bug "
@@ -229,9 +233,3 @@ msgstr "警告:找不到類別路徑宣告檔%s.\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "錯誤的格式%s.\n"
-
-#~ msgid "Console"
-#~ msgstr "主控台"
-
-#~ msgid "Scilab Console"
-#~ msgstr "Scilab  主控台"

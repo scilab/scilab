@@ -14,20 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个布尔值。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -127,9 +119,6 @@ msgstr ""
 msgid "Continuous time systems"
 msgstr ""
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr ""
-
 msgid "Could not save diagram."
 msgstr "无法保存图表"
 
@@ -212,6 +201,9 @@ msgstr ""
 msgid "Error on export"
 msgstr ""
 
+msgid "Error: unable to compile this SuperBlock"
+msgstr ""
+
 msgid "Event handling"
 msgstr ""
 
@@ -287,7 +279,7 @@ msgstr ""
 msgid "Generate Jacobian"
 msgstr ""
 
-msgid "Generate SuperBlock, please wait ..."
+msgid "Generate SuperBlock, please wait"
 msgstr ""
 
 msgid "Generating C Code for SuperBlock"
@@ -611,9 +603,6 @@ msgstr ""
 msgid "Text settings"
 msgstr ""
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
-
 #, c-format
 msgid ""
 "The file %s doesn't exist\n"
@@ -762,7 +751,11 @@ msgstr "Xcos错误"
 msgid "Xcos file"
 msgstr ""
 
-msgid "You may enter here scilab instructions to define "
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
+"loaded)."
 msgstr ""
 
 msgid "Zero crossing detection"
@@ -814,79 +807,3 @@ msgstr ""
 
 msgid "weight"
 msgstr ""
-
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "在-nogui或-nwni模式下Scilab的'%s'模块被禁用。"
-
-#, c-format
-#~ msgid "%s: File ''%s'' does not exist.\n"
-#~ msgstr "%s：文件''%s''不存在。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "导出失败：%s\n"
-
-#~ msgid "Cut"
-#~ msgstr "剪切"
-
-#~ msgid "Copy"
-#~ msgstr "复制"
-
-#~ msgid "Zoom Out"
-#~ msgstr "缩小"
-
-#~ msgid "Undo"
-#~ msgstr "撤销"
-
-#~ msgid "Zoom In"
-#~ msgstr "放大"
-
-#~ msgid "Paste"
-#~ msgstr "粘贴"
-
-#~ msgid "Redo"
-#~ msgstr "重做"
-
-#~ msgid "Group"
-#~ msgstr "分组"
-
-#~ msgid "Select all"
-#~ msgstr "全选"
-
-#~ msgid "UnGroup"
-#~ msgstr "取消分组"
-
-#~ msgid "Invert selection"
-#~ msgstr "反转选择"
-
-#~ msgid "Quit"
-#~ msgstr "退出"
-
-#~ msgid "Browser"
-#~ msgstr "浏览器"
-
-#~ msgid "Help"
-#~ msgstr "帮助"
-
-#~ msgid "Threshold"
-#~ msgstr "阈值"
-
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos版本1.0"
-
-#~ msgid "Continuous"
-#~ msgstr "连续信号"
-
-#~ msgid "Discontinuous"
-#~ msgstr "不连续信号"
-
-#~ msgid "Math Operations"
-#~ msgstr "数学操作"
-
-#~ msgid "Line Color"
-#~ msgstr "线条颜色"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 msgid ""
@@ -115,59 +115,3 @@ msgstr "nu必须至少为1.0。\n"
 
 msgid "x0 is not strictly primal feasible.\n"
 msgstr ""
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s).\n"
-#~ msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为N维数组。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-#~ msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument.\n"
-#~ msgstr "%s：输入参数的类型错误。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d."
-#~ msgstr "%s：输入参数#%d的大小错误。"
-
-#, c-format
-#~ msgid "%s: Weighting matrix must be square.\n"
-#~ msgstr "%s：加权矩阵必须为方阵。\n"
-
-#, c-format
-#~ msgid "%s: Initial guess not feasible.\n"
-#~ msgstr "%s：初始猜测不可行。\n"
-
-#, c-format
-#~ msgid "%s: Order must be 1, 2 or 4.\n"
-#~ msgstr "%s：阶数（order）必须为1，2或4。\n"
-
-#, c-format
-#~ msgid "%s: x0 is not feasible."
-#~ msgstr "%s：x0不可用。"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个函数。\n"
-
-#~ msgid "Optimization and Simulation"
-#~ msgstr "优化和仿真"
-
-#, c-format
-#~ msgid "%s: Unbounded problem!"
-#~ msgstr "%s：无边界的错误！"
-
-#, c-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"

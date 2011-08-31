@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
 
 #, c-format
@@ -64,23 +64,3 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 "%s: sobredesbordamiento o subdesbordamiento (over/underflow) de un número de "
 "rango extendido\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
-
-#, c-format
-#~ msgid "Function %s is obsolete."
-#~ msgstr "La función %s es obsoleta."
-
-#, c-format
-#~ msgid "Please use %s instead."
-#~ msgstr "Por favor use %s en su lugar."
-
-#, c-format
-#~ msgid "This function will be permanently removed in Scilab %s"
-#~ msgstr "Esta función será removida permanentemente de Scilab %s"
-
-#~ msgid "Warning: "
-#~ msgstr "Advertencia: "

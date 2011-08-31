@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 21:18+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-08-12 11:50+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
 
 #, c-format
@@ -452,6 +452,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
 "package name.\n"
 msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: %s muß ein verfügbarer Atom "
+"Paket Name sein.\n"
 
 #, c-format
 msgid ""
@@ -727,9 +729,6 @@ msgstr "Instanz"
 msgid "File"
 msgstr "Datei"
 
-msgid "Home"
-msgstr "Home"
-
 msgid "Install"
 msgstr "Installieren"
 
@@ -744,6 +743,9 @@ msgstr ""
 
 msgid "Installation failed!"
 msgstr "Installation fehlgeschlagen!"
+
+msgid "Installed modules"
+msgstr "installierte Module"
 
 msgid "Installing"
 msgstr "Installiere"
@@ -766,9 +768,12 @@ msgstr "Hauptkategorien"
 msgid "Maintainer(s)"
 msgstr "Unterstützer"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
 msgstr ""
-"Kein ATOMS Modul verfügbar. Bitte überprüfen Sie ihre Internetverbindung."
+"Kein ATOMS Modul verfügbar. Überprüfen Sie Ihre Internetverbindung oder "
+"stellen Sie sicher, daß Ihr Betriebssystem mit ATOMS kompatibel ist."
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Kein ATOMS-Modul verfügbar: Ihre Repository-Liste ist leer."
@@ -827,3 +832,8 @@ msgstr "Version"
 
 msgid "WebSite"
 msgstr "WebSite"
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""

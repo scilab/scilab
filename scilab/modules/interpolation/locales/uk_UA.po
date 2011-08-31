@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
 
 #, c-format
@@ -201,61 +201,3 @@ msgstr ""
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати тип «string».\n"
-
-#, c-format
-#~ msgid "%s: Not enought points for the fit.\n"
-#~ msgstr "%s: недостатньо точок для апроксимації.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: їх має бути від %d до %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути два рядки.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор "
-#~ "або матрицю.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
-#~ "збігатися.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-#~ "дійсних значень.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-#~ "«%s» або «%s».\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-#~ "дійсне значення.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: мали бути дійсні числа, але "
-#~ "деякі зі значень не визначено (NaN).\n"

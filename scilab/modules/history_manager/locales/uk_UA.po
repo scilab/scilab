@@ -9,18 +9,30 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-17 15:25+0000\n"
+"PO-Revision-Date: 2011-07-30 18:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -39,6 +51,15 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
 "значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
@@ -115,12 +136,3 @@ msgstr "Срд"
 
 msgid "filename not defined."
 msgstr "назву файла не визначено."
-
-#~ msgid "// Begin Session : "
-#~ msgstr "// Початок сеансу: "
-
-#~ msgid "// End Session   : "
-#~ msgstr "// Завершення сеансу: "
-
-#~ msgid "Scilab history_manager module not installed.\n"
-#~ msgstr "Модуль history_manager Scilab не встановлено.\n"

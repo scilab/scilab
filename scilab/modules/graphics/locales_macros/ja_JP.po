@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 13:11+0000\n"
+"PO-Revision-Date: 2011-08-02 01:14+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -524,14 +524,26 @@ msgstr "ツール(&T)"
 msgid "... as well as very tiny radii"
 msgstr "... 非常に小さな半径も"
 
+msgid "2D and 3D plots"
+msgstr "2次元/3次元プロット"
+
 msgid "A partial viewport may be set with clipping"
 msgstr "クリッピングの際に部分的なビューポートを指定できます"
+
+msgid "Animation"
+msgstr "アニメーション"
 
 #
 # File: demos/misc.dem.sci, line: 216
 # File: demos/misc/misc.dem.sci, line: 214
 msgid "Autumn"
 msgstr "秋"
+
+msgid "Basic functions"
+msgstr "基本関数"
+
+msgid "Bezier curves and surfaces"
+msgstr "ベジエ曲線/曲面"
 
 msgid "Big radii are supported..."
 msgstr "大きな半径がサポートされています..."
@@ -553,8 +565,14 @@ msgstr "キャンセル"
 msgid "Color number"
 msgstr "色番号"
 
+msgid "Colormap"
+msgstr "カラーマップ"
+
 msgid "Common X axis"
 msgstr "共通のX軸"
+
+msgid "Complex elementary functions"
+msgstr "複素基本関数"
 
 #
 # File: demos/misc.dem.sci, line: 248
@@ -604,6 +622,9 @@ msgstr "エラー %d 関数 で 行 %d のエラー: ''%s''"
 msgid "Exact gaussian density"
 msgstr "厳密なガウス分布密度"
 
+msgid "Finite Elements"
+msgstr "有限要素"
+
 msgid "Gaussian random sample histogram"
 msgstr "ガウス分布ランダム標本ヒストグラム"
 
@@ -639,6 +660,9 @@ msgstr "最新"
 msgid "Jet"
 msgstr "JET"
 
+msgid "LaTeX/MathML"
+msgstr "LaTeX/MathML"
+
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr "datatipを作成するには曲線上で左クリック,右クリックで開きます"
 
@@ -653,6 +677,9 @@ msgstr "プロパティエディタを開くには,グラフィックエンテ�
 # File: demos/misc/misc.dem.sci, line: 57
 msgid "Misc"
 msgstr "雑務"
+
+msgid "More surfaces"
+msgstr "その他の曲面"
 
 msgid "Multiple datatips mode"
 msgstr "複数データtipsモード"
@@ -758,6 +785,9 @@ msgstr "冬"
 
 msgid "automatic"
 msgstr "自動"
+
+msgid "bar histogram"
+msgstr "棒ヒストグラム"
 
 msgid "even huge radii, with properly formatted labels..."
 msgstr "半径が非常に大きい場合でも,適切にラベルを整形..."

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
 
 msgid ""
@@ -451,48 +451,3 @@ msgstr "a и b должны быть целыми, (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 или R <= 0.0\n"
-
-#~ msgid "Low > High\n"
-#~ msgstr "Low > High\n"
-
-#~ msgid "Random"
-#~ msgstr "Случайные величины"
-
-#~ msgid "Hyper geometric random variable"
-#~ msgstr "Гипергеометрическая случайная переменная"
-
-#~ msgid "Simulation of a discrete random variable"
-#~ msgstr "Моделирование дискретной случайной переменой"
-
-#~ msgid "Simulation"
-#~ msgstr "Моделирование"
-
-#~ msgid "Poisson random variable"
-#~ msgstr "Случайная переменная Пуассона"
-
-#~ msgid "binomial random variable"
-#~ msgstr "Биномиальная случайная переменная"
-
-#~ msgid "Weibull random variable"
-#~ msgstr "Случайная переменная Вейбулла"
-
-#~ msgid "Theory"
-#~ msgstr "Теория"
-
-#~ msgid "Simulation of a binomial random variable"
-#~ msgstr "Моделирование биномиальное случайной переменной"
-
-#~ msgid "Erlang random variable"
-#~ msgstr "Случайная переменная Эрланга"
-
-#~ msgid "Exponential random variable"
-#~ msgstr "Экспоненциальная случайная переменная"
-
-#~ msgid "discrete random variable"
-#~ msgstr "Дискретная случайная переменная"
-
-#~ msgid "geometric random variable"
-#~ msgstr "Геометрическая случайная переменная"
-
-#~ msgid "discrete uniform random variable"
-#~ msgstr "Дискретная равномерная случайная переменная"

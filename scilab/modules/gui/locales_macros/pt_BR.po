@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -272,10 +272,8 @@ msgstr ""
 #, c-format
 msgid ""
 "Answer given for %s \n"
-" is incorrect see error message in scilab window.\n"
+" is incorrect: %s.\n"
 msgstr ""
-"A resposta fornecida para %s \n"
-" é incorreta. Veja a mensagem de erro na janela do Scilab.\n"
 
 msgid "Application"
 msgstr "Aplicativo"
@@ -297,6 +295,9 @@ msgstr "Edição da lista de cores"
 
 msgid "Control Plot3d"
 msgstr "Controlar Plot3d"
+
+msgid "Dialogs"
+msgstr ""
 
 msgid "Display selection"
 msgstr "Exibir seleção"
@@ -401,11 +402,20 @@ msgstr "Submenu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Submenu 2-2"
 
+msgid "Uicontrols 1"
+msgstr ""
+
+msgid "Uicontrols 2"
+msgstr ""
+
 msgid "Uicontrols demo"
 msgstr "Demonstração de Uicontrols"
 
 msgid "Uicontrols demo with LaTeX"
 msgstr "Demonstração dos Uicontrols com LaTeX"
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
 
 #, c-format
 msgid ""

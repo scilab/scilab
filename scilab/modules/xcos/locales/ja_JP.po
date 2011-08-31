@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-27 13:08+0000\n"
+"PO-Revision-Date: 2011-08-02 02:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -28,14 +28,6 @@ msgstr "信号処理"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -135,9 +127,6 @@ msgstr "計算中"
 msgid "Continuous time systems"
 msgstr "連続時間システム"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Copyright (c) 1989-2009 (INRIA)"
-
 msgid "Could not save diagram."
 msgstr "ダイアグラムを保存できません."
 
@@ -217,6 +206,9 @@ msgstr "エラー"
 msgid "Error on export"
 msgstr "エクスポートエラー"
 
+msgid "Error: unable to compile this SuperBlock"
+msgstr "エラー: このSuperBlockをコンパイルできません"
+
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
 
@@ -292,8 +284,8 @@ msgstr "%s から"
 msgid "Generate Jacobian"
 msgstr "ヤコビアンを生成"
 
-msgid "Generate SuperBlock, please wait ..."
-msgstr "スーパーブロック生成中, お待ちください ..."
+msgid "Generate SuperBlock, please wait"
+msgstr "SuperBlockを生成中, お待ちください"
 
 msgid "Generating C Code for SuperBlock"
 msgstr "スーパーブロックのCコードを生成中"
@@ -613,9 +605,6 @@ msgstr "テキストの色"
 msgid "Text settings"
 msgstr "テキスト設定"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Scilab コンソーシアム (DIGITEO)"
-
 #, c-format
 msgid ""
 "The file %s doesn't exist\n"
@@ -766,8 +755,14 @@ msgstr "Xcos エラー"
 msgid "Xcos file"
 msgstr "Xcosファイル"
 
-msgid "You may enter here scilab instructions to define "
-msgstr "ここに定義するScilab命令を入力できます "
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
+"loaded)."
+msgstr ""
+"Scilab命令を用いたブロック定義で使用される記号パラメータを定義するためのScilab命令をここに入力することができます.<br/>これらの命令は確認"
+"後(すなわち,OKをクリックし,ダイアグラムがロードされた時)に評価されます."
 
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
@@ -818,477 +813,3 @@ msgstr "選択"
 
 msgid "weight"
 msgstr "重み"
-
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "エクスポート失敗: %s\n"
-
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。"
-
-#~ msgid "Copy"
-#~ msgstr "コピー"
-
-#~ msgid "Cut"
-#~ msgstr "切り取り"
-
-#~ msgid "Group"
-#~ msgstr "グループ"
-
-#~ msgid "UnGroup"
-#~ msgstr "グループでない"
-
-#~ msgid "Paste"
-#~ msgstr "貼り付け"
-
-#~ msgid "Redo"
-#~ msgstr "やり直し"
-
-#~ msgid "Undo"
-#~ msgstr "元に戻す"
-
-#~ msgid "Select all"
-#~ msgstr "全て選択"
-
-#~ msgid "Invert selection"
-#~ msgstr "反転選択"
-
-#~ msgid "Quit"
-#~ msgstr "終了"
-
-#~ msgid "Browser"
-#~ msgstr "ブラウザー"
-
-#~ msgid "Help"
-#~ msgstr "ヘルプ"
-
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos バージョン 1.0"
-
-#~ msgid "Discontinuous"
-#~ msgstr "断続的"
-
-#~ msgid "Threshold"
-#~ msgstr "閾値"
-
-#~ msgid "Math Operations"
-#~ msgstr "数学操作"
-
-#~ msgid "Modelica"
-#~ msgstr "造形"
-
-#~ msgid "Port Action"
-#~ msgstr "ポート活動"
-
-#~ msgid "Events"
-#~ msgstr "イベント"
-
-#~ msgid ""
-#~ "Diagram has been modified since last save\n"
-#~ "save it?"
-#~ msgstr ""
-#~ "図形は、最後の保存から修正されました\n"
-#~ "保存しますか?"
-
-#~ msgid "Line Color"
-#~ msgstr "ライン色"
-
-#~ msgid "All rights reserved"
-#~ msgstr "All rights reserved"
-
-#~ msgid "CeCILL License"
-#~ msgstr "CeCILL ライセンス"
-
-#~ msgid "Copyright 2009"
-#~ msgstr "Copyright 2009"
-
-#~ msgid "Set Debug Level"
-#~ msgstr "デバッグレベル設定"
-
-#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-#~ msgstr "デバッグレベル設定 (0,1,2,3) </br>scicos_debug(n) を実行します"
-
-#~ msgid "The Scilab Consortium / DIGITEO"
-#~ msgstr "Scilab コンソーシアム / DIGITEO"
-
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "未知の図形バージョン : "
-
-#~ msgid "Xcos 1.0"
-#~ msgstr "Xcos 1.0"
-
-#, c-format
-#~ msgid "%s: Unable to import xcos file %s.\n"
-#~ msgstr "%s: xcosファイル %s をインポートできません。\n"
-
-#~ msgid "Continuous"
-#~ msgstr "連続性"
-
-#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
-#~ msgstr "信号シミュレーショントレース(分離と連続部分スイッチ)"
-
-#~ msgid "Same command executed again"
-#~ msgstr "再度同じコマンドを実行"
-
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "インタープリタと連携できません"
-
-#~ msgid "Zoom In"
-#~ msgstr "拡大"
-
-#~ msgid "Zoom Out"
-#~ msgstr "縮小"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-#~ msgstr "%s: 引数 %d で不正な型: 文字、または図形構造体が予想されます。"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: diagram structure expected"
-#~ msgstr "%s: 引数 %d で不正な型: 図形構造体が予想されます"
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Scilabライブラリは取り込めませんでした"
-
-#, c-format
-#~ msgid "Unable to open %s"
-#~ msgstr "%s を開けません"
-
-#, c-format
-#~ msgid "Unable to simulate %s"
-#~ msgstr "%s をシュミレートできません"
-
-#, c-format
-#~ msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-#~ msgstr "%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the image %s.\n"
-#~ msgstr "%s: イメージ %s を作成できません.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-#~ msgstr "%s: パレットアイコンを作成できません: %s が既に存在します.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export the palette to hdf5.\n"
-#~ msgstr "%s: パレットを hdf5にエクスポートできません.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export %s to %s.\n"
-#~ msgstr "%s: %s を %s にエクスポートできません.\n"
-
-#, c-format
-#~ msgid "%s: All paths defined by %s variable must exist.\n"
-#~ msgstr "%s: %s 変数により定義された全てのパスが存在する必要があります.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The directory %s cannot been created, please check if you have write "
-#~ "access on this directory.\n"
-#~ msgstr "%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
-
-#, c-format
-#~ msgid "%s is not a valid name, please change the title of the diagram."
-#~ msgstr "%s は有効な名前ではありません, 図のタイトルを変更してください."
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-#~ msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for %s variable: A string array expected.\n"
-#~ msgstr "%s: 変数 %s の型が間違っています: 文字列の配列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: 入力引数 %s が間違っています: svg または gif を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-#~ msgstr "%s:  %s からブロックをロードできませんでした: `scs_m'' 変数が見つかりません.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ブロック型を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: path string expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: パス文字列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: パレット型を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ハンドル型を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: directory path string expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ディレクトリパス文字列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ファイルパス文字列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: File not found.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ファイルが見つかりません.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: パレット型またはパスを指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string type expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: 文字列型を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: 文字列または構造体を指定してください.\n"
-
-#~ msgid ""
-#~ "Unable to load the HDF5 library. \n"
-#~ "Expecting version %s ; Getting version %s ."
-#~ msgstr "HDF5ライブラリを読み込めません."
-
-#~ msgid ""
-#~ "You may enter here scilab instructions to define symbolic parameters used in "
-#~ "block definitions using Scilab instructions.<br/>These instructions are "
-#~ "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-#~ "diagram is loaded.)"
-#~ msgstr ""
-#~ "Scilab命令を利用するブロック定義で使用される数式パラメータを定義するためのScilab命令をここに入力することができます.<br/> "
-#~ "これらの命令は検証された後,評価されます. (すなわち, EvalでOKをクリックすると,図形が毎回読み込まれます.)"
-
-#, c-format
-#~ msgid "%s: Unable to import from data from %s"
-#~ msgstr "%s: %s からデータをインポートできません"
-
-#, c-format
-#~ msgid "%s: Unable to import data from %s"
-#~ msgstr "%s:  %s からデータをインポートできません"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-#~ msgstr "%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: function as string or Block type or "
-#~ "full path string expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック(Block)型または完全パス文字列を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-#~ msgstr "%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
-
-#~ msgid "Bridge Rectifer"
-#~ msgstr "ブリッジ整流器"
-
-#~ msgid "Chaos Modelica"
-#~ msgstr "Chaos Modelica"
-
-#~ msgid "Colpitts oscillator"
-#~ msgstr "コルピットオシレータ"
-
-#~ msgid "Cont.Plant-Hybrid Observer"
-#~ msgstr "制御プラント+ハイブリッド観測器"
-
-#~ msgid "Control Systems"
-#~ msgstr "制御システム"
-
-#~ msgid "Ball on a Platform"
-#~ msgstr "台上の球"
-
-#~ msgid "Automotive Suspension"
-#~ msgstr "自動車のサスペンション"
-
-#~ msgid "Bouncing Ball"
-#~ msgstr "跳ねる球"
-
-#~ msgid "Basic controller"
-#~ msgstr "基本コントローラ"
-
-#~ msgid "Differential amplifier"
-#~ msgstr "差動アンプ"
-
-#~ msgid "Discrete Controller"
-#~ msgstr "離散コントローラ"
-
-#~ msgid "DC/DC Boost Converter"
-#~ msgstr "DC/DC昇圧コンバータ"
-
-#~ msgid "DC/DC Buck Converter"
-#~ msgstr "DC/DC降圧コンバータ"
-
-#~ msgid "Hydraulics blocks"
-#~ msgstr "水力学ブロック"
-
-#~ msgid "Goto/From blocks"
-#~ msgstr "goto/fromブロック"
-
-#~ msgid "Fibonacci Numbers"
-#~ msgstr "フィナボッチ数"
-
-#~ msgid "Electrical Systems"
-#~ msgstr "電気システム"
-
-#~ msgid "Discrete Kalman Filter"
-#~ msgstr "離散カルマンフィルタ"
-
-#~ msgid "Old demos"
-#~ msgstr "古いデモ"
-
-#~ msgid "OpAmp amplifier"
-#~ msgstr "オペアンプ"
-
-#~ msgid "Modelica demos"
-#~ msgstr "Modelicaデモ"
-
-#~ msgid "Old Gain Block"
-#~ msgstr "古いゲインブロック"
-
-#~ msgid "Lorentz butterfly"
-#~ msgstr "ローレンツバタフライ"
-
-#~ msgid "Mechanical Systems"
-#~ msgstr "メカニカルシステム"
-
-#~ msgid "Kalman Filter"
-#~ msgstr "カルマンフィルタ"
-
-#~ msgid "Inverted Pendulum"
-#~ msgstr "倒立振子"
-
-#~ msgid "Logic NOR gate"
-#~ msgstr "論理NORゲート"
-
-#~ msgid "Logic AND gate"
-#~ msgstr "論理ANDゲート"
-
-#~ msgid "RLC circuit"
-#~ msgstr "RLC回路"
-
-#~ msgid "RLC Circuit"
-#~ msgstr "RLC回路"
-
-#~ msgid "Standard demos"
-#~ msgstr "標準デモ"
-
-#~ msgid "Simple Thermostat"
-#~ msgstr "簡単なサーモスタット"
-
-#~ msgid "Scilab block"
-#~ msgstr "Scilabブロック"
-
-#~ msgid "Scicos data types"
-#~ msgstr "Scicosデータ型"
-
-#~ msgid "Simple Demo"
-#~ msgstr "簡単なデモ"
-
-#~ msgid "Signal Builder"
-#~ msgstr "信号ビルダ"
-
-#~ msgid "Bouncing Balls"
-#~ msgstr "跳ねる球"
-
-#~ msgid "Transformer"
-#~ msgstr "変換器"
-
-#~ msgid "Temperature Controller"
-#~ msgstr "温度コントローラ"
-
-#~ msgid "Table Lookup"
-#~ msgstr "テーブル検索"
-
-#~ msgid "Switched capacitor integrator"
-#~ msgstr "スイッチドキャパシタ積分器"
-
-#~ msgid "Water tank"
-#~ msgstr "水タンク"
-
-#~ msgid "Zero Crossing"
-#~ msgstr "ゼロ交差"
-
-#~ msgid "_IF_ Scicos block"
-#~ msgstr "_IF_ Scicosブロック"
-
-#, c-format
-#~ msgid "%s: File ''%s'' does not exist.\n"
-#~ msgstr "%s: ファイル ''%s'' が存在しません.\n"
-
-#, c-format
-#~ msgid "%s: File ''%s'' is not a valid palette file.\n"
-#~ msgstr "%s: ファイル ''%s'' は有効なパレットファイルではありません.\n"
-
-#, c-format
-#~ msgid "%s: Found ''%s'' instead of a block.\n"
-#~ msgstr "%s: ブロックの代わりに ''%s'' が見つかりました.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export ''XX'' to %s"
-#~ msgstr "%s: ''XX'' を %s にエキスポートできません"
-
-#~ msgid "Xcos data types"
-#~ msgstr "Xcosデータ型"
-
-#~ msgid ""
-#~ "Saxon provides only an immutable DOM, please configure another implementation"
-#~ msgstr "Saxonは変更不可のDOMのみをサポートします. configureに他の実装を指定してください."
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-#~ msgstr "%s: 入力引数 %s が間違っています: svg, gif または jpg を指定してください.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-#~ "expected.\n"
-#~ msgstr "%s: 入力引数 %s の値が間違っています: 有効なフォーマット (png, jpg, gif) を指定してください.\n"
-
-#~ msgid "_IF_ Xcos block"
-#~ msgstr "_IF_ Xcos ブロック"
-
-#, c-format
-#~ msgid ""
-#~ "%s: the block %s is no more available, please update the diagram with a "
-#~ "compatible one."
-#~ msgstr "%s: ブロック %s は利用できません, ダイアグラムを完全なものに更新してください."
-
-#~ msgid "Simulation problem"
-#~ msgstr "シミュレーション上の問題"

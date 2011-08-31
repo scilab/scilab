@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 21:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-07-11 08:11+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
-msgstr "   %s: Commande: %s\n"
+msgstr "   %s : Commande : %s\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr ""
-"   %s: Ne copie pas %s: Les répertoires source et cible sont identiques "
+"   %s : Ne copie pas %s : Les répertoires source et cible sont identiques "
 "(%s).\n"
 
 #, c-format
@@ -49,36 +49,32 @@ msgstr "   %s : Modification du Makefile dans TMPDIR.\n"
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
 msgstr ""
-"   %s: Nécessite l''exécution de la détection du compilateur (configure).\n"
+"   %s : Nécessite l''exécution de la détection du compilateur (configure).\n"
 
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
-msgstr "   %s: Substitue la référence par le fichier actuel.\n"
+msgstr "   %s : Substitue la référence par le fichier actuel.\n"
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
-msgstr "   %s: Utilise la précédente détection du compilateur.\n"
+msgstr "   %s : Utilise la précédente détection du compilateur.\n"
 
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
-msgstr "   %s : configure : Génère le Makefile.\n"
+msgstr "   %s : Configure : Génère le Makefile.\n"
 
 msgid "   Building shared library (be patient)\n"
-msgstr "   Construit une bibliothèque partagée (soyez patient)\n"
+msgstr "   Construit une bibliothèque partagée (Veuillez patienter)\n"
 
 #, c-format
 msgid "   Command: %s\n"
-msgstr "   Commande: %s\n"
+msgstr "   Commande : %s\n"
 
 msgid "   Compilation of "
 msgstr "   Compilation de "
 
 msgid "   Generate a Makefile\n"
 msgstr "   Génère un Makefile\n"
-
-#, c-format
-msgid "   Generate a Makefile: %s\n"
-msgstr "   Génère un Makefile: %s\n"
 
 msgid "   Generate a cleaner file\n"
 msgstr "   Génère un fichier cleaner\n"
@@ -91,7 +87,7 @@ msgstr "   Génère un fichier loader\n"
 
 #, c-format
 msgid "   Output: %s\n"
-msgstr "   Sortie: %s\n"
+msgstr "   Sortie : %s\n"
 
 msgid "   Running the Makefile\n"
 msgstr "   Exécute le Makefile\n"
@@ -101,26 +97,38 @@ msgstr "   Exécute le makefile\n"
 
 #, c-format
 msgid "   stderr: %s\n"
-msgstr "   stderr: %s\n"
+msgstr "   stderr : %s\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr ""
+msgstr "%s : %s déjà chargé dans Scilab."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s : Un compilateur fortran ou C est requis.\n"
+msgstr "%s : Un compilateur Fortran ou C est requis.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr ""
+"%s : Une extension de fichier valable pour l''argument d''entrée n°%d "
+"attendue."
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr ""
+"%s : Une extension de fichier valable pour l''argument d''entrée n°%d "
+"attendue.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
-msgstr "%s: Une erreur a été detectée lors de la compilation\n"
+msgstr "%s : Une erreur s''est produite lors de la compilation\n"
 
 #, c-format
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
 msgstr ""
-"%s: Une erreur s''est produite durant la détection du compilateur. Mettre "
+"%s : Une erreur s''est produite lors de la détection du compilateur. Mettre "
 "ilib_verbose(2) pour plus d''informations.\n"
 
 #, c-format
@@ -129,27 +137,28 @@ msgstr "%s : Une erreur s''est produite : %s\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
-msgstr "%s: Commande de compilation: %s\n"
+msgstr "%s : Commande de compilation : %s\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s : Ne peut pas ouvrir le fichier %s.\n"
+msgstr "%s : Impossible d''ouvrir le fichier %s.\n"
 
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
-msgstr ""
+msgstr "%s : Impossible de trouver la bibliothèque générée ''%s''.\n"
 
 #, c-format
 msgid "%s: Error while executing %s.\n"
-msgstr ""
+msgstr "%s : Erreur à l''exécution de %s.\n"
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
-msgstr "%s: Erreur lors de la modification du Makefile reference:\n"
+msgstr "%s : Erreur lors de la modification du reference Makefile :\n"
 
 #, c-format
 msgid "%s: Failed to add include path : %s"
 msgstr ""
+"%s : Impossible d''ajouter le chemin vers les fichiers d''entête : %s"
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
@@ -185,88 +194,83 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: Attention: Scilab n''a pas été capble de trouver où sont les sources de "
-"Scilab. Soumettez un rapport de bug à l''adresse "
-"http://bugzilla.scilab.org/\n"
+"%s : Attention : Impossible de trouver les sources de Scilab. Soumettez un "
+"rapport de bug à l''adresse http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
+msgstr "%s : Nombre erroné d''argument(s) d''entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: Mauvais nombre d''argument(s) d''entrée: %d,%d ou %d attendu.\n"
+msgstr "%s : Nombre erroné d''argument(s) d''entrée : %d,%d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
-"%s: Mauvais nombre d''arguments d''entré(s): au moins %d d''attendu(s).\n"
+msgstr "%s : Nombre erroné d''arguments d''entré(s) : au moins %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
+msgstr "%s : Nombre erroné d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d.\n"
+msgstr "%s : Dimension erronée de l''argument d''entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
+msgstr "%s : Dimension erronée de l''argument d''entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice de "
+"%s : Dimension erronée de l''argument d''entrée n°%d : Une matrice de "
 "chaînes de caractères < 999 attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
+"%s : Dimension erronée de l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une matrice de chaînes de "
+"%s : Type erroné de l''argument d''entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
-"est attendue.\n"
+"%s : Type erroné de l''argument d''entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-"%s : Type inapproprié pour l''argument d''entrée #%d : Matrice de chaînes de "
+"%s : Type erroné de l''argument d''entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
+msgstr "%s : Valeur erronée de l''argument d''entrée n°%d : or [] attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être dans "
-"l''ensemble {%s}.\n"
+"%s : Valeur erronée de l''argument d''entrée n°%d : Doit être dans "
+"l'ensemble {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
+"%s : Valeur erronée de l''argument d''entrée n°%d : Fichier(s) existant(s) "
+"attendu(s).\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Un compilateur Fortran ou C est nécessaire."
-
-#, c-format
-msgid "A managed file extension for input argument #%d"
-msgstr ""
 
 msgid "Dynamic link"
 msgstr "Lien dynamique"
@@ -276,14 +280,15 @@ msgstr "F2C ne peut pas compiler de fortran 90"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
+"Impossible de trouver un compilateur Intel Fortran Compiler 9, 10, 11 ou 12"
 
 #, c-format
 msgid "Output: %s\n"
-msgstr "Sortie: %s\n"
+msgstr "Sortie : %s\n"
 
 msgid "You need to unload this library before."
-msgstr ""
+msgstr "Cette bibliothèque doit être déchargée avant toute action."
 
 #, c-format
 msgid "stderr: %s\n"
-msgstr "stderr: %s\n"
+msgstr "stderr : %s\n"

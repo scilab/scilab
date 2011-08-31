@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-05-31 22:54+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-07-11 09:05+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
 
 msgid ""
@@ -43,14 +43,13 @@ msgstr "              stacksize(3000000);                    "
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
 msgstr ""
-"           n''est pas atteinte après %d itérations (ai obtenu uniquement %e) "
-"\n"
+"           n''est pas atteinte après %d itérations (seules %e obtenues) \n"
 
 msgid "           then re enter scisptdemo()                "
 msgstr "           ensuite re-saisissez scisptdemo()                "
 
 msgid "   then click on OK   "
-msgstr "   ensuite cliquez sur OK   "
+msgstr "   ensuite cliquez sur Ok   "
 
 msgid " ----------------------------------------------------- \n"
 msgstr " ----------------------------------------------------- \n"
@@ -60,7 +59,8 @@ msgstr " ------------------------------------------------------------\n"
 
 msgid " For this demo the current stack size is not enough "
 msgstr ""
-" Pour cette démo la taille courante de la pile n''est pas suffisante. "
+" Pour cette démonstration la dimension actuelle de la pile n''est pas "
+"suffisante. "
 
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
@@ -71,7 +71,7 @@ msgid " Warning : for lm convergence at rtol = %e \n"
 msgstr " Attention : pour la convergence lm à rtol = %e \n"
 
 msgid " enter the following at the scilab prompt :          "
-msgstr " entrez ce qui suit au prompt scilab :          "
+msgstr " entrez ce qui suit au prompt de Scilab :          "
 
 #, c-format
 msgid " iteration %3d : lM = %e  \n"
@@ -84,77 +84,78 @@ msgstr " itération %3d : lm = %e  \n"
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
-"%s: Type invalide et/ou dimension et/ou valeur pour le second argument.\n"
+"%s : Type et/ou dimension et/ou valeur invalide pour le second argument.\n"
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
 msgstr ""
-"%s: Pas de valeurs pour cette matrice (uniquement des motifs non nuls) : "
+"%s : Pas de valeurs pour cette matrice (uniquement des motifs non nuls) : "
 "mettez quelques 1."
 
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: Le fichier contient un rhs mais ne sera pas lu !"
+msgstr "%s : Le fichier contient un rhs mais ne sera pas lu !"
 
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s: La matrice et les facteursLU n''ont pas la même dimension !\n"
+msgstr "%s : La matrice et les facteurs LU n''ont pas la même dimension !\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
+msgstr "%s : Nombre erroné d''argument(s) d''entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s : Mauvais nombre d''argument(s) en entrée : Au moins %d attendus.\n"
+"%s : Nombre erroné d''argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
+msgstr "%s : Nombre erroné d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice creuse "
+"%s : Dimension erronée de l''argument d''entrée n°%d : Une matrice creuse "
 "carrée attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: Une matrice creuse carrée "
+"%s : Type erroné de l''argument d''entrée n°%d : Une matrice creuse carrée "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Type erroné de l''argument d''entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l''argument d''entrée n° %d: une matrice creuse "
+"%s : Type erroné de l''argument d''entrée n°%d : Une matrice creuse "
 "attendue.\n"
 
 #, c-format
 msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
 msgstr ""
-"%s: actuellement, ne lit pas les matrices creuses non assemblées "
+"%s : Impossible de lire actuellement les matrices creuses non assemblées "
 "(élémentaires)."
 
 msgid "Choose a sparse matrix"
 msgstr "Choisissez une matrice creuse"
 
 msgid "Click to choose a demo"
-msgstr "Cliquez pour choisir une démo"
+msgstr "Cliquez pour choisir une démonstration"
 
 msgid "display a speed comparison test"
-msgstr "afficher un test comparatif de vitesse"
+msgstr "Afficher un test comparatif de vitesse"
 
 msgid "how to use this stuff"
-msgstr "comment utiliser cette chose"
+msgstr "Comment l'utiliser"
 
 msgid "small tests for condestsp"
-msgstr "petit tests pour condestsp"
+msgstr "Petits tests pour condestsp"

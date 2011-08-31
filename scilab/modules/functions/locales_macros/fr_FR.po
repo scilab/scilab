@@ -8,30 +8,30 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:02+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-08-22 14:41+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
 
 #, c-format
-msgid "%s is already compiled for profiling, nothing to do!"
-msgstr "%s est déjà compilé pour le profiling, rien à faire!"
+msgid "%s is already compiled for profiling.\n"
+msgstr "%s est déjà compilé pour le profilage.\n"
 
 #, c-format
-msgid "%s is already compiled, nothing to do!"
-msgstr "%s est déjà compilé, rien à faire!"
+msgid "%s is already compiled.\n"
+msgstr "%s est déjà compilé.\n"
 
 #, c-format
-msgid "%s is already noncompiled, nothing to do!"
-msgstr "%s est déjà non-compilé, rien à faire !"
+msgid "%s is already noncompiled.\n"
+msgstr "%s n'est pas compilée.\n"
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
-msgstr "%s : %s le fichier ne peut pas être créé\n"
+msgstr "%s : Impossible de créer le fichier %s\n"
 
 #, c-format
 msgid "%s: %s file compilation forced\n"
@@ -47,7 +47,7 @@ msgstr "%s : Le fichier %s n''existe pas.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s:  Je ne peux trouver aucun fichier avec l''extension %s dans %s\n"
+msgstr "%s : Impossible de trouver un fichier avec l''extension %s dans %s\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
@@ -63,23 +63,24 @@ msgstr "%s : Pas de fichiers avec l''extension %s trouvés dans %s\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr "%s : Vérifier s''il vous plait : %s\n"
+msgstr "%s : Veuillez vérifier : %s\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"
 msgstr ""
+"%s : Fonction privée : Impossible d'accéder directement à cette fonction.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr "%s : Traitement du fichier: %s\n"
+msgstr "%s : Traitement du fichier : %s\n"
 
 #, c-format
 msgid "%s: Regenerate names and lib\n"
-msgstr "%s : Régénère noms et bibliothèques\n"
+msgstr "%s : Régénère les noms et les bibliothèques\n"
 
 #, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr "%s : La fonction n''a pas été construite pour le profiling"
+msgstr "%s : La fonction n''a pas été construite pour le profilage"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -92,49 +93,49 @@ msgstr "%s : Attention : Erreur dans le fichier %s : %s. Fichier ignoré\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
+"%s : Dimension erronée de l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s : Mauvais type pour l''argument d''entrée n°%d.\n"
+msgstr "%s : Type erroné de l''argument d''entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Un caractère attendu.\n"
+"%s : Type erroné de l''argument d''entrée n°%d : Un caractère attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
-"est attendue.\n"
+"%s : Type erroné de l''argument d''entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
-"%s : Mauvais type pour l''argument d''entrée n°%d : Fonction Scilab "
+"%s : Type erroné de l''argument d''entrée n°%d : Une fonction Scilab "
 "attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Un nom de fonction "
-"Scilab est attendu.\n"
+"%s : Valeur erronée de l''argument d''entrée n°%d : Un nom de fonction "
+"Scilab attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Nom de fonction "
+"%s : Valeur erronée de l''argument d''entrée n°%d : Un nom de fonction "
 "Scilab attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
-"%s : Mauvaises valeurs pour l''argument d''entrée : Pas de données de profil "
+"%s : Valeurs erronées de l''argument d''entrée : Pas de données de profil "
 "dans la fonction\n"
 
 #, c-format
@@ -159,7 +160,7 @@ msgid "Complexity"
 msgstr "Complexité"
 
 msgid "Edit"
-msgstr "Edition"
+msgstr "Édition"
 
 msgid "Exit"
 msgstr "Quitter"
@@ -180,16 +181,16 @@ msgid "No comment available.\n"
 msgstr "Pas de commentaire disponible.\n"
 
 #, c-format
-msgid "No variable named: %s"
-msgstr "Pas de variable nommée : %s"
+msgid "No variable named: %s.\n"
+msgstr "Aucune variable du nom : %s.\n"
 
 #, c-format
 msgid "Please use %s instead."
-msgstr "Utilisez plutôt %s s''il vous plait."
+msgstr "Veuillez utiliser %s à la place."
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
-msgstr "Cette fonctionnalité va être définitivement enlevée dans Scilab %s"
+msgstr "Cette fonctionnalité va être définitivement supprimée dans Scilab %s"
 
 msgid "Tools"
 msgstr "Outils"

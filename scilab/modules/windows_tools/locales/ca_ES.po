@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ca\n"
 
 #, c-format
@@ -92,35 +92,3 @@ msgstr ""
 
 msgid "see help"
 msgstr "Veieu l'ajuda"
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s : Error d'assignació de memòria.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input arguments: String expected.\n"
-#~ msgstr ""
-#~ "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
-#~ "text.\n"
-
-#~ msgid "Powershell not found."
-#~ msgstr "No s'ha trobat el Powershell"
-
-#~ msgid "Error(s) : see help powershell"
-#~ msgstr "Error(s) : Veieu help powershell"
-
-#~ msgid "Only for Microsoft Windows."
-#~ msgstr "Només per a Microsoft Windows."
-
-#~ msgid "Verify your script without Scilab."
-#~ msgstr "Verifiqueu el vostre script sense l'Scilab."
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#~ msgid "Please verify your powershell command without Scilab."
-#~ msgstr "Verifiqueu la vostra ordre de Powershell sense l'Scilab."
-
-#~ msgid "Powershell 1.0 not found."
-#~ msgstr "No s'ha trobat el Powershell 1.0."

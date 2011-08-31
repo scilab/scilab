@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -613,9 +613,6 @@ msgstr "实体"
 msgid "File"
 msgstr "文件"
 
-msgid "Home"
-msgstr ""
-
 msgid "Install"
 msgstr "安装"
 
@@ -628,6 +625,9 @@ msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Installation failed!"
 msgstr "安装失败！"
+
+msgid "Installed modules"
+msgstr ""
 
 msgid "Installing"
 msgstr ""
@@ -650,7 +650,9 @@ msgstr ""
 msgid "Maintainer(s)"
 msgstr "维护人员"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
 msgstr ""
 
 msgid "No ATOMS module is available: your repository list is empty."
@@ -706,3 +708,8 @@ msgstr "版本"
 
 msgid "WebSite"
 msgstr "网站"
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""

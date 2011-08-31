@@ -14,18 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
-
-#, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr ""
-
-#, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -125,6 +115,12 @@ msgstr ""
 "%s: Número incorrecto de argumentos de salida: Se esperaban a lo sumo %d.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong number of output matrix dimensions required: %d expected for "
+"sparse matrices.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector.\n"
@@ -143,6 +139,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -249,6 +254,15 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"

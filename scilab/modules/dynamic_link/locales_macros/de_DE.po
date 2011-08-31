@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:19+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-06-21 19:31+0000\n"
+"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
 
 #, c-format
@@ -73,10 +73,6 @@ msgstr "   Kompilation von "
 msgid "   Generate a Makefile\n"
 msgstr "   erzeuge ein Makefile\n"
 
-#, c-format
-msgid "   Generate a Makefile: %s\n"
-msgstr "   erzeuge ein Makefile: %s\n"
-
 msgid "   Generate a cleaner file\n"
 msgstr "   erzeuge eine Cleanerdatei\n"
 
@@ -102,11 +98,19 @@ msgstr "   stderr: %s\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr ""
+msgstr "%s: %s bereits in scilab geladen."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: ein Fortran oder C Kompiler wird benötigt.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -138,7 +142,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while executing %s.\n"
-msgstr ""
+msgstr "%s: Fehler während der Ausführung %s.\n"
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
@@ -240,7 +244,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
-msgstr ""
+msgstr "%s: Falsches Argument für Eingabeargument #%d:  oder [] erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -250,13 +254,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
+"%s: Falscher Wert für Eingabeargument #%d: bestehende Datei(n) erwartet.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "ein Fortran oder C Kompiler wird benötigt."
-
-#, c-format
-msgid "A managed file extension for input argument #%d"
-msgstr ""
 
 msgid "Dynamic link"
 msgstr "dynamischer Zeiger"
@@ -265,14 +266,14 @@ msgid "F2C cannot build fortran 90"
 msgstr "F2C kann Fortran 90 nicht erzeugen"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
-msgstr ""
+msgstr "Intel Fortran Compiler 9, 10, 11 oder 12 Compiler nicht gefunden."
 
 #, c-format
 msgid "Output: %s\n"
 msgstr "Ausgabe: %s\n"
 
 msgid "You need to unload this library before."
-msgstr ""
+msgstr "Sie müssen diese Bibliothek erst entladen."
 
 #, c-format
 msgid "stderr: %s\n"

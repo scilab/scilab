@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
 
 #, c-format
@@ -423,11 +423,23 @@ msgstr "Herramien&tas"
 msgid "... as well as very tiny radii"
 msgstr ""
 
+msgid "2D and 3D plots"
+msgstr ""
+
 msgid "A partial viewport may be set with clipping"
+msgstr ""
+
+msgid "Animation"
 msgstr ""
 
 msgid "Autumn"
 msgstr "Otoño"
+
+msgid "Basic functions"
+msgstr ""
+
+msgid "Bezier curves and surfaces"
+msgstr ""
 
 msgid "Big radii are supported..."
 msgstr ""
@@ -441,7 +453,13 @@ msgstr "Cancelar"
 msgid "Color number"
 msgstr "Número de color"
 
+msgid "Colormap"
+msgstr ""
+
 msgid "Common X axis"
+msgstr ""
+
+msgid "Complex elementary functions"
 msgstr ""
 
 msgid "Copper"
@@ -486,6 +504,9 @@ msgstr "Error %d en la línea %d de la función: ''%s''"
 msgid "Exact gaussian density"
 msgstr ""
 
+msgid "Finite Elements"
+msgstr ""
+
 msgid "Gaussian random sample histogram"
 msgstr ""
 
@@ -507,6 +528,9 @@ msgstr "Caliente"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "LaTeX/MathML"
+msgstr ""
+
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr ""
 
@@ -519,6 +543,9 @@ msgstr ""
 
 msgid "Misc"
 msgstr "Varios"
+
+msgid "More surfaces"
+msgstr ""
 
 msgid "Multiple datatips mode"
 msgstr ""
@@ -600,6 +627,9 @@ msgstr "Invierno"
 
 msgid "automatic"
 msgstr "automático"
+
+msgid "bar histogram"
+msgstr ""
 
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""

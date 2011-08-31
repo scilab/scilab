@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 12:19+0000\n"
+"PO-Revision-Date: 2011-08-23 12:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -227,6 +227,10 @@ msgstr "%s:  不正確な答えです。\n"
 #, c-format
 msgid "%s: Incorrect link: %s"
 msgstr "%s: 不正確なリンク : %s"
+
+#, c-format
+msgid "%s: Input argument #%d ignored.\n"
+msgstr "%s: 入力引数 #%d が省略されました.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
@@ -482,6 +486,12 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: 浮動小数点�
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: Array of floats or Polynomial "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています  : 浮動小数点数または多項式の配列を指定してください.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong type for input argument #%d: Continuous-time linear system "
 "expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 線形連続時間システムを指定してください.\n"
@@ -520,6 +530,15 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: 線形状態空�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 多項式配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています : 負の実数スカラー値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
@@ -711,6 +730,9 @@ msgstr "分母 :"
 msgid "Evans root locus"
 msgstr "根軌跡"
 
+msgid "Flat systems"
+msgstr "フラットなシステム"
+
 #
 # File: macros/black.sci, line: 185
 # File: macros/bode.sci, line: 101
@@ -748,6 +770,9 @@ msgstr "虚軸"
 msgid "Imaginary axis"
 msgstr "虚軸"
 
+msgid "Inverted pendulum"
+msgstr "倒立振子"
+
 msgid "Irreducible Factors of transfer function (click below)"
 msgstr "伝達関数の既約因子(以下をクリック)"
 
@@ -756,8 +781,14 @@ msgid ""
 "factor (click below)"
 msgstr "伝達関数の既約因子、固有周波数およびダンピング係数(以下をクリック)"
 
+msgid "LQG"
+msgstr "LQG"
+
 msgid "Magnitude (dB)"
 msgstr "振幅 (dB)"
+
+msgid "Mixed-sensitivity"
+msgstr "混合感度"
 
 #
 # File: macros/trfmod.sci, line: 97
@@ -766,6 +797,9 @@ msgstr "分子 :"
 
 msgid "Nyquist plot"
 msgstr "ナイキスト線図"
+
+msgid "PID"
+msgstr "PID"
 
 #
 # File: macros/bode.sci, line: 121
@@ -799,6 +833,12 @@ msgstr "実軸"
 # File: macros/plzr.sci, line: 97
 msgid "Real axis"
 msgstr "実軸"
+
+msgid "Robust control"
+msgstr "ロバスト制御"
+
+msgid "Tracking"
+msgstr "トラッキング"
 
 msgid "Transmission zeros and poles"
 msgstr "伝送ゼロと極"

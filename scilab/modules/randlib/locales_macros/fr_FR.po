@@ -8,53 +8,53 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:39+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-07-07 13:55+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
 
 msgid "Erlang random variable"
-msgstr ""
+msgstr "Variable aléatoire de Erlang"
 
 msgid "Exponential random variable"
-msgstr ""
+msgstr "Variable aléatoire exponentielle"
 
 msgid "Hyper geometric random variable"
-msgstr ""
+msgstr "Variable aléatoire hyper géométrique"
 
 msgid "Poisson random variable"
-msgstr ""
+msgstr "Variable aléatoire de Poisson"
 
 msgid "Random"
 msgstr "Aléatoire"
 
 msgid "Simulation"
-msgstr ""
+msgstr "Simulation"
 
 msgid "Simulation of a binomial random variable"
-msgstr ""
+msgstr "Simulation d'une variable aléatoire binomiale"
 
 msgid "Simulation of a discrete random variable"
-msgstr ""
+msgstr "Simulation d'une variable aléatoire discrète"
 
 msgid "Theory"
-msgstr ""
+msgstr "Théorie"
 
 msgid "Weibull random variable"
-msgstr ""
+msgstr "Variable aléatoire de Weibull"
 
 msgid "binomial random variable"
-msgstr ""
+msgstr "Variable aléatoire binomiale"
 
 msgid "discrete random variable"
-msgstr ""
+msgstr "Variable aléatoire discrète"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "Variable aléatoire uniforme discrète"
 
 msgid "geometric random variable"
-msgstr ""
+msgstr "Variable aléatoire géométrique"

@@ -3,34 +3,32 @@
 # This file is distributed under the same license as the scilab package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
-# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+# Yuri Chornoivan <yurchor@ukr.net>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 04:31+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2011-07-31 04:27+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
 
 #, c-format
-msgid "%s is already compiled for profiling, nothing to do!"
-msgstr ""
-"%s вже зібрано для профілювання, додаткові дії виконувати не потрібно!"
+msgid "%s is already compiled for profiling.\n"
+msgstr "%s вже зібрано для профілювання.\n"
 
 #, c-format
-msgid "%s is already compiled, nothing to do!"
-msgstr "%s вже зібрано, додаткові дії виконувати не потрібно!"
+msgid "%s is already compiled.\n"
+msgstr "%s вже включено до збирання.\n"
 
 #, c-format
-msgid "%s is already noncompiled, nothing to do!"
-msgstr ""
-"Збирання %s ще не виконувалося, додаткові дії виконувати не потрібно!"
+msgid "%s is already noncompiled.\n"
+msgstr "%s вже виключено зі збирання.\n"
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
@@ -186,8 +184,8 @@ msgid "No comment available.\n"
 msgstr "Немає жодного коментаря.\n"
 
 #, c-format
-msgid "No variable named: %s"
-msgstr "Не знайдено змінної з назвою: %s"
+msgid "No variable named: %s.\n"
+msgstr "Змінної з такою назвою немає: %s.\n"
 
 #, c-format
 msgid "Please use %s instead."

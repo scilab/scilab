@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-07 06:22+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-08-18 12:47+0000\n"
+"Last-Translator: Stanislav V. Kroter <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13543)\n"
+"X-Generator: Launchpad (build 13827)\n"
 
 msgid "&?"
 msgstr "&Справка"
@@ -29,58 +29,63 @@ msgid "&Tools"
 msgstr "&Инструменты"
 
 msgid "&nbsp; - A binary file if no format given"
-msgstr ""
+msgstr "&nbsp; - Двоичный файл, если формат не задан"
 
 msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
 msgstr ""
+"&nbsp; - Форматированный текстовый файл, если задан формат (тип ФОРТРАН)"
 
 msgid "&nbsp; Do not start if ''Initialisation Time'' is negative"
-msgstr ""
+msgstr "&nbsp; Не запускать, если ''Время инициализации'' отрицательно"
 
 msgid "&nbsp; Number of columns gives the number of outputs."
-msgstr ""
+msgstr "&nbsp; Количество столбцов даёт число выходных значений."
 
 msgid "&nbsp; Number of rows must be a power of two."
 msgstr "&nbsp; Число строк должно быть степенью двух."
 
 msgid "&nbsp; Rows of the matrix are the output values"
-msgstr ""
+msgstr "&nbsp; Выходными значениями являются строки матрицы"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
-msgstr ""
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 Верхняя половина"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
-msgstr ""
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 Нижняя половина"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
-msgstr ""
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 Диапазон от старшего бита"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-msgstr ""
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Диапазон до младшего бита"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
-msgstr ""
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 Диапазон битов"
 
 msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
 "[Start, End]"
 msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;Если \"Биты для выделения'' установлены в ''Диапазон "
+"битов'': [Начало, Конец]"
 
 msgid "&nbsp;- Bits to Extract:"
-msgstr ""
+msgstr "&nbsp;- Биты для выделения:"
 
 msgid "&nbsp;- Negative values are considered as int8(0)"
-msgstr ""
+msgstr "&nbsp;- Считается, что отрицательные значения имеют тип int8(0)"
 
 msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
-msgstr ""
+msgstr "&nbsp;- Число битов или позиция битов: младший бит в позиции 0"
 
 msgid "&nbsp;- Positive values are considered as int8(1)"
-msgstr ""
+msgstr "&nbsp;- Считается, что положительные значения имеют тип int8(1)"
 
 #, c-format
 msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
 msgstr ""
+"''Начальное значение'' и ''Конечное значение'': несовпадающие размеры: %d и "
+"%d."
 
 msgid "''Minimum'' must be less than ''Maximum''."
 msgstr "''Минимум'' должен быть меньше чем ''Максимум''."
@@ -92,10 +97,10 @@ msgid "(Read Audio File)"
 msgstr "(Чтение аудио-файла)"
 
 msgid "Accepts Inherited Events"
-msgstr ""
+msgstr "Принимает унаследованные события"
 
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
-msgstr ""
+msgstr "Принимает унаследованные события (0:Нет, 1:Да)"
 
 msgid "Add"
 msgstr "Добавить"
@@ -104,19 +109,19 @@ msgid "Automatic"
 msgstr "Автоматически"
 
 msgid "Bits Extraction"
-msgstr ""
+msgstr "Выделение битов"
 
 msgid "Bits to Extract"
-msgstr ""
+msgstr "Биты для выделения"
 
 msgid "Bits to extract"
-msgstr ""
+msgstr "Биты для выделения"
 
 msgid "Boundary condition on a"
-msgstr ""
+msgstr "Граничное условие на a"
 
 msgid "Boundary condition on b"
-msgstr ""
+msgstr "Граничное условие на b"
 
 msgid "Buffer Size"
 msgstr "Размер буфера"
@@ -131,7 +136,7 @@ msgid "Choice:"
 msgstr "Выбор:"
 
 msgid "Clear a bit"
-msgstr ""
+msgstr "Очистить бит"
 
 msgid "Combinatorial logic"
 msgstr "Комбинаторная логика"
@@ -143,10 +148,10 @@ msgid "Constant discriminant"
 msgstr "Постоянный дискриминант"
 
 msgid "Constant value generator"
-msgstr ""
+msgstr "Генератор постоянных значений"
 
 msgid "Constant value must have at least one element."
-msgstr ""
+msgstr "Постоянное значение должно иметь по крайней мере один элемент"
 
 msgid "Data Type"
 msgstr "Тип данных"
@@ -182,10 +187,10 @@ msgid "Elements must be in the interval %s."
 msgstr "Элемент должен быть в интервале %s."
 
 msgid "End current simulation first"
-msgstr ""
+msgstr "Сначала закончите текущее моделирование"
 
 msgid "End current simulation first."
-msgstr ""
+msgstr "Сначала закончите текущее моделирование"
 
 msgid "Event clock generator"
 msgstr ""
@@ -227,6 +232,9 @@ msgstr ""
 msgid "Indexes must be in the interval %s."
 msgstr ""
 
+msgid "Initial Record Index"
+msgstr ""
+
 msgid "Initial State (zero or positive number)"
 msgstr ""
 
@@ -260,6 +268,9 @@ msgstr ""
 msgid "Integer matrix multiplication"
 msgstr ""
 
+msgid "Invalid masked block."
+msgstr ""
+
 msgid "JK flip-flop"
 msgstr ""
 
@@ -279,6 +290,9 @@ msgid "Minimum"
 msgstr "Минимум"
 
 msgid "Modulo counter (0 to N counter)"
+msgstr ""
+
+msgid "Must be a scalar or an empty matrix."
 msgstr ""
 
 msgid "Must be a single value."
@@ -331,6 +345,9 @@ msgstr ""
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr ""
 
+msgid "Outputs Record Selection"
+msgstr ""
+
 msgid "PDE Expression:"
 msgstr ""
 
@@ -352,7 +369,13 @@ msgstr "Номер порта"
 msgid "Ramp function"
 msgstr ""
 
+msgid "Read from C binary file"
+msgstr ""
+
 msgid "Read is done on a binary ''.au'' file"
+msgstr ""
+
+msgid "Record Size"
 msgstr ""
 
 msgid "Regular input port"
@@ -433,6 +456,9 @@ msgstr "''Начальное значение'' должно быть 0 или 1
 msgid "The measurement points"
 msgstr "Точки измерения"
 
+msgid "Time Record Selection"
+msgstr ""
+
 msgid "Treat Bit Field as an Integer"
 msgstr ""
 
@@ -499,6 +525,10 @@ msgid "Wrong type for ''%s'' parameter: %5.1f."
 msgstr "Неверный тип параметра ''%s'': %5.1f."
 
 #, c-format
+msgid "Wrong value for  ''%s'' parameter: %d."
+msgstr ""
+
+#, c-format
 msgid "Wrong value for ''%s'' parameter."
 msgstr "Неверное значение параметра ''%s''"
 
@@ -532,6 +562,10 @@ msgstr ""
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
 msgstr "Неверное значение параметра ''Время начала'': %e."
+
+#, c-format
+msgid "Wrong value for indexes in ''%s'' parameter: %s."
+msgstr ""
 
 #, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
@@ -570,7 +604,13 @@ msgstr "Вы не можете изменить ''Имя файла вывода
 msgid "You must enclose the format''s string between parentheses."
 msgstr ""
 
+msgid "You must provide a file name."
+msgstr ""
+
 msgid "You must provide a filename."
+msgstr ""
+
+msgid "[1, Record Size = "
 msgstr ""
 
 msgid "degree:"

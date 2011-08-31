@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
 
 #, c-format
@@ -91,31 +91,3 @@ msgstr "%s: помилкове значення параметра %s: знач�
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: помилкове значення параметра %s: значення — %s\n"
-
-#, c-format
-#~ msgid "%s: not a plist"
-#~ msgstr "%s: не належить до типу plist"
-
-#, c-format
-#~ msgid "%s: parameter %s not defined"
-#~ msgstr "%s: параметр %s не визначено"
-
-#, c-format
-#~ msgid "%s: parameter doesn''t exist"
-#~ msgstr "%s: параметра з такою назвою не існує"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: кількість мала бути парною.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"

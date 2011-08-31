@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -93,10 +93,3 @@ msgstr "FFTW wisdom を読めません。"
 # File: src/nofftw/nofftw.c, line: 20
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Scilab FFTW モジュールはインストールされていません。\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 187
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正な型: n次元配列 を想定します。\n"

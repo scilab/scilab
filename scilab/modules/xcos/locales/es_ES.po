@@ -14,23 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
-"booleano.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -138,9 +127,6 @@ msgstr "Calculando"
 msgid "Continuous time systems"
 msgstr "Sistemas de tiempo continuo"
 
-msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr "Copyright (c) 1989-2009 (INRIA)"
-
 msgid "Could not save diagram."
 msgstr "No se pudo guardar el diagrama."
 
@@ -224,6 +210,9 @@ msgstr "Error"
 msgid "Error on export"
 msgstr "Error al exportar"
 
+msgid "Error: unable to compile this SuperBlock"
+msgstr ""
+
 msgid "Event handling"
 msgstr "Gestión de eventos"
 
@@ -303,8 +292,8 @@ msgstr "Desde %s"
 msgid "Generate Jacobian"
 msgstr "Generar Jacobiano"
 
-msgid "Generate SuperBlock, please wait ..."
-msgstr "Generando SuperBloque, por favor espere ..."
+msgid "Generate SuperBlock, please wait"
+msgstr ""
 
 msgid "Generating C Code for SuperBlock"
 msgstr "Generando código de C para el Super-Bloque"
@@ -634,9 +623,6 @@ msgstr "Color de Texto"
 msgid "Text settings"
 msgstr "Configuración de texto"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "The Scilab Consortium (DIGITEO)"
-
 #, c-format
 msgid ""
 "The file %s doesn't exist\n"
@@ -797,7 +783,11 @@ msgstr "Error de Xcos"
 msgid "Xcos file"
 msgstr "Archivo de Xcos"
 
-msgid "You may enter here scilab instructions to define "
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed (i.e. you click on OK and every time the diagram is "
+"loaded)."
 msgstr ""
 
 msgid "Zero crossing detection"
@@ -851,509 +841,3 @@ msgstr "seleccionado"
 
 msgid "weight"
 msgstr "peso"
-
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "El módulo '%s' de Scilab esta deshabilitado en modo -nogui o -nwni."
-
-#, c-format
-#~ msgid "%s: File ''%s'' does not exist.\n"
-#~ msgstr "%s: El archivo ''%s'' no existe.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "FALLÓ LA EXPORTACIÓN: %s\n"
-
-#~ msgid "Cut"
-#~ msgstr "Cortar"
-
-#~ msgid "Copy"
-#~ msgstr "Copiar"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Alejar"
-
-#~ msgid "Undo"
-#~ msgstr "Deshacer"
-
-#~ msgid "Zoom In"
-#~ msgstr "Acercar"
-
-#~ msgid "Paste"
-#~ msgstr "Pegar"
-
-#~ msgid "Redo"
-#~ msgstr "Rehacer"
-
-#~ msgid "Group"
-#~ msgstr "Agrupar"
-
-#~ msgid "Invert selection"
-#~ msgstr "Invertir selección"
-
-#~ msgid "UnGroup"
-#~ msgstr "Desagrupar"
-
-#~ msgid "Select all"
-#~ msgstr "Seleccionar todo"
-
-#~ msgid "Quit"
-#~ msgstr "Salir"
-
-#~ msgid "Browser"
-#~ msgstr "Explorador"
-
-#~ msgid "Help"
-#~ msgstr "Ayuda"
-
-#~ msgid "Threshold"
-#~ msgstr "Umbral"
-
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos versión 1.0"
-
-#~ msgid "Continuous"
-#~ msgstr "Continuo"
-
-#~ msgid "Discontinuous"
-#~ msgstr "Discontinuo"
-
-#~ msgid "Port Action"
-#~ msgstr "Acción del Puerto"
-
-#~ msgid "Math Operations"
-#~ msgstr "Operaciones Matemáticas"
-
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
-
-#~ msgid "Events"
-#~ msgstr "Eventos"
-
-#~ msgid ""
-#~ "Diagram has been modified since last save\n"
-#~ "save it?"
-#~ msgstr ""
-#~ "El diagrama ha sido modificado desde la últimas vez\n"
-#~ "¿desea guardarlo?"
-
-#~ msgid ""
-#~ "You may enter here scilab instructions to define symbolic parameters used in "
-#~ "block definitions using Scilab instructions.<br/>These instructions are "
-#~ "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
-#~ "diagram is loaded.)"
-#~ msgstr ""
-#~ "Puede ingresar aquí instrucciones de Scilab para definir parámetros "
-#~ "simbólicos que serán usados en definiciones de bloque usando instrucciones "
-#~ "de Scilab.<br/>Estas instrucciones son evaluadas una vez confirmadas.(i.e. "
-#~ "hace click en OK, por Eval y cada vez se carga un diagrama.)"
-
-#~ msgid "Line Color"
-#~ msgstr "Color de Línea"
-
-#~ msgid "Copyright 2009"
-#~ msgstr "Copyright 2009"
-
-#~ msgid "All rights reserved"
-#~ msgstr "Todos los derechos reservados"
-
-#~ msgid "CeCILL License"
-#~ msgstr "Licencia CeCILL"
-
-#~ msgid "Final inegration time"
-#~ msgstr "Tiempo final de integración"
-
-#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-#~ msgstr ""
-#~ "Configurar Nivel de Depuración (0,1,2,3) </br> ejecuta scicos_debug(n)"
-
-#~ msgid "The Scilab Consortium / DIGITEO"
-#~ msgstr "Consorcio Scilab / DIGITEO"
-
-#~ msgid "Set Debug Level"
-#~ msgstr "Configurar Nivel de Depuración"
-
-#~ msgid "Xcos 1.0"
-#~ msgstr "Xcos 1.0"
-
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "Versión de Diagrama desconocida : "
-
-#, c-format
-#~ msgid "%s: Unable to import xcos file %s.\n"
-#~ msgstr "%s: Imposible importar el archivo %s de xcos.\n"
-
-#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
-#~ msgstr "Traza de Simulación de Luz (cambios discretos y continuos)"
-
-#~ msgid "Remove user defined palette"
-#~ msgstr "Quitar paleta definida por el usuario"
-
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "Incapaz de comunicar con el interprete"
-
-#~ msgid "Same command executed again"
-#~ msgstr "Ejecutar el comando nuevamente"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto para el argumento %d: Se esperaba un string o una "
-#~ "estructura de diagrama"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument %d: diagram structure expected"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto para el argumento %d: Se esperaba una estructura de "
-#~ "diagrama"
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Las bibliotecas Scicos no están cargadas"
-
-#, c-format
-#~ msgid "Unable to open %s"
-#~ msgstr "No se puede abrir %s"
-
-#, c-format
-#~ msgid "Unable to simulate %s"
-#~ msgstr "No se puede simular %s"
-
-#, c-format
-#~ msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-#~ msgstr ""
-#~ "%s: Imposible cargar el bloque desde %s: Se esperaba un archivo hdf5.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the image %s.\n"
-#~ msgstr "%s: Imposible generar la imagen %s.\n"
-
-#, c-format
-#~ msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-#~ msgstr "%s: Imposible generar el icono de la paleta: %s ya existe.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export the palette to hdf5.\n"
-#~ msgstr "%s: imposible exportar la paleta a hdf5.\n"
-
-#, c-format
-#~ msgid "%s: Unable to export %s to %s.\n"
-#~ msgstr "%s: Imposible exportar %s a %s.\n"
-
-#, c-format
-#~ msgid "%s: File ''%s'' is not a valid palette file.\n"
-#~ msgstr "%s: El archivo ''%s'' no es un archivo de paleta válido.\n"
-
-#, c-format
-#~ msgid "%s: All paths defined by %s variable must exist.\n"
-#~ msgstr "%s: Todas las rutas definidas por la variable %s deben existir.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The directory %s cannot been created, please check if you have write "
-#~ "access on this directory.\n"
-#~ msgstr ""
-#~ "%s: No puede crearse el directorio %s, por favor revise si tiene acceso de "
-#~ "escritura en este directorio.\n"
-
-#, c-format
-#~ msgid "%s: Found ''%s'' instead of a block.\n"
-#~ msgstr "%s: Se encontró ''%s'' en lugar de un bloque.\n"
-
-#, c-format
-#~ msgid "%s is not a valid name, please change the title of the diagram."
-#~ msgstr ""
-#~ "%s no es un nombre válido, por favor cambie el nombre del título del "
-#~ "diagrama."
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: Número incorrecto de argumentos de salida: Se esperaban de %d a %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: Argumento de entrada %s inválido: Se esperaba svg o gif.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
-
-#, c-format
-#~ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-#~ msgstr ""
-#~ "%s: Imposible cargar el bloque desde %s: no se encontró la variable `scs_m'' "
-#~ ".\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una paleta.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for %s variable: A string array expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto de la variable %s: Se esperaba un arreglo de strings.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un diagrama.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: function as string or Block type or "
-#~ "full path string expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una función "
-#~ "como string, o una ruta completa, o un bloque.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un manejador.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: se esperaba un booleano.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: directory path string expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: se esperaba un string con "
-#~ "la ruta al directorio.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string con "
-#~ "la ruta completa.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un bloque.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: File not found.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un bloque.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument %s: palette type or path expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una ruta o una "
-#~ "paleta.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un vector de "
-#~ "strings.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string o un "
-#~ "struct.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: path string expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba una ruta.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument %s: string type expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo del argumento de entrada %s incorrecto: Se esperaba un string.\n"
-
-#~ msgid ""
-#~ "Unable to load the HDF5 library. \n"
-#~ "Expecting version %s ; Getting version %s ."
-#~ msgstr ""
-#~ "Imposible cargar la biblioteca HDF5. \n"
-#~ "Se esperaba la versión %s ; pero se obtuvo la %s ."
-
-#, c-format
-#~ msgid "%s: Unable to import data from %s"
-#~ msgstr "%s: Imposible importar datos desde %s"
-
-#, c-format
-#~ msgid "%s: Unable to export ''XX'' to %s"
-#~ msgstr "%s: Imposible exportar ''XX'' como %s"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-#~ msgstr ""
-#~ "%s: Valor incorrecto del argumento de entrada %s: Se esperaba un archivo "
-#~ "existente.\n"
-
-#~ msgid "Bouncing Balls"
-#~ msgstr "Bolas rebotando"
-
-#~ msgid "Bridge Rectifer"
-#~ msgstr "Rectificador de Puente"
-
-#~ msgid "Chaos Modelica"
-#~ msgstr "Chaos Modelica"
-
-#~ msgid "Colpitts oscillator"
-#~ msgstr "Oscilador de Colpitts"
-
-#~ msgid "Control Systems"
-#~ msgstr "Sistemas de control"
-
-#~ msgid "Ball on a Platform"
-#~ msgstr "Bola en una plataforma"
-
-#~ msgid "Automotive Suspension"
-#~ msgstr "Suspensión de automotor"
-
-#~ msgid "Bouncing Ball"
-#~ msgstr "Bola rebotando"
-
-#~ msgid "Basic controller"
-#~ msgstr "Controlador básico"
-
-#~ msgid "Differential amplifier"
-#~ msgstr "Aplificador diferencial"
-
-#~ msgid "Discrete Controller"
-#~ msgstr "Controlador discreto"
-
-#~ msgid "Fibonacci Numbers"
-#~ msgstr "Números de Fibonacci"
-
-#~ msgid "Electrical Systems"
-#~ msgstr "Sistemas Eléctricos"
-
-#~ msgid "Discrete Kalman Filter"
-#~ msgstr "Filtro discreto de Kalman"
-
-#~ msgid "Inverted Pendulum"
-#~ msgstr "Péndulo invertido"
-
-#~ msgid "Old demos"
-#~ msgstr "Demos antiguos"
-
-#~ msgid "Modelica demos"
-#~ msgstr "Demos de Modelica"
-
-#~ msgid "Lorentz butterfly"
-#~ msgstr "Mariposa de Lorentz"
-
-#~ msgid "Mechanical Systems"
-#~ msgstr "Sistemas Mecánicos"
-
-#~ msgid "Kalman Filter"
-#~ msgstr "Filtro de Kalman"
-
-#~ msgid "Hydraulics blocks"
-#~ msgstr "Bloques hidráulicos"
-
-#~ msgid "Logic NOR gate"
-#~ msgstr "Compuerta lógica NOR"
-
-#~ msgid "Logic AND gate"
-#~ msgstr "Compuerta lógica AND"
-
-#~ msgid "RLC Circuit"
-#~ msgstr "Circuito RLC"
-
-#~ msgid "RLC circuit"
-#~ msgstr "circuito RLC"
-
-#~ msgid "Scilab block"
-#~ msgstr "Bloque de Scilab"
-
-#~ msgid "Scicos data types"
-#~ msgstr "tipos de datos de Scicos"
-
-#~ msgid "Transformer"
-#~ msgstr "Transformador"
-
-#~ msgid "Temperature Controller"
-#~ msgstr "Controlador de temperatura"
-
-#~ msgid "Standard demos"
-#~ msgstr "Demos estándar"
-
-#~ msgid "Simple Thermostat"
-#~ msgstr "Termostato simple"
-
-#~ msgid "Signal Builder"
-#~ msgstr "Constructor de señales"
-
-#~ msgid "Simple Demo"
-#~ msgstr "Demo simple"
-
-#~ msgid "Water tank"
-#~ msgstr "Tanque de agua"
-
-#~ msgid "Table Lookup"
-#~ msgstr "Buscar en la tabla"
-
-#~ msgid "OpAmp amplifier"
-#~ msgstr "Amplificador operacional"
-
-#~ msgid "Cont.Plant-Hybrid Observer"
-#~ msgstr "Observador de contador de planta híbrido"
-
-#~ msgid "Old Gain Block"
-#~ msgstr "Antiguo bloque de ganancia"
-
-#~ msgid "DC/DC Boost Converter"
-#~ msgstr "Conversor de impulsos DC/DC"
-
-#~ msgid "DC/DC Buck Converter"
-#~ msgstr "Conversor de carga DC/DC"
-
-#~ msgid "Goto/From blocks"
-#~ msgstr "Bloques Ira a/De"
-
-#~ msgid "_IF_ Scicos block"
-#~ msgstr "bloque _IF_Scicos"
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-#~ msgstr "%s: Argumento de entrada %s inválido: Se esperaba svg, gif o jpg.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Valor incorrecto para el argumento de entrada %s: Se esperaba un archivo "
-#~ "de formato válido (png, jpg, gif).\n"
-
-#~ msgid "Xcos data types"
-#~ msgstr "Tipos de datos de Xcos"
-
-#~ msgid ""
-#~ "Saxon provides only an immutable DOM, please configure another implementation"
-#~ msgstr ""
-#~ "Saxon provee solamente DOM inmutables, por favor configure otra "
-#~ "implementación"
-
-#~ msgid "_IF_ Xcos block"
-#~ msgstr "bloque _IF_ Xcos"

@@ -8,26 +8,16 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 12:33+0000\n"
+"PO-Revision-Date: 2011-08-01 16:32+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#, c-format
-msgid ""
-"%s : Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices"
-msgstr "%s: 出力行列の次元の数が間違っています: 疎行列では %d が必要です."
-
-#, c-format
-msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -120,6 +110,12 @@ msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong number of output matrix dimensions required: %d expected for "
+"sparse matrices.\n"
+msgstr "%s: 出力行列の次元が間違っています: 疎行列の場合は %d 個指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
 msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
@@ -134,6 +130,15 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の整数�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数のスカラーを1つ指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数のスカラーまたはベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -215,6 +220,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 正の実数を指�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数のスカラーを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数のスカラーまたはベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"

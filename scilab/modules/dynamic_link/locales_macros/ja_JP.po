@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 12:28+0000\n"
+"PO-Revision-Date: 2011-06-10 13:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -92,12 +92,6 @@ msgid "   Generate a Makefile\n"
 msgstr "   Makefileの生成\n"
 
 #
-# File: macros/ilib_build.sci, line: 52
-#, c-format
-msgid "   Generate a Makefile: %s\n"
-msgstr "   Makefileの生成: %s\n"
-
-#
 # File: macros/ilib_build.sci, line: 41
 # File: macros/ilib_for_link.sci, line: 34
 msgid "   Generate a cleaner file\n"
@@ -133,6 +127,14 @@ msgstr "%s: %s は Scilabにロード済みです."
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Fortran または Cコンパイラが必要です.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr "%s: 入力引数 #%d にマネージドファイル拡張子を指定してください."
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr "%s: 入力引数 #%d にマネージドファイル拡張子を指定してください.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -273,10 +275,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 既存のファイ�
 # File: macros/ilib_compile.sci, line: 20
 msgid "A Fortran or C compiler is required."
 msgstr "Fortran または C コンパイラが必要です。"
-
-#, c-format
-msgid "A managed file extension for input argument #%d"
-msgstr "入力引数 #%d のマネージドファイルエクステンション"
 
 # File: etc/dynamic_link.start, line: 43
 msgid "Dynamic link"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 #, c-format
@@ -205,6 +205,16 @@ msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为 m x 1 的数组。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string (3 characters max.) "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
@@ -311,12 +321,6 @@ msgstr "%s：输入参数的类型错误：应该为字符串。\n"
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：应该为'%s'、'%s'或'%s'。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
-"directory expected.\n"
-msgstr "%s：输入参数#%d的值错误 ('%ls')：应该为一个正确的文件名或目录。\n"
 
 #, c-format
 msgid ""
@@ -448,165 +452,3 @@ msgstr "警告：文件 '%s' 已经在Scilab中被打开。\n"
 
 msgid "unclosed [ directive."
 msgstr "未关闭的 [ 标志。"
-
-#, c-format
-#~ msgid "%s: Options ignored.\n"
-#~ msgstr "%s：可选项被忽略。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
-#~ "corrupted.\n"
-#~ msgstr "%s：错误的变量类型（%s）出现在 %s 中。文件可能有错或被破坏。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s).\n"
-#~ msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: %s expected.\n"
-#~ msgstr "%s：输入参数#%d的值错误：应该为%s。\n"
-
-#, c-format
-#~ msgid "%s: Source file %s does not exist or unable to access.\n"
-#~ msgstr "%s：源文件 %s 不存在或不可读。\n"
-
-#, c-format
-#~ msgid "%s: Destination directory %s does not exist or is unreadable.\n"
-#~ msgstr "%s：结果目录 %s 不存在或不可读。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments.\n"
-#~ msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-#~ msgid "%s: Source directory %s does not exist or is unreadable.\n"
-#~ msgstr "%s：源目录 %s 不存在或不可读。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument: A string expected.\n"
-#~ msgstr "%s：输入参数的大小错误：应该为一个字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
-#~ msgstr "%s：输入参数的大小错误：必须少于%d个字符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
-#~ msgstr "%s：输入参数#%d的值错误：必须为''%s''。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument: String expected.\n"
-#~ msgstr "%s：输入参数的类型错误：应该为字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-#~ msgstr "%s：输入参数的数目错误：应该做多为%d个。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-#~ msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-#~ msgstr "%s：输入参数的数目错误：必须 > 0。\n"
-
-#, c-format
-#~ msgid "%s: Cannot open file '%s'.\n"
-#~ msgstr "%s：无法打开文件 '%s'。\n"
-
-#, c-format
-#~ msgid "%s: Cannot read data in file '%s'.\n"
-#~ msgstr "%s：无法从文件 '%s 中读数据。\n"
-
-#~ msgid "Buffer too small."
-#~ msgstr "缓冲区太小。"
-
-#, c-format
-#~ msgid "%s: Not enough arguments.\n"
-#~ msgstr "%s：无足够参数。\n"
-
-#, c-format
-#~ msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
-#~ msgstr "%s：不可将转换标志 'l' 或 'h' 与 'c'标志混在一起。\n"
-
-#, c-format
-#~ msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
-#~ msgstr "%s：不可将转换标志 'l' 或 'h' 与 's'标志混在一起。\n"
-
-#~ msgid "'o' format not allowed."
-#~ msgstr "不允许使用 'o' 格式。"
-
-#, c-format
-#~ msgid "%s: Wrong number of output argument(s).\n"
-#~ msgstr "%s：输出参数的数目错误。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
-#~ "expected.\n"
-#~ msgstr "%s：输入参数#%d的值错误：应该为\"%s\"、\"%s\"或\"%s\"。\n"
-
-#, c-format
-#~ msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
-#~ msgstr "%s：输入参数#%d的值错误：数据与格式不符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-#~ msgstr "%s：输入参数#%d的大小错误：应该为一个文件描述符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个文件描述符。\n"
-
-#, c-format
-#~ msgid "%s: Incorrect format.\n"
-#~ msgstr "%s：不正确的格式。\n"
-
-#, c-format
-#~ msgid "%s: Invalid conversion.\n"
-#~ msgstr "%s：不正确的转换。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-#~ msgstr "%s：输入参数#%d的值错误：应该为一个正确的文件描述符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s：内存申请错误。\n"
-
-#, c-format
-#~ msgid "%s: end of input reached before final conversion.\n"
-#~ msgstr "%s：最终转换尚未完成，但输入已经结束。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A integer or string expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个整数或字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-#~ msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-#~ msgstr "%s：输入参数#%d的大小错误：应该为一个文件名。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A filename or file descriptor "
-#~ "nexpected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个文件名或文件描述符。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-#~ msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"

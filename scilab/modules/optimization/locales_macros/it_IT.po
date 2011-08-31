@@ -8,22 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:37+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-07-15 09:46+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
 
 #, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " numero di vincoli (%s)''),''lmisolver'',%m,%fm));"
+msgid "%s:       OPTIMIZATION PHASE."
+msgstr "%s: FASE DI OTTIMIZZAZIONE."
 
 #, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
+msgid "%s:     FEASIBILITY PHASE."
+msgstr "%s: FASE DI FATTIBILITÀ"
+
+#, c-format
+msgid "%s: Absolute accuracy reached."
+msgstr "%s: Raggiunta l'accuratezza assoluta."
 
 #, c-format
 msgid "%s: Ambiguous property name %s matches several fields : %s"
@@ -31,37 +35,25 @@ msgstr ""
 "%s: Il nome della proprietà %s è ambiguo e corrisponde con diversi campi: %s"
 
 #, c-format
+msgid "%s: Basis Construction."
+msgstr "%s: Costruzione di base."
+
+#, c-format
 msgid "%s: Cannot check cost function when x0 is empty"
 msgstr ""
 "%s: Non è possibile controllare una funzione costante quando x0 è vuoto"
 
 #, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,1)."
+msgid "%s: Cannot evaluate cost function with %s."
+msgstr ""
 
 #, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,2)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,3)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,4)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,5)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,6)."
-msgstr "%s: Non è possibile valutare la funzione costante da costf(x0,6)."
+msgid "%s: Construction of canonical representation."
+msgstr "%s: Costruzione della rappresentazione canonica."
 
 #, c-format
 msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
-msgstr ""
+msgstr "%s: Uno dei due fra Aeq, A lb o ub deve essere non vuoto."
 
 #, c-format
 msgid "%s: Empty function (use -function option)."
@@ -76,10 +68,31 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Expected floating point integer for input argument %s at input #%d, but "
+"entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Era attesa una funzione, ma per la variabile %s all''ingresso #%d si è "
 "ottenuto %s invece."
+
+#, c-format
+msgid ""
+"%s: Expected function for variable %s(1) at input #%d, but got %s instead."
+msgstr ""
+"%s: Era attesa una funzione per la variabile %s(1) all'ingresso #%d, ma si è "
+"ottenuto %s invece."
+
+#, c-format
+msgid ""
+"%s: Expected function or list for variable %s at input #%d, but got %s "
+"instead."
+msgstr ""
+"%s: Era attesa una funzione o una lista per la variabile %s(1) all'ingresso "
+"#%d, ma si è ottenuto %s invece."
 
 #, c-format
 msgid ""
@@ -98,8 +111,28 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Expected that all entries of input argument %s at input #%d are greater "
+"or equal than %s, but entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected that all entries of input argument %s at input #%d are in the "
+"range [%s,%s], but entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected value [%s] for input argument %s at input #%d, but got %s "
+"instead."
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
 msgstr ""
+"%s: H_form deve essere predefinita, blockmat o hypermat, la attuale "
+"H_form=%s\n"
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -112,6 +145,12 @@ msgstr "%s: La cronologia è disabilitata ; avviare l''opzione -storehistory."
 
 #, c-format
 msgid ""
+"%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
+msgstr ""
+"%s: Problema mal posto. Numero delle incognite (%s) > numero dei vincoli (%s)"
+
+#, c-format
+msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
 "%s: Impossibile diminuire il vertice #%d/%d a [%s] entro i vincoli di "
@@ -120,6 +159,14 @@ msgstr ""
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
 msgstr "%s: L''ipotesi iniziale [%s] non è realizzabile."
+
+#, c-format
+msgid "%s: Initial guess feasible."
+msgstr "%s: Ipotesi iniziale plausibile."
+
+#, c-format
+msgid "%s: Initial guess is not feasible."
+msgstr ""
 
 #, c-format
 msgid "%s: Initial guess not feasible.\n"
@@ -139,6 +186,18 @@ msgid "%s: Logging not started."
 msgstr "%s: La registrazione non è partita."
 
 #, c-format
+msgid "%s: M must be strictly greater than trace of F(x0)."
+msgstr "%s: M deve essere strettamente maggiore della traccia di F(x0)."
+
+#, c-format
+msgid "%s: Max. iters. exceeded."
+msgstr ""
+
+#, c-format
+msgid "%s: Mbound too small."
+msgstr "%s: Mbound è troppo piccolo."
+
+#, c-format
 msgid "%s: Negative iteration index %d is not allowed."
 msgstr "%s: L'' indice di iterazione negativo %d non è ammesso."
 
@@ -153,6 +212,14 @@ msgid ""
 msgstr ""
 "%s: Non sono disponibili opzioni prestabilite: la funzione ''%s'' non esiste "
 "nel percorso."
+
+#, c-format
+msgid "%s: No feasible solution exists."
+msgstr "%s: Non esiste alcuna soluzione plausibile."
+
+#, c-format
+msgid "%s: No feasible solution found."
+msgstr "%s: NOn è stata trovata alcuna soluzione plausibile."
 
 #, c-format
 msgid "%s: No output command is defined."
@@ -186,6 +253,10 @@ msgstr ""
 "vertici = %d."
 
 #, c-format
+msgid "%s: Objective constant."
+msgstr "%s: Oggetto costante."
+
+#, c-format
 msgid ""
 "%s: Odd number of arguments : the first argument is expected to be a struct, "
 "but is a %s"
@@ -213,7 +284,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
-msgstr ""
+msgstr "%s: Q deve essere ortogonale.\n"
 
 #, c-format
 msgid ""
@@ -223,44 +294,24 @@ msgstr ""
 "confini."
 
 #, c-format
+msgid "%s: Relative accuracy reached."
+msgstr "%s: Raggiunta l'accuratezza relativa."
+
+#, c-format
+msgid "%s: Target value not achievable."
+msgstr "%s: Il valore obbiettivo non è raggiungibile."
+
+#, c-format
+msgid "%s: Target value reached."
+msgstr "%s: Raggiunto il valore obbiettivo."
+
+#, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
 msgstr ""
 "%s: L''opzione -withderivatives è attiva, ma tutti gli algoritmi  in "
 "neldermead non usano la derivata."
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Il vettore boundsmax dovrebbe essere una matrice riga, la forma attuale "
-"è %d x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Il vettore boundsmax dovrebbe avere %d colonne, ma la forma attuale è %d "
-"x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Il vettore boundsmin dovrebbe essere una matrice riga, ma la forma "
-"attuale è %d x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Il vettore boundsmin dovrebbe avere %d colonne, ma la forma attuale è %d "
-"x %d"
 
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
@@ -279,26 +330,12 @@ msgstr ""
 "punti, ma la dimensione è %d e il numero di vertici è %d"
 
 #, c-format
-msgid ""
-"%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d."
-msgstr ""
-"%s: Il vettore len dovrebbe essere una matrice riga, ma la forma attuale è "
-"%d x %d."
+msgid "%s: The initial simplex has no dimension."
+msgstr "%s: Il simplesso iniziale ha dimensione nulla."
 
 #, c-format
-msgid ""
-"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
-msgstr ""
-"%s: Il vettore len dovrebbe essere uno scalare, ma la forma attuale è %d x %d"
-
-#, c-format
-msgid ""
-"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
-"is %d x %d while current shape of len is %d x %d."
-msgstr ""
-"%s: Il vettore len non è consistente con il punto x0. L''attuale forma di x0 "
-"è %d x %d mentre l''attuale forma di len è %d x %d."
+msgid "%s: The initial simplex has no vertices."
+msgstr "%s: Il simplesso iniziale non ha vertici."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -307,6 +344,11 @@ msgstr "%s: La matrice %s da costf(x0,%d) ha %d colonne, invece di %d."
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
 msgstr "%s: La matrice %s da costf(x0,%d) ha %d righe, invece di %d."
+
+#, c-format
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -337,6 +379,16 @@ msgstr "%s: Il numero della variabile è zero."
 
 #, c-format
 msgid ""
+"%s: The number of variables %d does not match the number of max bounds: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of variables %d does not match the number of min bounds: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
 msgstr ""
@@ -355,22 +407,6 @@ msgid ""
 msgstr ""
 "%s: Il simplesso orientato può essere elaborato solo con un simplesso fatto "
 "di n+1 punti, ma la dimensione è %d e il numero di vertici è %d"
-
-#, c-format
-msgid ""
-"%s: The restarteps option is expected to be a scalar, but current shape is "
-"%d x %d"
-msgstr ""
-"%s:L''opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale "
-"è %d x %d"
-
-#, c-format
-msgid "%s: The restarteps option is expected to be positive"
-msgstr "%s:L''opzione restartsteps dovrebbe essere positiva"
-
-#, c-format
-msgid "%s: The restartstep vector is expected to be positive"
-msgstr "%s: Il vettore restartsteps dovrebbe essere positivo"
 
 #, c-format
 msgid ""
@@ -401,40 +437,12 @@ msgstr ""
 "%d x %d"
 
 #, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d"
-msgstr ""
-"%s: Il vettore x0 dovrebbe essere una matrice riga, ma la forma attuale è %d "
-"x %d"
-
-#, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d."
-msgstr ""
-"%s: Il vettore x0 dovrebbe essere una matrice riga, ma la forma attuale è %d "
-"x %d."
-
-#, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
 msgstr "%s: %s è inatteso come numero massimo di valutazioni di funzione."
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
 msgstr "%s: %s è inatteso come numero massimo di iterazioni."
-
-#, c-format
-msgid "%s: Unexpected negative value %s for %s option"
-msgstr "%s: C''è l ''inatteso valore negativo %s per l''opzione %s"
-
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
-"expected."
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è inatteso: ne sono forniti %d,ma "
-"ne sono attesi da 0 a 7."
 
 #, c-format
 msgid ""
@@ -450,12 +458,6 @@ msgid ""
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è inatteso: ne sono forniti %d ma "
 "ne sono attesi 2."
-
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
-"expected."
-msgstr ""
 
 #, c-format
 msgid ""
@@ -572,10 +574,23 @@ msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
 "expected, but current number is %d.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un numero di elementi sbagliato: ne erano "
+"attesi almeno %d, ma il loro attuale numero è %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -588,20 +603,31 @@ msgid "%s: Wrong size for input argument #%d."
 msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore colonna.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for element #%d in input argument #%d: A function is "
 "expected, but current type is %s.\n"
 msgstr ""
+"%s: Il tipo dell'elemento #%d nell'argomento in ingresso #%d è sbagliato: "
+"era attesa una funzione, ma il tipo attuale è %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
@@ -619,6 +645,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -631,130 +659,194 @@ msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
 "lower than the lower bound lb."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. Una voce della banda "
+"superiore ub è minore di quello nella banda inferiore lb."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. gam deve essere in "
+"[0,1]."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. maxiter must be a floating point "
 "integer."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. maxiter deve essere "
+"un intero a virgola mobile."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. maxiter deve essere "
+"maggiore di 1."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. rtolf deve essere in "
+"[0,1]."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
 "constraints."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 non soddisfa i "
+"vincoli di uguaglianza."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
 "constraints."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 non soddisfa i "
+"vincoli di disuguaglianza."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 è maggiore della "
+"banda superiore ub."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 is not positive."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 non è positivo."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato. x0 è minore della "
+"banda inferiore lb."
+
+#, c-format
+msgid "%s: feasible solution found."
+msgstr "%s: trovata una soluzione plausibile."
+
+#, c-format
+msgid "%s: initial guess is feasible."
+msgstr "%s: l'ipotesi iniziale è plausibile."
+
+#, c-format
+msgid "%s: max number of iterations exceeded, solution may not be optimal"
+msgstr ""
+"%s: è stato superato il numero massimo di iterazioni, la soluzione potrebbe "
+"non essere ottimale"
+
+#, c-format
+msgid "%s: max number of iterations exceeded."
+msgstr "%s: superato il numero massimo di iterazioni."
+
+#, c-format
+msgid "%s: may be unbounded below"
+msgstr "%s: potrebbe non essere limitata inferiormente"
+
+#, c-format
+msgid "%s: not feasible or badly defined problem."
+msgstr "%s: problema non realizzabile o mal definito."
+
+#, c-format
+msgid "%s: optimal solution found"
+msgstr "%s: trovata una soluzione ottimale"
+
+#, c-format
+msgid "%s: rank deficient problem"
+msgstr ""
+
+#, c-format
+msgid "%s: solution unbounded."
+msgstr "%s: soluzione illimitata."
 
 msgid "...Done\n"
-msgstr ""
+msgstr "...Fatto\n"
 
 msgid "A new method of constrained optimization \n"
-msgstr ""
+msgstr "Un nuovo metodo di ottimizzazione vincolata \n"
+
+#, c-format
+msgid "Calling sequence %s is obsolete."
+msgstr "La sequenza di chiamata %s è obsoleta."
 
 msgid "Column #1: number of dimensions\n"
-msgstr ""
+msgstr "Colonna #1: numero delle dimensioni\n"
 
 msgid "Column #2: number of function evaluations\n"
-msgstr ""
+msgstr "Colonna #2: numero delle valutazioni di funzione\n"
 
 msgid "Column #3: number of iterations\n"
-msgstr ""
+msgstr "Colonna #3: numero di iterazioni\n"
 
 msgid "Column #4: convergence rate (lower is better)\n"
-msgstr ""
+msgstr "Colonna #4: tasso di convergenza (molto piccolo è meglio)\n"
 
 msgid "Computation of optimal parameters"
-msgstr ""
+msgstr "Calcolo dei parametri ottimali"
 
 msgid "Configuring nmplot object...\n"
-msgstr ""
+msgstr "Configurazione dell'oggetto nmplot...\n"
 
 msgid "Creating nmplot object ...\n"
-msgstr ""
+msgstr "Creazione dell'oggetto nmplot ...\n"
 
 msgid "Creating nmplot object...\n"
-msgstr ""
+msgstr "Creazione dell'oggetto nmplot ...\n"
 
 msgid "Creating object ...\n"
-msgstr ""
+msgstr "Creazione dell'oggetto ...\n"
 
 msgid "Creating object...\n"
-msgstr ""
+msgstr "Creazione dell'oggetto ...\n"
 
 msgid "Defining Han function...\n"
-msgstr ""
+msgstr "Definizione della funzione di Han in corso...\n"
 
 msgid "Defining McKinnon function...\n"
-msgstr ""
+msgstr "Definizione della funzione di McKinnon in corso...\n"
 
 msgid "Defining Rosenbrock Post Office function...\n"
 msgstr ""
+"Definizione in corso della funzione Ufficio Postale di Rosenbrock...\n"
 
 msgid "Defining Rosenbrock function ...\n"
-msgstr ""
+msgstr "Definizione in corso della funzione di Rosenbrock...\n"
 
 msgid "Defining Rosenbrock function...\n"
-msgstr ""
+msgstr "Definizione in corso della funzione di Rosenbrock...\n"
 
 msgid "Defining initial simplex coordinates...\n"
-msgstr ""
+msgstr "Definizione in corso delle coordinate del simplesso iniziale...\n"
 
 msgid "Defining quadratic function ...\n"
-msgstr ""
+msgstr "Definizione in corso della funzione quadratica...\n"
 
 msgid "Defining quadratic function...\n"
-msgstr ""
+msgstr "Definizione in corso della funzione quadratica...\n"
 
 msgid "Derivative"
-msgstr ""
+msgstr "Derivata"
 
 msgid "End of Optimization\n"
-msgstr ""
+msgstr "Fine della ottimizzazione\n"
 
 msgid "End of demo.\n"
-msgstr ""
+msgstr "Fine della demo.\n"
 
 msgid "Function Value Average"
-msgstr ""
+msgstr "Valor medio della funzione"
 
 msgid "Genetic algorithms"
-msgstr ""
+msgstr "Algoritmi genetici"
 
 msgid ""
 "Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
 "Optimization Methods and Software, 2006.\n"
 msgstr ""
+"Han e Neumann.Effetto della dimensionalità nel metodo del simplesso di "
+"Nelder-Mead. Metodi di ottimizzazione e Software,2006.\n"
 
 msgid "Illustrates Box'' algorithm on Box problem A.\n"
 msgstr ""
@@ -764,11 +856,15 @@ msgstr ""
 
 msgid "Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"
 msgstr ""
+"Mostra l'algoritmo di Box con il problema dell'Ufficio Postale di "
+"Rosenbrock.\n"
 
 msgid ""
 "Illustrates Box'' algorithm on a simply bounds-constrained optimization "
 "problem.\n"
 msgstr ""
+"Mostra l'algoritmo di Box con un problema di ottimizzazione semplicemente "
+"vincolato al bordo.\n"
 
 msgid ""
 "Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
@@ -779,6 +875,8 @@ msgid ""
 "Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
 "well on Rosenbrock test case.\n"
 msgstr ""
+"Mostra che l'algoritmo a forma fissa di Spendley ed altri non si comporta "
+"bene con il caso di prova di Rosenbrock.\n"
 
 msgid ""
 "Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
@@ -789,11 +887,15 @@ msgid ""
 "Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
 "a quadratic test case.\n"
 msgstr ""
+"Illustra che l'algoritmo a forma fissa di Spendely ed altri si comporta bene "
+"su un caso di prova quadratico.\n"
 
 msgid ""
 "Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
 "quadratic test case.\n"
 msgstr ""
+"Illustra che l'algoritmo a forma fissa di Nelder-Mead si comporta bene su un "
+"caso di prova quadratico.\n"
 
 msgid "Illustrates the 1st counter example given by Han et al.\n"
 msgstr ""
@@ -806,96 +908,93 @@ msgid ""
 msgstr ""
 
 msgid "Initialization\n"
-msgstr ""
+msgstr "Inizializzazione\n"
 
 msgid "Iterations"
-msgstr ""
+msgstr "Iterazioni"
 
 msgid "LQV"
 msgstr ""
 
-msgid "Logarithm Maximum Oriented length"
-msgstr ""
-
-msgid "Logarithm Minimum Function Value"
-msgstr ""
-
 msgid "Maximum Oriented length"
-msgstr ""
+msgstr "Massima lunghezza orientata"
 
 #, c-format
 msgid "Maximum dimension:%d\n"
-msgstr ""
+msgstr "DImensione massima: %d\n"
 
 msgid "Minimum Function Value"
-msgstr ""
+msgstr "Valore minimo della funzione"
 
 msgid "Non linear data fitting"
 msgstr ""
 
 msgid "Number of function evaluations"
-msgstr ""
+msgstr "NUmero di valutazioni di funzione"
 
 msgid "Number of parameters"
-msgstr ""
+msgstr "Numero dei parametri"
 
 msgid "Optimisation"
-msgstr ""
+msgstr "Ottimizzazione"
 
 msgid "Optimization and Simulation"
 msgstr "Ottimizzazione e Simulazione"
 
+#, c-format
+msgid "Option %s is obsolete."
+msgstr "L'opzione %s è obsoleta."
+
 msgid "Output"
-msgstr ""
+msgstr "Risultato"
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Usare %s invece."
 
 msgid "Plot"
 msgstr ""
 
 msgid "Plot contour (please wait) ...\n"
-msgstr ""
+msgstr "Disegno del contorno (attendere) ...\n"
 
 msgid "Plot contour (please wait)...\n"
-msgstr ""
+msgstr "Disegno del contorno (attendere) ...\n"
 
 msgid "Plotting contour (please wait) ...\n"
-msgstr ""
+msgstr "Disegno del contorno (attendere) ...\n"
 
 msgid "Plotting contour (please wait)...\n"
-msgstr ""
-
-msgid "Plotting history of fbar ...\n"
-msgstr ""
-
-msgid "Plotting history of fopt ...\n"
-msgstr ""
-
-msgid "Plotting history of sigma ...\n"
-msgstr ""
+msgstr "Disegno del contorno (attendere) ...\n"
 
 msgid "Problem A\n"
-msgstr ""
+msgstr "Problema A\n"
 
 msgid "Problem B\n"
-msgstr ""
+msgstr "Problema B\n"
 
 msgid "Rate of convergence"
-msgstr ""
+msgstr "Tasso di convergenza"
 
 #, c-format
-msgid "Relative error = %e\n"
-msgstr ""
+msgid "Relative error on f = %e\n"
+msgstr "Errore relativo su f =  %e\n"
+
+#, c-format
+msgid "Relative error on x = %e\n"
+msgstr "Errore relativo su x =  %e\n"
 
 msgid "Rosenbrock"
-msgstr ""
+msgstr "Rosenbrock"
 
 msgid "Running optimization ...\n"
-msgstr ""
+msgstr "Esecuzione della ottimizzazione in corso...\n"
 
 msgid "Searching (please wait) ...\n"
-msgstr ""
+msgstr "Ricerca in corso (attendere) ...\n"
 
 msgid "Searching (please wait)...\n"
-msgstr ""
+msgstr "Ricerca in corso (attendere) ...\n"
 
 msgid "Setup output files...\n"
 msgstr ""
@@ -904,21 +1003,21 @@ msgid "Simulated Annealing"
 msgstr ""
 
 msgid "Spaceship landing trajectory"
-msgstr ""
-
-msgid "and a comparison with other methods.\n"
-msgstr ""
+msgstr "Traiettoria di atterraggio della navetta spaziale"
 
 #, c-format
-msgid "f computed = %f\n"
-msgstr ""
+msgid "This feature will be permanently removed in Scilab %s"
+msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
+
+msgid "and a comparison with other methods.\n"
+msgstr "e un confronto con altri metodi.\n"
 
 #, c-format
 msgid "f expected = %f\n"
-msgstr ""
+msgstr "f atteso = %f\n"
 
 msgid "fminsearch"
-msgstr ""
+msgstr "fminsearch"
 
 msgid "fminsearch - Option Display"
 msgstr ""
@@ -959,6 +1058,9 @@ msgstr ""
 msgid "neldermead - Output Command"
 msgstr ""
 
+msgid "neldermead - Polygon"
+msgstr ""
+
 msgid "neldermead - Rosenbrock Variable"
 msgstr ""
 
@@ -980,6 +1082,12 @@ msgstr ""
 msgid "nmplot - Quadratic Fixed #2"
 msgstr ""
 
+msgid "nmplot - Quadratic Variable#1"
+msgstr ""
+
+msgid "nmplot - Quadratic Variable#2"
+msgstr ""
+
 msgid "nmplot - Rosenbrock Fixed"
 msgstr ""
 
@@ -988,8 +1096,8 @@ msgstr ""
 
 #, c-format
 msgid "x0 = %s\n"
-msgstr ""
+msgstr "x0 = %s\n"
 
 #, c-format
 msgid "x0=%s\n"
-msgstr ""
+msgstr "x0=%s\n"

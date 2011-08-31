@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:06+0000\n"
-"Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
+"PO-Revision-Date: 2011-08-09 09:26+0000\n"
+"Last-Translator: Enrico \"eNry\" Carafa <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
 
 #, c-format
@@ -23,7 +23,7 @@ msgstr "%s: L''entità %s non è valida\n"
 
 #, c-format
 msgid "%s: ''%s'' cannot be used with ''%s''.\n"
-msgstr ""
+msgstr "%s: \"%s\" non può essere usato con \"%s\".\n"
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function ''%s''."
@@ -37,10 +37,14 @@ msgstr "%s: Errore: non è possibile valutare la funzione in ingresso."
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
+"%s: Gli argomenti in ingresso #%d 3 #%d sono incompatibili: era atteso lo "
+"stesso numero di righe.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on a axes.\n"
@@ -73,7 +77,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
@@ -100,12 +105,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
@@ -122,10 +128,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era atteso %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
-msgstr ""
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata."
 
 #, c-format
 msgid ""
@@ -138,7 +145,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
-"%s: L''argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero reale.\n"
 
 #, c-format
@@ -225,7 +232,7 @@ msgid ""
 "%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
 "expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso ''%s '' e ''%s ''hanno una dimensione "
+"%s: Gli argomenti in ingresso ''%s'' e ''%s'' hanno una dimensione "
 "sbagliata: erano attese delle matrici delle stesse dimensioni.\n"
 
 #, c-format
@@ -245,10 +252,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso uno scalare "
+"reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso un vettore "
+"reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -263,6 +274,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
+"\"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -311,10 +324,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
+"reale.\n"
 
 #, c-format
 msgid ""
@@ -362,8 +378,8 @@ msgstr "%s: L''argomento in ingresso è di tipo sbagliato.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
 msgstr ""
-"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
-"''pulisci'' o ''risetta''"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"''pulisci'' o ''resetta''"
 
 #, c-format
 msgid ""
@@ -384,6 +400,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'intervallo %s.\n"
 
 #, c-format
 msgid ""
@@ -403,12 +421,16 @@ msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso ha un valore sbagliato: era atteso ''%s'', "
+"''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso ha un valore sbagliato: era atteso ''%s'', "
+"''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
@@ -421,6 +443,8 @@ msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
 "order.\n"
 msgstr ""
+"%s: L''argomento in ingresso #%d ha dei valori sbagliati: gli elementi "
+"devono essere in ordine crescente.\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -443,16 +467,29 @@ msgid "&Tools"
 msgstr "&Strumenti"
 
 msgid "... as well as very tiny radii"
-msgstr ""
+msgstr "... così come con un raggio molto piccolo"
+
+msgid "2D and 3D plots"
+msgstr "Grafici 2D e 3D"
 
 msgid "A partial viewport may be set with clipping"
 msgstr ""
+"È possibile abilitare una visualizzazione parziale utilizzando il clipping"
+
+msgid "Animation"
+msgstr "Animazione"
 
 msgid "Autumn"
 msgstr "Autunno"
 
-msgid "Big radii are supported..."
+msgid "Basic functions"
+msgstr "Funzioni di base"
+
+msgid "Bezier curves and surfaces"
 msgstr ""
+
+msgid "Big radii are supported..."
+msgstr "I raggi grandi sono supportati..."
 
 msgid "Bone"
 msgstr "Avorio"
@@ -463,8 +500,14 @@ msgstr "Annulla"
 msgid "Color number"
 msgstr "Numero del colore"
 
+msgid "Colormap"
+msgstr "Mappatura colore"
+
 msgid "Common X axis"
 msgstr "Asse X comune"
+
+msgid "Complex elementary functions"
+msgstr ""
 
 msgid "Copper"
 msgstr "Rame"
@@ -473,7 +516,7 @@ msgid "Customize your complex function"
 msgstr "Personalizzare la propria funzione complessa"
 
 msgid "Data on the full circle ..."
-msgstr ""
+msgstr "Dati su tutto il cerchio ..."
 
 msgid ""
 "Data tips cannot be attached to this curve,\n"
@@ -508,10 +551,13 @@ msgid "Error %d at line %d of the function: ''%s''"
 msgstr "Errore %d alla linea %d della seg. funzione: ''%s''"
 
 msgid "Exact gaussian density"
+msgstr "Esatta densità gaussiana"
+
+msgid "Finite Elements"
 msgstr ""
 
 msgid "Gaussian random sample histogram"
-msgstr ""
+msgstr "Istogramma di un campione casuale gaussiano"
 
 msgid "Graphics"
 msgstr "Grafica"
@@ -531,6 +577,9 @@ msgstr "Caldo"
 msgid "Jet"
 msgstr "Jet"
 
+msgid "LaTeX/MathML"
+msgstr "LaTeX/MathML"
+
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr "Un clic col sinistro su una curva crea un datatip,col destro lo apre"
 
@@ -538,7 +587,7 @@ msgid ""
 "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Un clic col sinistro su una curva per creare un datatip, col destro per "
-"aprire il menu contestuale"
+"aprire il menù contestuale"
 
 msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
@@ -548,6 +597,9 @@ msgstr ""
 msgid "Misc"
 msgstr "Misc"
 
+msgid "More surfaces"
+msgstr ""
+
 msgid "Multiple datatips mode"
 msgstr "Modalità datatip multipli"
 
@@ -555,7 +607,7 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "Negative radii are supported:"
-msgstr ""
+msgstr "I raggi negativi sono supportati:"
 
 msgid "Ocean"
 msgstr "Oceano"
@@ -568,13 +620,13 @@ msgstr "Rosa"
 
 msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
-msgstr ""
+msgstr "Entrare nella console di Scilab per vedere altri esempu di polarplot"
 
 msgid "Plot with 3 different Y scales at shared X"
 msgstr "Disegna con 3 differenti scale di Y con la X condivisa"
 
 msgid "Press enter to go on..."
-msgstr ""
+msgstr "Premere invio per continuare..."
 
 msgid "Rainbow"
 msgstr "Arcobaleno"
@@ -589,13 +641,13 @@ msgid "Select tip orientation"
 msgstr "Seleziona l''orientamento del suggerimento"
 
 msgid "Several curves may be plotted at the same time"
-msgstr ""
+msgstr "Possono essere tracciate diverse curve nello stesso tempo"
 
 msgid "Spring"
 msgstr "Primavera"
 
 msgid "Still a single quadrant..."
-msgstr ""
+msgstr "Ancora un solo quadrante..."
 
 msgid "Summer"
 msgstr "Estate"
@@ -629,8 +681,11 @@ msgstr "Inverno"
 msgid "automatic"
 msgstr "automatico(i)"
 
-msgid "even huge radii, with properly formatted labels..."
+msgid "bar histogram"
 msgstr ""
+
+msgid "even huge radii, with properly formatted labels..."
+msgstr "anche un raggio immenso, con etichette formattate opportunamente..."
 
 msgid "histplot() : (normalized) histogram plot"
 msgstr ""
@@ -642,10 +697,10 @@ msgid "lower right"
 msgstr "in basso a destra"
 
 msgid "on 2 quadrants..."
-msgstr ""
+msgstr "su 2 quadranto"
 
 msgid "polarplot(): Only quadrant(s) reached by data are displayed"
-msgstr ""
+msgstr "polarplot(): Sono mostrati solo i quadranti raggiunti da dei dati"
 
 msgid "select the curve tip display function"
 msgstr ""

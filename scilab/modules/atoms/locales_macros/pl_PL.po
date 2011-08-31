@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 22:53+0000\n"
-"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
+"PO-Revision-Date: 2011-08-01 17:04+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: pl\n"
 
 #, c-format
@@ -112,7 +112,8 @@ msgstr "%s: Wydobycie opisu pliku (''%s'') nie powiodło się.\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Niezgodne parametry wejściowe #%d i #%d: Oczekiwany taki sam rozmiar.\n"
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: oczekiwany taki sam "
+"rozmiar.\n"
 
 #, c-format
 msgid "%s: Module ''%s - %s'' is not installed.\n"
@@ -337,19 +338,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Niewłaściwy rozmiar parametru wejściowego #%d: oczekiwany ciąg znaków.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: oczekiwano "
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
 "pojedynczego łańcuchu znaków.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx1 lub mx2.\n"
 
 #, c-format
@@ -357,7 +359,7 @@ msgid ""
 "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx1, mx2 lub mx3.\n"
 
 #, c-format
@@ -365,62 +367,62 @@ msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx1, mx2 lub mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx2 lub mx3.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego #%d: oczekiwano macierzy "
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano macierzy "
 "typu łańcuchowego mx3.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano typu boolean.\n"
+"%s: Nieprawidłowy typ  argumentu wejściowego nr %d: Oczekiwano typ boolean.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano łańcuch.\n"
+"%s: Zły typ parametru wejściowego %d: Oczekiwano wartości typu string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości typu "
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości typu "
 "logicznego (boolean).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano wartości typu "
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości typu "
 "logicznego (boolean) lub łańcuchu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego #%d: Oczekiwano pojedynczego "
-"łańcuchu znaków.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest "
+"pojedynczy łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwana jest tablica "
-"ciągów znaków.\n"
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy ciągów "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -722,9 +724,6 @@ msgstr "Podmiot"
 msgid "File"
 msgstr "Plik"
 
-msgid "Home"
-msgstr "Katalog domowy"
-
 msgid "Install"
 msgstr "Zainstaluj"
 
@@ -739,6 +738,9 @@ msgstr ""
 
 msgid "Installation failed!"
 msgstr "Instalacja nie powiodła się!"
+
+msgid "Installed modules"
+msgstr ""
 
 msgid "Installing"
 msgstr "Instalowanie"
@@ -761,8 +763,10 @@ msgstr "Główne kategorie"
 msgid "Maintainer(s)"
 msgstr "Opiekun(owie)"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
-msgstr "Brak modułu ATOMS. Proszę sprawdzić połączenie z Internetem."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
+msgstr ""
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Brak modułu ATOMS. Twoja lista repozytoriów jest pusta"
@@ -821,3 +825,8 @@ msgstr "Wersja"
 
 msgid "WebSite"
 msgstr "Strona WWW"
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""

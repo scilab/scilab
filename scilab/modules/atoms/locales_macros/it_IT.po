@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 21:38+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2011-08-07 10:03+0000\n"
+"Last-Translator: Enrico \"eNry\" Carafa <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
 
 #, c-format
@@ -465,6 +465,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
 "package name.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: %s deve essere il "
+"nome di un pacchetto disponibile per Atoms.\n"
 
 #, c-format
 msgid ""
@@ -745,9 +747,6 @@ msgstr "Entità"
 msgid "File"
 msgstr "File"
 
-msgid "Home"
-msgstr "Inizio"
-
 msgid "Install"
 msgstr "Installa"
 
@@ -761,6 +760,9 @@ msgstr ""
 
 msgid "Installation failed!"
 msgstr "Installazione fallita!"
+
+msgid "Installed modules"
+msgstr "Moduli installati"
 
 msgid "Installing"
 msgstr "Installazione in corso"
@@ -783,9 +785,12 @@ msgstr "Categorie principali"
 msgid "Maintainer(s)"
 msgstr "Curatore(i)"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
 msgstr ""
-"Non è disponibile alcun modulo di ATOMS. Controllare la connessione internet."
+"Nessun modulo ATOMS disponibile. Per favore, controlla la tua connessione ad "
+"internet e controlla che il tuo SO sia compatibile con ATOMS."
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
@@ -844,3 +849,8 @@ msgstr "Versione"
 
 msgid "WebSite"
 msgstr "Sito web"
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""

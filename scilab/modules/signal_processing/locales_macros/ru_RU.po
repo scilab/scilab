@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:29+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-08-23 00:30+0000\n"
+"Last-Translator: Stanislav V. Kroter <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
 
 #, c-format
@@ -191,27 +191,30 @@ msgstr ""
 
 msgid "Arma Spectral power estimation:"
 msgstr ""
+"Оценка спектральной мощности моделью авторегрессионного скользящего среднего:"
 
 msgid "Arma identification"
 msgstr "Идентификация модели ARMA"
 
 msgid "Arma simulation and identification"
 msgstr ""
+"Моделирование авторегрессионного скользящего среднего и идентификация"
 
 msgid "Arma, Spectral power estimation"
 msgstr ""
+"Оценка спектральной мощности, модель авторегрессионного скользящего среднего"
 
 msgid "Arma, bidimensional version"
-msgstr ""
+msgstr "Модель авторегрессионного скользящего среднего, двумерная версия"
 
 msgid "Bode plots"
-msgstr ""
+msgstr "Диаграммы Боде"
 
 msgid "Discrete IIR filter"
-msgstr ""
+msgstr "Дискретный БИХ-фильтр"
 
 msgid "IIR filter design"
-msgstr ""
+msgstr "Схема БИХ-фильтра"
 
 msgid "Identification ARX (least square):"
 msgstr ""
@@ -220,13 +223,13 @@ msgid "Identification ARX (least square): "
 msgstr ""
 
 msgid "Minimax FIR filter"
-msgstr ""
+msgstr "Минимаксный КИХ-фильтр"
 
 msgid "Minimax FIR filter design"
-msgstr ""
+msgstr "Минимаксная схема КИХ-фильтра"
 
 msgid "Press Return to continue ... \n"
-msgstr ""
+msgstr "Нажмите Return для продолжения ... \n"
 
 msgid "Signal Processing"
 msgstr "Обработка сигналов"
@@ -238,7 +241,7 @@ msgid "Simulation of an ARMAX process: "
 msgstr ""
 
 msgid "Spectral Estimation"
-msgstr ""
+msgstr "Спектральное оценивание"
 
 msgid "Spectral power"
 msgstr "Спектральная мощность"
@@ -253,7 +256,7 @@ msgid "Wiegner filter"
 msgstr ""
 
 msgid "Window FIR filters"
-msgstr ""
+msgstr "Оконные КИХ-фильтры"
 
 msgid "estimates xf"
 msgstr "оценки xf"
@@ -265,10 +268,10 @@ msgid "frequency"
 msgstr "частота"
 
 msgid "length 33"
-msgstr ""
+msgstr "длина 33"
 
 msgid "low pass  cut-off in [.23,.27]"
-msgstr ""
+msgstr "частота отсечки фильтра низких частот в [.23,.27]"
 
 msgid "real state"
 msgstr "истинное состояние"

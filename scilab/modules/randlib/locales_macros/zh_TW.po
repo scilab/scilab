@@ -8,53 +8,53 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:37+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 02:26+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 
 msgid "Erlang random variable"
-msgstr ""
+msgstr "Erlang亂數變數"
 
 msgid "Exponential random variable"
-msgstr ""
+msgstr "指數亂數變數"
 
 msgid "Hyper geometric random variable"
-msgstr ""
+msgstr "超幾何亂數變數"
 
 msgid "Poisson random variable"
-msgstr ""
+msgstr "普瓦松亂數變數"
 
 msgid "Random"
 msgstr "亂數"
 
 msgid "Simulation"
-msgstr ""
+msgstr "模擬"
 
 msgid "Simulation of a binomial random variable"
-msgstr ""
+msgstr "二項式亂數變數的模擬"
 
 msgid "Simulation of a discrete random variable"
-msgstr ""
+msgstr "離散亂數變數的模擬"
 
 msgid "Theory"
-msgstr ""
+msgstr "理論"
 
 msgid "Weibull random variable"
-msgstr ""
+msgstr "韋伯亂數變數"
 
 msgid "binomial random variable"
-msgstr ""
+msgstr "二項式亂數變數"
 
 msgid "discrete random variable"
-msgstr ""
+msgstr "離散亂數變數"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "無變化的離散亂數變數"
 
 msgid "geometric random variable"
-msgstr ""
+msgstr "幾何亂數變數"

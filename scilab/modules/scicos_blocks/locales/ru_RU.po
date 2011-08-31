@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-17 18:02+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-07-17 13:08+0000\n"
+"Last-Translator: Stanislav V. Kroter <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 
 msgid "Allocation problem in spline.\n"
 msgstr ""
 
 #, c-format
 msgid "Cannot use %s with this type of object."
-msgstr ""
+msgstr "Невозможно использовать %s с этим типом объекта."
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
 msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
+msgstr "Учтите увеличение длины буфера в блоке переменной задержки\n"
 
 msgid "Could not open /dev/audio!\n"
 msgstr "Не удалось открыть /dev/audio!\n"
@@ -41,13 +41,16 @@ msgid ""
 " Variable size=[%d,%d] \n"
 "Block output size=[%d,%d].\n"
 msgstr ""
+"Несоответствие размерностей данных:\n"
+" Размер переменной=[%d,%d] \n"
+"Размер выходного блока=[%d,%d].\n"
 
 #, c-format
 msgid "Error when opening file '%s'.\n"
 msgstr "Ошибка при открытии файла '%s'.\n"
 
 msgid "Incorrect value for dimension argument."
-msgstr ""
+msgstr "Некорректное значение для параметра размерности."
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
@@ -101,7 +104,7 @@ msgid ""
 msgstr ""
 
 msgid "Size of buffer or input size have changed!\n"
-msgstr ""
+msgstr "Изменился размер буфера или входного размера!\n"
 
 #, c-format
 msgid "The '%s' variable does not exist.\n"
@@ -138,344 +141,3 @@ msgstr ""
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
-
-#~ msgid "&?"
-#~ msgstr "&?"
-
-#~ msgid "&Tools"
-#~ msgstr "Инструменты"
-
-#~ msgid "&File"
-#~ msgstr "Файл"
-
-#~ msgid "&Edit"
-#~ msgstr "Правка"
-
-#~ msgid "(Read Audio File)"
-#~ msgstr "(Чтение аудио файла)"
-
-#~ msgid "''Start'' must be less than ''End''."
-#~ msgstr "''Начало'' должно быть меньше чем ''Конец''."
-
-#~ msgid "Automatic"
-#~ msgstr "Автоматически"
-
-#~ msgid "Add"
-#~ msgstr "Добавить"
-
-#~ msgid "''Minimum'' must be less than ''Maximum''."
-#~ msgstr "''Минимум'' должен быть меньше чем ''Максимум''."
-
-#~ msgid "Buffer size"
-#~ msgstr "Размер буфера"
-
-#~ msgid "Buffer Size"
-#~ msgstr "Размер буфера"
-
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
-
-#~ msgid "Choice:"
-#~ msgstr "Выберите:"
-
-#~ msgid "Constant Value"
-#~ msgstr "Постояное значение"
-
-#~ msgid "Data Type"
-#~ msgstr "Тип данных"
-
-#~ msgid "Combinatorial logic"
-#~ msgstr "Комбинаторная логика"
-
-#, c-format
-#~ msgid "Data Type %s"
-#~ msgstr "Тип данных %s"
-
-#, c-format
-#~ msgid "Directory ''%s'' does not exist"
-#~ msgstr "Каталог ''%s'' не существует"
-
-#~ msgid "Final Value"
-#~ msgstr "Окончательное значение"
-
-#~ msgid "Finite differences"
-#~ msgstr "Конечные разности"
-
-#~ msgid "Finite elements"
-#~ msgstr "Конечные элементы"
-
-#~ msgid "Expression ="
-#~ msgstr "Выражение ="
-
-#~ msgid "Frequency (rad/s)"
-#~ msgstr "Частота (рад/с)"
-
-#~ msgid "Initial conditions"
-#~ msgstr "Начальные условия"
-
-#~ msgid "Initial Value"
-#~ msgstr "Начальное значение"
-
-#~ msgid "Magnitude"
-#~ msgstr "Величина"
-
-#~ msgid "Must be greater than 1."
-#~ msgstr "Должно быть больше чем 1."
-
-#, c-format
-#~ msgid "Must be greater than %d."
-#~ msgstr "Должно быть больше чем %d."
-
-#~ msgid "Minimum"
-#~ msgstr "Минимум"
-
-#~ msgid "Maximum"
-#~ msgstr "Максимум"
-
-#~ msgid "Must be integer."
-#~ msgstr "Должно быть целым."
-
-#~ msgid "Must have this form: [Start, End]."
-#~ msgstr "Должно иметь следующий вид: [Начало, Конец]."
-
-#, c-format
-#~ msgid "Must be in the interval %s."
-#~ msgstr "Должно находиться в интервале %s."
-
-#~ msgid "Null or positive integer expected."
-#~ msgstr "Ожидалось нулевое или положительное целое значение."
-
-#~ msgid "Number of nodes:"
-#~ msgstr "Число узлов:"
-
-#~ msgid "Output Format"
-#~ msgstr "Формат вывода"
-
-#~ msgid "Output Type"
-#~ msgstr "Тип вывода"
-
-#~ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-#~ msgstr "Тип вывода (1:double, 3:int32, 4:int16, 5:int8, ...)"
-
-#~ msgid "Phase (rad)"
-#~ msgstr "Фаза (рад)"
-
-#~ msgid "Port number"
-#~ msgstr "Номер порта"
-
-#~ msgid "Remove"
-#~ msgstr "Удалить"
-
-#~ msgid "Strictly positive integer expected."
-#~ msgstr "Ожидается строго положительное целое."
-
-#~ msgid "Strictly positive number expected."
-#~ msgstr "Ожидается строго положительное число."
-
-#~ msgid "Start Time"
-#~ msgstr "Время начала"
-
-#~ msgid "Step Function"
-#~ msgstr "Ступенчатая функция"
-
-#~ msgid "The measurement points"
-#~ msgstr "Точки измерения"
-
-#~ msgid "The ''Initial Value'' must be 0 or 1 of type int8"
-#~ msgstr "''Начальное значение'' должно быть 0 или 1 типа int8"
-
-#~ msgid "Type:"
-#~ msgstr "Тип:"
-
-#~ msgid "Upper Limit (positive number)"
-#~ msgstr "Верхний предел (положительное число)"
-
-#~ msgid "Write ''.au'' sound file on audio device"
-#~ msgstr "Записать звуковой файл ''.au'' на аудио устройство"
-
-#~ msgid "Valid formats are: "
-#~ msgstr "Допустимые форматы: "
-
-#~ msgid "Validate"
-#~ msgstr "Проверить"
-
-#~ msgid "Truth Table"
-#~ msgstr "Таблица истинности"
-
-#~ msgid "Truth Table (matrix of outputs)"
-#~ msgstr "Таблица истинности (матрица выходов)"
-
-#~ msgid "Type conversion"
-#~ msgstr "Преобразование типов"
-
-#~ msgid "Write is done on:"
-#~ msgstr "Запись завершена на:"
-
-#, c-format
-#~ msgid "Wrong size for ''%s'' parameter: %d."
-#~ msgstr "Неверный размер параметра ''%s'': %d."
-
-#, c-format
-#~ msgid "Wrong size for ''%s'' parameter"
-#~ msgstr "Неверный размер параметра ''%s''"
-
-#~ msgid "Write to output file"
-#~ msgstr "Запись в файл вывода"
-
-#~ msgid "Write to C binary file"
-#~ msgstr "Запись в двоичный C файл"
-
-#, c-format
-#~ msgid "Wrong type for ''%s'' parameter"
-#~ msgstr "Неверный тип параметра ''%s''"
-
-#, c-format
-#~ msgid "Wrong size for ''%s'' parameter: %s."
-#~ msgstr "Неверный размер параметра ''%s'': %s."
-
-#, c-format
-#~ msgid "Wrong type for ''%s'' parameter: %5.1f."
-#~ msgstr "Неверный тип параметра ''%s'': %5.1f."
-
-#, c-format
-#~ msgid "Wrong value for  ''%s'' parameter: %d."
-#~ msgstr "Неверное значение параметра ''%s'': %d."
-
-#, c-format
-#~ msgid "Wrong value for ''Port Number'' parameter: %d."
-#~ msgstr "Неверное значение параметра ''Номер порта'': %d."
-
-#, c-format
-#~ msgid "Wrong value for ''Initial State'' parameter: %d."
-#~ msgstr "Неверное значение параметра ''Начальное состояние'': %d."
-
-#, c-format
-#~ msgid "Wrong value for ''Frequency'' parameter: %e."
-#~ msgstr "Неверное значение параметра ''Частота'': %e."
-
-#, c-format
-#~ msgid "Wrong value for ''%s'' parameter"
-#~ msgstr "Неверное значение параметра ''%s''"
-
-#, c-format
-#~ msgid "Wrong value for ''%s'' parameter."
-#~ msgstr "Неверное значение параметра ''%s''."
-
-#, c-format
-#~ msgid "Wrong value for ''%s'' parameter: %d"
-#~ msgstr "Неверное значение параметра ''%s'': %d"
-
-#, c-format
-#~ msgid "Wrong value for ''%s'' parameter: %d."
-#~ msgstr "Неверное значение параметра ''%s'': %d."
-
-#, c-format
-#~ msgid "Wrong value for ''%s'' parameter: %s."
-#~ msgstr "Неверное значение параметра ''%s'': %s."
-
-#, c-format
-#~ msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-#~ msgstr "Неверные значения параметров ''Максимум'' и ''Минимум'': %d &lt; %d"
-
-#, c-format
-#~ msgid "Wrong values for ''Port Number'' parameter: %d."
-#~ msgstr "Неверные значения параметра ''Номер порта'': %d."
-
-#, c-format
-#~ msgid "Wrong value for ''Start Time'' parameter: %e."
-#~ msgstr "Неверное значение параметра ''Время начала'': %e."
-
-#, c-format
-#~ msgid "Wrong values for ''Upper Limit'' parameter: %d."
-#~ msgstr "Неверные значения параметра ''Верхний предел'': %d."
-
-#, c-format
-#~ msgid "Wrong values for ''%s'' parameter: %s."
-#~ msgstr "Неверные значения параметра ''%s'': %s."
-
-#, c-format
-#~ msgid "You cannot modify ''%s'' when running"
-#~ msgstr "Вы не можете изменить  ''%s'' во время работы"
-
-#, c-format
-#~ msgid "You cannot modify ''%s'' when running."
-#~ msgstr "Вы не можете изменить  ''%s'' во время работы."
-
-#~ msgid "You cannot modify ''Buffer Size'' when running."
-#~ msgstr "Вы не можете изменить  ''Размер буфера'' во время работы"
-
-#, c-format
-#~ msgid "Wrong value for of ''%s'' parameter."
-#~ msgstr "Неверное значение параметра ''%s''."
-
-#, c-format
-#~ msgid "Wrong values for ''%s'' parameter: %5.1e."
-#~ msgstr "Неверные значения параметра ''%s'': %5.1e."
-
-#~ msgid "positive"
-#~ msgstr "положительный"
-
-#~ msgid "negative"
-#~ msgstr "отрицательный"
-
-#~ msgid "degree:"
-#~ msgstr "степень:"
-
-#~ msgid "null"
-#~ msgstr "нуль"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Интервал до младшего бита"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 Интервал от старшего бита"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 нижняя половина"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 верхняя половина"
-
-#~ msgid "&nbsp; Number of rows must be a power of two."
-#~ msgstr "&nbsp; Число столбцов должно быть степенью двойки."
-
-#~ msgid "&nbsp;- Positive values are considered as int8(1)"
-#~ msgstr "&nbsp;- Положительные значения рассматриваются как int8(1)"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 Интервал бит"
-
-#~ msgid "&nbsp;- Negative values are considered as int8(0)"
-#~ msgstr "&nbsp;- Отрицательные значения рассматриваются как int8(0)"
-
-#~ msgid "Constant value generator"
-#~ msgstr "Генератор постоянных величин"
-
-#~ msgid "Discriminant type:"
-#~ msgstr "Тип дискриминанта:"
-
-#, c-format
-#~ msgid "Elements must be in the interval %s."
-#~ msgstr "Элемент должен быть в интервале %s."
-
-#~ msgid "Initialisation Time"
-#~ msgstr "Время инициализации"
-
-#, c-format
-#~ msgid "Indexes must be in the interval %s."
-#~ msgstr "Индексы должны быть в интервале %s."
-
-#~ msgid "Number of rows must be a power of two."
-#~ msgstr "Число строк должно быть степенью двойки."
-
-#~ msgid "Ordering:"
-#~ msgstr "Упорядочение:"
-
-#~ msgid "Ramp function"
-#~ msgstr "Пилообразная функция"
-
-#~ msgid "Sine wave generator"
-#~ msgstr "Генератор синусоидальных колебаний"
-
-#~ msgid "Variable discriminant:"
-#~ msgstr "Переменный дискриминант"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
 
 msgid ""
@@ -61,6 +61,9 @@ msgstr ""
 "strings.\n"
 
 msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 
 msgid "... file with echo"
@@ -119,11 +122,11 @@ msgstr "¿Está seguro que desea cerrar SciNotes?"
 msgid "Auto (Default)"
 msgstr "Auto (Predeterminada)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Auto-completar encendido (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr ""
 
-msgid "Auto-completion on if,function,..."
-msgstr "Auto-completación activada si, función,..."
+msgid "Auto-completion on if, function, ..."
+msgstr ""
 
 msgid "Background Color"
 msgstr "Color de fondo"
@@ -224,6 +227,9 @@ msgstr "Copiar"
 msgid "Copy as HTML with line number"
 msgstr "Copiar como HTML con número de línea"
 
+msgid "Copy full path"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr "Copyar la selección a una nueva pestaña"
 
@@ -278,11 +284,7 @@ msgid "Edit"
 msgstr "Editar"
 
 #, c-format
-msgid "Elapsed time: %s second."
-msgstr ""
-
-#, c-format
-msgid "Elapsed time: %s seconds."
+msgid "Elapsed time: %s sec."
 msgstr ""
 
 msgid "Enable Auto Reformat"
@@ -378,6 +380,9 @@ msgstr "Ir al ancla anterior"
 msgid "Goto line"
 msgstr "Ir a la línea"
 
+msgid "Graphics handle field"
+msgstr ""
+
 msgid "Help about '"
 msgstr "Ayuda acerca de '"
 
@@ -467,6 +472,9 @@ msgstr "Pestaña siguiente"
 
 msgid "No Line Numbering"
 msgstr "No numerar las líneas"
+
+msgid "No help"
+msgstr ""
 
 msgid "No split"
 msgstr "No separar"
@@ -628,6 +636,9 @@ msgid "Save All"
 msgstr "Guardar todo"
 
 msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
 msgstr ""
 
 msgid "Save as"
@@ -811,6 +822,9 @@ msgstr "Deshacer"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Sin Título "
 
@@ -879,34 +893,3 @@ msgstr ""
 
 msgid "close this tab"
 msgstr "cerrar esta pestaña"
-
-#~ msgid "Continue?"
-#~ msgstr "¿Continuar?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Editar la selección en una nueva pestaña"
-
-#~ msgid "No text to execute"
-#~ msgstr "No hay texto para ejecutar"
-
-#~ msgid "No text selected"
-#~ msgstr "No hay texto seleccionado"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "El archivo %s no existe\n"
-#~ " ¿Desea crearlo?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Ajustar búsqueda"
-
-#~ msgid "Edition"
-#~ msgstr "Edición"
-
-#~ msgid "Numerotation"
-#~ msgstr "Numeración"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "Abrir archivo en...:Añadir directorio:Eliminar el último directorio"

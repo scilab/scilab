@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
 
 msgid "  loading initial environment"
@@ -154,6 +154,9 @@ msgstr "Bytes"
 #, c-format
 msgid "Checking: %s\n"
 msgstr "Revisando: %s\n"
+
+msgid "Getting started with Scilab"
+msgstr ""
 
 msgid "Introduction"
 msgstr "Introducción"

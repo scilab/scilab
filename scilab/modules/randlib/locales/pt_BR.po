@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: pt_BR\n"
 
 msgid ""
@@ -459,48 +459,3 @@ msgstr "a e b devem ser inteiros com (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
-
-#~ msgid "Low > High\n"
-#~ msgstr "Inferior > Superior\n"
-
-#~ msgid "Random"
-#~ msgstr "Aleatório"
-
-#~ msgid "Simulation of a discrete random variable"
-#~ msgstr "Simulação de uma variável aleatória discreta"
-
-#~ msgid "Simulation of a binomial random variable"
-#~ msgstr "Simulação de uma variável aleatória binomial"
-
-#~ msgid "Simulation"
-#~ msgstr "Simulação"
-
-#~ msgid "Poisson random variable"
-#~ msgstr "Variável aleatória de Poisson"
-
-#~ msgid "binomial random variable"
-#~ msgstr "variável aleatória binomial"
-
-#~ msgid "Theory"
-#~ msgstr "Teoria"
-
-#~ msgid "Weibull random variable"
-#~ msgstr "Variável aleatória de Weibull"
-
-#~ msgid "Exponential random variable"
-#~ msgstr "Variável aleatória exponencial"
-
-#~ msgid "discrete random variable"
-#~ msgstr "variável aleatória discreta"
-
-#~ msgid "geometric random variable"
-#~ msgstr "variável aleatória geométrica"
-
-#~ msgid "discrete uniform random variable"
-#~ msgstr "variável aleatória discreta uniforme"
-
-#~ msgid "Erlang random variable"
-#~ msgstr "Variável aleatória de Erlang"
-
-#~ msgid "Hyper geometric random variable"
-#~ msgstr "Variável aleatória hypergeométrica"

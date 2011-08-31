@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-15 17:40+0000\n"
+"PO-Revision-Date: 2011-08-12 10:49+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
 
 msgid ""
@@ -213,6 +213,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument. Low < High expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato. Era atteso Low < High.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
@@ -462,45 +463,3 @@ msgstr "a e b devono essere interi con (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
-
-#~ msgid "Random"
-#~ msgstr "Casuale"
-
-#~ msgid "Low > High\n"
-#~ msgstr "Low > High\n"
-
-#~ msgid "Hyper geometric random variable"
-#~ msgstr "Variabile casuale ipergeometrica"
-
-#~ msgid "Simulation of a discrete random variable"
-#~ msgstr "Simulazione di una variabile casuale discreta"
-
-#~ msgid "Simulation"
-#~ msgstr "Simulazione"
-
-#~ msgid "Poisson random variable"
-#~ msgstr "Variabile casuale di Poisson"
-
-#~ msgid "binomial random variable"
-#~ msgstr "variabile casuale binomiale"
-
-#~ msgid "Weibull random variable"
-#~ msgstr "Variabile casuale di Weibull"
-
-#~ msgid "Theory"
-#~ msgstr "Teoria"
-
-#~ msgid "Simulation of a binomial random variable"
-#~ msgstr "Simulazione di una variabile casuale binomiale"
-
-#~ msgid "Erlang random variable"
-#~ msgstr "Variabile casuale di Erlarg"
-
-#~ msgid "Exponential random variable"
-#~ msgstr "Variabile casuale esponenziale"
-
-#~ msgid "discrete random variable"
-#~ msgstr "variabile casuale discreta"
-
-#~ msgid "geometric random variable"
-#~ msgstr "variabile casuale geometrica"

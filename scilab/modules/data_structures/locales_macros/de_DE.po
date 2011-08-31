@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-07-03 08:31+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
 
 #, c-format
@@ -24,6 +24,7 @@ msgstr "%s: ''dims'' kann nicht als Feldname verwendet werden.\n"
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
 msgstr ""
+"%s: Anzahl an Einträgen stimmt nicht mit dem Produkt der Dimensionen überein."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"

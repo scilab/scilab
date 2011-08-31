@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -127,38 +127,3 @@ msgstr "Scilabコンソール"
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"
 msgstr "ヘルプを見てください。"
-
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 56
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: メモリの割り当てに失敗しました。\n"
-
-#
-# File: sci_gateway/c/sci_winqueryreg.c, line: 37
-# File: sci_gateway/c/sci_winqueryreg.c, line: 45
-#, c-format
-#~ msgid "%s: Wrong type for input arguments: String expected.\n"
-#~ msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
-
-#~ msgid "Error(s) : see help powershell"
-#~ msgstr "エラー(s): パワーシェル・ヘルプを見てください"
-
-#~ msgid "Verify your script without Scilab."
-#~ msgstr "Scilab抜きで、スクリプトを確認してください。"
-
-#~ msgid "Only for Microsoft Windows."
-#~ msgstr "Microsoft Windows のみです。"
-
-#~ msgid "Powershell not found."
-#~ msgstr "パワーシェルが見つかりません。"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#~ msgid "Please verify your powershell command without Scilab."
-#~ msgstr "powershell コマンドを Scilab なしの環境で確認してください."
-
-#~ msgid "Powershell 1.0 not found."
-#~ msgstr "Powershell 1.0 が見つかりません."

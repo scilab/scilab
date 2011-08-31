@@ -14,20 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13827)\n"
 "Language: pl\n"
 
 #, c-format
-msgid "%s is already compiled for profiling, nothing to do!"
-msgstr "%s jest już skompilowany do profilowania, nie ma nic do zrobienia!"
+msgid "%s is already compiled for profiling.\n"
+msgstr ""
 
 #, c-format
-msgid "%s is already compiled, nothing to do!"
-msgstr "%s jest już skompilowane, nic do zrobienia!"
+msgid "%s is already compiled.\n"
+msgstr ""
 
 #, c-format
-msgid "%s is already noncompiled, nothing to do!"
-msgstr "%s nie jest skompilowane, nie ma nic do zrobienia!"
+msgid "%s is already noncompiled.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s file cannot be created\n"
@@ -180,8 +180,8 @@ msgid "No comment available.\n"
 msgstr "Komentarz niedostępny.\n"
 
 #, c-format
-msgid "No variable named: %s"
-msgstr "Brak zmiennej nazwanej: %s"
+msgid "No variable named: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "Please use %s instead."
