@@ -57,7 +57,9 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 
     if test $? -eq 0; then
         MODULE=`echo $file|sed -e "s|macros-||"|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"` # Get the module name (for example signal_processing)
-
+        if test "$MODULE" = "pvm" -o "$MODULE" = "shell"; then
+            continue
+        fi
         echo $file|grep "macros-" > /dev/null
         IS_MACRO=$?
         if test "$IS_MACRO" -eq 0; then
