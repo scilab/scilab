@@ -4,15 +4,15 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-function demo_xgeom()
+function demo_geom3d()
 
   my_handle             = scf(100001);
   clf(my_handle,"reset");
-  demo_viewCode("xgeom.dem.sce");
+  demo_viewCode("geom3d.dem.sce");
 
   // DEMO START
 
-  my_plot_desc          = "plot3d and use of xgeom";
+  my_plot_desc          = "plot3d and use of geom3d";
   my_handle.figure_name = my_plot_desc;
 
   r = (%pi):-0.01:0;
@@ -51,5 +51,5 @@ function demo_xgeom()
 endfunction
 
 
-demo_xgeom();
-clear demo_xgeom;
+demo_geom3d();
+clear demo_geom3d;

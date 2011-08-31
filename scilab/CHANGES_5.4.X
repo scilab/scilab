@@ -143,6 +143,8 @@ Optimization:
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
+* Bug 8243 fixed - xgeom renamed to geom3d.
+
 * Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used
                    the output function.
 
