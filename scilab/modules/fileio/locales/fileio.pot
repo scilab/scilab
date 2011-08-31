@@ -676,7 +676,7 @@ msgstr ""
 # File: sci_gateway/c/sci_pathconvert.c, line: 122
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
+"%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
 msgstr ""
 
 #

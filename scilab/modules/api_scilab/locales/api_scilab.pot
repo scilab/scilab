@@ -566,7 +566,7 @@ msgstr ""
 #
 # File: src/cpp/api_common.cpp, line: 428
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #

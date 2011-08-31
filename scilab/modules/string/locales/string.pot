@@ -273,7 +273,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_strcat.c, line: 121
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
@@ -438,13 +438,13 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_grep.c, line: 87
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_strcat.c, line: 284
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #

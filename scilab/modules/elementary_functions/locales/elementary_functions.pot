@@ -71,15 +71,15 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 118
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_gsort.c, line: 136
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or "
-"''%s'' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or "
+"'%s' expected.\n"
 msgstr ""
 
 # File: macros/complex.sci, line: 43
