@@ -314,9 +314,9 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo \
 	libscicore_la-sci_exit.lo
 am__objects_7 = sci_f_global.lo sci_f_mtlb_mode.lo sci_f_resume.lo \
-	sci_f_dispbpt.lo sci_f_useascommand.lo sci_f_intppty.lo \
-	sci_f_ieee.lo sci_f_macrovar.lo sci_f_exists.lo \
-	sci_f_errcatch.lo sci_f_clear.lo sci_f_argn.lo sci_f_setbpt.lo \
+	sci_f_dispbpt.lo sci_f_intppty.lo sci_f_ieee.lo \
+	sci_f_macrovar.lo sci_f_exists.lo sci_f_errcatch.lo \
+	sci_f_clear.lo sci_f_argn.lo sci_f_setbpt.lo \
 	sci_f_clearglobal.lo sci_f_delbpt.lo where.lo sci_f_iserror.lo \
 	sci_f_debug.lo sci_f_comp.lo sci_f_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7)
@@ -745,7 +745,6 @@ GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_global.f \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
 sci_gateway/fortran/sci_f_resume.f \
 sci_gateway/fortran/sci_f_dispbpt.f \
-sci_gateway/fortran/sci_f_useascommand.f \
 sci_gateway/fortran/sci_f_intppty.f \
 sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
@@ -807,7 +806,7 @@ modulename = core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = license.txt 
+libscicore_la_root_DATA = license.txt
 
 #### core : init scripts ####
 libscicore_la_etcdir = $(mydatadir)/etc
@@ -2479,9 +2478,6 @@ sci_f_resume.lo: sci_gateway/fortran/sci_f_resume.f
 
 sci_f_dispbpt.lo: sci_gateway/fortran/sci_f_dispbpt.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_dispbpt.lo `test -f 'sci_gateway/fortran/sci_f_dispbpt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dispbpt.f
-
-sci_f_useascommand.lo: sci_gateway/fortran/sci_f_useascommand.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_useascommand.lo `test -f 'sci_gateway/fortran/sci_f_useascommand.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_useascommand.f
 
 sci_f_intppty.lo: sci_gateway/fortran/sci_f_intppty.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_intppty.lo `test -f 'sci_gateway/fortran/sci_f_intppty.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_intppty.f

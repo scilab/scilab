@@ -259,7 +259,6 @@ GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_global.f \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
 sci_gateway/fortran/sci_f_resume.f \
 sci_gateway/fortran/sci_f_dispbpt.f \
-sci_gateway/fortran/sci_f_useascommand.f \
 sci_gateway/fortran/sci_f_intppty.f \
 sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
@@ -331,7 +330,7 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA =  license.txt 
+libscicore_la_root_DATA =  license.txt
 
 
 #### core : init scripts ####

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -204,7 +204,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_predef.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_useascommand.c" />
     <ClCompile Include="allops.c" />
     <ClCompile Include="allowptr.c" />
     <ClCompile Include="atome.c" />
@@ -326,7 +325,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_predef.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_useascommand.f" />
     <f2c_rule Include="allops.f" />
     <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="atome.f" />
