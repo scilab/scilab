@@ -71,9 +71,6 @@
     <ClCompile Include="int2db.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IsEqualVar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="matrix_generation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isequal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_isequalbitwise.c">

@@ -15,7 +15,7 @@ c     [VS,dim,T]=zschur(A,function)
       include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
-      
+
       character fname*(*)
       character*4  JOBVS, SORT
       logical SCIZSCHUR,scizchk
@@ -26,9 +26,9 @@ c     [VS,dim,T]=zschur(A,function)
       maxrhs=2
       minlhs=1
       maxlhs=3
-c     
+c
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(M.ne.N) then
@@ -46,7 +46,7 @@ c
             lhsvar(2)=2
             return
          else if(lhs.eq.3) then
-            if(.not.createvar(2,'d', 0, 0, lSDIM)) return 
+            if(.not.createvar(2,'d', 0, 0, lSDIM)) return
             stk(lSDIM)=0.0d0
             if(.not.createvar(3,'z', N, N, lVS)) return
             lhsvar(1)=1
@@ -72,7 +72,7 @@ c
          if(.not.createvar(4,'z', N, N, lVS)) return
          k = 5
       endif
-      if(.not.createvar(k,'i', 1, 1, lSDIM)) return 
+      if(.not.createvar(k,'i', 1, 1, lSDIM)) return
       if(.not.createvar(k+1,'i',N, 1, lBWORK)) return
       if(.not.createvar(k+2,'d', N, 1, lRWORK)) return
       LWORKMIN = 3*N
@@ -85,7 +85,7 @@ c
          lVS = lDWORK
       else
          JOBVS = 'V'
-      endif 
+      endif
       SORT = 'S'
 
       if(.not.scizchk()) return
@@ -99,39 +99,39 @@ c
             buf='eigenvalues could not be reordered (the problem '//
      $              'is very ill-conditioned'
             call error(1002)
-         elseif(info.eq.N+2) then   
-           call msgs(103,0) 
+         elseif(info.eq.N+2) then
+           call msgs(103,0)
         endif
       endif
-      
+
       if(lhs.eq.1) then
          lhsvar(1) = 1
       else if(lhs.eq.2) then
          lhsvar(1)=4
          lhsvar(2)=5
-      else if(lhs.eq.3) then 
+      else if(lhs.eq.3) then
          lhsvar(1)=4
          lhsvar(2)=5
          lhsvar(3)=1
       endif
-c     
+c
       end
-      
+
       logical function scizschur(w)
       INCLUDE 'stack.h'
-      logical scifunction, createcvar
+      logical createcvar
       common /scisch/ lf, nx, nf
       integer iadr
       complex*16 w
       intrinsic dreal, dimag
-c     
+c
       iadr(l) = l+l-1
-c     
+c
       scizschur=.false.
       if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=dreal(w)
       stk(lx+1)=dimag(w)
-      if(.not.scifunction(nx,lf,1,1)) return
+c      if(.not.scifunction(nx,lf,1,1)) return
 c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
       ilx=iadr(lx-2)
       if(istk(ilx).eq.1) then
@@ -145,8 +145,8 @@ c     stk(lx)=fct([re,im])  evaluated by scilab fct pointed to by lf
       logical function scizchk()
 c     checks fct passed to schur
       INCLUDE 'stack.h'
-      logical scifunction, createcvar
-c     
+      logical createcvar
+c
       integer iadr
       common/ierinv/iero
       common /scisch/ lf, nx, nf
@@ -155,10 +155,10 @@ c
       if(.not.createcvar(nx,'d',1,1,1,lx,lc)) return
       stk(lx)=1.0d0
       stk(lx+1)=1.0d0
-      if(.not.scifunction(nx,lf,1,1)) then
+c      if(.not.scifunction(nx,lf,1,1)) then
 c     error into fct passed to schur (schur(A,tst))
-         return
-      endif
+c         return
+c      endif
 c     check return value of fct
       ilx=iadr(lx-2)
       if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then

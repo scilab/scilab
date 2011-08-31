@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine matc(chai,lda,m,n,name,job)
@@ -22,13 +22,13 @@ c     lda     : number of rows of chai in the calling routine
 c
 c     name    : character string = name of scilab variable
 c     job     : job= 0 scilab  -> fortran
-c               job= 1 fortran -> scilab  
+c               job= 1 fortran -> scilab
 c
-c    CAUTION: if job=1  m and n are defined by matc. 
+c    CAUTION: if job=1  m and n are defined by matc.
 c    must call matc as follows
-c    call matc(ch,lda,m,n,name,0) 
+c    call matc(ch,lda,m,n,name,0)
 c and NOT as:
-c    call matc(ch,lda,10,10,name,0) if e.g. ch is a 
+c    call matc(ch,lda,10,10,name,0) if e.g. ch is a
 c    10 by 10 matrix of character string.
 c
       integer lda,m,n,job
@@ -123,7 +123,7 @@ c
       lstk(top+1)=sadr(l+(nc+1)*m1*n1)
       l4=lct(4)
       lct(4)=-1
-      call stackp(id,0)
+c     call stackp(id,0)
       lct(4)=l4
       if(err.gt.0) return
       goto 99

@@ -282,12 +282,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="idmax.c" />
     <ClCompile Include="idmin.c" />
     <ClCompile Include="int2db.c" />
-    <ClCompile Include="IsEqualVar.c">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Default</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Default</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Default</CompileAs>
-    </ClCompile>
     <ClCompile Include="matrix_generation.c" />
     <ClCompile Include="mprod.c" />
     <ClCompile Include="qsort-char.c" />
@@ -318,7 +312,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\c\sci_imag.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_imult.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_int.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isequal.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_isequalbitwise.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_isreal.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_kron.c" />

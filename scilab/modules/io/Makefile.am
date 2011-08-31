@@ -12,7 +12,6 @@ src/c/GetenvB.c \
 src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
-src/fortran/newsave.f \
 src/fortran/v2cunit.f
 
 IO_CPP_SOURCES = src/cpp/io_gw.cpp
@@ -95,7 +94,7 @@ modulename=io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA =  license.txt 
+libsciio_la_root_DATA =  license.txt
 
 
 ####io : init scripts ####

@@ -30,7 +30,7 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 
-extern int C2F(stackp)(int *id, int *macmod);
+//extern int C2F(stackp)(int *id, int *macmod);
 extern int C2F(dcopy)();
 
 /*------------------------------------------------------*/
@@ -170,7 +170,7 @@ int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name
   Rhs = 0;
   l4 = C2F(iop).lct[3];
   C2F(iop).lct[3] = -1;
-  C2F(stackp)(id, &cx0);
+//  C2F(stackp)(id, &cx0);
   C2F(iop).lct[3] = l4;
   Top = Top_k;
   Rhs = Rhs_k;
@@ -201,7 +201,7 @@ int C2F(cwritecmat)(char *namex,int *m, int*n,double *mat,unsigned long name_len
 	Rhs = 0;
 	l4 = C2F(iop).lct[3];
 	C2F(iop).lct[3] = -1;
-	C2F(stackp)(id, &cx0);
+//	C2F(stackp)(id, &cx0);
 	C2F(iop).lct[3] = l4;
 	Top = Top_k;
 	Rhs = Rhs_k;
@@ -220,7 +220,7 @@ int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
   Rhs = 0;
   l4 = C2F(iop).lct[3];
   C2F(iop).lct[3] = -1;
-  C2F(stackp)(id, &cx0_2);
+//  C2F(stackp)(id, &cx0_2);
   C2F(iop).lct[3] = l4;
   Top = Top_k;
   Rhs = Rhs_k;
@@ -378,7 +378,7 @@ int C2F(cwritechain)(char *namex, int *m, char *chai, unsigned long name_len, un
     Rhs = 0;
     l4 = C2F(iop).lct[3];
     C2F(iop).lct[3] = -1;
-    C2F(stackp)(id, &cx0);
+//    C2F(stackp)(id, &cx0);
     C2F(iop).lct[3] = l4;
     Top = Top_k ;
     Rhs = Rhs_k ;
@@ -698,7 +698,7 @@ int C2F(cwritebmat)(char *namex, int *m, int *n,  int *mat, unsigned long name_l
 	Rhs = 0;
 	l4 = C2F(iop).lct[3];
 	C2F(iop).lct[3] = -1;
-	C2F(stackp)(id, &cx0);
+//	C2F(stackp)(id, &cx0);
 	C2F(iop).lct[3] = l4;
 	Top = Top_k;
 	Rhs = Rhs_k;

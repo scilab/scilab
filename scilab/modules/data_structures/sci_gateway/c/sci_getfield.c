@@ -18,7 +18,7 @@ extern int C2F(intgetfield)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int sci_getfield(char *fname,unsigned long fname_len)
 {
-	C2F(intgetfield)();
+	//C2F(intgetfield)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

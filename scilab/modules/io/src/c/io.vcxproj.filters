@@ -47,9 +47,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_load.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_read.c">
       <Filter>Source Files</Filter>
     </ClCompile>

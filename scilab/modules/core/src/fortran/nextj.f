@@ -1,16 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine nextj(id,j)
 c     ==============================================================
-C     extracts the jth occurence of x in do x=val and stores its value on top 
-C     of the stack 
+C     extracts the jth occurence of x in do x=val and stores its value on top
+C     of the stack
 c     ==============================================================
       include 'stack.h'
 c
@@ -40,11 +40,11 @@ c
  2    err=vt
       call error(76)
       return
-c---  matrices scalaires 
+c---  matrices scalaires
  10   if (.not.getmat("nextj",top-1,top-1,it,m,n,lr,lc)) return
 
       if (m.eq.-3) then
-C        boucle implicite 
+C        boucle implicite
          x = stk(lr) + (j - 1)*stk(lr + 1)
          if( stk(lr+1) * (x - stk(lr+2)) .gt. 0.0d0) then
             if(abs(x-stk(lr+2)).ge.
@@ -98,19 +98,19 @@ C          endif
       goto 21
 c--   matrices de polynomes
  20   if (.not.getpoly("nextj",top-1,top-1,it,m,n,name,namel,ilp,lr,lc))
-     $     return 
+     $     return
       if(j.gt.n) goto 50
-      if (.not.pmatj("nextj",top,j)) return 
+      if (.not.pmatj("nextj",top,j)) return
       goto 21
 c---  chaines de caracteres
  30   if (.not.getsmat("nextj",top-1,top-1,m,n,1,1,lr,nlj)) return
       if ( j .gt.n) goto 50
-      if (.not.smatj("nextj",top,j)) return 
+      if (.not.smatj("nextj",top,j)) return
       goto 21
 c---- listes
- 40   if (.not.getilist("nextj",top-1,top-1,m,j,ilj)) return 
+ 40   if (.not.getilist("nextj",top-1,top-1,m,j,ilj)) return
       if(j.gt.m) goto 50
-      if (.not.lmatj("nextj",top,j)) return 
+      if (.not.lmatj("nextj",top,j)) return
       goto 21
 c---- matrices d'entiers
  45   continue
@@ -129,9 +129,9 @@ c---- matrices d'entiers
             return
          endif
       endif
-      call stackp(id,0)
+c     call stackp(id,0)
 c     save location where loop variable has been saved in the expression
-c     identifier 
+c     identifier
       idstk(1,top) = fin
       return
  50   continue

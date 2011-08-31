@@ -24,7 +24,6 @@ src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
-src/c/IsEqualVar.c \
 src/c/basic_functions.c \
 src/c/abs.c \
 src/c/acos.c \
@@ -324,7 +323,7 @@ sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_isequalbitwise.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \
+GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_f_maxi.f \
 sci_gateway/fortran/sci_f_testmatrix.f \
 sci_gateway/fortran/sci_f_prod.f \
@@ -467,7 +466,7 @@ modulename=elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA =  license.txt 
+libscielementary_functions_la_root_DATA =  license.txt
 
 
 

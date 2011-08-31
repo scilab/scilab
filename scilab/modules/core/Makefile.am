@@ -12,7 +12,6 @@ CORE_C_SOURCES = \
     src/c/inffic.c \
     src/c/cs2st.c \
     src/c/intmacr2tree.c \
-    src/c/run.c \
     src/c/InitScilab.c \
     src/c/getval.c \
     src/c/md5.c \
@@ -21,7 +20,6 @@ CORE_C_SOURCES = \
     src/c/texmacs.c \
     src/c/sciquit.c \
     src/c/stack1.c \
-    src/c/realmain.c \
     src/c/stack3.c \
     src/c/str2sci.c \
     src/c/getmodules.c \
@@ -31,7 +29,6 @@ CORE_C_SOURCES = \
     src/c/callinterf.c \
     src/c/scimem.c \
     src/c/isanan.c \
-    src/c/parse.c \
     src/c/timer.c \
     src/c/stack2.c \
     src/c/xscion.c \
@@ -40,7 +37,6 @@ CORE_C_SOURCES = \
     src/c/loadversion.c \
     src/c/version.c \
     src/c/stackinfo.c \
-    src/c/scirun.c \
     src/c/InitializeCore.c \
     src/c/TerminateCore.c \
     src/c/coretable.c \
@@ -50,9 +46,7 @@ CORE_C_SOURCES = \
     src/c/islittleendian.c \
     src/c/terme.c \
     src/c/ifexpr.c \
-    src/c/expr.c \
     src/c/getcommandlineargs.c \
-    src/c/syncexec.c \
     src/c/callFunctionFromGateway.c \
     src/c/getvariablesname.c \
     src/c/commandwords.c \
@@ -95,7 +89,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/nextj.f \
     src/fortran/setgetmode.f \
     src/fortran/showstack.f \
-    src/fortran/misops.f \
     src/fortran/iseye.f \
     src/fortran/chkvar.f \
     src/fortran/setippty.f \
@@ -110,8 +103,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/skpins.f \
     src/fortran/folhp.f \
     src/fortran/cvname.f \
-    src/fortran/funs.f \
-    src/fortran/fact.f \
     src/fortran/typ2cod.f \
     src/fortran/prompt.f \
     src/fortran/intstr.f \
@@ -126,10 +117,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/find.f \
     src/fortran/setlnb.f \
     src/fortran/mrknmd.f \
-    src/fortran/stackgl.f \
-    src/fortran/allops.f \
-    src/fortran/mname.f \
-    src/fortran/command.f \
     src/fortran/ref2val.f \
     src/fortran/stack.f \
     src/fortran/isbrk.f \
@@ -153,11 +140,8 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/matz.f \
     src/fortran/istrue.f \
     src/fortran/inisci.f \
-    src/fortran/ptover.f \
     src/fortran/getfunction.f \
-    src/fortran/stackp.f \
     src/fortran/dbasin.f \
-    src/fortran/macro.f \
     src/fortran/extlarg.f \
     src/fortran/getstr.f \
     src/fortran/cvwm.f \
@@ -170,7 +154,6 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/ftob.f \
     src/fortran/seteol.f \
     src/fortran/basin.f \
-    src/fortran/clause.f \
     src/fortran/compcl.f \
     src/fortran/termf.f \
     src/fortran/expsum.f \
@@ -231,11 +214,9 @@ sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_global.f \
+GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
-sci_gateway/fortran/sci_f_resume.f \
 sci_gateway/fortran/sci_f_dispbpt.f \
-sci_gateway/fortran/sci_f_useascommand.f \
 sci_gateway/fortran/sci_f_intppty.f \
 sci_gateway/fortran/sci_f_ieee.f \
 sci_gateway/fortran/sci_f_macrovar.f \
@@ -244,8 +225,7 @@ sci_gateway/fortran/sci_f_setbpt.f \
 sci_gateway/fortran/sci_f_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_f_iserror.f \
-sci_gateway/fortran/sci_f_debug.f \
-sci_gateway/fortran/sci_f_comp.f
+sci_gateway/fortran/sci_f_debug.f
 
 GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getmodules.cpp \

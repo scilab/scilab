@@ -175,6 +175,6 @@ void Initialize(void)
 	}
 
 	/* Load of Scilab.start */
-	C2F(scirun)(initstr,(int)strlen(initstr));
+	//C2F(scirun)(initstr,(int)strlen(initstr));
 }
 /*--------------------------------------------------------------------------*/

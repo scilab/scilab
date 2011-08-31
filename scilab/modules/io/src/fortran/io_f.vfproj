@@ -119,7 +119,6 @@ lib /DEF:&quot;$(InputDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\intwritb.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intwrite.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intwrite4b.f"/>
-		<File RelativePath=".\newsave.f"/>
 		<File RelativePath=".\v2cunit.f"/>
 		<File RelativePath=".\v2unit.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>

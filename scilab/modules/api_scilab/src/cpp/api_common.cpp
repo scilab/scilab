@@ -339,8 +339,8 @@ int isNamedVarComplex(void* _pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 void createNamedVariable(int *_piVarID)
 {
-    int iOne                = 1;
-    C2F(stackp)(_piVarID, &iOne);
+    //int iOne                = 1;
+    //C2F(stackp)(_piVarID, &iOne);
 }
 /*--------------------------------------------------------------------------*/
 int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress)

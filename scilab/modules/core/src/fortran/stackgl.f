@@ -48,7 +48,7 @@ c
       rhs=1
       lhss=lhs
       lhs=n
-      call lstops
+c      call lstops
       if(err.gt.0) return
       lhs=lhss
       fin=fins

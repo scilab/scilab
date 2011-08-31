@@ -139,9 +139,9 @@ am__objects_2 = libscioutput_stream_algo_la-Diary.lo \
 	libscioutput_stream_algo_la-getDiaryDate.lo \
 	libscioutput_stream_algo_la-getFullFilename.lo \
 	libscioutput_stream_algo_la-scilab_sprintf.lo
-am__objects_3 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
-	lspdsp.lo fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo \
-	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
+am__objects_3 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo lspdsp.lo \
+	fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo dmdspf.lo \
+	dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
 am_libscioutput_stream_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscioutput_stream_algo_la_OBJECTS =  \
@@ -154,7 +154,7 @@ am__objects_5 = libscioutput_stream_la-sci_diary.lo \
 	libscioutput_stream_la-output_stream_gw.lo \
 	libscioutput_stream_la-sci_msprintf.lo \
 	libscioutput_stream_la-sci_mprintf.lo
-am__objects_6 = intprint.lo intdisp.lo
+am__objects_6 =
 am_libscioutput_stream_la_OBJECTS = $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
 libscioutput_stream_la_OBJECTS = $(am_libscioutput_stream_la_OBJECTS)
@@ -500,7 +500,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wmdsp.f \
 	src/fortran/strdsp.f \
 	src/fortran/prntid.f \
-	src/fortran/print.f \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
@@ -517,10 +516,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_output_stream.c \
 	sci_gateway/c/sci_print.c
 
-GATEWAY_FORTRAN_SOURCES = \
-	sci_gateway/fortran/intprint.f \
-	sci_gateway/fortran/intdisp.f
-
+GATEWAY_FORTRAN_SOURCES = 
 libscioutput_stream_la_CFLAGS = \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(srcdir)/includes/ \
@@ -562,14 +558,14 @@ CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
-libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la 
+libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la
 #$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename = output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA = license.txt 
+libscioutput_stream_la_root_DATA = license.txt
 
 #### output_stream : init scripts ####
 libscioutput_stream_la_etcdir = $(mydatadir)/etc
@@ -1030,9 +1026,6 @@ strdsp.lo: src/fortran/strdsp.f
 prntid.lo: src/fortran/prntid.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o prntid.lo `test -f 'src/fortran/prntid.f' || echo '$(srcdir)/'`src/fortran/prntid.f
 
-print.lo: src/fortran/print.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o print.lo `test -f 'src/fortran/print.f' || echo '$(srcdir)/'`src/fortran/print.f
-
 lspdsp.lo: src/fortran/lspdsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lspdsp.lo `test -f 'src/fortran/lspdsp.f' || echo '$(srcdir)/'`src/fortran/lspdsp.f
 
@@ -1065,12 +1058,6 @@ basouttofile.lo: src/fortran/basouttofile.f
 
 formatnumber.lo: src/fortran/formatnumber.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o formatnumber.lo `test -f 'src/fortran/formatnumber.f' || echo '$(srcdir)/'`src/fortran/formatnumber.f
-
-intprint.lo: sci_gateway/fortran/intprint.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intprint.lo `test -f 'sci_gateway/fortran/intprint.f' || echo '$(srcdir)/'`sci_gateway/fortran/intprint.f
-
-intdisp.lo: sci_gateway/fortran/intdisp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdisp.lo `test -f 'sci_gateway/fortran/intdisp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdisp.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

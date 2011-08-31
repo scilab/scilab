@@ -250,7 +250,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\..\sci_gateway\c\sci_getenv.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getio.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_load.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_read.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_read4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c" />

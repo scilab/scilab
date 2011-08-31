@@ -126,7 +126,7 @@ am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
 	libscifunctions_la-sci_librarieslist.lo \
 	libscifunctions_la-sci_libraryinfo.lo
-am__objects_4 = intlib.lo intdeff.lo intexecstr.lo intexec.lo
+am__objects_4 = intlib.lo intexecstr.lo intexec.lo
 am__objects_5 = libscifunctions_la-functions_gw.lo \
 	libscifunctions_la-sci_exec.lo \
 	libscifunctions_la-sci_functionlist.lo \
@@ -461,7 +461,6 @@ sci_gateway/cpp/sci_mode.cpp \
 sci_gateway/cpp/sci_getThreads.cpp
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intlib.f \
-sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intexec.f
 
@@ -519,7 +518,7 @@ modulename = functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(mydatadir)
-libscifunctions_la_root_DATA = license.txt 
+libscifunctions_la_root_DATA = license.txt
 
 #### functions : init scripts ####
 libscifunctions_la_etcdir = $(mydatadir)/etc
@@ -869,9 +868,6 @@ whereis.lo: src/fortran/whereis.f
 
 intlib.lo: sci_gateway/fortran/intlib.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intlib.lo `test -f 'sci_gateway/fortran/intlib.f' || echo '$(srcdir)/'`sci_gateway/fortran/intlib.f
-
-intdeff.lo: sci_gateway/fortran/intdeff.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdeff.lo `test -f 'sci_gateway/fortran/intdeff.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdeff.f
 
 intexecstr.lo: sci_gateway/fortran/intexecstr.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intexecstr.lo `test -f 'sci_gateway/fortran/intexecstr.f' || echo '$(srcdir)/'`sci_gateway/fortran/intexecstr.f

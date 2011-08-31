@@ -25,7 +25,6 @@ intfrexp_
 intimult_
 intint_
 intisequal_
-intisequalvar_
 intisreal_
 intkron_
 intlog_

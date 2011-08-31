@@ -12,8 +12,8 @@ c     We use
 c     include file instead of subroutine to avoid recursion pbs. This file
 c     must be included in each routine which compute an external
 
- 60	call  parse
-	if(fun.eq.99) then
+c 60	call  parse
+ 60	if(fun.eq.99) then
 	   if(err.gt.0.or.err1.gt.0) then
 c       .     test if we are under errcatch('stop') mode (imode=3)
 c
@@ -159,7 +159,7 @@ C       be called by value
 c       call ref2val
 
 	fun = 0
-	call funs(ids(1,pt+1))
+c	call funs(ids(1,pt+1))
 	if(err.gt.0) goto 97
 	if(fun.gt.0) then
 	   if (isbyref(fun).eq.0) call ref2val

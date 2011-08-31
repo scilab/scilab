@@ -115,10 +115,7 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<File RelativePath=".\fmt.f"/>
 		<File RelativePath=".\fmttyp.f"/>
 		<File RelativePath=".\formatnumber.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intdisp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intprint.f"/>
 		<File RelativePath=".\lspdsp.f"/>
-		<File RelativePath=".\print.f"/>
 		<File RelativePath=".\prntid.f"/>
 		<File RelativePath=".\strdsp.f"/>
 		<File RelativePath=".\wmdsp.f"/>

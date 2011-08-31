@@ -132,7 +132,7 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     /* Windows release mode */
     iExitCode = callScirun(startup);
 #else
-    iExitCode = C2F(scirun)(startup,(long int)strlen(startup));
+    //iExitCode = C2F(scirun)(startup,(long int)strlen(startup));
 #endif
 
     FREE(startup);
@@ -158,7 +158,7 @@ static int callScirun(char *startupCommand)
     int iExitCode = 0;
     _try
     {
-        iExitCode = C2F(scirun)(startupCommand,(long int)strlen(startupCommand));
+        //iExitCode = C2F(scirun)(startupCommand,(long int)strlen(startupCommand));
     }
     _except (EXCEPTION_EXECUTE_HANDLER)
     {
@@ -169,7 +169,7 @@ static int callScirun(char *startupCommand)
         {
             _try
             {
-                iExitCode = C2F(scirun)("",(long int)strlen(""));
+                //iExitCode = C2F(scirun)("",(long int)strlen(""));
             }
 
             _except (EXCEPTION_EXECUTE_HANDLER)

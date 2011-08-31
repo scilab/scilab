@@ -91,22 +91,16 @@ lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\data_structures_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\extractfields.f"/>
-		<File RelativePath=".\followpath.f"/>
 		<File RelativePath=".\forcerhs.f"/>
 		<File RelativePath=".\gratyp.f"/>
 		<File RelativePath=".\insertfield.f"/>
-		<File RelativePath=".\intl_e.f"/>
-		<File RelativePath=".\intl_i.f"/>
 		<File RelativePath=".\lsstyp.f"/>
-		<File RelativePath=".\lstops.f"/>
 		<File RelativePath=".\mlist.f"/>
 		<File RelativePath=".\rattyp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_definedfields.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_getfield.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_list.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lstcat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lstsize.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_setfield.f"/>
 		<File RelativePath=".\udptr.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\data_structures_gateway.xml"/>

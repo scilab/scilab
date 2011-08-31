@@ -27,6 +27,9 @@
 /*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart1(void)
 {
+
+// Call scilab.quit before exit.
+#if 0
     if ( Get_no_startup_flag() == 0)
     {
         char *quit_script = NULL;
@@ -38,6 +41,7 @@ BOOL TerminateCorePart1(void)
         /* launch scilab.quit script */
         C2F(scirun)(quit_script,(long int)strlen(quit_script));
     }
+#endif
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/

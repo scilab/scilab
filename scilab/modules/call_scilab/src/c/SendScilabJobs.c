@@ -55,7 +55,7 @@ int SendScilabJob(char *job)
         int m = 0, n = 0;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun)(COMMAND_CLEAR,(long int)strlen(COMMAND_CLEAR));
+        //C2F(scirun)(COMMAND_CLEAR,(long int)strlen(COMMAND_CLEAR));
 
         SetLastJob(command);
 
@@ -77,7 +77,7 @@ int SendScilabJob(char *job)
 
 
         /* Run the command within an execstr */
-        C2F(scirun)(COMMAND_EXECSTR,(long int)strlen(COMMAND_EXECSTR));
+//        C2F(scirun)(COMMAND_EXECSTR,(long int)strlen(COMMAND_EXECSTR));
         sciErr = getNamedVarDimension(NULL, "Err_Job", &m, &n);
         if(sciErr.iErr)
         {
@@ -122,7 +122,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
+//        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
     }
     else
     {

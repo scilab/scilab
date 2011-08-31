@@ -27,7 +27,6 @@ sci_gateway/cpp/sci_mode.cpp \
 sci_gateway/cpp/sci_getThreads.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \
-sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intexec.f
 
@@ -88,7 +87,7 @@ modulename=functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(mydatadir)
-libscifunctions_la_root_DATA =  license.txt 
+libscifunctions_la_root_DATA =  license.txt
 
 
 #### functions : init scripts ####

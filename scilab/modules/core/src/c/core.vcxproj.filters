@@ -59,9 +59,6 @@
     <ClCompile Include="exitCodeValue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="expr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="force_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -173,9 +170,6 @@
     <ClCompile Include="..\cpp\namstr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="parse.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="predef.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -195,9 +189,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnPropertyList.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="run.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c">
@@ -317,9 +308,6 @@
     <ClCompile Include="sciquit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scirun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\search_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -339,9 +327,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="str2sci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="syncexec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="terme.c">

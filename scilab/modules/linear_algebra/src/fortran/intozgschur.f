@@ -15,7 +15,7 @@ c     [VS,dim]=gshur(A,B,function)
       include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
-      
+
       character fname*(*)
       character  JOBVSL, JOBVSR, SORT
       logical SCIZGSHR,scizgchk
@@ -26,9 +26,9 @@ c     [VS,dim]=gshur(A,B,function)
       maxrhs=3
       minlhs=1
       maxlhs=4
-c     
+c
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
 
       if(.not.getrhsvar(1,'z', MA, NA, lA)) return
       if(MA.ne.NA) then
@@ -42,7 +42,7 @@ c
          call error(20)
          return
       endif
-      N = MA 
+      N = MA
       if(N.eq.0) then
          lhsvar(1)=1
          lhsvar(2)=2
@@ -77,12 +77,12 @@ c
       LWORK=LWORKMIN
       if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
       nfree = 12
-      
+
       JOBVSL = 'V'
-      JOBVSR = 'V' 
+      JOBVSR = 'V'
       SORT = 'S'
 
-      
+
       if(.not.scizgchk()) return
       call ZGGES( JOBVSL, JOBVSR, SORT, SCIZGSHR, N, zstk(lA), N,
      $     zstk(lB), N, istk(lSDIM), zstk(lALPHA), zstk(lBETA),
@@ -98,9 +98,9 @@ c     $    BWORK, INFO )
          elseif(info.eq.N+1) then
             call error(24)
             return
-         elseif(info.eq.N+2) then 
+         elseif(info.eq.N+2) then
             call msgs(103,0)
-         elseif(info.eq.N+3) then 
+         elseif(info.eq.N+3) then
             buf='reordering failed'
             call error(1002)
             return
@@ -122,20 +122,20 @@ c     $    BWORK, INFO )
          lhsvar(3)=8
          lhsvar(4)=4
       endif
-c     
+c
       end
 
-      
+
       logical function scizgshr(alpha,beta)
       INCLUDE 'stack.h'
-      logical scifunction, createcvar
+      logical createcvar
       common /scizgsch/ lf, nx, nf
       integer iadr
       complex*16 alpha, beta
       intrinsic dreal, dimag
 
       iadr(l) = l+l-1
-c     
+c
       scizgshr=.false.
       if(.not.createcvar(nx,'d',1,1,1,lar,lai)) return
       if(.not.createcvar(nx+1,'d',1,1,1,lbr,lbi)) return
@@ -145,7 +145,7 @@ c
       stk(lbr)=dreal(beta)
       stk(lbi)=dimag(beta)
 
-      if(.not.scifunction(nx,lf,1,2)) return
+c      if(.not.scifunction(nx,lf,1,2)) return
 c     stk(lx)=fct([alpha,beta])  evaluated by scilab fct pointed to by
 c     lf
       ilx=iadr(lx-2)
@@ -160,8 +160,8 @@ c     lf
       logical function scizgchk()
 c     checks fct passed to zgshur
       INCLUDE 'stack.h'
-      logical scifunction, createcvar
-      
+      logical createcvar
+
       integer iadr
       common/ierinv/iero
       common /scizgsch/ lf, nx, nf
@@ -175,10 +175,10 @@ c     checks fct passed to zgshur
       stk(lai)=0.0d0
       stk(lbr)=1.0D0
       stk(lbi)=0.0d0
-      if(.not.scifunction(nx,lf,1,1)) then
+c      if(.not.scifunction(nx,lf,1,1)) then
 c     error into fct passed to schur (zgschur(A,B,tst))
-         return
-      endif
+c         return
+c      endif
 c     check return value of fct
       ilx=iadr(lx-2)
       if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then

@@ -172,7 +172,7 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     InitStringToScilab = (char*)MALLOC(lengthStringToScilab*sizeof(char));
     sprintf(InitStringToScilab,FORMAT_SCRIPT_STARTUP,ScilabStartupUsed);
 
-    C2F(scirun)(InitStringToScilab,(long int)strlen(InitStringToScilab));
+//    C2F(scirun)(InitStringToScilab,(long int)strlen(InitStringToScilab));
 
     if (ScilabStartupUsed) {FREE(ScilabStartupUsed);ScilabStartupUsed=NULL;}
     if (InitStringToScilab) {FREE(InitStringToScilab);InitStringToScilab=NULL;}
@@ -219,7 +219,7 @@ void ScilabDoOneEvent(void)
     {
         if ( getScilabMode() != SCILAB_NWNI )
         {
-            C2F(scirun)("quit;", (int)strlen("quit;"));
+//            C2F(scirun)("quit;", (int)strlen("quit;"));
         }
     }
 }

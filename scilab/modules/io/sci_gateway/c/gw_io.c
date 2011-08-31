@@ -43,7 +43,7 @@ static gw_generic_table Tab[] =
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
-{  
+{
     /* Recursion from a function */
     if ( isRecursionCallToFunction() )
     {
@@ -51,7 +51,7 @@ int gw_io(void)
         {
         case RECURSION_CALL_SAVE:
             {
-                C2F(intsave)(); 
+                //C2F(intsave)();
                 return 0;
             }
             break;

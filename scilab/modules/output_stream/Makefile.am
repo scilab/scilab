@@ -47,7 +47,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wmdsp.f \
 	src/fortran/strdsp.f \
 	src/fortran/prntid.f \
-	src/fortran/print.f \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
@@ -66,9 +65,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_print.c
 
 
-GATEWAY_FORTRAN_SOURCES = \
-	sci_gateway/fortran/intprint.f \
-	sci_gateway/fortran/intdisp.f
+GATEWAY_FORTRAN_SOURCES =
 
 libscioutput_stream_la_CFLAGS=  \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -117,14 +114,14 @@ CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_S
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
-libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la 
+libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la
 #$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA =  license.txt 
+libscioutput_stream_la_root_DATA =  license.txt
 
 
 #### output_stream : init scripts ####

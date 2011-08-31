@@ -676,7 +676,7 @@ static int callSciPredicate(int nbRhs)
   int nbLhs= 1;
   int i;
   /*  fprintf(stderr, "in callSciPredicate with arg of type:%d\n",*getHeaderPtrFromDataPtr(pStaticDouble[0])); */
-  C2F(scifunction)(&beginSelectArg, &sciSelect, &nbLhs, &nbRhs);
+  //C2F(scifunction)(&beginSelectArg, &sciSelect, &nbLhs, &nbRhs);
 
   {
 		int iRows, iCols;
@@ -706,7 +706,7 @@ static int isSciPredicateValid(int nbRhs)
   int res= 0;
   int nbLhs=1;
   //  fprintf(stderr,"Rhs before:%d\n",Rhs);
-  C2F(scifunction)(&beginSelectArg, &sciSelect, &nbLhs, &nbRhs);
+  //C2F(scifunction)(&beginSelectArg, &sciSelect, &nbLhs, &nbRhs);
   //  fprintf(stderr,"Rhs after:%d\n",Rhs);
   {
 		int iRows, iCols;

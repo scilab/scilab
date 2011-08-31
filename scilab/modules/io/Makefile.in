@@ -113,7 +113,7 @@ am__objects_1 = libsciio_algo_la-getpidc.lo \
 	libsciio_algo_la-setenvc.lo libsciio_algo_la-systemc.lo \
 	libsciio_algo_la-getenvc.lo libsciio_algo_la-GetenvB.lo \
 	libsciio_algo_la-v2cuniterror.lo
-am__objects_2 = v2unit.lo newsave.lo v2cunit.lo
+am__objects_2 = v2unit.lo v2cunit.lo
 am__objects_3 = libsciio_algo_la-io_gw.lo
 am_libsciio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
@@ -446,7 +446,6 @@ src/c/GetenvB.c \
 src/c/v2cuniterror.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
-src/fortran/newsave.f \
 src/fortran/v2cunit.f
 
 IO_CPP_SOURCES = src/cpp/io_gw.cpp
@@ -523,7 +522,7 @@ modulename = io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA = license.txt 
+libsciio_la_root_DATA = license.txt
 
 ####io : init scripts ####
 libsciio_la_etcdir = $(mydatadir)/etc
@@ -926,9 +925,6 @@ libsciio_la-sci_unix.lo: sci_gateway/cpp/sci_unix.cpp
 
 v2unit.lo: src/fortran/v2unit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2unit.lo `test -f 'src/fortran/v2unit.f' || echo '$(srcdir)/'`src/fortran/v2unit.f
-
-newsave.lo: src/fortran/newsave.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o newsave.lo `test -f 'src/fortran/newsave.f' || echo '$(srcdir)/'`src/fortran/newsave.f
 
 v2cunit.lo: src/fortran/v2cunit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2cunit.lo `test -f 'src/fortran/v2cunit.f' || echo '$(srcdir)/'`src/fortran/v2cunit.f

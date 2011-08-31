@@ -251,7 +251,6 @@ cd.. &gt;nul
     <ClCompile Include="eqid.c" />
     <ClCompile Include="ExceptionMessage.c" />
     <ClCompile Include="exitCodeValue.c" />
-    <ClCompile Include="expr.c" />
     <ClCompile Include="force_link.c" />
     <ClCompile Include="freeArrayOfString.c" />
     <ClCompile Include="funcprot.c" />
@@ -292,7 +291,6 @@ cd.. &gt;nul
     <ClCompile Include="md5.c" />
     <ClCompile Include="mode_exec.c" />
     <ClCompile Include="..\cpp\namstr.cpp" />
-    <ClCompile Include="parse.c" />
     <ClCompile Include="predef.c" />
     <ClCompile Include="readGateway.c" />
     <ClCompile Include="realmain.c" />
@@ -300,7 +298,6 @@ cd.. &gt;nul
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="returnProperty.c" />
     <ClCompile Include="returnPropertyList.c" />
-    <ClCompile Include="run.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_comp.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_debug.c" />
@@ -340,7 +337,6 @@ cd.. &gt;nul
     <ClCompile Include="..\..\sci_gateway\c\sci_who.c" />
     <ClCompile Include="scimem.c" />
     <ClCompile Include="sciquit.c" />
-    <ClCompile Include="scirun.c" />
     <ClCompile Include="..\cpp\search_functions.cpp" />
     <ClCompile Include="stack1.c" />
     <ClCompile Include="stack2.c" />
@@ -348,7 +344,6 @@ cd.. &gt;nul
     <ClCompile Include="stackinfo.c" />
     <ClCompile Include="..\cpp\storeCommand.cpp" />
     <ClCompile Include="str2sci.c" />
-    <ClCompile Include="syncexec.c" />
     <ClCompile Include="terme.c" />
     <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
