@@ -11,7 +11,7 @@
  */
 #ifndef DET_H
 #define DET_H
-
+#include "dynlib_linear_algebra.h"
 /*
  * computes the determinant of a real or complex square matrix, performing MALLOCation of temp variables as needed.
  * Cf. http://www.scilab.org/product/man/det.html
@@ -31,6 +31,6 @@
  *
  */
 
-int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent);
+LINEAR_ALGEBRA_IMPEXP int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent);
 
 #endif

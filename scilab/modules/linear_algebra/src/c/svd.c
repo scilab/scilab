@@ -137,7 +137,7 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
 		 && (!complexArg 
 		     || (pRWork= (double*) MALLOC(5 * Min(iRows, iCols) * sizeof(double))))
 		 && (pVT= (pU 
-			   ? MALLOC(colsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)))
+			   ? (double*)MALLOC(colsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)))
 			   : pData)))))
     {
       ret= complexArg 

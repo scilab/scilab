@@ -255,6 +255,9 @@
       <Project>{2d02dd0e-cbf5-493e-aa06-1e289ed24666}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\linear_algebra\sci_gateway\cpp\linear_algebra_gw.vcxproj">
+      <Project>{ee43be6d-817d-4b09-ac40-7e6ac5bdb80d}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\localization\sci_gateway\cpp\localization_gw.vcxproj">
       <Project>{7a68edc6-f0af-47d1-bb16-b8a9dcd9202d}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

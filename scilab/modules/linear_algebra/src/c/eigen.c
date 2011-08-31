@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE 
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,8 +29,7 @@ static int assembleEigenvectorsInPlace(int iRows, double * eigenvaluesImg, doubl
 static int iEigen2Complex(doublecomplex* pData1, doublecomplex* pData2, int iCols, doublecomplex* pAlpha, doublecomplex* pBeta
 		   , doublecomplex* pR, doublecomplex* pL, doublecomplex* pWork, int iWorkSize, double* pRWork);
 
-static int iEigen2Real(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta
-		, double* pR, double* pL, double* pWork, int iWorkSize);
+static int iEigen2Real(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pR, double* pL, double* pWork, int iWorkSize);
 
 static double* allocateDggevWorkspace(int iCols, int* pWorksize);
 
@@ -349,43 +349,49 @@ void expandZToDiagonalOfCMatrix(doublecomplex const* pZVector, int iCols, double
  */
 static double* allocateDggevWorkspace(int iCols, int* pWorksize)
 {
-  double* ret=NULL;
-  int info;
-  int query= -1; 
-  double opt;
-  C2F(dggev)("N", "N", &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
-  *pWorksize= (int)opt;
-  ret= MALLOC(*pWorksize);
-  if(!ret)
+    double* ret=NULL;
+    int info;
+    int query= -1; 
+    double opt;
+
+    C2F(dggev)("N", "N", &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
+
+    *pWorksize= (int)opt;
+    ret= MALLOC(*pWorksize * sizeof(double));
+
+    if(!ret)
     {
-      *pWorksize= Max(1, 8*iCols);
-      ret= MALLOC(*pWorksize);
-      if(!ret)
-	{
-	  *pWorksize= 0;
-	}
+        *pWorksize = Max(1, 8*iCols);
+        ret= MALLOC(*pWorksize * sizeof(double));
+        if(!ret)
+        {
+            *pWorksize= 0;
+        }
     }
-  return ret;
+    return ret;
 }
 static doublecomplex* allocateZggevWorkspace(int iCols, int* pWorksize)
 {
-  doublecomplex* ret=NULL;
-  int info;
-  int query= -1; 
-  doublecomplex opt;
-  C2F(zggev)("N", "N", &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, NULL, &info);
-  *pWorksize= (int) opt.r;
-  ret= MALLOC(*pWorksize);
-  if(!ret)
+    doublecomplex* ret=NULL;
+    int info;
+    int query= -1; 
+    doublecomplex opt;
+
+    C2F(zggev)("N", "N", &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, NULL, &info);
+
+    *pWorksize= (int) opt.r;
+    ret= MALLOC(*pWorksize * sizeof(double));
+
+    if(!ret)
     {
-      *pWorksize= Max(1, 8*iCols);
-      ret= MALLOC(*pWorksize);
-      if(!ret)
-	{
-	  *pWorksize= 0;
-	}
+        *pWorksize = Max(1, 8*iCols);
+        ret= MALLOC(*pWorksize * sizeof(double));
+        if(!ret)
+        {
+            *pWorksize= 0;
+        }
     }
-  return ret;
+    return ret;
 }
 
 /*
@@ -415,103 +421,103 @@ static doublecomplex* allocateZggevWorkspace(int iCols, int* pWorksize)
  * @param pRWork double* scratch workspace : only used for complex data
  */
 
-static int iEigen2Complex(doublecomplex* pData1, doublecomplex* pData2, int iCols, doublecomplex* pAlpha, doublecomplex* pBeta
-		   , doublecomplex* pR, doublecomplex* pL, doublecomplex* pWork, int iWorkSize, double* pRWork)
+static int iEigen2Complex(doublecomplex* pData1, doublecomplex* pData2, int iCols, doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL, doublecomplex* pWork, int iWorkSize, double* pRWork)
 {
-  int info;
-  C2F(zggev)((pL != NULL) ? "V" : "N", (pR != NULL) ? "V" : "N", &iCols, pData1, &iCols, pData2, &iCols, pAlpha, pBeta
-	     , pL, &iCols, pR, &iCols, pWork, &iWorkSize, pRWork, &info);
-  return info;
+    int info;
+    C2F(zggev)((pL != NULL) ? "V" : "N", (pR != NULL) ? "V" : "N", &iCols, pData1, &iCols, pData2, &iCols, pAlpha, pBeta, pL, &iCols, pR, &iCols, pWork, &iWorkSize, pRWork, &info);
+    return info;
 }
 
-static int iEigen2Real(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta
-	    , double* pR, double* pL, double* pWork, int iWorkSize)
+static int iEigen2Real(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pR, double* pL, double* pWork, int iWorkSize)
 {
-  int info;
-  C2F(dggev)((pL != NULL) ? "V" : "N", (pR != NULL) ? "V" : "N", &iCols, pData1, &iCols, pData2, &iCols, pAlphaReal, pAlphaImg
-	     , pBeta, pL, &iCols, pR, &iCols, pWork, &iWorkSize, &info);
-  return info;
+    int info;
+    C2F(dggev)((pL != NULL) ? "V" : "N", (pR != NULL) ? "V" : "N", &iCols, pData1, &iCols, pData2, &iCols, pAlphaReal, pAlphaImg, pBeta, pL, &iCols, pR, &iCols, pWork, &iWorkSize, &info);
+    return info;
 }
 
 /******************************************************************************
  * Part of the API: cf eigen.h
  ******************************************************************************/
-int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols
-	      , doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL)
+int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols, doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL)
 {
-  int ret= 0;
-  int iRWorkSize= 0;
-  int worksize;
-  double* pRWork= NULL;
-  doublecomplex* pWork=NULL;  
-  int onlyOneLhs= (pBeta == NULL); /* if beta was not requested (only one lhs), memory was not provided for beta, but will be needed to scale alpha */
+    int ret= 0;
+    int iRWorkSize= 0;
+    int worksize;
+    double* pRWork= NULL;
+    doublecomplex* pWork=NULL;  
+    int onlyOneLhs= (pBeta == NULL); /* if beta was not requested (only one lhs), memory was not provided for beta, but will be needed to scale alpha */
+    iRWorkSize = Max(1,8*iCols);
 
-  iRWorkSize = Max(1,8*iCols);
-  ret=  ( (pBeta= (onlyOneLhs ? (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex)) : pBeta)) == NULL) 
-    || ( (pRWork = (double*)MALLOC(iRWorkSize * sizeof(double) )) == NULL)
-    || ( (pWork= allocateZggevWorkspace(iCols, &worksize)) == NULL );
-  ret= ret 
-    ? -1 /* use explicit -1 to signal malloc error as >0 codes are used for convergence troubles */
-    : iEigen2Complex(pData1, pData2, iCols, pAlpha, pBeta, pR, pL, pWork, worksize, pRWork)
-    ;
-  if((ret >=0) && (ret <= iCols) && onlyOneLhs)
+    ret =   ((pBeta = (onlyOneLhs ? (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex)) : pBeta)) == NULL) 
+         || ((pRWork = (double*)MALLOC(iRWorkSize * sizeof(double))) == NULL)
+         || ((pWork = allocateZggevWorkspace(iCols, &worksize)) == NULL);
+
+    /* use explicit -1 to signal malloc error as >0 codes are used for convergence troubles */
+    ret = ret ? -1 : iEigen2Complex(pData1, pData2, iCols, pAlpha, pBeta, pR, pL, pWork, worksize, pRWork);
+
+    if((ret >=0) && (ret <= iCols) && onlyOneLhs)
     {/* no error, maybe warnings  and only one lhs : adjust alpha */
-      int ierr; /* original code doe not check ierr */
-      int const delta= sizeof(doublecomplex)/sizeof(double); /* in fact it's (&pAlpha[1].r - &pAlpha[1].r) / sizeof(double), or... 2 :) */
-      C2F(wwrdiv)(&pAlpha[0].r, &pAlpha[0].i, &delta, &pBeta[0].r, &pBeta[0].i, &delta, &pAlpha[0].r, &pAlpha[0].i, &delta, &iCols, &ierr);
+        int ierr; /* original code doe not check ierr */
+
+        /* in fact it's (&pAlpha[1].r - &pAlpha[1].r) / sizeof(double), or... 2 :) */
+        int const delta= sizeof(doublecomplex)/sizeof(double);
+
+        C2F(wwrdiv)(&pAlpha[0].r, &pAlpha[0].i, &delta, &pBeta[0].r, &pBeta[0].i, &delta, &pAlpha[0].r, &pAlpha[0].i, &delta, &iCols, &ierr);
     }
-  FREE(pRWork);
-  FREE(pWork);
-  if(onlyOneLhs)
+
+    FREE(pRWork);
+    FREE(pWork);
+
+    if(onlyOneLhs)
     {
-      FREE(pBeta);
+        FREE(pBeta);
     }
-  return ret;
+    return ret;
 }
 
 /******************************************************************************
  * Part of the API: cf eigen.h
  ******************************************************************************/
-int iEigen2RealM(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta
-	     , double* pRReal, double* pRImg, double* pLReal, double* pLImg)
+int iEigen2RealM(double* pData1, double* pData2, int iCols, double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pRReal, double* pRImg, double* pLReal, double* pLImg)
 {
-  int ret= 0;
-  int worksize;
-  double* pWork=NULL;  
+    int ret = 0;
+    int worksize;
+    double* pWork = NULL;  
+    int onlyOneLhs = (pBeta == NULL);
 
-  int onlyOneLhs= (pBeta == NULL);
-  ret=  ( (pBeta= (onlyOneLhs ? (double*)MALLOC(iCols * sizeof(double)) : pBeta)) == NULL)
-    || ( (pWork= allocateDggevWorkspace(iCols, &worksize)) == NULL );
-  ret= ret 
-    ? -1 /* use explicit -1 to signal malloc error as >0 codes are used for convergence troubles */
-    : iEigen2Real(pData1, pData2, iCols, pAlphaReal, pAlphaImg, pBeta, pRReal, pLReal, pWork, worksize)
-    ;
-  if((ret >=0) && (ret <= iCols) )
-    {/* no error, maybe warnings  and only one lhs : adjust alpha */
-      if(onlyOneLhs)
-	{
-	  int i;
-	  for(i= 0; i!=iCols; ++i)
-	    {
-	      pAlphaReal[i] /= pBeta[i];
-	      pAlphaImg[i] /= pBeta[i];
-	    }
-	}
-      if(pRReal)
-	{
-	  assembleEigenvectorsInPlace(iCols, pAlphaImg, pRReal, pRImg);
-	}
-      if(pLReal)
-	{
-	  assembleEigenvectorsInPlace(iCols, pAlphaImg, pLReal, pLImg);
-	}
+    ret =   ((pBeta = (onlyOneLhs ? (double*)MALLOC(iCols * sizeof(double)) : pBeta)) == NULL)
+        ||  ((pWork = allocateDggevWorkspace(iCols, &worksize)) == NULL);
+
+    // use explicit -1 to signal malloc error as >0 codes are used for convergence troubles 
+    ret = ret ? -1 : iEigen2Real(pData1, pData2, iCols, pAlphaReal, pAlphaImg, pBeta, pRReal, pLReal, pWork, worksize);
+
+    if((ret >= 0) && (ret <= iCols))
+    {// no error, maybe warnings  and only one lhs : adjust alpha
+        if(onlyOneLhs)
+        {
+            int i;
+            for(i= 0; i!=iCols; ++i)
+            {
+                pAlphaReal[i] /= pBeta[i];
+                pAlphaImg[i] /= pBeta[i];
+            }
+        }
+        if(pRReal)
+        {
+            assembleEigenvectorsInPlace(iCols, pAlphaImg, pRReal, pRImg);
+        }
+        if(pLReal)
+        {
+            assembleEigenvectorsInPlace(iCols, pAlphaImg, pLReal, pLImg);
+        }
     }
-  FREE(pWork);
-  if(onlyOneLhs)
+
+    FREE(pWork);
+    if(onlyOneLhs)
     {
-      FREE(pBeta);
+        FREE(pBeta);
     }
-  return ret;
+    return ret;
 }
 
 

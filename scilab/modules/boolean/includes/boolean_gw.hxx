@@ -13,7 +13,12 @@
 #ifndef __BOOLEAN_GW_HXX__
 #define __BOOLEAN_GW_HXX__
 
+#include "cpp_gateway_prototype.hxx"
+
+extern "C"
+{
 #include "dynlib_boolean_gw.h"
+}
 
 class BooleanModule
 {
@@ -23,5 +28,7 @@ private :
 public :
 	BOOLEAN_GW_IMPEXP static int Load();
 };
+
+CPP_GATEWAY_PROTOTYPE(sci_bool2s);
 
 #endif /* __BOOLEAN_GW_HXX__ */

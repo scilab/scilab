@@ -46,7 +46,7 @@ GATEWAY_CPP_SOURCES = \
 if GUI
 
 # List of the c files
-HISTORY_MANAGER_C_SOURCES += \ 
+HISTORY_MANAGER_C_SOURCES += \
     src/jni/HistoryManagement_wrap.c
 
 USEANT=1

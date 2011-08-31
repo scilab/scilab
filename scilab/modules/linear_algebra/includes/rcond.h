@@ -11,6 +11,9 @@
  *
  */
 
+#ifndef __RCOND_H__
+#define __RCOND_H__
+#include "dynlib_linear_algebra.h"
 /*
  * inverse condition number of a real or complex matrix. see http://www.scilab.org/product/man/rcond.html
  *
@@ -28,4 +31,5 @@
  *
  */
 
-extern int iRcondM(double* pData, int iCols, int complexArg, double* pRcond);
+LINEAR_ALGEBRA_IMPEXP int iRcondM(double* pData, int iCols, int complexArg, double* pRcond);
+#endif /* !__RCOND_H__ */

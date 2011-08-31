@@ -29,7 +29,7 @@ static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
 	{NULL, ""}, //lu
 	{C2F(intslash),"slash"},
 	{C2F(intbackslash),"backslash"},
-	{C2F(intschur),"schur"},
+	{NULL, ""}, //schur
 	{NULL, ""}, //hess
 	{NULL, ""}, //det
 	{NULL, ""} //balanc

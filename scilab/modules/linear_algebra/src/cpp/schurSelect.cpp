@@ -1,0 +1,343 @@
+/*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+/*--------------------------------------------------------------------------*/
+
+#include "configvariable.hxx"
+#include "callable.hxx"
+#include "runvisitor.hxx"
+
+extern "C"
+{
+    #include "scischur.h"
+    #include "schurSelect.h"
+}
+
+/*--------------------------------------------------------------------------*/
+int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComplex, bool _bIsDiscrete, bool _bIsContinu, ConfigVariable::EntryPointStr* pStrFunction)
+{
+    int info                    = 0;
+    int* pBwork                 = NULL;
+    int iWorksize               = 0;
+    double* pRwork              = NULL;
+    doublecomplex* pCplxWork    = NULL;
+    int iDim                    = 0;
+    int iCols                   = _pDblIn[0]->getCols();
+    types::Callable* pCall      = ConfigVariable::getSchurFunction();
+
+    doublecomplex* pDataInDoublecomplex[2]     = {NULL, NULL};
+    doublecomplex* pDataOutDoublecomplex[2]    = {NULL, NULL};
+
+    pBwork = (int*)MALLOC((_pDblIn[1] ? 2 : 1) * iCols * sizeof(int));
+    if(pBwork == NULL)
+    {
+        return -1;
+    }
+
+    const char* jobL = _pDblOut[0]  ? "V":"N";
+    const char* jobR = _pDblOut[1]  ? "V":"N";
+    const char* sort = (pStrFunction || pCall || _bIsDiscrete || _bIsContinu) ? "S":"N";
+
+    if(_pDblIn[1] == NULL && _bIsComplex == false)
+    {//dgees
+        double* pWR = (double*)MALLOC(iCols * sizeof(double));
+        double* pWI = (double*)MALLOC(iCols * sizeof(double));
+        pRwork = allocDgeesWorkspace(iCols, &iWorksize);
+
+        if(pWR == NULL || pWI == NULL || pRwork == NULL)
+        {
+            return -1;
+        }
+
+        if(_bIsDiscrete)
+        {
+            C2F(dgees)(jobL, sort, schur_sb02mw, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(_bIsContinu)
+        {
+            C2F(dgees)(jobL, sort, schur_sb02mv, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(pCall)
+        {
+            C2F(dgees)(jobL, sort, schur_dgees, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(pStrFunction)
+        {
+            C2F(dgees)(jobL, sort, (schur_dgees_t)pStrFunction->functionPtr, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else
+        {
+            C2F(dgees)(jobL, sort, NULL, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+
+        if(_pDblOut[2])
+        {
+            _pDblOut[2]->set(0, (double)iDim);
+        }
+
+	    FREE(pWR);
+	    FREE(pWI);
+        FREE(pRwork);
+    }
+
+    if(_pDblIn[1] == NULL && _bIsComplex)
+    {//zgees
+        doublecomplex* pW = NULL;
+        pRwork      = (double*)MALLOC(iCols * sizeof(double));
+        pW          = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
+        pCplxWork   = allocZgeesWorkspace(iCols, &iWorksize);
+
+        if(pRwork == NULL || pW == NULL || pCplxWork == NULL)
+        {
+            return -1;
+        }
+
+        pDataInDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblIn[0]->getReal(), _pDblIn[0]->getImg(), _pDblIn[0]->getSize());
+        pDataOutDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblOut[0]->getReal(), _pDblOut[0]->getImg(), _pDblOut[0]->getSize());
+
+        if(_bIsDiscrete)
+        {
+            C2F(zgees)(jobL, sort, schur_zb02mw, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(_bIsContinu)
+        {
+            C2F(zgees)(jobL, sort, schur_zb02mv, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(pCall)
+        {
+            C2F(zgees)(jobL, sort, schur_zgees, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(pStrFunction)
+        {
+            C2F(zgees)(jobL, sort, (schur_zgees_t)pStrFunction->functionPtr, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else
+        {
+            C2F(zgees)(jobL, sort, NULL, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+
+        if(_pDblOut[2])
+        {
+            _pDblOut[2]->set(0, (double)iDim);
+        }
+
+        vGetPointerFromDoubleComplex(pDataInDoublecomplex[0], _pDblIn[0]->getSize(), _pDblIn[0]->getReal(), _pDblIn[0]->getImg());
+        vGetPointerFromDoubleComplex(pDataOutDoublecomplex[0], _pDblOut[0]->getSize(), _pDblOut[0]->getReal(), _pDblOut[0]->getImg());
+
+	    FREE(pW);
+        FREE(pRwork);
+        FREE(pCplxWork);
+        vFreeDoubleComplexFromPointer(pDataInDoublecomplex[0]);
+        vFreeDoubleComplexFromPointer(pDataOutDoublecomplex[0]);
+    }
+
+    if(_pDblIn[1] && _bIsComplex == false)
+    {//dgges
+	    double* pAlphaR = (double*)MALLOC(iCols * sizeof(double));
+	    double* pAlphaI = (double*)MALLOC(iCols * sizeof(double));
+	    double* pBeta   = (double*)MALLOC(iCols * sizeof(double));
+        pRwork = allocDggesWorkspace(iCols, &iWorksize);
+
+        if(pAlphaR == NULL || pAlphaI == NULL || pBeta == NULL || pRwork == NULL)
+        {
+            return -1;
+        }
+
+        if(_bIsDiscrete)
+        {
+            C2F(dgges)(jobL, jobR, sort, schur_sb02ox, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(_bIsContinu)
+        {
+            C2F(dgges)(jobL, jobR, sort, schur_sb02ow, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(pCall)
+        {
+            C2F(dgges)(jobL, jobR, sort, schur_dgges, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else if(pStrFunction)
+        {
+            C2F(dgges)(jobL, jobR, sort, (schur_dgges_t)pStrFunction->functionPtr, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+        else
+        {
+            C2F(dgges)(jobL, jobR, sort, NULL, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
+        }
+
+        if(_pDblOut[2])
+        {
+            _pDblOut[2]->set(0, (double)iDim);
+        }
+
+	    FREE(pAlphaR);
+	    FREE(pAlphaI);
+	    FREE(pBeta);
+        FREE(pRwork);
+    }
+
+    if(_pDblIn[1] && _bIsComplex)
+    {//zgges
+	    doublecomplex* pAlpha   = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
+	    doublecomplex* pBeta    = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
+        pRwork                  = (double*) MALLOC(8 * iCols * sizeof(double)); 
+        pCplxWork               = allocZggesWorkspace(iCols, &iWorksize);
+
+        if(pRwork == NULL || pAlpha == NULL || pBeta == NULL || pCplxWork == NULL)
+        {
+            return -1;
+        }
+
+        pDataInDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblIn[0]->getReal(), _pDblIn[0]->getImg(), _pDblIn[0]->getSize());
+        pDataOutDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblOut[0]->getReal(), _pDblOut[0]->getImg(), _pDblOut[0]->getSize());
+        pDataInDoublecomplex[1] = oGetDoubleComplexFromPointer(_pDblIn[1]->getReal(), _pDblIn[1]->getImg(), _pDblIn[1]->getSize());
+        pDataOutDoublecomplex[1] = oGetDoubleComplexFromPointer(_pDblOut[1]->getReal(), _pDblOut[1]->getImg(), _pDblOut[1]->getSize());
+
+        if(_bIsDiscrete)
+        {
+            C2F(zgges)(jobL, jobR, sort, schur_zb02ox, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(_bIsContinu)
+        {
+            C2F(zgges)(jobL, jobR, sort, schur_zb02ow, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(pCall)
+        {
+            C2F(zgges)(jobL, jobR, sort, schur_zgges, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else if(pStrFunction)
+        {
+            C2F(zgges)(jobL, jobR, sort, (schur_zgges_t)pStrFunction->functionPtr, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+        else
+        {
+            C2F(zgges)(jobL, jobR, sort, NULL, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
+        }
+
+        if(_pDblOut[2])
+        {
+            _pDblOut[2]->set(0, (double)iDim);
+        }
+
+        vGetPointerFromDoubleComplex(pDataInDoublecomplex[0], _pDblIn[0]->getSize(), _pDblIn[0]->getReal(), _pDblIn[0]->getImg());
+        vGetPointerFromDoubleComplex(pDataOutDoublecomplex[0], _pDblOut[0]->getSize(), _pDblOut[0]->getReal(), _pDblOut[0]->getImg());
+        vGetPointerFromDoubleComplex(pDataInDoublecomplex[1], _pDblIn[1]->getSize(), _pDblIn[1]->getReal(), _pDblIn[1]->getImg());
+        vGetPointerFromDoubleComplex(pDataOutDoublecomplex[1], _pDblOut[1]->getSize(), _pDblOut[1]->getReal(), _pDblOut[1]->getImg());
+
+        FREE(pRwork);
+        FREE(pCplxWork);
+        vFreeDoubleComplexFromPointer(pDataInDoublecomplex[0]);
+        vFreeDoubleComplexFromPointer(pDataOutDoublecomplex[0]);
+        vFreeDoubleComplexFromPointer(pDataInDoublecomplex[1]);
+        vFreeDoubleComplexFromPointer(pDataOutDoublecomplex[1]);
+    }
+
+    FREE(pBwork);
+    return info;
+}
+/*--------------------------------------------------------------------------*/
+double* allocDgeesWorkspace(int iCols, int* allocated)
+{
+    int info;
+    int query = -1;
+    double optim;
+    double* ret = NULL;
+
+    C2F(dgees)("V", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, &optim, &query, NULL, &info);
+
+    *allocated = (int)optim;
+    ret = (double*) MALLOC(*allocated * sizeof(double));
+
+    if(!ret)
+    {
+        *allocated = 3 * iCols;
+        ret = (double*) MALLOC(*allocated * sizeof(double));
+
+        if(!ret)
+        {
+            *allocated = 0;
+        }
+    }
+    return ret;
+}
+
+doublecomplex* allocZgeesWorkspace(int iCols, int* allocated)
+{
+    int info;
+    int query = -1;
+    doublecomplex optim;
+    doublecomplex* ret = NULL;
+
+    C2F(zgees)("V", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, &optim, &query, NULL, NULL, &info);
+
+    *allocated = (int)optim.r;
+    ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
+
+    if(!ret)
+    {
+        *allocated = 2 * iCols;
+        ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
+        if(!ret)
+        {
+            *allocated = 0;
+        }
+    }
+    return ret;
+}
+
+double* allocDggesWorkspace(int iCols, int* allocated)
+{
+    int info;
+    int query = -1;
+    double optim;
+    double* ret = NULL;
+
+    C2F(dgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, &info);
+
+    *allocated = (int)optim;
+    ret = (double*)MALLOC(*allocated * sizeof(double));
+
+    if(!ret)
+    {
+        *allocated = 8 * iCols + 16;
+        ret = (double*)MALLOC(*allocated * sizeof(double));
+
+        if(!ret)
+        {
+            *allocated = 0;
+        }
+    }
+    return ret;
+}
+
+doublecomplex* allocZggesWorkspace(int iCols, int* allocated)
+{
+    int info;
+    int query = -1;
+    doublecomplex optim;
+    doublecomplex* ret = NULL;
+
+    C2F(zgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, NULL, &info);
+
+    *allocated = (int)optim.r;
+    ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
+
+    if(!ret)
+    {
+        *allocated = 2 * iCols;
+        ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
+        if(!ret)
+        {
+            *allocated = 0;
+        }
+    }
+    return ret;
+}
+/*--------------------------------------------------------------------------*/

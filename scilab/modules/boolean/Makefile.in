@@ -114,17 +114,18 @@ am__objects_1 = libsciboolean_algo_la-matboolean.lo \
 	libsciboolean_algo_la-vect_and.lo
 am__objects_2 = logic.lo find.lo
 am__objects_3 = libsciboolean_algo_la-boolean_gw.lo
+am__objects_4 = libsciboolean_algo_la-sci_bool2s.lo
 am_libsciboolean_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+	$(am__objects_3) $(am__objects_4)
 libsciboolean_algo_la_OBJECTS = $(am_libsciboolean_algo_la_OBJECTS)
 libsciboolean_la_DEPENDENCIES = libsciboolean-algo.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-am__objects_4 = libsciboolean_la-sci_and.lo libsciboolean_la-sci_or.lo \
+am__objects_5 = libsciboolean_la-sci_and.lo libsciboolean_la-sci_or.lo \
 	libsciboolean_la-sci_find.lo libsciboolean_la-sci_bool2s.lo \
 	libsciboolean_la-gw_boolean.lo
-am__objects_5 = sci_f_bool2s.lo sci_f_find.lo
-am_libsciboolean_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+am__objects_6 = sci_f_bool2s.lo sci_f_find.lo
+am_libsciboolean_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 libsciboolean_la_OBJECTS = $(am_libsciboolean_la_OBJECTS)
 libsciboolean_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -426,45 +427,54 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 BOOLEAN_CPP_SOURCES = \
-	src/cpp/boolean_gw.cpp
+    src/cpp/boolean_gw.cpp
 
-BOOLEAN_C_SOURCES = src/c/matboolean.c \
-src/c/vect_or.c \
-src/c/vect_and.c
+BOOLEAN_C_SOURCES = \
+    src/c/matboolean.c \
+    src/c/vect_or.c \
+    src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
-src/fortran/find.f
+BOOLEAN_FORTRAN_SOURCES = \
+    src/fortran/logic.f \
+    src/fortran/find.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \
-sci_gateway/c/sci_or.c \
-sci_gateway/c/sci_find.c \
-sci_gateway/c/sci_bool2s.c \
-sci_gateway/c/gw_boolean.c
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_bool2s.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_bool2s.f \
-sci_gateway/fortran/sci_f_find.f
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_and.c \
+    sci_gateway/c/sci_or.c \
+    sci_gateway/c/sci_find.c \
+    sci_gateway/c/sci_bool2s.c \
+    sci_gateway/c/gw_boolean.c
 
-libsciboolean_la_CFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes
+GATEWAY_FORTRAN_SOURCES = \
+    sci_gateway/fortran/sci_f_bool2s.f \
+    sci_gateway/fortran/sci_f_find.f
+
+libsciboolean_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/operations/includes
 
 libsciboolean_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/functions_manager/includes \
-        -I$(top_srcdir)/modules/types/includes \
-        -I$(top_srcdir)/modules/symbol/includes \
-        -I$(top_srcdir)/modules/ast/includes \
-        -I$(top_srcdir)/modules/elementary_functions/includes \
-        -I$(top_srcdir)/modules/core/includes \
-        -I$(top_srcdir)/modules/operations/includes \
-        -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes
 
 pkglib_LTLIBRARIES = libsciboolean.la
 noinst_LTLIBRARIES = libsciboolean-algo.la
 libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES)
+libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciboolean_algo_la_CFLAGS = $(libsciboolean_la_CFLAGS)
 libsciboolean_algo_la_CPPFLAGS = $(libsciboolean_la_CPPFLAGS)
@@ -639,6 +649,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_algo_la-boolean_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_algo_la-matboolean.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_algo_la-sci_bool2s.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_algo_la-vect_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_algo_la-vect_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciboolean_la-gw_boolean.Plo@am__quote@
@@ -751,6 +762,13 @@ libsciboolean_algo_la-boolean_gw.lo: src/cpp/boolean_gw.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/boolean_gw.cpp' object='libsciboolean_algo_la-boolean_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciboolean_algo_la-boolean_gw.lo `test -f 'src/cpp/boolean_gw.cpp' || echo '$(srcdir)/'`src/cpp/boolean_gw.cpp
+
+libsciboolean_algo_la-sci_bool2s.lo: sci_gateway/cpp/sci_bool2s.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciboolean_algo_la-sci_bool2s.lo -MD -MP -MF $(DEPDIR)/libsciboolean_algo_la-sci_bool2s.Tpo -c -o libsciboolean_algo_la-sci_bool2s.lo `test -f 'sci_gateway/cpp/sci_bool2s.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bool2s.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciboolean_algo_la-sci_bool2s.Tpo $(DEPDIR)/libsciboolean_algo_la-sci_bool2s.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_bool2s.cpp' object='libsciboolean_algo_la-sci_bool2s.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciboolean_algo_la-sci_bool2s.lo `test -f 'sci_gateway/cpp/sci_bool2s.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bool2s.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "dynlib_linear_algebra.h"
 /*
  * Implementation of Scilab balanc() function for one or two real or complex matrix (both must be of the same kind, either real or complex).
  * @param pData1 double* (or doublecomplex* disguised as double*, in fact) point to data of arg 1 matrix
@@ -23,4 +23,4 @@
  * @param lhsData1 double* data for LhsVar(Rhs+1)
  * @param lhsData2 double* data for LhsVar(4) if Rhs==2, NULL otherwise
  */
-int iBalancM(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2);
+LINEAR_ALGEBRA_IMPEXP int iBalancM(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2);

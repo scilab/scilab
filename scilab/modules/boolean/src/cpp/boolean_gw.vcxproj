@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -99,7 +99,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -120,7 +120,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -146,7 +146,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -166,6 +166,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_bool2s.cpp" />
     <ClCompile Include="boolean_gw.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
@@ -188,6 +190,9 @@
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
       <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>

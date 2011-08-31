@@ -825,7 +825,7 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
 	{
-		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
+		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
 
 		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
 		if(_iConjugate == 0)

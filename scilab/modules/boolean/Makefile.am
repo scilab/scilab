@@ -6,42 +6,51 @@
 
 
 BOOLEAN_CPP_SOURCES = \
-	src/cpp/boolean_gw.cpp
+    src/cpp/boolean_gw.cpp
 
 
 
-BOOLEAN_C_SOURCES = src/c/matboolean.c \
-src/c/vect_or.c \
-src/c/vect_and.c
+BOOLEAN_C_SOURCES = \
+    src/c/matboolean.c \
+    src/c/vect_or.c \
+    src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
-src/fortran/find.f
+BOOLEAN_FORTRAN_SOURCES = \
+    src/fortran/logic.f \
+    src/fortran/find.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \
-sci_gateway/c/sci_or.c \
-sci_gateway/c/sci_find.c \
-sci_gateway/c/sci_bool2s.c \
-sci_gateway/c/gw_boolean.c
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_bool2s.cpp
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_bool2s.f \
-sci_gateway/fortran/sci_f_find.f
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_and.c \
+    sci_gateway/c/sci_or.c \
+    sci_gateway/c/sci_find.c \
+    sci_gateway/c/sci_bool2s.c \
+    sci_gateway/c/gw_boolean.c
 
-libsciboolean_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes
+GATEWAY_FORTRAN_SOURCES = \
+    sci_gateway/fortran/sci_f_bool2s.f \
+    sci_gateway/fortran/sci_f_find.f
+
+libsciboolean_la_CFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/operations/includes
 
 libsciboolean_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/functions_manager/includes \
-        -I$(top_srcdir)/modules/types/includes \
-        -I$(top_srcdir)/modules/symbol/includes \
-        -I$(top_srcdir)/modules/ast/includes \
-        -I$(top_srcdir)/modules/elementary_functions/includes \
-        -I$(top_srcdir)/modules/core/includes \
-        -I$(top_srcdir)/modules/operations/includes \
-        -I$(top_srcdir)/modules/api_scilab/includes
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes
 
 
 
@@ -50,7 +59,7 @@ noinst_LTLIBRARIES = libsciboolean-algo.la
 
 libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES)
+libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciboolean_algo_la_CFLAGS = $(libsciboolean_la_CFLAGS)
 libsciboolean_algo_la_CPPFLAGS = $(libsciboolean_la_CPPFLAGS)

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EE43BE6D-817D-4B09-AC40-7E6AC5BDB80D}</ProjectGuid>
+    <RootNamespace>linear_algebra_gw</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../threads/includes;../../../system_env/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>../../src/c/linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../threads/includes;../../../system_env/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalDependencies>../../src/c/linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../threads/includes;../../../system_env/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>../../src/c/linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../operations/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/MALLOC/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../threads/includes;../../../system_env/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalDependencies>../../src/c/linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\cpp\schurSelect.cpp" />
+    <ClCompile Include="..\..\src\cpp\scischur.cpp" />
+    <ClCompile Include="linear_algebra_gw.cpp" />
+    <ClCompile Include="sci_balanc.cpp" />
+    <ClCompile Include="sci_bdiag.cpp" />
+    <ClCompile Include="sci_chol.cpp" />
+    <ClCompile Include="sci_det.cpp" />
+    <ClCompile Include="sci_hess.cpp" />
+    <ClCompile Include="sci_inv.cpp" />
+    <ClCompile Include="sci_lsq.cpp" />
+    <ClCompile Include="sci_lu.cpp" />
+    <ClCompile Include="sci_qr.cpp" />
+    <ClCompile Include="sci_rcond.cpp" />
+    <ClCompile Include="sci_schur.cpp" />
+    <ClCompile Include="sci_spec.cpp" />
+    <ClCompile Include="sci_svd.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\linear_algebra_gw.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
+      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\cpp\elem_func\elem_func.vcxproj">
+      <Project>{e1284d3e-4b3f-446b-b541-f661a8a166a7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
+      <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
+      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
+      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
+      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\c\linear_algebra.vcxproj">
+      <Project>{bc462a57-c5b3-4f93-8067-80363827dcda}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libintl.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

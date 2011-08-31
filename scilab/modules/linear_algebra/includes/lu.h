@@ -11,7 +11,7 @@
  */
 #ifndef LU_H
 #define LU_H
-
+#include "dynlib_linear_algebra.h"
 /**
  * iLuM performs memory allocations and computes (calling iLu) LU decomposition 
  * in :
@@ -26,8 +26,8 @@
  * (either in 'd' or 'z' format) where E result will be stored
  * @return if the operation successed (true) or not (false)
  */
-extern int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData );
-extern int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData
+LINEAR_ALGEBRA_IMPEXP int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData );
+LINEAR_ALGEBRA_IMPEXP int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData
 	       , int* piPivot, int* piWork, double* pdblWork);
 
 #endif

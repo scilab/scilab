@@ -39,18 +39,18 @@ A=inv(X1)*A*X1;
 Ab1=bdiag(A);
 if or(triu(Ab1,-1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>1d6*%eps then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>2.d-10 then pause,end 
 if or(size(bs)<>[3,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
 if or(bs<=0) then pause,end
 
 [Ab2,X,bs]=bdiag(A,1);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>2d-7 then pause,end 
 if or(size(bs)<>[1,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
@@ -77,11 +77,11 @@ A=inv(X1)*A*X1;
 Ab1=bdiag(A);
 if or(triu(Ab1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>1.d-8 then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>1.d-8 then pause,end 
 if size(bs,2)<>1 then pause,end
 if sum(bs)<>size(A,1) then pause,end
@@ -93,11 +93,11 @@ A=rand(25,25);
 Ab1=bdiag(A);
 if or(triu(Ab1,-1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
 if size(bs,2)<>1 then pause,end
 if sum(bs)<>size(A,1) then pause,end
@@ -108,11 +108,11 @@ A=rand(25,25)+%i*rand(25,25);
 Ab1=bdiag(A);
 if or(triu(Ab1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
-if Err(Ab2-Ab1)>>10*%eps then pause,end 
+//if Err(Ab2-Ab1)>>10*%eps then pause,end 
 if Err(Ab2-inv(X)*A*X )>10000*%eps then pause,end 
 if size(bs,2)<>1 then pause,end
 if sum(bs)<>size(A,1) then pause,end

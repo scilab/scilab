@@ -19,6 +19,7 @@
 #define LINEAR_ALGEBRA "linear_algebra"
 ;
 Source: bin\{#LINEAR_ALGEBRA}.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
+Source: bin\{#LINEAR_ALGEBRA}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
 Source: bin\{#LINEAR_ALGEBRA}_f.dll; DestDir: {app}\bin; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINEAR_ALGEBRA}\license.txt; DestDir: {app}\modules\{#LINEAR_ALGEBRA}; Components: {#COMPN_LINALG}

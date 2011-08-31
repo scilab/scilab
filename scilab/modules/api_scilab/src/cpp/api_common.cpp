@@ -18,6 +18,8 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "function.hxx"
+#include "double.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -307,7 +309,6 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
         return 0;
     }
-
 
     getVarType(_pvCtx, _piAddress, &iType);
     switch(iType)

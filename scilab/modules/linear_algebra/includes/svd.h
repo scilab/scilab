@@ -9,8 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-
+#ifndef __SVD_H__
+#define __SVD_H__
+#include "dynlib_linear_algebra.h"
 /*
  * perform singular value decomposition (cf. http://www.scilab.org/product/man/svd.html ), MALLOCating temporary buffers as needed.
  *
@@ -34,4 +35,5 @@
  * @return 0 success, -1 MALLOC failure >0 Lapack convergence problems
  *
  */
-int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, double tol, double* pSV, double* pU, double* pS, double* pV, double* pRk);
+LINEAR_ALGEBRA_IMPEXP int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, double tol, double* pSV, double* pU, double* pS, double* pV, double* pRk);
+#endif /* !__SVD_H__ */

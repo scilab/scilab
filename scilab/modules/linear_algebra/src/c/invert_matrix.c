@@ -49,86 +49,114 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
   TODO replace ugly constant 17 with properly #define d (enum ed ? ) constant
   for malloc error.
 */
-int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
-		   , double* pdblRcond){
-  int ret=0;
-  int* piPivot=(int*)MALLOC(iCols*sizeof(int));
-  if(piPivot){
-    int iWorkSize= Max(1, 4*iCols);
-    void* pWork= complexArg
-      ? MALLOC(iWorkSize*sizeof(doublecomplex))
-      : MALLOC(iCols*sizeof(int));
-    if(pWork){
-      double* pdblWork=(double*)MALLOC(iWorkSize*sizeof(double) *(complexArg  ? 2: 1));
+int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg, double* pdblRcond)
+{
+    int ret = 0;
+    int* piPivot = (int*)MALLOC(iCols*sizeof(int));
+    if(piPivot)
+    {
+        int iWorkSize = Max(1, 4*iCols);
+        void* pWork = NULL;
+        if(complexArg)
+        {
+            pWork = MALLOC(iWorkSize*sizeof(doublecomplex));
+        }
+        else
+        {
+            pWork = MALLOC(iCols*sizeof(int));
+        }
 
-      if(pdblWork){
-	ret = iInvertMatrix(iRows, iCols, pData, complexArg, pdblRcond, piPivot
-			    , pWork, iWorkSize, pdblWork);
-	FREE(pdblWork);
-      }else{
-	ret = 17;// TODO: this is not a stack allocation pb anymore because we (tried to) use the heap
-      }
-      FREE(pWork);
-    }else{// pWork alloc did not succeed
-      ret = 17;
+        if(pWork)
+        {
+            double* pdblWork = (double*)MALLOC(iWorkSize * sizeof(double) * (complexArg  ? 2 : 1));
+
+            if(pdblWork)
+            {
+                ret = iInvertMatrix(iRows, iCols, pData, complexArg, pdblRcond, piPivot, pWork, iWorkSize, pdblWork);
+                FREE(pdblWork);
+            }
+            else
+            {
+                ret = 17;// TODO: this is not a stack allocation pb anymore because we (tried to) use the heap
+            }
+            FREE(pWork);
+        }
+        else
+        {// pWork alloc did not succeed
+            ret = 17;
+        }
+        FREE(piPivot);
     }
-    FREE(piPivot);
-  }else{ // piPivot alloc did not succeed
-    ret = 17;
-  }
-  return ret;
+    else
+    { // piPivot alloc did not succeed
+        ret = 17;
+    }
+    return ret;
 }
 
-int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
-		  , double * pdblRcond, int* piPivot, void* pWork
-		  , int iWorkSize, double* pdblWork){
-  int iInfo;
-  int ret = 0; // >0 erreur <0 warning
-  /* ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
-     computes  one norm of a matrix (maximum column sum)
-     last work area is not used for norm '1'
-     see http://publib.boulder.ibm.com/infocenter/clresctr/vxrx/topic/com.ibm.cluster.essl44.guideref.doc/am501_llange.html
-  */
-  /* using "1" to pass '1' to Fortran ("by ref"->pointer to char)*/
-  double dblAnorm = complexArg
-    ?  C2F(zlange)("1", &iRows, &iCols, pData, &iRows, NULL /*see comment above */)
-    : C2F(dlange)("1", &iRows, &iCols, pData, &iRows,pdblWork/*see above*/);
-  if(complexArg){
-    C2F(zgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
-  }else{
-    C2F(dgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
-  }
-  if(iInfo !=0)
+int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * pdblRcond, int* piPivot, void* pWork, int iWorkSize, double* pdblWork)
+{
+    int iInfo;
+    int ret = 0; // >0 erreur <0 warning
+    /* ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
+    computes  one norm of a matrix (maximum column sum)
+    last work area is not used for norm '1'
+    see http://publib.boulder.ibm.com/infocenter/clresctr/vxrx/topic/com.ibm.cluster.essl44.guideref.doc/am501_llange.html
+    */
+    /* using "1" to pass '1' to Fortran ("by ref"->pointer to char)*/
+    double dblAnorm  = 0;
+    if(complexArg)
     {
-      if(iInfo >0)
-	{
-	  ret = 19;
-	}
-    }else{
-    *pdblRcond = 0.;
-    if(complexArg)
-      {
-	C2F(zgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork
-		    , (double*)pWork, &iInfo);
-      }
+        dblAnorm = C2F(zlange)("1", &iRows, &iCols, pData, &iRows, NULL /*see comment above */);
+    }
     else
-      {
-	C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork
-		    , (int*)pWork, &iInfo);
-      }
-    if(*pdblRcond <= sqrt(C2F(dlamch)("e",1L))){ ret = -1; }
+    {
+        dblAnorm = C2F(dlange)("1", &iRows, &iCols, pData, &iRows,pdblWork/*see above*/);
+    }
+
     if(complexArg)
-      {
-	C2F(zgetri)( &iCols, (doublecomplex*)pData, &iCols, piPivot, (doublecomplex*)pdblWork, &iWorkSize
-		     , &iInfo);
-      }
+    {
+        C2F(zgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
+    }
     else
-      {
-	C2F(dgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &iWorkSize
-		     , &iInfo);
-      }
-    /* surprisingly enough, the original Fortran code does not check returned iInfo ...*/
-  }
-  return ret;
+    {
+        C2F(dgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
+    }
+
+    if(iInfo !=0)
+    {
+        if(iInfo >0)
+        {
+            ret = 19;
+        }
+    }
+    else
+    {
+        *pdblRcond = 0.;
+        if(complexArg)
+        {
+            C2F(zgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork, (double*)pWork, &iInfo);
+        }
+        else
+        {
+            C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork, (int*)pWork, &iInfo);
+        }
+
+        if(*pdblRcond <= sqrt(C2F(dlamch)("e",1L)))
+        {
+            ret = -1;
+        }
+
+        if(complexArg)
+        {
+            C2F(zgetri)( &iCols, (doublecomplex*)pData, &iCols, piPivot, (doublecomplex*)pdblWork, &iWorkSize, &iInfo);
+        }
+        else
+        {
+            C2F(dgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &iWorkSize, &iInfo);
+        }
+        /* surprisingly enough, the original Fortran code does not check returned iInfo ...*/
+    }
+    return ret;
 }
 

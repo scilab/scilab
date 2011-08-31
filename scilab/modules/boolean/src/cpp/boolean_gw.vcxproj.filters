@@ -18,6 +18,9 @@
     <ClCompile Include="boolean_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_bool2s.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\boolean_gw.hxx">
@@ -30,5 +33,6 @@
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

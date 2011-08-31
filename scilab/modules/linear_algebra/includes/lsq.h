@@ -12,6 +12,7 @@
 #ifndef LSQ_H
 #define LSQ_H
 
+#include "dynlib_linear_algebra.h"
 /*
  * Linear least square problems. cf. http://www.scilab.org/product/man/lsq.html
  * Calls Lapack [d|z]gelsy routines after performing memory allocations
@@ -35,7 +36,7 @@
  *
  */
 
-extern int iLsqM(double* pMatrix, int iRows, int iCols, double* pRhs, int iNRhs, int complexArgs, double* pResult, double* pTreshold, int* piRank);
+LINEAR_ALGEBRA_IMPEXP int iLsqM(double* pMatrix, int iRows, int iCols, double* pRhs, int iNRhs, int complexArgs, double* pResult, double* pTreshold, int* piRank);
 
 
 #endif

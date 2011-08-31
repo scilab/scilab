@@ -19,8 +19,8 @@
 /*--------------------------------------------------------------------------*/
 CACSD_IMPEXP int gw_cacsd0(void);
 /*--------------------------------------------------------------------------*/
-int sci_gschur(char *fname,unsigned long fname_len);
-int sci_gspec(char *fname,unsigned long fname_len);
+//int sci_gschur(char *fname,unsigned long fname_len); obsolete
+//int sci_gspec(char *fname,unsigned long fname_len); obsolete
 int sci_ereduc(char *fname,unsigned long fname_len);
 int sci_fstair(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

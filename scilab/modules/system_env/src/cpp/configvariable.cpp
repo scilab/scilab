@@ -799,3 +799,24 @@ wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 ///*
 //** \}
 //*/
+
+/*
+** schur function
+** \{
+*/
+
+types::Callable* ConfigVariable::m_schurFunction = NULL;
+
+void ConfigVariable::setSchurFunction(types::Callable* _schurFunction)
+{
+    m_schurFunction = _schurFunction;
+}
+
+types::Callable* ConfigVariable::getSchurFunction()
+{
+    return m_schurFunction;
+}
+
+/*
+** \}
+*/

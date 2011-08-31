@@ -13,7 +13,7 @@
 #define EIGEN_H
 
 #include "doublecomplex.h"
-
+#include "dynlib_linear_algebra.h"
 /*
  * Functions used to compute eigen values (and possibly eigen vectors) of one [complex|real] [un]symmetric matrix.
  * We use 4 different functions because for e;fficiency reasons, API had to be different :
@@ -40,11 +40,11 @@
  * @param pEigenVectorsImg double* output eigen vectors imaginary part
  *
  */
-extern int iEigen1ComplexSymmetricM(doublecomplex* pData, int iCols, int computeEigenVectors, double* pEigenValues);
-extern int iEigen1RealSymmetricM(double* pData, int iCols, int computeEigenVectors, double* pEigenValues);
+LINEAR_ALGEBRA_IMPEXP int iEigen1ComplexSymmetricM(doublecomplex* pData, int iCols, int computeEigenVectors, double* pEigenValues);
+LINEAR_ALGEBRA_IMPEXP int iEigen1RealSymmetricM(double* pData, int iCols, int computeEigenVectors, double* pEigenValues);
 
-extern int iEigen1ComplexM(doublecomplex* pData, int iCols, doublecomplex* pEigenValues, doublecomplex* pEigenVectors);
-extern int iEigen1RealM(double* pData, int iCols, double* pEigenValuesReal, double* pEigenValuesImg, double* pEigenVectorsReal, double* pEigenVectorsImg);
+LINEAR_ALGEBRA_IMPEXP int iEigen1ComplexM(doublecomplex* pData, int iCols, doublecomplex* pEigenValues, doublecomplex* pEigenVectors);
+LINEAR_ALGEBRA_IMPEXP int iEigen1RealM(double* pData, int iCols, double* pEigenValuesReal, double* pEigenValuesImg, double* pEigenVectorsReal, double* pEigenVectorsImg);
 
 /*
  * With 2 lhs, eigenvalues are expanded from a 1D vector to the diagonal of a matrix.
@@ -61,8 +61,8 @@ extern int iEigen1RealM(double* pData, int iCols, double* pEigenValuesReal, doub
  * @param  pRMatrix double* real part of the diagonal output matrix
  * @param  pIMatrix double* imaginary part of the diagonal output matrix
  */
-extern void expandToDiagonalOfMatrix(double* pData, int iCols);
-extern void expandZToDiagonalOfCMatrix(doublecomplex const* pZVector, int iCols, double* pRMatrix, double* pIMatrix);
+LINEAR_ALGEBRA_IMPEXP void expandToDiagonalOfMatrix(double* pData, int iCols);
+LINEAR_ALGEBRA_IMPEXP void expandZToDiagonalOfCMatrix(doublecomplex const* pZVector, int iCols, double* pRMatrix, double* pIMatrix);
 
 
 
@@ -102,9 +102,9 @@ extern void expandZToDiagonalOfCMatrix(doublecomplex const* pZVector, int iCols,
  *
  */
 
-extern int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols
+LINEAR_ALGEBRA_IMPEXP int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols
 		     , doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL);
-extern int iEigen2RealM(double* pData1, double* pData2, int iCols
+LINEAR_ALGEBRA_IMPEXP int iEigen2RealM(double* pData1, double* pData2, int iCols
 		     , double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pRReal, double* pRimg, double* pLReal, double* pLImg);
 
 #endif

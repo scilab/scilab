@@ -13,8 +13,9 @@
 #ifndef _INVERT_MATRIX_H_
 #define _INVERT_MATRIX_H_
 
+#include "dynlib_linear_algebra.h"
 // TODO : add comments
-int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
+LINEAR_ALGEBRA_IMPEXP int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 		   , double* pdblRcond);
 
 // TODO : add comments

@@ -11,8 +11,9 @@
  */
 #ifndef HESS_H
 #define HESS_H
+#include "dynlib_linear_algebra.h"
 
-extern int iHessM(double * pData, int iCols, int complexArg, double* pH);
-extern int iHess(double* pData, int iCols, int complexArg, double* pH, double* pTau, double* pWork, int workSize);
+LINEAR_ALGEBRA_IMPEXP int iHessM(double * pData, int iCols, int complexArg, double* pH);
+LINEAR_ALGEBRA_IMPEXP int iHess(double* pData, int iCols, int complexArg, double* pH, double* pTau, double* pWork, int workSize);
 
 #endif

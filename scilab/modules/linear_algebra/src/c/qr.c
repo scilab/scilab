@@ -10,14 +10,13 @@
  *
  */
 #include <string.h> /* for memset */
-#include "machine.h"
+#include <stdio.h>
+
 #include "core_math.h"
 #include "MALLOC.h"
 #include "doublecomplex.h"
 #include "qr.h"
-#include "stack-c.h"  /* /!\ #define Leps_sci  *stk(C2F(vstk).leps) */
-
-#include <stdio.h>
+#include "elem_common.h"
 
 #define WORKING_ZQUERIES 0
 
@@ -39,12 +38,6 @@ extern void C2F(dorgqr)(int const * piRows, int const * piCols, int* piK, double
 
 extern void C2F(zungqr)(int const * piRows, int const * piCols, int* piK, double* pData, int const * pLDData
 			, double* pdblTau, double* pdblWork, int const * piWorksize, int * piInfo);
-
-extern void C2F(zlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
-			, double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
-
-extern void C2F(dlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
-			, double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
 
 extern void C2F(dlaset)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
 			, double const * pAlpha, double const * pBeta, double* pData, int const * pLDData);
@@ -293,7 +286,8 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
 	  double tt= complexArg ? C2F(pythag)(pdblR, pdblR+1) : Abs(*pdblR) ;
 	  if( dblTol < 0) /* /!\ original Frotran code does strict fp comparison with -1.0 */
 	    {
-	      dblTol= Max(iRows, iCols) * Leps_sci * tt ; /* /!\  Leps_sci == stack vaudoo: need guru check */
+            // C2F(dlamch("p")) -> epsilon  * base
+            dblTol = Max(iRows, iCols) * C2F(dlamch)("p",1L) * tt;
 	    }
 	  {
 	    int j, k=0;

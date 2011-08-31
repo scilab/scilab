@@ -41,21 +41,21 @@ LINEAR_ALGEBRA_IMPEXP int sci_zheev(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int sci_dggev(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len); => C++ sci_schur
 
 //YaSp
-LINEAR_ALGEBRA_IMPEXP int sci_chol(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_bdiagr(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_svd(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_rcond(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_qr(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_lu(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_lsq(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_inv(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_hess(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_eig(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_det(char *fname, int* _piKey);
-LINEAR_ALGEBRA_IMPEXP int sci_balanc(char *fname, int* _piKey);
+//LINEAR_ALGEBRA_IMPEXP int sci_chol(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_bdiagr(char *fname, int* _piKey); => C++ => sci_bdiag
+//LINEAR_ALGEBRA_IMPEXP int sci_svd(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_rcond(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_qr(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_lu(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_lsq(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_inv(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_hess(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_eig(char *fname, int* _piKey); => C++ sci_spec
+//LINEAR_ALGEBRA_IMPEXP int sci_det(char *fname, int* _piKey); => C++
+//LINEAR_ALGEBRA_IMPEXP int sci_balanc(char *fname, int* _piKey); => C++
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA__ */

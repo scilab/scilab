@@ -20,8 +20,8 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-    {sci_gschur, "gschur"},
-    {sci_gspec, "gspec"},
+//    {sci_gschur, "gschur"}, obsolete (use schur in linear algebra)
+//    {sci_gspec, "gspec"}, obsolete (use spec in linear algebra)
     {sci_ereduc, "ereduc"},
     {sci_fstair, "fstair"}
 };
