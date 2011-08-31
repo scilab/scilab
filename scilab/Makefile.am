@@ -345,7 +345,7 @@ localization-status:
 			echo "        Creating $$PATHTO"; \
 			mkdir -p $$PATHTO; \
 		fi; \
-		echo "Building $$LOCALE"; \
+		echo "Building status for $$LOCALE"; \
 		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
 		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 	done; 

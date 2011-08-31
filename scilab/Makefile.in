@@ -1871,7 +1871,7 @@ check-java:
 @GENERATE_LOCALIZATION_FILES_TRUE@			echo "        Creating $$PATHTO"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@			mkdir -p $$PATHTO; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		echo "Building $$LOCALE"; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		echo "Building status for $$LOCALE"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		echo "SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		SCI=$(top_srcdir) php tools/localization/revcheck.php $$LOCALE > $$PATHTO/index.html; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done; 
