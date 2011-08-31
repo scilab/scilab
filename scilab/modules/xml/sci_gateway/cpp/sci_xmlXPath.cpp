@@ -86,12 +86,14 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
         if (err.iErr)
         {
+            freeAllocatedSingleString(query);
             printError(&err, 0);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, addr))
         {
+            freeAllocatedSingleString(query);
             Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 2);
             return 0;
         }
@@ -99,12 +101,14 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         err = getMatrixOfString(pvApiCtx, addr, &row, &col, 0, 0);
         if (err.iErr)
         {
+            freeAllocatedSingleString(query);
             printError(&err, 0);
             return 0;
         }
 
         if (col != 2)
         {
+            freeAllocatedSingleString(query);
             Scierror(999, gettext("%s: Bad number of columns for argument #%i: two expected.\n"), fname, 3);
             return 0;
         }

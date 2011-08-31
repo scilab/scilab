@@ -113,7 +113,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../fileio/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../output_stream/includes;../fileio/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/libxml2;../api_scilab/includes;../windows_tools/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;XML_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -264,31 +264,53 @@
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\extraction.hpp" />
+    <ClInclude Include="src\cpp\insertion.hpp" />
     <ClInclude Include="src\cpp\VariableScope.hxx" />
     <ClInclude Include="src\cpp\XMLAttr.hxx" />
     <ClInclude Include="src\cpp\XMLDocument.hxx" />
     <ClInclude Include="src\cpp\XMLElement.hxx" />
     <ClInclude Include="src\cpp\XMLList.hxx" />
+    <ClInclude Include="src\cpp\XMLList_insertion.hpp" />
     <ClInclude Include="src\cpp\XMLNodeList.hxx" />
     <ClInclude Include="src\cpp\XMLNodeSet.hxx" />
     <ClInclude Include="src\cpp\XMLNotHandledElement.hxx" />
     <ClInclude Include="src\cpp\XMLNs.hxx" />
     <ClInclude Include="src\cpp\XMLObject.hxx" />
+    <ClInclude Include="src\cpp\XMLRhsValue.hxx" />
     <ClInclude Include="src\cpp\XMLXPath.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\cpp\sci_extraction.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_insertion.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_c_i_XMLAttr.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_XMLList.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_s_i_XMLList.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLAttr_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_XMLAttr_length.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_XMLAttr_size.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_length.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_XMLList_size.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_print.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlAddNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlClose.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlDocument.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlDump.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlElement.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlFormat.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByHref.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlGetNsByPrefix.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlGetOpenStreams.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlXPath.cpp" />
     <ClCompile Include="sci_gateway\c\gw_xml.c" />
     <ClCompile Include="src\cpp\VariableScope.cpp" />
@@ -302,8 +324,8 @@
     <ClCompile Include="src\cpp\XMLNs.cpp" />
     <ClCompile Include="src\cpp\XMLObject.cpp" />
     <ClCompile Include="src\cpp\XMLXPath.cpp" />
-    <ClCompile Include="src\c\createMlists.c" />
     <ClCompile Include="src\c\DllmainXml.c" />
+    <ClCompile Include="src\c\XMLMlistsManagement.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

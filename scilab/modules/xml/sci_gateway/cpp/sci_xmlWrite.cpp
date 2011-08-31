@@ -16,7 +16,7 @@
 
 extern "C"
 {
-#include <stdio.h>
+#include <string.h>
 #include "gw_xml.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -26,6 +26,9 @@ extern "C"
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif 
 }
 
 using namespace org_modules_xml;
@@ -33,13 +36,12 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlWrite(char * fname, unsigned long fname_len)
 {
-    XMLDocument * doc = 0;
+    org_modules_xml::XMLDocument * doc = 0;
     xmlDoc * document = 0;
     SciErr err;
     int * addr = 0;
     char * path = 0;
     const char * expandedPath = 0;
-    FILE * file = 0;
     int ret = 0;
 
     CheckLhs(1, 1);
@@ -58,7 +60,7 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    doc = XMLObject::getFromId<XMLDocument>(getXMLObjectId(addr));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -83,7 +85,7 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
 
         getAllocatedSingleString(pvApiCtx, addr, &path);
 
-        if (!path || !strlen(path))
+        if (!strlen(path))
         {
             freeAllocatedSingleString(path);
             Scierror(999, gettext("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname, 2);
@@ -103,15 +105,7 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
         expandedPath = strdup((const char *)document->URL);
     }
 
-    file = fopen(expandedPath, "w");
-    if (!file)
-    {
-        Scierror(999, gettext("%s: Cannot write the file: %s\n"), fname, expandedPath);
-        FREE(expandedPath);
-        return 0;
-    }
-
-    ret = xmlDocDump(file, document);
+    ret = xmlSaveFile(expandedPath, document);
     if (ret == -1)
     {
         Scierror(999, gettext("%s: Cannot write the file: %s\n"), fname, expandedPath);
@@ -120,7 +114,6 @@ int sci_xmlWrite(char * fname, unsigned long fname_len)
     }
 
     FREE(expandedPath);
-    fclose(file);
 
     LhsVar(1) = 0;
     PutLhsVar();

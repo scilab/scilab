@@ -30,7 +30,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
 {
     int * addr = 0;
     SciErr err;
-    XMLDocument * doc = 0;
+    org_modules_xml::XMLDocument * doc = 0;
     char * uri = 0;
     char * version = 0;
     int i = 0;
@@ -57,7 +57,7 @@ int sci_xmlDocument(char * fname, unsigned long fname_len)
         getAllocatedSingleString(pvApiCtx, addr, vars[i]);
     }
 
-    doc = new XMLDocument(uri, version);
+    doc = new org_modules_xml::XMLDocument(uri, version);
 
     for (i = 0; i < Rhs; i++)
     {

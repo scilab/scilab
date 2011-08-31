@@ -120,6 +120,7 @@ int sci_percent_s_i_XMLList(char * fname, unsigned long fname_len)
         if (retstr)
         {
             a->setElementAtPosition(index, std::string(retstr));
+            freeAllocatedSingleString(retstr);
             a->createOnStack(Rhs + 1);
             LhsVar(1) = Rhs + 1;
         }

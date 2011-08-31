@@ -8,3 +8,6 @@ EXPORTS
  com_
  intersci_
  putlhsvar_
+ scistring_
+ overload_
+ vstk_

@@ -30,7 +30,7 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlReadStr(char * fname, unsigned long fname_len)
 {
-    XMLDocument * doc;
+    org_modules_xml::XMLDocument * doc;
     SciErr err;
     int * addr = 0;
     std::string * code;
@@ -80,7 +80,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
         validate = validateParam != 0;
     }
 
-    doc = new XMLDocument(*code, validate, &error);
+    doc = new org_modules_xml::XMLDocument(*code, validate, &error);
     delete code;
 
     if (error)

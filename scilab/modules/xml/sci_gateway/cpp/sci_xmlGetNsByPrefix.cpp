@@ -72,7 +72,6 @@ int sci_xmlGetNsByPrefix(char * fname, unsigned long fname_len)
     }
 
     getAllocatedSingleString(pvApiCtx, addr, &href);
-
     if (!strlen(href))
     {
         freeAllocatedSingleString(href);

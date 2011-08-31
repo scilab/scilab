@@ -30,7 +30,7 @@ using namespace org_modules_xml;
 /*--------------------------------------------------------------------------*/
 int sci_xmlElement(char * fname, unsigned long fname_len)
 {
-    XMLDocument * doc = 0;
+    org_modules_xml::XMLDocument * doc = 0;
     XMLElement * elem = 0;
     SciErr err;
     int * addr = 0;
@@ -52,7 +52,7 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
         return 0;
     }
 
-    doc = XMLObject::getFromId<XMLDocument>(getXMLObjectId(addr));
+    doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr));
     if (!doc)
     {
         Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
@@ -74,7 +74,7 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
 
     getAllocatedSingleString(pvApiCtx, addr, &name);
 
-    if (!name || !strlen(name) || xmlValidateName((const xmlChar *)name, 0))
+    if (!strlen(name) || xmlValidateName((const xmlChar *)name, 0))
     {
         freeAllocatedSingleString(name);
         Scierror(999, gettext("%s: Bad input argument #%i: A valid XML name expected.\n"), fname, 2);
@@ -82,6 +82,7 @@ int sci_xmlElement(char * fname, unsigned long fname_len)
     }
 
     elem = new XMLElement(*doc, name);
+    freeAllocatedSingleString(name);
     if (!elem->createOnStack(Rhs + 1))
     {
         return 0;

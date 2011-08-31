@@ -226,8 +226,8 @@ namespace org_modules_xml
 
     void XMLDocument::closeAllDocuments()
     {
-        int size = openDocs.size();
-        XMLDocument * arr[size];
+        int size = (int)openDocs.size();
+        XMLDocument **arr = new XMLDocument*[size];
         int j = 0;
         for (std::list<XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
         {
@@ -237,6 +237,7 @@ namespace org_modules_xml
         {
             delete arr[j];
         }
+        delete [] arr;
     }
 
     xmlDoc * XMLDocument::readDocument(const char * filename, bool validate, char ** error)

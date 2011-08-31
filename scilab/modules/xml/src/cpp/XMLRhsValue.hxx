@@ -72,8 +72,8 @@ namespace org_modules_xml
         static bool get(char * fname, int * addr, std::string ** obj)
             {
                 char ** str = 0;
-		int row = 0;
-		int col = 0;
+                int row = 0;
+                int col = 0;
                 std::string * code = new std::string("");
 
                 if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &str))

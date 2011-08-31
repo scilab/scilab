@@ -64,12 +64,14 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
         err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
         if (err.iErr)
         {
+            freeAllocatedSingleString(prefix);
             printError(&err, 0);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, nameaddr))
         {
+            freeAllocatedSingleString(prefix);
             Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
             return 0;
         }
@@ -80,6 +82,11 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     err = getVarAddressFromPosition(pvApiCtx, Rhs, &mlistaddr);
     if (err.iErr)
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         printError(&err, 0);
         return 0;
     }
@@ -89,6 +96,11 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
 
     if (!attr)
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
@@ -99,8 +111,13 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
     }
     else
     {
-        name = prefix;
-        value = attr->getAttributeValue(const_cast<const char *>(name));
+        value = attr->getAttributeValue(const_cast<const char *>(prefix));
+    }
+
+    freeAllocatedSingleString(prefix);
+    if (name)
+    {
+        freeAllocatedSingleString(name);
     }
 
     if (!value)

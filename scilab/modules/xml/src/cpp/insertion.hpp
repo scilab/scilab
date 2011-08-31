@@ -45,7 +45,7 @@ using namespace org_modules_xml;
  * @param value the new value
  */
 template <class T>
-bool setProperty(char * fname, XMLDocument & doc, const char * field, T & value)
+bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * field, T & value)
 {
     if (!strcmp("root", field))
     {
@@ -209,6 +209,7 @@ int sci_insertion(char * fname, unsigned long fname_len)
     a = XMLObject::getFromId<T>(lhsid);
     if (!a)
     {
+        freeAllocatedSingleString(field);
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
@@ -216,11 +217,13 @@ int sci_insertion(char * fname, unsigned long fname_len)
     success = XMLRhsValue::get(fname, rhsaddr, &b);
     if (!success)
     {
+        freeAllocatedSingleString(field);
         Scierror(999, gettext("%s: Error in getting rhs argument.\n"), fname);
         return 0;
     }
 
     success = setProperty<U>(fname, *a, const_cast<char *>(field), *b);
+    freeAllocatedSingleString(field);
 
     if (typeid(U) == typeid(std::string))
     {

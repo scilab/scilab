@@ -65,12 +65,14 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
         err = getVarAddressFromPosition(pvApiCtx, 2, &nameaddr);
         if (err.iErr)
         {
+            freeAllocatedSingleString(prefix);
             printError(&err, 0);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, nameaddr))
         {
+            freeAllocatedSingleString(prefix);
             Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
             return 0;
         }
@@ -81,6 +83,11 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     err = getVarAddressFromPosition(pvApiCtx, Rhs - 1, &rhsaddr);
     if (err.iErr)
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         printError(&err, 0);
         return 0;
     }
@@ -88,6 +95,11 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     err = getVarAddressFromPosition(pvApiCtx, Rhs, &lhsaddr);
     if (err.iErr)
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         printError(&err, 0);
         return 0;
     }
@@ -96,12 +108,22 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     a = XMLObject::getFromId<XMLAttr>(lhsid);
     if (!a)
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, rhsaddr))
     {
+        freeAllocatedSingleString(prefix);
+        if (name)
+        {
+            freeAllocatedSingleString(name);
+        }
         Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, Rhs - 1);
         return 0;
     }
@@ -117,6 +139,13 @@ int sci_percent_c_i_XMLAttr(char * fname, unsigned long fname_len)
     {
         a->setAttributeValue(prefix, name, value);
     }
+
+    freeAllocatedSingleString(prefix);
+    if (Rhs != 3)
+    {
+        freeAllocatedSingleString(name);
+    }
+    freeAllocatedSingleString(value);
 
     a->createOnStack(Rhs + 1);
     LhsVar(1) = Rhs + 1;

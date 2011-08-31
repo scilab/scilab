@@ -15,12 +15,12 @@
 
 int sci_percent_c_i_XMLDoc(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLDocument, std::string>(fname, fname_len);
+    return sci_insertion<org_modules_xml::XMLDocument, std::string>(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLElem_i_XMLDoc(char *fname, unsigned long fname_len)
 {
-    return sci_insertion<XMLDocument, XMLElement>(fname, fname_len);
+    return sci_insertion<org_modules_xml::XMLDocument, XMLElement>(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_c_i_XMLElem(char *fname, unsigned long fname_len)
@@ -55,7 +55,7 @@ int sci_percent_XMLElem_i_XMLList(char *fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_percent_XMLDoc_i_XMLList(char *fname, unsigned long fname_len)
 {
-    return sci_XMLList_insertion<XMLDocument>(fname, fname_len);
+    return sci_XMLList_insertion<org_modules_xml::XMLDocument>(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
 int sci_percent_c_i_XMLList(char *fname, unsigned long fname_len)

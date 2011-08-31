@@ -16,6 +16,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
 #include "stack-c.h"
@@ -24,6 +25,10 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 }
 
 using namespace org_modules_xml;
@@ -115,6 +120,7 @@ int sci_percent_foo_i_XMLList(char * fname, unsigned long fname_len)
         if (retstr)
         {
             a->setElementAtPosition(index, std::string(retstr));
+            freeAllocatedSingleString(retstr);
             a->createOnStack(Rhs + 1);
             LhsVar(1) = Rhs + 1;
         }

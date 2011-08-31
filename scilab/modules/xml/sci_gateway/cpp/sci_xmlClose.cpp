@@ -54,7 +54,7 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
         getAllocatedSingleString(pvApiCtx, addr, &com);
         if (!strcmp(com, "all"))
         {
-            XMLDocument::closeAllDocuments();
+            org_modules_xml::XMLDocument::closeAllDocuments();
         }
         freeAllocatedSingleString(com);
     }
@@ -72,7 +72,7 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
             if (isXMLDoc(addr))
             {
                 id = getXMLObjectId(addr);
-                doc = XMLObject::getFromId<XMLDocument>(id);
+                doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
                 if (!doc)
                 {
                     Scierror(999, gettext("%s: XML document does not exist.\n"), fname);

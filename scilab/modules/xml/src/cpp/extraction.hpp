@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
 #include "stack-c.h"
@@ -29,6 +30,9 @@ extern "C"
 #include "xml_mlist.h"
 #include "xml_constants.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 using namespace org_modules_xml;
@@ -66,7 +70,7 @@ int createStringOnStack(char * fname, const char * str, int pos)
 
         if (vector.size())
         {
-            err = createMatrixOfString(pvApiCtx, pos, vector.size(), 1, const_cast<const char * const *>(&(vector[0])));
+            err = createMatrixOfString(pvApiCtx, pos, (int)vector.size(), 1, const_cast<const char * const *>(&(vector[0])));
         }
         else
         {
@@ -97,7 +101,7 @@ int createStringOnStack(char * fname, const char * str, int pos)
  * @param pos the stack position
  * @return 1 if all is ok, else 0
  */
-int createVariableOnStack(char * fname, XMLDocument & doc, const char * field, int pos)
+int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos)
 {
     if (!strcmp("root", field))
     {
@@ -268,11 +272,13 @@ int sci_extraction(char * fname, unsigned long fname_len)
     t = XMLObject::getFromId<T>(id);
     if (!t)
     {
+        freeAllocatedSingleString(field);
         Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
         return 0;
     }
 
     ret = createVariableOnStack(fname, *t, const_cast<char *>(field), Rhs + 1);
+    freeAllocatedSingleString(field);
     if (ret)
     {
         LhsVar(1) = Rhs + 1;
