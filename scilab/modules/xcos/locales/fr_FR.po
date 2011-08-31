@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-31 12:20+0000\n"
+"PO-Revision-Date: 2011-08-22 15:01+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,378 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s n'est pas un nom valide, veuillez changer le titre du diagramme."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s : Tous les chemins définis par la variable %s doivent exister.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s : Erreur à la mise à jour des paramètres de bloc.\n"
+
+#, c-format
+msgid "%s: File '%s' does not exist.\n"
+msgstr "%s : Le fichier '%s' n'existe pas.\n"
+
+#, c-format
+msgid "%s: File '%s' is not a valid palette file.\n"
+msgstr "%s : Le fichier '%s' n'est pas un fichier de palette valide.\n"
+
+#, c-format
+msgid "%s: Found '%s' instead of a block.\n"
+msgstr "%s : '%s' trouvé au lieu d'un bloc.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s : Le répertoire %s ne peux pas être créé, veuillez vérifier que vous "
+"disposez des droits d'écriture sur ce répertoire.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s : Impossible d'exporter %s vers %s.\n"
+
+#, c-format
+msgid "%s: Unable to export 'XX' to %s"
+msgstr "%s : Impossible d'exporter 'XX' vers %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s : Impossible d'exporter la palette vers hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s : Impossible de générer l'image %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s : Impossible de générer l'icône de palette : %s existe déjà.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s : Impossible d'importer les données de %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s."
+msgstr "%s : Impossible d'importer le fichier xcos %s."
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : Un fichier hdf5 est attendu.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
+msgstr ""
+"%s : Impossible de charger le bloc depuis %s : Aucune variable  `scs_m' "
+"trouvée.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr "%s : Argument d'entrée %s erroné : svg, gif ou jpg attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s : Type erroné de la variable de %s : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s : Type erroné de l'argument %d : Une chaîne de caractères ou une "
+"structure du diagramme attendue."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s : Type erroné de l'argument %d : Une structure du diagramme attendue."
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée %s : Le type bloc attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr "%s : Type erroné de l'argument d'entrée %s : Fichier non trouvé.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée %s : Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Un type diagramme attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une chaîne de chemin d'annuaire "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une chaîne de chemin d'accès "
+"complet attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une fonction sous la forme de "
+"chaîne de caractères ou un type de bloc ou un chemin complet sous la forme "
+"de chaîne de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée %s : Un type handle attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Un type palette attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Un type palette ou chemin "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une chaîne de chemin d'accès "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Une chaîne de caractères ou "
+"structure attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Un type chaîne de caractères "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée %s : Un vecteur de chaîne attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée %s : Un format de fichier valide "
+"(png, jpg, gif) attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée %s : Un fichier existant "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+"%s : Le bloc %s n'est plus disponible, veuillez mettre à jour le diagramme "
+"avec un bloc compatible."
+
+msgid "Automotive Suspension"
+msgstr "Suspension automobile"
+
+msgid "Ball on a Platform"
+msgstr "Balle sur une plateforme"
+
+msgid "Basic controller"
+msgstr "Commande élémentaire"
+
+msgid "Bouncing Ball"
+msgstr "Balle rebondissante"
+
+msgid "Bouncing Balls"
+msgstr "Balles rebondissantes"
+
+msgid "Bridge Rectifer"
+msgstr "Redresseur en pont"
+
+msgid "Chaos Modelica"
+msgstr "Chaos Modelica"
+
+msgid "Colpitts oscillator"
+msgstr "Oscillateur de Colpitts"
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr "Observateur d'états hybride"
+
+msgid "Control Systems"
+msgstr "Systèmes de contrôle"
+
+msgid "DC/DC Boost Converter"
+msgstr "Convertisseur boost continu-continu"
+
+msgid "DC/DC Buck Converter"
+msgstr "Convertisseur buck continu-continu"
+
+msgid "Differential amplifier"
+msgstr "Amplificateur différentiel"
+
+msgid "Discrete Controller"
+msgstr "Commande discrète"
+
+msgid "Discrete Kalman Filter"
+msgstr "Filtre de Kalman discret"
+
+msgid "Electrical Systems"
+msgstr "Systèmes électriques"
+
+msgid "Fibonacci Numbers"
+msgstr "Nombres de Fibonacci"
+
+msgid "Goto/From blocks"
+msgstr "Blocs Goto/From"
+
+msgid "Hydraulics blocks"
+msgstr "Blocs hydrauliques"
+
+msgid "Inverted Pendulum"
+msgstr "Pendule inversée"
+
+msgid "Kalman Filter"
+msgstr "Filtre de Kalman"
+
+msgid "Logic AND gate"
+msgstr "Fonction logique ET"
+
+msgid "Logic NOR gate"
+msgstr "Fonction logique NON-OU"
+
+msgid "Lorentz butterfly"
+msgstr "Le papillon de Lorentz"
+
+msgid "Mechanical Systems"
+msgstr "Systèmes méchaniques"
+
+msgid "Modelica demos"
+msgstr "Démonstrations Modelica"
+
+msgid "Old Gain Block"
+msgstr "Test du bloc gain"
+
+msgid "Old demos"
+msgstr "Anciennes démonstrations"
+
+msgid "OpAmp amplifier"
+msgstr "Amplificateur opérationnel"
+
+msgid "RLC Circuit"
+msgstr "Circuit RLC"
+
+msgid "RLC circuit"
+msgstr "Circuit RLC"
+
+msgid "Scilab block"
+msgstr "Bloc Scilab"
+
+msgid "Signal Builder"
+msgstr "Génération de signal"
+
+msgid "Simple Demo"
+msgstr "Démonstration simple"
+
+msgid "Simple Thermostat"
+msgstr "Thermostat simple"
+
+msgid "Simulation problem"
+msgstr "Problème de simulation"
+
+msgid "Standard demos"
+msgstr "Démonstrations standards"
+
+msgid "Switched capacitor integrator"
+msgstr "Intégrateur à capacités commutées"
+
+msgid "Table Lookup"
+msgstr "Recherche dans une table"
+
+msgid "Temperature Controller"
+msgstr "Commande de température"
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Les bibliothèques Scicos ne sont pas chargées"
+
+msgid "Transformer"
+msgstr "Transformateur"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Impossible d'ouvrir %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Impossible de simuler %s"
+
+msgid "Water tank"
+msgstr "Réservoir d'eau"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos data types"
+msgstr "Types de données Xcos"
+
+msgid "Zero Crossing"
+msgstr "Passage à zéro"
+
+msgid "_IF_ Xcos block"
+msgstr "Bloc Xcos IFTHEL_f"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -91,8 +463,7 @@ msgstr "Catégorie"
 msgid "Center"
 msgstr "Centrer"
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Cliquez sur le diagramme pour ajouter un lien ou sur un port d'un bloc pour "
 "terminer."
@@ -163,8 +534,7 @@ msgstr "Fond du diagramme"
 msgid "Diagram browser"
 msgstr "Navigateur de diagrammes"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "Le diagramme a été modifié. Voulez-vous l'enregistrer avant de quitter ?"
 
@@ -219,14 +589,12 @@ msgstr "Gestion d'événements"
 msgid "Execution trace and Debug"
 msgstr "Trace d'exécution et déboguage"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Le port d'entrée de données explicites doit être connecté à un port de "
 "sortie de données explicites"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Le port de sortie de données explicites doit être connecté à un port "
 "d'entrée de données explicites"
@@ -326,14 +694,12 @@ msgstr "Chemin de l'image"
 msgid "Implicit"
 msgstr "Implicite"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Le port d'entrée de données implicites doit être connecté à un port de "
 "sortie de données implicites"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Le port de sortie de données implicites doit être connecté à un port "
 "d'entrée de données implicites"
@@ -768,9 +1134,6 @@ msgstr "Argument d'entrée \"%s\" erroné : Chemin de tree invalide.\n"
 
 msgid "Wrong port number"
 msgstr "Numéro de port faux"
-
-msgid "Xcos"
-msgstr "Xcos"
 
 msgid "Xcos Demos"
 msgstr "Démonstrations Xcos"

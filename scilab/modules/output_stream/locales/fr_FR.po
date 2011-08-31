@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-11 08:59+0000\n"
+"PO-Revision-Date: 2011-07-07 13:09+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s : Le type %s n'est pas géré : Veuillez définir la fonction %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s : Format d'export erroné : %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendus."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s : Nombre erroné d'arguments d'entrée : De %d à %d attendu."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s', "
+"'%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s : Le système ne peut pas s'afficher dans cette page.\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -257,8 +295,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
 #, c-format
 msgid ""
@@ -320,8 +357,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -350,8 +386,7 @@ msgstr ""
 "journal n'existe pas.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Erreur, impossible de "
 "fermer le journal %d.\n"
@@ -363,8 +398,7 @@ msgstr ""
 "fermer le journal.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Erreur, impossible "
 "d'interrompre le journal %d.\n"
@@ -486,8 +520,7 @@ msgstr "%s : Fin pour cause d'erreur relative < (5.0*%eps).\n"
 
 #, c-format
 msgid "%s: termination: function evaluations > MEVALS.\n"
-msgstr ""
-"%s : Fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
+msgstr "%s : Fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
 
 #, c-format
 msgid ""
@@ -503,8 +536,7 @@ msgstr "%s : La bibliothèque partagée n'a pas été chargée.\n"
 
 #, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
-msgstr ""
-"%s : Les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
+msgstr "%s : Les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
 
 msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
@@ -515,8 +547,7 @@ msgstr "Le type d'argument doit être un booléen.\n"
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
-msgstr ""
-"Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
+msgstr "Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
 
 msgid "Bad call to a scilab function ?\n"
 msgstr "Appel erroné d'une fonction Scilab ?\n"
@@ -741,8 +772,7 @@ msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 "Les arguments d'entrée doivent avoir le même nom de variable formelle.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Partie gauche de l'instruction : en attente d'un point ou d'une parenthèse "
 "ouvrante.\n"
@@ -940,8 +970,7 @@ msgstr ""
 "L'argument de taille variable a*eye(), (arg %d) n'est pas autorisé ici.\n"
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr ""
-"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+msgstr "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
 
 msgid ""
 "Stack problem detected within a loop.\n"
@@ -1006,8 +1035,7 @@ msgid "Too complex for scilab, may be a too long control instruction.\n"
 msgstr "Erreur : L'instruction de contrôle est peut-être trop longue.\n"
 
 msgid "Too complex recursion! (recursion tables are full)\n"
-msgstr ""
-"Récursivité trop complexe ! (Les tables de récurrence sont pleines)\n"
+msgstr "Récursivité trop complexe ! (Les tables de récurrence sont pleines)\n"
 
 msgid "Too high degree (max 100).\n"
 msgstr "Degré trop grand (max 100).\n"
@@ -1246,8 +1274,7 @@ msgstr "Argument d'entrée %d erroné.\n"
 msgid "Wrong number of input arguments."
 msgstr "Nombre erroné d'arguments d'entrée."
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Nombre erroné d'arguments d'entrée : Cette fonction n'a pas d'argument "
 "d'entrée.\n"
@@ -1379,8 +1406,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
-msgstr ""
-"Valeur erronée de l'argument %d : Un nom de variable valide attendu.\n"
+msgstr "Valeur erronée de l'argument %d : Un nom de variable valide attendu.\n"
 
 #, c-format
 msgid ""
@@ -1460,8 +1486,7 @@ msgid "semi def fails.\n"
 msgstr "Échec de semi def.\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergence incomplète. Précision relative atteinte : 10**(%s).\n"
 

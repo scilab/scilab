@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-11 09:01+0000\n"
+"PO-Revision-Date: 2011-08-23 09:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,265 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s : Le diagramme ne compile pas à l'étape %d.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s : Erreur à l'évaluation des paramètres de bloc.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s : Erreur à la mise à jour des paramètres de bloc.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s : Erreur : Un bloc scifunc n'a pas été défini."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s : Les ports d'entrée ne sont pas numérotés correctement.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s : Les ports de sortie ne sont pas numérotés correctement.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s : Le type %s n'est pas implémenté.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr "%s : Impossible de trouver les entrées du diagramme\n"
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr "%s : Impossible de trouver les sorties du diagramme\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s : Nombre d'argument(s) d'entrée erroné : Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s : Nombre d'arguments d'entrée erroné. Doit être entre %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre d'arguments d'entrée erroné : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre d'arguments d'entrée erroné : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s : Dimension erronée des arguments d'entrée numéros %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée numéro %d : Une structure de données "
+"de type %s attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Un diagramme est "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Une liste est "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s : L'argument d'entrée numéro %d est de mauvais type : Une table de chaîne "
+"de caractères est attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
+
+#, c-format
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr "%s : Type erroné pour '%s', %s obtenu"
+
+#, c-format
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr "%s : Dimension erronée pour '%s', %s attendu"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port d'entrée du bloc a une dimension indéterminée :"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port d'entrée du bloc a un type indéterminé :"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port de sortie du bloc a une dimension indéterminée :"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port de sortie du bloc a un type indéterminé :"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"La réponse donnée pour %s \n"
+" a un type erroné %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"La réponse donnée pour %s \n"
+" a une dimension invalide : \n"
+" Dimension attendue %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"La solution donnée pour %s \n"
+" est erronée : %s.\n"
+
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr ""
+"Le bloc a un port d'entrée connecté<br />avec une dimension incompatible :"
+
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr "Le bloc a un port d'entrée connecté<br />avec un type incompatible :"
+
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr ""
+"Le bloc a un port de sortie connecté<br />avec une dimension incompatible :"
+
+msgid "Block has connected output port<br />with incompatible type."
+msgstr "Le bloc a un port de sortie connecté<br />avec un type incompatible :"
+
+msgid "Block input has negative size:"
+msgstr "L'entrée du bloc a une dimension négative :"
+
+msgid "Can't convert old diagram (problem in version)"
+msgstr "Impossible de convertir l'ancien diagramme (problème dans la version)"
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+"Le diagramme a été compilé pour un solveur explicite\n"
+"Passage au solveur explicite.\n"
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+"Le diagramme a été compilé pour un solveur implicite\n"
+"Passage au solveur implicite.\n"
+
+msgid "End problem: "
+msgstr "Sortie du problème : "
+
+msgid "Initialisation problem:"
+msgstr "Problème d'initialisation :"
+
+#, c-format
+msgid "Input port %s size is: %s"
+msgstr "La dimension du port d'entrée %s est : %s"
+
+#, c-format
+msgid "Input port %s type is: %s"
+msgstr "Le type du port d'entrée %s est : %s"
+
+#, c-format
+msgid "Input port %s type."
+msgstr "Type du port d'entrée %s."
+
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
+"Une des sorties de ce bloc a une dimension négative.<br />Veuillez vérifier."
+
+#, c-format
+msgid "Output port %s size is: %s"
+msgstr "La dimension du port de sortie %s est : %s"
+
+#, c-format
+msgid "Output port %s type is: %s"
+msgstr "Le type du port de sortie %s est : %s"
+
+#, c-format
+msgid "Output port %s type."
+msgstr "Type du port de sortie %s."
+
+msgid "Please compile the diagram to report the error."
+msgstr "Veuillez compiler le diagramme pour signaler l'erreur."
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr "Problème avec le bloc généré à partir des blocs Modelica"
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "Graphiques de Scilab de %s"
+
+msgid "Simulation parameters not set:"
+msgstr "Les paramètres de simulation ne sont pas configurés :"
+
+msgid "Simulation problem: "
+msgstr "Problème de simulation : "
+
+msgid "Sorry file name not defined in "
+msgstr "Le nom de fichier n'est pas défini dans "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Seuls les langages C et Fortran sont pris en charge"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr "Impossible d'utiliser le nom de la variable %s en paramètre de bloc"
+
+msgid "Type not recognized"
+msgstr "Type non reconnu"
+
+msgid "Unable to report an error into a SuperBlock"
+msgstr "Impossible de signaler une erreur dans un superbloc"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+"Attention : La variable %s ne correspond pas au nom de contexte de variables"
+
+msgid "Xcos block parameter error"
+msgstr "Erreur de paramètre de bloc Xcos"
+
+msgid "scs_show active..."
+msgstr "scs_show actif..."
 
 msgid ""
 "\n"
@@ -316,8 +575,7 @@ msgstr ""
 "supporté pour outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : Erreur. Le type %d de la matrice d'entier scalaire n'est pas encore "
 "supporté pour outtb.\n"
@@ -468,8 +726,7 @@ msgstr ""
 "la sortie [((d/dt)^k)y](t)."
 
 msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
-msgstr ""
-"CV_BAD_EWT : L'ewt initial a des composantes égales à zéros (erroné)."
+msgstr "CV_BAD_EWT : L'ewt initial a des composantes égales à zéros (erroné)."
 
 msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
 msgstr "CV_BAD_H0 : h0 et tout - t0 sont inconsistents."
@@ -601,8 +858,7 @@ msgid "CV_MEM_NULL: the cvode memory was NULL"
 msgstr "CV_MEM_NULL : La mémoire cvode était NULL"
 
 msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
-msgstr ""
-"CV_NO_EFUN : itol = CV_WF mais aucune fonction EwtSet n'a été fournie."
+msgstr "CV_NO_EFUN : itol = CV_WF mais aucune fonction EwtSet n'a été fournie."
 
 msgid ""
 "CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
@@ -815,8 +1071,7 @@ msgstr ""
 "(=MXETF = 10) pendant un pas interne ou sont survenus avec |h|=h_min"
 
 msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr ""
-"IDA_EWT_FAIL : La fonction EwtSet fournie par l'utilisateur a échoué."
+msgstr "IDA_EWT_FAIL : La fonction EwtSet fournie par l'utilisateur a échoué."
 
 msgid ""
 "IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
@@ -1007,16 +1262,16 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV : L'algorithme de recherche linéaire n'a pas pu "
 "trouver un intéré suffisamment distinct de l'itéré courant. Cet échec à "
 "satisfaire la condition de décroissance peut vouloir dire que l'itéré "
 "courant est proche d'une solution approximée du système non linéaire donné. "
-"L'approximation obtenue par différences finies du produit vecteur matrix "
-"J(u)*v est imprécise, ou le scalaire réel scsteptol est trop grand "
+"L'approximation obtenue par différences finies du produit vecteur matrix J(u)"
+"*v est imprécise, ou le scalaire réel scsteptol est trop grand "
 
 msgid ""
 "KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "

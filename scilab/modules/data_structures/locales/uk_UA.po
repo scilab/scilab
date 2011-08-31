@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-20 13:06+0000\n"
+"PO-Revision-Date: 2011-05-31 23:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: 'dims' can not be used as a field name.\n"
+msgstr "%s: поле не можна називати «dims».\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr "%s: кількість записів не дорівнює добутку вимірів"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід було вказати парну "
+"кількість.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"«struct».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: помилкові значення для вхідного параметра №%d: елементами мають бути "
+"невід’ємні цілі значення.\n"
+
+#, c-format
+msgid "%s: field name '%s' defined twice.\n"
+msgstr "%s: поле з назвою «%s» визначено двічі.\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""

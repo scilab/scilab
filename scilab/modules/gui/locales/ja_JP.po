@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-08-03 00:37+0000\n"
+"PO-Revision-Date: 2011-08-02 01:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,511 @@ msgstr ""
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s: #%d と一致するノード。\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s: #%d と一致した親ノード。\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: 無効なノードです。\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: 無効な親ノード。\n"
+
+#, c-format
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s: 無効なオプション '%s' です。\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: 一致するノードがありません。\n"
+
+#, c-format
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr "%s: プロパティ '%s' および値 '%s' に関する結果が見つかりません.\n"
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr "%s: 結果が見つかりません.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: %s 型は実装されていません.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: 入力引数が間違っています: %sまたは%sを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: 入力引数が間違っています: %s,%s または %s を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: %sの大きさが間違っています: 文字列の行ベクトルを指定してください.\n"
+
+#
+# File: macros/figure.sci, line: 26
+# File: macros/figure.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定しま"
+"す。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: %s の型が間違っています: リストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: %s の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: %s の型が間違っています: 文字列の列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: %s の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr "%s: '%s' プロパティの型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定"
+"してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: リストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 項目数2のリストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列またはツリーを指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ツリーまたは文字列を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 'label', 'icon' または 'callback'を指"
+"定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr ""
+"%s: '%s' プロパティの値が間違っています: %d, %d または %d を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: この方法ではコンソールにメニューを加えることができません: %s\n"
+
+#
+# File: macros/clipboard.sci, line: 51
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: この方法ではメニューを加えることができません: %s\n"
+
+#
+# File: macros/clipboard.sci, line: 51
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: NWNIモードでは利用できない関数です。\n"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 73
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 51
+msgid "&Edit"
+msgstr "編集(&E)"
+
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 37
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
+# File: scilab_fake_localization_file.c, line: 21
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+msgid "<Enter color name here>"
+msgstr "<色名をここに入力してください>"
+
+#
+# File: macros/about.sci, line: 20
+msgid "About Scilab..."
+msgstr "Scilab バージョン情報..."
+
+#
+# File: macros/about.sci, line: 20
+msgid "Acknowledgements"
+msgstr "謝辞"
+
+msgid "Add color in listbox"
+msgstr "リストボックスで色を加える"
+
+#
+# File: macros/getvalue.sci, line: 193
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"%s に与えられた応答\n"
+" 不正確な型 %s を持っています。\n"
+
+#
+# File: macros/getvalue.sci, line: 189
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"%s に与えられた応答\n"
+" 無効な次元を持っています:\n"
+" 次元 %s を待ちます。\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr "%s に指定された回答は間違っています: %s.\n"
+
+#
+# File: scilab_fake_localization_file.c, line: 69
+msgid "Application"
+msgstr "アプリケーション"
+
+#
+# File: macros/about.sci, line: 18
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"作者:\n"
+"Scilabコンソーシアム　/ INRIA / ENPC / 貢献者達\n"
+"\n"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Colors list edition"
+msgstr "色一覧"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
+msgid "Control Plot3d"
+msgstr "Plot3d コントロール"
+
+msgid "Dialogs"
+msgstr "ダイアログ"
+
+#
+# File: scilab_fake_localization_file.c, line: 47
+msgid "Display selection"
+msgstr "表示選択"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "本当にScilabを抜けますか?"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Exit figure"
+msgstr "終了構成"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
+msgid "File"
+msgstr "ファイル"
+
+#
+# File: etc/gui.start, line: 13
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Launch plot2d"
+msgstr "plot2d を開始する"
+
+msgid "Launch plot3d"
+msgstr "plot3d を開始する"
+
+msgid "Menu"
+msgstr "メニュー"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "メニュー '%s' は %s"
+
+msgid "Menu status"
+msgstr "メニュー状態"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "No color selected."
+msgstr "色選択なし"
+
+#
+# File: macros/about.sci, line: 20
+msgid "Ok"
+msgstr "OK"
+
+msgid "Please enter a color name first."
+msgstr "最初に色名を入力してください。"
+
+msgid "Popupmenu selection"
+msgstr "ポップアップメニュー選択"
+
+#
+# File: macros/about.sci, line: 20
+msgid "Quit Scilab"
+msgstr "Scilabを抜ける"
+
+#
+# File: scilab_fake_localization_file.c, line: 75
+msgid "Quit demonstration"
+msgstr "デモを抜ける"
+
+#
+# File: macros/about.sci, line: 16
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"Scilab 5.0 と 将来バージョン は CeCILLライセンス の条件の下でリリースされま"
+"す。\n"
+
+#
+# File: macros/about.sci, line: 30
+msgid "Scilab Contributors..."
+msgstr "Scilab の貢献者達..."
+
+msgid "Scilab Graphics"
+msgstr "Scilab グラフィック"
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+msgid "Selected colors"
+msgstr "色選択"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "選択された色: %s"
+
+#
+# File: etc/graphics_menubar.xml, line: 41
+# File: etc/graphics_menubar.xml, line: 52
+# File: etc/graphics_menubar.xml, line: 63
+# File: etc/graphics_menubar.xml, line: 74
+# File: etc/graphics_menubar.xml, line: 85
+# File: etc/graphics_menubar.xml, line: 98
+# File: etc/graphics_menubar.xml, line: 109
+# File: etc/graphics_menubar.xml, line: 120
+# File: etc/graphics_menubar.xml, line: 131
+# File: etc/graphics_menubar.xml, line: 142
+msgid "Selected menu"
+msgstr "メニュー選択"
+
+msgid "Slider demo"
+msgstr "スライダーデモ"
+
+msgid "Slider value: "
+msgstr "スライダー値: "
+
+#
+# File: macros/about.sci, line: 17
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"いくつかの Scilabモジュール は、GPLv2ライセンス の下でリリースされます。\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "サブ・メニュー 1"
+
+msgid "Sub-menu 2"
+msgstr "サブ・メニュー 2"
+
+msgid "Sub-menu 2-1"
+msgstr "サブ・メニュー 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "サブ・メニュー 2-2"
+
+msgid "Uicontrols 1"
+msgstr "UIコントロール 1"
+
+msgid "Uicontrols 2"
+msgstr "UIコントロール 2"
+
+msgid "Uicontrols demo"
+msgstr "UIコントロール・デモ"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "LaTeXを指定するuicontrolsのデモ"
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr "LaTeX/MathULサポート付きのUIコントロール"
+
+#
+# File: macros/about.sci, line: 19
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"バージョン %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "はい"
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "'%s' メニューを選択"
+
+#, c-format
+msgid "You selected '%s'."
+msgstr "'%s' 選択"
+
+msgid "blue"
+msgstr "青"
+
+msgid "checked"
+msgstr "チェック"
+
+#
+# File: macros/createpopup.sci, line: 50
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: 何も無いカスケード・メニューを見つけました。"
+
+msgid "green"
+msgstr "緑"
+
+#
+# File: macros/about.sci, line: 20
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "項目1|項目2|項目3|項目4"
+
+msgid "red"
+msgstr "赤"
+
+msgid "unchecked"
+msgstr "チェックなし"
+
+msgid "yellow"
+msgstr "黄"
 
 #
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
@@ -103,7 +608,8 @@ msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
@@ -118,47 +624,56 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数が間違っています: '%s','%s'または'%s'を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してくだ"
+"さい.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 'pos' または 'gdi' の値を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 'pos' または 'gdi' の値を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: '%s'ハンドルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'または'%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: '%s'または'%s'ハンドルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています:  実数スカラーまたは'Figure'のハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています:  実数スカラーまたは'Figure'のハンド"
+"ルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -166,11 +681,14 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -186,29 +704,37 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: It must have same dimensions that "
 "argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元を有する必要があります.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元を有する必要が"
+"あります.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の整数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -216,34 +742,45 @@ msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s','%s'または'%s'ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: '%s','%s'または'%s'ハンドルを指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 1 x %d 実数行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 1 x %d 実数行ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは'Figure'のハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは'Figure'のハンドルを"
+"指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -251,70 +788,76 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a string "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは文字列を指"
+"定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a string vector "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
@@ -325,17 +868,8 @@ msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
 msgstr ""
-"%s: '%s'プロパティの値が間違っています: points, normalized, inches, centimeters または "
-"pixels　を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ’%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
+"%s: '%s'プロパティの値が間違っています: points, normalized, inches, "
+"centimeters または pixels　を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 64
@@ -343,20 +877,23 @@ msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' また�
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 'グラフィック・ウインドウ番号 %d' は存在しません。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 'グラフィック・ウインドウ番号 %d' は存在しませ"
+"ん。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 明確な '%s' ハンドルを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d より大きな値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d より大きな値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d 以上の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d 以上の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -367,14 +904,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr "%s: 入力引数 #%d で不正な値: このハンドルは存在しません。\n"
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
-# File: scilab_fake_localization_file.c, line: 34
-# File: scilab_fake_localization_file.c, line: 39
-# File: scilab_fake_localization_file.c, line: 73
-msgid "&?"
-msgstr "その他(&?)"
 
 msgid "&Abort"
 msgstr "中断(&A)"
@@ -463,13 +992,6 @@ msgid "&EPS"
 msgstr "EPS(&E)"
 
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
-# File: scilab_fake_localization_file.c, line: 26
-# File: scilab_fake_localization_file.c, line: 51
-msgid "&Edit"
-msgstr "編集(&E)"
-
-#
 # File: scilab_fake_localization_file.c, line: 55
 msgid "&Empty clipboard"
 msgstr "クリップボードを空(&E)"
@@ -493,13 +1015,6 @@ msgstr "FIG(&F)"
 # File: scilab_fake_localization_file.c, line: 30
 msgid "&Figure properties"
 msgstr "構成プロパティ(&F)"
-
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 37
-# File: scilab_fake_localization_file.c, line: 41
-msgid "&File"
-msgstr "ファイル(&F)"
 
 msgid "&File Exchange"
 msgstr "&File Exchange"
@@ -638,12 +1153,6 @@ msgid "&Start entity picker"
 msgstr "エンティティ選択を開始(&S)"
 
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
-# File: scilab_fake_localization_file.c, line: 21
-msgid "&Tools"
-msgstr "ツール(&T)"
-
-#
 # File: scilab_fake_localization_file.c, line: 24
 msgid "&UnZoom"
 msgstr "ズームしない(&U)"
@@ -673,16 +1182,6 @@ msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D回転(&R)"
-
-#
-# File: macros/about.sci, line: 20
-msgid "About Scilab..."
-msgstr "Scilab バージョン情報..."
-
-#
-# File: macros/about.sci, line: 20
-msgid "Acknowledgements"
-msgstr "謝辞"
 
 msgid "All %s files"
 msgstr "全ての %s ファイル"
@@ -765,11 +1264,6 @@ msgstr "コンソールクリア"
 # File: scilab_fake_localization_file.c, line: 63
 msgid "Clear History"
 msgstr "ヒストリークリア"
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
-msgid "Close"
-msgstr "閉じる"
 
 #
 # File: scilab_fake_localization_file.c, line: 59
@@ -940,9 +1434,6 @@ msgstr "モジュール管理 - ATOMS"
 msgid "Monospaced"
 msgstr "モノスペース"
 
-msgid "No"
-msgstr "いいえ"
-
 #
 # File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 69
 # File: src/cpp/GetUicontrolFontAngle.cpp, line: 38
@@ -1003,11 +1494,6 @@ msgid "No text selected"
 msgstr "テキストは選択されていません"
 
 msgid "OK"
-msgstr "OK"
-
-#
-# File: macros/about.sci, line: 20
-msgid "Ok"
 msgstr "OK"
 
 #
@@ -1233,7 +1719,9 @@ msgstr "無題-エクスポート"
 msgid ""
 "Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
 "property value.\n"
-msgstr "警告: '%s' '値' プロパティは、 '%s' または、 '%s' プロパティ値のどちらかで得るべきです。\n"
+msgstr ""
+"警告: '%s' '値' プロパティは、 '%s' または、 '%s' プロパティ値のどちらかで得"
+"るべきです。\n"
 
 msgid "Windows BMP image"
 msgstr "Windows BMP イメージ"
@@ -1243,13 +1731,16 @@ msgstr "Windows BMP イメージ"
 # File: src/cpp/SetUicontrolHorizontalAlignment.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: '%s', '%s' または、 '%s' を想定します。\n"
 
 #
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: '%s', '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: '%s', '%s', '%s' または、 '%s' を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 29
@@ -1257,7 +1748,9 @@ msgstr "'%s' プロパティで不正なサイズ: '%s', '%s', '%s' または、
 #, c-format
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: '%s', '%s', '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: '%s', '%s', '%s', '%s' または、 '%s' を想定し"
+"ます。\n"
 
 #
 # File: src/cpp/SetUicontrolRelief.cpp, line: 35
@@ -1265,13 +1758,16 @@ msgstr "'%s' プロパティで不正なサイズ: '%s', '%s', '%s', '%s' また
 msgid ""
 "Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "'%s' プロパティで不正なサイズ:  '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ:  '%s', '%s', '%s', '%s', '%s' または '%s' を想"
+"定します。\n"
 
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 35
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "'%s' プロパティで不正なサイズ:  '%s', '%s', または '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ:  '%s', '%s', または '%s' を想定します。\n"
 
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 43
@@ -1282,7 +1778,9 @@ msgstr "'%s' プロパティで不正なサイズ:  '%s', '%s', または '%s' �
 msgid ""
 "Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: 1 x 3 実ベクトル、または  'R|G|B' 文字を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: 1 x 3 実ベクトル、または  'R|G|B' 文字を想定し"
+"ます。\n"
 
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 33
@@ -1335,7 +1833,9 @@ msgstr "'%s' プロパティで不正なサイズ: 文字を想定します。\n
 msgid ""
 "Wrong size for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: 文字、または 1 x %d 実行ベクトルを想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: 文字、または 1 x %d 実行ベクトルを想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolString.cpp, line: 46
@@ -1343,7 +1843,8 @@ msgstr "'%s' プロパティで不正なサイズ: 文字、または 1 x %d 実
 #, c-format
 msgid ""
 "Wrong size for '%s' property: A string or a vector of strings expected.\n"
-msgstr "'%s' プロパティで不正なサイズ: 文字、または文字列のベクトルを想定します。\n"
+msgstr ""
+"'%s' プロパティで不正なサイズ: 文字、または文字列のベクトルを想定します。\n"
 
 #
 # File: src/cpp/SetUiobjectCallback.cpp, line: 42
@@ -1362,7 +1863,8 @@ msgstr "'%s' プロパティで不正な型: '%s', '%s' または、 '%s' を想
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 81
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正な型: '%s', '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な型: '%s', '%s', '%s' または、 '%s' を想定します。\n"
 
 #
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 67
@@ -1370,7 +1872,9 @@ msgstr "'%s' プロパティで不正な型: '%s', '%s', '%s' または、 '%s' 
 #, c-format
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正な型: '%s', '%s', '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な型: '%s', '%s', '%s', '%s' または、 '%s' を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolRelief.cpp, line: 91
@@ -1378,7 +1882,9 @@ msgstr "'%s' プロパティで不正な型: '%s', '%s', '%s', '%s' または、
 msgid ""
 "Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "'%s' プロパティで不正な型:  '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な型:  '%s', '%s', '%s', '%s', '%s' または '%s' を想定し"
+"ます。\n"
 
 #
 # File: src/cpp/SetUicontrolVerticalAlignment.cpp, line: 76
@@ -1393,7 +1899,9 @@ msgstr "'%s' プロパティで不正な型: '%s', '%s', または '%s' を想�
 msgid ""
 "Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
-msgstr "'%s' プロパティで不正な型: 1 x 3 実ベクトル、または  'R|G|B' 文字列を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な型: 1 x 3 実ベクトル、または  'R|G|B' 文字列を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 66
@@ -1413,8 +1921,7 @@ msgstr "'%s' プロパティで不正な型: 実を想定します。\n"
 #
 # File: src/cpp/SetUicontrolValue.cpp, line: 80
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr "%s' プロパティで不正な型: 実行ベクトル、または文字列を想定します。\n"
 
 #
@@ -1431,7 +1938,8 @@ msgstr "'%s' プロパティで不正な型: 文字列を想定します。\n"
 msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
-msgstr "'%s' プロパティで不正な型: 文字、または 1 x %d 実行ベクトルを想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な型: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
 #
 # File: src/cpp/SetUiobjectEnable.cpp, line: 26
@@ -1457,7 +1965,8 @@ msgstr "'%s' プロパティで不正な値: '%s', '%s' または '%s' を想定
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 60
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正な値: '%s', '%s', '%s' または、 '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: '%s', '%s', '%s' または、 '%s' を想定します。\n"
 
 #
 # File: src/cpp/GetUicontrolFontUnits.cpp, line: 36
@@ -1467,7 +1976,9 @@ msgstr "'%s' プロパティで不正な値: '%s', '%s', '%s' または、 '%s' 
 #, c-format
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "'%s' プロパティで不正な値: '%s', '%s', '%s', '%s'　または '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: '%s', '%s', '%s', '%s'　または '%s' を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/GetUicontrolRelief.cpp, line: 37
@@ -1476,7 +1987,9 @@ msgstr "'%s' プロパティで不正な値: '%s', '%s', '%s', '%s'　または 
 msgid ""
 "Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "'%s' プロパティで不正な値: '%s', '%s', '%s', '%s' , '%s'　または '%s' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: '%s', '%s', '%s', '%s' , '%s'　または '%s' を想定"
+"します。\n"
 
 #
 # File: src/cpp/GetUicontrolVerticalAlignment.cpp, line: 31
@@ -1491,7 +2004,9 @@ msgstr "'%s' プロパティで不正な値: '%s', '%s', または '%s' を想�
 msgid ""
 "Wrong value for '%s' property: 'light', 'normal', 'demi' or 'bold' "
 "expected.\n"
-msgstr "'%s' プロパティで不正な値: 'light', 'normal', 'demi' または 'bold' を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: 'light', 'normal', 'demi' または 'bold' を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 52
@@ -1500,7 +2015,9 @@ msgstr "'%s' プロパティで不正な値: 'light', 'normal', 'demi' または
 msgid ""
 "Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
 "expected.\n"
-msgstr "'%s' プロパティで不正な値: 1 x 3 実ベクトル、または  'R|G|B' 文字を想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: 1 x 3 実ベクトル、または  'R|G|B' 文字を想定しま"
+"す。\n"
 
 #
 # File: src/cpp/SetUicontrolParent.cpp, line: 192
@@ -1513,7 +2030,8 @@ msgstr "'%s' プロパティで不正な値:  '%s' または '%s' ハンドル�
 msgid ""
 "Wrong value for '%s' property: A String containing a numeric value "
 "expected.\n"
-msgstr "'%s' プロパティの値が間違っています: 数値を含む文字列を指定してください.\n"
+msgstr ""
+"'%s' プロパティの値が間違っています: 数値を含む文字列を指定してください.\n"
 
 #
 # File: src/cpp/SetUicontrolListboxTop.cpp, line: 47
@@ -1534,20 +2052,19 @@ msgstr "%s' プロパティで不正な値: 文字を想定します。\n"
 msgid ""
 "Wrong value for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
-msgstr "'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
+msgstr ""
+"'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "'%s'プロパティの値が間違っています: 0 と 1の間の数を指定してください.\n"
+msgstr ""
+"'%s'プロパティの値が間違っています: 0 と 1の間の数を指定してください.\n"
 
 msgid "Xcos"
 msgstr "Xcos"
 
 msgid "Xcos files"
 msgstr "Xcosファイル"
-
-msgid "Yes"
-msgstr "はい"
 
 #
 # File: scilab_fake_localization_file.c, line: 83
@@ -1559,16 +2076,18 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilabを使用することを選択しました.  "
-"詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
+"disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilab"
+"を使用することを選択しました.  詳細な情報を得るには,\"\"help usecanvas\"\" と"
+"入力してください.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
 msgstr ""
-"disp(\"警告: ユーザの設定指示により,uicontrolsとgraphicsの混在ができないモードにScilabが切り替わりました. "
-"詳細については,\"\"help usecanvas\"\" と入力してください.\")"
+"disp(\"警告: ユーザの設定指示により,uicontrolsとgraphicsの混在ができないモー"
+"ドにScilabが切り替わりました. 詳細については,\"\"help usecanvas\"\" と入力し"
+"てください.\")"
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 150
@@ -1577,9 +2096,9 @@ msgid ""
 "able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
 "update your driver.\")"
 msgstr ""
-"disp(\"警告: "
-"ビデオ・カード・ドライバーの制限です、OpenGLを操作できないので、Scilabはグラフィックを描くことができません。どうぞドライバを更新して下さい。"
-"\")"
+"disp(\"警告: ビデオ・カード・ドライバーの制限です、OpenGLを操作できないので、"
+"Scilabはグラフィックを描くことができません。どうぞドライバを更新して下さ"
+"い。\")"
 
 msgid "toggle datatip mode"
 msgstr "データtipモードを切替"

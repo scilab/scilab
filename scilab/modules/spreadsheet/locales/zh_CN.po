@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2008-07-24 15:03+0000\n"
+"PO-Revision-Date: 2011-05-31 20:29+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+msgid "Read a xls file"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -68,7 +91,8 @@ msgstr "%s：%d：在字节读取中不匹配。需要%d，却得到%d\n"
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr "%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
 
 #, c-format
 msgid ""
@@ -79,17 +103,18 @@ msgstr "%s：%d：OLEUNWRAP_decode_attachment：调试：为文件名调用repor
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
 "'%s' and '%s'"
-msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能打开%s进行写操作（%s）\n"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr "%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
@@ -120,7 +145,9 @@ msgstr "%s：%d：OLE_load_FAT：错误：FAT内存边界限制超出%p >= %p"
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr "%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = 0x%x"
+msgstr ""
+"%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = "
+"0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"

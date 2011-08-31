@@ -8,14 +8,196 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-11-21 15:02+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:22+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
+
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   Пн     Вт     Ср     Чт     Пт    Сб      Вс"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: должен быть между %d и %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась (m x 3) или (m x 6)-"
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr "%s: Неверный размер входного параметра: ожидался одинаковый размер.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
+"констант.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался вектор вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: Неверный тип входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr "%s: Неверный тип входных параметров: должен быть скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: %s должно быть между %d и %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr "%s: Неверное значение входного параметра: должно быть между %d и %d.\n"
+
+msgid "Apr"
+msgstr "Апр"
+
+msgid "Aug"
+msgstr "Авг"
+
+msgid "Day"
+msgstr "день"
+
+msgid "Dec"
+msgstr "Дек"
+
+msgid "Feb"
+msgstr "Фев"
+
+msgid "Fri"
+msgstr "Птн"
+
+msgid "Friday"
+msgstr "Пятница"
+
+msgid "Hour"
+msgstr "час"
+
+msgid "Jan"
+msgstr "Янв"
+
+msgid "Jul"
+msgstr "Июл"
+
+msgid "Jun"
+msgstr "Июн"
+
+msgid "Mar"
+msgstr "Мар"
+
+msgid "May"
+msgstr "Май"
+
+msgid "Minute"
+msgstr "минута"
+
+msgid "Mon"
+msgstr "Пнд"
+
+msgid "Monday"
+msgstr "Понедельник"
+
+msgid "Month"
+msgstr "месяц"
+
+msgid "Nov"
+msgstr "Ноя"
+
+msgid "Oct"
+msgstr "Окт"
+
+msgid "Sat"
+msgstr "Сбт"
+
+msgid "Saturday"
+msgstr "Суббота"
+
+msgid "Second"
+msgstr "секунда"
+
+msgid "Sep"
+msgstr "Сен"
+
+msgid "Sun"
+msgstr "Вск"
+
+msgid "Sunday"
+msgstr "Воскресенье"
+
+msgid "Thu"
+msgstr "Чтв"
+
+msgid "Thursday"
+msgstr "Четверг"
+
+msgid "Tue"
+msgstr "Втр"
+
+msgid "Tuesday"
+msgstr "Вторник"
+
+msgid "Wed"
+msgstr "Срд"
+
+msgid "Wednesday"
+msgstr "Среда"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -41,11 +223,6 @@ msgstr "%s: Неверное значение входного параметр�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
 
 #, c-format
 msgid ""

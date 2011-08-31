@@ -14,55 +14,67 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-08-22 18:53+0100\n"
+"Revision-Date: 2011-08-31 17:56+0100\n"
 
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 22
 msgid "Copy"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 23
 msgid "Cut"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 31
 msgid "Delete"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 24
 msgid "Group"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 33
 msgid "Invert selection"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 26
 msgid "Paste"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 27
 msgid "Redo"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 32
 msgid "Select all"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 25
 msgid "UnGroup"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 28
 msgid "Undo"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 34
 msgid "Untitled"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 29
 msgid "Zoom In"
 msgstr ""
+
 #
 # File: src/java/org/scilab/modules/graph/utils/ScilabGraphMessages.java, line: 30
 msgid "Zoom Out"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-03-09 14:31+0000\n"
+"PO-Revision-Date: 2011-06-01 01:08+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,413 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s：#%d匹配节点。\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s：#%d匹配父节点。\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s：不正确的节点。\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s：不正确的父节点。\n"
+
+#, c-format
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s：不正确的位置 '%s'。\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s：无匹配的节点。\n"
+
+#, c-format
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s：类型%s尚未实现。\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s：输入参数错误：应该为%s或%s。\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s：输入参数错误：应该为%s、%s或%s。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s：%s的大小错误：应该为一个实数。\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr "%s：%s的大小错误：应该为字符串构成的行向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个Figure句柄或者一个实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s：%s的类型错误：应该为一个列表(list)。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s：%s的类型错误：应该为一个实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s：%s的类型错误：应该为字符串构成的行向量。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s：%s的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr "%s： '%s'的属性类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s：输入参数#%d或#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄或者一个实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为具有两个元素的列表(list)。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为布尔值。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串或Tree。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为Tree。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为Tree或字符串。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr "%s：输入参数#%d的类型错误：必须为'label'，'icon'或'callback'。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s：输入参数#%d的类型错误，应该为Tree。\n"
+
+#, c-format
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr "%s：'%s'的属性值错误：应该为%d、%d或%d。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'或者'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s：在无窗口非交互模式（NWNI）下函数不可用。\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+msgid "&File"
+msgstr "文件(&F)"
+
+msgid "&Tools"
+msgstr "工具(&T)"
+
+msgid "<Enter color name here>"
+msgstr "<请在此输入颜色名>"
+
+msgid "About Scilab..."
+msgstr "关于Scilab..."
+
+msgid "Acknowledgements"
+msgstr "致谢"
+
+msgid "Add color in listbox"
+msgstr "在listbox中添加颜色"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"给出的%s的答案\n"
+" 有不正确的类型 %s。\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"给出的%s的答案\n"
+" 有不正确的维数： \n"
+" 等待维数 %s。\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"作者：\n"
+"Scilab协会 / INRIA / ENPC / 其他贡献者\n"
+"\n"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Colors list edition"
+msgstr ""
+
+msgid "Control Plot3d"
+msgstr "控制Plot3d"
+
+msgid "Dialogs"
+msgstr ""
+
+msgid "Display selection"
+msgstr ""
+
+msgid "Do you really want to quit Scilab?"
+msgstr "你真的要退出Scilab么？"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Exit figure"
+msgstr "退出Figure"
+
+msgid "File"
+msgstr "文件"
+
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Launch plot2d"
+msgstr "运行plot2d"
+
+msgid "Launch plot3d"
+msgstr "运行plot3d"
+
+msgid "Menu"
+msgstr "菜单"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "菜单'%s'是%s。"
+
+msgid "Menu status"
+msgstr "菜单状态"
+
+msgid "No"
+msgstr "否"
+
+msgid "No color selected."
+msgstr "没有选中颜色"
+
+msgid "Ok"
+msgstr "确定"
+
+msgid "Please enter a color name first."
+msgstr "请先输入一个颜色名"
+
+msgid "Popupmenu selection"
+msgstr ""
+
+msgid "Quit Scilab"
+msgstr "退出Scilab"
+
+msgid "Quit demonstration"
+msgstr "退出Demo"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr "Scilab 5.0 以及以后的版本以CeCILL协议发布。\n"
+
+msgid "Scilab Contributors..."
+msgstr "Scilab贡献者..."
+
+msgid "Scilab Graphics"
+msgstr ""
+
+msgid "Selected colors"
+msgstr ""
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+
+msgid "Selected menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr ""
+
+msgid "Slider value: "
+msgstr ""
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"某些Scilab模块以GPLv4协议发布。\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr ""
+
+msgid "Sub-menu 2"
+msgstr ""
+
+msgid "Sub-menu 2-1"
+msgstr ""
+
+msgid "Sub-menu 2-2"
+msgstr ""
+
+msgid "Uicontrols 1"
+msgstr ""
+
+msgid "Uicontrols 2"
+msgstr ""
+
+msgid "Uicontrols demo"
+msgstr ""
+
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"版本%s（%s）\n"
+"\n"
+
+msgid "Yes"
+msgstr "是"
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "你点击了菜单'%s'."
+
+#, c-format
+msgid "You selected '%s'."
+msgstr ""
+
+msgid "blue"
+msgstr "蓝"
+
+msgid "checked"
+msgstr "已选"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems：存在空的级联菜单。"
+
+msgid "green"
+msgstr "绿"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr ""
+
+msgid "red"
+msgstr "红"
+
+msgid "unchecked"
+msgstr "未选中"
+
+msgid "yellow"
+msgstr "黄"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -88,10 +495,6 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d或%d个。\n"
 
@@ -101,8 +504,7 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -230,10 +632,6 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄或一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个实数或Figure句柄。\n"
@@ -246,10 +644,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个实数或Figure句�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个实数或者一个字符串。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
@@ -279,10 +673,6 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串向量。\n"
 
@@ -294,16 +684,9 @@ msgstr "%s：父对象类型错误：应该为Figure或者Unimenu类型。\n"
 msgid ""
 "%s: Wrong value for '%s' property: points, normalized, inches, centimeters "
 "or pixels expected.\n"
-msgstr "%s：属性'%s'的值错误：应该为points、normalized、inches、centimeters或pixels。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'或'%s'。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
+msgstr ""
+"%s：属性'%s'的值错误：应该为points、normalized、inches、centimeters或"
+"pixels。\n"
 
 #, c-format
 msgid ""
@@ -312,8 +695,7 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：图形窗口编号%d不存在。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 
 #, c-format
@@ -331,9 +713,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr "%s：输入参数#%d的值错误：该句柄不存在。\n"
-
-msgid "&?"
-msgstr "&?"
 
 msgid "&Abort"
 msgstr "中止(&A)"
@@ -389,9 +768,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&Edit"
-msgstr "编辑(&E)"
-
 msgid "&Empty clipboard"
 msgstr "清空剪切板(&E)"
 
@@ -406,9 +782,6 @@ msgstr "&FIG"
 
 msgid "&Figure properties"
 msgstr "Figure属性(&F)"
-
-msgid "&File"
-msgstr "文件(&F)"
 
 msgid "&File Exchange"
 msgstr ""
@@ -503,9 +876,6 @@ msgstr ""
 msgid "&Start entity picker"
 msgstr "开始选择实体(&S)"
 
-msgid "&Tools"
-msgstr "工具(&T)"
-
 msgid "&UnZoom"
 msgstr "取消缩放(l &U)"
 
@@ -528,12 +898,6 @@ msgstr "'。"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D旋转(&R)"
-
-msgid "About Scilab..."
-msgstr "关于Scilab..."
-
-msgid "Acknowledgements"
-msgstr "致谢"
 
 msgid "All %s files"
 msgstr "所有 %s 文件"
@@ -600,9 +964,6 @@ msgstr "清空控制台"
 
 msgid "Clear History"
 msgstr "清空历史"
-
-msgid "Close"
-msgstr "关闭"
 
 msgid "Console &Background..."
 msgstr "控制台背景...(&B)"
@@ -740,9 +1101,6 @@ msgstr ""
 msgid "Monospaced"
 msgstr ""
 
-msgid "No"
-msgstr "否"
-
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "该对象无'%s'属性。\n"
@@ -759,9 +1117,6 @@ msgstr "没有选择文字"
 
 msgid "OK"
 msgstr "确认"
-
-msgid "Ok"
-msgstr "确定"
 
 msgid "Open a file"
 msgstr "打开文件"
@@ -1032,8 +1387,7 @@ msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数。\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个字符串。\n"
 
 #, c-format
@@ -1119,9 +1473,6 @@ msgstr "Xcos"
 msgid "Xcos files"
 msgstr "Xcos文件"
 
-msgid "Yes"
-msgstr "是"
-
 msgid "Zoom Area"
 msgstr "放大区域"
 
@@ -1136,14 +1487,16 @@ msgid ""
 "mode where mixing uicontrols and graphics is not available. Type \"\"help "
 "usecanvas\"\" for more information.\")"
 msgstr ""
-"disp(\"警告： 由于你的设置限制，Scilab不能采用uicontrols和graphics混合模式，输入\"\"help "
-"usecanvas\"\" 以获取更毒信息\")"
+"disp(\"警告： 由于你的设置限制，Scilab不能采用uicontrols和graphics混合模式，"
+"输入\"\"help usecanvas\"\" 以获取更毒信息\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
 "able to manage OpenGL, Scilab will not be able to draw any graphics. Please "
 "update your driver.\")"
-msgstr "disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的驱动程序。\")"
+msgstr ""
+"disp(\"警告: 由于显卡驱动的限制，不能使用OpenGL，无法绘制任何图像，请升级你的"
+"驱动程序。\")"
 
 msgid "toggle datatip mode"
 msgstr ""

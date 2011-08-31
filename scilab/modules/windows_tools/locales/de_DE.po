@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-11-09 19:40+0000\n"
+"PO-Revision-Date: 2011-06-01 02:17+0000\n"
 "Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Falsche Anzahl von Eingabeargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "Fehler: siehe die Hilfe von Powershell"
+
+msgid "Only for Microsoft Windows."
+msgstr "Nur für Microsoft Windows"
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "Verifizieren Sie bitte ihren Powershell-Befehl ohne Scilab."
+
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 nicht gefunden."
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -50,10 +70,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"

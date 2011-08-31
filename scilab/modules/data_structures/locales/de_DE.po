@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-01-29 19:08+0000\n"
+"PO-Revision-Date: 2011-07-03 08:31+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: 'dims' can not be used as a field name.\n"
+msgstr "%s: 'dims' kann nicht als Feldname verwendet werden.\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+"%s: Anzahl an Einträgen stimmt nicht mit dem Produkt der Dimensionen überein."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr "%s: Falsche Anzahl Eingabeargumente: gerade Anzahl erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein strukturiertes Datenfeld "
+"erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: Falsche Werte für das Eingabeargument #%d: die Elemente müssen positive "
+"ganze Zahlen sein.\n"
+
+#, c-format
+msgid "%s: field name '%s' defined twice.\n"
+msgstr "%s: Feldname '%s' doppelt definiert.\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""

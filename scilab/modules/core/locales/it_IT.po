@@ -8,14 +8,182 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-30 12:11+0000\n"
-"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"PO-Revision-Date: 2011-08-07 10:04+0000\n"
+"Last-Translator: Enrico \"eNry\" Carafa <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: it\n"
+
+msgid "  loading initial environment"
+msgstr "  caricamento dell'ambiente iniziale"
+
+msgid " by "
+msgstr " da "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s: chiamato alla riga %s di %s"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s chiamato alla riga %s della istruzione %s."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s chiamato alla riga %s della macro %s"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s chiamato  sotto %s"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s è una funzione preimpostata e non modificabile.\n"
+
+#, c-format
+msgid "%s: File doesn't exist: %s"
+msgstr "%s: Il file %s non esiste."
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: Nessun comando Perl specificato."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: Controllare %s.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: richiede l'editor di Scilab.\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: Errore di sistema: comando eseguito: %s"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Il file %s non esiste.\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: Impossibile trovare il file Perl: %s"
+
+#, c-format
+msgid "%s: Unable to find Perl in '%s"
+msgstr "%s: Impossibile trovare Perl in '%s"
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: Impossibile trovare Perl.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso un percorso ad un "
+"file script di Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un double.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attese delle "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"variabile definita.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Applications"
+msgstr "&Applicazioni"
+
+msgid "&Control"
+msgstr "&Controllo"
+
+msgid "&Edit"
+msgstr "&Modifica"
+
+msgid "&File"
+msgstr "&File"
+
+msgid "&Preferences"
+msgstr "&Preferenze"
+
+msgid "&Toolboxes"
+msgstr "&Toolbox"
+
+msgid "Bytes"
+msgstr "Byte"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "Controllo di %s in corso\n"
+
+msgid "Getting started with Scilab"
+msgstr "Come iniziare con Scilab"
+
+msgid "Introduction"
+msgstr "Introduzione"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Size"
+msgstr "Dimensione"
+
+msgid "Startup execution:"
+msgstr "Esecuzione d'avvio:"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "User variables are:"
+msgstr "Le variabili dell'utente sono:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "Uso di %s elementi fuori da %s"
 
 #, c-format
 msgid ""
@@ -24,9 +192,6 @@ msgid ""
 msgstr ""
 "\n"
 "Call stack:\n"
-
-msgid "  loading initial environment"
-msgstr "  caricamento dell'ambiente iniziale"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
@@ -67,8 +232,7 @@ msgstr "%s: %s ha la %s dimensione sbagliata (%d), era atteso (%d).\n"
 
 #, c-format
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr ""
-"%s: %s ha delle dimensioni sbagliate (%d,%d), erano attese (%d,%d).\n"
+msgstr "%s: %s ha delle dimensioni sbagliate (%d,%d), erano attese (%d,%d).\n"
 
 #, c-format
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
@@ -145,8 +309,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr ""
-"%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
+msgstr "%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
 
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
@@ -159,10 +322,6 @@ msgstr "%s: Fuori dal codice.\n"
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Si sono verificati dei problemi di ricorsione.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Il file %s non esiste.\n"
 
 #, c-format
 msgid "%s: Too many names.\n"
@@ -220,12 +379,6 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
@@ -248,8 +401,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
@@ -520,8 +673,7 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
 "o una stringa.\n"
@@ -539,8 +691,7 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
 "o uno scalare.\n"
@@ -562,12 +713,6 @@ msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare, "
 "'%s' o '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -613,12 +758,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
-"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
@@ -785,27 +924,6 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr "%s: il codice %d è sbagliato.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Applications"
-msgstr "&Applicazioni"
-
-msgid "&Control"
-msgstr "&Controllo"
-
-msgid "&Edit"
-msgstr "&Modifica"
-
-msgid "&File"
-msgstr "&File"
-
-msgid "&Preferences"
-msgstr "&Preferenze"
-
-msgid "&Toolboxes"
-msgstr "&Toolbox"
-
 msgid "A non square matrix!\n"
 msgstr "La matrice non è quadrata!\n"
 
@@ -874,8 +992,8 @@ msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"Errore: %s non è un file di gateway valido (la codifica non è "
-"'utf8'),trovata la codifica '%s'\n"
+"Errore: %s non è un file di gateway valido (la codifica non è 'utf8'),"
+"trovata la codifica '%s'\n"
 
 #, c-format
 msgid ""
@@ -923,8 +1041,7 @@ msgstr ""
 "Scilab.\n"
 
 msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
-"Le funzioni compilate con versioni molto vecchie non sono più gestite."
+msgstr "Le funzioni compilate con versioni molto vecchie non sono più gestite."
 
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
@@ -1009,9 +1126,6 @@ msgid ""
 msgstr ""
 "Versione di Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
-
-msgid "Startup execution:"
-msgstr "Esecuzione d'avvio:"
 
 msgid "TMPDIR not defined.\n"
 msgstr "TMPDIR non è definita.\n"

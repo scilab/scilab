@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-12-12 17:59+0000\n"
+"PO-Revision-Date: 2011-06-01 03:31+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'una mida incorrecta: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: El fitxer %s no existeix.\n"
+
+msgid "Read a xls file"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -72,8 +101,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Addició %s:%s:%s size = %d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Addició %s:%s:%s size = %d\n"
 
 #, c-format
 msgid ""
@@ -91,8 +119,7 @@ msgstr ""
 "partir de '%s' i '%s'"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:Error: No s'ha pogut obrir el fitxer %s per a "
 "obrir-lo (%s)\n"
@@ -138,8 +165,8 @@ msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
 msgstr ""
-"%s:%d:OLE_load_FAT:Error: No s'ha pogut carregar el bloc, import sector = "
-"0x%x, fat position = 0x%x"
+"%s:%d:OLE_load_FAT:Error: No s'ha pogut carregar el bloc, import sector = 0x"
+"%x, fat position = 0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
@@ -242,8 +269,8 @@ msgstr ""
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
-"LOGGER_set_logfile: Error - No s'ha pogut obrir el fitxer de traces '%s' "
-"(%s)\n"
+"LOGGER_set_logfile: Error - No s'ha pogut obrir el fitxer de traces "
+"'%s' (%s)\n"
 
 #, c-format
 msgid "OLE input file '%s' is insane"

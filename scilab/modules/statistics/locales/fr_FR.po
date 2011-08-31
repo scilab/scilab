@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-08 09:24+0000\n"
+"PO-Revision-Date: 2011-07-08 09:32+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,244 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s : Référence d'axe de représentation au-delà des limites.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s : Nombre erroné de l'argument d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Au moins %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr ""
+"%s : Dimension erronée des deux paramètres d'entrée : Même dimension "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d et n°%d : Même dimension "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : Doit être > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Même nombre de colonnes "
+"que le second argument d'entrée attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Même nombre de lignes "
+"que le second argument d'entrée attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une dimension %s "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
+"dimensions attendues.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ou une matrice "
+"réelle attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou vecteur "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur, une matrice de "
+"nombre ou une chaînes de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s : Type erroné des arguments d'entrée : Un type numérique attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', %d ou %d "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', %d or %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', %d ou %d "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s','%s', %d ou %d "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s','%s' or a positive number "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s','%s' ou un "
+"nombre positif attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s','%s', %d ou "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nombre réel entre %d et "
+"%d attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Même nombre de colonne que "
+"le premier argument d'entrée attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Même nombre de ligne que "
+"le premier argument d'entrée attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée : '%s', '%s', %d ou %d attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Inférieur ou égal à la "
+"longueur du dernier argument d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgstr "%s : Valeur erronée de w : %d; 0 ou 1 attendu.\n"
+
+msgid "Correlations Circle"
+msgstr "Cercle des corrélations"
+
+msgid "Eigenvalues (in percent)"
+msgstr "Valeurs propres (en pourcentage)"
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr "Retient %i valeurs de %i à %i dans un classement ordonné\n"
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr "La dimension de x est zéro : retourne NaN.\n"
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr "Dimension de x :%i\n"
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr "Valeur de orien inattendue : %s\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr "Valeur erronée de l'argument d'entrée orien : %s.\n"
+
+#, c-format
+msgid "discard=%s\n"
+msgstr "discard=%s\n"
+
+#, c-format
+msgid "orien=%s\n"
+msgstr "orien=%s\n"
 
 msgid " Std must not be zero\n"
 msgstr " Std ne doit pas être zéro\n"
@@ -31,8 +269,7 @@ msgstr ""
 "%s : Nombre erroné des arguments d'entrée avec l'option '%s' : %d attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"

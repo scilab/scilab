@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-23 03:30+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 00:27+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,6 +12,122 @@ msgstr ""
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
+
+#
+# File: macros/evstr.sci, line: 48
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: 給定之算式無值.\n"
+
+#
+# File: macros/expression2code.sci, line: 324
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: 此特性尚未實作: %s.\n"
+
+#
+# File: macros/sci2exp.sci, line: 93
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr "%s: 此特性尚未實作: 型態 %s 之變數轉換.\n"
+
+#
+# File: macros/arobasestring2strings.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/tokenpos.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字元或字元向量.\n"
+
+# File: macros/tokenpos.sci, line: 16
+# File: macros/arobasestring2strings.sci, line: 37
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+
+#
+# File: sci_gateway/c/sci_strindex.c, line: 144
+# File: sci_gateway/c/sci_tokens.c, line: 147
+# File: sci_gateway/c/sci_strtok.c, line: 54
+# File: sci_gateway/c/sci_strtok.c, line: 74
+# File: sci_gateway/c/sci_strsubst.c, line: 98
+# File: sci_gateway/c/sci_strsubst.c, line: 108
+# File: sci_gateway/c/sci_convstr.c, line: 72
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
+
+#
+# File: macros/blanks.sci, line: 21
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一整數.\n"
+
+#
+# File: macros/tree2code.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr "%s: 參數第 #%d個型別有誤: string array 才對.\n"
+
+#
+# File: sci_gateway/c/sci_strindex.c, line: 268
+# File: sci_gateway/c/sci_tokens.c, line: 152
+# File: sci_gateway/c/sci_strcmp.c, line: 65
+# File: sci_gateway/c/sci_strtok.c, line: 60
+# File: sci_gateway/c/sci_strtok.c, line: 81
+# File: sci_gateway/c/sci_strsubst.c, line: 78
+# File: sci_gateway/c/sci_strsubst.c, line: 82
+# File: sci_gateway/c/sci_convstr.c, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
+
+#
+# File: macros/blanks.sci, line: 17
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#
+# File: macros/evstr.sci, line: 45
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣, 應為字串矩陣 或 list.\n"
+
+#
+# File: macros/arobasestring2strings.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#
+# File: macros/blanks.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr "%s: Wrong values for input argument #%d: 應為一非負整數.\n"
 
 #
 # File: sci_gateway/c/sci_strcmp.c, line: 95
@@ -156,18 +272,6 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 144
-# File: sci_gateway/c/sci_tokens.c, line: 147
-# File: sci_gateway/c/sci_strtok.c, line: 54
-# File: sci_gateway/c/sci_strtok.c, line: 74
-# File: sci_gateway/c/sci_strsubst.c, line: 98
-# File: sci_gateway/c/sci_strsubst.c, line: 108
-# File: sci_gateway/c/sci_convstr.c, line: 72
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
-
-#
 # File: sci_gateway/c/sci_strncpy.c, line: 52
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
@@ -222,10 +326,6 @@ msgstr "%s: Wrong type for argument #%d: 應為字串矩陣或整數矩陣.\n"
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr "%s: 輸入參數型別錯誤#%d: '%s' 才對.\n"
-
 #
 # File: sci_gateway/c/sci_strcat.c, line: 104
 #, c-format
@@ -250,19 +350,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字元或單一字元�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量.\n"
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 268
-# File: sci_gateway/c/sci_tokens.c, line: 152
-# File: sci_gateway/c/sci_strcmp.c, line: 65
-# File: sci_gateway/c/sci_strtok.c, line: 60
-# File: sci_gateway/c/sci_strtok.c, line: 81
-# File: sci_gateway/c/sci_strsubst.c, line: 78
-# File: sci_gateway/c/sci_strsubst.c, line: 82
-# File: sci_gateway/c/sci_convstr.c, line: 78
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 69
@@ -436,8 +523,7 @@ msgstr "%s: Wrong values for input argument #%d: 應 >= 1.\n"
 #
 # File: sci_gateway/c/sci_grep.c, line: 204
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s: Wrong values for input argument #%d: 應為非空字串.\n"
 
 #, c-format

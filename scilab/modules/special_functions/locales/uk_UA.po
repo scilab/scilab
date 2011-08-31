@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-17 13:14+0000\n"
+"PO-Revision-Date: 2011-06-01 02:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -54,8 +60,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
-msgstr ""
-"%s: помилкове значення вхідних параметрів: значення мають бути > %d.\n"
+msgstr "%s: помилкове значення вхідних параметрів: значення мають бути > %d.\n"
 
 #, c-format
 msgid "%s: error number %d\n"
@@ -63,5 +68,4 @@ msgstr "%s: номер помилки %d\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr ""
-"%s: переповнення або втрата значимості у розширеному діапазоні чисел\n"
+msgstr "%s: переповнення або втрата значимості у розширеному діапазоні чисел\n"

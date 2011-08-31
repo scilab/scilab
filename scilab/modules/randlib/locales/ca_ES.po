@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-02-17 09:23+0000\n"
+"PO-Revision-Date: 2011-05-31 20:52+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ca\n"
+
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr "Aleatori"
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+msgid "Theory"
+msgstr ""
+
+msgid "Weibull random variable"
+msgstr ""
+
+msgid "binomial random variable"
+msgstr ""
+
+msgid "discrete random variable"
+msgstr ""
+
+msgid "discrete uniform random variable"
+msgstr ""
+
+msgid "geometric random variable"
+msgstr ""
 
 msgid ""
 "\n"
@@ -48,8 +90,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, 2^32-"
-"1]\n"
+"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, "
+"2^32-1]\n"
 
 msgid ""
 "\n"
@@ -301,8 +343,7 @@ msgstr ""
 "%s: El segon argument d'entrada té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: El segon argument d'entrada té un valor incorrecte: Ha de ser entre %d i "
 "%d.\n"

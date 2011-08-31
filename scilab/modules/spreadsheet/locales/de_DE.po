@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 12:43+0000\n"
+"PO-Revision-Date: 2011-05-31 23:59+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: de\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: Datei %s existiert nicht.\n"
+
+msgid "Read a xls file"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -90,8 +115,7 @@ msgstr ""
 "'%s' und '%s' nicht erzeugen"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:Fehler:kann %s für das Schreiben (%s) nicht "
 "öffnen\n"
@@ -230,8 +254,7 @@ msgstr "Protokolldienst - Voreinstellung: %s%s"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
-msgstr ""
-"LOGGER_set_logfile: ERROR - kann Protokolldatei '%s' (%s) nicht öffnen"
+msgstr "LOGGER_set_logfile: ERROR - kann Protokolldatei '%s' (%s) nicht öffnen"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
@@ -251,8 +274,7 @@ msgstr "Die Datei %s existiert nicht.\n"
 
 #, c-format
 msgid "Unable to decode stream with element string '%s'\n"
-msgstr ""
-"Kann den Datenstrom mit Zeichenketten-Element '%s' nicht dekodieren\n"
+msgstr "Kann den Datenstrom mit Zeichenketten-Element '%s' nicht dekodieren\n"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"

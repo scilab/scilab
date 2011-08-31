@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-10 13:53+0000\n"
+"PO-Revision-Date: 2011-06-10 13:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,299 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: コマンド: %s\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 102
+# File: macros/ilib_gen_Make_unix.sci, line: 116
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: TMPDIRに %s をコピーしました\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 58
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr ""
+"   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) で"
+"す.\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 123
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: ファイル %s を無視しました。\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 157
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: TMPDIRのMakefileを修正しました。\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: コンパイラー検出を行う必要があります(configure)。\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: 実際のファイルでリファレンスを置き換えてください.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: 前に検出したコンパイラを使用してください.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configure:  Makefileを生成.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   共有ライブラリを構築中 (お待ちください)\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   コマンド: %s\n"
+
+#
+# File: macros/ilib_compile.sci, line: 57
+msgid "   Compilation of "
+msgstr "   コンパイル "
+
+#
+# File: macros/ilib_build.sci, line: 54
+# File: macros/ilib_for_link.sci, line: 38
+msgid "   Generate a Makefile\n"
+msgstr "   Makefileの生成\n"
+
+#
+# File: macros/ilib_build.sci, line: 41
+# File: macros/ilib_for_link.sci, line: 34
+msgid "   Generate a cleaner file\n"
+msgstr "   クリーナ・ファイルの生成\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   ゲートウェイファイルを生成\n"
+
+#
+# File: macros/ilib_build.sci, line: 41
+# File: macros/ilib_for_link.sci, line: 34
+msgid "   Generate a loader file\n"
+msgstr "   ローダファイルの生成\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   出力: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Makefile を実行中\n"
+
+msgid "   Running the makefile\n"
+msgstr "   Makefile を実行中\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   標準エラー: %s\n"
+
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr "%s: %s は Scilabにロード済みです."
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Fortran または Cコンパイラが必要です.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr "%s: 入力引数 #%d にマネージドファイル拡張子を指定してください."
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr "%s: 入力引数 #%d にマネージドファイル拡張子を指定してください.\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: コンパイル中にエラーが発生しました:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照く"
+"ださい.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが発生しました: %s\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: 構築コマンド: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません.\n"
+
+#, c-format
+msgid "%s: Could not find the built library '%s'.\n"
+msgstr "%s: 構築済みのライブラリ '%s' が見つかりません.\n"
+
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr "%s: %s を実行中にエラーが発生しました.\n"
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: 基準 Makefile を修正中にエラーが発生しました:\n"
+
+#, c-format
+msgid "%s: Failed to add include path : %s"
+msgstr "%s: 読込みパスの追加に失敗しました: %s"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: この機能は, Microsoft Windows では使用できません.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: コマンド:\n"
+
+#
+# File: macros/dllinfo.sci, line: 110
+# File: src/c/dynamic_link.c, line: 104
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: この機能は Windows に実装済みです.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr "%s: この機能には, Microsoft Visual Studio の C コンパイラが必要です.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空で"
+"はありません.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでし"
+"た. http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: または [] を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 既存のファイルを指定してください.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 20
+msgid "A Fortran or C compiler is required."
+msgstr "Fortran または C コンパイラが必要です。"
+
+# File: etc/dynamic_link.start, line: 43
+msgid "Dynamic link"
+msgstr "ダイナミックリンク"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F２Cはfortran 90を構築できません"
+
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+"Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "出力: %s\n"
+
+msgid "You need to unload this library before."
+msgstr "このライブラリを事前にアンロードする必要があります."
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "標準エラー: %s\n"
 
 #
 # File: sci_gateway/c/sci_link.c, line: 80
@@ -37,7 +330,8 @@ msgstr "%s: 第2引数には, 共有ライブラリのユニークなIDを指定
 
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s is not an entry point.\n"
@@ -46,10 +340,6 @@ msgstr "%s はエントリポイントではありません.\n"
 #, c-format
 msgid "%s: Already loaded from library %s\n"
 msgstr "%s: ライブラリ %s はロード済みです.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが発生しました: %s\n"
 
 #, c-format
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
@@ -69,23 +359,24 @@ msgstr "%s: 共有アーカイブがロードされていません: %s\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -106,10 +397,6 @@ msgstr "%s: 入力引数の型が間違っています: 文字列を指定して
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-03-09 14:18+0000\n"
+"PO-Revision-Date: 2011-05-31 22:56+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,453 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s:  Coincideixen #%d nodes.\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s:  Coincideixen #%d nodes superiors.\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: El node no és vàlid.\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: Node superior invàlid.\n"
+
+#, c-format
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s: No és vàlida la posició '%s'.\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: No coincideix cap node.\n"
+
+#, c-format
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: No està implementat el tipus %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s o %s.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: La mida de %s és incorrecta: Ha de ser un nombre real.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: La mida de %s és incorrecta: Ha de ser un vector de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un tractament "
+"'Figure' o un nombre real.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: El tipus de %s és incorrecte: Ha de ser una llista.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: El tipus de %s és incorrecte: Ha de ser un nombre real.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: El tipus de %s és incorrecte: Ha de ser un vector fila de cadenes de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: El tipus de %s és incorrecte: Ha de ser una cadena de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr ""
+"%s: La propietat '%s' és d'un tipus incorrecte: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d o #%d és d'un tipus incorrecte: Ha de ser una "
+"cadena de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"tractament gràfic o un nombre real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"llista.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una llista "
+"amb dos elements.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters o un arbre.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un arbre.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un arbre o "
+"una cadena de caràcters.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser 'label', "
+"'icon' o 'callback'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr ""
+"%s: Els arguments a partir del #%d són d'un tipus incorrecte: Han de ser "
+"arbres.\n"
+
+#, c-format
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr ""
+"%s: La propietat '%s' té un valor incorrecte: Ha de ser %d, %d or %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: No es pot afegir un menú a la consola en aquest mode: %s.\n"
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: No es pot afegir un menú en aquest mode: %s.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Edita"
+
+msgid "&File"
+msgstr "&Fitxer"
+
+msgid "&Tools"
+msgstr "&Eines"
+
+msgid "<Enter color name here>"
+msgstr "<Introduïu el nom de color>"
+
+msgid "About Scilab..."
+msgstr "Quant al Scilab..."
+
+msgid "Acknowledgements"
+msgstr "Reconeixements"
+
+msgid "Add color in listbox"
+msgstr "Afegiu un color a la llista"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Resposta a %s \n"
+" és del tipus incorrecte %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Resposta a %s \n"
+" té una dimensió invàlida: \n"
+" s'espera la dimensió %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+
+msgid "Application"
+msgstr "Aplicació"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Autors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Colors list edition"
+msgstr "Edita la llista de colors"
+
+msgid "Control Plot3d"
+msgstr "Control Plot3d"
+
+msgid "Dialogs"
+msgstr ""
+
+msgid "Display selection"
+msgstr "Selecció de vista"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Esteu segur que voleu tancar l'Scilab?"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Exit figure"
+msgstr "Surt de la figura"
+
+msgid "File"
+msgstr "Fitxer"
+
+msgid "GUI"
+msgstr "IGU"
+
+msgid "Launch plot2d"
+msgstr "Executa el plot2d"
+
+msgid "Launch plot3d"
+msgstr "Executa el plot3d"
+
+msgid "Menu"
+msgstr "Menú"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "El menú '%s' és %s."
+
+msgid "Menu status"
+msgstr "Estat del menú"
+
+msgid "No"
+msgstr "No"
+
+msgid "No color selected."
+msgstr "No heu seleccionat cap color."
+
+msgid "Ok"
+msgstr "Accepta"
+
+msgid "Please enter a color name first."
+msgstr "Introduïu un nom de color."
+
+msgid "Popupmenu selection"
+msgstr "Menú emergent de selecció"
+
+msgid "Quit Scilab"
+msgstr "Tanca l'Scilab"
+
+msgid "Quit demonstration"
+msgstr "Tanca la demostració"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"El Scilab 5.0 i les versions futures s'han alliberat sota els termes de la "
+"llicència CeCILL.\n"
+
+msgid "Scilab Contributors..."
+msgstr "Contribuïdors al Scilab..."
+
+msgid "Scilab Graphics"
+msgstr "Gràfics d'Scilab"
+
+msgid "Selected colors"
+msgstr "Colors seleccionats"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "Els colors seleccionats són: %s."
+
+msgid "Selected menu"
+msgstr "Menú seleccionat"
+
+msgid "Slider demo"
+msgstr "Demostració de transició"
+
+msgid "Slider value: "
+msgstr "Valor de transició: "
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Alguns mòduls de Scilab s'han alliberat sota la llicència GPLv2.\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "Submenú 1"
+
+msgid "Sub-menu 2"
+msgstr "Submenú 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Submenú 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Submenú 2-2"
+
+msgid "Uicontrols 1"
+msgstr ""
+
+msgid "Uicontrols 2"
+msgstr ""
+
+msgid "Uicontrols demo"
+msgstr "Demostració d'Uicontrols"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Versió %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "Sí"
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "Heu seleccionat el menú '%s'."
+
+#, c-format
+msgid "You selected '%s'."
+msgstr "Heu seleccionat '%s'."
+
+msgid "blue"
+msgstr "blau"
+
+msgid "checked"
+msgstr "activat"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: S'ha trobat un menú en cascada buit."
+
+msgid "green"
+msgstr "verd"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "element1|element2|element3|element4"
+
+msgid "red"
+msgstr "vermell"
+
+msgid "unchecked"
+msgstr "inhabilitat"
+
+msgid "yellow"
+msgstr "groc"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -47,8 +494,7 @@ msgstr "%s: No s'ha pogut definir la propietat '%s'.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
-"%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
+msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
@@ -84,18 +530,12 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
+msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada són incorrectes: Han de ser '%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -110,8 +550,7 @@ msgstr ""
 "cadenes de text de (%d x %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -285,12 +724,6 @@ msgstr ""
 "tractament gràfic o una cadena de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
@@ -309,12 +742,6 @@ msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
 "real o una cadena de text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
@@ -356,11 +783,6 @@ msgstr ""
 "de nombres reals o complexos.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
@@ -380,18 +802,6 @@ msgstr ""
 "polzades, centímetres o píxels.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser '%s' o '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
-"'%s'.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
@@ -400,16 +810,14 @@ msgstr ""
 "número %d no existeix.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un tractament "
 "'%s' vàlid.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
@@ -425,9 +833,6 @@ msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: No existeix aquest "
 "tractament.\n"
-
-msgid "&?"
-msgstr "&?"
 
 msgid "&Abort"
 msgstr "&Cancel·la"
@@ -483,9 +888,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&Edit"
-msgstr "&Edita"
-
 msgid "&Empty clipboard"
 msgstr "&Buida el porta-retalls"
 
@@ -500,9 +902,6 @@ msgstr "&FIG"
 
 msgid "&Figure properties"
 msgstr "Propietats de la &figura"
-
-msgid "&File"
-msgstr "&Fitxer"
 
 msgid "&File Exchange"
 msgstr ""
@@ -597,9 +996,6 @@ msgstr "&Arranca el gestor de datatip"
 msgid "&Start entity picker"
 msgstr "&Arranca el capturador d'entitats"
 
-msgid "&Tools"
-msgstr "&Eines"
-
 msgid "&UnZoom"
 msgstr "R&edueix"
 
@@ -624,12 +1020,6 @@ msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "&Rotació 2D/3D"
-
-msgid "About Scilab..."
-msgstr "Quant al Scilab..."
-
-msgid "Acknowledgements"
-msgstr "Reconeixements"
 
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
@@ -696,9 +1086,6 @@ msgstr "Neteja la consola"
 
 msgid "Clear History"
 msgstr "Neteja la història"
-
-msgid "Close"
-msgstr "Tanca"
 
 msgid "Console &Background..."
 msgstr "Color de &fons..."
@@ -840,9 +1227,6 @@ msgstr "Gestor de mòduls - ATOMS"
 msgid "Monospaced"
 msgstr ""
 
-msgid "No"
-msgstr "No"
-
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "No existeix la propietat '%s' per a aquest objecte.\n"
@@ -859,9 +1243,6 @@ msgstr "No heu seleccionat cap text"
 
 msgid "OK"
 msgstr "D'acord"
-
-msgid "Ok"
-msgstr "Accepta"
 
 msgid "Open a file"
 msgstr "Obre un fitxer"
@@ -1085,8 +1466,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: A real row vector expected.\n"
@@ -1171,8 +1551,7 @@ msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un vector fila de "
 "nombres reals o una cadena de text.\n"
@@ -1257,8 +1636,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr ""
-"La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A string expected.\n"
@@ -1282,9 +1660,6 @@ msgstr "Xcos"
 
 msgid "Xcos files"
 msgstr "Fitxers d'Xcos"
-
-msgid "Yes"
-msgstr "Sí"
 
 msgid "Zoom Area"
 msgstr "Am&plia l'àrea"

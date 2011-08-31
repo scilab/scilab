@@ -8,14 +8,56 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-10 20:15+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-07-06 19:44+0000\n"
+"Last-Translator: Dmitry Grebennikov <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
+
+msgid "Erlang random variable"
+msgstr "Переменная распределения Эрланга случайной величины"
+
+msgid "Exponential random variable"
+msgstr "Переменная экспоненциального распределения случайной величины"
+
+msgid "Hyper geometric random variable"
+msgstr "Переменная гипергеометрического распределения случайной величины"
+
+msgid "Poisson random variable"
+msgstr "Переменная распределения Пуассона случайной величины"
+
+msgid "Random"
+msgstr "Случайные величины"
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+msgid "Theory"
+msgstr "Теория"
+
+msgid "Weibull random variable"
+msgstr "Переменная распределения Вейбулла случайной величины"
+
+msgid "binomial random variable"
+msgstr "Переменная биномиального распределения случайной величины"
+
+msgid "discrete random variable"
+msgstr "переменая дискретного распределения случайной величины"
+
+msgid "discrete uniform random variable"
+msgstr "переменная дискретного равномерного распределения случайной величины"
+
+msgid "geometric random variable"
+msgstr "переменная геометрического распределения случайной величины"
 
 msgid ""
 "\n"
@@ -54,8 +96,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
+"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, "
+"2^32-1]\n"
 
 msgid ""
 "\n"
@@ -191,8 +233,7 @@ msgstr "%s: Неверный размер входного параметра: �
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: Mean и Cov нулевого размера.\n"
+msgstr "%s: Неверный размер входных параметров: Mean и Cov нулевого размера.\n"
 
 #, c-format
 msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
@@ -263,8 +304,7 @@ msgstr "%s: Неверное значение входного параметр�
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра: ожидалось между «%s» и %d.\n"
+msgstr "%s: Неверное значение входного параметра: ожидалось между «%s» и %d.\n"
 
 #, c-format
 msgid ""
@@ -291,8 +331,7 @@ msgid "%s: Wrong value for second input argument: Must be > %d.\n"
 msgstr "%s: Неверное значение входного параметра №2: должно быть > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №2: должно быть между %d и %d.\n"
 
@@ -320,8 +359,8 @@ msgstr ""
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
-"Неверное начальное число для kiss, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
+"Неверное начальное число для kiss, должно быть целым в диапазоне [0, "
+"2^32-1]\n"
 
 msgid "DF < 1 or XNONC < 0\n"
 msgstr "DF < 1 или XNONC < 0\n"

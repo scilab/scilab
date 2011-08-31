@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-08-22 14:17+0000\n"
+"PO-Revision-Date: 2011-08-22 14:39+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,442 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s : n°%d nœuds correspondants.\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s : n°%d nœuds parents correspondants.\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s : Nœud invalide.\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s : Nœud parent invalide.\n"
+
+#, c-format
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s : Position '%s' invalide.\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s : Pas de nœud correspondant.\n"
+
+#, c-format
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr "%s : Aucun résultat trouvé pour la propriété '%s' et la valeur '%s'.\n"
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr "%s : Aucun résultat trouvé.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s : Le type %s n'est pas implémenté.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s : Arguments d'entrée faux : %s ou %s attendu.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s : Arguments d'entrée faux : %s, %s ou %s attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s : Dimension erronée de %s : Un vecteur ligne de chaîne de caractères "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un handle de type "
+"'Figure' ou un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s : Type erroné de %s : Une liste attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s : Type erroné de %s : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s : Type erroné de %s : Un vecteur ligne de chaîne de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s : Type erroné de %s : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr ""
+"%s : Type erroné de la propriété '%s' : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d ou n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un handle graphique ou un "
+"réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une liste attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une liste à deux éléments "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n° %d: Une chaîne de caractères ou "
+"un arbre attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un arbre attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un arbre ou une chaîne de "
+"caractères attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Doit être 'label', 'icon' ou "
+"'callback'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s : Type erroné des arguments d'entrée du n°%d : Un arbre attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr "%s : Valeur erronée de la propriété '%s' : %d, %d ou %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
+"attendu.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s : Impossible d'ajouter un menu dans la console dans ce mode : %s.\n"
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s : Impossible d'ajouter un menu dans ce mode : %s.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s : Fonction non disponible en mode NWNI.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Édition"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Tools"
+msgstr "&Outils"
+
+msgid "<Enter color name here>"
+msgstr "<Entrer le nom de la couleur ici>"
+
+msgid "About Scilab..."
+msgstr "À propos de Scilab..."
+
+msgid "Acknowledgements"
+msgstr "Remerciements"
+
+msgid "Add color in listbox"
+msgstr "Ajouter une couleur dans listbox"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"La réponse donnée pour %s \n"
+" a un type erroné %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"La réponse donnée pour %s \n"
+" a une dimension invalide : \n"
+" Dimension attendue %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"La solution donnée pour %s \n"
+" est erronée : %s.\n"
+
+msgid "Application"
+msgstr "Application"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Auteurs :\n"
+"Consortium Scilab / INRIA / ENPC / Contributeurs\n"
+"\n"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Colors list edition"
+msgstr "Édition de la liste de couleurs"
+
+msgid "Control Plot3d"
+msgstr "Contrôles Plot3d"
+
+msgid "Dialogs"
+msgstr "Boîtes de dialogue"
+
+msgid "Display selection"
+msgstr "Afficher la sélection"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Voulez-vous réellement quitter Scilab ?"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Exit figure"
+msgstr "Sortir de la figure"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "GUI"
+msgstr "Interface graphique"
+
+msgid "Launch plot2d"
+msgstr "Lancer plot2d"
+
+msgid "Launch plot3d"
+msgstr "Lancer plot3d"
+
+msgid "Menu"
+msgstr "Menu"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "Menu '%s' est %s."
+
+msgid "Menu status"
+msgstr "Menu statut"
+
+msgid "No"
+msgstr "Non"
+
+msgid "No color selected."
+msgstr "Aucune couleur sélectionnée."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Please enter a color name first."
+msgstr "Veuillez entrer un nom de couleur en premier."
+
+msgid "Popupmenu selection"
+msgstr "Sélection popupmenu"
+
+msgid "Quit Scilab"
+msgstr "Quitter Scilab"
+
+msgid "Quit demonstration"
+msgstr "Quitter la démonstration"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"Scilab 5.0 et les futures versions sont diffusées sous les termes de la "
+"licence CeCILL.\n"
+
+msgid "Scilab Contributors..."
+msgstr "Contributeurs de Scilab"
+
+msgid "Scilab Graphics"
+msgstr "Graphiques Scilab"
+
+msgid "Selected colors"
+msgstr "Couleurs sélectionnées"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "Les couleurs sélectionnées sont : %s."
+
+msgid "Selected menu"
+msgstr "Menu sélectionné"
+
+msgid "Slider demo"
+msgstr "Démonstration Barre de défilement"
+
+msgid "Slider value: "
+msgstr "Valeur de la barre de défilement : "
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Certains modules de Scilab sont distribués sous licence GPLv2.\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "Sous-menu 1"
+
+msgid "Sub-menu 2"
+msgstr "Sous-menu 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Sous-menu 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Sous-menu 2-2"
+
+msgid "Uicontrols 1"
+msgstr "Uicontrols 1"
+
+msgid "Uicontrols 2"
+msgstr "Uicontrols 2"
+
+msgid "Uicontrols demo"
+msgstr "Démonstration Uicontrol"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Démonstration Uicontrol avec LaTeX"
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr "Uicontrols avec LaTeX/MathML"
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Version %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "Oui"
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "Vous avez cliqué sur le menu '%s'."
+
+#, c-format
+msgid "You selected '%s'."
+msgstr "Vous avez sélectionné '%s'."
+
+msgid "blue"
+msgstr "bleu"
+
+msgid "checked"
+msgstr "coché"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems : un menu déroulant vide a été trouvé."
+
+msgid "green"
+msgstr "vert"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "red"
+msgstr "rouge"
+
+msgid "unchecked"
+msgstr "non coché"
+
+msgid "yellow"
+msgstr "jaune"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -90,10 +526,6 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s : Arguments d'entrée faux : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu.\n"
 
@@ -105,8 +537,7 @@ msgstr ""
 "de caractères de taille %d x %d attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une valeur 'pos' ou "
 "'gdi' attendue.\n"
@@ -283,11 +714,6 @@ msgstr ""
 "chaîne de caractères attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
 msgstr ""
@@ -306,12 +732,6 @@ msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un réel ou une chaîne de "
 "caractères attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
@@ -353,12 +773,6 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de chaîne de "
@@ -377,18 +791,6 @@ msgstr ""
 "centimètres ou pixels attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
-"attendu.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
 "exist.\n"
@@ -397,8 +799,7 @@ msgstr ""
 "numéro %d' n'existe pas.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un handle valide '%s' "
 "attendu.\n"
@@ -422,9 +823,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Ce handle n'existe pas.\n"
-
-msgid "&?"
-msgstr "&?"
 
 msgid "&Abort"
 msgstr "&Abandonner"
@@ -480,9 +878,6 @@ msgstr "&EMF"
 msgid "&EPS"
 msgstr "&EPS"
 
-msgid "&Edit"
-msgstr "&Édition"
-
 msgid "&Empty clipboard"
 msgstr "&Vider le presse-papier"
 
@@ -497,9 +892,6 @@ msgstr "&GIF"
 
 msgid "&Figure properties"
 msgstr "&Propriétés de la figure"
-
-msgid "&File"
-msgstr "&Fichier"
 
 msgid "&File Exchange"
 msgstr "&File Exchange"
@@ -594,9 +986,6 @@ msgstr "Démarrer le gestionnaire d'étiquettes de données"
 msgid "&Start entity picker"
 msgstr "Démarrer le &Sélectionneur d'entité"
 
-msgid "&Tools"
-msgstr "&Outils"
-
 msgid "&UnZoom"
 msgstr "&Dézoomer"
 
@@ -621,12 +1010,6 @@ msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "&Rotation 2D/3D"
-
-msgid "About Scilab..."
-msgstr "À propos de Scilab..."
-
-msgid "Acknowledgements"
-msgstr "Remerciements"
 
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
@@ -693,9 +1076,6 @@ msgstr "Effacer la console"
 
 msgid "Clear History"
 msgstr "Effacer l’historique"
-
-msgid "Close"
-msgstr "Fermer"
 
 msgid "Console &Background..."
 msgstr "&Arrière-plan de la console..."
@@ -835,9 +1215,6 @@ msgstr "Gestionnaire de module - ATOMS"
 msgid "Monospaced"
 msgstr "Monospacé"
 
-msgid "No"
-msgstr "Non"
-
 #, c-format
 msgid "No '%s' property for this object.\n"
 msgstr "Pas de propriété '%s' pour cet objet.\n"
@@ -853,9 +1230,6 @@ msgid "No text selected"
 msgstr "Aucun texte sélectionné"
 
 msgid "OK"
-msgstr "Ok"
-
-msgid "Ok"
 msgstr "Ok"
 
 msgid "Open a file"
@@ -1029,8 +1403,7 @@ msgstr "Image Windows BMP"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
+msgstr "Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
@@ -1117,8 +1490,7 @@ msgstr "Type erroné de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Type erroné de la propriété '%s' : '%s', '%s', '%s' ou '%s' attendu.\n"
+msgstr "Type erroné de la propriété '%s' : '%s', '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid ""
@@ -1157,8 +1529,7 @@ msgid "Wrong type for '%s' property: A real expected.\n"
 msgstr "Type erroné de la propriété '%s' : Un réel attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Un vecteur ligne de réels ou une chaîne "
 "de caractères attendu.\n"
@@ -1266,9 +1637,6 @@ msgstr "Xcos"
 msgid "Xcos files"
 msgstr "Fichiers Xcos"
 
-msgid "Yes"
-msgstr "Oui"
-
 msgid "Zoom Area"
 msgstr "Zone de zoom"
 
@@ -1288,8 +1656,8 @@ msgid ""
 msgstr ""
 "disp(\"ATTENTION : À cause des limitations de votre configuration, Scilab "
 "est passé dans un mode dans lequel mélanger des uicontrols et des graphiques "
-"n'est pas possible. Tapez \"\"help usecanvas\"\" pour plus "
-"d''informations.\")"
+"n'est pas possible. Tapez \"\"help usecanvas\"\" pour plus d''informations."
+"\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "

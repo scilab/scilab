@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-23 10:31+0000\n"
+"PO-Revision-Date: 2011-07-19 02:26+0000\n"
 "Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
+
+msgid "Erlang random variable"
+msgstr "Erlang亂數變數"
+
+msgid "Exponential random variable"
+msgstr "指數亂數變數"
+
+msgid "Hyper geometric random variable"
+msgstr "超幾何亂數變數"
+
+msgid "Poisson random variable"
+msgstr "普瓦松亂數變數"
+
+msgid "Random"
+msgstr "亂數"
+
+msgid "Simulation"
+msgstr "模擬"
+
+msgid "Simulation of a binomial random variable"
+msgstr "二項式亂數變數的模擬"
+
+msgid "Simulation of a discrete random variable"
+msgstr "離散亂數變數的模擬"
+
+msgid "Theory"
+msgstr "理論"
+
+msgid "Weibull random variable"
+msgstr "韋伯亂數變數"
+
+msgid "binomial random variable"
+msgstr "二項式亂數變數"
+
+msgid "discrete random variable"
+msgstr "離散亂數變數"
+
+msgid "discrete uniform random variable"
+msgstr "無變化的離散亂數變數"
+
+msgid "geometric random variable"
+msgstr "幾何亂數變數"
 
 msgid ""
 "\n"
@@ -26,11 +68,12 @@ msgid ""
 msgstr ""
 "\n"
 " clcg4 中的亂數種子有誤, s1必須是介於 [1, 2147483646] 的整數範圍.\n"
-"                                              s2必須是介於 [1, 2147483646] "
-"的整數範圍.\n"
-"                                              s3必須是介於 [1, 2147483646] "
-"的整數範圍.\n"
-"                                              s4必須是介於[1, 2147483646] 的整數範圍."
+"                                              s2必須是介於 [1, 2147483646] 的"
+"整數範圍.\n"
+"                                              s3必須是介於 [1, 2147483646] 的"
+"整數範圍.\n"
+"                                              s4必須是介於[1, 2147483646] 的"
+"整數範圍."
 
 #, c-format
 msgid ""
@@ -65,8 +108,8 @@ msgid ""
 msgstr ""
 "\n"
 "clcg2 中指定的亂數種子錯有誤,  s1 必須是在 [1, 2147483562] \n"
-"                                                     且 s2 是在 [1, 2147483562] "
-" 的整數值範圍.\n"
+"                                                     且 s2 是在 [1, "
+"2147483562]  的整數值範圍.\n"
 
 #, c-format
 msgid ""
@@ -219,7 +262,8 @@ msgstr "%s: 第一個輸入參數值錯誤: 必需是隨機誤差的個數.\n"
 msgid ""
 "%s: Wrong value for first input argument: Must be the number of random "
 "simulation.\n"
-msgstr "%s: 第一個輸入參數的數值錯誤: 必需是 random simulation 隨機模擬的個數.\n"
+msgstr ""
+"%s: 第一個輸入參數的數值錯誤: 必需是 random simulation 隨機模擬的個數.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s.\n"
@@ -249,8 +293,7 @@ msgid "%s: Wrong value for second input argument: Must be > %d.\n"
 msgstr "%s: 第二個輸入參數值錯誤: 必需大於 %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr "%s: 第二個輸入參數值錯誤: 必需介於 %d 與 %d 之間.\n"
 
 #, c-format

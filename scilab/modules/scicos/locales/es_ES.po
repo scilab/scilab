@@ -8,14 +8,243 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-02-19 22:41+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:19+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: es\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: El diagrama no compila en %d.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Error: No se definió un bloque scifunc."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Los puertos de entrada no están numerados correctamente.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Los puertos de salida no están numerados correctamente.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada. Debe estar entre %d y %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Tamaño incorrecto de los argumentos de entrada #%d y #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr ""
+
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr ""
+
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr ""
+
+msgid "Block has connected output port<br />with incompatible type."
+msgstr ""
+
+msgid "Block input has negative size:"
+msgstr ""
+
+msgid "Can't convert old diagram (problem in version)"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+
+msgid "End problem: "
+msgstr ""
+
+msgid "Initialisation problem:"
+msgstr ""
+
+#, c-format
+msgid "Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "Input port %s type."
+msgstr ""
+
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
+
+#, c-format
+msgid "Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "Output port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "Output port %s type."
+msgstr ""
+
+msgid "Please compile the diagram to report the error."
+msgstr ""
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "Gráficos Scilab de %s"
+
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
+msgid "Sorry file name not defined in "
+msgstr "Disculpe el nombre de archivo no está definido en "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Disculpe: Sólo C y FORTRAN son lenguajes soportados"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+
+msgid "Type not recognized"
+msgstr "Tipo desconocido"
+
+msgid "Unable to report an error into a SuperBlock"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
+msgstr ""
+
+msgid "scs_show active..."
+msgstr "scs_show activo..."
 
 msgid ""
 "\n"
@@ -166,8 +395,7 @@ msgstr "%s : El primer argumento debe ser un modelo scicos.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos signal structure.\n"
-msgstr ""
-"%s : El primer argumento debe ser una estructura de señal de scicos.\n"
+msgstr "%s : El primer argumento debe ser una estructura de señal de scicos.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -264,8 +492,7 @@ msgstr "%s : Tamaño indeterminado. out(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Tamaño indeterminado. out2(%d)=%d. Por favor ajuste su modelo.\n"
+msgstr "%s : Tamaño indeterminado. out2(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
@@ -273,8 +500,7 @@ msgstr "%s : Type indeterminado. intyp(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Type indeterminado. outtyp(%d)=%d. Por favor ajuste su modelo.\n"
+msgstr "%s : Type indeterminado. outtyp(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : bad dimension for lnksz argument.\n"
@@ -305,8 +531,7 @@ msgstr ""
 "double.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : error. outtb aun no soporta el tipo %d en las matrices de escalares "
 "enteros.\n"
@@ -868,9 +1093,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 
 msgid ""

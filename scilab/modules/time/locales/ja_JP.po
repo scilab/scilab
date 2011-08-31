@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:02+0000\n"
+"PO-Revision-Date: 2011-06-01 00:17+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,265 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/calendar.sci, line: 52
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   月      火      水      木      金      土      日"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: m*3 行列または m*6 行列を指定して"
+"ください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実定数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: 入力引数の型が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgstr "%s: 入力引数の型が間違っています： 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgstr "%s: 入力引数の型が間違っています： スカラー指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています： %s は %d から %d の範囲で指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してくださ"
+"い.\n"
+
+#
+# File: macros/calendar.sci, line: 40
+# File: macros/date.sci, line: 15
+msgid "Apr"
+msgstr "4月"
+
+#
+# File: macros/calendar.sci, line: 44
+# File: macros/date.sci, line: 19
+msgid "Aug"
+msgstr "8月"
+
+#
+# File: macros/datenum.sci, line: 54
+msgid "Day"
+msgstr "日"
+
+#
+# File: macros/calendar.sci, line: 48
+# File: macros/date.sci, line: 23
+msgid "Dec"
+msgstr "12月"
+
+#
+# File: macros/calendar.sci, line: 38
+# File: macros/date.sci, line: 13
+msgid "Feb"
+msgstr "2月"
+
+#
+# File: macros/weekday.sci, line: 47
+msgid "Fri"
+msgstr "金曜"
+
+#
+# File: macros/weekday.sci, line: 55
+msgid "Friday"
+msgstr "金曜日"
+
+#
+# File: macros/datenum.sci, line: 60
+msgid "Hour"
+msgstr "時"
+
+#
+# File: macros/calendar.sci, line: 37
+# File: macros/date.sci, line: 12
+# File: macros/weekday.sci, line: 56
+msgid "Jan"
+msgstr "1月"
+
+#
+# File: macros/calendar.sci, line: 43
+# File: macros/date.sci, line: 18
+msgid "Jul"
+msgstr "7月"
+
+#
+# File: macros/calendar.sci, line: 42
+# File: macros/date.sci, line: 17
+msgid "Jun"
+msgstr "6月"
+
+#
+# File: macros/calendar.sci, line: 39
+# File: macros/date.sci, line: 14
+msgid "Mar"
+msgstr "3月"
+
+#
+# File: macros/calendar.sci, line: 41
+# File: macros/date.sci, line: 16
+msgid "May"
+msgstr "5月"
+
+#
+# File: macros/datenum.sci, line: 64
+msgid "Minute"
+msgstr "分"
+
+#
+# File: macros/weekday.sci, line: 43
+msgid "Mon"
+msgstr "月曜"
+
+#
+# File: macros/weekday.sci, line: 51
+msgid "Monday"
+msgstr "月曜日"
+
+#
+# File: macros/datenum.sci, line: 50
+msgid "Month"
+msgstr "月"
+
+#
+# File: macros/calendar.sci, line: 47
+# File: macros/date.sci, line: 22
+msgid "Nov"
+msgstr "11月"
+
+#
+# File: macros/calendar.sci, line: 46
+# File: macros/date.sci, line: 21
+msgid "Oct"
+msgstr "10月"
+
+#
+# File: macros/weekday.sci, line: 41
+msgid "Sat"
+msgstr "土曜"
+
+#
+# File: macros/weekday.sci, line: 49
+msgid "Saturday"
+msgstr "土曜日"
+
+#
+# File: macros/datenum.sci, line: 68
+msgid "Second"
+msgstr "秒"
+
+#
+# File: macros/calendar.sci, line: 45
+# File: macros/date.sci, line: 20
+msgid "Sep"
+msgstr "9月"
+
+#
+# File: macros/weekday.sci, line: 42
+msgid "Sun"
+msgstr "日曜"
+
+#
+# File: macros/weekday.sci, line: 50
+msgid "Sunday"
+msgstr "日曜日"
+
+#
+# File: macros/weekday.sci, line: 46
+msgid "Thu"
+msgstr "木曜"
+
+#
+# File: macros/weekday.sci, line: 54
+msgid "Thursday"
+msgstr "木曜日"
+
+#
+# File: macros/weekday.sci, line: 44
+msgid "Tue"
+msgstr "火曜"
+
+#
+# File: macros/weekday.sci, line: 52
+msgid "Tuesday"
+msgstr "火曜日"
+
+#
+# File: macros/weekday.sci, line: 45
+msgid "Wed"
+msgstr "水曜"
+
+#
+# File: macros/weekday.sci, line: 53
+msgid "Wednesday"
+msgstr "水曜日"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -29,7 +288,8 @@ msgstr "%s: エラーが発生しました: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -37,17 +297,16 @@ msgstr "%s: 入力引数の型が間違っています： スカラー値で指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より小さい値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より小さい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"

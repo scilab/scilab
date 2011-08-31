@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-11-20 05:25+0000\n"
-"Last-Translator: fracting <fracting@gmail.com>\n"
+"PO-Revision-Date: 2011-08-12 00:58+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,6 +12,42 @@ msgstr ""
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Type %s is not handled : Define the function %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Wrong export format: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Wrong number of input argument(s): %d to %d expected."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Wrong number of input arguments: %d to %d expected"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: 第 %d 參數的型態錯誤: 應該是布林(邏輯)值.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 "
+"'%s' .\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: 系統無法在此頁中顯示.\n"
 
 #
 # File: src/c/msgs.c, line: 870
@@ -115,15 +151,15 @@ msgid ""
 "%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: %s長度太短. %s orthogonal to the columns of the jacobian to 機器運算的精度(machine "
-"precision).\n"
+"%s: %s長度太短. %s orthogonal to the columns of the jacobian to 機器運算的精"
+"度(machine precision).\n"
 
 #, c-format
 msgid ""
 "%s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
-"%s: %s 長度太短. 在這情況下( in the criterion)沒有進一步的減少(No further reduction )的可能( "
-"possible).\n"
+"%s: %s 長度太短. 在這情況下( in the criterion)沒有進一步的減少(No further "
+"reduction )的可能( possible).\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -392,8 +428,7 @@ msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -401,8 +436,7 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -893,8 +927,7 @@ msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1485
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "左邊指示: 等待句點 (.) 或一左括弧.\n"
 
 #
@@ -1586,8 +1619,7 @@ msgstr "參數 %d 錯誤.\n"
 msgid "Wrong number of input arguments."
 msgstr ""
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
 msgid "Wrong number of output arguments.\n"
@@ -1861,8 +1893,7 @@ msgstr "不滿足半正定條件.\n"
 #
 # File: src/c/msgs.c, line: 647
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr "sfact : 未完全收斂,相對精度為 : 10**(%s).\n"
 
 #

@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-28 01:08+0000\n"
+"PO-Revision-Date: 2011-08-01 16:26+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,200 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "X-Poedit-Country: JAPAN\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+msgid "  loading initial environment"
+msgstr "  初期環境をロードしています"
+
+msgid " by "
+msgstr " by "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%1$s は, %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%1$s は, 命令 %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%1$s は,マクロ %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s は %s からコールされました."
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s は編集できないハードコードされている関数です.\n"
+
+#
+# File: macros/check_versions.sci, line: 31
+#, c-format
+msgid "%s: File doesn't exist: %s"
+msgstr "%s: ファイルは存在しません: %s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: Perl コマンドが指定されていません."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: %s を確認してください.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: Scilabエディタが必要です.\n"
+
+#
+# File: macros/perl.sci, line: 68
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: システム・エラー: コマンドは実行されました: %s"
+
+#
+# File: macros/add_demo.sci, line: 13
+# File: sci_gateway/c/sci_getmd5.c, line: 82
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は、存在しません。\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: Perlファイルが見つかりません: %s"
+
+#
+# File: macros/perl.sci, line: 47
+#, c-format
+msgid "%s: Unable to find Perl in '%s"
+msgstr "%s: '%s' でPerlを見つけられません"
+
+#
+# File: macros/perl.sci, line: 63
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: Perlを見つけられません。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: 入力引数 #%d に誤りがあります: Scilabスクリプトファイルのパスを指定してく"
+"ださい.\n"
+
+#
+# File: macros/edit.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+
+#
+# File: etc/scilab.start, line: 195
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: etc/scilab.start, line: 179
+# File: etc/scilab.start, line: 181
+# File: etc/scilab.start, line: 184
+# File: etc/scilab.start, line: 187
+# File: etc/scilab.start, line: 190
+# File: etc/scilab.start, line: 193
+msgid "&Applications"
+msgstr "アプリケーション(&A)"
+
+#
+# File: etc/scilab.start, line: 178
+msgid "&Control"
+msgstr "コントロール(&C)"
+
+#
+# File: etc/scilab.start, line: 176
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: etc/scilab.start, line: 175
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: etc/scilab.start, line: 177
+msgid "&Preferences"
+msgstr "設定(&P)"
+
+#
+# File: etc/scilab.start, line: 196
+# File: macros/toolboxes.sci, line: 127
+# File: macros/toolboxes.sci, line: 128
+# File: macros/toolboxes.sci, line: 132
+msgid "&Toolboxes"
+msgstr "ツールボックス(&T)"
+
+msgid "Bytes"
+msgstr "バイト"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "確認中: %s\n"
+
+msgid "Getting started with Scilab"
+msgstr "Scilab入門"
+
+msgid "Introduction"
+msgstr "導入"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Startup execution:"
+msgstr "スタートアップを実行中:"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "User variables are:"
+msgstr "ユーザー変数:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "%s 個の要素メモリを使用中 (全体: %s)"
 
 #, c-format
 msgid ""
@@ -25,9 +218,6 @@ msgid ""
 msgstr ""
 "\n"
 "コールスタック:\n"
-
-msgid "  loading initial environment"
-msgstr "  初期環境をロードしています"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
@@ -110,7 +300,9 @@ msgstr "%s: (%s) 3番目の引数が誤っています!\n"
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
-msgstr "%s: (%s) スタック上の引数が多すぎます. stack.h を編集して, intersiz を大きくしてください.\n"
+msgstr ""
+"%s: (%s) スタック上の引数が多すぎます. stack.h を編集して, intersiz を大きく"
+"してください.\n"
 
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
@@ -144,7 +336,9 @@ msgstr "%s: 古いバージョンの if および while は実装されていま
 
 #, c-format
 msgid "%s: Optional argument %d not given and default value %s not found.\n"
-msgstr "%s: オプションの引数 %d が指定されておらず, デフォルト値 %s が見つかりません.\n"
+msgstr ""
+"%s: オプションの引数 %d が指定されておらず, デフォルト値 %s が見つかりませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
@@ -161,10 +355,6 @@ msgstr "%s: コード外です\n"
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: 再帰的呼び出しに問題があります. 申し訳ありません ...\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: ファイル %s は存在しません.\n"
 
 #
 # File: src/c/stack1.c, line: 234
@@ -251,16 +441,13 @@ msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -272,7 +459,8 @@ msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d と�
 
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: At least %d expected.\n"
@@ -284,11 +472,13 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
@@ -296,11 +486,13 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for inputs arguments.\n"
@@ -309,62 +501,84 @@ msgstr "%s: 入力引数の大きさが間違っています.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 論理値行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 論理値行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: boxed ポインタを指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: boxed ポインタを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 整数行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 整数行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of handle "
 "expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: ハンドルの行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: ハンドルの行列を指定してく"
+"ださい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Matrix of strings "
 "expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 文字列の行列を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
 "expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 実数または複素数の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 実数または複素数の行列を指"
+"定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 行ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: スカラーを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 疎行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 疎行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: 文字列行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: 文字列行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
-msgstr "%s: 引数 %d (リスト要素: %d)の型が間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 引数 %d (リスト要素: %d)の型が間違っています: ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr "%s: 引数 %dの型が間違っています: ポリゴン(polygon)を指定してください.\n"
+msgstr ""
+"%s: 引数 %dの型が間違っています: ポリゴン(polygon)を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -372,7 +586,8 @@ msgstr "%s: 引数 %d の型が間違っています: 論理値行列を指定�
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: ボックス・ポインタを指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています: ボックス・ポインタを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Column vector expected.\n"
@@ -382,7 +597,9 @@ msgstr "%s: 引数 %d の型が間違っています:列ベクトルを指定し
 msgid ""
 "%s: Wrong type for argument %d: Function or string (external function) "
 "expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
@@ -390,7 +607,9 @@ msgstr "%s: 引数 %d の型が間違っています:　リスト(list)を指定
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　大きさが %d 以上のリストを指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　大きさが %d 以上のリストを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
@@ -414,7 +633,9 @@ msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定し
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
@@ -426,7 +647,9 @@ msgstr "%s: 引数 %d の型が間違っています: 行ベクトルを指定�
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　スカラー, '%s' または'%s' を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　スカラー, '%s' または'%s' を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
@@ -467,9 +690,10 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
@@ -480,9 +704,10 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -490,15 +715,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: コンパイル済みのマクロを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: コンパイル済みのマクロを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラー, '%s'　または '%s'　を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラー, '%s'　または '%s'　を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -506,11 +731,13 @@ msgstr "%s: 入力引数の型が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -537,37 +764,41 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ’%s' または '%s' を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s' , '%s' を指定してください. 入力引数 #%d は '%s' "
-"としてください.\n"
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s' , '%s' を指定してください. "
+"入力引数 #%d は '%s' としてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '0' または '1' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '0' または '1' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 1,2 または 3 を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 1,2 または 3 を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -593,11 +824,13 @@ msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: A int expected.\n"
@@ -606,7 +839,9 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定し�
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲の値を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: argument %d > (%d) should be a complex matrix.\n"
@@ -622,7 +857,9 @@ msgstr "%s: 引数 %d には大きさが %d 以上のリストを指定してく
 
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s: 引数 %d (%d) の %s 次元 (%d) が間違っています,  (%d) を指定してください.\n"
+msgstr ""
+"%s: 引数 %d (%d) の %s 次元 (%d) が間違っています,  (%d) を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: argument must be a string.\n"
@@ -647,11 +884,15 @@ msgstr "%s: コード %d は未実装です.\n"
 #, c-format
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
-msgstr "%s: createcvarfromptr:　スタック上の引数が多すぎます, intersiz を大きくしてください.\n"
+msgstr ""
+"%s: createcvarfromptr:　スタック上の引数が多すぎます, intersiz を大きくしてく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: entry point %s not found in predefined tables or link table.\n"
-msgstr "%s: エントリポイント %s が定義済みのテーブルまたはリンクテーブルで見つかりません.\n"
+msgstr ""
+"%s: エントリポイント %s が定義済みのテーブルまたはリンクテーブルで見つかりま"
+"せん.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
@@ -667,56 +908,15 @@ msgstr "%s: intersiz が小さすぎます.\n"
 
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-msgstr "%s: スタックの大きさが超過しました (stacksize 関数でスタックの大きさを増やしてください).\n"
+msgstr ""
+"%s: スタックの大きさが超過しました (stacksize 関数でスタックの大きさを増やし"
+"てください).\n"
 
 #
 # File: src/c/intmacr2tree.c, line: 1990
 #, c-format
 msgid "%s: wrong code %d.\n"
 msgstr "%s: 不正なコード %d\n"
-
-#
-# File: etc/scilab.start, line: 195
-msgid "&?"
-msgstr "その他(&?)"
-
-#
-# File: etc/scilab.start, line: 179
-# File: etc/scilab.start, line: 181
-# File: etc/scilab.start, line: 184
-# File: etc/scilab.start, line: 187
-# File: etc/scilab.start, line: 190
-# File: etc/scilab.start, line: 193
-msgid "&Applications"
-msgstr "アプリケーション(&A)"
-
-#
-# File: etc/scilab.start, line: 178
-msgid "&Control"
-msgstr "コントロール(&C)"
-
-#
-# File: etc/scilab.start, line: 176
-msgid "&Edit"
-msgstr "編集(&E)"
-
-#
-# File: etc/scilab.start, line: 175
-msgid "&File"
-msgstr "ファイル(&F)"
-
-#
-# File: etc/scilab.start, line: 177
-msgid "&Preferences"
-msgstr "設定(&P)"
-
-#
-# File: etc/scilab.start, line: 196
-# File: macros/toolboxes.sci, line: 127
-# File: macros/toolboxes.sci, line: 128
-# File: macros/toolboxes.sci, line: 132
-msgid "&Toolboxes"
-msgstr "ツールボックス(&T)"
 
 #
 # File: src/c/stack2.c, line: 2380
@@ -800,23 +1000,24 @@ msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"エラー: ゲートウエイファイル %s に誤りがあります. エンコーディング '%s' が見つかりました  (エンコーディングが 'utf-"
-"8'　ではありません).\n"
+"エラー: ゲートウエイファイル %s に誤りがあります. エンコーディング '%s' が見"
+"つかりました  (エンコーディングが 'utf-8'　ではありません).\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
-"エラー: ゲートウエイファイル %s に誤りがあります. ( <GATEWAY>で始まり,  <PRIMITIVE gatewayId='' "
-"primitiveId='' primitiveName=''> を含む必要があります)\n"
+"エラー: ゲートウエイファイル %s に誤りがあります. ( <GATEWAY>で始まり,  "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''> を含む必要がありま"
+"す)\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
-"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　ではありません) エンコーディング '%s' が見つかりました  "
-".\n"
+"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　で"
+"はありません) エンコーディング '%s' が見つかりました  .\n"
 
 #, c-format
 msgid "Error: Not a valid primitive ID %d.\n"
@@ -827,16 +1028,17 @@ msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つかりました  (エンコーディングが 'utf-"
-"8'　ではありません).\n"
+"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つ"
+"かりました  (エンコーディングが 'utf-8'　ではありません).\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  <VERSION major='' "
-"minor='' maintenance='' revision='' string=''> を含む必要があります)\n"
+"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  "
+"<VERSION major='' minor='' maintenance='' revision='' string=''> を含む必要が"
+"あります)\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"
@@ -948,9 +1150,6 @@ msgid ""
 msgstr ""
 "Scilabバージョン \"%d.%d.%d.%d\"\n"
 "%s\n"
-
-msgid "Startup execution:"
-msgstr "スタートアップを実行中:"
 
 #
 # File: src/c/inisci-c.c, line: 165

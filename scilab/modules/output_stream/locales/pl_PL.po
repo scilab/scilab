@@ -8,14 +8,54 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-16 08:07+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2011-06-01 02:49+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: pl\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Typ %s nie jest obsługiwany : Zdefiniuj funkcję %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Zły format eksportu: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+"%s: Niewłaściwa liczba parametru(ów) wejściowych: oczekiwana jest od %d do "
+"%d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: Niewłaściwa liczba parametrów wejściowych: oczekiwana jest od %d do %d."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: Niewłaściwy typ argumentu nr %d: Oczekiwany typ boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest '%s', "
+"'%s', '%s', '%s', '%s' lub '%s'.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: system nie może być wyświetlany na tej stronie.\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -78,8 +118,7 @@ msgstr "%s jest nieważny w tym kontekście.\n"
 
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
-msgstr ""
-"%s nie został jeszcze wprowadzony dla pełnego parametru wejściowego.\n"
+msgstr "%s nie został jeszcze wprowadzony dla pełnego parametru wejściowego.\n"
 
 #, c-format
 msgid "%s was a function when compiled but is now a primitive!\n"
@@ -107,13 +146,11 @@ msgstr "%s: Wystąpił błąd: %s\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
-msgstr ""
-"%s: Niepoprawna konwersja. Flag 'l' lub 'h' razem z dyrektywą  'c'.\n"
+msgstr "%s: Niepoprawna konwersja. Flag 'l' lub 'h' razem z dyrektywą  'c'.\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
-msgstr ""
-"%s: Niepoprawna konwersja. Flag 'l' lub 'h' razem z dyrektywą  's'.\n"
+msgstr "%s: Niepoprawna konwersja. Flag 'l' lub 'h' razem z dyrektywą  's'.\n"
 
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
@@ -351,8 +388,7 @@ msgstr ""
 "nie istnieje.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: błąd, nie można zamknąć "
 "dziennika %d.\n"
@@ -364,8 +400,7 @@ msgstr ""
 "dziennika.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: błąd, nie można "
 "zatrzymać dziennika %d.\n"
@@ -595,8 +630,7 @@ msgid "Error while linking.\n"
 msgstr "Błąd podczas łączenia.\n"
 
 msgid "Error while writing in file: disk full or deleted file.\n"
-msgstr ""
-"Błąd podczas zapisu pliku. Dysk jest pełny lub plik został usunięty.\n"
+msgstr "Błąd podczas zapisu pliku. Dysk jest pełny lub plik został usunięty.\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "Zmienna Eye nie jest zdefiniowana w tym kontekście.\n"
@@ -721,8 +755,7 @@ msgid "Incorrect syntax.\n"
 msgstr "Nieprawidłowa składnia.\n"
 
 msgid "Indexing not allowed for output arguments of resume.\n"
-msgstr ""
-"Indeksowanie niedozwolone dla argumentów wyjściowych po wznowieniu.\n"
+msgstr "Indeksowanie niedozwolone dla argumentów wyjściowych po wznowieniu.\n"
 
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
 msgstr ""
@@ -733,11 +766,9 @@ msgid "Inequality comparison with empty matrix.\n"
 msgstr "Nierówności w porównaniu z pustą macierzą\n"
 
 msgid "Input arguments should have the same formal variable name.\n"
-msgstr ""
-"Argumenty wejściowe powinny mieć takie same formalne nazwy zmiennej.\n"
+msgstr "Argumenty wejściowe powinny mieć takie same formalne nazwy zmiennej.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Instrukcja po lewej stronie: Czekam na kropkę lub lewy nawias.\n"
 ".\n"
@@ -867,8 +898,7 @@ msgid "Optimization fails: back to initial point.\n"
 msgstr "Nie wykonano optymalizacji: powrót do punktu początkowego.\n"
 
 msgid "Optimization stops because too small variations for x.\n"
-msgstr ""
-"Optymalizacja została przerwana z powodu zbyt małej wariacji dla x.\n"
+msgstr "Optymalizacja została przerwana z powodu zbyt małej wariacji dla x.\n"
 
 msgid "Otherwise, send a bug report to :"
 msgstr ""
@@ -1228,8 +1258,7 @@ msgstr "Nieprawidłowy argument wejściowy %d.\n"
 msgid "Wrong number of input arguments."
 msgstr ""
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Nieprawidłowa liczba argumentów wejściowych: ta funkcja nie ma argumentów "
 "wejściowych.\n"
@@ -1280,8 +1309,7 @@ msgstr "Nieprawidłowy typ argumentu %d: oczekiwano w ciągłości czasu.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
-msgstr ""
-"Nieprawidłowy typ dla argumentu %d: oczekiwano w czasie dyskretnym.\n"
+msgstr "Nieprawidłowy typ dla argumentu %d: oczekiwano w czasie dyskretnym.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: In state space form expected.\n"
@@ -1384,8 +1412,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
-msgstr ""
-"Nieprawidłowa wartość dla argumentu %d: lu handle nie są już ważne.\n"
+msgstr "Nieprawidłowa wartość dla argumentu %d: lu handle nie są już ważne.\n"
 
 msgid "You cannot link more functions, maxentry reached.\n"
 msgstr "Nie można wstawić więcej funkcji, wejścia-max osiągnięte.\n"
@@ -1448,8 +1475,7 @@ msgid "semi def fails.\n"
 msgstr "częściowo nie zdefiniowana.\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : nie kompletna konwergencja względnej precyzji osiągnęła : 10** "
 "(%s).\n"

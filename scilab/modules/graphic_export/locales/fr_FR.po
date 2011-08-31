@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-06 11:57+0000\n"
+"PO-Revision-Date: 2011-07-06 12:02+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s: %s must be called before any action.\n"
+msgstr "%s : %s doit être appelé avant tout autre action.\n"
+
+#, c-format
+msgid "%s: EMF format only available under Microsoft Windows OS.\n"
+msgstr "%s : Le format EMF est seulement disponible sous Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Unable to create export file, permission denied.\n"
+msgstr "%s : Impossible de créer un fichier d'export, permission refusée.\n"
+
+#, c-format
+msgid "%s: Unable to execute pstoedit.\n"
+msgstr "%s : Impossible d'exécuter pstoedit.\n"
+
+#, c-format
+msgid "%s: Unable to find pstoedit.\n"
+msgstr "%s : Impossible de trouver pstoedit.\n"
+
+#, c-format
+msgid ""
+"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
+"to be able to use this feature.\n"
+msgstr ""
+"%s : Impossible de localiser pstoedit. Installer pstoedit ou l'ajouter au "
+"PATH pour être capable d'utiliser cette fonctionnalité.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
+"'%s' drivers.\n"
+msgstr ""
+"%s : Nombre erroné d'arguments d'entrée : Une chaîne de caractères avec les "
+"drivers '%s', '%s', '%s' ou '%s' attendue.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: Function has no input argument with "
+"'%s' or '%s' drivers.\n"
+msgstr ""
+"%s : Nombre erroné d'arguments d'entrée : La fonction n'a pas d'argument "
+"d'entrée avec les drivers '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s', "
+"'%s' ou '%s' attendu.\n"
+
+msgid "Please install Ghostscript 32 bits to export an .FIG file."
+msgstr "Installez Ghostscript 32 bits pour exporter un fichier .FIG."
+
+msgid "Scilab error"
+msgstr "Erreur Scilab"
+
+msgid "error"
+msgstr "Erreur"
 
 #, c-format
 msgid "%s: %s\n"
@@ -58,14 +138,8 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un simple caractère attendu.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
-
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Le module d'export graphique de Scilab n'est pas installé.\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr ""
-"Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"
+msgstr "Le module graphique de Scilab est désactivé en mode -nogui ou -nwni.\n"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-08 03:12+0000\n"
+"PO-Revision-Date: 2011-06-01 03:03+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+msgstr "%s: 參數個數有誤: 偶數才對.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是 %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤:字串才對.\n"
+
+#, c-format
+msgid "%s: parameter %s not defined"
+msgstr "%s: %s 參數未被定義"
+
+#, c-format
+msgid "%s: parameter doesn't exist"
+msgstr "%s: 參數並不存在"
 
 #, c-format
 msgid "%s: awaited parameters: "

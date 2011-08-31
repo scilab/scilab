@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-30 05:29+0000\n"
+"PO-Revision-Date: 2011-08-28 02:44+0000\n"
 "Last-Translator: Stanislav V. Kroter <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,261 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13827)\n"
 "Language: ru\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: Диаграмма не скомпилирована в %d проход(а).\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: Ошибка во время вычисления параметров блока.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s: Ошибка во время обновления параметров блока.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Ошибка: блок scifunc не определён."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Порты ввода не пронумерованы правильно.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Порты вывода не пронумерованы правильно.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: Тип %s не реализован.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr "%s: Нельзя найти входы схемы\n"
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr "%s: Нельзя найти выходы схемы\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s: Неверный количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Неверный размер входных параметров №%d и №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась структура данных %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась диаграмма.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+#, c-format
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr "%s: неправильный тип для '%s', получение %s"
+
+#, c-format
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr "%s: неверная размерность '%s', ожидается %s"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
+">Входной порт блока имеет неопределённый размер:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
+">Входной порт блока имеет енопределённый тип:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
+">Выходной порт блока имеет неопределённый размер:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
+">Выходной порт блока имеет неопределённый тип:"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Ответ, данный для %s, \n"
+" имеет некорректный тип %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Ответ, данный для %s, \n"
+" имеет неправильную размерность: \n"
+" ожидание размерности %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"Ответ, данный для %s, \n"
+" неверен: %s.\n"
+
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr ""
+
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr ""
+
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr "У блока подсоединённый выходной порт<br />с несовместимым размером:"
+
+msgid "Block has connected output port<br />with incompatible type."
+msgstr ""
+
+msgid "Block input has negative size:"
+msgstr "Вход блока имеет отрицательный размер:"
+
+msgid "Can't convert old diagram (problem in version)"
+msgstr "Не могу преобразовать старую схему (проблема в версии)"
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+"Схема была скомпилированна для явно заданной программы решения\n"
+"переключение на явно заданную программу решения.\n"
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+"Схема была скомпилированна для неявно заданной программы решения\n"
+"переключение на неявно заданную программу решения.\n"
+
+msgid "End problem: "
+msgstr ""
+
+msgid "Initialisation problem:"
+msgstr "Проблема инициализации:"
+
+#, c-format
+msgid "Input port %s size is: %s"
+msgstr "Размер входного порта %s равен: %s"
+
+#, c-format
+msgid "Input port %s type is: %s"
+msgstr "У входного порта %s тип: %s"
+
+#, c-format
+msgid "Input port %s type."
+msgstr "Тип входного порта %s."
+
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
+"Один из этих выходов блока имеет отрицательный размер.<br />Пожалуйста, "
+"проверьте."
+
+#, c-format
+msgid "Output port %s size is: %s"
+msgstr "Размер выходного порта %s равен: %s"
+
+#, c-format
+msgid "Output port %s type is: %s"
+msgstr "У выходного порта %s тип: %s"
+
+#, c-format
+msgid "Output port %s type."
+msgstr "Тип выходного порта %s."
+
+msgid "Please compile the diagram to report the error."
+msgstr ""
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr ""
+
+msgid "Simulation parameters not set:"
+msgstr "Не установлены параметры моделирования:"
+
+msgid "Simulation problem: "
+msgstr "Проблема моделирования: "
+
+msgid "Sorry file name not defined in "
+msgstr "Извините, имя файла не определено в "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Извините: поддерживаются только языки C или FORTRAN"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+"Имя переменной %s нельзя использовать в качестве параметра блока: "
+"игнорировано"
+
+msgid "Type not recognized"
+msgstr "Тип не опознан"
+
+msgid "Unable to report an error into a SuperBlock"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+"Предупреждение. Переменная %s не соответствует по имени никакой из "
+"контекстных переменных.\n"
+"Переменная проигнорирована."
+
+msgid "Xcos block parameter error"
+msgstr "Ошибка параметра блока Xcos"
+
+msgid "scs_show active..."
+msgstr "работает scs_show..."
 
 msgid ""
 "\n"
@@ -299,8 +554,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 
 #, c-format
@@ -727,8 +981,8 @@ msgid ""
 "during one internal step or occurred with |h|=h_min"
 msgstr ""
 "IDA_ERR_FAIL: Проверка на ошибки закончилась неудачей слишком много раз "
-"(=MXETF = 10) за время одного внутреннего шага, либо это произошло при "
-"|h|=h_min"
+"(=MXETF = 10) за время одного внутреннего шага, либо это произошло при |h|"
+"=h_min"
 
 msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
 msgstr ""
@@ -903,9 +1157,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV:  Алгоритм линейного поиска не смог найти итерацию, "
 "которая достаточно отличалась от текущей итерации. Неудача в удовлетворении "
@@ -951,8 +1205,7 @@ msgstr ""
 
 msgid ""
 "KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
-msgstr ""
-"KIN_MEM_NULL: Ошибка в распределении памяти в KINCreate или KINMalloc."
+msgstr "KIN_MEM_NULL: Ошибка в распределении памяти в KINCreate или KINMalloc."
 
 msgid ""
 "KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
