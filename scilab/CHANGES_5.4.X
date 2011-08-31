@@ -231,6 +231,7 @@ Documentation:
 
 * Bug 9790 fixed - windows_tools help were not available on all platforms.
 
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
@@ -281,7 +282,6 @@ Compilation:
 Graphics:
 =========
 
-
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
 
@@ -295,12 +295,13 @@ ATOMS:
 
 * bug 8664 fixed - Message error updated for non supported OS.
 
+* bug 8763 fixed - ATOMS installation path was shared on Windows 64 with 32 bits.
+
 * bug 9127 fixed - "Home" item renamed to "Installed Modules".
 
+* bug 9679 fixed - atomsSystemUpdate checks that Scilab is not in offLine mode, else writes a message.
+
 * bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
-
-
-* bug 8763 fixed - ATOMS installation path was shared on Windows 64 with 32 bits.
 
 
 Javasci:
@@ -315,20 +316,20 @@ returns the value of the ScilabTypeEnum enum.
                    EDT was crashing the execution of a java program.
 
 
-* bug 9679 fixed - atomsSystemUpdate checks that Scilab is not in offLine mode, else writes a message.
-
 Misc:
 =====
 
 * Change the buffering display mode.
 
-* SEP 67: lines(0) by default at startup.
+* SEP #67: lines(0) by default at startup.
 
 * Options -disable-exception-catching added under GNU/Linux & Mac OS X.
   Disables the Scilab exception catching system.
 
 * PVM module moved as ATOMS module.
   atomsInstall('PVM')
+
+* SEP #69: predef('names') returns names of protected variables by predef.
 
 
 Bug fixes:
