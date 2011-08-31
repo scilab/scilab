@@ -517,8 +517,12 @@ Bug fixes:
 
 * bug 9885 fixed - user initialization scripts (scilab.ini, .scilab) did not work.
 
+* bug 9899 fixed - string(10*log10(1/10)) gave -0, instead of -10
+
 * bug 9900 fixed - There was a memory leak in getAllocatedMatrixOfString,
                    getAllocatedMatrixOfWideString, getAllocatedNamedMatrixOfString,
                    and getAllocatedNamedMatrixOfWideString.
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
+
+
