@@ -21,17 +21,17 @@ Ind_defined = (nargout==3);
 Ind_out = 1;
 for i=2:size(F_in,1)
   Ind_out = [Ind_out i];
-  Dominated = %F*ones(size(Ind_out,1),size(Ind_out,2));
+  Dominated = zeros(1,length(Ind_out));
   for j=1:length(Ind_out)
     if i==Ind_out(j) then continue; end
-    if Dominated(j) then continue; end
+    if Dominated(j)==1 then continue; end
     if and(F_in(i,:)<=F_in(Ind_out(j),:)) & or(F_in(i,:)<F_in(Ind_out(j),:)) then
-      Dominated(j) = %T;
+      Dominated(j) = 1;
     elseif and(F_in(Ind_out(j),:)<=F_in(i,:)) & or(F_in(Ind_out(j),:)<F_in(i,:)) then
-      Dominated($) = %T;
+      Dominated($) = 1;
     end
   end
-  Ind_out(find(Dominated)) = [];
+  Ind_out(find(Dominated==1)) = [];
 end
 
 F_out = F_in(Ind_out,:);

@@ -229,6 +229,8 @@ Performance:
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified
                    and optimized.
 
+* Performances of function pareto_filter (Genetic algorithms) improved.
+
 
 Compilation:
 ============
