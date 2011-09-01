@@ -55,6 +55,8 @@ Xcos:
 
 * xcos_skeleton will not be loaded if you have not installed Xcos.
 
+* scilab -f file.xcos opens xcos diagram in xcos.
+
 * Error reporting has been improved to print warnings on blocks into Xcos.
 
 * bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"
