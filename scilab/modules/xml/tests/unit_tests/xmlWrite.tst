@@ -9,6 +9,7 @@ xmlWrite(doc, TMPDIR+"/foo.xml");
 
 // Now we open the previous file, modify it and save it
 doc1 = xmlRead(TMPDIR+"/foo.xml");
+assert_checkequal(doc1.root.children.size,1);
 assert_checkequal(doc1.root.children(1).name,"a");
 assert_checkequal(doc1.root.children(1).attributes.att,"foo");
 assert_checkequal(doc1.root.children(1).attributes.rib,"bar");

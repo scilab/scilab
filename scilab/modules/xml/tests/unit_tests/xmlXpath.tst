@@ -8,6 +8,7 @@
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/w3cExample.xml");
 titles=xmlXPath(xmlFile, "/bookstore/book/title");
+assert_checkequal(titles.size,5);
 assert_checkequal(titles(4).name,"title");
 assert_checkequal(titles(4).content,"Learning XML");
 assert_checkequal(titles(4).type,"XML_ELEMENT_NODE");
@@ -19,12 +20,14 @@ assert_checkequal(attribs.lang,"en");
 
 // Get all the books where the price is more than 35 euros
 moreThan35eList=xmlXPath(xmlFile,"/bookstore/book[price>35]/title");
+assert_checkequal(moreThan35eList.size,2);
 assert_checkequal(size(moreThan35eList),[1,2]); 
 assert_checkequal(moreThan35eList(1).content,"XQuery Kick Start");
 assert_checkequal(moreThan35eList(2).content,"Learning XML");
 
 // Get all the free books 
 freeBooks=xmlXPath(xmlFile,"/bookstore/book[price=0]/title");
+assert_checkequal(freeBooks.size,1);
 assert_checkequal(size(freeBooks),[1,1]); 
 assert_checkequal(freeBooks(1).content,"Scilab rox");
 
@@ -32,6 +35,7 @@ xmlClose(xmlFile);
 
 xmlFile=xmlRead(SCI+"/modules/xml/tests/unit_tests/sep_69_example.xml");
 titles=xmlXPath(xmlFile, "/root/hello");
+assert_checkequal(titles.size,2);
 xmlClose(xmlFile);
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
