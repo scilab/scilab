@@ -181,8 +181,8 @@ function process_module {
         sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
 
-    echo "LOCALIZATION_FILE_US : $LOCALIZATION_FILE_US"
     msguniq -u $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
+
     rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
 
     MSGOUTPUT=$(msgcat $LOCALIZATION_FILE_US)
