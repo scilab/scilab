@@ -14,6 +14,7 @@ assert_checkequal(titles(5).name,"title");
 assert_checkequal(titles(5).content,"Scilab rox");
 assert_checkequal(titles(5).type,"XML_ELEMENT_NODE");
 attribs=titles(4).attributes;
+assert_checkequal(titles(4).attributes.size,[]);
 assert_checkequal(attribs.lang,"en");
 // Get all the books where the price is more than 35 euros
 moreThan35eList=xmlXPath(xmlFile,"/bookstore/book[price>35]/title");

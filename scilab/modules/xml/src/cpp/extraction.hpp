@@ -213,21 +213,6 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos)
 /*--------------------------------------------------------------------------*/
 
 /**
- * Creates a new variable on stack according to the requested field
- * @param fname the function name
- * @param attr the attributes
- * @param field the field name
- * @param pos the stack position
- * @return 1 if all is ok, else 0
- */
-int createVariableOnStack(char * fname, XMLAttr & attr, const char * field, int pos)
-{
-    const char * value = attr.getAttributeValue(field);
-    return createStringOnStack(fname, value, pos);
-}
-/*--------------------------------------------------------------------------*/
-
-/**
  * Function to handle extraction in different XMLObjects
  * @param fname the function name
  * @param fname_len the function name length
@@ -239,7 +224,7 @@ int sci_extraction(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * fieldaddr = 0;
-    int *mlistaddr = 0;
+    int * mlistaddr = 0;
     char * field = 0;
     int ret;
 

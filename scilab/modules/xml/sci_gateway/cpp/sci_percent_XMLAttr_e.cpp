@@ -122,10 +122,13 @@ int sci_percent_XMLAttr_e(char * fname, unsigned long fname_len)
 
     if (!value)
     {
-        value = "";
+        err = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+    }
+    else
+    {
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast<const char * const *>(&value));
     }
 
-    err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, const_cast<const char * const *>(&value));
     if (err.iErr)
     {
         printError(&err, 0);
