@@ -133,7 +133,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     FREE(pstCommand);
 	if(parser.getExitStatus() !=  Parser::Succeded)
 	{
-        ScierrorW(999, L"%s", parser.getErrorMessage());
+        ScierrorW(999, L"%ls", parser.getErrorMessage());
 		return Function::Error;
 	}
 
@@ -246,7 +246,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
 				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-				if( (*j)->is_verbose() && 
+				if( (*j)->is_verbose() &&
                     bErrCatch == false)
 				{
 					std::wostringstream ostr;
