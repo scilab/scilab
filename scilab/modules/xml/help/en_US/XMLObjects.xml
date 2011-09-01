@@ -219,9 +219,13 @@
     <title>XML Node List</title>
 
     <para>A XML Node List is a type used to enumerate the children of an element. Each element can be accessed with an integer index. Since this is a list, it is possible to make insertion of new element in it, in using double index.</para>
+    <para>The size of the list can be retrieved in using 'size' field.</para>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
     c = doc.root.children;
+
+    // We check that we have two elements
+    c.size
 
     // Read the first element
     xmlDump(c(1))
@@ -246,9 +250,12 @@
     <title>XML XPath result set</title>
 
     <para>A XML Node Set is an object returned by a XPath query. It is not possible to insert new elements or to replace existing ones. It is just possible to get them in using an integer index.</para>
+    <para>The size of the set can be retrieved with field 'size'.</para>
     <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a><b>Hello</b></a><a>World</a></root>");
     s = xmlXPath(doc, "//a")
+    s.size
+
     s(1).content
     s(2).content
 

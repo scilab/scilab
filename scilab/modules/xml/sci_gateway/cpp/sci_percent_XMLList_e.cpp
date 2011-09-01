@@ -39,6 +39,8 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     int row;
     int col;
     int index;
+    double d;
+    char * field = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);
@@ -61,6 +63,49 @@ int sci_percent_XMLList_e(char * fname, unsigned long fname_len)
     if (err.iErr)
     {
         printError(&err, 0);
+        return 0;
+    }
+
+    if (typ == sci_strings)
+    {
+        if (row != 1 || col != 1)
+        {
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%i: A string or a double expected.\n"), fname, 1);
+            return 0;
+        }
+
+        getAllocatedSingleString(pvApiCtx, daddr, &field);
+        if (!strcmp(field, "size"))
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
+            if (err.iErr)
+            {
+                freeAllocatedSingleString(field);
+                printError(&err, 0);
+                return 0;
+            }
+
+            id = getXMLObjectId(mlistaddr);
+            list = XMLObject::getFromId<XMLList>(id);
+            if (!list)
+            {
+                freeAllocatedSingleString(field);
+                Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+                return 0;
+            }
+
+            d = (double)list->getSize();
+            createScalarDouble(pvApiCtx, Rhs + 1, d);
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+        }
+        else
+        {
+            Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        }
+        freeAllocatedSingleString(field);
+
         return 0;
     }
 
