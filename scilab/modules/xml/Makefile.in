@@ -125,7 +125,11 @@ am__objects_3 = libscixml_algo_la-VariableScope.lo \
 	libscixml_algo_la-XMLNs.lo libscixml_algo_la-XMLNodeList.lo \
 	libscixml_algo_la-XMLNodeSet.lo libscixml_algo_la-XMLXPath.lo \
 	libscixml_algo_la-XMLList.lo \
-	libscixml_algo_la-XMLNotHandledElement.lo
+	libscixml_algo_la-XMLNotHandledElement.lo \
+	libscixml_algo_la-XMLValidation.lo \
+	libscixml_algo_la-XMLValidationDTD.lo \
+	libscixml_algo_la-XMLValidationSchema.lo \
+	libscixml_algo_la-XMLValidationRelaxNG.lo
 am_libscixml_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscixml_algo_la_OBJECTS = $(am_libscixml_algo_la_OBJECTS)
@@ -161,7 +165,9 @@ am__objects_5 = libscixml_la-sci_xmlRead.lo \
 	libscixml_la-sci_xmlGetNsByHref.lo \
 	libscixml_la-sci_xmlGetNsByPrefix.lo \
 	libscixml_la-sci_xmlWrite.lo \
-	libscixml_la-sci_percent_foo_i_XMLList.lo
+	libscixml_la-sci_percent_foo_i_XMLList.lo \
+	libscixml_la-sci_xmlValidationFile.lo \
+	libscixml_la-sci_xmlValidate.lo
 am_libscixml_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscixml_la_OBJECTS = $(am_libscixml_la_OBJECTS)
 libscixml_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -535,7 +541,11 @@ XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
                   src/cpp/XMLNodeSet.cpp \
                   src/cpp/XMLXPath.cpp \
                   src/cpp/XMLList.cpp \
-                  src/cpp/XMLNotHandledElement.cpp
+                  src/cpp/XMLNotHandledElement.cpp \
+                  src/cpp/XMLValidation.cpp \
+		  src/cpp/XMLValidationDTD.cpp \
+		  src/cpp/XMLValidationSchema.cpp \
+		  src/cpp/XMLValidationRelaxNG.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
@@ -563,7 +573,9 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlGetNsByHref.cpp \
 		      sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp \
 		      sci_gateway/cpp/sci_xmlWrite.cpp \
-		      sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+		      sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp \
+		      sci_gateway/cpp/sci_xmlValidationFile.cpp \
+		      sci_gateway/cpp/sci_xmlValidate.cpp
 
 libscixml_la_CFLAGS = -I$(srcdir)/includes/ \
 		     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -703,6 +715,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNotHandledElement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLNs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLObject.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_algo_la-XMLXPath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-gw_xml.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_extraction.Plo@am__quote@
@@ -729,6 +745,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlNs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlReadStr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlValidate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlWrite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixml_la-sci_xmlXPath.Plo@am__quote@
 
@@ -864,6 +882,34 @@ libscixml_algo_la-XMLNotHandledElement.lo: src/cpp/XMLNotHandledElement.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/XMLNotHandledElement.cpp' object='libscixml_algo_la-XMLNotHandledElement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLNotHandledElement.lo `test -f 'src/cpp/XMLNotHandledElement.cpp' || echo '$(srcdir)/'`src/cpp/XMLNotHandledElement.cpp
+
+libscixml_algo_la-XMLValidation.lo: src/cpp/XMLValidation.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidation.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo -c -o libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidation.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidation.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/XMLValidation.cpp' object='libscixml_algo_la-XMLValidation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidation.lo `test -f 'src/cpp/XMLValidation.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidation.cpp
+
+libscixml_algo_la-XMLValidationDTD.lo: src/cpp/XMLValidationDTD.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationDTD.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo -c -o libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationDTD.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/XMLValidationDTD.cpp' object='libscixml_algo_la-XMLValidationDTD.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationDTD.lo `test -f 'src/cpp/XMLValidationDTD.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationDTD.cpp
+
+libscixml_algo_la-XMLValidationSchema.lo: src/cpp/XMLValidationSchema.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationSchema.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo -c -o libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationSchema.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/XMLValidationSchema.cpp' object='libscixml_algo_la-XMLValidationSchema.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationSchema.lo `test -f 'src/cpp/XMLValidationSchema.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationSchema.cpp
+
+libscixml_algo_la-XMLValidationRelaxNG.lo: src/cpp/XMLValidationRelaxNG.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_algo_la-XMLValidationRelaxNG.lo -MD -MP -MF $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo -c -o libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Tpo $(DEPDIR)/libscixml_algo_la-XMLValidationRelaxNG.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/XMLValidationRelaxNG.cpp' object='libscixml_algo_la-XMLValidationRelaxNG.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_algo_la-XMLValidationRelaxNG.lo `test -f 'src/cpp/XMLValidationRelaxNG.cpp' || echo '$(srcdir)/'`src/cpp/XMLValidationRelaxNG.cpp
 
 libscixml_la-sci_xmlRead.lo: sci_gateway/cpp/sci_xmlRead.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlRead.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlRead.Tpo -c -o libscixml_la-sci_xmlRead.lo `test -f 'sci_gateway/cpp/sci_xmlRead.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlRead.cpp
@@ -1046,6 +1092,20 @@ libscixml_la-sci_percent_foo_i_XMLList.lo: sci_gateway/cpp/sci_percent_foo_i_XML
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' object='libscixml_la-sci_percent_foo_i_XMLList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_percent_foo_i_XMLList.lo `test -f 'sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+
+libscixml_la-sci_xmlValidationFile.lo: sci_gateway/cpp/sci_xmlValidationFile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlValidationFile.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo -c -o libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Tpo $(DEPDIR)/libscixml_la-sci_xmlValidationFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xmlValidationFile.cpp' object='libscixml_la-sci_xmlValidationFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlValidationFile.lo `test -f 'sci_gateway/cpp/sci_xmlValidationFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidationFile.cpp
+
+libscixml_la-sci_xmlValidate.lo: sci_gateway/cpp/sci_xmlValidate.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixml_la-sci_xmlValidate.lo -MD -MP -MF $(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo -c -o libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixml_la-sci_xmlValidate.Tpo $(DEPDIR)/libscixml_la-sci_xmlValidate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xmlValidate.cpp' object='libscixml_la-sci_xmlValidate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixml_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixml_la-sci_xmlValidate.lo `test -f 'sci_gateway/cpp/sci_xmlValidate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xmlValidate.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -87,7 +87,12 @@ static gw_generic_table Tab[] =
     {sci_xmlWrite, "xmlWrite"},
     {sci_percent_XMLList_length, "%XMLList_length"},
     {sci_percent_XMLList_length, "%XMLSet_length"},
-    {sci_percent_XMLAttr_length, "%XMLAttr_length"}
+    {sci_percent_XMLAttr_length, "%XMLAttr_length"},
+    {sci_xmlDTD, "xmlDTD"},
+    {sci_xmlSchema, "xmlSchema"},
+    {sci_xmlRelaxNG, "xmlRelaxNG"},
+    {sci_xmlValidate, "xmlValidate"},
+    {sci_percent_XMLValid_p, "%XMLValid_p"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_xml(void)

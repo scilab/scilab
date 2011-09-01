@@ -12,6 +12,7 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLValidation.hxx"
 
 extern "C"
 {
@@ -31,7 +32,8 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
     int id;
     SciErr err;
     int * addr = 0;
-    org_modules_xml::XMLDocument * doc;
+    org_modules_xml::XMLDocument * doc = 0;
+    XMLValidation * vf = 0;
     char * com = 0;
 
     CheckLhs(1, 1);
@@ -55,6 +57,7 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
         if (!strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
+            XMLValidation::closeAllValidationFiles();
         }
         freeAllocatedSingleString(com);
     }
@@ -79,6 +82,17 @@ int sci_xmlClose(char * fname, unsigned long fname_len)
                     return 0;
                 }
                 delete doc;
+            }
+            else if (isXMLValid(addr))
+            {
+                id = getXMLObjectId(addr);
+                vf = XMLObject::getFromId<XMLValidation>(id);
+                if (!vf)
+                {
+                    Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
+                    return 0;
+                }
+                delete vf;
             }
             else
             {

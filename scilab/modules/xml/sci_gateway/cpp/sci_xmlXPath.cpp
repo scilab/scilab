@@ -38,7 +38,7 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
     const XMLXPath * xpath;
     int * addr = 0;
     char * query = 0;
-    char * error = 0;
+    std::string error;
     int row = 0;
     int col = 0;
     char ** namespaces = 0;
@@ -123,9 +123,9 @@ int sci_xmlXPath(char * fname, unsigned long fname_len)
         freeAllocatedMatrixOfString(row, col, namespaces);
     }
 
-    if (error)
+    if (!error.empty())
     {
-        Scierror(999, gettext("%s: Bad XPath query:\n%s"), fname, error);
+        Scierror(999, gettext("%s: Bad XPath query:\n%s"), fname, error.c_str());
         return 0;
     }
 

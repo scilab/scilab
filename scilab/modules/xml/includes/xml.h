@@ -16,4 +16,9 @@ extern "C"
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
+#include <libxml/valid.h>
+#include <libxml/schemasInternals.h>
+#include <libxml/xmlschemas.h>
+#include <libxml/relaxng.h>
+#include <libxml/xmlreader.h>
 }

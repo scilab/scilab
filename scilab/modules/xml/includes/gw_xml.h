@@ -61,6 +61,11 @@ int sci_xmlGetNsByPrefix(char *fname, unsigned long fname_len);
 int sci_xmlWrite(char *fname, unsigned long fname_len);
 int sci_percent_XMLList_length(char *fname, unsigned long fname_len);
 int sci_percent_XMLAttr_length(char *fname, unsigned long fname_len);
+int sci_xmlDTD(char *fname, unsigned long fname_len);
+int sci_xmlSchema(char *fname, unsigned long fname_len);
+int sci_xmlRelaxNG(char *fname, unsigned long fname_len);
+int sci_xmlValidate(char *fname, unsigned long fname_len);
+int sci_percent_XMLValid_p(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XML_H__ */
 /*--------------------------------------------------------------------------*/

@@ -60,9 +60,9 @@ bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * 
         }
         else
         {
-            char * error = 0;
+            std::string error;
             doc.setRoot((std::string &)value, &error);
-            if (error)
+            if (!error.empty())
             {
                 Scierror(999, gettext("%s: Not valid xml for root.\n"), fname);
                 return false;

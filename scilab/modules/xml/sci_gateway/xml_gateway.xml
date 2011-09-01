@@ -97,4 +97,9 @@
 <PRIMITIVE gatewayId="68" primitiveId="66" primitiveName="%XMLList_length" />
 <PRIMITIVE gatewayId="68" primitiveId="67" primitiveName="%XMLSet_length" />
 <PRIMITIVE gatewayId="68" primitiveId="68" primitiveName="%XMLAttr_length" />
+<PRIMITIVE gatewayId="68" primitiveId="69" primitiveName="xmlDTD" />
+<PRIMITIVE gatewayId="68" primitiveId="70" primitiveName="xmlSchema" />
+<PRIMITIVE gatewayId="68" primitiveId="71" primitiveName="xmlRelaxNG" />
+<PRIMITIVE gatewayId="68" primitiveId="72" primitiveName="xmlValidate" />
+<PRIMITIVE gatewayId="68" primitiveId="73" primitiveName="%XMLValid_p" />
 </GATEWAY>

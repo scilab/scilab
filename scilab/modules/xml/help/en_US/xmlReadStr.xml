@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
 
     <synopsis>
-      doc = xmlRead(string)
+      doc = xmlReadStr(string [, validateDTD])
     </synopsis>
   </refsynopsisdiv>
 
@@ -42,6 +42,13 @@
         <term>string</term>
         <listitem>
           <para>a string, containing XML code.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>validateDTD</term>
+        <listitem>
+          <para>a boolean to indicate if the document must be validated.</para>
         </listitem>
       </varlistentry>
 
@@ -58,6 +65,7 @@
     <title>Description</title>
 
     <para>Read and parse a XML string. The returned document allows to access to the DOM tree which is kept in memory.</para>
+    <para>If validateDTD is set to true, the document will be validated or not during the parsing operation.</para>
 
     <para>It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlClose">xmlClose</link>.</para>
   </refsection>
@@ -97,6 +105,9 @@
       </member>
       <member>
         <link linkend="xmlDocument">xmlDocument</link>
+      </member>
+      <member>
+        <link linkend="xmlValidate">xmlValidate</link>
       </member>
     </simplelist>
   </refsection>

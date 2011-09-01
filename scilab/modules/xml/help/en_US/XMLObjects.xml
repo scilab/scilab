@@ -59,6 +59,11 @@
           <link linkend="XMLNodeSet">XML XPath result set</link>
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="XMLValid">XML Validation file</link>
+        </para>
+      </listitem>
     </itemizedlist>
   </refsection>
 
@@ -263,6 +268,25 @@
     ]]></programlisting>
   </refsection>
 
+  <refsection id="XMLValid">
+    <title>XML Validation file</title>
+
+    <para>A XML Validation file is an object used to validate a document. It is possible to validate in using DTD, Relax NG or schema.</para>
+    <programlisting role="example"><![CDATA[
+    doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
+    dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
+    schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");
+    rng = xmlRelaxNG("SCI/modules/xml/tests/unit_tests/library.rng");
+
+    // Validation
+    xmlValidate(doc, dtd);
+    xmlValidate(doc, rng);
+    xmlValidate(doc, schema);
+
+    xmlClose("all");
+    ]]></programlisting>
+  </refsection>
+
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
@@ -280,6 +304,15 @@
       </member>
       <member>
         <link linkend="xmlNs">xmlNs</link>
+      </member>
+      <member>
+        <link linkend="xmlDTD">xmlDTD</link>
+      </member>
+      <member>
+        <link linkend="xmlSchema">xmlSchema</link>
+      </member>
+      <member>
+        <link linkend="xmlRelaxNG">xmlRelaxNG</link>
       </member>
     </simplelist>
   </refsection>

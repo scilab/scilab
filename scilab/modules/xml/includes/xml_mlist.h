@@ -20,6 +20,7 @@
 #define XMLLIST 5
 #define XMLNOTHANDLED 6
 #define XMLSET 7
+#define XMLVALID 8
 
 /**
  * Creates an XML object at a given position in the stack
@@ -101,6 +102,13 @@ int isXMLSet(int * mlist);
  * Checks if a mlist has the good type
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
+ */
+int isXMLValid(int * mlist);
+
+/**
+ * Get the XMLObject field _id
+ * @param mlist the mlist address
+ * @return the object id.
  */
 int getXMLObjectId(int * mlist);
 

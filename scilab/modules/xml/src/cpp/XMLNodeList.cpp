@@ -143,10 +143,10 @@ namespace org_modules_xml
 
     void XMLNodeList::setElementAtPosition(double index, const std::string & xmlCode)
     {
-        char * error = 0;
+	std::string error;
         XMLDocument document = XMLDocument(xmlCode, false, &error);
 
-        if (!error)
+        if (error.empty())
         {
             setElementAtPosition(index, document);
         }

@@ -40,7 +40,11 @@ XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
                   src/cpp/XMLNodeSet.cpp \
                   src/cpp/XMLXPath.cpp \
                   src/cpp/XMLList.cpp \
-                  src/cpp/XMLNotHandledElement.cpp
+                  src/cpp/XMLNotHandledElement.cpp \
+                  src/cpp/XMLValidation.cpp \
+		  src/cpp/XMLValidationDTD.cpp \
+		  src/cpp/XMLValidationSchema.cpp \
+		  src/cpp/XMLValidationRelaxNG.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 
@@ -69,7 +73,9 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlGetNsByHref.cpp \
 		      sci_gateway/cpp/sci_xmlGetNsByPrefix.cpp \
 		      sci_gateway/cpp/sci_xmlWrite.cpp \
-		      sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp
+		      sci_gateway/cpp/sci_percent_foo_i_XMLList.cpp \
+		      sci_gateway/cpp/sci_xmlValidationFile.cpp \
+		      sci_gateway/cpp/sci_xmlValidate.cpp
 
 libscixml_la_CFLAGS= -I$(srcdir)/includes/ \
 		     -I$(top_srcdir)/libs/MALLOC/includes/ \

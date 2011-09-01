@@ -12,6 +12,7 @@
 
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
+#include "XMLValidation.hxx"
 
 extern "C"
 {
@@ -34,18 +35,24 @@ int sci_xmlGetOpenStreams(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
     CheckRhs(0, 0);
 
-    std::list<org_modules_xml::XMLDocument *> & openDocs = org_modules_xml::XMLDocument::getOpenDocuments();
+    const std::list<org_modules_xml::XMLDocument *> & openDocs = org_modules_xml::XMLDocument::getOpenDocuments();
+    const std::list<org_modules_xml::XMLValidation *> & openValidationFiles = org_modules_xml::XMLValidation::getOpenValidationFiles();
 
-    err = createList(pvApiCtx, Rhs + 1, (int)openDocs.size(), &addr);
+    err = createList(pvApiCtx, Rhs + 1, (int)openDocs.size() + (int)openValidationFiles.size(), &addr);
     if (err.iErr)
     {
         printError(&err, 0);
         return 0;
     }
 
-    for (std::list<org_modules_xml::XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
+    for (std::list<org_modules_xml::XMLDocument *>::const_iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
     {
         createXMLObjectAtPosInList(addr, Rhs + 1, XMLDOCUMENT, j, (*i)->getId());
+    }
+
+    for (std::list<org_modules_xml::XMLValidation *>::const_iterator i = openValidationFiles.begin(); i != openValidationFiles.end(); i++, j++)
+    {
+        createXMLObjectAtPosInList(addr, Rhs + 1, XMLVALID, j, (*i)->getId());
     }
 
     LhsVar(1) = Rhs + 1;

@@ -16,16 +16,17 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 
-#define NB_XMLOBJECTS 7
-static const char *XMLObjects[] = { "XMLDoc", "XMLElem", "XMLAttr", "XMLNs", "XMLList", "XMLNH", "XMLSet" };
+#define NB_XMLOBJECTS 8
+static const char * XMLObjects[] = { "XMLDoc", "XMLElem", "XMLAttr", "XMLNs", "XMLList", "XMLNH", "XMLSet", "XMLValid" };
 
-static const char *_XMLDoc[] = { "XMLDoc", "_id" };
-static const char *_XMLElem[] = { "XMLElem", "_id" };
-static const char *_XMLAttr[] = { "XMLAttr", "_id" };
-static const char *_XMLNs[] = { "XMLNs", "_id" };
-static const char *_XMLList[] = { "XMLList", "_id" };
-static const char *_XMLNotHandled[] = { "XMLNH", "_id" };
-static const char *_XMLSet[] = { "XMLSet", "_id" };
+static const char * _XMLDoc[] = { "XMLDoc", "_id" };
+static const char * _XMLElem[] = { "XMLElem", "_id" };
+static const char * _XMLAttr[] = { "XMLAttr", "_id" };
+static const char * _XMLNs[] = { "XMLNs", "_id" };
+static const char * _XMLList[] = { "XMLList", "_id" };
+static const char * _XMLNotHandled[] = { "XMLNH", "_id" };
+static const char * _XMLSet[] = { "XMLSet", "_id" };
+static const char * _XMLValid[] = { "XMLValid", "_id" };
 
 static int compareStrToMlistType(const char ** str, int nb, int * mlist);
 
@@ -58,6 +59,9 @@ int createXMLObjectAtPos(int type, int pos, int id)
         break;
     case XMLSET:;
         fields = _XMLSet;
+        break;
+    case XMLVALID:;
+        fields = _XMLValid;
         break;
     }
 
@@ -122,6 +126,9 @@ int createXMLObjectAtPosInList(int * list, int stackPos, int type, int pos, int 
     case XMLSET:;
         fields = _XMLSet;
         break;
+    case XMLVALID:;
+        fields = _XMLValid;
+        break;
     }
 
     err = createMatrixOfStringInList(pvApiCtx, stackPos, mlistaddr, 1, 1, 2, fields);
@@ -176,6 +183,10 @@ int isXMLSet(int * mlist)
     return compareStrToMlistType(XMLObjects + 6, 1, mlist);
 }
 /*--------------------------------------------------------------------------*/
+int isXMLValid(int * mlist)
+{
+    return compareStrToMlistType(XMLObjects + 7, 1, mlist);
+}/*--------------------------------------------------------------------------*/
 int isXMLObject(int * mlist)
 {
     return compareStrToMlistType(XMLObjects, NB_XMLOBJECTS, mlist);

@@ -25,23 +25,25 @@ extern "C"
 }
 
 #include "XMLObject.hxx"
-#include "XMLDocument.hxx"
+#include "XMLValidation.hxx"
+#include "XMLValidationDTD.hxx"
+#include "XMLValidationSchema.hxx"
+#include "XMLValidationRelaxNG.hxx"
 
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char * fname, unsigned long fname_len)
+template <class T>
+int sci_xmlValidationFile(char * fname, unsigned long fname_len)
 {
-    org_modules_xml::XMLDocument * doc;
+    T * validation = 0;
     SciErr err;
     int * addr = 0;
     char * path = 0;
     std::string error;
-    bool validate = false;
-    int validateParam;
 
     CheckLhs(1, 1);
-    CheckRhs(1, 2);
+    CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)
@@ -57,38 +59,17 @@ int sci_xmlRead(char * fname, unsigned long fname_len)
     }
     getAllocatedSingleString(pvApiCtx, addr, &path);
 
-    if (Rhs == 2)
-    {
-        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
-        if (err.iErr)
-        {
-            freeAllocatedSingleString(path);
-            printError(&err, 0);
-            return 0;
-        }
-
-        if (!isBooleanType(pvApiCtx, addr))
-        {
-            freeAllocatedSingleString(path);
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A boolean expected.\n"), fname, 2);
-            return 0;
-        }
-
-        getScalarBoolean(pvApiCtx, addr, &validateParam);
-        validate = validateParam != 0;
-    }
-
-    doc = new org_modules_xml::XMLDocument((const char *)path, validate, &error);
+    validation = new T((const char *)path, &error);
     freeAllocatedSingleString(path);
 
     if (!error.empty())
     {
-        delete doc;
+        delete validation;
         Scierror(999, gettext("%s: Cannot read the file:\n%s"), fname, error.c_str());
         return 0;
     }
 
-    if (!doc->createOnStack(Rhs + 1))
+    if (!validation->createOnStack(Rhs + 1))
     {
         return 0;
     }
@@ -96,5 +77,20 @@ int sci_xmlRead(char * fname, unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sci_xmlDTD(char * fname, unsigned long fname_len)
+{
+    return sci_xmlValidationFile<XMLValidationDTD>(fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_xmlRelaxNG(char * fname, unsigned long fname_len)
+{
+    return sci_xmlValidationFile<XMLValidationRelaxNG>(fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/
+int sci_xmlSchema(char * fname, unsigned long fname_len)
+{
+    return sci_xmlValidationFile<XMLValidationSchema>(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/

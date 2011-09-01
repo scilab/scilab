@@ -32,6 +32,7 @@ namespace org_modules_xml
     class XMLElement;
     class XMLObject;
     class XMLXPath;
+    class XMLValidation;
 
     /**
      * @file
@@ -51,7 +52,7 @@ namespace org_modules_xml
          * Gets the list of open docs
          * @return the list
          */
-        static std::list<XMLDocument *> & getOpenDocuments();
+        static const std::list<XMLDocument *> & getOpenDocuments();
 
         /**
          * Closes all the open documents
@@ -64,7 +65,7 @@ namespace org_modules_xml
          * @param validate a boolean to indicate if the document must be validated in using a DTD
          * @param error a pointer to a string which will receive the error message
          */
-        XMLDocument(const char * path, bool validate, char ** error);
+        XMLDocument(const char * path, bool validate, std::string * error);
 
         /**
          * Builds a document with a given code
@@ -72,7 +73,7 @@ namespace org_modules_xml
          * @param validate a boolean to indicate if the document must be validated in using a DTD
          * @param error a pointer to a string which will receive the error message
          */
-        XMLDocument(const std::string & xmlCode, bool validate, char ** error);
+        XMLDocument(const std::string & xmlCode, bool validate, std::string * error);
 
         /**
          * Builds a simple document
@@ -103,7 +104,7 @@ namespace org_modules_xml
          * @param xmlCode the XML code
          * @param error a pointer to a string which will receive the error message
          */
-        void setRoot(const std::string & xmlCode, char ** error) const;
+        void setRoot(const std::string & xmlCode, std::string * error) const;
 
         /**
          * @return the document URL
@@ -123,7 +124,7 @@ namespace org_modules_xml
          * @param error a pointer to a string which will receive the error message
          * @return a pointer on a XPath object
          */
-        const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, char ** error);
+        const XMLXPath * makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error);
 
         const XMLObject * getXMLObjectParent() const;
         const std::string dump() const;
@@ -150,7 +151,7 @@ namespace org_modules_xml
          * @param error a string where to write the parsing errors
          * @return a pointer on a xmlDoc
          */
-        static xmlDoc * readDocument(const char * filename, bool validate, char ** error);
+        static xmlDoc * readDocument(const char * filename, bool validate, std::string * error);
 
         /**
          * Read and parse a document given in a string.
@@ -159,7 +160,7 @@ namespace org_modules_xml
          * @param error a string where to write the parsing errors
          * @return a pointer on a xmlDoc
          */
-        static xmlDoc * readDocument(const std::string & xmlCode, bool validate, char ** error);
+        static xmlDoc * readDocument(const std::string & xmlCode, bool validate, std::string * error);
 
         /**
          * Initializes the context
@@ -167,7 +168,7 @@ namespace org_modules_xml
          * @param validate a boolean to indicate if the document must be validated in using a DTD
          * @return a pointer on a context
          */
-        static xmlParserCtxt * initContext(char ** error, bool validate);
+        static xmlParserCtxt * initContext(std::string * error, bool validate);
 
         static std::string * errorBuffer;
         static std::string * errorXPathBuffer;

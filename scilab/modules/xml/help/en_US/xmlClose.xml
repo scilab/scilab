@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
 
     <synopsis>
-      xmlClose(doc1 [, doc2, [...]])
+      xmlClose(obj1 [, obj2, [...]])
       xmlClose("all")
     </synopsis>
   </refsynopsisdiv>
@@ -40,9 +40,9 @@
 
     <variablelist>
       <varlistentry>
-        <term>doci</term>
+        <term>obji</term>
         <listitem>
-          <para>a mlist type XMLDoc, the document to close</para>
+          <para>a mlist type XMLDoc or XMLValid, the document to close</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -51,8 +51,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>Close a document (in fact free all the memory associated with this document).</para>
-    <para>When the syntax xmlClose("all") is used, all the open documents will be closed.</para>
+    <para>Close a document or a validation file (in fact free all the memory associated with this object).</para>
+    <para>When the syntax xmlClose("all") is used, all the open streams will be closed.</para>
   </refsection>
 
   <refsection>

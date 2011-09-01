@@ -10,7 +10,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-<refentry version="5.0-subset Scilab" xml:id="xmlGetOpenStreams" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="xmlDTD" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,15 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>xmlGetOpenStreams</refname>
-    <refpurpose>Get all open XML documents or all open XML Validation files.</refpurpose>
+    <refname>xmlDTD</refname>
+    <refpurpose>Create a XML DTD object</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
     <synopsis>
-      list = xmlGetOpenStreams()
+      dtd = xmlDTD(path)
     </synopsis>
   </refsynopsisdiv>
 
@@ -39,9 +39,16 @@
 
     <variablelist>
       <varlistentry>
-        <term>list</term>
+        <term>path</term>
         <listitem>
-          <para>list, a list containing all the open documents or XML Validation files</para>
+          <para>a string giving the path of the validation file</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dtd</term>
+        <listitem>
+          <para>a mlist typed XMLValid</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,25 +57,29 @@
   <refsection>
     <title>Description</title>
 
-    <para>This function is useful to close open streams (and essentially to free the memory).</para>
+    <para>Useful to validate a document with a DTD.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-    doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
-    doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
-    l = xmlGetOpenStreams()
-    xmlClose("all");
-    ]]></programlisting>
+    doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
+    dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
 
+    // We test if the document is valid
+    // If no error the file is valid
+
+    xmlValidate(doc, dtd);
+
+    xmlClose(doc, dtd);
+    ]]></programlisting>
   </refsection>
 
   <refsection role="see also">
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xmlClose">xmlClose</link>
+        <link linkend="xmlValidate">xmlValidate</link>
       </member>
     </simplelist>
   </refsection>

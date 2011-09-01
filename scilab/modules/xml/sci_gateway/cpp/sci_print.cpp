@@ -91,3 +91,8 @@ int sci_percent_XMLSet_p(char *fname, unsigned long fname_len)
     return sci_print(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
+int sci_percent_XMLValid_p(char *fname, unsigned long fname_len)
+{
+    return sci_print(fname, fname_len);
+}
+/*--------------------------------------------------------------------------*/

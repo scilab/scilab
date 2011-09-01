@@ -13,7 +13,6 @@
 #include "XMLObject.hxx"
 #include "XMLDocument.hxx"
 #include "XMLRhsValue.hxx"
-#include <iostream>
 
 extern "C"
 {
@@ -34,7 +33,7 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
     SciErr err;
     int * addr = 0;
     std::string * code;
-    char * error = 0;
+    std::string error;
     bool validate = false;
     int validateParam;
 
@@ -83,10 +82,10 @@ int sci_xmlReadStr(char * fname, unsigned long fname_len)
     doc = new org_modules_xml::XMLDocument(*code, validate, &error);
     delete code;
 
-    if (error)
+    if (!error.empty())
     {
         delete doc;
-        Scierror(999, gettext("%s: Cannot parse the string:\n%s"), fname, error);
+        Scierror(999, gettext("%s: Cannot parse the string:\n%s"), fname, error.c_str());
         return 0;
     }
 

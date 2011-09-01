@@ -30,6 +30,7 @@
 %XMLSet_length
 %XMLSet_p
 %XMLSet_size
+%XMLValid_p
 %b_i_XMLList
 %c_i_XMLAttr
 %c_i_XMLDoc
@@ -667,6 +668,7 @@ xls_open
 xls_read
 xmlAddNs
 xmlClose
+xmlDTD
 xmlDocument
 xmlDump
 xmlElement
@@ -677,6 +679,9 @@ xmlGetOpenStreams
 xmlNs
 xmlRead
 xmlReadStr
+xmlRelaxNG
+xmlSchema
+xmlValidate
 xmlWrite
 xmlXPath
 xname

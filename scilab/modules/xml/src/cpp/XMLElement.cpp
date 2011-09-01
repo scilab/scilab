@@ -120,10 +120,10 @@ namespace org_modules_xml
 
     void XMLElement::setChildren(const std::string & xmlCode) const
     {
-        char * error = 0;
+	std::string error;
         XMLDocument document = XMLDocument(xmlCode, false, &error);
 
-        if (!error)
+        if (error.empty())
         {
             setChildren(*document.getRoot());
         }

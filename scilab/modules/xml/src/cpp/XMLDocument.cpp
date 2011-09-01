@@ -14,11 +14,14 @@
 #include "XMLDocument.hxx"
 #include "XMLElement.hxx"
 #include "XMLXPath.hxx"
+#include "XMLValidation.hxx"
+#include "XMLValidationRelaxNG.hxx"
 #include "VariableScope.hxx"
 
 extern "C" {
 #include "expandPathVariable.h"
 #include "MALLOC.h"
+#include "localization.h"
 }
 
 #define BUFFER_SIZE 1024
@@ -30,7 +33,7 @@ namespace org_modules_xml
     std::string * XMLDocument::errorXPathBuffer = 0;
     std::list<XMLDocument *> & XMLDocument::openDocs = *new std::list<XMLDocument *>();
 
-    XMLDocument::XMLDocument(const char * path, bool validate, char ** error) : XMLObject()
+    XMLDocument::XMLDocument(const char * path, bool validate, std::string * error) : XMLObject()
     {
         char * expandedPath = expandPathVariable(const_cast<char *>(path));
         document = readDocument(const_cast<const char *>(expandedPath), validate, error);
@@ -44,7 +47,7 @@ namespace org_modules_xml
         scilabType = XMLDOCUMENT;
     }
 
-    XMLDocument::XMLDocument(const std::string & xmlCode, bool validate, char ** error) : XMLObject()
+    XMLDocument::XMLDocument(const std::string & xmlCode, bool validate, std::string * error) : XMLObject()
     {
         document = readDocument(xmlCode, validate, error);
         if (document)
@@ -89,7 +92,7 @@ namespace org_modules_xml
         if (document)
         {
             openDocs.remove(this);
-            if (openDocs.size() == 0)
+            if (openDocs.size() == 0 && XMLValidation::getOpenValidationFiles().size() == 0)
             {
                 resetScope();
             }
@@ -107,7 +110,7 @@ namespace org_modules_xml
         }
     }
 
-    const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, char ** error)
+    const XMLXPath * XMLDocument::makeXPathQuery(const char * query, char ** namespaces, int length, std::string * error)
     {
         if (errorXPathBuffer)
         {
@@ -118,7 +121,8 @@ namespace org_modules_xml
         xmlXPathContext * ctxt = xmlXPathNewContext(document);
         if (!ctxt)
         {
-            *error = const_cast<char *>("Cannot create a parser context");
+            errorXPathBuffer->append(gettext("Cannot create a parser context"));
+            *error = *errorXPathBuffer;
             return 0;
         }
 
@@ -134,14 +138,14 @@ namespace org_modules_xml
         xmlXPathCompExpr * expr = xmlXPathCtxtCompile(ctxt, (const xmlChar *)query);
         if (!expr)
         {
-            *error = const_cast<char *>(errorXPathBuffer->c_str());
+            *error = *errorXPathBuffer;
             return 0;
         }
 
         xmlXPathObject * xpath = xmlXPathCompiledEval(expr, ctxt);
         if (!xpath)
         {
-            *error = const_cast<char *>(errorXPathBuffer->c_str());
+            *error = *errorXPathBuffer;
             return 0;
         }
 
@@ -195,11 +199,11 @@ namespace org_modules_xml
         }
     }
 
-    void XMLDocument::setRoot(const std::string & xmlCode, char ** error) const
+    void XMLDocument::setRoot(const std::string & xmlCode, std::string * error) const
     {
         XMLDocument doc = XMLDocument(xmlCode, false, error);
 
-        if (!*error)
+        if (error->empty())
         {
             setRoot(*doc.getRoot());
         }
@@ -233,7 +237,7 @@ namespace org_modules_xml
         }
     }
 
-    std::list<XMLDocument *> & XMLDocument::getOpenDocuments()
+    const std::list<XMLDocument *> & XMLDocument::getOpenDocuments()
     {
         return openDocs;
     }
@@ -254,7 +258,7 @@ namespace org_modules_xml
         delete [] arr;
     }
 
-    xmlDoc * XMLDocument::readDocument(const char * filename, bool validate, char ** error)
+    xmlDoc * XMLDocument::readDocument(const char * filename, bool validate, std::string * error)
     {
         xmlParserCtxt * ctxt = initContext(error, validate);
         xmlDoc * doc;
@@ -273,9 +277,10 @@ namespace org_modules_xml
         doc = xmlCtxtReadFile(ctxt, filename, 0, options);
         if (!doc || !ctxt->valid)
         {
-            *error = const_cast<char *>(errorBuffer->c_str());
+            *error = *errorBuffer;
         }
 
+        xmlSetGenericErrorFunc(ctxt, 0);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
@@ -287,7 +292,7 @@ namespace org_modules_xml
      * @param error a string where to write the parsing errors
      * @return a pointer on a xmlDoc
      */
-    xmlDoc * XMLDocument::readDocument(const std::string & xmlCode, bool validate, char ** error)
+    xmlDoc * XMLDocument::readDocument(const std::string & xmlCode, bool validate, std::string * error)
     {
         xmlParserCtxt * ctxt = initContext(error, validate);
         xmlDoc * doc;
@@ -306,15 +311,16 @@ namespace org_modules_xml
         doc = xmlCtxtReadDoc(ctxt, (const xmlChar *)xmlCode.c_str(), 0, 0, options);
         if (!doc || !ctxt->valid)
         {
-            *error = const_cast<char *>(errorBuffer->c_str());
+            *error = *errorBuffer;
         }
 
+        xmlSetGenericErrorFunc(ctxt, 0);
         xmlFreeParserCtxt(ctxt);
 
         return doc;
     }
 
-    xmlParserCtxt * XMLDocument::initContext(char ** error, bool validate)
+    xmlParserCtxt * XMLDocument::initContext(std::string * error, bool validate)
     {
         xmlParserCtxt * ctxt;
 
@@ -327,13 +333,14 @@ namespace org_modules_xml
         ctxt = xmlNewParserCtxt();
         if (!ctxt)
         {
-            *error = const_cast<char *>("Cannot create a parser context");
+            errorBuffer->append(gettext("Cannot create a parser context"));
+            *error = *errorBuffer;
             return 0;
         }
 
         if (validate)
         {
-            ctxt->vctxt.error = (xmlValidityErrorFunc) errorFunction;
+            ctxt->vctxt.error = (xmlValidityErrorFunc)errorFunction;
         }
 
         xmlSetGenericErrorFunc(ctxt, XMLDocument::errorFunction);
