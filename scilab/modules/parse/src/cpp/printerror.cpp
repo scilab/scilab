@@ -13,6 +13,10 @@
 #include <fstream>
 #include <string>
 #include "parser_private.hxx"
+extern "C"
+{
+#include "charEncoding.h"
+}
 
 void ParserSingleInstance::PrintError(std::wstring msg) {
     int i = 0;
@@ -35,7 +39,7 @@ void ParserSingleInstance::PrintError(std::wstring msg) {
         --yylloc.first_line;
     }
 
-    ostr << ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine) << std::endl;
+    ostr << to_wide_string(ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine)) << std::endl;
     free(codeLine);
 
     /** Then underline what causes the trouble */
