@@ -29,7 +29,7 @@ namespace org_modules_xml
         nodeSet = _nodeSet;
         if (nodeSet)
         {
-            scope.registerPointers(nodeSet, this);
+            scope->registerPointers(nodeSet, this);
             size = nodeSet->nodeNr;
         }
         else
@@ -37,12 +37,13 @@ namespace org_modules_xml
             size = 0;
         }
         scilabType = XMLSET;
+        id = scope->getVariableId(*this);
     }
 
     XMLNodeSet::~XMLNodeSet()
     {
-        scope.unregisterPointer(nodeSet);
-        scope.removeId<XMLNodeSet>(id);
+        scope->unregisterPointer(nodeSet);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLNodeSet::getXMLObjectParent() const
@@ -54,6 +55,7 @@ namespace org_modules_xml
     {
         if (nodeSet && index >= 1 && index <= size)
         {
+            XMLObject * obj = 0;
             xmlNode * node = nodeSet->nodeTab[index - 1];
             switch (node->type)
             {
@@ -61,10 +63,28 @@ namespace org_modules_xml
             case XML_TEXT_NODE :
             case XML_CDATA_SECTION_NODE :
             case XML_COMMENT_NODE :
+                obj = scope->getXMLObjectFromLibXMLPtr(node);
+                if (obj)
+                {
+                    return static_cast<XMLElement *>(obj);
+                }
+
                 return new XMLElement(doc, node);
             case XML_ATTRIBUTE_NODE :
+                obj = scope->getXMLObjectFromLibXMLPtr(node->parent->properties);
+                if (obj)
+                {
+                    return static_cast<XMLAttr *>(obj);
+                }
+
                 return new XMLAttr(XMLElement(doc, node->parent));
             case XML_NAMESPACE_DECL :
+                obj = scope->getXMLObjectFromLibXMLPtr(node);
+                if (obj)
+                {
+                    return static_cast<XMLNs *>(obj);
+                }
+
                 return new XMLNs(doc, (xmlNs *)node);
             case XML_ELEMENT_DECL :
             case XML_ATTRIBUTE_DECL :
@@ -72,6 +92,12 @@ namespace org_modules_xml
             case XML_XINCLUDE_START :
             case XML_XINCLUDE_END :
             case XML_DOCUMENT_NODE :
+                obj = scope->getXMLObjectFromLibXMLPtr(node);
+                if (obj)
+                {
+                    return static_cast<XMLNotHandledElement *>(obj);
+                }
+
                 return new XMLNotHandledElement(doc, node);
             default :
                 break;

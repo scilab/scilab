@@ -27,13 +27,14 @@ namespace org_modules_xml
         size = getNodeListSize(parent->children);
         prev = 1;
         prevNode = parent->children;
-        scope.registerPointers(parent->children, this);
+        scope->registerPointers(parent->children, this);
+        id = scope->getVariableId(*this);
     }
 
     XMLNodeList::~XMLNodeList()
     {
-        scope.unregisterPointer(parent->children);
-        scope.removeId<XMLNodeList>(id);
+        scope->unregisterNodeListPointer(parent->children);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLNodeList::getXMLObjectParent() const
@@ -60,6 +61,12 @@ namespace org_modules_xml
         xmlNode * n = getListNode(index);
         if (n)
         {
+            XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(n);
+            if (obj)
+            {
+                return static_cast<XMLElement *>(obj);
+            }
+
             return new XMLElement(doc, n);
         }
 
@@ -73,7 +80,7 @@ namespace org_modules_xml
             if (index == 1)
             {
                 xmlNode * n = parent->children;
-                scope.unregisterPointer(n);
+                scope->unregisterNodeListPointer(n);
                 xmlUnlinkNode(n);
                 xmlFreeNode(n);
                 size--;
@@ -180,11 +187,11 @@ namespace org_modules_xml
     void XMLNodeList::replaceAtIndex(int index, const XMLElement & elem)
     {
         xmlNode * n = getListNode(index);
-        if (n)
+        if (n && n != elem.getRealNode())
         {
             if (index == 1)
             {
-                scope.unregisterPointer(parent->children);
+                scope->unregisterNodeListPointer(parent->children);
             }
             xmlNode * previous = n->prev;
             xmlNode * next = n->next;
@@ -197,7 +204,7 @@ namespace org_modules_xml
             cpy->next = next;
             if (index == 1)
             {
-                scope.registerPointers(parent->children, this);
+                scope->registerPointers(parent->children, this);
             }
         }
     }
@@ -214,9 +221,9 @@ namespace org_modules_xml
     {
         xmlNode * cpy = xmlCopyNode(elem.getRealNode(), 1);
         xmlUnlinkNode(cpy);
-        scope.unregisterPointer(parent->children);
+        scope->unregisterNodeListPointer(parent->children);
         xmlAddPrevSibling(parent->children, cpy);
-        scope.registerPointers(parent->children, this);
+        scope->registerPointers(parent->children, this);
         size++;
     }
 

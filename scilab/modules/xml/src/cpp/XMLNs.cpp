@@ -21,21 +21,23 @@ namespace org_modules_xml
     XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns) : XMLObject(), parent(_parent)
     {
         ns = _ns;
-        scope.registerPointers(ns, this);
+        scope->registerPointers(ns, this);
         scilabType = XMLNAMESPACE;
+        id = scope->getVariableId(*this);
     }
 
     XMLNs::XMLNs(const XMLElement & elem, char * prefix, char * href) : XMLObject(), parent(elem)
     {
         ns = xmlNewNs(elem.getRealNode(), (const xmlChar *)href, (const xmlChar *)prefix);
-        scope.registerPointers(ns, this);
+        scope->registerPointers(ns, this);
         scilabType = XMLNAMESPACE;
+        id = scope->getVariableId(*this);
     }
 
     XMLNs::~XMLNs()
     {
-        scope.unregisterPointer(ns);
-        scope.removeId<XMLNs>(id);
+        scope->unregisterPointer(ns);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLNs::getXMLObjectParent() const

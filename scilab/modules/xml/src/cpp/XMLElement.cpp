@@ -28,21 +28,23 @@ namespace org_modules_xml
     XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node) : XMLObject(), doc(_doc)
     {
         node = _node;
-        scope.registerPointers(node, this);
+        scope->registerPointers(node, this);
         scilabType = XMLELEMENT;
+        id = scope->getVariableId(*this);
     }
 
     XMLElement::XMLElement(const XMLDocument & _doc, const char * name) : XMLObject(), doc(_doc)
     {
         node = xmlNewNode(0, (const xmlChar *)name);
-        scope.registerPointers(node, this);
+        scope->registerPointers(node, this);
         scilabType = XMLELEMENT;
+        id = scope->getVariableId(*this);
     }
 
     XMLElement::~XMLElement()
     {
-        scope.unregisterPointer(node);
-        scope.removeId<XMLElement>(id);
+        scope->unregisterPointer(node);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLElement::getXMLObjectParent() const
@@ -100,7 +102,6 @@ namespace org_modules_xml
             xmlFreeNodeList(node->children);
             node->children = 0;
             xmlAddChild(node, cpy);
-            xmlMemoryDump();
         }
     }
 
@@ -140,12 +141,26 @@ namespace org_modules_xml
 
     const XMLNs * XMLElement::getNamespaceByPrefix(const char * prefix) const
     {
-        return new XMLNs(*this, xmlSearchNs(doc.getRealDocument(), node, (const xmlChar *)prefix));
+        xmlNs * ns = xmlSearchNs(doc.getRealDocument(), node, (const xmlChar *)prefix);
+        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(ns);
+        if (obj)
+        {
+            return static_cast<XMLNs *>(obj);
+        }
+
+        return new XMLNs(*this, ns);
     }
 
     const XMLNs * XMLElement::getNamespaceByHref(const char * href) const
     {
-        return new XMLNs(*this, xmlSearchNsByHref(doc.getRealDocument(), node, (const xmlChar *)href));
+        xmlNs * ns = xmlSearchNsByHref(doc.getRealDocument(), node, (const xmlChar *)href);
+        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(ns);
+        if (obj)
+        {
+            return static_cast<XMLNs *>(obj);
+        }
+
+        return new XMLNs(*this, ns);
     }
 
     const std::string XMLElement::dump() const
@@ -190,6 +205,12 @@ namespace org_modules_xml
     {
         if (node->ns)
         {
+            XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(node->ns);
+            if (obj)
+            {
+                return static_cast<XMLNs *>(obj);
+            }
+
             return new XMLNs(*this, node->ns);
         }
         else
@@ -200,11 +221,23 @@ namespace org_modules_xml
 
     const XMLNodeList * XMLElement::getChildren() const
     {
+        XMLNodeList * obj = scope->getXMLNodeListFromLibXMLPtr(node->children);
+        if (obj)
+        {
+            return obj;
+        }
+
         return new XMLNodeList(doc, node);
     }
 
     const XMLAttr * XMLElement::getAttributes() const
     {
+        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(node->properties);
+        if (obj)
+        {
+            return static_cast<XMLAttr *>(obj);
+        }
+
         return new XMLAttr(*this);
     }
 
@@ -212,6 +245,12 @@ namespace org_modules_xml
     {
         if (node->parent && node->parent->type == XML_ELEMENT_NODE)
         {
+            XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(node->parent);
+            if (obj)
+            {
+                return static_cast<XMLElement *>(obj);
+            }
+
             return new XMLElement(doc, node->parent);
         }
         else

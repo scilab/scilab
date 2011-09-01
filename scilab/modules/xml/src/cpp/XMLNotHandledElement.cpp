@@ -24,11 +24,14 @@ namespace org_modules_xml
     {
         node = _node;
         scilabType = XMLNOTHANDLED;
+        id = scope->getVariableId(*this);
+	scope->registerPointers(node, this);
     }
 
     XMLNotHandledElement::~XMLNotHandledElement()
     {
-        scope.removeId<XMLNotHandledElement>(id);
+	scope->unregisterPointer(node);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLNotHandledElement::getXMLObjectParent() const

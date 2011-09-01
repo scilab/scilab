@@ -39,7 +39,8 @@ namespace org_modules_xml
         {
             openDocs.push_back(this);
         }
-        scope.registerPointers(document, this);
+        scope->registerPointers(document, this);
+        id = scope->getVariableId(*this);
         scilabType = XMLDOCUMENT;
     }
 
@@ -50,7 +51,8 @@ namespace org_modules_xml
         {
             openDocs.push_back(this);
         }
-        scope.registerPointers(document, this);
+        scope->registerPointers(document, this);
+        id = scope->getVariableId(*this);
         scilabType = XMLDOCUMENT;
     }
 
@@ -65,7 +67,8 @@ namespace org_modules_xml
         }
         document = xmlNewDoc((xmlChar *)version);
         openDocs.push_back(this);
-        scope.registerPointers(document, this);
+        scope->registerPointers(document, this);
+        id = scope->getVariableId(*this);
         scilabType = XMLDOCUMENT;
 
         expandedPath = expandPathVariable(const_cast<char *>(uri));
@@ -81,11 +84,15 @@ namespace org_modules_xml
 
     XMLDocument::~XMLDocument()
     {
-        scope.unregisterPointer(document);
-        scope.removeId<XMLDocument>(id);
+        scope->unregisterPointer(document);
+        scope->removeId(id);
         if (document)
         {
             openDocs.remove(this);
+            if (openDocs.size() == 0)
+            {
+                resetScope();
+            }
             xmlFreeDoc(document);
         }
         if (errorBuffer)
@@ -167,7 +174,14 @@ namespace org_modules_xml
 
     const XMLElement * XMLDocument::getRoot() const
     {
-        return new XMLElement(*this, xmlDocGetRootElement(document));
+        xmlNode * root = xmlDocGetRootElement(document);
+        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(root);
+        if (obj)
+        {
+            return static_cast<XMLElement *>(obj);
+        }
+
+        return new XMLElement(*this, root);
     }
 
     void XMLDocument::setRoot(const XMLElement & elem) const
@@ -227,7 +241,7 @@ namespace org_modules_xml
     void XMLDocument::closeAllDocuments()
     {
         int size = (int)openDocs.size();
-        XMLDocument **arr = new XMLDocument*[size];
+        XMLDocument ** arr = new XMLDocument*[size];
         int j = 0;
         for (std::list<XMLDocument *>::iterator i = openDocs.begin(); i != openDocs.end(); i++, j++)
         {

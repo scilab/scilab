@@ -22,13 +22,14 @@ namespace org_modules_xml
     XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath) : XMLObject(), doc(_doc)
     {
         xpath = _xpath;
-        scope.registerPointers(xpath, this);
+        scope->registerPointers(xpath, this);
+        id = scope->getVariableId(*this);
     }
 
     XMLXPath::~XMLXPath()
     {
-        scope.unregisterPointer(xpath);
-        scope.removeId<XMLXPath>(id);
+        scope->unregisterPointer(xpath);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLXPath::getXMLObjectParent() const
@@ -38,6 +39,12 @@ namespace org_modules_xml
 
     const XMLNodeSet * XMLXPath::getNodeSet() const
     {
+        XMLObject * obj = scope->getXMLObjectFromLibXMLPtr(xpath->nodesetval);
+        if (obj)
+        {
+            return static_cast<XMLNodeSet *>(obj);
+        }
+
         return new XMLNodeSet(doc, xpath->nodesetval);
     }
 }

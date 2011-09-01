@@ -24,11 +24,14 @@ namespace org_modules_xml
     XMLAttr::XMLAttr(const XMLElement & _elem) : XMLObject(), elem(_elem)
     {
         scilabType = XMLATTRIBUTE;
+        id = scope->getVariableId(*this);
+        scope->registerPointers(elem.getRealNode()->properties, this);
     }
 
     XMLAttr::~XMLAttr()
     {
-        scope.removeId<XMLAttr>(id);
+        scope->unregisterPointer(elem.getRealNode()->properties);
+        scope->removeId(id);
     }
 
     const XMLObject * XMLAttr::getXMLObjectParent() const

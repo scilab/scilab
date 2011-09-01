@@ -17,17 +17,25 @@
 
 namespace org_modules_xml
 {
-    VariableScope & XMLObject::scope = *new VariableScope(SCOPE_SIZE);
+    VariableScope * XMLObject::scope = 0;
 
     XMLObject::XMLObject()
     {
-        id = scope.getVariableId(*this);
+        if (!scope)
+        {
+            scope = new VariableScope(SCOPE_SIZE);
+        }
         scilabType = -1;
     }
 
     XMLObject * XMLObject::getVariableFromId(int id)
     {
-        return scope.getVariableFromId(id);
+        if (!scope)
+        {
+            return 0;
+        }
+
+        return scope->getVariableFromId(id);
     }
 
     int XMLObject::createOnStack(int pos) const
@@ -38,5 +46,14 @@ namespace org_modules_xml
         }
 
         return 0;
+    }
+
+    void XMLObject::resetScope()
+    {
+        if (scope)
+        {
+            delete scope;
+            scope = 0;
+        }
     }
 }

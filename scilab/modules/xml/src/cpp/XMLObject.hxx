@@ -96,9 +96,15 @@ namespace org_modules_xml
         int id;
         int scilabType;
 
-        static VariableScope & scope;
+        static VariableScope * scope;
+
+        /**
+         * Reset the scope
+         */
+        static void resetScope();
 
     private :
+
         /**
          * @param id the id
          * @return XMLObject corresponding to the id or 0 if not found

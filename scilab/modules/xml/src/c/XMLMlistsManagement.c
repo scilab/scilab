@@ -31,59 +31,59 @@ static int compareStrToMlistType(const char ** str, int nb, int * mlist);
 
 /*--------------------------------------------------------------------------*/
 int createXMLObjectAtPos(int type, int pos, int id)
- {
-     const char **fields = NULL;
-     int *mlistaddr = NULL;
-     SciErr err;
+{
+    const char ** fields = NULL;
+    int * mlistaddr = NULL;
+    SciErr err;
 
-     switch (type)
-     {
-     case XMLDOCUMENT:;
-         fields = _XMLDoc;
-         break;
-     case XMLELEMENT:;
-         fields = _XMLElem;
-         break;
-     case XMLATTRIBUTE:;
-         fields = _XMLAttr;
-         break;
-     case XMLNAMESPACE:;
-         fields = _XMLNs;
-         break;
-     case XMLLIST:;
-         fields = _XMLList;
-         break;
-     case XMLNOTHANDLED:;
-         fields = _XMLNotHandled;
-         break;
-     case XMLSET:;
-         fields = _XMLSet;
-         break;
-     }
+    switch (type)
+    {
+    case XMLDOCUMENT:;
+        fields = _XMLDoc;
+        break;
+    case XMLELEMENT:;
+        fields = _XMLElem;
+        break;
+    case XMLATTRIBUTE:;
+        fields = _XMLAttr;
+        break;
+    case XMLNAMESPACE:;
+        fields = _XMLNs;
+        break;
+    case XMLLIST:;
+        fields = _XMLList;
+        break;
+    case XMLNOTHANDLED:;
+        fields = _XMLNotHandled;
+        break;
+    case XMLSET:;
+        fields = _XMLSet;
+        break;
+    }
 
-     err = createMList(pvApiCtx, pos, 2, &mlistaddr);
-     if (err.iErr)
-     {
-         printError(&err, 0);
-         return 0;
-     }
+    err = createMList(pvApiCtx, pos, 2, &mlistaddr);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return 0;
+    }
 
-     err = createMatrixOfStringInList(pvApiCtx, pos, mlistaddr, 1, 1, 2, fields);
-     if (err.iErr)
-     {
-         printError(&err, 0);
-         return 0;
-     }
+    err = createMatrixOfStringInList(pvApiCtx, pos, mlistaddr, 1, 1, 2, fields);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return 0;
+    }
 
-     err = createMatrixOfInteger32InList(pvApiCtx, pos, mlistaddr, 2, 1, 1, &id);
-     if (err.iErr)
-     {
-         printError(&err, 0);
-         return 0;
-     }
+    err = createMatrixOfInteger32InList(pvApiCtx, pos, mlistaddr, 2, 1, 1, &id);
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return 0;
+    }
 
-     return 1;
- }
+    return 1;
+}
 
 /*--------------------------------------------------------------------------*/
 int createXMLObjectAtPosInList(int * list, int stackPos, int type, int pos, int id)

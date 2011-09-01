@@ -15,6 +15,7 @@
 
 #include <map>
 #include <stack>
+#include <vector>
 
 extern "C"
 {
@@ -24,6 +25,7 @@ extern "C"
 namespace org_modules_xml
 {
     class XMLObject;
+    class XMLNodeList;
 
     /**
      * @file
@@ -34,11 +36,15 @@ namespace org_modules_xml
     class VariableScope
     {
 
-        XMLObject ** scope;
+        //XMLObject ** scope;
+        std::vector<XMLObject *> * scope;
         int position;
         int initialSize;
         std::stack<int> * freePlaces;
+        std::map<const XMLObject *, std::vector<const XMLObject *> *> * parentToChildren;
+
         static std::map<void *, XMLObject *> * mapLibXMLToXMLObject;
+        static std::map<void *, XMLNodeList *> * mapLibXMLToXMLNodeList;
         static xmlFreeFunc XMLFreeFunc;
 
     public :
@@ -60,6 +66,22 @@ namespace org_modules_xml
         static void unregisterPointer(void * libxml);
 
         /**
+         * Unregisters a pointer. It can be used when a pointer in the tree is freed or
+         * locally to avoid cyclic dependencies on removal.
+         * @param libxml a pointer in the xml tree
+         */
+        static void unregisterNodeListPointer(void * libxml);
+
+        /**
+         * Registers a pointer and its associated object.
+         * The aim of this mapping is to delete an existing object when a pointer
+         * in the xml tree is freed.
+         * @param libxml a pointer in the xml tree
+         * @param nodeList the corresponding nodeList
+         */
+        static void registerPointers(void * libxml, XMLNodeList * nodeList);
+
+        /**
          * Default constructor
          * @param initialSize the default size of the scope
          */
@@ -71,7 +93,7 @@ namespace org_modules_xml
         ~VariableScope();
 
         /**
-         * Gets the variable id from the objec
+         * Gets the variable id from the object
          * @param obj the object
          * @return the corresponding id
          */
@@ -85,18 +107,24 @@ namespace org_modules_xml
         XMLObject * getVariableFromId(int id);
 
         /**
-         * Remove an id from the scope
+         * Removes an id from the scope
          * @param id the id
          */
-        template <class T> void removeId(int id)
-            {
-                if (id >= 0 && id < initialSize && scope[id])
-                {
-                    removeDependencies<T>(scope[id]);
-                    scope[id] = static_cast<XMLObject *>(0);
-                    freePlaces->push(id);
-                }
-            }
+        void removeId(int id);
+
+        /**
+         * Gets the XMLObject associated with a libxml pointer
+         * @param libxml the libxml pointer
+         * @return the XMLObject pointer
+         */
+        XMLObject * getXMLObjectFromLibXMLPtr(void * libxml) const;
+
+        /**
+         * Gets the XMLNodeList associated with a libxml pointer
+         * @param libxml the libxml pointer
+         * @return the XMLNodeList pointer
+         */
+        XMLNodeList * getXMLNodeListFromLibXMLPtr(void * libxml) const;
 
     private :
         static void _xmlFreeFunc(void * mem);
@@ -104,19 +132,10 @@ namespace org_modules_xml
         static xmlFreeFunc getFreeFunc(xmlFreeFunc freeFunc);
 
         /**
-         * Remove the object dependencies if they exist
+         * Removes the object dependencies if they exist
          * @param obj the object
          */
-        template <class T> void removeDependencies(XMLObject * obj)
-            {
-                for (int i = 0; i <= position; i++)
-                {
-                    if (scope[i] && reinterpret_cast<T *>(scope[i])->getXMLObjectParent() == obj)
-                    {
-                        delete reinterpret_cast<T *>(scope[i]);
-                    }
-                }
-            }
+        void removeDependencies(XMLObject * obj);
     };
 }
 
