@@ -65,6 +65,7 @@ then
 	echo "You can configure it with :"
 	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.hxx' "
 	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.cpp' "
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.c' "
 	echo
 	
 	INDENT_IGNORED=""
