@@ -16,7 +16,6 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
@@ -74,16 +73,16 @@ public class InitModelicaAction extends DefaultAction {
      */
 	@Override
     public void actionPerformed(ActionEvent e) {
-	File temp;
+	String temp;
 
 	try {
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
 	    temp = FileUtils.createTempFile();
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp);
 
-	    String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
+	    String cmd = buildCall("import_from_hdf5", temp);
 	    cmd += buildCall("xcosConfigureModelica");
-	    cmd += buildCall("deletefile", temp.getAbsolutePath());
+	    cmd += buildCall("deletefile", temp);
 	    
 	    final ActionListener action = new ActionListener() {
 			@Override

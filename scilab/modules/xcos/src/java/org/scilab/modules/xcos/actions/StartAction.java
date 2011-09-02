@@ -19,7 +19,6 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.Log;
@@ -130,10 +129,10 @@ public class StartAction extends OneBlockDependantAction {
 		/*
 		 * Import a valid scs_m structure into Scilab
 		 */
-		final File temp = FileUtils.createTempFile();
+		final String temp = FileUtils.createTempFile();
 		diagram.dumpToHdf5File(temp);
 
-		command.append(buildCall("import_from_hdf5", temp.getAbsolutePath()));
+		command.append(buildCall("import_from_hdf5", temp));
 		command.append(buildCall("scicos_debug", diagram.getScicosParameters().getDebugLevel()));
 		
 		/*

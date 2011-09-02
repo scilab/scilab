@@ -74,6 +74,9 @@ Xcos:
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
+* Bug 9501 fixed - With a localized TMPDIR, block edition could throw an HDF5 
+                   exception.
+
 * bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
 
 * bug 9532 fixed - Users defined blocks had no icons when saved

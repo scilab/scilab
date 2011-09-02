@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos;
 
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.io.File;
 import java.io.IOException;
@@ -631,13 +632,12 @@ public final class Xcos {
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
 			final boolean overwrite) {
 		final File file = new File(xcosFile);
-		final File temp = new File(h5File);
 
-		if (temp.exists()) {
+		if (exists(h5File)) {
 			if (!overwrite) {
 				return 1;
 			} else {
-				delete(temp);
+				delete(h5File);
 			}
 		}
 		
@@ -651,7 +651,7 @@ public final class Xcos {
 				public void run() {
 					final XcosDiagram diagram = new XcosDiagram();
 					diagram.openDiagramFromFile(file);
-					diagram.dumpToHdf5File(temp);
+					diagram.dumpToHdf5File(h5File);
 				}
 			});
 		} catch (final InterruptedException e) {

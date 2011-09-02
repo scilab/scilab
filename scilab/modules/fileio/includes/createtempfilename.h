@@ -13,6 +13,7 @@
 #ifndef __CREATETEMPFILENAME_H__
 #define __CREATETEMPFILENAME_H__
 
+#include "dynlib_fileio.h"
 #include "charEncoding.h"
 #include "BOOL.h"
 
@@ -23,9 +24,9 @@
 * @param[in] bShortFormat 
 * @return a unique filename
 */
-char *createtempfilename(const char *prefix, BOOL bShortFormat);
+FILEIO_IMPEXP char *createtempfilename(const char *prefix, BOOL bShortFormat);
 
-wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat);
+FILEIO_IMPEXP wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat);
 
 #endif /* __CREATETEMPFILENAME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -18,7 +18,6 @@ import static org.scilab.modules.xcos.utils.FileUtils.delete;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 import javax.swing.SwingWorker;
@@ -70,7 +69,7 @@ public class CompileAction extends SimulationNotRunningAction {
 	public void actionPerformed(ActionEvent e) {
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EXPORT_IN_PROGRESS);
 		
-		final File temp;
+		final String temp;
 		try {
 			temp = FileUtils.createTempFile();
 		} catch (IOException e1) {
@@ -91,7 +90,7 @@ public class CompileAction extends SimulationNotRunningAction {
 			protected void done() {
 				((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
 				
-				String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath()) 
+				String cmd = buildCall("import_from_hdf5", temp) 
 				                     + "cpr = xcos_compile(scs_m);";
 				
 				final ActionListener action = new ActionListener() {

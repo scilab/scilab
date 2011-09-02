@@ -35,4 +35,8 @@ public static String getSCIHOME() {
     return ScilabCommonsJNI.getTMPDIR();
   }
 
+  public static String createtempfilename(String prefix, int bShortFormat) {
+    return ScilabCommonsJNI.createtempfilename(prefix, bShortFormat);
+  }
+
 }

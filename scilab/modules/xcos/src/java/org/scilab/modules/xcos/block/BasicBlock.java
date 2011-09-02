@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
@@ -1169,9 +1170,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	    return;
 	}
 	
-	final File tempOutput;
-	final File tempInput;
-	final File tempContext;
+	final String tempOutput;
+	final String tempInput;
+	final String tempContext;
 	final BasicBlock currentBlock = this;
 	
 	try {
@@ -1185,7 +1186,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	    final ActionListener action = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tempInput.exists()) {
+				if (exists(tempInput)) {
 					LOG.trace("Updating data.");
 					
 				// Now read new Block
@@ -1214,11 +1215,11 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	    	setLocked(true);
 			ScilabInterpreterManagement.asynchronousScilabExec(action, 
 				"xcosBlockInterface", 
-				tempOutput.getAbsolutePath(),
-				tempInput.getAbsolutePath(),
+				tempOutput,
+				tempInput,
 				getInterfaceFunctionName().toCharArray(),
 				"set",
-				tempContext.getAbsolutePath());
+				tempContext);
 		} catch (InterpreterException e) {
 			LOG.error(e);
 			setLocked(false);
@@ -1232,13 +1233,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     /**
      * @return exported file
      */
-    protected File exportBlockStruct() {
+    protected String exportBlockStruct() {
 
 	// Write scs_m
-	File tempOutput;
+	String tempOutput;
 	try {
 	    tempOutput = FileUtils.createTempFile();
-	    tempOutput.deleteOnExit();
+	    File f = new File(tempOutput);
+	    f.deleteOnExit();
 	    
 	    new H5RWHandler(tempOutput).writeBlock(this);
 	    return tempOutput;
@@ -1252,16 +1254,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param context parent diagram context
      * @return exported file
      */
-    protected File exportContext(String[] context) {
+    protected String exportContext(String[] context) {
 
 	// Write context
 	try {
-	    File tempContext = FileUtils.createTempFile();
+		String fileString = FileUtils.createTempFile();
+	    File tempContext = new File(fileString);
 	    tempContext.deleteOnExit();
+	    
 	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
 	    H5Write.closeFile(contextFileId);
-	    return tempContext;
+	    return fileString;
 	} catch (IOException e) {
 	    e.printStackTrace();
 	} catch (HDF5Exception e) {
