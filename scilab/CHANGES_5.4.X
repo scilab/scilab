@@ -587,6 +587,8 @@ ATOMS:
 
 * bug 5380 fixed - atomsShow() output was broken (separators were not aligned).
 
+* bug 8648 fixed - We did not delete the tarball when removing a module (SEP 71).
+
 * bug 8664 fixed - Message error updated for non supported OS.
 
 * bug 8763 fixed - ATOMS installation path was shared on Windows 64 with 32 bits.
@@ -597,11 +599,14 @@ ATOMS:
 
 * bug 8942, 9805 fixed - atomsSystemUpdate() failed on some Windows.
 
+* bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
+
 * bug 9967 fixed - windows UAC causing trouble with atomsRepositorySetOfl (internal function)
 
 * bug 10025 fixed - wrong url in some examples from help files
 
 * bug 10031 fixed - atomsDisp did not work with Verbose option set to True and "\n" in messages.
+
 
 
 Javasci:
@@ -625,6 +630,7 @@ returns the value of the ScilabTypeEnum enum.
 
 * bug 9544 fixed - Calling graphic with Javasci from a SWING application from
                    EDT was crashing the execution of a java program.
+
 
 
 CACSD and Signal processing
@@ -658,6 +664,7 @@ CACSD and Signal processing
 * bug 9321 fixed - missing tests and help info for some CACSD functions
 
 * bug 10169 fixed - bad clipping option in evans.
+
 
 Misc:
 =====
