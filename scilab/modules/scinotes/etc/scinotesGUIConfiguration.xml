@@ -152,6 +152,8 @@
     <menuitem action="PasteAction" label="Paste"/>
     <menuitem action="PasteColumnAction" label="Paste Column"/>
     <separator/>
+    <menuitem action="IndentAction" label="Correct Indentation"/>    
+    <separator/>
     <menuitem action="CopyAsHTMLWithLineNumberAction" label="Copy as HTML with line number"/>
     <separator/>
     <menuitem action="HelpOnKeywordInPopupAction" label="Help on ;Help on selection"/>

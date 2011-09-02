@@ -41,6 +41,8 @@ SciNotes:
 * bug 9897 fixed - With Mac OS, eol was not replaced by \n when code was copyed
                    from Word to SciNotes.
 
+* bug 9878 fixed - Add a shortcut "Correct indentation" in right click menu.
+
 
 Graphical User Interface:
 =========================
