@@ -1,0 +1,281 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-30 20:14+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: soubor %s neexistuje.\n"
+
+msgid "Read a xls file"
+msgstr "Přečíst soubor xls"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Nelze otevřít soubor %s.\n"
+
+#, c-format
+msgid "%s: End of file.\n"
+msgstr "%s: Konec souboru.\n"
+
+#, c-format
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
+msgstr "%s: Nelze přečíst očekávaná data, pravděpodobně neplatný soubor xls.\n"
+
+#, c-format
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: Soubor %s není soubor ole2.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: Neplatný, nebo poškozený soubor.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: Není soubor ole2.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: Obsluhován je pouze formát souboru BIFF8.\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s Soubor nemá žádný adresář Workbook.\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s: V souboru ole2 %s není žádný proud xls.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr "%s:%d:Neshoda ve čtených bajtech. Požadováno %d, získáno %d\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:LADĚNÍ: Příloha %s:%s:%s velikost = %d\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:LADĚNÍ: Volání oznamovatele jména souboru"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:CHYBA: Nelze vytvořit řetězec jména souboru z "
+"'%s' a '%s'"
+
+#, c-format
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr "%s:%d:OLEUNWRAP_save_stream:CHYBA: Nelze otevřít %s pro zápis (%s)\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:VAROVÁNÍ: Zapsáno pouze %d z %d bajtu do souboru "
+"%s\n"
+
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
+msgstr "%s:%d:OLE_get_block:CHYBA: Vyrovnávací paměť bloku je PRÁZDNÁ"
+
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
+msgstr "%s:%d:OLE_get_block:CHYBA: Nelze přidělit %d bajtů pro blok OLE"
+
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
+msgstr "%s:%d:OLE_get_block:CHYBA: Soubor OLE je zavřený\n"
+
+#, c-format
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr "%s:%d:OLE_get_block:CHYBA: Hledání chyby (blok=%d:%d)"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr ""
+"%s:%d:OLE_get_miniblock:CHYBA: Pro miniChain nelze přidělit dostatek paměti"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr "%s:%d:OLE_load_FAT:CHYBA: Přesáhnut hraniční limit paměti FAT %p >= %p"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
+"position = 0x%x"
+msgstr ""
+"%s:%d:OLE_load_FAT:CHYBA: Nelze načíst blok, sektor importu = 0x%x, pozice "
+"fat = 0x%x"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d:OLE_load_FAT:CHYBA: Nelze přidělit %d bajtů\n"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
+msgstr "%s:%d:OLE_load_FAT:CHYBA: požadavek na sektor byl záporný (%d)"
+
+#, c-format
+msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
+msgstr "%s:%d:OLE_load_FAT:CHYBA: Řetěz načtení přešel hranice paměti"
+
+#, c-format
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr "%s:%d:OLE_open_directory:CHYBA: %s"
+
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
+msgstr "%s:%d:OLE_open_file:CHYBA: Nelze nalézt soubor '%s' k otevření (%s)"
+
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
+msgstr "%s:%d:OLE_open_file:CHYBA: Nelze otevřít %s pro čtení (%s)\n"
+
+#, c-format
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d:OLE_set_debug: Úroveň ladění nastavena na %d"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
+"and '%s'"
+msgstr ""
+"%s:%d:OLE_store_stream:CHYBA: Nelze složit úplný řetězec jména souboru z "
+"'%s' a '%s'"
+
+#, c-format
+msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
+msgstr "%s:%d:OLE_store_stream:CHYBA: Nelze otevřít %s pro zápis (%s)"
+
+#, c-format
+msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
+msgstr ""
+"%s:%d:OLE_store_stream:VAROVÁNÍ: Zapsáno pouze %d z %d bajtů do souboru %s"
+
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
+"replacement operation"
+msgstr ""
+"%s:%d:PLD_strreplace:CHYBA: Nelze přidělit %d bajtů paměti k provedení "
+"operace nahrazení"
+
+#, c-format
+msgid ""
+"%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
+"with '%s'"
+msgstr ""
+"%s:%d:PLD_strreplace_general: Při nahrazování '%s' s '%s' došla přidělená "
+"paměť"
+
+#, c-format
+msgid ""
+"Cannot interpret option \"%s\"\n"
+"%s\n"
+msgstr ""
+"Nelze vyhodnotit možnost \"%s\"\n"
+"%s\n"
+
+#, c-format
+msgid "Cannot locate input file '%s'"
+msgstr "Nelze nalézt vstupní soubor '%s'"
+
+#, c-format
+msgid "Decoding filename=%s"
+msgstr "Dekódování jména souboru=%s"
+
+#, c-format
+msgid "File '%s' is not OLE2 format"
+msgstr "Soubor '%s' není formát OLE2"
+
+#, c-format
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-Výchozí: %s%s"
+
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr "LOGGER_set_logfile: CHYBA - Nelze otevřít soubor záznamu '%s' (%s)"
+
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgstr "LOGGER_set_logfile: CHYBA - Nelze otevřít soubor záznamu '%s' (%s)\n"
+
+#, c-format
+msgid "OLE input file '%s' is insane"
+msgstr "Vstupní soubour OLE '%s' není v pořádku"
+
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "Modul tabulky Scilabu není nainstalován.\n"
+
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr "Soubor %s neexistuje.\n"
+
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr "Nelze dekódovat proud s řetězcem prvku '%s'\n"
+
+#, c-format
+msgid "ripOLE requires an input file to decode.\n"
+msgstr "ripOLE vyžaduje vstupní soubor k dekódování.\n"
+
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
+
+msgid "ripOLE: Cannot allocate memory for OLE object."
+msgstr "ripOLE: Nelze přidělit paměť pro předmět OLE."
+
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d\n"
+msgstr "ripOLE: dekódování %s mělo za následek chybu %d\n"
+
+#, c-format
+msgid "ripOLE: decoding of %s resulted in error %d.\n"
+msgstr "ripOLE: dekódování %s mělo za následek chybu %d.\n"

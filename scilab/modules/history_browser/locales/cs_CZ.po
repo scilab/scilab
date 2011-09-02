@@ -1,0 +1,59 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-18 20:26+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13830)\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "Cannot delete current session beginning line."
+msgstr "Nelze smazat počáteční řádek současné relace."
+
+msgid "Clear history"
+msgstr "Vyčistit historii"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Command History"
+msgstr "Historie Příkazů"
+
+msgid "Copy"
+msgstr "Kopírovat"
+
+msgid "Cut"
+msgstr "Vyjmout"
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Edit"
+msgstr "Upravit"
+
+msgid "Edit in SciNotes"
+msgstr "Upravit v SciNotes"
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Evaluate Selection"
+msgstr "Vyhodnotit Výběr"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "Scilab Help"
+msgstr "Nápověda Scilab"

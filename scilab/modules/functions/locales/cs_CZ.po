@@ -1,0 +1,238 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-17 07:54+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: Neplatná knihovna %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: očekáván 'errcatch'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno 'm' nebo 'n'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr "%s: Špatné hodnoty pro vstupní argumenty.\n"
+
+#, c-format
+msgid "%s is already compiled for profiling.\n"
+msgstr ""
+
+#, c-format
+msgid "%s is already compiled.\n"
+msgstr ""
+
+#, c-format
+msgid "%s is already noncompiled.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File %s doesn't exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr ""
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr ""
+
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr ""
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr ""
+
+msgid "?"
+msgstr ""
+
+#, c-format
+msgid "Checking: %s.\n"
+msgstr ""
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr ""
+
+msgid "Complexity"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+
+msgid "No comment available.\n"
+msgstr ""
+
+#, c-format
+msgid "No variable named: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
+#, c-format
+msgid "This feature will be permanently removed in Scilab %s"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr ""
+
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr ""

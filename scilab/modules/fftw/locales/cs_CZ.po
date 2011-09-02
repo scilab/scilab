@@ -1,0 +1,105 @@
+# Czech translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-08-08 20:08+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Vyskytla se chyba: %s\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty '#%d a '#%d': Očekávána stejná "
+"velikost.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není víc paměti.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: Chybné číslo vstupních argumentů: %d neočekáván.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: Chybný typ vstupního argumentu #%d: Očekáváno reálné nebo komplexní "
+"číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno N-rozměrné pole.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr ""
+"%s: Chybný typ vstupního argumentu #%d: Očekávána matice celých čísel.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Špatné hodnoty pro vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: Špatné hodnoty pro vstupní argument #%d: Očekáván příznak FFTW.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Očekávána nezáporná celá čísla.\n"
+
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "Knihovna FFTW %s nenalezena.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "Knihovna FFTW nenalezena.\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW nemůže přečíst moudrost."
+
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Scilab modul FFTW není nainstalován.\n"
+
+msgid ""
+"Scilab will use standard fft by default until you install this library."
+msgstr ""
+
+msgid "See help fftw for more informations."
+msgstr ""
+
+msgid "This module requires : "
+msgstr ""
+
+msgid "You choose to install scilab with fftw module."
+msgstr ""

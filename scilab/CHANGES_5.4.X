@@ -83,6 +83,13 @@ Xcos:
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
 
+
+Localization:
+=============
+
+* Czech localization by Zbyněk Schwarz
+
+
 File input/output:
 ==================
 
