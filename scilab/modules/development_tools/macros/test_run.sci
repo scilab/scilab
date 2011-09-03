@@ -417,7 +417,7 @@ function status = test_single(_module, _testPath, _testName)
   elseif getos() == 'Windows' then
     language_arg = "-l "+ language;
   else
-    language_arg = "LANG=" + language + " ; ";
+    language_arg = "LANG=" + language + " ";
   end
 
   //Buld final command
