@@ -10,9 +10,6 @@
  *
  */
 
-#include "XMLObject.hxx"
-#include "XMLDocument.hxx"
-
 extern "C"
 {
 #include "xml.h"
@@ -28,6 +25,7 @@ extern "C"
 #include "XMLDocument.hxx"
 #include "XMLValidation.hxx"
 #include "XMLValidationDTD.hxx"
+#include "SplitString.hxx"
 
 using namespace org_modules_xml;
 
@@ -39,6 +37,7 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     SciErr err;
     int * addr = 0;
     std::string error;
+    std::string msg;
     int id;
     bool isValid;
     char ** path = 0;
@@ -100,12 +99,12 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
     }
     else
     {
-	validation = new XMLValidationDTD(&error);
+        validation = new XMLValidationDTD();
     }
 
     if (path)
     {
-        std::string msg = std::string("");
+        msg = std::string("");
         for (int i = 0; i < row * col; i++)
         {
             isValid = validation->validate(path[i], &error);
@@ -117,23 +116,48 @@ int sci_xmlValidate(char * fname, unsigned long fname_len)
                 delete [] s;
             }
         }
-        if (!msg.empty())
-        {
-            Scierror(999, "%s: %s", fname, msg.c_str());
-            return 0;
-        }
     }
     else
     {
         isValid = validation->validate(*doc, &error);
         if (!isValid)
         {
-            Scierror(999, gettext("%s: The file is not valid:\n%s"), fname, error.c_str());
-            return 0;
+            msg = error;
         }
     }
 
-    LhsVar(1) = 0;
+    if (!msg.empty())
+    {
+        std::vector<std::string> lines = std::vector<std::string>();
+        SplitString::split(msg, lines);
+        std::vector<const char *> clines = std::vector<const char *>(lines.size());
+
+        for (unsigned int i = 0; i < lines.size(); i++)
+        {
+            clines[i] = lines[i].c_str();
+        }
+
+        if (clines.size())
+        {
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
+        }
+        else
+        {
+            err = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+        }
+    }
+    else
+    {
+        err = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+    }
+
+    if (err.iErr)
+    {
+        printError(&err, 0);
+        return 0;
+    }
+
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;

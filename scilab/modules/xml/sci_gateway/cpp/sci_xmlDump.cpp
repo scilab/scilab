@@ -10,6 +10,7 @@
  *
  */
 
+#include <string>
 #include <vector>
 
 #include "XMLObject.hxx"
@@ -17,6 +18,7 @@
 #include "XMLElement.hxx"
 #include "XMLNs.hxx"
 #include "XMLAttr.hxx"
+#include "SplitString.hxx"
 
 extern "C"
 {
@@ -38,9 +40,8 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
     int type;
     SciErr err;
     int * addr = 0;
-    char * dump;
-    std::string str;
-    std::vector<char *> vector;
+    std::vector<std::string> lines;
+    std::vector<const char *> clines;
 
     CheckLhs(1, 1);
     CheckRhs(1, 1);
@@ -67,20 +68,18 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    str = obj->dump();
-    dump = const_cast<char *>(str.c_str());
-    vector = std::vector<char *>();
+    lines = std::vector<std::string>();
+    SplitString::split(obj->dump(), lines);
+    clines = std::vector<const char *>(lines.size());
 
-    dump = strtok(dump, "\n\r");
-    while (dump)
+    for (unsigned int i = 0; i < lines.size(); i++)
     {
-        vector.push_back(dump);
-        dump = strtok(0, "\n\r");
+        clines[i] = lines[i].c_str();
     }
 
-    if (vector.size())
+    if (clines.size())
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, vector.size(), 1, const_cast<const char * const *>(&(vector[0])));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
     }
     else
     {

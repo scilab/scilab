@@ -47,10 +47,12 @@ namespace org_modules_xml
 
     const std::string XMLNs::toString() const
     {
-        std::string str = "XML Namespace\n";
-        str += "href: " + std::string(getHref()) + "\n";
-        str += "prefix: " + std::string(getPrefix());
+        std::ostringstream oss;
 
-        return str;
+        oss << "XML Namespace" << std::endl;
+        oss << "href: " << getHref() << std::endl;
+        oss << "prefix: " << getPrefix();
+
+        return oss.str();
     }
 }

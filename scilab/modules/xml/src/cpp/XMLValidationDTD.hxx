@@ -41,9 +41,9 @@ namespace org_modules_xml
         XMLValidationDTD(const char * path, std::string * error);
 
         /**
-         * @param error a string which will contain error messages
+         * Use internal validation
          */
-        XMLValidationDTD(std::string * error);
+        XMLValidationDTD();
 
         ~XMLValidationDTD();
 

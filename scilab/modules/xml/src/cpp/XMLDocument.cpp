@@ -159,10 +159,12 @@ namespace org_modules_xml
 
     const std::string XMLDocument::toString() const
     {
-        std::string str = "XML Document\n";
-        str += "URL: " + std::string(getDocumentURL());
+        std::ostringstream oss;
 
-        return str;
+        oss << "XML Document" << std::endl;
+        oss << "URL: " << getDocumentURL();
+
+        return oss.str();
     }
 
     const std::string XMLDocument::dump() const
@@ -286,12 +288,6 @@ namespace org_modules_xml
         return doc;
     }
 
-    /**
-     * Read and parse a document
-     * @param filename the file name
-     * @param error a string where to write the parsing errors
-     * @return a pointer on a xmlDoc
-     */
     xmlDoc * XMLDocument::readDocument(const std::string & xmlCode, bool validate, std::string * error)
     {
         xmlParserCtxt * ctxt = initContext(error, validate);

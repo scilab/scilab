@@ -17,7 +17,8 @@
 #include <sstream>
 #include <typeinfo>
 
-extern "C" {
+extern "C"
+{
 #include "xml_mlist.h"
 }
 
@@ -81,16 +82,6 @@ namespace org_modules_xml
          */
         template <class T>
         static T * getFromId(int id) { return static_cast<T *>(getVariableFromId(id)); }
-
-        /**
-         * Convert a number into a string
-         */
-        static const std::string intToStr(int n)
-            {
-                std::stringstream oss;
-                oss << n;
-                return oss.str();
-            }
 
     protected :
         int id;

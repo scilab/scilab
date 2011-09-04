@@ -25,12 +25,12 @@ namespace org_modules_xml
         node = _node;
         scilabType = XMLNOTHANDLED;
         id = scope->getVariableId(*this);
-	scope->registerPointers(node, this);
+        scope->registerPointers(node, this);
     }
 
     XMLNotHandledElement::~XMLNotHandledElement()
     {
-	scope->unregisterPointer(node);
+        scope->unregisterPointer(node);
         scope->removeId(id);
     }
 
@@ -41,6 +41,11 @@ namespace org_modules_xml
 
     const std::string XMLNotHandledElement::toString() const
     {
-        return std::string("Not handled XML Element\ntype") + std::string(nodes_type[node->type - 1]);
+        std::ostringstream oss;
+
+        oss << "Not handled XML Element" << std::endl;
+        oss << "type: " << nodes_type[node->type - 1];
+
+        return oss.str();
     }
 }

@@ -48,7 +48,7 @@ namespace org_modules_xml
         id = scope->getVariableId(*this);
     }
 
-    XMLValidationDTD::XMLValidationDTD(std::string * error) : XMLValidation()
+    XMLValidationDTD::XMLValidationDTD() : XMLValidation()
     {
         validationFile = 0;
         internalValidate = true;
@@ -152,13 +152,14 @@ namespace org_modules_xml
 
     const std::string XMLValidationDTD::toString() const
     {
+        std::ostringstream oss;
         xmlDtd * dtd = getValidationFile<xmlDtd>();
 
-        std::string str = "XML DTD\n";
-        str += "name: " + std::string(dtd->name ? (const char *)dtd->name : "") + "\n";
-        str += "external ID: " + std::string(dtd->ExternalID ? (const char *)dtd->ExternalID : "") + "\n";
-        str += "system ID: " + std::string(dtd->SystemID ? (const char *)dtd->SystemID : "");
+        oss << "XML DTD" << std::endl;
+        oss << "name: " << (dtd->name ? (const char * )dtd->name : "") << std::endl;
+        oss << "external ID: " << (dtd->ExternalID ? (const char * )dtd->ExternalID : "") << std::endl;
+        oss << "system ID: " << (dtd->SystemID ? (const char * )dtd->SystemID : "");
 
-        return str;
+        return oss.str();
     }
 }

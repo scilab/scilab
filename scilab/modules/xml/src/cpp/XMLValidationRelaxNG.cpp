@@ -146,9 +146,6 @@ namespace org_modules_xml
 
     const std::string XMLValidationRelaxNG::toString() const
     {
-        std::string str = "XML Relax NG\n";
-        str += "No public informations";
-
-        return str;
+        return std::string("XML Relax NG\nNo public informations");
     }
 }

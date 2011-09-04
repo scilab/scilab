@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
 
     <synopsis>
-      xmlValidate(docs [, valid])
+      error = xmlValidate(docs [, valid])
     </synopsis>
   </refsynopsisdiv>
 
@@ -51,13 +51,20 @@
           <para>a mlist typed XMLValid.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>error</term>
+        <listitem>
+          <para>a matrix of string if an error occured or []</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para>Validate a already parsed document or a set of documents with given paths with a DTD, a Relax NG or a Schema. To know if a document is valid or not, you just have to put the xmlValidate in a try...catch statement.</para>
+    <para>Validate a already parsed document or a set of documents with given paths with a DTD, a Relax NG or a Schema. If the document is valid, then the returned error is an empty matrix, else a matrix of strings is returned with the error message.</para>
     <para>Validate a document with its path can improve performance and reduce the memory consumption.</para>
     <para>It is not possible for the moment to validate a document against an external DTD. The only way to do this is to include in your XML file someting like <![CDATA[<!DOCTYPE foo SYSTEM "foo.dtd">]]> and to use xmlValidate without second argument.</para>
   </refsection>

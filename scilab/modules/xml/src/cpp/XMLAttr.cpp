@@ -153,21 +153,22 @@ namespace org_modules_xml
 
     const std::string XMLAttr::toString() const
     {
-        std::string str = "XML Attributes\n";
+        std::ostringstream oss;
         xmlNode * node = elem.getRealNode();
 
+        oss << "XML Attributes" << std::endl;
         for (xmlAttr * cur = node->properties; cur; cur = cur->next)
         {
             if (cur->ns)
             {
-                str += " " + std::string((const char *)cur->ns->prefix) + ":" + std::string((const char *)cur->name) + " --> " + std::string((const char *)cur->children->content) + "\n";
+                oss << cur->ns->prefix << ":" << cur->name << " --> " << cur->children->content << std::endl;
             }
             else
             {
-                str += " " + std::string((const char *)cur->name) + " --> " + std::string((const char *)cur->children->content) + "\n";
+                oss << cur->name << " --> " << cur->children->content << std::endl;
             }
         }
 
-        return str;
+        return oss.str();
     }
 }

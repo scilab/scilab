@@ -120,7 +120,7 @@ namespace org_modules_xml
 
     void XMLElement::setChildren(const std::string & xmlCode) const
     {
-	std::string error;
+        std::string error;
         XMLDocument document = XMLDocument(xmlCode, false, &error);
 
         if (error.empty())
@@ -175,6 +175,7 @@ namespace org_modules_xml
 
     const std::string XMLElement::toString() const
     {
+        std::ostringstream oss;
         std::string ns = "";
         std::string prefix = "";
 
@@ -191,14 +192,14 @@ namespace org_modules_xml
             }
         }
 
-        std::string str = "XML Element\n";
-        str += "name: " + std::string(getNodeName()) + "\n";
-        str += "namespace href: " + ns + "\n";
-        str += "namespace prefix: " + prefix + "\n";
-        str += "type: " + std::string(nodes_type[getNodeType() - 1]) + "\n";
-        str += "definition line: " + intToStr(node->line);
+        oss << "XML Element" << std::endl;
+        oss << "name: " << getNodeName() << std::endl;
+        oss << "namespace href: " << ns << std::endl;
+        oss << "namespace prefix: " << prefix << std::endl;
+        oss << "type: " << nodes_type[getNodeType() - 1] << std::endl;
+        oss << "definition line: " << node->line;
 
-        return str;
+        return oss.str();
     }
 
     const XMLNs * XMLElement::getNodeNameSpace() const

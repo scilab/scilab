@@ -22,9 +22,11 @@ namespace org_modules_xml
 
     const std::string XMLList::toString() const
     {
-        std::string str = "XML List\n";
-        str += "size: " + intToStr(getSize());
+        std::ostringstream oss;
 
-        return str;
+        oss << "XML List" << std::endl;
+        oss << "size: " << getSize();
+
+        return oss.str();
     }
 }

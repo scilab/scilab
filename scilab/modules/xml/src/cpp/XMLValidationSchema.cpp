@@ -165,14 +165,15 @@ namespace org_modules_xml
 
     const std::string XMLValidationSchema::toString() const
     {
+        std::ostringstream oss;
         xmlSchema * schema = getValidationFile<xmlSchema>();
 
-        std::string str = "XML Schema\n";
-        str += "name: " + std::string(schema->name ? (const char *)schema->name : "") + "\n";
-        str += "target namespace: " + std::string(schema->targetNamespace ? (const char *)schema->targetNamespace : "") + "\n";
-        str += "version: " + std::string(schema->version ? (const char *)schema->version : "");
+        oss << "XML Schema" << std::endl;
+        oss << "name: " << (schema->name ? (const char * )schema->name : "") << std::endl;
+        oss << "target namespace: " << (schema->targetNamespace ? (const char * )schema->targetNamespace : "") << std::endl;
+        oss << "version: " << (schema->version ? (const char * )schema->version : "");
 
-        return str;
+        return oss.str();
     }
 
 }
