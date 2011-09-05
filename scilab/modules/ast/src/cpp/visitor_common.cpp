@@ -539,17 +539,22 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
 
                 if(pArgs != NULL)
                 {//args returned by "parent"
-                    //be careful, extract functions copy values
-                    Struct *pStr = pCurrent->extract(pArgs)->getAs<Struct>();
                     std::wstring var = pVar->name_get().name_get();
-                    pStr->get(0)->set(pVar->name_get().name_get(), pIT);
-                    pCurrent->insertWithoutClone(pArgs, pStr);
+                    //be careful, extract functions copy values
+
+                    Struct *pStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
+                    pStr->setCloneInCopyValue(false);
+                    SingleStruct* pSS = pStr->get(0);
+                    pSS->set(pVar->name_get().name_get(), pIT);
+                    pSS->IncreaseRef();
                     delete pStr;
+                    pSS->DecreaseRef();
                 }
                 else if(_pArgs == NULL || *_pArgs == NULL)
                 {
-                  std::wstring var = pVar->name_get().name_get();
-                  pCurrent->get(0)->set(pVar->name_get().name_get(), pIT);
+                    std::wstring var = pVar->name_get().name_get();
+                    //std::wcout << var << L" <- " << pIT->getTypeStr() << std::endl;
+                    pCurrent->get(0)->set(pVar->name_get().name_get(), pIT);
                 }
                 else
                 {
@@ -576,9 +581,13 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
                 else
                 {
                     Struct* pStepStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
-                    pStr = pStepStr->get(0)->get(pVar->name_get().name_get())->getAs<Struct>();
+                    pStepStr->setCloneInCopyValue(false);
+                    SingleStruct* pSS = pStepStr->get(0);
+                    pStr = pSS->get(pVar->name_get().name_get())->getAs<Struct>();
                     //we can delete pStepStr without deleted its fields
+                    pSS->IncreaseRef();
                     delete pStepStr;
+                    pSS->DecreaseRef();
                 }
 
                 if(pStr == NULL)
@@ -596,11 +605,15 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
 
                     if(pArgs != NULL)
                     {
-                        Struct* pStepStr = pCurrent->extract(pArgs)->getAs<Struct>();
                         std::wstring var = pVar->name_get().name_get();
-                        pStepStr->get(0)->set(pVar->name_get().name_get(), pStr);
-                        pCurrent->insertWithoutClone(pArgs, pStepStr);
+
+                        Struct* pStepStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
+                        pStepStr->setCloneInCopyValue(false);
+                        SingleStruct* pSS = pStepStr->get(0);
+                        pSS->set(pVar->name_get().name_get(), pStr);
+                        pSS->IncreaseRef();
                         delete pStepStr;
+                        pSS->DecreaseRef();
                     }
                     else
                     {
@@ -634,6 +647,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             }
             else
             {
+                //std::wcout << L"create struct" << std::endl;
                 Struct* p = new Struct(1,1);
                 pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
                 delete p;
@@ -680,7 +694,7 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             if(pIT == NULL)
             {//fail to extract, pCurrent is not enough big, resize it !
                 Struct* p = new Struct(1,1);
-                pCurrent->insertWithoutClone(pArgs, p); //insert empty struct, caller will assign the good value
+                pCurrent->insert(pArgs, p); //insert empty struct, caller will assign the good value
                 delete p;
             }
             else

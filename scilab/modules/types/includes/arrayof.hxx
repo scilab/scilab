@@ -618,10 +618,11 @@ namespace types
 
             for(int i = 0 ; i < pArrayOut->getSize() ; i++)
             {
-                pRealData[i] = pSource->copyValue(pSource->getNullValue());
+                //TODO: check if copyValue is mandatory
+                pArrayOut->set(i, pSource->getNullValue());
                 if(bComplex)
                 {
-                    pImgData[i] = pSource->copyValue(pSource->getNullValue());
+                    pArrayOut->setImg(i, pSource->getNullValue());
                 }
             }
 
@@ -1032,12 +1033,10 @@ namespace types
                     }
                 }
 
-                //int iNewPos = getIndexWithDims(piCoord, piCountDim, iDims);
-
-                pReal[i] = copyValue(get(iPos));
+                pOut->set(i, get(iPos));
                 if(isComplex())
                 {
-                    pImg[i] = copyValue(getImg(iPos));
+                    pOut->setImg(i, getImg(iPos));
                 }
 
 

@@ -27,12 +27,14 @@ namespace types
     {
         m_bDisableCloneInCopyValue = false;
         SingleStruct** pIT  = NULL;
+        SingleStruct *p = new SingleStruct();
         int piDims[2] = {_iRows, _iCols};
 		create(piDims, 2, &pIT, NULL);
         for(int i = 0 ; i < getSize() ; i++)
         {
-            set(i, new SingleStruct());
+            set(i, p);
         }
+        delete p;
     }
 
     Struct::Struct(int _iDims, int* _piDims)
@@ -42,7 +44,9 @@ namespace types
 		create(_piDims, _iDims, &pIT, NULL);
         for(int i = 0 ; i < getSize() ; i++)
         {
-            set(i, new SingleStruct());
+            SingleStruct *p = new SingleStruct();
+            set(i, p);
+            delete p;
         }
     }
 
@@ -58,7 +62,12 @@ namespace types
                     pStr->DecreaseRef();
                     if(pStr->isDeletable())
                     {
+                        //std::wcout << L"delete sub struct(" << i << L") : " << pStr << std::endl;
                         delete pStr;
+                    }
+                    else
+                    {
+                        //std::wcout << L"!!!!!!!!!!!!!!! pas touche sub struct(" << i << L") : " << pStr->getRef() << L" @" << pStr << std::endl;
                     }
                 }
             }
@@ -115,9 +124,15 @@ namespace types
                 {
                     delete m_pRealData[_iIndex];
                 }
+                else
+                {
+                    //std::wcout << L"Found singlestruct with more than one ref(" << m_pRealData[_iIndex]->getRef() << L")" << std::endl;
+                }
             }
 
             m_pRealData[_iIndex] = copyValue(_pIT);
+            m_pRealData[_iIndex]->IncreaseRef();
+            //std::wcout << L"set -> " << m_pRealData[_iIndex] << L" : " << m_pRealData[_iIndex]->getRef() << std::endl;
             return true;
         }
         return false;
@@ -217,24 +232,26 @@ namespace types
 
     Struct* Struct::createEmpty(int _iDims, int* _piDims, bool _bComplex)
     {
-        return new Struct(_iDims, _piDims);
+        Struct* pStr = new Struct(_iDims, _piDims);
+        pStr->setCloneInCopyValue(m_bDisableCloneInCopyValue);
+        return pStr;
     }
 
     SingleStruct* Struct::copyValue(SingleStruct* _pData)
     {
+        SingleStruct* pStr = NULL;
         if(m_bDisableCloneInCopyValue)
         {
-            //be sure m_iRef >= 2
-            while(_pData->getRef() < 2)
-            {
-                _pData->IncreaseRef();
-            }
-            return _pData;
+            pStr = _pData;
+            //pStr->IncreaseRef();
+            //std::wcout << L"copyValueWithoutClone -> " << pStr << L" : " << pStr->getRef() << std::endl;
         }
         else
         {
-            return _pData->clone();
+            pStr = _pData->clone();
         }
+        
+        return pStr;
     }
 
     void Struct::deleteAll()
@@ -280,12 +297,13 @@ namespace types
 
         for(int i = 0 ; i < getSize() ; i++)
         {
+/*
             if(get(i)->isRef(1))
             {//assign more than once
                 //clone it before add field
                 set(i, get(i)->clone());
             }
-
+*/
             get(i)->addField(_sKey);
         }
         return true;
@@ -303,6 +321,11 @@ namespace types
         {
             SingleStruct* pSS =  get(0);
             String* pwstFields =  pSS->getFieldNames();
+            if(pwstFields->getSize() == 0)
+            {
+                ostr << L"1x1 struct array with no field.";
+            }
+            
             for(int i = 0 ; i < pwstFields->getSize() ; i++)
             {
                 std::wstring wstField(pwstFields->get(i));
@@ -360,19 +383,29 @@ namespace types
 
     InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
     {
+        //std::wcout << L"insertWithoutClone start" << std::endl;
         m_bDisableCloneInCopyValue = true;
         InternalType* pIT = insert(_pArgs, _pSource);
         _pSource->IncreaseRef();
+        //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
         m_bDisableCloneInCopyValue = false;
+        //std::wcout << L"insertWithoutClone end" << std::endl;
         return pIT;
     }
 
     InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
     {
+        //std::wcout << L"extractWithoutClone start" << std::endl;
         m_bDisableCloneInCopyValue = true;
         InternalType* pIT = extract(_pArgs);
         m_bDisableCloneInCopyValue = false;
+        //std::wcout << L"extractWithoutClone end" << std::endl;
         return pIT;
+    }
+
+    void Struct::setCloneInCopyValue(bool _val)
+    {
+        m_bDisableCloneInCopyValue = _val;
     }
 
 }

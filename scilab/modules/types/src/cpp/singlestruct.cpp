@@ -40,11 +40,22 @@ namespace types
                 (*it).second->DecreaseRef();
                 if((*it).second->isDeletable())
                 {
+                    //std::wcout << L"delete child(" << (*it).first << L")" << std::endl;
                     delete (*it).second;
                 }
+                else
+                {
+                    //std::wcout << L"!!!!!!!!!!!!!!! pas touche child(" << (*it).first << L")" << std::endl;
+                }
             }
+            
+            //std::wcout << L"delete SingleStruct : " << this << std::endl;
             delete m_pData;
         }
+        else
+        {
+            //std::wcout << L"!!!!!!!!!!!!!!! pas touche SingleStruct" << std::endl;
+        }        
     }
 
     SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
@@ -177,6 +188,21 @@ namespace types
 
     std::wstring SingleStruct::toString(int _iPrecision, int _iLineLen)
     {
+        if(m_pData->size() == 0)
+        {
+            return L"empty SingleStruct";
+        }
+        else
+        {
+            std::wstring str;
+            std::map<std::wstring, InternalType *>::iterator itValues;
+
+            for (itValues = getData()->begin() ; itValues != getData()->end() ; itValues++)
+            {
+                str += (*itValues).first + L" : " + (*itValues).second->getTypeStr() + L"\n";
+            }
+            return str;
+        }
         return L"";
     }
 
