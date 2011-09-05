@@ -210,7 +210,3 @@ msgstr "Test %s není dostupný z modulu %s"
 
 msgid "error : Input argument sizes are not valid"
 msgstr "Chyba : Velikosti vstupních argumentů nejsou platné"
-
-#, c-format
-#~ msgid "The ref file (%s) doesn''t exist"
-#~ msgstr "Refereční soubor (%s) neexistuje"

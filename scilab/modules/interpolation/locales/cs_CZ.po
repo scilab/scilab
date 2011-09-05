@@ -8,60 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-20 07:11+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:17+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Musí být mezi %d a %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávány dvě řady.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor nebo matice.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávána stejná "
-"velikost.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole reálných čísel.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s' nebo '%s' nebo "
-"'%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekáváno %s nebo reálné číslo.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána reálná čísla, ale byla "
-"nalezena některá NaN.\n"
 
 #, c-format
 msgid "%s: %s must be a real %d-dim hypermatrix.\n"
@@ -140,7 +93,8 @@ msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
 "velikosti.\n"
@@ -191,7 +145,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván vektor s %d složkami.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekávány stejné "
 "velikosti.\n"
@@ -210,10 +165,12 @@ msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Neznámý typ '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
-msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Nepodporovaný typ '%s'.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Nepodporovaný typ '%s'.\n"
 
 #, c-format
-msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x a/nebo y nejsou v přísně nevzestupném pořadí (nebo zjištěno +-∞)\n"
 
@@ -228,3 +185,50 @@ msgstr "Špatný typ vstupního argumentu #%d: Očekávána reálná hypermatice
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Musí být mezi %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávány dvě řady.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor nebo matice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávána stejná "
+"velikost.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole reálných čísel.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s' nebo '%s' nebo "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno %s nebo reálné číslo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána reálná čísla, ale byla "
+"nalezena některá NaN.\n"

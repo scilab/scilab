@@ -8,56 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 23:03+0000\n"
+"PO-Revision-Date: 2011-09-01 09:51+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: pt_BR\n"
-
-msgid "Erlang random variable"
-msgstr ""
-
-msgid "Exponential random variable"
-msgstr ""
-
-msgid "Hyper geometric random variable"
-msgstr ""
-
-msgid "Poisson random variable"
-msgstr ""
-
-msgid "Random"
-msgstr "Aleatório"
-
-msgid "Simulation"
-msgstr ""
-
-msgid "Simulation of a binomial random variable"
-msgstr ""
-
-msgid "Simulation of a discrete random variable"
-msgstr ""
-
-msgid "Theory"
-msgstr ""
-
-msgid "Weibull random variable"
-msgstr ""
-
-msgid "binomial random variable"
-msgstr ""
-
-msgid "discrete random variable"
-msgstr ""
-
-msgid "discrete uniform random variable"
-msgstr ""
-
-msgid "geometric random variable"
-msgstr ""
 
 msgid ""
 "\n"
@@ -164,8 +122,8 @@ msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
 "generator.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para \"%s"
-"\" com o gerador %s.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para "
+"\"%s\" com o gerador %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
@@ -229,8 +187,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o segundo argumento de entrada: esperava-se %dx"
-"%d.\n"
+"%s: Tamanho incorreto para o segundo argumento de entrada: esperava-se "
+"%dx%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
@@ -344,7 +302,8 @@ msgstr ""
 "%s: Valor incorreto para o segundo argumento de entrada: deve ser > %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorreto para o segundo argumento de entrada: deve estar entre %d "
 "e %d.\n"
@@ -500,3 +459,45 @@ msgstr "a e b devem ser inteiros com (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr "Aleatório"
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+msgid "Theory"
+msgstr ""
+
+msgid "Weibull random variable"
+msgstr ""
+
+msgid "binomial random variable"
+msgstr ""
+
+msgid "discrete random variable"
+msgstr ""
+
+msgid "discrete uniform random variable"
+msgstr ""
+
+msgid "geometric random variable"
+msgstr ""

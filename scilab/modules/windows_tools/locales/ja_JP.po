@@ -8,43 +8,16 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-05-31 23:54+0000\n"
+"PO-Revision-Date: 2011-09-01 09:37+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-# File: sci_gateway/c/sci_chartooem.c, line: 48
-# File: sci_gateway/c/sci_dos.c, line: 50
-# File: sci_gateway/c/sci_dos.c, line: 62
-# File: sci_gateway/c/sci_findfileassociation.c, line: 38
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
-# File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
-
-msgid "Error(s) : see help powershell"
-msgstr "エラー(s): パワーシェル・ヘルプを見てください"
-
-msgid "Only for Microsoft Windows."
-msgstr "Microsoft Windows のみです。"
-
-msgid "Please verify your powershell command without Scilab."
-msgstr "powershell コマンドを Scilab なしの環境で確認してください."
-
-msgid "Powershell 1.0 not found."
-msgstr "Powershell 1.0 が見つかりません."
 
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 89
@@ -85,8 +58,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 # File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
@@ -97,6 +69,17 @@ msgstr ""
 # File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+# File: sci_gateway/c/sci_chartooem.c, line: 48
+# File: sci_gateway/c/sci_dos.c, line: 50
+# File: sci_gateway/c/sci_dos.c, line: 62
+# File: sci_gateway/c/sci_findfileassociation.c, line: 38
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
+# File: sci_gateway/c/sci_mcisendstring.c, line: 106
+# File: sci_gateway/c/sci_oemtochar.c, line: 48
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
@@ -144,3 +127,19 @@ msgstr "Scilabコンソール"
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
 msgid "see help"
 msgstr "ヘルプを見てください。"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "エラー(s): パワーシェル・ヘルプを見てください"
+
+msgid "Only for Microsoft Windows."
+msgstr "Microsoft Windows のみです。"
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "powershell コマンドを Scilab なしの環境で確認してください."
+
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 が見つかりません."

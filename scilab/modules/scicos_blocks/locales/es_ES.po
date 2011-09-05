@@ -8,14 +8,145 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 15:21+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: es\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "Problema de asignacion en spline.\n"
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr ""
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr "¡No se pudo abrir /dev/audio!\n"
+
+msgid "Could not open the file!\n"
+msgstr "¡No se pudo abrir el archivo!\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Las dimensiones de los datos son inconsistentes:\n"
+" Tamaño de variable=[%d,%d] \n"
+"Tamaño del bloque de salida=[%d,%d].\n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "Error abriendo el archivo '%s'.\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr ""
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr ""
+"Tipo de variable inválido : error en la codificación de la hypermatriz "
+"scilab.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "Tipo de variable inválido.\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "La salida debe ser real.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "La salida debe ser compleja.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "La salida debe ser un entero de 16bits (int16).\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "La salida debe ser un entero de 32bits (int32).\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "La salida debe ser un entero de 8bits (int8).\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "La salida debe ser un entero sin signo de 16bits (uint16).\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "La salida debe ser un entero sin signo de 32bits (uint32).\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "La salida debe ser un entero sin signo de 8bits (uint8).\n"
+
+msgid "Read error\n"
+msgstr "Error de lectura\n"
+
+msgid "Read error!\n"
+msgstr "¡Error de lectura!\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr "ERROR DE ENTORNO : Error en malloc - Revise la memoria\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "ERROR DE ENTORNO : Error en scoReallocLongDraw()"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "ERROR DE ENTORNO : ¡Código de error desconocido!\n"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+"ERROR DE ENTORNO : ¡sciDrawObj no pudo ejecutarse, pShortDraw es NULL por un "
+"motivo desconocidp!\n"
+" Tal vez haya destruido la ventana o alguna de las curvas padre\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "¡El tamaño del buffer o de la entrada a cambiado!\n"
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "La variable '%s' no existe.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "El vector Tiempo no es double.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "El vector tiempo debe ser un vector creciente.\n"
+
+msgid "This scope has the same window id than another."
+msgstr ""
+
+msgid "Trigger block must have discrete time input."
+msgstr "El bloque de disparo debe tener entradas de tiempo discreto."
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Error escribiendo el archivo '%s'.\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr ""
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr ""
+
+msgid "overflow error"
+msgstr "error de desbordamiento"
 
 msgid "&?"
 msgstr "&?"
@@ -624,134 +755,3 @@ msgstr "nulo"
 
 msgid "positive"
 msgstr "positivo"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problema de asignacion en spline.\n"
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr ""
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-
-msgid "Could not open /dev/audio!\n"
-msgstr "¡No se pudo abrir /dev/audio!\n"
-
-msgid "Could not open the file!\n"
-msgstr "¡No se pudo abrir el archivo!\n"
-
-#, c-format
-msgid ""
-"Data dimensions are inconsistent:\n"
-" Variable size=[%d,%d] \n"
-"Block output size=[%d,%d].\n"
-msgstr ""
-"Las dimensiones de los datos son inconsistentes:\n"
-" Tamaño de variable=[%d,%d] \n"
-"Tamaño del bloque de salida=[%d,%d].\n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Error abriendo el archivo '%s'.\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr ""
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-"Tipo de variable inválido : error en la codificación de la hypermatriz "
-"scilab.\n"
-
-msgid "Invalid variable type.\n"
-msgstr "Tipo de variable inválido.\n"
-
-msgid "Output should be of Real type.\n"
-msgstr "La salida debe ser real.\n"
-
-msgid "Output should be of complex type.\n"
-msgstr "La salida debe ser compleja.\n"
-
-msgid "Output should be of int16 type.\n"
-msgstr "La salida debe ser un entero de 16bits (int16).\n"
-
-msgid "Output should be of int32 type.\n"
-msgstr "La salida debe ser un entero de 32bits (int32).\n"
-
-msgid "Output should be of int8 type.\n"
-msgstr "La salida debe ser un entero de 8bits (int8).\n"
-
-msgid "Output should be of uint16 type.\n"
-msgstr "La salida debe ser un entero sin signo de 16bits (uint16).\n"
-
-msgid "Output should be of uint32 type.\n"
-msgstr "La salida debe ser un entero sin signo de 32bits (uint32).\n"
-
-msgid "Output should be of uint8 type.\n"
-msgstr "La salida debe ser un entero sin signo de 8bits (uint8).\n"
-
-msgid "Read error\n"
-msgstr "Error de lectura\n"
-
-msgid "Read error!\n"
-msgstr "¡Error de lectura!\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "ERROR DE ENTORNO : Error en malloc - Revise la memoria\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERROR DE ENTORNO : Error en scoReallocLongDraw()"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERROR DE ENTORNO : ¡Código de error desconocido!\n"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERROR DE ENTORNO : ¡sciDrawObj no pudo ejecutarse, pShortDraw es NULL por un "
-"motivo desconocidp!\n"
-" Tal vez haya destruido la ventana o alguna de las curvas padre\n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "¡El tamaño del buffer o de la entrada a cambiado!\n"
-
-#, c-format
-msgid "The '%s' variable does not exist.\n"
-msgstr "La variable '%s' no existe.\n"
-
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr ""
-
-msgid "The Time vector type is not double.\n"
-msgstr "El vector Tiempo no es double.\n"
-
-msgid "The time vector should be an increasing vector.\n"
-msgstr "El vector tiempo debe ser un vector creciente.\n"
-
-msgid "This scope has the same window id than another."
-msgstr ""
-
-msgid "Trigger block must have discrete time input."
-msgstr "El bloque de disparo debe tener entradas de tiempo discreto."
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Error escribiendo el archivo '%s'.\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr ""
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr ""
-
-msgid "overflow error"
-msgstr "error de desbordamiento"

@@ -8,13 +8,64 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-24 07:44+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:18+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána grafická obslužná "
+"rutina.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec s jedním "
+"znakem.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno realné číslo mezi 0 a 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo nebo obslužná "
+"rutina.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Chybný typ vstupního argumentu #%d: Očekáván řetězec s jedním znakem.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Grafický modul exportu Scilab není nainstalován.\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -73,11 +124,6 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno \"%s\", nebo \"%s\".\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
@@ -93,49 +139,3 @@ msgstr "Chyba Scilab"
 
 msgid "error"
 msgstr "chyba"
-
-#, c-format
-msgid "%s: %s\n"
-msgstr "%s: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána grafická obslužná "
-"rutina.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec s jedním "
-"znakem.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno realné číslo mezi 0 a 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo nebo obslužná "
-"rutina.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: Chybný typ vstupního argumentu #%d: Očekáván řetězec s jedním znakem.\n"
-
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Grafický modul exportu Scilab není nainstalován.\n"
-
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"

@@ -8,142 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-08-08 20:21+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:17+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-msgid ""
-"\n"
-" approximate (lM,vM) with the iterative power method \n"
-msgstr ""
-"\n"
-" přibližné (IM,vM) s metodou opakovaného výkonu \n"
-
-msgid ""
-"\n"
-" approximate (lm,vm) with the inverse iterative power method \n"
-msgstr ""
-"\n"
-" přibližné (lm,vm) s metodou inverzního opakovaného výkonu \n"
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               KLIKNĚTE PRO POKRAČOVÁNÍ                    "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              velikostzásobníku(3000000);                    "
-
-#, c-format
-msgid "           don't reached after %d iterations (got only %e) \n"
-msgstr "           nedosaženo po %d opakování (získáno pouze %e) \n"
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           pak znovu zadejte scisptdemo()                "
-
-msgid "   then click on OK   "
-msgstr "   pak klikněte na OK   "
-
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
-msgid " ------------------------------------------------------------\n"
-msgstr " ------------------------------------------------------------\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "
-
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " Varování : pro konvergenci IM v rtol = %e \n"
-
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " Varování : pro konvergenci lm v rtol = %e \n"
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " zadejte následující na příkazovém řádku scilab :          "
-
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr " opakování %3d : lM = %e  \n"
-
-#, c-format
-msgid " iteration %3d : lm = %e  \n"
-msgstr " opakování %3d : lm = %e  \n"
-
-#, c-format
-msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
-
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s: Žádné hodnoty pro tuto matici (pouze nenulový model) : zadejte nějaké 1."
-
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: Soubor obsahuje rhs, ale nebude přečten !"
-
-#, c-format
-msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
-"matice.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekávána řídká matice.\n"
-
-#, c-format
-msgid "%s: currently don't read unassembled (elemental) sparse matrix."
-msgstr ""
-"%s: v současnosti nelze přečíst nesestavenou (elementární) řídkou matici."
-
-msgid "Choose a sparse matrix"
-msgstr "Zvolte řídkou matici"
-
-msgid "Click to choose a demo"
-msgstr "Klikněte pro zvolení ukázky"
-
-msgid "display a speed comparison test"
-msgstr "zobrazit test porovnání rychlosti"
-
-msgid "how to use this stuff"
-msgstr "jak toto používat"
-
-msgid "small tests for condestsp"
-msgstr "malý test pro condestsp"
 
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
@@ -201,7 +72,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid ""
@@ -294,3 +166,135 @@ msgstr "jednoduchá matice"
 
 msgid "symbolic factorization"
 msgstr "symbolická faktorizace"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" přibližné (IM,vM) s metodou opakovaného výkonu \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" přibližné (lm,vm) s metodou inverzního opakovaného výkonu \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               KLIKNĚTE PRO POKRAČOVÁNÍ                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              velikostzásobníku(3000000);                    "
+
+#, c-format
+msgid "           don't reached after %d iterations (got only %e) \n"
+msgstr "           nedosaženo po %d opakování (získáno pouze %e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           pak znovu zadejte scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   pak klikněte na OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Varování : pro konvergenci IM v rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Varování : pro konvergenci lm v rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " zadejte následující na příkazovém řádku scilab :          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " opakování %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " opakování %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: Žádné hodnoty pro tuto matici (pouze nenulový model) : zadejte nějaké 1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: Soubor obsahuje rhs, ale nebude přečten !"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Špatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
+"matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: očekávána řídká matice.\n"
+
+#, c-format
+msgid "%s: currently don't read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: v současnosti nelze přečíst nesestavenou (elementární) řídkou matici."
+
+msgid "Choose a sparse matrix"
+msgstr "Zvolte řídkou matici"
+
+msgid "Click to choose a demo"
+msgstr "Klikněte pro zvolení ukázky"
+
+msgid "display a speed comparison test"
+msgstr "zobrazit test porovnání rychlosti"
+
+msgid "how to use this stuff"
+msgstr "jak toto používat"
+
+msgid "small tests for condestsp"
+msgstr "malý test pro condestsp"

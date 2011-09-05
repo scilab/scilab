@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 00:36+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: ilinux <bnufl66@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -103,7 +103,8 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s：该特点尚未实现：类型为 %d 的参数。\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s：该特点还没有实现：对高维矩阵的支持。\n"
 
 #, c-format
@@ -177,8 +178,7 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 Matlab 字符串向量
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -216,11 +216,13 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：应该为%s，%s，%s，“%s”，“%s”或“%s”。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为%s， %s，“%s”或“%s”。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”或“%s”。\n"
 
 #, c-format
@@ -274,79 +276,3 @@ msgstr "10月"
 
 msgid "Sep"
 msgstr "9月"
-
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s：“%s”已被忽略。\n"
-
-#, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s：“%s”尚未实现。\n"
-
-#, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s：“%s”只能在3 d 模式下使用。"
-
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s：选项“%s”被忽略了。\n"
-
-#, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s：无法打开文件“%s”。\n"
-
-#, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s：不能打开“%s”，“%s”和“%s”中任一个。\n"
-
-#, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s：属性“%s”没有等价的。\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s：格式“%s”尚无法处理。\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s：格式“%s”是未知的。\n"
-
-#, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s：无法处理的类“%s”。\n"
-
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s：在“%s”中发现未知的颜色->设置为黑色。\n"
-
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s：“%s”中的未知线型->设置为6。\n"
-
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s：未知的类型“%s”：已忽略。\n"
-
-#, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s：“%s”的大小出错：应该为向量。\n"
-
-#, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s：修饰“%s”的值出错。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为%s，%s，%s，“%s”，“%s”或“%s”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为%s， %s，“%s”或“%s”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”或“%s”。\n"

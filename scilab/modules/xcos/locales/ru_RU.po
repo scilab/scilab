@@ -8,362 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-19 16:06+0000\n"
-"Last-Translator: Stanislav V. Kroter <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:28+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s является недопустимым именем, пожалуйста, измените название схемы."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: Все пути, определенные переменной %s, должны существовать.\n"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error during block parameters update.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: File '%s' does not exist.\n"
-msgstr "%s: Файл «%s» не существует.\n"
-
-#, c-format
-msgid "%s: File '%s' is not a valid palette file.\n"
-msgstr "%s: Файл «%s» не является допустимым файлом палитры.\n"
-
-#, c-format
-msgid "%s: Found '%s' instead of a block.\n"
-msgstr "%s: Найдено «%s» вместо блока.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: Не удалось создать каталог %s, проверьте, имеете ли вы доступ для записи "
-"в данный каталог.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: Не удалось экспортировать %s в %s.\n"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s:Не удалось экспортировать «XX» в %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: Не удалось экспортировать палитру в hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: Не удалось сформировать изображение %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: Не удалось сформировать значок палитры: %s уже существует.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: Не удалось импортировать данные из %s"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: Не удалось загрузить блок из %s: ожидался файл hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr "%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: Неверный входной параметр %s: ожидалось svg, gif или jpg.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-"%s: Неверный тип переменной %s: ожидался массив строковых переменных.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-"%s: Неверный тип параметра %d: ожидалась строка или структура диаграммы"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: Неверный тип параметра %d: ожидалась структура диаграммы"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидался блок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr "%s: Неверный тип входного параметра %s: файл не найден.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась диаграмма.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s: ожидалась строка пути каталога.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s: ожидалась строка полного пути.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s:ожидалась функция в виде строки, блок "
-"или строка полного пути.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидался дескриптор.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась палитра.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась палитра или путь.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась строка пути.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s: ожидалась строка или структура.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr "%s: Неверный тип входного параметра %s: ожидался вектор строк.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра %s: Ожидался существующий файл.\n"
-
-#, c-format
-msgid ""
-"%s: the block %s is no more available, please update the diagram with a "
-"compatible one."
-msgstr ""
-
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
-msgid "Basic controller"
-msgstr ""
-
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid "Colpitts oscillator"
-msgstr ""
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
-msgid "Control Systems"
-msgstr ""
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
-
-msgid "Differential amplifier"
-msgstr ""
-
-msgid "Discrete Controller"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
-
-msgid "Electrical Systems"
-msgstr "Электрические системы"
-
-msgid "Fibonacci Numbers"
-msgstr "Числа Фибоначчи"
-
-msgid "Goto/From blocks"
-msgstr "Блоки Goto/From"
-
-msgid "Hydraulics blocks"
-msgstr "Гидравлические блоки"
-
-msgid "Inverted Pendulum"
-msgstr "Обратный маятник"
-
-msgid "Kalman Filter"
-msgstr "Фильтр Калмана"
-
-msgid "Logic AND gate"
-msgstr "Логический элемент И"
-
-msgid "Logic NOR gate"
-msgstr "Логический элемент НЕ - ИЛИ"
-
-msgid "Lorentz butterfly"
-msgstr ""
-
-msgid "Mechanical Systems"
-msgstr "Механические системы"
-
-msgid "Modelica demos"
-msgstr ""
-
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "RLC circuit"
-msgstr ""
-
-msgid "Scilab block"
-msgstr ""
-
-msgid "Signal Builder"
-msgstr ""
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Simple Thermostat"
-msgstr ""
-
-msgid "Simulation problem"
-msgstr ""
-
-msgid "Standard demos"
-msgstr ""
-
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Библиотеки Scicos не загружены"
-
-msgid "Transformer"
-msgstr ""
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Не удалось открыть %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Не удалось моделировать %s"
-
-msgid "Water tank"
-msgstr ""
-
-msgid "Xcos"
-msgstr "Xcos"
-
-msgid "Xcos data types"
-msgstr ""
-
-msgid "Zero Crossing"
-msgstr ""
-
-msgid "_IF_ Xcos block"
-msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -436,7 +88,8 @@ msgstr "Категория"
 msgid "Center"
 msgstr "По центру"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Нажмите левую кнопку мыши на диаграмме для добавления узла связи или на "
 "совместимой цели для завершения"
@@ -455,7 +108,8 @@ msgstr "Общеупотребительные блоки"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "Идёт компиляция, результаты будут сохранены в переменной «scicos_cpr»"
+msgstr ""
+"Идёт компиляция, результаты будут сохранены в переменной «scicos_cpr»"
 
 msgid "Compile"
 msgstr "Компилировать"
@@ -505,7 +159,8 @@ msgstr "Фон диаграммы"
 msgid "Diagram browser"
 msgstr "Информация о диаграмме"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Диаграмма была изменена.<br/> Сохранить изменения?"
 
 msgid "Diff. States"
@@ -559,12 +214,14 @@ msgstr "Обработка событий"
 msgid "Execution trace and Debug"
 msgstr "Трассировка и отладка"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Входной порт явных данных должен быть подключён к выходному порту явных "
 "данных"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Выходной порт явных данных должен быть подключён к входному порту явных "
 "данных"
@@ -664,12 +321,14 @@ msgstr "Изображение"
 msgid "Implicit"
 msgstr "Блоки неявных данных"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Входной порт неявных данных должен быть подключён к выходному порту неявных "
 "данных"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Выходной порт неявных данных должен быть подключён к входному порту неявных "
 "данных"
@@ -1103,6 +762,9 @@ msgstr "Неверный входной параметр «%s»: недопус�
 msgid "Wrong port number"
 msgstr "Неверный номер порта"
 
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos Demos"
 msgstr "Примеры Xcos"
 
@@ -1173,3 +835,354 @@ msgstr "выбранный"
 
 msgid "weight"
 msgstr "вес"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr ""
+"%s является недопустимым именем, пожалуйста, измените название схемы."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Все пути, определенные переменной %s, должны существовать.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File '%s' does not exist.\n"
+msgstr "%s: Файл «%s» не существует.\n"
+
+#, c-format
+msgid "%s: File '%s' is not a valid palette file.\n"
+msgstr "%s: Файл «%s» не является допустимым файлом палитры.\n"
+
+#, c-format
+msgid "%s: Found '%s' instead of a block.\n"
+msgstr "%s: Найдено «%s» вместо блока.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: Не удалось создать каталог %s, проверьте, имеете ли вы доступ для записи "
+"в данный каталог.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Не удалось экспортировать %s в %s.\n"
+
+#, c-format
+msgid "%s: Unable to export 'XX' to %s"
+msgstr "%s:Не удалось экспортировать «XX» в %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: Не удалось экспортировать палитру в hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: Не удалось сформировать изображение %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: Не удалось сформировать значок палитры: %s уже существует.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Не удалось импортировать данные из %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr "%s: Не удалось загрузить блок из %s: ожидался файл hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
+msgstr ""
+"%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr "%s: Неверный входной параметр %s: ожидалось svg, gif или jpg.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: Неверный тип переменной %s: ожидался массив строковых переменных.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась строка или структура диаграммы"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr "%s: Неверный тип параметра %d: ожидалась структура диаграммы"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался блок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr "%s: Неверный тип входного параметра %s: файл не найден.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась диаграмма.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка пути каталога.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка полного пути.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s:ожидалась функция в виде строки, блок "
+"или строка полного пути.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась палитра.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась палитра или путь.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка пути.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра %s: ожидалась строка или структура.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидался вектор строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра %s: Ожидался существующий файл.\n"
+
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr ""
+
+msgid "Basic controller"
+msgstr ""
+
+msgid "Bouncing Ball"
+msgstr ""
+
+msgid "Bouncing Balls"
+msgstr ""
+
+msgid "Bridge Rectifer"
+msgstr ""
+
+msgid "Chaos Modelica"
+msgstr ""
+
+msgid "Colpitts oscillator"
+msgstr ""
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
+msgid "Control Systems"
+msgstr ""
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
+
+msgid "Differential amplifier"
+msgstr ""
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
+msgstr ""
+
+msgid "Electrical Systems"
+msgstr "Электрические системы"
+
+msgid "Fibonacci Numbers"
+msgstr "Числа Фибоначчи"
+
+msgid "Goto/From blocks"
+msgstr "Блоки Goto/From"
+
+msgid "Hydraulics blocks"
+msgstr "Гидравлические блоки"
+
+msgid "Inverted Pendulum"
+msgstr "Обратный маятник"
+
+msgid "Kalman Filter"
+msgstr "Фильтр Калмана"
+
+msgid "Logic AND gate"
+msgstr "Логический элемент И"
+
+msgid "Logic NOR gate"
+msgstr "Логический элемент НЕ - ИЛИ"
+
+msgid "Lorentz butterfly"
+msgstr ""
+
+msgid "Mechanical Systems"
+msgstr "Механические системы"
+
+msgid "Modelica demos"
+msgstr ""
+
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Old demos"
+msgstr ""
+
+msgid "OpAmp amplifier"
+msgstr ""
+
+msgid "RLC Circuit"
+msgstr ""
+
+msgid "RLC circuit"
+msgstr ""
+
+msgid "Scilab block"
+msgstr ""
+
+msgid "Signal Builder"
+msgstr ""
+
+msgid "Simple Demo"
+msgstr ""
+
+msgid "Simple Thermostat"
+msgstr ""
+
+msgid "Simulation problem"
+msgstr ""
+
+msgid "Standard demos"
+msgstr ""
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr ""
+
+msgid "Temperature Controller"
+msgstr ""
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Библиотеки Scicos не загружены"
+
+msgid "Transformer"
+msgstr ""
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Не удалось открыть %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Не удалось моделировать %s"
+
+msgid "Water tank"
+msgstr ""
+
+msgid "Xcos data types"
+msgstr ""
+
+msgid "Zero Crossing"
+msgstr ""
+
+msgid "_IF_ Xcos block"
+msgstr ""

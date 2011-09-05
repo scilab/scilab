@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 00:08+0000\n"
+"PO-Revision-Date: 2011-02-04 05:38+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -54,7 +54,8 @@ msgstr "%s: O argumento de entrada #%d deve ser um número real.\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
-msgstr "%s: Mudança muito abrupta perto do final do intervalo de frequência.\n"
+msgstr ""
+"%s: Mudança muito abrupta perto do final do intervalo de frequência.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -71,7 +72,8 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "matriz de %d elementos.\n"
@@ -212,13 +214,13 @@ msgid "Arma, bidimensional version"
 msgstr ""
 
 msgid "Bode plots"
-msgstr ""
+msgstr "Gráfico de Bode"
 
 msgid "Discrete IIR filter"
-msgstr ""
+msgstr "Filtro IIR discreto"
 
 msgid "IIR filter design"
-msgstr ""
+msgstr "Projeto de filtro IIR"
 
 msgid "Identification ARX (least square):"
 msgstr ""
@@ -233,7 +235,7 @@ msgid "Minimax FIR filter design"
 msgstr ""
 
 msgid "Press Return to continue ... \n"
-msgstr ""
+msgstr "Pressione Enter para continuar... \n"
 
 msgid "Signal Processing"
 msgstr "Processamento de sinais"
@@ -257,7 +259,7 @@ msgid "Using macro mese"
 msgstr "Usando macro mese"
 
 msgid "Wiegner filter"
-msgstr ""
+msgstr "Filtro de Wiegner"
 
 msgid "Window FIR filters"
 msgstr ""

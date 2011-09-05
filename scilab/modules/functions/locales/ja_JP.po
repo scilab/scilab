@@ -8,16 +8,77 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-01 16:33+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s: メモリの割り当てに失敗しました。\n"
+
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: 無効なライブラリ %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'errcatch' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'm' または'n'を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr "%s: 入力引数の値が間違っています.\n"
 
 #, c-format
 msgid "%s is already compiled for profiling.\n"
@@ -62,8 +123,7 @@ msgstr "%s: ファイル %s は存在しません。\n"
 # File: macros/getd.sci, line: 45
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
-"%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
+msgstr "%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
 
 #
 # File: macros/genlib.sci, line: 204
@@ -114,20 +174,7 @@ msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr "%s: 警告: ファイル %s でエラー : ファイル %s を無視します。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -137,19 +184,17 @@ msgstr "%s: 入力引数 #%d の型が間違っています: Scilab関数を指�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
@@ -237,57 +282,3 @@ msgstr "行 %s [%s 呼び出し, %s 秒] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "行 %s [%s 呼び出し, %s 秒] :: "
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: メモリの割り当てに失敗しました。\n"
-
-#, c-format
-msgid "%s: Invalid library %s.\n"
-msgstr "%s: 無効なライブラリ %s.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'errcatch' を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'm' または'n'を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value(s) for input argument(s).\n"
-msgstr "%s: 入力引数の値が間違っています.\n"

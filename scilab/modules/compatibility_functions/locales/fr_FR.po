@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-05 14:31+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-01 15:53+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: fr\n"
 
 #, c-format
@@ -58,7 +58,8 @@ msgstr "%s : Ne peut  pas ouvrir '%s' ni '%s' ni '%s'.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
-msgstr "%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
+msgstr ""
+"%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
 
 #, c-format
 msgid "%s: End of string reached before data has been read.\n"
@@ -108,7 +109,8 @@ msgstr ""
 "%s : Cette fonctionnalité n'a pas été implémentée : Argument de type %d.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s : Cette fonctionnalité n'a pas été implémentée : Support pour les "
 "hypermatrices.\n"
@@ -241,13 +243,15 @@ msgstr ""
 "'%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %s, %s,'%s' ou '%s' "
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"
@@ -307,85 +311,3 @@ msgstr "Oct."
 
 msgid "Sep"
 msgstr "Sept."
-
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s : ''%s'' ignoré.\n"
-
-#, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s : ''%s'' pas implémenté.\n"
-
-#, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s : ''%s'' est seulement utilisé en mode 3d."
-
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s : ''%s'' option ignorée.\n"
-
-#, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s : Ne peut pas ouvrir le fichier ''%s''.\n"
-
-#, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s : Ne peut  pas ouvrir ''%s'' ni ''%s'' ni ''%s''.\n"
-
-#, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s : Pas d''équivalent pour la propriété ''%s''.\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s : Le format ''%s'' n''est pas encore traité.\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s : Le format ''%s'' est inconnu.\n"
-
-#, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s : Classe ''%s'' non traitée.\n"
-
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s : Couleur inconnue trouvée dans ''%s'' -> fixé à noir.\n"
-
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s : Style de ligne inconnu trouvé dans ''%s'' -> fixé à 6.\n"
-
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s : Type inconnu ''%s'' : IGNORE.\n"
-
-#, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s : Dimension erronée pour ''%s'' : Un vecteur attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s : Valeur erronée pour l''affectation de ''%s''.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l''argument d''entrée n°%d : %s, %s, %s, ''%s'', "
-"''%s'' ou ''%s'' attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l''argument d''entrée n°%d : %s, %s,''%s'' ou ''%s'' "
-"attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l''argument d''entrée n°%d : ''%s'', ''%s'' ou ''%s'' "
-"attendu.\n"

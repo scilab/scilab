@@ -8,14 +8,149 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-18 09:27+0000\n"
+"PO-Revision-Date: 2011-09-01 15:20+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: it\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "Problema di allocazione in spline.\n"
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr "Non è possibile usare %s con questo tipo di oggetto."
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Non è possibile aprire /dev/audio!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Non è possibile aprire il file!\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Le dimensioni dei dati non sono consistenti:\n"
+" dimensione della variabile=[%d,%d] \n"
+"Dimensione del blocco di uscita=[%d,%d].\n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "Errore nell'aprire il file \"%s\".\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr "Il valore dell'argomento dimensione non è corretto."
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr ""
+"Il tipo della variabile non è corretto: errore nella codifica della "
+"ipermatrice di Scilab.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "Variabile di tipo non valido.\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "Il risultato dovrebbe essere di tipo reale.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "Il risultato dovrebbe essere di tipo complesso.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo int16.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo int32.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo int8.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo uint16.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo uint32.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "Il risultato dovrebbe essere di tipo uint8.\n"
+
+msgid "Read error\n"
+msgstr "Errore di lettura\n"
+
+msgid "Read error!\n"
+msgstr "Errore di lettura!\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr ""
+"ERRORE DI SCOPE: Errore durante l'uso di malloc - Controllare la memoria\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "ERRORE DI SCOPE: Errore in scoReallocLongDraw()"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "ERRORE DI SCOPE: Codice di errore sconosciuto!\n"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+"ERRORE DI SCOPE: sciDrawObj non può essere eseguita, pShortDraw è NULL per "
+"una ragione sconosciuta!\n"
+" È possibile che siano state distrutte le finestre o alcuni genitori delle "
+"curve\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "La variabile \"%s\" non esiste.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+"Il vettore Time ha una dimensione sbagliata, era attesa [%d, %d] e ottenuta "
+"[%d, %d].\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Il tipo del vettore Time non è double.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "Il vettore Time dovrebbe essere un vettore crescente.\n"
+
+msgid "This scope has the same window id than another."
+msgstr "Questo scope ha lo stesso id di finestra di un altro."
+
+msgid "Trigger block must have discrete time input."
+msgstr "Il blocco di attivazione deve avere un ingresso di tempo discreto."
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Errore di scrittura nel file \"%s\".\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
+
+msgid "overflow error"
+msgstr "errore di overflow"
 
 msgid "&?"
 msgstr "&?"
@@ -627,138 +762,3 @@ msgstr ""
 
 msgid "positive"
 msgstr ""
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problema di allocazione in spline.\n"
-
-#, c-format
-msgid "Cannot use %s with this type of object."
-msgstr "Non è possibile usare %s con questo tipo di oggetto."
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Non è possibile aprire /dev/audio!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Non è possibile aprire il file!\n"
-
-#, c-format
-msgid ""
-"Data dimensions are inconsistent:\n"
-" Variable size=[%d,%d] \n"
-"Block output size=[%d,%d].\n"
-msgstr ""
-"Le dimensioni dei dati non sono consistenti:\n"
-" dimensione della variabile=[%d,%d] \n"
-"Dimensione del blocco di uscita=[%d,%d].\n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Errore nell'aprire il file \"%s\".\n"
-
-msgid "Incorrect value for dimension argument."
-msgstr "Il valore dell'argomento dimensione non è corretto."
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-"Il tipo della variabile non è corretto: errore nella codifica della "
-"ipermatrice di Scilab.\n"
-
-msgid "Invalid variable type.\n"
-msgstr "Variabile di tipo non valido.\n"
-
-msgid "Output should be of Real type.\n"
-msgstr "Il risultato dovrebbe essere di tipo reale.\n"
-
-msgid "Output should be of complex type.\n"
-msgstr "Il risultato dovrebbe essere di tipo complesso.\n"
-
-msgid "Output should be of int16 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo int16.\n"
-
-msgid "Output should be of int32 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo int32.\n"
-
-msgid "Output should be of int8 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo int8.\n"
-
-msgid "Output should be of uint16 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo uint16.\n"
-
-msgid "Output should be of uint32 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo uint32.\n"
-
-msgid "Output should be of uint8 type.\n"
-msgstr "Il risultato dovrebbe essere di tipo uint8.\n"
-
-msgid "Read error\n"
-msgstr "Errore di lettura\n"
-
-msgid "Read error!\n"
-msgstr "Errore di lettura!\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
-"ERRORE DI SCOPE: Errore durante l'uso di malloc - Controllare la memoria\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "ERRORE DI SCOPE: Errore in scoReallocLongDraw()"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "ERRORE DI SCOPE: Codice di errore sconosciuto!\n"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr ""
-"ERRORE DI SCOPE: sciDrawObj non può essere eseguita, pShortDraw è NULL per "
-"una ragione sconosciuta!\n"
-" È possibile che siano state distrutte le finestre o alcuni genitori delle "
-"curve\n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
-
-#, c-format
-msgid "The '%s' variable does not exist.\n"
-msgstr "La variabile \"%s\" non esiste.\n"
-
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr ""
-"Il vettore Time ha una dimensione sbagliata, era attesa [%d, %d] e ottenuta "
-"[%d, %d].\n"
-
-msgid "The Time vector type is not double.\n"
-msgstr "Il tipo del vettore Time non è double.\n"
-
-msgid "The time vector should be an increasing vector.\n"
-msgstr "Il vettore Time dovrebbe essere un vettore crescente.\n"
-
-msgid "This scope has the same window id than another."
-msgstr "Questo scope ha lo stesso id di finestra di un altro."
-
-msgid "Trigger block must have discrete time input."
-msgstr "Il blocco di attivazione deve avere un ingresso di tempo discreto."
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Errore di scrittura nel file \"%s\".\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
-
-msgid "overflow error"
-msgstr "errore di overflow"

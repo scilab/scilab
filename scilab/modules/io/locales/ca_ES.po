@@ -8,49 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:15+0000\n"
+"PO-Revision-Date: 2011-09-01 09:49+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: ca\n"
-
-#, c-format
-msgid "%s: The system interpreter does not answer..."
-msgstr "%s: L'intèrpret del sistema no respon..."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
-
-#, c-format
-msgid "%s: error during %s execution"
-msgstr "%s: Error durant l'execució %s"
 
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
@@ -82,6 +47,12 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
@@ -97,6 +68,11 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -129,3 +105,28 @@ msgstr "Variable d'entorn %s no definida.\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "Error no gestionat de v2cunit.\n"
+
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: L'intèrpret del sistema no respon..."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: Error durant l'execució %s"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-08-02 02:06+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 15:21+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -24,6 +24,28 @@ msgid "%s: An error occurred: %s\n"
 msgstr "%s: エラーが発生しました: %s\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+msgid "Cannot play file."
+msgstr "ファイルを再生できません."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Scilab sound モジュールがインストールされていません.\n"
+
+#, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: エラーが発生しました : %s はサポートされません.\n"
 
@@ -31,16 +53,14 @@ msgstr "%s: エラーが発生しました : %s はサポートされません.\
 # File: macros/wavread.sci, line: 236
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
-msgstr ""
-"%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
+msgstr "%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
 
 #
 # File: macros/wavread.sci, line: 236
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
-msgstr ""
-"%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取"
-"りエラー。\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr "%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取りエラー。\n"
 
 #, c-format
 msgid "%s: Audio capabilities not available.\n"
@@ -66,8 +86,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -82,33 +101,20 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベ"
-"クトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素"
-"ベクトルで指定してください.\n"
+msgstr "%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素ベクトルで指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
+msgstr "%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
 
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wavファイルにRIFF識別子が含まれていません."
@@ -169,9 +175,7 @@ msgid "Invalid wav format."
 msgstr "wavフォーマットが間違っています."
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
-msgstr ""
-"Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用して"
-"ください."
+msgstr "Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用してください."
 
 msgid "Requires 2-D values only."
 msgstr "2次元の値のみとする必要があります."
@@ -195,18 +199,3 @@ msgstr "対応する符号化は 8/16/24/32 ビットのみです."
 
 msgid "see 'mapsound' function"
 msgstr "'mapsound' 関数参照"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
-
-msgid "Cannot play file."
-msgstr "ファイルを再生できません."
-
-msgid "Scilab sound module not installed.\n"
-msgstr "Scilab sound モジュールがインストールされていません.\n"

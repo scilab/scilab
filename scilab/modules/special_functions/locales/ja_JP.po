@@ -8,20 +8,16 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 22:55+0000\n"
+"PO-Revision-Date: 2011-09-01 09:28+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -35,9 +31,7 @@ msgstr "%s: 最初の入力引数の型が間違っています.\n"
 msgid ""
 "%s: Wrong type for input argument #%d or #%d: No complex input argument "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d または #%d の型が間違っています: 複素数ではない入力引数を指"
-"定してください.\n"
+msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 複素数ではない入力引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -51,9 +45,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指�
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: (%d,%d) の要素を有する行列を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: (%d,%d) の要素を有する行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
@@ -67,5 +59,8 @@ msgstr "%s: エラー番号 %d\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr ""
-"%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
+msgstr "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"

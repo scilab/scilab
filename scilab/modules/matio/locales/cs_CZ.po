@@ -8,13 +8,106 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-21 19:35+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:18+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Column array of strings with different lengths saving is not "
+"implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not rewind the file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid file identifier.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: N-D arrays of chars not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Row array of strings saving is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
+msgstr ""
+
+msgid "Scilab matio module not installed.\n"
+msgstr ""
 
 #, c-format
 msgid "%s mlist type not yet implemented."

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 03:13+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-01 15:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: ru\n"
 
 #, c-format
@@ -104,7 +104,8 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr "%s: Следующая функционалность не реализована: аргумент типа %d.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Следующая функциональность не реализована: поддержка гиперматриц.\n"
 
@@ -227,13 +228,15 @@ msgstr ""
 "«%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось %s, %s, «%s» или "
 "«%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -293,85 +296,3 @@ msgstr "Окт"
 
 msgid "Sep"
 msgstr "Сен"
-
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: «%s» проигнорирован.\n"
-
-#, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: «%s» не реализовано.\n"
-
-#, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: «%s» используется только в режиме 3d."
-
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: параметр «%s» проигнорирован.\n"
-
-#, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: Не удалось открыть файл ''%s''.\n"
-
-#, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: Не удалось открыть ни «%s», ни «%s», ни «%s».\n"
-
-#, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: Нет эквивалента для свойства «%s».\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: Формат «%s» пока не поддерживается.\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: Формат «%s» неизвестен.\n"
-
-#, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: Неподдерживаемый класс «%s».\n"
-
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: В «%s» найден неизвестный цвет -> выбран чёрный.\n"
-
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: В «%s» найден неизвестный стиль линии -> установлен 6.\n"
-
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Неизвестный тип «%s»: ПРОИГНОРИРОВАН.\n"
-
-#, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Неверный размер «%s»: ожидался вектор.\n"
-
-#, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: Неверное значение для воздействия на «%s».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось %s, %s, %s, «%s», "
-"«%s» или «%s».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось %s, %s, «%s» или "
-"«%s».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
-"«%s».\n"

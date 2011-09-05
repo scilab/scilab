@@ -8,14 +8,57 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-11 04:34+0000\n"
+"PO-Revision-Date: 2011-09-01 09:32+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr "%s: Si è verificato un errore.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero "
+"oppure '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attesi dei "
+"valori scalari.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere <%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d e "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attesi degli "
+"interi non-negativi.\n"
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "   L Ma M G V Sab Dom"
@@ -100,7 +143,8 @@ msgstr ""
 "scalari.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:%s deve essere tra %d "
 "e %d.\n"
@@ -110,12 +154,6 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
 "'%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere tra %d e "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
@@ -215,40 +253,3 @@ msgstr "Mer"
 
 msgid "Wednesday"
 msgstr "Mercoledì"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: Si è verificato un errore.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Si è verificato il seg. errore: %s\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero "
-"oppure '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
-msgstr ""
-"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attesi dei "
-"valori scalari.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere <%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attesi degli "
-"interi non-negativi.\n"

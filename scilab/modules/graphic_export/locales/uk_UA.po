@@ -9,14 +9,70 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 08:49+0000\n"
+"PO-Revision-Date: 2011-09-01 09:38+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок з "
+"одного символу.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Мало бути дійсне значення від 0 "
+"до 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле число або "
+"назву елемента керування.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
+"одного символу.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Модуль експорту графічних даних Scilab не встановлено.\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "Графічний модуль Scilab у режимах -nogui і -nwni вимкнено.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -84,12 +140,6 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
@@ -107,53 +157,3 @@ msgstr "Помилка Scilab"
 
 msgid "error"
 msgstr "помилка"
-
-#, c-format
-msgid "%s: %s\n"
-msgstr "%s: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
-"керування графічним об’єктом.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок з "
-"одного символу.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d. Мало бути дійсне значення від 0 "
-"до 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле число або "
-"назву елемента керування.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
-"одного символу.\n"
-
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Модуль експорту графічних даних Scilab не встановлено.\n"
-
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Графічний модуль Scilab у режимах -nogui і -nwni вимкнено.\n"

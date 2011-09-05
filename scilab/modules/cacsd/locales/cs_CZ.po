@@ -8,13 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-23 07:40+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:17+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr "%s: Špatná hodnota pro vstupní argument #%d: Musí být v [%d %d].\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: Špatné hodnoty pro vstupní argumenty #%d a #%d.\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -82,10 +90,12 @@ msgstr "%s: %s není plná hodnost.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
-msgstr "%s: Všechny režimy %s jsou skoro neminimální, aby %s bylo skoro %d.\n"
+msgstr ""
+"%s: Všechny režimy %s jsou skoro neminimální, aby %s bylo skoro %d.\n"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Všechny režimyA jsou skoro neminimální, aby || G || bylo skoro 0.\n"
 
@@ -114,7 +124,8 @@ msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s: Nelze najít rozměr stavu.\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s: Ovladatelný a pozorovatelný režim(y) %s blízko pomyslné ose.\n"
 
 #, c-format
@@ -525,7 +536,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
 
 #, c-format
 msgid ""
@@ -569,7 +581,8 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: očekáváno pole racionálních zlomků.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu: Očekáván lineárně dynamický systém.\n"
 
@@ -592,7 +605,8 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Continuous time system expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván spojitý systém.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván spojitý systém.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
@@ -622,7 +636,8 @@ msgstr ""
 "vstupu a výstupu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván stabilizovatelný "
 "systém.\n"
@@ -649,7 +664,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
-msgstr "%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekáváno %s < %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekáváno %s < %s.\n"
 
 #, c-format
 msgid ""
@@ -877,11 +893,3 @@ msgstr "fáze(y) (stupeň)"
 
 msgid "rad/sec"
 msgstr "rad/sek"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
-msgstr "%s: Špatná hodnota pro vstupní argument #%d: Musí být v [%d %d].\n"
-
-#, c-format
-msgid "%s: Wrong values for input arguments #%d and #%d.\n"
-msgstr "%s: Špatné hodnoty pro vstupní argumenty #%d a #%d.\n"

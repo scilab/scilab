@@ -8,14 +8,182 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-16 14:36+0000\n"
-"Last-Translator: Stanislav V. Kroter <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:41+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: ru\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : Неверный тип входного параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : Неверное значение параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : второй параметр должен быть уникальным идентификатором разделяемой "
+"библиотеки.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s не является точкой входа.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Уже загружена из библиотеки %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr "%s: Не удалось открыть разделяемые файлы. Достигнут предел %d.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: Разделяемая библиотека %s не существует.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist in PATH environment.\n"
+msgstr "%s: Файл %s не существует в переменной PATH окружения.\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: Разделяемый архив не был загружен: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался вектор строк < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидались строки.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидались строки.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr "%s: не может быть загружен x64 dll в окружении x86.\n"
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr "%s: не может быть загружен x86 dll в окружении x64.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: проблема с одной из точек входа.\n"
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Произошла ошибка: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"Не удалось открыть разделяемые файлы, достигнут предел в %d входов.\n"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Имя входа %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Точка входа %s в разделяемой библиотеке %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Ошибка: неверный номер внутренней программы %d.\n"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "Интерфейс %s не скомпонован.\n"
+
+msgid "Link done.\n"
+msgstr "Компоновка завершена.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "Не удалось скомпоновать динамическую библиотеку «%s».\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "Компоновка %s.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Количество точек входа %d.\n"
+"Разделяемые библиотеки :\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "Разделяемый архив загружен.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Ожидалось уникальное имя динамической библиотеки."
+
+msgid "Unique id of a shared library expected."
+msgstr "Ожидался уникальный идентификатор разделяемой библиотеки."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d библиотек.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : библиотека %d.\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -128,10 +296,6 @@ msgstr ""
 "получения дополнительной информации.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
-#, c-format
 msgid "%s: Build command: %s\n"
 msgstr "%s: Команда сборки: %s\n"
 
@@ -199,7 +363,8 @@ msgstr "%s: Неверное количество входных парамет�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d,%d или %d.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось %d,%d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -228,12 +393,9 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
@@ -244,16 +406,10 @@ msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: или ожидалось [].\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть из множества "
-"{%s}.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидался существующий файл"
-"(ы).\n"
+"%s: Неверное значение входного параметра №%d: ожидался существующий "
+"файл(ы).\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Требуется компилятор Fortran или C."
@@ -277,155 +433,3 @@ msgstr "Вам необходимо выгрузить это библиотек
 #, c-format
 msgid "stderr: %s\n"
 msgstr "Ошибки: %s\n"
-
-#, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s : Неверный тип входного параметра №%d: %s\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr "%s : Неверное значение параметра №%d: %s\n"
-
-#, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr ""
-"%s : второй параметр должен быть уникальным идентификатором разделяемой "
-"библиотеки.\n"
-
-#, c-format
-msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
-
-#, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s не является точкой входа.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: Уже загружена из библиотеки %s\n"
-
-#, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr "%s: Не удалось открыть разделяемые файлы. Достигнут предел %d.\n"
-
-#, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: Разделяемая библиотека %s не существует.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: Файл %s не существует в переменной PATH окружения.\n"
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: Разделяемый архив не был загружен: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор строк < %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: Неверный тип входного параметра: ожидались строки.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr "%s: Неверный тип входного параметра: ожидался вектор строк.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Неверный тип входных параметров: ожидались строки.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s: не может быть загружен x64 dll в окружении x86.\n"
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s: не может быть загружен x86 dll в окружении x64.\n"
-
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: проблема с одной из точек входа.\n"
-
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "Произошла ошибка: %s\n"
-
-#, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr "Не удалось открыть разделяемые файлы, достигнут предел в %d входов.\n"
-
-#, c-format
-msgid "Entry name %s.\n"
-msgstr "Имя входа %s.\n"
-
-#, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "Точка входа %s в разделяемой библиотеке %d.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "Ошибка: неверный номер внутренней программы %d.\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Интерфейс %s не скомпонован.\n"
-
-msgid "Link done.\n"
-msgstr "Компоновка завершена.\n"
-
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "Не удалось скомпоновать динамическую библиотеку «%s».\n"
-
-#, c-format
-msgid "Linking %s.\n"
-msgstr "Компоновка %s.\n"
-
-#, c-format
-msgid ""
-"Number of entry points %d.\n"
-"Shared libraries :\n"
-msgstr ""
-"Количество точек входа %d.\n"
-"Разделяемые библиотеки :\n"
-
-msgid "Shared archive loaded.\n"
-msgstr "Разделяемый архив загружен.\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "Ожидалось уникальное имя динамической библиотеки."
-
-msgid "Unique id of a shared library expected."
-msgstr "Ожидался уникальный идентификатор разделяемой библиотеки."
-
-#, c-format
-msgid "] : %d libraries.\n"
-msgstr "] : %d библиотек.\n"
-
-#, c-format
-msgid "] : %d library.\n"
-msgstr "] : библиотека %d.\n"

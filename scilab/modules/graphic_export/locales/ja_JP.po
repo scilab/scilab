@@ -8,16 +8,58 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 12:37+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:43+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 0 から 1 の範囲の実数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数またはハンドルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Scilabグラフィック エクスポート モジュールはインストールされていません。\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "Scilabグラフィック・モジュール は、-nogui または -nwni モード では無効です.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -44,29 +86,23 @@ msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
 "to be able to use this feature.\n"
 msgstr ""
-"%s: pstoedit が見つかりません.この機能を使用可能とするためには, pstoedit をイ"
-"ンストールするか PATH に追加してください.\n"
+"%s: pstoedit が見つかりません.この機能を使用可能とするためには, pstoedit をインストールするか PATH に追加してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
 "'%s' drivers.\n"
-msgstr ""
-"%s: 入力引数で不正な数: '%s', '%s', '%s' または '%s' ドライバで文字列を想定し"
-"ます。\n"
+msgstr "%s: 入力引数で不正な数: '%s', '%s', '%s' または '%s' ドライバで文字列を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
 "'%s' or '%s' drivers.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: '%s' または '%s' ドライバでは,関数に入力引"
-"数がありません.\n"
+msgstr "%s: 入力引数の数が間違っています: '%s' または '%s' ドライバでは,関数に入力引数がありません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -77,72 +113,16 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定"
-"します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
 
 msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr ""
-".FIGファイルをエキスポートするには,Ghostscript 32ビットをインストールしてくだ"
-"さい."
+msgstr ".FIGファイルをエキスポートするには,Ghostscript 32ビットをインストールしてください."
 
 msgid "Scilab error"
 msgstr "Scilabエラー"
 
 msgid "error"
 msgstr "エラー"
-
-#, c-format
-msgid "%s: %s\n"
-msgstr "%s: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してく"
-"ださい.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 0 から 1 の範囲の実数を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 整数またはハンドルを指定してくださ"
-"い.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
-
-msgid "Scilab Graphic export module not installed.\n"
-msgstr ""
-"Scilabグラフィック エクスポート モジュールはインストールされていません。\n"
-
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr ""
-"Scilabグラフィック・モジュール は、-nogui または -nwni モード では無効です.\n"

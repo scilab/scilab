@@ -9,396 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-31 04:28+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:28+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s є некоректною назвою, будь ласка, змініть назву діаграми."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: всі шляхи, визначені змінною %s, мають існувати.\n"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: помилка під час визначення параметрів блоку.\n"
-
-#, c-format
-msgid "%s: Error during block parameters update.\n"
-msgstr "%s: помилка під час оновлення параметрів блоку.\n"
-
-#, c-format
-msgid "%s: File '%s' does not exist.\n"
-msgstr "%s: файла з назвою «%s» не існує.\n"
-
-#, c-format
-msgid "%s: File '%s' is not a valid palette file.\n"
-msgstr "%s: файл «%s» не є коректним файлом палітри.\n"
-
-#, c-format
-msgid "%s: Found '%s' instead of a block.\n"
-msgstr "%s: замість блоку виявлено «%s».\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: не вдалося створити каталог %s, будь ласка, перевірте, чи є у вас права "
-"доступу на запис до відповідного каталогу.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: не вдалося експортувати %s до %s.\n"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: не вдалося експортувати «XX» до %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: не вдалося експортувати палітру до hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: не вдалося створити зображення %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: не вдалося створити піктограму палітри: %s вже існує.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: не вдалося імпортувати дані з %s"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: не вдалося імпортувати файл xcos %s."
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-"%s: не вдалося завантажити блок з %s: мало бути використано файл hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr "%s: не вдалося завантажити блок з %s: не виявлено змінної «scs_m».\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-"%s: помилковий вхідний параметр %s: мало бути вказано svg, gif або jpg.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
-"від %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr "%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-"%s: помилковий тип вхідного параметра %d: слід використовувати тип «string» "
-"або тип структури діаграми."
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr ""
-"%s: помилковий тип вхідного параметра %d: слід використовувати тип структури "
-"діаграми."
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати блоковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr "%s: помилковий тип вхідного параметра %s: файл не знайдено.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати булівське "
-"значення.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип "
-"діаграми.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
-"до каталогу.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок повного "
-"шляху.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати функцію, що "
-"виводить значення у типах string або Block, або повний рядок шляху.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип елемента "
-"керування.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
-"або шлях до файла.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
-"до файла.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок або "
-"структуру (struct).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати вектор "
-"рядків.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра %s: мало бути вказано коректний "
-"формат файла (png, jpg, gif).\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра %s: мало бути вказано існуючий "
-"файл.\n"
-
-#, c-format
-msgid ""
-"%s: the block %s is no more available, please update the diagram with a "
-"compatible one."
-msgstr ""
-"%s: блок %s недоступний, будь ласка, додайте замість нього якийсь сумісний "
-"блок."
-
-msgid "Automotive Suspension"
-msgstr "Автомобільна підвіска"
-
-msgid "Ball on a Platform"
-msgstr "Куля на платформі"
-
-msgid "Basic controller"
-msgstr "Базовий регулятор"
-
-msgid "Bouncing Ball"
-msgstr "М’ячик-стрибунець"
-
-msgid "Bouncing Balls"
-msgstr "Зіткнення кульок"
-
-msgid "Bridge Rectifer"
-msgstr "Містковий випрямлювач"
-
-msgid "Chaos Modelica"
-msgstr "Modelica (Хаос)"
-
-msgid "Colpitts oscillator"
-msgstr "Ємнісна триточка"
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr "Неперервне спостереження за гілками-гібридами"
-
-msgid "Control Systems"
-msgstr "Системи керування"
-
-msgid "DC/DC Boost Converter"
-msgstr "Перетворювач DC/DC з підсиленням"
-
-msgid "DC/DC Buck Converter"
-msgstr "Перетворювач DC/DC з послабленням"
-
-msgid "Differential amplifier"
-msgstr "Диференційний підсилювач"
-
-msgid "Discrete Controller"
-msgstr "Дискретний регулятор"
-
-msgid "Discrete Kalman Filter"
-msgstr "Дискретний фільтр Калмана"
-
-msgid "Electrical Systems"
-msgstr "Електричні системи"
-
-msgid "Fibonacci Numbers"
-msgstr "Числа Фібоначчі"
-
-msgid "Goto/From blocks"
-msgstr "Блоки переходу/початку"
-
-msgid "Hydraulics blocks"
-msgstr "Гідравлічні блоки"
-
-msgid "Inverted Pendulum"
-msgstr "Обернений маятник"
-
-msgid "Kalman Filter"
-msgstr "Фільтр Калмана"
-
-msgid "Logic AND gate"
-msgstr "Логічний шлюз AND"
-
-msgid "Logic NOR gate"
-msgstr "Логічний шлюз NOR"
-
-msgid "Lorentz butterfly"
-msgstr "Метелик Лоренца"
-
-msgid "Mechanical Systems"
-msgstr "Механічні системи"
-
-msgid "Modelica demos"
-msgstr "Демонстрації Modelica"
-
-msgid "Old Gain Block"
-msgstr "Старий блок підсилення"
-
-msgid "Old demos"
-msgstr "Старі демонстрації"
-
-msgid "OpAmp amplifier"
-msgstr "Операційний підсилювач"
-
-msgid "RLC Circuit"
-msgstr "Коливальний контур"
-
-msgid "RLC circuit"
-msgstr "Коливальний контур"
-
-msgid "Scilab block"
-msgstr "Блок Scilab"
-
-msgid "Signal Builder"
-msgstr "Побудова сигналів"
-
-msgid "Simple Demo"
-msgstr "Проста демонстрація"
-
-msgid "Simple Thermostat"
-msgstr "Простий термостат"
-
-msgid "Simulation problem"
-msgstr "Проблема імітації:"
-
-msgid "Standard demos"
-msgstr "Стандартні демонстрації"
-
-msgid "Switched capacitor integrator"
-msgstr "Інтегральна схема на конденсаторах з перемиканням"
-
-msgid "Table Lookup"
-msgstr "Табличне перетворення"
-
-msgid "Temperature Controller"
-msgstr "Регулятор температури"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Не завантажено бібліотеки Scicos"
-
-msgid "Transformer"
-msgstr "Перетворювач"
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Не вдалося відкрити %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Не вдалося імітувати %s"
-
-msgid "Water tank"
-msgstr "Резервуар для води"
-
-msgid "Xcos"
-msgstr "Xcos"
-
-msgid "Xcos data types"
-msgstr "Типи даних Xcos"
-
-msgid "Zero Crossing"
-msgstr "Перетин нульового рівня"
-
-msgid "_IF_ Xcos block"
-msgstr "Блок _IF_ Xcos"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -476,7 +94,8 @@ msgstr "Категорія"
 msgid "Center"
 msgstr "По центру"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Клацніть лівою кнопкою миші на діаграмі, щоб додати точку з’єднання, або на "
 "відповідному елементі, щоб завершити з’єднання"
@@ -495,7 +114,8 @@ msgstr "Поширені блоки"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+msgstr ""
+"Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
 
 msgid "Compile"
 msgstr "Зібрати"
@@ -545,7 +165,8 @@ msgstr "Тло діаграми"
 msgid "Diagram browser"
 msgstr "Перегляд діаграми"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "З часу попереднього збереження діаграму було змінено.<br/> Бажаєте зберегти "
 "її?"
@@ -601,11 +222,15 @@ msgstr "Обробка подій"
 msgid "Execution trace and Debug"
 msgstr "Трасування виконання та діагностика"
 
-msgid "Explicit data input port must be connected to explicit data output port"
-msgstr "Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
 
-msgid "Explicit data output port must be connected to explicit data input port"
-msgstr "Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
 
 msgid "Export"
 msgstr "Експортувати"
@@ -702,11 +327,13 @@ msgstr "Адреса зображення"
 msgid "Implicit"
 msgstr "Неявний"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Порт неявного вводу даних має бути з’єднано з портом неявного виводу даних"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Порт неявного виводу даних має бути з’єднано з портом неявного вводу даних"
 
@@ -1141,6 +768,9 @@ msgstr "Помилковий вхідний параметр «%s»: некор�
 msgid "Wrong port number"
 msgstr "Помилковий номер порту"
 
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos Demos"
 msgstr "Демонстрації Xcos"
 
@@ -1215,3 +845,386 @@ msgstr "вибране"
 
 msgid "weight"
 msgstr "вага"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s є некоректною назвою, будь ласка, змініть назву діаграми."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: всі шляхи, визначені змінною %s, мають існувати.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: помилка під час визначення параметрів блоку.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s: помилка під час оновлення параметрів блоку.\n"
+
+#, c-format
+msgid "%s: File '%s' does not exist.\n"
+msgstr "%s: файла з назвою «%s» не існує.\n"
+
+#, c-format
+msgid "%s: File '%s' is not a valid palette file.\n"
+msgstr "%s: файл «%s» не є коректним файлом палітри.\n"
+
+#, c-format
+msgid "%s: Found '%s' instead of a block.\n"
+msgstr "%s: замість блоку виявлено «%s».\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: не вдалося створити каталог %s, будь ласка, перевірте, чи є у вас права "
+"доступу на запис до відповідного каталогу.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: не вдалося експортувати %s до %s.\n"
+
+#, c-format
+msgid "%s: Unable to export 'XX' to %s"
+msgstr "%s: не вдалося експортувати «XX» до %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: не вдалося експортувати палітру до hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: не вдалося створити зображення %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: не вдалося створити піктограму палітри: %s вже існує.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: не вдалося імпортувати дані з %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s."
+msgstr "%s: не вдалося імпортувати файл xcos %s."
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s: не вдалося завантажити блок з %s: мало бути використано файл hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
+msgstr "%s: не вдалося завантажити блок з %s: не виявлено змінної «scs_m».\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметр %s: мало бути вказано svg, gif або jpg.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
+"від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: помилковий тип вхідного параметра %d: слід використовувати тип «string» "
+"або тип структури діаграми."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s: помилковий тип вхідного параметра %d: слід використовувати тип структури "
+"діаграми."
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати блоковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr "%s: помилковий тип вхідного параметра %s: файл не знайдено.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати булівське "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати тип "
+"діаграми.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
+"до каталогу.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядок повного "
+"шляху.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати функцію, що "
+"виводить значення у типах string або Block, або повний рядок шляху.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати тип елемента "
+"керування.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
+"або шлях до файла.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
+"до файла.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядок або "
+"структуру (struct).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати рядковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: слід використовувати вектор "
+"рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути вказано коректний "
+"формат файла (png, jpg, gif).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути вказано існуючий "
+"файл.\n"
+
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+"%s: блок %s недоступний, будь ласка, додайте замість нього якийсь сумісний "
+"блок."
+
+msgid "Automotive Suspension"
+msgstr "Автомобільна підвіска"
+
+msgid "Ball on a Platform"
+msgstr "Куля на платформі"
+
+msgid "Basic controller"
+msgstr "Базовий регулятор"
+
+msgid "Bouncing Ball"
+msgstr "М’ячик-стрибунець"
+
+msgid "Bouncing Balls"
+msgstr "Зіткнення кульок"
+
+msgid "Bridge Rectifer"
+msgstr "Містковий випрямлювач"
+
+msgid "Chaos Modelica"
+msgstr "Modelica (Хаос)"
+
+msgid "Colpitts oscillator"
+msgstr "Ємнісна триточка"
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr "Неперервне спостереження за гілками-гібридами"
+
+msgid "Control Systems"
+msgstr "Системи керування"
+
+msgid "DC/DC Boost Converter"
+msgstr "Перетворювач DC/DC з підсиленням"
+
+msgid "DC/DC Buck Converter"
+msgstr "Перетворювач DC/DC з послабленням"
+
+msgid "Differential amplifier"
+msgstr "Диференційний підсилювач"
+
+msgid "Discrete Controller"
+msgstr "Дискретний регулятор"
+
+msgid "Discrete Kalman Filter"
+msgstr "Дискретний фільтр Калмана"
+
+msgid "Electrical Systems"
+msgstr "Електричні системи"
+
+msgid "Fibonacci Numbers"
+msgstr "Числа Фібоначчі"
+
+msgid "Goto/From blocks"
+msgstr "Блоки переходу/початку"
+
+msgid "Hydraulics blocks"
+msgstr "Гідравлічні блоки"
+
+msgid "Inverted Pendulum"
+msgstr "Обернений маятник"
+
+msgid "Kalman Filter"
+msgstr "Фільтр Калмана"
+
+msgid "Logic AND gate"
+msgstr "Логічний шлюз AND"
+
+msgid "Logic NOR gate"
+msgstr "Логічний шлюз NOR"
+
+msgid "Lorentz butterfly"
+msgstr "Метелик Лоренца"
+
+msgid "Mechanical Systems"
+msgstr "Механічні системи"
+
+msgid "Modelica demos"
+msgstr "Демонстрації Modelica"
+
+msgid "Old Gain Block"
+msgstr "Старий блок підсилення"
+
+msgid "Old demos"
+msgstr "Старі демонстрації"
+
+msgid "OpAmp amplifier"
+msgstr "Операційний підсилювач"
+
+msgid "RLC Circuit"
+msgstr "Коливальний контур"
+
+msgid "RLC circuit"
+msgstr "Коливальний контур"
+
+msgid "Scilab block"
+msgstr "Блок Scilab"
+
+msgid "Signal Builder"
+msgstr "Побудова сигналів"
+
+msgid "Simple Demo"
+msgstr "Проста демонстрація"
+
+msgid "Simple Thermostat"
+msgstr "Простий термостат"
+
+msgid "Simulation problem"
+msgstr "Проблема імітації:"
+
+msgid "Standard demos"
+msgstr "Стандартні демонстрації"
+
+msgid "Switched capacitor integrator"
+msgstr "Інтегральна схема на конденсаторах з перемиканням"
+
+msgid "Table Lookup"
+msgstr "Табличне перетворення"
+
+msgid "Temperature Controller"
+msgstr "Регулятор температури"
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Не завантажено бібліотеки Scicos"
+
+msgid "Transformer"
+msgstr "Перетворювач"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Не вдалося відкрити %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Не вдалося імітувати %s"
+
+msgid "Water tank"
+msgstr "Резервуар для води"
+
+msgid "Xcos data types"
+msgstr "Типи даних Xcos"
+
+msgid "Zero Crossing"
+msgstr "Перетин нульового рівня"
+
+msgid "_IF_ Xcos block"
+msgstr "Блок _IF_ Xcos"

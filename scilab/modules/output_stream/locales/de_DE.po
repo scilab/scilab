@@ -8,50 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 03:20+0000\n"
+"PO-Revision-Date: 2011-09-01 09:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: de\n"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s wird nicht gehandhabt: Definieren Sie die Funktion %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: falsches Export Format: %s"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d nach %d erwartet."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: falsche Anzahl an Eingangsargumenten: %d zu %d erwartet"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: falscher Typ für Argument #%d: boolscher Wert erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', '%s', '%s' "
-"oder '%s' erwartet.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: System kann nicht auf dieser Seite angezeigt werden.\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -67,7 +31,8 @@ msgstr "  (cont'd) %s\n"
 
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
-msgstr "  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
+msgstr ""
+"  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
 
 #, c-format
 msgid " and %s variables out of %s.\n"
@@ -300,7 +265,8 @@ msgstr "%s: falscher Typ für Argument %d: Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
+msgstr ""
+"%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
@@ -364,7 +330,8 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Tagebuch Name existiert nicht.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "schliessen %d.\n"
@@ -376,7 +343,8 @@ msgstr ""
 "schliessen.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "pausieren %d.\n"
@@ -456,7 +424,8 @@ msgstr "%s: m muß die Größe ncomp haben.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr "%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
+msgstr ""
+"%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
 
 #, c-format
 msgid "%s: ncomp < 20 requested.\n"
@@ -746,7 +715,8 @@ msgstr "Ungleicher Vergleich mit leerer Matrix.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Eingangsargumenten sollten dieselbe Variablenamen haben.\n"
 
-msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Instruktionen der linken Hand Seite: warte auf einen Punkt oder eine linke "
 "Klammer.\n"
@@ -866,7 +836,8 @@ msgstr ""
 "Operanden von / und \\ Operationen darf kein Nan oder Inf. enthalten.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
-msgstr "Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
+msgstr ""
+"Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
 
 msgid "Optim stops: maximum number of iterations is reached.\n"
 msgstr "Optimierung hält an: maximale Anzahl an Iterationen ist erreicht.\n"
@@ -1005,7 +976,8 @@ msgid "This variable is not valid in fort.\n"
 msgstr "Diese Variable ist in Fort nicht gültig.\n"
 
 msgid "Too complex for scilab, may be a too long control instruction.\n"
-msgstr "Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
+msgstr ""
+"Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
 
 msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr "Zu komplexe Rekursion! (Rekursions-Tabellen sind voll)\n"
@@ -1244,7 +1216,8 @@ msgstr "Falsches Eingangsargument %d.\n"
 msgid "Wrong number of input arguments."
 msgstr ""
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Falscher Anzahl an EIngangsargumenten: diese Funktion hat kein "
 "Eingangsargument.\n"
@@ -1450,7 +1423,8 @@ msgid "semi def fails.\n"
 msgstr "semi Definition schlägt fehl.\n"
 
 #, c-format
-msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : nicht komplette Konvergenz relativer Präzision erreicht: 10**(%s).\n"
 
@@ -1470,3 +1444,39 @@ msgstr "Zeit-Bereich des Arguments %d ist nicht definiert.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "varargout Schlüsselwort kann hier nicht verwendet werden.\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Typ %s wird nicht gehandhabt: Definieren Sie die Funktion %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: falsches Export Format: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d nach %d erwartet."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: falsche Anzahl an Eingangsargumenten: %d zu %d erwartet"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: falscher Typ für Argument #%d: boolscher Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', '%s', '%s' "
+"oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: System kann nicht auf dieser Seite angezeigt werden.\n"

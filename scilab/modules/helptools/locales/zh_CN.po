@@ -8,14 +8,53 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:11+0000\n"
+"PO-Revision-Date: 2011-09-01 09:42+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s：无法找到或创建工作目录%s。\n"
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s：生成文档时发生错误：%s。\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s：执行Java stack %s。\n"
+
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+msgid "Description"
+msgstr ""
+
+msgid ""
+"If Scilab is started in a chroot, you might want to try to set the two "
+"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab模块'%s'尚未安装。\n"
+
+msgid "Version"
+msgstr ""
 
 #, c-format
 msgid "\t%s\n"
@@ -172,10 +211,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为字符串数组。\n"
 
@@ -186,10 +221,9 @@ msgstr "%s：输入参数#%d的值错误：应该为matrix oriented typed list�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
 msgid ""
@@ -240,39 +274,4 @@ msgstr "帮助章节"
 
 #, c-format
 msgid "Warning %s does not follow the dtd"
-msgstr ""
-
-#, c-format
-msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s：无法找到或创建工作目录%s。\n"
-
-#, c-format
-msgid "%s: Error while building documentation: %s.\n"
-msgstr "%s：生成文档时发生错误：%s。\n"
-
-#, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s：执行Java stack %s。\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr ""
-
-msgid "Description"
-msgstr ""
-
-msgid ""
-"If Scilab is started in a chroot, you might want to try to set the two "
-"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
-msgstr ""
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab模块'%s'尚未安装。\n"
-
-msgid "Version"
 msgstr ""

@@ -8,18 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-07 12:13+0000\n"
+"PO-Revision-Date: 2011-09-01 15:19+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: it\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+msgid "Cannot play file."
+msgstr "Non è possibile eseguire il file."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Il modulo di Scilab per il suono non è installato.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
@@ -32,7 +59,8 @@ msgstr ""
 "non è supportato.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Si è verificato un errore: il formato di file non è valido. Errore nel "
 "leggere la porzione <%s>.\n"
@@ -73,18 +101,6 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid ""
@@ -143,7 +159,8 @@ msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr "Analisi di Fourier di 0.5 secondi di parametri sonori."
 
 msgid "Incorrect chunk size information in RIFF file."
-msgstr "C'è una informazione sulla grandezza del blocco inesatto nel file RIFF"
+msgstr ""
+"C'è una informazione sulla grandezza del blocco inesatto nel file RIFF"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
@@ -182,17 +199,3 @@ msgstr "solo 8/16/24/32 bit per la codifica"
 
 msgid "see 'mapsound' function"
 msgstr "vedere la funzione 'mapsound'"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Errore di allocazione della memoria.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
-
-msgid "Cannot play file."
-msgstr "Non è possibile eseguire il file."
-
-msgid "Scilab sound module not installed.\n"
-msgstr "Il modulo di Scilab per il suono non è installato.\n"

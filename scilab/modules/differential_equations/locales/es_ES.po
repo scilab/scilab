@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 00:02+0000\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
 "Last-Translator: Jorge Dardón <jdardon@xelalug.org>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: es\n"
 
 #, c-format
@@ -64,7 +64,8 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error de sintaxis en la "
 "expresión dada\n"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iteraciones funcionales (no se uso jacobiano (solo 'adams' o 'stiff'))"
 
@@ -81,7 +82,8 @@ msgid "2 : internally generated full jacobian"
 msgstr "2 : jacobiano completo generado internamente"
 
 msgid "3 : internally generated diagonal jacobian ('adams' or 'stiff' only)"
-msgstr "3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
+msgstr ""
+"3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
 
 msgid "3 : one step at one internal mesh point and return"
 msgstr "3 : un paso en un punto interno de la malla y vuelve"
@@ -162,7 +164,7 @@ msgid "ODE'S"
 msgstr ""
 
 msgid "Reading a precomputed trajectory"
-msgstr ""
+msgstr "Leyendo trayectoria precalculada"
 
 msgid "Simulation"
 msgstr "Simulación"
@@ -171,7 +173,7 @@ msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "Simulación de un sistema mecánico con limitaciones holonómicas"
 
 msgid "Simulation with ode (needs a Fortran compiler)"
-msgstr ""
+msgstr "Simulación con ode (requiere un compilador de Fortran)"
 
 msgid "Sphere"
 msgstr "Esfera"
@@ -212,23 +214,3 @@ msgstr "simulación de péndulo esférico"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "tal que la columna 1 de J está compuesta de ceros mu seguidos por"
-
-msgid ""
-"0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
-msgstr ""
-"0 : iteraciones funcionales (no se uso jacobiano (solo ''adams'' o "
-"''stiff''))"
-
-msgid ""
-"3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)"
-msgstr ""
-"3 : jacobiano diagonal generado internamente (solo ''adams'' o ''stiff'')"
-
-msgid "DAE''S"
-msgstr ""
-
-msgid "ODE''S"
-msgstr ""
-
-msgid "of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1"
-msgstr "del jacobiano banda: la banda es i,j''s con i-ml <= j <= ny-1"

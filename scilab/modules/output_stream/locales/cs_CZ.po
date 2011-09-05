@@ -8,49 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-20 07:06+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:19+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s nelze obsloužit : Určete funkci %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Špatný formát exportu: %s"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
-"'%s', '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: systém nemůže být na této stránce zobrazen.\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -305,7 +269,8 @@ msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr ""
+"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
@@ -346,7 +311,8 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekávána 0.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
@@ -355,7 +321,8 @@ msgstr ""
 "neexistuje.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník %d.\n"
 
@@ -365,7 +332,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže pozastavit deník "
 "%d.\n"
@@ -722,7 +690,8 @@ msgstr "Srovnání nerovnosti pomocí prázdné matice.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Vstupní argumenty by měly mít stejné formální jméno proměnné.\n"
 
-msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "Pokyny na levé straně: čekání na tečku nebo levou závorku.\n"
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1202,7 +1171,8 @@ msgstr "Špatný první argument %d.\n"
 msgid "Wrong number of input arguments."
 msgstr "Špatný počet vstupních argumentů."
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Špatný počet vstupních argumentů: Tato funkce nemá žádný vstupní argument.\n"
 
@@ -1401,8 +1371,10 @@ msgid "semi def fails.\n"
 msgstr "semi def selhává.\n"
 
 #, c-format
-msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
-msgstr "sfact : dosažena neúplná konvergence relativní přesnosti : 10**(%s).\n"
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr ""
+"sfact : dosažena neúplná konvergence relativní přesnosti : 10**(%s).\n"
 
 msgid "stack size exceeded!\n"
 msgstr "překročena velikost zásobníku!\n"
@@ -1420,3 +1392,39 @@ msgstr "Časová doména argumentu %d není určena.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "klíčové slovo varargout zde nemůže být použito.\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Typ %s nelze obsloužit : Určete funkci %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Špatný formát exportu: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno '%s', '%s', '%s', "
+"'%s', '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: systém nemůže být na této stránce zobrazen.\n"

@@ -3,190 +3,15 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-12 01:45+0000\n"
-"Last-Translator: TzuYuan Lin <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
-
-#
-# File: etc/scilab.start, line: 42
-msgid "  loading initial environment"
-msgstr "  載入初始環境"
-
-msgid " by "
-msgstr " 由 "
-
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s 在第 %s 行被呼叫 ( %s 內)"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s 在第 %s 行被呼叫 ( %s 指令內)"
-
-#
-# File: macros/whereami.sci, line: 21
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s 第  %s 行(在巨集指令 %s 內)被呼叫"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s 在 %s 之內被呼叫"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s 為無法編輯之函數.\n"
-
-#, c-format
-msgid "%s: File doesn't exist: %s"
-msgstr "%s: 檔案不存在 : %s"
-
-#
-# File: macros/perl.sci, line: 32
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: perl 指令未給定(specified)."
-
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: 請檢查: %s.\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: 需要 scilab 編輯器.\n"
-
-#
-# File: macros/perl.sci, line: 61
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: 系統錯誤: 執行指令為: %s"
-
-#
-# File: macros/add_demo.sci, line: 4
-# File: sci_gateway/c/sci_getmd5.c, line: 56
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
-# File: macros/perl.sci, line: 12
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s:無法找到 Perl 程序檔: %s"
-
-#
-# File: macros/perl.sci, line: 40
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: 無法在 '%s' 中找到 Perl"
-
-#
-# File: macros/perl.sci, line: 56
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: 無法找到 Perl.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr "%s: 第 %d 輸入參數錯誤: 應為 Scilab 程序檔案之路徑.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
-
-#
-# File: macros/perl.sci, line: 65
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&Applications"
-msgstr "應用程式(&A)"
-
-msgid "&Control"
-msgstr "控制(&C)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "&Preferences"
-msgstr "喜好設定(&P)"
-
-msgid "&Toolboxes"
-msgstr "工具箱(&)"
-
-msgid "Bytes"
-msgstr "位元組"
-
-#, c-format
-msgid "Checking: %s\n"
-msgstr "檢查: %s\n"
-
-msgid "Getting started with Scilab"
-msgstr "Scilab 入門"
-
-msgid "Introduction"
-msgstr "簡介"
-
-msgid "Name"
-msgstr "名稱"
-
-msgid "Size"
-msgstr "大小"
-
-#
-# File: etc/scilab.start, line: 35
-msgid "Startup execution:"
-msgstr "執行啟動"
-
-msgid "Type"
-msgstr "型態"
-
-#
-# File: macros/who_user.sci, line: 36
-msgid "User variables are:"
-msgstr "使用者自訂變數"
-
-#
-# File: macros/who_user.sci, line: 40
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "由 %s 個之中使用其中的 %s 個元素"
 
 #, c-format
 msgid ""
@@ -195,6 +20,11 @@ msgid ""
 msgstr ""
 "\n"
 "堆疊呼叫：\n"
+
+#
+# File: etc/scilab.start, line: 42
+msgid "  loading initial environment"
+msgstr "  載入初始環境"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 227
@@ -328,8 +158,7 @@ msgstr "%s: (%s) 第三參數有誤!\n"
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
 
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
@@ -439,6 +268,13 @@ msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: 程式產生遞迴問題 (Recursion problems). 對不起 ...\n"
 
 #
+# File: macros/add_demo.sci, line: 4
+# File: sci_gateway/c/sci_getmd5.c, line: 56
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
+
+#
 # File: src/c/stack2.c, line: 1929
 # File: src/c/stack2.c, line: 2155
 # File: src/c/stack1.c, line: 232
@@ -525,6 +361,10 @@ msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 輸入參數數目錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -748,7 +588,8 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr "%s: 第 %d 的輸入參數型態錯誤:應該是一個純量或是字串.\n"
 
 #, c-format
@@ -760,7 +601,8 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr "%s: 第 %d 的輸入參數型態錯誤: 應該是字串或是純量.\n"
 
 #, c-format
@@ -774,6 +616,10 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -814,6 +660,10 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'%s' 或 '%s'.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
@@ -821,9 +671,7 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 "
-"'%s'.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 '%s'.\n"
 
 #, c-format
 msgid ""
@@ -953,8 +801,7 @@ msgstr "%s:  %d 碼 (code) 尚未實作.\n"
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
-"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 "
-"intersiz 數值.\n"
+"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
 
 #
 # File: src/c/stack1.c, line: 2938
@@ -1008,6 +855,27 @@ msgstr "%s: 堆疊大小超過限制 (使用 stacksize 函數增加堆疊大小)
 #, c-format
 msgid "%s: wrong code %d.\n"
 msgstr "%s: 錯誤碼 code %d.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Applications"
+msgstr "應用程式(&A)"
+
+msgid "&Control"
+msgstr "控制(&C)"
+
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+msgid "&File"
+msgstr "檔案(&F)"
+
+msgid "&Preferences"
+msgstr "喜好設定(&P)"
+
+msgid "&Toolboxes"
+msgstr "工具箱(&)"
 
 #
 # File: src/c/stack2.c, line: 2347
@@ -1114,8 +982,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' "
-"minor='' maintenance='' revision='' string=''>)\n"
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #
 # File: src/c/LoadFunctionsTab.c, line: 97
@@ -1247,6 +1115,11 @@ msgid ""
 msgstr ""
 "Scilab 版本 \"%d.%d.%d.%d\"\n"
 "%s\n"
+
+#
+# File: etc/scilab.start, line: 35
+msgid "Startup execution:"
+msgstr "執行啟動"
 
 #
 # File: src/c/inisci-c.c, line: 178
@@ -1414,3 +1287,129 @@ msgstr "第三"
 # File: src/c/returnPropertyList.c, line: 44
 msgid "tlist not completely filled.\n"
 msgstr "tlist 未完全填滿.\n"
+
+msgid " by "
+msgstr " 由 "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s 在第 %s 行被呼叫 ( %s 內)"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s 在第 %s 行被呼叫 ( %s 指令內)"
+
+#
+# File: macros/whereami.sci, line: 21
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s 第  %s 行(在巨集指令 %s 內)被呼叫"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s 在 %s 之內被呼叫"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s 為無法編輯之函數.\n"
+
+#, c-format
+msgid "%s: File doesn't exist: %s"
+msgstr "%s: 檔案不存在 : %s"
+
+#
+# File: macros/perl.sci, line: 32
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: perl 指令未給定(specified)."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: 請檢查: %s.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: 需要 scilab 編輯器.\n"
+
+#
+# File: macros/perl.sci, line: 61
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: 系統錯誤: 執行指令為: %s"
+
+# File: macros/perl.sci, line: 12
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s:無法找到 Perl 程序檔: %s"
+
+#
+# File: macros/perl.sci, line: 40
+#, c-format
+msgid "%s: Unable to find Perl in '%s"
+msgstr "%s: 無法在 '%s' 中找到 Perl"
+
+#
+# File: macros/perl.sci, line: 56
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: 無法找到 Perl.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr "%s: 第 %d 輸入參數錯誤: 應為 Scilab 程序檔案之路徑.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+#
+# File: macros/perl.sci, line: 65
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
+
+msgid "Bytes"
+msgstr "位元組"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "檢查: %s\n"
+
+msgid "Getting started with Scilab"
+msgstr "Scilab 入門"
+
+msgid "Introduction"
+msgstr "簡介"
+
+msgid "Name"
+msgstr "名稱"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Type"
+msgstr "型態"
+
+#
+# File: macros/who_user.sci, line: 36
+msgid "User variables are:"
+msgstr "使用者自訂變數"
+
+#
+# File: macros/who_user.sci, line: 40
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "由 %s 個之中使用其中的 %s 個元素"

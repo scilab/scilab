@@ -8,114 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-10 06:07+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:19+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Vyskytla se chyba: %s\n"
-
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: Nesprávný formát.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: Nesprávný převod.\n"
-
-#, c-format
-msgid "%s: Options ignored.\n"
-msgstr "%s: Možnosti ignorovány.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Špatný počet výstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván popisovač souboru.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno jméno souboru.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru nebo "
-"jméno souboru.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu: Očekáván řetězec.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný popisovač "
-"souboru.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr ""
-"%s: Špatná proměnná typu (%s( nalezena v '%s'. Soubor může být špatný, nebo "
-"poškozený.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: bylo dosaženo konce vstupu před konečným převodem.\n"
-
-msgid "A file with the same name already exists in "
-msgstr "Soubor se stejým jménem již existuje v "
-
-msgid "Impossible to create directory "
-msgstr "Nele vytvořit adresář "
-
-msgid "This directory already exists in "
-msgstr "tento adresář již existuje v "
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
@@ -130,17 +29,24 @@ msgid "%s: An error occurred.\n"
 msgstr "%s: Vyskytla se chyba.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Vyskytla se chyba: %s\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (< %d) pro příkaz %%c.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (< %d) pro příkaz %%s.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (> %d) pro příkaz %%[.\n"
 
@@ -194,7 +100,8 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: Chyba při otevírání, čtení nebo zápisu.\n"
 
 #, c-format
-msgid "%s: Error while trying to retrieve the name of the current directory.\n"
+msgid ""
+"%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: Chyba při pokusu o získání názvu současného adresáře,\n"
 
 #, c-format
@@ -321,6 +228,10 @@ msgstr ""
 "znaky).\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
@@ -363,6 +274,10 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Řetězec.\n"
 
@@ -371,7 +286,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo nebo řetězec.\n"
 
@@ -396,6 +312,10 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or logical unit expected.\n"
 msgstr ""
@@ -403,7 +323,8 @@ msgstr ""
 "jednotka.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Celé číslo.\n"
 
@@ -427,7 +348,8 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d ('%s'): Formát nerozpoznán.\n"
 
 #, c-format
@@ -436,7 +358,8 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"
 
 #, c-format
 msgid ""
@@ -446,7 +369,8 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
@@ -559,3 +483,89 @@ msgstr "Varování: soubor '%s' je již ve Scilabu otevřen.\n"
 
 msgid "unclosed [ directive."
 msgstr "neuzavřený příkaz [."
+
+#, c-format
+msgid "%s: Incorrect format.\n"
+msgstr "%s: Nesprávný formát.\n"
+
+#, c-format
+msgid "%s: Invalid conversion.\n"
+msgstr "%s: Nesprávný převod.\n"
+
+#, c-format
+msgid "%s: Options ignored.\n"
+msgstr "%s: Možnosti ignorovány.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Špatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Špatný počet výstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván popisovač souboru.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno jméno souboru.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A filename or file descriptor "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru nebo "
+"jméno souboru.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu: Očekáván řetězec.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný popisovač "
+"souboru.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
+msgstr ""
+"%s: Špatná proměnná typu (%s( nalezena v '%s'. Soubor může být špatný, nebo "
+"poškozený.\n"
+
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr "%s: bylo dosaženo konce vstupu před konečným převodem.\n"
+
+msgid "A file with the same name already exists in "
+msgstr "Soubor se stejým jménem již existuje v "
+
+msgid "Impossible to create directory "
+msgstr "Nele vytvořit adresář "
+
+msgid "This directory already exists in "
+msgstr "tento adresář již existuje v "

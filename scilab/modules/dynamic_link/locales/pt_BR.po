@@ -8,14 +8,195 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:21+0000\n"
+"PO-Revision-Date: 2011-09-01 09:49+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : Tipo errado para o argumento de entrada #%d: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : Valor errado para o argumento #%d: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : o segundo argumento deve ser um identificador único de uma biblioteca "
+"compartilhada.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s não é um ponto de entrada.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Já carregado da biblioteca %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Um erro ocorreu: %s\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr ""
+"%s: Não se pode abrir os arquivos compartilhados. Máximo de entradas %d "
+"alcançado.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: A biblioteca compartilhada %s não existe.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist in PATH environment.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: O arquivo compartilhado não foi carregado: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
+"de strings < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: Tipo errado para argumento de entrada. Esperava-se strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada. Esperava-se vetor de strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%sTipo errado para argumentos de entrada: Esperava-se texto.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Deve pertencer ao conjunto "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: Problema com um dos pontos de entrada.\n"
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Um erro ocorreu: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"Não se pode abrir os arquivos compartilhados, o máximo de entradas %d foi "
+"alcançado.\n"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Nome da entrada %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Ponto de entrada %s na biblioteca compartilhada %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Erro: Não é um número válido para rotina interna %d.\n"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "Interface %s não está ligada.\n"
+
+msgid "Link done.\n"
+msgstr "Link feito.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "O link falhou para a biblioteca dinâmica '%s'.\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "Realizando o linking de %s.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Número de pontos de entrada %d.\n"
+"Bibliotecas compartilhadas :\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "Arquivo compartilhado carregado.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Esperava-se um nome único de biblioteca dinâmica."
+
+msgid "Unique id of a shared library expected."
+msgstr "Esperava-se um identificador único de uma biblioteca compartilhada."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d bibliotecas.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : %d biblioteca.\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -124,10 +305,6 @@ msgstr ""
 "para mais informações.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Um erro ocorreu: %s\n"
-
-#, c-format
 msgid "%s: Build command: %s\n"
 msgstr "%s: construir comando: %s\n"
 
@@ -185,8 +362,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: Alerta: Scilab não foi capaz de encontrar onde os fontes do Scilab se "
-"encontram. Por favor envie um relato de erro através de http://bugzilla."
-"scilab.org/\n"
+"encontram. Por favor envie um relato de erro através de "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -214,7 +391,8 @@ msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
 
 #, c-format
 msgid ""
@@ -230,15 +408,11 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
@@ -249,12 +423,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Deve pertencer ao conjunto "
-"{%s}.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
@@ -282,169 +450,3 @@ msgstr ""
 #, c-format
 msgid "stderr: %s\n"
 msgstr "saída de erro padrão: %s\n"
-
-#, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s : Tipo errado para o argumento de entrada #%d: %s\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr "%s : Valor errado para o argumento #%d: %s\n"
-
-#, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr ""
-"%s : o segundo argumento deve ser um identificador único de uma biblioteca "
-"compartilhada.\n"
-
-#, c-format
-msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
-
-#, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s não é um ponto de entrada.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: Já carregado da biblioteca %s\n"
-
-#, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr ""
-"%s: Não se pode abrir os arquivos compartilhados. Máximo de entradas %d "
-"alcançado.\n"
-
-#, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: A biblioteca compartilhada %s não existe.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: O arquivo compartilhado não foi carregado: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um escalar.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr ""
-"%s: tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
-"de strings < %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
-"texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: Tipo errado para argumento de entrada. Esperava-se strings.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr ""
-"%s: Tipo errado para o argumento de entrada. Esperava-se vetor de strings.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%sTipo errado para argumentos de entrada: Esperava-se texto.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: Problema com um dos pontos de entrada.\n"
-
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "Um erro ocorreu: %s\n"
-
-#, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr ""
-"Não se pode abrir os arquivos compartilhados, o máximo de entradas %d foi "
-"alcançado.\n"
-
-#, c-format
-msgid "Entry name %s.\n"
-msgstr "Nome da entrada %s.\n"
-
-#, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "Ponto de entrada %s na biblioteca compartilhada %d.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "Erro: Não é um número válido para rotina interna %d.\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Interface %s não está ligada.\n"
-
-msgid "Link done.\n"
-msgstr "Link feito.\n"
-
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "O link falhou para a biblioteca dinâmica '%s'.\n"
-
-#, c-format
-msgid "Linking %s.\n"
-msgstr "Realizando o linking de %s.\n"
-
-#, c-format
-msgid ""
-"Number of entry points %d.\n"
-"Shared libraries :\n"
-msgstr ""
-"Número de pontos de entrada %d.\n"
-"Bibliotecas compartilhadas :\n"
-
-msgid "Shared archive loaded.\n"
-msgstr "Arquivo compartilhado carregado.\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "Esperava-se um nome único de biblioteca dinâmica."
-
-msgid "Unique id of a shared library expected."
-msgstr "Esperava-se um identificador único de uma biblioteca compartilhada."
-
-#, c-format
-msgid "] : %d libraries.\n"
-msgstr "] : %d bibliotecas.\n"
-
-#, c-format
-msgid "] : %d library.\n"
-msgstr "] : %d biblioteca.\n"

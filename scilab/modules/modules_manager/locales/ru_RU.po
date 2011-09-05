@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-14 12:56+0000\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
 "Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: ru\n"
 
 #, c-format
@@ -37,7 +37,8 @@ msgstr "%s: Файл «%s» не существует или недоступе�
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
-msgstr "%s: Компилятор C требуется для данного модуля, но он не был найден.\n"
+msgstr ""
+"%s: Компилятор C требуется для данного модуля, но он не был найден.\n"
 
 #, c-format
 msgid ""
@@ -78,7 +79,8 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -133,29 +135,3 @@ msgstr "Формирование loader.sce...\n"
 
 msgid "Generating loader_gateway.sce...\n"
 msgstr "Формирование loader_gateway.sce...\n"
-
-#, c-format
-msgid "%s: Can''t go to directory ''%s''.\n"
-msgstr "%s: Не удалось перейти в каталог «%s».\n"
-
-#, c-format
-msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: Каталог «%s» не существует или недоступен для чтения.\n"
-
-#, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: не удалось перейти в каталог "
-"«%s».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
-"or is not read accessible.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: каталог «%s» не существует или "
-"недоступен для чтения.\n"

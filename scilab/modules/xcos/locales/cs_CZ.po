@@ -8,359 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-10 06:17+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:16+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s není platné jméno, změňte, prosím, název grafu."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: Všechny cesty určené proměnnou %s musí existovat.\n"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
-
-#, c-format
-msgid "%s: Error during block parameters update.\n"
-msgstr "%s: Chyba při aktualizaci parametrů bloku.\n"
-
-#, c-format
-msgid "%s: File '%s' does not exist.\n"
-msgstr "%s: Soubor '%s' neexistuje.\n"
-
-#, c-format
-msgid "%s: File '%s' is not a valid palette file.\n"
-msgstr "%s: Soubor '%s' není platný soubor palety.\n"
-
-#, c-format
-msgid "%s: Found '%s' instead of a block.\n"
-msgstr "%s: Nalezeno '%s' místo bloku.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: Adresář %s nelze vytvořit, zkontrolujte, prosím, jestli máte do této "
-"složky přístup k zápisu.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: Nelze exportovat %s do %s.\n"
-
-#, c-format
-msgid "%s: Unable to export 'XX' to %s"
-msgstr "%s: Nelze exportovat 'XX' do %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: Nelze exportovat paletu do hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: Nelze vytvořit obrázek %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: Nelze vytvořit ikonu palety : %s již existuje.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: Nelze importovat data z %s"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s."
-msgstr "%s: Nelze importovat xcos soubor %s."
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: Nelze načíst blok z %s: očekáván soubor hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr "%s: Nelze načíst blok z %s: nebyla nalezena proměnná 'scs_m'.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: Špatný vstupní argument %s: očekáván svg, gif, nebo jpg.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr "%s: Špatný typ proměnné %s: Očekáváno pole řetězců.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec nebo struktura grafu"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: Špatný typ argumentu %d: očekávána struktura grafu"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: Očekáván typ bloku.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr "%s: Špatný typ argumentu %s: soubor nenalezen.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ grafu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty adresáře.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván řetězec úplné cesty.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu %s: očekávána funkce jako řetězec nebo typ Bloku, "
-"či řetězec úplné cesty.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ obslužné rutiny.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ palety.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ palety nebo cesta.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván řetězec nebo struktura.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván typ řetězce.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr "%s: Špatný typ argumentu %s: očekáván vektor řetězce.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu %s: Očekáván platný formát souboru "
-"(png, jpg, gif).\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu %s: Očekáván existující soubor.\n"
-
-#, c-format
-msgid ""
-"%s: the block %s is no more available, please update the diagram with a "
-"compatible one."
-msgstr ""
-"%s: blok %s již není dostupný, aktualizujte, prosím, svůj graf pomocí "
-"kompatibilního."
-
-msgid "Automotive Suspension"
-msgstr "Automobilové Zavěšení"
-
-msgid "Ball on a Platform"
-msgstr "Míč na Plošině"
-
-msgid "Basic controller"
-msgstr "Základní ovladač"
-
-msgid "Bouncing Ball"
-msgstr "Skákající Míč"
-
-msgid "Bouncing Balls"
-msgstr "Skákající Míče"
-
-msgid "Bridge Rectifer"
-msgstr "Můstkový Usměrňovač"
-
-msgid "Chaos Modelica"
-msgstr "Chaos Modelica"
-
-msgid "Colpitts oscillator"
-msgstr "Colpittsův oscilátor"
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr "Nepř.Vkládání-Hybridní Pozorovatel"
-
-msgid "Control Systems"
-msgstr "Kontrolní Systémy"
-
-msgid "DC/DC Boost Converter"
-msgstr "Spínaný měnič DC/DC"
-
-msgid "DC/DC Buck Converter"
-msgstr "Snižující Měnič DC/DC"
-
-msgid "Differential amplifier"
-msgstr "Diferenciální zesilovač"
-
-msgid "Discrete Controller"
-msgstr "Diskrétní Ovladač"
-
-msgid "Discrete Kalman Filter"
-msgstr "Diskrétní Kalmanův Filtr"
-
-msgid "Electrical Systems"
-msgstr "Elektrické Systémy"
-
-msgid "Fibonacci Numbers"
-msgstr "Fibonacciho Čísla"
-
-msgid "Goto/From blocks"
-msgstr "Bloky Goto/From"
-
-msgid "Hydraulics blocks"
-msgstr "Hydraulické bloky"
-
-msgid "Inverted Pendulum"
-msgstr "Inverzní Kyvadlo"
-
-msgid "Kalman Filter"
-msgstr "Kalmanův Filtr"
-
-msgid "Logic AND gate"
-msgstr "Logická brána AND"
-
-msgid "Logic NOR gate"
-msgstr "Logická brána NOR"
-
-msgid "Lorentz butterfly"
-msgstr "Lorentzův motýl"
-
-msgid "Mechanical Systems"
-msgstr "Mechanícké systémy"
-
-msgid "Modelica demos"
-msgstr "Ukázky Modelica"
-
-msgid "Old Gain Block"
-msgstr "Starý blok Získání"
-
-msgid "Old demos"
-msgstr "Staré ukázky"
-
-msgid "OpAmp amplifier"
-msgstr "Zesilovač OpAmp"
-
-msgid "RLC Circuit"
-msgstr "Obvod RLC"
-
-msgid "RLC circuit"
-msgstr "Obvod RLC"
-
-msgid "Scilab block"
-msgstr "Blok Scilab"
-
-msgid "Signal Builder"
-msgstr "Stavitel Signálu"
-
-msgid "Simple Demo"
-msgstr "Jednoduchá Ukázka"
-
-msgid "Simple Thermostat"
-msgstr "Jednoduchý Termostat"
-
-msgid "Simulation problem"
-msgstr "Problém simulace"
-
-msgid "Standard demos"
-msgstr "Standardní ukázky"
-
-msgid "Switched capacitor integrator"
-msgstr "Integrátor přepnutého kondenzátoru"
-
-msgid "Table Lookup"
-msgstr "Vyhledávání Tabulky"
-
-msgid "Temperature Controller"
-msgstr "Ovladač Teploty"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Knihovny Scicos nejsou načteny"
-
-msgid "Transformer"
-msgstr "Transformátor"
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Nelze otevřít %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Nelze simulovat %s"
-
-msgid "Water tank"
-msgstr "Vodní nádrž"
-
-msgid "Xcos"
-msgstr "Xcos"
-
-msgid "Xcos data types"
-msgstr "Datové typy Xcos"
-
-msgid "Zero Crossing"
-msgstr "Průchod Nulou"
-
-msgid "_IF_ Xcos block"
-msgstr "Blok _IF_ Xcos"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -432,7 +86,8 @@ msgstr "Kategorie"
 msgid "Center"
 msgstr "Na střed"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klikněte na graf pro přidání bod propojení nebo kompatibilní cíl pro "
 "dokončení"
@@ -501,7 +156,8 @@ msgstr "Pozadí grafu"
 msgid "Diagram browser"
 msgstr "Prohlížeč grafu"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Graf byl od posledního uložení změněn.<br/> Chcete ho uložit?"
 
 msgid "Diff. States"
@@ -555,12 +211,14 @@ msgstr "Obslužné rutiny událostí"
 msgid "Execution trace and Debug"
 msgstr "Trasování spuštění a Ladění"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explicitní port pro vstup dat musí být připojen k explicitnímu portu pro "
 "výstup dat"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explicitní port pro výstup dat musí být připojen k explicitnímu portu pro "
 "vstup dat"
@@ -660,12 +318,14 @@ msgstr "Cesta k obrázku"
 msgid "Implicit"
 msgstr "Implicitní"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Vstupní port implicitních dat musí být připojen k výstupnímu portu "
 "implicitních dat"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Výstupní port implicitních dat musí být připojen ke vstupnímu portu "
 "implicitních dat"
@@ -1098,6 +758,9 @@ msgstr "Špatný vstupní argument \"%s\": neplatná cesta stromu.\n"
 msgid "Wrong port number"
 msgstr "Špatné číslo portu"
 
+msgid "Xcos"
+msgstr "Xcos"
+
 msgid "Xcos Demos"
 msgstr "Ukázky Xcos"
 
@@ -1172,3 +835,348 @@ msgstr "vybraný"
 
 msgid "weight"
 msgstr "váha"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s není platné jméno, změňte, prosím, název grafu."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Všechny cesty určené proměnnou %s musí existovat.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s: Chyba při aktualizaci parametrů bloku.\n"
+
+#, c-format
+msgid "%s: File '%s' does not exist.\n"
+msgstr "%s: Soubor '%s' neexistuje.\n"
+
+#, c-format
+msgid "%s: File '%s' is not a valid palette file.\n"
+msgstr "%s: Soubor '%s' není platný soubor palety.\n"
+
+#, c-format
+msgid "%s: Found '%s' instead of a block.\n"
+msgstr "%s: Nalezeno '%s' místo bloku.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: Adresář %s nelze vytvořit, zkontrolujte, prosím, jestli máte do této "
+"složky přístup k zápisu.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Nelze exportovat %s do %s.\n"
+
+#, c-format
+msgid "%s: Unable to export 'XX' to %s"
+msgstr "%s: Nelze exportovat 'XX' do %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: Nelze exportovat paletu do hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: Nelze vytvořit obrázek %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr "%s: Nelze vytvořit ikonu palety : %s již existuje.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Nelze importovat data z %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s."
+msgstr "%s: Nelze importovat xcos soubor %s."
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr "%s: Nelze načíst blok z %s: očekáván soubor hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
+msgstr "%s: Nelze načíst blok z %s: nebyla nalezena proměnná 'scs_m'.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr "%s: Špatný vstupní argument %s: očekáván svg, gif, nebo jpg.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr "%s: Špatný typ proměnné %s: Očekáváno pole řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec nebo struktura grafu"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr "%s: Špatný typ argumentu %d: očekávána struktura grafu"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr "%s: Špatný typ argumentu %s: Očekáván typ bloku.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr "%s: Špatný typ argumentu %s: soubor nenalezen.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván typ grafu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty adresáře.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván řetězec úplné cesty.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu %s: očekávána funkce jako řetězec nebo typ Bloku, "
+"či řetězec úplné cesty.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván typ obslužné rutiny.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván typ palety.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván typ palety nebo cesta.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván řetězec nebo struktura.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván typ řetězce.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr "%s: Špatný typ argumentu %s: očekáván vektor řetězce.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu %s: Očekáván platný formát souboru "
+"(png, jpg, gif).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu %s: Očekáván existující soubor.\n"
+
+#, c-format
+msgid ""
+"%s: the block %s is no more available, please update the diagram with a "
+"compatible one."
+msgstr ""
+"%s: blok %s již není dostupný, aktualizujte, prosím, svůj graf pomocí "
+"kompatibilního."
+
+msgid "Automotive Suspension"
+msgstr "Automobilové Zavěšení"
+
+msgid "Ball on a Platform"
+msgstr "Míč na Plošině"
+
+msgid "Basic controller"
+msgstr "Základní ovladač"
+
+msgid "Bouncing Ball"
+msgstr "Skákající Míč"
+
+msgid "Bouncing Balls"
+msgstr "Skákající Míče"
+
+msgid "Bridge Rectifer"
+msgstr "Můstkový Usměrňovač"
+
+msgid "Chaos Modelica"
+msgstr "Chaos Modelica"
+
+msgid "Colpitts oscillator"
+msgstr "Colpittsův oscilátor"
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr "Nepř.Vkládání-Hybridní Pozorovatel"
+
+msgid "Control Systems"
+msgstr "Kontrolní Systémy"
+
+msgid "DC/DC Boost Converter"
+msgstr "Spínaný měnič DC/DC"
+
+msgid "DC/DC Buck Converter"
+msgstr "Snižující Měnič DC/DC"
+
+msgid "Differential amplifier"
+msgstr "Diferenciální zesilovač"
+
+msgid "Discrete Controller"
+msgstr "Diskrétní Ovladač"
+
+msgid "Discrete Kalman Filter"
+msgstr "Diskrétní Kalmanův Filtr"
+
+msgid "Electrical Systems"
+msgstr "Elektrické Systémy"
+
+msgid "Fibonacci Numbers"
+msgstr "Fibonacciho Čísla"
+
+msgid "Goto/From blocks"
+msgstr "Bloky Goto/From"
+
+msgid "Hydraulics blocks"
+msgstr "Hydraulické bloky"
+
+msgid "Inverted Pendulum"
+msgstr "Inverzní Kyvadlo"
+
+msgid "Kalman Filter"
+msgstr "Kalmanův Filtr"
+
+msgid "Logic AND gate"
+msgstr "Logická brána AND"
+
+msgid "Logic NOR gate"
+msgstr "Logická brána NOR"
+
+msgid "Lorentz butterfly"
+msgstr "Lorentzův motýl"
+
+msgid "Mechanical Systems"
+msgstr "Mechanícké systémy"
+
+msgid "Modelica demos"
+msgstr "Ukázky Modelica"
+
+msgid "Old Gain Block"
+msgstr "Starý blok Získání"
+
+msgid "Old demos"
+msgstr "Staré ukázky"
+
+msgid "OpAmp amplifier"
+msgstr "Zesilovač OpAmp"
+
+msgid "RLC Circuit"
+msgstr "Obvod RLC"
+
+msgid "RLC circuit"
+msgstr "Obvod RLC"
+
+msgid "Scilab block"
+msgstr "Blok Scilab"
+
+msgid "Signal Builder"
+msgstr "Stavitel Signálu"
+
+msgid "Simple Demo"
+msgstr "Jednoduchá Ukázka"
+
+msgid "Simple Thermostat"
+msgstr "Jednoduchý Termostat"
+
+msgid "Simulation problem"
+msgstr "Problém simulace"
+
+msgid "Standard demos"
+msgstr "Standardní ukázky"
+
+msgid "Switched capacitor integrator"
+msgstr "Integrátor přepnutého kondenzátoru"
+
+msgid "Table Lookup"
+msgstr "Vyhledávání Tabulky"
+
+msgid "Temperature Controller"
+msgstr "Ovladač Teploty"
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Knihovny Scicos nejsou načteny"
+
+msgid "Transformer"
+msgstr "Transformátor"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Nelze otevřít %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Nelze simulovat %s"
+
+msgid "Water tank"
+msgstr "Vodní nádrž"
+
+msgid "Xcos data types"
+msgstr "Datové typy Xcos"
+
+msgid "Zero Crossing"
+msgstr "Průchod Nulou"
+
+msgid "_IF_ Xcos block"
+msgstr "Blok _IF_ Xcos"

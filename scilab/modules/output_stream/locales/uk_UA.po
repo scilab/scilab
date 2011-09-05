@@ -8,54 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 01:04+0000\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: обробка типу %s неможлива: визначте функцію %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: помилковий формат експорту: %s"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати тип «boolean».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-"«%s», «%s», «%s», «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: показати систему на цій сторінці неможливо.\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -392,7 +352,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не виявлено файла журналу.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося закрити журнал "
 "%d.\n"
@@ -403,7 +364,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося закрити журнал.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося призупинити запис "
 "до журналу %d.\n"
@@ -551,7 +513,8 @@ msgstr "Типом параметра має бути «boolean».\n"
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
-msgstr "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
+msgstr ""
+"На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
 
 msgid "Bad call to a scilab function ?\n"
 msgstr "Помилковий виклик функції Scilab?\n"
@@ -604,7 +567,8 @@ msgid "Elements of %dth argument must be in increasing order.\n"
 msgstr "Елементи параметра %d слід вказувати за зростанням.\n"
 
 msgid "Elements of first argument are not (strictly) increasing.\n"
-msgstr "Елементи першого параметра вказано не у порядку строгого зростання.\n"
+msgstr ""
+"Елементи першого параметра вказано не у порядку строгого зростання.\n"
 
 msgid "Elements of first argument are not in (strictly) decreasing order.\n"
 msgstr "Елементи першого параметра вказано не у порядку строгого спадання.\n"
@@ -765,7 +729,8 @@ msgstr "Порівняння з порожньою матрицею.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Вхідні параметри повинні мати ту саму формальну назву змінної.\n"
 
-msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "Ліва частина команди: слід було вказати крапку або ліву дужку.\n"
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1009,7 +974,8 @@ msgstr ""
 
 #, c-format
 msgid "The top %d x %d block may not be in Schur form.\n"
-msgstr "Верхню частину, %d  x %d блоків, можливо, записано не у формі Шура.\n"
+msgstr ""
+"Верхню частину, %d  x %d блоків, можливо, записано не у формі Шура.\n"
 
 msgid "This data type is already defined.\n"
 msgstr "Цей тип даних вже визначено.\n"
@@ -1051,7 +1017,8 @@ msgstr "Визначено занадто багато функцій (гран�
 
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
-msgstr "Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
+msgstr ""
+"Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
 
 msgid "Too many input/output entries for highlighted block.\n"
 msgstr "Занадто багато вхідних/вихідних записів у позначеному блоці.\n"
@@ -1224,7 +1191,8 @@ msgstr ""
 
 #, c-format
 msgid "Warning: primitive function %s has moved.\n"
-msgstr "Попередження: функцію-примітив %s було пересунуто до іншого модуля.\n"
+msgstr ""
+"Попередження: функцію-примітив %s було пересунуто до іншого модуля.\n"
 
 #, c-format
 msgid "Warning: primitive function %s is now a Scilab function.\n"
@@ -1257,7 +1225,8 @@ msgstr "Помилковий вхідний параметр %d.\n"
 msgid "Wrong number of input arguments."
 msgstr "Помилкова кількість вхідних параметрів."
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
 "параметрів\n"
@@ -1360,7 +1329,8 @@ msgstr "Помилковий тип параметра №%d: слід вико�
 
 #, c-format
 msgid "Wrong type for argument %d: Transfer matrix expected.\n"
-msgstr "Помилковий тип параметра %d: слід використовувати матрицю переходів.\n"
+msgstr ""
+"Помилковий тип параметра %d: слід використовувати матрицю переходів.\n"
 
 msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr ""
@@ -1373,7 +1343,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "Помилковий тип вхідного параметра №%d: слід використовувати поліном.\n"
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати поліном.\n"
 
 #, c-format
 msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
@@ -1483,7 +1454,8 @@ msgid "semi def fails.\n"
 msgstr "помилка часткового визначення.\n"
 
 #, c-format
-msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr "sfact: перевищено відносну точність неповної збіжності: 10**(%s).\n"
 
 msgid "stack size exceeded!\n"
@@ -1502,3 +1474,43 @@ msgstr "Часову область параметра №%d не визначе
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Тут не можна використовувати ключове слово varargout.\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: обробка типу %s неможлива: визначте функцію %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: помилковий формат експорту: %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати тип «boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: показати систему на цій сторінці неможливо.\n"

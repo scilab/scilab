@@ -8,56 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-07 11:58+0000\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: it\n"
-
-msgid "Erlang random variable"
-msgstr "Variabile casuale di Erlang"
-
-msgid "Exponential random variable"
-msgstr "Variabile casuale esponenziale"
-
-msgid "Hyper geometric random variable"
-msgstr "Variabile casuale iper-geometrica"
-
-msgid "Poisson random variable"
-msgstr "Variabile casuale di Poisson"
-
-msgid "Random"
-msgstr "Casuale"
-
-msgid "Simulation"
-msgstr "Simulazione"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Simulazione di una variabile casuale binomiale"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Simulazione di una variabile casuale discreta"
-
-msgid "Theory"
-msgstr "Teoria"
-
-msgid "Weibull random variable"
-msgstr "Variabile casuale di Weibull"
-
-msgid "binomial random variable"
-msgstr "variabile casuale binomiale"
-
-msgid "discrete random variable"
-msgstr "variabile casuale discreta"
-
-msgid "discrete uniform random variable"
-msgstr "variabile casuale uniforme discreta"
-
-msgid "geometric random variable"
-msgstr "variabile casuale geometrica"
 
 msgid ""
 "\n"
@@ -338,8 +296,8 @@ msgid ""
 "%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
 "'%s' expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso \"%s"
-"\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
+"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso "
+"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: Must be > %d.\n"
@@ -348,7 +306,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere tra "
 "%d e %d.\n"
@@ -504,3 +463,45 @@ msgstr "a e b devono essere interi con (b-a+1) <= 2147483561"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr "Variabile casuale di Erlang"
+
+msgid "Exponential random variable"
+msgstr "Variabile casuale esponenziale"
+
+msgid "Hyper geometric random variable"
+msgstr "Variabile casuale iper-geometrica"
+
+msgid "Poisson random variable"
+msgstr "Variabile casuale di Poisson"
+
+msgid "Random"
+msgstr "Casuale"
+
+msgid "Simulation"
+msgstr "Simulazione"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Simulazione di una variabile casuale binomiale"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Simulazione di una variabile casuale discreta"
+
+msgid "Theory"
+msgstr "Teoria"
+
+msgid "Weibull random variable"
+msgstr "Variabile casuale di Weibull"
+
+msgid "binomial random variable"
+msgstr "variabile casuale binomiale"
+
+msgid "discrete random variable"
+msgstr "variabile casuale discreta"
+
+msgid "discrete uniform random variable"
+msgstr "variabile casuale uniforme discreta"
+
+msgid "geometric random variable"
+msgstr "variabile casuale geometrica"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-02-12 16:03+0000\n"
+"PO-Revision-Date: 2011-09-05 04:45+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
 
 #, c-format
@@ -201,3 +201,58 @@ msgstr ""
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати тип «string».\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів. Мало бути від %d до %d "
+"параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути два рядки.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор "
+"або матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
+"бути однаковими.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано масив дійсних "
+"значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s» або "
+"дійсне значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: помилкове значення для вхідного параметра №%d: мало бути вказано дійсні "
+"числа, але виявлено нечислові значення.\n"

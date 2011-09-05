@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-30 05:48+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:18+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,6 +91,10 @@ msgstr "%s: Při načítání '%s-%s' se stala chyba:\n"
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: Je již načtena jiná verze balíčku %s : %s\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -331,7 +335,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid ""
@@ -463,8 +468,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno 'filter:all','filter:"
-"main' nebo platná hlavní kategorie.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno "
+"'filter:all','filter:main' nebo platná hlavní kategorie.\n"
 
 #, c-format
 msgid ""
@@ -529,22 +534,24 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Měl by mít pole jménem '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána písmena 'A' nebo 'I'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Musí být jméno baličku atoms.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván jeden řetězec končící ."
-"tar.gz, .tgz nebo .zip.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván jeden řetězec končící "
+".tar.gz, .tgz nebo .zip.\n"
 
 #, c-format
 msgid ""
@@ -583,19 +590,22 @@ msgid "%s: Wrong value for input argument #%d: This ("
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Toto ("
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze/"
-"závislost.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná "
+"verze/závislost.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno 'error' nebo "
 "'warning'.\n"
@@ -613,6 +623,10 @@ msgstr "%s: Nemáte dostatečná práva k odstranění balíčku %s (%s).\n"
 #, c-format
 msgid "%s: You haven't write access on this directory : %s.\n"
 msgstr "%s: Do tohoto adresáře nemáte přístup k zápisu : %s.\n"
+
+#, c-format
+msgid "%s: gzip not found.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -693,7 +707,8 @@ msgstr "Instalovat"
 msgid "Install Directory"
 msgstr "Instalační adresář"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalace je hotova! Restartujte prosím Scilab, aby se změny mohli projevit."
 
@@ -733,6 +748,13 @@ msgstr ""
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Nejsou dostupné žádné moduly ATOMS: Váš seznam úložiště je prázdný."
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"Možnost offline nastavení ATOMS je nastavena na True. atomsSystemUpdate "
+"nezkontroloval nejnovější aktualizace modulů."
 
 msgid "Package"
 msgstr "Balíček"
@@ -788,18 +810,3 @@ msgstr "Verze"
 
 msgid "WebSite"
 msgstr "Internetová stránka"
-
-msgid ""
-"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
-"not check the latest modules availables."
-msgstr ""
-"Možnost offline nastavení ATOMS je nastavena na True. atomsSystemUpdate "
-"nezkontroloval nejnovější aktualizace modulů."
-
-#, c-format
-msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: gzip not found.\n"
-msgstr ""

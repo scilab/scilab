@@ -8,168 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-30 20:11+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:19+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
-
-msgid "  loading initial environment"
-msgstr "  načítání úvodního prostředí"
-
-msgid " by "
-msgstr " od "
-
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s zavoláno na řádku %s z %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s zavoláno na řádku %s instrukce %s."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s zavoláno na řádku %s makra %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s zavoláno pod %s"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s je neupravitelná napevno zadaná funkce.\n"
-
-#, c-format
-msgid "%s: File doesn't exist: %s"
-msgstr "%s: Soubor neexistuje: %s"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Nebyl zadán žádný příkaz perl."
-
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: Prosím zkontrolujte: %s.\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Vyžaduje editor scilab.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Systémová chyba: Provedený příkaz: %s"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Soubor %s neexistuje.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s. Nelze najít soubor Perl: %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s'"
-msgstr "%s: Nelze najít Perl v '%s'"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Nelze najít Perl.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s: Špatný vstupní argument #%d: Očekávána cesta k souboru skriptu scilab.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván s dvojitou přesností.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávány řetězce.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&Applications"
-msgstr "&Aplikace"
-
-msgid "&Control"
-msgstr "&Ovládání"
-
-msgid "&Edit"
-msgstr "Ú&pravy"
-
-msgid "&File"
-msgstr "&Soubor"
-
-msgid "&Preferences"
-msgstr "&Nastavení"
-
-msgid "&Toolboxes"
-msgstr "&Panely nástrojů"
-
-msgid "Bytes"
-msgstr "Bajty"
-
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Kontrola: %s\n"
-
-msgid "Getting started with Scilab"
-msgstr "Začínáme se Scilabem"
-
-msgid "Introduction"
-msgstr "Úvod"
-
-msgid "Name"
-msgstr "Název"
-
-msgid "Size"
-msgstr "Velikost"
-
-msgid "Startup execution:"
-msgstr "Provedení spuštění:"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "User variables are:"
-msgstr "Proměnné uživatele jsou:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "Používám %s prvků z %s"
 
 #, c-format
 msgid ""
@@ -178,6 +23,9 @@ msgid ""
 msgstr ""
 "\n"
 "Zásobník volání:\n"
+
+msgid "  loading initial environment"
+msgstr "  načítání úvodního prostředí"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
@@ -308,6 +156,10 @@ msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Problémy s rekurzí. Je nám líto ...\n"
 
 #, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Soubor %s neexistuje.\n"
+
+#, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s: Příliš mnoho jmen.\n"
 
@@ -358,6 +210,10 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -511,7 +367,8 @@ msgstr "%s: Špatný typ argumentu %d: Očekáván seznam.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván seznam o velikosti alespoň %d.\n"
+msgstr ""
+"%s: Špatný typ argumentu %d: Očekáván seznam o velikosti alespoň %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
@@ -535,7 +392,8 @@ msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr ""
+"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
@@ -587,7 +445,8 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
@@ -600,7 +459,8 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo skalár.\n"
 
@@ -619,6 +479,10 @@ msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Skalár, '%s' nebo '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Špatný typ vstupního argumentu.\n"
 
@@ -628,7 +492,8 @@ msgstr "%s: Špatný typ vstupních argumentů #%d a #%d: Očekávány řetězce
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů #%d nebo #%d: Očekávány řetězce.\n"
+msgstr ""
+"%s: Špatný typ vstupních argumentů #%d nebo #%d: Očekávány řetězce.\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -653,6 +518,11 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: očekáváno \"%s\".\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
@@ -680,7 +550,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekávána '0' nebo '1'.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána '0' nebo '1'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
@@ -800,6 +671,27 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr "%s: špatný kód %d.\n"
 
+msgid "&?"
+msgstr "&?"
+
+msgid "&Applications"
+msgstr "&Aplikace"
+
+msgid "&Control"
+msgstr "&Ovládání"
+
+msgid "&Edit"
+msgstr "Ú&pravy"
+
+msgid "&File"
+msgstr "&Soubor"
+
+msgid "&Preferences"
+msgstr "&Nastavení"
+
+msgid "&Toolboxes"
+msgstr "&Panely nástrojů"
+
 msgid "A non square matrix!\n"
 msgstr "Nečtvercová matice!\n"
 
@@ -914,7 +806,8 @@ msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr "Závažná Chyba: Nelze vytvořit tabulku pro funkce scilab.\n"
 
 msgid "Functions compiled with very old versions are no more handled."
-msgstr "Funkce zkompilované pomocí velmi starých verzí již nejsou obsluhovány."
+msgstr ""
+"Funkce zkompilované pomocí velmi starých verzí již nejsou obsluhovány."
 
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
@@ -998,6 +891,9 @@ msgid ""
 msgstr ""
 "Verze Scilab \"%d.%d.%d.%d\"\n"
 "%s\n"
+
+msgid "Startup execution:"
+msgstr "Provedení spuštění:"
 
 msgid "TMPDIR not defined.\n"
 msgstr "TMPDIR není určeno.\n"
@@ -1106,6 +1002,114 @@ msgstr "třetí"
 msgid "tlist not completely filled.\n"
 msgstr "tlist není zcela zaplněn.\n"
 
+msgid " by "
+msgstr " od "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s zavoláno na řádku %s z %s"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s zavoláno na řádku %s instrukce %s."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s zavoláno na řádku %s makra %s"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s zavoláno pod %s"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s je neupravitelná napevno zadaná funkce.\n"
+
+#, c-format
+msgid "%s: File doesn't exist: %s"
+msgstr "%s: Soubor neexistuje: %s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: Nebyl zadán žádný příkaz perl."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: Prosím zkontrolujte: %s.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: Vyžaduje editor scilab.\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: Systémová chyba: Provedený příkaz: %s"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s. Nelze najít soubor Perl: %s"
+
 #, c-format
 msgid "%s: Unable to find Perl in '%s"
 msgstr ""
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: Nelze najít Perl.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: Špatný vstupní argument #%d: Očekávána cesta k souboru skriptu scilab.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván s dvojitou přesností.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávány řetězce.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
+
+msgid "Bytes"
+msgstr "Bajty"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "Kontrola: %s\n"
+
+msgid "Getting started with Scilab"
+msgstr "Začínáme se Scilabem"
+
+msgid "Introduction"
+msgstr "Úvod"
+
+msgid "Name"
+msgstr "Název"
+
+msgid "Size"
+msgstr "Velikost"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "User variables are:"
+msgstr "Proměnné uživatele jsou:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "Používám %s prvků z %s"

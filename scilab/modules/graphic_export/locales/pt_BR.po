@@ -8,14 +8,70 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:38+0000\n"
+"PO-Revision-Date: 2011-09-01 09:34+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador gráfico.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um texto "
+"de um único caractere.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real entre 0 e 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um inteiro "
+"ou um manipulador.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
+"'%s'.\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "O módulo de Exportação de gráfico do Scilab não está instalado.\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "O módulo gráfico do Scilab desabilitou o modo -nogui ou o -nwni.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -79,12 +135,6 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
-"'%s'.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
@@ -100,53 +150,3 @@ msgstr ""
 
 msgid "error"
 msgstr ""
-
-#, c-format
-msgid "%s: %s\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"manipulador gráfico.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um texto "
-"de um único caractere.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"real entre 0 e 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um inteiro "
-"ou um manipulador.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
-"texto.\n"
-
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "O módulo de Exportação de gráfico do Scilab não está instalado.\n"
-
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "O módulo gráfico do Scilab desabilitou o modo -nogui ou o -nwni.\n"

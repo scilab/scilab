@@ -8,14 +8,122 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-31 12:43+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:52+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: fr\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+"\n"
+"    primal obj. dual obj. saut dual. \n"
+
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr ""
+"%s : Précision insuffisante pour satisfaire le critère de convergence.\n"
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s : Argument 3 : Nombre erroné de colonnes %d attendu\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s : Impossible d'allouer plus de mémoire.\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s : La longueur de la table de travail est trop courte.\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s : Q n'est pas symétrique définie positive.\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s : Les contraintes sont inconsistantes.\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s : Le problème de minimisation n'a pas de solution.\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s : Trop d'itérations (plus de %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+"%s : Dimension erroné de l'argument d'entrée n°%d : Nombre de colonnes %d "
+"attendu.\n"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "Erreur dans dgels, info = %d.\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "Erreur dans dspev, info = %d.\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "Erreur dans dspgv, info = %d.\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "Erreur dans dspst, info = %d.\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "Erreurr dans dtrcon, info = %d.\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z a une valeur propre négative.\n"
+
+msgid "L must be at least one.\n"
+msgstr "L doit valoir au moins un.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "Les matrices Fi, i=1,...,m sont linéairement dépendantes.\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+"Les matrices F_i, i=1,...,m sont linéairement dépendantes (ou alors la "
+"solution initiale est très mal conditionnée).\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr ""
+"L'espace de travail est trop petit. Nécessite au moins %d*sizeof(double).\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+"Z0 ne satisfait pas les conditions d'égalité pour la réalisation duale.\n"
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 n'est pas définie positive.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d] doit valoir au moins un.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m doit valoir au moins un.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu doit valoir au moins 1.0.\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 n'est pas strictement réalisable pour le problème primal.\n"
 
 #, c-format
 msgid "%s:       OPTIMIZATION PHASE."
@@ -58,7 +166,8 @@ msgid "%s: Empty function (use -function option)."
 msgstr "%s : Fonction non définitie (utiliser l'option -function)."
 
 #, c-format
-msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s : Booléen attendu mais pour la variable %s en argument d'entrée n°%d, %s "
 "obtenu à la place."
@@ -72,7 +181,8 @@ msgstr ""
 "l'entrée n°%d, mais l'entrée n°%d est égale à %s."
 
 #, c-format
-msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s : Fonction attendue mais pour la variable %s à l'entrée n°%d, %s obtenu à "
 "la place."
@@ -279,7 +389,8 @@ msgstr ""
 "variable les ignore."
 
 #, c-format
-msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid ""
+"%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s : Le problème n'a pas de contraintes, mais l'algorithme de Box est conçu "
 "pour elles."
@@ -289,7 +400,8 @@ msgid "%s: Q must be orthogonal.\n"
 msgstr "%s : Q doit être orthogonal.\n"
 
 #, c-format
-msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s : Le calcul du simplexe initial fondé sur un tirage aléatoire des "
 "contraintes de bornes n'est pas possible s'il n'y a pas de bornes."
@@ -352,7 +464,8 @@ msgstr ""
 "%s : La matrice %s en sortie de costf(x0,%d) a %d lignes, au lieu de %d."
 
 #, c-format
-msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 "%s : La borne maximale %s pour la variable n°%d est inférieure à la borne "
 "minimale %s.\n"
@@ -379,7 +492,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: The number of rows in x is %d, while expected %d."
-msgstr "%s : Le nombre de lignes de x est %d, alors que %d étaient attendues."
+msgstr ""
+"%s : Le nombre de lignes de x est %d, alors que %d étaient attendues."
 
 #, c-format
 msgid "%s: The number of variable is zero."
@@ -644,7 +758,8 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une fonction attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une table de dimension N "
 "attendue.\n"
@@ -683,7 +798,8 @@ msgstr ""
 "entier à virgule flottante."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : maxiter doit être "
 "supérieur à 1."
@@ -711,7 +827,8 @@ msgstr ""
 "contraintes d'inégalité."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid ""
+"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : x0 est plus grand que la "
 "borne supérieure ub."
@@ -909,8 +1026,10 @@ msgstr "Illustre le 1er contre exemple donné par Han et al.\n"
 msgid "Illustrates the 2nd counter example given by Han et al.\n"
 msgstr "Illustre le 2ème contre exemple donné par Han et al.\n"
 
-msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
-msgstr "Illustre la sensibilité à la dimension de l'algorithme Nelder-Mead.\n"
+msgid ""
+"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr ""
+"Illustre la sensibilité à la dimension de l'algorithme Nelder-Mead.\n"
 
 msgid "Initialization\n"
 msgstr "Initialisation\n"
@@ -1106,110 +1225,3 @@ msgstr "x0 = %s\n"
 #, c-format
 msgid "x0=%s\n"
 msgstr "x0=%s\n"
-
-msgid ""
-"\n"
-"    primal obj.  dual obj.  dual. gap \n"
-msgstr ""
-"\n"
-"    primal obj. dual obj. saut dual. \n"
-
-#, c-format
-msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
-msgstr ""
-"%s : Précision insuffisante pour satisfaire le critère de convergence.\n"
-
-#, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s : Argument 3 : Nombre erroné de colonnes %d attendu\n"
-
-#, c-format
-msgid "%s: Cannot allocate more memory.\n"
-msgstr "%s : Impossible d'allouer plus de mémoire.\n"
-
-#, c-format
-msgid "%s: Length of working array is too short.\n"
-msgstr "%s : La longueur de la table de travail est trop courte.\n"
-
-#, c-format
-msgid "%s: Q is not symmetric positive definite.\n"
-msgstr "%s : Q n'est pas symétrique définie positive.\n"
-
-#, c-format
-msgid "%s: The constraints are inconsistent.\n"
-msgstr "%s : Les contraintes sont inconsistantes.\n"
-
-#, c-format
-msgid "%s: The minimization problem has no solution.\n"
-msgstr "%s : Le problème de minimisation n'a pas de solution.\n"
-
-#, c-format
-msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s : Trop d'itérations (plus de %d).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
-msgstr ""
-"%s : Dimension erroné de l'argument d'entrée n°%d : Nombre de colonnes %d "
-"attendu.\n"
-
-#, c-format
-msgid "Error in dgels, info = %d.\n"
-msgstr "Erreur dans dgels, info = %d.\n"
-
-#, c-format
-msgid "Error in dspev, info = %d.\n"
-msgstr "Erreur dans dspev, info = %d.\n"
-
-#, c-format
-msgid "Error in dspgv, info = %d.\n"
-msgstr "Erreur dans dspgv, info = %d.\n"
-
-#, c-format
-msgid "Error in dspst, info = %d.\n"
-msgstr "Erreur dans dspst, info = %d.\n"
-
-#, c-format
-msgid "Error in dtrcon, info = %d.\n"
-msgstr "Erreurr dans dtrcon, info = %d.\n"
-
-msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr "F(x)*Z a une valeur propre négative.\n"
-
-msgid "L must be at least one.\n"
-msgstr "L doit valoir au moins un.\n"
-
-msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr "Les matrices Fi, i=1,...,m sont linéairement dépendantes.\n"
-
-msgid ""
-"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
-"are very badly conditioned).\n"
-msgstr ""
-"Les matrices F_i, i=1,...,m sont linéairement dépendantes (ou alors la "
-"solution initiale est très mal conditionnée).\n"
-
-#, c-format
-msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
-msgstr ""
-"L'espace de travail est trop petit. Nécessite au moins %d*sizeof(double).\n"
-
-msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
-msgstr ""
-"Z0 ne satisfait pas les conditions d'égalité pour la réalisation duale.\n"
-
-msgid "Z0 is not positive definite.\n"
-msgstr "Z0 n'est pas définie positive.\n"
-
-#, c-format
-msgid "blck_szs[%d] must be at least one.\n"
-msgstr "blck_szs[%d] doit valoir au moins un.\n"
-
-msgid "m must be at least one.\n"
-msgstr "m doit valoir au moins un.\n"
-
-msgid "nu must be at least 1.0.\n"
-msgstr "nu doit valoir au moins 1.0.\n"
-
-msgid "x0 is not strictly primal feasible.\n"
-msgstr "x0 n'est pas strictement réalisable pour le problème primal.\n"

@@ -9,279 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-31 04:28+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:29+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
-
-#, c-format
-msgid "%s: Error during block parameters evaluation.\n"
-msgstr "%s: помилка під час визначення параметрів блоку.\n"
-
-#, c-format
-msgid "%s: Error during block parameters update.\n"
-msgstr "%s: помилка під час оновлення параметрів блоку.\n"
-
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: помилка: блок scifunc не було визначено."
-
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: помилкова нумерації портів вхідних даних.\n"
-
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: помилкова нумерації портів вихідних даних.\n"
-
-#, c-format
-msgid "%s: Type %s is not implemented.\n"
-msgstr "%s: тип %s не реалізовано.\n"
-
-#, c-format
-msgid "%s: Unable to find diagram inputs\n"
-msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
-
-#, c-format
-msgid "%s: Unable to find diagram outputs\n"
-msgstr "%s: не вдалося знайти вихідні дані діаграми\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
-"даних %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано діаграму.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-"значень типу «string».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
-
-#, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s: помилковий тип «%s», отримано %s"
-
-#, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s: некоректна розмірність «%s», мало бути %s"
-
-msgid ""
-"<em>Please update the diagram to avoid this warning.</em><br />Block input "
-"port has a non-determined size:"
-msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
-">Розмірність вхідного порту блоку не визначено:"
-
-msgid ""
-"<em>Please update the diagram to avoid this warning.</em><br />Block input "
-"port has a non-determined type:"
-msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
-"вхідного порту блоку не визначено:"
-
-msgid ""
-"<em>Please update the diagram to avoid this warning.</em><br />Block output "
-"port has a non-determined size:"
-msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
-">Розмірність вихідного порту блоку не визначено:"
-
-msgid ""
-"<em>Please update the diagram to avoid this warning.</em><br />Block output "
-"port has a non-determined type:"
-msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
-"вихідного порту блоку не визначено:"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" has incorrect type %s.\n"
-msgstr ""
-"Відповідь, дана на %s, \n"
-" належить до помилкового типу %s.\n"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" has invalid dimension: \n"
-" waiting for dimension %s.\n"
-msgstr ""
-"Відповідь, дана на %s, \n"
-" має некоректну розмірність: \n"
-" слід було використовувати розмірність %s.\n"
-
-#, c-format
-msgid ""
-"Answer given for %s \n"
-" is incorrect: %s.\n"
-msgstr ""
-"Відповідь, вказана для %s \n"
-" є помилковою: %s.\n"
-
-msgid "Block has connected input port<br />with incompatible size:"
-msgstr "Блок з’єднано з вхідним портом<br />з несумісною розмірністю:"
-
-msgid "Block has connected input port<br />with incompatible type:"
-msgstr "Блок з’єднано з вхідним портом<br />з несумісним типом:"
-
-msgid "Block has connected output port<br />with incompatible size:"
-msgstr "Блок з’єднано з вихідним портом<br />з несумісною розмірністю:"
-
-msgid "Block has connected output port<br />with incompatible type."
-msgstr "Блок з’єднано з вихідним портом<br />з несумісним типом."
-
-msgid "Block input has negative size:"
-msgstr "Розмірність вхідних даних блоку від’ємна:"
-
-msgid "Can't convert old diagram (problem in version)"
-msgstr "Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
-
-msgid ""
-"Diagram has been compiled for explicit solver\n"
-"switching to explicit solver.\n"
-msgstr ""
-"Діаграму було зібрано для явного інструмента розв’язування.\n"
-"Перемикаємося на явний інструмент розв’язування.\n"
-
-msgid ""
-"Diagram has been compiled for implicit solver\n"
-"switching to implicit solver.\n"
-msgstr ""
-"Діаграму було зібрано для неявного інструмента розв’язування.\n"
-"Перемикаємося на неявний інструмент розв’язування.\n"
-
-msgid "End problem: "
-msgstr "Проблема завершення: "
-
-msgid "Initialisation problem:"
-msgstr "Проблема ініціалізації:"
-
-#, c-format
-msgid "Input port %s size is: %s"
-msgstr "Розмірність вхідного порту %s: %s"
-
-#, c-format
-msgid "Input port %s type is: %s"
-msgstr "Тип вхідного порту %s: %s"
-
-#, c-format
-msgid "Input port %s type."
-msgstr "Тип вхідного порту %s."
-
-msgid "One of this block output has negative size.<br />Please check."
-msgstr ""
-"Розмірність одного з вихідних портів цього блоку від’ємна.<br />Виправте "
-"помилку."
-
-#, c-format
-msgid "Output port %s size is: %s"
-msgstr "Розмірність вихідного порту %s: %s"
-
-#, c-format
-msgid "Output port %s type is: %s"
-msgstr "Тип вихідного порту %s: %s"
-
-#, c-format
-msgid "Output port %s type."
-msgstr "Тип вихідного порту %s."
-
-msgid "Please compile the diagram to report the error."
-msgstr "Будь ласка, зберіть діаграму, щоб повідомити про помилку."
-
-msgid "Problem with the block generated from modelica blocks."
-msgstr "Проблема з блоком, створеним на основі блоків Modelica."
-
-#, c-format
-msgid "Scilab Graphics of %s"
-msgstr "Графічні дані Scilab %s"
-
-msgid "Simulation parameters not set:"
-msgstr "Не встановлено параметри імітації:"
-
-msgid "Simulation problem: "
-msgstr "Проблема імітації: "
-
-msgid "Sorry file name not defined in "
-msgstr "Вибачте, назву файла не визначено у "
-
-msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
-
-#, c-format
-msgid "The variable name %s cannot be used as block parameter: ignored"
-msgstr ""
-"Змінну з назвою %s не можна використовувати як параметр блоку: змінну "
-"проігноровано"
-
-msgid "Type not recognized"
-msgstr "Тип не розпізнано"
-
-msgid "Unable to report an error into a SuperBlock"
-msgstr "Неможливо повідомити про помилку у суперблоці"
-
-#, c-format
-msgid ""
-"Warning the variable %s do not match any context variable name\n"
-"ignored"
-msgstr ""
-"Попередження: змінна %s не відповідає назві жодної з контекстних змінних\n"
-"Змінну проігноровано"
-
-msgid "Xcos block parameter error"
-msgstr "Помилка параметра блоку Xcos"
-
-msgid "scs_show active..."
-msgstr "задіяно scs_show…"
 
 msgid ""
 "\n"
@@ -497,7 +232,8 @@ msgstr "%s: другим елементом sim має бути список.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have a maximum of seven elements.\n"
-msgstr "%s: шостий параметр має складатися не більше, ніж з семи елементів.\n"
+msgstr ""
+"%s: шостий параметр має складатися не більше, ніж з семи елементів.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have at least four elements.\n"
@@ -584,7 +320,8 @@ msgstr ""
 "точності (double) ще не реалізовано.\n"
 
 #, c-format
-msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid ""
+"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s: помилка. Підтримку типу %d у outtb числової матриці з цілих значень "
 "(int) ще не реалізовано.\n"
@@ -651,7 +388,8 @@ msgstr "%s: помилка %d. Помилкове значення int sub_type 
 
 #, c-format
 msgid "%s: error %d. No more space on the stack for new data.\n"
-msgstr "%s: помилка %d. У стеку більше не залишилося місця для нових даних.\n"
+msgstr ""
+"%s: помилка %d. У стеку більше не залишилося місця для нових даних.\n"
 
 #, c-format
 msgid "%s: error %d. Only int or double object are accepted.\n"
@@ -671,7 +409,8 @@ msgid "%s: scicosim is not running.\n"
 msgstr "%s: scicosim не запущено.\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr "**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
+msgstr ""
+"**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
 
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr "**** SUNDIALS.IDA успішно ініціалізовано *****\n"
@@ -1197,7 +936,8 @@ msgstr ""
 "некритичної помилки."
 
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr "IDA_RES_NULL: повернуте значення нев’язки, res = NULL, є некоректним."
+msgstr ""
+"IDA_RES_NULL: повернуте значення нев’язки, res = NULL, є некоректним."
 
 msgid "IDA_RTFUNC_FAIL: The root founding function failed."
 msgstr "IDA_RTFUNC_FAIL: функції пошуку коренів не вдалося знайти кореня."
@@ -1275,9 +1015,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-"
-"difference  approximation of the matrix-vector product  J(u)*v is "
-"inaccurate, or the real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-difference "
+" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
+"real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV: за допомогою алгоритму лінійного пошуку не вдалося "
 "знайти ітерацію, яка б суттєво відрізнялася від поточної помилкової і "
@@ -1492,3 +1232,270 @@ msgstr "невідомий або помилковий блок"
 #, c-format
 msgid "with flag %d "
 msgstr "з прапорцем %d "
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
+
+#, c-format
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: помилка під час визначення параметрів блоку.\n"
+
+#, c-format
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s: помилка під час оновлення параметрів блоку.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: помилка: блок scifunc не було визначено."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вхідних даних.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вихідних даних.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: тип %s не реалізовано.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr "%s: не вдалося знайти вихідні дані діаграми\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
+"даних %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано діаграму.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr "%s: помилковий тип «%s», отримано %s"
+
+#, c-format
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr "%s: некоректна розмірність «%s», мало бути %s"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вхідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
+"вхідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вихідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
+"вихідного порту блоку не визначено:"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" належить до помилкового типу %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" має некоректну розмірність: \n"
+" слід було використовувати розмірність %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"Відповідь, вказана для %s \n"
+" є помилковою: %s.\n"
+
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr "Блок з’єднано з вхідним портом<br />з несумісною розмірністю:"
+
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr "Блок з’єднано з вхідним портом<br />з несумісним типом:"
+
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr "Блок з’єднано з вихідним портом<br />з несумісною розмірністю:"
+
+msgid "Block has connected output port<br />with incompatible type."
+msgstr "Блок з’єднано з вихідним портом<br />з несумісним типом."
+
+msgid "Block input has negative size:"
+msgstr "Розмірність вхідних даних блоку від’ємна:"
+
+msgid "Can't convert old diagram (problem in version)"
+msgstr ""
+"Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+"Діаграму було зібрано для явного інструмента розв’язування.\n"
+"Перемикаємося на явний інструмент розв’язування.\n"
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+"Діаграму було зібрано для неявного інструмента розв’язування.\n"
+"Перемикаємося на неявний інструмент розв’язування.\n"
+
+msgid "End problem: "
+msgstr "Проблема завершення: "
+
+msgid "Initialisation problem:"
+msgstr "Проблема ініціалізації:"
+
+#, c-format
+msgid "Input port %s size is: %s"
+msgstr "Розмірність вхідного порту %s: %s"
+
+#, c-format
+msgid "Input port %s type is: %s"
+msgstr "Тип вхідного порту %s: %s"
+
+#, c-format
+msgid "Input port %s type."
+msgstr "Тип вхідного порту %s."
+
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
+"Розмірність одного з вихідних портів цього блоку від’ємна.<br />Виправте "
+"помилку."
+
+#, c-format
+msgid "Output port %s size is: %s"
+msgstr "Розмірність вихідного порту %s: %s"
+
+#, c-format
+msgid "Output port %s type is: %s"
+msgstr "Тип вихідного порту %s: %s"
+
+#, c-format
+msgid "Output port %s type."
+msgstr "Тип вихідного порту %s."
+
+msgid "Please compile the diagram to report the error."
+msgstr "Будь ласка, зберіть діаграму, щоб повідомити про помилку."
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr "Проблема з блоком, створеним на основі блоків Modelica."
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "Графічні дані Scilab %s"
+
+msgid "Simulation parameters not set:"
+msgstr "Не встановлено параметри імітації:"
+
+msgid "Simulation problem: "
+msgstr "Проблема імітації: "
+
+msgid "Sorry file name not defined in "
+msgstr "Вибачте, назву файла не визначено у "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+"Змінну з назвою %s не можна використовувати як параметр блоку: змінну "
+"проігноровано"
+
+msgid "Type not recognized"
+msgstr "Тип не розпізнано"
+
+msgid "Unable to report an error into a SuperBlock"
+msgstr "Неможливо повідомити про помилку у суперблоці"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+"Попередження: змінна %s не відповідає назві жодної з контекстних змінних\n"
+"Змінну проігноровано"
+
+msgid "Xcos block parameter error"
+msgstr "Помилка параметра блоку Xcos"
+
+msgid "scs_show active..."
+msgstr "задіяно scs_show…"

@@ -8,14 +8,150 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-06-01 02:22+0000\n"
+"PO-Revision-Date: 2011-09-01 09:41+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: \n"
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        在列%d中存在非正基准点（pivot）\n"
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    CC^T 因式分解：矩阵式非正定的。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s：发生一个错误：%s。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s：发生了一个错误：%s：%s\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s：内存不足（n=%d，nnz=%d）。\n"
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s：输入参数#%d的大小错误：%s。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr "%s：输入参数#%d的值错误：不是一个正确的Cholesky因子参考（reference）"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr "%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
+
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s：内存不足。\n"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "GENMMD排序只对对称矩阵有效。\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "矩阵跟给定的LU系数不兼容。"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Scilab UMFPACK 模块没有安装。\n"
+
+msgid "The (square) matrix appears to be singular."
+msgstr "矩阵（方阵）看上去可能是奇异的。"
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "这个矩阵的低部分必须被描绘。\n"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "这是一个奇异阵的因式分解"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "这不是一个方阵的因式分解"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "factorization"
+msgstr "因式分解"
+
+msgid "internal error"
+msgstr "内部错误"
+
+msgid "invalid matrix"
+msgstr "不正确的矩阵"
+
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "在ListNumeric中没有空间来存储LU pointer"
+
+msgid "not enough memory"
+msgstr "内存不足"
+
+msgid "numeric factorization"
+msgstr "数字因式分解"
+
+msgid "singular matrix"
+msgstr "奇异矩阵"
+
+msgid "symbolic factorization"
+msgstr "对称因式分解"
 
 msgid ""
 "\n"
@@ -107,11 +243,13 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为稀疏方阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为稀疏方阵。\n"
 
 #, c-format
@@ -140,141 +278,3 @@ msgstr "如何使用此内容"
 
 msgid "small tests for condestsp"
 msgstr "condestsp的小测试"
-
-#, c-format
-msgid "                        nonpositive pivot in column %d\n"
-msgstr "                        在列%d中存在非正基准点（pivot）\n"
-
-msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr "    CC^T 因式分解：矩阵式非正定的。\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s：出现错误：%s\n"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s：发生一个错误：%s。\n"
-
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s：发生了一个错误：%s：%s\n"
-
-#, c-format
-msgid "%s: No more memory (n=%d, nnz=%d).\n"
-msgstr "%s：内存不足（n=%d，nnz=%d）。\n"
-
-#, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s：输入参数#%d的大小错误：%s。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
-msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
-"LU factors.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
-msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
-"matrix."
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors"
-msgstr "%s：输入参数#%d的值错误：不是一个正确的Cholesky因子参考（reference）"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
-
-#, c-format
-msgid "%s: not enough memory.\n"
-msgstr "%s：内存不足。\n"
-
-msgid "GENMMD ordering only works on symmetric matrices.\n"
-msgstr "GENMMD排序只对对称矩阵有效。\n"
-
-msgid "Matrix is not compatible with the given LU factors"
-msgstr "矩阵跟给定的LU系数不兼容。"
-
-msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Scilab UMFPACK 模块没有安装。\n"
-
-msgid "The (square) matrix appears to be singular."
-msgstr "矩阵（方阵）看上去可能是奇异的。"
-
-msgid "The lower part of the matrix must be represented.\n"
-msgstr "这个矩阵的低部分必须被描绘。\n"
-
-msgid "This is a factorisation of a singular matrix"
-msgstr "这是一个奇异阵的因式分解"
-
-msgid "This is not a factorisation of a square matrix"
-msgstr "这不是一个方阵的因式分解"
-
-msgid "Warning"
-msgstr "警告"
-
-msgid "factorization"
-msgstr "因式分解"
-
-msgid "internal error"
-msgstr "内部错误"
-
-msgid "invalid matrix"
-msgstr "不正确的矩阵"
-
-msgid "no place to store the LU pointer in ListNumeric."
-msgstr "在ListNumeric中没有空间来存储LU pointer"
-
-msgid "not enough memory"
-msgstr "内存不足"
-
-msgid "numeric factorization"
-msgstr "数字因式分解"
-
-msgid "singular matrix"
-msgstr "奇异矩阵"
-
-msgid "symbolic factorization"
-msgstr "对称因式分解"

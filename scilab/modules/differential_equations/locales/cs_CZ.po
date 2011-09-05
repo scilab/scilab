@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-30 20:12+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:18+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,8 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -55,7 +56,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: syntaktická chyba v zadaném "
 "výrazu\n"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iterovaná funkce (není použit žádný jacobiho (pouze \"adamův\" nebo "
 "\"stiffův))"
@@ -202,17 +204,3 @@ msgstr "simulace kulového kyvadla"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "tak, aby sloupec 1 z J byl tvořen z nul mu následovanými"
-
-#~ msgid ""
-#~ "0 : functional iterations (no jacobian used (''adams'' or ''stiff'' only))"
-#~ msgstr ""
-#~ "0 : iterace funkcí (není použit jacobiho (pouze \"adams\" nebo \"stiff\"))"
-
-#~ msgid ""
-#~ "3 : internally generated diagonal jacobian (''adams'' or ''stiff'' only)"
-#~ msgstr ""
-#~ "3 : vnitřně vytvořený úhlopříčný jacobiho (pouze ''adams'' nebo ''stiff'')"
-
-#~ msgid ""
-#~ "of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1"
-#~ msgstr "ze svázáého jacobiho: pás je i,j s i-ml <= j <= ny-1"

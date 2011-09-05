@@ -8,14 +8,31 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-01 02:01+0000\n"
+"PO-Revision-Date: 2011-09-01 09:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: es\n"
+
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: No hay convergencia en los pasos QR.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s:Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"Real o Compleja.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -105,20 +122,3 @@ msgid ""
 msgstr ""
 "%s: Valores incorrectos del argumentos de entrada #%d: Se esperaban "
 "escalares no-negativos.\n"
-
-#, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s: No hay convergencia en los pasos QR.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s:Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
-"real.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
-"Real o Compleja.\n"

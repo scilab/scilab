@@ -9,56 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-06-03 06:29+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:52+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
-
-msgid "Erlang random variable"
-msgstr "Випадкова величина з розподілом Ерланга"
-
-msgid "Exponential random variable"
-msgstr "Експоненційно розподілена випадкова величина"
-
-msgid "Hyper geometric random variable"
-msgstr "Випадкова величина з гіпергеометричним розподілом"
-
-msgid "Poisson random variable"
-msgstr "випадкова величина з розподілом Пуассона"
-
-msgid "Random"
-msgstr "Випадкові величини"
-
-msgid "Simulation"
-msgstr "Моделювання"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Моделювання біноміально розподіленої випадкової величини"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Моделювання дискретної випадкової величини"
-
-msgid "Theory"
-msgstr "Теорія"
-
-msgid "Weibull random variable"
-msgstr "Випадкова величина з розподілом Вейбулла"
-
-msgid "binomial random variable"
-msgstr "біноміально розподілена випадкова величина"
-
-msgid "discrete random variable"
-msgstr "дискретна випадкова величина"
-
-msgid "discrete uniform random variable"
-msgstr "рівномірно розподілена дискретна випадкова величина"
-
-msgid "geometric random variable"
-msgstr "геометрично розподілена випадкова величина"
 
 msgid ""
 "\n"
@@ -138,8 +96,8 @@ msgid ""
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
 msgstr ""
 "\n"
-"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
-"2^32-1]\n"
+"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, 2^32-"
+"1]\n"
 
 #, c-format
 msgid "%s Wrong value for first input argument %s.\n"
@@ -355,7 +313,8 @@ msgstr ""
 "значення > %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: помилкове значення другого вхідного параметра: слід використовувати "
 "значення між %d та %d.\n"
@@ -410,7 +369,8 @@ msgid "Missing Av for exponential law\n"
 msgstr "Не вказано Av для експоненційного закону розподілу\n"
 
 msgid "Missing Df and Xnonc for non-central chi-square law\n"
-msgstr "Не вказано Df і Xnonc для нецентрального закону хі-квадрат розподілу\n"
+msgstr ""
+"Не вказано Df і Xnonc для нецентрального закону хі-квадрат розподілу\n"
 
 msgid "Missing Df for chi-square law\n"
 msgstr "Не вказано Df для закону хі-квадрат розподілу\n"
@@ -522,3 +482,45 @@ msgstr "a і b мають бути цілими числами, такими, щ
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr "Випадкова величина з розподілом Ерланга"
+
+msgid "Exponential random variable"
+msgstr "Експоненційно розподілена випадкова величина"
+
+msgid "Hyper geometric random variable"
+msgstr "Випадкова величина з гіпергеометричним розподілом"
+
+msgid "Poisson random variable"
+msgstr "випадкова величина з розподілом Пуассона"
+
+msgid "Random"
+msgstr "Випадкові величини"
+
+msgid "Simulation"
+msgstr "Моделювання"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Моделювання біноміально розподіленої випадкової величини"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Моделювання дискретної випадкової величини"
+
+msgid "Theory"
+msgstr "Теорія"
+
+msgid "Weibull random variable"
+msgstr "Випадкова величина з розподілом Вейбулла"
+
+msgid "binomial random variable"
+msgstr "біноміально розподілена випадкова величина"
+
+msgid "discrete random variable"
+msgstr "дискретна випадкова величина"
+
+msgid "discrete uniform random variable"
+msgstr "рівномірно розподілена дискретна випадкова величина"
+
+msgid "geometric random variable"
+msgstr "геометрично розподілена випадкова величина"

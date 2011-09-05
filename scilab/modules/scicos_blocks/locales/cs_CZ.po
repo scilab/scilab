@@ -8,13 +8,136 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-22 06:13+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 15:16+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 13830)\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr ""
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr ""
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr ""
+
+msgid "Could not open the file!\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr ""
+
+msgid "Incorrect value for dimension argument."
+msgstr ""
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr ""
+
+msgid "Invalid variable type.\n"
+msgstr ""
+
+msgid "Output should be of Real type.\n"
+msgstr ""
+
+msgid "Output should be of complex type.\n"
+msgstr ""
+
+msgid "Output should be of int16 type.\n"
+msgstr ""
+
+msgid "Output should be of int32 type.\n"
+msgstr ""
+
+msgid "Output should be of int8 type.\n"
+msgstr ""
+
+msgid "Output should be of uint16 type.\n"
+msgstr ""
+
+msgid "Output should be of uint32 type.\n"
+msgstr ""
+
+msgid "Output should be of uint8 type.\n"
+msgstr ""
+
+msgid "Read error\n"
+msgstr ""
+
+msgid "Read error!\n"
+msgstr ""
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr ""
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr ""
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr ""
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr ""
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr ""
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr ""
+
+msgid "This scope has the same window id than another."
+msgstr ""
+
+msgid "Trigger block must have discrete time input."
+msgstr ""
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr ""
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr ""
+
+msgid "overflow error"
+msgstr ""
 
 msgid "&?"
 msgstr "&?"
@@ -84,8 +207,7 @@ msgstr "&nbsp;- Kladné hodnoty jsou považovány za int8(1)"
 #, c-format
 msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
 msgstr ""
-"'Počáteční Hodnota' a 'Konečná Hodnota': nekompatibilní velikosti: %d a "
-"%d."
+"'Počáteční Hodnota' a 'Konečná Hodnota': nekompatibilní velikosti: %d a %d."
 
 msgid "'Minimum' must be less than 'Maximum'."
 msgstr "'Minimum' musí být menší než 'Maximum'."

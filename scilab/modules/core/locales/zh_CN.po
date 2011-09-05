@@ -8,171 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 22:57+0000\n"
+"PO-Revision-Date: 2011-09-01 09:27+0000\n"
 "Last-Translator: ilinux <bnufl66@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: zh_CN\n"
-
-msgid "  loading initial environment"
-msgstr "  正在载入初始环境"
-
-msgid " by "
-msgstr ""
-
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s 在 %s 中的第 %s 行被调用"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s 在介绍 %s 中的第 %s 行被调用。"
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s 在宏 %s 中的第 %s 行被调用"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s 在 %s 下被调用"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s：%s 是一个不可编辑的 hard coded 函数。\n"
-
-#, c-format
-msgid "%s: File doesn't exist: %s"
-msgstr "%s：文件不存在：%s"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s：没有指定 perl 命令。"
-
-#, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s：请检查 %s。\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s：需要 scilab 编辑器。\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s：系统错误：命令 %s 被执行"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s：文件 %s 不存在。\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s：无法找到 Perl 文件 %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s：在 “%s” 中没有找到 Perl"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s：没有找到 Perl。\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr "%s：输入参数 #%d 出错：应该为一个到 scilab 脚本文件的路径。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目出错：应该至少 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目出错：应该为 %d 个或 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s：输入参数的数目出错：至少应该输入 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为定义的变量。\n"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&Applications"
-msgstr "应用程序(&A)"
-
-msgid "&Control"
-msgstr "控制(&C)"
-
-msgid "&Edit"
-msgstr "编辑(&E)"
-
-msgid "&File"
-msgstr "文件(&F)"
-
-msgid "&Preferences"
-msgstr "首选项(&P)"
-
-msgid "&Toolboxes"
-msgstr "&工具箱"
-
-msgid "Bytes"
-msgstr ""
-
-#, c-format
-msgid "Checking: %s\n"
-msgstr "正在检查：%s\n"
-
-msgid "Getting started with Scilab"
-msgstr ""
-
-msgid "Introduction"
-msgstr "介绍"
-
-msgid "Name"
-msgstr ""
-
-msgid "Size"
-msgstr ""
-
-msgid "Startup execution:"
-msgstr "开始执行："
-
-msgid "Type"
-msgstr ""
-
-msgid "User variables are:"
-msgstr "用户变量是："
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "使用了 %s 个元素中的 %s"
 
 #, c-format
 msgid ""
 "\n"
 "Call stack:\n"
 msgstr ""
+
+msgid "  loading initial environment"
+msgstr "  正在载入初始环境"
 
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
@@ -300,6 +152,10 @@ msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s：递归问题。抱歉...\n"
 
 #, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s：文件 %s 不存在。\n"
+
+#, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s：名字太多。\n"
 
@@ -350,6 +206,10 @@ msgstr "%s：输入参数的个数出错：应该为 %d 到 %d 个。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s：输入参数的数目出错。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目出错：应该为 %d 个或 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -562,7 +422,8 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个标量。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该是一个标量或者一个字符串。\n"
 
 #, c-format
@@ -574,7 +435,8 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个字符串或标量。\n"
 
 #, c-format
@@ -588,6 +450,10 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为已编译的宏。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr "%s：输入参数 #%d 的类型出错：标量，“%s”或“%s”。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -626,6 +492,10 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“%s”。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“%s”或“%s”。\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s：输入参数 #%d 值出错：“%s”，“%s”或“%s”。\n"
 
@@ -633,9 +503,7 @@ msgstr "%s：输入参数 #%d 值出错：“%s”，“%s”或“%s”。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr ""
-"%s：输入参数 #%d 的值出错：应该为“%s”，“%s”，“%s”。输入参数 #%d 必须"
-"为“%s”。\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”，“%s”。输入参数 #%d 必须为“%s”。\n"
 
 #, c-format
 msgid ""
@@ -758,6 +626,27 @@ msgstr "%s：超出了栈的大小（请使用 stacksize 函数增大栈的大�
 msgid "%s: wrong code %d.\n"
 msgstr "%s：出错代码 %d。\n"
 
+msgid "&?"
+msgstr "&?"
+
+msgid "&Applications"
+msgstr "应用程序(&A)"
+
+msgid "&Control"
+msgstr "控制(&C)"
+
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+msgid "&File"
+msgstr "文件(&F)"
+
+msgid "&Preferences"
+msgstr "首选项(&P)"
+
+msgid "&Toolboxes"
+msgstr "&工具箱"
+
 msgid "A non square matrix!\n"
 msgstr "矩阵非方阵！\n"
 
@@ -830,8 +719,8 @@ msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
-"出错：gateway 文件%s不正确（应该以<GATEWAY>开始，并包含<PRIMITIVE "
-"gatewayId='' primitiveId='' primitiveName=''>）\n"
+"出错：gateway 文件%s不正确（应该以<GATEWAY>开始，并包含<PRIMITIVE gatewayId='' primitiveId='' "
+"primitiveName=''>）\n"
 
 #, c-format
 msgid ""
@@ -942,6 +831,9 @@ msgstr ""
 "Scilab 版本\"%d.%d.%d.%d\"\n"
 "%s\n"
 
+msgid "Startup execution:"
+msgstr "开始执行："
+
 msgid "TMPDIR not defined.\n"
 msgstr "未定义 TMPDIR。\n"
 
@@ -1047,3 +939,112 @@ msgstr "第三"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist 没有被完全填充。\n"
+
+msgid " by "
+msgstr ""
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s 在 %s 中的第 %s 行被调用"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s 在介绍 %s 中的第 %s 行被调用。"
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s 在宏 %s 中的第 %s 行被调用"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s 在 %s 下被调用"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s：%s 是一个不可编辑的 hard coded 函数。\n"
+
+#, c-format
+msgid "%s: File doesn't exist: %s"
+msgstr "%s：文件不存在：%s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s：没有指定 perl 命令。"
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s：请检查 %s。\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s：需要 scilab 编辑器。\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s：系统错误：命令 %s 被执行"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s：无法找到 Perl 文件 %s"
+
+#, c-format
+msgid "%s: Unable to find Perl in '%s"
+msgstr "%s：在 “%s” 中没有找到 Perl"
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s：没有找到 Perl。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr "%s：输入参数 #%d 出错：应该为一个到 scilab 脚本文件的路径。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目出错：应该至少 %d 个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目出错：至少应该输入 %d 个。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为定义的变量。\n"
+
+msgid "Bytes"
+msgstr ""
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "正在检查：%s\n"
+
+msgid "Getting started with Scilab"
+msgstr ""
+
+msgid "Introduction"
+msgstr "介绍"
+
+msgid "Name"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "User variables are:"
+msgstr "用户变量是："
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "使用了 %s 个元素中的 %s"

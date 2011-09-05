@@ -8,16 +8,38 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-31 21:48+0000\n"
+"PO-Revision-Date: 2011-09-01 09:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " ハイパー行列の展開には,最低2つの引数が必要です. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " ハイパー行列への挿入には,最低3つの引数が必要です. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " 引数がハイパー行列ではありません. "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " 不正なハイパー行列の挿入です. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " 互換性がないハイパー行列の展開です. "
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "ハイパー行列の展開において、(%d 番目) のインデックスが不正です. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr "スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてください.\n"
 
 #, c-format
 msgid "%s: 'dims' can not be used as a field name.\n"
@@ -45,41 +67,14 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 構造体の配列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 構造体の配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
-msgstr ""
-"%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要がありま"
-"す.\n"
+msgstr "%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要があります.\n"
 
 #, c-format
 msgid "%s: field name '%s' defined twice.\n"
 msgstr "%s: フィールド名 '%s' が重複して定義されています.\n"
-
-msgid " An hypermatrix extraction must have at least 2 arguments. "
-msgstr " ハイパー行列の展開には,最低2つの引数が必要です. "
-
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr " ハイパー行列への挿入には,最低3つの引数が必要です. "
-
-msgid " Argument is not an hypermatrix. "
-msgstr " 引数がハイパー行列ではありません. "
-
-msgid " Bad hypermatrix insertion. "
-msgstr " 不正なハイパー行列の挿入です. "
-
-msgid " Incompatible hypermatrix extraction. "
-msgstr " 互換性がないハイパー行列の展開です. "
-
-#, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "ハイパー行列の展開において、(%d 番目) のインデックスが不正です. "
-
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてくださ"
-"い.\n"

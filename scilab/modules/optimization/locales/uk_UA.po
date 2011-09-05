@@ -9,14 +9,119 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-23 06:29+0000\n"
+"PO-Revision-Date: 2011-09-01 09:29+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13827)\n"
+"X-Generator: Launchpad (build 13830)\n"
 "Language: uk\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+"\n"
+"    основн. ціл. двоїст. ціл. двоїст. різн. \n"
+
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr "%s: недостатня точність для задоволення критерію збіжності.\n"
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s: параметр 3: помилкова кількість стовпчиків: мало бути %d\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: не вдалося виділити більше пам’яті.\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: довжина робочого масиву є занадто малою.\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Q не є симетричною додатно визначеною.\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: суперечливі обмеження.\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: задача з мінімізації не має розв’язків.\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s: забагато ітерацій (більше за %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків має "
+"дорівнювати %d.\n"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "Помилка у dgels, info = %d.\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "Помилка у dspev, info = %d.\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "Помилка у dspgv, info = %d.\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "Помилка у dspst, info = %d.\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "Помилка у dtrcon, info = %d.\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z має від’ємне власне значення.\n"
+
+msgid "L must be at least one.\n"
+msgstr "L має дорівнювати принаймні одному.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "Матриці Fi, i=1,...,m є лінійно залежними.\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+"Матриці F_i, i=1,..,m є лінійно залежними (або погана обумовленість "
+"початкових точок).\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "Замало пам’яті для роботи. Потрібно принаймні %d*sizeof(double).\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr "Z0 не задовольняє умови рівності двоїстої задачі.\n"
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 не є додатно визначеною.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d] має дорівнювати принаймні одному.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m має дорівнювати принаймні одному.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu має бути не меншим за 1.0.\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 не є строгим розв’язком основної задачі.\n"
 
 #, c-format
 msgid "%s:       OPTIMIZATION PHASE."
@@ -59,7 +164,8 @@ msgid "%s: Empty function (use -function option)."
 msgstr "%s: порожня функція (скористайтеся параметром -function)."
 
 #, c-format
-msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: для змінної %s мало бути вказано булівське значення у вхідному параметрі "
 "№%d, але вказано %s."
@@ -73,7 +179,8 @@ msgstr ""
 "запис №%d дорівнює %s."
 
 #, c-format
-msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: для змінної %s мало бути вказано функцію у вхідному параметрі №%d, але "
 "вказано %s."
@@ -285,7 +392,8 @@ msgstr ""
 "ігнорує обмеження."
 
 #, c-format
-msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid ""
+"%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: у задачі не передбачено обмежень, але алгоритм Box побудовано саме для "
 "задач з обмеженнями."
@@ -295,7 +403,8 @@ msgid "%s: Q must be orthogonal.\n"
 msgstr "%s: Q має бути ортогональною.\n"
 
 #, c-format
-msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s: використовувати початковий симплекс з випадковими межами у задачі без "
 "обмежень не можна."
@@ -346,14 +455,16 @@ msgstr "%s: початковий симплекс не має вершин."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
-msgstr "%s: матриця %s з costf(x0,%d) складається з %d стовпчиків, замість %d."
+msgstr ""
+"%s: матриця %s з costf(x0,%d) складається з %d стовпчиків, замість %d."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
 msgstr "%s: матриця %s з costf(x0,%d) складається з %d рядків, замість %d."
 
 #, c-format
-msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr "%s: верхня межа %s для змінної №%d є меншою за нижню межу %s.\n"
 
 #, c-format
@@ -385,7 +496,8 @@ msgstr "%s: нульова кількість змінних."
 #, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
-msgstr "%s: кількість змінних, %d, не відповідає кількості верхніх меж: %d.\n"
+msgstr ""
+"%s: кількість змінних, %d, не відповідає кількості верхніх меж: %d.\n"
 
 #, c-format
 msgid ""
@@ -442,7 +554,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr "%s: неочікуване значення максимальної кількості обчислень функції %s."
+msgstr ""
+"%s: неочікуване значення максимальної кількості обчислень функції %s."
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
@@ -459,7 +572,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
-msgstr "%s: неочікувана кількість вхідних параметрів: вказано %d, мало бути 2."
+msgstr ""
+"%s: неочікувана кількість вхідних параметрів: вказано %d, мало бути 2."
 
 #, c-format
 msgid ""
@@ -635,7 +749,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати N-вимірний "
 "масив.\n"
@@ -674,7 +789,8 @@ msgstr ""
 "ітерацій (maxiter) має бути цілим числом."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. Максимальна кількість "
 "ітерацій (maxiter) має перевищувати 1."
@@ -702,7 +818,8 @@ msgstr ""
 "нерівності."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid ""
+"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. x0 перевищує верхню межу (ub)."
 
@@ -897,7 +1014,8 @@ msgstr "Перший контрприклад, поданий Ханом зі с
 msgid "Illustrates the 2nd counter example given by Han et al.\n"
 msgstr "Другий контрприклад, поданий Ханом зі співавторами.\n"
 
-msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid ""
+"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr "Приклад чутливості алгоритму Нелдера-Міда до параметра розмірності\n"
 
 msgid "Initialization\n"
@@ -1094,107 +1212,3 @@ msgstr "x0 = %s\n"
 #, c-format
 msgid "x0=%s\n"
 msgstr "x0=%s\n"
-
-msgid ""
-"\n"
-"    primal obj.  dual obj.  dual. gap \n"
-msgstr ""
-"\n"
-"    основн. ціл. двоїст. ціл. двоїст. різн. \n"
-
-#, c-format
-msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
-msgstr "%s: недостатня точність для задоволення критерію збіжності.\n"
-
-#, c-format
-msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr "%s: параметр 3: помилкова кількість стовпчиків: мало бути %d\n"
-
-#, c-format
-msgid "%s: Cannot allocate more memory.\n"
-msgstr "%s: не вдалося виділити більше пам’яті.\n"
-
-#, c-format
-msgid "%s: Length of working array is too short.\n"
-msgstr "%s: довжина робочого масиву є занадто малою.\n"
-
-#, c-format
-msgid "%s: Q is not symmetric positive definite.\n"
-msgstr "%s: Q не є симетричною додатно визначеною.\n"
-
-#, c-format
-msgid "%s: The constraints are inconsistent.\n"
-msgstr "%s: суперечливі обмеження.\n"
-
-#, c-format
-msgid "%s: The minimization problem has no solution.\n"
-msgstr "%s: задача з мінімізації не має розв’язків.\n"
-
-#, c-format
-msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s: забагато ітерацій (більше за %d).\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків має "
-"дорівнювати %d.\n"
-
-#, c-format
-msgid "Error in dgels, info = %d.\n"
-msgstr "Помилка у dgels, info = %d.\n"
-
-#, c-format
-msgid "Error in dspev, info = %d.\n"
-msgstr "Помилка у dspev, info = %d.\n"
-
-#, c-format
-msgid "Error in dspgv, info = %d.\n"
-msgstr "Помилка у dspgv, info = %d.\n"
-
-#, c-format
-msgid "Error in dspst, info = %d.\n"
-msgstr "Помилка у dspst, info = %d.\n"
-
-#, c-format
-msgid "Error in dtrcon, info = %d.\n"
-msgstr "Помилка у dtrcon, info = %d.\n"
-
-msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr "F(x)*Z має від’ємне власне значення.\n"
-
-msgid "L must be at least one.\n"
-msgstr "L має дорівнювати принаймні одному.\n"
-
-msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr "Матриці Fi, i=1,...,m є лінійно залежними.\n"
-
-msgid ""
-"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
-"are very badly conditioned).\n"
-msgstr ""
-"Матриці F_i, i=1,..,m є лінійно залежними (або погана обумовленість "
-"початкових точок).\n"
-
-#, c-format
-msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
-msgstr "Замало пам’яті для роботи. Потрібно принаймні %d*sizeof(double).\n"
-
-msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
-msgstr "Z0 не задовольняє умови рівності двоїстої задачі.\n"
-
-msgid "Z0 is not positive definite.\n"
-msgstr "Z0 не є додатно визначеною.\n"
-
-#, c-format
-msgid "blck_szs[%d] must be at least one.\n"
-msgstr "blck_szs[%d] має дорівнювати принаймні одному.\n"
-
-msgid "m must be at least one.\n"
-msgstr "m має дорівнювати принаймні одному.\n"
-
-msgid "nu must be at least 1.0.\n"
-msgstr "nu має бути не меншим за 1.0.\n"
-
-msgid "x0 is not strictly primal feasible.\n"
-msgstr "x0 не є строгим розв’язком основної задачі.\n"
