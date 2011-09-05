@@ -265,6 +265,8 @@ Compilation:
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
 
+* bug 9409 fixed - warning "remark #8291" removed with Intel Fortran 2011 compiler.
+
 * bug 9500 fixed - Explicit the GUI module manifest class-path to make Debian
                    checking tool happy.
 
