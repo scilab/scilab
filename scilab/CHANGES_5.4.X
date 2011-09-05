@@ -466,6 +466,9 @@ Bug fixes:
 
 * bug 9791 fixed - toolbar visible state change crash Scilab in NW mode.
 
+* bug 9799 fixed - pol2str did not manage matrix of polynomials and input argument
+                   type was not checked.
+
 * bug 9804 fixed - Starting Scilab with a external module emptied the
                    demo list menu.
 
@@ -491,8 +494,6 @@ Bug fixes:
                    getAllocatedMatrixOfWideString, getAllocatedNamedMatrixOfString,
                    and getAllocatedNamedMatrixOfWideString.
 
-* bug 9799 fixed - pol2str did not manage matrix of polynomials and input argument
-                   type was not checked.
-
+* bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
 
