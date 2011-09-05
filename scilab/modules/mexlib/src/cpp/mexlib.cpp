@@ -77,6 +77,7 @@ extern "C"
 {
 #include "machine.h"
 #include "mex.h"
+#include "freeArrayOfString.h"
 }
 
 #ifdef getType
@@ -1128,7 +1129,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
     {
         wchar_t *to_copy = pa->get(k);
         char *dest = wide_string_to_UTF8(to_copy);
-        int length = strlen(dest);
+        int length = (int)strlen(dest);
         memcpy(str+index, dest, free_space);
         index += Min(length, free_space);
         free_space -= length;
@@ -1155,7 +1156,7 @@ char *mxArrayToString(const mxArray *ptr)
     wchar_t **wstrings = pa->get();
     for (int k = 0; k < items; k++)
     {
-        length += wcslen(wstrings[k]);
+        length += (int)wcslen(wstrings[k]);
     }
     char *str = (char *) malloc(sizeof(char *) * length);
     for (int k = 0; k < items; k++)
@@ -1349,10 +1350,17 @@ void mexWarnMsgTxt(const char *error_msg)
 
 int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
 {
+    wchar_t* pwst = to_wide_string(name);
     symbol::Context *context = symbol::Context::getInstance();
-    symbol::Symbol *symbol = new symbol::Symbol(to_wide_string(name));
+    symbol::Symbol *symbol = new symbol::Symbol(pwst);
+    FREE(pwst);
+
     types::InternalType *value = context->get(*symbol);
-    types::Function *func = (types::Function *) value;
+    types::Function *func = value->getAs<types::Function>();
+    if(func == NULL)
+    {
+        return 1;
+    }
 
     types::typed_list in;
     types::typed_list out;
@@ -1360,11 +1368,15 @@ int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char
     {
         in.push_back((types::InternalType*)prhs[i]);
     }
+
     func->call(in, nlhs, out, NULL);
+
     for(int i = 0; i < nlhs; i++)
     {
         plhs[i] = (mxArray *) (out[i]);
     }
+
+    return 0;
 }
 
 int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
@@ -1460,12 +1472,14 @@ int mxGetElementSize(const mxArray *ptr)
 mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
 {
     int n = 1;
-    wchar_t *strings[m];
+    wchar_t** strings = NULL;
+    strings = (wchar_t**)MALLOC(sizeof(wchar_t*) * m);
     for (int k = 0; k < m; k++)
     {
         strings[k] = to_wide_string(str[k]);
     }
     types::String *ptr = new types::String(m, n, strings);
+    freeArrayOfWideString(strings, m);
     return (mxArray *) ptr;
 }
 
