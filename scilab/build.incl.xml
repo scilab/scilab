@@ -82,6 +82,7 @@
     <pathelement location="${batik.jar}"/>
     <pathelement location="${xml_apis_ext.jar}"/>
     <pathelement location="${saxon.jar}"/>
+    <pathelement location="${xmlgraphics-commons.jar}"/>
     <pathelement location="${fop.jar}"/>
     <pathelement location="${jlatexmath-fop.jar}"/>
     <pathelement location="${avalon-framework.jar}"/>
