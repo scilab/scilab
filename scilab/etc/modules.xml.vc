@@ -39,5 +39,6 @@
     <module name="action_binding" activate="yes"/>
     <module name="mexlib" activate="yes"/>
     <module name="history_manager" activate="yes"/>
+    <module name="parse" activate="yes"/>
 </modules>
 
