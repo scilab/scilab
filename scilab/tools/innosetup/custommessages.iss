@@ -26,6 +26,7 @@
 #include BinariesSourcePath + "\tools\innosetup\it_IT_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\uk_UA_scilab.isl"
 #include BinariesSourcePath + "\tools\innosetup\pl_PL_scilab.isl"
+#include BinariesSourcePath + "\tools\innosetup\cs_CZ_scilab.isl"
 ;
 ;-------------------------------------------------------------------------------
 ;
