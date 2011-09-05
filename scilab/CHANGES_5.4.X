@@ -92,6 +92,9 @@ Xcos:
 
 * bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
+* bug 9732 fixed - code generation failed on compilation on Windows.
+                   "unresolved external symbol dset_"
+
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
 
