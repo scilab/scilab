@@ -29,6 +29,13 @@ void visitprivate(const OpExp &e)
         e.left_get().accept(execMeL);
         /*getting what to assign*/
         e.right_get().accept(execMeR);
+        if(execMeL.is_single_result() == false || execMeR.is_single_result() == false)
+        {
+            std::wostringstream os;
+            os << _W("Incompatible output argument.\n");
+            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+            throw ScilabError(os.str(), 999, e.right_get().location_get());
+        }
 
         InternalType *pITL          = execMeL.result_get();
         InternalType *pITR          = execMeR.result_get();
