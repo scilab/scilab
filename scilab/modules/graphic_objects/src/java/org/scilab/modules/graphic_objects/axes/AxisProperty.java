@@ -14,11 +14,8 @@ package org.scilab.modules.graphic_objects.axes;
 
 import java.util.ArrayList;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
-import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 

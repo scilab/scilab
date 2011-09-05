@@ -239,7 +239,6 @@ public class Champ extends VectField {
 	private Double[] computeBoundingBox() {
 		double maxLength = 0.0;
 		double maxUsableLength = 0.0;
-		double length;
 
 		double[] min = new double[3];
 		double[] max = new double[3];

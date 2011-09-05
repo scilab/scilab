@@ -14,11 +14,9 @@ package org.scilab.modules.graphic_objects.axis;
 
 import java.util.ArrayList;
 
-import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 import org.scilab.modules.graphic_objects.textObject.Font;
-import org.scilab.modules.graphic_objects.textObject.Font.FontProperty;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**

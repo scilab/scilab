@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.rectangle;
 
-import com.sun.opengl.util.BufferUtil;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;

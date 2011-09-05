@@ -32,7 +32,6 @@ import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipSt
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClippablePropertyType;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
-import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;

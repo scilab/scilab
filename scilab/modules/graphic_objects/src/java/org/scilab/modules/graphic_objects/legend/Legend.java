@@ -15,7 +15,6 @@ package org.scilab.modules.graphic_objects.legend;
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
-import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.textObject.ClippableTextObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 

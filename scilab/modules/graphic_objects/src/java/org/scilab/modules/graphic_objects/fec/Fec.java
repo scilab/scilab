@@ -12,8 +12,6 @@
 
 package org.scilab.modules.graphic_objects.fec;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.IVisitor;
 
