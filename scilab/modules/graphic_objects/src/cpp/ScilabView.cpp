@@ -19,6 +19,8 @@
 
 extern "C"
 {
+#include "createGraphicObject.h"
+#include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
@@ -153,6 +155,27 @@ void ScilabView::updateObject(char* pstId, char* pstProperty)
 
         m_figureList[strdup(pstId)] = iNewId;
         //std::cerr << "### [ScilabView] updateMap UID=" << pstId << " id=" << iNewId << std::endl;
+    }
+
+    /*
+    ** All figure must have at least one axe child.
+    ** If remove, add a new default one.
+    */
+    if (m_figureList.find(pstId) != m_figureList.end() && strcmp(pstProperty, __GO_CHILDREN__) == 0)
+    {
+        int iChildCount = 0;
+        int *piChildCount = &iChildCount;
+        getGraphicObjectProperty(pstId, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildCount);
+        if (iChildCount == 0)
+        {
+            char *pstDefaultAxesCopy = cloneGraphicObject(getAxesModel());
+            setGraphicObjectRelationship(pstId, pstDefaultAxesCopy);
+            if (strcmp(pstId, getCurrentFigure()) == 0)
+            {
+                // Set new axes as default too.
+                setCurrentSubWin(pstDefaultAxesCopy);
+            }
+        }
     }
 }
 

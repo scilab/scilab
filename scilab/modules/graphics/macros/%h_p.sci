@@ -206,6 +206,7 @@ function %h_p(h)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(h.user_data)
                 "tag = "+h.tag
+                "UID = "+sci2exp(h.UID)
             ]
 
         // Legend
