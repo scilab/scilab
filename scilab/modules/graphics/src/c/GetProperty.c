@@ -275,30 +275,18 @@ sciGetGraphicContext (sciPointObj * pobj)
 * This function gets the number of the color defined in colormap
 */
 int
-sciGetNumColors (sciPointObj * pobj)
+sciGetNumColors (char *pobjUID)
 {
-    if (pobj)
+    if (pobjUID)
     {
         char* parentFigure;
         int iNumColors = 0;
         int* piNumColors = &iNumColors;
 
-        getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+        getGraphicObjectProperty(pobjUID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
         getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
 
         return iNumColors;
-
-        /* To be deleted */
-#if 0
-        /* modified jb Silvy 06/2006 */
-        switch (sciGetEntityType (pobj))
-        {
-        case SCI_FIGURE:
-            return pFIGURE_FEATURE(pobj)->numcolors ;
-        default:
-            return sciGetNumColors( sciGetParentFigure( pobj ) ) ;
-        }
-#endif
     }
     return -1;
 }

@@ -247,6 +247,7 @@ void ChampDecomposer::getChampColors(int colors[])
 /*---------------------------------------------------------------------------------*/
 void ChampDecomposer::getChamp1Colors(int colors[])
 {
+#if 0
   int nbSegs = getNbSegment();
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
   sciSegs * ppSegs = pSEGS_FEATURE(pSegs);
@@ -264,7 +265,7 @@ void ChampDecomposer::getChamp1Colors(int colors[])
     double curVectorNorm = sqrt(ppSegs->vfx[i] * ppSegs->vfx[i] + ppSegs->vfy[i] * ppSegs->vfy[i]);
     colors[i] = (int) floor(((colorMapSize - 1) * curVectorNorm / maxLength ) + 0.5);
   }
-
+#endif
 }
 /*---------------------------------------------------------------------------------*/
 }

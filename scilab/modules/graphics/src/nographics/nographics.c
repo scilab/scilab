@@ -380,7 +380,7 @@ int sciInitPolylineStyle( char * pobj, int plot )
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-int sciGetNumColors (sciPointObj * pobj)
+int sciGetNumColors (char *pobjUID)
 {
 	return -1;
 }

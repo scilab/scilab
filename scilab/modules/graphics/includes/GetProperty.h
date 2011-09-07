@@ -5,6 +5,7 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - Paul Griffiths
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,7 +40,7 @@ GRAPHICS_IMPEXP char *sciGetCharEntityType (sciPointObj * pobj);  /* GET */
 
 /* Graphic Context Functions */
 GRAPHICS_IMPEXP sciGraphicContext *sciGetGraphicContext (sciPointObj * pobj); /* GET */
-GRAPHICS_IMPEXP int sciGetNumColors (sciPointObj * pobj); /* GET */
+GRAPHICS_IMPEXP int sciGetNumColors (char* pobjUID); /* GET */
 GRAPHICS_IMPEXP int sciGetColormap (sciPointObj * pobj, double rgbmat[] ); /* GET */
 GRAPHICS_IMPEXP int sciGetGoodIndex(sciPointObj * pobj, int colorindex);  /* GET */
 
