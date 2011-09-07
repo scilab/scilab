@@ -52,7 +52,7 @@ int set_z_ticks_property(char* pobjUID, size_t stackPointer, int valueType, int 
     double* userGrads = NULL;
     char** userLabels = NULL;
     int iLogFlag = 0;
-    int* piLogFlag;
+    int* piLogFlag = &iLogFlag;
 
     if ( !isParameterTlist( valueType ) )
     {
