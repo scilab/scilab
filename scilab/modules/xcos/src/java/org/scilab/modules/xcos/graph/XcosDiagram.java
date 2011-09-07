@@ -1815,6 +1815,7 @@ public class XcosDiagram extends ScilabGraph {
 	    	if (title != null) {
 	    		fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
 	    	}
+	    	ConfigurationManager.configureCurrentDirectory(fc);
 	    }
 
 	    int status = fc.showSaveDialog(this.getAsComponent());
