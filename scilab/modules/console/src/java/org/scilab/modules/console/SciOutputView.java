@@ -100,8 +100,7 @@ public class SciOutputView extends JEditorPane implements OutputView {
         activeStyle = StyleContext.DEFAULT_STYLE;
         bufferQueue = new ArrayBlockingQueue<StringBuffer>(BUFFER_SIZE);
         styleQueue = new LinkedList<String>();
-        setFocusable(false);
-
+        
         /**
          * Default caret for output view (to handle paste actions using middle button)
          * @author Vincent COUVERT
