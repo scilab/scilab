@@ -309,52 +309,51 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
          * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
          */
         public void mouseClicked(MouseEvent e) {
-
             if (e.getClickCount() >= 2) {
+                int clickedRow = ((JTable) e.getSource()).rowAtPoint(e.getPoint());
+                if (clickedRow != -1) {
+                    String variableName = ((JTable) e.getSource()).getValueAt(clickedRow, 1).toString();
+                    final ActionListener action = new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
 
-                String variableName = ((JTable) e.getSource()).getValueAt(((JTable) e.getSource()).getSelectedRow(), 1).toString();
-                final ActionListener action = new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
+                            }
+                        };
 
-                        }
-                    };
+                    String variableVisibility = ((JTable) e.getSource())
+                        .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
 
-                String variableVisibility = ((JTable) e.getSource())
-                    .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
+                    // Global variables are not editable yet
+                    if (variableVisibility.equals("global")) {
+                        ScilabModalDialog.show(getBrowserTab(),
+                                               UiDataMessages.GLOBAL_NOT_EDITABLE,
+                                               UiDataMessages.VARIABLE_EDITOR,
+                                               IconType.ERROR_ICON);
+                        return;
+                    }
 
-                // Global variables are not editable yet
-                if (variableVisibility.equals("global")) {
-                    ScilabModalDialog.show(getBrowserTab(),
-                                           UiDataMessages.GLOBAL_NOT_EDITABLE,
-                                           UiDataMessages.VARIABLE_EDITOR,
-                                           IconType.ERROR_ICON);
-                    return;
+                    try {
+                        asynchronousScilabExec(action,
+                                               "if exists(\"" + variableName + "\") == 1 then "
+                                               + "  try "
+                                               + "    editvar(\"" + variableName + "\"); "
+                                               + "  catch "
+                                               + "    messagebox(\"Variables of type \"\"\" + typeof ("
+                                               + variableName + ") + \"\"\" can not be edited.\""
+                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                               + "    clear ans;"   // clear return value of messagebox
+                                               + "  end "
+                                               + "else "
+                                               + "  messagebox(\"Variable \"\""
+                                               + variableName + "\"\" no more exists.\""
+                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                               + "  clear ans;"  // clear return value of messagebox
+                                               + "  browsevar();" // Reload browsevar to remove cleared variables
+                                               + "end");
+                    } catch (InterpreterException e1) {
+                        System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
+                    }
                 }
-
-                try {
-                    asynchronousScilabExec(action,
-                                           "if exists(\"" + variableName + "\") == 1 then "
-                                           + "  try "
-                                           + "    editvar(\"" + variableName + "\"); "
-                                           + "  catch "
-                                           + "    messagebox(\"Variables of type \"\"\" + typeof ("
-                                           + variableName + ") + \"\"\" can not be edited.\""
-                                           + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                           + "    clear ans;"   // clear return value of messagebox
-                                           + "  end "
-                                           + "else "
-                                           + "  messagebox(\"Variable \"\""
-                                           + variableName + "\"\" no more exists.\""
-                                           + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                           + "  clear ans;"  // clear return value of messagebox
-                                           + "  browsevar();" // Reload browsevar to remove cleared variables
-                                           + "end");
-                } catch (InterpreterException e1) {
-                    System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
-                }
-
             }
-
         }
 
         /**
