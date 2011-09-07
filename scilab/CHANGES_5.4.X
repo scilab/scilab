@@ -79,7 +79,7 @@ Xcos:
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
-* Bug 9501 fixed - With a localized TMPDIR, block edition could throw an HDF5 
+* Bug 9501 fixed - With a localized TMPDIR, block edition could throw an HDF5
                    exception.
 
 * bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
@@ -281,6 +281,18 @@ Compilation:
 * bug 9782 fixed - configure with --without-gui was failing.
 
 
+Dynamic link:
+=============
+
+* bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
+                   a wrong error message on Windows.
+
+* bug 9761 fixed - "NDEBUG" was not defined for dynamic link (by default) in
+                   release mode on Windows.
+
+* bug 9930 fixed - ilib_build did not display all filenames used.
+
+
 Graphics:
 =========
 
@@ -403,9 +415,6 @@ Bug fixes:
 
 * bug 9354 fixed - 'savematfile' could not save imbricated structures.
 
-* bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
-                   a wrong error message on Windows.
-
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
 * bug 9479 fixed - Typo fixed (intput => input).
@@ -466,9 +475,6 @@ Bug fixes:
 * bug 9755 fixed - Completion on paths was not case insensitive on Windows.
 
 * bug 9756 fixed - polelm.tst unitary test failed on Windows 64 bit.
-
-* bug 9761 fixed - "NDEBUG" was not defined for dynamic link (by default) in
-                   release mode on Windows.
 
 * bug 9763 fixed - comet3d did not check input argument presence.
 
