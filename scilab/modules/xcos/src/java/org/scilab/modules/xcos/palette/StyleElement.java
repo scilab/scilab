@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.palette;
 
 import static java.util.Arrays.asList;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -109,6 +111,17 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 					styleSheet.getCellStyle(styles[i][j],
 					styleSheet.getCellStyle("Icon",
 							styleSheet.getDefaultVertexStyle()));
+				
+				// Translate Paths to URLs
+				String path = (String) style.get("image");
+				if (!path.isEmpty()) {
+					try {
+						style.put("image", new File(path).toURI().toURL().toString());
+					} catch (MalformedURLException e) {
+						throw new RuntimeException(e);
+					}
+				}
+				
 				styleSheet.putCellStyle(blockNames[i][j], style);
 			}
 		}
