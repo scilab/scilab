@@ -133,18 +133,19 @@ void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void
     pthread_attr_t threadAttr;
 #ifdef __APPLE__
     size_t size = 128 * 1024 * 1024;
-    void *stackbase = (void *) malloc(size);
+    //void *stackbase = (void *) malloc(size);
     pthread_attr_init(&threadAttr);
 
     pthread_attr_setstacksize(&threadAttr, size);
-    pthread_attr_setstackaddr(&threadAttr, stackbase);
+    //pthread_attr_setstackaddr(&threadAttr, stackbase);
     pthread_create(threadId, &threadAttr, functionName, params);
 #else //Linux
     size_t size = 128 * 1024 * 1024;
-    void *stackbase = (void *) malloc(size);
+    //void *stackbase = (void *) malloc(size);
     pthread_attr_init(&threadAttr);
 
-    pthread_attr_setstack(&threadAttr, stackbase, size);
+    //pthread_attr_setstack(&threadAttr, stackbase, size);
+    pthread_attr_setstacksize(&threadAttr, size);
     pthread_create(threadId, &threadAttr, functionName, params);
 #endif
     *threadKey = *threadId;

@@ -97,6 +97,12 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
         ConfigVariable::addThread(new ThreadId(threadId, threadKey));
         //free locker to release thread && wait and of thread execution
         LockPrompt();
+
+        types::ThreadId* pExecThread = ConfigVariable::getThread(threadKey);
+        if(pExecThread == NULL)
+        {//call ptrhad_join to clean stack allocation
+            __WaitThreadDie(threadId);
+        }
     }
     catch(ScilabException se)
     {
