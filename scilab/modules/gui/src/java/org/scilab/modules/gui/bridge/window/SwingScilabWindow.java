@@ -85,6 +85,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
     static {
         DefaultDockingStrategy.setDefaultResizeWeight(0.5);
+        DefaultDockingStrategy.keepConstantPercentage(true);
     }
 
     private DefaultDockingPort sciDockingPort;
