@@ -1,8 +1,18 @@
+#
+# Generated files (common)
+#
 cleaner.sce
 loader.sce
 jar/
+sci_gateway/c/xcos_toolbox_skeleton_c.c
+#
+# Generated files (Windows)
+#
 *.dll
 *.lib
 *.def
 *.mak
-sci_gateway/c/xcos_toolbox_skeleton_c.c
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vfproj
