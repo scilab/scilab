@@ -471,7 +471,7 @@ void ConfigVariable::addThread(types::ThreadId* _thread)
 
 types::ThreadId* ConfigVariable::getThread(__threadKey _key)
 {
-    std::list<types::ThreadId *>::iterator it;
+    std::list<types::ThreadId *>::const_iterator it;
 
     for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
@@ -508,6 +508,7 @@ void ConfigVariable::deleteThread(__threadKey _key)
             if((*it)->isDeletable())
             {
                 delete (*it);
+                (*it) = NULL;
                 m_threadList.erase(it);
                 return;
             }

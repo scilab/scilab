@@ -41,21 +41,20 @@ void *Runner::launch(void *args)
         YaspErrorW(se.GetErrorMessage().c_str());
     }
 
-
+    __threadKey currentThreadKey = __GetCurrentThreadKey();
 
     //change thread status
-    ThreadId* pThread = ConfigVariable::getThread(__GetCurrentThreadKey());
+    ThreadId* pThread = ConfigVariable::getThread(currentThreadKey);
     if(pThread->getStatus() != ThreadId::Aborted)
     {
         pThread->setStatus(ThreadId::Done);
-        UnlockPrompt();
     }
 
     //unregister thread
-    ConfigVariable::deleteThread(__GetCurrentThreadKey());
-
+    ConfigVariable::deleteThread(currentThreadKey);
 
     delete me;
+    UnlockPrompt();
     return NULL;
 }
 
@@ -100,7 +99,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
 
         types::ThreadId* pExecThread = ConfigVariable::getThread(threadKey);
         if(pExecThread == NULL)
-        {//call ptrhad_join to clean stack allocation
+        {//call pthread_join to clean stack allocation
             __WaitThreadDie(threadId);
         }
     }
