@@ -647,10 +647,16 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
             }
             else
             {
-                //std::wcout << L"create struct" << std::endl;
-                Struct* p = new Struct(1,1);
-                pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
-                delete p;
+                if((**_pArgs)[0]->isString())
+                {
+                    pStr = new types::Struct(1,1);
+                }
+                else
+                {
+                    Struct* p = new Struct(1,1);
+                    pStr = Struct::insertNew(*_pArgs, p)->getAs<Struct>();
+                    delete p;
+                }
             }
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
@@ -676,43 +682,103 @@ bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** 
         ExecVisitor execMe;
         Struct* pCurrent = NULL;
 
-        typed_list *pArgs = execMe.GetArgumentList(pCall->args_get());
+        typed_list *pCurrentArgs = execMe.GetArgumentList(pCall->args_get());
+        typed_list *pReturnedArgs = NULL;
 
         //Struct* pStruct = Struct::insertNew(pArgs, new Struct(1,1))->getAs<Struct>();
         if(*_pMain == NULL)
         {//a is the new main but can be a complex expression
             //bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pArgs, pStruct);
-            bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pArgs, NULL);
+            bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pReturnedArgs, NULL);
             if(bOK == false)
             {
                 return false;
             }
-        
-            /*try to extract sub struct, if it fails, resize the struct and try again*/
 
-            InternalType* pIT = pCurrent->extract(pArgs);
-            if(pIT == NULL)
-            {//fail to extract, pCurrent is not enough big, resize it !
-                Struct* p = new Struct(1,1);
-                pCurrent->insert(pArgs, p); //insert empty struct, caller will assign the good value
-                delete p;
+            if((*pCurrentArgs)[0]->isString())
+            {
+                String* pS = (*pCurrentArgs)[0]->getAs<String>();
+                if(pCurrentArgs->size() != 1 || pS->isScalar() == false)
+                {
+                    //manage error
+                    std::wostringstream os;
+                    os << _W("Invalid Index.\n");
+                    //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, (*(pCall->args_get().begin()))->location_get());
+                }
+
+                wchar_t* pFieldName = pS->get(0);
+
+                Struct* pStr = NULL;
+                if(pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
+                {
+                    pStr = pCurrent->extractWithoutClone(pReturnedArgs)->getAs<Struct>();
+                    pStr->setCloneInCopyValue(false);
+                }
+                else
+                {
+                    pStr = pCurrent;
+                }
+                
+                SingleStruct* pSS = pStr->get(0);
+
+                /*
+                pStepStr = pCurrent->extractWithoutClone(pArgs)->getAs<Struct>();
+                pStepStr->setCloneInCopyValue(false);
+                SingleStruct* pSS = pStepStr->get(0);
+                pStr = pSS->get(pVar->name_get().name_get())->getAs<Struct>();
+                //we can delete pStepStr without deleted its fields
+                pSS->IncreaseRef();
+                delete pStepStr;
+                pSS->DecreaseRef();
+                */
+
+                //check if field already exists
+                if(pStr->exists(pFieldName))
+                {
+                    InternalType* pField = pSS->get(pFieldName);
+                    if(pField->isStruct())
+                    {
+                        pStr = pField->getAs<Struct>();
+                    }
+                    else
+                    {//erase previous value by a struct(1,1)
+                        pSS->set(pFieldName, new Struct(1,1));
+                        pStr = pSS->get(pFieldName)->getAs<Struct>();
+                    }
+                }
+                else
+                {//field does not exist
+                    pCurrent->addField(pFieldName);
+                    pSS->set(pFieldName, new Struct(1,1));
+                    pCurrent = pSS->get(pFieldName)->getAs<Struct>();
+                }
+
+                if(pReturnedArgs && (*pReturnedArgs)[0]->isString() == false)
+                {
+                    pSS->IncreaseRef();
+                    delete pStr;
+                    pSS->DecreaseRef();
+                }
+
             }
             else
             {
-                delete pIT;
+                /*try to extract sub struct, if it fails, resize the struct and try again*/
+                InternalType* pIT = pCurrent->extract(pCurrentArgs);
+                if(pIT == NULL)
+                {//fail to extract, pCurrent is not enough big, resize it !
+                    Struct* p = new Struct(1,1);
+                    pCurrent->insert(pCurrentArgs, p); //insert empty struct, caller will assign the good value
+                    delete p;
+                }
+                else
+                {
+                    delete pIT;
+                }
+
+                *_pArgs = pCurrentArgs;
             }
-//            *_pCurrent = pIT->getAs<Struct>();
-            *_pArgs = pArgs;
-            //const SimpleVar *pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
-            //if(pVar)
-            //{
-            //    //Add variable to scope
-            //    symbol::Context::getInstance()->put(pVar->name_get(), **_pMain);
-            //}
-            //else
-            //{
-            //    //heu ...
-            //}
         }
         else
         {//we have a parent, so assign "a" to this parent

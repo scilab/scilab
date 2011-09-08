@@ -289,59 +289,77 @@ void visitprivate(const AssignExp  &e)
                     bNew = true;
                 }
 
-
-                switch(pITR->getType())
+                //if pIT == NULL and pArg is single string, it's a struct creation
+                if((*pArgs)[0]->isString())
                 {
-                case InternalType::RealDouble :
-                    pOut = Double::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealString :
-                    pOut = String::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealCell :
-                    pOut = Cell::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealBool :
-                    pOut = Bool::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealPoly :
-                    pOut = Polynom::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealInt8 :
-                    pOut = Int8::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealUInt8 :
-                    pOut = UInt8::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealInt16 :
-                    pOut = Int16::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealUInt16 :
-                    pOut = UInt16::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealInt32 :
-                    pOut = Int32::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealUInt32 :
-                    pOut = UInt32::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealInt64 :
-                    pOut = Int64::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealUInt64 :
-                    pOut = UInt64::insertNew(pArgs, pITR);
-                    break;
-                case InternalType::RealStruct:
-                    pOut = Struct::insertNew(pArgs, pITR);
-                    break;
-                default :
+                    String *pS = (*pArgs)[0]->getAs<types::String>();
+                    Struct* pStr = new Struct(1, 1);
+
+                    if(pArgs->size() != 1 || pS->isScalar() == false)
                     {
                         //manage error
                         std::wostringstream os;
-                        os << _W("Operation not yet managed.\n");
+                        os << _W("Invalid Index.\n");
                         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                         throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                    }
+
+                    pStr->addField(pS->get(0));
+                    pStr->get(0)->set(pS->get(0), pITR);
+                    pOut = pStr;
+                }
+                else
+                {
+                    switch(pITR->getType())
+                    {
+                    case InternalType::RealDouble :
+                        pOut = Double::insertNew(pArgs, pITR);
                         break;
+                    case InternalType::RealString :
+                        pOut = String::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealCell :
+                        pOut = Cell::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealBool :
+                        pOut = Bool::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealPoly :
+                        pOut = Polynom::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealInt8 :
+                        pOut = Int8::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealUInt8 :
+                        pOut = UInt8::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealInt16 :
+                        pOut = Int16::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealUInt16 :
+                        pOut = UInt16::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealInt32 :
+                        pOut = Int32::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealUInt32 :
+                        pOut = UInt32::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealInt64 :
+                        pOut = Int64::insertNew(pArgs, pITR);
+                        break;
+                    case InternalType::RealUInt64 :
+                        pOut = UInt64::insertNew(pArgs, pITR);
+                        break;
+                    default :
+                        {
+                            //manage error
+                            std::wostringstream os;
+                            os << _W("Operation not yet managed.\n");
+                            //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                            break;
+                        }
                     }
                 }
             }
