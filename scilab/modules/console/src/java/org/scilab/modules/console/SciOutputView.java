@@ -284,11 +284,6 @@ public class SciOutputView extends JEditorPane implements OutputView {
             ((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
             ((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
         }
-        /* Update scroll only if console has been set */
-        /* TODO : Must not do this each time... consume pretty much computing resources */
-        if (console != null) {
-            console.updateScrollPosition();
-        }
     }
 
     /**
