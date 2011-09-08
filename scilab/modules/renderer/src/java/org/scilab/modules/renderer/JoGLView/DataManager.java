@@ -15,7 +15,7 @@ import com.sun.opengl.util.BufferUtil;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
-import org.scilab.modules.graphic_objects.DataLoader;
+import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 
@@ -84,6 +84,26 @@ public class DataManager {
      */
     private static final Set<String> PLOT3D_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
             GraphicObjectProperties.__GO_DATA_MODEL__
+    ));
+
+    /**
+     * Set of properties that affect Arc data.
+     */
+    private static final Set<String> ARC_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
+            GraphicObjectProperties.__GO_WIDTH__,
+            GraphicObjectProperties.__GO_HEIGHT__,
+            GraphicObjectProperties.__GO_START_ANGLE__,
+            GraphicObjectProperties.__GO_END_ANGLE__
+    ));
+
+    /**
+     * Set of properties that affect Rectangle data.
+     */
+    private static final Set<String> RECTANGLE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_UPPER_LEFT_POINT__,
+            GraphicObjectProperties.__GO_WIDTH__,
+            GraphicObjectProperties.__GO_HEIGHT__
     ));
 
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
@@ -186,7 +206,9 @@ public class DataManager {
                || (type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_MATPLOT__) && MATPLOT_DATA_PROPERTIES.contains(property))
                || (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property))
-               || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))) {
+               || (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))
+               || (type.equals(GraphicObjectProperties.__GO_ARC__) && ARC_DATA_PROPERTIES.contains(property))
+               || (type.equals(GraphicObjectProperties.__GO_RECTANGLE__) && RECTANGLE_DATA_PROPERTIES.contains(property))) {
                 fillBuffers(id);
             }
         }
@@ -254,24 +276,24 @@ public class DataManager {
     }
 
     private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) {
-            int length = DataLoader.getDataSize(id);
+            int length = MainDataLoader.getDataSize(id);
             FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
-            DataLoader.fillVertices(id, data, length, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE, DEFAULT_LOG_MASK);
+            MainDataLoader.fillVertices(id, data, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE, DEFAULT_LOG_MASK);
             vertexBuffer.setData(data, 4);
     }
 
     private void fillColorBuffer(ElementsBuffer colorBuffer, String id) {
-            int length = DataLoader.getDataSize(id);
+            int length = MainDataLoader.getDataSize(id);
             FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
-            DataLoader.fillColors(id, data, length, 4);
+            MainDataLoader.fillColors(id, data, 4);
             colorBuffer.setData(data, 4);
     }
 
     private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) {
-        int length = DataLoader.getIndicesSize(id);
+        int length = MainDataLoader.getIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = DataLoader.fillIndices(id, data, length, DEFAULT_LOG_MASK);
+        int actualLength = MainDataLoader.fillIndices(id, data, DEFAULT_LOG_MASK);
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);
@@ -280,10 +302,10 @@ public class DataManager {
     }
 
     private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) {
-        int length = DataLoader.getWireIndicesSize(id);
+        int length = MainDataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferUtil.newIntBuffer(length);
 
-        int actualLength = DataLoader.fillWireIndices(id, data, length, DEFAULT_LOG_MASK);
+        int actualLength = MainDataLoader.fillWireIndices(id, data, DEFAULT_LOG_MASK);
 
         /* Set the buffer size to the actual number of indices */
         data.limit(actualLength);
