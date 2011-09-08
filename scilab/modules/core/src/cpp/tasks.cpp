@@ -232,7 +232,7 @@ void execScilabQuitTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false);
+    execAstTask(parse.getTree(), false, false, false);
 }
 
 

@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
-    Bool* pOut = new Bool(iRet);
+    Double* pOut = new Double(iRet);
     out.push_back(pOut);
     return types::Function::OK;
 }
