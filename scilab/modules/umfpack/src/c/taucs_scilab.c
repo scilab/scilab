@@ -2005,7 +2005,6 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
   int    ione = 1;
   double done = 1.0;
   double dminusone = -1.0;
-  double dzero = 0.0;
   double* xdense;
   double* bdense;
   double  flops;
