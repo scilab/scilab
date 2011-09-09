@@ -23,7 +23,7 @@ static int putResultOnStack(int pos,char **result,int sizeresult);
 /*--------------------------------------------------------------------------*/
 int sci_completion(char *fname,unsigned long fname_len)
 {
-	int l1 = 0, m1 = 0, n1 = 0;
+	int m1 = 0, n1 = 0;
 	char *partOfWord = NULL;
 	char ** Inputs1 = NULL;
 
