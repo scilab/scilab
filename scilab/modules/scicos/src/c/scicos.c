@@ -239,6 +239,10 @@ static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 extern int C2F(dcopy)(int *,double *,int *,double *,int *);
+extern int C2F(msgs)();
+extern int C2F(getscsmax)();
+extern int C2F(makescicosimport)();
+extern int C2F(clearscicosimport)();
 /*--------------------------------------------------------------------------*/
 void putevs(double *t, int *evtnb, int *ierr1);
 void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job);
@@ -266,11 +270,6 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 {
 	int i1,kf,lprt,in,out,job=1;
 
-	extern int C2F(msgs)();
-	extern int C2F(getscsmax)();
-
-	extern int C2F(makescicosimport)();
-	extern int C2F(clearscicosimport)();
 
 	static int mxtb = 0, ierr0 = 0, kfun0 = 0, i = 0, j = 0, k = 0, jj = 0;
 	static int ni = 0, no = 0;
@@ -1618,9 +1617,7 @@ static void cossimdaskr(double *told)
 	int Discrete_Jump = 0;
 	N_Vector IDx = NULL;
 	realtype *scicos_xproperty=NULL;
-	N_Vector bidon = NULL, tempv1 = NULL, tempv2 = NULL, tempv3 = NULL;
 	DenseMat TJacque = NULL;
-	realtype *Jacque_col = NULL;
 
 	void *ida_mem = NULL;
 	UserData data = NULL;
