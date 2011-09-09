@@ -209,7 +209,6 @@ static int sci_strcat_three_rhs(char *fname)
 
     case ROW:
         {
-            int nchars = 0;
             int j = 0;
             int one = 1;
             char **Output_String = (char **)CALLOC(Col_One, sizeof(char *));
@@ -595,7 +594,6 @@ static int *lengthEachString(int rhspos, int *sizeArrayReturned)
         int x = 0;
 
         int lw = rhspos + Top - Rhs;
-        int lenstrcat = 0;
 
         l1 = *Lstk(lw);
         il = iadr(l1);

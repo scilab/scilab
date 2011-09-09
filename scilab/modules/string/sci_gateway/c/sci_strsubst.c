@@ -416,18 +416,15 @@ int sci_strsubst(char *fname, unsigned long fname_len)
 
             LhsVar(1) = Rhs + 1;
             PutLhsVar();
-            return 0;
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), fname);
-            return 0;
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        return 0;
     }
     return 0;
 }

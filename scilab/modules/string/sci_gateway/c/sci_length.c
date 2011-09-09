@@ -109,11 +109,8 @@ static int lengthStrings(int *piAddressVar)
     int *lenStVarOne = NULL;
 
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
     int i = 0;
-
-    int ierr = 0;
 
     sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
     if(sciErr.iErr)
@@ -285,7 +282,6 @@ static int lengthOthers(char *fname)
 static int lengthSparse(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int m = 0, n = 0;
@@ -380,7 +376,6 @@ static int lengthMList(const char *fname, int *piAddressVar)
 static int lengthList(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int nbItem = 0;
@@ -419,7 +414,6 @@ static int lengthList(int *piAddressVar)
 static int lengthDefault(int *piAddressVar)
 {
     int m_out = 0, n_out = 0;
-    int *piAddressOut = NULL;
     double *pdOut = NULL;
 
     int m = 0, n = 0;
