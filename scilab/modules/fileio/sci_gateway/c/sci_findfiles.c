@@ -32,7 +32,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, n1 = 0, m1 = 0;
 	char *pathextented = NULL;
-	int out_n = 0;
 	char *path = NULL;
 	char *filespec = NULL;
 	char **FilesList = NULL;
@@ -47,7 +46,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 	default: case 0:
 		{
 			int ierr = 0;
-			int lpath = 0;
 
 			path = scigetcwd(&ierr);
 
