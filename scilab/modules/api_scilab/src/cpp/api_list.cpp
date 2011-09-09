@@ -1015,7 +1015,6 @@ static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pst
 SciErr getMatrixOfStringInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iRet			= 0;
 	int* piAddr		= NULL;
 
 	sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
