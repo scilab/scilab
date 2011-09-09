@@ -30,7 +30,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
-	int l1 = 0, m1 = 0, n1 = 0;
+	int m1 = 0, n1 = 0;
 
 	int mn = 0;
 	int i  = 0;

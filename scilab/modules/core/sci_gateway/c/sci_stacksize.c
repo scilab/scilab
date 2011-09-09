@@ -61,16 +61,12 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
     {
         return sci_stacksizeNoRhs(fname);
     }
-    else
-    {
-        return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_stacksizeOneRhs(fname);
-    }
-    return 0;
+    return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_stacksizeOneRhs(fname);
 }
 /*--------------------------------------------------------------------------*/
 static int sci_stacksizeNoRhs(char *fname)
 {
-    int l1 = 0, n1 = 0, m1 = 0;
+    int n1 = 0, m1 = 0;
     int *paramoutINT = NULL;
     int total = 0;
     int used = 0;
