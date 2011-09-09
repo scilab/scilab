@@ -130,7 +130,8 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 		hiConnex = dynlib_InternetOpen("Scilab_Download", OPENURL_MODE,NULL,NULL,0);
 		if(hiConnex == NULL) return HTTP_DOWNLOAD_ERROR_INTERNET_OPEN;
 
-		if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
+        hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0);
+		if(!hiDownload)
 		{
 			dynlib_InternetCloseHandle(hiConnex);
 			return HTTP_DOWNLOAD_ERROR_OPEN_URL;
@@ -264,7 +265,6 @@ httpdownloadfile_error_code urlDownloadFile(char * szURL,char * szSaveFilePath)
 		}
 		break;
 	}
-	return HTTP_DOWNLOAD_FAILURE;
 }
 /*--------------------------------------------------------------------------*/
 static BOOL isValidURL(char *szURL)
@@ -281,7 +281,8 @@ static BOOL isValidURL(char *szURL)
 	hiConnex = dynlib_InternetOpen("Scilab_Download", OPENURL_MODE,NULL,NULL,0);
 	if(hiConnex == NULL) return HTTP_DOWNLOAD_ERROR_INTERNET_OPEN;
 
-	if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
+    hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0);
+	if(!hiDownload)
 	{
 		dynlib_InternetCloseHandle(hiConnex);
 		return FALSE;

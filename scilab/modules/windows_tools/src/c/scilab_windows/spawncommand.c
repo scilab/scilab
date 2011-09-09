@@ -246,7 +246,7 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
     {
         if (pipe->OutputBuffer)
         {
-            char *buffer = strdup(pipe->OutputBuffer);
+            char *buffer = strdup((const char *)(pipe->OutputBuffer));
             if (buffer)
             {
                 pipe->NumberOfLines = GetNumberOfLines(buffer);
