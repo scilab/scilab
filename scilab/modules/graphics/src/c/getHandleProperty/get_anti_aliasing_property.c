@@ -47,8 +47,8 @@ int get_anti_aliasing_property( sciPointObj * pobj )
 		return sciReturnString("8x");
 		break;
 	case 16:
-		break;
 		return sciReturnString("16x");
+        break;
 	default:
     Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
     return -1 ;

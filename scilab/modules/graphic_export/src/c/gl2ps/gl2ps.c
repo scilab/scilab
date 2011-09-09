@@ -2297,7 +2297,7 @@ static void gl2psParseFeedbackBuffer(int used)
       case GL2PS_END_OFFSET_TOKEN : offset = 0; break;
       case GL2PS_BEGIN_BOUNDARY_TOKEN : boundary = TRUE; break;
       case GL2PS_END_BOUNDARY_TOKEN : boundary = FALSE; break;
-      case GL2PS_END_STIPPLE_TOKEN:pattern=factor= 0;break;
+      case GL2PS_END_STIPPLE_TOKEN:pattern = factor = 0;break;
       case GL2PS_BEGIN_BLEND_TOKEN : gl2ps->blending = TRUE; break;
       case GL2PS_END_BLEND_TOKEN : gl2ps->blending = FALSE; break;
       case GL2PS_BEGIN_STIPPLE_TOKEN : 

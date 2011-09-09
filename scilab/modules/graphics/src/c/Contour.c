@@ -143,7 +143,7 @@ static char   ContNumFormat[100];
 
 static void look(ptr_level_f func, int i, int j, int ib, int jb, int qq, double Cont, int style)
 {
-  int ip,jp,im,jm,zds,ent=0,flag=0,wflag;
+  int ip = 0,jp = 0,im = 0,jm = 0,zds = 0,ent = 0, flag = 0,wflag = 0;
   jp= j+1; ip= i+1; jm=j-1;im=i-1;
   /*  on regarde comment est le segment de depart */
   if  ( jb == jm)  flag = 1; 
