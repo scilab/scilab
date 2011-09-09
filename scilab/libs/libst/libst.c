@@ -62,7 +62,7 @@ st_linear_to_ulaw(int  sample )
     sample = sample + uBIAS;
     exponent = exp_lut[( sample >> 7 ) & 0xFF];
     mantissa = ( sample >> ( exponent + 3 ) ) & 0x0F;
-    ulawbyte = ~ ( sign | ( exponent << 4 ) | mantissa );
+    ulawbyte = (unsigned char)(~ ( sign | ( exponent << 4 ) | mantissa ));
 #ifdef ZEROTRAP
     if ( ulawbyte == 0 ) ulawbyte = 0x02;	/* optional CCITT trap */
 #endif
@@ -2237,11 +2237,11 @@ st_linear_to_Alaw(int sample )
 	{
 	exponent = exp_lut[( sample >> 8 ) & 0x7F];
 	mantissa = ( sample >> ( exponent + 3 ) ) & 0x0F;
-	Alawbyte = (( exponent << 4 ) | mantissa);
+	Alawbyte = (unsigned char)(( exponent << 4 ) | mantissa);
 	}
     else
-	Alawbyte = (sample >> 4);
-    Alawbyte ^= (sign ^ 0x55);
+	Alawbyte = (unsigned char)(sample >> 4);
+    Alawbyte ^= (unsigned char)(sign ^ 0x55);
 
     return Alawbyte;
 }
