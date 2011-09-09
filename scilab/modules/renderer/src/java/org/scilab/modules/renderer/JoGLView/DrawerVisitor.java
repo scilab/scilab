@@ -45,6 +45,7 @@ import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
+import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -59,6 +60,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final MarkSpriteManager markManager;
     private final TextManager textManager;
     private final AxesDrawer axesDrawer;
+    private final ContouredObjectDrawer contouredObjectDrawer;
 
     private ColorMap colorMap;
     private DrawingTools drawingTools = null;
@@ -73,6 +75,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.markManager = new MarkSpriteManager(canvas.getSpriteManager());
         this.textManager = new TextManager(canvas.getSpriteManager());
         this.axesDrawer = new AxesDrawer(this);
+        this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
     }
 
     public DrawingTools getDrawingTools() {
@@ -121,8 +124,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void visit(Arc arc) {
-        // TODO
-        System.out.println("How can I draw an arc ?");
+        if (arc.getVisible()) {
+            contouredObjectDrawer.draw(arc);
+        }
     }
 
     @Override
@@ -456,8 +460,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void visit(Rectangle rectangle) {
-        // TODO
-        System.out.println("How can I draw a rectangle ?");
+        if (rectangle.getVisible()) {
+            contouredObjectDrawer.draw(rectangle);
+        }
     }
 
     /*
