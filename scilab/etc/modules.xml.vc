@@ -33,13 +33,16 @@
     <module name="localization" activate="yes"/>
     <module name="windows_tools" activate="yes"/>
     <module name="jvm" activate="yes"/>
+    <module name="functions" activate="yes"/>
     <module name="helptools" activate="yes"/>
     <module name="hdf5" activate="yes"/>
+    <!-- <module name="xcos" activate="yes"/> -->
     <module name="dynamic_link" activate="yes"/>
     <module name="action_binding" activate="yes"/>
     <module name="mexlib" activate="yes"/>
     <module name="history_manager" activate="yes"/>
     <module name="parse" activate="yes"/>
     <module name="console" activate="yes"/>
+    <module name="modules_manager" activate="yes"/>
 </modules>
 

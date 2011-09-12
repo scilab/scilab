@@ -35,14 +35,13 @@
     <module name="functions" activate="yes"/>
     <module name="helptools" activate="@HELP_ENABLE@"/>
     <module name="hdf5" activate="yes"/>
-    <module name="xcos" activate="@GUI_ENABLE@"/>
-    <!-- comments -->
-    <!-- <module name="scicos" activate="@XCOS_ENABLE@"/> -->
+    <!-- <module name="xcos" activate="@GUI_ENABLE@"/> -->
     <module name="dynamic_link" activate="yes"/>
     <module name="action_binding" activate="yes"/>
     <module name="mexlib" activate="yes"/>
     <module name="history_manager" activate="yes"/>
     <module name="parse" activate="yes"/>
     <module name="console" activate="yes"/>
+    <module name="modules_manager" activate="yes"/>
 </modules>
 
