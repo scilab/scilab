@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef DECOMPOSITION_UTILS_H
-#define DECOMPOSITION_UTILS_H
+#ifndef DECOMPOSITION_UTILS_HXX
+#define DECOMPOSITION_UTILS_HXX
 
 /**
  * Decomposition utility class
@@ -72,7 +72,7 @@ public :
 
     /**
      * Determines if a point is valid in logarithmic scale.
-     * It checks whether any of the component is strictly less than 0 (if the
+     * It checks whether any of its coordinates is strictly less than 0 (if the
      * logarithmic scale applies). In the event of the former, the point is
      * determined as not valid.
      * @param[in] the point's x-coordinate.

@@ -18,8 +18,8 @@ extern "C"
 
   /**
    * Return the number of data elements for the given object.
-   * @param[in] The given object id.
-   * @return The number of data elements.
+   * @param[in] the given object id.
+   * @return the number of data elements.
    */
   int getDataSize(char* id);
 
@@ -29,8 +29,9 @@ extern "C"
    * @param[out] the buffer to fill.
    * @param[in] the buffer length in number of elements.
    * @param[in] the number of coordinate taken by one element in the buffer.
-   * @param[in] this byte mask specify which coordinates are filled (1 for X, 2 for Y, 4 for Z).
-   * @param[in] the transformation to apply to data.
+   * @param[in] this byte mask specifies which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+   * @param[in] the conversion scale factor to apply to data.
+   * @param[in] the conversion translation factor to apply to data.
    * @param[in] the bit mask specifying whether logarithmic coordinates are used.
    */
   void fillVertices(char* id, float* BUFF, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
@@ -46,8 +47,8 @@ extern "C"
 
   /**
    * Return the number of indices for the given object.
-   * @param[in] The given object id.
-   * @return The object's number of indices.
+   * @param[in] the given object id.
+   * @return the object's number of indices.
    */
   int getIndicesSize(char* id);
 
@@ -63,7 +64,8 @@ extern "C"
 
   /**
    * Return the number of indices for the wire of the given object.
-   * @param[in] The given object id.
+   * @param[in] the given object id.
+   * @return the object's number of indices.
    */
   int getWireIndicesSize(char* id);
 

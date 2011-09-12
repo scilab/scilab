@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef TRIANGLEMESHFECDATA_DECOMPOSER_H
-#define TRIANGLEMESHFECDATA_DECOMPOSER_H
+#ifndef TRIANGLEMESHFECDATA_DECOMPOSER_HXX
+#define TRIANGLEMESHFECDATA_DECOMPOSER_HXX
 
 /**
  * TriangleMeshFecData decomposer class
@@ -90,7 +90,8 @@ public :
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of coordinates taken by one element in the buffer.
      * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
-     * @param[in] the transformation to apply to data.
+     * @param[in] the conversion scale factor to apply to data.
+     * @param[in] the conversion translation factor to apply to data.
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
     static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);

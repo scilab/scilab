@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef COLORCOMPUTER_H
-#define COLORCOMPUTER_H
+#ifndef COLORCOMPUTER_HXX
+#define COLORCOMPUTER_HXX
 
 /**
  * ColorComputer class
