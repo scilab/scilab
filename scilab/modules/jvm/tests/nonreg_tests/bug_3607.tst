@@ -16,7 +16,7 @@
 
 res = mgetl(SCI+'/etc/jvm_options.xml');
 line = grep(res,'<option value=""-Xmx');
-if res(line) <> '<option value=""-Xmx256m""/>' then pause,end
+assert_checkequal(stripblanks(res(line)) ,'<option value=""-Xmx256m""/>');
 
 stacksize('max');
 memstack = stacksize();
