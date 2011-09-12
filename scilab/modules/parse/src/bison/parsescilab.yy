@@ -319,6 +319,13 @@
 program:
 expressions                     { ParserSingleInstance::setTree($1); }
 | EOL expressions 				{ ParserSingleInstance::setTree($2); }
+| expressionLineBreak           {
+                                  ast::exps_t *tmp = new ast::exps_t;
+                                  #ifdef BUILD_DEBUG_AST
+                                      tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
+                                  #endif
+                                  ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
+                                }
 | /* Epsilon */                 {
                                   ast::exps_t *tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
