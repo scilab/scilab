@@ -1146,7 +1146,7 @@ msgid "Lorentz butterfly"
 msgstr "Le papillon de Lorentz"
 
 msgid "Mechanical Systems"
-msgstr "Systèmes méchaniques"
+msgstr "Systèmes mécaniques"
 
 msgid "Modelica demos"
 msgstr "Démonstrations Modelica"
