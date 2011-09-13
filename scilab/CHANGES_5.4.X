@@ -562,6 +562,8 @@ Bug fixes:
 
 * bug 9354 fixed - 'savematfile' could not save imbricated structures.
 
+* bug 9414 fixed - 'SCI' and 'SCIHOME' variables were not documented.
+
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
 * bug 9479 fixed - Typo fixed (intput => input).
