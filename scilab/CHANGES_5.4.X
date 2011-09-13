@@ -658,6 +658,8 @@ Bug fixes:
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
+* bug 9950 fixed - It was possible to select several texts in the console.
+
 * bug 9966 fixed - The default value of comptype in assert_checkalmostequal 
                    was wrongly chosen.
 
