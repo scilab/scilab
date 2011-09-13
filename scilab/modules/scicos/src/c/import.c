@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - 
+*  Copyright (C) INRIA -
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -116,20 +116,20 @@ ScicosImport* getscicosimportptr(void)
 void C2F(makescicosimport)(double *x, int *nx,
     int *xptr, int *zcptr,
     double *z, int *nz, int *zptr,
-    int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr, 
+    int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr,
     double *g, int *ng,
-    int *mod, int *nmod, int *modptr, 
+    int *mod, int *nmod, int *modptr,
     int *iz, int *izptr, int *inpptr, int *inplnk,
-    int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp, 
-    outtb_el *outtb_elem, int *nelem, 
-    int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr, 
-    void **opar, int *oparsz, int *opartyp, int *opptr, 
-    int *nblk, int *subs, int *nsubs, 
-    double *tevts, int *evtspt, int *nevts, int *pointi, 
+    int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp,
+    outtb_el *outtb_elem, int *nelem,
+    int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr,
+    void **opar, int *oparsz, int *opartyp, int *opptr,
+    int *nblk, int *subs, int *nsubs,
+    double *tevts, int *evtspt, int *nevts, int *pointi,
     int *iord, int *niord, int *oord, int *noord, int *zord, int *nzord,
     int *funptr, int *funtyp, int *ztyp,
-    int *cord, int *ncord, int *ordclk, int *clkptr, 
-    int *ordptr, int *nordptr, int *nordclk, int *critev,  int *iwa, scicos_block *blocks, 
+    int *cord, int *ncord, int *ordclk, int *nordclk,int *clkptr,
+    int *ordptr, int *nordptr, int *critev,  int *iwa, scicos_block *blocks,
     double *t0, double *tf, double *Atol, double *rtol, double *ttol, double *deltat, double *hmax,
     int *xprop, double *xd)
 {
@@ -863,7 +863,7 @@ int C2F(getscilabel)(int *kfun, int label[], int *n)
 	u=(int *)&(scicos_imp.iz[scicos_imp.izptr[k-1]-1]);
 	y=label;
 	for (i=0;i<*n;i++)
-	    *(y++)=*(u++);  
+	    *(y++)=*(u++);
 	}
     return(0);
 }
