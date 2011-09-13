@@ -606,6 +606,8 @@ Bug fixes:
 
 * bug 9708 fixed - createNamedXXX did not check length of variable name.
 
+* bug 9712 fixed - help of StartScilab had a error about Stacksize argument type.
+
 * bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
