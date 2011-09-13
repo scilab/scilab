@@ -3062,6 +3062,59 @@ nm = neldermead_destroy(nm);
       nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
     </screen>
 
+    <para>
+      Tagged "-tolvarianceflag", "-tolabsolutevariance", and 
+	  "-tolrelativevariance" options as obsolete:
+      will be maintained for backward compatibility until 5.4.1.
+      To update your code, create an output function:
+    </para>
+
+    <screen>
+function stop = myoutputcmd ( state, data, tolrelativevariance, tolabsolutevariance, variancesimplex0 )
+    simplex = data.simplex
+    stop = &#37;f
+    if ( state == "iter") then
+        var = optimsimplex_fvvariance ( simplex )
+        if ( var &lt; tolrelativevariance * variancesimplex0 + tolabsolutevariance ) then
+            stop = &#37;t;
+        end
+    end
+endfunction
+    </screen>
+
+    <para>
+      Create the initial simplex and compute the variance 
+      of the function values:
+    </para>
+
+    <screen>
+x0 = [1.1 1.1]';
+simplex0 = optimsimplex_new ( "axes" , x0.' );
+coords0 = optimsimplex_getallx(simplex0);
+variancesimplex0 = optimsimplex_fvvariance ( simplex0 );
+    </screen>
+
+    <para>
+      Finally, replace the configuration:
+    </para>
+
+    <screen>
+nm = neldermead_configure(nm,"-tolvarianceflag",%t);
+nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-4);
+nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
+    </screen>
+
+    <para>
+      with:
+    </para>
+
+    <screen>
+tolabsolutevariance = 1.e-4;
+tolrelativevariance = 1.e-4;
+stopfun = list(myoutputcmd, tolrelativevariance, tolabsolutevariance, variancesimplex0);
+nm = neldermead_configure(nm,"-outputcommand",stopfun);
+    </screen>
+
   </refsection>
 
   <refsection>

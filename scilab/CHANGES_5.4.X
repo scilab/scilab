@@ -153,6 +153,11 @@ Optimization:
   See the help page of neldermead for details to update your
   code, if required.
 
+* bug 9566 fixed - The tolvarianceflag, tolabsolutevariance, 
+  tolrelativevariance options of neldermead are now obsolete.
+  See the help page of neldermead for details to update your
+  code, if required.
+
 * readmps - Created unit test.
             Fixed bug in the management of error messages.
             Fixed bug in the reading of a test file.

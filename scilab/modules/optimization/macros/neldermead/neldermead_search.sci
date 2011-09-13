@@ -720,6 +720,7 @@ function [ this , terminate , status ] = neldermead_termination (this , ...
         end
     end
     //
+    // Obsolete option: maintain for backward compatibility
     // Criteria #10 : variance of function values
     //
     if ( ~terminate ) then
