@@ -172,8 +172,6 @@ Optimization:
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
-* Bug 8243 fixed - xgeom renamed to geom3d.
-
 * Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used
                    the output function.
 
@@ -391,6 +389,8 @@ Bug fixes:
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
 * bug 7901 fixed - besselh.tst failed on Windows.
+
+* Bug 8243 fixed - xgeom demonstration renamed to geom3d.
 
 * bug 8245 fixed - gsort() did not allow overloading with not managed types.
 
