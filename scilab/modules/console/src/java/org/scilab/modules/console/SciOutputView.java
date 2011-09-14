@@ -12,6 +12,7 @@
 
 package org.scilab.modules.console;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -36,10 +37,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.Element;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.PlainView;
+import javax.swing.text.View;
+import javax.swing.text.ViewFactory;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 
@@ -52,7 +58,7 @@ import com.artenum.rosetta.util.StringConstants;
  *
  * @author Vincent COUVERT
  */
-public class SciOutputView extends JEditorPane implements OutputView {
+public class SciOutputView extends JEditorPane implements OutputView, ViewFactory {
     private static final long serialVersionUID = 1L;
 
     private static final int TOP_BORDER = 0;
@@ -83,11 +89,19 @@ public class SciOutputView extends JEditorPane implements OutputView {
 
     private int maxNumberOfLines;
 
+    private boolean lastEOL;
+
     /**
      * Constructor
      */
     public SciOutputView() {
         super();
+
+        setEditorKit(new DefaultEditorKit() {
+                public ViewFactory getViewFactory() {
+                    return SciOutputView.this;
+                }
+            });
 
         /* A PlainDocument contains only "box" for lines not for all characters (as in a StyledDocument)
            so there are less boxes to explore in a PlainDocument... */
@@ -159,7 +173,6 @@ public class SciOutputView extends JEditorPane implements OutputView {
                 super.mousePressed(e);
             }
         }
-
         // Set the caret
         setCaret(new FixedCaret());
         // Selection is forced to be visible because the component is not editable
@@ -185,6 +198,10 @@ public class SciOutputView extends JEditorPane implements OutputView {
      * @param styledDocument
      */
     public void setStyledDocument(StyledDocument styledDocument) { }
+
+    public void resetLastEOL() {
+        lastEOL = false;
+    }
 
     /**
      * Display a buffer entry in the console
@@ -225,11 +242,23 @@ public class SciOutputView extends JEditorPane implements OutputView {
             }
         }
 
+        boolean slastEOL = lastEOL;
+        lastEOL = !buff.isEmpty() && buff.charAt(buff.length() - 1) == '\n';
+        String str = buff;
+        if (lastEOL) {
+            str = buff.substring(0, buff.length() - 1);
+        }
+
+        if (slastEOL) {
+            str = "\n" + str;
+        }
+
         try {
-            getDocument().insertString(sDocLength, buff, null);
+            getDocument().insertString(sDocLength, str, null);
+
             /* Move insertPosition to the end of last inserted data */
             if (insertPosition != 0) {
-                insertPosition += buff.length();
+                insertPosition += str.length();
             }
         } catch (BadLocationException e) {
             // TODO Auto-generated catch block
@@ -246,64 +275,6 @@ public class SciOutputView extends JEditorPane implements OutputView {
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
-        }
-
-        /* Special case for Scilab when clc or tohome have been used */
-        String[] lines = buff.split(StringConstants.NEW_LINE);
-
-        /* Change the size of the input command view if necessary */
-        /* - if the console size has been forced to a value */
-        /* - if a carriage return has been appended */
-        if (console != null && console.getInputCommandViewSizeForced() && lines.length > 0) {
-            JEditorPane outputView = ((JEditorPane) console.getConfiguration().getOutputView());
-
-            // Get JScrollPane viewport size to adapt input command
-            // view size
-            JScrollPane jSP = console.getJScrollPane();
-            Dimension jSPExtSize = jSP.getViewport().getExtentSize();
-
-            /* Height of a text line in the ouput view */
-            int charHeight = outputView.getFontMetrics(outputView.getFont()).getHeight();
-            JPanel promptView = ((JPanel) console.getConfiguration().getPromptView());
-
-            /* Input command view dimensions */
-            JTextPane inputCmdView = ((JTextPane) console.getConfiguration().getInputCommandView());
-            int height = inputCmdView.getPreferredSize().height;
-            int width = inputCmdView.getPreferredSize().width - jSPExtSize.width;
-
-            int promptViewHeight = promptView.getPreferredSize().height;
-
-            /* New dimension for the input command view */
-            /*
-             * -1 because last EOL removed in
-             * SwingScilabConsole.readline
-             */
-            int newHeight = height - (lines.length - 1) * charHeight;
-            Dimension newDim = null;
-
-            if (newHeight > promptViewHeight) {
-                /*
-                 * If the input command view is bigger than the
-                 * promptUI
-                 */
-                /*
-                 * It's height is descreased according to line
-                 * number of lines added to output view
-                 */
-                newDim = new Dimension(width, newHeight);
-            } else {
-                /*
-                 * If the input command view is smaller than the
-                 * promptUI
-                 */
-                /* It's height adapted to the promptUI height */
-                newDim = new Dimension(width, promptViewHeight);
-                console.setInputCommandViewSizeForced(false);
-            }
-            /* Change the input command view size */
-            ((JTextPane) console.getConfiguration().getInputCommandView()).setPreferredSize(newDim);
-            ((JTextPane) console.getConfiguration().getInputCommandView()).invalidate();
-            ((JTextPane) console.getConfiguration().getInputCommandView()).doLayout();
         }
     }
 
@@ -374,6 +345,7 @@ public class SciOutputView extends JEditorPane implements OutputView {
     public void reset() {
         setText("");
         setCaretPosition(0);
+        lastEOL = false;
     }
 
     /**
@@ -450,4 +422,11 @@ public class SciOutputView extends JEditorPane implements OutputView {
         maxNumberOfLines = Math.max(1, number);
     }
 
+    public View create(Element e) {
+        return new PlainView(e) {
+            public Container getContainer() {
+                return SciOutputView.this;
+            }
+        };
+    }
 }

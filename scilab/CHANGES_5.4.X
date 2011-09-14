@@ -738,6 +738,10 @@ Bug fixes:
 * bug 5696 fixed - When SE Linux is enable, disable the error messages for
                    Scilab in the Scilab binary distribution.
 
+* bug 6408 fixed - prompt() removed trailing whites.
+
+* bug 6819 fixed - prompt() interpreted '<...>' as html.
+
 * bug 6875 fixed - test_run() could not run at once on the +3000 tests of
                    Scilab.
 
@@ -756,6 +760,8 @@ Bug fixes:
 * bug 7700 fixed - Bad proposition in the console history when a char is added
 
 * bug 7745 fixed - add_demo moved in demo_tools module.
+
+* bug 7815 fixed - tohome() worked too much.
 
 * bug 8086 fixed - Some functions displayed a wrong error message when called
                    without input argument.
