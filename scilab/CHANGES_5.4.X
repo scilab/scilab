@@ -337,6 +337,8 @@ ATOMS:
 
 * bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
 
+* bug 9967 fixed - windows UAC causing trouble with atomsRepositorySetOfl (internal function)
+
 
 Javasci:
 ========
