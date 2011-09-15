@@ -398,33 +398,34 @@ sciText;
 
 /**
  * Enumeration used to specify the title place relative to parent subwindow
+ * Matches the MVC Legend object's LegendLocation enum.
  */
 typedef enum
   {
     /** */
+    SCI_LEGEND_POSITION_UNSPECIFIED = -1,
+    /** */
+    SCI_LEGEND_IN_UPPER_RIGHT = 0,
+    /** */
     SCI_LEGEND_IN_UPPER_LEFT = 1,
     /** */
-    SCI_LEGEND_IN_UPPER_RIGHT = 2,
+    SCI_LEGEND_IN_LOWER_RIGHT = 2,
     /** */
     SCI_LEGEND_IN_LOWER_LEFT = 3,
     /** */
-    SCI_LEGEND_IN_LOWER_RIGHT = 4,
+    SCI_LEGEND_OUT_UPPER_RIGHT = 4,
     /** */
-    SCI_LEGEND_BY_COORDINATES = 5,
-		/** */
-		SCI_LEGEND_POSITION_UNSPECIFIED = 0,
+    SCI_LEGEND_OUT_UPPER_LEFT = 5,
     /** */
-    SCI_LEGEND_OUT_UPPER_LEFT = -1,
+    SCI_LEGEND_OUT_LOWER_RIGHT = 6,
     /** */
-    SCI_LEGEND_OUT_UPPER_RIGHT = -2,
+    SCI_LEGEND_OUT_LOWER_LEFT = 7,
     /** */
-    SCI_LEGEND_OUT_LOWER_LEFT = -3,
-    /** */
-    SCI_LEGEND_OUT_LOWER_RIGHT = -4,
-    /** */
-    SCI_LEGEND_UPPER_CAPTION = -5,
+    SCI_LEGEND_UPPER_CAPTION = 8,
    /** */
-    SCI_LEGEND_LOWER_CAPTION = -6
+    SCI_LEGEND_LOWER_CAPTION = 9,
+    /** */
+    SCI_LEGEND_BY_COORDINATES = 10
   }  /** */
 sciLegendPlace;
 

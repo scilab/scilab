@@ -329,7 +329,7 @@ sciLegendPlace propertyNameToLegendPlace(const char * string)
 		return SCI_LEGEND_BY_COORDINATES;
 	}
 	else {
-		return (sciLegendPlace) 0;
+		return SCI_LEGEND_POSITION_UNSPECIFIED;
 	}
 }
 /*--------------------------------------------------------------------------------*/
