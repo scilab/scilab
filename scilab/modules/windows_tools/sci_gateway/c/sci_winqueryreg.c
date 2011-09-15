@@ -25,16 +25,17 @@
 int sci_winqueryreg(char *fname,int *_piKey)
 {
     SciErr sciErr;
-    int *piAddressVarOne = NULL;
-    int *piAddressVarTwo = NULL;
-    int *piAddressVarThree = NULL;
+    int iErr                = 0;
+    int *piAddressVarOne    = NULL;
+    int *piAddressVarTwo    = NULL;
+    int *piAddressVarThree  = NULL;
 
-    char *pStrParamOne = NULL;
-    char *pStrParamTwo = NULL;
-    char *pStrParamThree = NULL;
+    char *pStrParamOne      = NULL;
+    char *pStrParamTwo      = NULL;
+    char *pStrParamThree    = NULL;
 
-    char *pStrOutput = NULL;
-    int iOutput = 0;
+    char *pStrOutput        = NULL;
+    int iOutput             = 0;
 
     CheckRhs(2, 3);
     CheckLhs(0, 1);
@@ -45,25 +46,25 @@ int sci_winqueryreg(char *fname,int *_piKey)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            return 0;
+            return 1;
         }
 
         if (!isStringType(_piKey, piAddressVarThree))
         {
             Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
-            return 0;
+            return 1;
         }
 
         if (!isScalar(_piKey, piAddressVarThree))
         {
             Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 3);
-            return 0;
+            return 1;
         }
 
         if (getAllocatedSingleString(_piKey, piAddressVarThree, &pStrParamThree) != 0)
         {
             Scierror(999,_("%s: Memory allocation error.\n"), fname);
-            return 0;
+            return 1;
         }
     }
 
@@ -71,38 +72,38 @@ int sci_winqueryreg(char *fname,int *_piKey)
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarOne))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
     sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return 0;
+        return 1;
     }
 
     if (!isStringType(_piKey, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if (!isScalar(_piKey, piAddressVarTwo))
     {
         Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
-        return 0;
+        return 1;
     }
 
     if (getAllocatedSingleString(_piKey, piAddressVarTwo, &pStrParamTwo) != 0)
@@ -113,7 +114,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
             pStrParamThree = NULL;
         }
         Scierror(999,_("%s: Memory allocation error.\n"), fname);
-        return 0;
+        return 1;
     }
 
     if (getAllocatedSingleString(_piKey, piAddressVarOne, &pStrParamOne) != 0)
@@ -131,7 +132,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
         }
 
         Scierror(999,_("%s: Memory allocation error.\n"), fname);
-        return 0;
+        return 1;
     }
 
     if (Rhs == 3)
@@ -170,7 +171,9 @@ int sci_winqueryreg(char *fname,int *_piKey)
                 else
                 {
                     Scierror(999,_("%s: Cannot open Windows registry.\n"), fname);
+                    iErr = 1;
                 }
+
                 freeArrayOfString(ListKeysName, NumbersElm);
             }
             else
@@ -197,7 +200,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
                 freeAllocatedSingleString(pStrParamOne);
                 pStrParamOne = NULL;
             }
-            return 0;
+            return iErr;
         }
     }
 
@@ -223,6 +226,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
         else
         {
             Scierror(999,_("%s: Cannot query value of this type.\n"),fname);
+            iErr = 1;
         }
 
         FREE( pStrOutput);
@@ -231,6 +235,7 @@ int sci_winqueryreg(char *fname,int *_piKey)
     else
     {
         Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        iErr = 1;
     }
 
     if (pStrParamThree)
@@ -251,7 +256,6 @@ int sci_winqueryreg(char *fname,int *_piKey)
         pStrParamOne = NULL;
     }
 
-    return 0;
-
+    return iErr;
 }
 /*--------------------------------------------------------------------------*/

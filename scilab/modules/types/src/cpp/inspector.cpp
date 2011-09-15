@@ -141,7 +141,6 @@ namespace types
 
     void Inspector::deleteItems()
     {
-        
         InternalType** pIT = new InternalType*[m_vIT.size()];
 
         //copy item values

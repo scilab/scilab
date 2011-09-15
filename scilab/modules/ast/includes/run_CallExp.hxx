@@ -29,7 +29,8 @@ void visitprivate(const CallExp &e)
         types::typed_list in;
 
         //get function arguments
-        T *execVar = new T[e.args_get().size()]();
+        int iSize = e.args_get().size();
+        T *execVar = new T[iSize]();
         int j = 0;
         for (j = 0, itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp,j++)
         {
@@ -38,6 +39,7 @@ void visitprivate(const CallExp &e)
             if(execVar[j].result_get() == NULL)
             {
                 //special case for empty extraction of list ( list()(:) )
+                execVar[j].result_set(NULL);
                 continue;
             }
 
@@ -78,12 +80,24 @@ void visitprivate(const CallExp &e)
             T execCall;
             Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
 
+
             if(Ret == Callable::OK)
             {
                 if(expected_getSize() == 1 && out.size() == 0) //to manage ans
                 {
                     if(static_cast<int>(out.size()) < expected_getSize())
                     {
+                        //clear input parameters
+                        for(unsigned int k = 0; k < e.args_get().size(); k++)		
+                        {		
+                            if(execVar[k].result_get() != NULL)		
+                            {		
+                                execVar[k].result_get()->DecreaseRef();		
+                            }		
+                        }		
+
+                        delete[] execVar;
+
                         std::wostringstream os;
                         os << L"bad lhs, expected : " << expected_getSize() << L" returned : " << out.size() << std::endl;
                         throw ScilabError(os.str(), 999, e.location_get());
@@ -111,19 +125,6 @@ void visitprivate(const CallExp &e)
                 throw ScilabError();
             }
 
-
-            for (unsigned int k = 0; k < e.args_get().size(); k++)
-            {
-                if(execVar[k].result_get() != NULL)
-                {
-                    execVar[k].result_get()->DecreaseRef();
-                }
-            }
-
-            //std::cout << "before delete[]" << std::endl;
-            delete[] execVar;
-            //std::cout << "after delete[]" << std::endl;
-
             if(out.size() == 1)
             {//unprotect output values
                 out[0]->DecreaseRef();
@@ -138,6 +139,17 @@ void visitprivate(const CallExp &e)
         }
         catch(ScilabMessage sm)
         {
+            //clear input parameters
+            for(unsigned int k = 0; k < e.args_get().size(); k++)		
+            {		
+                if(execVar[k].result_get() != NULL)		
+                {		
+                    execVar[k].result_get()->DecreaseRef();		
+                }		
+            }		
+
+            delete[] execVar;
+
             if(pCall->isMacro() || pCall->isMacroFile())
             {
                 wchar_t szError[bsiz];
@@ -149,6 +161,17 @@ void visitprivate(const CallExp &e)
                 throw sm;
             }
         }
+        
+        //clear input parameters
+        for(unsigned int k = 0; k < e.args_get().size(); k++)		
+        {		
+            if(execVar[k].result_get() != NULL)		
+            {		
+                execVar[k].result_get()->DecreaseRef();		
+            }		
+        }		
+        
+        delete[] execVar;
     }
     else if(execFunc.result_get() != NULL)
     {//a(xxx) with a variable, extraction

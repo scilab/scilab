@@ -161,7 +161,6 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
         exec = new ast::ExecVisitor();
     }
 
-
     Runner::execAndWait(tree, exec);
     //delete exec;
 

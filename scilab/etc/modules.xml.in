@@ -32,7 +32,6 @@
     <module name="data_structures" activate="yes"/>
     <module name="localization" activate="yes"/>
     <module name="jvm" activate="@JAVA_ENABLE@"/>
-    <module name="functions" activate="yes"/>
     <module name="helptools" activate="@HELP_ENABLE@"/>
     <module name="hdf5" activate="yes"/>
     <!-- <module name="xcos" activate="@GUI_ENABLE@"/> -->
@@ -46,6 +45,5 @@
     <module name="signal_processing" activate="yes"/>
     <module name="linear_algebra" activate="yes"/>
     <module name="statistics" activate="yes"/>
->>>>>>> aee3f8c... statistics plugged.
 </modules>
 

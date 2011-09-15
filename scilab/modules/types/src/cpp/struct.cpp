@@ -351,6 +351,7 @@ namespace types
                 ostr << pIT->toStringInLine(_iPrecision, _iLineLen);
                 ostr << std::endl;
             }
+            delete pwstFields;
         }
         else
         {
@@ -371,6 +372,7 @@ namespace types
             {
                 ostr << L"    " << pwstFields->get(i) << std::endl;
             }
+            delete pwstFields;
         }
 
         return ostr.str();

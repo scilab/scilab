@@ -50,6 +50,7 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
         if(pFields)
         {
             out.push_back(pFields);
+            delete pFields;
         }
         else
         {

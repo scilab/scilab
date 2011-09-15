@@ -46,7 +46,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
         pOut->set(i, 0, pCall->getName().c_str());
         pOut->set(i, 1, pCall->getModule().c_str());
         pOut->set(i, 2, pCall->getTypeStr().c_str());
-        
+
         if(pCall->isMacroFile())
         {
             pOut->set(i, 3, pCall->getAs<MacroFile>()->getMacro() == NULL ? L"false" : L"true");

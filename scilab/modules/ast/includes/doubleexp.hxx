@@ -45,10 +45,6 @@ namespace ast
                 {
                     delete _bigDouble;
                 }
-                else
-                {
-                    std::wcout << L"fallait pas le delete celui la !" << std::endl;
-                }
             }
         }
         /** \} */

@@ -37,6 +37,10 @@ namespace types
         for(int i = 0 ; i < getSize() ; i++)
         {
             double* pReal = NULL;
+            if(m_pRealData[i])
+            {
+                delete m_pRealData[i];
+            }
             m_pRealData[i] = new SinglePoly(&pReal, _piRank[i]);
         }
 #ifndef NDEBUG
@@ -861,6 +865,10 @@ namespace types
 
     void Polynom::deleteAll()
     {
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            delete m_pRealData[i];
+        }
         delete[] m_pRealData;
         m_pRealData = NULL;
         deleteImg();

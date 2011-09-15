@@ -80,7 +80,16 @@ namespace types
 
     ImplicitList::ImplicitList()
     {
+        m_iSize     = -1;
+        m_eOutType  = RealGeneric;
         m_bComputed = false;
+        m_poStart   = NULL;
+        m_poStep    = NULL;
+        m_poEnd     = NULL;
+        m_pDblStart = NULL;
+        m_pDblStep  = NULL;
+        m_pDblEnd   = NULL;
+
 #ifndef NDEBUG
         Inspector::addItem(this);
 #endif
@@ -88,8 +97,16 @@ namespace types
 
     ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd)
     {
-        m_iSize = -1;
-        m_eOutType = RealGeneric;
+        m_iSize     = -1;
+        m_eOutType  = RealGeneric;
+        m_bComputed = false;
+        m_poStart   = NULL;
+        m_poStep    = NULL;
+        m_poEnd     = NULL;
+        m_pDblStart = NULL;
+        m_pDblStep  = NULL;
+        m_pDblEnd   = NULL;
+
         setStart(_poStart);
         setStep(_poStep);
         setEnd(_poEnd);
@@ -126,10 +143,20 @@ namespace types
 
     void ImplicitList::setStart(InternalType *_poIT)
     {
-        _poIT->IncreaseRef();
+        if(m_poStart)
+        {//clear previous value
+            m_poStart->DecreaseRef();
+            if(m_poStart->isDeletable())
+            {
+                delete m_poStart;
+                m_poStart = NULL;
+            }
+        }
+
         m_poStart = _poIT;
         if(m_poStart != NULL)
         {
+            m_poStart->IncreaseRef();
             m_eStartType = m_poStart->getType();
         }
         m_bComputed = false;
@@ -142,10 +169,20 @@ namespace types
 
     void ImplicitList::setStep(InternalType *_poIT)
     {
-        _poIT->IncreaseRef();
+        if(m_poStep)
+        {//clear previous value
+            m_poStep->DecreaseRef();
+            if(m_poStep->isDeletable())
+            {
+                delete m_poStep;
+                m_poStep = NULL;
+            }
+        }
+
         m_poStep = _poIT;
         if(m_poStep != NULL)
         {
+            m_poStep->IncreaseRef();
             m_eStepType = m_poStep->getType();
         }
         m_bComputed = false;
@@ -158,10 +195,20 @@ namespace types
 
     void ImplicitList::setEnd(InternalType* _poIT)
     {
-        _poIT->IncreaseRef();
+        if(m_poEnd)
+        {//clear previous value
+            m_poEnd->DecreaseRef();
+            if(m_poEnd->isDeletable())
+            {
+                delete m_poEnd;
+                m_poEnd = NULL;
+            }
+        }
+
         m_poEnd = _poIT;
         if(m_poEnd != NULL)
         {
+            m_poEnd->IncreaseRef();
             m_eEndType = m_poEnd->getType();
         }
         m_bComputed = false;

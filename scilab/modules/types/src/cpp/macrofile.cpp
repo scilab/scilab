@@ -28,6 +28,14 @@ namespace types
         setModule(_stModule);
     }
 
+    MacroFile::~MacroFile()
+    {
+        if(m_pMacro)
+        {
+            delete m_pMacro;
+        }
+    }
+
     InternalType* MacroFile::clone()
     {
         IncreaseRef();
@@ -47,11 +55,6 @@ namespace types
     InternalType::RealType MacroFile::getType(void)
     { 
         return RealMacroFile; 
-    }
-
-    Macro* MacroFile::getMacro(void)
-    {
-        return m_pMacro;
     }
 
     wstring MacroFile::toString(int _iPrecision, int _iLineLen)

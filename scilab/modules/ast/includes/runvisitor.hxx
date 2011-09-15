@@ -698,18 +698,16 @@ namespace ast
 
                 InternalType *pIT = NULL;
                 pIT = pVar->extractValue(0);
-                pIT->IncreaseRef();
+                //pIT->IncreaseRef();
                 symbol::Symbol varName = e.vardec_get().name_get();
                 //symbol::Context::getInstance()->put(varName, *pIT);
 
                 
                 for(int i = 0 ; i < pVar->getSize() ; i++)
                 {
-                    bool bNew = false;
                     if(pIT->isRef(1))
                     {
                         pIT = pIT->clone();
-                        pIT->IncreaseRef();
                     }
 
                     if(pIT->isDouble())
@@ -796,7 +794,7 @@ namespace ast
                         break;
                     }
                 }
-                pIT->DecreaseRef();
+                //BpIT->DecreaseRef();
                 pVar->DecreaseRef();
                 //delete pVar;
             }

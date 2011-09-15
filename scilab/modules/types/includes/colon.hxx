@@ -33,10 +33,8 @@ namespace types
     {
     public :
 
-        Colon()
+        Colon() : ImplicitList()
         {
-            m_iSize = -1;
-            m_eOutType = RealGeneric;
             setStart(new Double(1));
             setStep(new Double(1));
             setEnd(new Dollar());

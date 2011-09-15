@@ -51,19 +51,20 @@ namespace symbol
 
         ~Scope()
         {
-            std::map<symbol::Symbol, types::InternalType*>::const_iterator i;
+            std::map<symbol::Symbol, types::InternalType*>::iterator i;
             for(i = _scope->begin() ; i != _scope->end() ; ++i)
             {
                 //std::cout << i->first << std::endl;
                 i->second->DecreaseRef();
                 if(i->second->isDeletable())
                 {
-                    //					std::cout << "--- DELETE : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
+                    //std::wcout << L"--- DELETE : " << i->first << L" " << i->second << " " << i->second->getRef() << std::endl;
                     delete i->second;
+                    i->second = NULL;
                 }
                 else
                 {
-                    //					std::cout << "--- KEEP : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
+                    //std::wcout << L"--- KEEP : " << i->first << L" " << i->second << " " << i->second->getRef() << std::endl;
                 }
             }
             delete _scope;
@@ -161,7 +162,7 @@ namespace symbol
                 if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
                 {
                     types::Callable* pC = it_scope->second->getAsCallable();
-                    if(pC->getModule() == _stModuleName)
+                    if(_stModuleName == L""  || pC->getModule() == _stModuleName)
                     {
                         pNames->push_back(it_scope->first);
                     }

@@ -24,7 +24,7 @@ namespace types
     public :
                                 MacroFile(): Callable(){};
                                 MacroFile(wstring _stName, wstring _stPath, wstring _stModule);
-        virtual                 ~MacroFile(){};
+        virtual                 ~MacroFile();
 
         //FIXME : Should not return NULL
         InternalType*           clone();
@@ -40,7 +40,7 @@ namespace types
         Callable::ReturnValue   call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         bool                    parse(void);
 
-        Macro*                  getMacro(void);
+        Macro*                  getMacro(void){return m_pMacro;}
 
         /* return type as string ( double, int, cell, list, ... )*/
         virtual wstring         getTypeStr() {return L"macrofile";}

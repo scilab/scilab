@@ -195,6 +195,7 @@
     <ClCompile Include="..\sci_getfield.cpp" />
     <ClCompile Include="..\sci_insert.cpp" />
     <ClCompile Include="..\sci_inspectorDeleteUnreferencedItems.cpp" />
+    <ClCompile Include="..\sci_inspectorGetFunctionList.cpp" />
     <ClCompile Include="..\sci_inspectorGetItem.cpp" />
     <ClCompile Include="..\sci_inspectorGetItemCount.cpp" />
     <ClCompile Include="..\sci_inspectorGetUnreferencedItem.cpp" />
@@ -210,7 +211,6 @@
     <ClCompile Include="..\sci_typeof.cpp" />
     <ClCompile Include="..\sci_usertype.cpp" />
     <ClCompile Include="..\types_gw.cpp" />
-    <ClCompile Include="..\sci_inspectorGetFunctionList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_types_gw.h" />
