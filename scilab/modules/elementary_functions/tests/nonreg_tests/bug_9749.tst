@@ -20,5 +20,5 @@ s=spec(A);
 for k=0:2:32
   if execstr("E=expm(A*2^k)","errcatch")<>0 then pause,end;
   S=spec(E);
-  if ~assert_checkalmostequal (S , exp(s*2^k),1d-12,1d-12)  then pause,end;
+  assert_checkalmostequal (S , exp(s*2^k),1d-12,1d-12);
 end
