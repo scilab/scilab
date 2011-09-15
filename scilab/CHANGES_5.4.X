@@ -434,6 +434,8 @@ Bug fixes:
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
+* bug 9339 fixed - 'tbx_build_help' function did not manage languages correctly.
+
 * bug 9354 fixed - 'savematfile' could not save imbricated structures.
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
