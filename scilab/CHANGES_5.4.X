@@ -127,6 +127,8 @@ Xcos:
 
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
+* bug 9947 fixed - VARIABLE_DELAY block could not be dragged to a diagram.
+
 * bug 9972 fixed - Error reporting with a wrong context produce an endless
                    loop.
 
