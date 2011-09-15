@@ -630,7 +630,12 @@ Bug fixes:
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
+<<<<<<< HEAD
 * bug 9971 fixed - GLoad macro not used and not documented is removed.
+=======
+* bug 9966 fixed - The default value of comptype in assert_checkalmostequal 
+                   was wrongly chosen.
+>>>>>>> 8e3e2d3... assert: bug 9966 fixed - Fixed assert_checkalmostequal
 
 * bug 9979 fixed - The who_user() function printed a wrong message.
 

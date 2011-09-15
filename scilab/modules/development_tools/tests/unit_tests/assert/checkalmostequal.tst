@@ -111,6 +111,23 @@ ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 errmsg = lasterror();
 MY_assert_equal ( errmsg , "assert_checkalmostequal: Assertion failed: expected = [0 ...] while computed = [0.0001 ...]" );
+
+//////////////////////////////////////////
+//
+// Test empty matrix
+//
+// Obvious success
+[flag,errmsg] = assert_checkalmostequal ( [] , [] );
+checkassert ( flag , errmsg , "success" );
+//
+// Obvious success
+[flag,errmsg] = assert_checkalmostequal ( [] , [] , [], [], "matrix");
+checkassert ( flag , errmsg , "success" );
+//
+// Obvious success
+[flag,errmsg] = assert_checkalmostequal ( [] , [] , [], [], "element");
+checkassert ( flag , errmsg , "success" );
+
 //////////////////////////////////////////
 //
 //

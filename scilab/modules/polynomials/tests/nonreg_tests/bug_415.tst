@@ -65,7 +65,7 @@
 //roots(p)
 //
 //
-//Jean-Marc Sac-EpÃ©e on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
+//Jean-Marc Sac-Epée on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
 //France  September 27, 2000 at 9:18:17
 
 // 
@@ -92,7 +92,7 @@ endfunction
 //   compfun : the comparison function
 //   data : an optionnal data to pass to the comparison function
 // Bruno Pincon
-// "quelques tests de rapidit�e entre diff�erents logiciels matriciels"
+// "quelques tests de rapidité entre différents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
@@ -183,6 +183,3 @@ expected  = [
 ];
 // Precision measured with experiments
 assert_checkalmostequal ( computed , expected , 10^6*%eps );
-
-
-

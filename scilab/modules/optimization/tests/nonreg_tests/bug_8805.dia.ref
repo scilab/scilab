@@ -83,5 +83,5 @@ Iteration #130, Feval #194, Fval = 0.0006215, x = 0.9932147 0.9888743, Size = 0.
 =================================
 End of Optimization
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal(xopt,[1;1],1.d-2);
+assert_checkalmostequal(xopt,[1;1],1.d-1);
 nm = neldermead_destroy(nm);

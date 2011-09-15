@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -28,4 +28,4 @@ x0 = [
 0.0820513
 ];
 xopt=karmarkar(a,b,c,x0);
-assert_checkalmostequal ( xopt , expected , 1.e-3 );
+assert_checkalmostequal ( xopt , expected , 1.e-3, 1.e-3 );

@@ -103,7 +103,7 @@ nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 , 1.e-1);
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-2 );
@@ -129,7 +129,7 @@ nm = neldermead_search(nm);
 nm = neldermead_restart(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1, 1e-1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-2 );
@@ -159,7 +159,7 @@ nm = neldermead_configure(nm,"-simplex0length",20.0);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1, 1e-1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-3 );
@@ -241,7 +241,7 @@ nm = neldermead_configure(nm,"-boxnbpoints",6);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1, 1e-1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-2 );
@@ -276,7 +276,7 @@ nm = neldermead_configure(nm,"-scalingsimplex0","tocenter");
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1, 1e-1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-2 );
