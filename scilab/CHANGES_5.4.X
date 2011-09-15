@@ -340,7 +340,7 @@ ATOMS:
 
 * bug 9679 fixed - atomsSystemUpdate checks that Scilab is not in offLine mode, else writes a message.
 
-* bug 9805 fixed - atomsSystemUpdate() failed on some Windows.
+* bug 8942, 9805 fixed - atomsSystemUpdate() failed on some Windows.
 
 * bug 9967 fixed - windows UAC causing trouble with atomsRepositorySetOfl (internal function)
 
