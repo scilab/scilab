@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -147,10 +148,12 @@ Xs = diag(1:n);
 Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
 Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
 
-deff('[LME,LMI,OBJ]=evalf(Xlist)','X   = Xlist(1); ...
-                                   LME = X-diag(diag(X));...
-                                   LMI = list(-(A1''*X+X*A1+Q1),-(A2''*X+X*A2+Q2)); ...
-                                   OBJ = -sum(diag(X))  ');
+function [LME,LMI,OBJ]=evalf(Xlist)
+  X   = Xlist(1)
+  LME = X-diag(diag(X))
+  LMI = list(-(A1'*X+X*A1+Q1),-(A2'*X+X*A2+Q2))
+  OBJ = -sum(diag(X))
+endfunction
 
 X=lmisolver(list(zeros(A1)),evalf);
 

@@ -134,6 +134,11 @@ Optimization:
 
 * neldermead: Added a demo - search for largest smallest polygon.
 
+* Improved clarity of examples in the help pages of the 
+  optimization module.
+  Avoid unnecessary calls to "deff".
+  Avoid the "all statements in whole line" style.
+
 * bug 7891 fixed - The neldermead component had too many options.
   Tagged -costfargument option of optimbase as obsolete: will be
   maintained for backward compatibility until 5.4.1.
