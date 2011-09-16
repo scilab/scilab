@@ -2,6 +2,35 @@
             =================================================
 
 
+XML features:
+=============
+
+* Version 5.4.0 introduces XML management features. It allows easy access to
+XML files, validation and writing.
+
+ - XMLObjects - Describe the properties of the different XML objects
+ - xmlAddNs - Add a namespace to a XML Element
+ - xmlClose - Close a XML document
+ - xmlDTD - Create a XML DTD object
+ - xmlDocument - Create a new XML document
+ - xmlDump - Dump a XML object
+ - xmlElement - Create a new XML element
+ - xmlFormat - Format a Scilab variable into XML
+ - xmlGetNsByHref - Get a namespace by its href
+ - xmlGetNsByPrefix - Get a namespace by prefix
+ - xmlGetOpenStreams - Get all open XML documents or all open XML Validation files.
+ - xmlNs - Create a new XML Namespace
+ - xmlRead - Read a XML stream from a local or distant file
+ - xmlReadStr - Read a XML tree from a string
+ - xmlRelaxNG - Create a XML Relax NG object
+ - xmlSchema - Create a XML Schema object
+ - xmlValidate - Validate a document in using a DTD, a Relax NG or a Schema.
+ - xmlWrite - Write a XML document in a file
+ - xmlXPath - Make an XPath query on a XML document
+
+These features have been developped in the context of the OASIS R&D project.
+
+
 SciNotes:
 =========
 
