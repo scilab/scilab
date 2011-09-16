@@ -161,7 +161,7 @@ namespace org_modules_xml
     {
         if (list.getSize() && list.getRealNode() != parent)
         {
-            int pos = index;
+            int pos = (int)index;
 
             if (index < 1)
             {

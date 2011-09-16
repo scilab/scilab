@@ -60,7 +60,7 @@ namespace org_modules_xml
         }
         else
         {
-            returnValue = scope->size();
+            returnValue = (int)scope->size();
             scope->push_back(const_cast<XMLObject *>(&obj));
         }
 

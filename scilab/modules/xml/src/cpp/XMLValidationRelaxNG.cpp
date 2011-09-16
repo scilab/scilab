@@ -20,6 +20,7 @@ extern "C" {
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "BOOL.h"
 }
 
 namespace org_modules_xml
@@ -102,7 +103,7 @@ namespace org_modules_xml
 
         xmlRelaxNGSetValidErrors(vctxt, (xmlRelaxNGValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
 
-        ret = xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument());
+        ret = BOOLtobool(xmlRelaxNGValidateDoc(vctxt, doc.getRealDocument()));
 
         xmlRelaxNGSetValidErrors(vctxt, 0, 0, 0);
         xmlRelaxNGFreeValidCtxt(vctxt);

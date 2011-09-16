@@ -37,14 +37,18 @@ namespace org_modules_xml
         va_list args;
 
         va_start(args, msg);
+#ifdef _MSC_VER
+        _vsnprintf(str, BUFFER_SIZE, msg, args);
+#else
         std::vsnprintf(str, BUFFER_SIZE, msg, args);
+#endif
         va_end(args);
         errorBuffer->append(str);
     }
 
     bool XMLValidation::validate(const std::string & xmlCode, std::string * error) const
     {
-        xmlParserInputBuffer * buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), xmlCode.size(), (xmlCharEncoding)0);
+        xmlParserInputBuffer * buffer = xmlParserInputBufferCreateMem(xmlCode.c_str(), (int)xmlCode.size(), (xmlCharEncoding)0);
         bool valid = validate(xmlNewTextReader(buffer, 0), error);
         xmlFreeParserInputBuffer(buffer);
 

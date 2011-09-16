@@ -79,7 +79,7 @@ int sci_xmlDump(char *fname, unsigned long fname_len)
 
     if (clines.size())
     {
-        err = createMatrixOfString(pvApiCtx, Rhs + 1, lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
+        err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast<const char * const *>(&(clines[0])));
     }
     else
     {

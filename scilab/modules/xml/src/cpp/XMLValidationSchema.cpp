@@ -20,6 +20,7 @@ extern "C" {
 #include "expandPathVariable.h"
 #include "MALLOC.h"
 #include "localization.h"
+#include "BOOL.h"
 }
 
 namespace org_modules_xml
@@ -102,7 +103,7 @@ namespace org_modules_xml
 
         xmlSchemaSetValidErrors(vctxt, (xmlSchemaValidityErrorFunc)XMLValidation::errorFunction, 0, 0);
 
-        ret = xmlSchemaValidateDoc(vctxt, doc.getRealDocument());
+        ret = BOOLtobool(xmlSchemaValidateDoc(vctxt, doc.getRealDocument()));
 
         xmlSchemaSetValidErrors(vctxt, 0, 0, 0);
         xmlSchemaFreeValidCtxt(vctxt);

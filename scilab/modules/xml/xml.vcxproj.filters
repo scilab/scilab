@@ -207,5 +207,23 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlValidate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLValidationDTD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLValidationRelaxNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\XMLValidationSchema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

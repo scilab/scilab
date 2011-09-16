@@ -310,6 +310,8 @@
     <ClCompile Include="sci_gateway\cpp\sci_xmlNs.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlRead.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlReadStr.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlValidate.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xmlValidationFile.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlWrite.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xmlXPath.cpp" />
     <ClCompile Include="sci_gateway\c\gw_xml.c" />
@@ -323,6 +325,10 @@
     <ClCompile Include="src\cpp\XMLNotHandledElement.cpp" />
     <ClCompile Include="src\cpp\XMLNs.cpp" />
     <ClCompile Include="src\cpp\XMLObject.cpp" />
+    <ClCompile Include="src\cpp\XMLValidation.cpp" />
+    <ClCompile Include="src\cpp\XMLValidationDTD.cpp" />
+    <ClCompile Include="src\cpp\XMLValidationRelaxNG.cpp" />
+    <ClCompile Include="src\cpp\XMLValidationSchema.cpp" />
     <ClCompile Include="src\cpp\XMLXPath.cpp" />
     <ClCompile Include="src\c\DllmainXml.c" />
     <ClCompile Include="src\c\XMLMlistsManagement.c" />
