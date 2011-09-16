@@ -191,7 +191,7 @@ This block is a Super Block. The input event is directed once every n
   <refsection id="Examples_freq_div">
     <title>Examples</title>
     <para>
-     The following example divide a frequence per three. 
+     The following example divides a frequence per three.
       <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/FREQ_DIV_en_US.xcos">
         Open this example in Xcos
       </link>
