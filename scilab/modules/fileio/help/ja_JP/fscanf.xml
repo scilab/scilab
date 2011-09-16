@@ -74,7 +74,7 @@
     <title>参照</title>
     <simplelist type="inline">
       <member>
-        <link linkend="printf">printf</link>
+        <link linkend="mprintf">mprintf</link>
       </member>
       <member>
         <link linkend="read">read</link>

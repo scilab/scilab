@@ -71,15 +71,15 @@ b = 0*ones(size(A,1),1);
 
 tic();
 res = umfpack(A,'\',b);
-printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
 
 tic();
 res = linsolve(A,b);
-printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
 
 tic();
 res = A\b;
-printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
+mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
 

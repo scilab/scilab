@@ -100,7 +100,7 @@ int sci_myscierror(char * fname)
       <member><link
       linkend="printf_conversion">printf_conversion</link></member>
 
-      <member><link linkend="printf">printf</link></member>
+      <member><link linkend="mprintf">mprintf</link></member>
 
       <member><link linkend="sciprint">sciprint</link></member>
     </simplelist>

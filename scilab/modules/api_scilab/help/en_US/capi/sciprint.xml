@@ -85,7 +85,7 @@ int sci_mysciprint(char * fname)
       <member><link
       linkend="printf_conversion">printf_conversion</link></member>
 
-      <member><link linkend="printf">printf</link></member>
+      <member><link linkend="mprintf">mprintf</link></member>
 
       <member><link linkend="Scierror">Scierror</link></member>
     </simplelist>
