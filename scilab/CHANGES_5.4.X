@@ -457,6 +457,8 @@ Bug fixes:
 
 * bug 3291 fixed - SCI/modules/tclsci/tcl/BWidget-1.8.0/ moved as prerequirements.
 
+* bug 4240 fixed - Some unexpected blank lines was displayed with the "dir" function.
+
 * bug 4576 fixed - An example of ilib_build with "cflags" argument was missing.
 
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
