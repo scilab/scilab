@@ -582,6 +582,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "noui_data", "modules\ui_dat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types-JAVA-tests", "modules\types\tests\java\types-JAVA-tests.vcxproj", "{3F4504A3-1116-40BD-9612-F5E83D09CC99}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "modules\xml\xml.vcxproj", "{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1814,6 +1816,14 @@ Global
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Debug|x64.ActiveCfg = Debug|x64
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Release|Win32.ActiveCfg = Release|Win32
 		{3F4504A3-1116-40BD-9612-F5E83D09CC99}.Release|x64.ActiveCfg = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|Win32.Build.0 = Debug|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.ActiveCfg = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Debug|x64.Build.0 = Debug|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.ActiveCfg = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|Win32.Build.0 = Release|Win32
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.ActiveCfg = Release|x64
+		{EF5402DA-29FD-4F1B-B98B-D284D4E27C15}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
