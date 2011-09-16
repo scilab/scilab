@@ -134,7 +134,7 @@ Optimization:
 
 * neldermead: Added a demo - search for largest smallest polygon.
 
-* Improved clarity of examples in the help pages of the 
+* Improved clarity of examples in the help pages of the
   optimization module.
   Avoid unnecessary calls to "deff".
   Avoid the "all statements in whole line" style.
@@ -163,7 +163,7 @@ Optimization:
   See the help page of neldermead for details to update your
   code, if required.
 
-* bug 9566 fixed - The tolvarianceflag, tolabsolutevariance, 
+* bug 9566 fixed - The tolvarianceflag, tolabsolutevariance,
   tolrelativevariance options of neldermead are now obsolete.
   See the help page of neldermead for details to update your
   code, if required.
@@ -398,6 +398,8 @@ Bug fixes:
 
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
+
+* bug 7745 fixed - add_demo moved in demo_tools module.
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
 
