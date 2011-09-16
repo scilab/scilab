@@ -84,19 +84,22 @@ Xcos:
 * Bug 9501 fixed - With a localized TMPDIR, block edition could throw an HDF5
                    exception.
 
-* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
+* bug 9506 fixed - some libraries dependencies were not loaded for
+                   xcos_skeleton startup.
 
-* bug 9532 fixed - Users defined blocks had no icons when saved
+* bug 9532 fixed - Users defined blocks had no icons when saved.
 
 * bug 9547 fixed - The about box was not localized due to a multi-line string.
 
 * bug 9590 fixed - xcos examples were not embeded in binary version on Windows.
 
-* bug 9732 fixed - code generation failed on compilation on Windows.
-                   "unresolved external symbol dset_"
+* bug 9732 fixed - code generation failed on compilation on Windows with
+                   "unresolved external symbol dset_".
 
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
+* bug 9972 fixed - Error reporting with a wrong context produce an endless
+                   loop.
 
 
 Localization:
