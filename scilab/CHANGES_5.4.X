@@ -431,6 +431,8 @@ Bug fixes:
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
 
+* bug 7700 fixed - Bad proposition in the console history when a char is added 
+
 * bug 7745 fixed - add_demo moved in demo_tools module.
 
 * bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.

@@ -195,15 +195,14 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         this.addKeyListener(new KeyListener() {
                 public void keyPressed (KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                    if (e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                            //console.getConfiguration().getInputParsingManager().reset();
-                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
                             console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
-                    } else if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
-                               && e.getKeyCode() == KeyEvent.VK_DELETE
-                               && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                    }
+                    if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+                        && e.getKeyCode() == KeyEvent.VK_DELETE
+                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
                         // Fix for bug 7238
                         e.setKeyCode(KeyEvent.VK_DECIMAL);
                     }
