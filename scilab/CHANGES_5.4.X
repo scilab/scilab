@@ -588,3 +588,4 @@ Bug fixes:
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
+* bug 9979 fixed - The who_user() function printed a wrong message.
