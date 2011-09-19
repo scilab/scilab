@@ -8,84 +8,88 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 15:16+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2011-09-05 17:32+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
+"\n"
+"    hlavní obj. dvoj. obj. dvoj. mezera \n"
 
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
-msgstr ""
+msgstr "%s: Přesnost není dostatečná pro uspokojení kritéria konvergence.\n"
 
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
-msgstr ""
+msgstr "%s: Argument 3: očekáván špatný počet sloupců %d\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
-msgstr "%s: Nelze alokovat více paměti.\n"
+msgstr "%s: Nelze přidělit více paměti.\n"
 
 #, c-format
 msgid "%s: Length of working array is too short.\n"
-msgstr "%s: Délka pracovního vektoru je příliš malá.\n"
+msgstr "%s: Délka pracovního pole je příliš malá.\n"
 
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
-msgstr ""
+msgstr "%s: Q není symetricky kladně definitní.\n"
 
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
-msgstr ""
+msgstr "%s: Omezení jsou nestálá.\n"
 
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
-msgstr ""
+msgstr "%s: Problém minimalizace nemá řešení.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s: Příliš mnoho iterací (více než %d).\n"
+msgstr "%s: Příliš mnoho opakování (více než %d).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: očekáváno %d jako počet "
+"sloupců.\n"
 
 #, c-format
 msgid "Error in dgels, info = %d.\n"
-msgstr ""
+msgstr "Chyba v dgels, info = %d.\n"
 
 #, c-format
 msgid "Error in dspev, info = %d.\n"
-msgstr ""
+msgstr "Chyba v dspev, info = %d.\n"
 
 #, c-format
 msgid "Error in dspgv, info = %d.\n"
-msgstr ""
+msgstr "Chyba v dspgv, info = %d.\n"
 
 #, c-format
 msgid "Error in dspst, info = %d.\n"
-msgstr ""
+msgstr "Chyba v dspst, info = %d.\n"
 
 #, c-format
 msgid "Error in dtrcon, info = %d.\n"
-msgstr ""
+msgstr "Chyba v dtrcon, info = %d.\n"
 
 msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr ""
+msgstr "F(x)*Z má záporné vlastní číslo.\n"
 
 msgid "L must be at least one.\n"
-msgstr ""
+msgstr "L musí být alespoň jedna.\n"
 
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr ""
+msgstr "Matice F_i, i=1,...,m  jsou lineárně závislé.\n"
 
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
@@ -97,12 +101,14 @@ msgstr ""
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr ""
+"Pracovní prostor je příliš malý. Potřebuje alespoň "
+"%d*velikost(dvojitépřesnosti).\n"
 
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
-msgstr "Z0 nesplňuje omezení ve tvaru rovnosti pro duální problém.\n"
+msgstr "Z0 nesplňuje omezení rovnosti pro dvojitou proveditelnost.\n"
 
 msgid "Z0 is not positive definite.\n"
-msgstr "Z0 není pozitivně definitní.\n"
+msgstr "Z0 není kladně definitní.\n"
 
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
@@ -112,10 +118,10 @@ msgid "m must be at least one.\n"
 msgstr "m musí být alespoň jedna.\n"
 
 msgid "nu must be at least 1.0.\n"
-msgstr "nu musí být alespoň jedna.\n"
+msgstr "nu musí být alespoň 1.0.\n"
 
 msgid "x0 is not strictly primal feasible.\n"
-msgstr ""
+msgstr "x0 není striktně hlavní proveditelnost.\n"
 
 #, c-format
 msgid "%s:       OPTIMIZATION PHASE."
@@ -127,7 +133,7 @@ msgstr "%s: FÁZE PROVEDITELNOSTI."
 
 #, c-format
 msgid "%s: Absolute accuracy reached."
-msgstr "%s: Absloutní přesnost dosažena."
+msgstr "%s: Absolutní přesnost dosažena."
 
 #, c-format
 msgid "%s: Ambiguous property name %s matches several fields : %s"

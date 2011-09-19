@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:37+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-09-18 16:34+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ru\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -1187,7 +1187,7 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
@@ -1289,7 +1289,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -1423,22 +1423,22 @@ msgid "... as well as very tiny radii"
 msgstr "... а также очень маленькие радиусы"
 
 msgid "2D and 3D plots"
-msgstr ""
+msgstr "2D и3D графики"
 
 msgid "A partial viewport may be set with clipping"
-msgstr ""
+msgstr "С помощью вырезки можно установить частичный ракурс"
 
 msgid "Animation"
-msgstr ""
+msgstr "Анимация"
 
 msgid "Autumn"
 msgstr "Autumn"
 
 msgid "Basic functions"
-msgstr ""
+msgstr "Базовые функции"
 
 msgid "Bezier curves and surfaces"
-msgstr ""
+msgstr "Кривые и поверхности Безье"
 
 msgid "Big radii are supported..."
 msgstr "Поддерживаются большие радиусы..."
@@ -1453,13 +1453,13 @@ msgid "Color number"
 msgstr "Номер цвета"
 
 msgid "Colormap"
-msgstr ""
+msgstr "Цветовая карта"
 
 msgid "Common X axis"
 msgstr "Общая ось X"
 
 msgid "Complex elementary functions"
-msgstr ""
+msgstr "Комплексные элементарные функции"
 
 msgid "Copper"
 msgstr "Copper"
@@ -1503,10 +1503,10 @@ msgid "Error %d at line %d of the function: '%s"
 msgstr "Ошибка %d в строке %d функции: «%s»"
 
 msgid "Exact gaussian density"
-msgstr ""
+msgstr "Точная плотность нормального распределения"
 
 msgid "Finite Elements"
-msgstr ""
+msgstr "Конечные Элементы"
 
 msgid "Gaussian random sample histogram"
 msgstr "Пример случайной гауссовой гистограммы"
@@ -1530,7 +1530,7 @@ msgid "Jet"
 msgstr "Jet"
 
 msgid "LaTeX/MathML"
-msgstr ""
+msgstr "LaTeX/MathML"
 
 msgid "Left click on a curve to create a datatip, right opens"
 msgstr ""
@@ -1551,7 +1551,7 @@ msgid "Misc"
 msgstr "Разное"
 
 msgid "More surfaces"
-msgstr ""
+msgstr "Больше поверхностей"
 
 msgid "Multiple datatips mode"
 msgstr "Режим с несколькими подсказками данных"
@@ -1635,13 +1635,13 @@ msgid "automatic"
 msgstr "Автоматическое"
 
 msgid "bar histogram"
-msgstr ""
+msgstr "столбчатая гистограмма"
 
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""
 
 msgid "histplot() : (normalized) histogram plot"
-msgstr ""
+msgstr "histplot() : график гистограммы (нормированной)"
 
 msgid "lower left"
 msgstr "Снизу слева"

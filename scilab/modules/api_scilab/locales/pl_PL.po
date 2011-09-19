@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-07-22 13:11+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2011-09-10 18:45+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 #, c-format
 msgid "\tin %s\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s: Brak pamięci.\n"
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -194,11 +194,11 @@ msgstr ""
 
 #, c-format
 msgid "Memory used for variables: %d\n"
-msgstr ""
+msgstr "Pamięć wykorzystana dla zmiennych: %d.\n"
 
 #, c-format
 msgid "Total memory available: %d\n"
-msgstr ""
+msgstr "Całkowita dostępna pamięć: %d\n"
 
 #, c-format
 msgid "Use stacksize function to increase it.\n"

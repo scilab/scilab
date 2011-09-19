@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-09-02 15:18+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2011-09-05 17:33+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 #, c-format
 msgid ""
@@ -161,7 +161,7 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for '%s': Vector expected.\n"
-msgstr "%s: Špatná velikost pro '%s': Očekáván vektor.\n"
+msgstr "%s: Špatná velikost '%s': Očekáván vektor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -222,27 +222,27 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: Špatná hodnota pro vstupní argument #%d: očekáván %s, %s, %s, '%s', '%s' "
+"%s: Špatná hodnota vstupního argumentu #%d: očekáván %s, %s, %s, '%s', '%s' "
 "nebo '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
-"%s: Špatná hodnota pro vstupní argument #%d: očekáván %s, %s, '%s', nebo "
+"%s: Špatná hodnota vstupního argumentu #%d: očekáván %s, %s, '%s', nebo "
 "'%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Špatná hodnota pro vstupní argument #%d: očekáván '%s', '%s' nebo '%s'.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: Špatná hodnota pro vstupní argument #%d: očekávána hodnota kladného "
+"%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota kladného "
 "celého čísla.\n"
 
 #, c-format

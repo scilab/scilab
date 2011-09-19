@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 09:32+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"PO-Revision-Date: 2011-09-18 17:09+0000\n"
+"Last-Translator: ubuntuuser87 <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: de\n"
 
 #, c-format
@@ -717,7 +717,7 @@ msgid "A non square matrix!\n"
 msgstr "Eine nichtquadratische Matrix!\n"
 
 msgid "Aborting current computation\n"
-msgstr ""
+msgstr "Abbruch aktuellen Berechnung\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "kann das temporäre Windows Verzeichnis nicht finden (1)."
@@ -736,13 +736,15 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr ""
+msgstr "Copyright (c) 1989-2011 (INRIA)\n"
 
 #, c-format
 msgid ""
 "End of stack\n"
 "\n"
 msgstr ""
+"Ende des Stapels\n"
+"\n"
 
 msgid "Error"
 msgstr "Fehler"
@@ -882,6 +884,11 @@ msgid ""
 "information:\n"
 "%s %s\n"
 msgstr ""
+"Oups. Ein schwerwiegender Fehler ist von Scilab festgestellt.\n"
+"Ihr Beispiel wird wohl bald zum Absturz bringen.\n"
+"Bitte melden Sie einen Fehler auf% s mit den folgenden\n"
+"Informationen:\n"
+"% s% s\n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "SCI Umgebungsvariable nicht definiert.\n"
@@ -944,7 +951,7 @@ msgstr "Warnung"
 
 #, c-format
 msgid "Warning: Could not find %s\n"
-msgstr ""
+msgstr "Warnung: konnte nicht gefunden% s\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
@@ -1109,7 +1116,7 @@ msgid "Checking: %s\n"
 msgstr "Überprüfe: %s\n"
 
 msgid "Getting started with Scilab"
-msgstr ""
+msgstr "Erste Schritte mit Scilab"
 
 msgid "Introduction"
 msgstr "Vorwort"

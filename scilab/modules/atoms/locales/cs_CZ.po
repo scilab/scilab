@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 15:18+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2011-09-05 10:41+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 #, c-format
 msgid "\t - '%s - %s'\n"
@@ -94,7 +94,7 @@ msgstr "%s: Je již načtena jiná verze balíčku %s : %s\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
+msgstr "%s: Soubor DESCRIPTION ('%s') neexistuje.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -626,7 +626,7 @@ msgstr "%s: Do tohoto adresáře nemáte přístup k zápisu : %s.\n"
 
 #, c-format
 msgid "%s: gzip not found.\n"
-msgstr ""
+msgstr "%s: gzip nenalezen.\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"

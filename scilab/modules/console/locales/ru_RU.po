@@ -8,50 +8,50 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-08-13 15:43+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2011-09-13 22:45+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
-msgstr ""
+msgstr "%s: Не реализовано в этом режиме.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
+msgstr "%s: Эта функциональность не реализована в этом режиме.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr ""
+msgstr "%s: Эта функциональность ещё не реализована.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных параметров.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
@@ -83,7 +83,7 @@ msgid "Scilab Command"
 msgstr "Команда Scilab"
 
 msgid "Scilab Fields"
-msgstr ""
+msgstr "Поля Scilab"
 
 msgid "Scilab Function"
 msgstr "Функция Scilab"
@@ -99,6 +99,10 @@ msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
 "\n"
 msgstr ""
+"Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
+"\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
+"[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
+"продолжить]"

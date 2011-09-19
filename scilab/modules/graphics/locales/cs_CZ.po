@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 15:17+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2011-09-05 11:23+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Špatná hodnota pro %s '%c': Očekáváno '%s' a '%s'.\n"
@@ -1144,6 +1144,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána hodnota celého "
+"čísla.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
@@ -1246,6 +1248,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána rukojeť 'Axes'.
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána hodnota celého čísla.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -1450,7 +1453,7 @@ msgstr "Povolit interpolaci"
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
-msgstr ""
+msgstr "Chyba %d na řádku %d funkce: '%s"
 
 msgid "Exact gaussian density"
 msgstr "Přesná gaussovská hustota"

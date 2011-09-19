@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-01 15:52+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-09-13 00:52+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ru\n"
 
 #, c-format
@@ -95,7 +95,7 @@ msgstr "%s: Другая версия пакета %s уже загружена:
 
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
-msgstr ""
+msgstr "%s: Файла DESCRIPTION ('%s') не существует.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -638,7 +638,7 @@ msgstr "%s: У вас нет доступа для записи в данный 
 
 #, c-format
 msgid "%s: gzip not found.\n"
-msgstr ""
+msgstr "%s: gzip не найден.\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -764,6 +764,8 @@ msgid ""
 "Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
+"Опция offLine настройки ATOMS установлена в значение True. atomsSystemUpdate "
+"не проверяет доступность новейших модулей."
 
 msgid "Package"
 msgstr "Пакет"

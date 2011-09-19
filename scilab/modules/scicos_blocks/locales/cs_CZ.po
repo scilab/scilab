@@ -8,32 +8,33 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-09-02 15:16+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"PO-Revision-Date: 2011-09-07 16:07+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 
 msgid "Allocation problem in spline.\n"
-msgstr ""
+msgstr "Problém přidělení ve křivce.\n"
 
 #, c-format
 msgid "Cannot use %s with this type of object."
-msgstr ""
+msgstr "Nelze použít %s s tímto typem objektu."
 
 msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
+msgstr "Zvažte zvýšení délky vyrovnávací paměti v bloku zpoždění \n"
 
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
+"Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
 
 msgid "Could not open /dev/audio!\n"
-msgstr ""
+msgstr "Nelze otevřít /dev/audio!\n"
 
 msgid "Could not open the file!\n"
-msgstr ""
+msgstr "Nelze otevřít soubor!\n"
 
 #, c-format
 msgid ""
@@ -41,103 +42,110 @@ msgid ""
 " Variable size=[%d,%d] \n"
 "Block output size=[%d,%d].\n"
 msgstr ""
+"Rozměry dat jsou nekonzistentní:\n"
+" Velikost proměnné=[%d,%d] \n"
+"Velikost výstupu bloku=[%d,%d].\n"
 
 #, c-format
 msgid "Error when opening file '%s'.\n"
-msgstr ""
+msgstr "Chyba při otevírání souboru '%s'.\n"
 
 msgid "Incorrect value for dimension argument."
-msgstr ""
+msgstr "Nesprávné hodnoty pro argument rozměru."
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
+msgstr "Neplatný typ proměnné : chyba v kódování hypermatice scilab.\n"
 
 msgid "Invalid variable type.\n"
-msgstr ""
+msgstr "Neplatný typ proměnné.\n"
 
 msgid "Output should be of Real type.\n"
-msgstr ""
+msgstr "Výstup by měl být Reálného typu.\n"
 
 msgid "Output should be of complex type.\n"
-msgstr ""
+msgstr "Výstup by měl být komplexního typu.\n"
 
 msgid "Output should be of int16 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.16.\n"
 
 msgid "Output should be of int32 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.32.\n"
 
 msgid "Output should be of int8 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.8.\n"
 
 msgid "Output should be of uint16 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.16.\n"
 
 msgid "Output should be of uint32 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.32 bez znaménka.\n"
 
 msgid "Output should be of uint8 type.\n"
-msgstr ""
+msgstr "Výstup by měl být typu celoč.8 bez znaménka.\n"
 
 msgid "Read error\n"
-msgstr ""
+msgstr "Chyba čtení\n"
 
 msgid "Read error!\n"
-msgstr ""
+msgstr "Chyba čtení!\n"
 
 msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr ""
+msgstr "CHYBA ROZSAHU : Chyba při malloc - Zkontrolujte Paměť\n"
 
 msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr ""
+msgstr "CHYBA ROZSAHU : Chyba ve scoReallocLongDraw()"
 
 msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr ""
+msgstr "CHYBA ROZSAHU : Neznámá chyba kódu !\n"
 
 msgid ""
 "SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
 "reason !\n"
 " Maybe you have destroyed the windows or any parent of curves\n"
 msgstr ""
+"CHYBA ROZSAHU : sciDrawObj nelze provést, pShortDraw je z neznámého důvodu "
+"prázdný !\n"
+" Možná jste zničili okna nebo jakékoliv nadřazené křivek\n"
 
 msgid "Size of buffer or input size have changed!\n"
-msgstr ""
+msgstr "Velikost vyrovnávací paměti nebo vstupu se změnila!\n"
 
 #, c-format
 msgid "The '%s' variable does not exist.\n"
-msgstr ""
+msgstr "Proměnná '%s' neexistuje.\n"
 
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
+"Časový vektor má špatnou velikost, očekáváno [%d, %d] a předáno [%d, %d].\n"
 
 msgid "The Time vector type is not double.\n"
-msgstr ""
+msgstr "Typ Časového vektoru není dvojitá přesnost.\n"
 
 msgid "The time vector should be an increasing vector.\n"
-msgstr ""
+msgstr "Časový vektor by měl být rostoucí vektor.\n"
 
 msgid "This scope has the same window id than another."
-msgstr ""
+msgstr "Tento rozsah má stejné id okna jako jiný."
 
 msgid "Trigger block must have discrete time input."
-msgstr ""
+msgstr "Blok sepnutí musí mít diskrétní časový vstup."
 
 #, c-format
 msgid "Write error in file '%s'.\n"
-msgstr ""
+msgstr "Chyba zápisu v souboru '%s'.\n"
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
-msgstr ""
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f\n"
 
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
-msgstr ""
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f \n"
 
 msgid "overflow error"
-msgstr ""
+msgstr "chyba přetečení"
 
 msgid "&?"
 msgstr "&?"

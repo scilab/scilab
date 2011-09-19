@@ -8,30 +8,31 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-01-25 09:31+0000\n"
-"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
+"PO-Revision-Date: 2011-09-18 17:11+0000\n"
+"Last-Translator: ubuntuuser87 <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: de\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
-msgstr ""
+msgstr "%s: in diesem Modus nicht implementiert.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
 msgstr ""
+"%s: diese Funktionalität wurde in diesem Modus nicht implementiert.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
-msgstr ""
+msgstr "%s: diese Funktion wurde nicht implementiert.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s: falscher Anzahl von Ausgangsargument(en).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
