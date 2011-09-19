@@ -591,3 +591,5 @@ Bug fixes:
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
 * bug 9979 fixed - The who_user() function printed a wrong message.
+
+* bug 9980 fixed - Frozen console when one tryes to complete an empty string.
