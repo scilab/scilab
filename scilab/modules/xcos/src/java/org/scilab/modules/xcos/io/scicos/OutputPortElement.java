@@ -214,7 +214,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 */
 	private void decodeGraphics(OutputPort port) {
 		// protection against previously stored blocks
-		if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX) {
+		if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX || graphics.get(GRAPHICS_OUTSTYLE_INDEX).isEmpty()) {
 			return;
 		}
 		
