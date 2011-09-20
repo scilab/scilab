@@ -2,21 +2,20 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="list2vec" xml:lang="en"
+<refentry version="5.0-subset Scilab" 
+          xml:id="list2vec" 
+          xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>list2vec</refname>
 
-    <refpurpose>Catenates list entries in a matrix.</refpurpose>
+    <refpurpose>Concatenates list entries in a matrix.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -33,7 +32,7 @@
         <term>li</term>
 
         <listitem>
-          <para>a list with n entries. The list entries must be 2D matrices with comptible
+          <para>a list with n entries. The list entries must be 2D matrices with compatible
           types.</para>
         </listitem>
       </varlistentry>
@@ -61,10 +60,13 @@
   <refsection>
     <title>Description</title>
 
-    <para>Catenates list entries in a column vector. The list entries are supposed to
-    be matrices with compatible types with respect to catenation.</para>
-<para>This function is a subsidiary for <link
-    linkend="lmisolver">lmisolver</link></para>
+    <para>
+	Concatenates list entries in a column vector. The list entries are supposed to
+    be matrices with compatible types with respect to concatenation.
+	</para>
+	<para>
+	This function is a subsidiary for <link linkend="lmisolver">lmisolver</link>
+	</para>
   </refsection>
 
   <refsection>
