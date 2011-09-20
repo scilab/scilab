@@ -332,6 +332,9 @@ Documentation:
 
 * Bug 9790 fixed - windows_tools help were not available on all platforms.
 
+* Bug 9983 fixed - The xclick help page did not clearly specify the axes used for 
+                   coordinates
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
