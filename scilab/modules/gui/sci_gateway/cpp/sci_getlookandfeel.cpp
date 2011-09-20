@@ -21,13 +21,24 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "GiwsException.hxx"
 /*--------------------------------------------------------------------------*/
 int sci_getlookandfeel(char *fname,unsigned long fname_len)
 {
-	CheckRhs(0,0);
-	CheckLhs(1,1);
+	CheckRhs(0, 0);
+	CheckLhs(1, 1);
 
-	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
+	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = 0;
+	try
+	{
+	     lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
+	}
+	catch (const GiwsException::JniException & e)
+	{
+	    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+	    return 0;
+	}
+
 	if (lnf)
 	{
 		static int n1 = 0,m1 = 0;
@@ -37,21 +48,21 @@ int sci_getlookandfeel(char *fname,unsigned long fname_len)
 		{	
 			m1 = (int)strlen(look);
 			n1 = 1;
-			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,&m1,&n1,&look);
+			CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &look);
 			if (look) {delete [] look; look = NULL;}
 			delete lnf;
-			LhsVar(1) = Rhs+1;
+			LhsVar(1) = Rhs + 1;
 			PutLhsVar();
 		}
 		else
 		{
 			delete lnf;
-			Scierror(999,_("%s: An error occurred: %s.\n"),fname,_("Impossible to get current look and feel"));
+			Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("Impossible to get current look and feel"));
 		}
 	}
 	else
 	{
-		Scierror(999,_("%s: No more memory.\n"),fname);
+		Scierror(999, _("%s: No more memory.\n"), fname);
 	}
 
 	return 0;

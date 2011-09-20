@@ -20,13 +20,24 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "GiwsException.hxx"
 /*--------------------------------------------------------------------------*/
 int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,0);
 	CheckLhs(1,1);
+	
+	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = 0;
+	try
+	{
+	    lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
+	}
+	catch (const GiwsException::JniException & e)
+	{
+	    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+	    return 0;
+	}
 
-	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
 	if (lnf)
 	{
 		char **lookandfeels = NULL;
