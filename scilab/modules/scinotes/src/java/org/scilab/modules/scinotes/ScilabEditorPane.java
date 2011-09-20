@@ -155,10 +155,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 public void focusGained(FocusEvent e) {
                     updateInfosWhenFocused();
                     NavigatorWindow nav = ScilabEditorPane.this.editor.getNavigator();
-		    if (nav != null) {
-			nav.update((ScilabDocument) getDocument());
-		    }
-		}
+                    if (nav != null) {
+                        nav.update((ScilabDocument) getDocument());
+                    }
+                }
 
                 public void focusLost(FocusEvent e) {
                     ((ScilabDocument) getDocument()).setFocused(false);
@@ -605,6 +605,17 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         matchLR = null;
         matchRL.desactivateMouseOver();
         matchRL = null;
+    }
+
+    /**
+     * Destroy this component
+     */
+    public void destroy() {
+        FocusListener[] fls = getFocusListeners();
+        for (FocusListener fl : fls) {
+            removeFocusListener(fl);
+        }
+        disableAll();
     }
 
     /**
@@ -1458,9 +1469,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         edComponent.getScrollPane().setRowHeaderView(xln);
         doc.setEditorPane(this);
 
-	NavigatorWindow nav = editor.getNavigator();
-	if (nav != null) {
-	    nav.addEditorPane(this);
-	}
+        NavigatorWindow nav = editor.getNavigator();
+        if (nav != null) {
+            nav.addEditorPane(this);
+        }
     }
 }

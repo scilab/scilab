@@ -73,8 +73,6 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     private static final int GAP = 10;
     private static final String ESCAPE = "ESCAPE";
     private static final Icon SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
-    private static JDialog dialog;
-    private static JTree tree;
     private static List<File> selectedFiles;
 
     /**
@@ -124,7 +122,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         int dimX = 450;
         int dimY = 300;
 
-        dialog = new JDialog(owner);
+        final JDialog dialog = new JDialog(owner);
+        final JTree tree = fillTree(uuid);
         dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
@@ -140,7 +139,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         Object[] buttons = new Object[2];
         ok.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    selectedFiles = getOpenedFiles(uuid);
+                    selectedFiles = getOpenedFiles(tree, uuid);
                     dialog.dispose();
                 }
             });
@@ -185,7 +184,6 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         c.gridy = 1;
         c.gridheight = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
-        fillTree(uuid);
         JScrollPane scroll = new JScrollPane(tree);
         scroll.setMinimumSize(new Dimension(dimX - 2 * GAP, dimY / 2));
         panel.add(scroll, c);
@@ -212,7 +210,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     /**
      * @return the files to open in the different editors
      */
-    private static List<File> getOpenedFiles(String uuid) {
+    private static List<File> getOpenedFiles(JTree tree, String uuid) {
         List<File> list = new ArrayList();
         TreeModel model = tree.getModel();
 
@@ -239,17 +237,17 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
      * Fill the tree with the opened files
      * @param uuid the editor uuid
      */
-    private static void fillTree(String uuid) {
+    private static JTree fillTree(String uuid) {
         List<UUID> editorID = ConfigSciNotesManager.getOpenFilesEditorList();
         Vector eds = new Vector(1);
 
         List<File> filesToOpen = removeAlreadyOpenFiles(uuid);
 
         if (filesToOpen.size() > 0) {
-            eds.add(new FilesVector("Editor " + ConfigSciNotesManager.getEditorNbFromUUID(uuid), filesToOpen));
+            eds.add(new FilesVector("SciNotes", filesToOpen));
         }
 
-        tree = new JTree(eds);
+        JTree tree = new JTree(eds);
 
         CheckBoxNodeRenderer renderer = new CheckBoxNodeRenderer();
         tree.setCellRenderer(renderer);
@@ -260,6 +258,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         for (int i = 0; i < tree.getRowCount(); i++) {
             tree.expandRow(i);
         }
+
+        return tree;
     }
 
     /**

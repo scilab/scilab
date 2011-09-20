@@ -75,6 +75,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
@@ -513,24 +514,41 @@ public class SciNotes extends SwingScilabTab implements Tab {
         String winTitle = ed.getTitle();
 
         if (b) {
-            ed.closeTabAt(ed.getTabPane().getSelectedIndex());
+            ed.closeTabAtWithoutConfirmation(ed.getTabPane().getSelectedIndex());
             if (ed.getTabPane().getTabCount() == 0) {
-                ed.addEmptyTab();
+                ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) ed);
+                ConfigSciNotesManager.removeEditorUUID(ed.uuid.toString());
             }
         }
 
         editor = null;
+
         scinotesWithText(cdoc.getText());
-        editor.getTabPane().setTitleAt(0, title);
-        currentSep.copyProps(editor.getTextPane());
-        editor.setTitle(winTitle);
-        ScilabDocument sdoc = (ScilabDocument) editor.getTextPane().getDocument();
+        ScilabEditorPane sep = editor.getTextPane();
+
+        if (currentSep.getName() != null) {
+            editor.getTabPane().setTitleAt(0, title);
+            editor.setTitle(winTitle);
+        }
+
+        currentSep.copyProps(sep);
+        ScilabDocument sdoc = (ScilabDocument) sep.getDocument();
         sdoc.setContentModified(cdoc.isContentModified());
         sdoc.getUndoManager().discardAllEdits();
-        editor.getTextPane().setCaretPosition(0);
+        sep.setCaretPosition(0);
         editor.enableUndoButton(false);
         editor.enableRedoButton(false);
-        ConfigSciNotesManager.saveToOpenFiles(editor.getTextPane().getName(), editor, editor.getTextPane());
+        ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, editor.getTextPane());
+    }
+
+    /**
+     * Clone the current tab and if b is true close the tab
+     * @param ed the editor where the tab is
+     * @param b a boolean
+     */
+    public static void cloneAndCloseCurrentTab(SciNotes ed, boolean b, int x, int y) {
+        cloneAndCloseCurrentTab(ed, b);
+        editor.getSwingParentWindow().setLocation(x, y);
     }
 
     /**
@@ -566,6 +584,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
                 openFile(null, 0, null);
             }
+            setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
             WindowsConfigurationManager.restorationFinished(this);
 
             return;
@@ -603,12 +622,27 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public static void launchSciNotes() {
         if (editor == null) {
-            String uuid = ConfigSciNotesManager.getEditorUUIDFromNb(scinotesList.size() + 1);
-            boolean success = WindowsConfigurationManager.restoreUUID(uuid);
+            List<String> uuids = ConfigSciNotesManager.getEditorsUUID();
+            boolean success = false;
+            if (!uuids.isEmpty()) {
+                for (String uuid : uuids) {
+                    boolean exists = false;
+                    for (SciNotes ed : scinotesList) {
+                        if (ed.uuid.toString().equals(uuid)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        success = WindowsConfigurationManager.restoreUUID(uuid);
+                        break;
+                    }
+                }
+            }
             if (!success) {
                 editor = SciNotesTab.getEditorInstance(null);
                 editor.setParentWindow();
-                ConfigSciNotesManager.saveEditorUUID(editor.getPersistentId(), scinotesList.size());
+                ConfigSciNotesManager.saveEditorUUID(editor.getPersistentId());
                 SciNotesGUI.init(editor.getParentWindow(), editor, SCINOTES);
             }
         }
@@ -670,6 +704,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * Close SciNotes instance including all tabs.
      */
     public void closeSciNotes() {
+        for (int i = 0; i < getTabPane().getTabCount(); i++) {
+            ScilabEditorPane textPaneAt = getTextPane(i);
+            textPaneAt.destroy();
+        }
+
         FindAction.close();
         IncrementalSearchAction.close(this);
         SetColorsAction.closeSetColorsWindow();
@@ -704,13 +743,49 @@ public class SciNotes extends SwingScilabTab implements Tab {
         return true;
     }
 
+    public String askForClosing() {
+        int numberOfTab = getTabPane().getTabCount();
+        boolean isContentModified = false;
+        for (int i = 0; i < getTabPane().getTabCount(); i++) {
+            ScilabEditorPane textPaneAt = getTextPane(i);
+            if (((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
+                isContentModified = true;
+                break;
+            }
+        }
+
+        if (isContentModified) {
+            return "SciNotes";
+        }
+
+        return null;
+    }
+
+
+    public static void closeEditor(SciNotes ed) {
+        if (scinotesList.size() > 1) {
+            ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) ed);
+        } else {
+            ClosingOperationsManager.startClosingOperation((SwingScilabTab) ed);
+        }
+    }
+
+    /**
+     * Close a tab using its index.
+     * @param indexTab the index of the tab
+     * @return if the tab has been really closed
+     */
+    public boolean closeTabAtWithoutConfirmation(int indexTab) {
+        return closeTabAt(indexTab, false, false);
+    }
+
     /**
      * Close a tab using its index.
      * @param indexTab the index of the tab
      * @return if the tab has been really closed
      */
     public boolean closeTabAt(int indexTab) {
-        return closeTabAt(indexTab, false);
+        return closeTabAt(indexTab, false, true);
     }
 
     /**
@@ -719,11 +794,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param scilabClose if true, save dialog confirmation cannot be canceled
      * @return if the tab has been really closed
      */
-    public boolean closeTabAt(int indexTab, boolean scilabClose) {
+    public boolean closeTabAt(int indexTab, boolean scilabClose, boolean confirmation) {
         ScilabEditorPane textPaneAt = getTextPane(indexTab);
 
         /* Test for modification added after bug 5103 fix: do not ask the user for an Untitled not-modified file saving when closing SciNotes */
-        if (((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
+        if (confirmation && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
             if (!save(indexTab, false, scilabClose)) {
                 return false;
             }
@@ -1306,22 +1381,28 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public ScilabEditorPane addEmptyTab() {
         ScilabEditorPane sep;
-        if (closedTabList.size() > 0) {
-            Integer n = (Integer) Collections.min(closedTabList);
-            closedTabList.remove(n);
-            sep = addTab(SciNotesMessages.UNTITLED + n);
-            sep.setShortName(SciNotesMessages.UNTITLED + n);
-            sep.setTitle(SciNotesMessages.UNTITLED + n);
-        } else {
-            numberOfUntitled++;
-            tabList.add(Integer.valueOf(numberOfUntitled));
-            sep = addTab(SciNotesMessages.UNTITLED + numberOfUntitled);
-            sep.setShortName(SciNotesMessages.UNTITLED + numberOfUntitled);
-            sep.setTitle(SciNotesMessages.UNTITLED + numberOfUntitled);
-        }
+        int n = getNumberForEmptyTab();
+        sep = addTab(SciNotesMessages.UNTITLED + n);
+        sep.setShortName(SciNotesMessages.UNTITLED + n);
+        sep.setTitle(SciNotesMessages.UNTITLED + n);
         setTitle(sep.getTitle());
 
         return sep;
+    }
+
+    /**
+     * Get an integer used for untitled document
+     */
+    public int getNumberForEmptyTab() {
+        if (closedTabList.size() > 0) {
+            Integer n = (Integer) Collections.min(closedTabList);
+            closedTabList.remove(n);
+            return n.intValue();
+        } else {
+            numberOfUntitled++;
+            tabList.add(Integer.valueOf(numberOfUntitled));
+            return numberOfUntitled;
+        }
     }
 
     /**

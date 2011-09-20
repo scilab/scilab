@@ -2025,6 +2025,12 @@ public final class ConfigSciNotesManager {
      * Read the file to modify
      */
     private static void readDocument(String pathConfSci, String pathConfKeys) {
+        File fileConfig = new File(USER_SCINOTES_CONFIG_FILE);
+        File keyConfig = new File(USER_SCINOTES_CONFIG_KEYS_FILE);
+        if (!keyConfig.exists() || !fileConfig.exists()) {
+            createUserCopy();
+        }
+
         File xml = null;
         DocumentBuilder docBuilder = null;
         String factoryName = ScilabDocumentBuilderFactory.useDefaultDocumentBuilderFactoryImpl();
@@ -2231,24 +2237,19 @@ public final class ConfigSciNotesManager {
     /**
      *
      */
-    public static void saveEditorUUID(String editorUUID, int n) {
+    public static void saveEditorUUID(String editorUUID) {
         readDocument();
 
         Element root = document.getDocumentElement();
         NodeList eis = root.getElementsByTagName(EDITORUUID);
-        boolean update = false;
         for (int i = 0; i < eis.getLength(); i++) {
             Element ei = (Element) eis.item(i);
             if (ei.getAttribute("uuid").equals(editorUUID)) {
-                ei.setAttribute("nb", Integer.toString(n));
-                update = true;
-                break;
+                return;
             }
         }
 
-        if (!update) {
-            ScilabXMLUtilities.createNode(document, root, EDITORUUID, new String[]{"uuid", editorUUID, "nb", Integer.toString(n)});
-        }
+        ScilabXMLUtilities.createNode(document, root, EDITORUUID, new String[]{"uuid", editorUUID});
 
         writeDocument();
     }
@@ -2256,36 +2257,30 @@ public final class ConfigSciNotesManager {
     /**
      *
      */
-    public static String getEditorUUIDFromNb(int n) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList eis = root.getElementsByTagName(EDITORUUID);
-        String str = Integer.toString(n);
-        for (int i = 0; i < eis.getLength(); i++) {
-            Element ei = (Element) eis.item(i);
-            if (ei.getAttribute("nb").equals(str)) {
-                return ei.getAttribute("uuid");
-            }
-        }
-        return null;
-    }
-
-    /**
-     *
-     */
-    public static String getEditorNbFromUUID(String uuid) {
+    public static void removeEditorUUID(String editorUUID) {
         readDocument();
 
         Element root = document.getDocumentElement();
         NodeList eis = root.getElementsByTagName(EDITORUUID);
         for (int i = 0; i < eis.getLength(); i++) {
             Element ei = (Element) eis.item(i);
-            if (ei.getAttribute("uuid").equals(uuid)) {
-                return ei.getAttribute("nb");
+            if (ei.getAttribute("uuid").equals(editorUUID)) {
+                root.removeChild(ei);
             }
         }
-        return null;
+
+        root = (Element) document.getDocumentElement().getElementsByTagName(OPEN_FILES).item(0);
+        if (root != null) {
+            NodeList openFiles = root.getElementsByTagName(DOCUMENT);
+            for (int i = 0; i < openFiles.getLength(); ++i) {
+                Element of = (Element) openFiles.item(i);
+                if (of.getAttribute(EDITORINST).equals(editorUUID)) {
+                    root.removeChild(of);
+                }
+            }
+        }
+
+        writeDocument();
     }
 
     /**

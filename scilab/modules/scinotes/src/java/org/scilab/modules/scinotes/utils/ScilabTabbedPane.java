@@ -60,6 +60,8 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -77,6 +79,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                                                   Transferable {
 
     private static final ImageIcon CLOSEICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab.png");
+    private static final ImageIcon CLOSEONICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/close-tab-on.png");
     private static final int BUTTONSIZE = 18;
 
     private static DataFlavor DATAFLAVOR;
@@ -100,7 +103,6 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         this.editor = editor;
         setFocusTraversalPolicy(new java.awt.DefaultFocusTraversalPolicy() {
                 public Component getComponentAfter(Container aContainer, Component aComponent) {
-                    //System.out.println(aComponent);
                     if (aComponent instanceof ScilabEditorPane) {
                         return aComponent;
                     }
@@ -233,7 +235,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
             try {
                 ScilabTabbedPane tabbedPane = (ScilabTabbedPane) dtde.getTransferable().getTransferData(DATAFLAVOR);
                 int index = indexAtLocation(dtde.getLocation().x, dtde.getLocation().y);
-                if (tabbedPane == this && index == tabbedPane.draggedIndex) {
+                if (tabbedPane == this && (index == tabbedPane.draggedIndex || getTabCount() == 1)) {
                     dtde.rejectDrop();
                 } else {
                     Component c = tabbedPane.getComponentAt(tabbedPane.draggedIndex);
@@ -244,7 +246,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                     }
                     tabbedPane.remove(c);
                     if (tabbedPane.getTabCount() == 0) {
-                        tabbedPane.editor.addEmptyTab();
+                        SciNotes.closeEditor(tabbedPane.editor);
                     }
                     if (index == -1) {
                         index = getTabCount();
@@ -252,12 +254,25 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
 
                     insertTab(title, null, c, null, index);
                     ScilabEditorPane sep = editor.getTextPane(indexOfComponent(c));
-                    sep.setEditor(editor);
+
+                    if (tabbedPane != this) {
+                        sep.setEditor(editor);
+                        editor.initInputMap(sep);
+                    }
+
                     if (sep.getName() != null) {
                         ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, sep, index);
+                    } else if (tabbedPane != this) {
+                        int n = editor.getNumberForEmptyTab();
+                        sep.setShortName(SciNotesMessages.UNTITLED + n);
+                        sep.setTitle(SciNotesMessages.UNTITLED + n);
+                        setTitleAt(index, SciNotesMessages.UNTITLED + n);
+                        editor.setTitle(sep.getTitle());
                     }
 
                     setSelectedIndex(index);
+                    editor.updateTabTitle();
+
                     dtde.acceptDrop(DnDConstants.ACTION_MOVE);
                 }
             } catch (IOException e) {
@@ -285,16 +300,26 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      * {@inheritDoc}
      */
     public void dragDropEnd(DragSourceDropEvent dsde) {
-        dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
+        Component c = null;
+        for (SciNotes sn : SciNotes.getSciNotesList()) {
+            Point point = new Point(dsde.getLocation());
+            SwingUtilities.convertPointFromScreen(point, sn);
+            c = SwingUtilities.getDeepestComponentAt(sn, (int) point.getX(), (int) point.getY());
+            if (c != null) {
+                break;
+            }
+        }
+
+        if (c == null) {
+            SciNotes.cloneAndCloseCurrentTab(editor, true, dsde.getX(), dsde.getY());
+        }
     }
 
     /**
      * Interface DragSourceListener
      * {@inheritDoc}
      */
-    public void dragExit(DragSourceEvent dse) {
-        dse.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
-    }
+    public void dragExit(DragSourceEvent dse) { }
 
     /**
      * Interface DragSourceListener
@@ -304,20 +329,12 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         Point pt = new Point(dsde.getX(), dsde.getY());
         JRootPane rootpane = (JRootPane) SwingUtilities.getAncestorOfClass(JRootPane.class, currentWhenDragged);
 
-        if (rootpane == null) {
-            dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
-        } else {
+        if (rootpane != null) {
             SwingUtilities.convertPointFromScreen(pt, rootpane);
             Component c = SwingUtilities.getDeepestComponentAt(rootpane, pt.x, pt.y);
 
             if (c != null && !(c instanceof ScilabEditorPane) && !(c instanceof ScilabTabbedPane)) {
                 c = SwingUtilities.getAncestorOfClass(ScilabTabbedPane.class, c);
-            }
-
-            if (c instanceof ScilabTabbedPane) {
-                dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveDrop);
-            } else {
-                dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
             }
         }
     }
@@ -437,9 +454,14 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         }
 
         public void closeTab() {
+            String name = editor.getTextPane(editor.getTabPane().indexOfTabComponent(this)).getName();
             editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
             if (getTabCount() == 0) {
-                editor.addEmptyTab();
+                if (name != null) {
+                    editor.addEmptyTab();
+                } else {
+                    SciNotes.closeEditor(editor);
+                }
             }
         }
 
@@ -457,8 +479,9 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setContentAreaFilled(true);
                 setOpaque(false);
                 setRolloverEnabled(true);
+                setRolloverIcon(CLOSEONICON);
                 setBorderPainted(false);
-                setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
+                setContentAreaFilled(false);
                 addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             closeTab();

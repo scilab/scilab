@@ -83,7 +83,7 @@ public class WindowsConfigurationManager {
         defaultWinAttributes.put("y", new Integer(DEFAULTY));
         defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
         defaultWinAttributes.put("width", new Integer(DEFAULTWIDTH));
-/*        java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(new java.awt.event.AWTEventListener() {
+        /*java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(new java.awt.event.AWTEventListener() {
           public void eventDispatched(java.awt.AWTEvent e) {
           System.out.println(e);
           }
@@ -301,7 +301,7 @@ public class WindowsConfigurationManager {
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
-                            Thread t = new Thread(new Runnable() {
+                            final Thread t = new Thread(new Runnable() {
                                     public void run() {
                                         while (currentlyRestored.size() != 0) {
                                             try {
@@ -315,7 +315,7 @@ public class WindowsConfigurationManager {
                                             } catch (InterruptedException e) { }
                                         }
                                         ActiveDockableTracker.requestDockableActivation(mainTab);
-					window.toFront();
+                                        window.toFront();
                                     }
                                 });
                             t.start();

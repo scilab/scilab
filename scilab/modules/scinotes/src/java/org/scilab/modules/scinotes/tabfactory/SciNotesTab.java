@@ -35,7 +35,7 @@ public class SciNotesTab {
             editorInstance = new SciNotes(uuid);
         } else {
             editorInstance = new SciNotes();
-	    ScilabTabFactory.getInstance().addToCache(editorInstance);
+            ScilabTabFactory.getInstance().addToCache(editorInstance);
         }
         SciNotesGUI.init(editorInstance);
 
@@ -51,7 +51,7 @@ public class SciNotesTab {
                 }
 
                 public String askForClosing() {
-                    return "SciNotes";
+                    return ed.askForClosing();
                 }
             });
 
@@ -62,7 +62,7 @@ public class SciNotesTab {
                 }
             });
 
-	ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) editorInstance);
+        ClosingOperationsManager.addDependencyWithRoot((SwingScilabTab) editorInstance);
 
         return editorInstance;
     }

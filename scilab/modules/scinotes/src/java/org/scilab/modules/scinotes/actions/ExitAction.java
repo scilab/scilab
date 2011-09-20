@@ -53,7 +53,7 @@ public final class ExitAction extends DefaultAction {
      * @param editor SciNotes
      */
     public static void doExit(SciNotes editor) {
-	ClosingOperationsManager.startClosingOperation((SwingScilabTab) editor);
+        SciNotes.closeEditor(editor);
     }
 
     /**
