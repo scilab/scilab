@@ -247,7 +247,9 @@ Optimization:
                    variable number of arguments.
 
 * Bug 8676 fixed - The pack/unpack functions had no help pages.
-                   A "Semidefinite programming" help section has been created.
+
+* Bug 9612 fixed - The quapro help page has been removed.
+
 
 Statistics:
 ==============
