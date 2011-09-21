@@ -138,7 +138,6 @@ src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
-src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
@@ -233,6 +232,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \

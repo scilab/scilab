@@ -1119,6 +1119,11 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@		done; \
 @GIWS_TRUE@@JAVASCI_TRUE@	fi
 
+@GIWS_TRUE@@JAVASCI_TRUE@giws-exception:
+@GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@@JAVASCI_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@@JAVASCI_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+
 @JAVASCI_TRUE@macros:
 @JAVASCI_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 @JAVASCI_TRUE@		echo "Error : Cannot build $< : Scilab has not been built"; \

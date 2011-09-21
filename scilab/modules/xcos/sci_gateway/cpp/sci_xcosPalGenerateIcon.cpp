@@ -28,23 +28,22 @@ extern "C"
 
 using namespace org_scilab_modules_xcos_palette;
 
-int
-sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
+int sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 
-    char* blockPath = NULL;
-    char* iconPath = NULL;
+    char *blockPath = NULL;
+    char *iconPath = NULL;
 
     /* blockPath setup */
-    if(readSingleString(pvApiCtx, 1, &blockPath, fname))
+    if (readSingleString(pvApiCtx, 1, &blockPath, fname))
     {
         return 0;
     }
 
     /* iconPath setup */
-    if(readSingleString(pvApiCtx, 2, &iconPath, fname))
+    if (readSingleString(pvApiCtx, 2, &iconPath, fname))
     {
         FREE(blockPath);
         return 0;
@@ -55,20 +54,17 @@ sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
     {
         Palette::generatePaletteIcon(getScilabJavaVM(), blockPath, iconPath);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.what());
+        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
     PutLhsVar();
     return 0;
 }
-
-
-

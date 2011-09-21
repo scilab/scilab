@@ -25,69 +25,72 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
+
 /*--------------------------------------------------------------------------*/
-int sci_printfigure(char *fname,unsigned long l)
+int sci_printfigure(char *fname, unsigned long l)
 {
-    static int l1,n1,m1;
+    static int l1, n1, m1;
     int num_win = -2;
     int *status = NULL;
 
-    Rhs=Max(0,Rhs);
-    CheckRhs(1,1);
-    CheckLhs(0,1);
+    Rhs = Max(0, Rhs);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-    if ( getScilabMode() != SCILAB_NWNI )
+    if (getScilabMode() != SCILAB_NWNI)
     {
         if (Rhs == 1)
         {
-            GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
 
             if (!IsAScalar(1))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                 return FALSE;
             }
-            num_win=(int)(*stk(l1));
+            num_win = (int)(*stk(l1));
 
-            if (num_win>=0)
+            if (num_win >= 0)
             {
                 /* Call Java */
                 status = new int[1];
+
                 try
                 {
                     status[0] = (int)CallScilabBridge::printFigure(getScilabJavaVM(), num_win, true, true); /* postscript mode and display dialog */
                 }
-                catch (const GiwsException::JniException & e)
+                catch(const GiwsException::JniException & e)
                 {
-                    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+                    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.whatStr().c_str());
                     return FALSE;
                 }
 
-                m1=1;
-                n1=1;
-                CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,  &m1, &n1, &status);
-                LhsVar(1)=Rhs+1;
-                delete[] status;
+                m1 = 1;
+                n1 = 1;
+                CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &status);
+                LhsVar(1) = Rhs + 1;
+                delete[]status;
                 PutLhsVar();
                 return TRUE;
             }
             else
             {
-                Scierror(999,_("%s: Wrong value for input argument #%d: Must be >= %d expected.\n"), fname, 1, 0);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be >= %d expected.\n"), fname, 1, 0);
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
             return FALSE;
         }
     }
     else
     {
-        Scierror(999,_("%s: Function not available in NWNI mode.\n"), fname);
+        Scierror(999, _("%s: Function not available in NWNI mode.\n"), fname);
         return FALSE;
     }
     return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/

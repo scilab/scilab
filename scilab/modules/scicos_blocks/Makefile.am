@@ -345,7 +345,6 @@ src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CPP_SOURCES = \
-src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
 GIWS_WRAPPERS = \
@@ -429,6 +428,7 @@ libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \

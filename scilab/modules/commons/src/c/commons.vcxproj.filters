@@ -29,9 +29,15 @@
     <ClCompile Include="..\jni\ScilabCommons_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\jni\GiwsException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

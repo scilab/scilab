@@ -1137,6 +1137,11 @@ check-code:
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 		echo "Error : Cannot build $< : Scilab has not been built"; \

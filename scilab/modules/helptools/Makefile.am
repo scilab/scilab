@@ -9,8 +9,7 @@ if BUILD_HELP
 USEANT=1
 
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
-	src/jni/SciDocMain.cpp \
-	src/jni/GiwsException.cpp
+	src/jni/SciDocMain.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
@@ -50,6 +49,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 

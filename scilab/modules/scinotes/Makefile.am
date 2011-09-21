@@ -34,8 +34,7 @@ SCINOTES_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 SCINOTES_C_SOURCES = src/c/ScilabKeywords.c
 
 SCINOTES_CPP_SOURCES = src/jni/SciNotes.cpp \
-    src/cpp/callscinotes.cpp \
-    src/jni/GiwsException.cpp
+    src/cpp/callscinotes.cpp
 
 
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
@@ -66,6 +65,7 @@ libsciscinotes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/fileio/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/localization/includes \

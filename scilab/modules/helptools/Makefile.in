@@ -62,10 +62,9 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/helptools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -119,17 +118,15 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihelptools_algo_la_LIBADD =
 am__libscihelptools_algo_la_SOURCES_DIST = src/jni/BuildDocObject.cpp \
-	src/jni/SciDocMain.cpp src/jni/GiwsException.cpp
+	src/jni/SciDocMain.cpp
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_1 = libscihelptools_algo_la-BuildDocObject.lo \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-SciDocMain.lo \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-GiwsException.lo
-@BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_OBJECTS =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	$(am__objects_1)
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-SciDocMain.lo
+am_libscihelptools_algo_la_OBJECTS = $(am__objects_1)
 libscihelptools_algo_la_OBJECTS =  \
 	$(am_libscihelptools_algo_la_OBJECTS)
-@BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_rpath =
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la \
+@BUILD_HELP_TRUE@@GUI_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
 	sci_gateway/c/gw_helptools.c sci_gateway/cpp/sci_buildDoc.cpp \
 	sci_gateway/cpp/sci_buildDocv2.cpp
@@ -435,8 +432,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 @BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 @BUILD_HELP_TRUE@@GUI_TRUE@HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
-@BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/SciDocMain.cpp \
-@BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/GiwsException.cpp
+@BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/SciDocMain.cpp
 
 @BUILD_HELP_FALSE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
@@ -447,13 +443,12 @@ top_srcdir = @top_srcdir@
 @BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
 
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
-@BUILD_HELP_TRUE@@GUI_TRUE@noinst_LTLIBRARIES = libscihelptools-algo.la
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la \
+@BUILD_HELP_TRUE@@GUI_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
+
 @BUILD_HELP_TRUE@@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
+noinst_LTLIBRARIES = libscihelptools-algo.la
 libscihelptools_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -463,11 +458,15 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
 libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
@@ -678,7 +677,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihelptools-algo.la: $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_DEPENDENCIES) 
-	$(CXXLINK) $(am_libscihelptools_algo_la_rpath) $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK)  $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_LIBADD) $(LIBS)
 libscihelptools.la: $(libscihelptools_la_OBJECTS) $(libscihelptools_la_DEPENDENCIES) 
 	$(libscihelptools_la_LINK) -rpath $(pkglibdir) $(libscihelptools_la_OBJECTS) $(libscihelptools_la_LIBADD) $(LIBS)
 
@@ -689,7 +688,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_algo_la-BuildDocObject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_algo_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_algo_la-SciDocMain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-gw_helptools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihelptools_la-nogui.Plo@am__quote@
@@ -765,13 +763,6 @@ libscihelptools_algo_la-SciDocMain.lo: src/jni/SciDocMain.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/SciDocMain.cpp' object='libscihelptools_algo_la-SciDocMain.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_algo_la-SciDocMain.lo `test -f 'src/jni/SciDocMain.cpp' || echo '$(srcdir)/'`src/jni/SciDocMain.cpp
-
-libscihelptools_algo_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_algo_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihelptools_algo_la-GiwsException.Tpo -c -o libscihelptools_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihelptools_algo_la-GiwsException.Tpo $(DEPDIR)/libscihelptools_algo_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihelptools_algo_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscihelptools_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 libscihelptools_la-sci_buildDoc.lo: sci_gateway/cpp/sci_buildDoc.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihelptools_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscihelptools_la-sci_buildDoc.lo -MD -MP -MF $(DEPDIR)/libscihelptools_la-sci_buildDoc.Tpo -c -o libscihelptools_la-sci_buildDoc.lo `test -f 'sci_gateway/cpp/sci_buildDoc.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_buildDoc.cpp
@@ -1316,6 +1307,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

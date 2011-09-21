@@ -35,9 +35,6 @@
     <ClCompile Include="DllmainHISTORY_BROWSER.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CommandHistory.hxx">
@@ -47,9 +44,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_history_browser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

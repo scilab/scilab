@@ -236,11 +236,13 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="DllmainCommons.c" />
     <ClCompile Include="..\jni\ScilabCommons_wrap.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h" />
+    <ClInclude Include="..\jni\GiwsException.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="commons_f_Import.def" />
