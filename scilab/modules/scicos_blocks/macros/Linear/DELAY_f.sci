@@ -54,8 +54,8 @@ case 'set' then
 		    'Register initial state'],list('vec',1,'vec',-1),exprs)
     if ~ok then break,end
     mess=[]
-    if prod(size(z0))<2 then
-      mess=[mess;'Register length must be at least 2';' ']
+    if prod(size(z0))<1 then
+      mess=[mess;'Register length must be at least 1';' ']
       ok=%f
     end
     if dt<=0 then
