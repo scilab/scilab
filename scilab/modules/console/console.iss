@@ -20,6 +20,7 @@
 #define CONSOLE "console"
 ;
 Source: bin\sci{#CONSOLE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\{#CONSOLE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\no{#CONSOLE}.dll; DestDir: {app}\bin; DestName: sci{#CONSOLE}.dll; Components: {#COMPN_SCILAB} and not ({#COMPN_JVM_MODULE})
 ;
 Source: modules\{#CONSOLE}\jar\org.scilab.modules.{#CONSOLE}.jar;DestDir: {app}\modules\{#CONSOLE}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
