@@ -27,7 +27,7 @@ public class Legend extends ClippableTextObject {
 	private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION };
 	
 	/** Legend location */
-	private enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
+	public enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
 		OUT_UPPER_RIGHT, OUT_UPPER_LEFT, OUT_LOWER_RIGHT, OUT_LOWER_LEFT,
 		UPPER_CAPTION, LOWER_CAPTION, BY_COORDINATES;
 
