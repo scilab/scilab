@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -29,8 +29,8 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import org.scilab.modules.gui.utils.Component.Scroll;
-import org.scilab.modules.gui.utils.Component.Table;
+import org.scilab.modules.preferences.Component.Scroll;
+import org.scilab.modules.preferences.Component.Table;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -241,7 +241,7 @@ public class XUpdateVisitor {
      *
      */
     private static final String X_PACKAGE
-        = "org.scilab.modules.gui.utils.Component.";
+        = "org.scilab.modules.preferences.Component.";
 
     /** Default size for spaces.
     *

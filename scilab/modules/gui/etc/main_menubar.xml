@@ -101,10 +101,10 @@
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents' type="3"/>
         </submenu>
         <submenu label="P&amp;references">
-            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openPreferences' type="3"/>
+            <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
         </submenu>
         <submenu label="User block W&amp;izard (tmp)">
-            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openUserBlockWizard' type="3"/>
+            <callback instruction='org.scilab.modules.preferences.XWizardManager.openUserBlockWizard' type="3"/>
         </submenu>
 
     </menu>

@@ -161,6 +161,8 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
 <path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
 
+<path value="$SCILAB/modules/preferences/jar/org.scilab.modules.preferences.jar"/>
+
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>

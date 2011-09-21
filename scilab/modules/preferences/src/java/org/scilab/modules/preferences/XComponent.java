@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import org.w3c.dom.Node;
 

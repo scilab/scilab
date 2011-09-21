@@ -10,12 +10,12 @@
  *
  */
 
-package org.scilab.modules.gui.utils.Component;
+package org.scilab.modules.preferences.Component;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.utils.XCommonManager;
-import org.scilab.modules.gui.utils.XComponent;
-import org.scilab.modules.gui.utils.XConfigManager;
+import org.scilab.modules.preferences.XCommonManager;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
 import org.w3c.dom.Node;
 
 /** Implementation of Button compliant with extended management.

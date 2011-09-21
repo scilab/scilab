@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -22,15 +22,18 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.Hashtable;
 
-import org.scilab.modules.commons.ScilabCommons;
+import javax.swing.JDialog;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.swing.JDialog;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.Size;
 
 /**
  * Extended management of the Console configuration file.
@@ -42,10 +45,10 @@ public final class XConfigManager extends XCommonManager {
 
     /** Scilab configuration file.*/
     private static final   String   SCILAB_CONFIG_FILE =
-        System.getenv("SCI") + "/modules/console/etc/XConfiguration.xml";
+        System.getenv("SCI") + "/modules/preferences/etc/XConfiguration.xml";
     /** Scilab configuration stylesheet.*/
     private static final   String   SCILAB_CONFIG_XSL  =
-        System.getenv("SCI") + "/modules/gui/src/xslt/XConfiguration.xsl";
+        System.getenv("SCI") + "/modules/preferences/src/xslt/XConfiguration.xsl";
     /** User configuration file.*/
     private static final   String   USER_CONFIG_FILE   =
         ScilabCommons.getSCIHOME() + "/XConfiguration.xml";
@@ -93,6 +96,13 @@ public final class XConfigManager extends XCommonManager {
         if (refreshDisplay()) {
             dialog.setVisible(true);
         }
+    }
+
+    /**
+     * Opens a dialog to setup preferences.
+     */
+    public static void openPreferences() {
+        XConfigManager.displayAndWait();
     }
 
     /** Secondary dialog for help.*/

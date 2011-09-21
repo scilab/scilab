@@ -1787,6 +1787,7 @@ modules/graph/Makefile
 modules/parallel/Makefile
 modules/modules_manager/Makefile
 modules/history_browser/Makefile
+modules/preferences/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

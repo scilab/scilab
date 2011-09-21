@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -137,7 +137,7 @@ public abstract class XCommonManager {
 
        return true;
     }
-
+    
     /** Horizontal space between parent and child in String representations.
      *
      */

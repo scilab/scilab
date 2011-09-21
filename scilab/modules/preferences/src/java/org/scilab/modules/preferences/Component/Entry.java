@@ -10,14 +10,14 @@
  *
  */
 
-package org.scilab.modules.gui.utils.Component;
+package org.scilab.modules.preferences.Component;
 
 import javax.swing.JTextField;
 
-import org.scilab.modules.gui.utils.XCommonManager;
-import org.scilab.modules.gui.utils.XComponent;
-import org.scilab.modules.gui.utils.XChooser;
-import org.scilab.modules.gui.utils.XConfigManager;
+import org.scilab.modules.preferences.XCommonManager;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XConfigManager;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 
 import org.w3c.dom.Node;

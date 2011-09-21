@@ -102,7 +102,6 @@ import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;// Deprecated by next line
-import org.scilab.modules.gui.utils.XConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
@@ -114,7 +113,6 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
-import org.scilab.modules.gui.utils.XWizardManager;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
@@ -2331,21 +2329,6 @@ public class CallScilabBridge {
             }
         }
 
-    }
-
-    /**
-     * Opens a dialog to setup preferences.
-     */
-    public static void openPreferences() {
-        XConfigManager.displayAndWait();
-    }
-
-    /**
-     * Opens a dialog to setup user blocks.
-     */
-    public static void openUserBlockWizard() {
-        //TODO temporary plug.
-        XWizardManager.displayAndWait();
     }
 
     /**

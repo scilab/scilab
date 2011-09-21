@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils.Component;
+package org.scilab.modules.preferences.Component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
-import org.scilab.modules.gui.utils.XChooser;
-import org.scilab.modules.gui.utils.XComponent;
-import org.scilab.modules.gui.utils.XCommonManager;
+import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XCommonManager;
 import javax.swing.JLabel;
 import org.w3c.dom.Node;
 

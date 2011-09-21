@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-import org.scilab.modules.gui.utils.Component.Table;
+import org.scilab.modules.preferences.Component.Table;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

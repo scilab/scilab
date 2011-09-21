@@ -86,7 +86,8 @@ scinotes \
 parallel \
 modules_manager \
 ui_data \
-history_browser
+history_browser \
+preferences
 
 #umfpack
 

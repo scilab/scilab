@@ -10,30 +10,35 @@
  *
  */
 
-package org.scilab.modules.gui.utils.Component;
+package org.scilab.modules.preferences.Component;
 
-import org.scilab.modules.gui.utils.XComponent;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
 import javax.swing.JPanel;
 import org.w3c.dom.Node;
-import org.scilab.modules.gui.utils.XConfigManager;
+import javax.swing.BorderFactory;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 import java.awt.BorderLayout;
 
-/** Implementation of Panel compliant with extended management.
+// TODO ScilabSwing class for this?
+
+/** Implementation of Title compliant with extended management.
 *
 * @author Pierre GRADIT
 *
 */
-public class Panel extends JPanel implements XComponent {
+public class Title extends JPanel implements XComponent {
 
     /** Universal identifier for serialization.
      *
      */
-    private static final long serialVersionUID = 3462302313959678932L;
+    private static final long serialVersionUID = 6183280975436648612L;
 
     /** Define the set of actuators.
-     *
-     * @return array of actuator names.
-     */
+    *
+    * @return array of actuator names.
+    */
     public final String [] actuators() {
         String [] actuators = {};
         return actuators;
@@ -43,11 +48,21 @@ public class Panel extends JPanel implements XComponent {
     *
     * @param peer : associated view DOM node.
     */
-    public Panel(final Node peer) {
+    public Title(final Node peer) {
         super();
-        setLayout(new BorderLayout());
+        String       text  = XConfigManager.getAttribute(peer , "text");
+        TitledBorder title = BorderFactory.createTitledBorder(text);
+        setBorder(title);
         XConfigManager.setDimension(this, peer);
-        XConfigManager.drawConstructionBorders(this);
+        setLayout(new BorderLayout());
+
+        String background = XConfigManager.getAttribute(peer, "background");
+        if (!(background.equals(XConfigManager.NAV))) {
+            Color color = XConfigManager.getColor(background);
+            setOpaque(true);
+            setBackground(color);
+        }
+
     }
 
     /** Refresh the component by the use of actuators.
@@ -62,7 +77,7 @@ public class Panel extends JPanel implements XComponent {
     * @return equivalent signature.
     */
     public final String toString() {
-        String signature = "Panel";
+        String signature = "Title";
 
         return signature;
     }

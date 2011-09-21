@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.gui.utils;
+package org.scilab.modules.preferences;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -25,15 +25,15 @@ import org.w3c.dom.Node;
 public final class XWizardManager extends XCommonManager {
     /** Scilab wizard header file.*/
     private static final   String   SCILAB_WIZARD_FILE =
-        System.getenv("SCI") + "/modules/console/etc/XWizard.xml";
+        System.getenv("SCI") + "/modules/preferences/etc/XWizard.xml";
 
     /** Scilab wizard prefix.*/
     private static final   String   SCILAB_WIZARD_PREFIX =
-        System.getenv("SCI") + "/modules/console/etc/XWizard-";
+        System.getenv("SCI") + "/modules/preferences/etc/XWizard-";
 
     /** Scilab configuration stylesheet.*/
     private static final   String   SCILAB_WIZARD_XSL  =
-        System.getenv("SCI") + "/modules/gui/src/xslt/XWizard.xsl";
+        System.getenv("SCI") + "/modules/preferences/src/xslt/XWizard.xsl";
 
     /** Current file name.*/
     private static         String   CURRENT_WIZARD_FILE = NAV;
@@ -81,6 +81,14 @@ public final class XWizardManager extends XCommonManager {
         if (refreshDisplay()) {
             dialog.setVisible(true);
         }
+    }
+
+    /**
+     * Opens a dialog to setup user blocks.
+     */
+    public static void openUserBlockWizard() {
+        //TODO temporary plug.
+        XWizardManager.displayAndWait();
     }
 
     /** Interpret action.

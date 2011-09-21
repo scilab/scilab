@@ -10,10 +10,10 @@
  *
  */
 
-package org.scilab.modules.gui.utils.Component;
+package org.scilab.modules.preferences.Component;
 
-import org.scilab.modules.gui.utils.XComponent;
-import org.scilab.modules.gui.utils.XConfigManager;
+import org.scilab.modules.preferences.XComponent;
+import org.scilab.modules.preferences.XConfigManager;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import org.w3c.dom.Node;
