@@ -132,6 +132,9 @@ Xcos:
 * bug 9972 fixed - Error reporting with a wrong context produce an endless
                    loop.
 
+* bug 9988 fixed - CLKSOMV_f has a wrong interface function after loading from
+                   a file.
+
 
 Localization:
 =============
