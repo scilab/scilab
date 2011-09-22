@@ -16,12 +16,10 @@ import java.util.Map;
 
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
-import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxCodec;
 
 /**
  * Codec for any xcos object
@@ -64,21 +62,6 @@ public class XcosObjectCodec extends mxCellCodec {
     }
 
     /**
-     * Register all the links codecs
-     */
-    public static void registerLinks() {
-        XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(
-                new ExplicitLink(), null, null, null);
-        mxCodecRegistry.register(explicitlinkCodec);
-        XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(
-                new ImplicitLink(), null, null, null);
-        mxCodecRegistry.register(implicitlinkCodec);
-        XcosObjectCodec commandControllinkCodec = new XcosObjectCodec(
-                new CommandControlLink(), null, null, null);
-        mxCodecRegistry.register(commandControllinkCodec);
-    }
-
-    /**
      * @param style
      *            the style to be formatted
      */
@@ -115,5 +98,22 @@ public class XcosObjectCodec extends mxCellCodec {
             style.put(ScilabGraphConstants.STYLE_MIRROR,
                     Boolean.FALSE.toString());
         }
+    }
+
+    /**
+     * Trace any msg to the xml document.
+     * 
+     * @param enc
+     *            the current encoder
+     * @param node
+     *            the current node
+     * @param msg
+     *            the message
+     * @param format
+     *            the format
+     */
+    protected void trace(mxCodec enc, Node node, String msg, Object... format) {
+        node.appendChild(enc.getDocument().createComment(
+                String.format(msg, format)));
     }
 }

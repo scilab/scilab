@@ -40,6 +40,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -418,16 +419,6 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
         /*
          * Check the version if applicable
          */
-        if (base.size() <= VERSION_INDEX) {
-            return true;
-        }
-        /*
-         * An empty field is always valid (hand written diagrams)
-         */
-        if (isEmptyField(base.get(VERSION_INDEX))) {
-            return true;
-        }
-
         final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX))
                 .getData()[0][0];
         final boolean versionIsValid = VERSIONS.contains(scicosVersion);
@@ -662,6 +653,9 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
             final ScilabType link = linkElement.encode(linkList.get(i), null);
             if (link != null) {
                 data.add(link);
+            } else {
+                from.warnCellByUID(linkList.get(i).getId(),
+                        XcosMessages.LINK_NOT_CONNECTED);
             }
         }
     }

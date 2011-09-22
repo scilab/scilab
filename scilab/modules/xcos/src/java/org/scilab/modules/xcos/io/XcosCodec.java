@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io;
 
 import org.scilab.modules.graph.io.ScilabObjectCodec;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
+import org.scilab.modules.xcos.io.codec.BasicLinkCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
 import org.scilab.modules.xcos.io.codec.OrientationCodec;
 import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
@@ -69,7 +70,7 @@ public class XcosCodec extends mxCodec {
         BasicBlockCodec.register();
 
         // Link
-        XcosObjectCodec.registerLinks();
+        BasicLinkCodec.register();
 
         // Ports
         BasicPortCodec.register();

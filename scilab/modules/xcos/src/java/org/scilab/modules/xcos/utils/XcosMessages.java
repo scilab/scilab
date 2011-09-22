@@ -386,6 +386,8 @@ public final class XcosMessages {
             .gettext("Error: unable to compile this SuperBlock");
     public static final String WRONG_PORT_NUMBER = Messages
             .gettext("Wrong port number");
+    public static final String LINK_NOT_CONNECTED = Messages
+            .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 
     // CSON: JavadocVariable
     // CSON: LineLength
