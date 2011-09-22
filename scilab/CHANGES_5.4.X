@@ -239,8 +239,12 @@ Optimization:
                    Help page updated with new section "The cost function".
                    Help page updated with new example "Passing extra parameters".
 
+* Bug 8676 fixed - The pack/unpack functions had no help pages.
+
 * Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
                    Same changes applied to optimbase_checkx0.
+
+* Bug 9472 fixed - The 'ind' argument of optim was unconsistently documented.
 
 * Bug 9576 fixed - The neldermead component did not check the bounds
                    of some input parameters.
@@ -251,9 +255,12 @@ Optimization:
 * Bug 9607 fixed - The optimsimplex_new function poorly managed the
                    variable number of arguments.
 
-* Bug 8676 fixed - The pack/unpack functions had no help pages.
-
 * Bug 9612 fixed - The quapro help page has been removed.
+
+* Bug 9698 fixed - The optim/"gc" algorithm does not support imp=-1
+
+* Bug 9822 fixed - The value ind=1 of optim is not supported by 
+                   all algorithms.
 
 
 Statistics:
