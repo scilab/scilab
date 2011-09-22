@@ -252,7 +252,7 @@ public final class ExportAction extends DefaultAction {
 		
 		Color bg = null;
 
-		if ((!fileFormat.equalsIgnoreCase("gif") && !fileFormat.equalsIgnoreCase("png"))
+		if ((!fileFormat.equalsIgnoreCase("png"))
 			|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
 				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			bg = graphComponent.getBackground();
