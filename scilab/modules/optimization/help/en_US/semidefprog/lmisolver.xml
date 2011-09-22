@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>lmisolver</refname>
 
-    <refpurpose>linear matrix inequation solver</refpurpose>
+    <refpurpose>Solve linear matrix inequations.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

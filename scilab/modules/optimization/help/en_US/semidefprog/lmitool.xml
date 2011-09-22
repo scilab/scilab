@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>lmitool</refname>
-    <refpurpose> tool for solving linear matrix inequations</refpurpose>
+    <refpurpose>Graphical tool for solving linear matrix inequations.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

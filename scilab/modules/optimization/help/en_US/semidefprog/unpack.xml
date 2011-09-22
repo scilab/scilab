@@ -107,4 +107,12 @@ A=unpack(CA,blocksizes)
     </programlisting>
   </refsection>
 
+  <refsection role="see also">
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="pack">pack</link></member>
+    </simplelist>
+  </refsection>
+
 </refentry>

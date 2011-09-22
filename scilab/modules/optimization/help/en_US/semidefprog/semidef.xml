@@ -22,13 +22,18 @@
   <refnamediv>
     <refname>semidef</refname>
 
-    <refpurpose>Solve semidefinite problems</refpurpose>
+    <refpurpose>Solve semidefinite problems.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[x,Z,ul,info]=semidef(x0,Z0,F,blocksizes,c,options)</synopsis>
+    <synopsis>
+    x=semidef(x0,Z0,F,blocksizes,c,options)
+    [x,Z]=semidef(...)
+    [x,Z,ul]=semidef(...)
+    [x,Z,ul,info]=semidef(...)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -112,27 +117,44 @@
       <literal>semidef</literal> solves the semidefinite program:
     </para>
 
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../mml/semidef_equation_1.mml" />
-        </imageobject>
-      </mediaobject>
-    </informalequation>
+    <para>
+      <latex>
+        \begin{eqnarray}
+        \begin{array}{l}
+        \min c^T \cdot x \\
+        F_0 + x_1 F_1 + \cdots + x_m F_m \geq 0
+        \end{array}
+        \end{eqnarray}
+      </latex>
+    </para>
 
     <para>and its dual:</para>
 
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../mml/semidef_equation_2.mml" />
-        </imageobject>
-      </mediaobject>
-    </informalequation>
+    <para>
+      <latex>
+        \begin{eqnarray}
+        \begin{array}{l}
+        \max -\textrm{Tr}(F_0 \cdot Z) \\
+        \textrm{s.t. } \textrm{Tr} (F_i \cdot Z)=c_i, \qquad i=1,2,\ldots,m \\
+        Z \geq 0
+        \end{array}
+        \end{eqnarray}
+      </latex>
+    </para>
 
     <para>
       exploiting block structure in the matrices
-      <literal>F_i</literal>.
+      <literal>F_i</literal>. 
+      Here, <literal>Tr</literal> is the trace operator, i.e. the sum of the 
+      diagonal entries of the matrix.
+    </para>
+
+    <para>
+      The problem data are the vector <literal>c</literal> and <literal>m+1</literal> 
+      block-diagonal symmetric matrices <literal>F0</literal>, <literal>F1</literal>,
+      ..., <literal>Fm</literal>. 
+      Moreover, we assume that the matrices <literal>Fi</literal> have 
+     <literal>L</literal> diagonal blocks.
     </para>
 
     <para>
@@ -142,20 +164,67 @@
       <literal>F_i</literal>, then
     </para>
 
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../../mml/semidef_equation_3.mml" />
-        </imageobject>
-      </mediaobject>
-    </informalequation>
+    <para>
+      <latex>
+      <![CDATA[ 
+        \begin{eqnarray}
+        F = \left(
+        \begin{array}{cccc}
+        cmp(F_0^1) & cmp(F_1^1) & \ldots &  cmp(F_m^1) \\
+        cmp(F_0^2) & cmp(F_1^2) & \ldots &  cmp(F_m^2) \\
+        \vdots     & \vdots     &        &  \vdots \\
+        cmp(F_0^L) & cmp(F_1^L) & \ldots &  cmp(F_m^L)
+        \end{array}
+        \right)
+        \end{eqnarray}
+ ]]>
+      </latex>
+    </para>
 
     <para>
-      where <literal>pack(M)</literal>, for symmetric
-      <literal>M</literal>, is the vector
-      <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>
-      (obtained by scanning rowwise the upper triangular part of
-      <literal>M</literal>).
+      where, for each symmetric block <literal>M</literal>, the vector <literal>cmp(M)</literal> is 
+      the compressed representation of <literal>M</literal>, that is 
+      <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>, 
+      obtained by scanning rowwise the upper triangular part of
+      <literal>M</literal>. 
+    </para>
+    <para>
+      For example, the matrix  
+    </para>
+    <para>
+      <latex>
+      <![CDATA[ 
+        \begin{eqnarray}
+        Z = \left(
+        \begin{array}{cccccc}
+        1 & 2 & 0 & 0 & 0 & 0 \\
+        2 & 3 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 4 & 5 & 6 & 0 \\
+        0 & 0 & 5 & 7 & 8 & 0 \\
+        0 & 0 & 6 & 8 & 9 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 10 \\
+        \end{array}
+        \right)
+        \end{eqnarray}
+ ]]>
+      </latex>
+    </para>
+
+    <para>
+      is stored as
+    </para>
+
+    <screen>
+    [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+    </screen>
+
+    <para>
+      with <literal>blocksizes=[2,3,1]</literal>.
+    </para>
+
+    <para>
+      In order to create the matrix <literal>F</literal>, the user can combine the 
+      <literal>list2vec</literal> and <literal>pack</literal> function, as described in the example below.
     </para>
 
     <para>
@@ -295,7 +364,7 @@
     <programlisting role="example">
       <![CDATA[ 
 // 1. Define the initial guess
-x0=[0;0]
+x0=[0;0];
 //
 // 2. Create a compressed representation of F
 // Define 3 symmetric block-diagonal matrices: F0, F1, F2
@@ -324,9 +393,9 @@ F21=F2(1:2,1:2);
 F22=F2(3:4,3:4);
 // Create 3 column vectors, containing nonzero entries 
 // in F0, F1, F2.
-F0nnz = [F01(:);F02(:)];
-F1nnz = [F11(:);F12(:)];
-F2nnz = [F21(:);F22(:)];
+F0nnz = list2vec(list(F01,F02));
+F1nnz = list2vec(list(F11,F12));
+F2nnz = list2vec(list(F21,F22));
 // Create a 16-by-3 matrix, representing the 
 // nonzero entries of the 3 matrices F0, F1, F2.
 FF=[F0nnz,F1nnz,F2nnz]
@@ -360,6 +429,7 @@ w=vec2list(Z,[blocksizes;blocksizes]);
 Z=sysdiag(w(1),w(2))
 
 c'*x+trace(F0*Z)
+// Check that the eigenvalues of the matrix are positive
 spec(F0+F1*x(1)+F2*x(2))
 trace(F1*Z)-c(1)
 trace(F2*Z)-c(2)
@@ -391,8 +461,9 @@ trace(F2*Z)-c(2)
     </para>
 
     <para>
-      SP: Software for Semidefinite Programming, <ulink
-    url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
+      SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994, 
+	  L. Vandenberghe and S. Boyd, 1994
+	  <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
     </para>
   </refsection>
 </refentry>
