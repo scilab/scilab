@@ -114,7 +114,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 				
 				// Translate Paths to URLs
 				String path = (String) style.get("image");
-				if (!path.isEmpty()) {
+				if (path != null && !path.isEmpty()) {
 					try {
 						style.put("image", new File(path).toURI().toURL().toString());
 					} catch (MalformedURLException e) {
