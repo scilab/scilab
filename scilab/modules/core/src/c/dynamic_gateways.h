@@ -168,6 +168,13 @@ int gw_dynamic_graphic_export(void);
 */
 int gw_dynamic_action_binding(void);
 
+/**
+* preferences gateway
+* preferences is loaded dynamically at runtime
+* load gw_preferences in SCI/modules/preferences/sci_gateway/gw_preferences.c
+*/
+int gw_dynamic_preferences(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 

@@ -385,6 +385,22 @@ int gw_dynamic_ui_data(void)
         &ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
+/* preferences module */
+#define PREFERENCES_MODULE_NAME "preferences"
+static DynLibHandle hPreferencesLib = NULL;
+static PROC_GATEWAY ptr_gw_preferences = NULL;
+static char* dynlibname_preferences = NULL;
+static char* gatewayname_preferences = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_preferences(void)
+{
+    return gw_dynamic_generic(PREFERENCES_MODULE_NAME,
+        &dynlibname_preferences,
+        &gatewayname_preferences,
+        &hPreferencesLib,
+        &ptr_gw_preferences);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -492,6 +508,11 @@ void freeAllDynamicGateways(void)
         &gatewayname_ui_data,
         &hUi_dataLib,
         &ptr_gw_ui_data);
+
+    freeDynamicGateway(&dynlibname_preferences,
+        &gatewayname_preferences,
+        &hPreferencesLib,
+        &ptr_gw_preferences);
 }
 /*--------------------------------------------------------------------------*/
 

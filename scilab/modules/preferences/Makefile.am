@@ -25,22 +25,23 @@ libscipreferences_la_etc_DATA =
 include $(top_srcdir)/Makefile.incl.am
 
 
-PREFERENCES_JNI_SOURCES = 
+PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 
-PREFERENCES_C_SOURCES = 
+PREFERENCES_C_SOURCES =
 
-PREFERENCES_CPP_SOURCES = 
+PREFERENCES_CPP_SOURCES =
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
 
 if GIWS
     BUILT_SOURCES=giws
 endif
 
 
-GATEWAY_C_SOURCES = 
+GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
-GATEWAY_CPP_SOURCES = 
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_addToolboxInfos.cpp \
+                      sci_gateway/cpp/sci_removeToolboxInfos.cpp
 
 libscipreferences_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -67,9 +68,11 @@ libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 libscipreferences_disable_la_CFLAGS = -Iincludes/ \
     -I$(top_srcdir)/modules/output_stream/includes
 
-PREFERENCES_DISABLE_C_SOURCES = 
+PREFERENCES_DISABLE_C_SOURCES = src/nopreferences/nopreferences.c
+libscipreferences_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscipreferences_disable_la_SOURCES = $(PREFERENCES_DISABLE_C_SOURCES)
 
-pkglib_LTLIBRARIES = 
+pkglib_LTLIBRARIES = libscipreferences-disable.la
 
 if GUI
     pkglib_LTLIBRARIES += libscipreferences.la 
@@ -89,7 +92,7 @@ INCLUDE_FLAGS = $(libscipreferences_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
+SWIG_WRAPPERS = 
 
 if SWIG
     BUILT_SOURCES=swig
@@ -103,7 +106,7 @@ libscipreferences_la_LIBADD = libscipreferences-algo.la \
 
 #### preferences : gateway declaration ####
 libscipreferences_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipreferences_la_sci_gateway_DATA = 
+libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
 
 if GUI
     USEANT=1

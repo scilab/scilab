@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<toolbox_skeleton>
+  <body maturity="B">
+    <environment foo="bar" />
+    <save bar="true" />
+  </body>
+</toolbox_skeleton>

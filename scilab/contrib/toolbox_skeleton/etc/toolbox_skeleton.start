@@ -50,6 +50,8 @@ function toolbox_skeletonlib = startModule()
     add_demo(toolbox_name, pathdemos);
   end
 
+  addToolboxInfos(toolbox_name, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
+
 endfunction
 
 toolbox_skeletonlib = startModule();

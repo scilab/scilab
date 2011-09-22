@@ -87,5 +87,6 @@
 <module name="parallel" activate="yes"/>
 <module name="modules_manager" activate="yes"/>
 <module name="history_browser" activate="@JAVA_ENABLE@"/>
+<module name="preferences" activate="@GUI_ENABLE@"/>
 </modules>
 
