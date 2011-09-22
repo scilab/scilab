@@ -46,6 +46,7 @@ import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
+import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
 import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
@@ -61,6 +62,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     private final TextManager textManager;
     private final AxesDrawer axesDrawer;
     private final ContouredObjectDrawer contouredObjectDrawer;
+    private final LegendDrawer legendDrawer;
 
     private ColorMap colorMap;
     private DrawingTools drawingTools = null;
@@ -76,6 +78,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         this.textManager = new TextManager(canvas.getSpriteManager());
         this.axesDrawer = new AxesDrawer(this);
         this.contouredObjectDrawer = new ContouredObjectDrawer(this, this.dataManager, this.markManager);
+        this.legendDrawer = new LegendDrawer(this, canvas.getSpriteManager(), this.markManager);
     }
 
     public DrawingTools getDrawingTools() {
@@ -352,8 +355,9 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
     @Override
     public void visit(Legend legend) {
-        // TODO
-        System.out.println("How can I draw a legend ?");
+        if (legend.getVisible()) {
+            legendDrawer.draw(legend);
+        }
     }
 
     @Override
@@ -845,6 +849,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
             markManager.update(id, property);
             textManager.update(id, property);
             axesDrawer.update(id, property);
+            legendDrawer.update(id, property);
             canvas.redraw();
         }
     }
@@ -859,6 +864,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         markManager.dispose(id);
         textManager.dispose(id);
         axesDrawer.dispose(id);
+        legendDrawer.dispose(id);
         canvas.redraw();
     }
 
