@@ -550,6 +550,8 @@ Bug fixes:
 
 * bug 9696 fixed - An error in an if expression inside a try make Scilab froze
 
+* bug 9699 fixed - A single $ as text in a text ui led to a segfault.
+
 * bug 9707 fixed - createNamedXXX did not check variable name.
 
 * bug 9708 fixed - createNamedXXX did not check length of variable name.
