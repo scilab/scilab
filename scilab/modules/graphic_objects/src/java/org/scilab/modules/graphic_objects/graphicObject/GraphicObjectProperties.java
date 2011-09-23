@@ -52,6 +52,7 @@ public static final String __GO_DATA_MODEL__ =             "DataModel";
 public static final String __GO_PARENT_FIGURE__ =          "ParentFigure";
 public static final String __GO_PARENT_AXES__ =            "ParentAxes";
 public static final String __GO_HAS_LEGEND_CHILD__ =       "HasLegendChild";
+public static final String __GO_LEGEND_CHILD__ =           "LegendChild";
 public static final String __GO_SELECTED_CHILD__ =         "SelectedChild";
 
 public static final String __GO_DATA_MODEL_COORDINATES__ = "DataModelCoordinates";

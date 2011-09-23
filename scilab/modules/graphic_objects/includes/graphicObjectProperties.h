@@ -51,6 +51,7 @@
 #define __GO_PARENT_FIGURE__               "ParentFigure"
 #define __GO_PARENT_AXES__                 "ParentAxes"
 #define __GO_HAS_LEGEND_CHILD__            "HasLegendChild"
+#define __GO_LEGEND_CHILD__                "LegendChild"
 #define __GO_SELECTED_CHILD__              "SelectedChild"
 
 #define __GO_DATA_MODEL_COORDINATES__      "DataModelCoordinates"

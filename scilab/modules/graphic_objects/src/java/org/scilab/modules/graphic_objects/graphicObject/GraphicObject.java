@@ -38,7 +38,7 @@ public abstract class GraphicObject implements Cloneable {
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, SELECTEDCHILD, TAG, UNKNOWNPROPERTY };
+		PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, UNKNOWNPROPERTY };
 
 	/** Identifier */
 	private String identifier;
@@ -198,6 +198,8 @@ public abstract class GraphicObject implements Cloneable {
 			return GraphicObjectPropertyType.PARENT_AXES;
 		} else if (propertyName.equals(__GO_HAS_LEGEND_CHILD__)) {
 			return GraphicObjectPropertyType.HASLEGENDCHILD;
+		} else if (propertyName.equals(__GO_LEGEND_CHILD__)) {
+			return GraphicObjectPropertyType.LEGENDCHILD;
 		} else if (propertyName.equals(__GO_SELECTED_CHILD__)) {
 			return GraphicObjectPropertyType.SELECTEDCHILD;
 		} else if (propertyName.equals(__GO_TYPE__)) {
@@ -235,6 +237,8 @@ public abstract class GraphicObject implements Cloneable {
 			return getParentAxes();
 		} else if (property == GraphicObjectPropertyType.HASLEGENDCHILD) {
 			return getHasLegendChild();
+		} else if (property == GraphicObjectPropertyType.LEGENDCHILD) {
+			return getLegendChild();
 		} else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
 			return getSelectedChild();
 		} else if (property == GraphicObjectPropertyType.TYPE) {
@@ -463,6 +467,24 @@ public abstract class GraphicObject implements Cloneable {
 		return false;
 	}
 
+        /**
+         * Returns the identifier of the object's direct child that is a Legend object.
+         * It returns an empty string if the object has no Legend in its children list
+         * (one Legend is supposed to be present at most).
+         * @return the object's child Legend object identifier, or an empty string if no child Legend found.
+         */
+	public String getLegendChild() {
+		for (int i = 0; i < children.size(); i++) {
+			GraphicObject currentObject = GraphicController.getController().getObjectFromId(children.get(i));
+
+			if (currentObject instanceof Legend) {
+				return currentObject.getIdentifier();
+			}
+		}
+
+                /* No child legend found */
+                return "";
+	}
 
 	/**
 	 * Get selected child method

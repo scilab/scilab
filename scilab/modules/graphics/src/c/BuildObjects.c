@@ -355,8 +355,13 @@ ConstructText (char * pparentsubwinUID, char ** text, int nbRow, int nbCol, doub
 }
 
 
-/**constructLegend
- * This function creates  Legend structure
+/**ConstructLegend
+ * This function creates a Legend structure
+ * @param  char *pparentsubwinUID : parent subwin UID
+ * @param  char ** text : initial text matrix string array
+ * @param long long tabofhandles[] : the array of polyline handles
+ * @param int nblegends : the number of legend items
+ * @return : object UID if ok , NULL if not
  */
 char *
 ConstructLegend (char * pparentsubwinUID, char **text, long long tabofhandles[], int nblegends)
@@ -387,13 +392,11 @@ ConstructLegend (char * pparentsubwinUID, char **text, long long tabofhandles[],
 
     if (iLegendPresent)
     {
-        /*
-	 * Object deletion not implemented yet.
-         * To be implemented
-         */
-#if 0
-        DestroyLegend();
-#endif
+        /* Delete it (one Legend object allowed at most) */
+        char* legendChildID;
+        getGraphicObjectProperty(pparentsubwinUID, __GO_LEGEND_CHILD__, jni_string, &legendChildID);
+
+        deleteGraphicObject(legendChildID);
     }
 
     getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_string, &parentType);
