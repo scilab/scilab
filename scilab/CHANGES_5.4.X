@@ -82,6 +82,13 @@ Graphical User Interface:
 * The variable browser now refresh itself automatically (See bug 9446).
 
 
+Call_Scilab:
+============
+
+* bug 10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
+                    removed.
+
+
 Xcos:
 =====
 
