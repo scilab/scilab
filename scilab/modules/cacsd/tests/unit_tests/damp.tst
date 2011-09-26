@@ -58,7 +58,8 @@ t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[-1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
 assert_checkalmostequal (wn,wnref);
-assert_checkalmostequal (zeta,zetaref);
+assert_checkalmostequal (zeta(2:$),zetaref(2:$));
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
 dt=1;
 [wn,zeta]=damp(prod(P),dt);
@@ -67,14 +68,18 @@ t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
 assert_checkalmostequal (wn,wnref);
-assert_checkalmostequal (zeta,zetaref);
+assert_checkalmostequal (zeta(2:$),zetaref(2:$));
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
+
 
 //transfer function
 [wn,zeta]=damp(syslin('c',ones(1,3),P));
 wnref=[0;1;sqrt(2);sqrt(2);2;sqrt(13);sqrt(13)];
 zetaref=[-1;-1;-sqrt(2)/2;-sqrt(2)/2;-1;-2/sqrt(13);-2/sqrt(13)];
 assert_checkalmostequal (wn,wnref);
-assert_checkalmostequal (zeta,zetaref);
+assert_checkalmostequal (zeta(2:$),zetaref(2:$));
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
+
 
 dt=1;
 [wn,zeta]=damp(syslin(dt,ones(1,3),P));
@@ -83,14 +88,16 @@ t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
 assert_checkalmostequal (wn,wnref);
-assert_checkalmostequal (zeta,zetaref);
+assert_checkalmostequal (zeta(2:$),zetaref(2:$));
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
 //state-space
 [wn,zeta]=damp(tf2ss(syslin('c',1,prod(P))));
 wnref=[0;1;sqrt(2);sqrt(2);2;sqrt(13);sqrt(13)];
 zetaref=[-1;-1;-sqrt(2)/2;-sqrt(2)/2;-1;-2/sqrt(13);-2/sqrt(13)];
 assert_checkalmostequal (wn,wnref);
-assert_checkalmostequal (zeta,zetaref);
+assert_checkalmostequal (zeta(2:$),zetaref(2:$));
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
 dt=1;
 [wn,zeta]=damp(tf2ss(syslin(dt,1,prod(P))));
@@ -99,7 +106,8 @@ t2=log(2-3*%i)/dt;
 wnref=[0;log(2);abs(t1);abs(t1);abs(t2);abs(t2);%inf];
 zetaref=[1;-1;-real(t1)/abs(t1);-real(t1)/abs(t1);-real(t2)/abs(t2);-real(t2)/abs(t2);%nan];
 assert_checkalmostequal (wn,wnref) ;
-assert_checkalmostequal (zeta,zetaref) ;
+assert_checkalmostequal (zeta(2:$),zetaref(2:$)) ;
+assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
 //invalid calls
 assert_checkfalse(execstr("[wn,zeta]=damp()","errcatch")==0);

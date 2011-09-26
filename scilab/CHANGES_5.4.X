@@ -612,3 +612,5 @@ Bug fixes:
 * bug 9979 fixed - The who_user() function printed a wrong message.
 
 * bug 9980 fixed - Frozen console when one tryes to complete an empty string.
+
+* bug 10016 fixed - The damp function unit test failed under windows.
