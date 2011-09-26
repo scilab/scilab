@@ -22,7 +22,6 @@ import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
@@ -221,13 +220,13 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		}
 		
 		final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
-		if (styles.getData() != null) {
+		if (styles.getData() != null
+				&& alreadyDecodedCount < styles.getHeight()
+				&& 0 < styles.getWidth()) {
 			final String style;
 
-			try {
-				style = styles.getData()[alreadyDecodedCount][0];
-				port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
-			} catch (ArrayIndexOutOfBoundsException e) { }
+			style = styles.getData()[alreadyDecodedCount][0];
+			port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
 		}
 	}
 	

@@ -1956,7 +1956,6 @@ public class XcosDiagram extends ScilabGraph {
 		
 		if (getParentTab() != null) {
 			getParentTab().setName(tabTitle);
-			getParentTab().draw();
 		}
 	}
     

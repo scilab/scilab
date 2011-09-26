@@ -91,6 +91,8 @@ Xcos:
 
 * Error reporting has been improved to print warnings on blocks into Xcos.
 
+* The style of the block can be changed on the interface function.
+
 * bug 7985 fixed - dmmul.c did not use dgemm routine optimized by BLAS.
 
 * bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"

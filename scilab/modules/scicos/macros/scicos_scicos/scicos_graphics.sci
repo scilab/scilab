@@ -49,8 +49,9 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     S="";
     out_style="" + S(ones(pout(:)));
   end
+  if exists('style','local')==0 then style="" + [],end
 
   graphics=mlist(['graphics','orig','sz','flip','theta','exprs','pin',..
-		  'pout','pein','peout','gr_i','id','in_implicit','out_implicit','in_style','out_style'],..
-		 orig,sz,flip,theta,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style)
+		  'pout','pein','peout','gr_i','id','in_implicit','out_implicit','in_style','out_style','style'],..
+		 orig,sz,flip,theta,exprs,pin,pout,pein,peout,gr_i,id,in_implicit,out_implicit,in_style,out_style,style)
 endfunction

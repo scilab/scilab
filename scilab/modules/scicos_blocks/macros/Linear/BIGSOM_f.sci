@@ -50,6 +50,10 @@ case 'set' then
     if ok then
       model.rpar = sgn(:)    ;
       graphics.exprs = exprs ;
+      
+      hexa = [string(1:9) "A" "B" "C" "D" "E" "F"];
+      graphics.style = "BIGSOM_f;fillColor=#" + strcat(hexa(15 * rand(1,6) + 1));
+      
       x.graphics = graphics;
       x.model = model ;
       break

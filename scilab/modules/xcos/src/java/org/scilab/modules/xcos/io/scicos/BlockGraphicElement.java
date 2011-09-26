@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2011 - Scilab Enterprises - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -30,6 +32,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.w3c.dom.svg.GetSVGDocument;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -41,17 +44,25 @@ import com.mxgraph.model.mxGeometry;
 //CSOFF: ClassDataAbstractionCoupling
 class BlockGraphicElement extends BlockPartsElement {
 	/*
-	 * "in_style", "out_style" have been added on the 5.3-5.4 dev. cycle
-	 * they are not checked to be compatible with older versions.
+	 * "in_style", "out_style" and style have been added on the 5.3-5.4 dev.
+	 * cycle they are not checked to be compatible with older versions.
 	 */
 	private static final List<String> DATA_FIELD_NAMES = asList(
 			"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
 			"pein", "peout", "gr_i", "id", "in_implicit", "out_implicit");
+	private static final List<String> DATA_FIELD_NAMES_FULL = asList(
+			"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
+			"pein", "peout", "gr_i", "id", "in_implicit", "out_implicit",
+			"in_style", "out_style", "style");
+	
+	
 	
 	private static final int ORIGIN_INDEX = 1;
 	private static final int DIMS_INDEX = 2;
 	private static final int FLIP_INDEX = 3;
 	private static final int EXPRS_INDEX = 5;
+	private static final int STYLE_INDEX = 16;
+	
 	
 	private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
 	
@@ -108,6 +119,13 @@ class BlockGraphicElement extends BlockPartsElement {
 		
 		block.setExprs(data.get(EXPRS_INDEX));
 		
+		if (data.size() > STYLE_INDEX && 
+				!isEmptyField(data.get(STYLE_INDEX))) {
+			final ScilabString style = (ScilabString) data.get(STYLE_INDEX);
+			final String s = style.getData()[0][0]; 
+
+			block.setStyle(s);
+		}
 		
 		block = afterDecode(element, block);
 		
@@ -195,7 +213,7 @@ class BlockGraphicElement extends BlockPartsElement {
 				&& !isEmptyField(data.get(field))) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
-
+		
 		// pin
 		field++;
 		if (!(data.get(field) instanceof ScilabDouble)) {
@@ -249,6 +267,7 @@ class BlockGraphicElement extends BlockPartsElement {
 		// not checked due to compatibility
 		// in_style
 		// out_style
+		// style
 	}
 	// CSON: CyclomaticComplexity
 	// CSON: NPathComplexity
@@ -440,6 +459,10 @@ class BlockGraphicElement extends BlockPartsElement {
 		field++; // in_style
 		field++; // out_style
 		
+		field++; // style
+		data.set(field, new ScilabString(from.getStyle()));
+		
+		
 		data = (ScilabMList) afterEncode(from, data);
 		
 		return data;
@@ -471,7 +494,7 @@ class BlockGraphicElement extends BlockPartsElement {
 	 * @return the new element
 	 */
 	private ScilabMList allocateElement() {
-		ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
+		ScilabMList element = new ScilabMList(DATA_FIELD_NAMES_FULL.toArray(new String[0]));
 		element.add(new ScilabDouble()); // orig
 		element.add(new ScilabDouble()); // sz
 		element.add(new ScilabBoolean()); // flip
@@ -487,6 +510,7 @@ class BlockGraphicElement extends BlockPartsElement {
 		addSizedPortVector(element, ScilabString.class, getOutSize()); // out_implicit
 		addSizedPortVector(element, ScilabString.class, getInSize()); // in_style
 		addSizedPortVector(element, ScilabString.class, getOutSize()); // out_style
+		element.add(new ScilabString("")); // style
 		return element;
 	}
 }

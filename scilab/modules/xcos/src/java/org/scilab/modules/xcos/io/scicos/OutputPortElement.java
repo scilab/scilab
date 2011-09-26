@@ -219,13 +219,13 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		}
 		
 		final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
-		if (styles.getData() != null) {
+		if (styles.getData() != null
+				&& alreadyDecodedCount < styles.getHeight()
+				&& 0 < styles.getWidth()) {
 			final String style;
 
-			try {
-				style = styles.getData()[alreadyDecodedCount][0];
-				port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
-			} catch (ArrayIndexOutOfBoundsException e) { }
+			style = styles.getData()[alreadyDecodedCount][0];
+			port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
 		}
 	}
 	

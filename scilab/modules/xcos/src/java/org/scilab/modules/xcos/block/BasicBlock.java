@@ -1025,6 +1025,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		setODState(modifiedBlock.getODState());
 
 		setEquations(modifiedBlock.getEquations());
+		setStyle(modifiedBlock.getStyle());
 	}
 
 	/**
@@ -1082,6 +1083,11 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 							false);
 					getParentDiagram().addCells(new Object[] {modified},
 							this, previousIndex);
+					
+					// Clone the geometry to avoid empty geometry on new cells.
+					getParentDiagram().getModel().setGeometry(modified,
+							(mxGeometry) previous.getGeometry().clone());
+					
 				}
 
 				// removed ports
@@ -1188,9 +1194,13 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			public void actionPerformed(ActionEvent e) {
 				if (exists(tempInput)) {
 					LOG.trace("Updating data.");
+				
+					graph.getView().clear(this, true, true);
 					
 				// Now read new Block
+				graph.getModel().beginUpdate();
 				try {
+					
 					BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 					updateBlockSettings(modifiedBlock);
 				    
@@ -1198,8 +1208,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 					    currentBlock));
 				} catch (ScicosFormatException e1) {
 					LOG.error(e1);
+				} finally {
+					graph.getModel().endUpdate();
 				}
-
+				
 			    delete(tempInput);
 				} else {
 					LOG.trace("No needs to update data.");
