@@ -20,6 +20,7 @@
 ;
 Source: bin\{#SIGPROC}_f.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
 Source: bin\{#SIGPROC}.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
+Source: bin\{#SIGPROC}_gw.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\license.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 ;
