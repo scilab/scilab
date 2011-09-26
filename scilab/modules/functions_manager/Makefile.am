@@ -34,10 +34,6 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-Iincludes/ \
 						$(XML_FLAGS)
 
-libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-					$(top_builddir)/modules/matio/libscimatio.la \
-					$(top_builddir)/modules/signal_processing/libscisignal_processing.la
-
 libscifunctions_manager_la_includedir=$(pkgincludedir)/Types
 
 libscifunctions_manager_la_include_HEADERS =
