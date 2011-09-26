@@ -563,7 +563,6 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/symbolic/libscisymbolic.la \
