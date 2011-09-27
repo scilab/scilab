@@ -2277,176 +2277,6 @@
   </refsection>
 
   <refsection>
-    <title>Spendley et al. implementation notes</title>
-
-    <para>
-      The original paper may be implemented with several variations, which
-      might lead to different results. This section defines what algorithmic
-      choices have been used.
-    </para>
-
-    <para>The paper states the following rules.</para>
-
-    <itemizedlist>
-      <listitem>
-        <para>
-          "Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
-          a new simplex Sp by excluding the point Vp corresponding to y, and
-          replacing it by V* defined as above."
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          "Rule 2. If a result has occurred in (k + 1) successive
-          simplexes, and is not then eliminated by application of Rule 1, do not
-          move in the direction indicated by Rule 1, or at all, but discard the
-          result and replace it by a new observation at the same point."
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          "Rule 3. If y is the lowest reading in So , and if the next
-          observation made, y* , is the lowest reading in the new simplex S , do
-          not apply Rule 1 and return to So from Sp . Move out of S, by
-          rejecting the second lowest reading (which is also the second lowest
-          reading in So)."
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      We implement the following "rules" of the Spendley et al.
-      method.
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para>
-          Rule 1 is strictly applied, but the reflection is done by
-          reflection the high point, since we minimize a function instead of
-          maximizing it, like Spendley.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          Rule 2 is NOT implemented, as we expect that the function
-          evaluation is not subject to errors.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          Rule 3 is applied, ie reflection with respect to next to high
-          point.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      The original paper does not mention any shrink step. When the
-      original algorithm cannot improve the function value with reflection
-      steps, the basic algorithm stops. In order to make the current
-      implementation of practical value, a shrink step is included, with
-      shrinkage factor sigma. This perfectly fits into to the spirit of the
-      original paper. Notice that the shrink step make the rule #3 (reflection
-      with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
-      required steps are the reflection and shrinkage. Never the less, the rule
-      #3 has been kept in order to make the algorithm as close as it can be to
-      the original.
-    </para>
-  </refsection>
-
-  <refsection>
-    <title>Nelder-Mead implementation notes</title>
-
-    <para>
-      The purpose of this section is to analyse the current implementation of Nelder-Mead's algorithm.
-    </para>
-
-    <para>
-      The algorithm that we use is described in "Iterative Methods for Optimization" by C. T. Kelley.
-    </para>
-
-    <para>
-      The original paper uses a "greedy" expansion, in which the expansion point
-      is accepted whatever its function value. The current implementation,
-      as most implementations, uses the expansion point only if it improves
-      over the reflection point, that is,
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          if fe&lt;fr, then the expansion point is accepted,
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          if not, the reflection point is accepted.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      The termination criteria suggested by Nelder and Mead is based on an
-      absolute tolerance on the standard deviation of the function values in the simplex.
-      We provide this original termination criteria with the <literal>-tolvarianceflag</literal>
-      option, which is disabled by default.
-    </para>
-
-  </refsection>
-
-  <refsection>
-    <title>Box's complex algorithm implementation notes</title>
-
-    <para>
-      In this section, we analyse the current implementation of Box's complex method.
-    </para>
-
-    <para>
-      The initial simplex can be computed as in Box's paper, but this may not
-      be safe. In his paper, Box suggest that if a vertex of the initial simplex
-      does not satisfy the non linear constraints, then it should be "moved halfway
-      toward the centroid of those points already selected". This behaviour
-      is available when the <literal>-scalingsimplex0</literal> option is set to
-      <literal>"tocenter"</literal>. It may happen, as suggested by Guin, that
-      the centroid is not feasible. This may happen if the constraints are not
-      convex. In this case, the initial simplex cannot be computed. This is why
-      we provide the <literal>"tox0"</literal> option, which allows to compute the
-      initial simplex by scaling toward the initial guess, which is always feasible.
-    </para>
-
-    <para>
-      In Box's paper, the scaling into the non linear constraints is performed
-      "toward" the centroid, that is, by using a scaling factor equal to 0.5.
-      This default scaling factor might be sub-optimal in certain situations.
-      This is why we provide the <literal>-boxineqscaling</literal> option,
-      which allows to configure the scaling factor.
-    </para>
-
-    <para>
-      In Box's paper, whether we are concerned with the initial simplex or with the
-      simplex at a given iteration, the scaling for the non linear constraints is performed
-      without end. This is because Box's hypothesis is that "ultimately, a satisfactory
-      point will be found". As suggested by Guin, if the process fails, the algorithm
-      goes into an infinite loop. In order to avoid this, we perform the scaling until
-      a minimum scaling value is reached, as defined by the <literal>-guinalphamin</literal>
-      option.
-    </para>
-
-    <para>
-      We have taken into account for the comments by Guin, but it should be emphasized
-      that the current implementation is still as close as possible to Box's
-      algorithm and is not Guin's algorithm. More precisely, during the iterations,
-      the scaling for the non linear constraints is still performed toward the centroid,
-      be it feasible or not.
-    </para>
-
-  </refsection>
-
-  <refsection>
     <title>User-defined algorithm</title>
     <para>
       The <literal>-mymethod</literal> option allows to configure a user-defined
@@ -3114,6 +2944,176 @@ tolrelativevariance = 1.e-4;
 stopfun = list(myoutputcmd, tolrelativevariance, tolabsolutevariance, variancesimplex0);
 nm = neldermead_configure(nm,"-outputcommand",stopfun);
     </screen>
+
+  </refsection>
+
+  <refsection>
+    <title>Spendley et al. implementation notes</title>
+
+    <para>
+      The original paper may be implemented with several variations, which
+      might lead to different results. This section defines what algorithmic
+      choices have been used.
+    </para>
+
+    <para>The paper states the following rules.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          "Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
+          a new simplex Sp by excluding the point Vp corresponding to y, and
+          replacing it by V* defined as above."
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          "Rule 2. If a result has occurred in (k + 1) successive
+          simplexes, and is not then eliminated by application of Rule 1, do not
+          move in the direction indicated by Rule 1, or at all, but discard the
+          result and replace it by a new observation at the same point."
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          "Rule 3. If y is the lowest reading in So , and if the next
+          observation made, y* , is the lowest reading in the new simplex S , do
+          not apply Rule 1 and return to So from Sp . Move out of S, by
+          rejecting the second lowest reading (which is also the second lowest
+          reading in So)."
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      We implement the following "rules" of the Spendley et al.
+      method.
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          Rule 1 is strictly applied, but the reflection is done by
+          reflection the high point, since we minimize a function instead of
+          maximizing it, like Spendley.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Rule 2 is NOT implemented, as we expect that the function
+          evaluation is not subject to errors.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Rule 3 is applied, ie reflection with respect to next to high
+          point.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      The original paper does not mention any shrink step. When the
+      original algorithm cannot improve the function value with reflection
+      steps, the basic algorithm stops. In order to make the current
+      implementation of practical value, a shrink step is included, with
+      shrinkage factor sigma. This perfectly fits into to the spirit of the
+      original paper. Notice that the shrink step make the rule #3 (reflection
+      with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
+      required steps are the reflection and shrinkage. Never the less, the rule
+      #3 has been kept in order to make the algorithm as close as it can be to
+      the original.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Nelder-Mead implementation notes</title>
+
+    <para>
+      The purpose of this section is to analyse the current implementation of Nelder-Mead's algorithm.
+    </para>
+
+    <para>
+      The algorithm that we use is described in "Iterative Methods for Optimization" by C. T. Kelley.
+    </para>
+
+    <para>
+      The original paper uses a "greedy" expansion, in which the expansion point
+      is accepted whatever its function value. The current implementation,
+      as most implementations, uses the expansion point only if it improves
+      over the reflection point, that is,
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          if fe&lt;fr, then the expansion point is accepted,
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          if not, the reflection point is accepted.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      The termination criteria suggested by Nelder and Mead is based on an
+      absolute tolerance on the standard deviation of the function values in the simplex.
+      We provide this original termination criteria with the <literal>-tolvarianceflag</literal>
+      option, which is disabled by default.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Box's complex algorithm implementation notes</title>
+
+    <para>
+      In this section, we analyse the current implementation of Box's complex method.
+    </para>
+
+    <para>
+      The initial simplex can be computed as in Box's paper, but this may not
+      be safe. In his paper, Box suggest that if a vertex of the initial simplex
+      does not satisfy the non linear constraints, then it should be "moved halfway
+      toward the centroid of those points already selected". This behaviour
+      is available when the <literal>-scalingsimplex0</literal> option is set to
+      <literal>"tocenter"</literal>. It may happen, as suggested by Guin, that
+      the centroid is not feasible. This may happen if the constraints are not
+      convex. In this case, the initial simplex cannot be computed. This is why
+      we provide the <literal>"tox0"</literal> option, which allows to compute the
+      initial simplex by scaling toward the initial guess, which is always feasible.
+    </para>
+
+    <para>
+      In Box's paper, the scaling into the non linear constraints is performed
+      "toward" the centroid, that is, by using a scaling factor equal to 0.5.
+      This default scaling factor might be sub-optimal in certain situations.
+      This is why we provide the <literal>-boxineqscaling</literal> option,
+      which allows to configure the scaling factor.
+    </para>
+
+    <para>
+      In Box's paper, whether we are concerned with the initial simplex or with the
+      simplex at a given iteration, the scaling for the non linear constraints is performed
+      without end. This is because Box's hypothesis is that "ultimately, a satisfactory
+      point will be found". As suggested by Guin, if the process fails, the algorithm
+      goes into an infinite loop. In order to avoid this, we perform the scaling until
+      a minimum scaling value is reached, as defined by the <literal>-guinalphamin</literal>
+      option.
+    </para>
+
+    <para>
+      We have taken into account for the comments by Guin, but it should be emphasized
+      that the current implementation is still as close as possible to Box's
+      algorithm and is not Guin's algorithm. More precisely, during the iterations,
+      the scaling for the non linear constraints is still performed toward the centroid,
+      be it feasible or not.
+    </para>
 
   </refsection>
 
