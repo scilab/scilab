@@ -4,20 +4,22 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 // <-- Non-regression test for bug 9732 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=9732
 //
 // <-- Short Description -->
-// try to compile and link a superblock 
+// try to compile and link a superblock
 
 loadXcosLibs();
 assert_checktrue(importXcosDiagram(SCI+'/modules/xcos/demos/Controller.xcos'));
 
 // getting the SUPER_f (System) block
-XX=scs_m.objs(7);
+XX=scs_m.objs(11);
+
+subSystem=XX.model.rpar;
+assert_checkequal(subSystem.props.title, "System");
 
 // Overload get_value
 prot = funcprot();
