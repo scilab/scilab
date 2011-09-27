@@ -257,6 +257,10 @@ Optimization:
 
 * Bug 8676 fixed - The pack/unpack functions had no help pages.
 
+* Bug 8777 fixed - The neldermead function failed to restart with bounds.
+                   Added examples of restarts with/without bounds in the 
+                   neldermead help page.
+
 * Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
                    Same changes applied to optimbase_checkx0.
 

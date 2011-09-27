@@ -26,8 +26,7 @@
     <refname>neldermead</refname>
 
     <refpurpose>
-      Provides several direct search optimization algorithms based
-      on the simplex method.
+      Provides direct search optimization algorithms.
     </refpurpose>
   </refnamediv>
 
@@ -2740,10 +2739,169 @@ nm = neldermead_destroy(nm);
   </refsection>
 
   <refsection>
-    <title>Changes in Scilab 5.4.1</title>
+    <title>Example #7: Restarting without bounds</title>
 
     <para>
-      Many changes have been done in Scilab 5.4.1, which simplify the use of the
+      In the following example, we reproduce the experiment 
+      published by Ken McKinnon in 1998. 
+      For this particular function and this particular initial simplex,
+	  the Nelder-Mead algorithm converges to a nonstationnary point. 
+    </para>
+    <para>
+	  We first define the objective function, the initial simplex 
+	  and the expected solution of this unconstrained optimization problem.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function [ f , index ] = mckinnon ( x , index )
+  tau = 3
+  theta = 6
+  phi = 400
+  if ( x(1) <= 0 )
+    f = theta*phi*abs(x(1))^tau+x(2)*(1+x(2))
+  else
+    f = theta*x(1)^tau+x(2)*(1+x(2))
+  end
+endfunction
+
+// The initial simplex
+lambda1 = (1.0 + sqrt(33))/8;
+lambda2 = (1.0 - sqrt(33))/8;
+coords0 = [
+1  1
+0  0 
+lambda1 lambda2
+];
+
+// The expected solution
+xstar = [0;-0.5];
+fstar = -0.25;
+ ]]>
+    </programlisting>
+
+    <para>
+	  Then we run the algorithm two times in sequence. 
+	  At the end of the first optimization process, the algorithm has 
+	  converged to the point [0,0] which is nonstationnary. 
+	  This is why we restart the algorithm and get the correct minimum.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm, "-maxiter",200);
+nm = neldermead_configure(nm, "-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+// Search #1: fails
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+status = neldermead_get(nm,"-status")
+// Search #2: succeeds
+nm = neldermead_restart ( nm );
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+	<para>
+	  We can also use the automatic stagnation detection method 
+	  created by Kelley, so that the algorithm automatically restart 
+	  the algorithm when needed.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm, "-maxiter",200);
+nm = neldermead_configure(nm, "-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","kelley");
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+restartnb = neldermead_get ( nm , "-restartnb" )
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+	<para>
+	  See the demonstrations to get a graphical plot of the 
+	  intermediate simplices in Mc Kinnon's experiment.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Example #8: Restarting with bounds</title>
+	
+	<para>
+	  In the following experiment, we solve an optimization problem 
+	  with bounds. 
+	  We use Box's algorithm, which is the only algorithm which manages bounds.
+	  We use the randomized bounds simplex both for the initial simplex and 
+	  for the restart simplex.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function [ f , index ] = myquad ( x , index )
+    f = x(1)^2 + x(2)^2 + x(3)^2
+endfunction
+x0 = [1.2 1.9,1.5].';
+// The solution
+xstar = [1;1;1];
+fstar = 3;
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",3);
+nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-boundsmin",[1 1 1]);
+nm = neldermead_configure(nm,"-boundsmax",[2 2 2]);
+nm = neldermead_configure(nm,"-simplex0method","randbounds");
+nm = neldermead_search(nm);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",200);
+nm = neldermead_configure(nm,"-restartsimplexmethod","randbounds");
+nm = neldermead_restart(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+
+  </refsection>
+
+  <refsection>
+    <title>Changes in Scilab 5.4</title>
+
+    <para>
+      Many changes have been done in Scilab 5.4, which simplify the use of the
       neldermead component.
     </para>
 
@@ -3163,6 +3321,11 @@ nm = neldermead_configure(nm,"-outputcommand",stopfun);
     <para>
       "Nelder Mead's User Manual", Consortium Scilab - Digiteo, Michael
       Baudin, 2010
+    </para>
+
+    <para>
+      Ken McKinnon, Convergence of the Nelder-Mead simplex method to a nonstationary point, 
+      SIAM Journal on Optimization, Volume 9, Number 1, 1998, pages 148-158.
     </para>
 
   </refsection>
