@@ -21,9 +21,7 @@ endfunction
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
 xcos_simulate(scs_m, 4);
  
- Error occured in pre_xcos_simulate: proceeding with simulation anyway. 
- 
- Error in post_xcos_simulate: ending simulation.   
+ Error occured in pre_xcos_simulate: Cancelling simulation.   
 assert_checkequal(status, [])
  ans  =
  
