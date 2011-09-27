@@ -715,44 +715,6 @@
                     </listitem>
                   </varlistentry>
 
-                  <varlistentry>
-                    <term>-tolvarianceflag</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of booleans, set to %t to enable the termination
-                        criteria based on the variance of the function value (default tolvarianceflag=%f).
-                        If this criteria is triggered, the status of the
-                        optimization is set to "tolvariance".
-                      </para>
-                      <para>
-                        This criteria is suggested by Nelder and Mead.
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
-                    <term>-tolabsolutevariance</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of doubles, the absolute tolerance on the variance
-                        of the function values of the simplex (default tolabsolutevariance = 0).
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
-                    <term>-tolrelativevariance</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of doubles, the relative tolerance on the variance
-                        of the function values of the simplex (default tolrelativevariance = %eps).
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
                 </variablelist>
 
                 <para>
