@@ -230,6 +230,11 @@ Optimization:
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
+* Bug 7892 fixed - The neldermead component did not provide a default 
+                   output function.
+                   The new function neldermead_defaultoutput was created
+                   to print a simple one-line output message by iteration.
+
 * Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used
                    the output function.
 
