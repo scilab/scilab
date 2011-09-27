@@ -122,10 +122,7 @@ libscicommons_disable_la_OBJECTS =  \
 libscicommons_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscicommons_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscicommons_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+libscicommons_la_LIBADD =
 am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo
 am__objects_2 = empty.lo
 am_libscicommons_la_OBJECTS = $(am__objects_1) $(am__objects_2)
@@ -503,10 +500,6 @@ INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabCommons.i
 @SWIG_TRUE@BUILT_SOURCES = swig
-libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/fileio/libscifileio.la
-
 
 #### commons : gateway declaration ####
 libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway

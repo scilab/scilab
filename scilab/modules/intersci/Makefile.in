@@ -112,10 +112,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciintersci_la_rootdir)" \
 	"$(DESTDIR)$(libsciintersci_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciintersci_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/string/libscistring.la
+libsciintersci_la_LIBADD =
 am__objects_1 = libsciintersci_la-libinter.lo libsciintersci_la-out.lo
 am_libsciintersci_la_OBJECTS = $(am__objects_1)
 libsciintersci_la_OBJECTS = $(am_libsciintersci_la_OBJECTS)
@@ -431,11 +428,6 @@ libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 # For the code check (splint)
 CHECK_SRC = $(libsciintersci_la_SOURCES)
 INCLUDE_FLAGS = $(libsciintersci_la_CFLAGS)
-libsciintersci_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
-
 
 #### Target ######
 modulename = intersci

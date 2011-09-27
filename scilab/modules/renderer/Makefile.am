@@ -307,11 +307,6 @@ SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 # For the code check (splint)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
-## Libraries necessary
-## Change to include other Scilab modules/lib
-# cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
-libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 
 

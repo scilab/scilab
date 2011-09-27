@@ -105,11 +105,7 @@ if SWIG
     BUILT_SOURCES=swig
 endif
 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/jvm/libscijvm.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -129,11 +129,7 @@ libscifftw_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscifftw_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 @FFTW_TRUE@am_libscifftw_algo_la_rpath =
-@FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la \
-@FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
-@FFTW_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@FFTW_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+@FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la
 am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	src/c/fftwlibname.c src/c/fftw_utilities.c src/c/with_fftw.c \
 	sci_gateway/c/gw_fftw.c \
@@ -475,7 +471,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 # For the code check (splint)
 @FFTW_TRUE@CHECK_SRC = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
-@FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+@FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la
 @FFTW_FALSE@libscifftw_la_CFLAGS = -I$(srcdir)/includes/ \
 @FFTW_FALSE@			-I$(srcdir)/src/c/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes \

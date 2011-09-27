@@ -143,10 +143,7 @@ libscilocalization_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscilocalization_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la
 am__objects_4 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_gettext.lo \
 	libscilocalization_la-sci_dgettext.lo \
@@ -461,7 +458,7 @@ libscilocalization_algo_la_CFLAGS = $(libscilocalization_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
-libscilocalization_la_LIBADD = libscilocalization-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libscilocalization_la_LIBADD = libscilocalization-algo.la
 
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######

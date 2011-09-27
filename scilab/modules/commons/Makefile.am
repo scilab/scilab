@@ -57,10 +57,6 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/fileio/libscifileio.la
-
 
 #### commons : gateway declaration ####
 libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway

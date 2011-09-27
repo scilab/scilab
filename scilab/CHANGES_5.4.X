@@ -345,6 +345,10 @@ Compilation:
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
 
+* Under GNU/Linux and Mac OS X, for each module, get ride of the list of 
+  the explicit dependencies on the other libraries. Use libscilab-cli.so or
+  libscilab.so to link against Scilab.
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.

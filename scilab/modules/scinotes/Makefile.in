@@ -134,10 +134,7 @@ libsciscinotes_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciscinotes_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciscinotes_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la
 am__objects_5 = libsciscinotes_la-gw_scinotes.lo
 am__objects_6 = libsciscinotes_la-sci_scinotes.lo \
 	libsciscinotes_la-sci_closeSciNotesFromScilab.lo
@@ -563,11 +560,7 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CFLAGS)
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/jvm/libscijvm.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

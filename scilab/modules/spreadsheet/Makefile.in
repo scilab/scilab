@@ -125,10 +125,7 @@ libscispreadsheet_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscispreadsheet_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscispreadsheet_la_DEPENDENCIES = libscispreadsheet-algo.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscispreadsheet_la_DEPENDENCIES = libscispreadsheet-algo.la
 am__objects_3 = libscispreadsheet_la-gw_spreadsheet.lo \
 	libscispreadsheet_la-sci_xls_read.lo \
 	libscispreadsheet_la-sci_xls_open.lo
@@ -441,7 +438,8 @@ libscispreadsheet_algo_la_CFLAGS = $(libscispreadsheet_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CFLAGS)
-libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
+
 #### Target ######
 modulename = spreadsheet
 

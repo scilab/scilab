@@ -124,13 +124,7 @@ libscidynamic_link_algo_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscidynamic_link_la_DEPENDENCIES = libscidynamic_link-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidynamic_link_la_DEPENDENCIES = libscidynamic_link-algo.la
 am__objects_2 = libscidynamic_link_la-gw_dynamic_link.lo \
 	libscidynamic_link_la-sci_getdynlibext.lo \
 	libscidynamic_link_la-sci_addinter.lo \
@@ -465,7 +459,8 @@ CHECK_SRC = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
 
 # cyclic  
-libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la
+
 #### Target ######
 modulename = dynamic_link
 

@@ -117,10 +117,7 @@ am__objects_1 = sci_f_addsubf.lo sci_f_mulf.lo sci_f_ldivf.lo \
 	sci_f_rdivf.lo
 am_libscisymbolic_algo_la_OBJECTS = $(am__objects_1)
 libscisymbolic_algo_la_OBJECTS = $(am_libscisymbolic_algo_la_OBJECTS)
-libscisymbolic_la_DEPENDENCIES = libscisymbolic-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_DEPENDENCIES = libscisymbolic-algo.la
 am__objects_2 = libscisymbolic_la-gw_symbolic.lo \
 	libscisymbolic_la-sci_mulf.lo libscisymbolic_la-sci_ldivf.lo \
 	libscisymbolic_la-sci_addsubf.lo \
@@ -433,7 +430,7 @@ libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
-libscisymbolic_la_LIBADD = libscisymbolic-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 
 #### Target ######
 modulename = symbolic

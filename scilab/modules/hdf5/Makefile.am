@@ -121,9 +121,7 @@ CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order
-libscihdf5_la_LIBADD = libscihdf5-algo.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscihdf5_la_LIBADD = libscihdf5-algo.la
 
 #### Target ######
 modulename=hdf5

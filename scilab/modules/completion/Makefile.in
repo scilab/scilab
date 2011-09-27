@@ -144,10 +144,7 @@ libscicompletion_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscicompletion_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscicompletion_la_DEPENDENCIES = libscicompletion-algo.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscicompletion_la_DEPENDENCIES = libscicompletion-algo.la
 am__objects_3 = libscicompletion_la-sci_completion.lo \
 	libscicompletion_la-gw_completion.lo
 am_libscicompletion_la_OBJECTS = $(am__objects_3)
@@ -479,8 +476,8 @@ libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
-libscicompletion_la_LIBADD = libscicompletion-algo.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
-#$(top_builddir)/modules/graphics/libscigraphics.la
+libscicompletion_la_LIBADD = libscicompletion-algo.la 
+
 #### Name of the module and the path ######
 modulename = completion
 

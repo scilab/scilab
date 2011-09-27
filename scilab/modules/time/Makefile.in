@@ -119,9 +119,7 @@ libscitime_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscitime_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscitime_la_DEPENDENCIES = libscitime-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_DEPENDENCIES = libscitime-algo.la
 am__objects_2 = libscitime_la-sci_realtime.lo \
 	libscitime_la-sci_timer.lo libscitime_la-sci_calendar.lo \
 	libscitime_la-sci_xpause.lo libscitime_la-sci_sleep.lo \
@@ -430,7 +428,7 @@ libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
-libscitime_la_LIBADD = libscitime-algo.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_LIBADD = libscitime-algo.la
 
 #### Target ######
 modulename = time

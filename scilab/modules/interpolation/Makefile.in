@@ -120,9 +120,7 @@ am_libsciinterpolation_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libsciinterpolation_algo_la_OBJECTS =  \
 	$(am_libsciinterpolation_algo_la_OBJECTS)
-libsciinterpolation_la_DEPENDENCIES = libsciinterpolation-algo.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/string/libscistring.la
+libsciinterpolation_la_DEPENDENCIES = libsciinterpolation-algo.la
 am__objects_3 = libsciinterpolation_la-sci_lsq_splin.lo \
 	libsciinterpolation_la-sci_interp.lo \
 	libsciinterpolation_la-sci_interp2d.lo \
@@ -458,9 +456,7 @@ libsciinterpolation_algo_la_CFLAGS = $(libsciinterpolation_la_CFLAGS)
 CHECK_SRC = $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 libsciinterpolation_la_LIBADD = \
-	libsciinterpolation-algo.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-    $(top_builddir)/modules/string/libscistring.la
+	libsciinterpolation-algo.la
 
 
 #### Target ######

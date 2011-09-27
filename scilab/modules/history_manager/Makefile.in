@@ -131,10 +131,7 @@ am_libscihistory_manager_algo_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3)
 libscihistory_manager_algo_la_OBJECTS =  \
 	$(am_libscihistory_manager_algo_la_OBJECTS)
-libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la
 am__objects_4 = libscihistory_manager_la-gw_history_manager.lo \
 	libscihistory_manager_la-sci_addhistory.lo \
 	libscihistory_manager_la-sci_displayhistory.lo \
@@ -510,7 +507,7 @@ libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
-libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
+libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la
 modulename = history_manager
 
 #### history_manager : Conf files ####

@@ -109,21 +109,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libmex_la_rootdir)" \
 	"$(DESTDIR)$(libmex_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libmat_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmat_la_DEPENDENCIES =
 am__objects_1 = libmat_la-mexlib.lo libmat_la-sci_gateway.lo
 am_libmat_la_OBJECTS = $(am__objects_1)
 libmat_la_OBJECTS = $(am_libmat_la_OBJECTS)
 libmat_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmat_la_CFLAGS) \
 	$(CFLAGS) $(libmat_la_LDFLAGS) $(LDFLAGS) -o $@
-libmex_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmex_la_DEPENDENCIES =
 am__objects_2 = libmex_la-mexlib.lo libmex_la-sci_gateway.lo
 am_libmex_la_OBJECTS = $(am__objects_2)
 libmex_la_OBJECTS = $(am_libmex_la_OBJECTS)
 libmex_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libmex_la_CFLAGS) \
 	$(CFLAGS) $(libmex_la_LDFLAGS) $(LDFLAGS) -o $@
-libmx_la_DEPENDENCIES = $(MEXLIB_DEP)
+libmx_la_DEPENDENCIES =
 am__objects_3 = libmx_la-mexlib.lo libmx_la-sci_gateway.lo
 am_libmx_la_OBJECTS = $(am__objects_3)
 libmx_la_OBJECTS = $(am_libmx_la_OBJECTS)
@@ -408,12 +408,6 @@ MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/string/includes
-MEXLIB_DEP = \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
-
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)

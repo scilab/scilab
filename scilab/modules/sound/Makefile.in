@@ -108,9 +108,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisound_la_rootdir)" \
 	"$(DESTDIR)$(libscisound_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscisound_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscisound_la_LIBADD =
 am__objects_1 = libscisound_la-gw_sound.lo libscisound_la-sci_beep.lo \
 	libscisound_la-sci_PlaySound.lo
 am_libscisound_la_OBJECTS = $(am__objects_1)
@@ -404,7 +402,6 @@ libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(libscisound_la_SOURCES)
 INCLUDE_FLAGS = $(libscisound_la_CFLAGS)
-libscisound_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = sound

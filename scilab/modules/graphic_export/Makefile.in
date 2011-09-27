@@ -139,8 +139,7 @@ am_libscigraphic_export_disable_la_OBJECTS =  \
 	libscigraphic_export_disable_la-nographic_export.lo
 libscigraphic_export_disable_la_OBJECTS =  \
 	$(am_libscigraphic_export_disable_la_OBJECTS)
-libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la
 am__objects_3 = libscigraphic_export_la-gw_graphic_export.lo \
 	libscigraphic_export_la-sci_xs2bmp.lo \
 	libscigraphic_export_la-sci_xs2gif.lo \
@@ -505,7 +504,7 @@ libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
-libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
 src/jni/JOGLConstant.giws.xml

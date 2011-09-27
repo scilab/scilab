@@ -126,8 +126,7 @@ am_libscistatistics_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscistatistics_algo_la_OBJECTS =  \
 	$(am_libscistatistics_algo_la_OBJECTS)
-libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la
 am__objects_3 = libscistatistics_la-gw_statistics.lo \
 	libscistatistics_la-sci_cdfchi.lo \
 	libscistatistics_la-sci_cdft.lo \
@@ -518,7 +517,7 @@ libscistatistics_algo_la_CFLAGS = $(libscistatistics_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
-libscistatistics_la_LIBADD = libscistatistics-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscistatistics_la_LIBADD = libscistatistics-algo.la 
 
 #### Target ######
 modulename = statistics

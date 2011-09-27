@@ -135,10 +135,7 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscixcos_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscixcos_la_DEPENDENCIES = libscixcos-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscixcos_la_DEPENDENCIES = libscixcos-algo.la
 am__objects_4 = libscixcos_la-gw_xcos.lo
 am__objects_5 = libscixcos_la-sci_Xcos.lo \
 	libscixcos_la-sci_warnBlockByUID.lo \
@@ -528,12 +525,7 @@ libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
-libscixcos_la_LIBADD = \
-libscixcos-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscixcos_la_LIBADD = libscixcos-algo.la
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

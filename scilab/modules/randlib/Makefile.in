@@ -122,9 +122,7 @@ am__objects_2 = gennf.lo genchi.lo setgmn.lo gengam.lo snorm.lo \
 	genexp.lo genmul.lo genprm.lo gennor.lo
 am_libscirandlib_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscirandlib_algo_la_OBJECTS = $(am_libscirandlib_algo_la_OBJECTS)
-libscirandlib_la_DEPENDENCIES = libscirandlib-algo.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscirandlib_la_DEPENDENCIES = libscirandlib-algo.la
 am__objects_3 = libscirandlib_la-gw_randlib.lo \
 	libscirandlib_la-sci_grand.lo
 am_libscirandlib_la_OBJECTS = $(am__objects_3)
@@ -460,7 +458,7 @@ libscirandlib_algo_la_CFLAGS = $(libscirandlib_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirandlib_la_CFLAGS)
-libscirandlib_la_LIBADD = libscirandlib-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscirandlib_la_LIBADD = libscirandlib-algo.la
 
 #### Target ######
 modulename = randlib

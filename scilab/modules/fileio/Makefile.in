@@ -161,12 +161,7 @@ libscifileio_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscifileio_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-libscifileio_la_DEPENDENCIES = libscifileio-algo.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_DEPENDENCIES = libscifileio-algo.la
 am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_mfprintf.lo libscifileio_la-sci_mscanf.lo \
 	libscifileio_la-sci_msscanf.lo libscifileio_la-sci_mfscanf.lo \
@@ -603,12 +598,7 @@ CHECK_SRC = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/console/libsciconsole.la
-libscifileio_la_LIBADD = libscifileio-algo.la \
-				$(top_builddir)/modules/string/libscistring.la \
-				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD = libscifileio-algo.la
 
 #### Target ######
 modulename = fileio

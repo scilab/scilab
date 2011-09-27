@@ -33,15 +33,15 @@ XML_C_SOURCES = src/c/XMLMlistsManagement.c
 XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
 		  src/cpp/XMLObject.cpp \
 		  src/cpp/XMLDocument.cpp \
-                  src/cpp/XMLElement.cpp \
-                  src/cpp/XMLAttr.cpp \
-                  src/cpp/XMLNs.cpp \
-                  src/cpp/XMLNodeList.cpp \
-                  src/cpp/XMLNodeSet.cpp \
-                  src/cpp/XMLXPath.cpp \
-                  src/cpp/XMLList.cpp \
-                  src/cpp/XMLNotHandledElement.cpp \
-                  src/cpp/XMLValidation.cpp \
+          src/cpp/XMLElement.cpp \
+          src/cpp/XMLAttr.cpp \
+          src/cpp/XMLNs.cpp \
+          src/cpp/XMLNodeList.cpp \
+          src/cpp/XMLNodeSet.cpp \
+          src/cpp/XMLXPath.cpp \
+          src/cpp/XMLList.cpp \
+          src/cpp/XMLNotHandledElement.cpp \
+          src/cpp/XMLValidation.cpp \
 		  src/cpp/XMLValidationDTD.cpp \
 		  src/cpp/XMLValidationSchema.cpp \
 		  src/cpp/XMLValidationRelaxNG.cpp
@@ -49,7 +49,7 @@ XML_CPP_SOURCES = src/cpp/VariableScope.cpp \
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xml.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
-                      sci_gateway/cpp/sci_xmlXPath.cpp \
+              sci_gateway/cpp/sci_xmlXPath.cpp \
 		      sci_gateway/cpp/sci_extraction.cpp \
 		      sci_gateway/cpp/sci_insertion.cpp \
 		      sci_gateway/cpp/sci_print.cpp \
@@ -113,15 +113,12 @@ libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscixml_algo_la_CFLAGS = $(libscixml_la_CFLAGS)
 libscixml_algo_la_CPPFLAGS = $(libscixml_la_CPPFLAGS)
 
+libscixml_la_LIBADD = libscixml-algo.la
+
 # For the code check (splint)
 CHECK_SRC= $(XML_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixml_la_CFLAGS)
 
-
-libscixml_la_LIBADD = libscixml-algo.la \
-    $(top_builddir)/libs/MALLOC/libscimalloc.la \
-    $(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/fileio/libscifileio.la
 
 #### xml : gateway declaration ####
 libscixml_la_sci_gatewaydir = $(mydatadir)/sci_gateway

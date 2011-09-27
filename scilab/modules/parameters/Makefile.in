@@ -113,8 +113,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libparameters_la_etcdir)" \
 	"$(DESTDIR)$(libparameters_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciparameters_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libsciparameters_la_LIBADD =
 am__objects_1 = libsciparameters_la-parameters.lo
 am_libsciparameters_la_OBJECTS = $(am__objects_1)
 libsciparameters_la_OBJECTS = $(am_libsciparameters_la_OBJECTS)
@@ -405,7 +404,6 @@ libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(libsciparameters_la_SOURCES)
 INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
-libsciparameters_la_LIBADD = $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 
 #### Target ######
 modulename = parameters

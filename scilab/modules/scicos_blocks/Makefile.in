@@ -66,7 +66,6 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GIWS_TRUE@@XCOS_TRUE@am__append_2 = giws
-@GUI_TRUE@@XCOS_TRUE@am__append_3 = $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/renderer/libscirenderer.la
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -117,17 +116,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@XCOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@XCOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@XCOS_TRUE@	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(am__append_3)
+libsciscicos_blocks_la_LIBADD =
 am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/absolute_value.c src/c/acos_blk.c src/c/acosh_blk.c \
 	src/c/andlog.c src/c/asin_blk.c src/c/asinh_blk.c \
@@ -1405,19 +1394,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@	$(srcdir)/macros/Hydraulics/*.moc \
 @XCOS_TRUE@	$(BASE_PATH)/linenum.ml
 
-
-# cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-@XCOS_TRUE@libsciscicos_blocks_la_LIBADD =  \
-@XCOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@XCOS_TRUE@	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(am__append_3)
 
 #### scicos_blocks : Conf files ####
 @XCOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)

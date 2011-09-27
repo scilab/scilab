@@ -20,8 +20,7 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = libscihelptools-algo.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+libscihelptools_la_LIBADD = libscihelptools-algo.la
 
 if GIWS
 BUILT_SOURCES=giws

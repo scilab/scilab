@@ -123,12 +123,7 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)
-libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la \
-	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
 	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
@@ -545,7 +540,7 @@ libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
-libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la
 
 #### Target ######
 modulename = polynomials

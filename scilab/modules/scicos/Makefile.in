@@ -176,19 +176,6 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 libsciscicos_algo_la_OBJECTS = $(am_libsciscicos_algo_la_OBJECTS)
 @XCOS_TRUE@am_libsciscicos_algo_la_rpath =
 @XCOS_TRUE@libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@XCOS_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@XCOS_TRUE@	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-@XCOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 @XCOS_TRUE@	$(am__append_3)
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/gw_scicos.c sci_gateway/c/sci_buildouttb.c \
@@ -933,19 +920,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 @XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 @XCOS_TRUE@libsciscicos_la_LIBADD = libsciscicos-algo.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@XCOS_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@XCOS_TRUE@	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-@XCOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-@XCOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 @XCOS_TRUE@	$(am__append_3)
 
 #### scicos : Conf files ####

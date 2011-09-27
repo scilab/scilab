@@ -115,9 +115,7 @@ am__objects_1 = libsciboolean_algo_la-matboolean.lo \
 am__objects_2 = logic.lo find.lo
 am_libsciboolean_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libsciboolean_algo_la_OBJECTS = $(am_libsciboolean_algo_la_OBJECTS)
-libsciboolean_la_DEPENDENCIES = libsciboolean-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libsciboolean_la_DEPENDENCIES = libsciboolean-algo.la
 am__objects_3 = libsciboolean_la-sci_and.lo libsciboolean_la-sci_or.lo \
 	libsciboolean_la-sci_find.lo libsciboolean_la-sci_bool2s.lo \
 	libsciboolean_la-gw_boolean.lo
@@ -434,10 +432,7 @@ libsciboolean_algo_la_CFLAGS = $(libsciboolean_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciboolean_la_CFLAGS)
-libsciboolean_la_LIBADD = libsciboolean-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-
+libsciboolean_la_LIBADD = libsciboolean-algo.la
 modulename = boolean
 
 #### boolean : Conf files ####
