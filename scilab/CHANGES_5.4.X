@@ -137,6 +137,8 @@ Xcos:
 * bug 9988 fixed - CLKSOMV_f has a wrong interface function after loading from
                    a file.
 
+* bug 10003 fixed - The MAXMIN block did not update its display according to 
+                    the settings.
 
 Localization:
 =============
