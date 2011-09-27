@@ -248,6 +248,9 @@ Optimization:
 
 * Bug 8547 fixed - The neldermead function called f outside the constraints.
 
+* Bug 8549 fixed - The neldermead function did not help to debug 
+                   the cost function.
+
 * Bug 8552 fixed - Improved fminsearch to provide Extra Parameters.
                    Help page updated with new section "The cost function".
                    Help page updated with new example "Passing extra parameters".
