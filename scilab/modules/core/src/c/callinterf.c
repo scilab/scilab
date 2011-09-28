@@ -126,7 +126,7 @@ int C2F(callinterf) (int *k)
     count++;
     if (*k > DynInterfStart)
     {
-        C2F(userlk)(k);
+        //C2F(userlk)(k);
     }
     else
     {

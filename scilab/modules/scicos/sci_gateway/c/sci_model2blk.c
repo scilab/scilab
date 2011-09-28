@@ -245,7 +245,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 	else 
 	{
 		lfunpt -= (ntabsim+1);
-		GetDynFunc(lfunpt,&Block.funpt);
+		//GetDynFunc(lfunpt,&Block.funpt); // TODO: old Scilab 5 function to be replaced
 		if (Block.funpt == (voidf) 0) 
 		{
 			Scierror(888,_("%s : Function not found\n"),fname);

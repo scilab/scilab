@@ -40,56 +40,12 @@ extern "C"
 #include "BOOL.h"
 #include "charEncoding.h"
 }
-/*---------------------------------------------------------------------------*/
+
 static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _pwstTrailingName);
-static int SearchFandS(char *op, int ilib);
-/*---------------------------------------------------------------------------*/
-#define MAXNAME  256 
-#define TMPL 256
-#define debug C2F(iop).ddt==1
-/*---------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-/* struct used by fortran (F2C) */
-/* required to be defined in C */
-
-typedef struct {
-    char name[nlgh+1];
-} CINTER_struct;
-
-__declspec (dllexport) CINTER_struct C2F(cinter);
-
-/* struct used by fortran (F2C) */
-/* required to be defined in C */
-typedef struct {
-    int ibuf[lsiz];
-} IBFU_struct;
-__declspec (dllexport) CINTER_struct C2F(ibfu);
-
-#endif
-/*---------------------------------------------------------------------------*/
-typedef char Name[MAXNAME];   /* could be changed to dynamic structure */
 
 typedef void (*function) (wchar_t*);
 
-typedef struct 
-{ 
-    function epoint;            /* the entry point */ 
-    Name     name;              /* entry point name */
-    int      Nshared;           /* number of the shared file */
-} Epoints;
 
-typedef struct 
-{
-    int ok;
-    char tmp_file[TMPL];
-    unsigned long  shl;
-} Hd;
-
-static Hd  hd[ENTRYMAX]; /* shared libs handler */
-static int Nshared = 0;
-static int NEpoints = 0; /* Number of Linked names */
-static Epoints EP[ENTRYMAX];  /* entryPoints */
-/*---------------------------------------------------------------------------*/
 int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran ,int *_piErr)
 {
     int iLibID = -1; 
@@ -167,36 +123,6 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
     return iLibID;
 }
 /*---------------------------------------------------------------------------*/
-char **getNamesOfFunctionsInSharedLibraries(int *sizearray)
-{
-    char **NamesOfFunctions = NULL;
-    *sizearray = 0;
-
-    if( (NEpoints) && (NEpoints > 0) )
-    {
-        int i = 0;
-        NamesOfFunctions = (char **) MALLOC((NEpoints)*sizeof(char *));
-        if(NamesOfFunctions)
-        {
-            for ( i = NEpoints-1 ; i >= 0 ; i--) 
-            {
-                if(EP[i].name)
-                {
-                    char *EntryName = (char *)MALLOC(((int)strlen(EP[i].name)+1)*sizeof(char));
-
-                    if(EntryName)
-                    {
-                        (*sizearray)++;
-                        strcpy(EntryName , EP[i].name);
-                        NamesOfFunctions[(*sizearray)-1] = EntryName;
-                    }
-                }
-            }
-        }
-    }
-    return NamesOfFunctions;
-}
-/*---------------------------------------------------------------------------*/
 /**
 * Underscores : deals with the trailing _ 
 * in entry names 
@@ -217,83 +143,9 @@ static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _
     return;
 }
 /*---------------------------------------------------------------------------*/
-BOOL c_link(char *routinename,int *ilib)
+int Sci_dlclose(unsigned long long _hLib)
 {
-    void (*loc)();
-    if( *ilib != -1 ) *ilib = SearchFandS(routinename,*ilib);
-    else *ilib = SearchInDynLinks(routinename,&loc);
-
-    if(*ilib == -1) return FALSE;
-    return TRUE;
-}
-/*---------------------------------------------------------------------------*/
-void C2F(iislink)(char *routinename, int *ilib)
-{
-    c_link(routinename,ilib);
-}
-/*---------------------------------------------------------------------------*/
-void GetDynFunc(int ii, void (**realop) ())
-{
-    //if( EP[ii].Nshared != -1 ) *realop = EP[ii].epoint;
-    //else *realop = (function) 0;
-}
-/*---------------------------------------------------------------------------*/
-int SearchInDynLinks(char *op, void (**realop) ())
-{
-    //int i=0;
-    //for ( i = NEpoints-1 ; i >=0 ; i--) 
-    //{
-    //    if( strcmp(op,EP[i].name) == 0) 
-    //    {
-    //        *realop = EP[i].epoint;
-    //        return(EP[i].Nshared );
-    //    }
-    //}
-    return(-1);
-}
-/*---------------------------------------------------------------------------*/
-/**
-* Search a (function,libid) in the table 
-* Search from end to top 
-*/
-static int SearchFandS(char *op, int ilib)
-{
-    int i = 0;
-    for ( i = NEpoints-1 ; i >=0 ; i--) 
-    {
-        if( strcmp(op,EP[i].name) == 0 && EP[i].Nshared == ilib)
-        {
-            return(i);
-        }
-    }
-    return(-1);
-}
-/*---------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------*/
-void unlinkallsharedlib(void)
-{
-    int i=0;
-    for ( i = 0 ; i < Nshared ; i++) 
-    {
-        unlinksharedlib(&i);
-    }
-}
-/*---------------------------------------------------------------------------*/
-void unlinksharedlib(int *i) 
-{
-    /* delete entry points in shared lib *i */
-    Sci_Delsym(*i);
-    /* delete entry points used in addinter in shared lib *i */
-    RemoveInterf(*i);
-}
-/*---------------------------------------------------------------------------*/
-int Sci_dlclose(unsigned long _hLib)
-{
-#ifdef _MSC_VER
-        return FreeDynLibrary ((DynLibHandle) ULongToHandle(_hLib));
-#else
-        return FreeDynLibrary ((DynLibHandle) _hLib);
-#endif
+    return FreeDynLibrary((DynLibHandle)_hLib);
 }
 /*---------------------------------------------------------------------------*/
 int Sci_dlopen(wchar_t* _pwstDynLibPath)
@@ -318,15 +170,9 @@ int Sci_dlopen(wchar_t* _pwstDynLibPath)
         return -1 ; /* the shared archive was not loaded. */
     }
 
-    /* Warning x64 windows */
-
     ConfigVariable::DynamicLibraryStr* pDL = ConfigVariable::getNewDynamicLibraryStr();
     ConfigVariable::setLibraryName(pDL, _pwstDynLibPath);
-#ifdef _MSC_VER
-    pDL->hLib =   PtrToUlong(hLib);
-#else
-    pDL->hLib = (unsigned long)hLib;
-#endif
+    pDL->hLib = (unsigned long long)hLib;
 
     
     return ConfigVariable::addDynamicLibrary(pDL);
@@ -355,13 +201,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
         return -4;
     }
 
-    /* Warning x64 windows */
     pEP->iLibIndex = _iLibID;
-#ifdef _MSC_VER
-    hDynLib = (DynLibHandle)  ULongToHandle(ConfigVariable::getDynamicLibrary(_iLibID)->hLib);
-#else
     hDynLib = (DynLibHandle)  ConfigVariable::getDynamicLibrary(_iLibID)->hLib;
-#endif
 #ifdef _MCS_VER
     pEP->functionPtr = (function) GetDynLibFuncPtrW(hDynLib, pwstEntryPointName);
 #else
@@ -378,8 +219,8 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
         return -5;
     }
 
-    /* we don't add the _ in the table */
-    if(debug)
+
+    if(0 /*debug mode*/)
     {
         sciprintW(_W("Linking %ls.\n"), _pwstEntryPointName);
     }
@@ -388,35 +229,5 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     ConfigVariable::addEntryPoint(pEP);
     FREE(pwstEntryPointName);
     return 0;  
-}
-/*---------------------------------------------------------------------------*/
-void Sci_Delsym(int ishared) 
-{
-    int ish = Min(Max(0,ishared),ENTRYMAX-1);
-    int i=0;
-    for ( i = NEpoints-1 ; i >=0 ; i--) 
-    {
-        if( EP[i].Nshared == ish )
-        {
-            int j;
-            for ( j = i ; j <= NEpoints - 2 ; j++ )
-            {
-                EP[j].epoint = EP[j+1].epoint;
-                EP[j].Nshared = EP[j+1].Nshared;
-                strcpy(EP[j].name,EP[j+1].name);
-            }
-            NEpoints--;
-        }
-    }
-    if( hd[ish].ok != FALSE)
-    {
-        /* Warning x64 windows */
-#ifdef _MSC_VER
-        FreeDynLibrary ((DynLibHandle) ULongToHandle(hd[ish].shl));
-#else
-        FreeDynLibrary ((DynLibHandle) hd[ish].shl);
-#endif
-        hd[ish].ok = FALSE;
-    }
 }
 /*---------------------------------------------------------------------------*/

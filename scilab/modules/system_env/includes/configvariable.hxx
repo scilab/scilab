@@ -227,7 +227,7 @@ public :
     typedef struct 
     {
         wchar_t* pwstLibraryName;   /** name of dynamic library **/
-        unsigned long  hLib;        /** handle of the library **/
+        unsigned long long hLib;        /** handle of the library **/
     } DynamicLibraryStr;
 
     typedef struct 

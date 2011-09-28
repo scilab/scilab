@@ -75,7 +75,7 @@ void unLinkAll()
 /*--------------------------------------------------------------------------*/
 void unLink(int _iLib)
 {
-    unsigned long iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
+    unsigned long long iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
     ConfigVariable::removeDynamicLibrary(_iLib);
     Sci_dlclose(iLib);
 }

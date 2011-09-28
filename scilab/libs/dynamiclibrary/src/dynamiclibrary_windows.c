@@ -10,6 +10,7 @@
  *
  */
 #include <string.h>
+#include <stdio.h>
 #include "dynamiclibrary_windows.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
@@ -37,6 +38,10 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle _hL
 		retFuncPtr = GetProcAddress(_hLib, _pstEntryPointName);
 	}
 	
+    if(retFuncPtr == NULL)
+    {
+        printf("GetLastError : %d\n", GetLastError());
+    }
 	return retFuncPtr;
 }
 /*---------------------------------------------------------------------------*/

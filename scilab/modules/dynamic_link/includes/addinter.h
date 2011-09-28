@@ -48,9 +48,4 @@ DYNAMIC_LINK_IMPEXP void RemoveInterf(int id);
 */
 DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize);
 
-/**
-* TO DO: comments 
-*/
-DYNAMIC_LINK_IMPEXP void C2F(userlk)(int *k);
-
 #endif /*  __ADDINTER_H__ */

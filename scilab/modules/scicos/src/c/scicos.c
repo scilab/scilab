@@ -497,7 +497,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 		}
 		else {
 			i -= (ntabsim+1);
-			GetDynFunc(i,&Blocks[kf].funpt);
+			//GetDynFunc(i,&Blocks[kf].funpt);  // TODO: old Scilab 5 function to be replaced
 			if ( Blocks[kf].funpt == (voidf) 0) {
 				sciprint(_("Function not found\n"));
 				*ierr =1000+kf+1;
@@ -4387,7 +4387,7 @@ int C2F(funnum)(char * fname)
 		i++;
 	}
 	ln=(int)strlen(fname);
-	C2F(iislink)(fname,&loc);C2F(iislink)(fname,&loc);
+	//C2F(iislink)(fname,&loc);C2F(iislink)(fname,&loc); // TODO: old Scilab 5 function to be replaced
 	if (loc >= 0) return(ntabsim+(int)loc+1);
 	return(0);
 }/* funnum */

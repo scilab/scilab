@@ -26,7 +26,7 @@ void dl_genErrorMessage(wchar_t* _pwstCallerName, int _iErr, wchar_t* _pwstLibra
         break;
 
     case -2:
-        ScierrorW(999, _W("%ls: Cannot open shared files. Max entry %d reached.\n"), _pwstCallerName, ENTRYMAX);
+        //never occurs now
         break;
 
     case -3:

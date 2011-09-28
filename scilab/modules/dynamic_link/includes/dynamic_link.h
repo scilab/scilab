@@ -18,49 +18,6 @@
 #include <wchar.h> /* wchar_t */
 #include "dynlib_dynamic_link.h"
 #include "BOOL.h"
-#include "machine.h" /* C2F */
-
-#define ENTRYMAX 500
-
-/**
-* OBSOLETE
-* if *ilib == -1
-*    checks if routinename is a loaded
-*    entry point
-*    the result is -1 if false
-*               or the number in the function table
-* @param[in] routinename
-* @param[in/out] ilib
-*/
-DYNAMIC_LINK_IMPEXP void C2F(iislink)(char *routinename, int *ilib);
-
-
-/**
-* returns the ii functions
-* @param ii
-* @param ptr on functions
-*/
-DYNAMIC_LINK_IMPEXP void GetDynFunc(int ii, void (**realop)());
-
-/**
-* Search a function in the table
-* Search from end to top
-* @param
-* @param
-*/
-DYNAMIC_LINK_IMPEXP int SearchInDynLinks(char *op, void (**realop) ());
-
-/**
-* unlink all linked files
-*/
-DYNAMIC_LINK_IMPEXP void unlinkallsharedlib(void);
-
-/**
-* Unlink a shared lib
-* @param i (number of shared lib)
-*/
-DYNAMIC_LINK_IMPEXP void unlinksharedlib(int *i);
-
 
 /**
 * load a shared archive and call LoadDynLibrary
@@ -75,7 +32,7 @@ DYNAMIC_LINK_IMPEXP int Sci_dlopen(wchar_t* _pwstDynLibPath);
 * return value is == 0 if the FreeDynLibrary failed
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlclose(unsigned long _hLib);
+DYNAMIC_LINK_IMPEXP int Sci_dlclose(unsigned long long _hLib);
 
 /**
 * This routine load the entryname ename
@@ -83,19 +40,6 @@ DYNAMIC_LINK_IMPEXP int Sci_dlclose(unsigned long _hLib);
 * @return TRUE or FALSE
 */
 DYNAMIC_LINK_IMPEXP int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran);
-
-/**
-* Delete entry points associated with shared lib ishared
-* then delete the shared lib
-@param ishared
-*/
-DYNAMIC_LINK_IMPEXP void Sci_Delsym(int ishared);
-
-/**
-* @param sizearray returns size of string array returned
-* @return string array with functions names loaded
-*/
-DYNAMIC_LINK_IMPEXP char **getNamesOfFunctionsInSharedLibraries(int *sizearray);
 
 /**
 * call link for scilab
