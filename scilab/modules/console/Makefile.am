@@ -56,7 +56,19 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/prompt.c \
-src/c/promptecho.c
+src/c/promptecho.c \
+src/c/cmdLine/aff_prompt.c \
+src/c/cmdLine/cap_func.c \
+src/c/cmdLine/catstr.c \
+src/c/cmdLine/charctl.c \
+src/c/cmdLine/cmd_func.c \
+src/c/cmdLine/get_signal.c \
+src/c/cmdLine/goto_func.c \
+src/c/cmdLine/goto_words.c \
+src/c/cmdLine/history.c \
+src/c/cmdLine/init_tc_shell.c \
+src/c/cmdLine/reader.c
+
 
 if IS_MACOSX
 CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
@@ -100,7 +112,18 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/prompt.c \
-src/c/promptecho.c
+src/c/promptecho.c \
+src/c/cmdLine/aff_prompt.c \
+src/c/cmdLine/cap_func.c \
+src/c/cmdLine/catstr.c \
+src/c/cmdLine/charctl.c \
+src/c/cmdLine/cmd_func.c \
+src/c/cmdLine/get_signal.c \
+src/c/cmdLine/goto_func.c \
+src/c/cmdLine/goto_words.c \
+src/c/cmdLine/history.c \
+src/c/cmdLine/init_tc_shell.c \
+src/c/cmdLine/reader.c
 
 if IS_MACOSX
 libsciconsole_disable_la_SOURCES += src/c/others/initMacOSXEnv.c
@@ -131,6 +154,7 @@ libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_sci
 libsciconsole_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/c/cmdLine \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \

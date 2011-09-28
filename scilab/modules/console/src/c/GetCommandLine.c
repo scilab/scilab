@@ -28,6 +28,8 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "storeCommand.h" /* for ismenu() */
+#include "cmdLine/reader.h"
+#include "cmdLine/init_tc_shell.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
@@ -86,6 +88,8 @@ static BOOL initialized = FALSE;
 **********************************************************************/
 static void getCommandLine(void)
 {
+    static t_list_cmd *listCmd = NULL;
+
     tmpPrompt = GetTemporaryPrompt();
     GetCurrentPrompt(Sci_Prompt);
 
@@ -108,8 +112,10 @@ static void getCommandLine(void)
     }
     else
     {
+        init_shell(RAW);
         /* Call Term Management for NW and NWNI to get a string */
-        __CommandLine = TermReadAndProcess();
+        __CommandLine = reader(&listCmd);
+        init_shell(CANON);
     }
 }
 

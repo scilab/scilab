@@ -42,6 +42,7 @@
 #endif
 #endif
 
+#include "../cmdLine/reader.h"
 #include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
