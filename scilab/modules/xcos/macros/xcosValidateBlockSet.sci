@@ -1,0 +1,95 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+//
+function [status, message] = xcosValidateBlockSet(interfFunctionName)
+    status = %t;
+    message = "";
+
+    if typeof(interfFunctionName) <> "string" | size(interfFunctionName) <> [1, 1]
+        error(999, sprintf(_("%s: Wrong type for argument %d: A String expected."), "xcosValidate_blockSet", 1))
+    end
+
+    // Check function is defined
+    ierr = execstr("funType = typeof("+interfFunctionName+");", "errcatch")
+    if ierr <> 0 | and(funType <> ["fptr", "function"])
+        status = %f;
+        message = _("Interface function does not exist or can not be called.");
+        return
+    end
+
+    // Check for signature
+    vars=macrovar(evstr(interfFunctionName));
+    if or([size(vars(1)) <> [3 1] , size(vars(2)) <> [3 1]]) then
+        status = %f;
+        message = sprintf(_("%s is not a valid block descriptor."), interfFunctionName);
+        continue;
+    end
+
+    // Overload usefull functions
+    // Stubbing the x_mdialog method
+    // checking it's arguments size only
+    function [result]=x_mdialog(title, labelsv, labelsh, default_inputs_vector)
+        [lhs, rhs] = argn();
+        if rhs == 3 then
+            default_inputs_vector = labelsh;
+            result = x_dialog(labelsv, default_inputs_vector);
+        elseif rhs == 4 then
+            vSize = size(labelsv, '*');
+            hSize = size(labelsh, '*');
+            if size(default_inputs_vector) <> [vSize, hSize] then
+                error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
+            end;
+            result = default_inputs_vector;
+        else
+            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
+        end;
+    endfunction
+
+    // Stubbing the x_dialog method
+    // checking it's arguments size only
+    function [result]=x_dialog(labels, default_inputs_vector)
+        if(or(size(labels) <> size(default_inputs_vector))) then
+            error(999, sprintf(_("%s\nError: dialog wrong size."), cmd));
+        end;
+        result = default_inputs_vector;
+    endfunction
+
+    // Stubbing the edit_curv method
+    function [xx, yy, ok, gc] = edit_curv(xx, yy,  axis, args, gc)
+        ok = %T;
+        if ~exists("gc", 'l') then
+            rect=[0 0 1 1];
+            axisdata=[2 10 2 10];
+            gc = list(rect, axisdata);
+        end
+    endfunction
+
+    // Stubbing the messagebox method
+    function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+        btn=1;
+    endfunction
+
+    ierr=execstr("scs_m = "+interfFunctionName+"(""define"", [], [])",'errcatch')
+    if ierr <> 0
+        status = %f;
+        message = sprintf(_("Block definition with function [%s] failed."), interfFunctionName);
+        return
+    end
+
+    ierr=execstr("scs_m = "+interfFunctionName+"(""set"", scs_m, [])",'errcatch')
+    if ierr <> 0
+        status = %f;
+        message = sprintf(_("Block configuration with function [%s] failed."), interfFunctionName);
+        return
+    end
+
+endfunction
