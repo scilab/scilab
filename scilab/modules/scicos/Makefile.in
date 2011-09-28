@@ -176,6 +176,8 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/tree.c \
 libsciscicos_algo_la_OBJECTS = $(am_libsciscicos_algo_la_OBJECTS)
 @XCOS_TRUE@am_libsciscicos_algo_la_rpath =
 @XCOS_TRUE@libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la \
+@XCOS_TRUE@	libscisundials.la \
+@XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @XCOS_TRUE@	$(am__append_3)
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/c/gw_scicos.c sci_gateway/c/sci_buildouttb.c \
@@ -920,6 +922,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 @XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 @XCOS_TRUE@libsciscicos_la_LIBADD = libsciscicos-algo.la \
+@XCOS_TRUE@	libscisundials.la \
+@XCOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 @XCOS_TRUE@	$(am__append_3)
 
 #### scicos : Conf files ####

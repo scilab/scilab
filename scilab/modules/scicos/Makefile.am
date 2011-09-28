@@ -133,7 +133,8 @@ libsciscicos_algo_la_CFLAGS = $(libsciscicos_la_CFLAGS)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 
-libsciscicos_la_LIBADD = libsciscicos-algo.la
+libsciscicos_la_LIBADD = libsciscicos-algo.la libscisundials.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la 
 
 if GUI
 libsciscicos_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la 
