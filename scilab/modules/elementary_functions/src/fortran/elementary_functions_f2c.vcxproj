@@ -98,14 +98,15 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build elementary_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
-copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -149,14 +150,15 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build elementary_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
-copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -197,14 +199,15 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build elementary_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
-copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -252,14 +255,15 @@ lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build elementary_functions_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n elementary_functions_f.dll %%f &gt;nul
-copy *.def elementary_functions_f.def &gt;nul
-copy elementary_functions_f.def ..\elementary_functions_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_functions_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -299,10 +303,6 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <ClCompile Include="d1mach.c" />
     <ClCompile Include="dad.c" />
     <ClCompile Include="dadd.c" />
-    <ClCompile Include="dbesig.c" />
-    <ClCompile Include="dbesjg.c" />
-    <ClCompile Include="dbeskg.c" />
-    <ClCompile Include="dbesyg.c" />
     <ClCompile Include="dclmat.c" />
     <ClCompile Include="ddif.c" />
     <ClCompile Include="ddpow.c" />
@@ -362,11 +362,7 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <ClCompile Include="rat.c" />
     <ClCompile Include="rcopy.c" />
     <ClCompile Include="rcsort.c" />
-    <ClCompile Include="ribesl.c" />
-    <ClCompile Include="rjbesl.c" />
-    <ClCompile Include="rkbesl.c" />
     <ClCompile Include="round.c" />
-    <ClCompile Include="rybesl.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_abs.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_acos.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_asin.c" />
@@ -457,11 +453,6 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <ClCompile Include="wwpow1.c" />
     <ClCompile Include="wwpowe.c" />
     <ClCompile Include="wwrdiv.c" />
-    <ClCompile Include="zbeshg.c" />
-    <ClCompile Include="zbesig.c" />
-    <ClCompile Include="zbesjg.c" />
-    <ClCompile Include="zbeskg.c" />
-    <ClCompile Include="zbesyg.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="arcosh.f" />
@@ -481,10 +472,6 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <f2c_rule Include="d1mach.f" />
     <f2c_rule Include="dad.f" />
     <f2c_rule Include="dadd.f" />
-    <f2c_rule Include="dbesig.f" />
-    <f2c_rule Include="dbesjg.f" />
-    <f2c_rule Include="dbeskg.f" />
-    <f2c_rule Include="dbesyg.f" />
     <f2c_rule Include="dclmat.f" />
     <f2c_rule Include="ddif.f" />
     <f2c_rule Include="ddpow.f" />
@@ -544,11 +531,7 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <f2c_rule Include="rat.f" />
     <f2c_rule Include="rcopy.f" />
     <f2c_rule Include="rcsort.f" />
-    <f2c_rule Include="ribesl.f" />
-    <f2c_rule Include="rjbesl.f" />
-    <f2c_rule Include="rkbesl.f" />
     <f2c_rule Include="round.f" />
-    <f2c_rule Include="rybesl.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_abs.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_acos.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_asin.f" />
@@ -639,11 +622,6 @@ copy elementary_functions_f_header.def+elementary_functions_f.vcdef elementary_f
     <f2c_rule Include="wwpow1.f" />
     <f2c_rule Include="wwpowe.f" />
     <f2c_rule Include="wwrdiv.f" />
-    <f2c_rule Include="zbeshg.f" />
-    <f2c_rule Include="zbesig.f" />
-    <f2c_rule Include="zbesjg.f" />
-    <f2c_rule Include="zbeskg.f" />
-    <f2c_rule Include="zbesyg.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_Import.def" />

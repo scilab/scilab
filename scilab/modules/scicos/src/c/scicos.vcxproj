@@ -324,7 +324,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClCompile Include="..\..\sci_gateway\c\sci_getscicosvars.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_haltscicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_permutobj.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_phase_simulation.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug.c" />
@@ -373,6 +372,7 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <None Include="Graphics_Import.def" />
     <None Include="Intersci_Import.def" />
     <None Include="LibScilab_Import.def" />
+    <None Include="Localization_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="Scicos_blocks_f_Import.def" />
     <None Include="scicos_f_Import.def" />
@@ -405,16 +405,8 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
-      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\scicos_blocks\src\c\scicos_blocks.vcxproj">
       <Project>{70f677f1-b535-4d0f-a16f-5093b799a540}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\scicos_blocks\src\fortran\scicos_blocks_f2c.vcxproj">
-      <Project>{2f7b6080-8d84-43a7-a967-13fc8aa83deb}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\time\time.vcxproj">
@@ -423,10 +415,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\fortran\scicos_f2c.vcxproj">
-      <Project>{566e524b-d327-4416-a865-9c83503fab7b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\scicos_sundials\scicos_sundials.vcxproj">

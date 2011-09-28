@@ -330,10 +330,6 @@
       <Project>{8ab8ecec-8c22-475e-80d0-e14696f5a19b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\boolean\src\fortran\boolean_f2c.vcxproj">
-      <Project>{45eceb36-a12b-42f5-9d7a-216a0e70601d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\cacsd\src\c\cacsd.vcxproj">
       <Project>{d5dd1407-3926-4f6c-ad7b-3a6b2de56049}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -354,16 +350,8 @@
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\core\src\fortran\core_f2c.vcxproj">
-      <Project>{c352587b-f5e4-457c-80ee-a1aeab176c8e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\data_structures\src\fortran\data_structures_f2c.vcxproj">
-      <Project>{8091e9b6-4c08-4218-a63d-742867ccfe9f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\differential_equations\src\c\differential_equations.vcxproj">
@@ -380,14 +368,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\modules\elementary_functions\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
-      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\elementary_functions\src\fortran\linpack\linpack_f2c.vcxproj">
-      <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\fftw\fftw.vcxproj">
@@ -414,20 +394,12 @@
       <Project>{c7865caa-ec7c-41eb-8324-2b81c384ca20}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\integer\src\fortran\integer_f2c.vcxproj">
-      <Project>{fd0f48d8-9d0b-42a8-a743-b57198fab41e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\intersci\src\lib\intersci.vcxproj">
       <Project>{dfa0d75b-f7ef-4d02-b33f-486829405315}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\io\src\c\io.vcxproj">
       <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\io\src\fortran\io_f2c.vcxproj">
-      <Project>{c2edd447-bb60-41a1-973b-8213fca9ecd4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\jvm\libjvm.vcxproj">
@@ -446,36 +418,16 @@
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\output_stream\src\fortran\output_stream_f2c.vcxproj">
-      <Project>{e60b43cc-73ea-457e-8dee-31d0b2bdfa4b}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\polynomials\src\c\polynomials.vcxproj">
       <Project>{620d8fa7-3704-438e-bb1e-391c84401a2e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\polynomials\src\fortran\polynomials_f2c.vcxproj">
-      <Project>{3a72c3ed-98f7-49c7-b59c-2c6c47ff9390}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\shell\src\c\shell.vcxproj">
-      <Project>{805aa73f-ef7b-4177-bf46-200b72d8f83a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\sparse\src\c\sparse.vcxproj">
       <Project>{51240b08-5e4e-439b-b745-c870d5b513bf}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\modules\sparse\src\fortran\sparse_f2c.vcxproj">
-      <Project>{13082624-97f9-47db-a9a1-ad7d6bf3856a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\modules\string\src\fortran\string_f2c.vcxproj">
-      <Project>{faf6a7eb-8a36-4278-b34e-34ea89e55304}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\time\time.vcxproj">

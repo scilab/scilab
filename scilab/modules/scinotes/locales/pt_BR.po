@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: pt_BR\n"
 
 msgid ""
@@ -62,6 +62,9 @@ msgstr ""
 "%s: Tipo incorreto para o argumento %d: esperava-se uma matriz de textos.\n"
 
 msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 
 msgid "... file with echo"
@@ -120,11 +123,11 @@ msgstr "Tem certeza de que quer fechar o SciNotes?"
 msgid "Auto (Default)"
 msgstr "Automático (padrão)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Completamento automático com (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr ""
 
-msgid "Auto-completion on if,function,..."
-msgstr "Completamento automático com if,function,..."
+msgid "Auto-completion on if, function, ..."
+msgstr ""
 
 msgid "Background Color"
 msgstr "Cor do plano de fundo"
@@ -225,6 +228,9 @@ msgstr "Copiar"
 msgid "Copy as HTML with line number"
 msgstr "Copiar como HTML com numeração de linha"
 
+msgid "Copy full path"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr "Copiar seleção em uma nova aba"
 
@@ -280,11 +286,7 @@ msgid "Edit"
 msgstr "Editar"
 
 #, c-format
-msgid "Elapsed time: %s second."
-msgstr ""
-
-#, c-format
-msgid "Elapsed time: %s seconds."
+msgid "Elapsed time: %s sec."
 msgstr ""
 
 msgid "Enable Auto Reformat"
@@ -380,6 +382,9 @@ msgstr "Ir para a âncora anterior"
 msgid "Goto line"
 msgstr "Ir para a linha"
 
+msgid "Graphics handle field"
+msgstr ""
+
 msgid "Help about '"
 msgstr "Ajuda sobre \""
 
@@ -469,6 +474,9 @@ msgstr "Próxima aba"
 
 msgid "No Line Numbering"
 msgstr "Sem numeração de linha"
+
+msgid "No help"
+msgstr ""
 
 msgid "No split"
 msgstr "Sem dividir"
@@ -630,6 +638,9 @@ msgid "Save All"
 msgstr "Salvar todos"
 
 msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
 msgstr ""
 
 msgid "Save as"
@@ -808,6 +819,9 @@ msgstr "Desfazer"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Sem nome "
 
@@ -875,22 +889,3 @@ msgstr "Suas modificações serão perdidas. Alterar a codificação mesmo assim
 
 msgid "close this tab"
 msgstr "fecha esta aba"
-
-#~ msgid "Continue?"
-#~ msgstr "Continuar?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Editar seleção em nova aba"
-
-#~ msgid "No text to execute"
-#~ msgstr "Nenhum texto para executar"
-
-#~ msgid "No text selected"
-#~ msgstr "Nenhum texto está selecionado"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "O arquivo %s não existe\n"
-#~ " Você deseja criá-lo?"

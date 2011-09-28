@@ -8,24 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-05-27 14:52+0000\n"
-"Last-Translator: Sebastian_Sławski <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:30+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: pl\n"
 
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
-msgstr ""
-"                        nie udana funkcja pivot (obrotu) w kolumnie %d\n"
+msgstr "                        nonpositive pivot in column %d\n"
 
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr ""
-"    CC^T Faktoryzacja (rozkład dużych liczb na iloczyn): Macierz nie jest "
-"dobrze zdefiniowana.\n"
+msgstr "    Rozkład CC^T : Macierz nie jest dodatnio określona.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -134,13 +131,13 @@ msgid "Scilab UMFPACK module not installed.\n"
 msgstr "Moduł Scilab UMFPACK nie jest zainstalowany.\n"
 
 msgid "The (square) matrix appears to be singular."
-msgstr "Macierz (Kwadratowa) wydaje się być pojedyńczy."
+msgstr "Macierz (kwadratowa) wydaje się być osobliwą."
 
 msgid "The lower part of the matrix must be represented.\n"
-msgstr "Dolna część macierzy musi być reprezentowana.\n"
+msgstr ""
 
 msgid "This is a factorisation of a singular matrix"
-msgstr "jest to rozkład na czynniki  pojedynczej macierzy"
+msgstr "jest to rozkład na czynniki  macierzy osobliwej"
 
 msgid "This is not a factorisation of a square matrix"
 msgstr "To nie jest rozkład na czynniki macierzy kwadratowej"
@@ -155,153 +152,157 @@ msgid "internal error"
 msgstr "błąd wewnętrzny"
 
 msgid "invalid matrix"
-msgstr "niewłaściwa matryca"
+msgstr "niewłaściwa macierz"
 
 msgid "no place to store the LU pointer in ListNumeric."
-msgstr "Brak miejsca do przechowania wskaźnika LU w Wykazie Numerycznym."
+msgstr "no place to store the LU pointer in ListNumeric."
 
 msgid "not enough memory"
-msgstr "brak wystarczającej ilości pamięci"
+msgstr "brak pamięci"
 
 msgid "numeric factorization"
 msgstr "numeryczny rozkład na czynniki"
 
 msgid "singular matrix"
-msgstr "pojedyncza macierz"
+msgstr "macierz osobliwa"
 
 msgid "symbolic factorization"
 msgstr "symboliczny rozkład na czynniki"
 
-#~ msgid "               CLICK TO  CONTINUE                    "
-#~ msgstr "               KLIKNIJ ABY KONTYNUOWAĆ                    "
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
 
-#~ msgid "                                                     "
-#~ msgstr "                                                     "
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
 
-#~ msgid "   then click on OK   "
-#~ msgstr "   potem kliknij OK   "
+msgid "                                                     "
+msgstr "                                                     "
 
-#~ msgid " ------------------------------------------------------------\n"
-#~ msgstr " ------------------------------------------------------------\n"
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               KLIKNIJ ABY KONTYNUOWAĆ                    "
 
-#~ msgid " ----------------------------------------------------- \n"
-#~ msgstr " ----------------------------------------------------- \n"
-
-#~ msgid "Click to choose a demo"
-#~ msgstr "Kliknij aby wybrać demo"
-
-#~ msgid "how to use this stuff"
-#~ msgstr "jak tego uzywać"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
-#~ "%d.\n"
+msgid "              stacksize(3000000);                    "
+msgstr "              rozmiar stosu(3000000);                    "
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+msgid "           don't reached after %d iterations (got only %e) \n"
+msgstr "           nie osiągnięta po %d iteracji (posiada tylko %e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           wtedy ponownie wprowadzić scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   potem kliknij OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " Dla tego dema obecny rozmiar stosu jest zbyt mały "
 
 #, c-format
-#~ msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-#~ msgstr ""
-#~ "%s: Niewłaściwy typ i/lub rozmiar i/lub wartość drugiego argumentu.\n"
-
-#~ msgid "              stacksize(3000000);                    "
-#~ msgstr "              rozmiar stosu(3000000);                    "
-
-#~ msgid "           then re enter scisptdemo()                "
-#~ msgstr "           wtedy ponownie wprowadzić scisptdemo()                "
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Ostrzeżenie : dla lM zbieżność przy rtol = %e \n"
 
 #, c-format
-#~ msgid "           don''t reached after %d iterations (got only %e) \n"
-#~ msgstr "           nie osiągnie po %d iteracji (posiada tylko %e) \n"
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Ostrzeżenie : dla lm zbieżność przy rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " wpisz następujące polecenia w konsoli Scilab :          "
 
 #, c-format
-#~ msgid " iteration %3d : lM = %e  \n"
-#~ msgstr " iteracja %3d : lM = %e  \n"
+msgid " iteration %3d : lM = %e  \n"
+msgstr " iteracja %3d : lM = %e  \n"
 
 #, c-format
-#~ msgid " iteration %3d : lm = %e  \n"
-#~ msgstr " iteracja %3d : lm = %e  \n"
+msgid " iteration %3d : lm = %e  \n"
+msgstr " iteracja %3d : lm = %e  \n"
 
 #, c-format
-#~ msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-#~ msgstr "%s: Macierz i czynniki LU nie mają tych samych rozmiarów !\n"
-
-#~ msgid "small tests for condestsp"
-#~ msgstr "małe testy dla condestsp"
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+"%s: Niewłaściwy typ i/lub rozmiar i/lub wartość drugiego argumentu.\n"
 
 #, c-format
-#~ msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-#~ msgstr ""
-#~ "%s: Obecnie nie czyta nie zmontowanej (pierwiastkowej) rzadkiej macierzy."
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s: No values for this matrix (only non zero pattern) : put some 1."
 
 #, c-format
-#~ msgid "%s: Wrong number of input argument(s).\n"
-#~ msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: Plik zawiera rhs ale nie będzie czytany !"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana kwadratowa "
-#~ "macierz rzadka.\n"
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: Macierz i czynniki LU nie mają tych samych rozmiarów !\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana kwadratowa "
-#~ "macierz rzadka.\n"
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz "
-#~ "rzadka.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ " approximate (lm,vm) with the inverse iterative power method \n"
-#~ msgstr ""
-#~ "\n"
-#~ " approximate (lm,vm) with the inverse iterative power method \n"
-
-#~ msgid ""
-#~ "\n"
-#~ " approximate (lM,vM) with the iterative power method \n"
-#~ msgstr ""
-#~ "\n"
-#~ " approximate (lM,vM) with the iterative power method \n"
-
-#~ msgid " For this demo the current stack size is not enough "
-#~ msgstr " Dla tego dema obecny rozmiar stosu jest zbyt mały "
-
-#~ msgid " enter the following at the scilab prompt :          "
-#~ msgstr " wpisz następujące polecenia w konsoli Scilab :          "
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
 
 #, c-format
-#~ msgid " Warning : for lM convergence at rtol = %e \n"
-#~ msgstr " Warning : for lM convergence at rtol = %e \n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
-#~ msgid " Warning : for lm convergence at rtol = %e \n"
-#~ msgstr " Warning : for lm convergence at rtol = %e \n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana kwadratowa "
+"macierz rzadka.\n"
 
 #, c-format
-#~ msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-#~ msgstr "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana kwadratowa "
+"macierz rzadka.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano łańcuch.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
-#~ msgid "Choose a sparse matrix"
-#~ msgstr "Wybierz macierz rzadką"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz "
+"rzadka.\n"
 
-#~ msgid "display a speed comparison test"
-#~ msgstr "Pokaż porównawczy test prędkości"
+#, c-format
+msgid "%s: currently don't read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: Obecnie nie czyta nie zmontowanej (pierwiastkowej) rzadkiej macierzy."
+
+msgid "Choose a sparse matrix"
+msgstr "Wybór macierzy rzadkiej"
+
+msgid "Click to choose a demo"
+msgstr "Kliknij aby wybrać demo"
+
+msgid "display a speed comparison test"
+msgstr "przeprowadź porównawczy test prędkości"
+
+msgid "how to use this stuff"
+msgstr "jak tego uzywać"
+
+msgid "small tests for condestsp"
+msgstr "małe testy dla condestsp"

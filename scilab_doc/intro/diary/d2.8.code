@@ -1,5 +1,0 @@
- v=[1 5 6]
- ones(v)
- ones(v')
- ones(1:4)
- 3*ones(1:4)

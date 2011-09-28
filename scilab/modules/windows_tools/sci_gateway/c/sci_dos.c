@@ -170,7 +170,7 @@ int sci_dos(char *fname,unsigned long l)
 
 		if (DetachProcessOption)
 		{
-			if ( strlen(pipeSpawnErr.OutputBuffer) )
+			if ( strlen((const char *)(pipeSpawnErr.OutputBuffer)) )
 			{
 				/* StdErr will be "Output" */
 				*StatusExit = FALSE;
@@ -277,15 +277,13 @@ int sci_dos(char *fname,unsigned long l)
 
 			LhsVar(3) = Rhs + 3;
 		}
-
-		C2F(putlhsvar)();
-
 		if (StatusExit) {FREE(StatusExit); StatusExit = NULL;}
 		freeArrayOfString(Output, numberoflines);
 
 		ClosePipeInfo (pipeSpawnOut);
 		ClosePipeInfo (pipeSpawnErr);
 
+        PutLhsVar();
 	}
 	else
 	{

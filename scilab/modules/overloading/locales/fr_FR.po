@@ -1,0 +1,77 @@
+# French translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: fr\n"
+
+#, c-format
+msgid "%s is not a valid field name."
+msgstr "%s n'est pas un nom de champ valide."
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s : Type erroné de l'argument %d : Un vecteur réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
+"{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
+msgstr ""
+"%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
+"d'éléments.\n"
+
+msgid "A null assignment can have only one non-colon index"
+msgstr "Une affectation null ne peut avoir qu'un seul index non-colon"
+
+msgid "Affection of a string in a matrix of numbers is not implemented."
+msgstr ""
+"L'affectation d'une chaîne de caractères dans une matrice de nombres n'est "
+"pas implémentée."
+
+msgid "Incorrect assignment.\n"
+msgstr "Affectation erronée.\n"
+
+msgid "Invalid field name."
+msgstr "Nom de champ non valide."
+
+msgid "Invalid index.\n"
+msgstr "Index invalide.\n"

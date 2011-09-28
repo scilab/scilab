@@ -86,7 +86,7 @@ int sci_copy(char *fname,unsigned long fname_len)
   *hstk(outindex) = sciGetHandle(pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
   sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
   LhsVar(1) = Rhs+1;
-    C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 

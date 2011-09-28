@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 12:44+0000\n"
+"PO-Revision-Date: 2011-09-01 09:42+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: \n"
 
 #, c-format
@@ -47,9 +47,6 @@ msgstr " 已被截断：%s。\n"
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr " 输入行的长度超过了缓冲大小：%d\n"
-
-msgid "\"unknown data\""
-msgstr "\"未知数据\""
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -201,10 +198,6 @@ msgstr "%s：输入参数错误。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -461,11 +454,11 @@ msgstr ""
 msgid "Argument type must be boolean.\n"
 msgstr "参数的类型必须为布尔型。\n"
 
-msgid "Arguments are :\n"
-msgstr "参数是：\n"
-
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
+
+msgid "Bad call to a scilab function ?\n"
 msgstr ""
 
 #, c-format
@@ -546,10 +539,7 @@ msgid "Eye variable undefined in this context.\n"
 msgstr "单位阵变量在上下文中没有定义。\n"
 
 #, c-format
-msgid ""
-"Fatal error!!! Your variables have been saved in the file : %s\n"
-"                                   Bad call to a scilab function ?\n"
-"                                   Otherwise, send a bug report to :\n"
+msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
 msgstr ""
 
 #, c-format
@@ -787,7 +777,7 @@ msgstr "在Scilab中尚未实现...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "此处不可使用空变量（null）。\n"
 
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
@@ -804,6 +794,9 @@ msgstr "优化失败：回到了初始点。\n"
 
 msgid "Optimization stops because too small variations for x.\n"
 msgstr "优化停止，因为对x来说变化太小。\n"
+
+msgid "Otherwise, send a bug report to :"
+msgstr ""
 
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr "暂停模式：请输入空行来继续。\n"
@@ -996,6 +989,9 @@ msgstr ""
 msgid "Undefined variable: %s\n"
 msgstr "未定义的变量：%s\n"
 
+msgid "Unknown data.\n"
+msgstr ""
+
 msgid "Unknown file format.\n"
 msgstr "未知的文件格式。\n"
 
@@ -1136,14 +1132,14 @@ msgstr "第一个参数错误。\n"
 msgid "Wrong input argument %d.\n"
 msgstr "第%d个输入参数错误。\n"
 
-msgid "Wrong number of input arguments:\n"
+msgid "Wrong number of input arguments."
 msgstr ""
 
 msgid ""
 "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
-msgid "Wrong number of output arguments\n"
+msgid "Wrong number of output arguments.\n"
 msgstr ""
 
 msgid ""
@@ -1349,98 +1345,36 @@ msgstr "第%d个参数的时间域未定义。\n"
 msgid "varargout keyword cannot be used here.\n"
 msgstr "varargout关键词在此处不能使用。\n"
 
-#~ msgid "Incorrect # of outputs in the function\n"
-#~ msgstr "函数中有不正确的#输出。\n"
-
-#~ msgid "Function has no output.\n"
-#~ msgstr "函数没有输出。\n"
-
-#~ msgid "Wrong number of arguments in function call...\n"
-#~ msgstr "在函数调用中的参数数目错误...\n"
-
-#~ msgid "Function has no input argument...\n"
-#~ msgstr "函数无输入参数...\n"
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
 
 #, c-format
-#~ msgid ""
-#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
-#~ "Bad call to a scilab function ?\n"
-#~ "Otherwise, send a bug report to :\n"
-#~ msgstr ""
-#~ "严重错误!!!变量已经被报存在文件中：%s\n"
-#~ "调用一个Scilab函数错误？\n"
-#~ "或者，发送一个bug报告到：\n"
-
-#~ msgid "No more logical units available!\n"
-#~ msgstr "无更多可用的逻辑单元。\n"
+msgid "%s: Wrong export format: %s"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: singular or assymetric problem.\n"
-#~ msgstr "%s：奇异或非对称问题。\n"
-
-#~ msgid "%: This method is NOT implemented.\n"
-#~ msgstr "%：该方法尚未实现。\n"
-
-#~ msgid "A sparse matrix entry is defined with two differents values.\n"
-#~ msgstr "稀疏矩阵的入口被定义为两个不同的值。\n"
-
-#~ msgid "Binary direct acces files must be opened by 'file'.\n"
-#~ msgstr "二进制直接读文件必须以'file'方式打开。\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
 
 #, c-format
-#~ msgid "Too many global variables! , max number is %d.\n"
-#~ msgstr "太多全局变量！最大数目是%d。\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Th colocation matrix is singular.\n"
-#~ msgstr "%s：Th colocation矩阵是奇异的。\n"
-
-#~ msgid "Error while writing in file,(disk full or deleted file.\n"
-#~ msgstr "写入文件时错误，磁盘已满或已删除文件。\n"
-
-#~ msgid "Warning: obsolete use of eye rand or ones.\n"
-#~ msgstr "警告：过时的eye rand或ones用法。\n"
-
-#~ msgid ""
-#~ "Warning: integration not completed! check tolerance parameters or step "
-#~ "size.\n"
-#~ msgstr "警告：积分没有完成！请检查容忍参数（tolerance parameters）或步长。\n"
-
-#~ msgid ""
-#~ "Warning: Jacobian external is given, but\n"
-#~ " not used!,  see %ODEOPTIONS(6).\n"
-#~ msgstr ""
-#~ "警告：已给定外部的雅可比，\n"
-#~ "但是没有使用！参考 %ODEOPTIONS(6)。\n"
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-#~ msgstr "在时间：%s，达到所需的精度需要太多迭代。\n"
-
-#~ msgid "Too many input/output ports for hilited block.\n"
-#~ msgstr "hilited block的输入/输出端口太多。\n"
-
-#~ msgid "Too many input/output entries for hilited block.\n"
-#~ msgstr "hilited block的输入/输出接口太多。\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "Rank defficient. rank = %d\n"
-#~ msgstr "秩不足。rank = %d\n"
-
-#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-#~ msgstr "操作符 / 和 \\ 的操作对象必须不能包含 NaN of Inf。\n"
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s：内存申请错误。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: system cannot be displayed in this page.\n"
-#~ msgstr "%s：系统无法显示在此页面中。\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-#~ msgstr "%s：输入参数的数目错误：必须 > 0。\n"
-
-#~ msgid "'o' format not allowed."
-#~ msgstr "不允许使用 'o' 格式。"
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s：系统无法显示在此页面中。\n"

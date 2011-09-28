@@ -14,6 +14,8 @@
 
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
+#include "GiwsException.hxx"
+
 extern "C"
 {
 #include "api_scilab.h"
@@ -138,7 +140,7 @@ static int sci_toprint_one_rhs(const char *fname)
 
                 if (num_win < 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
                     return 0;
                 }
 
@@ -169,7 +171,7 @@ static int sci_toprint_one_rhs(const char *fname)
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Positive integer expected.\n"), fname, 1);
         }
     }
     else
@@ -377,7 +379,7 @@ static int sci_toprint_two_rhs(const char *fname)
 
                 if (num_win < 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Non-negative integers expected.\n"), fname);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Positive integers expected.\n"), fname);
                     return 0;
                 }
             }
@@ -451,7 +453,7 @@ static int sci_toprint_two_rhs(const char *fname)
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Non-negative integer expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Positive integer expected.\n"), fname, 1);
         }
     }
     else

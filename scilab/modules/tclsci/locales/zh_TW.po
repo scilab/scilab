@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-23 03:56+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:38+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: \n"
 
 msgid " Flushing starts for queued commands.\n"
@@ -202,61 +202,38 @@ msgstr "警告: 序列中已有太多回呼 (callback)在等待中!\n"
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] 無法在 Tcl/Tl 中使用.\n"
 
-#~ msgid "&?"
-#~ msgstr "&?"
-
-#~ msgid "&Tools"
-#~ msgstr "工具(&T)"
-
-#~ msgid "&Edit"
-#~ msgstr "編輯(&E)"
-
-#~ msgid "&File"
-#~ msgstr "檔案(&F)"
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr "%s: Slave 解譯器已存在.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-#~ msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
-
-#~ msgid "Tcl/Tk interface not loaded."
-#~ msgstr "Tcl/Tk 介面未載入."
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一布林數.\n"
 
 #, c-format
-#~ msgid "Error %s while loading library %s"
-#~ msgstr "錯誤 %s (載入檔案 %s  時產生)"
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
 
-#~ msgid "Updating, please wait"
-#~ msgstr "更新中,  請等一下"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串之矩陣.\n"
+msgid "Color"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Slave interpreter already exists.\n"
-#~ msgstr "%s: Slave 解譯器已存在.\n"
+msgid "Error %s while loading library %s"
+msgstr "錯誤 %s (載入檔案 %s  時產生)"
 
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一布林數.\n"
+msgid "Puzzle"
+msgstr ""
 
-#~ msgid "Color"
-#~ msgstr "顏色"
+msgid "Scale"
+msgstr ""
 
-#~ msgid "Scroll"
-#~ msgstr "捲動"
-
-#~ msgid "Scale"
-#~ msgstr "調整大小"
-
-#~ msgid "Puzzle"
-#~ msgstr "拼圖"
+msgid "Scroll"
+msgstr ""

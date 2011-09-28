@@ -22,7 +22,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import ncsa.hdf.hdf5lib.exceptions.HDF5AtomException;
+
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -120,13 +123,12 @@ public final class FileUtils {
 	}
 	
 	/**
-	 * Create a temporary file and return it
+	 * Create a temporary file with an h5 extension and return it
 	 * @return a new unique temporary file.
 	 * @throws IOException when an error occurs
 	 */
-	public static File createTempFile() throws IOException {
-		return File.createTempFile(XcosFileType.XCOS.getExtension(),
-				XcosFileType.HDF5.getDottedExtension());
+	public static String createTempFile() throws IOException {
+		return ScilabCommons.createtempfilename("xcos", 1) + XcosFileType.HDF5.getDottedExtension();
 	}
 	
 	/**
@@ -137,6 +139,25 @@ public final class FileUtils {
 		if (!f.delete()) {
 			LogFactory.getLog(FileUtils.class).error(XcosMessages.UNABLE_TO_DELETE + f);
 		}
+	}
+	
+	/**
+	 * Delete the file and log an error message if unable to do so.
+	 * @param f the file to delete.
+	 */
+	public static void delete(String f) {
+		if (!new File(f).delete()) {
+			LogFactory.getLog(FileUtils.class).error(XcosMessages.UNABLE_TO_DELETE + f);
+		}
+	}
+	
+	/**
+	 * Test if the file exists.
+	 * @param f the file check.
+	 * @return true if the file exists, false otherwise.
+	 */
+	public static boolean exists(String f) {
+		return new File(f).exists();
 	}
 	
 	/**

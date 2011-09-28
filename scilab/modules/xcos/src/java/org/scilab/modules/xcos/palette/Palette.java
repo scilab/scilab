@@ -90,19 +90,21 @@ public final class Palette {
 		}
 
 		Category node = PaletteManager.getInstance().getRoot();
-
-		if (path == null) {
+		
+		if (path == null || 
+				path.length == 0 ||
+				(path.length == 1 && path[0].isEmpty())) {
 			return node;
 		}
 
 		for (int categoryCounter = 0; categoryCounter < path.length; categoryCounter++) {
 
 			for (final PaletteNode next : node.getNode()) {
-				if (next.toString().equals(path[categoryCounter])
+				if (next.getName().equals(path[categoryCounter])
 						&& next instanceof Category) {
 					node = (Category) next;
 					break;
-				} else if (next.toString().equals(path[categoryCounter])
+				} else if (next.getName().equals(path[categoryCounter])
 						&& (categoryCounter == path.length - 1)) {
 					return next; // found the terminal Palette instance
 				}
@@ -328,8 +330,7 @@ public final class Palette {
 	 * @param source
 	 *            TreePath of the palette or category
 	 * @param target
-	 *            TreePath of the category
-	 * @link TreePath} of the destination
+	 *            TreePath of the destination
 	 */
 	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void move(final String[] source, final String[] target) {
@@ -436,8 +437,8 @@ public final class Palette {
 		}
 
 		final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
-				scale, null, graphComponent.isAntiAlias(), null, graphComponent
-						.getCanvas());
+				scale, graphComponent.getBackground(), graphComponent.isAntiAlias(),
+				null, graphComponent.getCanvas());
 
 		final String extension = iconPath
 				.substring(iconPath.lastIndexOf('.') + 1);

@@ -374,7 +374,6 @@ int Sci_dlopen( char *loaded_file)
     static DynLibHandle  hd1 = NULL;
     int i = 0;
 
-    BOOL bConvert = FALSE;
 
 #ifdef _MSC_VER
     {

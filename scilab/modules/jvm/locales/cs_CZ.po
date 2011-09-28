@@ -1,0 +1,251 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-10 07:07+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"Nelze načíst dynamickou knihovnu JVM (libjava).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+msgstr ""
+"\n"
+"Chyba: Nelze vrátit prostředí Scilab Java (JNIEnv_SCILAB).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
+msgstr ""
+"\n"
+"Chyba: Nelze vrátit prostředí Scilab Java (jvm_SCILAB): zkontrolujte, zda "
+"Scilab načetl JVM, před zavoláním této funkce.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+"\n"
+"Nelze přečíst %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+"\n"
+"Nesprávná verze JNI (vyžadováno alespoň JDK 1.4).\n"
+
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
+msgstr ""
+"\n"
+"Chyba JVM v AttachCurrentThread: Nelze připojit k současnému vláknu.\n"
+
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab nemůže vytvořit Hlavní Třídu Scilab Java 'nebyli jsme schopni nalézt "
+"hlavní třídu Scilab. Zkontrolujte, zda jsou balíčky Scilab a třetí strany "
+"dostupné).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab nemůže otevřít knihovnu JVM.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Divná chyba. Volám z Javy, ale nejsem schopen nalézt už existující JVM.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr "%s: Nelze přidat URL do systémového nahrávače tříd: %s.\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s: Nelze přidat cestu do java.library.path: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d nebo #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Není přístup k Hlavní Třídě Scilab:\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "Není přístup ke staviteli Hlavní Třídy Scilab:\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Nelze vytvořit hlavní třídu Scilab. Chyba:\n"
+
+msgid "Error"
+msgstr "Chyba"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Chyba : %s není platný soubor cesty třídy (kódování není 'utf-8') Nalezeno "
+"kódování '%s'.\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Chyba : %s není platný soubor cesty (kódování není 'utf-8') Nalezeno "
+"kódování '%s'.\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Chyba při vytváření Java VM: %s\n"
+
+#, c-format
+msgid "Error: %s\n"
+msgstr "Chyba: %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Chyba : Nelze analyzovat soubor %s.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"Chyba: %s není platný soubor nastavení (kódování není '%s') Nalezeno "
+"kódování '%s'.\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Chyba : Nelze analyzovat soubor %s\n"
+
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+"Pokud je Scilab používán z Java, ujistěte se, že Vaše IDE (např.: Netbeans, "
+"atd.) nepřidávají dodatečné závislosti, které by při běhu nemohly být "
+"nalezeny.\n"
+
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr ""
+"Pokud používáte binární verzi Scilab, chybu prosím ohlašte na "
+"http://bugzilla.scilab.org/.\n"
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
+msgstr ""
+"Pokud používáte vlastní sestavenou verzi Scilab, aktualizujte skript "
+"bin/scilab a poskytněte cestu k JVM.\n"
+
+msgid "JNI version error"
+msgstr "Chyba verze JNI"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: neplatné argumenty"
+
+msgid "JNI: not enough memory"
+msgstr "JNI: nedostatek paměti"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "Rozhraní JVM je vypnuto v režimech -nogui nebo -nwni.\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "Možnosti:\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+"Také prosím zkontrolujte, zda-li se nepokoušíte spouštět Scilab 64 bit na 32 "
+"bitovém systému (nebo naopak).\n"
+
+msgid "Scilab Java module not installed.\n"
+msgstr "Modul Java Scilab není nainstalován.\n"
+
+#, c-format
+msgid ""
+"Some problems during the loading of the Java libraries occured.\n"
+"This could lead to inconsistent behaviours.\n"
+"Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+"Vyskytly se nějaké problémy při nahrávání knihoven Java.\n"
+"To by mohlo vést k nestabilnímu chování.\n"
+"Zkontrolujte prosím SCI/etc/classpath.xml.\n"
+
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr "Problém může mít souvislost s SELinux. Zkuste ho vypnout.\n"
+
+msgid "Thread detached from the VM"
+msgstr "Vlákno bylo odpojeno od VM"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Nestanovená chyba v JNI. Zvlášrní problém"
+
+msgid "Unknown JNI error"
+msgstr "Neznáma chyba JNI"
+
+msgid "VM already created"
+msgstr "VM je už vytvořen"
+
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Varování: Nelze nalézt Java balíček '%s'.\n"
+
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "Varování: nelze nalézt deklarační soubor cest tříd %s.\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Špatný formát pro %s.\n"

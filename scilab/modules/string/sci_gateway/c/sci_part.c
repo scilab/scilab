@@ -51,7 +51,7 @@ int sci_part(char *fname,unsigned long fname_len)
 		if (m1 * n1 == 0) 
 		{
 			LhsVar(1) = 1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
     }
@@ -80,7 +80,7 @@ int sci_part(char *fname,unsigned long fname_len)
 		freeArrayOfString(Input_StringMatrix,m1n1);
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, NULL);
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 	
@@ -116,11 +116,12 @@ int sci_part(char *fname,unsigned long fname_len)
 	}
 	/* put values on stack */
 	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_StringMatrix );
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-
+	
 	/* free pointer */
 	freeArrayOfString(Output_StringMatrix,m1n1);
+
+    LhsVar(1) = Rhs+1 ;
+    PutLhsVar();
 
 	return 0;
 }

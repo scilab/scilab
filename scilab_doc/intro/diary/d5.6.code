@@ -1,4 +1,0 @@
- x=[1 2 %pi;%e 3 4]
- write('x.dat',x)
- clear x
- xnew=read('x.dat',2,3)

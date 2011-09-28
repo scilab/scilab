@@ -12,6 +12,16 @@
 // Check all the possible errors which should be reported on the diagram.
 
 //-----------------------------------------------------------------------------
+// on do_eval (context evaluation)
+//-----------------------------------------------------------------------------
+
+// Check the report against an invalid context value
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context.xcos")
+// simulate
+// a comprehensive error should be reported but the simulation should run
+xcos(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context_on_sb.xcos")
+
+//-----------------------------------------------------------------------------
 // on c_pass1 (flow checking)
 //-----------------------------------------------------------------------------
 

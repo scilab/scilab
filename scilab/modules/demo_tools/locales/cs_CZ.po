@@ -1,0 +1,44 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-02 15:19+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+
+msgid " -- View Code -- "
+msgstr " -- Zobrazit Kód -- "
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Upravit"
+
+msgid "&File"
+msgstr "&Soubor"
+
+msgid "&Tools"
+msgstr "&Nástroje"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Demos"
+msgstr "Ukázky"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "Open in Editor"
+msgstr "Otevřít v Editoru"

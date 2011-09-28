@@ -14,12 +14,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: de\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -35,6 +47,14 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Matrix mit Zeichenketten "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
@@ -110,13 +130,3 @@ msgstr "Mittwoch"
 
 msgid "filename not defined."
 msgstr "Dateiname nicht definiert."
-
-#~ msgid "// End Session   : "
-#~ msgstr "//Ende Sitzung: "
-
-#~ msgid "// Begin Session : "
-#~ msgstr "//Beginne Sitzung: "
-
-#~ msgid "Scilab history_manager module not installed.\n"
-#~ msgstr ""
-#~ "Scilabs Modul für die Verwaltung der Historie ist nicht installiert.\n"

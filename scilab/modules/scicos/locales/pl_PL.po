@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 12:46+0000\n"
+"PO-Revision-Date: 2011-09-01 09:34+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: pl\n"
 
 msgid ""
@@ -137,14 +137,6 @@ msgstr ""
 #, c-format
 msgid "%s : Allocation error.\n"
 msgstr "%s : Błąd przydziału pamięci.\n"
-
-#, c-format
-msgid "%s : Bad size for Rhs(1).\n"
-msgstr "%s : Zły rozmiar dla Rhs(1).\n"
-
-#, c-format
-msgid "%s : Bad size for Rhs(2).\n"
-msgstr "%s : Zły rozmiar dla Rhs(2).\n"
 
 #, c-format
 msgid "%s : Error.\n"
@@ -353,10 +345,6 @@ msgstr ""
 #, c-format
 msgid "%s : unknown block : %s\n"
 msgstr "%s : nieznany blok : %s\n"
-
-#, c-format
-msgid "%s :the handle is not or no more valid.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
@@ -1112,663 +1100,230 @@ msgid "with flag %d "
 msgstr "z flagiem %d "
 
 #, c-format
-#~ msgid "%s: An error occurred during the compilation of the Modelica block."
-#~ msgstr "%s: Wystąpił błąd podczas kompilacji bloku Modelica."
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: Diagram nie kompiluje w kroku %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
-
-#~ msgid "&File"
-#~ msgstr "&Plik"
-
-#~ msgid "&Tools"
-#~ msgstr "&Narzędzia"
-
-#~ msgid "&?"
-#~ msgstr "&?"
-
-#~ msgid "&Edit"
-#~ msgstr "&Edycja"
-
-#~ msgid "Only one block can be selected in current window for this operation."
-#~ msgstr ""
-#~ "Tylko jeden blok może zostać wybrany w bieżącym oknie do tej operacji."
+msgid "%s: Error during block parameters update.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "Problem while building library %s\n"
-#~ msgstr "Problem przy budowie biblioteki %s\n"
-
-#~ msgid "A compatible C compiler required."
-#~ msgstr "Wymagany zgodny kompilator C."
-
-#~ msgid "Sorry compiling problem"
-#~ msgstr "Przepraszamy problem kompilacji"
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Błąd: blok scifunc nie został zdefiniowany."
 
 #, c-format
-#~ msgid "%s: Error: A scifunc block has not been defined."
-#~ msgstr "%s: Błąd: blok scifunc nie został zdefiniowany."
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Porty wejściowe nie są właściwie ponumerowane.\n"
 
 #, c-format
-#~ msgid "%s: Input ports are not numbered properly.\n"
-#~ msgstr "%s: Porty wejściowe nie są właściwie ponumerowane.\n"
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Porty wyjściowe nie są poprawnie ponumerowane.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa liczba argumentów wejściowych. Musi być między %d i %d.\n"
+msgid "%s: Type %s is not implemented.\n"
+msgstr ""
 
 #, c-format
-#~ msgid " %s.mo compilation forced\n"
-#~ msgstr " %s.mo przymusowa kompilacja\n"
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Cannot find any MO files in the following location: %s.\n"
-#~ msgstr ""
-#~ "%s: Nie można znaleźć żadnych plików MO w następującej lokalizacji: %s.\n"
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
 
 #, c-format
-#~ msgid " %s.mo cannot be compiled\n"
-#~ msgstr " %s.mo nie może być skompilowany\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
-#~ msgstr "%s: Błąd : nie wykonano następujących poleceń wiersza: %s.\n"
-
-#~ msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-#~ msgstr "''scicos'' nie jest już dostępny, proszę użyć ''xcos'' zamiast.\n"
-
-#~ msgid "The current icon depends on block parameter\n"
-#~ msgstr "Bieżąca ikona zależy od parametrów bloku\n"
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych. Musi być między %d i %d.\n"
 
 #, c-format
-#~ msgid "%s: Diagram does not compile in pass %d.\n"
-#~ msgstr "%s: Diagram nie kompiluje w kroku %d.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana pojedyncza "
-#~ "liczba całkowita.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
-#~ "pojedynczego łańcuchu znaków.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentów wejściowych nr %d i nr %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-#~ msgstr "%s: Nieprawidłowy rozmiar argumentów wejściowych nr %d i nr %d.\n"
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
-#~ "całkowitej.\n"
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid " %s.mo must be recompiled\n"
-#~ msgstr " %s.mo musi być skompilowane ponownie\n"
-
-#~ msgid "Add color"
-#~ msgstr "Dodaj kolor"
-
-#~ msgid "Add new block"
-#~ msgstr "Dodaj nowy blok"
-
-#~ msgid "Add a new color at the Scicos palette"
-#~ msgstr "Dodaj nowy kolor do palety Scicos"
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Close"
-#~ msgstr "Zamknij"
-
-#~ msgid "Color"
-#~ msgstr "Kolor"
-
-#~ msgid "Compile"
-#~ msgstr "Skompiluj"
-
-#~ msgid "Create Mask"
-#~ msgstr "Utwórz maskę"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiuj"
-
-#~ msgid "Details"
-#~ msgstr "Szczegóły"
-
-#~ msgid "Demos"
-#~ msgstr "Dema"
-
-#~ msgid "Delete"
-#~ msgstr "Usuń"
-
-#~ msgid "Error\n"
-#~ msgstr "Błąd\n"
-
-#~ msgid "File"
-#~ msgstr "Plik"
-
-#~ msgid "Help"
-#~ msgstr "Pomoc"
-
-#~ msgid "Modelica initialize"
-#~ msgstr "Inicjalizacja Modelica"
-
-#~ msgid "Open"
-#~ msgstr "Otwórz"
-
-#~ msgid "Paste"
-#~ msgstr "Wklej"
-
-#~ msgid "Rename"
-#~ msgstr "Zmień nazwę"
-
-#~ msgid "Remove Mask"
-#~ msgstr "Usuń maskę"
-
-#~ msgid "Rotate Left"
-#~ msgstr "Obróć w lewo"
-
-#~ msgid "Resize"
-#~ msgstr "Zmień rozmiar"
-
-#~ msgid "Rotate Right"
-#~ msgstr "Obróć w prawo"
-
-#~ msgid "Run"
-#~ msgstr "Uruchom"
-
-#~ msgid "Save As"
-#~ msgstr "Zapisz Jako"
-
-#~ msgid "Save"
-#~ msgstr "Zapisz"
-
-#~ msgid "Stop"
-#~ msgstr "Zatrzymaj"
-
-#~ msgid "Type"
-#~ msgstr "Typ"
-
-#~ msgid "Tools"
-#~ msgstr "Narzędzia"
-
-#~ msgid "Type not recognized"
-#~ msgstr "Typ nie rozpoznany"
-
-#~ msgid "Yes"
-#~ msgstr "Tak"
-
-#~ msgid "View"
-#~ msgstr "Widok"
-
-#~ msgid "Zoom in"
-#~ msgstr "Powiększ"
-
-#~ msgid "Zoom out"
-#~ msgstr "Pomniejsz"
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid ""
-#~ "\n"
-#~ " Warning:an event is reprogrammed at t=%g by removing another"
-#~ msgstr ""
-#~ "\n"
-#~ " Ostrzeżenie: zdarzenie zostało is przeprogramowane dla t=%g poprzez "
-#~ "usunięcie innego zdarzenia"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s : Secong argument must be a scalar.\n"
-#~ msgstr "%s : Drugi parametr ma być skalarem.\n"
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr ""
 
 #, c-format
-#~ msgid "%s : Secong argument must be a real.\n"
-#~ msgstr "%s : Drugi parametr ma być liczbą rzeczywistą.\n"
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
 
 #, c-format
-#~ msgid "%s is not a valid directory\n"
-#~ msgstr "%s nie jest poprawną nazwą katalogu\n"
-
-#~ msgid "Align"
-#~ msgstr "Wyrównaj"
-
-#~ msgid "About Scicos"
-#~ msgstr "O Scicos"
-
-#~ msgid " Scilab is in no gui mode : Scicos is unavailable"
-#~ msgstr ""
-#~ " Scilab jest w trybie bez graficznego interfejsu użytkownika : Brak Scicos"
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s is not a valid name, please change the title of the diagram."
-#~ msgstr "%s nie jest poprawną nazwą, proszę zmienić tytuł schematu."
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-#~ msgstr "%s: Błąd: kompilator Modelica (MODELICAC) jest niedostępny."
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr ""
+
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr ""
+
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr ""
+
+msgid "Block has connected output port<br />with incompatible type."
+msgstr ""
+
+msgid "Block input has negative size:"
+msgstr ""
+
+msgid "Can't convert old diagram (problem in version)"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+
+msgid "End problem: "
+msgstr ""
+
+msgid "Initialisation problem:"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Output ports are not numbered properly.\n"
-#~ msgstr "%s: Porty wyjściowe nie są poprawnie ponumerowane.\n"
+msgid "Input port %s size is: %s"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: First argument must be a Scicos diagram data structure\n"
-#~ msgstr "%s: Pierwszy parametr musi być strukturą danych schematu Scicos\n"
-
-#~ msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
-#~ msgstr "**** SUNDIALS.IDA zainicjalizowano *****\n"
-
-#~ msgid "Activate Scilab Window"
-#~ msgstr "Actywuj okno Scilab"
+msgid "Input port %s type is: %s"
+msgstr ""
 
 #, c-format
-#~ msgid ""
-#~ "An unexpected  error occured while executing the menu\n"
-#~ "%s:\n"
-#~ msgstr ""
-#~ "Nieoczekiwany błąd w czasie wywołania menu\n"
-#~ "%s:\n"
+msgid "Input port %s type."
+msgstr ""
 
-#~ msgid "Background color"
-#~ msgstr "Kolor tła"
-
-#~ msgid "Available Parameters"
-#~ msgstr "Dostepne parametry"
-
-#~ msgid "Analyze Diagram"
-#~ msgstr "Analizuj schemat"
-
-#~ msgid "C Code Generation"
-#~ msgstr "Generacja kodu C"
-
-#~ msgid "Block Documentation"
-#~ msgstr "Dokumentacja bloku"
-
-#~ msgid "Background color ? :"
-#~ msgstr "Kolor tła ? :"
-
-#~ msgid "Block ID font size"
-#~ msgstr "Rozmiar czcionki dla ID bloku"
-
-#~ msgid "Block ID font name"
-#~ msgstr "Nazwa czcionki dla ID bloku"
-
-#~ msgid "Browser"
-#~ msgstr "Przeglądarka"
-
-#~ msgid ""
-#~ "CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
-#~ "CV_WF."
-#~ msgstr ""
-#~ "CV_BAD_ITOL:  Niepoprawna wartość dla itol. Poprawnymi są: CV_SS, CV_SV, i "
-#~ "CV_WF."
-
-#~ msgid "Choose export format:"
-#~ msgstr "Wybierz format eksportu:"
-
-#~ msgid "Click on a super block"
-#~ msgstr "Kliknij na super blok"
-
-#~ msgid "Click block to resize"
-#~ msgstr "Kliknij na blok żeby zmienić jego rozmiary"
-
-#~ msgid "Click block to label"
-#~ msgstr "Kliknij na blok żeby dodać nazwę"
-
-#~ msgid "Click on object to choose its color"
-#~ msgstr "Kliknij na blok żeby ustawić jego kolor"
-
-#~ msgid "Click on block to be turned left"
-#~ msgstr "Kliknij na blok żeby go obrócić w prawo"
-
-#~ msgid "Click on block to be flipped"
-#~ msgstr "Kliknij na blok żeby go przewrócić"
-
-#~ msgid "Click on block to  open graphic icon editor"
-#~ msgstr "Kliknij na blok żeby otworzyć edytor ikonek"
-
-#~ msgid "Click on block to edit its icon"
-#~ msgstr "Kliknij na blok żeby rozpocząć edycję jego ikonkę"
-
-#~ msgid "Click on block to be turned right"
-#~ msgstr "Kliknij na blok żeby go obrócić w lewo"
-
-#~ msgid "Click on object  to get information on it"
-#~ msgstr "Kliknij na blok żeby otrzymać informację o nim"
-
-#~ msgid "Code Generation only works for a Superblock !\n"
-#~ msgstr "Generacja kodu działa tylko dla superbloku !\n"
-
-#~ msgid "Code generation applies only to Super Blocks."
-#~ msgstr "Generacje kodu stosuje się tylko w superblokach"
-
-#~ msgid "Defined shortcuts"
-#~ msgstr "Domyślne skróty kławiszowe"
-
-#~ msgid "Default window parameters"
-#~ msgstr "Domyślne parametry okna"
-
-#~ msgid "Default link colors"
-#~ msgstr "Domyślne kolory łączników"
-
-#~ msgid "Cut"
-#~ msgstr "Wytnij"
-
-#~ msgid "Click to open block or make a link"
-#~ msgstr "Kliknij na blok żeby go otworzyć lub utworzyć lącznik"
-
-#~ msgid "Done\n"
-#~ msgstr "Wykonano\n"
-
-#~ msgid "Diagram"
-#~ msgstr "Schemat"
-
-#~ msgid "Delete: Click on the object to delete"
-#~ msgstr "Usuń: Kliknij na obiekt do usunięcia"
-
-#~ msgid "Edit"
-#~ msgstr "Edycja"
-
-#~ msgid "Cut: Click on the object to cut"
-#~ msgstr "Wytnij: Kliknij na obiekt do wycięcia"
-
-#~ msgid "Event links color? :"
-#~ msgstr "Kolor łączników zdarzeń? :"
-
-#~ msgid "Debug Level"
-#~ msgstr "Poziom odpluskwiania"
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
 
 #, c-format
-#~ msgid "Export in file %s failed\n"
-#~ msgstr "Eksport do pliku %s nie powiódł się\n"
-
-#~ msgid "Export All"
-#~ msgstr "Eksportuj wszystko"
-
-#~ msgid "Fit diagram to figure"
-#~ msgstr "Dopasuj schemat do okna graficznego"
-
-#~ msgid "Following palette(s) ignored (associated file(s) no more exist):"
-#~ msgstr ""
-#~ "Następująca(e) paleta(y) są ignorowane (odpowiedni plik(i) nie istnieje(ą)):"
-
-#~ msgid "Foreground color ? :"
-#~ msgstr "Kolor pierwszewgo planu ? :"
-
-#~ msgid "ID font definitions"
-#~ msgstr "Definicje czcionek ID"
-
-#~ msgid "ID fonts"
-#~ msgstr "Czcionki ID"
-
-#~ msgid "Get Info"
-#~ msgstr "Pobierz info"
-
-#~ msgid ""
-#~ "IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
-#~ "and IDA_WF."
-#~ msgstr ""
-#~ "IDA_BAD_ITOL: Niedopuszczalna wartość dla itol. Dopuszczalne wartości: "
-#~ "IDA_SS, IDA_SV, i IDA_WF."
-
-#~ msgid "Click on a block to set or get it''s documentation"
-#~ msgstr "Kliknij na blok, zeby wprowadzić lub zobaczyć jego dokumentację"
-
-#~ msgid "Click on an object to set or get identification"
-#~ msgstr "Kliknij na obiekt, zeby ustalić lub zobaczyć jego identyfikator"
-
-#~ msgid "Flip"
-#~ msgstr "Odwróć"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplikuj"
-
-#~ msgid "Export"
-#~ msgstr "Eksport"
-
-#~ msgid "Icon"
-#~ msgstr "Ikonka"
-
-#~ msgid "Icon Editor"
-#~ msgstr "Edytor ikonek"
-
-#~ msgid "Identification"
-#~ msgstr "Identyfikacja"
-
-#~ msgid "It is impossible to set ID for this type of object"
-#~ msgstr "Ustawienie ID dla obiektu tego typu jest niemożliwe"
-
-#~ msgid "Mask can only be created for Super Blocks."
-#~ msgstr "Maska może być utworzona tylko dla superbloków"
-
-#~ msgid "Mask"
-#~ msgstr "Maska"
-
-#~ msgid "Link ID font size"
-#~ msgstr "Rozmiar czcionki ID łącznika"
-
-#~ msgid "Link ID font name"
-#~ msgstr "Nazwa czcionki ID łącznika"
-
-#~ msgid "Link"
-#~ msgstr "Łącznik"
-
-#~ msgid "Load as Palette"
-#~ msgstr "Załaduj jako paletę"
-
-#~ msgid "Link parameters"
-#~ msgstr "parametry łącznika"
-
-#~ msgid "Modify title and menu labels."
-#~ msgstr "Zmień tytuł i metki menu."
-
-#~ msgid "Only  blocks can be selected for this operation."
-#~ msgstr "Tylko bloki mogą byc zaznaczone dla tej operacji."
-
-#~ msgid "No selected block in the current Scicos window."
-#~ msgstr "Żaden blok w oknie Scicos nie został zaznaczony"
-
-#~ msgid "New"
-#~ msgstr "Nowy"
-
-#~ msgid "No"
-#~ msgstr "Nie"
-
-#~ msgid "Multiple selection cannot be used here"
-#~ msgstr "Tu nie można używac wielokrotne zaznaczanie"
-
-#~ msgid "Move"
-#~ msgstr "Przesuń"
-
-#~ msgid "Open a Scicos demonstration diagram"
-#~ msgstr "Otworż schemat demonstracyjny Scicos"
-
-#~ msgid "Palettes Tree"
-#~ msgstr "Drzewko palet"
-
-#~ msgid "Palettes"
-#~ msgstr "Palety"
-
-#~ msgid "Open a Scicos diagram"
-#~ msgstr "Otwórz schemat Scicos"
-
-#~ msgid "Palette"
-#~ msgstr "Paleta"
-
-#~ msgid "Replot"
-#~ msgstr "Przerysuj"
-
-#~ msgid "Properties"
-#~ msgstr "Właściwości"
-
-#~ msgid "Purge"
-#~ msgstr "Wyczyść"
-
-#~ msgid "Region to Palette"
-#~ msgstr "Region do palety"
-
-#~ msgid "Region to Super Block"
-#~ msgstr "Region do superblocku"
-
-#~ msgid "Popup"
-#~ msgstr "Dymek"
-
-#~ msgid "Problem saving a backup; I cannot activate Scilab\n"
-#~ msgstr "Problem z zapisem backupa; nie mogę aktywować Scilab\n"
-
-#~ msgid "Regular links color ? :"
-#~ msgstr "Podstawowy kolor łączników ? :"
-
-#~ msgid "Remove Atomic"
-#~ msgstr "Usuń Atomic"
-
-#~ msgid "Resize is allowed only for Blocks or Links."
-#~ msgstr "Zmiana rozmiaru jest dopuszczalna tylko dla bloków i łączników."
-
-#~ msgid "Select a directory path"
-#~ msgstr "Wybierz ścieżkę do katalogu"
-
-#~ msgid "Save as Palette"
-#~ msgstr "Zapisz jako paletę"
-
-#~ msgid "Save Block GUI"
-#~ msgstr "Zapisz GUI bloku"
-
-#~ msgid "Select a block."
-#~ msgstr "Zaznacz block."
-
-#~ msgid "Scicos Documentation"
-#~ msgstr "Dokumentacja Scicos"
+msgid "Output port %s size is: %s"
+msgstr ""
 
 #, c-format
-#~ msgid "Scicos version %s\n"
-#~ msgstr "Wersja Scicos %s\n"
-
-#~ msgid "Setup"
-#~ msgstr "Ustawienia"
-
-#~ msgid "SelectRegion"
-#~ msgstr "ZaznaczObszar"
-
-#~ msgid "SelectLink  "
-#~ msgstr "ZaznaczŁącznik  "
-
-#~ msgid "Set Block identification"
-#~ msgstr "Ustaw identyfikator bloku"
-
-#~ msgid "Set grid"
-#~ msgstr "Ustaw siatkę"
-
-#~ msgid "Set Diagram Info"
-#~ msgstr "Ustaw info schematu"
-
-#~ msgid "Set link edition mode"
-#~ msgstr "Ustaw tryb edycji łącznika"
-
-#~ msgid "Set link Identification"
-#~ msgstr "Ustaw identyfikator łącznika"
-
-#~ msgid "Set Block sizes"
-#~ msgstr "Ustaw rozmiary bloku"
-
-#~ msgid "SelectAll"
-#~ msgstr "ZaznaczWszystko"
-
-#~ msgid "Shortcuts"
-#~ msgstr "Skróty klawiszowe"
+msgid "Output port %s type is: %s"
+msgstr ""
 
 #, c-format
-#~ msgid "The key %s is already in use for %s"
-#~ msgstr "Klawisz %s już jest używany dla %s"
+msgid "Output port %s type."
+msgstr ""
 
-#~ msgid "Show Block Shadow"
-#~ msgstr "Włącz cień dla bloków"
+msgid "Please compile the diagram to report the error."
+msgstr ""
 
-#~ msgid "Simulate"
-#~ msgstr "Symuluj"
-
-#~ msgid "Sorry file name not defined in "
-#~ msgstr "Przepraszamy, nazwa pliku nie jest zdefiniowana w "
-
-#~ msgid "Sorry: Only C or FORTRAN languages are supported"
-#~ msgstr "Przepraszamy, mozna uzywać tylko C lub FORTRAN"
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
 
 #, c-format
-#~ msgid "Requested action: %s is not available"
-#~ msgstr "Wymagane działanie: brak %s"
+msgid "Scilab Graphics of %s"
+msgstr ""
 
-#~ msgid "Thickness"
-#~ msgstr "Grubość"
+msgid "Simulation parameters not set:"
+msgstr ""
 
-#, c-format
-#~ msgid ""
-#~ "The parameter(s) %s \n"
-#~ "must be defined in the"
-#~ msgstr ""
-#~ "Parametr(y) %s \n"
-#~ "muszą być zdefiniowane w"
+msgid "Simulation problem: "
+msgstr ""
 
-#~ msgid "Title of the GUI"
-#~ msgstr "Tytuł GUI"
+msgid "Sorry file name not defined in "
+msgstr "Przepraszamy, nazwa pliku nie jest zdefiniowana w "
 
-#~ msgid "This window is not an active scicos window"
-#~ msgstr "To okno nie jest aktywnym okne Scicos"
-
-#~ msgid "This window is not an active palette"
-#~ msgstr "To okno nie jest aktywną paletą"
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Przepraszamy, mozna uzywać tylko C lub FORTRAN"
 
 #, c-format
-#~ msgid "To avoid this message, please update the %s.scicos_pal file."
-#~ msgstr "Dla uniknięcia tego komunikatu proszę uzupełnić plik %s.scicos_pal."
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
 
-#~ msgid "TkPopup "
-#~ msgstr "TkPopup "
+msgid "Type not recognized"
+msgstr "Typ nie rozpoznany"
 
-#~ msgid "Toggle grid"
-#~ msgstr "Włacz/wyłacz siatkę"
-
-#~ msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-#~ msgstr ""
-#~ "Dla reaktywacji Scicos kliknij na schemat lub użyj polecenia scicos();\n"
-
-#~ msgid "Undo"
-#~ msgstr "Cofnij"
+msgid "Unable to report an error into a SuperBlock"
+msgstr ""
 
 #, c-format
-#~ msgid "Warning %d menus have identical name %s\n"
-#~ msgstr "Ostrzeżenie: %d menu ma identyczną nazwę %s\n"
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
 
-#~ msgid "Your diagram is not saved. Do not quit Scilab or "
-#~ msgstr "Two schemat nie został zapisany. Nie wychodź ze Scilab albo "
+msgid "Xcos block parameter error"
+msgstr ""
 
-#~ msgid "height"
-#~ msgstr "wysokość"
-
-#~ msgid "current choice is "
-#~ msgstr "bieżacy wybór to "
-
-#~ msgid "scs_show active..."
-#~ msgstr "scs_show jest aktywny..."
-
-#~ msgid "scicos unexpected error,please report..."
-#~ msgstr "Nieoczekiwany błąd Scicos. Proszę poinformować ..."
-
-#~ msgid "width"
-#~ msgstr "szerokość"
-
-#~ msgid "Exit"
-#~ msgstr "Wyjście"
+msgid "scs_show active..."
+msgstr "scs_show jest aktywny..."

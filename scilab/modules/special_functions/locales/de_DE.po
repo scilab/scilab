@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-11-01 19:10+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:39+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: de\n"
 
 #, c-format
@@ -64,20 +64,5 @@ msgstr ""
 "erweitertem Bereich\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-#~ msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Wert erwartet.\n"
-
-#, c-format
-#~ msgid "Function %s is obsolete."
-#~ msgstr "Funktion %s ist obsolet."
-
-#, c-format
-#~ msgid "Please use %s instead."
-#~ msgstr "Bitte benutzen Sie %s stattdessen."
-
-#, c-format
-#~ msgid "This function will be permanently removed in Scilab %s"
-#~ msgstr "Diese Funktion wird dauerhaft in Scilab %s entfernt."
-
-#~ msgid "Warning: "
-#~ msgstr "Warnung: "
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Wert erwartet.\n"

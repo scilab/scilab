@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-10 05:34+0000\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: uk\n"
 
 #, c-format
@@ -47,9 +47,6 @@ msgstr " було обрізано до %s.\n"
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr " рядок вхідних даних перевищує розміри буфера: %d\n"
-
-msgid "\"unknown data\""
-msgstr "«невідомі дані»"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -210,11 +207,6 @@ msgstr "%s: помилкові вхідні параметри.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -519,13 +511,13 @@ msgstr "Запис розрідженої матриці визначено дв
 msgid "Argument type must be boolean.\n"
 msgstr "Типом параметра має бути «boolean».\n"
 
-msgid "Arguments are :\n"
-msgstr "Параметри:\n"
-
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
+
+msgid "Bad call to a scilab function ?\n"
+msgstr "Помилковий виклик функції Scilab?\n"
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -608,15 +600,8 @@ msgid "Eye variable undefined in this context.\n"
 msgstr "Змінну одиничної матриці у цьому контексті не визначено.\n"
 
 #, c-format
-msgid ""
-"Fatal error!!! Your variables have been saved in the file : %s\n"
-"                                   Bad call to a scilab function ?\n"
-"                                   Otherwise, send a bug report to :\n"
-msgstr ""
-"Критична помилка!!! Ваші змінні було збережено до файла %s\n"
-"                                   Помилковий виклик функції scilab?\n"
-"                                   Якщо це не так, надішліть звіт про ваду "
-"за адресою:\n"
+msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
+msgstr "Критична помилка! Значення ваших змінних збережено у файлі: %s\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -857,8 +842,8 @@ msgstr "Не реалізовано у Scilab…\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Тут не можна використовувати порожню змінну.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "У операндами / і \\ не повинні бути значення NaN та Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -875,6 +860,9 @@ msgstr "Невдала спроба оптимізації: повертаємо
 
 msgid "Optimization stops because too small variations for x.\n"
 msgstr "Зупинка оптимізації через занадто малу зміну x.\n"
+
+msgid "Otherwise, send a bug report to :"
+msgstr "Якщо це не допоможе, створіть звіт щодо вади за адресою:"
 
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr "Режим призупинки: введіть порожній рядок, щоб поновити обчислення.\n"
@@ -1077,6 +1065,9 @@ msgstr "Невизначена змінна.\n"
 msgid "Undefined variable: %s\n"
 msgstr "Невизначена змінна: %s\n"
 
+msgid "Unknown data.\n"
+msgstr "Невідомі дані.\n"
+
 msgid "Unknown file format.\n"
 msgstr "Невідомий формат файла.\n"
 
@@ -1231,8 +1222,8 @@ msgstr "Помилковий перший параметр.\n"
 msgid "Wrong input argument %d.\n"
 msgstr "Помилковий вхідний параметр %d.\n"
 
-msgid "Wrong number of input arguments:\n"
-msgstr "Помилкова кількість вхідних параметрів:\n"
+msgid "Wrong number of input arguments."
+msgstr "Помилкова кількість вхідних параметрів."
 
 msgid ""
 "Wrong number of input arguments: This function has no input argument.\n"
@@ -1240,8 +1231,8 @@ msgstr ""
 "Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
 "параметрів\n"
 
-msgid "Wrong number of output arguments\n"
-msgstr "Помилкова кількість вихідних параметрів\n"
+msgid "Wrong number of output arguments.\n"
+msgstr "Помилкова кількість вихідних параметрів.\n"
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
@@ -1485,124 +1476,41 @@ msgid "varargout keyword cannot be used here.\n"
 msgstr "Тут не можна використовувати ключове слово varargout.\n"
 
 #, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: обробка типу %s неможлива: визначте функцію %s2%s."
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"
+msgid "%s: Wrong export format: %s"
+msgstr "%s: помилковий формат експорту: %s"
 
 #, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
-#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
-
-#~ msgid "%: This method is NOT implemented.\n"
-#~ msgstr "%: цей метод ще не реалізовано.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
 
 #, c-format
-#~ msgid "%s: Th colocation matrix is singular.\n"
-#~ msgstr "%s: матриця колокації є виродженою.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
 
 #, c-format
-#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
-#~ msgstr "%s: обробка типу %s неможлива: визначте функцію %s2%s."
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати тип «boolean».\n"
 
 #, c-format
-#~ msgid "%s: Wrong export format: %s"
-#~ msgstr "%s: помилковий формат експорту: %s"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип параметра №%d: слід використовувати тип «boolean».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-#~ "''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-#~ "«%s», «%s», «%s», «%s» або «%s».\n"
-
-#, c-format
-#~ msgid "%s: singular or assymetric problem.\n"
-#~ msgstr "%s: вироджена або несиметрична задача.\n"
-
-#, c-format
-#~ msgid "%s: system cannot be displayed in this page.\n"
-#~ msgstr "%s: показати систему на цій сторінці неможливо.\n"
-
-#~ msgid "'o' format not allowed."
-#~ msgstr "Не можна використовувати формат «o»."
-
-#~ msgid "A sparse matrix entry is defined with two differents values.\n"
-#~ msgstr "Запис розрідженої матриці визначено двома різними значеннями.\n"
-
-#, c-format
-#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-#~ msgstr ""
-#~ "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
-
-#~ msgid "Binary direct acces files must be opened by 'file'.\n"
-#~ msgstr ""
-#~ "Бінарні файли безпосереднього доступ слід відкривати за допомогою «file».\n"
-
-#~ msgid "Error while writing in file,(disk full or deleted file.\n"
-#~ msgstr ""
-#~ "Помилка під час спроби запису до файла (диск переповнено або файл "
-#~ "вилучено).\n"
-
-#, c-format
-#~ msgid ""
-#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
-#~ "Bad call to a scilab function ?\n"
-#~ "Otherwise, send a bug report to :\n"
-#~ msgstr ""
-#~ "Критична помилка! Ваші змінні було збережено до файла %s\n"
-#~ "Помилковий виклик функції Scilab?\n"
-#~ "Якщо це не так, надішліть звіт про ваду на адресу:\n"
-
-#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-#~ msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
-
-#, c-format
-#~ msgid "Rank defficient. rank = %d\n"
-#~ msgstr "Недостатній ранг. ранг = %d\n"
-
-#, c-format
-#~ msgid "Too many global variables! , max number is %d.\n"
-#~ msgstr ""
-#~ "Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
-
-#~ msgid "Too many input/output entries for hilited block.\n"
-#~ msgstr "Занадто багато вхідних/вихідних записів у позначеному блоці.\n"
-
-#~ msgid "Too many input/output ports for hilited block.\n"
-#~ msgstr "Занадто багато вхідних/вихідних портів у позначеному блоці.\n"
-
-#~ msgid ""
-#~ "Warning: Jacobian external is given, but\n"
-#~ " not used!,  see %ODEOPTIONS(6).\n"
-#~ msgstr ""
-#~ "Попередження: вказано зовнішню функцію якобіана, але\n"
-#~ " її не використано! Див. %ODEOPTIONS(6).\n"
-
-#~ msgid ""
-#~ "Warning: integration not completed! check tolerance parameters or step "
-#~ "size.\n"
-#~ msgstr ""
-#~ "Попередження: інтегрування не завершено! Перевірте параметри точності "
-#~ "обчислень або розміру кроку.\n"
-
-#~ msgid "Warning: obsolete use of eye rand or ones.\n"
-#~ msgstr "Попередження: застаріле використання eye, rand або ones.\n"
-
-#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-#~ msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: показати систему на цій сторінці неможливо.\n"

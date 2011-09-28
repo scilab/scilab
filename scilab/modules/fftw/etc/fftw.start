@@ -7,9 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function fftptr = startModule()
-  fftptr = fft;
-  
+function startModule()
   if %fftw then
     if getos() == "Windows" then
       librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
@@ -22,8 +20,8 @@ function fftptr = startModule()
 
     if ( loadfftwlibrary(librarynamefftw3) | loadfftwlibrary(librarynamefftw)) then
       // replace scilab fft function by fftw
-      clearfun fft;
-      fftptr = fftw;
+      clearfun('fft');
+      newfun('fft', funptr('fftw'));
 
     else  // if ( loadfftwlibrary(librarynamefftw) )
       settings_file = pathconvert(SCIHOME+"/.scilab_settings", %f, %t)
@@ -37,7 +35,7 @@ function fftptr = startModule()
                   _("This module requires : "+librarynamefftw+" (GPL licence).");
                   _("Scilab will use standard fft by default until you install this library.");
                   _("See help fftw for more informations.")];
-      
+
         if getscilabmode() == "STD" then
           messagebox(MSG_FTTW,"","info");
         else
@@ -45,12 +43,10 @@ function fftptr = startModule()
         end
         mputl("displayWarningFFTW=no",SCIHOME+"/.scilab_settings")
       end
-    end // if ( loadfftwlibrary(librarynamefftw) ) 
+    end // if ( loadfftwlibrary(librarynamefftw) )
   end
 
 endfunction
 
-funcprot(0);
-fft = startModule();
-funcprot(1);
+startModule();
 clear startModule;

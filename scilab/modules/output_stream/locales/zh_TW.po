@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-11-20 05:25+0000\n"
-"Last-Translator: fracting <fracting@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:53+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -55,11 +55,6 @@ msgstr " 已截尾 (truncated) 成 : %s.\n"
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr " 輸入行長度超過緩衝區長度: %d\n"
-
-#
-# File: src/c/errmsg.c, line: 1614
-msgid "\"unknown data\""
-msgstr "\"未知數據\""
 
 #
 # File: src/c/errmsg.c, line: 463
@@ -249,10 +244,6 @@ msgstr "%s: 輸入參數錯誤.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: 輸入參數數目錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: Wrong number of input arguments: at least %d expected.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -579,14 +570,11 @@ msgstr ""
 msgid "Argument type must be boolean.\n"
 msgstr "參數型態須為  boolean.\n"
 
-#
-# File: src/c/errmsg.c, line: 424
-# File: src/c/errmsg.c, line: 440
-msgid "Arguments are :\n"
-msgstr "參數為 :\n"
-
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
+
+msgid "Bad call to a scilab function ?\n"
 msgstr ""
 
 #
@@ -707,10 +695,7 @@ msgid "Eye variable undefined in this context.\n"
 msgstr "此語境中 Eye 變數(單位元素)未定義.\n"
 
 #, c-format
-msgid ""
-"Fatal error!!! Your variables have been saved in the file : %s\n"
-"                                   Bad call to a scilab function ?\n"
-"                                   Otherwise, send a bug report to :\n"
+msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
 msgstr ""
 
 #, c-format
@@ -1078,7 +1063,7 @@ msgstr "未在  scilab 中實作 (implemented)...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "此處不能使用空 (Null) 變數 .\n"
 
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
 
 #
@@ -1105,6 +1090,9 @@ msgstr "最佳化失敗 : 重回初始點.\n"
 # File: src/c/msgs.c, line: 597
 msgid "Optimization stops because too small variations for x.\n"
 msgstr "最佳化因 x 變化過小而停止.\n"
+
+msgid "Otherwise, send a bug report to :"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 685
@@ -1396,6 +1384,9 @@ msgstr ""
 msgid "Undefined variable: %s\n"
 msgstr "未定義變數 : %s\n"
 
+msgid "Unknown data.\n"
+msgstr ""
+
 #
 # File: src/c/errmsg.c, line: 483
 msgid "Unknown file format.\n"
@@ -1592,14 +1583,14 @@ msgstr "第一參數錯誤.\n"
 msgid "Wrong input argument %d.\n"
 msgstr "參數 %d 錯誤.\n"
 
-msgid "Wrong number of input arguments:\n"
+msgid "Wrong number of input arguments."
 msgstr ""
 
 msgid ""
 "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
-msgid "Wrong number of output arguments\n"
+msgid "Wrong number of output arguments.\n"
 msgstr ""
 
 msgid ""
@@ -1901,114 +1892,36 @@ msgstr "參數 %d 的時間域未定義.\n"
 msgid "varargout keyword cannot be used here.\n"
 msgstr "此處克可使用保留字 varargout.\n"
 
-#
-# File: src/c/errmsg.c, line: 419
-#~ msgid "Function has no input argument...\n"
-#~ msgstr "沒有輸入參數的函數...\n"
-
-#
-# File: src/c/errmsg.c, line: 423
-#~ msgid "Wrong number of arguments in function call...\n"
-#~ msgstr "函數呼叫時參數數目錯誤...\n"
-
-#
-# File: src/c/errmsg.c, line: 435
-#~ msgid "Function has no output.\n"
-#~ msgstr "沒有輸出結果的函數...\n"
-
-#
-# File: src/c/errmsg.c, line: 439
-#~ msgid "Incorrect # of outputs in the function\n"
-#~ msgstr "函數之輸出參數數目錯誤\n"
-
-#
-# File: src/c/errmsg.c, line: 478
-#~ msgid "No more logical units available!\n"
-#~ msgstr "邏輯單元已用完!\n"
-
-#
-# File: src/c/errmsg.c, line: 488
 #, c-format
-#~ msgid ""
-#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
-#~ "Bad call to a scilab function ?\n"
-#~ "Otherwise, send a bug report to :\n"
-#~ msgstr ""
-#~ "嚴重錯誤!!! 你的變數曾經存在檔案 : %s 內\n"
-#~ "是否錯誤呼叫 scilab 函數 ?\n"
-#~ "否則, 請交問題回報給 :\n"
-
-#
-# File: src/c/errmsg.c, line: 633
-#, c-format
-#~ msgid "%s: singular or assymetric problem.\n"
-#~ msgstr "%s: 奇異或非對稱問題.\n"
-
-#
-# File: src/c/errmsg.c, line: 929
-#~ msgid "%: This method is NOT implemented.\n"
-#~ msgstr "%: 此法未實做 (implemented).\n"
-
-#
-# File: src/c/errmsg.c, line: 1198
-#~ msgid "A sparse matrix entry is defined with two differents values.\n"
-#~ msgstr "稀疏矩陣之實體是由兩個不同數值定義.\n"
-
-#
-# File: src/c/errmsg.c, line: 1327
-#~ msgid "Binary direct acces files must be opened by 'file'.\n"
-#~ msgstr "二元直接存取檔 (Binary direct acces files)  必須以 'file' 開啟.\n"
-
-#
-# File: src/c/errmsg.c, line: 1419
-#, c-format
-#~ msgid "%s: Th colocation matrix is singular.\n"
-#~ msgstr "%s:  colocation 矩陣為奇異.\n"
-
-#
-# File: src/c/errmsg.c, line: 1430
-#, c-format
-#~ msgid "Too many global variables! , max number is %d.\n"
-#~ msgstr "全域變數太多! , 最高數為 %d.\n"
-
-#
-# File: src/c/errmsg.c, line: 1435
-#~ msgid "Error while writing in file,(disk full or deleted file.\n"
-#~ msgstr "寫入檔案時錯誤,(硬碟已滿或檔案已清除.\n"
-
-#
-# File: src/c/msgs.c, line: 555
-#~ msgid "Warning: obsolete use of eye rand or ones.\n"
-#~ msgstr "警告: 用法  eye rand或 ones 已廢棄.\n"
-
-#
-# File: src/c/msgs.c, line: 562
-#, c-format
-#~ msgid "Rank defficient. rank = %d\n"
-#~ msgstr "矩陣秩缺陷. rank = %d\n"
-
-#
-# File: src/c/msgs.c, line: 1165
-#~ msgid "Too many input/output ports for hilited block.\n"
-#~ msgstr "所選擇之方塊之輸入/輸出埠 (ports)太多.\n"
-
-#
-# File: src/c/msgs.c, line: 1171
-#~ msgid "Too many input/output entries for hilited block.\n"
-#~ msgstr "所選擇之方塊之輸入/輸出實體(entries)太多.\n"
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Type %s is not handled : Define the function %s2%s."
 
 #, c-format
-#~ msgid "%s: Type %s is not handled : Define the function %s2%s."
-#~ msgstr "%s: Type %s is not handled : Define the function %s2%s."
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Wrong export format: %s"
 
 #, c-format
-#~ msgid "%s: Wrong export format: %s"
-#~ msgstr "%s: Wrong export format: %s"
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Wrong number of input argument(s): %d to %d expected."
 
 #, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
-#~ msgstr "%s: Wrong number of input argument(s): %d to %d expected."
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Wrong number of input arguments: %d to %d expected"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
-#~ msgstr "%s: Wrong number of input arguments: %d to %d expected"
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: 第 %d 參數的型態錯誤: 應該是布林(邏輯)值.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: 系統無法在此頁中顯示.\n"

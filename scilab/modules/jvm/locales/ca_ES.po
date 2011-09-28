@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ca\n"
 
 #, c-format
@@ -67,7 +67,6 @@ msgstr ""
 "\n"
 "Error de la JVM a AttachCurrentThread: No s'ha pogut afegir el fil actual.\n"
 
-#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -168,6 +167,11 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "Error: No s'ha pogut analitzar el fitxer %s\n"
 
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "If you are using a binary version of Scilab, please report a bug "
@@ -247,9 +251,3 @@ msgstr "Avís: No s'ha pogut trobar el fitxer classpath de declaracions %s.\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "El format de %s és incorrecte.\n"
-
-#~ msgid "Console"
-#~ msgstr "Consola"
-
-#~ msgid "Scilab Console"
-#~ msgstr "Consola de l'Scilab"

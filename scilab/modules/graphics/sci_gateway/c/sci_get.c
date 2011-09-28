@@ -103,7 +103,7 @@ int sci_get(char *fname,unsigned long fname_len)
 				return FALSE;
 			}
 			LhsVar(1) = Rhs+1;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else /* tclsci handle: should no more happen */
 		{
@@ -167,7 +167,7 @@ int sci_get(char *fname,unsigned long fname_len)
 		if (sciGet(NULL, cstk(l2)) != 0) 
 		{
 			/* An error has occured */
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 	}
@@ -180,7 +180,7 @@ int sci_get(char *fname,unsigned long fname_len)
 			if (sciGet(pobj, cstk(l2)) != 0)
 			{
 				/* An error has occured */
-				C2F(putlhsvar)();
+				PutLhsVar();
 				return 0;
 			}
 		}
@@ -192,7 +192,7 @@ int sci_get(char *fname,unsigned long fname_len)
 	}
 
 	LhsVar(1) = Rhs + 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

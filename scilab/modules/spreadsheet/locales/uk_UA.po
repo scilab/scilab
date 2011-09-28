@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-01-16 18:49+0000\n"
+"PO-Revision-Date: 2011-09-01 09:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: uk\n"
 
 #, c-format
@@ -280,28 +280,31 @@ msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: спроба декодування %s призвела до помилки %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
 
 #, c-format
-#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-#~ "«%s».\n"
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
-#~ msgid "%s: file %s does not exist.\n"
-#~ msgstr "%s: файла з назвою «%s» не існує.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати «%s» або "
-#~ "«%s».\n"
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: файла з назвою «%s» не існує.\n"
+
+msgid "Read a xls file"
+msgstr "Читання з файла xls"

@@ -49,7 +49,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
   if ( m3*n3 == 0 )
 	{
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	} 
 
@@ -77,7 +77,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
 	freeArrayOfString(Str,m3*n3);
 
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
   return 0;
 

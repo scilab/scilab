@@ -1,0 +1,37 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// Define a compressed list of symmetric block-diagonal matrices.
+// There are 3 matrices in the list, as indicated by the 3 columns in CA.
+// Only the nonzero entries are stored in CA. 
+// Only the upper part of the symmetric diagonal matrices are stored in CA.
+CA = [
+2,1,2;  
+1,2,2;   
+2,1,2;   
+3,1,3;   
+1,3,4;   
+3,1,4
+];
+// Each of the 3 block-diagonal matrices has 2 blocks. 
+// Define the size of the two blocks:
+// the first block has size 2, 
+// the second block has size 2.
+blocksizes=[2,2];
+// Unpack the matrices.
+A=unpack(CA,blocksizes);
+A_expected = [
+2,1,2;  
+1,2,2;   
+1,2,2;   
+2,1,2;   
+3,1,3;   
+1,3,4;   
+1,3,4;   
+3,1,4
+];
+assert_checkequal(A,A_expected);

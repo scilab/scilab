@@ -23,9 +23,10 @@ str = string ( s1 );
 expected = [
 "Optim Simplex Object:"
 "====================="
-"Vertex #1/3 : fv=24, x=-2 1"
-"Vertex #2/3 : fv=93, x=-1 3"
-"Vertex #3/3 : fv=36, x=-3 2"
+"nbve: 3"
+"n: 2"
+"x: 3-by-2 matrix"
+"fv: 3-by-1 matrix"
 ];
 assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
@@ -43,10 +44,10 @@ str = string ( s1 );
 expected = [
 "Optim Simplex Object:"
 "====================="
-"Vertex #1/4 : fv=24, x=-2 1"
-"Vertex #2/4 : fv=93, x=-1 3"
-"Vertex #3/4 : fv=36, x=-3 2"
-"Vertex #4/4 : fv=36, x=-3 2" 
+"nbve: 4"
+"n: 2"
+"x: 4-by-2 matrix"
+"fv: 4-by-1 matrix"
 ];
 assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );

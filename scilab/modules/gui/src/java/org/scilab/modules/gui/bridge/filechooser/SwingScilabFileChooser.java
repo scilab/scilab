@@ -157,7 +157,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 					if (file.exists()) {
 						int actionDialog = JOptionPane.showConfirmDialog(this,
 								Messages.gettext("Replace existing file?"),
-								Messages.gettext("File already exist"),
+								Messages.gettext("File already exists"),
 								JOptionPane.YES_NO_OPTION);
 
 						if (actionDialog != JOptionPane.YES_OPTION) {

@@ -11,6 +11,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "Signal.hxx"
+#include "GiwsException.hxx"
 
 extern "C"
 {
@@ -55,7 +56,7 @@ int sci_notify(char *fname,unsigned long fname_len)
 
 	if ( iType != sci_strings )
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
@@ -69,14 +70,14 @@ int sci_notify(char *fname,unsigned long fname_len)
 
 	if ( m1 * n1 != 1 )
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
 	lenStVarOne = (int*)MALLOC(sizeof(int));
 	if (lenStVarOne == NULL)
 	{
-		Scierror(999,_("%s: No more memory.\n"), fname);
+		Scierror(999, _("%s: No more memory.\n"), fname);
 		return 0;
 	}
 
@@ -91,7 +92,7 @@ int sci_notify(char *fname,unsigned long fname_len)
 	pStVarOne = (char **)MALLOC(sizeof(char*));
 	if (pStVarOne == NULL)
 	{
-		Scierror(999,_("%s: No more memory.\n"), fname);
+		Scierror(999, _("%s: No more memory.\n"), fname);
 		return 0;
 	}
 
@@ -99,13 +100,22 @@ int sci_notify(char *fname,unsigned long fname_len)
 
 	/* get strings */
 	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-	if(sciErr.iErr)
+	if (sciErr.iErr)
 	{
 		printError(&sciErr, 0);
 		return 0;
 	}
 
-	Signal::notify(getScilabJavaVM(), pStVarOne[0]);
+	try
+	{
+	    Signal::notify(getScilabJavaVM(), pStVarOne[0]);
+	}
+	catch (const GiwsException::JniException & e)
+	{
+	    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+	    return 0;
+	}
+
 	freeArrayOfString(pStVarOne, 1);
 
 	LhsVar(1) = 0;

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 08:36+0000\n"
+"PO-Revision-Date: 2011-09-01 09:33+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: it\n"
 
 #, c-format
@@ -282,34 +282,32 @@ msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: la decodifica di %s ha portato all'errore %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d è sbagliato: era atteso \"%s\" o \"%s\".\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
-#~ msgid "%s: file %s does not exist.\n"
-#~ msgstr "%s: il file %s non esiste.\n"
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-#~ "stringa.\n"
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-#~ "stringa.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
+"'%s'.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso ''%s'' o "
-#~ "''%s''.\n"
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: il file %s non esiste.\n"
 
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
-#~ "''%s''.\n"
+msgid "Read a xls file"
+msgstr ""

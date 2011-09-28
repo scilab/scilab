@@ -33,21 +33,21 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
   if exists('peout','local')==0 then peout=[],end
   if exists('gr_i','local')==0 then gr_i=[],end
   if exists('id','local')==0 then id='',end
-  if exists('in_implicit','local')==0 then 
+  if exists('in_implicit','local')==0 then
     I='E';
     in_implicit=I(ones(pin(:)));
   end
-  if exists('out_implicit','local')==0 then 
+  if exists('out_implicit','local')==0 then
     I='E';
     out_implicit=I(ones(pout(:)));
-  end 
+  end
   if exists('in_style','local')==0 then
     S="";
-    in_style=S(ones(pin(:)));
+    in_style="" + S(ones(pin(:)));
   end
   if exists('out_style','local')==0 then
     S="";
-    out_style=S(ones(pout(:)));
+    out_style="" + S(ones(pout(:)));
   end
 
   graphics=mlist(['graphics','orig','sz','flip','theta','exprs','pin',..

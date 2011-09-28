@@ -164,7 +164,6 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_resume.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_setbpt.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_useascommand.f"/>
 		<File RelativePath="seteol.f"/>
 		<File RelativePath="setgetmode.f"/>
 		<File RelativePath="setippty.f"/>

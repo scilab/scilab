@@ -233,6 +233,8 @@ function this = neldermead_variable ( this )
 
 
 
+
+
         //
         xcoords = optimsimplex_getallx ( simplex )
         this = neldermead_storehistory ( this , n , flow , xlow , xcoords );
@@ -718,6 +720,7 @@ function [ this , terminate , status ] = neldermead_termination (this , ...
         end
     end
     //
+    // Obsolete option: maintain for backward compatibility
     // Criteria #10 : variance of function values
     //
     if ( ~terminate ) then
@@ -919,32 +922,34 @@ endfunction
 //   Computes the initial simplex, depending on the -simplex0method.
 //
 function this = neldermead_startup (this)
+    //
     // 0. Check that the cost function is correctly connected
     // Note: this call to the cost function is not used, but helps the
     // user while he is tuning his object.
     if ( this.checkcostfunction ) then
         this.optbase = optimbase_checkcostfun ( this.optbase );
     end
+    //
     // 1. If the problem has bounds, check that they are consistent
     [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
     if ( hasbounds ) then
         this.optbase = optimbase_checkbounds ( this.optbase );
     end
+    //
     // 2. Get the initial guess and compute the initial simplex
     x0 = optimbase_cget ( this.optbase , "-x0" );
     select this.simplex0method
     case "given" then
-        [ simplex0 , this ] = optimsimplex_new ( this.coords0 , ...
-        costf_transposex , this );
+        [ simplex0 , this ] = optimsimplex_new ( this.coords0 , [] , this );
     case "axes" then
         [ simplex0 , this ] = optimsimplex_new ( "axes" , ...
-        x0.' , costf_transposex , this.simplex0length , this );
+        x0.' , [] , this.simplex0length , this );
     case "spendley" then
         [ simplex0 , this ] = optimsimplex_new ( "spendley" , ...
-        x0.' , costf_transposex , this.simplex0length , this );
+        x0.' , [] , this.simplex0length , this );
     case "pfeffer" then
         [ simplex0 , this ] = optimsimplex_new ( "pfeffer" , ...
-        x0.' , costf_transposex , this.simplex0deltausual , ...
+        x0.' , [] , this.simplex0deltausual , ...
         this.simplex0deltazero , this );
     case "randbounds" then
         if ( this.boxnbpoints == "2n" ) then
@@ -956,7 +961,7 @@ function this = neldermead_startup (this)
             error ( msprintf(gettext("%s: Randomized bounds initial simplex is not available without bounds." ), "neldermead_startup"))
         end
         [ simplex0 , this ] = optimsimplex_new ( "randbounds" , x0.' , ...
-        costf_transposex , this.optbase.boundsmin , this.optbase.boundsmax , ...
+        [] , this.optbase.boundsmin , this.optbase.boundsmax , ...
         this.boxnbpointseff  , this );
     else
         errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"), "neldermead_startup", this.simplex0method);
@@ -964,7 +969,6 @@ function this = neldermead_startup (this)
     end
     //
     // 3. Scale the initial simplex into the bounds and the nonlinear inequality constraints, if any
-    //
     [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     if ( hasbounds | hasnlcons ) then
         // Check that initial guess is feasible
@@ -984,18 +988,33 @@ function this = neldermead_startup (this)
         end
     end
     //
-    // 4. Store the simplex
+    // 4. Compute the function values
+    nbve = optimsimplex_getnbve ( simplex0 );
+    for ive = 1 : nbve
+        // Transpose, because optimsimplex returns row vectors
+        x = optimsimplex_getx ( simplex0 , ive ).';
+        if ( hasnlcons ) then
+            [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , x , 2 );
+        else
+            [ this.optbase , fv , index ] = optimbase_function ( this.optbase , x , 2 );
+        end
+        // Transpose xp, which is a column vector
+        simplex0 = optimsimplex_setve ( simplex0 , ive , fv , x.' );
+    end
     //
+    // 5. Store the simplex
     this.simplex0 = optimsimplex_destroy ( this.simplex0 );
     this.simplex0 = simplex0;
     this.simplexsize0 = optimsimplex_size ( simplex0 );
-    // 5. Store initial data into the base optimization component
+    //
+    // 6. Store initial data into the base optimization component
     fx0 = optimsimplex_getfv ( this.simplex0 , 1 );
     this.optbase = optimbase_set ( this.optbase , "-fx0" , fx0 );
     this.optbase = optimbase_set ( this.optbase , "-xopt" , x0 );
     this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
     this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
-    // 6. Initialize the termination criteria
+    //
+    // 7. Initialize the termination criteria
     this = neldermead_termstartup ( this );
 endfunction
 //
@@ -1003,6 +1022,7 @@ endfunction
 //   Scale the simplex into the 
 //   nonlinear inequality constraints, if any.
 //   Scale toward x0, which is feasible.
+//   Do not update the function values.
 // Arguments
 //   simplex0 : the initial simplex
 //
@@ -1014,23 +1034,18 @@ function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
         // Transpose, because optimsimplex returns row vectors
         x = optimsimplex_getx ( simplex0 , ive ).';
         this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at ["+...
-        _strvec(x)+"]... " , ...
-        ive , nbve ));
+        _strvec(x)+"]... " , ive , nbve ));
         // Transpose x into a row vector
         [ this , status , xp ] = _scaleinconstraints ( this , x , x0 );
         if ( ~status ) then
-            errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), ...
+            lclmsg = gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints")
+            errmsg = msprintf(lclmsg, ...
             "neldermead_startup", ive , nbve , _strvec(x));
             error(errmsg);
         end
         if ( or ( x <> xp ) ) then
-            if ( hasnlcons ) then
-                [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
-            else
-                [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xp , 2 );
-            end
             // Transpose xp, which is a column vector
-            simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
+            simplex0 = optimsimplex_setx ( simplex0 , ive , xp.' );
         end
     end
 endfunction
@@ -1040,26 +1055,23 @@ endfunction
 //   nonlinear inequality constraints, if any.
 //   Scale to the centroid of the points
 //   which satisfy the constraints.
+//   Do not update the function values.
 // Notes
 //   This is Box's method for scaling.
 //   It is unsure, since the centroid of the points
 //   which satisfy the constraints may not be feasible.
-// TODO : test !
-// TODO : insert a note for that specific point
 // Arguments
 //   
 //
 function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
     [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
     nbve = optimsimplex_getnbve ( simplex0 );
-    xref = optimsimplex_getx ( simplex0 , 1 ).';
     for ive = 2 : nbve
         xref = optimsimplex_xbar ( simplex0 , ive:nbve ).';
         // Transpose, because optimsimplex returns row vectors
         x = optimsimplex_getx ( simplex0 , ive ).';
         this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at ["+...
-        _strvec(x)+"]... " , ...
-        ive , nbve ));
+        _strvec(x)+"]... " , ive , nbve ));
         // Transpose x into a row vector
         [ this , status , xp ] = _scaleinconstraints ( this , x , xref );
         if ( ~status ) then
@@ -1068,13 +1080,8 @@ function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
             error(errmsg);
         end
         if ( or ( x <> xp ) ) then
-            if ( hasnlcons ) then
-                [ this.optbase , fv , c , index ] = optimbase_function ( this.optbase , xp , 2 );
-            else
-                [ this.optbase , fv , index ] = optimbase_function ( this.optbase , xp , 2 );
-            end
             // Transpose xp, which is a column vector
-            simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
+            simplex0 = optimsimplex_setx ( simplex0 , ive , xp.' );
         end
     end
 endfunction

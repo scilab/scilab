@@ -38,7 +38,7 @@ int sci_xls_open(char *fname,unsigned long fname_len)
 {
 #undef IN
 	#define max_char_xls_open 256
-	int i = 0,k = 0,m1 = 0,n1 = 0,l1 = 0,l2 = 0,one = 1,fd = 0,f_swap = 0;
+	int i = 0,m1 = 0,n1 = 0,l1 = 0,l2 = 0,one = 1,fd = 0,f_swap = 0;
 	int ierr = 0,ns = 0,result = 0;
 	double res;
 	char **sst = NULL;
@@ -214,7 +214,7 @@ int sci_xls_open(char *fname,unsigned long fname_len)
 	LhsVar(3)= Rhs+3;
 	LhsVar(4)= Rhs+4;
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

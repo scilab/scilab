@@ -12,52 +12,37 @@
 
 function %cpr = xcos_simulate(scs_m, needcompile)
 
-//-- BJ : Alias Warning Function
+// Load the block libs if not defined
   prot = funcprot();
   funcprot(0);
-
-if ~isdef('scicos_menuslib') then
-  load('SCI/modules/scicos/macros/scicos_menus/lib')
-end
-
-if exists('scicos_scicoslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-end
-
-if exists('scicos_autolib')==0 then
-    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-end
-
-if exists('scicos_utilslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
-end
-
-// Define Scicos data tables ===========================================
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
-  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
-// =====================================================================
-
-if ~exists("scicos_diagram") then
-    loadXcosLibs();
-end
-
+    if ~exists("scicos_diagram") then
+        loadXcosLibs();
+    end
   funcprot(prot);
-  //-- end
+
+    // Hook according to SEP066
+    if isdef("pre_xcos_simulate") then
+      try
+      continueSimulation = pre_xcos_simulate(scs_m, needcompile);
+      if ~continueSimulation then
+        %cpr = []
+        return
+      end
+      catch
+      disp(_("Error occured in pre_xcos_simulate: Cancelling simulation."))
+      %cpr = []
+      return
+      end
+    end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-   xcos_workspace_init()
+  xcos_workspace_init()
 
- 
+
 //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
-  solver = tolerances(6) ; 
+  solver = tolerances(6) ;
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
 
@@ -75,43 +60,43 @@ end
     %state0 = %cpr.state;
     alreadyran = %f;
   end
-  
+
   tf          = scs_m.props.tf;
   %zoom       = 1.4;
   Select      = [];
-  
+
   //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
-  solver = tolerances(6) ; 
+  solver = tolerances(6) ;
 
   // Propagate context through all blocks
   %scicos_context = struct();
   context = scs_m.props.context;
   //** context eval here
   [%scicos_context, ierr] = script2var(context, %scicos_context);
-  
+
   //for backward compatibility for scifunc
   if ierr==0 then
     %mm = getfield(1,%scicos_context)
     for %mi=%mm(3:$)
       ierr = execstr(%mi+'=%scicos_context(%mi)','errcatch')
       if ierr<>0 then
-	break; //** in case of error exit 
+	break; //** in case of error exit
       end
     end
   end
   //end of for backward compatibility for scifuncpagate context values
-  
+
   [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters evaluation."), "xcos_simulate"));
+    error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
   end
-  
+
   //** update parameters or compilation results
   [%cpr,%state0_n,needcompile,alreadyran,ok] = do_update(%cpr,%state0,needcompile)
   if ~ok then
-    error(msprintf(gettext("%s: Error during block parameters update."), "xcos_simulate"));
+    error(msprintf(gettext("%s: Error during block parameters update.\n"), "xcos_simulate"));
   end
 
   //** if alreadyran then set the var choice
@@ -154,12 +139,12 @@ end
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
     message(["Diagram has been compiled for implicit solver"
              "switching to implicit Solver"])
-    solver = 100 ; //** Magic number 
+    solver = 100 ; //** Magic number
     tolerances(6) = solver ; //** save Magic number solver type
   elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,'*')) & (solver==100 & size(%cpr.state.x,'*')<>0) then
     message(["Diagram has been compiled for explicit solver"
              "switching to explicit Solver"])
-    solver = 0 ; //** Magic number 
+    solver = 0 ; //** Magic number
     tolerances(6) = solver ; //** save Magic number solver type
   end
 
@@ -176,15 +161,15 @@ end
 
     select choix(to_do)
 
-      case "Continue" then 
+      case "Continue" then
         needstart = %f ;
         state     = %cpr.state ;
 
-      case "Restart" then 
+      case "Restart" then
         needstart = %t ;
         state     = %state0 ;
 
-      case "End" then 
+      case "End" then
         state     = %cpr.state ;
         needstart = %t ;
         tf        = scs_m.props.tf;
@@ -217,11 +202,11 @@ end
           end
           ok = %f
         end
-       
+
         return
     end
-  
-  else //** Normal first start simulation 
+
+  else //** Normal first start simulation
 
     needstart = %t
     state     = %state0
@@ -242,18 +227,18 @@ end
     %tcur      = 0
     %cpr.state = %state0
     tf         = scs_m.props.tf;
-    if tf*tolerances==[] then 
+    if tf*tolerances==[] then
       message(["Simulation parameters not set";"use setup button"]);
       return;
     end
 
-    //** Run the normal first start simulation here 
+    //** Run the normal first start simulation here
 
     //** run scicosim via 'start' flag
     ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
                    '''start'',tolerances)','errcatch')
 
-    %cpr.state = state ; //** save the state 
+    %cpr.state = state ; //** save the state
     //** error case
     if ierr<>0 then
       str_err=split_lasterror(lasterror());
@@ -265,7 +250,7 @@ end
         //** get error cmd for the block
         disp(str_err);
         get_errorcmd(path,gettext('Initialisation problem'),str_err);
-        
+
 
       else //** simulator error
         message(['Initialisation problem:';str_err])
@@ -292,7 +277,7 @@ end
 	             '''run'',tolerances)','errcatch')
 
   %cpr.state = state
-  
+
   //** no error
   if ierr==0 then
     alreadyran = %t;
@@ -348,7 +333,7 @@ end
     end
     ok = %f;
   end
-  
+
   //restore saved variables in Scilab environment ( "To workspace" block )
   [txt,files]=returntoscilab()
   n=size(files,1)
@@ -357,6 +342,15 @@ end
     execstr(files(i)+'=struct('"values'",x,'"time'",t)')
   end
   execstr(txt)
+
+    // Hook according to SEP066
+    if isdef("post_xcos_simulate") then
+      try
+      post_xcos_simulate(%cpr, scs_m, needcompile);
+      catch
+      disp(_("Error in post_xcos_simulate: ending simulation."))
+      end
+    end
 
   needreplay = resume(needreplay);
 endfunction

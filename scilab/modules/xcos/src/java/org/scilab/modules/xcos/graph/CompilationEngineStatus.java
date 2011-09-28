@@ -94,7 +94,7 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 		 */
 		if (getCompilationData() == null || !getCompilationData().exists()) {
 			try {
-				setCompilationData(FileUtils.createTempFile());
+				setCompilationData(new File(FileUtils.createTempFile()));
 			} catch (IOException e) {
 				LOG.warn(e);
 				

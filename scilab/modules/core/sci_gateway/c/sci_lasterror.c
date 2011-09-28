@@ -101,7 +101,7 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
         clearLastError();
     }
 
-    C2F(putlhsvar)();
+    PutLhsVar();
 
     return 0;
 }

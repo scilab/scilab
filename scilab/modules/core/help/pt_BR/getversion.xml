@@ -26,9 +26,7 @@
 COMPILER = opts(1)
 ARCH = opts(2)
 or(opts == 'modelicac')
-or(opts == 'pvm')
 or(opts == 'tk')
-or(opts == 'atlas')
 RELEASE_MODE = opts($-2)
 RELEASE_DATE = opts($-1)
 RELEASE_TIME = opts($)
@@ -81,7 +79,7 @@ versionstr = getversion('overloading','string_info')
 
         <listitem>
           <para>um vetor de strings:
-          <literal>[compiler, architecture, [pvm, tk, modelicac, atlas,] release_mode, release_date, release_time]</literal></para>
+          <literal>[compiler, architecture, [tk, modelicac, ] release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -92,7 +90,7 @@ versionstr = getversion('overloading','string_info')
 
     <para>Retorna em <literal>version</literal> o nome da versão do Scilab e
     em <literal>opts</literal> build options ("opções de construção") que
-    podem ser usadas para determinar se o Scilab foi construído em pvm, tk ou
+    podem ser usadas para determinar se o Scilab foi construído em tk ou
     modelicac.</para>
   </refsection>
 
@@ -106,9 +104,7 @@ getversion()
 COMPILER = opts(1)
 ARCH = opts(2)
 or(opt == 'modelicac')
-or(opt == 'pvm')
 or(opt == 'tk')
-or(opt == 'atlas')
 RELEASE_MODE = opts($-2)
 RELEASE_DATE = opts($-1)
 RELEASE_TIME = opts($)

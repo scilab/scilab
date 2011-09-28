@@ -113,6 +113,16 @@
       almost equal if all the conditions are true.
     </para>
     <para>
+      The default value comptype="matrix" option performs the comparison for the matrices as a whole,
+      the norm of the difference of the matrices is used.
+      The comptype="element" option performs the comparison elementwise, i.e.
+      all the elements of the matrices must be almost equal. 
+      Choosing between these two comparison types must be done with care. 
+      For example, if we are checking the elementwise output of an elementary function, 
+      we should choose the "element" comparison type, since we must compare the 
+      matrix elements one after the other. 
+    </para>
+    <para>
       If the IEEE values %inf, -%inf or %nan values are in the matrices,
       then they are almost equal only if the IEEE values are
       at the same indices in the matrices.
@@ -145,12 +155,6 @@
       This is why we compare the indices where +%inf values occurs.
       We do the same for -%inf values.
       Then, the non-nan, non-infinity values are actually compared.
-    </para>
-    <para>
-      The default value comptype="matrix" option performs the comparison for the matrices as a whole,
-      the norm of the difference of the matrices is used.
-      The comptype="element" option performs the comparison elementwise, i.e.
-      all the elements of the matrices must be almost equal.
     </para>
     <para>
       In general, the relative tolerance should be

@@ -2136,8 +2136,6 @@ void sciSelectFirstSubwin( sciPointObj * parentFigure )
 
 int sciInitSelectedSubWin( sciPointObj * psubwinobj )
 {
-  sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
-
   sciInitSelectedObject( psubwinobj ) ;
 
   return 0 ;

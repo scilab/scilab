@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: \n"
 
 msgid ""
@@ -52,6 +52,9 @@ msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
 
 msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 
 msgid "... file with echo"
@@ -110,10 +113,10 @@ msgstr ""
 msgid "Auto (Default)"
 msgstr ""
 
-msgid "Auto-completion on (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
 msgstr ""
 
-msgid "Auto-completion on if,function,..."
+msgid "Auto-completion on if, function, ..."
 msgstr ""
 
 msgid "Background Color"
@@ -215,6 +218,9 @@ msgstr "复制"
 msgid "Copy as HTML with line number"
 msgstr ""
 
+msgid "Copy full path"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr ""
 
@@ -267,11 +273,7 @@ msgid "Edit"
 msgstr "编辑"
 
 #, c-format
-msgid "Elapsed time: %s second."
-msgstr ""
-
-#, c-format
-msgid "Elapsed time: %s seconds."
+msgid "Elapsed time: %s sec."
 msgstr ""
 
 msgid "Enable Auto Reformat"
@@ -367,6 +369,9 @@ msgstr ""
 msgid "Goto line"
 msgstr "转到行"
 
+msgid "Graphics handle field"
+msgstr ""
+
 msgid "Help about '"
 msgstr ""
 
@@ -455,6 +460,9 @@ msgid "Next tab"
 msgstr "下一个标签"
 
 msgid "No Line Numbering"
+msgstr ""
+
+msgid "No help"
 msgstr ""
 
 msgid "No split"
@@ -617,6 +625,9 @@ msgid "Save All"
 msgstr ""
 
 msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
 msgstr ""
 
 msgid "Save as"
@@ -790,6 +801,9 @@ msgstr "撤销"
 msgid "Unix (LF)"
 msgstr ""
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "未命名 "
 
@@ -856,25 +870,3 @@ msgstr ""
 
 msgid "close this tab"
 msgstr "关闭这个标签页"
-
-#~ msgid "Continue?"
-#~ msgstr "继续？"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "在新标签页中编辑选择区"
-
-#~ msgid "Editor"
-#~ msgstr "编辑器"
-
-#~ msgid "Line Numbers"
-#~ msgstr "行号"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "文件 %s 不存在\n"
-#~ " 你希望创建它么？"
-
-#~ msgid "Wrap search"
-#~ msgstr "回到文档开始处继续搜寻"

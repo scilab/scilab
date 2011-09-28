@@ -1898,7 +1898,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
 	CreateVar(2,TYPED_LIST_DATATYPE,&nblklst,(j=1,&j),&l_tmp);
 	LhsVar(1) = 2;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

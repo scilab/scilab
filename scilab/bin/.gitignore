@@ -22,6 +22,7 @@ lcclib
 mkl
 refblas
 fftw
+openBLAS
 
 # linux 
 loader.sce

@@ -17,7 +17,6 @@ package org.scilab.modules.xcos.block.actions;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
@@ -91,7 +90,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 		/*
 		 * Export data
 		 */
-		File temp;
+		String temp;
 		try {
 			temp = FileUtils.createTempFile();
 			new H5RWHandler(temp).writeBlock(data);
@@ -103,9 +102,9 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
 		/*
 		 * Build and execute the command
 		 */
-		String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
+		String cmd = buildCall("import_from_hdf5", temp);
 		cmd += "tree_show(scs_m); ";
-		cmd += buildCall("deletefile", temp.getAbsolutePath());
+		cmd += buildCall("deletefile", temp);
 		try {
 			ScilabInterpreterManagement.synchronousScilabExec(cmd);
 		} catch (InterpreterException e1) {

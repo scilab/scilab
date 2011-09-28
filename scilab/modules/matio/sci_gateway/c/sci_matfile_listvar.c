@@ -32,7 +32,7 @@
 
 int sci_matfile_listvar(char *fname,unsigned long fname_len)
 {
-  int nbRow = 0, nbCol = 0, stkAdr = 0;
+  int nbRow = 0, nbCol = 0;
   mat_t *matfile = NULL;
   matvar_t *matvar = NULL;
   int fileIndex = 0;
@@ -129,11 +129,11 @@ int sci_matfile_listvar(char *fname,unsigned long fname_len)
       LhsVar(3) = Rhs+3;
     }
   
-  PutLhsVar();
-  
   freeArrayOfString(varnames, nbvar);
   FREE(varclasses);
   FREE(vartypes);
+
+  PutLhsVar();
   
   return TRUE;
 }

@@ -461,7 +461,7 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double 
   const int subticsval[] =      {0,0,19,9,7,4,4,3,2,2,1 ,1, 0};
   const int dec_subticsval[] =  {0,0, 9,9,4,4,4,4,1,1,1 ,1, 0};
   /** Maximum subtics beyond the heuristic when fitting subtics along integer intervals of base 10. */
-  const int max_extra_tics = 2;
+  //const int max_extra_tics = 2;
   /** Threshold remainder used to decide if one number is a mulitple of the other. */
   const double mult_thrsh = 1e-6;
   /** Threshold number of major ticks above which subtics are supressed in logarithmic-scaling. */

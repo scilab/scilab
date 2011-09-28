@@ -41,7 +41,7 @@ int set_y_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   sciSubWindow * ppSubWin  = NULL ;
   int            nbTicsRow = 0    ;
   int            nbTicsCol = 0    ;
-  char        ** labels    = NULL ; 
+
 
   if ( !isParameterTlist( valueType ) )
   {

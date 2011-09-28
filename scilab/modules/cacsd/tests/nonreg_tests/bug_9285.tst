@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+// <-- NOT FIXED -->
 // <-- JVM NOT MANDATORY -->
 //
 // <-- Non-regression test for bug 9285 -->
@@ -32,10 +32,10 @@ REG=(Kp * ( 1 + Ki/s));
 
 FT20_0_ = syslin('c', REG * Process * FeedBack);
 [gm,fr]=g_margin(FT20_0_)
-if ~assert_checkalmostequal(fr,0.11730083,0,6e-9) then pause,end
-if ~assert_checkalmostequal(gm,6.69326173,0,6e-9) then pause,end
+assert_checkalmostequal(fr,0.11730083,0,6e-9);
+assert_checkalmostequal(gm,6.69326173,0,6e-9);
 
 FT20_0 = tf2ss(FT20_0_);
 [gm,fr]=g_margin(FT20_0)
-if ~assert_checkalmostequal(fr,0.11730083,0,6e-9) then pause,end
-if ~assert_checkalmostequal(gm,6.69326173,0,6e-9) then pause,end
+assert_checkalmostequal(fr,0.11730083,0,6e-9);
+assert_checkalmostequal(gm,6.69326173,0,6e-9);

@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos;
 
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,7 +70,7 @@ public final class Xcos {
 	 * Dependencies version
 	 */
 	private static final List<String> MXGRAPH_VERSIONS = Arrays.asList("1.7.0.6", "1.7.0.7");
-	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]");
+	private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]", "[1, 8, 7]");
 	private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
 	
 	private static final String UNABLE_TO_LOAD_JGRAPHX = 
@@ -623,23 +624,25 @@ public final class Xcos {
 	 *            The xcos diagram file
 	 * @param h5File
 	 *            The target file
-	 * @param forceOverwrite
+	 * @param overwrite
 	 *            Does the file will be overwritten ?
 	 * @return Not used (compatibility)
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static int xcosDiagramToHDF5(final String xcosFile, final String h5File,
-			final boolean forceOverwrite) {
+			final boolean overwrite) {
 		final File file = new File(xcosFile);
-		final File temp = new File(h5File);
-		final boolean overwrite = forceOverwrite;
 
-		if (temp.exists()) {
+		if (exists(h5File)) {
 			if (!overwrite) {
 				return 1;
 			} else {
-				delete(temp);
+				delete(h5File);
 			}
+		}
+		
+		if (!file.exists()) {
+			return 1;
 		}
 		
 		try {
@@ -648,7 +651,7 @@ public final class Xcos {
 				public void run() {
 					final XcosDiagram diagram = new XcosDiagram();
 					diagram.openDiagramFromFile(file);
-					diagram.dumpToHdf5File(temp);
+					diagram.dumpToHdf5File(h5File);
 				}
 			});
 		} catch (final InterruptedException e) {

@@ -11,14 +11,20 @@
 
 function demo_gui()
 
-  global demolist // Demos list is defined in scilab.start
-
+  global demolist; // Demos list is defined in scilab.start
+  global demolistlock;
   if isempty(demolist) then
-    modules = getmodules();
-    for i=1:size(modules,"*")
-    if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
-      exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
-    end
+    if isempty(demolistlock) then
+      demolistlock = %t;
+      // we load scilab demos only when it is required
+      modules = getmodules();
+      for i=1:size(modules,"*")
+        if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
+          exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+        end
+      end
+      clear demolistlock;
+      clearglobal demolistlock;
     end
   end
 
@@ -68,7 +74,7 @@ function demo_gui()
 
   h = uimenu( "parent", demo_fig,      ..
               "label" , gettext("File"));
-  
+
   lst_vars_locals = ["%h_delete";
                      "demo_fig";
                      "get_figure_handle";
@@ -91,7 +97,7 @@ function demo_gui()
 
   clear_vars_str = strcat("clear " + lst_vars_locals, ";") + ";" + ..
                    strcat("clearglobal " + lst_vars_global, ";") + ";";
-  
+
   callback_close_str = "demo_fig=get_figure_handle(100000);delete(demo_fig);";
   callback_close_str = callback_close_str + clear_vars_str;
 

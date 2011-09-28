@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Vincent LEJEUNE
+* Copyright (C) 2011 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -28,7 +29,7 @@
 *  @return Position in string where suffix of string and prefix of find does match
 *
 */
-static int findMatchingPrefixSuffix(const char* string, const char* find)
+static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL stringToAddIsPath)
 {
     char* pointerOnString = NULL;
     char* pointerOnFindCopy = NULL;
@@ -43,10 +44,30 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
     stringLength = strlen(string);
 
     //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
-    while( movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar) )
+
+#ifdef _MSC_VER
+    movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar);
+    // On Windows paths are not case sensitive
+    if (movingPointerOnFindCopy == NULL && stringToAddIsPath)
+    {
+        movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
+    }
+#else
+    movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar);
+#endif
+    while( movingPointerOnFindCopy )
     {
         //find the last occurence of last char of string in tmpfind
+#ifdef _MSC_VER
         movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar);
+        // On Windows paths are not case sensitive
+        if (movingPointerOnFindCopy == NULL && stringToAddIsPath)
+        {
+            movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
+        }
+#else
+        movingPointerOnFindCopy = strrchr(pointerOnFindCopy, lastchar);
+#endif
         if(movingPointerOnFindCopy == NULL)
         {
             break;
@@ -70,7 +91,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find)
 }
 /*--------------------------------------------------------------------------*/
 char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
-                   char *defaultPattern,BOOL stringToAddIsPath, char *postCaretLine)
+    char *defaultPattern,BOOL stringToAddIsPath, char *postCaretLine)
 {
     char *new_line = NULL;
     int lengthNewLine = 0;
@@ -83,7 +104,6 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
     int lencurrentline = 0;
     int lenstringToAdd = 0;
 
-    int i = 0;
     int iposInsert = 0;
 
     if (currentline == NULL) 
@@ -180,7 +200,7 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
     }
 
     lenstringToAdd = (int)strlen(stringToAdd);
-    iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd);
+    iposInsert = findMatchingPrefixSuffix(currentline, stringToAdd, stringToAddIsPath);
     res = strstr(stringToAdd, &currentline[iposInsert]);
 
     if (res == NULL)

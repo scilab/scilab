@@ -1,0 +1,97 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test fac3d object
+// Check each default property
+[X, Y] = meshgrid(-1:.1:1, -1:.1:1);
+Z = X.^2 - Y.^2;
+mesh(X,Y,Z);
+e = gce();
+assert_checkequal(e.type, "Fac3d")
+ ans  =
+ 
+  T  
+assert_checkequal(e.parent.type, "Axes")
+ ans  =
+ 
+  T  
+assert_checkequal(e.children, [])
+ ans  =
+ 
+  T  
+assert_checkequal(e.visible, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(e.surface_mode, "on")
+ ans  =
+ 
+  T  
+assert_checkequal(e.foreground, -1)
+ ans  =
+ 
+  T  
+assert_checkequal(e.thickness, 1)
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_mode, "off")
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_style, 0)
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_size_unit, "point")
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_size, 0)
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_foreground, -1)
+ ans  =
+ 
+  T  
+assert_checkequal(e.mark_background, -2)
+ ans  =
+ 
+  T  
+//assert_checkequal(e.data.x)
+//assert_checkequal(e.data.y)
+//assert_checkequal(e.data.z)
+//assert_checkequal(e.data.color)
+assert_checkequal(e.color_mode, 8)
+ ans  =
+ 
+  T  
+assert_checkequal(e.color_flag, 0)
+ ans  =
+ 
+  T  
+assert_checkequal(e.cdata_mapping, "scaled")
+ ans  =
+ 
+  T  
+assert_checkequal(e.hiddencolor, 0)
+ ans  =
+ 
+  T  
+assert_checkequal(e.clip_state, "clipgrf")
+ ans  =
+ 
+  T  
+assert_checkequal(e.clip_box, [])
+ ans  =
+ 
+  T  
+assert_checkequal(e.user_data, [])
+ ans  =
+ 
+  T  

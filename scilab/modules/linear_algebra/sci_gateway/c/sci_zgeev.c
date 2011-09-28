@@ -39,7 +39,7 @@ extern int C2F(zgeev)();
 //
 int sci_zgeev(char *fname, unsigned long fname_len)
 {	
-	int lA = 0;
+
 	int totalsize;
 	int iRows = 0;
 	int iCols = 0;

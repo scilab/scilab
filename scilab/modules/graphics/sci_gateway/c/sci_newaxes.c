@@ -42,7 +42,7 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     *hstk(outindex) = sciGetHandle(masousfen);
 
     LhsVar(1) = 1;
-	C2F(putlhsvar)();
+	PutLhsVar();
   }
   else 
   {

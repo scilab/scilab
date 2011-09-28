@@ -1,7 +1,0 @@
-LIBRARY    differential_equations_f.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; differential_equations_f
-; --------------------------------------- 

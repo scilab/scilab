@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-05-28 16:53+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-13 22:50+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ru\n"
 
 #, c-format
@@ -195,11 +195,9 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Non-negative integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: Positive integer expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось неотрицательное целое "
-"число.\n"
+"%s: Неверный размер входного аргумента #%d: ожидалось положительное целое.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -388,11 +386,9 @@ msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr "%s: Неверное значение входного параметра №%d: должно быть >= %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось неотрицательно целое "
-"число.\n"
+"%s: Неверный размер входного аргумента #%d: ожидались положительные целые.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
@@ -747,9 +743,6 @@ msgstr "Данные графического окна загружены.\n"
 
 msgid "Figure saved.\n"
 msgstr "Данные графического окна сохранены.\n"
-
-msgid "File already exist"
-msgstr "Файл уже существует"
 
 msgid "File already exists"
 msgstr "Файл уже существует"
@@ -1237,13 +1230,13 @@ msgid "Zoom Area"
 msgstr "Увеличить область"
 
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"ВНИМАНИЕ: Несмотря на предыдущее предупреждения, вы выбрали "
-"использование Scilab с улучшенными графическими возможностями. Введите "
-"\"\"help usecanvas\"\" для получения дополнительной информации.\")"
+"disp(\"ПРЕДУПРЕЖДЕНИЕ: Несмотря на наши предыдущие предупреждения, вы "
+"выбрали к использованию Scilab с передовыми графическими возможностями. "
+"Пропишите \"\"help usecanvas\"\" для получения дополнительной информации.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "
@@ -1266,465 +1259,368 @@ msgstr ""
 msgid "toggle datatip mode"
 msgstr "Включить/выключить управление подсказками данных"
 
-#~ msgid "&Scicos"
-#~ msgstr "&Scicos"
-
-#~ msgid "http://www.scilab.org/"
-#~ msgstr "http://www.scilab.org/"
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s:  №%d совпадающие вершины.\n"
 
 #, c-format
-#~ msgid ""
-#~ "Version %s (%s)\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Версия %s (%s)\n"
-#~ "\n"
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s:  №%d совпадающие родительские вершины.\n"
 
 #, c-format
-#~ msgid "%s: Type %s is not implemented.\n"
-#~ msgstr "%s: Тип %s не реализован.\n"
+msgid "%s: Invalid node.\n"
+msgstr "%s: Недопустимая вершина.\n"
 
 #, c-format
-#~ msgid ""
-#~ "Answer given for %s \n"
-#~ " has incorrect type %s.\n"
-#~ msgstr ""
-#~ "Данный для %s ответ \n"
-#~ " имеет некорректный тип %s.\n"
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: Недопустимая родительская вершина.\n"
 
 #, c-format
-#~ msgid ""
-#~ "Answer given for %s \n"
-#~ " has invalid dimension: \n"
-#~ " waiting for dimension %s.\n"
-#~ msgstr ""
-#~ "Данный для %s ответ \n"
-#~ " имеет неправильную размерность: \n"
-#~ " ожидание размерности %s.\n"
+msgid "%s: Invalid position '%s'.\n"
+msgstr "%s: Недопустимое расположение «%s».\n"
 
 #, c-format
-#~ msgid "%s: function not available in NWNI mode.\n"
-#~ msgstr "%s: функция недоступна в режиме NWNI.\n"
-
-#~ msgid "createPopupItems: found an empty cascading menu."
-#~ msgstr "createPopupItems: найдено пустое выпадающее меню."
-
-#~ msgid "File"
-#~ msgstr "Файл"
-
-#~ msgid "Control Plot3d"
-#~ msgstr "Управление Plot3d"
-
-#~ msgid "GUI"
-#~ msgstr "Графический интерфейс"
-
-#~ msgid "&Bug And Request database"
-#~ msgstr "&Сообщить об ошибке"
-
-#~ msgid "&Contributions"
-#~ msgstr "&Принять участие"
-
-#~ msgid "&Web links"
-#~ msgstr "&Веб-ресурсы"
-
-#~ msgid "Launch Scipad"
-#~ msgstr "Запустить редактор"
-
-#~ msgid ""
-#~ "Some Scilab modules are released under the GPLv2 license.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Некоторые модули Scilab распространяются под лицензией GPLv2.\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Authors:\n"
-#~ "Scilab Consortium / INRIA / ENPC / Contributors\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Авторы:\n"
-#~ "Консорциум Scilab / INRIA / ENPC / Участники\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Scilab 5.0 and future versions are released under the terms of the CeCILL "
-#~ "license.\n"
-#~ msgstr "Scilab 5.0 и более новые версии выпускаются под лицензией CeCILL.\n"
-
-#~ msgid "Scilab Contributors..."
-#~ msgstr "Участники проекта"
-
-#~ msgid ""
-#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
-#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
-#~ "information.\")"
-#~ msgstr ""
-#~ "disp(\"ВНИМАНИЕ: Несмотря на предыдущее предупреждение Вы выбрали "
-#~ "использование Scilab с улучшенными графическими возможностями. Введите  "
-#~ "\"\"help usecanvas\"\" для получения дополнительной информации.\")"
+msgid "%s: No matching node.\n"
+msgstr "%s: Нет совпадающей вершины.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидался список из двух элементов.\n"
+msgid "%s: No results found for property '%s' and value '%s'.\n"
+msgstr "%s: Ничего не найдено для свойства '%s' и значения '%s'.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+msgid "%s: No results found.\n"
+msgstr "%s: Ничего не найдено.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-#~ msgstr "%s: Неверный тип свойства «%s»: ожидалась строка.\n"
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: Тип %s не реализован.\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
-#~ "«%s».\n"
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: Неверные входные параметры: ожидалось %s или %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-#~ msgstr "%s: Неверные входные параметра: ожидалось %s, %s или %s.\n"
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: Неверные входные параметра: ожидалось %s, %s или %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
-#~ msgstr "%s: Неверное значение свойства «%s»: ожидалось %d, %d или %d.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong input arguments: %s or %s expected.\n"
-#~ msgstr "%s: Неверные входные параметры: ожидалось %s или %s.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидался графический дескриптор или "
-#~ "вещественное число.\n"
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for %s: A list expected.\n"
-#~ msgstr "%s: Неверный тип %s: ожидался список.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
+"вещественное число.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: Неверный тип %s: ожидался список.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-#~ msgstr "%s: Неверный тип %s: ожидался вектор-строка строковых переменных.\n"
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: Неверный тип %s: ожидалось вещественное число.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for %s: A string expected.\n"
-#~ msgstr "%s: Неверный тип %s: ожидалась строка.\n"
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: Неверный тип %s: ожидался вектор-строка строковых переменных.\n"
 
 #, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "Модуль «%s» выключен в режимах  -nogui и -nwni."
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: Неверный тип %s: ожидалась строка.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
+msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgstr "%s: Неверный тип свойства «%s»: ожидалась строка.\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Non-negative integer expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидался неотрицательное целое "
-#~ "число.\n"
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
 
 #, c-format
-#~ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected"
-#~ msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s»"
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался графический дескриптор или "
+"вещественное число.\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Non-negative integers expected\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалось неотрицательное целое "
-#~ "число\n"
-
-#~ msgid "&Newsgroup Archives"
-#~ msgstr "&Архив группы новостей"
-
-#~ msgid "Select a file to open with Scipad"
-#~ msgstr "Выберите файл для открытия в редакторе"
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался список из двух элементов.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась строка или дерево.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
 
 #, c-format
-#~ msgid "%s: No matching node.\n"
-#~ msgstr "%s: Нет совпадающей вершины.\n"
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась строка или дерево.\n"
 
 #, c-format
-#~ msgid "%s: Invalid node.\n"
-#~ msgstr "%s: Недопустимая вершина.\n"
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось дерево.\n"
 
 #, c-format
-#~ msgid "%s:  #%d matching nodes.\n"
-#~ msgstr "%s:  №%d совпадающие вершины.\n"
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось дерево или строка.\n"
 
 #, c-format
-#~ msgid "%s: Invalid parent node.\n"
-#~ msgstr "%s: Недопустимая родительская вершина.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
+"'callback'.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №#%d: должно быть «label», «icon» или "
+"«callback».\n"
 
 #, c-format
-#~ msgid "%s:  #%d matching parent nodes.\n"
-#~ msgstr "%s:  №%d совпадающие родительские вершины.\n"
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s: Неверный тип входных параметров с №%d: ожидалось дерево.\n"
 
 #, c-format
-#~ msgid "%s: Invalid position ''%s''.\n"
-#~ msgstr "%s: Недопустимое расположение «%s».\n"
+msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
+msgstr "%s: Неверное значение свойства «%s»: ожидалось %d, %d или %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалось дерево.\n"
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: не удалось добавить меню в командном окне в данном режиме: %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалось дерево или строка.\n"
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: не удалось добавить меню в данном режиме: %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-#~ msgstr "%s: Неверный тип входных параметров с №%d: ожидалось дерево.\n"
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: функция недоступна в режиме NWNI.\n"
+
+msgid "<Enter color name here>"
+msgstr "<Введите название цвета здесь>"
+
+msgid "Add color in listbox"
+msgstr "Добавить цвет в список"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
-#~ "''callback''.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №#%d: должно быть «label», «icon» или "
-#~ "«callback».\n"
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Данный для %s ответ \n"
+" имеет некорректный тип %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Данный для %s ответ \n"
+" имеет неправильную размерность: \n"
+" ожидание размерности %s.\n"
 
 #, c-format
-#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
-#~ msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"Ответ, данный для %s, \n"
+" неверен: %s.\n"
+
+msgid "Application"
+msgstr "Приложение"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Авторы:\n"
+"Консорциум Scilab / INRIA / ENPC / Участники\n"
+"\n"
+
+msgid "Colors list edition"
+msgstr "Редактирование списка цветов"
+
+msgid "Control Plot3d"
+msgstr "Управление Plot3d"
+
+msgid "Dialogs"
+msgstr "Диалоги"
+
+msgid "Display selection"
+msgstr "Отобразить выделенное"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Вы действительно хотите выйти из Scilab?"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Exit figure"
+msgstr "Закрыть окно"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "GUI"
+msgstr "Графический интерфейс"
+
+msgid "Launch plot2d"
+msgstr "Запустить plot2d"
+
+msgid "Launch plot3d"
+msgstr "Запустить plot3d"
+
+msgid "Menu"
+msgstr "Меню"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
+msgid "Menu '%s' is %s."
+msgstr "Меню «%s» является %s."
+
+msgid "Menu status"
+msgstr "Состояние меню"
+
+msgid "No color selected."
+msgstr "Нет выбранного цвета."
+
+msgid "Please enter a color name first."
+msgstr "Введете название цвета."
+
+msgid "Popupmenu selection"
+msgstr "Выделение всплывающего меню"
+
+msgid "Quit Scilab"
+msgstr "Выход из Scilab"
+
+msgid "Quit demonstration"
+msgstr "Выход"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr "Scilab 5.0 и более новые версии выпускаются под лицензией CeCILL.\n"
+
+msgid "Scilab Contributors..."
+msgstr "Участники проекта"
+
+msgid "Scilab Graphics"
+msgstr "Графика"
+
+msgid "Selected colors"
+msgstr "Выбранные цвета"
 
 #, c-format
-#~ msgid "%s: No results founded.\n"
-#~ msgstr "%s: Нет найденных результатов.\n"
+msgid "Selected colors are: %s."
+msgstr "Выбранные цвета: %s."
 
-#~ msgid "Launch Scilab text editor"
-#~ msgstr "Запустить текстовый редактор"
+msgid "Selected menu"
+msgstr "Выбранное меню"
 
-#~ msgid "Select a file to open with Scilab text editor"
-#~ msgstr "Выберите файл для открытия в текстовом редакторе"
+msgid "Slider demo"
+msgstr "Пример ползунка"
 
-#~ msgid "All rights reserved"
-#~ msgstr "Все права защищены"
+msgid "Slider value: "
+msgstr "Значение ползунка: "
 
-#~ msgid "<Enter color name here>"
-#~ msgstr "<Введите название цвета здесь>"
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Некоторые модули Scilab распространяются под лицензией GPLv2.\n"
+"\n"
 
-#, c-format
-#~ msgid "%s: can not add a menu in this mode: %s.\n"
-#~ msgstr "%s: не удалось добавить меню в данном режиме: %s.\n"
+msgid "Sub-menu 1"
+msgstr "Подменю 1"
 
-#, c-format
-#~ msgid "%s: can not add a menu in console in this mode: %s.\n"
-#~ msgstr "%s: не удалось добавить меню в командном окне в данном режиме: %s.\n"
+msgid "Sub-menu 2"
+msgstr "Подменю 2"
 
-#~ msgid "Colors list edition"
-#~ msgstr "Редактирование списка цветов"
+msgid "Sub-menu 2-1"
+msgstr "Подменю 2-1"
 
-#~ msgid "Copyright 1989 - 2009"
-#~ msgstr "Авторское право 1989 - 2009"
+msgid "Sub-menu 2-2"
+msgstr "Подменю 2-2"
 
-#~ msgid "Display selection"
-#~ msgstr "Отобразить выделенное"
+msgid "Uicontrols 1"
+msgstr ""
 
-#~ msgid "Add color in listbox"
-#~ msgstr "Добавить цвет в список"
+msgid "Uicontrols 2"
+msgstr ""
 
-#~ msgid "Application"
-#~ msgstr "Приложение"
+msgid "Uicontrols demo"
+msgstr "Пример uicontrols"
 
-#, c-format
-#~ msgid "Menu ''%s'' is %s."
-#~ msgstr "Меню «%s» является %s."
+msgid "Uicontrols demo with LaTeX"
+msgstr "Пример использования LaTeX в uicontrols"
 
-#~ msgid "INRIA / ENPC / Contributors"
-#~ msgstr "INRIA / ENPC / Участники"
-
-#~ msgid "Exit figure"
-#~ msgstr "Закрыть окно"
-
-#~ msgid "Launch plot3d"
-#~ msgstr "Запустить plot3d"
-
-#~ msgid "Launch plot2d"
-#~ msgstr "Запустить plot2d"
-
-#~ msgid "Menu"
-#~ msgstr "Меню"
-
-#~ msgid "Menu status"
-#~ msgstr "Состояние меню"
-
-#~ msgid "Do you relly want to quit Scilab?"
-#~ msgstr "Вы действительно желаете выйти из Scilab?"
-
-#~ msgid "Error"
-#~ msgstr "Ошибка"
-
-#~ msgid "Please enter a color name first."
-#~ msgstr "Введете название цвета."
-
-#~ msgid "No color selected."
-#~ msgstr "Нет выбранного цвета."
-
-#~ msgid "Quit Scilab"
-#~ msgstr "Выход из Scilab"
-
-#~ msgid "Selected colors"
-#~ msgstr "Выбранные цвета"
-
-#~ msgid "Quit demonstration"
-#~ msgstr "Выход"
-
-#~ msgid "The Scilab Consortium / DIGITEO"
-#~ msgstr "Консорциум Scilab (DIGITEO)"
-
-#~ msgid "Sub-menu 2-2"
-#~ msgstr "Подменю 2-2"
-
-#~ msgid "Sub-menu 2-1"
-#~ msgstr "Подменю 2-1"
-
-#~ msgid "Sub-menu 1"
-#~ msgstr "Подменю 1"
-
-#~ msgid "Slider value: "
-#~ msgstr "Значение ползунка: "
-
-#~ msgid "Slider demo"
-#~ msgstr "Пример ползунка"
-
-#~ msgid "Selected menu"
-#~ msgstr "Выбранное меню"
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
 
 #, c-format
-#~ msgid "Selected colors are: %s."
-#~ msgstr "Выбранные цвета: %s."
-
-#~ msgid "Sub-menu 2"
-#~ msgstr "Подменю 2"
-
-#~ msgid "Uicontrols demo"
-#~ msgstr "Пример uicontrols"
-
-#~ msgid "yellow"
-#~ msgstr "жёлтый"
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Версия %s (%s)\n"
+"\n"
 
 #, c-format
-#~ msgid "You selected ''%s''."
-#~ msgstr "Вы выбрали «%s»."
-
-#~ msgid "blue"
-#~ msgstr "синий"
-
-#~ msgid "green"
-#~ msgstr "зеленый"
-
-#~ msgid "red"
-#~ msgstr "красный"
-
-#~ msgid "Popupmenu selection"
-#~ msgstr "Выделение всплывающего меню"
-
-#~ msgid "checked"
-#~ msgstr "помечено"
-
-#~ msgid "unchecked"
-#~ msgstr "не помечено"
-
-#~ msgid "Scilab Graphics"
-#~ msgstr "Графика"
-
-#~ msgid "item1|item2|item3|item4"
-#~ msgstr "элемент1|элемент2|элемент3|элемент4"
-
-#~ msgid "Copyright (c) 1989-2009 (INRIA)"
-#~ msgstr "Авторское право (c) 1989-2009 (INRIA)"
-
-#~ msgid "&Editor"
-#~ msgstr "&Текстовый редактор"
+msgid "You clicked on menu '%s'."
+msgstr "Вы нажали на меню «%s»."
 
 #, c-format
-#~ msgid "%s: Wrong type for %s: A real expected.\n"
-#~ msgstr "%s: Неверный тип %s: ожидалось вещественное число.\n"
+msgid "You selected '%s'."
+msgstr "Вы выбрали «%s»."
 
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
-#~ "вещественное число.\n"
+msgid "blue"
+msgstr "синий"
 
-#, c-format
-#~ msgid "%s: Wrong size for %s: A real expected.\n"
-#~ msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
+msgid "checked"
+msgstr "помечено"
 
-#~ msgid "Do you really want to quit Scilab?"
-#~ msgstr "Вы действительно хотите выйти из Scilab?"
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: найдено пустое выпадающее меню."
 
-#~ msgid "Copyright (c) 1989-2010 (INRIA)"
-#~ msgstr "Авторское право (c) 1989-2010 (INRIA)"
+msgid "green"
+msgstr "зеленый"
 
-#, c-format
-#~ msgid "%s: An exception occurred: %s"
-#~ msgstr "%s: Произошло исключение: %s"
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
 
-#, c-format
-#~ msgid ""
-#~ "Answer given for %s \n"
-#~ " is incorrect see error message in scilab window.\n"
-#~ msgstr ""
-#~ "Данный для %s ответ некорректный, смотрите сообщение об ошибке в окне "
-#~ "Scilab.\n"
+msgid "item1|item2|item3|item4"
+msgstr "элемент1|элемент2|элемент3|элемент4"
 
-#~ msgid "Uicontrols demo with LaTeX"
-#~ msgstr "Пример использования LaTeX в uicontrols"
+msgid "red"
+msgstr "красный"
 
-#, c-format
-#~ msgid "%s: No results found.\n"
-#~ msgstr "%s: Нет найденных результатов.\n"
+msgid "unchecked"
+msgstr "не помечено"
 
-#, c-format
-#~ msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-#~ msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
-
-#, c-format
-#~ msgid "You clicked on menu ''%s''."
-#~ msgstr "Вы нажали на меню «%s»."
-
-#~ msgid "Could not find the console nor the InterpreterManagement."
-#~ msgstr "Не удалось найти командное окно или InterpreterManagement."
+msgid "yellow"
+msgstr "жёлтый"

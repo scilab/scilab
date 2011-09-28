@@ -14,9 +14,7 @@ p=predef(); //number of system variable
 st=stacksize()
 nams=nams(1:$-p+1);mem=mem(1:$-p+1);
 //modifiable system variables
-excluded=['demolist','scicos_pal','%scicos_menu',..
-	'%scicos_short','%helps','%helps_modules','who_user','%scicos_display_mode', ...
-	  '%scicos_help'];
+excluded=['demolist','%helps','%helps_modules','who_user'];
 ke=grep(nams,excluded)
 nams(ke)=[];mem(ke)=[];
 
@@ -46,6 +44,6 @@ txt=[gettext("User variables are:");
     '';
     txt;
     '';
-    msprintf(gettext("Using %s elements ouf of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
+    msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
 write(%io(2),txt,'(1x,a)')
 endfunction

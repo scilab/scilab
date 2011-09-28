@@ -21,8 +21,8 @@
 #include "scanf_functions.h"
 #include "StringConvert.h"
 #include "xscion.h"
-#include "../../../shell/includes/zzledt.h"
-#include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */
+#include "../../../console/includes/zzledt.h"
+#include "../../../console/includes/GetCommandLine.h" /* getConsoleInputLine */
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -33,8 +33,7 @@ int sci_scanf(char *fname,unsigned long fname_len)
 {
     static char *String = NULL;
     static int l1 = 0, m1 = 0, n1 = 0, len = MAXSTR-1,iarg  = 0,maxrow = 0,nrow = 0,rowcount = 0,ncol = 0;
-    int args = 0,retval = 0,retval_s = 0,lline = 0,status = 0,iflag = 0,err = 0,n_count = 0;
-    int interrupt = 0;
+    int args = 0,retval = 0,retval_s = 0,lline = 0,iflag = 0,err = 0,n_count = 0;
     entry *data = NULL;
     rec_entry buf[MAXSCAN];
     sfdir  type[MAXSCAN],type_s[MAXSCAN];

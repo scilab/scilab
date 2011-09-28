@@ -81,10 +81,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -157,18 +157,18 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = output_stream arnoldi elementary_functions string \
 	api_scilab dynamic_link fileio history_manager spreadsheet \
-	tclsci localization commons jvm action_binding renderer shell \
+	tclsci localization commons jvm action_binding renderer \
 	completion console graphic_export gui graphics optimization \
 	symbolic randlib statistics special_functions interpolation \
 	linear_algebra integer data_structures mexlib \
-	differential_equations cacsd polynomials boolean double pvm io \
+	differential_equations cacsd polynomials boolean double io \
 	intersci signal_processing core call_scilab sound time sparse \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
 	parameters matio atoms types hdf5 graph xcos scinotes parallel \
-	modules_manager ui_data history_browser scicos_blocks scicos . \
-	javasci
+	modules_manager ui_data history_browser xml scicos_blocks \
+	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -343,11 +343,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -450,18 +445,18 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = output_stream arnoldi elementary_functions string api_scilab \
 	dynamic_link fileio history_manager spreadsheet tclsci \
-	localization commons jvm action_binding renderer shell \
-	completion console graphic_export gui graphics optimization \
-	symbolic randlib statistics special_functions interpolation \
+	localization commons jvm action_binding renderer completion \
+	console graphic_export gui graphics optimization symbolic \
+	randlib statistics special_functions interpolation \
 	linear_algebra integer data_structures mexlib \
-	differential_equations cacsd polynomials boolean double pvm io \
+	differential_equations cacsd polynomials boolean double io \
 	intersci signal_processing core call_scilab interpolation \
 	sound time randlib sparse windows_tools functions overloading \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	types hdf5 graph xcos scinotes parallel modules_manager \
-	ui_data history_browser $(am__append_1) scicos . \
+	ui_data history_browser xml $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -528,15 +523,14 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
-	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/fftw/libscifftw.la
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/xml/libscixml.la
 
 
 # These libraries are loaded dynamically from Scilab.

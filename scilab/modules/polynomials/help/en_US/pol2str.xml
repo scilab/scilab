@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[str]=pol2str(p)</synopsis>
+    <synopsis>strs = pol2str(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -32,9 +32,9 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>str</term>
+        <term>strs</term>
         <listitem>
-          <para>character string</para>
+          <para>a matrix of strings</para>
         </listitem>
       </varlistentry>
     </variablelist>

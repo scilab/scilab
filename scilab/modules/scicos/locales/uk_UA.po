@@ -3,18 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 14:10+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:29+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: uk\n"
 
 msgid ""
@@ -147,14 +148,6 @@ msgstr "  якій слід передати такі значення:\n"
 #, c-format
 msgid "%s : Allocation error.\n"
 msgstr "%s: помилка розподілу пам’яті.\n"
-
-#, c-format
-msgid "%s : Bad size for Rhs(1).\n"
-msgstr "%s: помилкова розмірність Rhs(1).\n"
-
-#, c-format
-msgid "%s : Bad size for Rhs(2).\n"
-msgstr "%s: помилкова розмірність Rhs(2).\n"
 
 #, c-format
 msgid "%s : Error.\n"
@@ -372,10 +365,6 @@ msgstr "%s: у блоках Scilab не можна використовуват�
 #, c-format
 msgid "%s : unknown block : %s\n"
 msgstr "%s: невідомий блок: %s\n"
-
-#, c-format
-msgid "%s :the handle is not or no more valid.\n"
-msgstr "%s: елемент керування не є коректним.\n"
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
@@ -1245,1007 +1234,268 @@ msgid "with flag %d "
 msgstr "з прапорцем %d "
 
 #, c-format
-#~ msgid " %s.mo cannot be compiled\n"
-#~ msgstr " не вдалося зібрати %s.mo\n"
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
 
 #, c-format
-#~ msgid " %s.mo compilation forced\n"
-#~ msgstr " збирання %s.mo виконується у примусовому режимі\n"
+msgid "%s: Error during block parameters evaluation.\n"
+msgstr "%s: помилка під час визначення параметрів блоку.\n"
 
 #, c-format
-#~ msgid " %s.mo must be recompiled\n"
-#~ msgstr " %s.mo доведеться зібрати повторно\n"
+msgid "%s: Error during block parameters update.\n"
+msgstr "%s: помилка під час оновлення параметрів блоку.\n"
 
 #, c-format
-#~ msgid "%s: An error occurred during the compilation of the Modelica block."
-#~ msgstr "%s: під час спроби збирання блоку Modelica сталася помилка."
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: помилка: блок scifunc не було визначено."
 
 #, c-format
-#~ msgid "%s: Cannot find any MO files in the following location: %s.\n"
-#~ msgstr "%s: не вдалося знайти жодного файла MO за такою адресою: %s.\n"
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вхідних даних.\n"
 
 #, c-format
-#~ msgid "%s: Diagram does not compile in pass %d.\n"
-#~ msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вихідних даних.\n"
 
 #, c-format
-#~ msgid ""
-#~ "%s: Diagram does not compile in pass %d.\n"
-#~ "'),"
-#~ msgstr ""
-#~ "%s: не вдалося створити діаграму на кроці %d.\n"
-#~ "'),"
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: тип %s не реалізовано.\n"
 
 #, c-format
-#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
-#~ msgstr "%s: помилка: не вдалося виконати таку команду: %s.\n"
+msgid "%s: Unable to find diagram inputs\n"
+msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
 
 #, c-format
-#~ msgid "%s: Error: A scifunc block has not been defined."
-#~ msgstr "%s: помилка: блок scifunc не було визначено."
+msgid "%s: Unable to find diagram outputs\n"
+msgstr "%s: не вдалося знайти вихідні дані діаграми\n"
 
 #, c-format
-#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-#~ msgstr "%s: помилка: не вдалося знайти компілятор Modelica (MODELICAC)."
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
 
 #, c-format
-#~ msgid "%s: Input ports are not numbered properly.\n"
-#~ msgstr "%s: помилкова нумерації портів вхідних даних.\n"
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
 
 #, c-format
-#~ msgid "%s: Output ports are not numbered properly.\n"
-#~ msgstr "%s: помилкова нумерації портів вихідних даних.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
+"даних %s.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути одне ціле "
-#~ "число.\n"
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано діаграму.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
-#~ "рядок.\n"
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
 
 #, c-format
-#~ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-#~ msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-#~ msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"
-
-#~ msgid "&?"
-#~ msgstr "&Довідка"
-
-#~ msgid "&File"
-#~ msgstr "&Файл"
-
-#~ msgid "&Tools"
-#~ msgstr "&Інструменти"
-
-#~ msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-#~ msgstr ""
-#~ "«scicos» більше не підтримується, будь ласка, скористайтеся «xcos».\n"
-
-#~ msgid "A compatible C compiler required."
-#~ msgstr "Потрібен сумісний компілятор C."
-
-#~ msgid "Only one block can be selected in current window for this operation."
-#~ msgstr ""
-#~ "Для виконання цієї дії потрібно позначити у поточному вікні лише один блок."
+msgid "%s: incorrect type for '%s', getting %s"
+msgstr "%s: помилковий тип «%s», отримано %s"
 
 #, c-format
-#~ msgid "Problem while building library %s\n"
-#~ msgstr "Проблема під час спроби збирання бібліотеки %s\n"
-
-#~ msgid "Sorry compiling problem"
-#~ msgstr "Вибачте, проблема зі збиранням"
-
-#~ msgid "The current icon depends on block parameter\n"
-#~ msgstr "Поточна піктограма залежить від параметра блоку\n"
-
-#~ msgid "Add color"
-#~ msgstr "Додати колір"
-
-#~ msgid "Add new block"
-#~ msgstr "Додати новий блок"
-
-#~ msgid "Activate Scilab Window"
-#~ msgstr "Вікно активації Scilab"
-
-#~ msgid "?"
-#~ msgstr "Довідка"
-
-#~ msgid "About Scicos"
-#~ msgstr "Про Scicos"
-
-#~ msgid "Add a new color at the Scicos palette"
-#~ msgstr "Додавання нового кольору до палітри Scicos"
-
-#~ msgid "Align"
-#~ msgstr "Вирівняти"
-
-#~ msgid "Block Documentation"
-#~ msgstr "Документація з блоку"
-
-#~ msgid "Background color ? :"
-#~ msgstr "Колір тла:"
-
-#~ msgid "Background color"
-#~ msgstr "Колір тла"
-
-#~ msgid "C Code Generation"
-#~ msgstr "Створення коду мовою C"
-
-#~ msgid "Browser"
-#~ msgstr "Переглядач"
-
-#~ msgid "Choose export format:"
-#~ msgstr "Виберіть формат для експортування:"
-
-#~ msgid "Click block to label"
-#~ msgstr "Клацніть на блоці для визначення мітки"
-
-#~ msgid "Click block to resize"
-#~ msgstr "Клацніть на блоці для зміни розмірів"
-
-#~ msgid "Click on a super block"
-#~ msgstr "Клацніть на суперблоці"
-
-#~ msgid "Close"
-#~ msgstr "Закрити"
-
-#~ msgid "Compile"
-#~ msgstr "Зібрати"
-
-#~ msgid "Customize Mask"
-#~ msgstr "Змінити маску"
-
-#~ msgid "Copy"
-#~ msgstr "Копіювати"
-
-#~ msgid "Context"
-#~ msgstr "Контекст"
-
-#~ msgid "Create Mask"
-#~ msgstr "Створити маску"
-
-#~ msgid "Demos"
-#~ msgstr "Демонстрації"
-
-#~ msgid "Delete: Click on the object to delete"
-#~ msgstr "Вилучити: клацніть на об’єкті, який слід вилучити"
-
-#~ msgid "Delete"
-#~ msgstr "Вилучити"
-
-#~ msgid "Defined shortcuts"
-#~ msgstr "Визначені клавіатурні скорочення"
-
-#~ msgid "Default window parameters"
-#~ msgstr "Типові параметри вікна"
-
-#~ msgid "Default link colors"
-#~ msgstr "Типові кольори зв’язків"
-
-#~ msgid "Debug Level"
-#~ msgstr "Докладність діагностичних повідомлень"
-
-#~ msgid "Cut"
-#~ msgstr "Вирізати"
-
-#~ msgid "Done\n"
-#~ msgstr "Виконано\n"
-
-#~ msgid "Diagram"
-#~ msgstr "Діаграма"
-
-#~ msgid "Details"
-#~ msgstr "Подробиці"
-
-#~ msgid "Duplicate"
-#~ msgstr "Здублювати"
-
-#~ msgid "Error\n"
-#~ msgstr "Помилка\n"
-
-#~ msgid "Export All"
-#~ msgstr "Експортувати все"
-
-#~ msgid "Exit"
-#~ msgstr "Вийти"
-
-#~ msgid "Flip"
-#~ msgstr "Віддзеркалити"
-
-#~ msgid "File"
-#~ msgstr "Файл"
-
-#~ msgid "Get Info"
-#~ msgstr "Отримати відомості"
-
-#~ msgid "Help"
-#~ msgstr "Довідка"
-
-#~ msgid "Format"
-#~ msgstr "Формат"
-
-#~ msgid "Icon"
-#~ msgstr "Піктограма"
-
-#~ msgid "Icon Editor"
-#~ msgstr "Редактор піктограм"
-
-#~ msgid "Identification"
-#~ msgstr "Ідентифікація"
-
-#~ msgid "Load as Palette"
-#~ msgstr "Завантажити як палітру"
-
-#~ msgid "Link parameters"
-#~ msgstr "Параметри зв’язку"
-
-#~ msgid "Link"
-#~ msgstr "Зв'язок"
-
-#~ msgid "Palettes Tree"
-#~ msgstr "Ієрархія палітр"
-
-#~ msgid "Palettes"
-#~ msgstr "Палітри"
-
-#~ msgid "Palette"
-#~ msgstr "Палітра"
-
-#~ msgid "Open"
-#~ msgstr "Відкрити"
-
-#~ msgid "Paste"
-#~ msgstr "Вставити"
-
-#~ msgid "Properties"
-#~ msgstr "Властивості"
-
-#~ msgid "Purge"
-#~ msgstr "Очистити"
-
-#~ msgid "Popup"
-#~ msgstr "Контекстне вікно"
-
-#~ msgid "Rename"
-#~ msgstr "Перейменувати"
-
-#~ msgid "Remove Mask"
-#~ msgstr "Вилучити маску"
-
-#~ msgid "Resize"
-#~ msgstr "Змінити розміри"
-
-#~ msgid "Rotate Right"
-#~ msgstr "Обернути праворуч"
-
-#~ msgid "Rotate Left"
-#~ msgstr "Обернути ліворуч"
-
-#~ msgid "Save"
-#~ msgstr "Зберегти"
-
-#~ msgid "Save as Palette"
-#~ msgstr "Зберегти як палітру"
-
-#~ msgid "Save As"
-#~ msgstr "Зберегти як"
-
-#~ msgid "Scicos Documentation"
-#~ msgstr "Документація з Scicos"
+msgid "%s: invalid dimension for '%s', waiting for %s"
+msgstr "%s: некоректна розмірність «%s», мало бути %s"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined size:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вхідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block input "
+"port has a non-determined type:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
+"вхідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined size:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вихідного порту блоку не визначено:"
+
+msgid ""
+"<em>Please update the diagram to avoid this warning.</em><br />Block output "
+"port has a non-determined type:"
+msgstr ""
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br />Тип "
+"вихідного порту блоку не визначено:"
 
 #, c-format
-#~ msgid "Scicos version %s\n"
-#~ msgstr "Версія Scicos %s\n"
-
-#~ msgid "Shortcuts"
-#~ msgstr "Клавіатурні скорочення"
-
-#~ msgid "Setup"
-#~ msgstr "Налаштування"
-
-#~ msgid "Simulate"
-#~ msgstr "Імітувати"
-
-#~ msgid "Thickness"
-#~ msgstr "Товщина"
-
-#~ msgid "Type"
-#~ msgstr "Тип"
-
-#~ msgid "Tools"
-#~ msgstr "Інструменти"
-
-#~ msgid "Type not recognized"
-#~ msgstr "Тип не розпізнано"
-
-#~ msgid "Yes"
-#~ msgstr "Так"
-
-#~ msgid "View"
-#~ msgstr "Перегляд"
-
-#~ msgid "Undo"
-#~ msgstr "Вернути"
-
-#~ msgid "Zoom in"
-#~ msgstr "Збільшити"
-
-#~ msgid "Zoom out"
-#~ msgstr "Зменшити"
-
-#~ msgid "height"
-#~ msgstr "висота"
-
-#~ msgid "width"
-#~ msgstr "ширина"
-
-#~ msgid "Calc"
-#~ msgstr "Калькулятор"
-
-#~ msgid "Click object to move, drag and click (left to fix, right to cancel)"
-#~ msgstr ""
-#~ "Клацніть на об’єкті, щоб пересунути його. Перетягніть і клацніть (лівою, щоб "
-#~ "зафіксувати, правою, щоб скасувати)"
-
-#~ msgid "Color"
-#~ msgstr "Колір"
-
-#~ msgid "Export"
-#~ msgstr "Експортувати"
-
-#~ msgid "Foreground color ? :"
-#~ msgstr "Колір тексту:"
-
-#~ msgid "Free"
-#~ msgstr "Довільний"
-
-#~ msgid "It is impossible to set ID for this type of object"
-#~ msgstr "Встановити ідентифікатор для цього типу або об’єкта неможливо."
-
-#~ msgid "Label"
-#~ msgstr "Мітка"
-
-#~ msgid "Link ID font name"
-#~ msgstr "Гарнітура шрифту ідентифікатора зв’язку"
-
-#~ msgid "Link ID font size"
-#~ msgstr "Розмір шрифту ідентифікатора зв’язку"
-
-#~ msgid "Mask"
-#~ msgstr "Маска"
-
-#~ msgid "Mask can only be created for Super Blocks."
-#~ msgstr "Маску можна створювати лише для суперблоків."
-
-#~ msgid "Modelica initialize"
-#~ msgstr "Ініціалізація Modelica"
-
-#~ msgid "Modify title and menu labels."
-#~ msgstr "Змінити заголовок і пункти меню."
-
-#~ msgid "Move"
-#~ msgstr "Пересунути"
-
-#~ msgid "MoveLink "
-#~ msgstr "Пересунути зв’язок "
-
-#~ msgid "Multiple selection cannot be used here"
-#~ msgstr "Тут не можна використовувати одночасне позначення декількох об’єктів"
-
-#~ msgid "Navigator window"
-#~ msgstr "Вікно навігації"
-
-#~ msgid "New"
-#~ msgstr "Створити"
-
-#~ msgid "No"
-#~ msgstr "Ні"
-
-#~ msgid "No selected block in the current Scicos window."
-#~ msgstr "У поточному вікні Scicos немає позначених блоків."
-
-#~ msgid "Only  blocks can be selected for this operation."
-#~ msgstr "Для виконання цієї дії можна позначати лише блоки."
-
-#~ msgid "Open a Scicos demonstration diagram"
-#~ msgstr "Відкрити приклад діаграми Scicos"
-
-#~ msgid "Open a Scicos diagram"
-#~ msgstr "Відкрити діаграму Scicos"
-
-#~ msgid "Open/Set"
-#~ msgstr "Відкрити/Визначити"
-
-#~ msgid "Pal editor"
-#~ msgstr "Редактор палітр"
-
-#~ msgid "Place in Diagram"
-#~ msgstr "Розташувати на діаграмі"
-
-#~ msgid "PlaceinBrowser"
-#~ msgstr "Розташувати у переглядачі"
-
-#~ msgid "PlaceinDiagram"
-#~ msgstr "Розташувати на діаграмі"
-
-#~ msgid "Please report"
-#~ msgstr "Будь ласка, повідомте нам"
-
-#~ msgid ""
-#~ "Press lef mouse button, drag region and release (right button to cancel)"
-#~ msgstr ""
-#~ "Натисніть ліву кнопку миші, перетягніть рамку для позначення області і "
-#~ "відпустіть кнопку (правою кнопкою можна скасувати дію)"
-
-#~ msgid "Problem saving a backup; I cannot activate Scilab\n"
-#~ msgstr "Проблем зі створенням резервної копії. Не вдалося задіяти Scilab\n"
-
-#~ msgid "Region to Palette"
-#~ msgstr "Область у палітру"
-
-#~ msgid "Region to Super Block"
-#~ msgstr "Область у суперблок"
-
-#~ msgid "Regular links color ? :"
-#~ msgstr "Колір звичайних зв’язків:"
-
-#~ msgid "Remove Atomic"
-#~ msgstr "Вилучити елементарний об’єкт"
-
-#~ msgid "Replot"
-#~ msgstr "Перемалювати"
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" належить до помилкового типу %s.\n"
 
 #, c-format
-#~ msgid "Requested action: %s is not available"
-#~ msgstr "Вказана дія: не вдалося отримати доступ до %s"
-
-#~ msgid "Resize is allowed only for Blocks or Links."
-#~ msgstr "Змінювати розміри можна лише для блоків і зв’язків."
-
-#~ msgid "Run"
-#~ msgstr "Виконати"
-
-#~ msgid "Save Block GUI"
-#~ msgstr "Зберегти графічний інтерфейс блоку"
-
-#~ msgid "Save as Interf Func"
-#~ msgstr "Зберегти як функцію Interf"
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" має некоректну розмірність: \n"
+" слід було використовувати розмірність %s.\n"
 
 #, c-format
-#~ msgid "Scilab Graphics of %s"
-#~ msgstr "Графічні дані Scilab %s"
+msgid ""
+"Answer given for %s \n"
+" is incorrect: %s.\n"
+msgstr ""
+"Відповідь, вказана для %s \n"
+" є помилковою: %s.\n"
 
-#~ msgid "Select a block."
-#~ msgstr "Позначте блок."
+msgid "Block has connected input port<br />with incompatible size:"
+msgstr "Блок з’єднано з вхідним портом<br />з несумісною розмірністю:"
 
-#~ msgid "Select a directory path"
-#~ msgstr "Виберіть шлях до каталогу"
+msgid "Block has connected input port<br />with incompatible type:"
+msgstr "Блок з’єднано з вхідним портом<br />з несумісним типом:"
 
-#~ msgid "SelectAll"
-#~ msgstr "Вибрати все"
+msgid "Block has connected output port<br />with incompatible size:"
+msgstr "Блок з’єднано з вихідним портом<br />з несумісною розмірністю:"
 
-#~ msgid "SelectLink  "
-#~ msgstr "Вибрати зв’язок  "
+msgid "Block has connected output port<br />with incompatible type."
+msgstr "Блок з’єднано з вихідним портом<br />з несумісним типом."
 
-#~ msgid "SelectRegion"
-#~ msgstr "Вибрати область"
+msgid "Block input has negative size:"
+msgstr "Розмірність вхідних даних блоку від’ємна:"
 
-#~ msgid "Set Block identification"
-#~ msgstr "Встановити ідентифікатор блоку"
+msgid "Can't convert old diagram (problem in version)"
+msgstr ""
+"Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
 
-#~ msgid "Set Block sizes"
-#~ msgstr "Встановити розміри блоку"
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver.\n"
+msgstr ""
+"Діаграму було зібрано для явного інструмента розв’язування.\n"
+"Перемикаємося на явний інструмент розв’язування.\n"
 
-#~ msgid "Set Diagram Info"
-#~ msgstr "Визначити відомості щодо діаграми"
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver.\n"
+msgstr ""
+"Діаграму було зібрано для неявного інструмента розв’язування.\n"
+"Перемикаємося на неявний інструмент розв’язування.\n"
 
-#~ msgid "Set grid"
-#~ msgstr "Визначити параметри сітки"
+msgid "End problem: "
+msgstr "Проблема завершення: "
 
-#~ msgid "Set link Identification"
-#~ msgstr "Встановити ідентифікацію зв’язків"
-
-#~ msgid "Set link edition mode"
-#~ msgstr "Встановити режим редагування зв’язків"
-
-#~ msgid "Show Block Shadow"
-#~ msgstr "Показувати тіні від блоків"
-
-#~ msgid "Smart"
-#~ msgstr "Кмітливий"
-
-#~ msgid "Smart Move"
-#~ msgstr "Кмітливе пересування"
-
-#~ msgid "Smart move does not work yet with multiple selection"
-#~ msgstr ""
-#~ "Роботу кмітливого режиму пересування для позначення з декількох об’єктів ще "
-#~ "не реалізовано"
-
-#~ msgid "Sorry file name not defined in "
-#~ msgstr "Вибачте, назву файла не визначено у "
-
-#~ msgid "Sorry: Only C or FORTRAN languages are supported"
-#~ msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
-
-#~ msgid "Stop"
-#~ msgstr "Зупинити"
+msgid "Initialisation problem:"
+msgstr "Проблема ініціалізації:"
 
 #, c-format
-#~ msgid "The key %s is already in use for %s"
-#~ msgstr "Клавішу %s вже використано для %s"
+msgid "Input port %s size is: %s"
+msgstr "Розмірність вхідного порту %s: %s"
 
 #, c-format
-#~ msgid "The key %s is not a valid letter"
-#~ msgstr "Клавіша %s не є клавішею літери"
+msgid "Input port %s type is: %s"
+msgstr "Тип вхідного порту %s: %s"
 
 #, c-format
-#~ msgid ""
-#~ "The parameter(s) %s \n"
-#~ "must be defined in the"
-#~ msgstr ""
-#~ "Параметри %s \n"
-#~ "слід визначати у"
+msgid "Input port %s type."
+msgstr "Тип вхідного порту %s."
 
-#~ msgid "This block is not masked."
-#~ msgstr "Цей блок не замасковано."
-
-#~ msgid "This window is not an active palette"
-#~ msgstr "Це вікно не є активною палітрою"
-
-#~ msgid "This window is not an active scicos window"
-#~ msgstr "Це вікно не є активним вікном scicos"
-
-#~ msgid "Title of the GUI"
-#~ msgstr "Заголовок графічного інтерфейсу"
-
-#~ msgid "TkPopup "
-#~ msgstr "TkPopup "
+msgid "One of this block output has negative size.<br />Please check."
+msgstr ""
+"Розмірність одного з вихідних портів цього блоку від’ємна.<br />Виправте "
+"помилку."
 
 #, c-format
-#~ msgid "To avoid this message, please update the %s.scicos_pal file."
-#~ msgstr ""
-#~ "Щоб це повідомлення більше не з’являлося, будь ласка, оновіть файл "
-#~ "%s.scicos_pal."
-
-#~ msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-#~ msgstr ""
-#~ "Щоб повторно активувати Scicos, клацніть на діаграмі або віддайте команду "
-#~ "scicos();\n"
-
-#~ msgid "Toggle grid"
-#~ msgstr "Увімкнути/Вимкнути показ сітки"
-
-#~ msgid "Up To Main Diagram"
-#~ msgstr "Вгору до основної діаграми"
-
-#~ msgid "Use 3D aspect?"
-#~ msgstr "Використовувати просторове представлення?"
+msgid "Output port %s size is: %s"
+msgstr "Розмірність вихідного порту %s: %s"
 
 #, c-format
-#~ msgid "Warning %d menus have identical name %s\n"
-#~ msgstr "Попередження: у меню %d є пункти з тотожними назвами %s\n"
-
-#~ msgid "Your diagram is not saved. Do not quit Scilab or "
-#~ msgstr ""
-#~ "Вашу діаграму не було збережено. Не завершуйте роботу Scilab, інакше "
-
-#~ msgid "algrebraic loop detected"
-#~ msgstr "виявлено алгебраїчний цикл"
-
-#~ msgid "current choice is "
-#~ msgstr "поточним вибором є "
-
-#~ msgid "scicos unexpected error,please report..."
-#~ msgstr "неочікувана помилка scicos, будь ласка, повідомте про неї…"
-
-#~ msgid "scs_show active..."
-#~ msgstr "задіяно scs_show…"
+msgid "Output port %s type is: %s"
+msgstr "Тип вихідного порту %s: %s"
 
 #, c-format
-#~ msgid ""
-#~ "\n"
-#~ " Warning:an event is reprogrammed at t=%g by removing another"
-#~ msgstr ""
-#~ "\n"
-#~ " Попередження: програмування події змінено у момент t=%g вилученням іншої"
+msgid "Output port %s type."
+msgstr "Тип вихідного порту %s."
 
-#~ msgid " Scilab is in no gui mode : Scicos is unavailable"
-#~ msgstr " Scilab працює не у графічному режимі: скористатися Scicos не можна"
+msgid "Please compile the diagram to report the error."
+msgstr "Будь ласка, зберіть діаграму, щоб повідомити про помилку."
 
-#, c-format
-#~ msgid "%s : Secong argument must be a scalar.\n"
-#~ msgstr "%s: другим параметром має бути числове значення.\n"
+msgid "Problem with the block generated from modelica blocks."
+msgstr "Проблема з блоком, створеним на основі блоків Modelica."
 
 #, c-format
-#~ msgid "%s : Secong argument must be a real.\n"
-#~ msgstr "%s: другим параметром має бути ціле число.\n"
+msgid "Scilab Graphics of %s"
+msgstr "Графічні дані Scilab %s"
+
+msgid "Simulation parameters not set:"
+msgstr "Не встановлено параметри імітації:"
+
+msgid "Simulation problem: "
+msgstr "Проблема імітації: "
+
+msgid "Sorry file name not defined in "
+msgstr "Вибачте, назву файла не визначено у "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
 
 #, c-format
-#~ msgid "%s: First argument must be a Scicos diagram data structure\n"
-#~ msgstr "%s: першим параметром повинна бути структура даних діаграми Scicos\n"
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+"Змінну з назвою %s не можна використовувати як параметр блоку: змінну "
+"проігноровано"
+
+msgid "Type not recognized"
+msgstr "Тип не розпізнано"
+
+msgid "Unable to report an error into a SuperBlock"
+msgstr "Неможливо повідомити про помилку у суперблоці"
 
 #, c-format
-#~ msgid "%s is not a valid directory\n"
-#~ msgstr "%s не є коректною адресою каталогу\n"
-
-#, c-format
-#~ msgid "%s is not a valid name, please change the title of the diagram."
-#~ msgstr "%s є некоректною назвою, будь ласка, змініть назву діаграми."
-
-#~ msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
-#~ msgstr "**** SUNDIALS.IDA успішно ініціалізовано *****\n"
-
-#~ msgid "An Atomic Superblock cannot contain sample clocks"
-#~ msgstr "Елементарний суперблок не може містити шаблонів годинника"
-
-#~ msgid "BrowseTo"
-#~ msgstr "Перегляд"
-
-#~ msgid ""
-#~ "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-#~ "[((d/dy)^k)y](t)."
-#~ msgstr ""
-#~ "CV_BAD_DKY: параметр dky має значення NULL. dky — виведений вектор похідної "
-#~ "[((d/dt)^k)y](t)."
-
-#~ msgid "An error occur when evaluating context:"
-#~ msgstr "Під час спроби оцінки контексту сталася помилка:"
-
-#, c-format
-#~ msgid ""
-#~ "An unexpected  error occured while executing the menu\n"
-#~ "%s:\n"
-#~ msgstr ""
-#~ "Сталася помилка під час спроби відкриття меню\n"
-#~ "%s:\n"
-
-#~ msgid "Analyze Diagram"
-#~ msgstr "Аналізувати діаграму"
-
-#~ msgid "Block ID font size"
-#~ msgstr "Розмір шрифту ідентифікатору блоку"
-
-#~ msgid "Block ID font name"
-#~ msgstr "Гарнітура шрифту ідентифікатора блоку"
-
-#~ msgid "Atomic"
-#~ msgstr "Елементарний"
-
-#~ msgid "Available Parameters"
-#~ msgstr "Доступні параметри"
-
-#~ msgid ""
-#~ "CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
-#~ "CV_WF."
-#~ msgstr ""
-#~ "CV_BAD_ITOL: некоректне значення itol. Коректними значеннями є CV_SS, CV_SV "
-#~ "і CV_WF."
-
-#~ msgid ""
-#~ "CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
-#~ msgstr ""
-#~ "CV_RTFUNC_FAIL: спроба виконання процедури пошуку коренів зазнала невдачі. "
-#~ "Виконання програми перервано."
-
-#, c-format
-#~ msgid "Export in file %s failed\n"
-#~ msgstr "Спроба експортування даних до файла %s завершилася невдало\n"
-
-#~ msgid "Event links color? :"
-#~ msgstr "Колір зв’язків між подіями:"
-
-#~ msgid "ID font definitions"
-#~ msgstr "Параметри шрифту ідентифікатора"
-
-#~ msgid ""
-#~ "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-#~ "recoverable error at th efirst call"
-#~ msgstr ""
-#~ "CV_FIRST_RHSFUNC_ERR: спроба першого обчислення функції у правій частині "
-#~ "(вказаного користувачем ЗДР) зазнала некритичної невдачі"
-
-#~ msgid ""
-#~ "Click on a Super Block (without activation output) to obtain a coded block!"
-#~ msgstr ""
-#~ "Клацніть на суперблоці (без активації виведення даних), щоб переглянути блок "
-#~ "коду!"
-
-#~ msgid "Click on a block to set or get it''s documentation"
-#~ msgstr "Клацніть на блоці, щоб змінити або переглянути документацію з нього"
-
-#~ msgid "Click on an a port, click on a port of object to be moved"
-#~ msgstr "Клацніть на тому порті об’єкта, який слід пересунути"
-
-#~ msgid "Click on an object to set or get identification"
-#~ msgstr ""
-#~ "Клацніть на об’єкті, щоб змінити або переглянути параметри ідентифікації"
-
-#~ msgid "Click on block to  open graphic icon editor"
-#~ msgstr "Клацніть на блоці, щоб відкрити редактор графічних піктограм"
-
-#~ msgid "Click on block to be flipped"
-#~ msgstr "Клацніть на блоці, який слід віддзеркалити"
-
-#~ msgid "Click on block to be turned left"
-#~ msgstr "Клацніть на блоці, який слід обертати за годинниковою стрілкою"
-
-#~ msgid "Click on block to be turned right"
-#~ msgstr "Клацніть на блоці, який слід обертати проти годинникової стрілки"
-
-#~ msgid "Click on block to edit its icon"
-#~ msgstr "Клацніть на блоці, щоб змінити його піктограму"
-
-#~ msgid "Click on object  to get information on it"
-#~ msgstr "Клацніть на об’єкті, щоб переглянути відомості про нього"
-
-#~ msgid "Click on object to choose its color"
-#~ msgstr "Клацніть на об’єкті, щоб вибрати його колір"
-
-#~ msgid ""
-#~ "Click on the object to duplicate, drag, click (left to copy, right to cancel)"
-#~ msgstr ""
-#~ "Клацніть на об’єкті, щоб здублювати його, перетягніть вказівник і ще раз "
-#~ "клацніть (лівою кнопкою, щоб скопіювати, правою, щоб скасувати)"
-
-#~ msgid "Click to open block or make a link"
-#~ msgstr "Клацніть, щоб відкрити блок, або створити зв’язок"
-
-#~ msgid "Click where you want object to be placed (right-click to cancel)"
-#~ msgstr ""
-#~ "Клацніть лівою у тому місці, де ви бажаєте розташувати об’єкт (клацніть "
-#~ "правою кнопкою, щоб скасувати)"
-
-#~ msgid "Code Generation only works for a Superblock !\n"
-#~ msgstr "Створення коду працює лише для суперблоків!\n"
-
-#~ msgid "Code generation applies only to Super Blocks."
-#~ msgstr "Створювати коду можна лише для суперблоків."
-
-#~ msgid "Create Atomic"
-#~ msgstr "Створити елементарний об’єкт"
-
-#~ msgid "CtrlSelect"
-#~ msgstr "Ctrl-позначення"
-
-#~ msgid "Customize block GUI:"
-#~ msgstr "Налаштування інтерфейсу блоку:"
-
-#~ msgid "Cut: Click on the object to cut"
-#~ msgstr "Вирізання: клацніть на об’єкті, який слід вирізати"
-
-#~ msgid "Drag, click left for final or intermediate points or right to cancel"
-#~ msgstr ""
-#~ "Перетягніть вказівник, клацніть лівою для позначення остаточної або "
-#~ "проміжної точки, клацніть правою, щоб скасувати."
-
-#~ msgid "Eval"
-#~ msgstr "Обчислити"
-
-#~ msgid "Fit diagram to figure"
-#~ msgstr "Масштаб діаграми за рисунком"
-
-#~ msgid "Following palette(s) ignored (associated file(s) no more exist):"
-#~ msgstr "Пропущено такі палітри (відповідних файлів вже не існує):"
-
-#~ msgid "ID fonts"
-#~ msgstr "Шрифти ідентифікаторів"
-
-#~ msgid ""
-#~ "IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
-#~ "and IDA_WF."
-#~ msgstr ""
-#~ "IDA_BAD_ITOL: некоректне значення itol. Коректними значеннями є IDA_SS, "
-#~ "IDA_SV та IDA_WF."
-
-#~ msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
-#~ msgstr ""
-#~ "IDA_RES_NULL: повернуте значення нев’язки, res = NULL, є некоректним."
-
-#~ msgid ""
-#~ "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
-#~ "the preconditioned linear system) encountered an unrecoverable error, or the "
-#~ "linear solver routine  (lsolve) encountered an error condition."
-#~ msgstr ""
-#~ "KIN_LSOLVE_FAIL: вказана користувачем підпрограма psolve (призначена для "
-#~ "розв’язання передобумовлених лінійних систем) повідомила про критичну "
-#~ "помилку або підпрограма розв’язання лінійної системи (lsolve) повідомила про "
-#~ "помилку в умові."
-
-#, c-format
-#~ msgid ""
-#~ "An unexpected  error occurred while executing the menu\n"
-#~ "%s:\n"
-#~ msgstr ""
-#~ "Сталася помилка під час спроби відкриття меню\n"
-#~ "%s:\n"
-
-#~ msgid "Click on a block to set or get its documentation"
-#~ msgstr "Клацніть на блоці, щоб змінити або переглянути документацію з нього"
-
-#~ msgid "Click on a port, click on a port of object to be moved"
-#~ msgstr "Клацніть на тому порті об’єкта, який слід пересунути"
-
-#~ msgid ""
-#~ "Press left mouse button, drag region and release (right button to cancel)"
-#~ msgstr ""
-#~ "Натисніть ліву кнопку миші, перетягніть рамку для позначення області і "
-#~ "відпустіть кнопку (правою кнопкою можна скасувати дію)"
-
-#~ msgid "&Edit"
-#~ msgstr "З&міни"
-
-#~ msgid "Edit"
-#~ msgstr "Зміни"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
-#~ "даних %s.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-#~ "%d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-#~ "%d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-#~ "значень типу «string».\n"
-
-#~ msgid "Can''t convert old diagram (problem in version)"
-#~ msgstr ""
-#~ "Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
-
-#~ msgid "Initialisation problem:"
-#~ msgstr "Проблема ініціалізації:"
-
-#~ msgid "End problem: "
-#~ msgstr "Проблема завершення: "
-
-#~ msgid "Simulation problem: "
-#~ msgstr "Проблема імітації: "
-
-#~ msgid "Simulation parameters not set:"
-#~ msgstr "Не встановлено параметри імітації:"
-
-#, c-format
-#~ msgid "%s: Unable to find diagram outputs\n"
-#~ msgstr "%s: не вдалося знайти вихідні дані діаграми\n"
-
-#, c-format
-#~ msgid "%s: Unable to find diagram inputs\n"
-#~ msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
-
-#~ msgid ""
-#~ "Diagram has been compiled for explicit solver\n"
-#~ "switching to explicit solver"
-#~ msgstr ""
-#~ "Діаграму було зібрано для явного інструмента розв’язування.\n"
-#~ "Перемикаємося на явний інструмент розв’язування"
-
-#~ msgid ""
-#~ "Diagram has been compiled for implicit solver\n"
-#~ "switching to implicit solver"
-#~ msgstr ""
-#~ "Діаграму було зібрано для неявного інструмента розв’язування.\n"
-#~ "Перемикаємося на неявний інструмент розв’язування"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: мало бути вказано діаграму.\n"
-
-#, c-format
-#~ msgid "The variable name %s cannot be used as block parameter: ignored"
-#~ msgstr ""
-#~ "Змінну з назвою %s не можна використовувати як параметр блоку: змінну "
-#~ "проігноровано"
-
-#~ msgid "Xcos block parameter error"
-#~ msgstr "Помилка параметра блоку Xcos"
-
-#, c-format
-#~ msgid ""
-#~ "Warning the variable %s do not match any context variable name\n"
-#~ "ignored"
-#~ msgstr ""
-#~ "Попередження: змінна %s не відповідає назві жодної з контекстних змінних\n"
-#~ "Змінну проігноровано"
-
-#~ msgid "Click on a port of object to be moved"
-#~ msgstr "Клацніть на тому порті об’єкта, який слід пересунути"
-
-#~ msgid "Connection error"
-#~ msgstr "Помилка з’єднання"
-
-#~ msgid "Highlighted block has connected ports<br />with  incompatible types."
-#~ msgstr "У позначеному блоці є з’єднані порти<br />з несумісними типами."
-
-#~ msgid ""
-#~ "Highlighted block(s) have connected ports<br />with  incompatible sizes."
-#~ msgstr ""
-#~ "У позначених блоках є з’єднані порти<br />з несумісними розмірностями."
-
-#~ msgid "Highlighted block has connected ports<br />with incompatible sizes."
-#~ msgstr ""
-#~ "У позначеному блоці є з’єднані порти<br />з несумісними розмірностями."
-
-#, c-format
-#~ msgid "&nbsp;Input port %s type is: %s"
-#~ msgstr "&nbsp;Тип вхідного порту %s: %s"
-
-#, c-format
-#~ msgid "&nbsp;Input port %s size is: %s"
-#~ msgstr "&nbsp;розмрі вхідного порту %s: %s"
-
-#, c-format
-#~ msgid "&nbsp;Output port %s type is: %s"
-#~ msgstr "&nbsp;Тип вихідного порту %s: %s"
-
-#, c-format
-#~ msgid "&nbsp;Output port %s size is: %s"
-#~ msgstr "&nbsp;Розмір вихідного порту %s: %s"
-
-#~ msgid ""
-#~ "Highlighted block(s) have connected ports<br />with  incompatible types."
-#~ msgstr "У позначених блоках є з’єднані порти<br />з несумісними типами."
-
-#, c-format
-#~ msgid "&nbsp; %s input port size is: %s"
-#~ msgstr "&nbsp; розмір вхідного порту %s: %s"
-
-#, c-format
-#~ msgid "&nbsp; %s output port size is: %s"
-#~ msgstr "&nbsp; розмір вихідного порту %s: %s"
-
-#~ msgid "Problem with the block generated from modelica blocks."
-#~ msgstr "Проблема з блоком, створеним на основі блоків modelica."
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+"Попередження: змінна %s не відповідає назві жодної з контекстних змінних\n"
+"Змінну проігноровано"
+
+msgid "Xcos block parameter error"
+msgstr "Помилка параметра блоку Xcos"
+
+msgid "scs_show active..."
+msgstr "задіяно scs_show…"

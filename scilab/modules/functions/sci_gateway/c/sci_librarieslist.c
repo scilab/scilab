@@ -41,7 +41,7 @@ int sci_librarieslist(char *fname,unsigned long fname_len)
 
 	freeArrayOfString(libraries, sizelibraries);
 	
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

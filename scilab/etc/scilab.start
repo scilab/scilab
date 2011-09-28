@@ -30,12 +30,12 @@ function setStackSize()
         stacksize(newstacksize);
       end
     else
-      if old(1) <> defaultstacksize then 
+      if old(1) <> defaultstacksize then
         stacksize(defaultstacksize);
       end
     end
   else
-    if old(1) <> defaultstacksize then 
+    if old(1) <> defaultstacksize then
       stacksize(defaultstacksize);
     end
   end
@@ -51,7 +51,6 @@ ieee(0);
 // boolean variables
 %T = %t;
 %F = %f;
-%pvm = with_module("pvm");
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
 
 // Default Obsolete Warning policy  ===================================
@@ -113,27 +112,26 @@ loadContrib();
 clear loadContrib;
 
 // calling user initialization =========================================
-function startUserConf()
-  if sciargs()<>"-nouserstartup" then
+if sciargs()<>"-nouserstartup" then
 
-    startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
+  startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
 
-    if SCIHOME <> pwd() then
-      startupfiles = [ startupfiles     ; ..
-                       ".scilab"        ; .. // Working directory startup
-                       "scilab.ini" ]   ;    //  ""         ""    startup
-    end
+  if SCIHOME <> pwd() then
+    startupfiles = [ startupfiles     ; ..
+                     ".scilab"        ; .. // Working directory startup
+                     "scilab.ini" ]   ;    //  ""         ""    startup
+  end
 
-    for i=1:size(startupfiles,"*")
-      if isfile(startupfiles(i)) then
-        exec(startupfiles(i),-1);
-      end
+  for i = 1:size(startupfiles, "*")
+    if isfile(startupfiles(i)) then
+      exec(startupfiles(i),-1);
     end
   end
-endfunction
-startUserConf();
-clear startUserConf;
+
+  clear i;
+  clear startupfiles;
+end
 
 // Menus/toolbar can now be enabled ====================================
 if getscilabmode() == "STD" then

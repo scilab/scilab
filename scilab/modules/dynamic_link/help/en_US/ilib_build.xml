@@ -538,6 +538,61 @@ if abs(m-3.)>%eps then pause,end
  ]]></programlisting>
   </refsection>
 
+
+  <refsection>
+    <title>Example: How to use cflags arguments</title>
+
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR;
+mkdir('example_ilib_build_cflag');
+cd('example_ilib_build_cflag');
+
+csource = ['#include <stdlib.h>'   
+   '#include <stack-c.h>'
+   '#include <sciprint.h>'
+   ''
+   'int sci_examplecflag(char *fname)'
+   '{'
+   ''
+   '#ifdef __MYDEF_FOR_THIS_FUNCTION__'
+   'sciprint(""__MYDEF_FOR_THIS_FUNCTION__ detected !!!\n"");'
+   '#else'
+   'sciprint(""__MYDEF_FOR_THIS_FUNCTION__ not detected !!!\n"");'   
+   '#endif'
+   ''
+   ' LhsVar(1) = 0;'
+   ' return 0;'
+   '}'];
+   
+mputl(csource, TMPDIR + '/example_ilib_build_cflag/sci_cflags.c');
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated.) 
+
+files=['sci_cflags.c'];
+
+// here we uses cflags argument and we define __MYDEF_FOR_THIS_FUNCTION__
+ilib_build('gw_c_flags',['examplecflag','sci_examplecflag'], files, [], [], '', '-D__MYDEF_FOR_THIS_FUNCTION__');
+
+// load the shared library 
+exec loader.sce; 
+
+//using the new primitive
+examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ detected !!!
+
+ulink();
+exec cleaner.sce;
+
+// and now
+ilib_build('gw_c_flags',['examplecflag','sci_examplecflag'], files, []);
+exec loader.sce; 
+examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ not detected !!!
+
+
+ ]]></programlisting>
+  </refsection>
+
+
   <refsection role="see also">
 <title>See Also</title>
 
@@ -560,9 +615,4 @@ if abs(m-3.)>%eps then pause,end
     </simplelist>
   </refsection>
 
-  <refsection>
-    <title>Author</title>
-
-    <para>Allan CORNET</para>
-  </refsection>
 </refentry>

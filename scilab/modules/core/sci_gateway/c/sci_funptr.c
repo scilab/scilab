@@ -42,7 +42,7 @@ int C2F(sci_funptr) (char *fname,unsigned long fname_len)
 		*istk(l1) = funptr;
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

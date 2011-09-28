@@ -27,6 +27,8 @@ then
 	echo
 	echo "Please configure it with :"
 	echo "  git config --global hooks.xmllint C:/path/to/xmllint"
+	echo " or "
+	echo "  git config --global hooks.xmllint /usr/bin/xmllint"
 	echo
 fi
 
@@ -51,6 +53,8 @@ then
 	echo
 	echo "Please configure it with :"
 	echo "  git config --global hooks.indent C:/path/to/indent"
+	echo " or "
+	echo "  git config --global hooks.indent /usr/bin/indent"
 	echo
 fi
 
@@ -61,6 +65,7 @@ then
 	echo "You can configure it with :"
 	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.hxx' "
 	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.cpp' "
+	echo "  git config --add indent.ignored 'scilab/modules/*/src/jni/*.c' "
 	echo
 	
 	INDENT_IGNORED=""

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-28 01:09+0000\n"
+"PO-Revision-Date: 2011-08-02 02:05+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "Language: ja\n"
 
 msgid ""
@@ -53,6 +53,9 @@ msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定
 
 msgid "(* for any string and ? for any character)"
 msgstr "(* : 任意の文字列, ?: 任意の文字)"
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr "(~ : ユーザのホームディレクトリ. SCI: Scilabのベースディレクトリ.)"
 
 msgid "... file with echo"
 msgstr ".. エコーバック付きのファイル"
@@ -110,11 +113,11 @@ msgstr "本当に SciNotes を閉じてよいですか ?"
 msgid "Auto (Default)"
 msgstr "自動(デフォルト)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "自動補完 (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr "(, [,  ... を自動補完"
 
-msgid "Auto-completion on if,function,..."
-msgstr "if, function, ... について自動補完"
+msgid "Auto-completion on if, function, ..."
+msgstr "if, function, ...自動補完"
 
 msgid "Background Color"
 msgstr "背景色"
@@ -215,6 +218,9 @@ msgstr "コピー"
 msgid "Copy as HTML with line number"
 msgstr "行番号付きのHTMLとしてコピー"
 
+msgid "Copy full path"
+msgstr "完全なパスをコピー"
+
 msgid "Copy selection in a new tab"
 msgstr "選択部を新規タブにコピー"
 
@@ -267,11 +273,7 @@ msgid "Edit"
 msgstr "編集"
 
 #, c-format
-msgid "Elapsed time: %s second."
-msgstr "経過時間: %s 秒."
-
-#, c-format
-msgid "Elapsed time: %s seconds."
+msgid "Elapsed time: %s sec."
 msgstr "経過時間: %s 秒."
 
 msgid "Enable Auto Reformat"
@@ -367,6 +369,9 @@ msgstr "前のアンカーに移動"
 msgid "Goto line"
 msgstr "指定行へ移動"
 
+msgid "Graphics handle field"
+msgstr "グラフィックハンドルのフィールド"
+
 msgid "Help about '"
 msgstr "ヘルプ ’"
 
@@ -456,6 +461,9 @@ msgstr "次のタブ"
 
 msgid "No Line Numbering"
 msgstr "行番号を付けない"
+
+msgid "No help"
+msgstr "ヘルプ無し"
 
 msgid "No split"
 msgstr "分割しない"
@@ -618,6 +626,9 @@ msgstr "全て保存"
 
 msgid "Save and execute"
 msgstr "保存して実行"
+
+msgid "Save and execute all files"
+msgstr "すべてのファイルを保存し実行する"
 
 msgid "Save as"
 msgstr "名前を付けて保存"
@@ -792,6 +803,9 @@ msgstr "取り消す"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr "未知の関数"
+
 msgid "Untitled "
 msgstr "無題 "
 
@@ -858,34 +872,3 @@ msgstr "変更内容を失うかもしれません, それでもエンコーデ�
 
 msgid "close this tab"
 msgstr "このタブを閉じる"
-
-#~ msgid "Continue?"
-#~ msgstr "続けますか?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "新規タブで編集"
-
-#~ msgid "No text to execute"
-#~ msgstr "実行するテキストがありません."
-
-#~ msgid "No text selected"
-#~ msgstr "テキストは選択されていません"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "ファイル %s は存在しません\n"
-#~ "作成しますか?"
-
-#~ msgid "Wrap search"
-#~ msgstr "折り返し検索"
-
-#~ msgid "Edition"
-#~ msgstr "エディション"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "ファイルを開く ...;ディレクトリを追加;直近のディレクトリを削除"
-
-#~ msgid "Numerotation"
-#~ msgstr "数値循環"

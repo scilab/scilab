@@ -72,7 +72,7 @@ case 'set' then
              message('Upper limits must be > Lower limits')
              ok=%f
          elseif or(real(x0)>real(maxp))|or(real(x0)<real(lowp))| or(imag(x0)>imag(maxp))|or(imag(x0)<imag(lowp)) then
-             message('Inital condition x0 should be inside the limits')
+             message('Initial condition x0 should be inside the limits')
              ok=%f
          else
 	     rpar=[real(maxp(:));real(lowp(:));imag(maxp(:));imag(lowp(:))]

@@ -5,7 +5,8 @@
  
 
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
-src/c/hmops.c
+src/c/hmops.c \
+src/c/strpos.c
 
 DATA_STRUCTURES_FORTRAN_SOURCES = src/fortran/extractfields.f \
 src/fortran/forcerhs.f \

@@ -1,0 +1,170 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-21 19:35+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr "%s: Problém s pamětí Java, %s nelze upravit.\n"
+
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr "%s: S typem zatím ještě nelze zacházet"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Neurčená proměnná %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: ans nemůže být upraven.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&About Scilab..."
+msgstr "&O Scilabu..."
+
+msgid "&Close"
+msgstr "&Zavřít"
+
+msgid "&File"
+msgstr "&Soubor"
+
+msgid "Boolean"
+msgstr "Boolean"
+
+msgid "Bytes"
+msgstr "Bajty"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Compiled function"
+msgstr "Zkompilovaná funkce"
+
+msgid "Copy"
+msgstr "Kopírovat"
+
+msgid "Cut"
+msgstr "Vyjmout"
+
+msgid "Double"
+msgstr "Double"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "Function library"
+msgstr "Knihovna funkce"
+
+msgid "Global variables can not be edited."
+msgstr "Globální proměnné nemůžou být upraveny"
+
+msgid "Graphic handles"
+msgstr "Grafické obslužné rutiny"
+
+msgid "Icon"
+msgstr "Ikona"
+
+msgid "Implicit polynomial"
+msgstr "Implicitní polynom"
+
+msgid "Integer"
+msgstr "Celé číslo"
+
+msgid "Intrinsic function"
+msgstr "Přirozená funkce"
+
+msgid "List"
+msgstr "Seznam"
+
+msgid "Matlab sparse"
+msgstr "Řídký Matlab"
+
+msgid "Mlist"
+msgstr "Mlist"
+
+msgid "Name"
+msgstr "Jméno"
+
+msgid "Paste"
+msgstr "Vložit"
+
+msgid "Pointer"
+msgstr "Ukazatel"
+
+msgid "Polynomial"
+msgstr "Polynom"
+
+msgid "Redo"
+msgstr "Znovu"
+
+msgid "Refresh the variable "
+msgstr "Obnovit proměnnou "
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Modul Scilabu '%s' není nainstalován.\n"
+
+msgid "Sparse"
+msgstr "Řídké"
+
+msgid "Sparse boolean"
+msgstr "Řídký boolean"
+
+msgid "String"
+msgstr "Řetězec"
+
+msgid "Tlist"
+msgstr "Tlist"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Un-compiled function"
+msgstr "Nezkompilovaná funkce"
+
+msgid "Undo"
+msgstr "Zpět"
+
+msgid "Variable Browser"
+msgstr "Prohlížeč Proměnných"
+
+msgid "Variable Editor"
+msgstr "Editor Proměnných"
+
+msgid "Visibility"
+msgstr "Viditelnost"

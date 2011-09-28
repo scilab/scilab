@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-11 13:43+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:43+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -445,50 +445,45 @@ msgstr "a と b は (b-a+1) <= 2147483561 の整数でなければなりませ�
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 
+msgid "Erlang random variable"
+msgstr "Erlang乱数"
+
+msgid "Exponential random variable"
+msgstr "指数乱数"
+
+msgid "Hyper geometric random variable"
+msgstr "超幾何学的乱数"
+
+msgid "Poisson random variable"
+msgstr "ポワソン乱数"
+
 # File: etc/randlib.start, line: 23
-#~ msgid "Random"
-#~ msgstr "ランダム"
+msgid "Random"
+msgstr "ランダム"
 
-#
-# File: sci_gateway/c/sci_grand.c, line: 664
-#~ msgid "Low > High\n"
-#~ msgstr "低 > 高\n"
+msgid "Simulation"
+msgstr "シミュレーション"
 
-#~ msgid "Hyper geometric random variable"
-#~ msgstr "超幾何乱数"
+msgid "Simulation of a binomial random variable"
+msgstr "二項乱数のシミュレーション"
 
-#~ msgid "Simulation of a discrete random variable"
-#~ msgstr "離散乱数のシミュレーション"
+msgid "Simulation of a discrete random variable"
+msgstr "離散乱数のシミュレーション"
 
-#~ msgid "Simulation of a binomial random variable"
-#~ msgstr "二項乱数のシミュレーション"
+msgid "Theory"
+msgstr "理論"
 
-#~ msgid "Simulation"
-#~ msgstr "シミュレーション"
+msgid "Weibull random variable"
+msgstr "ワイブル乱数"
 
-#~ msgid "Poisson random variable"
-#~ msgstr "ポワソン乱数"
+msgid "binomial random variable"
+msgstr "二項乱数"
 
-#~ msgid "binomial random variable"
-#~ msgstr "二項乱数"
+msgid "discrete random variable"
+msgstr "離散乱数"
 
-#~ msgid "Weibull random variable"
-#~ msgstr "ワイブル乱数"
+msgid "discrete uniform random variable"
+msgstr "離散一様乱数"
 
-#~ msgid "Theory"
-#~ msgstr "理論"
-
-#~ msgid "Erlang random variable"
-#~ msgstr "Erlang乱数"
-
-#~ msgid "Exponential random variable"
-#~ msgstr "指数乱数"
-
-#~ msgid "discrete uniform random variable"
-#~ msgstr "離散一様乱数"
-
-#~ msgid "discrete random variable"
-#~ msgstr "離散乱数"
-
-#~ msgid "geometric random variable"
-#~ msgstr "幾何乱数"
+msgid "geometric random variable"
+msgstr "幾何乱数"

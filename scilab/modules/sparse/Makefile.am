@@ -44,7 +44,6 @@ src/fortran/spt.f \
 src/fortran/lcompa.f \
 src/fortran/wspmat.f \
 src/fortran/iperm.f \
-src/fortran/mycmatptr.f \
 src/fortran/wspful.f \
 src/fortran/spif1b.f \
 src/fortran/spextr.f \

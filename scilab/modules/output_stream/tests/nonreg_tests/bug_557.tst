@@ -18,10 +18,10 @@
 //    mprintf a newline character is inserted
 
 // Génération du fichier de référence
-
-l = [" ";"-->mprintf(''hello world\n'')";"hello world";" ";"-->diary(TMPDIR+''/bug557.dia'');"];
+prompt_str = "-" +"-"+ ">"; // tips since prompt is replaced by test_run
+l = [prompt_str + "mprintf(''hello world\n'')";"hello world";prompt_str + "diary(TMPDIR+''/bug557.dia'');"];
 l2 = ["hello world";" "];
-mputl(l,TMPDIR+'/bug557.ref');
+mputl(l, TMPDIR+'/bug557.ref');
 
 // Génération du fichier rapport
 
@@ -30,14 +30,10 @@ mprintf('hello world\n')
 diary(TMPDIR+'/bug557.dia');
 
 // Comparaison
-
-[u1,ierr]=mopen(TMPDIR+'/bug557.ref');
-[u2,ierr]=mopen(TMPDIR+'/bug557.dia');
-
-ref=mgetl(u1);mclose(u1);
-dia=mgetl(u2);mclose(u2);
+ref = mgetl(TMPDIR+'/bug557.ref');
+dia = mgetl(TMPDIR+'/bug557.dia');
 
 // Affichage du résultat
 ref
 dia
-if or(ref<>dia) then pause,end
+assert_checkequal(ref, dia);

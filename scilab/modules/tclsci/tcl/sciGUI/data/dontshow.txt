@@ -6,12 +6,6 @@ LCC
 %toolboxes_dir
 %toolboxes
 %sciGUIPath
-scicos_pal
-%scicos_menu
-%scicos_help
-%scicos_short
-%scicos_help
-%scicos_display_mode
 modelica_libs
 home
 PWD
@@ -29,7 +23,6 @@ SCI
 %inf
 COMPILER
 %gtk
-%pvm
 %tk
 %t
 %f

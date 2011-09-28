@@ -97,14 +97,15 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -145,14 +146,15 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -189,14 +191,15 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -240,14 +243,15 @@ lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build double_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double_f.dll %%f &gt;nul
-copy *.def double_f.def &gt;nul
-copy double_f.def ..\double_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -321,6 +325,11 @@ copy double_f_header.def+double_f.vcdef double_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\sci_gateway\double_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="double_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Linear_algebra_Import.def" />
+    <None Include="Output_stream_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

@@ -63,6 +63,7 @@
 #include "spDefs.h"
 #include "spmalloc.h"
 #include "spFortran.h"
+#include "spBuild.h"
 
 static int FactorComplexMatrix( MatrixPtr Matrix );
 static int CreateInternalVectors( MatrixPtr Matrix );
@@ -182,7 +183,7 @@ int spcColExchange( MatrixPtr Matrix, int Col1, int Col2 );
  *  spSMALL_PIVOT
  *  Error is cleared in this function.
  */
-extern void spcLinkRows(MatrixPtr Matrix);
+
 
 int spOrderAndFactor(char *eMatrix, RealNumber  RHS[],RealNumber RelThreshold,RealNumber AbsThreshold,SPBOOLEAN DiagPivoting )
 {
@@ -1114,7 +1115,7 @@ register  ElementPtr  ChosenPivot;
 register  int  I;
 register  long  *pMarkowitzProduct;
 int  Singletons;
-RealNumber  PivotMag, FindBiggestInColExclude();
+RealNumber  PivotMag;
 
 /* Begin `SearchForSingleton'. */
 /* Initialize pointer that is to scan through MarkowitzProduct vector. */
@@ -1675,13 +1676,13 @@ RealNumber  FindBiggestInColExclude();
 static ElementPtr
 SearchDiagonal( MatrixPtr Matrix, register int Step )
 {
-register  int  J;
-register long  MinMarkowitzProduct, *pMarkowitzProduct;
-register  int  I;
-register  ElementPtr  pDiag;
-int  NumberOfTies, Size = Matrix->Size;
-ElementPtr  ChosenPivot;
-RealNumber  Magnitude, Ratio, RatioOfAccepted, LargestInCol;
+register  int  J = 0;
+register long  MinMarkowitzProduct = 0, *pMarkowitzProduct = NULL;
+register  int  I = 0;
+register  ElementPtr  pDiag = NULL;
+int  NumberOfTies = 0, Size = Matrix->Size;
+ElementPtr  ChosenPivot = NULL;
+RealNumber  Magnitude = 0., Ratio = 0., RatioOfAccepted = 0., LargestInCol = 0.;
 RealNumber  FindBiggestInColExclude();
 
 /* Begin `SearchDiagonal'. */
@@ -1801,13 +1802,13 @@ RealNumber  FindBiggestInColExclude();
 static ElementPtr
 SearchEntireMatrix( MatrixPtr Matrix, int Step )
 {
-register  int  I, Size = Matrix->Size;
-register  ElementPtr  pElement;
-int  NumberOfTies;
-long  Product, MinMarkowitzProduct;
-ElementPtr  ChosenPivot, pLargestElement;
-RealNumber  Magnitude, LargestElementMag, Ratio, RatioOfAccepted, LargestInCol;
-RealNumber  FindLargestInCol();
+register  int  I = 0, Size = Matrix->Size;
+register  ElementPtr  pElement = NULL;
+int  NumberOfTies = 0;
+long  Product = 0, MinMarkowitzProduct = 0;
+ElementPtr  ChosenPivot = NULL, pLargestElement = NULL;
+RealNumber  Magnitude = 0., LargestElementMag = 0., Ratio = 0., RatioOfAccepted = 0., LargestInCol = 0.;
+
 
 /* Begin `SearchEntireMatrix'. */
     ChosenPivot = NULL;
@@ -2255,7 +2256,7 @@ ExchangeRowsAndCols( MatrixPtr Matrix,  ElementPtr pPivot, register int Step )
 {
 register  int   Row, Col;
 long  OldMarkowitzProd_Step, OldMarkowitzProd_Row, OldMarkowitzProd_Col;
-ElementPtr spcFindElementInCol();
+
 
 /* Begin `ExchangeRowsAndCols'. */
     Row = pPivot->Row;

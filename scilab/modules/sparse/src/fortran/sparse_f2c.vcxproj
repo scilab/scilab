@@ -98,14 +98,15 @@ lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build sparse_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -148,14 +149,15 @@ lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build sparse_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -195,14 +197,15 @@ lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build sparse_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -249,14 +252,15 @@ lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Build sparse_f.def</Message>
-      <Command>cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
 cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
@@ -347,7 +351,6 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
     <ClCompile Include="lsposp.c" />
     <ClCompile Include="lspt.c" />
     <ClCompile Include="lspxsp.c" />
-    <ClCompile Include="mycmatptr.c" />
     <ClCompile Include="ordmmd.c" />
     <ClCompile Include="sp2col.c" />
     <ClCompile Include="spcho1.c" />
@@ -463,7 +466,6 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
     <f2c_rule Include="lsposp.f" />
     <f2c_rule Include="lspt.f" />
     <f2c_rule Include="lspxsp.f" />
-    <f2c_rule Include="mycmatptr.f" />
     <f2c_rule Include="ordmmd.f" />
     <f2c_rule Include="sp2col.f" />
     <f2c_rule Include="spcho1.f" />
@@ -517,6 +519,11 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
+    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="Elementary_functions_Import.def" />
+    <None Include="LibScilab_Import.def" />
+    <None Include="Output_stream_Import.def" />
+    <None Include="Sparse_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

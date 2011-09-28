@@ -128,10 +128,13 @@ int sci_getdate(char *fname,unsigned long fname_len)
 				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEARRAY);
 
 				LhsVar(1)=Rhs+1;
-				C2F(putlhsvar)();
+				
 				if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
 				if (DATEARRAY) {FREE(DATEARRAY);DATEARRAY=NULL;}
 				if (DATEARRAYtmp) {FREE(DATEARRAYtmp);DATEARRAYtmp=NULL;}
+
+                PutLhsVar();
+
 				return 0;
 
 			}
@@ -144,9 +147,9 @@ int sci_getdate(char *fname,unsigned long fname_len)
 	}
 
 	LhsVar(1)=Rhs+1;
-	C2F(putlhsvar)();
-
-	if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
+    if (DATEMATRIX) {FREE(DATEMATRIX);DATEMATRIX=NULL;}
+	PutLhsVar();
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

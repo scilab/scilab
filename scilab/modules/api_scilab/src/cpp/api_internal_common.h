@@ -59,5 +59,11 @@ int checkVarType(void* _pvCtx, int* _piAddress, int _iType);
 */
 int checkNamedVarType(void* _pvCtx, const char *_pstName, int _iType);
 
+/**
+* @param[in] _psName variable name
+* @return 1 for true (variable name is valid) and 0 for false
+*/
+int checkNamedVarFormat(void* _pvCtx, const char *_pstName);
+
 #endif /* __INTERNAL_COMMON_API__ */
 
