@@ -142,7 +142,7 @@ function result = atomsUpdate(name,section)
         if (this_package_MRV_ava == -1) | ..
                 ( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
             // The installed version is already the Most Recent Version Available
-            atomsDisp(msprintf("\t%s (%s) : The most recent version is already installed\n\n",name(i),this_package_MRV_ins));
+            atomsDisp(msprintf("\t%s (%s) : The most recent version is already installed",name(i),this_package_MRV_ins));
         else
             // Install the new toolbox
             this_result = atomsInstall([name(i) this_package_MRV_ava],this_package_ins_section);
