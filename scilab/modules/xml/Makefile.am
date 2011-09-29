@@ -93,18 +93,8 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/fileio/includes \
     $(XML_FLAGS)
 
-# Without the xml module 
-libscixml_disable_la_CFLAGS = -Iincludes/
-
-libscixml_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
-libscixml_disable_la_SOURCES = $(XML_DISABLE_C_SOURCES)
-
-pkglib_LTLIBRARIES = libscixml-disable.la
-
-if GUI
-    pkglib_LTLIBRARIES += libscixml.la 
-    noinst_LTLIBRARIES = libscixml-algo.la 
-endif
+pkglib_LTLIBRARIES = libscixml.la 
+noinst_LTLIBRARIES = libscixml-algo.la 
 
 libscixml_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
