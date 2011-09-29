@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2011 - Scilab Enterprises - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -138,14 +139,6 @@ public final class SolveAction extends AbstractAction {
     }
 
     /**
-     * Set the error.
-     */
-    private void displayError() {
-        controller.setValid(false);
-        controller.setError(ModelicaMessages.TAKE_A_LOOK_AT_SCILAB);
-    }
-
-    /**
      * Action done at the end of the compilation
      */
     private final class CompileFinished implements ActionListener {
@@ -216,7 +209,6 @@ public final class SolveAction extends AbstractAction {
             } else {
                 // best effort to alert the user.
                 initStatus();
-                displayError();
             }
         }
     }
@@ -225,8 +217,6 @@ public final class SolveAction extends AbstractAction {
      * Action done at the end of the computation
      */
     private final class ComputeFinished implements ActionListener {
-        private final File status;
-
         /**
          * Default constructor
          * 
@@ -234,7 +224,6 @@ public final class SolveAction extends AbstractAction {
          *            the status file
          */
         public ComputeFinished(File status) {
-            this.status = status;
         }
 
         /**
@@ -247,11 +236,6 @@ public final class SolveAction extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             initStatus();
-
-            if (!status.exists()) {
-                // best effort to alert the user.
-                displayError();
-            }
         }
     }
 }

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2011 - Scilab Enterprises - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,9 +15,7 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,7 +87,6 @@ public final class ModelicaController {
     private final ModelStatistics statistics = new ModelStatistics();
 
     private boolean compileNeeded;
-    private String error;
     private boolean valid;
     private boolean parameterEmbedded;
     private boolean jacobianEnable;
@@ -115,16 +113,6 @@ public final class ModelicaController {
                 // Validate equation >= (unknowns + discretes)
                 setValid(stats.getEquations() >= (stats.getUnknowns() + stats
                         .getDiscreteStates()));
-            }
-        });
-
-        // set error message on validity update
-        addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (!isSquare()) {
-                    setError(ModelicaMessages.UNKNOWNS_NEQ_EQUATIONS);
-                }
             }
         });
 
@@ -239,47 +227,6 @@ public final class ModelicaController {
     public void setValid(boolean valid) {
         if (this.valid != valid) {
             this.valid = valid;
-
-            fireChange();
-        }
-    }
-
-    /**
-     * @return the error
-     */
-    public String getError() {
-        return error;
-    }
-
-    /**
-     * @return the error state
-     */
-    public boolean isError() {
-        return error == null || error.isEmpty();
-    }
-
-    /**
-     * @param error
-     *            the error to set
-     */
-    public void setError(String error) {
-        final boolean update;
-        if (this.error == null) {
-            if (error != null) {
-                update = true;
-            } else {
-                update = false;
-            }
-        } else {
-            if (!this.error.equals(error)) {
-                update = true;
-            } else {
-                update = false;
-            }
-        }
-
-        if (update) {
-            this.error = error;
 
             fireChange();
         }

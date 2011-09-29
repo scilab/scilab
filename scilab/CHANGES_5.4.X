@@ -133,6 +133,9 @@ Xcos:
 
 * bug 8538 fixed - Counter block label was not reflecting parameters
 
+* bug 8742 fixed - On the Modelica initialization GUI, the error reporting did
+                   not work.
+
 * Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to 
                    re-fix the states after a derivatives fix.
 

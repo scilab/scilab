@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2011 - Scilab Enterprises - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,8 +36,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.xml.sax.SAXException;
