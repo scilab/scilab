@@ -13,7 +13,9 @@
 package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -449,14 +451,14 @@ public final class ModelicaController {
     }
 
     /**
-     * Update the weight in the current tree
+     * Fix the weight in the current tree
      * 
      * @param derivative
      *            the derivative weight
      * @param state
      *            the state weight
      */
-    public void updateWeight(double derivative, double state) {
+    public void fixWeight(double derivative, double state) {
         for (final Struct struct : getRoot().getElements().getStruct()) {
             updateWeight(struct, derivative, state);
         }
@@ -473,48 +475,58 @@ public final class ModelicaController {
      * 
      * @param struct
      *            the current struct
-     * @param derivative
+     * @param derivativeValue
      *            the derivative weight
-     * @param state
+     * @param stateValue
      *            the state weight
      */
-    private void updateWeight(final Struct struct, double derivative,
-            double state) {
-        final Set<String> localVarName = new HashSet<String>();
+    private void updateWeight(final Struct struct, double derivativeValue,
+            double stateValue) {
+        final Map<String, Terminal> derivatives = new HashMap<String, Terminal>();
+        final Map<String, Terminal> states = new HashMap<String, Terminal>();
 
+        /*
+         * Find the derivates and states
+         */
         for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
-
                 final String id = TerminalAccessor.getData(TerminalAccessor.ID,
                         terminal);
-                final Boolean fixed = TerminalAccessor.getData(
-                        TerminalAccessor.FIXED, terminal);
 
                 final Matcher matcher = DERIVATIVE_REGEX.matcher(id);
-
                 if (matcher.matches()) {
-                    // update the derivative weight
-
-                    TerminalAccessor.WEIGHT.setData(derivative, terminal);
-                    TerminalAccessor.SELECTED.setData(Boolean.TRUE, terminal);
-
-                    // store the associated variable to the local list.
-                    String relatedVar = matcher.group(1) + matcher.group(2);
-                    localVarName.add(relatedVar);
-
-                } else if (localVarName.contains(id) && !fixed.booleanValue()) {
-                    // update the variable if the associated derivative has been
-                    // updated.
-                    TerminalAccessor.WEIGHT.setData(state, terminal);
-                    TerminalAccessor.SELECTED.setData(Boolean.TRUE, terminal);
+                    // store the Terminal as derivative
+                    final String relatedVar = matcher.group(1)
+                            + matcher.group(2);
+                    derivatives.put(relatedVar, terminal);
                 } else {
-                    TerminalAccessor.SELECTED.setData(Boolean.FALSE, terminal);
+                    // store the Terminal as state
+                    states.put(id, terminal);
                 }
             } else {
                 // recursive call
-                updateWeight((Struct) child, derivative, state);
+                updateWeight((Struct) child, derivativeValue, stateValue);
             }
+        }
+
+        /*
+         * Set the derivative and state values
+         */
+
+        // iterate on derivatives only
+        for (String var : derivatives.keySet()) {
+            assert derivatives.containsKey(var);
+            assert states.containsKey(var);
+
+            final Terminal derivative = derivatives.get(var);
+            final Terminal state = states.get(var);
+
+            TerminalAccessor.WEIGHT.setData(stateValue, state);
+            TerminalAccessor.WEIGHT.setData(derivativeValue, derivative);
+
+            TerminalAccessor.FIXED.setData(Boolean.TRUE, state);
+            TerminalAccessor.FIXED.setData(Boolean.TRUE, derivative);
         }
     }
 

@@ -206,9 +206,8 @@ public final class ExportAction extends DefaultAction {
     private String getFormat(XcosDiagram graph, JFileChooser fc,
             final File selected) {
         final String format;
-        if (fc.getFileFilter() == fc.getAcceptAllFileFilter()) { // reference
-                                                                 // equality
-                                                                 // works here
+        // reference equality works here
+        if (fc.getFileFilter() == fc.getAcceptAllFileFilter()) {
             if (FileMask.getExtension(selected) == null
                     || FileMask.getExtension(selected).isEmpty()) {
                 JOptionPane.showMessageDialog(graph.getAsComponent(),

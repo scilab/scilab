@@ -48,6 +48,6 @@ public final class FixDerivativesAction extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        controller.updateWeight(1.0, 0.0);
+        controller.fixWeight(1.0, 0.0);
     }
 }

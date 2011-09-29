@@ -48,6 +48,6 @@ public final class FixStatesAction extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        controller.updateWeight(0.0, 1.0);
+        controller.fixWeight(0.0, 1.0);
     }
 }

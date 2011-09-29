@@ -133,6 +133,9 @@ Xcos:
 
 * bug 8538 fixed - Counter block label was not reflecting parameters
 
+* Bug 8743 fixed - On the Modelica initialization GUI, it was impossible to 
+                   re-fix the states after a derivatives fix.
+
 * bug 9301 fixed - Exception when one tried to paste a column to replace a
                    column selection.
 
