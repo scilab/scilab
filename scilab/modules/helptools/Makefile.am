@@ -21,6 +21,10 @@ GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
 libscihelptools_la_LIBADD = libscihelptools-algo.la
+libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
+libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+noinst_LTLIBRARIES = libscihelptools-algo.la
 
 if GIWS
 BUILT_SOURCES=giws
@@ -35,7 +39,6 @@ GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
-noinst_LTLIBRARIES = libscihelptools-algo.la
 
 libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -52,10 +55,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
-libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 
 
 # For the code check (splint)

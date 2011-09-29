@@ -123,9 +123,11 @@ am__libscihelptools_algo_la_SOURCES_DIST = src/jni/BuildDocObject.cpp \
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_1 = libscihelptools_algo_la-BuildDocObject.lo \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-SciDocMain.lo \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools_algo_la-GiwsException.lo
-am_libscihelptools_algo_la_OBJECTS = $(am__objects_1)
+@BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_OBJECTS =  \
+@BUILD_HELP_TRUE@@GUI_TRUE@	$(am__objects_1)
 libscihelptools_algo_la_OBJECTS =  \
 	$(am_libscihelptools_algo_la_OBJECTS)
+@BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_rpath =
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
 @BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
@@ -446,9 +448,12 @@ top_srcdir = @top_srcdir@
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
 
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+@BUILD_HELP_TRUE@@GUI_TRUE@noinst_LTLIBRARIES = libscihelptools-algo.la
 @BUILD_HELP_TRUE@@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 pkglib_LTLIBRARIES = libscihelptools.la
-noinst_LTLIBRARIES = libscihelptools-algo.la
 libscihelptools_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -462,10 +467,7 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
 libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
-libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
@@ -676,7 +678,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihelptools-algo.la: $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_DEPENDENCIES) 
-	$(CXXLINK)  $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_LIBADD) $(LIBS)
+	$(CXXLINK) $(am_libscihelptools_algo_la_rpath) $(libscihelptools_algo_la_OBJECTS) $(libscihelptools_algo_la_LIBADD) $(LIBS)
 libscihelptools.la: $(libscihelptools_la_OBJECTS) $(libscihelptools_la_DEPENDENCIES) 
 	$(libscihelptools_la_LINK) -rpath $(pkglibdir) $(libscihelptools_la_OBJECTS) $(libscihelptools_la_LIBADD) $(LIBS)
 
