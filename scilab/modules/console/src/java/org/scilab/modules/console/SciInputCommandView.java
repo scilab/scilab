@@ -23,6 +23,7 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
@@ -80,7 +81,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // Input command line is not editable when created
         this.setEditable(false);
-        ScilabCaret caret = new ScilabCaret(this);
+        ScilabCaret caret = new ScilabCaret(this) {
+                public void mousePressed(MouseEvent e) {
+                    ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+                    super.mousePressed(e);
+                }
+            };
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
@@ -113,6 +119,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             }
         }
         return result;
+    }
+
+    /**
+     * Unselect text if selected one exists
+     */
+    public void removeSelection() {
+        if (getSelectionStart() != getSelectionEnd()) {
+            setSelectionStart(getSelectionEnd());
+        }
     }
 
     /**
@@ -195,12 +210,16 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         this.addKeyListener(new KeyListener() {
                 public void keyPressed (KeyEvent e) {
-                    if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+                    if (e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                            //console.getConfiguration().getInputParsingManager().reset();
-                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
                             console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
+                    }
+                    if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+                        && e.getKeyCode() == KeyEvent.VK_DELETE
+                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                        // Fix for bug 7238
+                        e.setKeyCode(KeyEvent.VK_DECIMAL);
                     }
                 }
 
@@ -219,6 +238,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+
         String str = getText().substring(0, e.getDot());
         int lastPos = str.lastIndexOf("\"$");
         if (lastPos != -1) {

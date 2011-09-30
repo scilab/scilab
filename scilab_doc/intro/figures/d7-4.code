@@ -1,9 +1,0 @@
-xinit('d7-4.ps');
-  t=(0:.05:1)';
-  ct=cos(2*%pi*t);
-  st=sin(2*%pi*t);
-  subplot(2,2,1)
-  plot2d(t,st)
-  subplot(2,2,2)
-  plot2d(t,ct)
-  xsetech([0,0,1.0,1.0]);

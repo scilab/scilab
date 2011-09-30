@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-02-21 16:10+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-13 14:48+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -91,7 +92,18 @@ msgstr "FFTW не может прочитать файл оптимизации 
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Модуль Scilab FFTW не установлен.\n"
 
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
+msgid ""
+"Scilab will use standard fft by default until you install this library."
+msgstr ""
+"Scilab будет использовать по умолчанию стандартное быстрое преобразование "
+"Фурье до тех пор, пока вы не установите эту библиотеку."
+
+msgid "See help fftw for more informations."
+msgstr ""
+"Дополнительную информацию можно получить с помощью команды  \"help fftw\"."
+
+msgid "This module requires : "
+msgstr "Этот модуль требует: "
+
+msgid "You choose to install scilab with fftw module."
+msgstr "Вы выбрали установку scilab с модулем fftw."

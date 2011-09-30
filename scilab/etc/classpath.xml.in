@@ -98,6 +98,7 @@ The option is "disableUnderMode" and can be:
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="svg_graphic_export"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
 </path>
@@ -145,7 +146,6 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
 
 <!-- Console GUI dep -->
-<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" disableUnderMode="NW"/>
 <path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
 <path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="onUse">
         <load on="Console"/>

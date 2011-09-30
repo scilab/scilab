@@ -51,54 +51,40 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
     if test "$LOC" = "it"; then LOC="it_IT"; fi
     if test "$LOC" = "uk"; then LOC="uk_UA"; fi
     if test "$LOC" = "pl"; then LOC="pl_PL"; fi
+    if test "$LOC" = "cs"; then LOC="cs_CZ"; fi
 
     # check that it is the right format
     echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY
 
     if test $? -eq 0; then
-        MODULE=`echo $file|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"` # Get the module name (for example signal_processing)
+        MODULE=`echo $file|sed -e "s|macros-||"|sed -e "s|\(.*\)-.*|\1|"|sed -e "s|-|_|g"` # Get the module name (for example signal_processing)
+        if test "$MODULE" = "pvm" -o "$MODULE" = "shell"; then
+            continue
+        fi
+        echo $file|grep "macros-" > /dev/null
+        IS_MACRO=$?
+        if test "$IS_MACRO" -eq 0; then
+            TARGETFILE=$SCI/modules/$MODULE/locales_macros/$LOC.po
+        else
+            TARGETFILE=$SCI/modules/$MODULE/locales/$LOC.po
+        fi
 
-        TARGETFILE=$SCI/modules/$MODULE/locales/$LOC.po
-
-
+        
+        # Do not copy empty files
+        if test -n "$(msgcat $LAUNCHPAD_DIRECTORY/$file)"; then
         # Before the copy, strip the line with the date. It is only making
         # diff too big for a little gain.
         # See bug #7059
         sed -i -e "/X-Launchpad-Export-Date/d" $LAUNCHPAD_DIRECTORY/$file
 
-        echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $TARGETFILE"
+
         /bin/cp -f $LAUNCHPAD_DIRECTORY/$file $TARGETFILE
         if test $? -ne 0; then
             echo "Error detected in the copy"
+            echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $TARGETFILE"
             exit 1;
         fi
-
-        # Check if the file contains single apos or single double quote
-	OG=`/usr/bin/printf '\u00AB'`
-	FG=`/usr/bin/printf '\u00BB'`
-	
-	awk '{if ( $0 ~ /msgstr/ ) {
-                  print NR " :",$0;
-              } else {
-                  print $0;
-              }}' $TARGETFILE | awk 'BEGIN {FS = ""; RS = ""} {
-                  gsub("\"\n\"","",$0); print $0
-              }' | awk -v og="$OG" -v fg="$FG" -v file=$TARGETFILE '
-                  BEGIN {FS = "\n"; RS = "\n"}
-                  NF > 0 { if ( $1 ~ /^msgid/ ) {
-                               x = split($1, tab, "\047\047");
-                         } else if ( $1 ~ /^[0-9]+/ ) {
-                               if ( x % 2 == 1) {
-                                   str = $1;
-                                   gsub(og,"\047\047",str);
-                                   gsub(fg,"\047\047",str);
-                                   y = split(str, tab, "\047\047");
-                                   if ( x != y ) {
-                                       printf("Error in file %s:\n>>>>line %s\n", file, $1);
-                                   }
-                               }
-                          }
-                    }'
+        fi
     else
         echo "Ignore locale $LOC"
     fi

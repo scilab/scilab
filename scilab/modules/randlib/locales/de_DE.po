@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-03-04 09:40+0000\n"
+"PO-Revision-Date: 2011-09-01 09:51+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: de\n"
 
 msgid ""
 "\n"
@@ -190,6 +191,10 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: falscher Typ für viertes Eingangsargument: Skalar erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument. Niedriger < Höher erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument: Spaltenvektor erwartet.\n"
 
@@ -306,18 +311,6 @@ msgstr "DF < 1.0 oder DF <= 0.0 oder Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Freiheitsgrade nicht positiv\n"
 
-msgid "Erlang random variable"
-msgstr ""
-
-msgid "Exponential random variable"
-msgstr ""
-
-msgid "Hyper geometric random variable"
-msgstr ""
-
-msgid "Low > High\n"
-msgstr "Minimum > Maximum\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "Fehlendes A und B für ß Gesetz\n"
 
@@ -394,9 +387,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr ""
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A or B < %f\n"
@@ -404,23 +394,11 @@ msgstr "Rand(...,'bet',..): A or B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Zufällig: DF <= 0\n"
 
-msgid "Random"
-msgstr "Zufällig"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab randlib Schnittstelle nicht installiert.\n"
-
-msgid "Simulation"
-msgstr ""
-
-msgid "Simulation of a binomial random variable"
-msgstr ""
-
-msgid "Simulation of a discrete random variable"
-msgstr ""
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -441,20 +419,47 @@ msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr ""
 "Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
 
-msgid "Theory"
-msgstr ""
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Diese Information betrifft nur deb clcg4 Generator\n"
-
-msgid "Weibull random variable"
-msgstr ""
 
 msgid "X0 is empty\n"
 msgstr "XD ist leer\n"
 
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "A und B müssen Integer mit (b-a+1) <= 2147483561"
+
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 oder R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr "Zufällig"
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
+
+msgid "Theory"
+msgstr ""
+
+msgid "Weibull random variable"
+msgstr ""
 
 msgid "binomial random variable"
 msgstr ""
@@ -467,6 +472,3 @@ msgstr ""
 
 msgid "geometric random variable"
 msgstr ""
-
-msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
-msgstr "grand(..'gam',A,R) : A <= 0.0 oder R <= 0.0\n"

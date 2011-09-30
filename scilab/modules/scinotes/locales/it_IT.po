@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-01-27 16:49+0000\n"
+"PO-Revision-Date: 2011-07-15 10:02+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: it\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " è stato modificato dall'ultimo salvataggio\n"
 "salvarlo?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s è una directory."
 
@@ -40,6 +42,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: una sola stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -59,6 +62,12 @@ msgstr ""
 "%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr "(* per ogni stringa e ? per ogni carattere)"
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr "(~ per la dir. home dell'utente e SCI per la dir. base di Scilab)"
+
 msgid "... file with echo"
 msgstr ""
 
@@ -66,6 +75,14 @@ msgid "... file with no echo"
 msgstr "... file senza echo"
 
 msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 msgid "?"
@@ -85,9 +102,10 @@ msgstr "Ordine alfabetico"
 
 msgid "An error occured when exporting the code using FOP"
 msgstr ""
+"Si è verificato un errore durante l'esportazione del codice usando FOP"
 
 msgid "An error occured when printing"
-msgstr ""
+msgstr "Si è verificato un errore durante la stampa"
 
 msgid "Anchor's name: "
 msgstr ""
@@ -107,10 +125,10 @@ msgstr "Chiudere veramente SciNotes?"
 msgid "Auto (Default)"
 msgstr "Auto (Predefinito)"
 
-msgid "Auto-completion on (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
 msgstr ""
 
-msgid "Auto-completion on if,function,..."
+msgid "Auto-completion on if, function, ..."
 msgstr ""
 
 msgid "Background Color"
@@ -118,6 +136,9 @@ msgstr "Colore di sfondo"
 
 msgid "Backward"
 msgstr "_Indietro"
+
+msgid "Base directory:"
+msgstr "Directory Base:"
 
 msgid "Binary file: read-only mode"
 msgstr "File binario: modalità sola lettura"
@@ -140,11 +161,23 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Distinzione maiuscole/minuscole"
 
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
+
 msgid "Change Color"
 msgstr "Cambia il colore"
 
 msgid "Change Colors"
 msgstr "Cambia i colori"
+
+msgid "Choose the search base directory"
+msgstr ""
+
+msgid "Choose..."
+msgstr "Seleziona..."
 
 msgid "Circular search"
 msgstr "Ricerca circolare"
@@ -197,6 +230,9 @@ msgstr "_Copia"
 msgid "Copy as HTML with line number"
 msgstr "Copia come HTML con numeri di riga"
 
+msgid "Copy full path"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr "Copia la selezione in una nuova scheda"
 
@@ -235,7 +271,7 @@ msgid "Delete"
 msgstr "Elimina"
 
 msgid "Detach tab in new window"
-msgstr ""
+msgstr "Apri la scheda in una nuova finestra"
 
 msgid "Direction"
 msgstr "Direzione"
@@ -248,6 +284,10 @@ msgstr ""
 
 msgid "Edit"
 msgstr "_Modifica"
+
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr "Tempo trascorso: %s sec."
 
 msgid "Enable Auto Reformat"
 msgstr "Abilita la riformattazione automatica"
@@ -274,7 +314,7 @@ msgid "Evaluate from beginning..."
 msgstr "Analizza dall'inizio"
 
 msgid "Exact"
-msgstr ""
+msgstr "Esatto"
 
 msgid "Execute"
 msgstr "_Esegui"
@@ -286,13 +326,16 @@ msgid "Exit"
 msgstr "_Esci"
 
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 msgid "File"
 msgstr "_File"
 
 msgid "File already exists"
 msgstr "Il file già esiste"
+
+msgid "File pattern"
+msgstr "Schema di file"
 
 msgid "Find"
 msgstr "Tr_ova"
@@ -302,6 +345,12 @@ msgstr "Trova successivo"
 
 msgid "Find Previous"
 msgstr "Trova precedente"
+
+msgid "Find files"
+msgstr "Cerca file"
+
+msgid "Find word in files"
+msgstr "Cerca una parola nei file"
 
 msgid "Find/Replace"
 msgstr "Trova/Sostit_uisci"
@@ -332,6 +381,9 @@ msgstr ""
 
 msgid "Goto line"
 msgstr "_Vai alla linea"
+
+msgid "Graphics handle field"
+msgstr ""
 
 msgid "Help about '"
 msgstr "Aiuto riguardo"
@@ -366,6 +418,7 @@ msgstr "Ignora"
 msgid "Incremental Search"
 msgstr "Ricerca incrementale"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Espressione regolare non valida : %s"
 
@@ -373,16 +426,21 @@ msgid "Italic"
 msgstr "Corsivo"
 
 msgid "Length"
-msgstr ""
+msgstr "Lunghezza"
 
+#, c-format
 msgid "Line %s, Column %s."
-msgstr ""
+msgstr "Riga %s, Colonna %s"
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr ""
+msgstr "Riga %s, Colonna %s, Funzione '%s' alla riga %s."
 
 msgid "Line Endings"
 msgstr "Fine riga"
+
+msgid "Line by line"
+msgstr "Riga per riga"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr ""
@@ -400,10 +458,10 @@ msgid "Mail to "
 msgstr ""
 
 msgid "Make Selection Lowercase"
-msgstr ""
+msgstr "Trasforma in minuscolo la selezione"
 
 msgid "Make Selection Uppercase"
-msgstr ""
+msgstr "Trasforma in maiuscolo la selezione"
 
 msgid "Natural order"
 msgstr "Ordine naturale"
@@ -416,6 +474,9 @@ msgstr "Scheda s_uccessiva"
 
 msgid "No Line Numbering"
 msgstr ""
+
+msgid "No help"
+msgstr "Nessun aiuto"
 
 msgid "No split"
 msgstr ""
@@ -430,7 +491,7 @@ msgid "Normal Line Numbering"
 msgstr "Numerazione normale delle righe"
 
 msgid "Numeration"
-msgstr ""
+msgstr "Numerazione"
 
 msgid "Ok"
 msgstr "Ok"
@@ -439,7 +500,7 @@ msgid "Open"
 msgstr "_Apri"
 
 msgid "Open URL"
-msgstr ""
+msgstr "Apri URL"
 
 msgid "Open file in ..."
 msgstr "Apri file in ..."
@@ -475,7 +536,7 @@ msgid "Paste"
 msgstr "_Incolla"
 
 msgid "Paste Column"
-msgstr ""
+msgstr "Incolla la colonna"
 
 msgid "Preferences"
 msgstr "Preferenze"
@@ -495,14 +556,29 @@ msgstr "Stam_pa"
 msgid "Print Preview"
 msgstr "Antepri_ma di stampa"
 
+msgid "Read file line by line"
+msgstr "Leggi il file riga per riga"
+
 msgid "Read-only mode"
 msgstr "Modalità a sola lettura"
 
 msgid "Recent Files"
 msgstr "File _recenti"
 
+msgid "Recursive"
+msgstr "Ricorsivo"
+
+msgid "Recursive search"
+msgstr "Ricerca ricorsiva"
+
 msgid "Redo"
 msgstr "_Ripeti"
+
+msgid "Regex"
+msgstr "Espressione regolare"
+
+msgid "Regular expression (Word)"
+msgstr ""
 
 msgid "Regular expressions"
 msgstr "Espressioni regolari"
@@ -561,6 +637,12 @@ msgstr "_Salva"
 msgid "Save All"
 msgstr "Salva tutto"
 
+msgid "Save and execute"
+msgstr "Salva ed esegui"
+
+msgid "Save and execute all files"
+msgstr ""
+
 msgid "Save as"
 msgstr "Sal_va come"
 
@@ -593,6 +675,12 @@ msgstr "Contesto"
 
 msgid "Search"
 msgstr "_Cerca"
+
+msgid "Search Files..."
+msgstr "Cerca file..."
+
+msgid "Search in Files..."
+msgstr "Cerca nei file..."
 
 msgid "Select All"
 msgstr "_Seleziona tutto"
@@ -633,6 +721,9 @@ msgstr "Mostra la definizione della macro "
 msgid "Show/Hide ToolBar"
 msgstr "Mostra/Nascondi Barra degli strumenti"
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr ""
 
@@ -645,9 +736,13 @@ msgstr ""
 msgid "Split vertically"
 msgstr ""
 
+msgid "Stop"
+msgstr "Ferma"
+
 msgid "Strike Through"
 msgstr ""
 
+#, c-format
 msgid "String %s not found"
 msgstr "La stringa %s non è stata trovata"
 
@@ -661,13 +756,17 @@ msgid "Tab representation"
 msgstr ""
 
 msgid "Tab style"
-msgstr ""
+msgstr "Stile della scheda"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
+"Il file %s non esiste\n"
+"Si vuole crearlo?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -679,17 +778,21 @@ msgid "The file could not be converted."
 msgstr "Il file non può essere convertito."
 
 msgid "The file could not be created, check the path"
-msgstr ""
+msgstr "Il file non può essere creato,controllare il percorso"
 
 msgid "The file could not be saved."
 msgstr "Il file non può essere salvato."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
+"La codifica del file è in realtà %s ed esso verrà salvato usando %s. "
+"Continuare?"
 
 msgid "The file is not writable so it is opened in read-only mode"
 msgstr ""
+"Il file non può essere scritto,cosicché è aperto in modalità di sola lettura"
 
 msgid "This file"
 msgstr "Questo file"
@@ -722,6 +825,9 @@ msgstr "_Annulla"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Senza nome "
 
@@ -729,7 +835,7 @@ msgid "Use spaces"
 msgstr ""
 
 msgid "Vertical rule"
-msgstr ""
+msgstr "Righello verticale"
 
 msgid "View"
 msgstr "_Visualizza"
@@ -749,17 +855,24 @@ msgstr "Finestra"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr ""
+
 msgid "Word Wrap"
 msgstr "A capo automatico"
 
+msgid "Word pattern"
+msgstr ""
+
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
+"Le directory di lavoro; Aggiungi una directory;Rimuovi l'ultima directory"
 
 msgid "You do not have the permissions to read this file"
-msgstr ""
+msgstr "Non si dispone dei permessi per leggere questo file"
 
 msgid "You do not have the permissions to write this file"
-msgstr ""
+msgstr "Non si hanno i permessi di scrittura per questo file"
 
 msgid "You have passed the beginning of the document"
 msgstr "È stato passato l'inizio del documento"
@@ -783,49 +896,3 @@ msgstr "Le modifiche saranno perse, cambiare comunque la codifica?"
 
 msgid "close this tab"
 msgstr "chiudi questa scheda"
-
-#~ msgid "Continue?"
-#~ msgstr "Continuare?"
-
-#~ msgid "Are you sure that you want to close Text Editor ?"
-#~ msgstr "Chiudere veramente l'Editor di testo?"
-
-#~ msgid "Cannot load \"xpadConfiguration.xml\""
-#~ msgstr "Non è possibile caricare \"xpadConfiguration.xml\""
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Modifica la selezione in una nuova scheda"
-
-#~ msgid "Editor"
-#~ msgstr "Editor"
-
-#~ msgid "Editor error"
-#~ msgstr "Errore dell'editor"
-
-#~ msgid "Help about a selected text"
-#~ msgstr "Aiuto su un testo selezionato"
-
-#~ msgid "Line Numbers"
-#~ msgstr "_Numeri di riga"
-
-#~ msgid "No text selected"
-#~ msgstr "Nessun testo selezionato"
-
-#~ msgid "Scilab text editor"
-#~ msgstr "Editor di testo di Scilab"
-
-#~ msgid "Scilab text editor help"
-#~ msgstr "_Aiuto dell'editor di testo di Scilab"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "Il file %s non esiste\n"
-#~ " Si vuole crearlo?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Ricerca ciclica"
-
-#~ msgid "Edition"
-#~ msgstr "Edizione"

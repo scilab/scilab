@@ -144,11 +144,10 @@ int sci_TCL_SetVar(char *fname,unsigned long l)
   *istk(l1)=*paramoutINT;
 
   if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-  LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
-
-
   releaseTclInterp();
+
+  LhsVar(1)=Rhs+1;
+  PutLhsVar();
 
   return 0;
 }

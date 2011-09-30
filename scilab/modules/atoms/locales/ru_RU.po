@@ -6,86 +6,87 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-09-18 21:21+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-13 00:52+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
-msgid "\t - ''%s - %s''\n"
+msgid "\t - '%s - %s'\n"
 msgstr "\t - «%s - %s»\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is already loaded\n"
+msgid "\t - '%s - %s' is already loaded\n"
 msgstr "\t - «%s - %s» уже загружен\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
+msgid "\t - '%s - %s' is needed by '%s - %s'\n"
 msgstr "\t - «%s - %s» необходим для «%s - %s»\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s''\n"
+msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - «%s - %s» необходим для «%s»\n"
 
 #, c-format
-msgid "\t - Local location : ''%s''\n"
+msgid "\t - Local location : '%s'\n"
 msgstr "\t - Локальный адрес : «%s»\n"
 
 #, c-format
-msgid "\t - MD5SUM expected : ''%s''\n"
+msgid "\t - MD5SUM expected : '%s'\n"
 msgstr "\t - ожидаемая MD5SUM : «%s»\n"
 
 #, c-format
-msgid "\t - MD5SUM watched  : ''%s''\n"
+msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - наблюдаемая MD5SUM : «%s»\n"
 
 #, c-format
-msgid "\t - URL            : ''%s''\n"
+msgid "\t - URL            : '%s'\n"
 msgstr "\t - Адрес URL : «%s»\n"
 
 #, c-format
-msgid "\t - You''ve asked ''%s - %s''\n"
+msgid "\t - You've asked '%s - %s'\n"
 msgstr "\t - Вы запросили «%s - %s»\n"
 
 #, c-format
-msgid "\t - destination : ''%s''\n"
+msgid "\t - destination : '%s'\n"
 msgstr "\t - назначение : «%s»\n"
 
 #, c-format
-msgid "\t - file            : ''%s''\n"
+msgid "\t - file            : '%s'\n"
 msgstr "\t - файл : «%s»\n"
 
 #, c-format
-msgid "\t - source      : ''%s''\n"
+msgid "\t - source      : '%s'\n"
 msgstr "\t - источник : «%s»\n"
 
 #, c-format
-msgid "%s: %s (%s) isn''t installed.\n"
+msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) не установлен.\n"
 
 #, c-format
-msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
+msgid "%s: '%s - %s' ('%s' section) is not installed.\n"
 msgstr "%s: «%s - %s» (раздел «%s») не установлен.\n"
 
 #, c-format
-msgid "%s: ''%s - %s'' is not installed.\n"
+msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s: «%s - %s» не установлен.\n"
 
 #, c-format
-msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
+msgid "%s: '%s' ('%s' section) is not installed.\n"
 msgstr "%s: «%s» (раздел «%s») не установлен.\n"
 
 #, c-format
-msgid "%s: ''%s'' isn''t installed.\n"
+msgid "%s: '%s' isn't installed.\n"
 msgstr "%s: «%s» не установлен.\n"
 
 #, c-format
-msgid "%s: An error occurred while loading ''%s-%s'':\n"
+msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: Ошибка при загрузке «%s-%s»:\n"
 
 #, c-format
@@ -93,19 +94,23 @@ msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s: Другая версия пакета %s уже загружена: %s\n"
 
 #, c-format
-msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
+msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
+msgstr "%s: Файла DESCRIPTION ('%s') не существует.\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s: Не удалось найти файл DESCRIPTION в пакете «%s»\n"
 
 #, c-format
-msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr "%s: Ошибка при копировании файла «%s» в каталог «%s».\n"
 
 #, c-format
-msgid "%s: Error while creating the directory ''%s''.\n"
+msgid "%s: Error while creating the directory '%s'.\n"
 msgstr "%s: Ошибка при создании каталога «%s».\n"
 
 #, c-format
-msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
+msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Сбой при извлечении файла DESCRIPTION («%s»).\n"
 
 #, c-format
@@ -115,15 +120,15 @@ msgstr ""
 "размеры.\n"
 
 #, c-format
-msgid "%s: Module ''%s - %s'' is not installed.\n"
+msgid "%s: Module '%s - %s' is not installed.\n"
 msgstr "%s: Модуль «%s - %s» не установлен.\n"
 
 #, c-format
-msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgid "%s: Module '%s' is not installed ('%s' section).\n"
 msgstr "%s: : Модуль «%s» не установлен (раздел «%s»).\n"
 
 #, c-format
-msgid "%s: Module ''%s'' is not installed.\n"
+msgid "%s: Module '%s' is not installed.\n"
 msgstr "%s: Модуль «%s» не установлен.\n"
 
 #, c-format
@@ -139,7 +144,7 @@ msgstr ""
 "сессии Scilab:\n"
 
 #, c-format
-msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s: Неправильный формат конфигурационного файла («%s») в строке %d\n"
 
 #, c-format
@@ -159,12 +164,12 @@ msgstr ""
 "в данный каталог.\n"
 
 #, c-format
-msgid "%s: The directory %s doesn''t exist.\n"
+msgid "%s: The directory %s doesn't exist.\n"
 msgstr "%s: Каталог %s не существует.\n"
 
 #, c-format
 msgid ""
-"%s: The directory ''%s'' cannot been created, please check if you have write "
+"%s: The directory '%s' cannot been created, please check if you have write "
 "access on this directory.\n"
 msgstr ""
 "%s: Не удалось создать каталог «%s», проверьте, имеете ли вы доступ для "
@@ -187,47 +192,47 @@ msgstr ""
 "соображениям безопасности ATOMS отказывается удалять данный каталог.\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
+msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
 msgstr ""
 "%s: Контрольная сумма загруженного файла не соответствует ожидаемой:\n"
 
 #, c-format
-msgid "%s: The extraction of the archive ''%s'' has failed.\n"
+msgid "%s: The extraction of the archive '%s' has failed.\n"
 msgstr "%s: Сбой при извлечении из архива «%s».\n"
 
 #, c-format
-msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
+msgid "%s: The file %s doesn't exist or is not read accessible.\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
 "the %s field\n"
 msgstr ""
 "%s: Неправильный формат файла %s, модуль %s - %s не содержит поля %s\n"
 
 #, c-format
-msgid "%s: The file ''%s'' cannot be written.\n"
+msgid "%s: The file '%s' cannot be written.\n"
 msgstr "%s: Не удалось записать файл «%s».\n"
 
 #, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
 
 #, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
 
 #, c-format
-msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr "%s: Неправильный формат конфигурационного файла «%s» в строке %d\n"
 
 #, c-format
-msgid "%s: The following file hasn''t been copied:\n"
+msgid "%s: The following file hasn't been copied:\n"
 msgstr "%s: Следующий файл не был скопирован:\n"
 
 #, c-format
-msgid "%s: The following file hasn''t been downloaded:\n"
+msgid "%s: The following file hasn't been downloaded:\n"
 msgstr "%s: Следующий файл не был загружен:\n"
 
 #, c-format
@@ -251,7 +256,7 @@ msgid "%s: The package %s is not available.\n"
 msgstr "%s: Пакет %s недоступен.\n"
 
 #, c-format
-msgid "%s: The package ''%s'' is not present in the struct.\n"
+msgid "%s: The package '%s' is not present in the struct.\n"
 msgstr "%s: Пакет «%s» не присутствует в структуре.\n"
 
 #, c-format
@@ -264,7 +269,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+"%s: The version '%s' of the package '%s' is not present in the struct.\n"
 msgstr "%s: Версия «%s» пакета «%s» не присутствует в структуре.\n"
 
 #, c-format
@@ -429,42 +434,49 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: %s должен быть доступным "
+"именем пакета ATOMS.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' is not a registered category"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: «%s» не является "
 "зарегистрированной категорией"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: «%s» не является правильным "
 "URL.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «all» или «main».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
-"''session'' expected.\n"
+"%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
+"expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «all», «allusers», "
 "«user» или «session».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
-"''official'' expected.\n"
+"%s: Wrong value for input argument #%d: 'all','user','allusers' or "
+"'official' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «all», «user», "
 "«allusers» или «official».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась "
@@ -472,21 +484,21 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+"%s: Wrong value for input argument #%d: 'system' or 'install' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «system» или "
 "«install».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user» или "
 "«allusers».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
@@ -494,7 +506,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user', 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
@@ -502,7 +514,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user','allusers' or 'all' "
 "expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
@@ -528,14 +540,13 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: It should have a field named "
-"''%s''.\n"
+"%s: Wrong value for input argument #%d: It should have a field named '%s'.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось поле с именем «%s».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидались буквы «A» или «I».\n"
 
@@ -556,8 +567,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
+"%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
+"'DESCRIPTION' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
 "содержит «TOOLBOXES» или «DESCRIPTION».\n"
@@ -573,7 +584,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
+"'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
 "%s:  Неверное значение входного параметра №%d: ожидалась строка, которая "
 "начинается на «http://», «ftp://» или «file://».\n"
@@ -606,7 +617,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «error» или "
 "«warning».\n"
@@ -622,19 +633,23 @@ msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr "%s: У вас недостаточно прав для удаления пакета %s (%s).\n"
 
 #, c-format
-msgid "%s: You haven''t write access on this directory : %s.\n"
+msgid "%s: You haven't write access on this directory : %s.\n"
 msgstr "%s: У вас нет доступа для записи в данный каталог: %s.\n"
+
+#, c-format
+msgid "%s: gzip not found.\n"
+msgstr "%s: gzip не найден.\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr "%s: имя и версия не определены\n"
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
 msgstr "%s: пакет «%s» не содержит поля «%s».\n"
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t exist.\n"
+msgid "%s: the package '%s' doesn't exist.\n"
 msgstr "%s: пакет «%s» не существует.\n"
 
 msgid "&?"
@@ -653,7 +668,7 @@ msgid "?"
 msgstr "Справка"
 
 #, c-format
-msgid "A new version (''%s'') of ''%s'' is available"
+msgid "A new version ('%s') of '%s' is available"
 msgstr "Доступна новая версия («%s») модуля «%s»"
 
 msgid "ATOMS"
@@ -698,9 +713,6 @@ msgstr "Организация"
 msgid "File"
 msgstr "Файл"
 
-msgid "Home"
-msgstr "Главная"
-
 msgid "Install"
 msgstr "Установить"
 
@@ -713,6 +725,9 @@ msgstr "Установка завершена! Перезапустите Scilab
 
 msgid "Installation failed!"
 msgstr "Сбой при установке!"
+
+msgid "Installed modules"
+msgstr "Установленные модули"
 
 msgid "Installing"
 msgstr "Идёт установка"
@@ -735,11 +750,22 @@ msgstr "Основные категории"
 msgid "Maintainer(s)"
 msgstr "Сопроводители"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
-msgstr "Модуль ATOMS недоступен. Проверьте подключение к Интернету."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
+msgstr ""
+"Модуль ATOMS недоступен. Пожалуйста, проверьте ваше соединение с интернетом "
+"или убедитесь, что ваша ОС совместима с ATOMS."
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Модуль ATOMS недоступен. Список репозиториев пуст."
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+"Опция offLine настройки ATOMS установлена в значение True. atomsSystemUpdate "
+"не проверяет доступность новейших модулей."
 
 msgid "Package"
 msgstr "Пакет"
@@ -791,257 +817,3 @@ msgstr "Версия"
 
 msgid "WebSite"
 msgstr "Веб-сайт"
-
-#~ msgid "Load"
-#~ msgstr "Загрузить"
-
-#, c-format
-#~ msgid "%s: the module ''%s - %s'' is not installed.\n"
-#~ msgstr "%s: модуль «%s - %s» не установлен.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалось логическое значение или "
-#~ "одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: No version of the module ''%s'' is installed.\n"
-#~ msgstr "%s: Нет установленных версий модуля «%s».\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#~ msgid "Automaticaly Installed"
-#~ msgstr "Установлен автоматически"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The following modules are installed in the user section, you cannot add "
-#~ "them in the autoload list for all users:\n"
-#~ msgstr ""
-#~ "%s: Следующие модули установлены в пользовательский раздел, вы не можете "
-#~ "добавить их в список автозагрузки для всех пользователей:\n"
-
-#~ msgid "Installing..."
-#~ msgstr "Идёт установка..."
-
-#~ msgid "Atoms"
-#~ msgstr "Atoms"
-
-#~ msgid "Atoms error"
-#~ msgstr "Ошибка Atoms"
-
-#~ msgid "Installation failed !"
-#~ msgstr "Сбой при установке!"
-
-#~ msgid "Remove failed !"
-#~ msgstr "Сбой при удалении!"
-
-#~ msgid "Removing..."
-#~ msgstr "Идёт удаление..."
-
-#~ msgid "Load failed !"
-#~ msgstr "Сбой при загрузке!"
-
-#~ msgid "Updating..."
-#~ msgstr "Идёт обновление..."
-
-#~ msgid "Update failed !"
-#~ msgstr "Сбой при обновлении!"
-
-#~ msgid "Update done !"
-#~ msgstr "Обновление выполнено!"
-
-#~ msgid "Remove done !"
-#~ msgstr "Удаление выполнено!"
-
-#~ msgid "Installation done !"
-#~ msgstr "Установка выполнена!"
-
-#~ msgid "Load done !"
-#~ msgstr "Загрузка выполнена!"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: The version ''%s'' of The module ''%s'' is not installed.\n"
-#~ msgstr "%s: Версия «%s» модуля «%s» не установлена.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
-#~ "length expected.\n"
-#~ msgstr ""
-#~ "%s: Неверная длина входного параметра №%d: ожидалась строка длиной в 32 "
-#~ "символа.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась структура.\n"
-
-#, c-format
-#~ msgid "%s: The config file ("
-#~ msgstr "%s: Конфигурационный файл ("
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that start with "
-#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-#~ "начинается с «http://», «ftp://» или «file://».\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
-#~ ".tgz or .zip expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась одиночная строка, "
-#~ "которая заканчивается на «.tar.gz», «.tgz» или «.zip».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-#~ "the ScilabVersion field\n"
-#~ msgstr ""
-#~ "%s: Неправильный формат файла %s, модуль %s - %s не содержит поля "
-#~ "ScilabVersion\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
-#~ "or ''DESCRIPTION'' expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-#~ "содержит «TOOLBOXES» или «DESCRIPTION».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-#~ "заканчивается на DESCRIPTION.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: You have not enought rights to remove any version of the package %s.\n"
-#~ msgstr ""
-#~ "%s: У вас недостаточно прав на удаление какой-либо версии пакета %s.\n"
-
-#, c-format
-#~ msgid "%s: You have not enought rights to remove the package %s (%s).\n"
-#~ msgstr "%s: У вас недостаточно прав на удаление пакета %s (%s).\n"
-
-#~ msgid "No Atoms module available. Check your Internet connection."
-#~ msgstr "Нет доступных модулей Atoms. Проверьте ваше интернет соединение."
-
-#~ msgid "Module Description"
-#~ msgstr "Описание модуля"
-
-#~ msgid "Available Modules"
-#~ msgstr "Доступные модули"
-
-#~ msgid "No module selected"
-#~ msgstr "Нет выбранного модуля"
-
-#, c-format
-#~ msgid "%s: The following modules is not installed:\n"
-#~ msgstr "%s: Следующие модули не установлены:\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: All modules'' version should be "
-#~ "set.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: версия всех модулей должна "
-#~ "быть присвоена.\n"
-
-#, c-format
-#~ msgid "%s: The file %s is not well formated at line %d\n"
-#~ msgstr "%s: Неправильный формат файла %s в строке %d\n"
-
-#~ msgid "Ko"
-#~ msgstr "Кбайт"
-
-#, c-format
-#~ msgid "%s: An error accured while loading ''%s-%s''.\n"
-#~ msgstr "%s: Ошибка при загрузке «%s-%s».\n"
-
-#~ msgid "Modules"
-#~ msgstr "Модули"
-
-#~ msgid "Mo"
-#~ msgstr "Мбайт"
-
-#~ msgid "Octets"
-#~ msgstr "байт"
-
-#~ msgid "No Atoms module is available: your repository list is empty."
-#~ msgstr "Модуль Atoms недоступен: ваш список репозиториев пуст."
-
-#~ msgid "No Atoms module is available. Please, check your Internet connection."
-#~ msgstr "Модуль Atoms недоступен. Проверьте соединение с интернетом."
-
-#, c-format
-#~ msgid "%s: An error occurred while loading ''%s-%s''.\n"
-#~ msgstr "%s: Произошла ошибка при загрузке «%s-%s».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: String that contain ''TOOLBOXES'' or "
-#~ "''DESCRIPTION'' expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-#~ "содержит «TOOLBOXES» или «DESCRIPTION».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: String that end with DESCRIPTION "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
-#~ "заканчивается на DESCRIPTION.\n"

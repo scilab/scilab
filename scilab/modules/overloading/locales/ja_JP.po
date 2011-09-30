@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-03-12 00:44+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
@@ -14,8 +14,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -65,8 +66,3 @@ msgstr "無効なフィールド名です."
 
 msgid "Invalid index.\n"
 msgstr "不正なインデックスです.\n"
-
-# File: macros/%c_mclose.sci, line: 19
-#, c-format
-#~ msgid "%s: No such file opened file.\n"
-#~ msgstr "%s: いかなるファイルも開いていません。\n"

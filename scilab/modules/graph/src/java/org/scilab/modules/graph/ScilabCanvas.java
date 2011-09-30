@@ -54,7 +54,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	private static final double BORDER_RATIO = 0.9;
 	
 	static {
-		putShape(mxConstants.SHAPE_IMAGE, new SvgShape());
+		putShape(mxConstants.SHAPE_LABEL, new SvgShape());
 		putTextShape(SupportedLabelType.Latex.name(), new LatexTextShape());
 		putTextShape(SupportedLabelType.MathML.name(), new MathMLTextShape());
 	}

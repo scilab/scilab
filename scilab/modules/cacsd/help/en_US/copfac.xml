@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>copfac</refname>
-    <refpurpose> right coprime factorization</refpurpose>
+    <refpurpose>right coprime factorization of continuous time dynamical systems</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para> <literal>syslin</literal> list  (continuous-time linear system )</para>
+          <para>a continuous-time  linear dynamical system.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,7 +46,7 @@
       <varlistentry>
         <term>N,M,XT,YT</term>
         <listitem>
-          <para>linear systems represented by <literal>syslin</literal> lists</para>
+          <para>continuous-time linear dynamical systems.</para>
         </listitem>
       </varlistentry>
     </variablelist>

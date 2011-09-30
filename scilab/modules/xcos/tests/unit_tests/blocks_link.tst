@@ -94,6 +94,7 @@ FUNCTIONS_TYPES = [];
 // test.
 for i = 1:size(defaultlibs,"*")
     [macros, path] = libraryinfo(defaultlibs(i));
+    macros=gsort(macros);
     for j = 1:size(macros,"*")
         interfunction = macros(j);
 

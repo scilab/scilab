@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-27 03:16+0000\n"
 "Last-Translator: Onlycparra <Unknown>\n"
@@ -14,7 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: es\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " ha sido modificado desde la la última vez\n"
 "¿desea guardarlo?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s es un directorio."
 
@@ -58,6 +60,12 @@ msgstr ""
 "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz de "
 "strings.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr ""
+
 msgid "... file with echo"
 msgstr "... archivo con eco"
 
@@ -66,6 +74,14 @@ msgstr "... archivo sin eco"
 
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr "... la selección con eco;... hasta el cursor, con eco"
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
+msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -106,17 +122,20 @@ msgstr "¿Está seguro que desea cerrar SciNotes?"
 msgid "Auto (Default)"
 msgstr "Auto (Predeterminada)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Auto-completar encendido (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr ""
 
-msgid "Auto-completion on if,function,..."
-msgstr "Auto-completación activada si, función,..."
+msgid "Auto-completion on if, function, ..."
+msgstr ""
 
 msgid "Background Color"
 msgstr "Color de fondo"
 
 msgid "Backward"
 msgstr "Retroceder"
+
+msgid "Base directory:"
+msgstr ""
 
 msgid "Binary file: read-only mode"
 msgstr "Archivo binario: modo solo lectura"
@@ -139,11 +158,23 @@ msgstr "Capitalizar selección;Capitalizar caracter"
 msgid "Case sensitive"
 msgstr "Distinguir mayúsculas"
 
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
+
 msgid "Change Color"
 msgstr "Cambiar Color"
 
 msgid "Change Colors"
 msgstr "Cambiar Colores"
+
+msgid "Choose the search base directory"
+msgstr ""
+
+msgid "Choose..."
+msgstr ""
 
 msgid "Circular search"
 msgstr "Búsqueda cíclica"
@@ -195,6 +226,9 @@ msgstr "Copiar"
 
 msgid "Copy as HTML with line number"
 msgstr "Copiar como HTML con número de línea"
+
+msgid "Copy full path"
+msgstr ""
 
 msgid "Copy selection in a new tab"
 msgstr "Copyar la selección a una nueva pestaña"
@@ -249,6 +283,10 @@ msgstr "Doble chevrón"
 msgid "Edit"
 msgstr "Editar"
 
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr ""
+
 msgid "Enable Auto Reformat"
 msgstr "Activar re-formateado automático"
 
@@ -294,6 +332,9 @@ msgstr "Archivo"
 msgid "File already exists"
 msgstr "El archivo ya existe"
 
+msgid "File pattern"
+msgstr ""
+
 msgid "Find"
 msgstr "Buscar"
 
@@ -302,6 +343,12 @@ msgstr "Buscar siguiente"
 
 msgid "Find Previous"
 msgstr "Buscar anterior"
+
+msgid "Find files"
+msgstr ""
+
+msgid "Find word in files"
+msgstr ""
 
 msgid "Find/Replace"
 msgstr "Buscar/Reemplazar"
@@ -332,6 +379,9 @@ msgstr "Ir al ancla anterior"
 
 msgid "Goto line"
 msgstr "Ir a la línea"
+
+msgid "Graphics handle field"
+msgstr ""
 
 msgid "Help about '"
 msgstr "Ayuda acerca de '"
@@ -366,6 +416,7 @@ msgstr "Ignorar"
 msgid "Incremental Search"
 msgstr "Búsqueda incremental"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Expresión regular inválida : &s"
 
@@ -375,14 +426,19 @@ msgstr "Itálica"
 msgid "Length"
 msgstr "Longitud"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Línea %s, Columna %s."
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Línea %s, Columna %s. Función '%s' en la línea %s."
 
 msgid "Line Endings"
 msgstr "Finales de línea"
+
+msgid "Line by line"
+msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "Numeración de linea;Apagado;Normal;Compatible con dondeestoy"
@@ -416,6 +472,9 @@ msgstr "Pestaña siguiente"
 
 msgid "No Line Numbering"
 msgstr "No numerar las líneas"
+
+msgid "No help"
+msgstr ""
 
 msgid "No split"
 msgstr "No separar"
@@ -495,14 +554,29 @@ msgstr "Imprimir"
 msgid "Print Preview"
 msgstr "Imprimir Vista Previa"
 
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr "Modo de sólo lectura"
 
 msgid "Recent Files"
 msgstr "Archivos Recientes"
 
+msgid "Recursive"
+msgstr ""
+
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
 msgstr "Rehacer"
+
+msgid "Regex"
+msgstr ""
+
+msgid "Regular expression (Word)"
+msgstr ""
 
 msgid "Regular expressions"
 msgstr "Expresiones regulares"
@@ -561,6 +635,12 @@ msgstr "Guardar"
 msgid "Save All"
 msgstr "Guardar todo"
 
+msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
+msgstr ""
+
 msgid "Save as"
 msgstr "Guardar como"
 
@@ -592,6 +672,12 @@ msgstr "Ámbito"
 
 msgid "Search"
 msgstr "Buscar"
+
+msgid "Search Files..."
+msgstr ""
+
+msgid "Search in Files..."
+msgstr ""
 
 msgid "Select All"
 msgstr "Seleccionar todo"
@@ -632,6 +718,9 @@ msgstr "Mostrar la definición del Macro "
 msgid "Show/Hide ToolBar"
 msgstr "Mostrar/Ocultar Barra de Herramientas"
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Fuente de '"
 
@@ -644,9 +733,13 @@ msgstr "Dividir horizontalmente"
 msgid "Split vertically"
 msgstr "Dividir verticalmente"
 
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr "Tachado"
 
+#, c-format
 msgid "String %s not found"
 msgstr "No se encontró la cadena %s"
 
@@ -662,6 +755,7 @@ msgstr "Representación de la tabulación"
 msgid "Tab style"
 msgstr "Estilo de la tabulación"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -669,6 +763,7 @@ msgstr ""
 "El archivo %s no existe\n"
 "¿desea crearlo?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -685,6 +780,7 @@ msgstr "No pudo crearse el archivo, revise la ruta"
 msgid "The file could not be saved."
 msgstr "No pudo guardarse el archivo."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -726,6 +822,9 @@ msgstr "Deshacer"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Sin Título "
 
@@ -753,8 +852,14 @@ msgstr "Ventana"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr ""
+
 msgid "Word Wrap"
 msgstr "Ajuste de palabras"
+
+msgid "Word pattern"
+msgstr ""
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Directorios de trabajo;Añadir directorio;Quitar el último directorio"
@@ -788,34 +893,3 @@ msgstr ""
 
 msgid "close this tab"
 msgstr "cerrar esta pestaña"
-
-#~ msgid "Continue?"
-#~ msgstr "¿Continuar?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Editar la selección en una nueva pestaña"
-
-#~ msgid "No text to execute"
-#~ msgstr "No hay texto para ejecutar"
-
-#~ msgid "No text selected"
-#~ msgstr "No hay texto seleccionado"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "El archivo %s no existe\n"
-#~ " ¿Desea crearlo?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Ajustar búsqueda"
-
-#~ msgid "Edition"
-#~ msgstr "Edición"
-
-#~ msgid "Numerotation"
-#~ msgstr "Numeración"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "Abrir archivo en...:Añadir directorio:Eliminar el último directorio"

@@ -27,7 +27,7 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename);
-static void returnMoveFileResultOnStack(int ierr, char *fname);
+static int returnMoveFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_movefile(char *fname,unsigned long fname_len)
 {
@@ -262,7 +262,7 @@ static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename)
 	return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static void returnMoveFileResultOnStack(int ierr, char *fname)
+static int returnMoveFileResultOnStack(int ierr, char *fname)
 {
 	double dError = 0.;
 	wchar_t **sciError = NULL;
@@ -272,7 +272,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname)
 	if (sciError == NULL)
 	{
 		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-		return;
+		return 0;
 	}
 
 #ifdef _MSC_VER
@@ -296,7 +296,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 
 		wcscpy(sciError[0], buffer);
@@ -308,7 +308,7 @@ static void returnMoveFileResultOnStack(int ierr, char *fname)
 		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s: Memory allocation error.\n"),fname);
-			return;
+			return 0;
 		}
 		wcscpy(sciError[0], L"");
 	}
@@ -350,7 +350,8 @@ static void returnMoveFileResultOnStack(int ierr, char *fname)
 
 	freeArrayOfWideString(sciError, 1);
 
-	C2F(putlhsvar)();
+	PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

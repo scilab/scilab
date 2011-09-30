@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 12:31+0000\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: pl\n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
@@ -104,8 +105,8 @@ msgid "%s: %s module is not installed.\n"
 msgstr "%s: moduł %s nie jest zainstalowany.\n"
 
 #, c-format
-msgid "%s: Output value set to ''on''."
-msgstr "%s: Wartość wyjściowa ustawiona na  ''on''"
+msgid "%s: Output value set to 'on'."
+msgstr "%s: Wartość wyjściowa ustawiona na  'on"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -123,8 +124,8 @@ msgstr "&Plik"
 msgid "&Tools"
 msgstr "&Narzędzia"
 
-msgid "''nobalance'' option, IGNORED."
-msgstr "Opcja ''nobalance'', ZIGNOROWANA"
+msgid "'nobalance' option, IGNORED."
+msgstr "Opcja 'nobalance', ZIGNOROWANA"
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -321,16 +322,15 @@ msgstr ""
 "realizowane."
 
 #, c-format
-msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr ""
-"Rozpakowywanie %s z tlist'y ''%s'' jeszcze nie jest zaimplementowane."
+msgid "Extraction of %s from '%s' tlist is not yet implemented."
+msgstr "Rozpakowywanie %s z tlist'y '%s' jeszcze nie jest zaimplementowane."
 
 msgid "File"
 msgstr "Plik"
 
 #, c-format
-msgid "File %s is an empty file ! Nothing done..."
-msgstr "Plik %s jest pusty ! Nie ma nic do roboty..."
+msgid "File %s is an empty file.\n"
+msgstr ""
 
 msgid "File contains no instruction, no translation made..."
 msgstr "Plik nie zawiera instrukcji, nie dokonano konwersji..."
@@ -512,7 +512,7 @@ msgstr ""
 "Opcja -regexp nie jest jeszcze obsługiwana: zostanie ona zignorowana."
 
 msgid "Options"
-msgstr "Opcje"
+msgstr "Ustawienia"
 
 msgid "Output directory"
 msgstr "Katalog wyjściowy"
@@ -675,9 +675,9 @@ msgstr ""
 msgid "Wrong dimensions user data."
 msgstr "Złe wymiary danych użytkownika."
 
-msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
+msgid "Wrong input argument in getrhs() (Must be a 'funcall' tlist)."
 msgstr ""
-"Nieprawidłowy argument wejściowy w getrhs() (Musi być ''funcall'' tlist)."
+"Nieprawidłowy argument wejściowy w getrhs() (Musi być 'funcall' tlist)."
 
 msgid "Wrong number of inputs."
 msgstr "Nieprawidłowa liczba parametrów wejściowych."
@@ -689,8 +689,8 @@ msgid "Yes"
 msgstr "Tak"
 
 #, c-format
-msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "zawartością musi być tlist'a ''contents'' zamiast :%s."
+msgid "contents must be a 'contents' tlist instead of a: %s."
+msgstr "zawartością musi być tlist'a 'contents' zamiast :%s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
@@ -718,8 +718,8 @@ msgstr "wyrażenie nie może być: %s."
 msgid "fopen used with three outputs."
 msgstr "fopen wykozystana z trzema parametrami wejściowymi."
 
-msgid "fopen(''all'') has no translation."
-msgstr "fopen(''all'') nie ma tłumaczenia."
+msgid "fopen('all') has no translation."
+msgstr "fopen('all') nie ma tłumaczenia."
 
 msgid "if"
 msgstr "jeśli"
@@ -729,11 +729,11 @@ msgid "index must be a list instead of a: %s."
 msgstr "indeks musi być listą zamiast: %s."
 
 #, c-format
-msgid "infer must be an ''infer'' tlist instead of a: %s."
-msgstr "infer musi być tlistą ''infer'' zamiast: %s."
+msgid "infer must be an 'infer' tlist instead of a: %s."
+msgstr "infer musi być tlistą 'infer' zamiast: %s."
 
-msgid "input argument must be an ''operation'' tlist."
-msgstr "argument wejściowy musi być tlist'a ''operation''."
+msgid "input argument must be an 'operation' tlist."
+msgstr "argument wejściowy musi być tlist'a 'operation'."
 
 msgid "is Real."
 msgstr "jest typu real."
@@ -874,8 +874,8 @@ msgid "type %d is not implemented."
 msgstr "typ %d nie jest zaimplementowany."
 
 #, c-format
-msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "typ  musi być ''type'' tlist zmiast: %s"
+msgid "type must be a 'type' tlist instead of a: %s."
+msgstr "typ  musi być 'type' tlist zmiast: %s"
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"

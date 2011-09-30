@@ -104,6 +104,7 @@ matching in Java */
       int i=0, j=0;
       $2 = (*jenv)->GetArrayLength(jenv, $input);
       $3 = 0;
+      $1 = NULL;
 
       for(i=0; i<$2; i++) {
           ##JNITYPE## *element = NULL;

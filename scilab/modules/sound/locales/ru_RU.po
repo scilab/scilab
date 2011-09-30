@@ -8,19 +8,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sound-ru\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-12-09 00:14+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 15:19+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+msgid "Cannot play file."
+msgstr "Не удалось воспроизвести файл."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Модуль «Sound» не установлен.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
@@ -45,14 +68,6 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
@@ -75,14 +90,6 @@ msgstr "%s: Неверное количество выходных параме�
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid ""
@@ -114,9 +121,6 @@ msgstr ".wav файл не содержит идентификатора wave."
 msgid "A complete picture of the sound."
 msgstr "Полная картина звука."
 
-msgid "Cannot play file."
-msgstr "Не удалось воспроизвести файл."
-
 msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
@@ -135,8 +139,11 @@ msgstr "Ошибка чтения wav файла."
 msgid "Error while writing sound file."
 msgstr "Ошибка записи звукового файла."
 
+msgid "FFT on a wav file"
+msgstr "БПФ wav-файла"
+
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Преобразование Фурье параметров звука за 0,5 с."
+msgstr "Фурье-анализ 0,5 секунды звуковых параметров."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Некорректная информация о размере блока в RIFF файле."
@@ -150,8 +157,7 @@ msgstr "Неверные границы сэмплов (нужно указыв�
 msgid "Invalid wav format."
 msgstr "Неверный формат wav."
 
-msgid ""
-"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
 "Mu-law может быть использован только с 8-битными данными. Используйте метод "
 "«linear» вместо него."
@@ -166,9 +172,6 @@ msgstr ""
 msgid "Sample limits out of range."
 msgstr "Границы сэмплов вне допустимых пределов."
 
-msgid "Scilab sound module not installed.\n"
-msgstr "Модуль «Sound» не установлен.\n"
-
 msgid "Unknown data format."
 msgstr "Неизвестный формат данных."
 
@@ -178,20 +181,5 @@ msgstr "Неизвестный формат данных."
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "только 8/16/24/32 бит для кодирования."
 
-msgid "see ''mapsound'' function"
-msgstr "См. функцию «mapsound»."
-
-#~ msgid "Audio capabilities not available."
-#~ msgstr "Audio-возможности недоступны."
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
-#~ "vector of %d integers.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: должно быть %s или %s, целое "
-#~ "число или вектор из %d целых чисел.\n"
+msgid "see 'mapsound' function"
+msgstr "см. функцию 'mapsound'"

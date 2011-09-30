@@ -69,35 +69,33 @@ xcos_toolbox_skeleton/DESCRIPTION \
 xcos_toolbox_skeleton/DESCRIPTION-FUNCTIONS \
 xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.quit \
 xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.start \
-xcos_toolbox_skeleton/.gitignore \
 xcos_toolbox_skeleton/help/builder_help.sce \
 xcos_toolbox_skeleton/help/cleaner_help.sce \
 xcos_toolbox_skeleton/help/en_US/build_help.sce \
 xcos_toolbox_skeleton/help/en_US/TBX_SUM_c.xml \
 xcos_toolbox_skeleton/help/en_US/tbx_sum.xml \
 xcos_toolbox_skeleton/help/fr_FR/build_help.sce \
-xcos_toolbox_skeleton/help/.gitignore \
+xcos_toolbox_skeleton/images/gif/TBX_MUT_STYLE.gif \
 xcos_toolbox_skeleton/images/gif/TBX_SUM_c.gif \
-xcos_toolbox_skeleton/images/h5/.gitignore \
+xcos_toolbox_skeleton/images/svg/TBX_MUT_STYLE.svg \
 xcos_toolbox_skeleton/images/svg/TBX_SUM_c.svg \
 xcos_toolbox_skeleton/license.txt \
 xcos_toolbox_skeleton/macros/buildmacros.sce \
 xcos_toolbox_skeleton/macros/cleanmacros.sce \
-xcos_toolbox_skeleton/macros/.gitignore \
+xcos_toolbox_skeleton/macros/TBX_MUT_STYLE.sci \
 xcos_toolbox_skeleton/macros/TBX_SUM_c.sci \
 xcos_toolbox_skeleton/sci_gateway/builder_gateway.sce \
 xcos_toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 xcos_toolbox_skeleton/sci_gateway/c/sci_tbx_sum.c \
-xcos_toolbox_skeleton/sci_gateway/.gitignore \
 xcos_toolbox_skeleton/sci_gateway/loader_gateway.sce \
 xcos_toolbox_skeleton/src/builder_src.sce \
 xcos_toolbox_skeleton/src/c/block_sum.c \
 xcos_toolbox_skeleton/src/c/builder_c.sce \
 xcos_toolbox_skeleton/src/c/business.h \
 xcos_toolbox_skeleton/src/c/business_sum.c \
-xcos_toolbox_skeleton/src/c/.gitignore \
 xcos_toolbox_skeleton/src/cleaner_src.sce \
-xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst
+xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst \
+loader.sce
 
 install-data-local:
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \

@@ -22,7 +22,7 @@ if scs_m.model.opar <> list() then bugmes();quit;end;
 status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.xcos");
 if status <> %t then bugmes();quit;end;
 scicos_simulate(scs_m);
-block = scs_m.objs(4);
+block = scs_m.objs(5);
 if block.gui <> "scifunc_block_m" then bugmes();quit;end;
 if isempty(block.model.opar) <> %t then bugmes();quit;end;
 block.model.opar = block.model.ipar;

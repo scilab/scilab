@@ -16,11 +16,17 @@
 
 function demo_boxbounds()
 
+  filename = 'neldermead_boxbounds.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates Box'' algorithm on a simply bounds-constrained optimization problem.\n"));
 
   // A simple quadratic function
   function [ f , index ] = myquad ( x , index )
     f = x(1)^2 + x(2)^2
+  endfunction
+  function y = myquadC ( x1 , x2 )
+    y = myquad ( [x1 , x2] , 2 )
   endfunction
 
   //
@@ -51,7 +57,8 @@ function demo_boxbounds()
   // Check that the cost function is correctly connected.
   //
   [ nm , f ] = nmplot_function ( nm , x0 );
-  nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "/history.simplex.txt");
+  simplexfn = fullfile(TMPDIR , "history.simplex.txt")
+  nm = nmplot_configure(nm,"-simplexfn",simplexfn);
   
   //
   // Perform optimization
@@ -59,15 +66,17 @@ function demo_boxbounds()
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
   mprintf(_("...Done\n"));
-  disp(nm);
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"nmplot_summary.sci"),-1);
+  nmplot_summary(nm)
   mprintf("==========================\n");
   xcomp = nmplot_get(nm,"-xopt");
-  mprintf("x computed = %s\n",strcat(string(xcomp), " "));
   mprintf("x expected = %s\n",strcat(string(xopt), " "));
   shift = norm(xcomp-xopt)/norm(xopt);
   mprintf("Shift = %f\n",shift);
   fcomp = nmplot_get(nm,"-fopt");
-  mprintf("f computed = %f\n",fcomp);
   mprintf("f expected = %f\n",fopt);
   shift = abs(fcomp-fopt)/abs(fopt);
   mprintf("Shift =%f\n",shift);
@@ -76,19 +85,30 @@ function demo_boxbounds()
   // Plot
   //
   mprintf(_("Plot contour (please wait)...\n"));
-  [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = 0.5 , xmax = 2.1 , ymin = 0.5 , ymax = 2.1 , nx = 50 , ny = 50 );
-  
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+  xmin = 0.5 ; 
+  xmax = 2.1 ; 
+  ymin = 0.5 ; 
+  ymax = 2.1 ; 
+  nx = 50 ; 
+  ny = 50;
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
+  scf();
   xset("fpf"," ")
   drawlater();
-  contour ( xdata , ydata , zdata , linspace(min(zdata),max(zdata),10) )
+  contour ( xdata , ydata , myquadC , 10 )
   nmplot_simplexhistory ( nm );
   drawnow();
-
+  //
+  // Cleanup
+  deletefile(simplexfn)
   nm = nmplot_destroy(nm);
   mprintf(_("End of demo.\n"));
 
+  //
+  // Load this script into the editor
+  //
+  editor ( dname + filename, "readonly" );
 endfunction
 
 demo_boxbounds();

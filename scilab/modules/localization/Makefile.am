@@ -42,6 +42,7 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
+noinst_LTLIBRARIES = libscilocalization-algo.la
 
 libscilocalization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -50,22 +51,23 @@ libscilocalization_la_LDFLAGS += -lintl -framework Cocoa
 libscilocalization_la_CFLAGS += -lintl -framework Cocoa
 endif
 
-libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
+libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
+libscilocalization_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscilocalization_algo_la_CFLAGS = $(libscilocalization_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
 
-libscilocalization_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libscilocalization_la_LIBADD = libscilocalization-algo.la
+
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######
 modulename=localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(mydatadir)
-libscilocalization_la_root_DATA =  license.txt version.xml
+libscilocalization_la_root_DATA =  license.txt 
 
 
 ####localization : init scripts ####

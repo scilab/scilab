@@ -29,9 +29,6 @@ import com.mxgraph.view.mxGraph;
 
 /**
  * Connection handler used to handle multi point links.
- * 
- * @see <a
- *      href="http://www.jgraph.org/bugzilla/show_bug.cgi?id=20">http://www.jgraph.org/bugzilla/show_bug.cgi?id=20</a>
  */
 public class ConnectionHandler extends mxConnectionHandler {
 	private boolean multiPointLinkStarted;
@@ -44,6 +41,8 @@ public class ConnectionHandler extends mxConnectionHandler {
 	 */
 	public ConnectionHandler(GraphComponent graphComponent) {
 		super(graphComponent);
+		
+		getMarker().setHotspot(1.0);
 	}
 
 	/**
@@ -85,9 +84,10 @@ public class ConnectionHandler extends mxConnectionHandler {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (error != null && error.isEmpty() && !e.isConsumed()
-				&& first != null && connectPreview.isActive()
-				&& !marker.hasValidState()) {
+		final boolean isEventValid = error != null && error.isEmpty() && !e.isConsumed();
+		final boolean hasValidState = first != null && connectPreview.isActive() && !marker.hasValidState();
+		
+		if (isEventValid && hasValidState) {
 			final mxGraph graph = graphComponent.getGraph();
 			final double x = graph.snap(e.getX());
 			final double y = graph.snap(e.getY());
@@ -104,11 +104,10 @@ public class ConnectionHandler extends mxConnectionHandler {
 			
 			// scale and set the point
 			// extracted from mxConnectPreview#transformScreenPoint
-			{
-				final mxPoint tr = graph.getView().getTranslate();
-				final double scale = graph.getView().getScale();
-				points.add(new mxPoint(x / scale - tr.getX(), y / scale - tr.getY()));
-			}
+			final mxPoint tr = graph.getView().getTranslate();
+			final double scale = graph.getView().getScale();
+			points.add(new mxPoint(graph.snap(x / scale - tr.getX()), graph.snap(y / scale - tr.getY())));
+
 
 			// update the preview and set the flag
 			connectPreview.update(e, null, x, y);

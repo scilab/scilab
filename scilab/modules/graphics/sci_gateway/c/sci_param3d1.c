@@ -56,7 +56,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) 
   {
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0;
   }
 
@@ -75,7 +75,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
   if (m1 * n1 == 0) 
   { 
 	  LhsVar(1) = 0;
-	  C2F(putlhsvar)();
+	  PutLhsVar();
 	  return 0;
   }
   CheckSameDims(1,2,m1,n1,m2,n2); 
@@ -130,7 +130,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
   Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,labels,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n); /*Adding F.Leray 12.03.04*/
   
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

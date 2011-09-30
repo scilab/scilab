@@ -22,7 +22,7 @@ jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
 
 jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
 
-checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
 testng.jar=${thirdparty.dir}/testng.jar
 
@@ -40,9 +40,6 @@ library.jvm.name=org.scilab.modules.jvm.jar
 
 library.commons.dir=${modules.dir}/commons/${build.jar.dir}/
 library.commons.name=org.scilab.modules.commons.jar
-
-library.shell.dir=${modules.dir}/shell/${build.jar.dir}/
-library.shell.name=org.scilab.modules.shell.jar
 
 library.gui.dir=${modules.dir}/gui/${build.jar.dir}/
 library.gui.name=org.scilab.modules.gui.jar

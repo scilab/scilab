@@ -6,21 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-13 13:38+0000\n"
+"PO-Revision-Date: 2011-08-02 02:05+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ja\n"
 
 msgid ""
 " has been modified since last save\n"
 "save it?"
 msgstr " は 直近の保存の後で修正されました. 保存しますか?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s はディレクトリです"
 
@@ -49,6 +51,12 @@ msgstr "%s: 引数 %d の型が間違っています:　実数行列または 'r
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定してください.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr "(* : 任意の文字列, ?: 任意の文字)"
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr "(~ : ユーザのホームディレクトリ. SCI: Scilabのベースディレクトリ.)"
+
 msgid "... file with echo"
 msgstr ".. エコーバック付きのファイル"
 
@@ -57,6 +65,14 @@ msgstr ".. エコーバックなしのファイル"
 
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr ".. エコーバックありを選択; ..キャレットまでエコーあり"
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
+msgstr "<html>%s <i>(%s 回マッチ)</i></html>"
 
 msgid "?"
 msgstr "?"
@@ -97,17 +113,20 @@ msgstr "本当に SciNotes を閉じてよいですか ?"
 msgid "Auto (Default)"
 msgstr "自動(デフォルト)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "自動補完 (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr "(, [,  ... を自動補完"
 
-msgid "Auto-completion on if,function,..."
-msgstr "if, function, ... について自動補完"
+msgid "Auto-completion on if, function, ..."
+msgstr "if, function, ...自動補完"
 
 msgid "Background Color"
 msgstr "背景色"
 
 msgid "Backward"
 msgstr "戻る"
+
+msgid "Base directory:"
+msgstr "ベースディレクトリ:"
 
 msgid "Binary file: read-only mode"
 msgstr "バイナリファイル: 読み出し専用モード"
@@ -130,11 +149,23 @@ msgstr "セレクションの先頭を大文字にします; 文字の先頭を�
 msgid "Case sensitive"
 msgstr "大文字/小文字を区別"
 
+msgid "Case-sensitivity (File name)"
+msgstr "大文字小文字を区別 (ファイル名)"
+
+msgid "Case-sensitivity (Word)"
+msgstr "大文字小文字を区別 (単語)"
+
 msgid "Change Color"
 msgstr "色を変更"
 
 msgid "Change Colors"
 msgstr "色を変更"
+
+msgid "Choose the search base directory"
+msgstr "検索用基本ディレクトリを選択"
+
+msgid "Choose..."
+msgstr "選択..."
 
 msgid "Circular search"
 msgstr "環状探索"
@@ -187,6 +218,9 @@ msgstr "コピー"
 msgid "Copy as HTML with line number"
 msgstr "行番号付きのHTMLとしてコピー"
 
+msgid "Copy full path"
+msgstr "完全なパスをコピー"
+
 msgid "Copy selection in a new tab"
 msgstr "選択部を新規タブにコピー"
 
@@ -238,6 +272,10 @@ msgstr "二重逆V字型"
 msgid "Edit"
 msgstr "編集"
 
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr "経過時間: %s 秒."
+
 msgid "Enable Auto Reformat"
 msgstr "自動再フォーマットを有効"
 
@@ -283,6 +321,9 @@ msgstr "ファイル"
 msgid "File already exists"
 msgstr "ファイルが既に存在します"
 
+msgid "File pattern"
+msgstr "ファイルパターン"
+
 msgid "Find"
 msgstr "検索"
 
@@ -291,6 +332,12 @@ msgstr "次を検索"
 
 msgid "Find Previous"
 msgstr "前を検索"
+
+msgid "Find files"
+msgstr "ファイルを検索"
+
+msgid "Find word in files"
+msgstr "ファイル中で単語検索"
 
 msgid "Find/Replace"
 msgstr "検索/置換"
@@ -321,6 +368,9 @@ msgstr "前のアンカーに移動"
 
 msgid "Goto line"
 msgstr "指定行へ移動"
+
+msgid "Graphics handle field"
+msgstr "グラフィックハンドルのフィールド"
 
 msgid "Help about '"
 msgstr "ヘルプ ’"
@@ -355,6 +405,7 @@ msgstr "無視する"
 msgid "Incremental Search"
 msgstr "インクリメンタルサーチ"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "正規表現が不正です: %s"
 
@@ -364,14 +415,19 @@ msgstr "イタリック体"
 msgid "Length"
 msgstr "長さ"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "%s 行, %s 列目."
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "%s 行, %s 列. 関数 '%s' (%s 行目)."
 
 msgid "Line Endings"
 msgstr "行末コード"
+
+msgid "Line by line"
+msgstr "行単位"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行番号付け; オフ;通常; whereami 互換"
@@ -405,6 +461,9 @@ msgstr "次のタブ"
 
 msgid "No Line Numbering"
 msgstr "行番号を付けない"
+
+msgid "No help"
+msgstr "ヘルプ無し"
 
 msgid "No split"
 msgstr "分割しない"
@@ -484,14 +543,29 @@ msgstr "印刷"
 msgid "Print Preview"
 msgstr "印刷プレビュー"
 
+msgid "Read file line by line"
+msgstr "ファイルを一行毎に読み込む"
+
 msgid "Read-only mode"
 msgstr "読み込み専用モード"
 
 msgid "Recent Files"
 msgstr "最近使ったファイル"
 
+msgid "Recursive"
+msgstr "再帰的"
+
+msgid "Recursive search"
+msgstr "再帰検索"
+
 msgid "Redo"
 msgstr "やり直す"
+
+msgid "Regex"
+msgstr "正規表現"
+
+msgid "Regular expression (Word)"
+msgstr "正規表現 (単語)"
 
 msgid "Regular expressions"
 msgstr "正規表現"
@@ -550,6 +624,12 @@ msgstr "保存"
 msgid "Save All"
 msgstr "全て保存"
 
+msgid "Save and execute"
+msgstr "保存して実行"
+
+msgid "Save and execute all files"
+msgstr "すべてのファイルを保存し実行する"
+
 msgid "Save as"
 msgstr "名前を付けて保存"
 
@@ -581,6 +661,12 @@ msgstr "範囲"
 
 msgid "Search"
 msgstr "検索"
+
+msgid "Search Files..."
+msgstr "ファイルを検索..."
+
+msgid "Search in Files..."
+msgstr "ファイルを検索..."
 
 msgid "Select All"
 msgstr "全て選択"
@@ -621,11 +707,14 @@ msgstr "マクロの定義を表示する "
 msgid "Show/Hide ToolBar"
 msgstr "ツールバーの表示/非表示"
 
+msgid "Single to double quote strings"
+msgstr "一重または二重引用符付きの文字列"
+
 msgid "Source of '"
 msgstr "ソースコード '"
 
 msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割ビュー;ofu"
+msgstr "分割ビュー;オフ;水平方向;垂直方向"
 
 msgid "Split horizontally"
 msgstr "水平方向に分割"
@@ -633,9 +722,13 @@ msgstr "水平方向に分割"
 msgid "Split vertically"
 msgstr "垂直方向に分割"
 
+msgid "Stop"
+msgstr "停止"
+
 msgid "Strike Through"
 msgstr "削除"
 
+#, c-format
 msgid "String %s not found"
 msgstr "文字列 %s は見つかりません"
 
@@ -651,11 +744,13 @@ msgstr "タブ形式"
 msgid "Tab style"
 msgstr "タブ形式"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr "ファイル %s が存在しません"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -672,6 +767,7 @@ msgstr "ファイルを作成できません, パスを確認してください"
 msgid "The file could not be saved."
 msgstr "ファイルは保存できませんでした."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr "ファイルエンコーディングは実際には %s で、 %s により保存されます. 続けますか ?"
@@ -707,6 +803,9 @@ msgstr "取り消す"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr "未知の関数"
+
 msgid "Untitled "
 msgstr "無題 "
 
@@ -734,8 +833,14 @@ msgstr "ウィンドウ"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr "単語"
+
 msgid "Word Wrap"
 msgstr "ワードラップ"
+
+msgid "Word pattern"
+msgstr "単語パターン"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "ワーキングディレクトリ;ディレクトリを追加;直近のディレクトリを削除"
@@ -767,34 +872,3 @@ msgstr "変更内容を失うかもしれません, それでもエンコーデ�
 
 msgid "close this tab"
 msgstr "このタブを閉じる"
-
-#~ msgid "Continue?"
-#~ msgstr "続けますか?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "新規タブで編集"
-
-#~ msgid "No text to execute"
-#~ msgstr "実行するテキストがありません."
-
-#~ msgid "No text selected"
-#~ msgstr "テキストは選択されていません"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "ファイル %s は存在しません\n"
-#~ "作成しますか?"
-
-#~ msgid "Wrap search"
-#~ msgstr "折り返し検索"
-
-#~ msgid "Edition"
-#~ msgstr "エディション"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "ファイルを開く ...;ディレクトリを追加;直近のディレクトリを削除"
-
-#~ msgid "Numerotation"
-#~ msgstr "数値循環"

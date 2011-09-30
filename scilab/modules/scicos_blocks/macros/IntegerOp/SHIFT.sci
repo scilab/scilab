@@ -47,7 +47,7 @@ case 'set' then
 
     if ~ok then break,end
       if (np ~= 0 & np ~= 1) then
-          block_parameter_error(msprintf( gettext("Wrong value for ''%s'' parameter: %d"), gettext("Shift Type"), np), ..
+          block_parameter_error(msprintf( gettext("Wrong value for ''%s'' parameter: %d."), gettext("Shift Type"), np), ..
             msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
           ok=%f;
     end

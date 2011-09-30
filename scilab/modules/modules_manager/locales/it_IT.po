@@ -6,23 +6,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-12 16:55+0000\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: it\n"
 
 #, c-format
-msgid "%s: Can''t go to directory ''%s''.\n"
-msgstr "%s: Impossibile aprire la directory \"%s\".\n"
+msgid "%s: Can't go to directory '%s'.\n"
+msgstr "%s: Impossibile aprire la directory %s.\n"
 
 #, c-format
-msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: La directory \"%s\" non esiste o non è accessibile in lettura.\n"
+msgid "%s: The directory '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s: La directory %s non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid ""
@@ -33,8 +34,8 @@ msgstr ""
 "scrittura a questo file.\n"
 
 #, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: Il file ''%s'' non esiste o non è accessibile in lettura.\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s: Il file '%s' non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
@@ -46,6 +47,10 @@ msgid ""
 msgstr ""
 "%s: Questo modulo richiede un compilatore C o Fortran e non è stato "
 "trovato.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: È impossibile esportare %s a %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -102,23 +107,26 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
+msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: impossibile aprire "
-"\"%s\".\n"
+"'%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
-"or is not read accessible.\n"
+"%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
+"is not read accessible.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: la directory \"%s\" "
-"non esiste o non è accessibile in lettura.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: la directory %s non "
+"esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
 msgstr ""
 "%s: la documentazione non può essere creata in questo modulo di Scilab: %s.\n"
+
+msgid "Building blocks...\n"
+msgstr "Creazione in corso dei blocchi...\n"
 
 msgid "Building gateway...\n"
 msgstr "Creazione del gateway...\n"

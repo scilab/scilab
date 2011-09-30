@@ -56,8 +56,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
      * Execute the file into Scilab
      * @param editor the Scilab editor
      */
-    private void executeFile(SciNotes editor) {
-        String filePath = editor.getTextPane().getName();
+    protected void executeFile(SciNotes editor, String filePath) {
         if (filePath == null) {
             return;
         }
@@ -85,11 +84,11 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
             if (saveBefore || ScilabModalDialog.show(getEditor(), SciNotesMessages.EXECUTE_WARNING, SciNotesMessages.EXECUTE_FILE_INTO_SCILAB,
                                                      IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
                 if (editor.save(getEditor().getTabPane().getSelectedIndex(), true)) {
-                    this.executeFile(editor);
+                    this.executeFile(editor, editor.getTextPane().getName());
                 }
             }
         } else {
-            this.executeFile(editor);
+            this.executeFile(editor, editor.getTextPane().getName());
         }
     }
 

@@ -4,9 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- JVM NOT MANDATORY -->
-
+//
 // <-- Non-regression test for bug 2391 -->
 //
 // <-- Bugzilla URL -->

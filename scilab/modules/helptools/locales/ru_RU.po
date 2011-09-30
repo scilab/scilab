@@ -8,15 +8,59 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: helptools-ru\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-02 22:26+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:33+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: Не удалось найти или создать рабочий каталог %s.\n"
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: Ошибка при сборке документации: %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Выполнение стека Java %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s: Выполнение стека Java: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid ""
+"If Scilab is started in a chroot, you might want to try to set the two "
+"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
+msgstr ""
+"Если Scilab запущен с изменённым корневым каталогом (chroot), то можно "
+"попробовать задать две переменные окружения: SCI_DISABLE_TK=1 "
+"SCI_JAVA_ENABLE_HEADLESS=1\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"
+
+msgid "Version"
+msgstr "Версия"
 
 #, c-format
 msgid "\t%s\n"
@@ -47,7 +91,7 @@ msgid ""
 "Building the manual file [%s] in %s.\n"
 msgstr ""
 "\n"
-"Сборка файла руководства [%s] в %s.\n"
+"Компоновка файла руководства [%s] в %s.\n"
 
 #, c-format
 msgid ""
@@ -55,7 +99,7 @@ msgid ""
 "Building the manual file [%s].\n"
 msgstr ""
 "\n"
-"Сборка файла руководства [%s].\n"
+"Компоновка файла руководства [%s].\n"
 
 msgid ""
 "\n"
@@ -69,7 +113,7 @@ msgid "%02d-%02d-%04d"
 msgstr "%02d-%02d-%04d"
 
 #, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
+msgid "%s: %s file hasn't been moved in the %s directory."
 msgstr "%s: %s файл не был перемещён в каталог %s."
 
 #, c-format
@@ -81,24 +125,8 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
-msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s: Не удалось найти или создать рабочий каталог %s.\n"
-
-#, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr "%s: Каталог %s не существует или отсутствуют права на чтение."
-
-#, c-format
-msgid "%s: Error while building documentation: %s.\n"
-msgstr "%s: Ошибка при сборке документации: %s.\n"
-
-#, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Выполнение стека Java %s.\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Выполнение стека Java: %s.\n"
 
 #, c-format
 msgid "%s: File skipped %s."
@@ -112,7 +140,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
-msgstr "%s: Проверьте %s, неверное количество модулей.\n"
+msgstr "%s: Пожалуйста, проверьте %s, количество модулей неверно.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -199,11 +227,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
@@ -278,237 +301,5 @@ msgid "Help chapter"
 msgstr "Раздел справки"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Модуль «%s» не установлен.\n"
-
-#, c-format
 msgid "Warning %s does not follow the dtd"
 msgstr "Внимание: %s не соответсввует dtd"
-
-#, c-format
-#~ msgid "%s: help module is not installed.\n"
-#~ msgstr "%s: Справочный модуль не установлен.\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Deleting files copied from %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Удаление файлов, скопированных из %s\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Deleting files copied from\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Удаление файлов, скопированных из\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing files copied from\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Копирование недостающих файлов из\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing from %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Копирование недостающего из %s\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing help files copied from the default language\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Копируются недостающие файлы справки из языка по умолчанию\n"
-
-#~ msgid "Scilab manual"
-#~ msgstr "Руководство Scilab"
-
-#, c-format
-#~ msgid "Processing %s to %s"
-#~ msgstr "Обработка от %s до %s"
-
-#~ msgid "About Scicos"
-#~ msgstr "О Scicos"
-
-#~ msgid "Scilab 5.0 or more is required."
-#~ msgstr "Требуется версия Scilab 5.0 или выше."
-
-#~ msgid "...demodir must be a directory."
-#~ msgstr "...demodir должна быть каталогом."
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
-#~ "a while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Сборка файла руководства [%s] в %s. (Пожалуйста, подождите... это может "
-#~ "занять некоторое время)\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s]. (Please wait building ... this can take a "
-#~ "while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Сборка файла руководства [%s]. (Пожалуйста, подождите... это может занять "
-#~ "некоторое время)\n"
-
-#~ msgid "Scicos Manual"
-#~ msgstr "Руководство Scicos"
-
-#~ msgid "Batch functions"
-#~ msgstr "Пакетные функции"
-
-#~ msgid "Editor"
-#~ msgstr "Редактор"
-
-#~ msgid "Sources Palette"
-#~ msgstr "Палитра исходников"
-
-#~ msgid "Linear Palette"
-#~ msgstr "Линейная палитра"
-
-#~ msgid "Non-linear Palette"
-#~ msgstr "Нелинейная палитра"
-
-#~ msgid "Branching Palette"
-#~ msgstr "Палитра ветвления"
-
-#~ msgid "Others Palettes"
-#~ msgstr "Палитра другого"
-
-#~ msgid "Threshold Palette"
-#~ msgstr "Палитра порогов"
-
-#~ msgid "Sinks Palette"
-#~ msgstr "Палитра деформаций"
-
-#~ msgid "Events Palette"
-#~ msgstr "Палитра событий"
-
-#~ msgid "Electrical Palette"
-#~ msgstr "Платра электроники"
-
-#~ msgid "Thermohydraulics Palette"
-#~ msgstr "Палитра термогидравлики"
-
-#~ msgid "Matrix Palette"
-#~ msgstr "Палитра матриц"
-
-#~ msgid "Integer Palette"
-#~ msgstr "Палитра целых чисел"
-
-#~ msgid "Demoblocks Palette"
-#~ msgstr "Палитра Demoblocks"
-
-#~ msgid "ABCD Blocks"
-#~ msgstr "Блоки ABCD"
-
-#~ msgid "C Computational Functions"
-#~ msgstr "Вычислительные функции C"
-
-#~ msgid "Scilab Computational Functions"
-#~ msgstr "Вычислительные функции Scilab"
-
-#~ msgid "Utilities Functions"
-#~ msgstr "Вспомогательные функции"
-
-#~ msgid "Programming Scicos Blocks"
-#~ msgstr "Блоки программирования Scicos"
-
-#~ msgid "Scilab Utilities Functions"
-#~ msgstr "Вспомогательные функции Scilab"
-
-#~ msgid "Diagram"
-#~ msgstr "Диаграмма"
-
-#~ msgid "Blocks"
-#~ msgstr "Блоки"
-
-#~ msgid "Links"
-#~ msgstr "Ссылки"
-
-#~ msgid "Compilation/Simulation"
-#~ msgstr "Вычисление/Симуляция"
-
-#~ msgid "Scilab Data Structures"
-#~ msgstr "Структуры данных Scilab"
-
-#~ msgid "Palettes"
-#~ msgstr "Палитры"
-
-#~ msgid "Old Blocks Palette"
-#~ msgstr "Палитры старых блоков"
-
-#, c-format
-#~ msgid "%s: The %s files are up-to-date."
-#~ msgstr "%s: %s файлы последней версии."
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document: %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Собирается основной документ: %s\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document for %s.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Собирается основной документ для %s.\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document in %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Собирается основной документ в %s\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Building the scilab manual file ["
-#~ msgstr ""
-#~ "\n"
-#~ "Собирается файл руководства Scilab ["
-
-#, c-format
-#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "Модуль «%s» выключен в режимах  -nogui и -nwni."
-
-#, c-format
-#~ msgid "%s: Scilab 5.0 or more is required.\n"
-#~ msgstr "%s: Требуется версия Scilab 5.0 или выше.\n"

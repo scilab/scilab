@@ -5,11 +5,11 @@
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2010 - Clément DAVID
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -19,7 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA =  license.txt version.xml
+libscigui_la_root_DATA =  license.txt 
 
 
 #### gui : init scripts ####
@@ -52,7 +52,7 @@ src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
 src/c/checkColorRange.c \
-src/c/messageboxoptions.c 
+src/c/messageboxoptions.c
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
@@ -138,8 +138,6 @@ src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
-sci_gateway/cpp/sci_raise_window.cpp \
-sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
@@ -198,7 +196,9 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
-sci_gateway/cpp/sci_about.cpp
+sci_gateway/cpp/sci_about.cpp \
+sci_gateway/cpp/sci_raise_window.cpp \
+sci_gateway/cpp/sci_usecanvas.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -209,7 +209,7 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/shell/includes/ \
+			-I$(top_srcdir)/modules/console/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
@@ -247,7 +247,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/string/includes/
 
 
-# Without the GUI module 
+# Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(srcdir)/includes/ \
@@ -261,19 +261,22 @@ libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscigui-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libscigui.la 
+pkglib_LTLIBRARIES += libscigui.la
+noinst_LTLIBRARIES = libscigui-algo.la
 endif
 
 libscigui_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
+libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CPP_SOURCES)
+libscigui_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscigui_algo_la_CFLAGS = $(libscigui_la_CFLAGS)
+libscigui_algo_la_CPPFLAGS = $(libscigui_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
-#  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
-libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigui_la_LIBADD = libscigui-algo.la
 
 
 #### gui : gateway declaration ####
@@ -290,14 +293,15 @@ nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
 images/icons/32x32/apps/system-search.png \
+images/icons/16x16/actions/execute-all.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \
 images/icons/16x16/actions/view-refresh.png \
-images/icons/16x16/actions/save-and-execute.png \
 images/icons/16x16/search/folder.png \
 images/icons/16x16/search/file.png \
 images/icons/16x16/search/line-found.png \
 images/icons/16x16/search/scilab-file.png \
+images/icons/16x16/actions/save-and-execute.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \

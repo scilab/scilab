@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.io.ScilabGraphCodec;
@@ -40,6 +41,7 @@ import com.mxgraph.model.mxGraphModel;
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
  */
+// CSOFF: ClassFanOutComplexity
 public class XcosDiagramCodec extends ScilabGraphCodec {
     private static final String SCICOS_PARAMETERS = "scicosParameters";
     private static final String AS_ATTRIBUTE = "as";
@@ -53,13 +55,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     // CSOFF: MultipleStringLiterals
     private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
             "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-            "savedFile", "multiplicities", "opened", "modified", "undoManager" };
+            "savedFile", "multiplicities", "opened", "modified", "undoManager",
+            "background" };
     private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
             "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
             "selectionModel", "multiplicities", "opened", "modified",
             "undoManager", "savedFile", "container",
             "integratorAbsoluteTolerance", "integratorRelativeTolerance",
-            "maxIntegrationTimeInterval", "toleranceOnTime" };
+            "maxIntegrationTimeInterval", "toleranceOnTime", "background"};
     // CSON: MultipleStringLiterals
 
     /**
@@ -199,8 +202,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      */
     @Override
     public Node beforeDecode(mxCodec dec, Node node, Object obj) {
-        final HashSet<String> ids = new HashSet<String>();
-        final ArrayList<Node> trash = new ArrayList<Node>();
+        final Set<String> ids = new HashSet<String>();
+        final Collection<Node> trash = new ArrayList<Node>();
 
         if (node instanceof Element) {
             final Node model = ((Element) node).getElementsByTagName("mxGraphModel").item(0);
@@ -210,15 +213,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
                     for (Node cell = root.getFirstChild(); cell != null; cell = cell.getNextSibling()) {
 
                         if (cell instanceof Element && cell.getLocalName().contentEquals("mxCell")) {
-                            final Node id = cell.getAttributes().getNamedItem("id");
-                            final Node parent = cell.getAttributes().getNamedItem("parent");
-
-                            if (id instanceof Element) {
-                                ids.add(id.getNodeValue());
-                            }
-                            if (parent instanceof Element && !ids.contains(parent.getNodeValue())) {
-                                trash.add(parent);
-                            }
+                            cleanUpNode(ids, trash, cell);
                         }
                     }
 
@@ -232,8 +227,34 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         return super.beforeDecode(dec, node, obj);
     }
 
+	/**
+	 * Add the cell to the ids or trash set
+	 * 
+	 * @param ids the valid id set
+	 * @param trash the invalid id list
+	 * @param cell the cell to clean or not
+	 */
+	private void cleanUpNode(final Set<String> ids,
+			final Collection<Node> trash, Node cell) {
+		final Node id = cell.getAttributes().getNamedItem("id");
+		final Node parent = cell.getAttributes().getNamedItem("parent");
+
+		if (id instanceof Element) {
+		    ids.add(id.getNodeValue());
+		}
+		if (parent instanceof Element && !ids.contains(parent.getNodeValue())) {
+		    trash.add(parent);
+		}
+	}
+
     /**
      * Put a comment with versions.
+     * 
+     * @param enc the encoder
+     * @param obj the object to encode
+     * @param node the cureent node
+     * @return the updated object
+     * @see org.scilab.modules.graph.io.ScilabGraphCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
@@ -287,20 +308,22 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         diag.setReadOnly(false);
 
         // 5.3.1 diagrams may contains invalid default parents, remove them.
-        {
-            final Object root = model.getParent(parent);
-            if (root != model.getRoot() && root != null) {
-                LogFactory.getLog(XcosDiagramCodec.class).debug("Removing misplaced cells");
-                model.setRoot(root);
-            }
+        final Object root = model.getParent(parent);
+        if (root != model.getRoot() && root != null) {
+            LogFactory.getLog(XcosDiagramCodec.class).debug("Removing misplaced cells");
+            model.setRoot(root);
         }
 
         return super.afterDecode(dec, node, obj);
     }
 
-    private void showUpdateDialog() {
+    /**
+     * Pop up an update dialog to alert the user.
+     */
+    public void showUpdateDialog() {
         ScilabModalDialog.show(null, new String[] {
                 SOME_BLOCKS_HAVE_BEEN_REMOVED, "", PLEASE_CHECK_THE_DIAGRAM },
                 INCOMPATIBILITY_DETECTED, IconType.WARNING_ICON);
     }
 }
+//CSON: ClassFanOutComplexity

@@ -1,3 +1,22 @@
+            Changes between versions 5.3.2 and 5.3.3 of Scilab
+            =================================================
+
+Bug fixes:
+==========
+
+* Bug 9475 fixed - A mistake in the translation of a string was causing Scinotes
+                   to fail with the Japanese and Polish localizations.
+
+* Bug 9527 fixed - Problem when a text was exported in SVG from the GUI.
+
+* Bug 9545 fixed - contrib/loader.sce was no longer installed under GNU/Linux
+                   and Mac OS X.
+
+* Bug 9590 fixed - Xcos examples were not embedded in Windows binary versions.
+
+* Bug 9670 fixed - Scilab crashed under Mac OS X 10.6.8.
+
+
             Changes between versions 5.3.1 and 5.3.2 of Scilab
             =================================================
 
@@ -14,8 +33,8 @@ Scilab:
 Scinotes:
 =========
 
-* Tools 'Find Files' (CTRL+SHIFT+B under Windows and Linux / CMD+SHIFT+B under 
-  Mac) and 'Find word in Files' (CTRL+SHIFT+F under Windows and Linux / 
+* Tools 'Find Files' (CTRL+SHIFT+B under Windows and Linux / CMD+SHIFT+B under
+  Mac) and 'Find word in Files' (CTRL+SHIFT+F under Windows and Linux /
   CMD+SHIFT+F under Mac) added.
 
 * Added possibility to replace single quoted by double quoted strings.
@@ -25,7 +44,7 @@ Scinotes:
 * Added possibility to remove the comments when executing the code in the
   console.
 
-* All occurrences of a search word are now highlighted in yellow in the 
+* All occurrences of a search word are now highlighted in yellow in the
   text editor.
 
 * Bug 9012 fixed - Print preview triggered a Java exception.
@@ -36,7 +55,7 @@ Scinotes:
 * Bug 9132 fixed - When s = "abc // def" was evaluated WITH ECHO, only s="abc was
                    executed.
 
-* Bug 9171 fixed - Encountered problem to enter Japanese chars under Windows 
+* Bug 9171 fixed - Encountered problem to enter Japanese chars under Windows
                    with IME.
 
 * Bug 9183 fixed - Bad display of selected text when horizontal wrapping was
@@ -62,7 +81,7 @@ Xcos:
 * A skeleton of an Xcos module has been introduced and should help the user
   to design his own palette.
 
-* Documentation updated with examples of the blocks and their translations 
+* Documentation updated with examples of the blocks and their translations
   into French:
   - OUT_f - Regular Output Port
   - IN_f - Regular Input Port
@@ -106,7 +125,7 @@ Xcos:
 
 * Bug 9024 fixed - Opening a non existing file led to palette closing issues.
 
-* Bug 9077 fixed - The diagram in Automotive Suspension demo was indicated as 
+* Bug 9077 fixed - The diagram in Automotive Suspension demo was indicated as
                    modified on loading.
 
 * Bug 9111 fixed - Zoom In/Zoom Out keyboard shortcuts did not work under Mac.
@@ -173,10 +192,10 @@ Dynamic Link:
 * Added 'ilib_include_path' macro to handle includes flag for platform
   compiler. See SEP 55.
 
-* bug 7887 fixed - Under some GNU/Linux distributions (like Ubuntu or Mageia), 
+* bug 7887 fixed - Under some GNU/Linux distributions (like Ubuntu or Mageia),
                    the dynamic link process was using the libstdc++ embedded
                    into the Scilab distribution. Now, if the compiler is gcc,
-                   the dynamic link guesses the libstdc++ path and use it 
+                   the dynamic link guesses the libstdc++ path and use it
                    uppermost.
 
 
@@ -270,6 +289,8 @@ CACSD Module:
                    the symetric part and a new function added for high
                    definition zoom.
 
+* Bug 9285 fixed - g_margin() returned an erroneous result.
+
 
 Bug Fixes:
 ==========
@@ -295,7 +316,7 @@ Bug Fixes:
 * Bug 8423 fixed - With certain options of the configure, the build process
                    failed.
 
-* Bug 8595 fixed - When exporting with several windows opened, the Dialogbox options 
+* Bug 8595 fixed - When exporting with several windows opened, the Dialogbox options
                    did not appear at the front.
 
 * Bug 8675 fixed - The complex function was undocumented.

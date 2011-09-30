@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-03 15:16+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 08:22+0000\n"
+"Last-Translator: Gonzalo Bulnes Guilpain <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -196,28 +197,28 @@ msgstr ""
 "el conjunto {%s}.\n"
 
 msgid "Arma Spectral power estimation:"
-msgstr ""
+msgstr "Arma estimación espectral de potencia:"
 
 msgid "Arma identification"
 msgstr "Identificación Arma"
 
 msgid "Arma simulation and identification"
-msgstr ""
+msgstr "Arma de simulación e identificación"
 
 msgid "Arma, Spectral power estimation"
-msgstr ""
+msgstr "Arma estimación espectral de potencia:"
 
 msgid "Arma, bidimensional version"
-msgstr ""
+msgstr "Arma, versión bidimensional"
 
 msgid "Bode plots"
-msgstr ""
+msgstr "Diagramas de Bode"
 
 msgid "Discrete IIR filter"
-msgstr ""
+msgstr "Filtro IIR discreto"
 
 msgid "IIR filter design"
-msgstr ""
+msgstr "Diseño de filtro IIR"
 
 msgid "Identification ARX (least square):"
 msgstr ""
@@ -226,10 +227,10 @@ msgid "Identification ARX (least square): "
 msgstr ""
 
 msgid "Minimax FIR filter"
-msgstr ""
+msgstr "Filtro FIR Minimax"
 
 msgid "Minimax FIR filter design"
-msgstr ""
+msgstr "Diseño de filtro FIR Minimax"
 
 msgid "Press Return to continue ... \n"
 msgstr "Presione Enter para continuar... \n"
@@ -238,10 +239,10 @@ msgid "Signal Processing"
 msgstr "Procesamiento de Señales"
 
 msgid "Simulation of an ARMAX process:"
-msgstr ""
+msgstr "Simulación de un proceso ARMAX:"
 
 msgid "Simulation of an ARMAX process: "
-msgstr ""
+msgstr "Simulación de un proceso ARMAX: "
 
 msgid "Spectral Estimation"
 msgstr "Estimación espectral"
@@ -259,7 +260,7 @@ msgid "Wiegner filter"
 msgstr "Filtro Wiegner"
 
 msgid "Window FIR filters"
-msgstr ""
+msgstr "Filtros FIR Ventana"
 
 msgid "estimates xf"
 msgstr "xf estimado"
@@ -271,7 +272,7 @@ msgid "frequency"
 msgstr "frecuencia"
 
 msgid "length 33"
-msgstr ""
+msgstr "largo 33"
 
 msgid "low pass  cut-off in [.23,.27]"
 msgstr ""
@@ -281,9 +282,3 @@ msgstr "estado real"
 
 msgid "spectral estimate"
 msgstr "espectro estimado"
-
-#~ msgid "Theoritical value"
-#~ msgstr "Valor teórico"
-
-#~ msgid "Arma identifcation"
-#~ msgstr "Identificación de Arma"

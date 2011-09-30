@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-13 13:30+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -44,7 +45,7 @@ msgstr "%s: アサーションが失敗しました: 予定のエラー番号は
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr "%s: アサーションが失敗しました: 条件 - %s に不正なエントリが見つかりました"
+msgstr "%s: アサーションが失敗しました: 条件 = %s に不正なエントリが見つかりました"
 
 #, c-format
 msgid "%s: Cannot close file %s.\n"
@@ -69,7 +70,7 @@ msgstr "%s: エラーメッセージ: %s を整形中にエラーを発生しま
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
-msgstr "%s: 予定では%d列が入力引数 #%d に含まれるはずでしたが、%d 列となりました."
+msgstr "%s: 予定では %d 列が入力引数 #%d に含まれるはずでしたが, %d 列となりました."
 
 #, c-format
 msgid ""
@@ -101,7 +102,7 @@ msgstr "%s: 計算結果のファイル %s の内容が基準ファイルの内�
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s: ファイル %s は存在しません.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
 msgid ""
@@ -189,7 +190,7 @@ msgid "Test passed"
 msgstr "テストに合格しました"
 
 #, c-format
-msgid "The ref file (%s) doesn''t exist"
+msgid "The ref file (%s) doesn't exist"
 msgstr "参照先ファイル (%s) が存在しません"
 
 #, c-format
@@ -198,20 +199,3 @@ msgstr "テスト %s は %s モジュールで利用できません."
 
 msgid "error : Input argument sizes are not valid"
 msgstr "エラー: 入力引数の大きさが間違っています."
-
-#
-# File: macros/test_run.sci, line: 252
-#, c-format
-#~ msgid "The test %s is not available from the %s toolbox"
-#~ msgstr "テスト %s は、%s ツールボックスから利用できません"
-
-#~ msgid "Generating loader.sce...\n"
-#~ msgstr "loader.sce 生成中...\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-#~ msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
-
-#, c-format
-#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-#~ msgstr "%s: テスト ''%s'' は存在しないか,読み込み可能ではありません.\n"

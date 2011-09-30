@@ -79,7 +79,7 @@ int sci_champ_G(char *fname,
   if (m3 * n3 == 0)
   { 
     LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
     return 0;
   } 
 
@@ -99,7 +99,7 @@ int sci_champ_G(char *fname,
 
   (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,strf,rect, arfact, 4L);
   LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

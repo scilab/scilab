@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-12 23:19+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-02 08:21+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -189,28 +190,31 @@ msgstr ""
 "множеству {%s}.\n"
 
 msgid "Arma Spectral power estimation:"
-msgstr "Оценка спектральной плотности ARMA:"
+msgstr ""
+"Оценка спектральной мощности моделью авторегрессионного скользящего среднего:"
 
 msgid "Arma identification"
 msgstr "Идентификация модели ARMA"
 
 msgid "Arma simulation and identification"
-msgstr "Моделирования и идентификация ARMA"
+msgstr ""
+"Моделирование авторегрессионного скользящего среднего и идентификация"
 
 msgid "Arma, Spectral power estimation"
-msgstr "ARMA: оценка спектральной плотности"
+msgstr ""
+"Оценка спектральной мощности, модель авторегрессионного скользящего среднего"
 
 msgid "Arma, bidimensional version"
-msgstr "ARMA: двумерная версия"
+msgstr "Модель авторегрессионного скользящего среднего, двумерная версия"
 
 msgid "Bode plots"
-msgstr "Графики Боде"
+msgstr "Диаграммы Боде"
 
 msgid "Discrete IIR filter"
 msgstr "Дискретный БИХ-фильтр"
 
 msgid "IIR filter design"
-msgstr "Проектирование БИХ-фильтра"
+msgstr "Схема БИХ-фильтра"
 
 msgid "Identification ARX (least square):"
 msgstr "Идентификация ARX (МНК):"
@@ -222,10 +226,10 @@ msgid "Minimax FIR filter"
 msgstr "Минимаксный КИХ-фильтр"
 
 msgid "Minimax FIR filter design"
-msgstr "Проектирование минимаксного КИХ-фильтра"
+msgstr "Минимаксная схема КИХ-фильтра"
 
 msgid "Press Return to continue ... \n"
-msgstr "Нажмите клавишу Enter для продолжения... \n"
+msgstr "Нажмите Return для продолжения ... \n"
 
 msgid "Signal Processing"
 msgstr "Обработка сигналов"
@@ -237,7 +241,7 @@ msgid "Simulation of an ARMAX process: "
 msgstr "Моделирование процесса ARMAX: "
 
 msgid "Spectral Estimation"
-msgstr "Оценка спектральной плотности"
+msgstr "Спектральное оценивание"
 
 msgid "Spectral power"
 msgstr "Спектральная мощность"
@@ -252,7 +256,7 @@ msgid "Wiegner filter"
 msgstr "Фильтр Винера"
 
 msgid "Window FIR filters"
-msgstr "КИХ-фильтры с окнами"
+msgstr "Оконные КИХ-фильтры"
 
 msgid "estimates xf"
 msgstr "оценки xf"
@@ -267,16 +271,10 @@ msgid "length 33"
 msgstr "длина 33"
 
 msgid "low pass  cut-off in [.23,.27]"
-msgstr "срез низких частот в [.23,.27]"
+msgstr "частота отсечки фильтра низких частот в [.23,.27]"
 
 msgid "real state"
 msgstr "истинное состояние"
 
 msgid "spectral estimate"
 msgstr "оценка спектральной плотности"
-
-#~ msgid "Theoritical value"
-#~ msgstr "Теоретическое значение"
-
-#~ msgid "Arma identifcation"
-#~ msgstr "ARMA идентификация"

@@ -65,8 +65,8 @@ int sci_unglue(char *fname,unsigned long fname_len)
       i++;
     }
     LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
     sciUnCompound ((sciPointObj *)pobj);
+    PutLhsVar();
   }
   else
   {

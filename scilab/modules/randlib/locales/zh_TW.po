@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-06-19 13:50+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:52+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: \n"
 
 msgid ""
 "\n"
@@ -179,6 +180,10 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s:  第四個輸入參數的型態錯誤: 被指定的純量.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr "%s：輸入參數形式錯誤：應該要 低 < 高 情況。\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: 輸入參數的型態錯誤: 應該為 行向量.\n"
 
@@ -279,18 +284,6 @@ msgstr "DF 小於 1.0 或 DF 小於等於 0.0 或 Xnonc 小於 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "非正定自由度的階度\n"
 
-msgid "Erlang random variable"
-msgstr ""
-
-msgid "Exponential random variable"
-msgstr ""
-
-msgid "Hyper geometric random variable"
-msgstr ""
-
-msgid "Low > High\n"
-msgstr "Low 小於 High\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "針對 beta law 找不到 A 和 B\n"
 
@@ -367,9 +360,6 @@ msgstr "P(%d,%d) 小於 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) 大於 1\n"
 
-msgid "Poisson random variable"
-msgstr ""
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A 或 B 小於 %f\n"
@@ -377,23 +367,11 @@ msgstr "Rand(...,'bet',..): A 或 B 小於 %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF 小於等於 0\n"
 
-msgid "Random"
-msgstr "亂數"
-
 msgid "SD < 0.0\n"
 msgstr "SD 小於 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab 的 randlib 介面尚未安裝.\n"
-
-msgid "Simulation"
-msgstr ""
-
-msgid "Simulation of a binomial random variable"
-msgstr ""
-
-msgid "Simulation of a discrete random variable"
-msgstr ""
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -413,14 +391,8 @@ msgstr "選項%s 僅針對 clcg4 產生器有作用\n"
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "mt state mt 的第一個元件, 必須在 [1, 624] 的整數.\n"
 
-msgid "Theory"
-msgstr ""
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "這個資訊僅對於 clcg4 產生器有用.\n"
-
-msgid "Weibull random variable"
-msgstr ""
 
 msgid "X0 is empty\n"
 msgstr "X0 是空的\n"
@@ -428,17 +400,47 @@ msgstr "X0 是空的\n"
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a 和 b 在 (b-a+1) <= 2147483561 中必須是整數"
 
-msgid "binomial random variable"
-msgstr ""
-
-msgid "discrete random variable"
-msgstr ""
-
-msgid "discrete uniform random variable"
-msgstr ""
-
-msgid "geometric random variable"
-msgstr ""
-
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A 小於等於 0.0 或 R 小於等於 0.0\n"
+
+msgid "Erlang random variable"
+msgstr "Erlang亂數變數"
+
+msgid "Exponential random variable"
+msgstr "指數亂數變數"
+
+msgid "Hyper geometric random variable"
+msgstr "超幾何亂數變數"
+
+msgid "Poisson random variable"
+msgstr "普瓦松亂數變數"
+
+msgid "Random"
+msgstr "亂數"
+
+msgid "Simulation"
+msgstr "模擬"
+
+msgid "Simulation of a binomial random variable"
+msgstr "二項式亂數變數的模擬"
+
+msgid "Simulation of a discrete random variable"
+msgstr "離散亂數變數的模擬"
+
+msgid "Theory"
+msgstr "理論"
+
+msgid "Weibull random variable"
+msgstr "韋伯亂數變數"
+
+msgid "binomial random variable"
+msgstr "二項式亂數變數"
+
+msgid "discrete random variable"
+msgstr "離散亂數變數"
+
+msgid "discrete uniform random variable"
+msgstr "無變化的離散亂數變數"
+
+msgid "geometric random variable"
+msgstr "幾何亂數變數"

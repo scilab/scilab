@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-11-20 21:57+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:34+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -58,29 +59,8 @@ msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: В файле ole2 %s нет xls-потока.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s» или «%s».\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
-
-#, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: файл %s не существует.\n"
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
@@ -288,5 +268,25 @@ msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: декодирование %s завершилось ошибкой %d.\n"
 
 #, c-format
-#~ msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
-#~ msgstr "%s: Неверный аргумент #%d: Ожидался ''%s'' или ''%s''.\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: файл %s не существует.\n"
+
+msgid "Read a xls file"
+msgstr "Прочитать xls-файл"

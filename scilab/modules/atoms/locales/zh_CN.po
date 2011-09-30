@@ -6,86 +6,87 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-10-11 12:33+0000\n"
+"PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: Kenet Jervet <newelevenken@yahoo.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: zh_CN\n"
 
 #, c-format
-msgid "\t - ''%s - %s''\n"
+msgid "\t - '%s - %s'\n"
 msgstr "\t - “%s - %s”\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is already loaded\n"
+msgid "\t - '%s - %s' is already loaded\n"
 msgstr "\t - “%s - %s”已经被加载。\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
+msgid "\t - '%s - %s' is needed by '%s - %s'\n"
 msgstr "\t - “%s - %s”需要“%s - %s”\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s''\n"
+msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - “%s”需要“%s - %s”\n"
 
 #, c-format
-msgid "\t - Local location : ''%s''\n"
+msgid "\t - Local location : '%s'\n"
 msgstr "\t - 本地地址：“%s”\n"
 
 #, c-format
-msgid "\t - MD5SUM expected : ''%s''\n"
+msgid "\t - MD5SUM expected : '%s'\n"
 msgstr "\t - MD5SUM 值希望是：“%s”\n"
 
 #, c-format
-msgid "\t - MD5SUM watched  : ''%s''\n"
+msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM 值被查看到为：“%s”\n"
 
 #, c-format
-msgid "\t - URL            : ''%s''\n"
+msgid "\t - URL            : '%s'\n"
 msgstr "\t - URL            ：“%s”\n"
 
 #, c-format
-msgid "\t - You''ve asked ''%s - %s''\n"
+msgid "\t - You've asked '%s - %s'\n"
 msgstr "\t - 你已经被要求“%s - %s”\n"
 
 #, c-format
-msgid "\t - destination : ''%s''\n"
+msgid "\t - destination : '%s'\n"
 msgstr "\t - 目的：“%s”\n"
 
 #, c-format
-msgid "\t - file            : ''%s''\n"
+msgid "\t - file            : '%s'\n"
 msgstr "\t - 文件            ：“%s”\n"
 
 #, c-format
-msgid "\t - source      : ''%s''\n"
+msgid "\t - source      : '%s'\n"
 msgstr "\t - 源      ：“%s”\n"
 
 #, c-format
-msgid "%s: %s (%s) isn''t installed.\n"
+msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s：%s （%s）没有安装。\n"
 
 #, c-format
-msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
+msgid "%s: '%s - %s' ('%s' section) is not installed.\n"
 msgstr "%s：“%s - %s” （“%s”节） 没有安装。\n"
 
 #, c-format
-msgid "%s: ''%s - %s'' is not installed.\n"
+msgid "%s: '%s - %s' is not installed.\n"
 msgstr "%s：“%s - %s”没有安装。\n"
 
 #, c-format
-msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
+msgid "%s: '%s' ('%s' section) is not installed.\n"
 msgstr "%s：“%s” （“%s”节） 没有安装。\n"
 
 #, c-format
-msgid "%s: ''%s'' isn''t installed.\n"
+msgid "%s: '%s' isn't installed.\n"
 msgstr "%s：“%s”没有安装。\n"
 
 #, c-format
-msgid "%s: An error occurred while loading ''%s-%s'':\n"
+msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr "%s: 读取“%s-%s”时出现错误：\n"
 
 #, c-format
@@ -93,19 +94,23 @@ msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr "%s：包 %s 的另一个版本已被加载：%s\n"
 
 #, c-format
-msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
+msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
 msgstr "%s：DESCRIPTION 文件不能在包“%s”中找到\n"
 
 #, c-format
-msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr "%s：复制文件“%s”到路径“%s”时出错。\n"
 
 #, c-format
-msgid "%s: Error while creating the directory ''%s''.\n"
+msgid "%s: Error while creating the directory '%s'.\n"
 msgstr "%s：创建路径“%s”时出错。\n"
 
 #, c-format
-msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
+msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s：解压 DESCRIPTION 文件 （“%s”） 失败。\n"
 
 #, c-format
@@ -113,15 +118,15 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数 #%d 和 #%d 不兼容：应该为相同的大小。\n"
 
 #, c-format
-msgid "%s: Module ''%s - %s'' is not installed.\n"
+msgid "%s: Module '%s - %s' is not installed.\n"
 msgstr "%s：模块“%s - %s”没有安装。\n"
 
 #, c-format
-msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgid "%s: Module '%s' is not installed ('%s' section).\n"
 msgstr "%s：模块“%s”没有安装 （“%s” 节）。\n"
 
 #, c-format
-msgid "%s: Module ''%s'' is not installed.\n"
+msgid "%s: Module '%s' is not installed.\n"
 msgstr "%s：模块“%s”没有安装。\n"
 
 #, c-format
@@ -135,7 +140,7 @@ msgid ""
 msgstr "%s：在同一个 scilab 节里包 （%s） 的多个版本不能被加载：\n"
 
 #, c-format
-msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
 
 #, c-format
@@ -153,12 +158,12 @@ msgid ""
 msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上写了访问。\n"
 
 #, c-format
-msgid "%s: The directory %s doesn''t exist.\n"
+msgid "%s: The directory %s doesn't exist.\n"
 msgstr "%s：路径 %s 不存在。\n"
 
 #, c-format
 msgid ""
-"%s: The directory ''%s'' cannot been created, please check if you have write "
+"%s: The directory '%s' cannot been created, please check if you have write "
 "access on this directory.\n"
 msgstr "%s：路径“%s”不能被创建，请检查您是否在这个路径上写了访问。\n"
 
@@ -175,45 +180,45 @@ msgid ""
 msgstr "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS 拒绝删除这个路径。\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
+msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
 msgstr "%s：下载的文件没有检查 MD5SUM 值：\n"
 
 #, c-format
-msgid "%s: The extraction of the archive ''%s'' has failed.\n"
+msgid "%s: The extraction of the archive '%s' has failed.\n"
 msgstr "%s：文档“%s”的解压失败。\n"
 
 #, c-format
-msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
+msgid "%s: The file %s doesn't exist or is not read accessible.\n"
 msgstr "%s：文件 %s 不存在或不能被读取。\n"
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
 "the %s field\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The file ''%s'' cannot be written.\n"
+msgid "%s: The file '%s' cannot be written.\n"
 msgstr "%s：文件“%s”不能被写入。\n"
 
 #, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
 msgstr "%s：文件“%s”不存在或不能被读取\n"
 
 #, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s：文件“%s”不粗奶或不能被读取。\n"
 
 #, c-format
-msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The following file hasn''t been copied:\n"
+msgid "%s: The following file hasn't been copied:\n"
 msgstr "%s：下一个文件不能被复制：\n"
 
 #, c-format
-msgid "%s: The following file hasn''t been downloaded:\n"
+msgid "%s: The following file hasn't been downloaded:\n"
 msgstr "%s：下一个文件不能被下载：\n"
 
 #, c-format
@@ -235,7 +240,7 @@ msgid "%s: The package %s is not available.\n"
 msgstr "%s：包 %s 不可用。\n"
 
 #, c-format
-msgid "%s: The package ''%s'' is not present in the struct.\n"
+msgid "%s: The package '%s' is not present in the struct.\n"
 msgstr "%s：包“%s”现在不在这个结构里。\n"
 
 #, c-format
@@ -246,7 +251,7 @@ msgstr "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是
 
 #, c-format
 msgid ""
-"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+"%s: The version '%s' of the package '%s' is not present in the struct.\n"
 msgstr "%s：包“%s”的版本“%s”现在不在这个结构里。\n"
 
 #, c-format
@@ -383,61 +388,66 @@ msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
-msgstr "%s：第%d个输入参数值错误：“%s”类别尚未注册。"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
-msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+"%s: Wrong value for input argument #%d: '%s' is not a registered category"
+msgstr "%s：第%d个输入参数值错误：“%s”类别尚未注册。"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
+msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
 msgstr "%s：第%d个输入参数值错误：应为“all”或“main”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
-"''session'' expected.\n"
+"%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
+"expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
-"''official'' expected.\n"
+"%s: Wrong value for input argument #%d: 'all','user','allusers' or "
+"'official' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+"%s: Wrong value for input argument #%d: 'system' or 'install' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“system”或“install”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”或“all”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user', 'allusers' or 'all' "
 "expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
+"%s: Wrong value for input argument #%d: 'user','allusers' or 'all' "
 "expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
 
@@ -456,13 +466,12 @@ msgstr "%s：输入参数 #%d 的值出错：所有模块的版本都应当设�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: It should have a field named "
-"''%s''.\n"
+"%s: Wrong value for input argument #%d: It should have a field named '%s'.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
 
 #, c-format
@@ -478,8 +487,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
+"%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
+"'DESCRIPTION' expected.\n"
 msgstr ""
 
 #, c-format
@@ -491,7 +500,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
+"'http://','ftp://' or 'file://' expected.\n"
 msgstr ""
 
 #, c-format
@@ -517,7 +526,7 @@ msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本或依�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“error”或“warning”。\n"
 
 #, c-format
@@ -530,19 +539,23 @@ msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
 
 #, c-format
-msgid "%s: You haven''t write access on this directory : %s.\n"
+msgid "%s: You haven't write access on this directory : %s.\n"
 msgstr "%s:您没有读取路径：%s。\n"
+
+#, c-format
+msgid "%s: gzip not found.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr ""
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
 msgstr "%s：包“%s”不包含域“%s”。\n"
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t exist.\n"
+msgid "%s: the package '%s' doesn't exist.\n"
 msgstr "%s：包“%s”不存在。\n"
 
 msgid "&?"
@@ -561,7 +574,7 @@ msgid "?"
 msgstr "？"
 
 #, c-format
-msgid "A new version (''%s'') of ''%s'' is available"
+msgid "A new version ('%s') of '%s' is available"
 msgstr ""
 
 msgid "ATOMS"
@@ -606,9 +619,6 @@ msgstr "实体"
 msgid "File"
 msgstr "文件"
 
-msgid "Home"
-msgstr ""
-
 msgid "Install"
 msgstr "安装"
 
@@ -621,6 +631,9 @@ msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Installation failed!"
 msgstr "安装失败！"
+
+msgid "Installed modules"
+msgstr ""
 
 msgid "Installing"
 msgstr ""
@@ -643,10 +656,17 @@ msgstr ""
 msgid "Maintainer(s)"
 msgstr "维护人员"
 
-msgid "No ATOMS module is available. Please, check your Internet connection."
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
 msgstr ""
 
 msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
 msgstr ""
 
 msgid "Package"
@@ -699,168 +719,3 @@ msgstr "版本"
 
 msgid "WebSite"
 msgstr "网站"
-
-#~ msgid "Automaticaly Installed"
-#~ msgstr "自动安装"
-
-#~ msgid "Installing..."
-#~ msgstr "正在安装..."
-
-#~ msgid "Updating..."
-#~ msgstr "正在更新..."
-
-#~ msgid "Remove done !"
-#~ msgstr "删除完毕！"
-
-#~ msgid "Installation done !"
-#~ msgstr "安装完毕！"
-
-#~ msgid "Installation failed !"
-#~ msgstr "安装失败！"
-
-#~ msgid "Remove failed !"
-#~ msgstr "删除失败！"
-
-#~ msgid "Removing..."
-#~ msgstr "正在删除..."
-
-#~ msgid "Load done !"
-#~ msgstr "载入完毕"
-
-#~ msgid "Load failed !"
-#~ msgstr "载入失败！"
-
-#~ msgid "Update failed !"
-#~ msgstr "更新失败！"
-
-#~ msgid "Update done !"
-#~ msgstr "更新完毕！"
-
-#, c-format
-#~ msgid "%s: An error accured while loading ''%s-%s''.\n"
-#~ msgstr "%s：加载“%s-%s”时出错。\n"
-
-#, c-format
-#~ msgid "%s: The file %s is not well formated at line %d\n"
-#~ msgstr "%s：文件 %s 在第 %d 行不能很好地被格式化\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-#~ "the ScilabVersion field\n"
-#~ msgstr "%s：文件 %s 不能很好地被格式化，工具箱 %s - %s 不包含 ScilabVersion 域\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
-#~ "length expected.\n"
-#~ msgstr "%s：输入参数 #%d 的长度错误：应该是一个有32个字符长度的字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
-#~ msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-#~ msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
-#~ msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
-#~ msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
-#~ "expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个布尔型的或一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个结构体。\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
-#~ msgstr "%s：输入参数 #%d 的类型出错：应该为一个单字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
-#~ "or ''DESCRIPTION'' expected.\n"
-#~ msgstr "%s：输入参数 #%d 的值出错：应该为一个包含“TOOLBOXES”或“DESCRIPTION”的字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
-#~ "expected.\n"
-#~ msgstr "%s：输入参数 #%d 的值出错：应该为一个以 DESCRIPTION 结尾的字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A string that start with "
-#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
-#~ msgstr "%s：输入参数 #%d 的值出错：应该为一个以“http://”，“ftp://”或“file://”开头的字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
-#~ ".tgz or .zip expected.\n"
-#~ msgstr "%s：输入参数 #%d 的值出错：应该为以 .tar.gz，.tgz 或 .zip 结尾的单字符串。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: You have not enought rights to remove any version of the package %s.\n"
-#~ msgstr "%s：您没有足够的权限删除包 %s 的任何版本。\n"
-
-#, c-format
-#~ msgid "%s: You have not enought rights to remove the package %s (%s).\n"
-#~ msgstr "%s：您没有足够的权限删除包 %s （%s）。\n"
-
-#~ msgid "Atoms"
-#~ msgstr "Atoms"
-
-#~ msgid "Atoms error"
-#~ msgstr "Atoms 错误"
-
-#~ msgid "Ko"
-#~ msgstr "Ko"
-
-#~ msgid "Mo"
-#~ msgstr "Mo"
-
-#~ msgid "Modules"
-#~ msgstr "模块"
-
-#~ msgid "No Atoms module available. Check your Internet connection."
-#~ msgstr "没有 Atoms 模块可用。请检查您的网络连接。"
-
-#~ msgid "No module selected"
-#~ msgstr "没有模块被选择"
-
-#~ msgid "Octets"
-#~ msgstr "Octets"
-
-#~ msgid "No Atoms module is available. Please, check your Internet connection."
-#~ msgstr "没有发现Atoms模块。请检查你的网络连接。"
-
-#~ msgid "No Atoms module is available: your repository list is empty."
-#~ msgstr "没有发现Atoms模块：你的仓库列表是空的。"

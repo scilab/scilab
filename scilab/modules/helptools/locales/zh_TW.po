@@ -6,15 +6,57 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:19+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:53+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: \n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: 找到或是新增 working directory %s.\n"
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s:  製作文件時有誤: %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Execution Java 堆積 %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s：執行Java堆疊： %s 。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+msgid "Description"
+msgstr "描述"
+
+msgid ""
+"If Scilab is started in a chroot, you might want to try to set the two "
+"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
+msgstr ""
+"如果Sclab啟動在一個chroot環境下，您也許會需要設定這兩個環境變數：SCI_DISABLE_TK=1  "
+"SCI_JAVA_ENABLE_HEADLESS=1\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' 模組未安裝.\n"
+
+msgid "Version"
+msgstr "版本編號"
 
 #, c-format
 msgid "\t%s\n"
@@ -44,12 +86,16 @@ msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
 msgstr ""
+"\n"
+"建立手冊檔案 [%s] 於 %s.\n"
 
 #, c-format
 msgid ""
 "\n"
 "Building the manual file [%s].\n"
 msgstr ""
+"\n"
+"建立手冊檔案 [%s].\n"
 
 msgid ""
 "\n"
@@ -63,7 +109,7 @@ msgid "%02d-%02d-%04d"
 msgstr "%02d-%02d-%04d"
 
 #, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
+msgid "%s: %s file hasn't been moved in the %s directory."
 msgstr "%s: %s檔案無法移動到%s 目錄."
 
 #, c-format
@@ -75,24 +121,8 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: 無法開啟 %s 檔案.\n"
 
 #, c-format
-msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s: 找到或是新增 working directory %s.\n"
-
-#, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr "%s: 目錄 %s 不存在或拒絕讀取."
-
-#, c-format
-msgid "%s: Error while building documentation: %s.\n"
-msgstr "%s:  製作文件時有誤: %s.\n"
-
-#, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Execution Java 堆積 %s.\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: File skipped %s."
@@ -104,7 +134,7 @@ msgstr "%s: 第 %d 及 第 %d 輸入參數不相容 : 應為相同大小.\n"
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
-msgstr ""
+msgstr "%s:請檢查 %s, 部份的模組是無效的.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -187,10 +217,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 第#%d個參數型別有誤:   整數才對.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串陣列.\n"
 
@@ -253,55 +279,5 @@ msgid "Help chapter"
 msgstr "Help 章節"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' 模組未安裝.\n"
-
-#, c-format
 msgid "Warning %s does not follow the dtd"
 msgstr "注意 %s 未遵從dtd"
-
-#, c-format
-#~ msgid "%s: Scilab 5.0 or more is required.\n"
-#~ msgstr "%s: Scilab 5.0 或更高版本才行.\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s]. (Please wait building ... this can take a "
-#~ "while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "製作手冊檔 [%s]. (製作中,請等待... 可能要花一點時間)\n"
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
-#~ "a while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "製作手冊檔 [%s] in %s. (製作中,請等待... 可能要花一點時間)\n"
-
-#, c-format
-#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 第 #%d個輸入參數型別有誤: 字串才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: 第#%d個參數長度有誤: 整數才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: 第#%d個參數型別有誤:   整數才對.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-#~ msgid "%s: help module is not installed.\n"
-#~ msgstr "%s: help 模組未安裝.\n"

@@ -6,15 +6,142 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-13 13:58+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 15:21+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ja\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "スプラインでメモリ確保の問題が発生しました.\n"
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr "この型のオブジェクトでは %s を使用できません."
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "遅延ブロックのバッファ長を増やしてみてください \n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr "可変遅延ブロックのバッファ長を増やしてみてください\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "/dev/audioをオープンできません!\n"
+
+msgid "Could not open the file!\n"
+msgstr "ファイルをオープンできません!\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"データの次元が一致していません:\n"
+" 変数の大きさ=[%d,%d] \n"
+"ブロック出力の大きさ=[%d,%d]\n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "ファイル '%s'をオープンする際にエラー発生\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr "次元引数の値が間違っています."
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr "変数型に誤りがあります: ハイパー行列に関するScilabコードにエラーがあります.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "変数型に誤りがあります.\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "出力は実数型となります.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "出力は複素型となります.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "出力はint16型となります.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "出力はint32型となります.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "出力はint8型となります.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "出力はuint16型となります.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "出力はuint32型となります.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "出力はuint8型となります.\n"
+
+msgid "Read error\n"
+msgstr "読込エラー\n"
+
+msgid "Read error!\n"
+msgstr "読込エラー!\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr "スコープエラー:  malloc時にエラーを発生しました - メモリを確認してください\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "スコープエラー:  scoReallocLongDraw()でエラーを発生しました"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "スコープエラー:  不明なコードによるエラーを発生しました!\n"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr "スコープエラー:  sciDrawObj を実行できません, 原因不明ですがpShortDrawがNULLとなっています!\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "変数'%s'が存在しません.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr "時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得してください.\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Timeベクトル型はdoubleではありません.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "timeベクトルは単調増加するベクトルとする必要があります.\n"
+
+msgid "This scope has the same window id than another."
+msgstr "このスコープは同じウインドウIDを有しています."
+
+msgid "Trigger block must have discrete time input."
+msgstr "トリガーブロックは離散時間入力が必要です."
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "ファイル '%s'への書込みエラー.\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "遅延後の時間は %f ですが、最後に保存された時間は %f です\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "遅延後の時間は %f ですが、最後に保存された時間は %f です \n"
+
+msgid "overflow error"
+msgstr "オーバーフローエラー"
 
 msgid "&?"
 msgstr "&?"
@@ -27,6 +154,15 @@ msgstr "ファイル(&F)"
 
 msgid "&Tools"
 msgstr "ツール(&T)"
+
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - フォーマットが指定されない場合はバイナリファイル"
+
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr "&nbsp; - フォーマット (Fortran形式)が指定された場合は整形テキストファイル"
+
+msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
+msgstr "&nbsp;  '初期化時間' が負の場合は開始しない"
 
 msgid "&nbsp; Number of columns gives the number of outputs."
 msgstr "&nbsp; 列の数は出力の数を指定します."
@@ -53,9 +189,9 @@ msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
 msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 ビットの範囲"
 
 msgid ""
-"&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
+"&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
 "[Start, End]"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;\"展開するビット\"を\"ビットの範囲\"に設定するかどうか: [開始,終了]"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開始,終了]"
 
 msgid "&nbsp;- Bits to Extract:"
 msgstr "&nbsp;- 展開するビット:"
@@ -70,14 +206,20 @@ msgid "&nbsp;- Positive values are considered as int8(1)"
 msgstr "&nbsp;- 正の値は int8(1) とみなされます"
 
 #, c-format
-msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
-msgstr "\"初期値\"と\"終端値\": 大きさに互換性がありません: %d および %d."
+msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
+msgstr "'初期値'と'終端値': 大きさに互換性がありません: %d および %d."
 
-msgid "''Minimum'' must be less than ''Maximum''."
-msgstr "'Minimum'' は ''Maximum''よりも小さくする必要があります."
+msgid "'Minimum' must be less than 'Maximum'."
+msgstr "'Minimum' は 'Maximum'よりも小さくする必要があります."
 
-msgid "''Start'' must be less than ''End''."
-msgstr "''Start'' は ''End''よりも小さくする必要があります."
+msgid "'Start' must be less than 'End'."
+msgstr "'Start' は 'End'よりも小さくする必要があります."
+
+msgid "(Read Audio File)"
+msgstr "(オーディオファイルを読み込む)"
+
+msgid "Accepts Inherited Events"
+msgstr "継承されたイベントを受け付ける"
 
 msgid "Accepts Inherited Events (0:No, 1:Yes)"
 msgstr "継承されたイベントを受け入れる (0: はい, 1: いいえ)"
@@ -85,14 +227,14 @@ msgstr "継承されたイベントを受け入れる (0: はい, 1: いいえ)"
 msgid "Add"
 msgstr "追加"
 
-msgid "Allocation problem in spline.\n"
-msgstr "スプラインでメモリ確保の問題が発生しました.\n"
-
 msgid "Automatic"
 msgstr "自動"
 
 msgid "Bits Extraction"
 msgstr "ビットの展開"
+
+msgid "Bits to Extract"
+msgstr "展開するビット"
 
 msgid "Bits to extract"
 msgstr "展開するビット"
@@ -102,6 +244,12 @@ msgstr "aにおける境界条件"
 
 msgid "Boundary condition on b"
 msgstr "bにおける境界条件"
+
+msgid "Buffer Size"
+msgstr "バッファの大きさ"
+
+msgid "Buffer size"
+msgstr "バッファの大きさ"
 
 msgid "Cancel"
 msgstr "取消"
@@ -115,36 +263,28 @@ msgstr "ビットをクリア"
 msgid "Combinatorial logic"
 msgstr "複合論理"
 
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr "遅延ブロックのバッファ長を増やしてみてください \n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr "可変遅延ブロックのバッファ長を増やしてみてください\n"
+msgid "Constant Value"
+msgstr "定数値"
 
 msgid "Constant discriminant"
 msgstr "定数判別式"
 
-msgid "Could not open /dev/audio!\n"
-msgstr "/dev/audioをオープンできません!\n"
+msgid "Constant value generator"
+msgstr "定数値生成器"
 
-msgid "Could not open the file!\n"
-msgstr "ファイルをオープンできません!\n"
+msgid "Constant value must have at least one element."
+msgstr "定数値には1個以上の要素が必要です."
 
 msgid "Data Type"
 msgstr "データ型"
 
-msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
-msgstr "データ型 (3:int32, 4:int16, 5:int8, ...)"
+#, c-format
+msgid "Data Type %s"
+msgstr "データ型 %s"
 
 #, c-format
-msgid ""
-"Data dimensions are inconsistent:\n"
-" Variable size=[%d,%d] \n"
-"Block output size=[%d,%d].\n"
-msgstr ""
-"データの次元が一致していません:\n"
-" 変数の大きさ=[%d,%d] \n"
-"ブロック出力の大きさ=[%d,%d]\n"
+msgid "Directory '%s' does not exist"
+msgstr "ディレクトリ '%s' が存在しません"
 
 msgid "Discriminant type:"
 msgstr "判別式の型:"
@@ -165,8 +305,17 @@ msgid "Domain"
 msgstr "領域"
 
 #, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "ファイル '%s'をオープンする際にエラー発生\n"
+msgid "Elements must be in the interval %s."
+msgstr "要素は %s の範囲とする必要があります."
+
+msgid "End current simulation first"
+msgstr "まず現在のシミュレーションを終了"
+
+msgid "End current simulation first."
+msgstr "まず現在のシミュレーションを終了."
+
+msgid "Event clock generator"
+msgstr "イベントクロック生成器"
 
 msgid "Event input port"
 msgstr "入力ポートのイベント"
@@ -195,12 +344,18 @@ msgstr "陰的入力ポート"
 msgid "Implicit output port"
 msgstr "陰的出力ポート"
 
+msgid "Index of Bit"
+msgstr "ビット添字"
+
 msgid "Index of Bit (0 is least significant)"
 msgstr "ビット添字 (0 : LSB)"
 
 #, c-format
 msgid "Indexes must be in the interval %s."
 msgstr "添字は %s の範囲とする必要があります."
+
+msgid "Initial Record Index"
+msgstr "初期レコードインデックス"
 
 msgid "Initial State (zero or positive number)"
 msgstr "状態量初期値 (ゼロまたは正の数)"
@@ -211,6 +366,21 @@ msgstr "初期値"
 msgid "Initial conditions"
 msgstr "初期条件"
 
+msgid "Initialisation Time"
+msgstr "初期化時間"
+
+msgid "Input File Name"
+msgstr "入力ファイル名"
+
+msgid "Input Format"
+msgstr "入力の形式"
+
+msgid "Input Size"
+msgstr "入力の大きさ"
+
+msgid "Input Type"
+msgstr "入力の型"
+
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "入力型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
@@ -220,11 +390,8 @@ msgstr "整数カウンタ生成器"
 msgid "Integer matrix multiplication"
 msgstr "整数行列乗算"
 
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "変数型に誤りがあります: ハイパー行列に関するScilabコードにエラーがあります.\n"
-
-msgid "Invalid variable type.\n"
-msgstr "変数型に誤りがあります.\n"
+msgid "Invalid masked block."
+msgstr "無効なマスク済みブロック."
 
 msgid "JK flip-flop"
 msgstr "JK フリップ-フロップ"
@@ -247,8 +414,18 @@ msgstr "最小値"
 msgid "Modulo counter (0 to N counter)"
 msgstr "剰余カウンタ (0 から Nのカウンタ)"
 
+msgid "Must be a scalar or an empty matrix."
+msgstr "スカラーまたは空の行列を指定してください."
+
 msgid "Must be a single value."
 msgstr "単一の値とする必要があります."
+
+#, c-format
+msgid "Must be greater than %d."
+msgstr "%d より大きい必要があります."
+
+msgid "Must be greater than 1."
+msgstr "1 より大きい必要があります."
 
 #, c-format
 msgid "Must be in the interval %s."
@@ -278,32 +455,20 @@ msgstr "行の数は2の累乗とする必要があります."
 msgid "Ordering:"
 msgstr "順序付け:"
 
+msgid "Output File Name"
+msgstr "出力のファイル名"
+
+msgid "Output Format"
+msgstr "出力の形式"
+
+msgid "Output Type"
+msgstr "出力の型"
+
 msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "出力の型 (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
-msgid "Output should be of Real type.\n"
-msgstr "出力は実数型となります.\n"
-
-msgid "Output should be of complex type.\n"
-msgstr "出力は複素型となります.\n"
-
-msgid "Output should be of int16 type.\n"
-msgstr "出力はint16型となります.\n"
-
-msgid "Output should be of int32 type.\n"
-msgstr "出力はint32型となります.\n"
-
-msgid "Output should be of int8 type.\n"
-msgstr "出力はint8型となります.\n"
-
-msgid "Output should be of uint16 type.\n"
-msgstr "出力はuint16型となります.\n"
-
-msgid "Output should be of uint32 type.\n"
-msgstr "出力はuint32型となります.\n"
-
-msgid "Output should be of uint8 type.\n"
-msgstr "出力はuint8型となります.\n"
+msgid "Outputs Record Selection"
+msgstr "出力レコードを選択"
 
 msgid "PDE Expression:"
 msgstr "PDE式:"
@@ -314,6 +479,9 @@ msgstr "PDE仕様"
 msgid "PDE block"
 msgstr "PDEブロック"
 
+msgid "Period"
+msgstr "間隔"
+
 msgid "Phase (rad)"
 msgstr "位相 (rad)"
 
@@ -323,11 +491,14 @@ msgstr "ポート番号"
 msgid "Ramp function"
 msgstr "ランプ関数"
 
-msgid "Read error\n"
-msgstr "読込エラー\n"
+msgid "Read from C binary file"
+msgstr "Cバイナリファイルから読み込み"
 
-msgid "Read error!\n"
-msgstr "読込エラー!\n"
+msgid "Read is done on a binary '.au' file"
+msgstr "バイナリ '.au' ファイルの読込が完了しました"
+
+msgid "Record Size"
+msgstr "レコードの大きさ"
 
 msgid "Regular input port"
 msgstr "標準入力ポート"
@@ -340,34 +511,6 @@ msgstr "削除"
 
 msgid "Rule (1:Increment, 2:Decrement)"
 msgstr "規則 (1:インクリメント, 2: デクリメント)"
-
-msgid ""
-"SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of "
-"object\n"
-msgstr "スコープエラー: scoDrawScopeAmplitudeTimeStyle()をこのオブジェクト型に使用できません.\n"
-
-msgid ""
-"SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n"
-msgstr "スコープエラー: scoRefreshDataBoundsX() をこのオブジェクト型に使用できません.\n"
-
-msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
-msgstr "スコープエラー:  malloc時にエラーを発生しました - メモリを確認してください\n"
-
-msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
-msgstr "スコープエラー:  scoReallocLongDraw()でエラーを発生しました"
-
-msgid "SCOPE ERROR : Unknown code error !\n"
-msgstr "スコープエラー:  不明なコードによるエラーを発生しました!\n"
-
-msgid ""
-"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
-"reason !\n"
-" Maybe you have destroyed the windows or any parent of curves\n"
-msgstr "スコープエラー:  sciDrawObj を実行できません, 原因不明ですがpShortDrawがNULLとなっています!\n"
-
-msgid ""
-"SCOPE ERROR : scoInitOfWindow incorrect value for dimension argument.\n"
-msgstr "スコープエラー:  scoInitOfWindowのdimension引数の値が間違っています.\n"
 
 msgid "SR flip-flop"
 msgstr "SR フリップ-フロップ"
@@ -382,17 +525,25 @@ msgstr "%s ブロックパラメータを設定"
 msgid "Set a bit"
 msgstr "ビットをセット"
 
+msgid "Shift Type"
+msgstr "シフト型"
+
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "シフトの型 (0: 算術, 1:環状)"
 
 msgid "Shift/Rotates bits"
 msgstr "シフト/回転 ビット"
 
+msgid "Simulation running !!! You cannot modify Input file name"
+msgstr "シミュレーション実行中 !!! 入力ファイル名を修正できません"
+
+msgid ""
+"Simulation running !!! You cannot switch<br />between formatted and "
+"unformatted when running"
+msgstr "シミュレーション実行中 !!! 整形式と非整形式とを<br />変更できません"
+
 msgid "Sine wave generator"
 msgstr "サイン波ジェネレータ"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
 
 msgid "Slope"
 msgstr "傾き"
@@ -412,33 +563,32 @@ msgstr "ステップ時間"
 msgid "Strictly positive integer expected."
 msgstr "厳密に正の整数を指定してください."
 
-#, c-format
-msgid "The '%s' variable does not exist.\n"
-msgstr "変数'%s'が存在しません.\n"
+msgid "Strictly positive number expected."
+msgstr "厳密に正の数を指定してください."
 
-msgid "The ''Initial Value'' must be 0 or 1 of type int8"
-msgstr "\"初期値\"はint8型の0または1とする必要があります"
+msgid "Swap Mode"
+msgstr "スワップモード"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Timeベクトル型はdoubleではありません.\n"
+msgid "Swap Mode (0:No, 1:Yes)"
+msgstr "スワップモード (0:No 1:Yes)"
+
+msgid "The 'Initial Value' must be 0 or 1 of type int8"
+msgstr "'初期値'はint8型の0または1とする必要があります"
 
 msgid "The measurement points"
 msgstr "観測点"
 
-msgid "The time vector should be an increasing vector.\n"
-msgstr "timeベクトルは単調増加するベクトルとする必要があります.\n"
+msgid "Time Record Selection"
+msgstr "時間レコードを選択"
 
-#, c-format
-msgid ""
-"This Scope (block number : %d) has same number than another. It has been "
-"deactivated!\n"
-msgstr "スコープ (ブロック番号 : %d) は他のスコープと数が異なります. アクティブでないとされました!\n"
+msgid "Treat Bit Field as an Integer"
+msgstr "ビットフィールドを整数として扱う"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "ビットフィールドを整数として扱う (0: いいえ, 1:はい)"
 
-msgid "Trigger block must have discrete time input."
-msgstr "トリガーブロックは離散時間入力が必要です."
+msgid "Truth Table"
+msgstr "真理値表"
 
 msgid "Truth Table (matrix of outputs)"
 msgstr "真理値表 (出力の行列)"
@@ -452,113 +602,141 @@ msgstr "型:"
 msgid "Upper Limit (positive number)"
 msgstr "上限 (正の数)"
 
+msgid "Valid formats are: "
+msgstr "有効な形式: "
+
 msgid "Validate"
 msgstr "検証"
+
+msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
+msgstr "値の型は数値型 (double, 複素数, int, int8, ...) とする必要があります."
 
 msgid "Variable discriminant:"
 msgstr "可変判別式:"
 
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "ファイル '%s'への書込みエラー.\n"
+msgid "Write '.au' sound file on audio device"
+msgstr "サウンドファイル '.au'  をオーディオデバイスに書き込みました"
+
+msgid "Write is done on:"
+msgstr "書込みが完了しました:"
+
+msgid "Write to C binary file"
+msgstr "Cバイナリファイルに書込む"
+
+msgid "Write to output file"
+msgstr "出力ファイルに書込む"
 
 #, c-format
-msgid "Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."
-msgstr "\"ビット数またはビット添字\"パラメータの大きさが間違っています: %s."
+msgid "Wrong size for '%s' parameter"
+msgstr "'%s' パラメータの大きさが間違っています"
 
 #, c-format
-msgid "Wrong size for ''Truth Table'' parameter: %d."
-msgstr "\"真理値表\"パラメータの大きさが間違っています: %d."
+msgid "Wrong size for '%s' parameter: %d."
+msgstr "'%s' パラメータの大きさが間違っています: %d."
 
 #, c-format
-msgid "Wrong type for ''Index of Bit'' parameter: %5.1f."
-msgstr "\"ビット添字\"パラメータの型が間違っています: %5.1f."
+msgid "Wrong size for '%s' parameter: %s."
+msgstr "'%s' パラメータの大きさが間違っています: %s."
 
 #, c-format
-msgid "Wrong value for  ''Rule'' parameter: %d"
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgid "Wrong type for '%s' parameter"
+msgstr "'%s' パラメータの型が間違っています"
 
 #, c-format
-msgid "Wrong value for ''Bits to Extract'' parameter: %d."
-msgstr "\"展開するビット\"パラメータの値が間違っています: %d."
+msgid "Wrong type for '%s' parameter: %5.1f."
+msgstr "'%s' パラメータの型が間違っています: %5.1f."
 
 #, c-format
-msgid "Wrong value for ''Bits to Extract'' parameter: %s."
-msgstr "\"展開するビット\"パラメータの値が間違っています: %s."
+msgid "Wrong value for  '%s' parameter: %d."
+msgstr "'%s' パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong value for ''Data Type'' parameter: %d."
-msgstr "\"データ型\"パラメータの値が間違っています: %d."
+msgid "Wrong value for '%s' parameter."
+msgstr "'%s' パラメータの値が間違っています."
 
 #, c-format
-msgid "Wrong value for ''Do on Overflow'' parameter: %d."
-msgstr "\"オーバーフロー時の動作\"パラメータの値が間違っています: %d."
+msgid "Wrong value for '%s' parameter: %d."
+msgstr "'%s' パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong value for ''Frequency'' parameter: %e."
-msgstr "\"周波数\"パラメータに間違った値が使用されました %e."
+msgid "Wrong value for '%s' parameter: %s."
+msgstr "'%s' パラメータの値が間違っています: %s."
 
 #, c-format
-msgid "Wrong value for ''Index of Bit'' parameter: %d."
-msgstr "\"ビット添字\"パラメータの値が間違っています: %d."
+msgid "Wrong value for 'Frequency' parameter: %e."
+msgstr "'周波数'パラメータに間違った値が使用されました %e."
 
 #, c-format
-msgid "Wrong value for ''Initial State'' parameter: %d."
-msgstr "\"初期値状態量\"パラメータの値が間違っています: %d."
+msgid "Wrong value for 'Initial State' parameter: %d."
+msgstr "'初期値状態量'パラメータの値が間違っています: %d."
+
+msgid "Wrong value for 'Output File Name' parameter"
+msgstr "'出力ファイル名' パラメータの値が間違っています"
 
 #, c-format
-msgid "Wrong value for ''Input Type'' parameter: %d."
-msgstr "\"入力型\"パラメータの値が間違っています: %d."
+msgid "Wrong value for 'Port Number' parameter: %d."
+msgstr "'ポート番号'パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong value for ''Output Type'' parameter: %d."
-msgstr "\"出力型\"パラメータの値が間違っています: %d."
+msgid "Wrong value for 'Rule' parameter: %d"
+msgstr "'Rule' パラメータの値が間違っています: %d"
 
 #, c-format
-msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "\"ポート番号\"パラメータの値が間違っています: %d."
+msgid "Wrong value for 'Start Time' parameter: %e."
+msgstr "'開始時刻'パラメータの値が間違っています: %e."
 
 #, c-format
-msgid "Wrong value for ''Shift Type'' parameter: %d"
-msgstr "\"シフト型\"パラメータの値が間違っています: %d."
+msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr "'%s' パラメータのインデックスの値に誤りがあります: %s."
 
 #, c-format
-msgid "Wrong value for ''Start Time'' parameter: %e."
-msgstr "\"開始時刻\"パラメータの値が間違っています: %e."
+msgid "Wrong values for '%s' parameter: %5.1e."
+msgstr "'%s' パラメータの値が間違っています: %5.1e."
 
 #, c-format
-msgid "Wrong value for ''Treat Bit Field as an Integer'' parameter: %d."
-msgstr "\"ビットフィールドを整数として扱う\"パラメータの値が間違っています: %d."
-
-msgid "Wrong value for elements of ''Truth Table'' parameter."
-msgstr "\"真理値表\"パラメータの値が間違っています."
+msgid "Wrong values for '%s' parameter: %s."
+msgstr "'%s' パラメータの値が間違っています: %s."
 
 #, c-format
-msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-msgstr "\"最大\"および\"最初\"パラメータの値が間違っています: %d &lt; %d"
+msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
+msgstr "'最大'および最初パラメータの値が間違っています: %d &lt; %d"
 
 #, c-format
-msgid "Wrong values for ''Number of Bits or Index of Bit'' parameter: %s."
-msgstr "\"ビット数またはビット添字\"の値が間違っています: %s."
+msgid "Wrong values for 'Port Number' parameter: %d."
+msgstr "'ポート番号'パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong values for ''Port Number'' parameter: %d."
-msgstr "\"ポート番号\"パラメータの値が間違っています: %d."
+msgid "Wrong values for 'Upper Limit' parameter: %d."
+msgstr "'上限'パラメータの値が間違っています: %d."
 
 #, c-format
-msgid "Wrong values for ''Upper Limit'' parameter: %d."
-msgstr "\"上限\"パラメータの値が間違っています: %d."
+msgid "You cannot modify '%s' when running"
+msgstr "実行中に '%s' を変更できません"
+
+#, c-format
+msgid "You cannot modify '%s' when running."
+msgstr "実行中に '%s' を変更できません."
+
+msgid "You cannot modify 'Buffer Size' when running."
+msgstr "実行中に 'バッファの大きさ' を変更できません."
+
+msgid "You cannot modify 'Output File Name' when running."
+msgstr "実行中に '出力のファイル名' を変更できません."
+
+msgid "You must enclose the format's string between parentheses."
+msgstr "文字列を括弧で括る必要があります."
+
+msgid "You must provide a file name."
+msgstr "ファイル名を指定してください."
+
+msgid "You must provide a filename."
+msgstr "ファイル名を指定する必要があります."
+
+msgid "[1, Record Size = "
+msgstr "[1, レコードの大きさ = "
 
 msgid "degree:"
 msgstr "度:"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "遅延後の時間は %f ですが、最後に保存された時間は %f です\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "遅延後の時間は %f ですが、最後に保存された時間は %f です \n"
 
 msgid "negative"
 msgstr "負"
@@ -566,14 +744,5 @@ msgstr "負"
 msgid "null"
 msgstr "null"
 
-msgid "overflow error"
-msgstr "オーバーフローエラー"
-
 msgid "positive"
 msgstr "正"
-
-#, c-format
-#~ msgid ""
-#~ "This Scope (block number : %d) has same number than another. It has been "
-#~ "desactivated !\n"
-#~ msgstr "このスコープ (ブロック番号: %d)は番号が他と重複しており、無効にされました.\n"

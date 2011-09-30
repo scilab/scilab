@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-24 22:23+0000\n"
+"PO-Revision-Date: 2011-09-02 08:23+0000\n"
 "Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -26,58 +27,69 @@ msgstr "%s не является установленным модулем ил�
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
-msgstr ""
+msgstr "%s: Формулировка не верна: ожидалось = %s тогда как вычислено = %s"
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
 "message = %s."
 msgstr ""
+"%s: Формулировка не верна: ожидаемое сообщение об ошибке = %s тогда как "
+"вычислено сообщение об ошибке = %s."
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
 "= %d."
 msgstr ""
+"%s: Формулировка не верна: ожидаемый номер ошибки = %d тогда как вычислен "
+"номер ошибки = %d."
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr ""
+msgstr "%s: Формулировка не верна: найден ложный элемент в условии = %s"
 
 #, c-format
 msgid "%s: Cannot close file %s.\n"
-msgstr ""
+msgstr "%s: Не удалось закрыть файл %s.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
+"%s: Вычисленное значение комплексное , хотя ожидалось действительное."
 
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
 msgstr ""
+"%s: Вычисленное значение действительное , хотя ожидалось комплексное."
 
 #, c-format
 msgid "%s: Error while formatting the error message: %s"
-msgstr ""
+msgstr "%s: Ошибка при форматировании сообщения об ощибке: %s"
 
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
 msgstr ""
+"%s: Ожидалось %d столбцов во  входном параметре #%d, но получено  %d "
+"столбцов."
 
 #, c-format
 msgid ""
 "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
+"%s: Ожидалось %d столбцов во входном параметре #%d, но получено %d столбцов."
 
 #, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
 msgstr ""
+"%s: Ожидался тип %s или %s для входного параметра  %s #%d, но вместо него "
+"получен %s."
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -88,16 +100,19 @@ msgstr ""
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
+"%s: Несовместимые входные параметры #%d и #%d: ожидался одинаковый тип.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
-msgstr ""
+msgstr "%s: Не произошло ошибок при оценке %s."
 
 #, c-format
 msgid ""
 "%s: The content of computed file %s is different from the content of "
 "reference file %s."
 msgstr ""
+"%s: Содержимое рассчитанного файла %s отличается от содержимого эталонного "
+"файла %s."
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -108,6 +123,8 @@ msgid ""
 "%s: The number of output arguments %d do not match the number of input "
 "arguments %d."
 msgstr ""
+"%s: Количество выходных параметров %d не совпадает с количеством входных "
+"параметров %d."
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
@@ -137,6 +154,7 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра #%d: ожидалась матрица %d-на-%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument."
@@ -162,6 +180,8 @@ msgstr "%s: Неверное значение входного параметр�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
+"%s: Неверное значение входного параметра #%d: должно входить в множество "
+"{%s}.\n"
 
 #, c-format
 msgid ""
@@ -190,7 +210,7 @@ msgid "Test passed"
 msgstr "Тест пройден"
 
 #, c-format
-msgid "The ref file (%s) doesn''t exist"
+msgid "The ref file (%s) doesn't exist"
 msgstr "Файл ссылок (%s) не существует"
 
 #, c-format
@@ -199,18 +219,3 @@ msgstr "Тест %s недоступен из модуля %s"
 
 msgid "error : Input argument sizes are not valid"
 msgstr "Ошибка: неверные размеры входных параметров"
-
-#, c-format
-#~ msgid "The test %s is not available from the %s toolbox"
-#~ msgstr "Тест %s недоступен из набора инструментов %s"
-
-#, c-format
-#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-#~ msgstr "%s: Тест «%s» не существует или нет прав доступа на чтение.\n"
-
-#~ msgid "Generating loader.sce...\n"
-#~ msgstr "Формируется loader.sce...\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d: ожидался %s.\n"

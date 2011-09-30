@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-29 09:44+0000\n"
+"PO-Revision-Date: 2011-09-01 09:37+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ca\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " Una extracció d'hipermatrius ha de tenir com a mínim 2 arguments. "
@@ -33,8 +34,16 @@ msgid " Incompatible hypermatrix extraction. "
 msgstr " Extracció d'hipermatriu incompatible. "
 
 #, c-format
-msgid "%s: ''dims'' can not be used as a field name.\n"
-msgstr "%s: No podeu utilitzar ''dims'' com a nom d'un camp.\n"
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "L'índex número %d de l'extracció d'hipermatriu és incorrecte. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Massa arguments a la pila, editeu el stack.h i augmenteu el intersiz.\n"
+
+#, c-format
+msgid "%s: 'dims' can not be used as a field name.\n"
+msgstr "%s: No podeu utilitzar 'dims' com a nom d'un camp.\n"
 
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
@@ -73,29 +82,5 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: field name ''%s'' defined twice.\n"
-msgstr "%s: Heu definit dos cops el nom de camp ''%s''.\n"
-
-#, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "L'índex número %d de l'extracció d'hipermatriu és incorrecte. "
-
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"Massa arguments a la pila, editeu el stack.h i augmenteu el intersiz.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s)."
-#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada."
-
-#~ msgid " An hypermatrix insertion must have at least 3 arguments "
-#~ msgstr " Una inserció d'hipermatriu ha de tenir com a mínim 3 arguments "
-
-#~ msgid " Argument is not an hypermatrix "
-#~ msgstr " L'argument no és una hipermatriu "
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument(s) : an even number is expected."
-#~ msgstr ""
-#~ "%s: El nombre d'arguments d'entrada és incorrecte : ha de ser un nombre "
-#~ "parell."
+msgid "%s: field name '%s' defined twice.\n"
+msgstr "%s: Heu definit dos cops el nom de camp '%s'.\n"

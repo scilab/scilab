@@ -29,14 +29,12 @@ libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 CHECK_SRC= $(libsciparameters_la_SOURCES)
 INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
 
-libsciparameters_la_LIBADD =  $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
-
 #### Target ######
 modulename=parameters
 
 #### parameters : Conf files ####
 libparameters_la_rootdir = $(mydatadir)
-libparameters_la_root_DATA =  license.txt version.xml
+libparameters_la_root_DATA =  license.txt 
 
 #### parameters : init scripts ####
 libparameters_la_etcdir = $(mydatadir)/etc

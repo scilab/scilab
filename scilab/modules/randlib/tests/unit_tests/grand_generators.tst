@@ -1,59 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Sabine Gaüzere
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2008 - INRIA - Sabine GaÃ¼zere
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-//
-// <-- ENGLISH IMPOSED -->
-//  
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-    if expected==0.0 then
-        shift = norm(computed-expected);
-    else
-        shift = norm(computed-expected)/norm(expected);
-    end
-    if shift < epsilon then
-        flag = 1;
-    else
-        flag = 0;
-    end
-    if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-    if computed==expected then
-        flag = 1;
-    else
-        flag = 0;
-    end
-    if flag <> 1 then pause,end
-endfunction
 
-function flag = assert_true ( computed )
-    if and(computed) then
-        flag = 1;
-    else
-        flag = 0;
-    end
-    if flag <> 1 then pause,end
-endfunction
+
 
 function checkMeanVariance2arg ( m , n , name , A , B , mu , va , rtol )
   // Check the mean and variance of random numbers.
@@ -69,11 +23,11 @@ function checkMeanVariance2arg ( m , n , name , A , B , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name,A,B);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
 
@@ -89,11 +43,11 @@ function checkMeanVariance0arg ( m , n , name , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
 
@@ -115,7 +69,7 @@ function checkLaw0arg ( name , cdffun , N , NC , rtol )
   [X,EmpiricalPDF] = histcompute(NC,R);
   CDF = cdffun(X)
   TheoricPDF = diff(CDF);
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue ( abs(EmpiricalPDF-TheoricPDF) < rtol );
     if ( %f ) then
       plot(X(1:$-1),EmpiricalPDF,"bo-"); // Empirical Histogram
       plot(X(1:$-1),TheoricPDF,"rox-"); // Theoretical Histogram
@@ -146,7 +100,7 @@ function checkPieceLaw0arg ( name , cdffun , N , NC , rtol )
   EmpiricalPDF = EmpiricalPDF./N;
   CDF = cdffun(X)
   TheoricPDF=[CDF(1);diff(CDF)];
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
   if ( %f ) then
     plot(X,EmpiricalPDF,"bo-"); // Empirical Histogram
     plot(X,TheoricPDF,"rox-"); // Theoretical Histogram
@@ -178,7 +132,7 @@ function checkPieceLaw2arg ( name , cdffun , N , NC , A , B , rtol )
   EmpiricalPDF = EmpiricalPDF./N;
   CDF = cdffun(X,A,B)
   TheoricPDF=[CDF(1);diff(CDF)];
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
   if ( %f ) then
     plot(X,EmpiricalPDF,"bo-"); // Empirical Histogram
     plot(X,TheoricPDF,"rox-"); // Theoretical Histogram
@@ -237,7 +191,7 @@ N=10000;
 //
 // The default generator must be Mersenne-Twister
 S=grand('getgen');
-assert_equal ( S , "mt" );
+assert_checkequal ( S , "mt" );
 
 // The maximum integer generable with uin option
 UinMax = 2147483560;
@@ -251,17 +205,17 @@ gen = "mt";
 sdsize = seedsize(kgen);
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
 grand('setsd',0);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 grand('setsd',123456);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
@@ -272,7 +226,7 @@ expected = [
 ];
 grand('setsd',0);
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -283,7 +237,7 @@ expected = [
 ];
 grand('setsd',0);
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );
@@ -305,28 +259,28 @@ gen = "kiss";
 sdsize = seedsize(kgen);
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
 grand('setsd',0,0,0,0);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 grand('setsd',123456,123456,123456,123456);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
-0.0002874    0.9423555    0.0770725    0.0207832    0.4746445    0.1895302  
-0.8538282    0.5493145    0.3200836    0.4775516    0.2245108    0.6637360  
-0.0581523    0.6006782    0.8569004    0.0123565    0.7357421    0.5837571  
-0.5196679    0.2448867    0.2568304    0.4503826    0.9680347    0.5214808  
+    2.874450D-04    9.423555D-01    7.707249D-02    2.078324D-02    4.746445D-01    1.895302D-01  
+    8.538282D-01    5.493145D-01    3.200836D-01    4.775516D-01    2.245108D-01    6.637360D-01  
+    5.815227D-02    6.006782D-01    8.569004D-01    1.235649D-02    7.357421D-01    5.837571D-01  
+    5.196679D-01    2.448867D-01    2.568304D-01    4.503826D-01    9.680347D-01    5.214808D-01  
 ];
 grand('setsd',0,0,0,0);
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -337,7 +291,7 @@ expected = [
 ];
 grand('setsd',0,0,0,0);
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );
@@ -358,17 +312,17 @@ gen = "clcg2";
 sdsize = seedsize(kgen);
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
 grand('setsd',1,1);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 grand('setsd',123456,123456);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
@@ -379,7 +333,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-5 );
 //
 // Check integers
 expected = [
@@ -390,7 +344,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );
@@ -411,17 +365,21 @@ gen = "clcg4";
 sdsize = seedsize(kgen);
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
+warning("off");
 grand('setsd',1,1,1,1);
+warning("on");
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
+warning("off");
 grand('setsd',123456,123456,123456,123456);
+warning("on");
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
@@ -430,9 +388,11 @@ expected = [
 0.4370514    0.4956021    0.6870544    0.8501209    0.1271038    0.4554926  
 0.4202952    0.2903676    0.5712601    0.4764120    0.1818799    0.3121748  
 ];
+warning("off");
 grand('setsd',1,1,1,1);
+warning("on");
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -441,9 +401,11 @@ expected = [
     938560647.     1064297484.    1475437993.    1825620628.    272953383.    978162913.  
     902576998.     623559632.     1226771622.    1023086907.    390584072.    670390361.  
 ];
+warning("off");
 grand('setsd',1,1,1,1);
+warning("on");
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );
@@ -464,17 +426,17 @@ gen = "fsultra";
 sdsize = seedsize(kgen);
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
 grand('setsd',1,1);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 grand('setsd',123456,123456);
 S=grand('getsd');
-assert_equal ( typeof(S) , "constant" );
-assert_equal ( size(S) , [sdsize 1] );
+assert_checkequal ( typeof(S) , "constant" );
+assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
@@ -485,7 +447,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -496,7 +458,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );
@@ -516,15 +478,15 @@ kgen = 6;
 gen = "urand";
 grand('setgen',gen);
 S=grand('getgen');
-assert_equal ( S , gen );
+assert_checkequal ( S , gen );
 //
 grand('setsd',1);
 S=grand('getsd');
-assert_equal ( S , 1 );
+assert_checkequal ( S , 1 );
 //
 grand('setsd',123456);
 S=grand('getsd');
-assert_equal ( S , 123456 );
+assert_checkequal ( S , 123456 );
 //
 // Check numbers
 expected = [
@@ -535,7 +497,7 @@ expected = [
 ];
 grand('setsd',1);
 computed = grand(4,6,"def");
-assert_close ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-5 );
 //
 // Check integers
 expected = [
@@ -546,7 +508,7 @@ expected = [
 ];
 grand('setsd',1);
 computed = grand(4,6,"lgi");
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 //
 // Check distribution of uniform numbers in [0,1[
 checkMeanVariance0arg ( 400 , 800 , "def" , 1/2 , 1/12 , rtol );

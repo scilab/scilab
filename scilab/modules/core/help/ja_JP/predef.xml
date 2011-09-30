@@ -9,10 +9,12 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>n=predef()
-oldnew=predef(n)
-oldnew=predef('all')
-oldnew=predef('clear')</synopsis>
+    <synopsis>n = predef()
+oldnew = predef(n)
+oldnew = predef('all')
+oldnew = predef('clear')
+variables_name = predef('names')
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>説明</title>

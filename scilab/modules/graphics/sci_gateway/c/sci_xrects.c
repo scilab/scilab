@@ -103,7 +103,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
   endFigureDataReading(pFigure);
 
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

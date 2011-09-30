@@ -13,7 +13,7 @@
 // wrong value <option value="-Xmx1024m"/>
 res = mgetl(SCI+'/etc/jvm_options.xml');
 line = grep(res,'<option value=""-Xmx');
-if res(line) <> '<option value=""-Xmx256m""/>' then bugmes();quit;end
+assert_checkequal(stripblanks(res(line)) ,'<option value=""-Xmx256m""/>');
 stacksize('max');
 memstack = stacksize();
 if memstack < 1e8 then bugmes();quit;end

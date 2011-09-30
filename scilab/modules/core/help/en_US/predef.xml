@@ -9,10 +9,12 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>n=predef()
-oldnew=predef(n)
-oldnew=predef('all')
-oldnew=predef('clear')</synopsis>
+    <synopsis>n = predef()
+oldnew = predef(n)
+oldnew = predef('all')
+oldnew = predef('clear')
+variables_name = predef('names')
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -28,6 +30,7 @@ oldnew=predef('clear')</synopsis>
     the old and new value of protected variables number.</para>
     <para><literal>predef(n)</literal> sets the <literal>max(n,7)</literal> last defined variables as protected, it also return
     the old and new value of protected variables number.</para>
+    <para><literal>predef('names')</literal> returns a vector of strings with the name of protected variables.</para>
   </refsection>
   <refsection>
     <title>Remarks:</title>

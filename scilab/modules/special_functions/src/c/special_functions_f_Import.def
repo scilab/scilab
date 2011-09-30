@@ -5,11 +5,15 @@ EXPORTS
 ; --------------------------------------- 
 ; special_functions_f
 ; --------------------------------------- 
-intsbessely_
-intsbesselk_
-intsbesselj_
-intsbesseli_
 intslgamma_
 intsgamma_
 intsdlgamma_
 intscalerf_
+zbesiv_
+dbesiv_ 
+zbesjv_
+dbesjv_
+zbeskv_
+dbeskv_
+zbesyv_
+dbesyv_

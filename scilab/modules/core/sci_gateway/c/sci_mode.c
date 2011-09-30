@@ -72,7 +72,7 @@ int C2F(sci_mode)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

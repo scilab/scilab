@@ -18,7 +18,6 @@
 ;
 #define GRAPHICS "graphics"
 ;
-Source: modules\{#GRAPHICS}\VERSION.xml; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
 Source: thirdparty\jlatexmath-0.9.4.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}

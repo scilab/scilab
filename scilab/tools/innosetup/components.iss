@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -47,7 +47,6 @@
 #define COMPN_SCINOTES 'scinotes'
 
 #define COMPN_SOUND 'sound'
-#define COMPN_PVM 'pvm'
 #define COMPN_RANDLIB 'randlib'
 #define COMPN_MEXLIB 'mexlib'
 #define COMPN_TEXMACS 'texmacs'
@@ -74,6 +73,7 @@
 #define COMPN_ATOMS 'ATOMS'
 #define COMPN_MODULES_MANAGER 'modules_manager'
 #define COMPN_PARALLEL 'parallel'
+#define COMPN_CHM 'chm_scilab'
 
 ;
 Name: {#COMPN_SCILAB}; Description: Scilab {#ScilabVersion}; Types: default full custom cli; Flags: fixed;
@@ -131,12 +131,12 @@ Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: default full c
 ;
 Name: {#COMPN_SPREADSHEET}; Description: {cm:DescriptionSpreadsheet}; Types: default full custom;
 ;
-;Name: {#COMPN_PVM}; Description: {cm:DescriptionPvm}; Types: default full custom;
-;
 Name: {#COMPN_ATOMS}; Description: {cm:DescriptionAtoms}; Types: default full custom;
 Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Types: default full custom;
 ;
+#ifndef SCILAB_F2C
 Name: {#COMPN_PARALLEL}; Description: {cm:DescriptionParallel}; Types: default full custom;
+#endif
 ;
 Name: {#COMPN_PARAMETERS}; Description: {cm:DescriptionParametersTlbx}; Types: full custom;
 Name: {#COMPN_GENETICALGORITHMS}; Description: {cm:DescriptionGeneticTlbx}; Types: full custom;
@@ -149,8 +149,10 @@ Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full custom; Ex
 Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full custom;
 ;
 #ifndef SCILAB_WITHOUT_JRE
-Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} (1.6.0_18); Types: default full custom; Flags: fixed;
+Name: {#COMPN_JRE}; Description: {cm:DescriptionJVM} ({#javaUsed}); Types: default full custom; Flags: fixed;
 #endif
+;
+Name: {#COMPN_CHM}; Description: {cm:DescriptionCHM}; Types: full; ExtraDiskSpaceRequired: {#CHM_SIZE}
 ;
 ;-------------------------------------------------------------------------------
 ;

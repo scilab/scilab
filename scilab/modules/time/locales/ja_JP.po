@@ -6,22 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:02+0000\n"
+"PO-Revision-Date: 2011-09-01 09:41+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#
-# File: macros/calendar.sci, line: 52
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   月      火      水      木      金      土      日"
 
 #, c-format
 msgid "%s: An error occurred.\n"
@@ -30,6 +26,36 @@ msgstr "%s: エラーが発生しました.\n"
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s: エラーが発生しました: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgstr "%s: 入力引数の型が間違っています： スカラー値で指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より小さい値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#
+# File: macros/calendar.sci, line: 52
+msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   月      火      水      木      金      土      日"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -70,10 +96,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 実定数行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
@@ -94,38 +116,17 @@ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
 msgstr "%s: 入力引数の型が間違っています： スカラー指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
-msgstr "%s: 入力引数の型が間違っています： スカラー値で指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています： %s は %d から %d の範囲で指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より小さい値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
 msgstr "%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
 
 #
 # File: macros/calendar.sci, line: 40

@@ -1,7 +1,0 @@
-function Cl=compen(Sl,Kr,Ko)
-  [A,B,C,D]=abcd(Sl);
-  A1=[A-B*Kr ,B*Kr; 0*A ,A-Ko*C]; Id=eye(A);
-  B1=[B; 0*B];
-  C1=[C ,0*C];Cl=syslin('c',A1,B1,C1)
-endfunction
-

@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 13:07+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -30,20 +31,20 @@ msgstr "%s: %s は実装されていません.\n"
 #
 # File: macros/mtlb_close.sci, line: 15
 #, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: ''%s'' を無視しました。\n"
+msgid "%s: '%s' ignored.\n"
+msgstr "%s: '%s' を無視しました。\n"
 
 #, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: ''%s'' は実装されていません.\n"
+msgid "%s: '%s' not implemented.\n"
+msgstr "%s: '%s' は実装されていません.\n"
 
 #, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: ''%s'' は3次元モード専用です."
+msgid "%s: '%s' only used in 3d mode."
+msgstr "%s: '%s' は3次元モード専用です."
 
 #, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: ''%s''オプションは無視されました.\n"
+msgid "%s: '%s' option ignored.\n"
+msgstr "%s: '%s'オプションは無視されました.\n"
 
 #
 # File: macros/mtlb_close.sci, line: 51
@@ -54,12 +55,12 @@ msgstr "%s: 全てのウインドウを削除しました。\n"
 #
 # File: macros/mtlb_fopen.sci, line: 18
 #, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: ファイル ''%s'' を開けません。\n"
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: ファイル '%s' を開けません。\n"
 
 #, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s:  ''%s'' , ''%s'' , ''%s'' のいずれもオープンできません.\n"
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr "%s:  '%s' , '%s' , '%s' のいずれもオープンできません.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
@@ -70,8 +71,8 @@ msgid "%s: End of string reached before data has been read.\n"
 msgstr "%s: データが読まれる前に文字列の終端に達しました。\n"
 
 #, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: ''%s''プロパティに相当するものがありません.\n"
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr "%s: '%s'プロパティに相当するものがありません.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
@@ -82,12 +83,12 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s: まだ実装されていません.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: フォーマット ''%s'' はまだ処理されていません.\n"
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr "%s: フォーマット '%s' はまだ処理されていません.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: フォーマット ''%s'' を認識できません.\n"
+msgid "%s: The format '%s' is unknown.\n"
+msgstr "%s: フォーマット '%s' を認識できません.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
@@ -119,24 +120,24 @@ msgid "%s: This particular case is not implemented.\n"
 msgstr "%s: この特定のケースは実装されていません.\n"
 
 #, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: クラス ''%s'' は処理できません.\n"
+msgid "%s: Unhandled class '%s'.\n"
+msgstr "%s: クラス '%s' は処理できません.\n"
 
 #, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: 未知の色が ''%s''でみつかりました -> 黒を設定します.\n"
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr "%s: 未知の色が '%s'でみつかりました -> 黒を設定します.\n"
 
 #
 # File: macros/mtlb_plot.sci, line: 197
 #, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: 未知の線スタイルです ''%s'' -> 6 を設定します。\n"
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
+msgstr "%s: 未知の線スタイルです '%s' -> 6 を設定します。\n"
 
 #
 # File: macros/mtlb_format.sci, line: 59
 #, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: 未知の型 ''%s'': 無視しました。\n"
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr "%s: 未知の型 '%s': 無視しました。\n"
 
 #
 # File: macros/mtlb_format.sci, line: 57
@@ -171,8 +172,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: ''%s''の大きさが間違っています: ベクトルを指定してください.\n"
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr "%s: '%s'の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -219,25 +220,25 @@ msgid "%s: Wrong type for input arguments: String expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: ''%s''へのアフェクションの値が間違っています.\n"
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr "%s: '%s'へのアフェクションの値が間違っています.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s, %s, ''%s'', ''%s'' または ''%s'' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: %s, %s, %s, '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s,''%s'' または ''%s'' を指定してください.\n"
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s,'%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s''  または ''%s'' を指定してください.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -316,9 +317,3 @@ msgstr "10月"
 # File: macros/mtlb_dir.sci, line: 53
 msgid "Sep"
 msgstr "9月"
-
-#
-# File: macros/mtlb_eig.sci, line: 25
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: %d 入力引数をもつ使用は、まだ装備されていません。\n"

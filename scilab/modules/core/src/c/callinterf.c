@@ -34,7 +34,7 @@ jmp_buf jmp_env;
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 67
+#define INTERFACES_MAX 68
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
     /* 02  */ {gw_linear_algebra},
@@ -77,7 +77,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 39  */ {gw_dynamic_special_functions},
     /* 40  */ {gw_dynamic_tclsci},
     /* 41  */ {gw_data_structures2},
-    /* 42  */ {gw_dynamic_pvm},
+    /* 42  */ {gw_user}, /* free position may be used */
     /* 43  */ {gw_integer},
     /* 44  */ {gw_linear_algebra2},
     /* 45  */ {gw_dynamic_scicos},
@@ -88,7 +88,7 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 50  */ {gw_localization},
     /* 51  */ {gw_fftw},
     /* 52  */ {gw_jvm},
-    /* 53  */ {gw_shell},
+    /* 53  */ {gw_console},
     /* 54  */ {gw_completion},
     /* 55  */ {gw_history_manager},
     /* 56  */ {gw_dynamic_spreadsheet},
@@ -102,7 +102,8 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 64  */ {gw_dynamic_xcos},
     /* 65  */ {gw_dynamic_action_binding},
     /* 66  */ {gw_dynamic_parallel},
-    /* 67  */ {gw_dynamic_ui_data}
+    /* 67  */ {gw_dynamic_ui_data},
+    /* 68  */ {gw_dynamic_xml}
 };
 /*--------------------------------------------------------------------------*/
 /**

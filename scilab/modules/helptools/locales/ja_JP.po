@@ -6,17 +6,69 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-12 00:26+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:34+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: 作業ディレクトリ %s を作成するか、見つけます。\n"
+
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 177
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: ドキュメントをビルドしている間のエラー: %s\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Javaスタック %s の実行。\n"
+
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s: Javaスタックを実行中: %s.\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
+
+msgid "Description"
+msgstr "説明"
+
+msgid ""
+"If Scilab is started in a chroot, you might want to try to set the two "
+"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
+msgstr ""
+"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性があります :  SCI_DISABLE_TK=1, "
+"SCI_JAVA_ENABLE_HEADLESS=1\n"
+
+#
+# File: sci_gateway/c/gw_helptools.c, line: 38
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
+
+#
+# File: sci_gateway/nogui/nogui.c, line: 20
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilab '%s' モジュールはインストールされていません。\n"
+
+msgid "Version"
+msgstr "バージョン"
 
 #
 # File: macros/xmltoformat.sci, line: 327
@@ -62,7 +114,7 @@ msgid ""
 "Building the manual file [%s] in %s.\n"
 msgstr ""
 "\n"
-"マニュアルファイル [%s] を %sに構築中.\n"
+"マニュアルファイル [%s] (%s) を構築中.\n"
 
 #, c-format
 msgid ""
@@ -70,7 +122,7 @@ msgid ""
 "Building the manual file [%s].\n"
 msgstr ""
 "\n"
-"マニュアルファイル [%s] を構築中.\n"
+"マニュアルファイル　[%s] を構築中.\n"
 
 #
 # File: macros/xmltoformat.sci, line: 391
@@ -90,7 +142,7 @@ msgstr "%02d-%02d-%04d"
 # File: macros/xmltoformat.sci, line: 580
 # File: macros/xmltoformat.sci, line: 675
 #, c-format
-msgid "%s: %s file hasn''t been moved in the %s directory."
+msgid "%s: %s file hasn't been moved in the %s directory."
 msgstr "%s: %sファイルは、%sディレクトリーで動かせませんでした。"
 
 #
@@ -104,12 +156,6 @@ msgstr "%s: %s は構築できませんでした。"
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません。\n"
-
-#
-# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
-#, c-format
-msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s: 作業ディレクトリ %s を作成するか、見つけます。\n"
 
 #
 # File: macros/clean_help.sci, line: 72
@@ -128,20 +174,6 @@ msgstr "%s: 作業ディレクトリ %s を作成するか、見つけます。\
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr "%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
 
-#
-# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 177
-#, c-format
-msgid "%s: Error while building documentation: %s.\n"
-msgstr "%s: ドキュメントをビルドしている間のエラー: %s\n"
-
-#, c-format
-msgid "%s: Execution Java stack %s.\n"
-msgstr "%s: Javaスタック %s の実行。\n"
-
-#, c-format
-msgid "%s: Execution Java stack: %s.\n"
-msgstr "%s: Javaスタックを実行中: %s.\n"
-
 #, c-format
 msgid "%s: File skipped %s."
 msgstr "%s: ファイル %s はスキップされました 。"
@@ -155,7 +187,7 @@ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しい�
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
-msgstr "%s:  %s を確認してください, モジュール数は間違っています.\n"
+msgstr "%s: %s をクリックしてください, モジュールの数が間違っています.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -267,12 +299,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
 
 #
-# File: macros/help.sci, line: 24
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
-
-#
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 134
 #, c-format
@@ -361,352 +387,7 @@ msgid "Help chapter"
 msgstr "ヘルプ章"
 
 #
-# File: sci_gateway/c/gw_helptools.c, line: 38
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
-
-#
-# File: sci_gateway/nogui/nogui.c, line: 20
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' モジュールはインストールされていません。\n"
-
-#
 # File: macros/xmlfiletohtml.sci, line: 99
 #, c-format
 msgid "Warning %s does not follow the dtd"
 msgstr "警告 %s は、dtdに従っていません"
-
-#
-# File: macros/formatman.sci, line: 84
-#, c-format
-#~ msgid "Processing %s to %s"
-#~ msgstr "%s から %s へ加工"
-
-#
-# File: macros/help.sci, line: 47
-#, c-format
-#~ msgid "%s: help module is not installed.\n"
-#~ msgstr "%s: ヘルプモジュールがインストールされていません。\n"
-
-#
-# File: macros/help_from_sci.sci, line: 107
-#~ msgid "Scilab 5.0 or more is required."
-#~ msgstr "Scilab 5.0 以上が必要です。"
-
-#
-# File: macros/help_from_sci.sci, line: 160
-#~ msgid "...demodir must be a directory."
-#~ msgstr "...demodir ディレクトリでなくてはなりません。"
-
-#
-# File: macros/xmltoformat.sci, line: 302
-#, c-format
-#~ msgid "%s: The %s files are up-to-date."
-#~ msgstr "%s: %sファイルは、最新です。"
-
-#
-# File: macros/xmltoformat.sci, line: 324
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing help files copied from the default language\n"
-#~ msgstr ""
-#~ "\n"
-#~ "デフォルト言語からヘルプファイルのコピー間違いです\n"
-
-#
-# File: macros/xmltoformat.sci, line: 339
-# File: macros/xmltoformat.sci, line: 360
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing files copied from\n"
-#~ msgstr ""
-#~ "\n"
-#~ "見当たらないコピーの間違いです\n"
-
-#
-# File: macros/xmltoformat.sci, line: 344
-# File: macros/xmltoformat.sci, line: 365
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Copying missing from %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%s からのコピー間違いです\n"
-
-#
-# File: macros/xmltoformat.sci, line: 391
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document: %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "マスタードキュメントの構築: %s\n"
-
-#
-# File: macros/xmltoformat.sci, line: 408
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document for %s.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%s のマスタードキュメントの構築。\n"
-
-#
-# File: macros/xmltoformat.sci, line: 413
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the master document in %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%s でマスタードキュメントの構築\n"
-
-#
-# File: macros/xmltoformat.sci, line: 439
-#~ msgid ""
-#~ "\n"
-#~ "Building the scilab manual file ["
-#~ msgstr ""
-#~ "\n"
-#~ "scilabマニュアル・ファイル構築 ["
-
-#
-# File: macros/xmltoformat.sci, line: 523
-# File: macros/xmltoformat.sci, line: 617
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
-#~ "a while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%2$s の [%1$s] ファイルの構築(しばらくお待ちください... これは少し時間がかかります)\n"
-
-#
-# File: macros/xmltoformat.sci, line: 612
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Building the manual file [%s]. (Please wait building ... this can take a "
-#~ "while)\n"
-#~ msgstr ""
-#~ "\n"
-#~ "[%s] ファイルの構築(しばらくお待ちください... これは少し時間がかかります)\n"
-
-#
-# File: macros/xmltoformat.sci, line: 711
-# File: macros/xmltoformat.sci, line: 726
-# File: macros/xmltoformat.sci, line: 745
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Deleting files copied from\n"
-#~ msgstr ""
-#~ "\n"
-#~ "コピーされたファイルを削除\n"
-
-#
-# File: macros/xmltoformat.sci, line: 731
-# File: macros/xmltoformat.sci, line: 750
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Deleting files copied from %s\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%sからコピーされたファイルを削除\n"
-
-#
-# File: macros/xmltoformat.sci, line: 1044
-#~ msgid "Scilab manual"
-#~ msgstr "Scilab マニュアル"
-
-#
-# File: macros/xmltoformat.sci, line: 1347
-#~ msgid "About Scicos"
-#~ msgstr "Scicosについて"
-
-#
-# File: macros/xmltoformat.sci, line: 1348
-#~ msgid "Scicos Manual"
-#~ msgstr "Scicos マニュアル"
-
-#
-# File: macros/xmltoformat.sci, line: 1488
-#~ msgid "Batch functions"
-#~ msgstr "バッチ関数"
-
-#
-# File: macros/xmltoformat.sci, line: 1488
-#~ msgid "Editor"
-#~ msgstr "エディッタ"
-
-#
-# File: macros/xmltoformat.sci, line: 1488
-#~ msgid "Sources Palette"
-#~ msgstr "ソースパレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1489
-#~ msgid "Linear Palette"
-#~ msgstr "線パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1489
-#~ msgid "Non-linear Palette"
-#~ msgstr "非線パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1489
-#~ msgid "Branching Palette"
-#~ msgstr "分岐パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1489
-#~ msgid "Others Palettes"
-#~ msgstr "その他パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1490
-#~ msgid "Threshold Palette"
-#~ msgstr "閾値パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1490
-#~ msgid "Sinks Palette"
-#~ msgstr "SINKパレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1490
-#~ msgid "Events Palette"
-#~ msgstr "イベントパレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1490
-#~ msgid "Electrical Palette"
-#~ msgstr "電気パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1491
-#~ msgid "Thermohydraulics Palette"
-#~ msgstr "熱流力特性パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1491
-#~ msgid "Matrix Palette"
-#~ msgstr "行列パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1491
-#~ msgid "Integer Palette"
-#~ msgstr "整数パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1491
-#~ msgid "Demoblocks Palette"
-#~ msgstr "デモ ブロック パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1492
-#~ msgid "ABCD Blocks"
-#~ msgstr "ABCD ブロック"
-
-#
-# File: macros/xmltoformat.sci, line: 1492
-#~ msgid "C Computational Functions"
-#~ msgstr "Cのコンピュータ関数"
-
-#
-# File: macros/xmltoformat.sci, line: 1492
-#~ msgid "Scilab Computational Functions"
-#~ msgstr "Scilab コンピュータ関数"
-
-#
-# File: macros/xmltoformat.sci, line: 1493
-#~ msgid "Utilities Functions"
-#~ msgstr "ユーティリティ関数"
-
-#
-# File: macros/xmltoformat.sci, line: 1493
-#~ msgid "Programming Scicos Blocks"
-#~ msgstr "Scicosブロック プログラミング"
-
-#
-# File: macros/xmltoformat.sci, line: 1493
-#~ msgid "Scilab Utilities Functions"
-#~ msgstr "Scilab ユーティリティ関数"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Diagram"
-#~ msgstr "図式"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Blocks"
-#~ msgstr "ブロック"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Links"
-#~ msgstr "リンク"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Compilation/Simulation"
-#~ msgstr "コンパイル/シミュレーション"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Scilab Data Structures"
-#~ msgstr "Sciolab データ構造"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Palettes"
-#~ msgstr "パレット"
-
-#
-# File: macros/xmltoformat.sci, line: 1494
-#~ msgid "Old Blocks Palette"
-#~ msgstr "古いブロック・パレット"
-
-#
-# File: sci_gateway/c/gw_helptools.c, line: 38
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "-nogui または -nwni で、Scilab '%s' モジュール無効です。"
-
-#
-# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
-# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 134
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
-
-#
-# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 117
-#, c-format
-#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
-
-#
-# File: macros/help.sci, line: 24
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
-
-#
-# File: macros/help.sci, line: 24
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
-#~ msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
-
-#, c-format
-#~ msgid "%s: Scilab 5.0 or more is required.\n"
-#~ msgstr "%s: Scilab5.0以上が必要です。\n"

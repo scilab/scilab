@@ -46,14 +46,16 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 	 *            otherwise.
 	 */
 	public void setCompilationNeeded(boolean status) {
-		compilationNeeded = status;
+		// compilationNeeded = status;
+		
+		compilationNeeded = true;
 	}
 
 	/**
 	 * @return always true as we don't use scicos internal modification checking
 	 */
 	public boolean isCompilationNeeded() {
-		return true;
+		return compilationNeeded;
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class CompilationEngineStatus implements mxIEventListener, PropertyChange
 		 */
 		if (getCompilationData() == null || !getCompilationData().exists()) {
 			try {
-				setCompilationData(FileUtils.createTempFile());
+				setCompilationData(new File(FileUtils.createTempFile()));
 			} catch (IOException e) {
 				LOG.warn(e);
 				

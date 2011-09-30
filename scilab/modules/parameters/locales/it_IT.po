@@ -6,44 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-13 12:50+0000\n"
+"PO-Revision-Date: 2011-09-01 09:46+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso un numero "
-"pari.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: awaited parameters: "
 msgstr "%s: parametri attesi: "
-
-#, c-format
-msgid "%s: parameter %s not defined"
-msgstr "%s: il parametro %s non è definito"
-
-#, c-format
-msgid "%s: parameter doesn''t exist"
-msgstr "%s: il parametro non esiste"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
@@ -117,5 +93,26 @@ msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: valore sbagliato per il parametro %s: valore %s\n"
 
 #, c-format
-#~ msgid "%s: not a plist"
-#~ msgstr "%s: non è una plist"
+msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso un numero "
+"pari.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: parameter %s not defined"
+msgstr "%s: il parametro %s non è definito"
+
+#, c-format
+msgid "%s: parameter doesn't exist"
+msgstr "%s: il parametro non esiste"

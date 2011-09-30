@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-11 13:44+0000\n"
+"PO-Revision-Date: 2011-09-03 11:13+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: it\n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
@@ -105,8 +106,8 @@ msgid "%s: %s module is not installed.\n"
 msgstr "%s: il modulo %s non è installato.\n"
 
 #, c-format
-msgid "%s: Output value set to ''on''."
-msgstr "%s valore in uscita impostato a ''on''."
+msgid "%s: Output value set to 'on'."
+msgstr "%s valore in uscita impostato a 'on'."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -125,8 +126,8 @@ msgstr "&File"
 msgid "&Tools"
 msgstr "&Strumenti"
 
-msgid "''nobalance'' option, IGNORED."
-msgstr "opzione ''nobalance'', IGNORATA."
+msgid "'nobalance' option, IGNORED."
+msgstr "opzione 'nobalance', IGNORATA."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -323,15 +324,15 @@ msgid "Extraction from strings with more than two indexes not implemented."
 msgstr "L'estrazione da stringhe con più di due indici non è sviluppata."
 
 #, c-format
-msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "L'estrazione di %s dalla tlist ''%s'' non è ancora sviluppata."
+msgid "Extraction of %s from '%s' tlist is not yet implemented."
+msgstr "L'estrazione di %s dalla tlist '%s' non è ancora sviluppata."
 
 msgid "File"
 msgstr "File"
 
 #, c-format
-msgid "File %s is an empty file ! Nothing done..."
-msgstr "Il file %s è un file vuoto ! Non è stato fatto nulla.."
+msgid "File %s is an empty file.\n"
+msgstr "Il file %s è vuoto.\n"
 
 msgid "File contains no instruction, no translation made..."
 msgstr "Il file non contiene istruzioni, nessuna traduzione effettuata..."
@@ -684,9 +685,9 @@ msgstr ""
 msgid "Wrong dimensions user data."
 msgstr "I dati utente sono di dimensioni sbagliate."
 
-msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
+msgid "Wrong input argument in getrhs() (Must be a 'funcall' tlist)."
 msgstr ""
-"C'è un argomento sbagliato in getrhs() (deve essere una tlist ''funcall'')."
+"C'è un argomento sbagliato in getrhs() (deve essere una tlist 'funcall')."
 
 msgid "Wrong number of inputs."
 msgstr "Il numero di ingressi è sbagliato."
@@ -698,8 +699,8 @@ msgid "Yes"
 msgstr "Sì"
 
 #, c-format
-msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "contents deve essere una tlist ''contents'' invece di un: %s."
+msgid "contents must be a 'contents' tlist instead of a: %s."
+msgstr "contents deve essere una tlist 'contents' invece di un: %s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling è utilizzato solo in modalità 3D."
@@ -714,8 +715,8 @@ msgstr "dims deve essere una lista invece di un: %s."
 
 msgid "eig() with 2 inputs: consider generalized eigen. Check."
 msgstr ""
-"eig() with 2 valori in ingresso: considerare l'autovalore generalizzato. "
-"Controllare"
+"eig() con 2 valori in ingresso: considerare l'autovalore generalizzato. "
+"Controllare."
 
 #, c-format
 msgid "endsymbol should be a character string and not a: %s."
@@ -728,8 +729,8 @@ msgstr "l'espressione non può essere un: %s."
 msgid "fopen used with three outputs."
 msgstr "fopen è utilizzato con tre uscite."
 
-msgid "fopen(''all'') has no translation."
-msgstr "fopen(''all'') non ha traduzione."
+msgid "fopen('all') has no translation."
+msgstr "fopen('all') non ha traduzione."
 
 msgid "if"
 msgstr "se"
@@ -739,20 +740,20 @@ msgid "index must be a list instead of a: %s."
 msgstr "index deve essere una lista invece di un: %s."
 
 #, c-format
-msgid "infer must be an ''infer'' tlist instead of a: %s."
-msgstr "infer deve essere una tlist ''infer'' invece di un: %s."
+msgid "infer must be an 'infer' tlist instead of a: %s."
+msgstr "infer deve essere una tlist 'infer' invece di un: %s."
 
-msgid "input argument must be an ''operation'' tlist."
-msgstr "l'argomento in ingresso deve essere una tlist ''operation''"
+msgid "input argument must be an 'operation' tlist."
+msgstr "l'argomento in ingresso deve essere una tlist 'operation"
 
 msgid "is Real."
 msgstr "è reale"
 
 msgid "is a scalar."
-msgstr "è uno scalare"
+msgstr "è uno scalare."
 
 msgid "is not a character string matrix."
-msgstr "non è una matrice di stringhe di caratteri"
+msgstr "non è una matrice di stringhe di caratteri."
 
 msgid ""
 "isequal requires fields are in the same order for structs to be equal."
@@ -886,8 +887,8 @@ msgid "type %d is not implemented."
 msgstr "il tipo %d non è sviluppato."
 
 #, c-format
-msgid "type must be a ''type'' tlist instead of a: %s."
-msgstr "type deve essere una tlist ''type'' invece di un: %s."
+msgid "type must be a 'type' tlist instead of a: %s."
+msgstr "type deve essere una tlist 'type' invece di un: %s."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
@@ -906,32 +907,3 @@ msgstr "la proprietò %s è sbagliata."
 
 msgid "wrong type of input."
 msgstr "l'ingresso è di tipo sbagliato."
-
-#, c-format
-#~ msgid ""
-#~ "// Copyright INRIA (Generated by M2SCI)\n"
-#~ "// Conversion function for Matlab %s()\n"
-#~ "// Input: tree = Matlab funcall tree\n"
-#~ "// Ouput: tree = Scilab equivalent for tree"
-#~ msgstr ""
-#~ "// Diritto d'autore INRIS (Generato da M2SCI)\n"
-#~ "// Funzione di conversione per %s() di Matlab\n"
-#~ "// Ingresso: albero = albero funcall di Matlab\n"
-#~ "// Uscita: albero = equivalente in Scilab per albero"
-
-#, c-format
-#~ msgid ""
-#~ "// Generated by M2SCI\n"
-#~ "// Conversion function for Matlab %s\n"
-#~ "// Input: tree = Matlab funcall tree\n"
-#~ "// Ouput: tree = Scilab equivalent for tree"
-#~ msgstr ""
-#~ "// Generato da M2SCI\n"
-#~ "// Funzione di conversione per %s di Matlab\n"
-#~ "// Ingresso: albero = albero funcall di Matlab\n"
-#~ "// Uscita: albero = equivalente in Scilab per albero"
-
-#~ msgid "// Ouput variables initialisation (not found in input variables)"
-#~ msgstr ""
-#~ "// Inizializzazione delle variabili in uscita (non trovate tra quelle in "
-#~ "ingresso)"

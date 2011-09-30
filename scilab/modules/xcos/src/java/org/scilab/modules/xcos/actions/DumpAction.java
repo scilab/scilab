@@ -77,12 +77,12 @@ public class DumpAction extends DefaultAction {
 	@Override
     public void actionPerformed(ActionEvent e) {
 		try {
-		    File temp = FileUtils.createTempFile();
-		    temp.deleteOnExit();
+		    String temp = FileUtils.createTempFile();
+		    new File(temp).deleteOnExit();
 		    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp);
 		    try {
-		    	String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath());
-		    	cmd += buildCall("deletefile", temp.getAbsolutePath());
+		    	String cmd = buildCall("import_from_hdf5", temp);
+		    	cmd += buildCall("deletefile", temp);
 		    	ScilabInterpreterManagement.synchronousScilabExec(cmd);
 		    } catch (InterpreterException e1) {
 				LogFactory.getLog(DumpAction.class).error(e1);

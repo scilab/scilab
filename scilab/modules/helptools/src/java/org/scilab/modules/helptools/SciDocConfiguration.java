@@ -29,6 +29,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 
 /**
  * @author Calixte Denizet
@@ -57,7 +58,7 @@ public class SciDocConfiguration {
      */
     public void readDocument(String filename) {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
             doc = factory.newDocumentBuilder().parse(new File(filename));
         } catch (ParserConfigurationException e) {
             System.err.println(ERROR_READ + filename);

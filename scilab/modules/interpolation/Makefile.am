@@ -36,20 +36,20 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
                 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
+noinst_LTLIBRARIES = libsciinterpolation-algo.la
 
 libsciinterpolation_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciinterpolation_algo_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES)
+libsciinterpolation_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciinterpolation_algo_la_CFLAGS = $(libsciinterpolation_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 
 libsciinterpolation_la_LIBADD = \
-	 \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-    $(top_builddir)/modules/string/libscistring.la
-
+	libsciinterpolation-algo.la
 
 #### Target ######
 modulename=interpolation
@@ -57,7 +57,7 @@ modulename=interpolation
 
 #### interpolation : Conf files ####
 libsciinterpolation_la_rootdir = $(mydatadir)
-libsciinterpolation_la_root_DATA =  license.txt version.xml
+libsciinterpolation_la_root_DATA =  license.txt 
 
 
 ####�interpolation : init scripts ####

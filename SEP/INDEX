@@ -50,8 +50,20 @@ SEP #048: Scilab Preferences
 SEP #049: repmat function
 SEP #050: Xcos Help Folders
 SEP #051: Linear Programming
-SEP #054: Quality argument added to xs2jpg
-SEP #056: Add symetry option to nyquist function
+SEP #053: tbx_build_block function
+SEP #054: Quality argument added to 'xs2jpg'
+SEP #055: ilib_include flag
+SEP #056: Add symetry option to 'nyquist' function
 SEP #057: comet/comet3d
 SEP #059: nyquistfrequencybounds
 SEP #060: CACSD frequency tools
+SEP #061: CSV read/write
+SEP #062: Add timeout option to 'host' function
+SEP #063: User block wizard
+SEP #064: HDF5 Scilab specification
+SEP #065: load and save based on HDF5
+SEP #066: Xcos compilation hooks
+SEP #067: lines() default value
+SEP #068: Tempname
+SEP #069: Extend predef to get protected variable names
+SEP #070: Xcos validation functions

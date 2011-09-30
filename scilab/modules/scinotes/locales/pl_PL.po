@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-07 12:30+0000\n"
+"PO-Revision-Date: 2011-08-22 16:07+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: pl\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " został zmieniony.\n"
 "Czy chcesz go zapisać?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s jest katalogiem."
 
@@ -58,6 +60,12 @@ msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru nr %d: Oczekiwana macierz ciągów znaków.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr ""
+
 msgid "... file with echo"
 msgstr "... plik, z echem"
 
@@ -66,6 +74,14 @@ msgstr "... plik, bez echa"
 
 msgid "... the selection with echo;... until the caret, with echo"
 msgstr ".. zaznaczenie z echem;... do kursoru, z echem"
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
+msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -98,7 +114,7 @@ msgid "Anchors"
 msgstr "Kotwice"
 
 msgid "Apply & Reindent"
-msgstr "ZAstosuj i wznów wcięcie"
+msgstr "Zastosuj i wznów wcięcie"
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "Jesteś pewny, że chcesz zamknąć SciNotes?"
@@ -106,17 +122,20 @@ msgstr "Jesteś pewny, że chcesz zamknąć SciNotes?"
 msgid "Auto (Default)"
 msgstr "Automatycznie (domyślnie)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Auto-uzupełnianie dla (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr ""
 
-msgid "Auto-completion on if,function,..."
-msgstr "Auto-uzupełnianie dla if,function,..."
+msgid "Auto-completion on if, function, ..."
+msgstr ""
 
 msgid "Background Color"
 msgstr "Kolor tła"
 
 msgid "Backward"
 msgstr "Wstecz"
+
+msgid "Base directory:"
+msgstr "Katalog bazowy:"
 
 msgid "Binary file: read-only mode"
 msgstr "Plik binarny (tryb tylko do odczytu)"
@@ -134,16 +153,28 @@ msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "Nie można załadować \"scinotesConfiguration.xml\""
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr "Zmień litery w zaznaczeniu na wielkie;Zmień literę na wielką"
+msgstr "Zmień litery w zaznaczeniu na duże;Zmień literę na dużą"
 
 msgid "Case sensitive"
 msgstr "Rozróżniaj wielkość liter"
+
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
 
 msgid "Change Color"
 msgstr "Zmień kolor"
 
 msgid "Change Colors"
 msgstr "Zmienić kolory"
+
+msgid "Choose the search base directory"
+msgstr "Wybierz katalog bazowy do wyszukiwania"
+
+msgid "Choose..."
+msgstr "Wybierz..."
 
 msgid "Circular search"
 msgstr "Wyszukiwanie kołowe"
@@ -176,7 +207,7 @@ msgid "Colorize"
 msgstr "Koloryzacja"
 
 msgid "Columns actions"
-msgstr ""
+msgstr "Operacje na kolumnach"
 
 msgid "Comment Selection"
 msgstr "Zakomentuj zaznaczenie"
@@ -194,7 +225,10 @@ msgid "Copy"
 msgstr "Kopiuj"
 
 msgid "Copy as HTML with line number"
-msgstr "Kopiuj jako HTML wraz z numerem linii"
+msgstr "Kopiuj jako HTML wraz z numerami linii"
+
+msgid "Copy full path"
+msgstr ""
 
 msgid "Copy selection in a new tab"
 msgstr "Skopiuj zaznaczenie do nowej zakładki"
@@ -243,10 +277,14 @@ msgid "Document"
 msgstr "Dokument"
 
 msgid "Double chevrons"
-msgstr ""
+msgstr "Podwójne nawiasy kątowe"
 
 msgid "Edit"
 msgstr "Edycja"
+
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr ""
 
 msgid "Enable Auto Reformat"
 msgstr "Włącz autoformatowanie"
@@ -285,13 +323,16 @@ msgid "Exit"
 msgstr "Wyjście"
 
 msgid "Export"
-msgstr ""
+msgstr "Eksportuj"
 
 msgid "File"
 msgstr "Plik"
 
 msgid "File already exists"
 msgstr "Plik już istnieje"
+
+msgid "File pattern"
+msgstr ""
 
 msgid "Find"
 msgstr "Znajdź"
@@ -301,6 +342,12 @@ msgstr "Znajdź następny"
 
 msgid "Find Previous"
 msgstr "Znajdź poprzedni"
+
+msgid "Find files"
+msgstr "Znajdź pliki"
+
+msgid "Find word in files"
+msgstr "Znajdź słowo w plikach"
 
 msgid "Find/Replace"
 msgstr "Znajdź/Zamień"
@@ -331,6 +378,9 @@ msgstr "Do poprzedniej kotwicy"
 
 msgid "Goto line"
 msgstr "Idź do linii"
+
+msgid "Graphics handle field"
+msgstr ""
 
 msgid "Help about '"
 msgstr "Pomoc o '"
@@ -365,6 +415,7 @@ msgstr "Ignoruj"
 msgid "Incremental Search"
 msgstr "Poszukiwanie przyrostowe"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Błędne wyrażenie regularne : %s"
 
@@ -374,17 +425,22 @@ msgstr "Kursywa"
 msgid "Length"
 msgstr "Długość"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Linia %s, kolumna %s."
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Linia %s,  kolumna %s. funkcja '%s' w wierszu %s."
 
 msgid "Line Endings"
 msgstr "Zakończenie linii"
 
+msgid "Line by line"
+msgstr "Wiersz po wierszu"
+
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numeracja wierszy:Brak;Zwykła;Whereami compatible"
+msgstr "Numeracja wierszy;Brak;Zwykła;Whereami compatible"
 
 msgid "Load Into Scilab"
 msgstr "Załaduj do Scilab"
@@ -415,6 +471,9 @@ msgstr "Następna karta"
 
 msgid "No Line Numbering"
 msgstr "Brak numeracji wierszy"
+
+msgid "No help"
+msgstr ""
 
 msgid "No split"
 msgstr "Nie dziel"
@@ -494,14 +553,29 @@ msgstr "Drukuj"
 msgid "Print Preview"
 msgstr "Podgląd wydruku"
 
+msgid "Read file line by line"
+msgstr "Odczytaj plik wiersz po wierszu"
+
 msgid "Read-only mode"
 msgstr "Tryb tylko do odczytu"
 
 msgid "Recent Files"
-msgstr "Poprzednie pliki"
+msgstr "Ostatnio używane pliki"
+
+msgid "Recursive"
+msgstr ""
+
+msgid "Recursive search"
+msgstr ""
 
 msgid "Redo"
-msgstr "Powtórz"
+msgstr "Ponów"
+
+msgid "Regex"
+msgstr "Wyrażenia regularne"
+
+msgid "Regular expression (Word)"
+msgstr "Wyrażenia regularne"
 
 msgid "Regular expressions"
 msgstr "Wyrażenia regularne"
@@ -549,7 +623,7 @@ msgid "Restore files from your last SciNotes session ?"
 msgstr "Odczytać pliki z ostatniej sesji SciNotes?"
 
 msgid "Restore opened files on start-up"
-msgstr "Odczytaj edytowane pliki po starcie"
+msgstr "Odczytaj wczesniej edytowane pliki po starcie"
 
 msgid "Restore the last sessions"
 msgstr "Wznów ostatnie sesje"
@@ -559,6 +633,12 @@ msgstr "Zapisz"
 
 msgid "Save All"
 msgstr "Zapisz wszystko"
+
+msgid "Save and execute"
+msgstr "Zapisz i wykonaj"
+
+msgid "Save and execute all files"
+msgstr "Zapisz i wykonaj wszystkie pliki"
 
 msgid "Save as"
 msgstr "Zapisz jako"
@@ -591,6 +671,12 @@ msgstr "Zakres"
 
 msgid "Search"
 msgstr "Znajdź"
+
+msgid "Search Files..."
+msgstr "Znajdź pliki..."
+
+msgid "Search in Files..."
+msgstr "Znajdź w plikach..."
 
 msgid "Select All"
 msgstr "Zaznacz wszystko"
@@ -631,6 +717,9 @@ msgstr "Pokaż definicję makra "
 msgid "Show/Hide ToolBar"
 msgstr "Pokaż/ukryj pasek narzędzi"
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Źródło '"
 
@@ -643,24 +732,29 @@ msgstr "Podziel poziomo"
 msgid "Split vertically"
 msgstr "Podziel pionowo"
 
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr "Przekreślenie"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
 
 msgid "Suppress comments when executing selection"
-msgstr ""
+msgstr "Brak wyświetlania komentarzy przy wykonaniu zaznaczenia"
 
 msgid "Syntax Type"
 msgstr "Rodzaj składni"
 
 msgid "Tab representation"
-msgstr ""
+msgstr "Symbol tabulacji"
 
 msgid "Tab style"
 msgstr "Styl zakładki"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
@@ -668,6 +762,7 @@ msgstr ""
 "Plik %s nie istnieje\n"
 "Czy chcesz go utworzyć?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -684,6 +779,7 @@ msgstr "Brak możliwości utworzenia pliku. Sprawdź ścieżkę dostępu"
 msgid "The file could not be saved."
 msgstr "Plik nie może być zapisany"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -723,6 +819,9 @@ msgstr "Cofnij"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Bez nazwy "
 
@@ -739,7 +838,7 @@ msgid "Warning: the file has been modified by another program !"
 msgstr "Ostrzeżenie: plik został zmieniony przez inny program !"
 
 msgid "Whereami Line Numbering"
-msgstr "Numeracja linii Whereami"
+msgstr "Względna numeracja linii"
 
 msgid "Whole word"
 msgstr "Całe słowo"
@@ -750,8 +849,14 @@ msgstr "Okno"
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr "Słowo"
+
 msgid "Word Wrap"
 msgstr "Zawijanie wierszy"
+
+msgid "Word pattern"
+msgstr ""
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr "Katalog roboczy;Dodaj katalog;Usuń ostatni katalog"
@@ -783,49 +888,3 @@ msgstr "Twoje zmiany zostaną utracone, należy zmienić kodowanie."
 
 msgid "close this tab"
 msgstr "zamknij kartę"
-
-#~ msgid "Are you sure that you want to close Text Editor ?"
-#~ msgstr "Czy na pewno chcesz zamknąć edytor tekstu?"
-
-#~ msgid "Continue?"
-#~ msgstr "Kontynuować?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Edytuj wybrane w nowej karcie"
-
-#~ msgid "Editor"
-#~ msgstr "Edytor"
-
-#~ msgid "Editor error"
-#~ msgstr "Błąd edytora"
-
-#~ msgid "Help about a selected text"
-#~ msgstr "Pomoc o zaznaczonym tekscie"
-
-#~ msgid "Line Numbers"
-#~ msgstr "Numery wierszy"
-
-#~ msgid "Scilab text editor"
-#~ msgstr "Edytor tekstu Scilab"
-
-#~ msgid "Scilab text editor help"
-#~ msgstr "Pomoc edytora tekstu Scilab"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "Plik %s nie istnieje\n"
-#~ " Czy chcesz go utworzyć?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Szukaj naokoło"
-
-#~ msgid "No text to execute"
-#~ msgstr "Brak tekstu do wykonania"
-
-#~ msgid "No text selected"
-#~ msgstr "Nie zaznaczono tekstu"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "Otwórz plik w ...;Dodaj katalog;Usuń ostatni katalog"

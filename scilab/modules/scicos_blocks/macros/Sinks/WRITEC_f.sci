@@ -68,7 +68,7 @@ case 'set' then
         gettext("End current simulation first"));
       ok=%f
     elseif fname1 == "" then
-      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter"), gettext("Output File Name")), gettext("You must provide a filename."));
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Output File Name")), gettext("You must provide a filename."));
     //Check if directory exist
     elseif fileparts(fname1) ~= "" then
         [pa, fn, ex] = fileparts(fname1)
@@ -86,7 +86,7 @@ case 'set' then
         gettext("Strictly positive integer expected."));
       ok=%f
     elseif swap <> 0 & swap <> 1 then
-      block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
         msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
       ok=%f
     end

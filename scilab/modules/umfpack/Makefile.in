@@ -68,9 +68,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -78,10 +79,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -113,13 +114,23 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_etcdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_rootdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES =  \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/sparse/libscisparse.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libsciumfpack_algo_la_LIBADD =
+am__libsciumfpack_algo_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
+	src/c/taucs_scilab.c src/c/common_umfpack.c \
+	src/c/with_umfpack.c
+@UMFPACK_FALSE@am__objects_1 = libsciumfpack_algo_la-noumfpack.lo
+@UMFPACK_TRUE@am__objects_1 = libsciumfpack_algo_la-taucs_scilab.lo \
+@UMFPACK_TRUE@	libsciumfpack_algo_la-common_umfpack.lo \
+@UMFPACK_TRUE@	libsciumfpack_algo_la-with_umfpack.lo
+@UMFPACK_TRUE@am_libsciumfpack_algo_la_OBJECTS = $(am__objects_1)
+libsciumfpack_algo_la_OBJECTS = $(am_libsciumfpack_algo_la_OBJECTS)
+libsciumfpack_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+@UMFPACK_TRUE@am_libsciumfpack_algo_la_rpath =
+@UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES = libsciumfpack-algo.la
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
 	src/c/with_umfpack.c sci_gateway/c/gw_umfpack.c \
@@ -132,11 +143,11 @@ am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	sci_gateway/c/sci_umf_ludel.c sci_gateway/c/sci_umf_lufact.c \
 	sci_gateway/c/sci_umf_luget.c sci_gateway/c/sci_umf_luinfo.c \
 	sci_gateway/c/sci_umf_lusolve.c sci_gateway/c/sci_umfpack.c
-@UMFPACK_FALSE@am__objects_1 = libsciumfpack_la-noumfpack.lo
-@UMFPACK_TRUE@am__objects_1 = libsciumfpack_la-taucs_scilab.lo \
+@UMFPACK_FALSE@am__objects_2 = libsciumfpack_la-noumfpack.lo
+@UMFPACK_TRUE@am__objects_2 = libsciumfpack_la-taucs_scilab.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-common_umfpack.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-with_umfpack.lo
-@UMFPACK_TRUE@am__objects_2 = libsciumfpack_la-gw_umfpack.lo \
+@UMFPACK_TRUE@am__objects_3 = libsciumfpack_la-gw_umfpack.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_res_with_prec.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_taucs_chdel.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_taucs_chfact.lo \
@@ -149,9 +160,8 @@ am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_umf_luinfo.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_umf_lusolve.lo \
 @UMFPACK_TRUE@	libsciumfpack_la-sci_umfpack.lo
-@UMFPACK_FALSE@am_libsciumfpack_la_OBJECTS = $(am__objects_1)
-@UMFPACK_TRUE@am_libsciumfpack_la_OBJECTS = $(am__objects_1) \
-@UMFPACK_TRUE@	$(am__objects_2)
+@UMFPACK_FALSE@am_libsciumfpack_la_OBJECTS = $(am__objects_2)
+@UMFPACK_TRUE@am_libsciumfpack_la_OBJECTS = $(am__objects_3)
 libsciumfpack_la_OBJECTS = $(am_libsciumfpack_la_OBJECTS)
 libsciumfpack_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsciumfpack_la_CFLAGS) \
@@ -169,8 +179,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciumfpack_la_SOURCES)
-DIST_SOURCES = $(am__libsciumfpack_la_SOURCES_DIST)
+SOURCES = $(libsciumfpack_algo_la_SOURCES) $(libsciumfpack_la_SOURCES)
+DIST_SOURCES = $(am__libsciumfpack_algo_la_SOURCES_DIST) \
+	$(am__libsciumfpack_la_SOURCES_DIST)
 DATA = $(libsciumfpack_la_etc_DATA) $(libsciumfpack_la_root_DATA) \
 	$(libsciumfpack_la_sci_gateway_DATA)
 ETAGS = etags
@@ -178,6 +189,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -278,6 +290,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -322,11 +335,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -429,6 +437,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
+@UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
 	$(am__append_1)
 
@@ -437,7 +446,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA = \
 license.txt \
  \
-version.xml \
+ \
 TAUCS_license.txt \
 UMFPACK_license.txt
 
@@ -468,18 +477,15 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 #### umfpack : gateway declaration ####
 @UMFPACK_TRUE@libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @UMFPACK_TRUE@libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
+@UMFPACK_TRUE@libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
 @UMFPACK_FALSE@libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
-@UMFPACK_TRUE@libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) $(GATEWAY_C_SOURCES)
+@UMFPACK_TRUE@libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
+@UMFPACK_TRUE@libsciumfpack_algo_la_CFLAGS = $(libsciumfpack_la_CFLAGS)
 
 # For the code check (splint)
 @UMFPACK_TRUE@CHECK_SRC = $(libsciumfpack_la_SOURCES)
 @UMFPACK_TRUE@INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
-@UMFPACK_TRUE@libsciumfpack_la_LIBADD = $(top_builddir)/modules/mexlib/libmx.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/sparse/libscisparse.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+@UMFPACK_TRUE@libsciumfpack_la_LIBADD = libsciumfpack-algo.la
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes
@@ -588,6 +594,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -619,6 +634,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libsciumfpack-algo.la: $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_DEPENDENCIES) 
+	$(libsciumfpack_algo_la_LINK) $(am_libsciumfpack_algo_la_rpath) $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
 libsciumfpack.la: $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_DEPENDENCIES) 
 	$(libsciumfpack_la_LINK) -rpath $(pkglibdir) $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_LIBADD) $(LIBS)
 
@@ -628,6 +645,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_algo_la-common_umfpack.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_algo_la-with_umfpack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_la-common_umfpack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_la-gw_umfpack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciumfpack_la-noumfpack.Plo@am__quote@
@@ -666,6 +687,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libsciumfpack_algo_la-noumfpack.lo: src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -MT libsciumfpack_algo_la-noumfpack.lo -MD -MP -MF $(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo -c -o libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo $(DEPDIR)/libsciumfpack_algo_la-noumfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noumfpack/noumfpack.c' object='libsciumfpack_algo_la-noumfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -c -o libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
+
+libsciumfpack_algo_la-taucs_scilab.lo: src/c/taucs_scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -MT libsciumfpack_algo_la-taucs_scilab.lo -MD -MP -MF $(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Tpo -c -o libsciumfpack_algo_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Tpo $(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/taucs_scilab.c' object='libsciumfpack_algo_la-taucs_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -c -o libsciumfpack_algo_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
+
+libsciumfpack_algo_la-common_umfpack.lo: src/c/common_umfpack.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -MT libsciumfpack_algo_la-common_umfpack.lo -MD -MP -MF $(DEPDIR)/libsciumfpack_algo_la-common_umfpack.Tpo -c -o libsciumfpack_algo_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciumfpack_algo_la-common_umfpack.Tpo $(DEPDIR)/libsciumfpack_algo_la-common_umfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/common_umfpack.c' object='libsciumfpack_algo_la-common_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -c -o libsciumfpack_algo_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
+
+libsciumfpack_algo_la-with_umfpack.lo: src/c/with_umfpack.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -MT libsciumfpack_algo_la-with_umfpack.lo -MD -MP -MF $(DEPDIR)/libsciumfpack_algo_la-with_umfpack.Tpo -c -o libsciumfpack_algo_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciumfpack_algo_la-with_umfpack.Tpo $(DEPDIR)/libsciumfpack_algo_la-with_umfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/with_umfpack.c' object='libsciumfpack_algo_la-with_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) -c -o libsciumfpack_algo_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
 
 libsciumfpack_la-noumfpack.lo: src/noumfpack/noumfpack.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciumfpack_la_CFLAGS) $(CFLAGS) -MT libsciumfpack_la-noumfpack.lo -MD -MP -MF $(DEPDIR)/libsciumfpack_la-noumfpack.Tpo -c -o libsciumfpack_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
@@ -970,7 +1019,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1047,14 +1096,14 @@ uninstall-am: uninstall-libsciumfpack_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciumfpack_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciumfpack_la_etcDATA \
 	install-libsciumfpack_la_rootDATA \
 	install-libsciumfpack_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \

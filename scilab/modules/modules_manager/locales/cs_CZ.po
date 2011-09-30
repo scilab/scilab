@@ -1,0 +1,132 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-02 15:16+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+
+#, c-format
+msgid "%s: Can't go to directory '%s'.\n"
+msgstr "%s: Nelze přejít do adresáře '%s'.\n"
+
+#, c-format
+msgid "%s: The directory '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s: Adresář '%s' neexistuje, nebo není přístupný pro čtení.\n"
+
+#, c-format
+msgid ""
+"%s: The file %s cannot been created, please check if you have write access "
+"on this file.\n"
+msgstr ""
+"%s: Soubor %s nelze vytvořit, zkontrolujte, prosím, zda máte přístup pro "
+"zápis do tohoto souboru.\n"
+
+#, c-format
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s: Soubor '%s' neexistuje, nebo není přístupný pro čtení.\n"
+
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr "%s: Tento modul vyžaduje kompilátor C a ten nebyl nalezen.\n"
+
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr ""
+"%s: Tento modul vyžaduje kompilátor C nebo Fortran a ty nebyly nalezeny.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: Nelze exportovat %s do %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Byl očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno nejvíce %d řad.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Nelze přejít na '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
+"is not read accessible.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Adresář '%s' neexistuje, nebo "
+"není přístupný pro čtení.\n"
+
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr "%s: dokumentace nemůže být sestavena ve scilab režimu: %s.\n"
+
+msgid "Building blocks...\n"
+msgstr "Sestavuji bloky...\n"
+
+msgid "Building gateway...\n"
+msgstr "Sestavuji bránu...\n"
+
+msgid "Building help...\n"
+msgstr "Sestavuji nápovědu...\n"
+
+msgid "Building macros...\n"
+msgstr "Sestavuji makra...\n"
+
+msgid "Building sources...\n"
+msgstr "Sestavuji zdroje...\n"
+
+msgid "Generating cleaner.sce...\n"
+msgstr "Vytvářím cleaner.ace...\n"
+
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr "Vytvářím cleaner_gateway.sce...\n"
+
+msgid "Generating loader.sce...\n"
+msgstr "Vytvářím loader.sce...\n"
+
+msgid "Generating loader_gateway.sce...\n"
+msgstr "Vytvářím loader_gateway.sce...\n"

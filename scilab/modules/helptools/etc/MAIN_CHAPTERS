@@ -17,6 +17,7 @@ optimization
 genetic_algorithms
 simulated_annealing
 symbolic
+xml
 fileio
 io
 graphics
@@ -60,7 +61,6 @@ ui_data
 history_browser
 helptools
 parallel
-pvm
 modules_manager
 localization
 action_binding

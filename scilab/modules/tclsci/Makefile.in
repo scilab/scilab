@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/tclsci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -72,10 +73,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -108,19 +109,39 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_rootdir)" \
 	"$(DESTDIR)$(libscitclsci_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscitclsci_la_tcldir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscitclsci_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscitclsci_algo_la_LIBADD =
+am__libscitclsci_algo_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	src/c/TCL_Global.c src/c/InitTclTk.c src/c/ScilabEval.c \
 	src/c/setenvtcl.c src/c/InitializeTclTk.c \
 	src/c/TerminateTclTk.c src/c/setvar.c src/c/TCL_ArrayDim.c \
 	src/c/TCL_ArrayExist.c src/c/TCL_ArrayGetVar.c \
 	src/c/TCL_ArraySize.c src/c/TCL_Command.c \
-	src/c/GlobalTclInterp.c src/c/TCL_getErrorLine.c \
-	sci_gateway/c/sci_opentk.c sci_gateway/c/sci_TCL_SetVar.c \
+	src/c/GlobalTclInterp.c src/c/TCL_getErrorLine.c
+@TCLTK_FALSE@am__objects_1 = libscitclsci_algo_la-notclsci.lo
+@TCLTK_TRUE@am__objects_1 = libscitclsci_algo_la-TCL_Global.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-InitTclTk.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-ScilabEval.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-setenvtcl.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-InitializeTclTk.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TerminateTclTk.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-setvar.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_ArrayDim.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_ArrayExist.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_ArrayGetVar.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_ArraySize.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_Command.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-GlobalTclInterp.lo \
+@TCLTK_TRUE@	libscitclsci_algo_la-TCL_getErrorLine.lo
+am_libscitclsci_algo_la_OBJECTS = $(am__objects_1)
+libscitclsci_algo_la_OBJECTS = $(am_libscitclsci_algo_la_OBJECTS)
+libscitclsci_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscitclsci_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscitclsci_la_DEPENDENCIES = libscitclsci-algo.la
+am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
+	sci_gateway/c/sci_TCL_SetVar.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
 	sci_gateway/c/sci_TCL_UnsetVar.c \
@@ -132,21 +153,6 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	sci_gateway/c/sci_TCL_GetVar.c \
 	sci_gateway/c/sci_TCL_ExistArray.c \
 	sci_gateway/c/sci_TCL_UpVar.c
-@TCLTK_FALSE@am__objects_1 = libscitclsci_la-notclsci.lo
-@TCLTK_TRUE@am__objects_1 = libscitclsci_la-TCL_Global.lo \
-@TCLTK_TRUE@	libscitclsci_la-InitTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-ScilabEval.lo \
-@TCLTK_TRUE@	libscitclsci_la-setenvtcl.lo \
-@TCLTK_TRUE@	libscitclsci_la-InitializeTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-TerminateTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-setvar.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayDim.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayExist.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_ArrayGetVar.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_ArraySize.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_Command.lo \
-@TCLTK_TRUE@	libscitclsci_la-GlobalTclInterp.lo \
-@TCLTK_TRUE@	libscitclsci_la-TCL_getErrorLine.lo
 @TCLTK_TRUE@am__objects_2 = libscitclsci_la-sci_opentk.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_SetVar.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_ExistVar.lo \
@@ -161,7 +167,7 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_GetVar.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_ExistArray.lo \
 @TCLTK_TRUE@	libscitclsci_la-sci_TCL_UpVar.lo
-am_libscitclsci_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscitclsci_la_OBJECTS = $(am__objects_2)
 libscitclsci_la_OBJECTS = $(am_libscitclsci_la_OBJECTS)
 libscitclsci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscitclsci_la_CFLAGS) \
@@ -179,8 +185,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscitclsci_la_SOURCES)
-DIST_SOURCES = $(am__libscitclsci_la_SOURCES_DIST)
+SOURCES = $(libscitclsci_algo_la_SOURCES) $(libscitclsci_la_SOURCES)
+DIST_SOURCES = $(am__libscitclsci_algo_la_SOURCES_DIST) \
+	$(am__libscitclsci_la_SOURCES_DIST)
 DATA = $(libscitclsci_la_etc_DATA) $(libscitclsci_la_root_DATA) \
 	$(libscitclsci_la_sci_gateway_DATA) \
 	$(nobase_libscitclsci_la_tcl_DATA)
@@ -189,6 +196,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -289,6 +297,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -333,11 +342,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -471,6 +475,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
+noinst_LTLIBRARIES = libscitclsci-algo.la
 libscitclsci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
 libscitclsci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
@@ -485,21 +490,20 @@ libscitclsci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
-libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
+libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscitclsci_algo_la_CFLAGS = $(libscitclsci_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
-libscitclsci_la_LIBADD = $(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la \
-							$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscitclsci_la_LIBADD = libscitclsci-algo.la 
 #### Target ######
 modulename = tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA = license.txt version.xml
+libscitclsci_la_root_DATA = license.txt 
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
@@ -547,124 +551,6 @@ tcl/sciGUI/sciGUI.tcl \
 tcl/sciGUI/sciConfig.tcl \
 tcl/sciGUI/sciBrowseVar.tcl \
 tcl/sciGUI/sciEditVar.tcl \
-tcl/BWidget-1.8.0/tests/entry.test \
-tcl/BWidget-1.8.0/BWman/SelectColor.html \
-tcl/BWidget-1.8.0/BWman/SpinBox.html \
-tcl/BWidget-1.8.0/BWman/ButtonBox.html \
-tcl/BWidget-1.8.0/BWman/ScrollView.html \
-tcl/BWidget-1.8.0/BWman/LabelFrame.html \
-tcl/BWidget-1.8.0/BWman/ProgressDlg.html \
-tcl/BWidget-1.8.0/BWman/TitleFrame.html \
-tcl/BWidget-1.8.0/BWman/Dialog.html \
-tcl/BWidget-1.8.0/BWman/Separator.html \
-tcl/BWidget-1.8.0/BWman/Entry.html \
-tcl/BWidget-1.8.0/BWman/navtree.html \
-tcl/BWidget-1.8.0/BWman/SelectFont.html \
-tcl/BWidget-1.8.0/BWman/PanelFrame.html \
-tcl/BWidget-1.8.0/BWman/Button.html \
-tcl/BWidget-1.8.0/BWman/MessageDlg.html \
-tcl/BWidget-1.8.0/BWman/PanedWindow.html \
-tcl/BWidget-1.8.0/BWman/Label.html \
-tcl/BWidget-1.8.0/BWman/options.htm \
-tcl/BWidget-1.8.0/BWman/NoteBook.html \
-tcl/BWidget-1.8.0/BWman/Widget.html \
-tcl/BWidget-1.8.0/BWman/ListBox.html \
-tcl/BWidget-1.8.0/BWman/BWidget.html \
-tcl/BWidget-1.8.0/BWman/ArrowButton.html \
-tcl/BWidget-1.8.0/BWman/PasswdDlg.html \
-tcl/BWidget-1.8.0/BWman/ProgressBar.html \
-tcl/BWidget-1.8.0/BWman/DropSite.html \
-tcl/BWidget-1.8.0/BWman/PagesManager.html \
-tcl/BWidget-1.8.0/BWman/ScrollableFrame.html \
-tcl/BWidget-1.8.0/BWman/DynamicHelp.html \
-tcl/BWidget-1.8.0/BWman/contents.html \
-tcl/BWidget-1.8.0/BWman/ScrolledWindow.html \
-tcl/BWidget-1.8.0/BWman/MainFrame.html \
-tcl/BWidget-1.8.0/BWman/Tree.html \
-tcl/BWidget-1.8.0/BWman/LabelEntry.html \
-tcl/BWidget-1.8.0/BWman/DragSite.html \
-tcl/BWidget-1.8.0/BWman/index.html \
-tcl/BWidget-1.8.0/BWman/StatusBar.html \
-tcl/BWidget-1.8.0/BWman/ComboBox.html \
-tcl/BWidget-1.8.0/images/folder.gif \
-tcl/BWidget-1.8.0/images/minus.xbm \
-tcl/BWidget-1.8.0/images/paste.gif \
-tcl/BWidget-1.8.0/images/dragfile.gif \
-tcl/BWidget-1.8.0/images/oplink.xbm \
-tcl/BWidget-1.8.0/images/file.gif \
-tcl/BWidget-1.8.0/images/bold.gif \
-tcl/BWidget-1.8.0/images/underline.gif \
-tcl/BWidget-1.8.0/images/dragicon.gif \
-tcl/BWidget-1.8.0/images/opmove.xbm \
-tcl/BWidget-1.8.0/images/new.gif \
-tcl/BWidget-1.8.0/images/error.gif \
-tcl/BWidget-1.8.0/images/redo.gif \
-tcl/BWidget-1.8.0/images/opcopy.xbm \
-tcl/BWidget-1.8.0/images/info.gif \
-tcl/BWidget-1.8.0/images/cut.gif \
-tcl/BWidget-1.8.0/images/print.gif \
-tcl/BWidget-1.8.0/images/overstrike.gif \
-tcl/BWidget-1.8.0/images/palette.gif \
-tcl/BWidget-1.8.0/images/save.gif \
-tcl/BWidget-1.8.0/images/open.gif \
-tcl/BWidget-1.8.0/images/passwd.gif \
-tcl/BWidget-1.8.0/images/plus.xbm \
-tcl/BWidget-1.8.0/images/italic.gif \
-tcl/BWidget-1.8.0/images/undo.gif \
-tcl/BWidget-1.8.0/images/warning.gif \
-tcl/BWidget-1.8.0/images/openfold.gif \
-tcl/BWidget-1.8.0/images/hourglass.gif \
-tcl/BWidget-1.8.0/images/question.gif \
-tcl/BWidget-1.8.0/images/target.xbm \
-tcl/BWidget-1.8.0/images/copy.gif \
-tcl/BWidget-1.8.0/lang/en.rc \
-tcl/BWidget-1.8.0/lang/da.rc \
-tcl/BWidget-1.8.0/lang/es.rc \
-tcl/BWidget-1.8.0/lang/fr.rc \
-tcl/BWidget-1.8.0/lang/de.rc \
-tcl/BWidget-1.8.0/mainframe.tcl \
-tcl/BWidget-1.8.0/dialog.tcl \
-tcl/BWidget-1.8.0/utils.tcl \
-tcl/BWidget-1.8.0/wizard.tcl \
-tcl/BWidget-1.8.0/labelentry.tcl \
-tcl/BWidget-1.8.0/entry.tcl \
-tcl/BWidget-1.8.0/init.tcl \
-tcl/BWidget-1.8.0/pagesmgr.tcl \
-tcl/BWidget-1.8.0/font.tcl \
-tcl/BWidget-1.8.0/pkgIndex.tcl \
-tcl/BWidget-1.8.0/scrollframe.tcl \
-tcl/BWidget-1.8.0/panelframe.tcl \
-tcl/BWidget-1.8.0/button.tcl \
-tcl/BWidget-1.8.0/panedw.tcl \
-tcl/BWidget-1.8.0/label.tcl \
-tcl/BWidget-1.8.0/notebook.tcl \
-tcl/BWidget-1.8.0/widget.tcl \
-tcl/BWidget-1.8.0/listbox.tcl \
-tcl/BWidget-1.8.0/scrollw.tcl \
-tcl/BWidget-1.8.0/passwddlg.tcl \
-tcl/BWidget-1.8.0/scrollview.tcl \
-tcl/BWidget-1.8.0/xpm2image.tcl \
-tcl/BWidget-1.8.0/arrow.tcl \
-tcl/BWidget-1.8.0/progressdlg.tcl \
-tcl/BWidget-1.8.0/tree.tcl \
-tcl/BWidget-1.8.0/separator.tcl \
-tcl/BWidget-1.8.0/dragsite.tcl \
-tcl/BWidget-1.8.0/dynhelp.tcl \
-tcl/BWidget-1.8.0/CHANGES.txt \
-tcl/BWidget-1.8.0/ChangeLog \
-tcl/BWidget-1.8.0/combobox.tcl \
-tcl/BWidget-1.8.0/statusbar.tcl \
-tcl/BWidget-1.8.0/messagedlg.tcl \
-tcl/BWidget-1.8.0/bitmap.tcl \
-tcl/BWidget-1.8.0/color.tcl \
-tcl/BWidget-1.8.0/LICENSE.txt \
-tcl/BWidget-1.8.0/spinbox.tcl \
-tcl/BWidget-1.8.0/buttonbox.tcl \
-tcl/BWidget-1.8.0/dropsite.tcl \
-tcl/BWidget-1.8.0/progressbar.tcl \
-tcl/BWidget-1.8.0/labelframe.tcl \
-tcl/BWidget-1.8.0/README.txt \
-tcl/BWidget-1.8.0/titleframe.tcl \
 tcl/TK_Scilab.tcl
 
 
@@ -768,6 +654,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -799,6 +694,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscitclsci-algo.la: $(libscitclsci_algo_la_OBJECTS) $(libscitclsci_algo_la_DEPENDENCIES) 
+	$(libscitclsci_algo_la_LINK)  $(libscitclsci_algo_la_OBJECTS) $(libscitclsci_algo_la_LIBADD) $(LIBS)
 libscitclsci.la: $(libscitclsci_la_OBJECTS) $(libscitclsci_la_DEPENDENCIES) 
 	$(libscitclsci_la_LINK) -rpath $(pkglibdir) $(libscitclsci_la_OBJECTS) $(libscitclsci_la_LIBADD) $(LIBS)
 
@@ -808,20 +705,22 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-GlobalTclInterp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitTclTk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-InitializeTclTk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-ScilabEval.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_ArraySize.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_Command.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_Global.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TCL_getErrorLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-TerminateTclTk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-GlobalTclInterp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-InitTclTk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-InitializeTclTk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-ScilabEval.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_ArrayDim.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_ArrayExist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_ArrayGetVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_ArraySize.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_Command.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_Global.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TCL_getErrorLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-TerminateTclTk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-notclsci.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-setenvtcl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_algo_la-setvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-notclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_DeleteInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_DoOneEvent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_EvalFile.Plo@am__quote@
@@ -835,8 +734,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_UnsetVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_TCL_UpVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setenvtcl.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setvar.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -859,110 +756,110 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscitclsci_la-notclsci.lo: src/notclsci/notclsci.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-notclsci.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-notclsci.Tpo -c -o libscitclsci_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-notclsci.Tpo $(DEPDIR)/libscitclsci_la-notclsci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/notclsci/notclsci.c' object='libscitclsci_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-notclsci.lo: src/notclsci/notclsci.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-notclsci.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo -c -o libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo $(DEPDIR)/libscitclsci_algo_la-notclsci.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/notclsci/notclsci.c' object='libscitclsci_algo_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
 
-libscitclsci_la-TCL_Global.lo: src/c/TCL_Global.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_Global.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo -c -o libscitclsci_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_Global.Tpo $(DEPDIR)/libscitclsci_la-TCL_Global.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_Global.c' object='libscitclsci_la-TCL_Global.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_Global.lo: src/c/TCL_Global.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_Global.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_Global.Tpo -c -o libscitclsci_algo_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_Global.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_Global.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_Global.c' object='libscitclsci_algo_la-TCL_Global.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
 
-libscitclsci_la-InitTclTk.lo: src/c/InitTclTk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitTclTk.Tpo -c -o libscitclsci_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-InitTclTk.Tpo $(DEPDIR)/libscitclsci_la-InitTclTk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitTclTk.c' object='libscitclsci_la-InitTclTk.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-InitTclTk.lo: src/c/InitTclTk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-InitTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-InitTclTk.Tpo -c -o libscitclsci_algo_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-InitTclTk.Tpo $(DEPDIR)/libscitclsci_algo_la-InitTclTk.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitTclTk.c' object='libscitclsci_algo_la-InitTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-InitTclTk.lo `test -f 'src/c/InitTclTk.c' || echo '$(srcdir)/'`src/c/InitTclTk.c
 
-libscitclsci_la-ScilabEval.lo: src/c/ScilabEval.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-ScilabEval.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-ScilabEval.Tpo -c -o libscitclsci_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-ScilabEval.Tpo $(DEPDIR)/libscitclsci_la-ScilabEval.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ScilabEval.c' object='libscitclsci_la-ScilabEval.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-ScilabEval.lo: src/c/ScilabEval.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-ScilabEval.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-ScilabEval.Tpo -c -o libscitclsci_algo_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-ScilabEval.Tpo $(DEPDIR)/libscitclsci_algo_la-ScilabEval.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ScilabEval.c' object='libscitclsci_algo_la-ScilabEval.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-ScilabEval.lo `test -f 'src/c/ScilabEval.c' || echo '$(srcdir)/'`src/c/ScilabEval.c
 
-libscitclsci_la-setenvtcl.lo: src/c/setenvtcl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setenvtcl.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setenvtcl.Tpo -c -o libscitclsci_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-setenvtcl.Tpo $(DEPDIR)/libscitclsci_la-setenvtcl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setenvtcl.c' object='libscitclsci_la-setenvtcl.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-setenvtcl.lo: src/c/setenvtcl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-setenvtcl.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-setenvtcl.Tpo -c -o libscitclsci_algo_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-setenvtcl.Tpo $(DEPDIR)/libscitclsci_algo_la-setenvtcl.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setenvtcl.c' object='libscitclsci_algo_la-setenvtcl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-setenvtcl.lo `test -f 'src/c/setenvtcl.c' || echo '$(srcdir)/'`src/c/setenvtcl.c
 
-libscitclsci_la-InitializeTclTk.lo: src/c/InitializeTclTk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-InitializeTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-InitializeTclTk.Tpo -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-InitializeTclTk.Tpo $(DEPDIR)/libscitclsci_la-InitializeTclTk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeTclTk.c' object='libscitclsci_la-InitializeTclTk.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-InitializeTclTk.lo: src/c/InitializeTclTk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-InitializeTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-InitializeTclTk.Tpo -c -o libscitclsci_algo_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-InitializeTclTk.Tpo $(DEPDIR)/libscitclsci_algo_la-InitializeTclTk.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeTclTk.c' object='libscitclsci_algo_la-InitializeTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-InitializeTclTk.lo `test -f 'src/c/InitializeTclTk.c' || echo '$(srcdir)/'`src/c/InitializeTclTk.c
 
-libscitclsci_la-TerminateTclTk.lo: src/c/TerminateTclTk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TerminateTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TerminateTclTk.Tpo -c -o libscitclsci_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TerminateTclTk.Tpo $(DEPDIR)/libscitclsci_la-TerminateTclTk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateTclTk.c' object='libscitclsci_la-TerminateTclTk.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TerminateTclTk.lo: src/c/TerminateTclTk.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TerminateTclTk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TerminateTclTk.Tpo -c -o libscitclsci_algo_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TerminateTclTk.Tpo $(DEPDIR)/libscitclsci_algo_la-TerminateTclTk.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateTclTk.c' object='libscitclsci_algo_la-TerminateTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
 
-libscitclsci_la-setvar.lo: src/c/setvar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setvar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setvar.Tpo -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-setvar.Tpo $(DEPDIR)/libscitclsci_la-setvar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setvar.c' object='libscitclsci_la-setvar.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-setvar.lo: src/c/setvar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-setvar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-setvar.Tpo -c -o libscitclsci_algo_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-setvar.Tpo $(DEPDIR)/libscitclsci_algo_la-setvar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setvar.c' object='libscitclsci_algo_la-setvar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c
 
-libscitclsci_la-TCL_ArrayDim.lo: src/c/TCL_ArrayDim.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayDim.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Tpo -c -o libscitclsci_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayDim.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayDim.c' object='libscitclsci_la-TCL_ArrayDim.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_ArrayDim.lo: src/c/TCL_ArrayDim.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_ArrayDim.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayDim.Tpo -c -o libscitclsci_algo_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayDim.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayDim.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayDim.c' object='libscitclsci_algo_la-TCL_ArrayDim.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_ArrayDim.lo `test -f 'src/c/TCL_ArrayDim.c' || echo '$(srcdir)/'`src/c/TCL_ArrayDim.c
 
-libscitclsci_la-TCL_ArrayExist.lo: src/c/TCL_ArrayExist.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayExist.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Tpo -c -o libscitclsci_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayExist.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayExist.c' object='libscitclsci_la-TCL_ArrayExist.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_ArrayExist.lo: src/c/TCL_ArrayExist.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_ArrayExist.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayExist.Tpo -c -o libscitclsci_algo_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayExist.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayExist.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayExist.c' object='libscitclsci_algo_la-TCL_ArrayExist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_ArrayExist.lo `test -f 'src/c/TCL_ArrayExist.c' || echo '$(srcdir)/'`src/c/TCL_ArrayExist.c
 
-libscitclsci_la-TCL_ArrayGetVar.lo: src/c/TCL_ArrayGetVar.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArrayGetVar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Tpo -c -o libscitclsci_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArrayGetVar.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayGetVar.c' object='libscitclsci_la-TCL_ArrayGetVar.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_ArrayGetVar.lo: src/c/TCL_ArrayGetVar.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_ArrayGetVar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayGetVar.Tpo -c -o libscitclsci_algo_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayGetVar.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_ArrayGetVar.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArrayGetVar.c' object='libscitclsci_algo_la-TCL_ArrayGetVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_ArrayGetVar.lo `test -f 'src/c/TCL_ArrayGetVar.c' || echo '$(srcdir)/'`src/c/TCL_ArrayGetVar.c
 
-libscitclsci_la-TCL_ArraySize.lo: src/c/TCL_ArraySize.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_ArraySize.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Tpo -c -o libscitclsci_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Tpo $(DEPDIR)/libscitclsci_la-TCL_ArraySize.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArraySize.c' object='libscitclsci_la-TCL_ArraySize.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_ArraySize.lo: src/c/TCL_ArraySize.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_ArraySize.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_ArraySize.Tpo -c -o libscitclsci_algo_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_ArraySize.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_ArraySize.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_ArraySize.c' object='libscitclsci_algo_la-TCL_ArraySize.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_ArraySize.lo `test -f 'src/c/TCL_ArraySize.c' || echo '$(srcdir)/'`src/c/TCL_ArraySize.c
 
-libscitclsci_la-TCL_Command.lo: src/c/TCL_Command.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_Command.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_Command.Tpo -c -o libscitclsci_la-TCL_Command.lo `test -f 'src/c/TCL_Command.c' || echo '$(srcdir)/'`src/c/TCL_Command.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_Command.Tpo $(DEPDIR)/libscitclsci_la-TCL_Command.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_Command.c' object='libscitclsci_la-TCL_Command.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_Command.lo: src/c/TCL_Command.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_Command.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_Command.Tpo -c -o libscitclsci_algo_la-TCL_Command.lo `test -f 'src/c/TCL_Command.c' || echo '$(srcdir)/'`src/c/TCL_Command.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_Command.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_Command.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_Command.c' object='libscitclsci_algo_la-TCL_Command.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_Command.lo `test -f 'src/c/TCL_Command.c' || echo '$(srcdir)/'`src/c/TCL_Command.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_Command.lo `test -f 'src/c/TCL_Command.c' || echo '$(srcdir)/'`src/c/TCL_Command.c
 
-libscitclsci_la-GlobalTclInterp.lo: src/c/GlobalTclInterp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-GlobalTclInterp.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-GlobalTclInterp.Tpo -c -o libscitclsci_la-GlobalTclInterp.lo `test -f 'src/c/GlobalTclInterp.c' || echo '$(srcdir)/'`src/c/GlobalTclInterp.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-GlobalTclInterp.Tpo $(DEPDIR)/libscitclsci_la-GlobalTclInterp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GlobalTclInterp.c' object='libscitclsci_la-GlobalTclInterp.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-GlobalTclInterp.lo: src/c/GlobalTclInterp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-GlobalTclInterp.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-GlobalTclInterp.Tpo -c -o libscitclsci_algo_la-GlobalTclInterp.lo `test -f 'src/c/GlobalTclInterp.c' || echo '$(srcdir)/'`src/c/GlobalTclInterp.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-GlobalTclInterp.Tpo $(DEPDIR)/libscitclsci_algo_la-GlobalTclInterp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GlobalTclInterp.c' object='libscitclsci_algo_la-GlobalTclInterp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-GlobalTclInterp.lo `test -f 'src/c/GlobalTclInterp.c' || echo '$(srcdir)/'`src/c/GlobalTclInterp.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-GlobalTclInterp.lo `test -f 'src/c/GlobalTclInterp.c' || echo '$(srcdir)/'`src/c/GlobalTclInterp.c
 
-libscitclsci_la-TCL_getErrorLine.lo: src/c/TCL_getErrorLine.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-TCL_getErrorLine.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-TCL_getErrorLine.Tpo -c -o libscitclsci_la-TCL_getErrorLine.lo `test -f 'src/c/TCL_getErrorLine.c' || echo '$(srcdir)/'`src/c/TCL_getErrorLine.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-TCL_getErrorLine.Tpo $(DEPDIR)/libscitclsci_la-TCL_getErrorLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_getErrorLine.c' object='libscitclsci_la-TCL_getErrorLine.lo' libtool=yes @AMDEPBACKSLASH@
+libscitclsci_algo_la-TCL_getErrorLine.lo: src/c/TCL_getErrorLine.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -MT libscitclsci_algo_la-TCL_getErrorLine.lo -MD -MP -MF $(DEPDIR)/libscitclsci_algo_la-TCL_getErrorLine.Tpo -c -o libscitclsci_algo_la-TCL_getErrorLine.lo `test -f 'src/c/TCL_getErrorLine.c' || echo '$(srcdir)/'`src/c/TCL_getErrorLine.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_algo_la-TCL_getErrorLine.Tpo $(DEPDIR)/libscitclsci_algo_la-TCL_getErrorLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TCL_getErrorLine.c' object='libscitclsci_algo_la-TCL_getErrorLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TCL_getErrorLine.lo `test -f 'src/c/TCL_getErrorLine.c' || echo '$(srcdir)/'`src/c/TCL_getErrorLine.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_algo_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_algo_la-TCL_getErrorLine.lo `test -f 'src/c/TCL_getErrorLine.c' || echo '$(srcdir)/'`src/c/TCL_getErrorLine.c
 
 libscitclsci_la-sci_opentk.lo: sci_gateway/c/sci_opentk.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-sci_opentk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-sci_opentk.Tpo -c -o libscitclsci_la-sci_opentk.lo `test -f 'sci_gateway/c/sci_opentk.c' || echo '$(srcdir)/'`sci_gateway/c/sci_opentk.c
@@ -1269,7 +1166,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1348,14 +1245,14 @@ uninstall-am: uninstall-libscitclsci_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscitclsci_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscitclsci_la_etcDATA \
 	install-libscitclsci_la_rootDATA \
 	install-libscitclsci_la_sci_gatewayDATA install-man \
 	install-nobase_libscitclsci_la_tclDATA install-pdf \

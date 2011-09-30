@@ -11,7 +11,7 @@ function  bar(varargin)
 // bar(x,y,width,style,color)
 // This function  ...
 // 
-// Intput :
+// Input :
 // x : a real scalar or a vector
 // y : a real sclar, or a vector
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)

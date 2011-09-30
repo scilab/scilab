@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,17 +11,28 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readmps">
+<refentry 
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:svg="http://www.w3.org/2000/svg" 
+  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+  xmlns:db="http://docbook.org/ns/docbook" 
+  version="5.0-subset Scilab" 
+  xml:lang="en" 
+  xml:id="readmps">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>readmps</refname>
-    <refpurpose> reads a file in MPS format</refpurpose>
+    <refpurpose>Reads a Linear Program from a MPS file.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>mps= readmps (file-name,bounds [,maxsizes]);</synopsis>
+    <synopsis>
+      mps= readmps (file-name, bounds);
+      mps= readmps (file-name, bounds,maxsizes);
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -56,7 +68,7 @@
       <varlistentry>
         <term>mps</term>
         <listitem>
-          <para>tlist with following fields</para>
+          <para>a tlist, with type "mps" and with following fields</para>
           <variablelist>
             <varlistentry>
               <term>irobj</term>
@@ -106,7 +118,7 @@
               <term>colnames</term>
               <listitem>
                 <para>
-                   character string row vector (Name of the columns).
+                  character string row vector (Name of the columns).
                 </para>
               </listitem>
             </varlistentry>
@@ -310,17 +322,11 @@
     <para>
       Reads a file containing description of an LP problem
       given  in MPS format and returns a <literal>tlist</literal>
-      which describes the problem. It is an
-      interface with the program <literal>rdmps1.f</literal> of hopdm (J. Gondzio).
-      For a description of the variables, see the file rdmps1.f.
+      which describes the problem.
     </para>
     <para>
-      MPS format is a standard ASCII medium for LP codes.
-      MPS format is described in more detail in Murtagh's book:
-    </para>
-    <para>
-      Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
-      New York, 1981.
+      MPS format is a standard ASCII medium for Linear Programs.
+      MPS format is described in more detail in Murtagh's book "Advanced Linear Programming".
     </para>
   </refsection>
   <refsection>
@@ -338,33 +344,35 @@
 //  0 < = XONE < = 4
 // -1 < = YTWO < = 1
 
-//Generate MPS file 
-txt=['NAME          TESTPROB'
-     'ROWS'
-     ' N  COST'
-     ' L  LIM1'
-     ' G  LIM2'
-     ' E  MYEQN'
-     'COLUMNS'
-     '    XONE      COST                 1   LIM1                 1'
-     '    XONE      LIM2                 1'
-     '    YTWO      COST                 4   LIM1                 1'
-     '    YTWO      MYEQN               -1'
-     '    ZTHREE    COST                 9   LIM2                 1'
-     '    ZTHREE    MYEQN                1'
-     'RHS'
-     '    RHS1      LIM1                 5   LIM2                10'
-     '    RHS1      MYEQN                7'
-     'BOUNDS'
-     ' UP BND1      XONE                 4'
-     ' LO BND1      YTWO                -1'
-     ' UP BND1      YTWO                 1'
-     'ENDATA'];
-mputl(txt,TMPDIR+'/test.mps')
+path = fullfile(SCI,"modules","optimization","tests","unit_tests");
+filename = fullfile(path,"test1.mps");
 //Read the MPS file
-P=readmps(TMPDIR+'/test.mps',[0 10^30])
+P=readmps(filename,[0 10^30])
 disp(P)
+//
+// Loads the 25FV47 problem.
+// An LP, contributed by John Reid.
+// Source: The NETLIB collection of test problems.
+path = fullfile(SCI,"modules","optimization","tests","unit_tests");
+filename = fullfile(path,"25FV47.SIF");
+huge = number_properties("huge");
+P=readmps(filename,[-huge huge])
  ]]>
     </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Implementation notes</title>
+    <para>
+      This function provides an interface to the program <literal>rdmps1.f</literal> of
+      hopdm (J. Gondzio).
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+    <para>
+      "Advanced Linear Programming", Murtagh B. (1981). McGrew-Hill, New York, 1981.
+    </para>
   </refsection>
 </refentry>

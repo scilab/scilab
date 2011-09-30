@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-09-18 21:18+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:41+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -37,11 +38,11 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -55,10 +56,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: Неверный тип входных параметров: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
@@ -78,20 +75,8 @@ msgstr ""
 "%s: Неверное значение входного параметра: ожидалось неотрицательное целое "
 "число.\n"
 
-msgid "Error(s) : see help powershell"
-msgstr "Ошибка(и) : см. справку powershell"
-
-msgid "Only for Microsoft Windows."
-msgstr "Только для Microsoft Windows."
-
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Только в оконном режиме, не в консольном.\n"
-
-msgid "Please verify your powershell command without Scilab."
-msgstr "Проверьте вашу команду на powershell без Scilab."
-
-msgid "Powershell 1.0 not found."
-msgstr "Powershell 1.0 не найден."
 
 msgid "Scilab Console"
 msgstr "Командное окно"
@@ -99,12 +84,18 @@ msgstr "Командное окно"
 msgid "see help"
 msgstr "см. справку"
 
-#~ msgid "Powershell not found."
-#~ msgstr "Powershell не найден."
-
-#~ msgid "Verify your script without Scilab."
-#~ msgstr "Проверьте ваш скрипт без Scilab."
-
 #, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: Ошибка выделения памяти.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "Ошибка(и) : см. справку powershell"
+
+msgid "Only for Microsoft Windows."
+msgstr "Только для Microsoft Windows."
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "Проверьте вашу команду на powershell без Scilab."
+
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 не найден."

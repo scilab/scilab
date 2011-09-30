@@ -7,11 +7,11 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-PARALLEL_CPP_SOURCES =
+#PARALLEL_CPP_SOURCES =
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
 
-PARALLEL_C_SOURCES =
+#PARALLEL_C_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c \
 sci_gateway/c/sci_parallel_concurrency.c
@@ -39,8 +39,10 @@ pkglib_LTLIBRARIES = libsciparallel.la
 
 libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
 
+
 if OPENMP
-libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+
 else
 libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 src/noparallel/noparallel.c
@@ -55,7 +57,7 @@ modulename=parallel
 
 #### parallel : Conf files ####
 libsciparallel_la_rootdir = $(mydatadir)
-libsciparallel_la_root_DATA = license.txt version.xml
+libsciparallel_la_root_DATA = license.txt 
 
 
 #### parallel : init scripts ####

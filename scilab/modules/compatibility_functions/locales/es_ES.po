@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-21 15:35+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-01 15:52+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: es\n"
 
 #, c-format
 msgid ""
@@ -27,32 +28,32 @@ msgid "%s: %s is not implemented.\n"
 msgstr "%s: %s no está implementado.\n"
 
 #, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: ''%s'' ignorado.\n"
+msgid "%s: '%s' ignored.\n"
+msgstr "%s: '%s' ignorado.\n"
 
 #, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: ''%s'' no implementado.\n"
+msgid "%s: '%s' not implemented.\n"
+msgstr "%s: '%s' no implementado.\n"
 
 #, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: ''%s'' sólo se usa en modo 3d."
+msgid "%s: '%s' only used in 3d mode."
+msgstr "%s: '%s' sólo se usa en modo 3d."
 
 #, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: Opción ''%s'' ignorada.\n"
+msgid "%s: '%s' option ignored.\n"
+msgstr "%s: Opción '%s' ignorada.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
 msgstr "%s: Se eliminaron todas las ventanas.\n"
 
 #, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: No se puede abrir archivo ''%s''.\n"
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: No se puede abrir archivo '%s'.\n"
 
 #, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: No se pudo abrir ''%s'' o ''%s'' o ''%s''.\n"
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr "%s: No se pudo abrir '%s' o '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
@@ -66,8 +67,8 @@ msgstr ""
 "datos.\n"
 
 #, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: No hay equivalente para la propiedad ''%s''.\n"
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr "%s: No hay equivalente para la propiedad '%s'.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
@@ -78,12 +79,12 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s: Aun no implementado.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: El formato ''%s'' aun no es manejado.\n"
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr "%s: El formato '%s' aun no es manejado.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: El formato ''%s'' es desconocido.\n"
+msgid "%s: The format '%s' is unknown.\n"
+msgstr "%s: El formato '%s' es desconocido.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
@@ -116,21 +117,21 @@ msgid "%s: This particular case is not implemented.\n"
 msgstr "%s: Este caso en particular no está implementado.\n"
 
 #, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: Clase no manejada ''%s''.\n"
+msgid "%s: Unhandled class '%s'.\n"
+msgstr "%s: Clase no manejada '%s'.\n"
 
 #, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: Color desconocido en ''%s'' -> ajustado a negro.\n"
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr "%s: Color desconocido en '%s' -> ajustado a negro.\n"
 
 #, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
 msgstr ""
-"%s: Se encontró un estilo de línea no soportado en ''%s'' -> ajustado a 6.\n"
+"%s: Se encontró un estilo de línea no soportado en '%s' -> ajustado a 6.\n"
 
 #, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Tipo desconocido ''%s'': IGNORADO.\n"
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr "%s: Tipo desconocido '%s': IGNORADO.\n"
 
 #, c-format
 msgid "%s: Unknown type.\n"
@@ -167,8 +168,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de salida: Se esperaban %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Tamaño incorrecto para ''%s'': Se esperaba un vector.\n"
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr "%s: Tamaño incorrecto para '%s': Se esperaba un vector.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -231,30 +232,30 @@ msgstr ""
 "%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
 
 #, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: Valor incorrecto para la simulación de ''%s''.\n"
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr "%s: Valor incorrecto para la simulación de '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba %s, %s, %s, "
-"''%s'', ''%s'' o ''%s''.\n"
+"'%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba %s, %s,''%s'' "
-"o ''%s''.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba %s, %s,'%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'', "
-"''%s'' o ''%s''.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s' o "
+"'%s'.\n"
 
 #, c-format
 msgid ""
@@ -311,7 +312,3 @@ msgstr "Oct"
 
 msgid "Sep"
 msgstr "Sep"
-
-#, c-format
-#~ msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-#~ msgstr "%s: uso con %d argumentos de entrada aun no fue implementado.\n"

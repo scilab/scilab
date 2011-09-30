@@ -89,18 +89,6 @@ char *getCompilerUsedToBuildScilab(void);
 char *getCompilerArchitecture(void);
 
 /**
-* with atlas ?
-* @return TRUE or FALSE
-*/
-BOOL with_atlas(void);
-
-/**
-* with pvm ?
-* @return TRUE or FALSE
-*/
-BOOL with_pvm(void);
-
-/**
 * with modelica compiler ?
 * @return TRUE or FALSE
 */

@@ -6,15 +6,206 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 13:56+0000\n"
+"PO-Revision-Date: 2011-09-01 10:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: uk\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s: помилкове значення параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s: другим параметром має бути унікальний ідентифікатор бібліотеки спільного "
+"використання.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s не є точкою входу.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: вже завантажено з бібліотеки %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr ""
+"%s: відкрити файли спільного використання неможливо. Перевищено максимальну "
+"кількість записів %d.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: не виявлено бібліотеки спільного використання %s.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist in PATH environment.\n"
+msgstr "%s: запису файла %s немає у середовищі PATH.\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: архів спільного використання не було завантажено: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок "
+"рядків < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип цілих "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати тип рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати тип вектора з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr ""
+"%s: не можна завантажувати динамічну бібліотеку архітектури x64 у середовищі "
+"x86.\n"
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr ""
+"%s: не можна завантажувати динамічну бібліотеку архітектури x86 у середовищі "
+"x64.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: проблема з однією з точок входу.\n"
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Сталася помилка: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"Відкрити файли спільного використання неможливо Перевищено максимальну "
+"кількість записів %d.\n"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Назва запису %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Вхідна точка %s у бібліотеці спільного використання %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Помилка: некоректний номер вбудованої підпрограми %d.\n"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "Інтерфейс %s не з’єднано.\n"
+
+msgid "Link done.\n"
+msgstr "З’єднання завершено.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "Помилка під час спроби з’єднання динамічної бібліотеки «%s».\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "З’єднання %s.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Кількість точок входу %d.\n"
+"Спільних бібліотек:\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "Спільний архів завантажено.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Слід використовувати унікальну назву динамічної бібліотеки."
+
+msgid "Unique id of a shared library expected."
+msgstr "Слід використовувати унікальний ідентифікатор спільної бібліотеки."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d бібліотек.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : %d бібліотека.\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -75,10 +266,6 @@ msgstr "   Збирання "
 msgid "   Generate a Makefile\n"
 msgstr "   Створення Makefile\n"
 
-#, c-format
-msgid "   Generate a Makefile: %s\n"
-msgstr "   Створення Makefile: %s\n"
-
 msgid "   Generate a cleaner file\n"
 msgstr "   Створення файла чищення\n"
 
@@ -103,32 +290,8 @@ msgid "   stderr: %s\n"
 msgstr "   stderr: %s\n"
 
 #, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: %s\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr "%s: помилкове значення параметра №%d: %s\n"
-
-#, c-format
-msgid "%s : second argument must be a unique id of a shared library.\n"
-msgstr ""
-"%s: другим параметром має бути унікальний ідентифікатор бібліотеки спільного "
-"використання.\n"
-
-#, c-format
-msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s не є точкою входу.\n"
-
-#, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr "%s: %s вже завантажено до Scilab."
+msgstr "%s: %s вже завантажено до scilab."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -137,18 +300,14 @@ msgstr "%s: потрібен компілятор Fortran або C.\n"
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
 msgstr ""
-"%s: вхідним параметром №%d має бути файл з суфіксом, який обробляється "
-"програмою."
+"%s: у вхідному параметрі №%d мало бути вказано придатний для обробки тип "
+"файлів."
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
 msgstr ""
-"%s: вхідним параметром №%d має бути файл з суфіксом, який обробляється "
-"програмою.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: вже завантажено з бібліотеки %s\n"
+"%s: у вхідному параметрі №%d мало бути вказано придатний для обробки тип "
+"файлів.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -163,10 +322,6 @@ msgstr ""
 "встановіть рівень докладності ilib_verbose(2).\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: сталася помилка: %s\n"
-
-#, c-format
 msgid "%s: Build command: %s\n"
 msgstr "%s: команда збирання: %s\n"
 
@@ -175,30 +330,24 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: не вдалося відкрити файл %s.\n"
 
 #, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr ""
-"%s: відкрити файли спільного використання неможливо. Перевищено максимальну "
-"кількість записів %d.\n"
-
-#, c-format
-msgid "%s: Could not find the built library ''%s''.\n"
-msgstr "%s: не вдалося знайти зібрану бібліотеку «%s».\n"
+msgid "%s: Could not find the built library '%s'.\n"
+msgstr "%s: не вдалося знайти зібраної бібліотеки «%s.\n"
 
 #, c-format
 msgid "%s: Error while executing %s.\n"
-msgstr "%s: помилка під час спроби виконання %s.\n"
+msgstr "%s: помилка під час спроби виконати %s.\n"
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr "%s: помилка під час спроби змінити еталонний Makefile:\n"
 
 #, c-format
-msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr "%s: цією можливість не можна скористатися у Microsoft Windows.\n"
+msgid "%s: Failed to add include path : %s"
+msgstr "%s: не вдалося додати каталог включень: %s"
 
 #, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: не виявлено бібліотеки спільного використання %s.\n"
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: цією можливість не можна скористатися у Microsoft Windows.\n"
 
 #, c-format
 msgid "%s: The command was:\n"
@@ -207,10 +356,6 @@ msgstr "%s: команда:\n"
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: файла з назвою %s не існує.\n"
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: архів спільного використання не було завантажено: %s\n"
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -274,33 +419,9 @@ msgstr ""
 "< 999 рядків.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок "
-"рядків < %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок "
-"рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип цілих "
-"значень.\n"
 
 #, c-format
 msgid ""
@@ -310,54 +431,15 @@ msgstr ""
 "рядків.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати тип рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати тип вектора з "
-"рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано діапазон "
-"або [].\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"з набору {%s}.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути  (нічого) або [].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
@@ -365,37 +447,11 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано вже "
 "створені файли.\n"
 
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: проблема з однією з точок входу.\n"
-
 msgid "A Fortran or C compiler is required."
 msgstr "Потрібен компілятор Fortran або C."
 
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "Сталася помилка: %s\n"
-
-#, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr ""
-"Відкрити файли спільного використання неможливо Перевищено максимальну "
-"кількість записів %d.\n"
-
 msgid "Dynamic link"
 msgstr "Динамічне з’єднання"
-
-#, c-format
-msgid "Entry name %s.\n"
-msgstr "Назва запису %s.\n"
-
-#, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "Вхідна точка %s у бібліотеці спільного використання %d.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "Помилка: некоректний номер вбудованої підпрограми %d.\n"
 
 msgid "F2C cannot build fortran 90"
 msgstr "F2C не може збирати файли fortran 90"
@@ -404,85 +460,12 @@ msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Не знайдено компілятора Fortran Intel версії 9, 10, 11 або 12."
 
 #, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Інтерфейс %s не з’єднано.\n"
-
-msgid "Link done.\n"
-msgstr "З’єднання завершено.\n"
-
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "Помилка під час спроби з’єднання динамічної бібліотеки «%s».\n"
-
-#, c-format
-msgid "Linking %s.\n"
-msgstr "З’єднання %s.\n"
-
-#, c-format
-msgid ""
-"Number of entry points %d.\n"
-"Shared libraries :\n"
-msgstr ""
-"Кількість точок входу %d.\n"
-"Спільних бібліотек:\n"
-
-#, c-format
 msgid "Output: %s\n"
 msgstr "Вивід: %s\n"
 
-msgid "Shared archive loaded.\n"
-msgstr "Спільний архів завантажено.\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "Слід використовувати унікальну назву динамічної бібліотеки."
-
-msgid "Unique id of a shared library expected."
-msgstr "Слід використовувати унікальний ідентифікатор спільної бібліотеки."
-
 msgid "You need to unload this library before."
-msgstr "Спочатку вам слід вивантажити цю бібліотеку."
-
-#, c-format
-msgid "] : %d libraries.\n"
-msgstr "] : %d бібліотек.\n"
-
-#, c-format
-msgid "] : %d library.\n"
-msgstr "] : %d бібліотека.\n"
+msgstr "Спочатку вам слід вивантажити цю бібліотеку з пам’яті."
 
 #, c-format
 msgid "stderr: %s\n"
 msgstr "stderr: %s\n"
-
-#, c-format
-#~ msgid "%s: An error occured during the compilation:\n"
-#~ msgstr "%s: під час спроби збирання сталася помилка:\n"
-
-#, c-format
-#~ msgid "%s: Error while modifing the reference Makefile:\n"
-#~ msgstr "%s: помилка під час спроби змінити еталонний Makefile:\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-#~ "значень типу «string».\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-#~ "«string».\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати '''' або "
-#~ "«[]».\n"
-
-#~ msgid "Intel Fortran Comiler 9, 10, 11 or 12 Compiler not found."
-#~ msgstr "Не знайдено компілятора Fortran Intel версії 9, 10, 11 або 12."
-
-#, c-format
-#~ msgid "A managed file extension for input argument #%d"
-#~ msgstr "Придатний до обробки файл для вхідного параметра №%d"

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:04+0000\n"
+"PO-Revision-Date: 2011-09-02 08:22+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s is not an installed module"
@@ -186,7 +187,7 @@ msgid "Test passed"
 msgstr "Passou no teste"
 
 #, c-format
-msgid "The ref file (%s) doesn''t exist"
+msgid "The ref file (%s) doesn't exist"
 msgstr "O arquivo ref (%s) não existe"
 
 #, c-format
@@ -195,19 +196,3 @@ msgstr "O teste %s do módulo %s não está disponível"
 
 msgid "error : Input argument sizes are not valid"
 msgstr "erro: As dimensões do argumento de entrada não são válidas"
-
-#, c-format
-#~ msgid "The test %s is not available from the %s toolbox"
-#~ msgstr "O teste %s não está disponível no toolbox %s"
-
-#~ msgid "Generating loader.sce...\n"
-#~ msgstr "Gerando loader.sce...\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
-
-#, c-format
-#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
-#~ msgstr "%s: O teste ''%s'' não existe ou não está disponível para leitura.\n"

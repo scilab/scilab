@@ -163,7 +163,7 @@ SCICOS_BLOCKS_IMPEXP void cmscope_draw(scicos_block * block, ScopeMemory ** pSco
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-SCICOS_BLOCKS_IMPEXP cmscope(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmscope(scicos_block * block, int flag)
 {
   /* Declarations */
   ScopeMemory * pScopeMemory = NULL;

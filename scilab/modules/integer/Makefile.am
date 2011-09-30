@@ -119,17 +119,20 @@ libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
+noinst_LTLIBRARIES = libsciinteger-algo.la
 
 libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) 
+libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciinteger_algo_la_CFLAGS = $(libsciinteger_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
-libsciinteger_la_LIBADD =    $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libsciinteger_la_LIBADD = libsciinteger-algo.la
 
 
 
@@ -139,7 +142,7 @@ modulename=integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
-libsciinteger_la_root_DATA =  license.txt version.xml
+libsciinteger_la_root_DATA =  license.txt 
 
 
 #### integer : init scripts ####

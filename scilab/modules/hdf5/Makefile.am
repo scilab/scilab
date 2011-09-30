@@ -51,6 +51,12 @@ libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 libscihdf5_forceload_disable_la_CPPFLAGS=$(libscihdf5_la_CPPFLAGS)
 libscihdf5_forceload_disable_la_CFLAGS=$(libscihdf5_la_CFLAGS)
 
+noinst_LTLIBRARIES = libscihdf5-algo.la
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CPP_SOURCES)
+libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
+libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
+
+
 else
 
 HDF5_SOURCES =
@@ -97,6 +103,7 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 pkglib_LTLIBRARIES = libscihdf5.la
 
+
 if HDF5
 # When Scilab is built with HDF5, we need some libraries for a workaround
 
@@ -109,16 +116,16 @@ endif
 
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
+libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
 
 # For the code check (splint)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order
-libscihdf5_la_LIBADD =  \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+if HDF5
+libscihdf5_la_LIBADD = libscihdf5-algo.la
+endif
 
 #### Target ######
 modulename=hdf5
@@ -126,7 +133,7 @@ modulename=hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA =  license.txt version.xml
+libscihdf5_la_root_DATA =  license.txt 
 
 
 #### hdf5 : init scripts ####

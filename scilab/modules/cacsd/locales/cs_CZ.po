@@ -1,0 +1,895 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-09-02 15:17+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 13980)\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr "%s: Špatná hodnota pro vstupní argument #%d: Musí být v [%d %d].\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: Špatné hodnoty pro vstupní argumenty #%d a #%d.\n"
+
+#, c-format
+msgid "%s : No feasible ro in bounds [%g  %g]\n"
+msgstr "%s : žádné schůdné ro v mezích [%g %g]\n"
+
+#, c-format
+msgid "%s:   %s is not detectable.\n"
+msgstr "%s: %s není zjistitelné.\n"
+
+#, c-format
+msgid "%s:  %s is not stabilizable.\n"
+msgstr "%s: %s není stabilizovatelné.\n"
+
+#, c-format
+msgid "%s: %s has a zero on/close the imaginary axis.\n"
+msgstr "%s: %s má nulu v/blízko pomyslné ose.\n"
+
+#, c-format
+msgid "%s: %s has pure imaginary eigenvalue(s).\n"
+msgstr "%s: %s má čisté imaginární vlastní hodnoty.\n"
+
+#, c-format
+msgid "%s: %s has zero(s) near the imaginary axis.\n"
+msgstr "%s: %s má nulu blízko pomyslné ose.\n"
+
+#, c-format
+msgid "%s: %s is detectable.\n"
+msgstr "%s: %s je zjistitelné.\n"
+
+#, c-format
+msgid "%s: %s is indefinite.\n"
+msgstr "%s: %s je neurčité.\n"
+
+#, c-format
+msgid "%s: %s is nearly unstabilizable.\n"
+msgstr "%s: %s je skoro nestabilizovatelné.\n"
+
+#, c-format
+msgid "%s: %s is not full rank at the machine precision.\n"
+msgstr "%s: %s není úplná hodnost při přesnosti stroje.\n"
+
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s není nula! (nastaveno na nula)"
+
+#, c-format
+msgid "%s: %s is numerically singular.\n"
+msgstr "%s: %s je číselné singulární.\n"
+
+#, c-format
+msgid "%s: %s is stabilizable.\n"
+msgstr "%s: %s je stabilizovatelné.\n"
+
+#, c-format
+msgid "%s: %s must be of dimension (%s, %s).\n"
+msgstr "%s: %s musí mít rozměry (%s, %s).\n"
+
+#, c-format
+msgid "%s: %s non symmetric.\n"
+msgstr "%s: %s nesymetrické.\n"
+
+#, c-format
+msgid "%s: %s not full rank.\n"
+msgstr "%s: %s není plná hodnost.\n"
+
+#, c-format
+msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
+msgstr ""
+"%s: Všechny režimy %s jsou skoro neminimální, aby %s bylo skoro %d.\n"
+
+#, c-format
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgstr ""
+"%s: Všechny režimyA jsou skoro neminimální, aby || G || bylo skoro 0.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
+msgstr "%s: Vlastní hodnota %s (ovladače) je blízko pomyslné ose.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: Vlastní hodnota %s (pozorovatele) je blízko pomyslné ose.\n"
+
+#, c-format
+msgid "%s: At least %s past values needed.\n"
+msgstr "%s: Vyžadováno alespoň %s předchozích hodnot.\n"
+
+#, c-format
+msgid "%s: Bad conditioning.\n"
+msgstr "%s: Špatné předurčení.\n"
+
+#, c-format
+msgid "%s: Bad conditionning.\n"
+msgstr "%s: Špatné předurčení.\n"
+
+#, c-format
+msgid "%s: Cannot find the state dimension.\n"
+msgstr "%s: Nelze najít rozměr stavu.\n"
+
+#, c-format
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr "%s: Ovladatelný a pozorovatelný režim(y) %s blízko pomyslné ose.\n"
+
+#, c-format
+msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
+msgstr "%s: Ovladatelný a pozorovatelný režim(y) A blízko pomyslné ose"
+
+#, c-format
+msgid "%s: Curve truncated to the first %d discretization points.\n"
+msgstr "%s: Křivka zkrácena na první(ch) %d diskretizačních bodů.\n"
+
+#, c-format
+msgid "%s: Dimensions of %s are inadequate.\n"
+msgstr "%s: Rozměry %s jsou nedostatečné.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgstr "%s: Přímá průchodka nastavena na svůj koeficient nulového stupně.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to zero.\n"
+msgstr "%s: Přímá průchodka nastavena na nulu.\n"
+
+#, c-format
+msgid "%s: Francis equations not satisfied.\n"
+msgstr "%s: Francisovy rovnice nejsou uspokojeny.\n"
+
+#, c-format
+msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
+msgstr "%s: Frekvence za Nyquistovou frekvencí jsou ignorovány.\n"
+
+#, c-format
+msgid "%s: Hybrid system not implemented.\n"
+msgstr "%s: Hybridní systém není zaveden.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: "
+msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: "
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
+"sloupce.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
+"expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné názvy "
+"formální proměnné.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of elements "
+"expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet "
+"prvků.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáváno stejné množství "
+"prvků.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
+"řádku.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
+
+#, c-format
+msgid "%s: Incorrect answer.\n"
+msgstr "%s: Nesprávná odpověď.\n"
+
+#, c-format
+msgid "%s: Incorrect link: %s"
+msgstr "%s: Nesprávné propojení: %s"
+
+#, c-format
+msgid "%s: Input argument #%d ignored.\n"
+msgstr "%s: Vstupní argument #%d ignorován\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: Vstupní argument #%d musí být reálné číslo.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be strictly positive.\n"
+msgstr "%s: Vstupní argument #%d musí být výhradně kladný.\n"
+
+#, c-format
+msgid "%s: Input argument %d is assumed continuous time.\n"
+msgstr "%s: Vstupní argument #%d je považován za spojitý.\n"
+
+#, c-format
+msgid "%s: Invalid sizes found during the process.\n"
+msgstr "%s: Během zpracování nalezeny neplatné velikosti.\n"
+
+#, c-format
+msgid "%s: Iteration %s, error=%s.\n"
+msgstr "%s: Opakování %s. chyba=%s.\n"
+
+#, c-format
+msgid "%s: More than %d iterations.\n"
+msgstr "%s: Více než %d opakování.\n"
+
+#, c-format
+msgid "%s: Multi rate discrete system not implemented.\n"
+msgstr "%s: Více sazbový diskrétní systém není zaveden.\n"
+
+#, c-format
+msgid "%s: Needs %s => Use default value %s=%d.\n"
+msgstr "%s: Potřebuje %s => Použijte výchozí hodnotu %s=%d.\n"
+
+#, c-format
+msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
+msgstr "%s: Záporné frekvence pod Nyqistovou frekvencí jsou ignorovány.\n"
+
+#, c-format
+msgid "%s: No input found.\n"
+msgstr "%s: Nebyl nalezen žádný vstup.\n"
+
+#, c-format
+msgid "%s: No output found.\n"
+msgstr "%s: Nebyl nalezen žádný výstup.\n"
+
+#, c-format
+msgid "%s: Number of rows of %s are incompatible with %s object.\n"
+msgstr "%s: Počet řádků %s je nekompatibilní s objektem %s.\n"
+
+#, c-format
+msgid "%s: Residual norm = %g\n"
+msgstr "%s: Zbytková norma = %g\n"
+
+#, c-format
+msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
+msgstr "%s: Riccatiho řešení je nepřesné: chyba rovnice = %g.\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: Některé vstupy jsou neurčeny.\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: Některé výstupy jsou neurčeny.\n"
+
+#, c-format
+msgid "%s: Square but singular system.\n"
+msgstr "%s: Čtvercový ale singulární systém.\n"
+
+#, c-format
+msgid "%s: Stable subspace is too small.\n"
+msgstr "%s: Stabilní podprostor je příliš malý.\n"
+
+#, c-format
+msgid "%s: Standard deviation of the estimator %s:\n"
+msgstr "%s: Směrodatná odchylka odhadce %s:\n"
+
+#, c-format
+msgid "%s: Stationary Riccati solver failed.\n"
+msgstr "%s: Řešitel stálého Riccatiho selhal.\n"
+
+#, c-format
+msgid "%s: System is not stable.\n"
+msgstr "%s: Systém není stabilní.\n"
+
+#, c-format
+msgid ""
+"%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
+"part.\n"
+msgstr ""
+"%s: Systém není stabilizovatelný (nebo zjistitelný) => Stabilizuji "
+"stabilizovatelnou část\n"
+".\n"
+
+#, c-format
+msgid "%s: The computed value of || G || may be inaccurate.\n"
+msgstr "%s: Spočítaná hodnota || G || může být nepřesná.\n"
+
+#, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr "%s: Zadaný systém nemá žádné póly a nuly.\n"
+
+#, c-format
+msgid "%s: Undefined type '%s'.\n"
+msgstr "%s: Neurčený typ '%s'.\n"
+
+#, c-format
+msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
+msgstr "%s: VAROVÁNÍ: Matice A má vlastní hodnoty blízko pomyslné osy.\n"
+
+#, c-format
+msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgstr "%s: Špatný rozměr (%d) stabilního podprostoru: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: Špatná velikost argumentu %d: očekáváno (%d,%d).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row vector with length>%d "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řádkový vektor s "
+"délkou>%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána prázdná matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván systém jednotného "
+"vstupu a výstupu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván čtvercový systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: rozměr řádku se musí rovnat "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for link from block %s.\n"
+msgstr "%s: Špatná velikost pro propojení z bloku %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+"with %s.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Počet sloupců je nekompatibilní "
+"s %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+"%s: Špatná typ vstupního argumentu #%d: Očekáváno reálné pole s plovoucí "
+"čárkou\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A linear dynamical system or a "
+"polynomial expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický nebo "
+"polynomiální systém.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
+"čárkou.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floats or Polynomial "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
+"čárkou nebo polynom.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Continuous-time linear system "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně spojitý systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
+"of floats expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém "
+"nebo řádkový vektor čísel s plovoucí čárkou.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"function expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor "
+"nebo funkce převodu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván systém lineárního stavového "
+"prostoru.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný nezáporný skalár.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár nebo řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána forma stavového prostoru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární systém stavového "
+"prostoru.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec, skalár nebo "
+"prázdná matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: očekáváno pole racionálních zlomků.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu: Očekáván lineárně dynamický systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type of input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole čísel s plovoucí "
+"čárkou.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván spojitý systém.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván zjistitelný systém.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řádný systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekávány čistě pomyslné póly.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván systém jednotného "
+"vstupu a výstupu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván stabilizovatelný "
+"systém.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván stabilní systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Časová doména musí být 'c' nebo "
+"'d'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Druhá řada musí být větší než "
+"první.\n"
+
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekáváno %s < %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgstr ""
+"%s: Špatná hodnota vstupních argumentů: Pokus %s a %s, nic není k "
+"identifikaci.\n"
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu %d: Očekáván řádný systém.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: %s není plná hodnost.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Očekáván diskrétní časový "
+"systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Očekávána řádná funkce přenosu.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Očekáván stabilní systém.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Stabilní matice - eye je "
+"jednotné.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Stavová matice je jednotná.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Očekávány řádné prvky.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Musíte zvolit rk<nout.\n"
+
+#, c-format
+msgid "%s: gamma too small.\n"
+msgstr "%s gamma je příliš malé.\n"
+
+#, c-format
+msgid ""
+"%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
+"Hinfnorm is probably exactly max sv(D)\n"
+"The system might be all-pass"
+msgstr ""
+"%s: normu nelze spočítat. Relativní přesnost menší než 1e-3\n"
+"Hinfnorm je pravděpodobně přesný max sv(D)\n"
+"Systém může být vše propustný"
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr "%s: časové domény nejsou kompatibilní.\n"
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "Amplituda a fáze jsou obrysy y/(1+y)"
+
+msgid "Autocorrelation Function"
+msgstr "Funkce Autokorelace"
+
+msgid "CACSD"
+msgstr "CACSD"
+
+msgid "Denominator :"
+msgstr "Jmenovatel :"
+
+msgid "Evans root locus"
+msgstr "Evansovo geometrické místo kořenů"
+
+msgid "Flat systems"
+msgstr "Ploché systémy"
+
+msgid "Frequency (Hz)"
+msgstr "Frekvence (Hz)"
+
+msgid "Gain :"
+msgstr "Přírůstek :"
+
+msgid "Hall chart"
+msgstr "Hallův graf"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr "Pomyslná Osa"
+
+msgid "Imaginary axis"
+msgstr "Pomyslná osa"
+
+msgid "Inverted pendulum"
+msgstr "Obrácené kyvadlo"
+
+msgid "Irreducible Factors of transfer function (click below)"
+msgstr "Nesnížitelné faktory funkce převodu (klikněte níže)"
+
+msgid ""
+"Irreducible Factors of transfer function natural frequency and damping "
+"factor (click below)"
+msgstr ""
+"Nesnížitelné faktory vlastní frekvence funkce převodu a tlumící faktor "
+"(klikněte níže)"
+
+msgid "LQG"
+msgstr "LQG"
+
+msgid "Magnitude (dB)"
+msgstr "Rozsah (dB)"
+
+msgid "Mixed-sensitivity"
+msgstr "Smíšená citlivost"
+
+msgid "Numerator :"
+msgstr "Čitatel :"
+
+msgid "Nyquist plot"
+msgstr "Frekvenční charakteristika"
+
+msgid "PID"
+msgstr "PID"
+
+msgid "Phase (deg)"
+msgstr "Fáze (stp)"
+
+msgid "Phase (degree)"
+msgstr "Fáze (stupeň)"
+
+msgid "Poles"
+msgstr "Póly"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr "Reálná Osa"
+
+msgid "Real axis"
+msgstr "Reálná osa"
+
+msgid "Robust control"
+msgstr "Robustní ovládání"
+
+msgid "Tracking"
+msgstr "Sledování"
+
+msgid "Transmission zeros and poles"
+msgstr "Nuly a póly přenosu"
+
+msgid "Unfeasible (Hx hamiltonian)"
+msgstr "Nemožné (Hx hamiltonián)"
+
+msgid "Unfeasible (Hy hamiltonian)"
+msgstr "Nemožné (Hy hamiltonián)"
+
+msgid "Unfeasible (spectral radius)"
+msgstr "Nemožné (spektrální poloměr)"
+
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "Špatný typ argumentu %d: Očekáváno SISO.\n"
+
+msgid "Zeros"
+msgstr "Nuly"
+
+msgid "asymptotic directions"
+msgstr "asymptotické směry"
+
+msgid "dB"
+msgstr "dB"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+"loci se stálým tlumením a stálou vlastní frekvencí\n"
+"v diskrétní rovině"
+
+msgid "magnitude(y) (Db)"
+msgstr "rozsah(y) (Db)"
+
+msgid "magnitude(y) (dB)"
+msgstr "rozsah(y) (dB)"
+
+msgid "open loop poles"
+msgstr "otevřené smyčky pólů"
+
+msgid "open loop zeroes"
+msgstr "otevřené smyčky nul"
+
+msgid "phase(y) (degree)"
+msgstr "fáze(y) (stupeň)"
+
+msgid "rad/sec"
+msgstr "rad/sek"

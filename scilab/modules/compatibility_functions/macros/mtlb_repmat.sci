@@ -10,6 +10,8 @@
 function repm=mtlb_repmat(M,m,n)
 // Emulation function for repmat() Matlab function
 
+warnobsolete('repmat', '5.4.1');
+
 str=%f
 if type(M)==10 then
   str=%t

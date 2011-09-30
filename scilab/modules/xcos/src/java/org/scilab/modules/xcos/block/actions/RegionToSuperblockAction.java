@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -46,6 +47,7 @@ import com.mxgraph.util.mxRectangle;
 /**
  * Move the Selected cells to a new SuperBlock diagram
  */
+// CSOFF: ClassFanOutComplexity
 public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
@@ -61,7 +63,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	/**
 	 * Default Constructor
 	 * 
-	 * @param scilabGraph
+	 * @param scilabGraph the graph
 	 */
 	public RegionToSuperblockAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
@@ -132,16 +134,17 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 				terminal = source;
 			}
 			
-			{
-				final mxGeometry pos = parentModel.getGeometry(terminal);;
-				final mxGeometry parent = parentModel.getGeometry(parentModel.getParent(terminal));
-				if (pos != null && parent != null) {
-					this.x = pos.getX() + parent.getX() + (pos.getWidth() / 2) - (parent.getWidth() / 2);
-					this.y = pos.getY() + parent.getY() + (pos.getHeight() / 2) - (parent.getHeight() / 2);
-				} else {
-					this.x = 0.0;
-					this.y = 0.0;
-				}
+			/*
+			 * Update position
+			 */
+			final mxGeometry pos = parentModel.getGeometry(terminal);
+			final mxGeometry parent = parentModel.getGeometry(parentModel.getParent(terminal));
+			if (pos != null && parent != null) {
+				this.x = pos.getX() + parent.getX() + (pos.getWidth() / 2) - (parent.getWidth() / 2);
+				this.y = pos.getY() + parent.getY() + (pos.getHeight() / 2) - (parent.getHeight() / 2);
+			} else {
+				this.x = 0.0;
+				this.y = 0.0;
 			}
 		}
 
@@ -219,7 +222,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		public BasicLink getChildLink() {
 			if (childLink == null) {
 				childLink = (BasicLink) parentModel.cloneCells(
-						new Object[] { parentLink }, true)[0];
+						new Object[] {parentLink}, true)[0];
 			}
 			return childLink;
 		}
@@ -304,15 +307,18 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		 */
 		@Override
 		public String toString() {
+			final String labelSep = ": ";
+			final String link = " -> ";
+			
 			final StringBuilder str = new StringBuilder();
 			if (getParentLink().getChildCount() > 0) {
 				// append the label
 				str.append(getParentLink().getChildAt(0).getValue());
-				str.append(": ");
+				str.append(labelSep);
 			}
 
 			str.append(getParentTerminal(true));
-			str.append(" -> ");
+			str.append(link);
 			str.append(getParentTerminal(false));
 
 			str.append('\n');
@@ -320,11 +326,11 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			if (getChildLink().getChildCount() > 0) {
 				// append the label
 				str.append(getChildLink().getChildAt(0).getValue());
-				str.append(": ");
+				str.append(labelSep);
 			}
 
 			str.append(getChildTerminal(true));
-			str.append(" -> ");
+			str.append(link);
 			str.append(getChildTerminal(false));
 
 			return str.toString();
@@ -345,15 +351,18 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			final SuperBlock superBlock;
 			final Collection<Broken> brokenLinks;
 			final Set<Object> inSelectionCells;
-			{
-				final Object[] selection = parentGraph.getSelectionCells();
-				final Object[] blocks = XcosDiagram.filterByClass(selection,
-						BasicBlock.class);
-				inSelectionCells = new LinkedHashSet<Object>(
-						Arrays.asList(blocks));
 
-				superBlock = allocateSuperBlock(parentGraph, selection);
-			}
+			/*
+			 * Allocate superBlock
+			 */
+			final Object[] selection = parentGraph.getSelectionCells();
+			final Object[] blocks = XcosDiagram.filterByClass(selection,
+					BasicBlock.class);
+			inSelectionCells = new LinkedHashSet<Object>(
+					Arrays.asList(blocks));
+
+			superBlock = allocateSuperBlock(parentGraph, selection);
+
 
 			/*
 			 * First perform all modification on the parent diagram to handle
@@ -404,20 +413,18 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		/*
 		 * Place the super block
 		 */
-		{
-			final mxRectangle dims = parentGraph
-					.getBoundingBoxFromGeometry(selection);
-			final double minX = dims.getX();
-			final double maxX = minX + dims.getWidth();
+		final mxRectangle dims = parentGraph
+				.getBoundingBoxFromGeometry(selection);
+		final double minX = dims.getX();
+		final double maxX = minX + dims.getWidth();
 
-			final double minY = dims.getY();
-			final double maxY = minY + dims.getHeight();
+		final double minY = dims.getY();
+		final double maxY = minY + dims.getHeight();
 
-			superBlock.getGeometry().setX(
-					(maxX + minX - superBlock.getGeometry().getWidth()) / 2.0);
-			superBlock.getGeometry().setY(
-					(maxY + minY - superBlock.getGeometry().getHeight()) / 2.0);
-		}
+		superBlock.getGeometry().setX(
+				(maxX + minX - superBlock.getGeometry().getWidth()) / 2.0);
+		superBlock.getGeometry().setY(
+				(maxY + minY - superBlock.getGeometry().getHeight()) / 2.0);
 		
 		/*
 		 * get statistics
@@ -430,8 +437,12 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 				final BasicBlock b = (BasicBlock) object;
 				
 				angleCounter += b.getAngle();
-				flipCounter += b.getFlip() ? 1 : 0;
-				mirrorCounter += b.getMirror() ? 1 : 0;
+				if (b.getFlip()) {
+					flipCounter++;
+				}
+				if (b.getMirror()) {
+					mirrorCounter++;
+				}
 			}
 		}
 		
@@ -489,7 +500,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			 * Main broken loop
 			 */
 			// ordering access is : IN, OUT, e_IN, e_OUT
-			final int[] ordering = { 0, 0, 0, 0 };
+			final int[] ordering = {0, 0, 0, 0};
 			for (Broken broken : brokenLinks) {
 
 				// set the ordering
@@ -523,11 +534,11 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	 *            the broken links to find.
 	 */
 	private void fillLinks(final mxGraphModel parentModel, final Collection<Object> inSelectionCells, final Collection<Broken> brokenLinks) {
-		final LinkedList<Object> loopQueue = new LinkedList<Object>(
+		final Queue<Object> loopQueue = new LinkedList<Object>(
 				inSelectionCells);
 
 		while (!loopQueue.isEmpty()) {
-			final Object cell = loopQueue.pop();
+			final Object cell = loopQueue.remove();
 
 			final int childCount = parentModel.getChildCount(cell);
 			for (int i = 0; i < childCount; i++) {
@@ -583,6 +594,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	 * @param broken
 	 *            the current broken entry.
 	 */
+	// CSOFF: MagicNumber
 	private void incrementOrdering(final int[] ordering, Broken broken) {
 		if (broken.getTerminal() instanceof InputPort) {
 			broken.setOrdering(++ordering[0]);
@@ -594,6 +606,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			broken.setOrdering(++ordering[3]);
 		}
 	}
+	// CSON: MagicNumber
 
 	/**
 	 * Add I/O port and reconnect them
@@ -610,14 +623,13 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	private void connectParent(final XcosDiagram parentGraph, final mxGraphModel parentModel, final SuperBlock superBlock, Broken broken) {
 		parentGraph.addCell(broken.getParentPort(), superBlock);
 		parentGraph.addCell(broken.getParentLink());
-		{
-			final mxICell source = broken.getParentTerminal(true);
-			final mxICell target = broken.getParentTerminal(false);
 
-			// then connect the link
-			mxGraphModel.setTerminals(parentModel, broken.getParentLink(),
-					source, target);
-		}
+		final mxICell source = broken.getParentTerminal(true);
+		final mxICell target = broken.getParentTerminal(false);
+
+		// then connect the link
+		mxGraphModel.setTerminals(parentModel, broken.getParentLink(),
+				source, target);
 	}
 
 	/**
@@ -633,14 +645,13 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	private void connectChild(final XcosDiagram childGraph, final mxGraphModel childModel, Broken broken) {
 		childGraph.addCell(broken.getChildBlock());
 		childGraph.addCell(broken.getChildLink());
-		{
-			final mxICell source = broken.getChildTerminal(true);
-			final mxICell target = broken.getChildTerminal(false);
+		
+		final mxICell source = broken.getChildTerminal(true);
+		final mxICell target = broken.getChildTerminal(false);
 
-			// then connect the link
-			mxGraphModel.setTerminals(childModel, broken.getChildLink(),
+		// then connect the link
+		mxGraphModel.setTerminals(childModel, broken.getChildLink(),
 					source, target);
-		}
 	}
 
 	/**
@@ -656,13 +667,15 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	 *            the cells in selection
 	 * @return the superblock child diagram
 	 */
-	private SuperBlockDiagram moveToChild(final XcosDiagram parentGraph, final SuperBlock superBlock, final Collection<Broken> brokenLinks, final Set<Object> inSelectionCells) {
+	private SuperBlockDiagram moveToChild(final XcosDiagram parentGraph,
+			final SuperBlock superBlock, final Collection<Broken> brokenLinks,
+			final Set<Object> inSelectionCells) {
 		final SuperBlockDiagram childGraph = superBlock.getChild();
 		final mxGraphModel childModel = (mxGraphModel) childGraph.getModel();
 
 		childModel.beginUpdate();
 		try {
-			final ArrayList<Object> cellsToCopy = new ArrayList<Object>();
+			final Collection<Object> cellsToCopy = new ArrayList<Object>();
 
 			/*
 			 * create a collection with all the cells to move
@@ -676,12 +689,11 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 			/*
 			 * Really copy the cells
 			 */
-			{
-				final Object[] cells = cellsToCopy.toArray();
-				parentGraph.removeCells(cells, false);
-				childGraph.addCells(cells);
-			}
+			final Object[] cells = cellsToCopy.toArray();
+			parentGraph.removeCells(cells, false);
+			childGraph.addCells(cells);
 
+			childGraph.setChildrenParentDiagram();
 			BlockPositioning.updateBlockView(superBlock);
 		} finally {
 			childModel.endUpdate();
@@ -690,3 +702,4 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 		return childGraph;
 	}
 }
+//CSON: ClassFanOutComplexity

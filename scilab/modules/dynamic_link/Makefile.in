@@ -63,9 +63,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/dynamic_link
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -73,10 +74,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -110,19 +111,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_rootdir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscidynamic_link_la_scriptdir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscidynamic_link_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscidynamic_link_la-addinter.lo \
-	libscidynamic_link_la-dynamic_link.lo \
-	libscidynamic_link_la-dl_genErrorMessage.lo \
-	libscidynamic_link_la-GetFunctionByName.lo \
-	libscidynamic_link_la-ilib_verbose.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscidynamic_link_algo_la_LIBADD =
+am__objects_1 = libscidynamic_link_algo_la-addinter.lo \
+	libscidynamic_link_algo_la-dynamic_link.lo \
+	libscidynamic_link_algo_la-dl_genErrorMessage.lo \
+	libscidynamic_link_algo_la-GetFunctionByName.lo \
+	libscidynamic_link_algo_la-ilib_verbose.lo
+am_libscidynamic_link_algo_la_OBJECTS = $(am__objects_1)
+libscidynamic_link_algo_la_OBJECTS =  \
+	$(am_libscidynamic_link_algo_la_OBJECTS)
+libscidynamic_link_algo_la_LINK = $(LIBTOOL) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscidynamic_link_la_DEPENDENCIES = libscidynamic_link-algo.la
 am__objects_2 = libscidynamic_link_la-gw_dynamic_link.lo \
 	libscidynamic_link_la-sci_getdynlibext.lo \
 	libscidynamic_link_la-sci_addinter.lo \
@@ -132,8 +135,7 @@ am__objects_2 = libscidynamic_link_la-gw_dynamic_link.lo \
 	libscidynamic_link_la-sci_c_link.lo \
 	libscidynamic_link_la-sci_ilib_verbose.lo
 am__objects_3 = sci_fort.lo
-am_libscidynamic_link_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+am_libscidynamic_link_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscidynamic_link_la_OBJECTS = $(am_libscidynamic_link_la_OBJECTS)
 libscidynamic_link_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -159,8 +161,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscidynamic_link_la_SOURCES)
-DIST_SOURCES = $(libscidynamic_link_la_SOURCES)
+SOURCES = $(libscidynamic_link_algo_la_SOURCES) \
+	$(libscidynamic_link_la_SOURCES)
+DIST_SOURCES = $(libscidynamic_link_algo_la_SOURCES) \
+	$(libscidynamic_link_la_SOURCES)
 DATA = $(libscidynamic_link_la_etc_DATA) \
 	$(libscidynamic_link_la_root_DATA) \
 	$(libscidynamic_link_la_sci_gateway_DATA) \
@@ -170,6 +174,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -270,6 +275,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -314,11 +320,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -448,21 +449,25 @@ libscidynamic_link_la_CFLAGS = \
 -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
-libscidynamic_link_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscidynamic_link_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+noinst_LTLIBRARIES = libscidynamic_link-algo.la
+libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
+libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidynamic_link_algo_la_CFLAGS = $(libscidynamic_link_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
 
 # cyclic  
-libscidynamic_link_la_LIBADD = $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la
+
 #### Target ######
 modulename = dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA = license.txt version.xml
+libscidynamic_link_la_root_DATA = license.txt 
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
@@ -589,6 +594,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -620,6 +634,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscidynamic_link-algo.la: $(libscidynamic_link_algo_la_OBJECTS) $(libscidynamic_link_algo_la_DEPENDENCIES) 
+	$(libscidynamic_link_algo_la_LINK)  $(libscidynamic_link_algo_la_OBJECTS) $(libscidynamic_link_algo_la_LIBADD) $(LIBS)
 libscidynamic_link.la: $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_DEPENDENCIES) 
 	$(libscidynamic_link_la_LINK) -rpath $(pkglibdir) $(libscidynamic_link_la_OBJECTS) $(libscidynamic_link_la_LIBADD) $(LIBS)
 install-libscidynamic_link_la_scriptSCRIPTS: $(libscidynamic_link_la_script_SCRIPTS)
@@ -663,12 +679,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-addinter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-dl_genErrorMessage.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-dynamic_link.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-addinter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-sci_addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-sci_c_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-sci_call.Plo@am__quote@
@@ -698,40 +714,40 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscidynamic_link_la-addinter.lo: src/c/addinter.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-addinter.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-addinter.Tpo -c -o libscidynamic_link_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-addinter.Tpo $(DEPDIR)/libscidynamic_link_la-addinter.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/addinter.c' object='libscidynamic_link_la-addinter.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_algo_la-addinter.lo: src/c/addinter.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-addinter.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-addinter.Tpo -c -o libscidynamic_link_algo_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-addinter.Tpo $(DEPDIR)/libscidynamic_link_algo_la-addinter.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/addinter.c' object='libscidynamic_link_algo_la-addinter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-addinter.lo `test -f 'src/c/addinter.c' || echo '$(srcdir)/'`src/c/addinter.c
 
-libscidynamic_link_la-dynamic_link.lo: src/c/dynamic_link.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-dynamic_link.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-dynamic_link.Tpo -c -o libscidynamic_link_la-dynamic_link.lo `test -f 'src/c/dynamic_link.c' || echo '$(srcdir)/'`src/c/dynamic_link.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-dynamic_link.Tpo $(DEPDIR)/libscidynamic_link_la-dynamic_link.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_link.c' object='libscidynamic_link_la-dynamic_link.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_algo_la-dynamic_link.lo: src/c/dynamic_link.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-dynamic_link.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Tpo -c -o libscidynamic_link_algo_la-dynamic_link.lo `test -f 'src/c/dynamic_link.c' || echo '$(srcdir)/'`src/c/dynamic_link.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Tpo $(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dynamic_link.c' object='libscidynamic_link_algo_la-dynamic_link.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-dynamic_link.lo `test -f 'src/c/dynamic_link.c' || echo '$(srcdir)/'`src/c/dynamic_link.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-dynamic_link.lo `test -f 'src/c/dynamic_link.c' || echo '$(srcdir)/'`src/c/dynamic_link.c
 
-libscidynamic_link_la-dl_genErrorMessage.lo: src/c/dl_genErrorMessage.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-dl_genErrorMessage.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-dl_genErrorMessage.Tpo -c -o libscidynamic_link_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-dl_genErrorMessage.Tpo $(DEPDIR)/libscidynamic_link_la-dl_genErrorMessage.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dl_genErrorMessage.c' object='libscidynamic_link_la-dl_genErrorMessage.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_algo_la-dl_genErrorMessage.lo: src/c/dl_genErrorMessage.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-dl_genErrorMessage.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Tpo -c -o libscidynamic_link_algo_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Tpo $(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dl_genErrorMessage.c' object='libscidynamic_link_algo_la-dl_genErrorMessage.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
 
-libscidynamic_link_la-GetFunctionByName.lo: src/c/GetFunctionByName.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-GetFunctionByName.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Tpo -c -o libscidynamic_link_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Tpo $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetFunctionByName.c' object='libscidynamic_link_la-GetFunctionByName.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_algo_la-GetFunctionByName.lo: src/c/GetFunctionByName.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-GetFunctionByName.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Tpo -c -o libscidynamic_link_algo_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Tpo $(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetFunctionByName.c' object='libscidynamic_link_algo_la-GetFunctionByName.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
 
-libscidynamic_link_la-ilib_verbose.lo: src/c/ilib_verbose.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-ilib_verbose.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-ilib_verbose.Tpo -c -o libscidynamic_link_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-ilib_verbose.Tpo $(DEPDIR)/libscidynamic_link_la-ilib_verbose.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ilib_verbose.c' object='libscidynamic_link_la-ilib_verbose.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_algo_la-ilib_verbose.lo: src/c/ilib_verbose.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_algo_la-ilib_verbose.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Tpo -c -o libscidynamic_link_algo_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Tpo $(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ilib_verbose.c' object='libscidynamic_link_algo_la-ilib_verbose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_algo_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_algo_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
 
 libscidynamic_link_la-gw_dynamic_link.lo: sci_gateway/c/gw_dynamic_link.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-gw_dynamic_link.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Tpo -c -o libscidynamic_link_la-gw_dynamic_link.lo `test -f 'sci_gateway/c/gw_dynamic_link.c' || echo '$(srcdir)/'`sci_gateway/c/gw_dynamic_link.c
@@ -1006,7 +1022,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1088,14 +1104,14 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscidynamic_link_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscidynamic_link_la_etcDATA \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
 	install-libscidynamic_link_la_scriptDATA \

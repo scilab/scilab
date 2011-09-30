@@ -112,7 +112,7 @@ int sci_TCL_EvalFile(char *fname, unsigned long l)
 	}
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

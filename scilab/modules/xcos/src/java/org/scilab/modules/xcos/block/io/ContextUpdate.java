@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -231,7 +232,13 @@ public abstract class ContextUpdate extends BasicBlock {
 			return ret;
 		}
 		
-		public static List<mxICell> getPorts(SuperBlock parent, Class<? extends ContextUpdate> klass) {
+		/**
+		 * Get the ports of the super blocks with kind klass
+		 * @param parent the parent {@link SuperBlock}
+		 * @param klass the filter klass
+		 * @return the list of ports
+		 */
+		public static List<mxICell> getPorts(SuperBlock parent, Class< ? extends ContextUpdate> klass) {
 			List<mxICell> ret = new ArrayList<mxICell>();
 			
 			/* Get the corresponding klass */
@@ -261,7 +268,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		 * @param klass the klass
 		 * @return the opposite of klass
 		 */
-		public static Class<? extends BasicPort> getOpposite(Class<? extends BasicPort> klass) {
+		public static Class< ? extends BasicPort> getOpposite(Class< ? extends BasicPort> klass) {
 			for (IOBlocks b : IOBlocks.values()) {
 				if (b.getReferencedPortClass() == klass) {
 					return b.getOppositeClass();
@@ -315,7 +322,7 @@ public abstract class ContextUpdate extends BasicBlock {
 		/**
 		 * Create a corresponding I/O block
 		 * @param port the port used as an output 
-		 * @return 
+		 * @return the corresponding block
 		 */
 		public static ContextUpdate createBlock(BasicPort port) {
 			for (IOBlocks io : IOBlocks.values()) {
@@ -408,12 +415,12 @@ public abstract class ContextUpdate extends BasicBlock {
 		
 		LOG_LOCAL.trace("Update the I/O value from the context");
 		
-		File tempOutput;
-		File tempInput;
-		File tempContext;
+		String tempOutput;
+		String tempInput;
+		String tempContext;
 		try {
 			tempInput = FileUtils.createTempFile();
-			tempInput.deleteOnExit();
+			new File(tempInput).deleteOnExit();
 
 			// Write scs_m
 			tempOutput = exportBlockStruct();
@@ -421,8 +428,8 @@ public abstract class ContextUpdate extends BasicBlock {
 			tempContext = exportContext(context);
 
 			String cmd = ScilabInterpreterManagement.buildCall("xcosBlockEval",
-					tempOutput.getAbsolutePath(), tempInput.getAbsolutePath(),
-					getInterfaceFunctionName().toCharArray(), tempContext.getAbsolutePath());
+					tempOutput, tempInput,
+					getInterfaceFunctionName().toCharArray(), tempContext);
 
 			try {
 				ScilabInterpreterManagement.synchronousScilabExec(cmd);
@@ -433,6 +440,8 @@ public abstract class ContextUpdate extends BasicBlock {
 			updateBlockSettings(modifiedBlock);
 
 		} catch (IOException e) {
+			LOG_LOCAL.error(e);
+		} catch (ScicosFormatException e) {
 			LOG_LOCAL.error(e);
 		}
 	}

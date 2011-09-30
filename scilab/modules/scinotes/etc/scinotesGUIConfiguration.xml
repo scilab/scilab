@@ -4,15 +4,16 @@
 
   <MenuBar>
     <menu label="File" mnemonic="F">
-      <menuitem action="RecentFileAction" label="Recent Files"/>
       <menuitem action="NewAction" label="New"/>
       <menuitem action="OpenAction" label="Open"/>
+      <menuitem action="RecentFileAction" label="Open recent"/>
       <separator/>
       <menuitem action="RegisterFavoriteDirsAction" label="Working directories;Add a directory;Remove last directory"/>
       <menuitem action="OpenFileInAction" label="Open file in ..."/>
       <menuitem action="SaveFileInAction" label="Save file in ..."/>
       <separator/>
       <menuitem action="ReloadAction" label="Reload"/>
+      <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
       <menuitem action="OpenSourceFileOnKeywordAction" label="Open function source file"/>
       <menuitem action="OpenURLAction" label="Open URL"/>
       <separator/>
@@ -21,10 +22,11 @@
       <menuitem action="SaveAllAction" label="Save All"/>
       <menuitem action="OverwriteAction" label="Overwrite"/>
       <separator/>
+      <menuitem action="ExportAction" label="Export"/>
+      <separator/>
+      <menuitem action="PageSetupAction" label="Page Setup"/>
       <menuitem action="PrintPreviewAction" label="Print Preview"/>
       <menuitem action="PrintAction" label="Print"/>
-      <separator/>
-      <menuitem action="ExportAction" label="Export"/>
       <separator/>
       <menuitem action="CloseAction" label="Close"/>
       <menuitem action="CloseAllAction" label="Close All"/>
@@ -39,10 +41,9 @@
       <separator/>
       <menuitem action="CutAction" label="Cut"/>
       <menuitem action="CopyAsHTMLAction" label="Copy"/>
+      <menuitem action="CopyAsHTMLWithLineNumberAction" label="Copy as HTML with line number"/>
       <menuitem action="PasteAction" label="Paste"/>
       <menuitem action="DeleteAction" label="Delete"/>
-      <separator/>
-      <menuitem action="CopyAsHTMLWithLineNumberAction" label="Copy as HTML with line number"/>
       <separator/>
       <menu label="Columns actions">
 	<menuitem action="PasteColumnAction" label="Paste Column"/>
@@ -52,60 +53,66 @@
       <menuitem action="SelectAllAction" label="Select All"/>
       <menuitem action="SelectBlockAction" label="Select current block"/>
       <separator/>
+      <menu label="Search" mnemonic="H">
+	<menuitem action="FindAction" label="Find/Replace"/>
+	<menuitem action="FindNextAction" label="Find Next"/>
+	<menuitem action="FindPreviousAction" label="Find Previous"/>
+	<menuitem action="IncrementalSearchAction" label="Incremental Search"/>
+	<separator/>
+	<menuitem action="SearchFilesAction" label="Find files"/>
+	<menuitem action="SearchWordInFilesAction" label="Find word in files"/>
+	<separator/>
+	<menuitem action="SetAnchorAction" label="Set anchor"/>
+	<menuitem action="GotoNextAnchorAction" label="Go to next anchor"/>
+	<menuitem action="GotoPreviousAnchorAction" label="Go to previous anchor"/>
+	<menuitem action="RemoveAnchorAction" label="Remove anchor"/>
+	<separator/>
+	<menuitem action="CodeNavigatorAction" label="Code Navigator"/>
+      </menu> 
+    </menu>
+
+    <menu label="Format" mnemonic="P">
+      <menuitem action="SetColorsAction" label="Set Colors ..."/>
+      <menuitem action="SetFontAction" label="Set Font"/>
+      <menuitem action="ResetFontAction" label="Reset default font"/>
+      <separator/>
       <menuitem action="TabifyAction" label="Shift Right"/>
       <menuitem action="UnTabifyAction" label="Shift Left"/>
+      <menuitem action="ConfigTabulationsAction" label="Configure Tabulation"/>
       <separator/>
-      <menuitem action="CommentAction" label="Comment Selection"/>
-      <menuitem action="UnCommentAction" label="Uncomment Selection"/>
+      <menuitem action="HorizontalWrapAction" label="Horizontal wrapping"/>
       <separator/>
       <menuitem action="IndentAction" label="Correct Indentation"/>
       <menuitem action="RemoveTrailingWhiteAction" label="Remove trailing spaces"/>
       <menuitem action="GenerateHelpFromFunctionAction" label="Generate comments for help_from_sci"/>
       <separator/>
-      <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
-      <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
-      <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
+      <menuitem action="CommentAction" label="Comment Selection"/>
+      <menuitem action="UnCommentAction" label="Uncomment Selection"/>
+      <separator/>
+      <menu label="Change the case">
+	<menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
+	<menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
+	<menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
+      </menu>
+      <separator/>
       <menuitem action="DoubleQuoteStringAction" label="Single to double quote strings"/>
     </menu>
 
-    <menu label="Search" mnemonic="H">
-      <menuitem action="FindAction" label="Find/Replace"/>
-      <menuitem action="FindNextAction" label="Find Next"/>
-      <menuitem action="FindPreviousAction" label="Find Previous"/>
-      <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
-      <separator/>
-      <menuitem action="SearchWordInFilesAction" label="Find word in files"/>
-      <menuitem action="SearchFilesAction" label="Find files"/>
-      <separator/>
-      <menuitem action="SetAnchorAction" label="Set anchor"/>
-      <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
-      <menuitem action="GotoNextAnchorAction" label="Go to next anchor"/>
-      <menuitem action="GotoPreviousAnchorAction" label="Go to previous anchor"/>
-      <separator/>
-      <menuitem action="CodeNavigatorAction" label="Code Navigator"/>
-    </menu>
-
-    <menu label="Preferences" mnemonic="P">
-      <menuitem action="LineNumbersAction" label="Line numbering;Off;Normal;Whereami compatible"/>
+    <menu label="Options">
       <menuitem action="EncodingAction" label="Current file encoding"/>
       <menuitem action="DefaultEncodingAction" label="Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"/>
       <menuitem action="EndOfLineAction" label="Line Endings"/>
-      <menuitem action="PageSetupAction" label="Page Setup"/>
-      <menuitem action="HorizontalWrapAction" label="Horizontal wrapping"/>
       <separator/>
-      <menuitem action="ActivateHelpOnTypingForOpenersAction" label="Auto-completion on (,&quot;,..."/>
-      <menuitem action="ActivateHelpOnTypingForKeywordsAction" label="Auto-completion on if,function,..."/>
+      <menu label="Auto-completion on">
+	<menuitem action="ActivateHelpOnTypingForOpenersAction" label="(, [, ..."/>
+	<menuitem action="ActivateHelpOnTypingForKeywordsAction" label="if, function, ..."/>
+      </menu>
+      <separator/>
+      <menuitem action="LineNumbersAction" label="Line numbering;Off;Normal;Whereami compatible"/>
+      <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
+      <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
       <separator/>
       <menuitem action="SuppressCommentsAction" label="Suppress comments when executing selection"/>
-      <menuitem action="AutoIndentAction" label="Enable Auto Reformat"/>
-      <menuitem action="HighlightCurrentLineAction" label="Highlight current line"/>
-      <separator/>
-      <menuitem action="SetColorsAction" label="Set Colors ..."/>
-      <menuitem action="SetFontAction" label="Set Font"/>
-      <menuitem action="ResetFontAction" label="Reset default font"/>
-      <menuitem action="ConfigTabulationsAction" label="Configure Tabulation"/>
-      <separator/>
-      <menuitem action="RestoreOpenedFilesAction" label="Restore opened files on start-up"/>
     </menu>
 
     <menu label="Window" mnemonic="N">
@@ -123,6 +130,7 @@
       <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
       <separator/>
       <menuitem action="SaveAndExecuteFileAction" label="Save and execute"/>
+      <menuitem action="SaveAndExecuteAllFilesAction" label="Save and execute all files"/>
     </menu>
 
     <menu label="?">
@@ -143,6 +151,8 @@
     <menuitem action="CutAction" label="Cut"/>
     <menuitem action="PasteAction" label="Paste"/>
     <menuitem action="PasteColumnAction" label="Paste Column"/>
+    <separator/>
+    <menuitem action="IndentAction" label="Correct Indentation"/>    
     <separator/>
     <menuitem action="CopyAsHTMLWithLineNumberAction" label="Copy as HTML with line number"/>
     <separator/>
@@ -178,6 +188,7 @@
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
     <button action="SaveAndExecuteFileAction" tooltip="Execute" icon="16x16/actions/save-and-execute.png"/>
+    <button action="SaveAndExecuteAllFilesAction" tooltip="Execute" icon="16x16/actions/execute-all.png"/>
   </ToolBar>
 
 </Configuration>

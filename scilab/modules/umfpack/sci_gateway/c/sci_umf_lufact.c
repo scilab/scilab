@@ -152,6 +152,6 @@ int sci_umf_lufact(char* fname,unsigned long l)
 
 	/* return the pointer */
 	LhsVar(1) = 3;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

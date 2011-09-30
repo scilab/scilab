@@ -38,7 +38,6 @@ import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -91,23 +90,25 @@ public final class Palette {
 		}
 
 		Category node = PaletteManager.getInstance().getRoot();
-
-		if (path == null) {
+		
+		if (path == null || 
+				path.length == 0 ||
+				(path.length == 1 && path[0].isEmpty())) {
 			return node;
 		}
 
 		for (int categoryCounter = 0; categoryCounter < path.length; categoryCounter++) {
 
 			for (final PaletteNode next : node.getNode()) {
-if (next.toString().equals(path[categoryCounter])
-				&& next instanceof Category) {
-			node = (Category) next;
-			break;
-} else if (next.toString().equals(path[categoryCounter])
-				&& (categoryCounter == path.length - 1)) {
-			return next; // found the terminal Palette instance
-}
-}
+				if (next.getName().equals(path[categoryCounter])
+						&& next instanceof Category) {
+					node = (Category) next;
+					break;
+				} else if (next.getName().equals(path[categoryCounter])
+						&& (categoryCounter == path.length - 1)) {
+					return next; // found the terminal Palette instance
+				}
+			}
 
 			if (!node.toString().equals(path[categoryCounter])) {
 				if (create) {
@@ -126,7 +127,7 @@ if (next.toString().equals(path[categoryCounter])
 		}
 		return node;
 	}
-
+	
 	/**
 	 * Load an xcos palette into the palette manager
 	 * 
@@ -329,8 +330,7 @@ if (next.toString().equals(path[categoryCounter])
 	 * @param source
 	 *            TreePath of the palette or category
 	 * @param target
-	 *            TreePath of the category
-	 * @link TreePath} of the destination
+	 *            TreePath of the destination
 	 */
 	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void move(final String[] source, final String[] target) {
@@ -395,7 +395,12 @@ if (next.toString().equals(path[categoryCounter])
 	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void generatePaletteIcon(final String blockPath, final String iconPath)
 			throws IOException {
-		final BasicBlock block = new H5RWHandler(blockPath).readBlock();
+		BasicBlock block;
+		try {
+			block = new H5RWHandler(blockPath).readBlock();
+		} catch (ScicosFormatException e) {
+			throw new IOException(e);
+		}
 
 		if (block == null || block.getGeometry() == null) {
 			return;
@@ -432,8 +437,8 @@ if (next.toString().equals(path[categoryCounter])
 		}
 
 		final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
-				scale, null, graphComponent.isAntiAlias(), null, graphComponent
-						.getCanvas());
+				scale, graphComponent.getBackground(), graphComponent.isAntiAlias(),
+				null, graphComponent.getCanvas());
 
 		final String extension = iconPath
 				.substring(iconPath.lastIndexOf('.') + 1);

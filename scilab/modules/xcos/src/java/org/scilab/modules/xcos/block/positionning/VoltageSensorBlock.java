@@ -13,11 +13,8 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxICell;
 
@@ -35,6 +32,7 @@ public class VoltageSensorBlock extends BasicBlock {
 	 * Set the orientation before calling parent method.
 	 * @param child the port to add.
 	 * @param index the port index
+	 * @return the newly inserted cell
 	 */
 	@Override
 	public mxICell insert(mxICell child, int index) {

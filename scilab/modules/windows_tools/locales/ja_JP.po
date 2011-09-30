@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-08-18 12:23+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:37+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #
@@ -44,10 +45,6 @@ msgstr "%s: メモリ確保エラー.\n"
 msgid "%s: No more memory.\n"
 msgstr "%s: これ以上のメモリはありません。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
 # File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
 # File: sci_gateway/c/sci_dos.c, line: 62
@@ -58,6 +55,10 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 # File: sci_gateway/c/sci_chartooem.c, line: 48
 # File: sci_gateway/c/sci_dos.c, line: 50
@@ -89,13 +90,6 @@ msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
 
 #
-# File: sci_gateway/c/sci_winqueryreg.c, line: 37
-# File: sci_gateway/c/sci_winqueryreg.c, line: 45
-#, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
-
-#
 # File: sci_gateway/c/sci_findfileassociation.c, line: 56
 # File: sci_gateway/c/sci_winhttpdownload.c, line: 67
 #, c-format
@@ -120,23 +114,11 @@ msgstr "%s: 不正な値の入力引数: %s\n"
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
 msgstr "%s: 不正な値の入力引数: 負ではない整数を想定します。\n"
 
-msgid "Error(s) : see help powershell"
-msgstr "エラー(s): パワーシェル・ヘルプを見てください"
-
-msgid "Only for Microsoft Windows."
-msgstr "Microsoft Windows のみです。"
-
 #
 # File: sci_gateway/c/sci_consolebox.c, line: 45
 # File: sci_gateway/c/sci_consolebox.c, line: 82
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "ウインドウズモードに限定されます、コンソールモードではありません。\n"
-
-msgid "Please verify your powershell command without Scilab."
-msgstr "powershell コマンドを Scilab なしの環境で確認してください."
-
-msgid "Powershell 1.0 not found."
-msgstr "Powershell 1.0 が見つかりません."
 
 msgid "Scilab Console"
 msgstr "Scilabコンソール"
@@ -146,14 +128,18 @@ msgstr "Scilabコンソール"
 msgid "see help"
 msgstr "ヘルプを見てください。"
 
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 56
 #, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: メモリの割り当てに失敗しました。\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
-#~ msgid "Verify your script without Scilab."
-#~ msgstr "Scilab抜きで、スクリプトを確認してください。"
+msgid "Error(s) : see help powershell"
+msgstr "エラー(s): パワーシェル・ヘルプを見てください"
 
-#~ msgid "Powershell not found."
-#~ msgstr "パワーシェルが見つかりません。"
+msgid "Only for Microsoft Windows."
+msgstr "Microsoft Windows のみです。"
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "powershell コマンドを Scilab なしの環境で確認してください."
+
+msgid "Powershell 1.0 not found."
+msgstr "Powershell 1.0 が見つかりません."

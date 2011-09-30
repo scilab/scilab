@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) ENPC
 // Copyright (C) DIGITEO - 2009
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -41,10 +41,9 @@ function libn = ilib_compile(lib_name, ..
     files = [];
   else
     if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-      warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
+      error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_compile", 3));
     end
   end
-
 
   if typeof(lib_name)<>"string" then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
@@ -53,16 +52,6 @@ function libn = ilib_compile(lib_name, ..
 
   oldpath = pwd();
   files = files(:)';
-
-  managed_ext = [".obj",".o"];
-  for i=1:size(files,"*") // compatibility scilab 4.x
-    [path_f, file_f, ext_f] = fileparts(files(i));
-    if or(managed_ext == ext_f) then
-      files1(i) = path_f + file_f;
-    else
-      files1(i) = path_f + file_f + ext_f;
-    end
-  end
 
   [make_command, lib_name_make, lib_name, path, makename, files]= ...
       ilib_compile_get_names(lib_name, makename, files);
@@ -73,32 +62,14 @@ function libn = ilib_compile(lib_name, ..
 
   if getos() == "Windows" then
     //** ----------- Windows section  -----------------
-    msgs_make = "";
-    nf = size(files,"*");
-
-    for i=1:nf
-      if ( ilib_verbose() <> 0 ) then
-        mprintf(_("   Compilation of ") + string(files1(i)) +"\n");
-      end
+    
+    // Load dynamic_link Internal lib if it"s not already loaded
+    if ~ exists("dynamic_linkwindowslib") then
+      load("SCI/modules/dynamic_link/macros/windows/lib");
     end
-
-    // then the shared library
-    if ( ilib_verbose() <> 0 ) then
-      mprintf(_("   Building shared library (be patient)\n"));
-    end
-
-    [msg, stat] = unix_g(make_command + makename + " all 2>&0");
-    if stat <> 0 then
-      // more feedback when compilation fails
-      [msg, stat, stderr] = unix_g(make_command + makename + " all 1>&2"); 
-      disp(stderr);
-      error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
-    else
-      if ilib_verbose() > 1 then
-        disp(msg);
-      end
-    end
-
+    
+    dlwCompile(files, make_command, makename);
+    
   else
     //** ---------- Linux/MacOS/Unix section ---------------------
 
@@ -209,15 +180,6 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ..
              ilib_compile_get_names(lib_name, makename, files)
 
   if getos() <> "Windows" then
-    managed_ext = ".o";
-    for i=1:size(files,"*") // compatibility scilab 4.x
-      [path_f, file_f, ext_f] = fileparts(files(i));
-      if or(managed_ext == ext_f) then
-        files(i) = path_f + file_f;
-      else
-        files(i) = path_f + file_f + ext_f;
-      end
-    end
 
     k = strindex(makename,["/","\"]);
 

@@ -7,15 +7,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-08-17 13:16+0000\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -31,18 +32,19 @@ msgstr "%s: запит на значення такого типу неможл�
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка виділення пам’яті.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -64,11 +66,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати дійсне число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
-
-#, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
@@ -88,20 +85,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра: слід було вказувати невід’ємні "
 "цілі числа.\n"
 
-msgid "Error(s) : see help powershell"
-msgstr "Помилки: див. help powershell"
-
-msgid "Only for Microsoft Windows."
-msgstr "Лише для Microsoft Windows."
-
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Лише у режимі вікон, а не у консольному режимі.\n"
-
-msgid "Please verify your powershell command without Scilab."
-msgstr "Будь ласка, перевірте вашу команду powershell поза межами Scilab."
-
-msgid "Powershell 1.0 not found."
-msgstr "Не виявлено Powershell 1.0."
 
 msgid "Scilab Console"
 msgstr "Консоль Scilab"
@@ -110,11 +95,17 @@ msgid "see help"
 msgstr "див. довідку"
 
 #, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-#~ msgid "Powershell not found."
-#~ msgstr "Powershell не знайдено."
+msgid "Error(s) : see help powershell"
+msgstr "Помилки: див. help powershell"
 
-#~ msgid "Verify your script without Scilab."
-#~ msgstr "Перевірка вашого скрипту без Scilab."
+msgid "Only for Microsoft Windows."
+msgstr "Лише для Microsoft Windows."
+
+msgid "Please verify your powershell command without Scilab."
+msgstr "Будь ласка, перевірте вашу команду powershell поза межами Scilab."
+
+msgid "Powershell 1.0 not found."
+msgstr "Не виявлено Powershell 1.0."

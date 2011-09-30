@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2010-07-18 05:40+0000\n"
+"PO-Revision-Date: 2011-09-01 10:09+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: \n"
 
 #, c-format
 msgid ""
@@ -99,6 +100,90 @@ msgid "     Total number of elements = %d\n"
 msgstr "     elements的總數 = %d\n"
 
 #, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "Columns %1d to %1d.\n"
+msgstr "行 %1d 到 %1d.\n"
+
+#, c-format
+msgid ""
+"MATRIX SUMMARY\n"
+"\n"
+msgstr ""
+"矩陣總合( SUMMARY)\n"
+"\n"
+
+#, c-format
+msgid "Matrix after factorization:\n"
+msgstr "矩陣因式分解後\n"
+
+#, c-format
+msgid "Matrix before factorization:\n"
+msgstr "矩陣因式分解前\n"
+
+#, c-format
+msgid "Matrix has been reordered.\n"
+msgstr "矩陣已重排序\n"
+
+#, c-format
+msgid "Matrix has not been factored.\n"
+msgstr "矩陣還未因式分解\n"
+
+#, c-format
+msgid "Matrix is complex.\n"
+msgstr "Matrix 是複數(complex).\n"
+
+#, c-format
+msgid "Matrix is real.\n"
+msgstr "Matrix 是實數(real).\n"
+
+#, c-format
+msgid "Number of fill-ins = %1d.\n"
+msgstr ""
+
+#, c-format
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "Pivot found at %1d,%1d using "
+msgstr ""
+
+#, c-format
+msgid "Reordering,  Step = %1d\n"
+msgstr ""
+
+#, c-format
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr ""
+
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "|||  Starting new matrix  |||\n"
+msgstr ""
+
+#, c-format
 msgid "  Iteration #%s/%s residual : %s\n"
 msgstr "  迭代(Iteration) #%s/%s residual : %s\n"
 
@@ -112,10 +197,6 @@ msgstr ""
 
 #, c-format
 msgid "  Type of preconditionning #2 : %d\n"
-msgstr ""
-
-#, c-format
-msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""
 
 #, c-format
@@ -219,7 +300,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -249,111 +330,13 @@ msgid "Arguments:\n"
 msgstr "參數:\n"
 
 #, c-format
-msgid "Columns %1d to %1d.\n"
-msgstr "行 %1d 到 %1d.\n"
-
-#, c-format
 msgid "Final residual = %s > tol =%s\n"
 msgstr "最後剩餘(residual) = %s > tol =%s\n"
-
-#, c-format
-msgid ""
-"MATRIX SUMMARY\n"
-"\n"
-msgstr ""
-"矩陣總合( SUMMARY)\n"
-"\n"
-
-#, c-format
-msgid "Matrix after factorization:\n"
-msgstr "矩陣因式分解後\n"
-
-#, c-format
-msgid "Matrix before factorization:\n"
-msgstr "矩陣因式分解前\n"
-
-#, c-format
-msgid "Matrix has been reordered.\n"
-msgstr "矩陣已重排序\n"
-
-#, c-format
-msgid "Matrix has not been factored.\n"
-msgstr "矩陣還未因式分解\n"
-
-#, c-format
-msgid "Matrix is complex.\n"
-msgstr "Matrix 是複數(complex).\n"
-
-#, c-format
-msgid "Matrix is real.\n"
-msgstr "Matrix 是實數(real).\n"
 
 #, c-format
 msgid "Norm of right-hand side : %s\n"
 msgstr ""
 
 #, c-format
-msgid "Number of fill-ins = %1d.\n"
-msgstr ""
-
-#, c-format
-msgid "Operation count for inner loop of factorization = %d.\n"
-msgstr ""
-
-#, c-format
-msgid "Pivot found at %1d,%1d using "
-msgstr ""
-
-#, c-format
-msgid "Reordering,  Step = %1d\n"
-msgstr ""
-
-#, c-format
-msgid "Size of matrix = %1u x %1u.\n"
-msgstr ""
-
-#, c-format
-msgid "Smallest diagonal element = %-1.4lg.\n"
-msgstr ""
-
-#, c-format
-msgid "Smallest element in matrix = %-1.4lg.\n"
-msgstr ""
-
-#, c-format
-msgid "Smallest pivot element = %-1.4lg.\n"
-msgstr ""
-
-#, c-format
 msgid "Special processing where the right-hand side is zero.\n"
 msgstr ""
-
-#, c-format
-msgid "Warning : The following matrix is factored in to LU form.\n"
-msgstr ""
-
-#, c-format
-msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr ""
-
-#, c-format
-msgid "|||  Starting new matrix  |||\n"
-msgstr ""
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
-#~ "#%d"
-#~ msgstr "%s: 第#%d個輸入參數長度有誤: 應和第 #%d個參數同長度才對"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
-#~ "expected.\n"
-#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
-#~ "expected.\n"
-#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"

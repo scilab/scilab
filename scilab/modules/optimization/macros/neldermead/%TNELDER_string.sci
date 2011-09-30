@@ -100,7 +100,7 @@ function str = %TNELDER_string ( this )
     k = k + 1
     str(k) = sprintf("Kelley Stagnation : %s\n", string(this.kelleystagnationflag));
     k = k + 1
-    str(k) = sprintf("Restart Epsilon : %e\n", this.restarteps);
+    str(k) = sprintf("Restart Epsilon : %s\n", string(this.restarteps));
     k = k + 1
     str(k) = sprintf("Restart Step : %s\n", _strvec(this.restartstep));
     k = k + 1
@@ -132,36 +132,15 @@ function str = %TNELDER_string ( this )
     k = k + 1
     str(k) = sprintf("Box, Reflection Coefficient : %s\n", string(this.boxreflect));
     /////////////////////////////////////////////////////
-    // Optim Base Object
+    // Sub-objects
     k = k + 1
-    str(k) = ""
-    stroptb = string ( this.optbase );
-    for i =1:size(stroptb,"r")
-        k = k + 1
-        str(k) = stroptb(i)
-    end
-    /////////////////////////////////////////////////////
-    // Simplex 0 Object
+    str(k) = "";
     k = k + 1
-    str(k) = ""
+    str(k) = sprintf("optbase: <%s Object>\n", typeof(this.optbase));
     k = k + 1
-    str(k) = sprintf("Simplex0 : \n");
-    strsi0 = string ( this.simplex0 );
-    for i =1:size(strsi0,"r")
-        k = k + 1
-        str(k) = strsi0(i)
-    end
-    /////////////////////////////////////////////////////
-    // Simplex Opt Object
+    str(k) = sprintf("simplex0: <%s Object>\n", typeof(this.simplex0));
     k = k + 1
-    str(k) = ""
-    k = k + 1
-    str(k) = sprintf("Simplex Optimum : \n");
-    strsopt = string ( this.simplexopt );
-    for i =1:size(strsopt,"r")
-        k = k + 1
-        str(k) = sprintf("%s\n",strsopt(i));
-    end
+    str(k) = sprintf("simplexopt: <%s Object>\n", typeof(this.simplexopt));
 endfunction
 
 //

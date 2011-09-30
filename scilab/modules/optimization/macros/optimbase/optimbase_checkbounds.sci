@@ -13,38 +13,29 @@
 //   Check if the bounds are consistent and puts an error message if not.
 //   One could generate an error, but errors are not testable 
 //   with the current system.
-// Arguments
-//   isok : %T or %F
 //
-function [ this , isok , errmsg ] = optimbase_checkbounds ( this )
+function this = optimbase_checkbounds ( this )
     maxl = length ( this.boundsmax )
     minl = length ( this.boundsmin )
-    isok = %T
-    errmsg = ""
     if ( maxl > 0 | minl > 0 ) then
-      if ( isok & this.numberofvariables <> maxl ) then
-        errmsg = sprintf("The number of variables %d does not match the number of max bounds %d from ["+...
-          strcat(string(this.boundsmax)," ")+"]\n" , ...
-          this.numberofvariables , maxl )
-        isok = %F
+      if ( this.numberofvariables <> maxl ) then
+        errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of max bounds: %d.\n") , ...
+          "optimbase_checkbounds",this.numberofvariables , maxl )
+        error(errmsg)
       end
-      if ( isok & this.numberofvariables <> minl ) then
-        errmsg = sprintf("The number of variables %d does not match the number of min bounds %d from ["+...
-          strcat(string(this.boundsmin)," ")+"]\n" , ...
-          this.numberofvariables , minl )
-        isok = %F
+      if ( this.numberofvariables <> minl ) then
+        errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of min bounds: %d.\n") , ...
+          "optimbase_checkbounds",this.numberofvariables , minl )
+        error(errmsg)
       end
-      if ( isok ) then
-        for ix = 1 : this.numberofvariables
+      for ix = 1 : this.numberofvariables
           xmin = this.boundsmin ( ix )
           xmax = this.boundsmax ( ix )
           if ( xmax < xmin ) then
-            errmsg = sprintf("The max bound %e for variable #%d is lower than the min bound %e.\n", ...
-              xmax , ix , xmin )
-            isok = %F
-            break
+            errmsg = sprintf(gettext("%s: The max bound %s for variable #%d is lower than the min bound %s.\n"), ...
+              "optimbase_checkbounds",string(xmax) , ix , string(xmin) )
+            error(errmsg)
           end
-        end
       end
     end
 endfunction

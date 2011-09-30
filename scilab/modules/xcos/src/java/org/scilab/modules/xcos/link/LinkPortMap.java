@@ -33,7 +33,7 @@ public enum LinkPortMap {
 	 * Implicit input port mapping
 	 * 
 	 * Note: for implicit link, the from and to start flag is inverted. So here
-	 * the {@link #isStart} is inverted too.
+	 * the {@link #isStart()} is inverted too.
 	 */
 	IM_INPUT(ImplicitLink.class, InputPort.class, false),
 	/**
@@ -44,7 +44,7 @@ public enum LinkPortMap {
 	 * Implicit output port mapping
 	 * 
 	 * Note: for implicit link, the from and to start flag is inverted. So here
-	 * the {@link #isStart} is inverted too.
+	 * the {@link #isStart()} is inverted too.
 	 */
 	IM_OUTPUT(ImplicitLink.class, OutputPort.class, true),
 	/**

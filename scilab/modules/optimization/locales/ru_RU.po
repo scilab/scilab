@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-20 21:21+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:37+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ru\n"
 
 msgid ""
 "\n"
@@ -24,20 +25,8 @@ msgstr ""
 "    primal obj.  dual obj.  dual. gap \n"
 
 #, c-format
-msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " количество ограничений (%s)'),'lmisolver',%m,%fm));"
-
-#, c-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr "%s: Точность недостаточна чтобы удовлетворить критерию сходимости.\n"
-
-#, c-format
-msgid "%s: Ambiguous property name %s matches several fields : %s"
-msgstr "%s: Неоднозначное имя свойства %s совпадает с несколькими полями: %s"
 
 #, c-format
 msgid "%s: Argument 3: wrong number of columns %d expected\n"
@@ -48,32 +37,123 @@ msgid "%s: Cannot allocate more memory.\n"
 msgstr "%s: Не удалось выделить больше памяти.\n"
 
 #, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: Длина рабочего массива слишком мала.\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Q не явлляется симметричной положительно определённой.\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: Граничные условия противоречивы.\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: Проблема минимизации не имеет решения.\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s: Слишком много итераций (больше %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось количество столбцов "
+"%d.\n"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "Ошибка в dgels, info = %d.\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "Ошибка в dspev, info = %d.\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "Ошибка в dspgv, info = %d.\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "Ошибка в dspst, info = %d.\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "Ошибка в dtrcon, info = %d.\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z имеет отрицательное собственное значение.\n"
+
+msgid "L must be at least one.\n"
+msgstr "L должна быть не менее одного.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "Матрицы Fi, i=1,...,m линейно зависимы.\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+"Матрицы F_i, i=1,...,m линейно зависимы (или исходные точки очень плохо "
+"подобраны).\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr ""
+"Пространство работы слишком мало. Необходимо как минимум %d*sizeof(double).\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr "Z0 не удовлетворяет условиям равенства для двойной выполнимости.\n"
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 не положительно определена.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d] должно быть не менее одного.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m должна быть не менее одного.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu должно быть не менее 1.0.\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 не является строго первично достижимой.\n"
+
+#, c-format
+msgid "%s:       OPTIMIZATION PHASE."
+msgstr ""
+
+#, c-format
+msgid "%s:     FEASIBILITY PHASE."
+msgstr ""
+
+#, c-format
+msgid "%s: Absolute accuracy reached."
+msgstr ""
+
+#, c-format
+msgid "%s: Ambiguous property name %s matches several fields : %s"
+msgstr "%s: Неоднозначное имя свойства %s совпадает с несколькими полями: %s"
+
+#, c-format
+msgid "%s: Basis Construction."
+msgstr ""
+
+#, c-format
 msgid "%s: Cannot check cost function when x0 is empty"
 msgstr "%s: Не удалось проверить функцию стоимости когда x0 пуст"
 
 #, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,1)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,1)."
+msgid "%s: Cannot evaluate cost function with %s."
+msgstr ""
 
 #, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,2)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,2)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,3)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,3)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,4)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,4)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,5)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,5)."
-
-#, c-format
-msgid "%s: Cannot evaluate cost function from costf(x0,6)."
-msgstr "%s: Не удалось оценить функцию стоимости из costf(x0,6)."
+msgid "%s: Construction of canonical representation."
+msgstr ""
 
 #, c-format
 msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
@@ -92,8 +172,25 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Expected floating point integer for input argument %s at input #%d, but "
+"entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr "%s: Ожидалась функция, но для переменной %s на вход №%d получено %s."
+
+#, c-format
+msgid ""
+"%s: Expected function for variable %s(1) at input #%d, but got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected function or list for variable %s at input #%d, but got %s "
+"instead."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -112,6 +209,24 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Expected that all entries of input argument %s at input #%d are greater "
+"or equal than %s, but entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected that all entries of input argument %s at input #%d are in the "
+"range [%s,%s], but entry #%d is equal to %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected value [%s] for input argument %s at input #%d, but got %s "
+"instead."
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
 msgstr ""
 
@@ -127,6 +242,11 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
 msgstr ""
 "%s: Невозможно масштабировать вершину №%d/%d в [%s] в ограничения в виде "
@@ -137,12 +257,16 @@ msgid "%s: Initial guess [%s] is not feasible."
 msgstr "%s: Неподходящее исходное предположение [%s]."
 
 #, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: Неподходящее исходное предположение.\n"
+msgid "%s: Initial guess feasible."
+msgstr ""
 
 #, c-format
-msgid "%s: Length of working array is too short.\n"
-msgstr "%s: Длина рабочего массива слишком мала.\n"
+msgid "%s: Initial guess is not feasible."
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: Неподходящее исходное предположение.\n"
 
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
@@ -157,6 +281,18 @@ msgid "%s: Logging not started."
 msgstr "%s: Ведение журнала не началось."
 
 #, c-format
+msgid "%s: M must be strictly greater than trace of F(x0)."
+msgstr ""
+
+#, c-format
+msgid "%s: Max. iters. exceeded."
+msgstr ""
+
+#, c-format
+msgid "%s: Mbound too small."
+msgstr ""
+
+#, c-format
 msgid "%s: Negative iteration index %d is not allowed."
 msgstr "%s: Отрицательный индекс итераций %d недопустим."
 
@@ -166,11 +302,19 @@ msgstr "%s: Отрицательный индекс итераций недоп�
 
 #, c-format
 msgid ""
-"%s: No default options available: the function ''%s'' does not exist on the "
+"%s: No default options available: the function '%s' does not exist on the "
 "path."
 msgstr ""
 "%s: Параметры по умолчанию недоступны: функция «%s» не существует по "
 "заданному пути."
+
+#, c-format
+msgid "%s: No feasible solution exists."
+msgstr ""
+
+#, c-format
+msgid "%s: No feasible solution found."
+msgstr ""
 
 #, c-format
 msgid "%s: No output command is defined."
@@ -199,6 +343,10 @@ msgid ""
 "%d."
 msgstr ""
 "%s: Количество строк x равно %d, что отличается от числа вершин = %d."
+
+#, c-format
+msgid "%s: Objective constant."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -230,10 +378,6 @@ msgid ""
 msgstr "%s: В задаче нет ограничений, но алгоритм Box разработан для них."
 
 #, c-format
-msgid "%s: Q is not symmetric positive definite.\n"
-msgstr "%s: Q не явлляется симметричной положительно определённой.\n"
-
-#, c-format
 msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 
@@ -243,48 +387,24 @@ msgid ""
 msgstr "%s: Случайные границы начального симплекса недоступны без границ."
 
 #, c-format
+msgid "%s: Relative accuracy reached."
+msgstr ""
+
+#, c-format
+msgid "%s: Target value not achievable."
+msgstr ""
+
+#, c-format
+msgid "%s: Target value reached."
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
 msgstr ""
 "%s: Параметр -withderivatives является истинным, но все алгоритмы neldermead "
 "не используют производную функцию."
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Ожидалось, что вектор boundsmax будет вектором-строкой, но его "
-"размерность %d x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmax vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Ожидалось, что у вектора boundsmax будет %d столбцов, но его размерность "
-"%d x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to be a row matrix, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Ожидалось, что вектор boundsmin будет вектором-строкой, но его "
-"размерность %d x %d"
-
-#, c-format
-msgid ""
-"%s: The boundsmin vector is expected to have %d columns, but current shape "
-"is %d x %d"
-msgstr ""
-"%s: Ожидалось, что у вектора boundsmin будет %d столбцов, но его размерность "
-"%d x %d"
-
-#, c-format
-msgid "%s: The constraints are inconsistent.\n"
-msgstr "%s: Граничные условия противоречивы.\n"
 
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
@@ -303,26 +423,12 @@ msgstr ""
 "точек, но размерность - %d и количество вершин - %d"
 
 #, c-format
-msgid ""
-"%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d."
+msgid "%s: The initial simplex has no dimension."
 msgstr ""
-"%s: Ожидалось, что вектор len будет вектором-строкой, но его размерность %d "
-"x %d"
 
 #, c-format
-msgid ""
-"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgid "%s: The initial simplex has no vertices."
 msgstr ""
-"%s: Ожидалась, что вектор len будет скаляром, но его размерность %d x %d"
-
-#, c-format
-msgid ""
-"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
-"is %d x %d while current shape of len is %d x %d."
-msgstr ""
-"%s: Несовместимые размерности векторов len и x0. Размерность у x0 - %d x "
-"%d,а у len - %d x %d."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -333,8 +439,9 @@ msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
 msgstr "%s: В матрице %s из costf(x0,%d) количество строк %d вместо %d."
 
 #, c-format
-msgid "%s: The minimization problem has no solution.\n"
-msgstr "%s: Проблема минимизации не имеет решения.\n"
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -362,6 +469,16 @@ msgstr "%s: Нулевое число переменных."
 
 #, c-format
 msgid ""
+"%s: The number of variables %d does not match the number of max bounds: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of variables %d does not match the number of min bounds: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
 "than the number of columns %d (i.e. n+1)."
 msgstr ""
@@ -383,22 +500,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The restarteps option is expected to be a scalar, but current shape is "
-"%d x %d"
-msgstr ""
-"%s: Значение параметра restarteps должно быть скалярным, но его размерность "
-"%d x %d"
-
-#, c-format
-msgid "%s: The restarteps option is expected to be positive"
-msgstr "%s: Значение параметра restarteps должно быть положительным"
-
-#, c-format
-msgid "%s: The restartstep vector is expected to be positive"
-msgstr "%s: Вектор restarteps должен быть положительно определённым"
-
-#, c-format
-msgid ""
 "%s: The restartstep vector is expected to have %d x %d shape, but current "
 "shape is %d x %d"
 msgstr ""
@@ -407,15 +508,15 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The value of the ''OutputFcn'' option is neither a function nor a list."
+"%s: The value of the 'OutputFcn' option is neither a function nor a list."
 msgstr ""
-"%s: Значение параметра ''OutputFcn'' не является ни функцией, ни списком."
+"%s: Значение параметра 'OutputFcn' не является ни функцией, ни списком."
 
 #, c-format
 msgid ""
-"%s: The value of the ''PlotFcns'' option is neither a function nor a list."
+"%s: The value of the 'PlotFcns' option is neither a function nor a list."
 msgstr ""
-"%s: Значение параметра ''PlotFcns'' не является ни функцией, ни списком."
+"%s: Значение параметра 'PlotFcns' не является ни функцией, ни списком."
 
 #, c-format
 msgid ""
@@ -426,43 +527,12 @@ msgstr ""
 "x %d"
 
 #, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d"
-msgstr ""
-"%s: Ожидалось, что вектор x0 будет вектором-строкой, но его размерность %d x "
-"%d"
-
-#, c-format
-msgid ""
-"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
-"%d."
-msgstr ""
-"%s: Ожидалось, что вектор x0 будет вектором-столбцом, но его размерность %d "
-"x %d"
-
-#, c-format
-msgid "%s: Too many iterations (more than %d).\n"
-msgstr "%s: Слишком много итераций (больше %d).\n"
-
-#, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
 msgstr "%s: Неверное максимальное количество оценок функции %s."
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
 msgstr "%s: Неверное максимальное количество итераций %s."
-
-#, c-format
-msgid "%s: Unexpected negative value %s for %s option"
-msgstr "%s: Неожиданное отрицательное значение %s для параметра %s"
-
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
-"expected."
-msgstr ""
-"%s: Неверное количество входных параметров: задано %d, а ожидалось от 0 до 7."
 
 #, c-format
 msgid ""
@@ -476,13 +546,6 @@ msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
 msgstr ""
 "%s: Неверное количество входных параметров: задано %d, а ожидалось 2."
-
-#, c-format
-msgid ""
-"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
-"expected."
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось 2 или 3, а задано %d"
 
 #, c-format
 msgid ""
@@ -573,11 +636,11 @@ msgid "%s: Unknown value %s for -simplex0method option"
 msgstr "%s: Неизвестное значение %s параметра -simplex0method"
 
 #, c-format
-msgid "%s: Unrecognized parameter name ''%s''."
+msgid "%s: Unrecognized parameter name '%s'."
 msgstr "%s: Неизвестное название параметра «%s»."
 
 #, c-format
-msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
+msgid "%s: Unrecognized value '%s' for 'Display' option."
 msgstr "%s: Неизвестное значение «%s» для параметра «Display»."
 
 #, c-format
@@ -599,6 +662,14 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество входных параметров.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
@@ -607,16 +678,17 @@ msgid "%s: Wrong size for input argument #%d."
 msgstr "%s: Неверный размер входного параметра №%d."
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong type for argument %d: %s expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось количество столбцов "
-"%d.\n"
 
 #, c-format
 msgid ""
@@ -626,7 +698,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
@@ -640,8 +712,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
-"чисел.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
@@ -698,41 +768,81 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
+#, c-format
+msgid "%s: feasible solution found."
+msgstr ""
+
+#, c-format
+msgid "%s: initial guess is feasible."
+msgstr ""
+
+#, c-format
+msgid "%s: max number of iterations exceeded, solution may not be optimal"
+msgstr ""
+
+#, c-format
+msgid "%s: max number of iterations exceeded."
+msgstr "%s: превышено максимальное число итераций."
+
+#, c-format
+msgid "%s: may be unbounded below"
+msgstr "%s: может быть без ограничения снизу."
+
+#, c-format
+msgid "%s: not feasible or badly defined problem."
+msgstr ""
+
+#, c-format
+msgid "%s: optimal solution found"
+msgstr "%s: найдено оптимальное решение"
+
+#, c-format
+msgid "%s: rank deficient problem"
+msgstr ""
+
+#, c-format
+msgid "%s: solution unbounded."
+msgstr ""
+
 msgid "...Done\n"
-msgstr "...Выполнено\n"
+msgstr "...Сделано.\n"
 
 msgid "A new method of constrained optimization \n"
-msgstr "Новый метод условной оптимизации \n"
+msgstr ""
+
+#, c-format
+msgid "Calling sequence %s is obsolete."
+msgstr ""
 
 msgid "Column #1: number of dimensions\n"
-msgstr "Столбец №1: количество измерений\n"
+msgstr ""
 
 msgid "Column #2: number of function evaluations\n"
-msgstr "Столбец №2: количество вычислений функции\n"
+msgstr ""
 
 msgid "Column #3: number of iterations\n"
-msgstr "Столбец №3: количество итераций\n"
+msgstr ""
 
 msgid "Column #4: convergence rate (lower is better)\n"
-msgstr "Столбец №4: скорость сходимости (меньшая лучше)\n"
+msgstr ""
 
 msgid "Computation of optimal parameters"
-msgstr "Расчет оптимальных параметров"
+msgstr ""
 
 msgid "Configuring nmplot object...\n"
 msgstr ""
 
 msgid "Creating nmplot object ...\n"
-msgstr "Создание объекта nmplot ...\n"
+msgstr ""
 
 msgid "Creating nmplot object...\n"
-msgstr "Создание объекта nmplot...\n"
+msgstr ""
 
 msgid "Creating object ...\n"
-msgstr "Создание объекта ...\n"
+msgstr ""
 
 msgid "Creating object...\n"
-msgstr "Создание объекта...\n"
+msgstr ""
 
 msgid "Defining Han function...\n"
 msgstr ""
@@ -762,33 +872,10 @@ msgid "Derivative"
 msgstr ""
 
 msgid "End of Optimization\n"
-msgstr "Завершение оптимизации\n"
+msgstr ""
 
 msgid "End of demo.\n"
-msgstr "Завершение демонстрации.\n"
-
-#, c-format
-msgid "Error in dgels, info = %d.\n"
-msgstr "Ошибка в dgels, info = %d.\n"
-
-#, c-format
-msgid "Error in dspev, info = %d.\n"
-msgstr "Ошибка в dspev, info = %d.\n"
-
-#, c-format
-msgid "Error in dspgv, info = %d.\n"
-msgstr "Ошибка в dspgv, info = %d.\n"
-
-#, c-format
-msgid "Error in dspst, info = %d.\n"
-msgstr "Ошибка в dspst, info = %d.\n"
-
-#, c-format
-msgid "Error in dtrcon, info = %d.\n"
-msgstr "Ошибка в dtrcon, info = %d.\n"
-
-msgid "F(x)*Z has a negative eigenvalue.\n"
-msgstr "F(x)*Z имеет отрицательное собственное значение.\n"
+msgstr ""
 
 msgid "Function Value Average"
 msgstr ""
@@ -801,17 +888,17 @@ msgid ""
 "Optimization Methods and Software, 2006.\n"
 msgstr ""
 
-msgid "Illustrates Box'' algorithm on Box problem A.\n"
+msgid "Illustrates Box' algorithm on Box problem A.\n"
 msgstr ""
 
-msgid "Illustrates Box'' algorithm on Box problem B.\n"
+msgid "Illustrates Box' algorithm on Box problem B.\n"
 msgstr ""
 
-msgid "Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"
+msgid "Illustrates Box' algorithm on Rosenbrock's Post Office Problem.\n"
 msgstr ""
 
 msgid ""
-"Illustrates Box'' algorithm on a simply bounds-constrained optimization "
+"Illustrates Box' algorithm on a simply bounds-constrained optimization "
 "problem.\n"
 msgstr ""
 
@@ -856,20 +943,8 @@ msgstr ""
 msgid "Iterations"
 msgstr ""
 
-msgid "L must be at least one.\n"
-msgstr "L должна быть не менее одного.\n"
-
 msgid "LQV"
 msgstr ""
-
-msgid "Logarithm Maximum Oriented length"
-msgstr ""
-
-msgid "Logarithm Minimum Function Value"
-msgstr ""
-
-msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
-msgstr "Матрицы Fi, i=1,...,m линейно зависимы.\n"
 
 msgid "Maximum Oriented length"
 msgstr ""
@@ -896,7 +971,15 @@ msgstr ""
 msgid "Optimization and Simulation"
 msgstr "Оптимизация и моделирование"
 
+#, c-format
+msgid "Option %s is obsolete."
+msgstr ""
+
 msgid "Output"
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
 msgstr ""
 
 msgid "Plot"
@@ -914,15 +997,6 @@ msgstr ""
 msgid "Plotting contour (please wait)...\n"
 msgstr ""
 
-msgid "Plotting history of fbar ...\n"
-msgstr ""
-
-msgid "Plotting history of fopt ...\n"
-msgstr ""
-
-msgid "Plotting history of sigma ...\n"
-msgstr ""
-
 msgid "Problem A\n"
 msgstr ""
 
@@ -933,7 +1007,11 @@ msgid "Rate of convergence"
 msgstr ""
 
 #, c-format
-msgid "Relative error = %e\n"
+msgid "Relative error on f = %e\n"
+msgstr ""
+
+#, c-format
+msgid "Relative error on x = %e\n"
 msgstr ""
 
 msgid "Rosenbrock"
@@ -957,33 +1035,11 @@ msgstr ""
 msgid "Spaceship landing trajectory"
 msgstr ""
 
-msgid ""
-"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
-"are very badly conditioned).\n"
-msgstr ""
-"Матрицы F_i, i=1,...,m линейно зависимы (или исходные точки очень плохо "
-"подобраны).\n"
-
 #, c-format
-msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgid "This feature will be permanently removed in Scilab %s"
 msgstr ""
-"Пространство работы слишком мало. Необходимо как минимум %d*sizeof(double).\n"
-
-msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
-msgstr "Z0 не удовлетворяет условиям равенства для двойной выполнимости.\n"
-
-msgid "Z0 is not positive definite.\n"
-msgstr "Z0 не положительно определена.\n"
 
 msgid "and a comparison with other methods.\n"
-msgstr ""
-
-#, c-format
-msgid "blck_szs[%d] must be at least one.\n"
-msgstr "blck_szs[%d] должно быть не менее одного.\n"
-
-#, c-format
-msgid "f computed = %f\n"
 msgstr ""
 
 #, c-format
@@ -1014,9 +1070,6 @@ msgstr ""
 msgid "fminsearch - tolx"
 msgstr ""
 
-msgid "m must be at least one.\n"
-msgstr "m должна быть не менее одного.\n"
-
 msgid "neldermead - Box A"
 msgstr ""
 
@@ -1033,6 +1086,9 @@ msgid "neldermead - Dimensionnality"
 msgstr ""
 
 msgid "neldermead - Output Command"
+msgstr ""
+
+msgid "neldermead - Polygon"
 msgstr ""
 
 msgid "neldermead - Rosenbrock Variable"
@@ -1056,170 +1112,22 @@ msgstr ""
 msgid "nmplot - Quadratic Fixed #2"
 msgstr ""
 
+msgid "nmplot - Quadratic Variable#1"
+msgstr ""
+
+msgid "nmplot - Quadratic Variable#2"
+msgstr ""
+
 msgid "nmplot - Rosenbrock Fixed"
 msgstr ""
 
 msgid "nmplot - Rosenbrock Variable"
 msgstr ""
 
-msgid "nu must be at least 1.0.\n"
-msgstr "nu должно быть не менее 1.0.\n"
-
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
 
-msgid "x0 is not strictly primal feasible.\n"
-msgstr "x0 не является строго первично достижимой.\n"
-
 #, c-format
 msgid "x0=%s\n"
 msgstr "x0=%s\n"
-
-#, c-format
-#~ msgid "%s: x0 is not feasible."
-#~ msgstr "%s: неподходящий x0."
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument.\n"
-#~ msgstr "%s: Неверный тип аргумента.\n"
-
-#, c-format
-#~ msgid "%s: Unknown -simplex0method : %s"
-#~ msgstr "%s: Неизвестный -simplex0method : %s"
-
-#, c-format
-#~ msgid "         Current function value: %s\n"
-#~ msgstr "         Текущее значение функции: %s\n"
-
-#~ msgid "         - increase MaxIter option.\n"
-#~ msgstr "         - увеличьте параметр MaxIter.\n"
-
-#~ msgid "         - increase MaxFunEvals option.\n"
-#~ msgstr "         - увеличьте параметр MaxFunEvals.\n"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -tolfunmethod"
-#~ msgstr "%s: Неизвестное значение %s для -tolfunmethod"
-
-#, c-format
-#~ msgid ""
-#~ "Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
-#~ msgstr ""
-#~ "Невозможно масштабировать вершину №%d/%d в [%s] из-за ограничений в виде "
-#~ "неравенств"
-
-#~ msgid "Exiting: Maximum number of iterations has been exceeded\n"
-#~ msgstr "Выход: превышено максимальное количество итераций\n"
-
-#~ msgid "Exiting: Maximum number of function evaluations has been exceeded\n"
-#~ msgstr "Выход: превышено максимальное количество оценок функции\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: The output function associated with ''OutputFcn'' option is neither a "
-#~ "function nor a list."
-#~ msgstr ""
-#~ "%s: Выходная функция, которая связана с параметром «OutputFcn», не является "
-#~ "функцией или списком."
-
-#, c-format
-#~ msgid ""
-#~ "%s: The output function associated with ''PlotFcns'' option is neither a "
-#~ "function nor a list."
-#~ msgstr ""
-#~ "%s: Выходная функция, которая связана с параметром «PlotFcns», не является "
-#~ "функцией или списком."
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -tolssizedeltafvmethod option"
-#~ msgstr "%s: Неизвестное значение %s параметра -tolssizedeltafvmethod"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -checkcostfunction option"
-#~ msgstr "%s: Неизвестное значение %s параметра -checkcostfunction"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -method option"
-#~ msgstr "%s: Неизвестное значение %s параметра -method"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -tolsimplexizemethod option"
-#~ msgstr "%s: Неизвестное значение %s параметра -tolsimplexizemethod"
-
-#, c-format
-#~ msgid "%s: Unexpected negative value %s for -guinalphamin option"
-#~ msgstr "%s: Неверное отрицательное значение %s для параметра -guinalphamin"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -tolxmethod option"
-#~ msgstr "%s: Неизвестное значение %s параметра -tolxmethod"
-
-#, c-format
-#~ msgid "%s: Unknown value %s for -myterminateflag option"
-#~ msgstr "%s: Неизвестное значение %s параметра -myterminateflag"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Logging not started up, log file not empty but log file handle non zero."
-#~ msgstr ""
-#~ "%s: Ведение журнала не началось, файл журнала не является пустым, но "
-#~ "дескриптор файла журнала ненулевой."
-
-#, c-format
-#~ msgid "%s: The exclusion index vector has %d instead of 1."
-#~ msgstr "%s: В векторе индексов исключения количество строк %d вместо 1."
-
-#, c-format
-#~ msgid ""
-#~ "%s: The len vector is expected to be a row matrix, but current shape is %d x "
-#~ "%d"
-#~ msgstr ""
-#~ "%s: Ожидалось, что вектор len будет вектором-строкой, но его размерность %d "
-#~ "x %d"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Number of rows of x is %d is different from number of vertices = %d."
-#~ msgstr "%s: Количество строк x - %d отличается от количества вершин = %d."
-
-#, c-format
-#~ msgid "%s: Number of columns of x is %d is different from dimension = %d."
-#~ msgstr "%s: Количество столбцов x - %d отличается от размерности = %d."
-
-#, c-format
-#~ msgid "%s: Number of columns of fv is %d is different from 1."
-#~ msgstr "%s: Количество столбцов fv - %d отличается от 1."
-
-#, c-format
-#~ msgid ""
-#~ "%s: Number of rows of fv is %d is different from number of vertices = %d."
-#~ msgstr "%s: Количество строк fv - %d отличается от количества вершин = %d."
-
-#, c-format
-#~ msgid "%s: The number of columns is %d, while expected %d."
-#~ msgstr "%s: Количество столбцов - %d, а ожидалось %d."
-
-#, c-format
-#~ msgid "%s: The number of rows is %d, while expected %d."
-#~ msgstr "%s: Количество строк - %d, а ожидалось %d."
-
-#, c-format
-#~ msgid "%s: Unbounded problem!"
-#~ msgstr "%s: Задача неограниченна!"
-
-#, c-format
-#~ msgid "%s: Expected function but got %s instead"
-#~ msgstr "%s: Ожидалась функция, но вместо неё получено %s"
-
-#, c-format
-#~ msgid "%s: Expected boolean but got %s instead"
-#~ msgstr "%s: Ожидалось булево значение, но вместо него получено %s"
-
-#, c-format
-#~ msgid "%s: Expected string variable but got %s instead"
-#~ msgstr "%s: Ожидалась строковая переменная, но вместо неё получено %s"
-
-#, c-format
-#~ msgid "%s: Expected real variable but got %s instead"
-#~ msgstr "%s: Ожидалась вещественная переменная, но вместо неё получено %s"

@@ -33,7 +33,7 @@
     <title>Description</title>
     <para>This function computes a Cholesky factorization of the sparse
     symmetric positive definite (s.p.d.) matrix A and retrieves at the scilab
-    level, a pointer (C_ptr) to an handle of the Cholesky factors (C,p) (the
+    level, a pointer (C_ptr) to a handle of the Cholesky factors (C,p) (the
     memory used for them is "outside" scilab space).</para>
     <para>If your matrix is s.p.d. this function must be used in place of
     <link linkend="umf_lufact">umf_lufact</link> or in place of the scilab

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2009-12-10 00:28+0000\n"
 "Last-Translator: Fido <Unknown>\n"
@@ -14,7 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: es\n"
 
 #, c-format
 msgid " - min / max value found = %f / %f\n"
@@ -53,6 +54,3 @@ msgstr "optim_moga: ga_f es obligatorio"
 
 msgid "optim_nsga2: ga_f is mandatory"
 msgstr "optim_nsga2: ga_f es obligatorio"
-
-#~ msgid "Genetic Algorithms"
-#~ msgstr "Algoritmos Genéticos"

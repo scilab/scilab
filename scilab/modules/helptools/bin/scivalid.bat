@@ -16,14 +16,14 @@ set binDir=%~dp0
 set libDir=%binDir%\..\..\..\thirdparty
 set schemaDir=%binDir%\..\schema
 
-java -jar "%libDir%\jing.jar" -c "%schemaDir%\scilab.rnc" %*
+java -jar "%libDir%\jing.jar" "%schemaDir%\scilab.rng" %*
 
 goto end
 endlocal
 
 :usage
 echo Usage: scivalid xml_file ... xml_file
-echo Validates specified XML files against the scilab.rnc schema.
+echo Validates specified XML files against the scilab.rng schema.
 
 :end
 

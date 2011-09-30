@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-15 17:40+0000\n"
+"PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: it\n"
 
 msgid ""
 "\n"
@@ -210,6 +211,11 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato. Era atteso Low < High.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso è di tipo sbagliato: era atteso un vettore "
@@ -339,18 +345,6 @@ msgstr "DF < 1.0 o DF <= 0.0 o Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "I gradi di libertà non sono positivi\n"
 
-msgid "Erlang random variable"
-msgstr "Variabile casuale di Erlarg"
-
-msgid "Exponential random variable"
-msgstr "Variabile casuale esponenziale"
-
-msgid "Hyper geometric random variable"
-msgstr "Variabile casuale ipergeometrica"
-
-msgid "Low > High\n"
-msgstr "Low > High\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "Mancano A e B per la legge Beta\n"
 
@@ -427,9 +421,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr "Variabile casuale di Poisson"
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A or B < %f\n"
@@ -437,23 +428,11 @@ msgstr "Rand(...,'bet',..): A or B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Casuale"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "L'interfaccia randlib di Scilab non è installata.\n"
-
-msgid "Simulation"
-msgstr "Simulazione"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Simulazione di una variabile casuale binomiale"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Simulazione di una variabile casuale discreta"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -473,20 +452,47 @@ msgstr "L'opzione %s riguarda solo il generatore clcg4\n"
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "La prima componente dello stato mt, deve essere un int in [1, 624]\n"
 
-msgid "Theory"
-msgstr "Teoria"
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Questa informazione riguarda solo il generatore clcg4\n"
-
-msgid "Weibull random variable"
-msgstr "Variabile casuale di Weibull"
 
 msgid "X0 is empty\n"
 msgstr "X0è vuoto\n"
 
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a e b devono essere interi con (b-a+1) <= 2147483561"
+
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr "Variabile casuale di Erlang"
+
+msgid "Exponential random variable"
+msgstr "Variabile casuale esponenziale"
+
+msgid "Hyper geometric random variable"
+msgstr "Variabile casuale iper-geometrica"
+
+msgid "Poisson random variable"
+msgstr "Variabile casuale di Poisson"
+
+msgid "Random"
+msgstr "Casuale"
+
+msgid "Simulation"
+msgstr "Simulazione"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Simulazione di una variabile casuale binomiale"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Simulazione di una variabile casuale discreta"
+
+msgid "Theory"
+msgstr "Teoria"
+
+msgid "Weibull random variable"
+msgstr "Variabile casuale di Weibull"
 
 msgid "binomial random variable"
 msgstr "variabile casuale binomiale"
@@ -495,10 +501,7 @@ msgid "discrete random variable"
 msgstr "variabile casuale discreta"
 
 msgid "discrete uniform random variable"
-msgstr ""
+msgstr "variabile casuale uniforme discreta"
 
 msgid "geometric random variable"
 msgstr "variabile casuale geometrica"
-
-msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
-msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"

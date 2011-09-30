@@ -24,8 +24,8 @@ SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
 SCILAB_VERSION_MAJOR=5
-SCILAB_VERSION_MINOR=3
-SCILAB_VERSION_MAINTENANCE=2
+SCILAB_VERSION_MINOR=4
+SCILAB_VERSION_MAINTENANCE=0
 AC_SUBST(SCILAB_VERSION_MAJOR)
 AC_SUBST(SCILAB_VERSION_MINOR)
 AC_SUBST(SCILAB_VERSION_MAINTENANCE)
@@ -110,7 +110,7 @@ AC_ARG_ENABLE(debug-linker,
 AC_ARG_ENABLE(code-coverage,
    AC_HELP_STRING([--enable-code-coverage],[Enable code coverage]))
 
-AC_ARG_ENABLE(stopOnWarning,
+AC_ARG_ENABLE(stop-on-warning,
    AC_HELP_STRING([--enable-stop-on-warning],[Stop the compilation on the first warning found in the C/C++ code]))
 
 AC_ARG_WITH(gcc,
@@ -327,6 +327,13 @@ else
    enable_debug_CXX=no
 fi
 
+if test "$enable_debug_java" = yes; then
+   LOGGING_LEVEL="ALL"
+else
+   LOGGING_LEVEL="INFO"
+fi
+AC_SUBST(LOGGING_LEVEL)
+
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -503,7 +510,7 @@ case "$CXX" in
    fi
    CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
-   clang-* | clang) 
+   clang-* | clang)
            # clang expect an explict declaration
            LDFLAGS="$LDFLAGS -lstdc++"
    ;;
@@ -682,6 +689,21 @@ fi
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
 AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
+################
+## SSE
+## By default, for x86 CPU, enable the SSE.
+## Note that it is already the case with 64 bits CPU
+## (these extensions are enabled by default by gcc)
+################
+
+case "$host" in
+     i*86-linux-gnu|i*86-*-linux-gnu)
+        CFLAGS="$CFLAGS -msse"
+        FFLAGS="$FFLAGS -msse"
+        CPPFLAGS="$CPPFLAGS -msse"
+     ;;
+esac
+
 #######################
 ## test for underscores (name mangling issues between C and fortran)
 #######################
@@ -781,7 +803,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
         case "$host_os" in
-             *Darwin* | *darwin*) 
+             *Darwin* | *darwin*)
                # Mac OS X does not link against the lib but uses -framework
                JAVA_JNI_LIBS="-framework JavaVM"
              ;;
@@ -812,7 +834,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.7.0.6],[mxGraph.VERSION],[],[])
 
                    # Java HDF5 is only needed for Xcos
                    if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
@@ -837,7 +859,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
-                # Named differently under ArchLinux
+                # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
                     AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
@@ -859,7 +881,9 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jogl -L/usr/lib64/jogl"                 # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
                    if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
@@ -887,7 +911,9 @@ the the JNI libraries."])],
                 else
                    LDFLAGS_save=$LDFLAGS
                    # Provide known paths where distribs/OS can store JNI libs
-                   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+                   LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
+                   LDFLAGS="$LDFLAGS -L/usr/lib/gluegen -L/usr/lib64/gluegen"           # RedHat
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
                    AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
                    [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
@@ -899,7 +925,7 @@ the the JNI libraries."])],
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
                 JHALL=$PACKAGE_JAR_FILE
 
-                # Named differently under Mandriva
+                # Named differently under Mandriva or Fedora
                 if test -z "$JHALL"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
                     JHALL=$PACKAGE_JAR_FILE
@@ -1300,22 +1326,6 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 #AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
-## PVM
-#################
-
-AC_ARG_WITH(pvm,
-    AC_HELP_STRING([--without-pvm],[Disable the interface to the PVM library]))
-
-PVM_ENABLE=no
-if test "$with_pvm" != no; then
-   AC_PVM()
-   PVM_ENABLE=yes
-fi
-AC_SUBST(PVM_ENABLE)
-
-AM_CONDITIONAL(PVM, test "$with_pvm" != no)
-
-#################
 ## OpenMP
 #################
 
@@ -1352,7 +1362,8 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1362,6 +1373,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_SUBST(ALL_LINGUAS_DOC)
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
@@ -1691,8 +1703,8 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 #
 dnl @TODO : -O0 is only to bypass Stack shit... Must be removed.
 if test "$enable_stop_on_warning" = yes; then
-   CFLAGS="$CFLAGS -Werror -O0"
-   CXXFLAGS="$CXXFLAGS -Werror -O0"
+   CFLAGS="$CFLAGS -Werror=implicit-function-declaration -O0"
+   CXXFLAGS="$CXXFLAGS -Werror=implicit-function-declaration -O0"
 fi
 
 AC_CONFIG_FILES([
@@ -1703,14 +1715,12 @@ libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
 modules/helptools/Makefile
-modules/helptools/macros/xmlfiletohtml.sci
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
 modules/elementary_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
-modules/shell/Makefile
 modules/completion/Makefile
 modules/history_manager/Makefile
 modules/jvm/Makefile
@@ -1740,7 +1750,6 @@ modules/graphic_export/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
-modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
@@ -1777,6 +1786,7 @@ modules/graph/Makefile
 modules/parallel/Makefile
 modules/modules_manager/Makefile
 modules/history_browser/Makefile
+modules/xml/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1784,6 +1794,7 @@ scilab.pc
 etc/modules.xml
 etc/classpath.xml
 etc/Info.plist
+etc/logging.properties
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
@@ -1880,9 +1891,6 @@ echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"
-echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
-echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
-echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -1933,16 +1941,6 @@ if test $OPENMP_ENABLE = yes; then
    echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
 else
    echo "Not using OpenMP"
-fi
-
-echo ""
-if test $PVM_ENABLE = yes; then
-   echo "PVM Configuration:"
-   echo "  PVM Architecture ... = $PVM_ARCH"
-   echo "  PVM INCLUDE ........ = $PVM_INCLUDE"
-   echo "  PVM LIBS ........... = $PVM_LIB"
-else
-   echo "Not using PVM"
 fi
 
 echo ""

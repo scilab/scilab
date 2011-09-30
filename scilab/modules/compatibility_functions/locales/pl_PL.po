@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 14:05+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-09-10 18:49+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: pl\n"
 
 #, c-format
 msgid ""
@@ -28,32 +29,32 @@ msgid "%s: %s is not implemented.\n"
 msgstr "%s: %s nie został(a) zrealizowany(a).\n"
 
 #, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: ''%s'' zignorowano.\n"
+msgid "%s: '%s' ignored.\n"
+msgstr "%s: '%s' zignorowano.\n"
 
 #, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: ''%s'' nie został(a) zrealizowany(a).\n"
+msgid "%s: '%s' not implemented.\n"
+msgstr "%s: '%s' nie został(a) zrealizowany(a).\n"
 
 #, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: ''%s'' stosowany tylko w trybie 3d."
+msgid "%s: '%s' only used in 3d mode."
+msgstr "%s: '%s' stosowany tylko w trybie 3d."
 
 #, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: ''%s'' opcja ignorowana.\n"
+msgid "%s: '%s' option ignored.\n"
+msgstr "%s: '%s' opcja ignorowana.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
 msgstr "%s: Wszystkie okna zostały usunięte.\n"
 
 #, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: Nie można otworzyć pliku ''%s''.\n"
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: Nie można otworzyć pliku '%s'.\n"
 
 #, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: Nie można otworzyć ''%s'' ani ''%s'' ani ''%s''.\n"
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr "%s: Nie można otworzyć '%s' ani '%s' ani '%s'.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
@@ -64,8 +65,8 @@ msgid "%s: End of string reached before data has been read.\n"
 msgstr "%s: Osiągnięto koniec ciągu zanim odczytano dane.\n"
 
 #, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: Nie ma odpowiednika własności ''%s''.\n"
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr "%s: Nie ma odpowiednika własności '%s'.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
@@ -76,12 +77,12 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s: Jeszcze nie realizowane.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: Format ''%s'' nie jest jeszcze obsługiwany.\n"
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr "%s: Format '%s' nie jest jeszcze obsługiwany.\n"
 
 #, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: Format ''%s'' jest nieznany.\n"
+msgid "%s: The format '%s' is unknown.\n"
+msgstr "%s: Format '%s' jest nieznany.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
@@ -113,20 +114,20 @@ msgid "%s: This particular case is not implemented.\n"
 msgstr "%s: Ten konkretny przypadek nie został zrealizowany.\n"
 
 #, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: Nieobsługiwana klasa ''%s''.\n"
+msgid "%s: Unhandled class '%s'.\n"
+msgstr "%s: Nieobsługiwana klasa '%s'.\n"
 
 #, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: Odnaleziono nieznany kolor w ''%s'' -> zmieniono na czarny.\n"
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr "%s: Odnaleziono nieznany kolor w '%s' -> zmieniono na czarny.\n"
 
 #, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: Odnaleziono nieznany typ linii w ''%s'' -> zmieniono na 6.\n"
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
+msgstr "%s: Odnaleziono nieznany typ linii w '%s' -> zmieniono na 6.\n"
 
 #, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Nieznany typ ''%s'': ZIGNOROWANY.\n"
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr "%s: Nieznany typ '%s': ZIGNOROWANY.\n"
 
 #, c-format
 msgid "%s: Unknown type.\n"
@@ -146,12 +147,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: Niewłaściwa liczba argumentów wejściowych: oczekiwano od %d do%d\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -163,8 +164,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar ''%s'': Oczekiwany jest wektor.\n"
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr "%s: Nieprawidłowy rozmiar '%s': Oczekiwany jest wektor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -228,30 +229,29 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego: oczekiwany łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: Zła wartość dla wymuszenia do ''%s''.\n"
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr "%s: Zła wartość dla wymuszenia do '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s, %s, ''%s'', "
-"''%s'' lub ''%s''.\n"
+"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s, %s, '%s', '%s' "
+"lub '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s,''%s'' lub "
-"''%s''.\n"
+"%s: Zła wartość parametru wejściowego #%d: oczekiwano %s, %s,'%s' lub '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano ''%s'', "
-"''%s'' lub ''%s''.\n"
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
+"lub '%s'.\n"
 
 #, c-format
 msgid ""

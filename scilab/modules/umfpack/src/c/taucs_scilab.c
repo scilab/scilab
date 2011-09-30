@@ -324,7 +324,6 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
       if (I < J) 
 	  {
 		int T = I; 
-		I = J;
 		J = T;
       }
       len[J] ++;
@@ -970,7 +969,6 @@ int taucs_ccs_etree(taucs_ccs_matrix* A,
       if (parent[jp] != n) wt[parent[jp]] --;
       for (ip = (A->colptr)[jp]; ip < (A->colptr)[jp+1]; ip++) {
 	ju = (A->rowind)[ip];
-	u  = ipostorder[ju];
 	if (ju==jp) continue; /* we only want proper neighbors */
 #ifdef GILBERT_NG_PEYTON_ANALYSIS_SUP
 	if (first_descendant[jp] > prev_nbr[u]) {
@@ -2007,7 +2005,6 @@ recursive_supernodal_solve_lt(int sn,       /* this supernode */
   int    ione = 1;
   double done = 1.0;
   double dminusone = -1.0;
-  double dzero = 0.0;
   double* xdense;
   double* bdense;
   double  flops;
@@ -2178,7 +2175,6 @@ taucs_supernodal_factor_to_ccs(void* vL)
       len[j] = 0;
 
       for (ip=jp; ip<(L->sn_size)[sn]; ip++) {
-	i = (L->sn_struct)[sn][ ip ];
 	v = (L->sn_blocks)[sn][ jp*(L->sn_blocks_ld)[sn] + ip ];
 
 	if (v) { 
@@ -2187,7 +2183,6 @@ taucs_supernodal_factor_to_ccs(void* vL)
 	}
       }
       for (ip=(L->sn_size)[sn]; ip<(L->sn_up_size)[sn]; ip++) {
-	i = (L->sn_struct)[sn][ ip ];
 	v = (L->up_blocks)[sn][ jp*(L->up_blocks_ld)[sn] + (ip-(L->sn_size)[sn]) ];
 
 	if (v) { 
@@ -2256,8 +2251,6 @@ int taucs_get_nnz_from_supernodal_factor(void* vL)
   supernodal_factor_matrix* L = (supernodal_factor_matrix*) vL;
   int n,nnz;
   int jp,sn;
-
-  n = L->n;
 
   nnz = 0;
 

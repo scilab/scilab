@@ -47,7 +47,7 @@ int sci_duplicate(char *fname,unsigned long fname_len)
 		m3 = 0;
 		CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &m3, &l3);
 		LhsVar(1) = 3;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
 
@@ -63,7 +63,7 @@ int sci_duplicate(char *fname,unsigned long fname_len)
 	duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
 
 	LhsVar(1) = 3;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

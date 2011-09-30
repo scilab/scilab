@@ -207,10 +207,13 @@ libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
+noinst_LTLIBRARIES = libscicacsd-algo.la
 
 libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
 
-libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
+libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_algo_la_CFLAGS = $(libscicacsd_la_CFLAGS)
 
 
 # For the code check (splint)
@@ -218,8 +221,7 @@ CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
 
 
-# cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscicacsd_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscicacsd_la_LIBADD = libscicacsd-algo.la 
 
 
 #### Target ######
@@ -228,7 +230,7 @@ modulename=cacsd
 
 #### cacsd : Conf files ####
 libscicacsd_la_rootdir = $(mydatadir)
-libscicacsd_la_root_DATA =  license.txt version.xml
+libscicacsd_la_root_DATA =  license.txt 
 
 ####�cacsd : init scripts ####
 libscicacsd_la_etcdir = $(mydatadir)/etc

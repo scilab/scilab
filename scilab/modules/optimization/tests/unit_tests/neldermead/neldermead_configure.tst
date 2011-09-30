@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,48 +9,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with configured settings.
 //
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -58,17 +23,51 @@ endfunction
 // Check maxfunevals with "variable" method
 //
 nm = neldermead_new ();
+//
 nm = neldermead_configure(nm,"-numberofvariables",2);
+numvar = neldermead_cget(nm,"-numberofvariables");
+assert_checkequal ( numvar , 2 );
+//
 nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
-nm = neldermead_configure(nm,"-simplex0method","axes");
+x0 = neldermead_cget(nm,"-x0");
+assert_checkequal ( x0 , [1.1 1.1]' );
+// Check default -simplex0method
+simplex0method = neldermead_cget(nm,"-simplex0method");
+assert_checkequal ( simplex0method , "axes" );
+//
+nm = neldermead_configure(nm,"-simplex0method","spendley");
+simplex0method = neldermead_cget(nm,"-simplex0method");
+assert_checkequal ( simplex0method , "spendley" );
+// Check default -simplex0length
+simplex0length = neldermead_cget(nm,"-simplex0length");
+assert_checkequal ( simplex0length , 1 );
+//
 nm = neldermead_configure(nm,"-simplex0length",0.1);
+simplex0length = neldermead_cget(nm,"-simplex0length");
+assert_checkequal ( simplex0length , 0.1 );
+//
+// Check default -method
+method = neldermead_cget(nm,"-method");
+assert_checkequal ( method , "variable" );
+//
+nm = neldermead_configure(nm,"-method","fixed");
+method = neldermead_cget(nm,"-method");
+assert_checkequal ( method , "fixed" );
+//
 nm = neldermead_configure(nm,"-method","variable");
+method = neldermead_cget(nm,"-method");
+assert_checkequal ( method , "variable" );
+//
 nm = neldermead_configure(nm,"-function",rosenbrock);
+//
 nm = neldermead_configure(nm,"-maxfunevals",10);
+maxfunevals = neldermead_cget(nm,"-maxfunevals");
+assert_checkequal ( maxfunevals , 10 );
+//
 nm = neldermead_search(nm);
 funevals = neldermead_get(nm,"-funevals");
 // Let's be not strict
-assert_equal ( funevals < 15 , %T );
+assert_checkequal ( funevals < 15 , %T );
 // Cleanup
 nm = neldermead_destroy(nm);
 
@@ -85,49 +84,40 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( iterations , 10 );
+assert_checkequal ( iterations , 10 );
 // Cleanup
 nm = neldermead_destroy(nm);
 
 // Wrong -method flag
 nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "unknownValueForOption: Unknown value foo for -method option";
-assert_equal ( computed , expected );
+alloptions = """fixed"" or ""variable"" or ""box"" or ""mine""";
+assert_checkerror(cmd,"%s: Expected value [%s] for input argument %s at input #%d, but got ""%s"" instead.",[],..
+  "neldermead_configure",alloptions,"value",3,"foo");
 nm = neldermead_destroy(nm);
 
 // Wrong -simplex0method flag
 nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "unknownValueForOption: Unknown value foo for -simplex0method option";
-assert_equal ( computed , expected );
+alloptions = """given"" or ""axes"" or ""spendley"" or ""pfeffer"" or ""randbounds""";
+assert_checkerror(cmd,"%s: Expected value [%s] for input argument %s at input #%d, but got ""%s"" instead.",[],..
+  "neldermead_configure",alloptions,"value",3,"foo");
 nm = neldermead_destroy(nm);
 
 // Wrong -tolsimplexizemethod flag
 nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolsimplexizemethod'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"nelmead_typeboolean","value",3,"string");
 nm = neldermead_destroy(nm);
 
 // Wrong -tolssizedeltafvmethod flag
 nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolssizedeltafvmethod'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Expected boolean but for variable %s at input #%d, got %s instead.",[],"nelmead_typeboolean","value",3,"string");
 nm = neldermead_destroy(nm);
 
 //
 // Check wrong key for get method
-//
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
@@ -138,67 +128,42 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",2);
 nm = neldermead_search(nm);
 cmd = "funevals = neldermead_get(nm,''-foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_get: Unknown key -foo";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Unknown key %s",[],"optimbase_get","-foo");
 nm = neldermead_destroy(nm);
-
 
 //
 // Check that x0 is forced to be a column vector
-//
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 cmd = "nm = neldermead_configure(nm,''-x0'',[-1.2 1.0]);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d",[],"optimbase_configure",1,2);
 nm = neldermead_destroy(nm);
 
 //
 // Check -restartstep
-//
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
-// Check that -restartstep is forced to be of consistent length : 1 or n
 cmd = "nm = neldermead_configure(nm,''-restartstep'',[1 2 3]);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_configure: The restartstep vector is expected to have 2 x 1 shape, but current shape is 1 x 3";
-assert_equal ( computed , expected );
-// Check that -restartstep is forced to be positive
+assert_checkerror(cmd,"%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d",[],"neldermead_configure",2,1,1,3);
 cmd = "nm = neldermead_configure(nm,''-restartstep'',[-1 2]'');";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_configure: The restartstep vector is expected to be positive";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
+  "neldermead_configure","value",3,"2.22D-308",1,"-1");
 nm = neldermead_destroy(nm);
-
 
 //
 // Check -restarteps
-//
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
-// Check that -restarteps is forced to be a scalar double
 cmd = "nm = neldermead_configure(nm,''-restarteps'',[1 2]);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_configure: The restarteps option is expected to be a scalar, but current shape is 1 x 2";
-assert_equal ( computed , expected );
-// Check that -restarteps is forced to be positive
+assert_checkerror(cmd,"%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n",[], ..
+  "neldermead_configure",3,1,1);
 cmd = "nm = neldermead_configure(nm,''-restarteps'',-1);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_configure: The restarteps option is expected to be positive";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
+  "neldermead_configure","value",3,"2.22D-308",1,"-1");
 nm = neldermead_destroy(nm);
 
 //
 // Check the display system
-//
 nm = neldermead_new ();
 nm
 nm = neldermead_destroy(nm);

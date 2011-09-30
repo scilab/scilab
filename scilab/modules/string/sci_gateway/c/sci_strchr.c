@@ -62,7 +62,7 @@ int sci_strchr(char *fname, unsigned long fname_len)
         }
     }
 
-    wcOutput_Strings = strings_wcsrchr(pStrVarOne, m1 * n1, pStrVarTwo, m2 * n2, do_strchr);
+    wcOutput_Strings = strings_wcsrchr((const wchar_t**)pStrVarOne, m1 * n1, (const wchar_t**)pStrVarTwo, m2 * n2, do_strchr);
     if (pStrVarOne) {freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne); pStrVarOne = NULL;}
     if (pStrVarTwo) {freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo); pStrVarTwo = NULL;}
 
@@ -79,7 +79,7 @@ int sci_strchr(char *fname, unsigned long fname_len)
         }
 
         LhsVar(1) = Rhs+1 ;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {

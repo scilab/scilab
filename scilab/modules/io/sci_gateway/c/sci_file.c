@@ -258,7 +258,7 @@ int sci_file(char *fname,unsigned long fname_len)
 
 							LhsVar(2) = Rhs + 2;
 							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
+							PutLhsVar();
 						}
 						else
 						{
@@ -402,7 +402,7 @@ static int sci_file_no_rhs(char *fname)
 		}
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -601,7 +601,7 @@ static int sci_file_one_rhs(char *fname)
 		LhsVar(5) = Rhs + 5; 
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

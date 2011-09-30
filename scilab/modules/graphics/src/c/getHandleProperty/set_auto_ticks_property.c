@@ -94,7 +94,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   else
   {
     Scierror(999, _("Wrong size for '%s' property: At most %d elements expected.\n"), "auto_ticks", 3);
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 }

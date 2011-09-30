@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [win_l,cwp]=window(wtype,n,par)
@@ -13,145 +13,136 @@ function [win_l,cwp]=window(wtype,n,par)
 // wtype :window type (re,tr,hn,hm,kr,ch)
 // n     :window length
 // par   :parameter 2-vector (kaiser window: par(1)=beta>0)
-//       :                   (chebyshev window:par=<dp,df>)
+//       :                   (chebyshev window:par=[dp,df])
 //       :                   dp=main lobe width (0<dp<.5)
 //       :                   df=side lobe height (df>0)
 // win   :window
 // cwp   :unspecified Chebyshev window parameter
 //!
+WT=["re","tr","hm","hn","kr","ch"]
 
-  [lhs,rhs]=argn(0);
-  cwp=-1;
-  
-  //Pre-calculations
-  
-  no2=(n-1)/2;
-  xt=(-no2:no2);
-  un=ones(1:n);
-  
-  //Select the window type
-  
-  select wtype
-  case 're' then           //Rectangular window.
-    win_l=un
-  case 'tr' then           //Triangular window.
-    win_l=un-2*abs(xt)/(n+1);
-  case 'hm' then           //Hamming window.
-    win_l=.54*un+.46*cos(2*%pi*xt/(n-1));
-  case 'hn' then           //Hanning window.
-    win_l=.5*un+.5*cos(2*%pi*xt/(n-1));
-  case 'kr' then           //Kaiser window with parameter beta (n,beta)
-    Beta=par(1);
-    if Beta>0 then
-      xt=2*xt/(n-1);
-      xt=Beta*sqrt(un-xt.*xt);
-      y=xt/2;
-      yb=Beta/2;
-      e=un;
-      eb=1.;
-      de=un;
-      deb=1.;
-      for i=1:25,
-	de=de.*y/i;
-	deb=deb*yb/i;
-	sde=de.*de;
-	sdeb=deb*deb;
-	e=e+sde;
-	eb=eb+sdeb;
-      end
-      win_l=e/eb;
-    else
-      
-      error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),'window',3));
+if and(wtype<>WT) then
+    error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"window",1,strcat(WT,",")))
+end
+if type(n)<>1|size(n,'*')<>1|~isreal(n)|size(n,'*')<>1|int(n)<>n|n<1 then
+    error(msprintf(_("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"window",2))
+end
+
+if or(wtype==["kr","ch"]) then
+    if type(par)<>1|~isreal(par) then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A %d-by-%d real vector expected.\n"),"window",3,1,2))
     end
-  case 'ch' then           //Chebyshev window 
-    
-    //    calculting element of par which is negative
-    if par(1)<0 then,
-      unknown='dp';
-      df=par(2);
-    else
-      if par(2)<0 then,
-	unknown='df';
-	dp=par(1);
-      else,
-	error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"),'window',3,'dp','df'));
-      end
-    end,
-    
+    if wtype=="kr" then
+        if size(par,'*')==0| size(par,'*')>2 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"),"window",3,1,2))
+        end
+        Beta=par(1)
+        if Beta<0 then
+            error(msprintf(_("%s: Input argument #%d must be strictly positive.\n"),"window",3))
+        end
+    else //chebychev
+        if size(par,'*')<>2 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"),"window",3,1,2))
+        end
+        dp=par(1);df=par(2)
+        if dp>0 then
+            if df>0 then
+                error(msprintf(_("%s: Wrong value for input argument #%d: incorrect element #%d\n"),"window",3,2))
+            end
+            if dp>=0.5 then
+                error(msprintf(_("%s: Wrong value for input argument #%d: incorrect element #%d\n"),"window",3,1))
+            end
+            unknown='df';
+        else
+            if df<=0 then
+                error(msprintf(_("%s: Wrong value for input argument #%d: incorrect element #d\n"),"window",3,2))
+            end
+            unknown='dp';
+        end
+    end
+end
+cwp=-1;
+
+//Pre-calculations
+
+no2=(n-1)/2;
+xt=(-no2:no2);
+un=ones(1,n);
+
+//Select the window type
+
+select wtype
+case 're' then           //Rectangular window.
+    win_l=un
+case 'tr' then           //Triangular window.
+    win_l=un-2*abs(xt)/(n+1);
+case 'hm' then           //Hamming window.
+    win_l=.54*un+.46*cos(2*%pi*xt/(n-1));
+case 'hn' then           //Hanning window.
+    win_l=.5*un+.5*cos(2*%pi*xt/(n-1));
+case 'kr' then           //Kaiser window with parameter beta (n,beta)
+    //http://en.wikipedia.org/wiki/Kaiser_window
+    win_l = besseli(0,Beta*sqrt(1-(2*(0:n-1)/(n-1)-1)^2))/besseli(0,Beta);
+case 'ch' then           //Chebyshev window 
+    m=(n-1)/2;
     select unknown
     case 'dp' then,
-      arg2=1/cos(%pi*df);
-      coshin2=log(arg2+sqrt(arg2*arg2-1));
-      dp=2/(exp((n-1)*coshin2)+exp(-(n-1)*coshin2));
-      cwp=dp;
+        dp=1/cosh((n-1)*acosh(1/cos(%pi*df)));
+        cwp=dp;
     case 'df' then
-      arg1=(1+dp)/dp;
-      coshin1=log(arg1+sqrt(arg1*arg1-1));
-      df=.5*(exp(coshin1/(n-1))+exp(-coshin1/(n-1)));
-      df=1/df;
-      df=imag(log(df+%i*sqrt(1-df*df)))/%pi;
-      cwp=df;
-    end,
-    
+        df=real(acos(1/cosh(acosh((1+dp)/dp)/(n-1)))/%pi)
+        cwp=df;
+    end
+
     //Pre-calculation
-    
+
     np1=int((n+1)/2);
-    ieo=2*np1-n;
-    xn=n-1;
-    fnf=n;
+    odd=modulo(n,2)==1
+
     x0=(3-cos(2*%pi*df))/(1+cos(2*%pi*df));
     alpha=(x0+1)/2;
     Beta=(x0-1)/2;
-    c2=xn/2;
-    
+    c2=(n-1)/2;
+
     //Obtain the frequency values of the Chebyshev window
-    
-    f=(0:n-1)/fnf;
-    xarg=alpha*cos(2*%pi*f)+Beta*un;
-    pm1=dp*cos(c2*imag(log(xarg+%i*sqrt(un-xarg.*xarg))));
-    arg=c2*log(xarg+sqrt(xarg.*xarg-un));
-    pp1=dp*.5*(exp(arg)+exp(-arg));
-    
-    dx=0*un;
-    for i=1:n,
-      if abs(xarg(i))<=1 then
-	dx(i)=1;
-      end,
-    end,
-    
-    pr=dx.*pm1+(un-dx).*pp1;
-    pi=0*un;
-    
-    if ieo<>1 then
-      pr=pr.*cos(%pi*f);
-      pi=-pr.*sin(%pi*f);
-      antisym=[1*ones(1:int(n/2)+1),-1*ones(int(n/2)+2:n)];
-      pr=pr.*antisym;
-      pi=pi.*antisym;
-    end,
-    
+    f=(0:n-1)/n;
+    xarg=alpha*cos(2*%pi*f)+Beta;
+
+    //Evaluate Chebyshev polynomials
+    //           / cos(n acos(x),    |x| <= 1
+    //    p(x) = |
+    //           \ cosh(n acosh(x),  |x| > 1
+    pr==zeros(1,n);//real part
+    pi=zeros(1,n); //imaginary part
+    ind = find(xarg<=1); pr(ind)=dp*cos (c2*acos (xarg(ind)));
+    ind = find(xarg>1);  pr(ind)=dp*cosh(c2*acosh(xarg(ind)));
+    pr=real(pr);
+
+    if ~odd then
+        pr=pr.*cos(%pi*f);
+        pi=-pr.*sin(%pi*f);
+        antisym=[1*ones(1:int(n/2)+1),-1*ones(int(n/2)+2:n)];
+        pr=pr.*antisym;
+        pi=pi.*antisym;
+    end
+
     //Calculate the window coefficients using the inverse DFT
-    
-    twn=2*%pi/fnf;
+    twn=2*%pi/n;
     xj=(0:n-1);
     for i=1:np1;
-      w(i)=sum(pr.*cos(twn*(i-1)*xj)+pi.*sin(twn*(i-1)*xj));
+        arg=twn*(i-1)*xj
+        w(i)=sum(pr.*cos(arg)+pi.*sin(arg));
     end,
     c1=w(1);
     w=w/c1;
-    if ieo==1 then
-      win_l(np1:n)=w(1:np1);
-      win_l(1:np1-1)=w(np1-1:-1:1);
+    if odd then
+        win_l(np1:n)=w(1:np1);
+        win_l(1:np1-1)=w(np1-1:-1:1);
     else,
-      win_l(np1+1:n)=w(1:np1);
-      win_l(1:np1)=w(np1:-1:1);
+        win_l(np1+1:n)=w(1:np1);
+        win_l(1:np1)=w(np1:-1:1);
     end
     win_l=real(win_l');
-    
-    //Error in window type
-  else 
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,..
-			   "window",1,'''re'',''tr'',''hn'',''hm'',''kr'',''ch'''));
-  end
+end
+
 endfunction

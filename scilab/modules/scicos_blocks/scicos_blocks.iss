@@ -25,7 +25,6 @@ Source: bin\{#SCICOS_BLOCKS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS
 Source: bin\{#SCICOS_BLOCKS}.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#SCICOS_BLOCKS}\VERSION.xml; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\license.txt; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\etc\{#SCICOS_BLOCKS}.quit; DestDir: {app}\modules\{#SCICOS_BLOCKS}\etc; Components: {#COMPN_XCOS}

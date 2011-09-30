@@ -12,6 +12,10 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
+if UMFPACK
+noinst_LTLIBRARIES = libsciumfpack-algo.la
+endif
+
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### umfpack : Conf files ####
@@ -19,7 +23,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA =  \
 license.txt \
  \
-version.xml \
+ \
 TAUCS_license.txt \
 UMFPACK_license.txt
 
@@ -52,18 +56,15 @@ sci_gateway/c/sci_umfpack.c
 libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 
-libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) $(GATEWAY_C_SOURCES)
+libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
+libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciumfpack_algo_la_CFLAGS = $(libsciumfpack_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciumfpack_la_SOURCES)
 INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
 
-libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
-$(top_builddir)/modules/mexlib/libmat.la \
-$(top_builddir)/modules/sparse/libscisparse.la \
-$(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciumfpack_la_LIBADD =  libsciumfpack-algo.la
 
 libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \

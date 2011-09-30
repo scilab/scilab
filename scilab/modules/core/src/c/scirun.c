@@ -31,7 +31,6 @@ static void str_copy_buf(register char *a, register char *b, long int la, long i
 int C2F(scirun)(char *startupCode, long int startupCode_len)
 {
   static int k = 0;
-  static int ir = 0;
   /* stack recovery is now handled in errmgr */
   /* int ireftop=0;*/
 

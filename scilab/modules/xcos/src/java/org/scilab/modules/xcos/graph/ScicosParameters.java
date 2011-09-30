@@ -24,7 +24,7 @@ import java.io.Serializable;
  * 
  * This class is a java beans and follow standard properties accessors.
  * 
- * @see http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html
+ * @see <a href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans Bound Properties</a> 
  */
 public class ScicosParameters implements Serializable, Cloneable {
 	/*
@@ -81,43 +81,43 @@ public class ScicosParameters implements Serializable, Cloneable {
 	 * Bean properties
 	 */
 	/**
-	 * Property bound to {@link #finalIntegrationTime} modification.
+	 * Property bound to finalIntegrationTime modification.
 	 */
 	public static final String FINAL_INTEGRATION_TIME_CHANGE = "finalIntegrationTime";
 	/**
-	 * Property bound to {@link #integratorAbsoluteTolerance} modification.
+	 * Property bound to integratorAbsoluteTolerance modification.
 	 */
 	public static final String INTEGRATOR_ABSOLUTE_TOLERANCE_CHANGE = "integratorAbsoluteTolerance";
 	/**
-	 * Property bound to {@link #integratorRelativeTolerance} modification.
+	 * Property bound to integratorRelativeTolerance modification.
 	 */
 	public static final String INTEGRATOR_RELATIVE_TOLERANCE_CHANGE = "integratorRelativeTolerance";
 	/**
-	 * Property bound to {@link #toleranceOnTime} modification.
+	 * Property bound to toleranceOnTime modification.
 	 */
 	public static final String TOLERANCE_ON_TIME_CHANGE = "toleranceOnTime";
 	/**
-	 * Property bound to {@link #maxIntegrationTimeInterval} modification.
+	 * Property bound to maxIntegrationTimeInterval modification.
 	 */
 	public static final String MAX_INTEGRATION_TIME_INTERVAL_CHANGE = "maxIntegrationTimeInterval";
 	/**
-	 * Property bound to {@link #realTimeScaling} modification.
+	 * Property bound to realTimeScaling modification.
 	 */
 	public static final String REAL_TIME_SCALING_CHANGE = "realTimeScaling";
 	/**
-	 * Property bound to {@link #solver} modification.
+	 * Property bound to solver modification.
 	 */
 	public static final String SOLVER_CHANGE = "solver";
 	/**
-	 * Property bound to {@link #maximumStepSize} modification.
+	 * Property bound to maximumStepSize modification.
 	 */
 	public static final String MAXIMUM_STEP_SIZE_CHANGE = "maximumStepSize";
 	/**
-	 * Property bound to {@link #debugLevel} modification.
+	 * Property bound to debugLevel modification.
 	 */
 	public static final String DEBUG_LEVEL_CHANGE = "debugLevel";
 	/**
-	 * Property bound to {@link #context} modification.
+	 * Property bound to context modification.
 	 */
 	public static final String CONTEXT_CHANGE = "context";
 
@@ -134,13 +134,13 @@ public class ScicosParameters implements Serializable, Cloneable {
 	private double maximumStepSize;
 	private int debugLevel;
 	private String[] context;
-	private String version;
+	private final String version;
 
 	/*
 	 * Beans support, used to follow instance modification and validate changes.
 	 */
-	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	private VetoableChangeSupport vcs = new VetoableChangeSupport(this);
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private final VetoableChangeSupport vcs = new VetoableChangeSupport(this);
 
 	/**
 	 * Default constructor

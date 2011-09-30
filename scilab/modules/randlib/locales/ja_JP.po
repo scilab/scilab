@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-04 10:51+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:43+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid ""
@@ -181,6 +182,10 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: 4番目の入力引数の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr "%s: 入力引数の型が間違っています. Low < High となるように指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 列ベクトルを指定してください.\n"
 
@@ -290,20 +295,6 @@ msgstr "DF < 1.0 または DF <= 0.0 または Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "自由度が正ではありません\n"
 
-msgid "Erlang random variable"
-msgstr "Erlang乱数"
-
-msgid "Exponential random variable"
-msgstr "指数乱数"
-
-msgid "Hyper geometric random variable"
-msgstr "超幾何乱数"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 664
-msgid "Low > High\n"
-msgstr "低 > 高\n"
-
 msgid "Missing A and B for beta law\n"
 msgstr "ベータ分布でAおよびBが指定されていません\n"
 
@@ -397,9 +388,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr "ポワソン乱数"
-
 #
 # File: sci_gateway/c/sci_grand.c, line: 510
 #, c-format
@@ -411,10 +399,6 @@ msgstr "Rand(...,'bet',..): A または B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-# File: etc/randlib.start, line: 23
-msgid "Random"
-msgstr "ランダム"
-
 #
 # File: sci_gateway/c/sci_grand.c, line: 642
 msgid "SD < 0.0\n"
@@ -422,15 +406,6 @@ msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab randlibインターフェースがインストールされていません.\n"
-
-msgid "Simulation"
-msgstr "シミュレーション"
-
-msgid "Simulation of a binomial random variable"
-msgstr "二項乱数のシミュレーション"
-
-msgid "Simulation of a discrete random variable"
-msgstr "離散乱数のシミュレーション"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 876
@@ -454,14 +429,8 @@ msgstr "オプション %s は, clcg4 生成器専用です\n"
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "mt状態量の最初の要素 は, [1, 624] の範囲の整数としてください.\n"
 
-msgid "Theory"
-msgstr "理論"
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "この情報は clcg4 生成器にのみ関係します\n"
-
-msgid "Weibull random variable"
-msgstr "ワイブル乱数"
 
 msgid "X0 is empty\n"
 msgstr "X0が空です\n"
@@ -470,6 +439,42 @@ msgstr "X0が空です\n"
 # File: sci_gateway/c/sci_grand.c, line: 685
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a と b は (b-a+1) <= 2147483561 の整数でなければなりません"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 617
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+
+msgid "Erlang random variable"
+msgstr "Erlang乱数"
+
+msgid "Exponential random variable"
+msgstr "指数乱数"
+
+msgid "Hyper geometric random variable"
+msgstr "超幾何学的乱数"
+
+msgid "Poisson random variable"
+msgstr "ポワソン乱数"
+
+# File: etc/randlib.start, line: 23
+msgid "Random"
+msgstr "ランダム"
+
+msgid "Simulation"
+msgstr "シミュレーション"
+
+msgid "Simulation of a binomial random variable"
+msgstr "二項乱数のシミュレーション"
+
+msgid "Simulation of a discrete random variable"
+msgstr "離散乱数のシミュレーション"
+
+msgid "Theory"
+msgstr "理論"
+
+msgid "Weibull random variable"
+msgstr "ワイブル乱数"
 
 msgid "binomial random variable"
 msgstr "二項乱数"
@@ -482,8 +487,3 @@ msgstr "離散一様乱数"
 
 msgid "geometric random variable"
 msgstr "幾何乱数"
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 617
-msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
-msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"

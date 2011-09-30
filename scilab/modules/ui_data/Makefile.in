@@ -69,9 +69,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/ui_data
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -79,10 +80,10 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
-	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -115,28 +116,30 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciui_data_la_rootdir)" \
 	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciui_data_la_iconsdir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libsciui_data_algo_la_LIBADD =
+am__objects_1 =
+am__objects_2 = libsciui_data_algo_la-BrowseVar.lo \
+	libsciui_data_algo_la-EditVar.lo
+am__objects_3 = libsciui_data_algo_la-UpdateBrowseVar.lo
+am_libsciui_data_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
+libsciui_data_algo_la_OBJECTS = $(am_libsciui_data_algo_la_OBJECTS)
+@GUI_TRUE@am_libsciui_data_algo_la_rpath =
 libsciui_data_disable_la_LIBADD =
-am__objects_1 = libsciui_data_disable_la-noui_data.lo
-am_libsciui_data_disable_la_OBJECTS = $(am__objects_1)
+am__objects_4 = libsciui_data_disable_la-noui_data.lo
+am_libsciui_data_disable_la_OBJECTS = $(am__objects_4)
 libsciui_data_disable_la_OBJECTS =  \
 	$(am_libsciui_data_disable_la_OBJECTS)
 libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
 	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libsciui_data_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 =
-am__objects_3 = libsciui_data_la-BrowseVar.lo \
-	libsciui_data_la-EditVar.lo
-am__objects_4 = libsciui_data_la-gw_ui_data.lo
-am__objects_5 = libsciui_data_la-sci_editvar.lo \
+libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la
+am__objects_5 = libsciui_data_la-gw_ui_data.lo
+am__objects_6 = libsciui_data_la-sci_editvar.lo \
 	libsciui_data_la-sci_browsevar.lo
-am_libsciui_data_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5) $(am__objects_2)
+am_libsciui_data_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
 libsciui_data_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -164,9 +167,11 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciui_data_disable_la_SOURCES) \
+SOURCES = $(libsciui_data_algo_la_SOURCES) \
+	$(libsciui_data_disable_la_SOURCES) \
 	$(libsciui_data_la_SOURCES)
-DIST_SOURCES = $(libsciui_data_disable_la_SOURCES) \
+DIST_SOURCES = $(libsciui_data_algo_la_SOURCES) \
+	$(libsciui_data_disable_la_SOURCES) \
 	$(libsciui_data_la_SOURCES)
 DATA = $(libsciui_data_la_etc_DATA) $(libsciui_data_la_root_DATA) \
 	$(libsciui_data_la_sci_gateway_DATA) \
@@ -176,6 +181,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -276,6 +282,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -320,11 +327,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -431,7 +433,7 @@ modulename = ui_data
 
 #### ui_data : Conf files ####
 libsciui_data_la_rootdir = $(mydatadir)
-libsciui_data_la_root_DATA = license.txt version.xml
+libsciui_data_la_root_DATA = license.txt 
 
 #### ui_data : init scripts ####
 libsciui_data_la_etcdir = $(mydatadir)/etc
@@ -507,13 +509,12 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 					  src/jni/EditVar.cpp
 
 UI_DATA_C_SOURCES = 
-UI_DATA_CPP_SOURCES = 
+UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
 src/jni/EditVar.giws.xml
 
 @GIWS_TRUE@BUILT_SOURCES = giws
-@SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
 						sci_gateway/cpp/sci_browsevar.cpp
@@ -545,20 +546,17 @@ UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
 libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_2)
+@GUI_TRUE@noinst_LTLIBRARIES = libsciui_data-algo.la 
 libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = 
-libsciui_data_la_LIBADD = \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libsciui_data_la_LIBADD = libsciui_data-algo.la
 
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -614,6 +612,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -645,6 +652,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libsciui_data-algo.la: $(libsciui_data_algo_la_OBJECTS) $(libsciui_data_algo_la_DEPENDENCIES) 
+	$(CXXLINK) $(am_libsciui_data_algo_la_rpath) $(libsciui_data_algo_la_OBJECTS) $(libsciui_data_algo_la_LIBADD) $(LIBS)
 libsciui_data-disable.la: $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_DEPENDENCIES) 
 	$(libsciui_data_disable_la_LINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
 libsciui_data.la: $(libsciui_data_la_OBJECTS) $(libsciui_data_la_DEPENDENCIES) 
@@ -656,9 +665,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-BrowseVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-EditVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_disable_la-noui_data.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-BrowseVar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-EditVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_browsevar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
@@ -719,19 +729,26 @@ libsciui_data_la-gw_ui_data.lo: sci_gateway/c/gw_ui_data.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciui_data_la-BrowseVar.lo: src/jni/BrowseVar.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-BrowseVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-BrowseVar.Tpo -c -o libsciui_data_la-BrowseVar.lo `test -f 'src/jni/BrowseVar.cpp' || echo '$(srcdir)/'`src/jni/BrowseVar.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-BrowseVar.Tpo $(DEPDIR)/libsciui_data_la-BrowseVar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/BrowseVar.cpp' object='libsciui_data_la-BrowseVar.lo' libtool=yes @AMDEPBACKSLASH@
+libsciui_data_algo_la-BrowseVar.lo: src/jni/BrowseVar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-BrowseVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-BrowseVar.Tpo -c -o libsciui_data_algo_la-BrowseVar.lo `test -f 'src/jni/BrowseVar.cpp' || echo '$(srcdir)/'`src/jni/BrowseVar.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-BrowseVar.Tpo $(DEPDIR)/libsciui_data_algo_la-BrowseVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/BrowseVar.cpp' object='libsciui_data_algo_la-BrowseVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-BrowseVar.lo `test -f 'src/jni/BrowseVar.cpp' || echo '$(srcdir)/'`src/jni/BrowseVar.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-BrowseVar.lo `test -f 'src/jni/BrowseVar.cpp' || echo '$(srcdir)/'`src/jni/BrowseVar.cpp
 
-libsciui_data_la-EditVar.lo: src/jni/EditVar.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-EditVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-EditVar.Tpo -c -o libsciui_data_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-EditVar.Tpo $(DEPDIR)/libsciui_data_la-EditVar.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/EditVar.cpp' object='libsciui_data_la-EditVar.lo' libtool=yes @AMDEPBACKSLASH@
+libsciui_data_algo_la-EditVar.lo: src/jni/EditVar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-EditVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-EditVar.Tpo -c -o libsciui_data_algo_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-EditVar.Tpo $(DEPDIR)/libsciui_data_algo_la-EditVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/EditVar.cpp' object='libsciui_data_algo_la-EditVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-EditVar.lo `test -f 'src/jni/EditVar.cpp' || echo '$(srcdir)/'`src/jni/EditVar.cpp
+
+libsciui_data_algo_la-UpdateBrowseVar.lo: src/cpp/UpdateBrowseVar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_algo_la-UpdateBrowseVar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Tpo -c -o libsciui_data_algo_la-UpdateBrowseVar.lo `test -f 'src/cpp/UpdateBrowseVar.cpp' || echo '$(srcdir)/'`src/cpp/UpdateBrowseVar.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Tpo $(DEPDIR)/libsciui_data_algo_la-UpdateBrowseVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/UpdateBrowseVar.cpp' object='libsciui_data_algo_la-UpdateBrowseVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_algo_la-UpdateBrowseVar.lo `test -f 'src/cpp/UpdateBrowseVar.cpp' || echo '$(srcdir)/'`src/cpp/UpdateBrowseVar.cpp
 
 libsciui_data_la-sci_editvar.lo: sci_gateway/cpp/sci_editvar.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_editvar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_editvar.Tpo -c -o libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp
@@ -957,7 +974,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1036,14 +1053,14 @@ uninstall-am: uninstall-libsciui_data_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciui_data_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciui_data_la_etcDATA \
 	install-libsciui_data_la_rootDATA \
 	install-libsciui_data_la_sci_gatewayDATA install-man \
 	install-nobase_libsciui_data_la_iconsDATA install-pdf \

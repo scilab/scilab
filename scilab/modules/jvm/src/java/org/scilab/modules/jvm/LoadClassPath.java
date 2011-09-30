@@ -30,6 +30,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 
 /**
  * Utility class to ease the jar loading management.
@@ -65,7 +66,7 @@ public final class LoadClassPath {
 		XPath xpath = factory.newXPath();
 		
 		// initialize document factory
-		DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilderFactory domFactory = ScilabDocumentBuilderFactory.newInstance();
 		domFactory.setValidating(false);
 	    domFactory.setNamespaceAware(true);
 	   

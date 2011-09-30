@@ -868,6 +868,12 @@ function x2f_reset_help_mod_var(language)
         end
       end
     end
+
+    // We force to add windows_tools module in help
+    // Bug 9790
+    if getos() <> "Windows" then
+      cleaned_ordered_modules(k) = "windows_tools";
+    end
     
     size_cleaned_modules = size(cleaned_ordered_modules, "*");
     

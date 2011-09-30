@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-07 12:17+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:48+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -46,9 +47,6 @@ msgstr " została obcięta do: %s.\n"
 #, c-format
 msgid " input line longer than buffer size: %d\n"
 msgstr " wprowadzona linia jest dłuższa niż rozmiar bufora: %d\n"
-
-msgid "\"unknown data\""
-msgstr "\"nieznane dane\""
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -204,31 +202,12 @@ msgstr ""
 "   zwrócono poprzednie rozwiązanie.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: Typ %s nie jest obsługiwany : Zdefiniuj funkcję %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: Zły format eksportu: %s"
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Niewłaściwe parametry wejściowe.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-"%s: Niewłaściwa liczba parametru(ów) wejściowych: oczekiwana jest od %d do "
-"%d."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: Niewłaściwa liczba argumentów wejściowych.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: Niewłaściwa liczba parametrów wejściowych: oczekiwana jest od %d do %d."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -252,11 +231,11 @@ msgstr "%s: Niewłaściwa liczba parametrów wyjściowych.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: %d expected.\n"
-msgstr "%s: Niewłaściwy rozmiar parametru %d: Oczekiwano %d.\n"
+msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
-msgstr "%s: Niewłaściwy rozmiar parametru %d: Oczekiwano (%d,%d).\n"
+msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano (%d,%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -272,10 +251,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany wektor.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu nr %d: Oczekiwany typ boolean.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -355,21 +330,8 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Nieprawidłowa wartość argumentu wejściowego nr %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest ''%s'', "
-"''%s'', ''%s'', ''%s'', ''%s'' lub ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -511,10 +473,6 @@ msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) musi być mniejsza niż 40.\n"
 
 #, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: system nie może być wyświetlany na tej stronie.\n"
-
-#, c-format
 msgid "%s: termination because of roundoff noise.\n"
 msgstr "%s; przerwano z powodu zaokrąglenia szumu.\n"
 
@@ -553,13 +511,13 @@ msgstr ""
 msgid "Argument type must be boolean.\n"
 msgstr "Argument musi być typu boolean.\n"
 
-msgid "Arguments are :\n"
-msgstr "Argumenty są:\n"
-
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 "W czasie: %s. Zbyt wiele iteracji do osiągnięcia wymaganej dokładności.\n"
+
+msgid "Bad call to a scilab function ?\n"
+msgstr ""
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -644,15 +602,8 @@ msgid "Eye variable undefined in this context.\n"
 msgstr "Zmienna Eye nie jest zdefiniowana w tym kontekście.\n"
 
 #, c-format
-msgid ""
-"Fatal error!!! Your variables have been saved in the file : %s\n"
-"                                   Bad call to a scilab function ?\n"
-"                                   Otherwise, send a bug report to :\n"
+msgid "Fatal error!!! Your variables have been saved in the file : %s\n"
 msgstr ""
-"Błąd krytyczny!!! Wartości zmiennych zostały zapisane do pliku : %s\n"
-"                                   Źle wywołanie funkcji Scilab ?\n"
-"                                   W przeciwnym razie wyszli informacje o "
-"błędzie do :\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -900,8 +851,8 @@ msgstr "Nie realizowane w Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Zmienna zero nie może być tutaj użyta.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr "Operandy operacji / i \\ nie mogą zawierać NaN albo Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr "Operator z / i \\ operacje nie mogą zawierać NaN z Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim zatrzymane: osiągnięto maksymalną liczbę połączeń do f.\n"
@@ -918,6 +869,9 @@ msgstr "Nie wykonano optymalizacji: powrót do punktu początkowego.\n"
 msgid "Optimization stops because too small variations for x.\n"
 msgstr ""
 "Optymalizacja została przerwana z powodu zbyt małej wariacji dla x.\n"
+
+msgid "Otherwise, send a bug report to :"
+msgstr ""
 
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr "Pauza: wpisz brakujące linie aby kontynuować.\n"
@@ -1114,6 +1068,9 @@ msgstr "Zmienna nie zdefiniowana.\n"
 msgid "Undefined variable: %s\n"
 msgstr "Niezdefiniowana zmienna: %s\n"
 
+msgid "Unknown data.\n"
+msgstr ""
+
 msgid "Unknown file format.\n"
 msgstr "Nieznany format pliku.\n"
 
@@ -1268,8 +1225,8 @@ msgstr "Nieprawidłowy pierwszy argument.\n"
 msgid "Wrong input argument %d.\n"
 msgstr "Nieprawidłowy argument wejściowy %d.\n"
 
-msgid "Wrong number of input arguments:\n"
-msgstr "Nieprawidłowa liczba argumentów wejściowych:\n"
+msgid "Wrong number of input arguments."
+msgstr ""
 
 msgid ""
 "Wrong number of input arguments: This function has no input argument.\n"
@@ -1277,8 +1234,8 @@ msgstr ""
 "Nieprawidłowa liczba argumentów wejściowych: ta funkcja nie ma argumentów "
 "wejściowych.\n"
 
-msgid "Wrong number of output arguments\n"
-msgstr "Nieprawidłowa liczba argumentów wyjściowych.\n"
+msgid "Wrong number of output arguments.\n"
+msgstr ""
 
 msgid ""
 "Wrong number of output arguments: This function has no output argument.\n"
@@ -1515,27 +1472,41 @@ msgid "varargout keyword cannot be used here.\n"
 msgstr "słowo kluczowe varargout nie może być tu użyte.\n"
 
 #, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: Błąd alokacji pamięci.\n"
-
-#~ msgid "'o' format not allowed."
-#~ msgstr "format 'o' jest niedozwolony."
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Typ %s nie jest obsługiwany : Zdefiniuj funkcję %s2%s."
 
 #, c-format
-#~ msgid ""
-#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
-#~ "Bad call to a scilab function ?\n"
-#~ "Otherwise, send a bug report to :\n"
-#~ msgstr ""
-#~ "Błąd krytyczny!!! Twoje zmienne zostały zapisane w pliku: %s.\n"
-#~ "Błędne wywołanie funkcji Scilab?\n"
-#~ "W przeciwnym razie, wyślij raport o błędzie do:\n"
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Zły format eksportu: %s"
 
 #, c-format
-#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwane jest "
-#~ "przynajmniej %d.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+"%s: Niewłaściwa liczba parametru(ów) wejściowych: oczekiwana jest od %d do "
+"%d."
 
-#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-#~ msgstr "Operator z / i \\ operacje nie mogą zawierać NaN z Inf.\n"
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+"%s: Niewłaściwa liczba parametrów wejściowych: oczekiwana jest od %d do %d."
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s: Niewłaściwy typ argumentu nr %d: Oczekiwany typ boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwana jest '%s', "
+"'%s', '%s', '%s', '%s' lub '%s'.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: system nie może być wyświetlany na tej stronie.\n"

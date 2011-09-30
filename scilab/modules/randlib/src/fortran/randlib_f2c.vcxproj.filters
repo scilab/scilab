@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran files">
+      <UniqueIdentifier>{7e9d3719-3f18-46aa-b279-81572ed0acfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{ba572d34-bfe7-4584-993a-638724d545ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="genchi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genexp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gengam.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmul.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gennch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gennf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gennor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genprm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genunf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ignnbn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="phrtsd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setgmn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="snorm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="genchi.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genexp.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gengam.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genmn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genmul.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gennch.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gennf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="gennor.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genprm.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="genunf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ignnbn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="phrtsd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="setgmn.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="snorm.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\sci_gateway\randlib_gateway.xml" />
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="Output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="randlib_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+  </ItemGroup>
+</Project>

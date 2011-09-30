@@ -6,16 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-18 12:20+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2011-09-01 09:28+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -35,10 +36,6 @@ msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 複�
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -65,16 +62,5 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
 
 #, c-format
-#~ msgid "Function %s is obsolete."
-#~ msgstr "関数 %s は廃止対象となっています."
-
-#, c-format
-#~ msgid "Please use %s instead."
-#~ msgstr "代わりに %s を使用してください."
-
-#, c-format
-#~ msgid "This function will be permanently removed in Scilab %s"
-#~ msgstr "この関数は Scilab %s  以降では削除される予定です."
-
-#~ msgid "Warning: "
-#~ msgstr "警告: "
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"

@@ -74,7 +74,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   
 
   LhsVar(1)=0; 
-	C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

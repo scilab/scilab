@@ -14,26 +14,28 @@ sci_gateway/c/sci_ldivf.c \
 sci_gateway/c/sci_addsubf.c \
 sci_gateway/c/sci_rdivf.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_addsubf.f \
-sci_gateway/fortran/sci_mulf.f \
-sci_gateway/fortran/sci_ldivf.f \
-sci_gateway/fortran/sci_rdivf.f
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_addsubf.f \
+sci_gateway/fortran/sci_f_mulf.f \
+sci_gateway/fortran/sci_f_ldivf.f \
+sci_gateway/fortran/sci_f_rdivf.f
 
 libscisymbolic_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
+noinst_LTLIBRARIES = libscisymbolic-algo.la
 
 libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-
+libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
 
-libscisymbolic_la_LIBADD =  $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 
 
 
@@ -43,7 +45,7 @@ modulename=symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(mydatadir)
-libscisymbolic_la_root_DATA =  license.txt version.xml
+libscisymbolic_la_root_DATA =  license.txt 
 
 
 #### symbolic : init scripts ####

@@ -6,15 +6,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-06-20 02:20+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"PO-Revision-Date: 2011-09-01 09:52+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: \n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr "%s：第 %d 個輸入參數大小錯誤：應為單一字元。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr "%s：第 %d 個輸入參數形式錯誤：應是介於0和1之間的數值。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
+msgstr "%s：第 %d 個輸入參數形式錯誤：應為整數或圖形代碼。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr "%s: 輸入參數型別有誤#%d: 單一字元字串才對.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s' .\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Scilab Graphic 匯出模組未安裝.\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "Scilab graphic 模組 已被-nogui or -nwni模式停用.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -23,22 +66,6 @@ msgstr "%s: %s 必須在任何動作之前被呼叫.\n"
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
 msgstr "%s: EMF格式只在Microsoft Windows OS之下是有效的.\n"
-
-#, c-format
-msgid "%s: GL2PS error during export.\n"
-msgstr "%s: 匯出過程中 GL2PS 錯誤.\n"
-
-#, c-format
-msgid "%s: OpenGL error during export.\n"
-msgstr "%s: 匯出過程中OpenGL錯誤.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, figure is too big.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to create export file, invalid file.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Unable to create export file, permission denied.\n"
@@ -50,7 +77,7 @@ msgstr "%s: 不能執行pstoedit.\n"
 
 #, c-format
 msgid "%s: Unable to find pstoedit.\n"
-msgstr ""
+msgstr "%s:找不到 pstoedit 編輯器.\n"
 
 #, c-format
 msgid ""
@@ -60,9 +87,9 @@ msgstr "%s:不能執行pstoedit. 請安裝pstoedit或者將它加入PATH 以便�
 
 #, c-format
 msgid ""
-"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
-"''%s'' or ''%s'' drivers.\n"
-msgstr "%s:輸入參數數目有誤:''%s'' or ''%s''  驅動程式的''%s'', ''%s''字串輸入參數才對.\n"
+"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
+"'%s' drivers.\n"
+msgstr "%s:輸入參數數目有誤:'%s' or '%s'  驅動程式的'%s', '%s'字串輸入參數才對.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -71,88 +98,28 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
-"''%s'' or ''%s'' drivers.\n"
-msgstr "%s:輸入參數數目有誤:函式沒有''%s'' or ''%s''  驅動程式的輸入參數.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr ""
+"'%s' or '%s' drivers.\n"
+msgstr "%s:輸入參數數目有誤:函式沒有'%s' or '%s'  驅動程式的輸入參數.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr "%s: 輸入參數型別有誤#%d: 單一字元字串才對.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是字串型態.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s'' .\n"
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s:輸入參數值有誤:#%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s''  才對.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s:輸入參數值有誤:#%d: '%s', '%s', '%s', '%s', '%s' or '%s'  才對.\n"
 
 msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr ""
-
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Scilab Graphic 匯出模組未安裝.\n"
+msgstr "請安裝 Ghostscript 32位元以進行匯出 .FIG 的檔案."
 
 msgid "Scilab error"
-msgstr ""
-
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Scilab graphic 模組 已被-nogui or -nwni模式停用.\n"
+msgstr "Scilab 錯誤"
 
 msgid "error"
-msgstr ""
-
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
-#~ msgstr "%s: 輸入參數型別有誤#%d: 正整數才對.\n"
-
-#, c-format
-#~ msgid "%s has been replaced by %s"
-#~ msgstr "%s 已經被%s 置換掉"
-
-#, c-format
-#~ msgid "%s: Unable to create export file, figure is too complex.\n"
-#~ msgstr "%s: 無法建立匯出檔.圖太複雜.\n"
-
-#~ msgid ""
-#~ "xbasimp has been replaced by toprint for printing and by xs2ps for the file "
-#~ "export"
-#~ msgstr "xbasimp已經被列印的toprint 和匯出檔案的xs2ps 取代掉。"
+msgstr "發生錯誤"

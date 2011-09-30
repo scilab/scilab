@@ -7,5 +7,11 @@ EXPORTS
 ;fileio
 ;
 cluni0_
-getshortpathname_
-
+mopen_
+mputnc_
+mtell_
+mgetnc_
+mclose_ 
+mseek_
+getfiletype_ 
+getfileinfo_

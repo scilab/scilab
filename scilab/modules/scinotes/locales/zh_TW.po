@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-02-14 04:22+0000\n"
-"Last-Translator: Kate Anderson <katelovegod@msn.com>\n"
+"PO-Revision-Date: 2011-05-23 01:34+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: \n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " 儲存後又再修正\n"
 "儲存"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%目錄"
 
@@ -33,15 +35,15 @@ msgstr "%s: 記憶體空間不足。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
+msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr ""
+msgstr "%s: 錯誤的 %d 參數形式：單一字串。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
@@ -49,6 +51,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
+
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 
 msgid "... file with echo"
@@ -58,6 +66,14 @@ msgid "... file with no echo"
 msgstr ""
 
 msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 msgid "?"
@@ -99,16 +115,19 @@ msgstr ""
 msgid "Auto (Default)"
 msgstr ""
 
-msgid "Auto-completion on (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
 msgstr ""
 
-msgid "Auto-completion on if,function,..."
+msgid "Auto-completion on if, function, ..."
 msgstr ""
 
 msgid "Background Color"
 msgstr ""
 
 msgid "Backward"
+msgstr ""
+
+msgid "Base directory:"
 msgstr ""
 
 msgid "Binary file: read-only mode"
@@ -132,10 +151,22 @@ msgstr ""
 msgid "Case sensitive"
 msgstr ""
 
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
+
 msgid "Change Color"
 msgstr ""
 
 msgid "Change Colors"
+msgstr ""
+
+msgid "Choose the search base directory"
+msgstr ""
+
+msgid "Choose..."
 msgstr ""
 
 msgid "Circular search"
@@ -189,6 +220,9 @@ msgstr ""
 msgid "Copy as HTML with line number"
 msgstr ""
 
+msgid "Copy full path"
+msgstr ""
+
 msgid "Copy selection in a new tab"
 msgstr ""
 
@@ -240,6 +274,10 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr ""
+
 msgid "Enable Auto Reformat"
 msgstr ""
 
@@ -285,6 +323,9 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 
+msgid "File pattern"
+msgstr ""
+
 msgid "Find"
 msgstr ""
 
@@ -292,6 +333,12 @@ msgid "Find Next"
 msgstr ""
 
 msgid "Find Previous"
+msgstr ""
+
+msgid "Find files"
+msgstr ""
+
+msgid "Find word in files"
 msgstr ""
 
 msgid "Find/Replace"
@@ -322,6 +369,9 @@ msgid "Go to previous anchor"
 msgstr ""
 
 msgid "Goto line"
+msgstr ""
+
+msgid "Graphics handle field"
 msgstr ""
 
 msgid "Help about '"
@@ -357,6 +407,7 @@ msgstr ""
 msgid "Incremental Search"
 msgstr ""
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -366,13 +417,18 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Line Endings"
+msgstr ""
+
+msgid "Line by line"
 msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
@@ -406,6 +462,9 @@ msgid "Next tab"
 msgstr ""
 
 msgid "No Line Numbering"
+msgstr ""
+
+msgid "No help"
 msgstr ""
 
 msgid "No split"
@@ -486,13 +545,28 @@ msgstr ""
 msgid "Print Preview"
 msgstr ""
 
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr ""
 
 msgid "Recent Files"
 msgstr ""
 
+msgid "Recursive"
+msgstr ""
+
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
+msgstr ""
+
+msgid "Regex"
+msgstr ""
+
+msgid "Regular expression (Word)"
 msgstr ""
 
 msgid "Regular expressions"
@@ -552,6 +626,12 @@ msgstr ""
 msgid "Save All"
 msgstr ""
 
+msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
+msgstr ""
+
 msgid "Save as"
 msgstr ""
 
@@ -582,6 +662,12 @@ msgid "Scope"
 msgstr ""
 
 msgid "Search"
+msgstr ""
+
+msgid "Search Files..."
+msgstr ""
+
+msgid "Search in Files..."
 msgstr ""
 
 msgid "Select All"
@@ -623,6 +709,9 @@ msgstr ""
 msgid "Show/Hide ToolBar"
 msgstr ""
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr ""
 
@@ -635,9 +724,13 @@ msgstr ""
 msgid "Split vertically"
 msgstr ""
 
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr ""
 
+#, c-format
 msgid "String %s not found"
 msgstr ""
 
@@ -653,11 +746,13 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -672,6 +767,7 @@ msgstr ""
 msgid "The file could not be saved."
 msgstr ""
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -705,6 +801,9 @@ msgstr ""
 msgid "Unix (LF)"
 msgstr ""
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr ""
 
@@ -732,7 +831,13 @@ msgstr ""
 msgid "Windows/DOS (CR + LF)"
 msgstr ""
 
+msgid "Word"
+msgstr ""
+
 msgid "Word Wrap"
+msgstr ""
+
+msgid "Word pattern"
 msgstr ""
 
 msgid "Working directories;Add a directory;Remove last directory"

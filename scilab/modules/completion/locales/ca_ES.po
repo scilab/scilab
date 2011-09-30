@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2009-10-22 08:43+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
@@ -14,7 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -61,6 +62,9 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada té un valor incorrecte: Ha de ser '%s', '%s', '%s', "
 "'%s', '%s' o '%s'.\n"
+
+msgid "File or Directory"
+msgstr ""
 
 msgid "Scilab completion module not installed.\n"
 msgstr "No s'ha instal·lat el mòdul completion de Scilab.\n"

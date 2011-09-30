@@ -20,7 +20,11 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
+libscihelptools_la_LIBADD = libscihelptools-algo.la
+libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
+libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+noinst_LTLIBRARIES = libscihelptools-algo.la
 
 if GIWS
 BUILT_SOURCES=giws
@@ -51,7 +55,8 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
@@ -63,7 +68,7 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA =  license.txt version.xml
+libscihelptools_la_root_DATA =  license.txt 
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
@@ -104,7 +109,14 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/scilab.rnc \
+libscihelptools_la_schema_DATA = schema/docbook.rng \
+schema/dbits.rng \
+schema/mathml3-common.rng \
+schema/docbookxi.rng \
+schema/mathml3-content.rng \
+schema/mathml3.rng \
+schema/scilab.rng \
+schema/mathml3-presentation.rng \
 schema/extendedStyle.xsl
 
 #### helptools : pages files ####

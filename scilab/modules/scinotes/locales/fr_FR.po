@@ -8,22 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 19:54+0000\n"
-"Last-Translator: Michel Hua <Unknown>\n"
+"PO-Revision-Date: 2011-08-22 14:54+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: fr\n"
 
 msgid ""
 " has been modified since last save\n"
 "save it?"
 msgstr ""
-" a été modifié depuis la dernière sauvegarde\n"
-"le sauver ?"
+" a été modifié depuis le dernier enregistrement\n"
+"L'enregistrer ?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s est un répertoire."
 
@@ -35,33 +36,37 @@ msgstr "%s : Plus de mémoire disponible.\n"
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d : Mêmes "
+"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
-msgstr "%s : Type incorrect de l'argument %d : un seul string.\n"
+msgstr ""
+"%s : Type erroné de l'argument %d : Une seule chaîne de caractères.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr "%s : type invalide pour l'argument %d : matrice réelle attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument n° %d: Une matrice réelle ou 'readonly' "
+"%s : Type erroné de l'argument %d : Une matrice réelle ou 'readonly' "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n°%d : Matrice de chaînes de caractères "
+"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
 "attendue.\n"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
 msgid "(* for any string and ? for any character)"
+msgstr "(* pour une chaîne de caractères et ? pour un caractère)"
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
+"(~ pour le répertoire home de l'utilisateur et SCI pour le répertoire de "
+"base de Scilab)"
 
 msgid "... file with echo"
 msgstr "... fichier avec écho"
@@ -74,11 +79,13 @@ msgstr "... la sélection avec écho;... jusqu'au curseur, avec écho"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s correspondance)</i></html>"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s correspondances)</i></html>"
 
@@ -98,13 +105,13 @@ msgid "Alphabetic order"
 msgstr "Ordre alphabétique"
 
 msgid "An error occured when exporting the code using FOP"
-msgstr "Une erreur a eu lieu pendant l'exécution du code avec FOP"
+msgstr "Une erreur s'est produite pendant l'exécution du code avec FOP"
 
 msgid "An error occured when printing"
-msgstr "Une erreur a eu lieu pendant l'impression"
+msgstr "Une erreur s'est produite pendant l'impression"
 
 msgid "Anchor's name: "
-msgstr "Nom d'ancre : "
+msgstr "Nom de l'ancre : "
 
 msgid "Anchor: "
 msgstr "Ancre : "
@@ -121,11 +128,11 @@ msgstr "Êtes-vous sûr de vouloir fermer SciNotes ?"
 msgid "Auto (Default)"
 msgstr "Auto (Défaut)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Complétion automatique sur (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
+msgstr "Complétion automatique sur (, [, ..."
 
-msgid "Auto-completion on if,function,..."
-msgstr "Complétion automatique sur if,function,..."
+msgid "Auto-completion on if, function, ..."
+msgstr "Complétion automatique sur if, function, ..."
 
 msgid "Background Color"
 msgstr "Couleur de fond"
@@ -139,7 +146,7 @@ msgid "Base directory:"
 msgstr "Répertoire de base :"
 
 msgid "Binary file: read-only mode"
-msgstr "Fichier binaire : mode en lecture-seule"
+msgstr "Fichier binaire : mode en lecture seule"
 
 msgid "Bold"
 msgstr "Gras"
@@ -148,32 +155,28 @@ msgid "Cancel"
 msgstr "Annuler"
 
 msgid "Cannot guess the file encoding."
-msgstr "Impossible de supposer l'encodage du fichier"
+msgstr "Impossible de supposer l'encodage du fichier."
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
-msgstr "Ne peut pas charger \"scinotesConfiguration.xml\""
+msgstr "Impossible de charger \"scinotesConfiguration.xml\""
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr "Capitaliser sélection; caractère majuscule"
+msgstr "Capitaliser la sélection;Caractère en majuscule"
 
 msgid "Case sensitive"
-msgstr "Tenir compte de la casse"
+msgstr "Respecter la casse"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 323
 msgid "Case-sensitivity (File name)"
-msgstr "Sensibilité à la casse (nom de fichier)"
+msgstr "Respecter la casse (nom de fichier)"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 322
 msgid "Case-sensitivity (Word)"
-msgstr "Sensibilité à la casse (mot)"
+msgstr "Respecter la casse (mot)"
 
 msgid "Change Color"
-msgstr "Changez la couleur"
+msgstr "Changer la couleur"
 
 msgid "Change Colors"
-msgstr "Changez les couleurs"
+msgstr "Changer les couleurs"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
@@ -189,19 +192,19 @@ msgid "Circular search"
 msgstr "Recherche circulaire"
 
 msgid "Clone and close tab in a new window"
-msgstr "Clône et ferme l'onglet dans une nouvelle fenêtre"
+msgstr "Dupliquer et fermer l'onglet dans une nouvelle fenêtre"
 
 msgid "Clone tab in a new window"
-msgstr "Dupliquer un onglet dans une nouvelle fenêtre"
+msgstr "Dupliquer l'onglet dans une nouvelle fenêtre"
 
 msgid "Close"
 msgstr "Fermer"
 
 msgid "Close All"
-msgstr "Tout fermer"
+msgstr "Fermer tout"
 
 msgid "Close All But This"
-msgstr "Tout fermer sauf le document actif"
+msgstr "Fermer tout sauf le document actif"
 
 msgid "Code Navigator"
 msgstr "Navigateur de code"
@@ -234,7 +237,10 @@ msgid "Copy"
 msgstr "Copier"
 
 msgid "Copy as HTML with line number"
-msgstr "Copier en HTML avec numéros de ligne"
+msgstr "Copier en HTML avec les numéros de ligne"
+
+msgid "Copy full path"
+msgstr "Copier le chemin complet"
 
 msgid "Copy selection in a new tab"
 msgstr "Copier la sélection dans un nouvel onglet"
@@ -249,10 +255,10 @@ msgid "Correct Indentation"
 msgstr "Corriger l'indentation"
 
 msgid "Could not find the console nor the InterpreterManagement."
-msgstr "Ni la console, ni l'InterpreterManagement n'ont pu être trouvé"
+msgstr "Impossible de trouver la console ou l'InterpreterManagement."
 
 msgid "Could not find the temporary file."
-msgstr "Le fichier temporaire n'a pu être trouvé"
+msgstr "Impossible de trouver le fichier temporaire."
 
 msgid "Current file encoding"
 msgstr "Encodage du fichier actuel"
@@ -268,13 +274,13 @@ msgstr "Standard"
 
 msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
 msgstr ""
-"Encodage de fichier par défaut SciNote;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+"Encodage du fichier par défaut SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
 
 msgid "Delete"
 msgstr "Supprimer"
 
 msgid "Detach tab in new window"
-msgstr "Détacher l'onglet dans une nouvelle fenêtre"
+msgstr "Extraire la tabulation dans une nouvelle fenêtre"
 
 msgid "Direction"
 msgstr "Direction"
@@ -286,20 +292,14 @@ msgid "Double chevrons"
 msgstr "Double chevrons"
 
 msgid "Edit"
-msgstr "Edition"
+msgstr "Édition"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
-msgid "Elapsed time: %s second."
-msgstr "Temps écoulé: %s seconde."
-
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
-msgid "Elapsed time: %s seconds."
-msgstr "Temps écoulé: %s secondes."
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr "Temps écoulé : %s sec."
 
 msgid "Enable Auto Reformat"
-msgstr "Activez la mise en forme automatique"
+msgstr "Activer la mise en forme automatique"
 
 msgid "Encoding"
 msgstr "Encodage"
@@ -308,19 +308,19 @@ msgid "Encoding problems"
 msgstr "Problèmes d'encodage"
 
 msgid "Enter line number"
-msgstr "Entrez le numéro de ligne"
+msgstr "Entrer le numéro de ligne"
 
 msgid "Error while reading the String"
 msgstr "Erreur pendant la lecture de la chaîne de caractères"
 
 msgid "Evaluate Selection"
-msgstr "Evaluer la sélection"
+msgstr "Évaluer la sélection"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "Evaluer la sélection avec écho;Evaluer jusqu'au curseur, avec écho"
+msgstr "Évaluer la sélection avec écho;Évaluer jusqu'au curseur, avec écho"
 
 msgid "Evaluate from beginning..."
-msgstr "Évaluer à partir du commencement..."
+msgstr "Évaluer depuis le début..."
 
 msgid "Exact"
 msgstr "Exact"
@@ -352,26 +352,22 @@ msgid "Find"
 msgstr "Rechercher"
 
 msgid "Find Next"
-msgstr "Rechercher le suivant"
+msgstr "Rechercher suivant"
 
 msgid "Find Previous"
-msgstr "Rechercher le précédent"
+msgstr "Rechercher précédent"
 
-#
-# File: scilab_fake_localization_file.c, line: 52
 msgid "Find files"
-msgstr "Chercher des fichiers"
+msgstr "Rechercher des fichiers"
 
-#
-# File: scilab_fake_localization_file.c, line: 51
 msgid "Find word in files"
-msgstr "Chercher une chaîne dans des fichiers"
+msgstr "Rechercher une chaîne dans des fichiers"
 
 msgid "Find/Replace"
 msgstr "Rechercher/Remplacer"
 
 msgid "Find:"
-msgstr "Rechercher:"
+msgstr "Rechercher :"
 
 msgid "Forward"
 msgstr "Suivant"
@@ -380,34 +376,37 @@ msgid "Functions"
 msgstr "Fonctions"
 
 msgid "Generate comments for help_from_sci"
-msgstr "Génère les commentaires pour help_from_sci"
+msgstr "Générer les commentaires pour help_from_sci"
 
 msgid "Generate help from function"
-msgstr "Générer de l'aide de la fonction"
+msgstr "Générer l'aide de la fonction"
 
 msgid "Go to line: "
-msgstr "Aller à la ligne: "
+msgstr "Aller à la ligne : "
 
 msgid "Go to next anchor"
-msgstr "Aller à la prochaine ancre"
+msgstr "Ancre suivante"
 
 msgid "Go to previous anchor"
-msgstr "Aller à la précédente ancre"
+msgstr "Ancre précédente"
 
 msgid "Goto line"
 msgstr "Aller à la ligne"
 
+msgid "Graphics handle field"
+msgstr "Champ d'un handle graphique"
+
 msgid "Help about '"
-msgstr "Aide sur ..."
+msgstr "Aide sur '"
 
 msgid "Help on ;Help on selection"
 msgstr "Aide sur ;Aide sur la sélection"
 
 msgid "Help on selected text or keyword"
-msgstr "Aide sur le texte sélectionné ou sur le mot clé"
+msgstr "Aide sur le texte sélectionné ou sur le mot-clé"
 
 msgid "Help on the current keyword"
-msgstr "Aide sur le mot clé courant"
+msgstr "Aide sur le mot-clé actuel"
 
 msgid "Help on the selected text"
 msgstr "Aide sur le texte sélectionné"
@@ -416,7 +415,7 @@ msgid "Help on typing"
 msgstr "Aide à la saisie"
 
 msgid "Highlight current line"
-msgstr "Mettre en surbrillance la ligne courante"
+msgstr "Mettre en surbrillance la ligne actuelle"
 
 msgid "Horizontal rule"
 msgstr "Règle horizontale"
@@ -428,10 +427,11 @@ msgid "Ignore"
 msgstr "Ignorer"
 
 msgid "Incremental Search"
-msgstr "Recherche incrémentielle"
+msgstr "Recherche incrémentale"
 
+#, c-format
 msgid "Invalid regular expression : %s"
-msgstr "Expression régulière invalide: %s"
+msgstr "Expression régulière invalide : %s"
 
 msgid "Italic"
 msgstr "Italique"
@@ -439,9 +439,11 @@ msgstr "Italique"
 msgid "Length"
 msgstr "Longueur"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Ligne %s, Colonne %s."
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Ligne %s, Colonne %s. Fonction '%s' à la Ligne %s."
 
@@ -454,7 +456,7 @@ msgid "Line by line"
 msgstr "Ligne par ligne"
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numérotation de ligne; Off; Normal;Compatible Whereami"
+msgstr "Numérotation de ligne;Désactivée;Normale;Compatible Whereami"
 
 msgid "Load Into Scilab"
 msgstr "Charger dans Scilab"
@@ -469,10 +471,10 @@ msgid "Mail to "
 msgstr "Courrier à "
 
 msgid "Make Selection Lowercase"
-msgstr "Transformer la selection en minuscule"
+msgstr "Transformer la sélection en minuscules"
 
 msgid "Make Selection Uppercase"
-msgstr "Transformer la selection en majuscule"
+msgstr "Transformer la sélection en majuscules"
 
 msgid "Natural order"
 msgstr "Ordre naturel"
@@ -484,16 +486,19 @@ msgid "Next tab"
 msgstr "Onglet suivant"
 
 msgid "No Line Numbering"
-msgstr "Non numérotation des lignes"
+msgstr "Non-numérotation des lignes"
+
+msgid "No help"
+msgstr "Pas d'aide"
 
 msgid "No split"
 msgstr "Pas de décomposition"
 
 msgid "No text selected."
-msgstr "Pas de texte sélectionné"
+msgstr "Pas de texte sélectionné."
 
 msgid "No text to execute."
-msgstr "Pas de texte à exécuter"
+msgstr "Pas de texte à exécuter."
 
 msgid "Normal Line Numbering"
 msgstr "Numérotation de ligne normale"
@@ -511,7 +516,7 @@ msgid "Open URL"
 msgstr "Ouvrir l’URL"
 
 msgid "Open file in ..."
-msgstr "Ouvrir fichier dans ..."
+msgstr "Ouvrir le fichier dans ..."
 
 msgid "Open function source file"
 msgstr "Ouvrir le fichier source d'une fonction"
@@ -520,10 +525,10 @@ msgid "Open in the navigator the URL "
 msgstr "Ouvrir l'URL dans le navigateur "
 
 msgid "Open source"
-msgstr "Ouvrir Source"
+msgstr "Ouvrir la source"
 
 msgid "Open source file of the function:"
-msgstr "Ouvrir le fichier source de la fonction:"
+msgstr "Ouvrir le fichier source de la fonction :"
 
 msgid "Open the source of the macro "
 msgstr "Ouvrir le code source de la macro "
@@ -544,13 +549,13 @@ msgid "Paste"
 msgstr "Coller"
 
 msgid "Paste Column"
-msgstr "Coller le Colonne"
+msgstr "Coller la colonne"
 
 msgid "Preferences"
 msgstr "Préférences"
 
 msgid "Press CTRL and move the mouse over the link to activate it"
-msgstr "Appuyer sur CTRL et déplacer la souris sur le lien pour l'activer"
+msgstr "Appuyez sur CTRL et déplacez la souris sur le lien pour l'activer"
 
 msgid "Preview"
 msgstr "Prévisualisation"
@@ -570,7 +575,7 @@ msgid "Read file line by line"
 msgstr "Lire le fichier ligne par ligne"
 
 msgid "Read-only mode"
-msgstr "Mode lecture seule"
+msgstr "Mode en lecture seule"
 
 msgid "Recent Files"
 msgstr "Fichiers récents"
@@ -588,10 +593,8 @@ msgstr "Recherche récursive"
 msgid "Redo"
 msgstr "Rétablir"
 
-#
-# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
 msgid "Regex"
-msgstr "Regex"
+msgstr "Expression régulière"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 326
@@ -611,25 +614,25 @@ msgid "Remove anchor"
 msgstr "Supprimer l'ancre"
 
 msgid "Remove trailing spaces"
-msgstr "Enlever les espaces de fin"
+msgstr "Supprimer les espaces de fin"
 
 msgid "Remove trailing whitespaces"
-msgstr "Enlever les espaces blancs en trop"
+msgstr "Supprimer les espaces blancs en trop"
 
 msgid "Repeat on the Column"
-msgstr "Répéter sur la Colonne"
+msgstr "Répéter sur la colonne"
 
 msgid "Replace"
 msgstr "Remplacer"
 
 msgid "Replace All"
-msgstr "Tout remplacer"
+msgstr "Remplacer tout"
 
 msgid "Replace File?"
 msgstr "Remplacer le fichier ?"
 
 msgid "Replace With :"
-msgstr "Remplacer par:"
+msgstr "Remplacer par :"
 
 msgid "Replace/Find"
 msgstr "Rechercher/Remplacer"
@@ -638,10 +641,10 @@ msgid "Reset default font"
 msgstr "Rétablir les polices par défaut"
 
 msgid "Restart the search from the beginning"
-msgstr "Recommencer la rechercher à partir du début"
+msgstr "Continuer la recherche depuis le début"
 
 msgid "Restore files from your last SciNotes session ?"
-msgstr "Restaurer les fichiers de votre précédente session ?"
+msgstr "Restaurer les fichiers de la session précédente ?"
 
 msgid "Restore opened files on start-up"
 msgstr "Restaurer les fichiers ouverts au démarrage"
@@ -653,18 +656,21 @@ msgid "Save"
 msgstr "Enregistrer"
 
 msgid "Save All"
-msgstr "Tout enregistrer"
+msgstr "Enregistrer tout"
 
 #
 # File: scilab_fake_localization_file.c, line: 84
 msgid "Save and execute"
 msgstr "Enregistrer et exécuter"
 
+msgid "Save and execute all files"
+msgstr "Enregistrer et exécuter tous les fichiers"
+
 msgid "Save as"
 msgstr "Enregistrer sous"
 
 msgid "Save file in ..."
-msgstr "Enregistrer le fichier dans ..."
+msgstr "Enregistrer le fichier dans..."
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -673,7 +679,7 @@ msgid "SciNotes error"
 msgstr "Erreur SciNotes"
 
 msgid "SciNotes help"
-msgstr "Aide SciNotes"
+msgstr "Aide de SciNotes"
 
 msgid "Scilab"
 msgstr "Scilab"
@@ -687,7 +693,7 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
 msgid "Scope"
-msgstr "Scope"
+msgstr "Portée"
 
 msgid "Search"
 msgstr "Rechercher"
@@ -703,10 +709,10 @@ msgid "Search in Files..."
 msgstr "Rechercher dans des fichiers..."
 
 msgid "Select All"
-msgstr "Sélectionner Tout"
+msgstr "Sélectionner tout"
 
 msgid "Select current block"
-msgstr "Sélectionner le block courant"
+msgstr "Sélectionner le bloc actuel"
 
 msgid "Selected lines"
 msgstr "Lignes sélectionnées"
@@ -715,13 +721,13 @@ msgid "Set Colors"
 msgstr "Définir les couleurs"
 
 msgid "Set Colors ..."
-msgstr "Définir les couleurs ..."
+msgstr "Définir les couleurs..."
 
 msgid "Set Font"
 msgstr "Définir la police"
 
 msgid "Set an anchor"
-msgstr "Ajouter un ancre"
+msgstr "Ajouter une ancre"
 
 msgid "Set anchor"
 msgstr "Ajouter une ancre"
@@ -739,18 +745,16 @@ msgid "Show the definition of the macro "
 msgstr "Afficher la définition de la macro "
 
 msgid "Show/Hide ToolBar"
-msgstr "Afficher/Cacher la barre d'outils"
+msgstr "Afficher/Masquer la barre d'outils"
 
-#
-# File: scilab_fake_localization_file.c, line: 45
 msgid "Single to double quote strings"
-msgstr "Chaîne simple guillemet vers double guillemet"
+msgstr "Chaîne simple guillemet vers double guillemets"
 
 msgid "Source of '"
 msgstr "Source de '"
 
 msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Séparer la vue;Off;Horizontalement;Verticalement"
+msgstr "Séparer la vue;Désactivé;Horizontalement;Verticalement"
 
 msgid "Split horizontally"
 msgstr "Scission horizontale"
@@ -766,6 +770,7 @@ msgstr "Arrêter"
 msgid "Strike Through"
 msgstr "Barré"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
 
@@ -776,18 +781,20 @@ msgid "Syntax Type"
 msgstr "Type de syntaxe"
 
 msgid "Tab representation"
-msgstr "Tab representation"
+msgstr "Représentation de la tabulation"
 
 msgid "Tab style"
-msgstr "Tab style"
+msgstr "Style de tabulation"
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
 "Le fichier %s n'existe pas\n"
-"Voulez-vous le créer ?"
+"Le créer ?"
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -796,14 +803,15 @@ msgstr ""
 " L'écraser ?"
 
 msgid "The file could not be converted."
-msgstr "Le fichier n'a pas pu être converti"
+msgstr "Impossible de convertir le fichier"
 
 msgid "The file could not be created, check the path"
-msgstr "Le fichier n'a pas pu être créé, vérifier le chemin"
+msgstr "Impossible de créer le fichier, vérifiez le chemin"
 
 msgid "The file could not be saved."
-msgstr "Le fichier n'a pas pu être enregistré"
+msgstr "Impossible d'enregistrer le fichier"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -812,22 +820,22 @@ msgstr ""
 
 msgid "The file is not writable so it is opened in read-only mode"
 msgstr ""
-"Le fichier n'est pas accessible en écriture, il sera donc ouvert en mode "
-"lecture seule."
+"Le fichier n'est pas accessible en écriture, il sera donc ouvert en lecture "
+"seule."
 
 msgid "This file"
 msgstr "Ce fichier"
 
 msgid "This file is a binary, saving it will result in a corrupt file."
-msgstr "Il s'agit d'un fichier binaire, l'enregistrer pourrait le corrompre"
+msgstr "Il s'agit d'un fichier binaire, l'enregistrer pourrait le corrompre."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"Ce fichier comporte un nombre de lignes trés important. Le menu \"Executer "
-"Fichier dans Scilab\" serait plus approprié.\n"
-"Etes vous certain de vouloir continuer ?"
+"Ce fichier comporte un nombre de lignes très important. Le menu \"Exécuter / "
+"fichier sans écho\" serait plus approprié.\n"
+"Êtes-vous sûr de vouloir continuer ?"
 
 msgid "Tools"
 msgstr "Outils"
@@ -836,13 +844,16 @@ msgid "Uncomment Selection"
 msgstr "Décommenter la sélection"
 
 msgid "Underline"
-msgstr "Souligné"
+msgstr "Souligner"
 
 msgid "Undo"
 msgstr "Annuler"
 
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
+
+msgid "Unknown function"
+msgstr "Fonction inconnue"
 
 msgid "Untitled "
 msgstr "Sans titre "
@@ -851,13 +862,13 @@ msgid "Use spaces"
 msgstr "Utilisez des espaces"
 
 msgid "Vertical rule"
-msgstr "règle verticale"
+msgstr "Règle verticale"
 
 msgid "View"
 msgstr "Affichage"
 
 msgid "Warning: the file has been modified by another program !"
-msgstr "Avertissement : le fichier a été modifié par un autre programme !"
+msgstr "Attention : Le fichier a été modifié par un autre programme !"
 
 msgid "Whereami Line Numbering"
 msgstr "Numérotation de ligne 'où-suis-je'"
@@ -886,8 +897,7 @@ msgstr "Motif de mot"
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
-"Répertoires de travail ; Ajouter un répertoire ; Supprimer le dernier "
-"répertoire"
+"Répertoires de travail;Ajouter un répertoire;Supprimer le dernier répertoire"
 
 msgid "You do not have the permissions to read this file"
 msgstr "Vous n'avez pas les droits suffisants pour ouvrir ce fichier"
@@ -910,68 +920,12 @@ msgstr "Vous avez atteint la fin du document"
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
 msgstr ""
-"Vous devez enregistrer vos modifications avant d'exécuter ce fichier dans "
-"Scilab."
+"Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr "Vos modifications seront perdues, changer quand même l'encodage ?"
+msgstr ""
+"Vos modifications seront perdues, êtes-vous sûr de vouloir changer "
+"l'encodage ?"
 
 msgid "close this tab"
-msgstr "fermer cet onglet"
-
-#~ msgid "No text to execute"
-#~ msgstr "Aucun texte à exécuter"
-
-#~ msgid "Are you sure that you want to close Text Editor ?"
-#~ msgstr "Etes-vous certain de vouloir fermer l'éditeur de texte ?"
-
-#~ msgid "Cannot load \"xpadConfiguration.xml\""
-#~ msgstr "Ne peut pas charger \"xpadConfiguration.xml\""
-
-#~ msgid "Continue?"
-#~ msgstr "Continuer ?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Éditer la sélection dans un nouvel onglet"
-
-#~ msgid "Editor"
-#~ msgstr "Éditeur"
-
-#~ msgid "Editor error"
-#~ msgstr "Erreur de l'éditeur"
-
-#~ msgid "Help about a selected text"
-#~ msgstr "Aide sur le texte sélectionné"
-
-#~ msgid "Line Numbers"
-#~ msgstr "Numéros de ligne"
-
-#~ msgid "No text selected"
-#~ msgstr "Aucun texte selectionné"
-
-#~ msgid "Scilab text editor"
-#~ msgstr "Éditeur de texte de Scilab"
-
-#~ msgid "Scilab text editor help"
-#~ msgstr "Aide de l'éditeur de texte de Scilab"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "Le fichier %s n'existe pas\n"
-#~ "Voulez vous le créer ?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Recherche circulaire"
-
-#~ msgid "Edition"
-#~ msgstr "Édition"
-
-#~ msgid "Numerotation"
-#~ msgstr "Numérotation"
-
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr ""
-#~ "Ouvrir le fichier dans ...;Ajouter un répertoire;Supprimer le dernier "
-#~ "répertoire"
+msgstr "Fermer cet onglet"

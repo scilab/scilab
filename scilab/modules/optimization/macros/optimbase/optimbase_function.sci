@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -59,103 +59,105 @@
 //   [ f , c , index ] = costf ( x , index )
 //   [ f , g , c , gc , index ] = costf ( x , index )
 //   > With additionnal data
-//   [ f , index , data ] = costf ( x , index , data )
-//   [ f , g , index , data ] = costf ( x , index , data )
-//   [ f , c , index , data ] = costf ( x , index , data )
-//   [ f , g , c , gc , index , data ] = costf ( x , index , data )
+//   [ f , index ] = costf ( x , index , a1, a2, ... )
+//   [ f , g , index ] = costf ( x , index , a1, a2, ... )
+//   [ f , c , index ] = costf ( x , index , a1, a2, ... )
+//   [ f , g , c , gc , index ] = costf ( x , index , a1, a2, ... )
 // Not Authorized Calling sequences of the cost function:
 //   Rejected because there is no index in input :
 //   [ f ] = costf ( this , x )
 //   [ f , index ] = costf ( this , x )
-//   [ f , data ] = costf ( this , x , data )
-//   [ f , index , data ] = costf ( this , x , data )
+//   [ f ] = costf ( this , x , a1, a2, ... )
+//   [ f , index ] = costf ( this , x , a1, a2, ... )
 //   Rejected because there is no index in output :
 //   [ f ] = costf ( this , x , index )
 //   [ f , g ] = costf ( this , x , index )
 //   [ f , c ] = costf ( this , x , index )
 //   [ f , g , c ] = costf ( this , x , index )
-//   [ f , data ] = costf ( this , x , index , data )
-//   [ f , g , data ] = costf ( this , x , index , data )
-//   [ f , g , c , data ] = costf ( this , x , index , data )
-//   [ f , c , data ] = costf ( this , x , index , data )
+//   [ f ] = costf ( this , x , index , a1, a2, ... )
+//   [ f , g ] = costf ( this , x , index , a1, a2, ... )
+//   [ f , g , c ] = costf ( this , x , index , a1, a2, ... )
+//   [ f , c ] = costf ( this , x , index , a1, a2, ... )
 //
 function varargout = optimbase_function ( this , x , index )
-  [lhs,rhs]=argn();
-  if ( rhs <> 3 ) then
-    errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", rhs);
-    error(errmsg)
-  end
-  if ( ( lhs < 3 ) | ( lhs > 5 ) ) then
-    errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", lhs);
-    error(errmsg)
-  end
-  if this.fun == "" then
-    errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
-    error(errmsg)
-  end
-  this.funevals = this.funevals + 1;
-  if this.verbose == 1 then
-    msg = sprintf ( "Function Evaluation #%d at [%s]" , ...
-      this.funevals , strcat(string(x)," ") )
-    this = optimbase_log ( this , msg )
-  end
-    if ( this.withderivatives ) then 
-      if ( this.nbineqconst == 0 ) then
-        // [ f , g , index ] = costf ( x , index )
-        // [ f , g , index , data ] = costf ( x , index , data )
-        // [ this , f , g , index ] = optimbase_function ( this , x , index )
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", rhs);
+        error(errmsg)
+    end
+    if ( ( lhs < 3 ) | ( lhs > 5 ) ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", lhs);
+        error(errmsg)
+    end
+    if this.fun == "" then
+        errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
+        error(errmsg)
+    end
+    this.funevals = this.funevals + 1;
+    if this.verbose == 1 then
+        msg = sprintf ( "Function Evaluation #%d, index=%d, x= [%s]" , ...
+        this.funevals , index, strcat(string(x)," "))
+        this = optimbase_log ( this , msg )
+    end
+    //
+    // Setup the callback and its arguments
+    //
+    funtype = typeof(this.fun)
+    if ( funtype == "function" ) then
+        __optimbase_f__ = this.fun
+		//
+		// Backward-compatibility: process the costfargument field
+		//
         if ( typeof(this.costfargument) == "string" ) then
-          [ f , g , index ] = this.fun ( x , index );
+            __optimbase_args__ = list()
         else
-          [ f , g , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            __optimbase_args__ = list(this.costfargument)
         end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = g
-        varargout(4) = index
-      else
-        // [ f , g , c , gc , index ] = costf ( x , index )
-        // [ f , g , c , gc , index , data ] = costf ( x , index , data )
-        // [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , g , c , gc , index ] = this.fun ( x , index );
-        else
-          [ f , g , c , gc , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
-        end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = g
-        varargout(4) = c
-        varargout(5) = gc
-        varargout(6) = index
-      end
     else
-      if ( this.nbineqconst == 0 ) then
-        // [ f , index ] = costf ( x , index )
-        // [ f , index , data ] = costf ( x , index , data )
-        // [ this , f , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , index ] = this.fun ( x , index );
+        __optimbase_f__ = this.fun(1)
+        __optimbase_args__ = list(this.fun(2:$))
+    end
+    if ( this.withderivatives ) then 
+        if ( this.nbineqconst == 0 ) then
+            // [ f , g , index ] = costf ( x , index )
+            // [ f , g , index ] = costf ( x , index , a1, a2, ... )
+            // [ this , f , g , index ] = optimbase_function ( this , x , index )
+            [ f , g , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = g
+            varargout(4) = index
         else
-          [ f , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            // [ f , g , c , gc , index ] = costf ( x , index )
+            // [ f , g , c , gc , index ] = costf ( x , index , a1, a2, ... )
+            // [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
+            [ f , g , c , gc , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = g
+            varargout(4) = c
+            varargout(5) = gc
+            varargout(6) = index
         end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = index
-      else
-        // [ f , c , index ] = costf ( x , index )
-        // [ f , c , index , data ] = costf ( x , index , data )
-        // [ this , f , c , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , c , index ] = this.fun ( x , index );
+    else
+        if ( this.nbineqconst == 0 ) then
+            // [ f , index ] = costf ( x , index )
+            // [ f , index ] = costf ( x , index , a1, a2, ... )
+            // [ this , f , index ] = optimbase_function ( this , x , index )
+            [ f , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = index
         else
-          [ f , c , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            // [ f , c , index ] = costf ( x , index )
+            // [ f , c , index ] = costf ( x , index , a1, a2, ... )
+            // [ this , f , c , index ] = optimbase_function ( this , x , index )
+            [ f , c , index ] = __optimbase_f__ ( x , index , __optimbase_args__(1:$) );
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = c
+            varargout(4) = index
         end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = c
-        varargout(4) = index
-      end
     end
 endfunction
 

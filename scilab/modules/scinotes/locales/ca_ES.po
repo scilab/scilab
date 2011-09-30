@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-29 16:41+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
@@ -14,7 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build 13980)\n"
+"Language: ca\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -23,6 +24,7 @@ msgstr ""
 " s'ha modificat des de l'últim cop que es va desar\n"
 "El voleu desar?"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s és un directori."
 
@@ -58,6 +60,12 @@ msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de text.\n"
 
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr ""
+
 msgid "... file with echo"
 msgstr ""
 
@@ -65,6 +73,14 @@ msgid "... file with no echo"
 msgstr ""
 
 msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 msgid "?"
@@ -106,10 +122,10 @@ msgstr "Esteu segur que voleu tancar l'SciNotes?"
 msgid "Auto (Default)"
 msgstr "Automàtic (Predeterminat)"
 
-msgid "Auto-completion on (,&quot;,..."
+msgid "Auto-completion on (, [, ..."
 msgstr ""
 
-msgid "Auto-completion on if,function,..."
+msgid "Auto-completion on if, function, ..."
 msgstr ""
 
 msgid "Background Color"
@@ -117,6 +133,9 @@ msgstr ""
 
 msgid "Backward"
 msgstr "Enrere"
+
+msgid "Base directory:"
+msgstr ""
 
 msgid "Binary file: read-only mode"
 msgstr "Fitxer binari: mode de només lectura"
@@ -139,11 +158,23 @@ msgstr ""
 msgid "Case sensitive"
 msgstr "Distingix majúscules i minúscules"
 
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+msgid "Case-sensitivity (Word)"
+msgstr ""
+
 msgid "Change Color"
 msgstr "Canvia el color"
 
 msgid "Change Colors"
 msgstr "Canvia els colors"
+
+msgid "Choose the search base directory"
+msgstr ""
+
+msgid "Choose..."
+msgstr ""
 
 msgid "Circular search"
 msgstr ""
@@ -194,6 +225,9 @@ msgid "Copy"
 msgstr "Copia"
 
 msgid "Copy as HTML with line number"
+msgstr ""
+
+msgid "Copy full path"
 msgstr ""
 
 msgid "Copy selection in a new tab"
@@ -247,6 +281,10 @@ msgstr ""
 msgid "Edit"
 msgstr "Edita"
 
+#, c-format
+msgid "Elapsed time: %s sec."
+msgstr ""
+
 msgid "Enable Auto Reformat"
 msgstr "Habilita el format automàtic"
 
@@ -292,6 +330,9 @@ msgstr "Fitxer"
 msgid "File already exists"
 msgstr "El fitxer ja existeix"
 
+msgid "File pattern"
+msgstr ""
+
 msgid "Find"
 msgstr "Cerca"
 
@@ -300,6 +341,12 @@ msgstr "Cerca el següent"
 
 msgid "Find Previous"
 msgstr "Cerca l'anterior"
+
+msgid "Find files"
+msgstr ""
+
+msgid "Find word in files"
+msgstr ""
 
 msgid "Find/Replace"
 msgstr "Cerca/Reemplaça"
@@ -330,6 +377,9 @@ msgstr ""
 
 msgid "Goto line"
 msgstr "Ves a la línia"
+
+msgid "Graphics handle field"
+msgstr ""
 
 msgid "Help about '"
 msgstr "Ajuda sobre '"
@@ -364,6 +414,7 @@ msgstr "Ignora"
 msgid "Incremental Search"
 msgstr ""
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Expressió regular invàlida: %s"
 
@@ -373,14 +424,19 @@ msgstr "Cursiva"
 msgid "Length"
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Line Endings"
 msgstr "Finals de línia"
+
+msgid "Line by line"
+msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr ""
@@ -414,6 +470,9 @@ msgstr "Pestanya següent"
 
 msgid "No Line Numbering"
 msgstr "Sense números de línia"
+
+msgid "No help"
+msgstr ""
 
 msgid "No split"
 msgstr "Sense divisió"
@@ -493,14 +552,29 @@ msgstr "Imprimeix"
 msgid "Print Preview"
 msgstr "Previsualitza la impressió"
 
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr "Mode de només lectura"
 
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
+msgid "Recursive"
+msgstr ""
+
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
 msgstr "Refés"
+
+msgid "Regex"
+msgstr ""
+
+msgid "Regular expression (Word)"
+msgstr ""
 
 msgid "Regular expressions"
 msgstr "Expressions regulars"
@@ -559,6 +633,12 @@ msgstr "Desa"
 msgid "Save All"
 msgstr "Desa-ho tot"
 
+msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
+msgstr ""
+
 msgid "Save as"
 msgstr "Anomena i desa"
 
@@ -591,6 +671,12 @@ msgstr "Abast"
 
 msgid "Search"
 msgstr "Cerca"
+
+msgid "Search Files..."
+msgstr ""
+
+msgid "Search in Files..."
+msgstr ""
 
 msgid "Select All"
 msgstr "Selecciona-ho tot"
@@ -631,6 +717,9 @@ msgstr ""
 msgid "Show/Hide ToolBar"
 msgstr "Mostra/amaga la barra d'eines"
 
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Font de '"
 
@@ -643,9 +732,13 @@ msgstr "Divideix horitzontalment"
 msgid "Split vertically"
 msgstr "Divideix verticalment"
 
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr "Tatxat"
 
+#, c-format
 msgid "String %s not found"
 msgstr "No s'ha trobat la cadena %s"
 
@@ -661,11 +754,13 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -682,6 +777,7 @@ msgstr ""
 msgid "The file could not be saved."
 msgstr "No s'ha pogut desar el text."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -718,6 +814,9 @@ msgstr "Desfés"
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
+msgid "Unknown function"
+msgstr ""
+
 msgid "Untitled "
 msgstr "Sense títol "
 
@@ -745,8 +844,14 @@ msgstr ""
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
 
+msgid "Word"
+msgstr ""
+
 msgid "Word Wrap"
 msgstr "Ajust de paraula"
+
+msgid "Word pattern"
+msgstr ""
 
 msgid "Working directories;Add a directory;Remove last directory"
 msgstr ""
@@ -779,25 +884,3 @@ msgstr "Perdreu les modificacions. Tot i així, voleu canviar la codificació?"
 
 msgid "close this tab"
 msgstr "Tanca aquesta pestanya"
-
-#~ msgid "Continue?"
-#~ msgstr "Voleu continuar?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Edita la selecció en una nova pestanya"
-
-#~ msgid "No text selected"
-#~ msgstr "No heu seleccionat cap text"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "El fitxer %s no existeix\n"
-#~ " El voleu crear?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Ajusta la cerca"
-
-#~ msgid "No text to execute"
-#~ msgstr "No hi ha text a executar"

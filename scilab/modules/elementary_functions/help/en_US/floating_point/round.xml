@@ -59,16 +59,32 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>round(x)</literal> rounds the elements of
-    <literal>x</literal> to the nearest integers.</para>
-  </refsection>
+    <para>
+    <literal>round(x)</literal> rounds the elements of
+    <literal>x</literal> to the nearest integers.
+    </para>
+
+    <para>
+    In case of tie, this function rounds to infinities. 
+    That is, if <literal>x</literal> is positive and is halfway between two 
+    integers, then <literal>round(x)</literal> is rounded toward <literal>%inf</literal>.
+    If <literal>x</literal> is negative and is halfway between two 
+    integers, then <literal>round(x)</literal> is rounded toward <literal>-%inf</literal>.
+    In other words, if <literal>x</literal> is positive, then <literal>round(x)</literal>
+    is equal to <literal>int(x+0.5)</literal>, and if <literal>x</literal> is negative, 
+    then <literal>round(x)</literal> is equal to <literal>int(x-0.5)</literal>
+    </para>
+
+</refsection>
 
   <refsection>
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
+// Notice that round(1.5)==2
 round([1.3 1.5 1.7 2.5 3.7])
 // Notice the result for x negative
+// Notice that round(-1.5)==-2
 round([-1.3 -1.5 -1.7 -2.5 -3.7])
  ]]></programlisting>
   </refsection>

@@ -11,12 +11,3 @@
 //Load  functions libraries
 // =============================================================================
 load('SCI/modules/signal_processing/macros/lib');
-
-
-// Add demos
-// =========================================================================
-if WITH_DEMOS then
-	pathdemos = pathconvert(SCI+"/modules/signal_processing/demos/signal.dem.gateway.sce",%f,%t);
-	add_demo(gettext("Signal Processing"),pathdemos);
-	clear pathdemos;
-end

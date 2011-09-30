@@ -52,7 +52,6 @@ int sci_strindex(char *fname,unsigned long fname_len)
 	int outIndex = 0;
 	int numRow = 1;
     int *next = NULL;
-	int i = 0;
 
 	CheckRhs(2,3);
 	CheckLhs(1,2);
@@ -110,7 +109,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 		{
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 		else
@@ -229,11 +228,9 @@ int sci_strindex(char *fname,unsigned long fname_len)
 		{
 			/* We don't use pcre library */
 			int x = 0;
-			int pos = 0;
 
 			for (x=0; x < m2n2 ;++x)
 			{
-				int w = 0;
 				if ( wcslen(wStrings_Input2[x]) == 0 )
 				{
 					freeArrayOfString(Strings_Input2,m2n2);
@@ -290,9 +287,8 @@ int sci_strindex(char *fname,unsigned long fname_len)
 			LhsVar(2) = Rhs+2;
 		}
 
-		C2F(putlhsvar)();
-
-		if (values) {FREE(values); values = NULL;}
+        if (values) {FREE(values); values = NULL;}
+		PutLhsVar();
 	}
 	else
 	{

@@ -125,12 +125,13 @@ int sci_strstr(char *fname,unsigned long fname_len)
                 }
 
                 CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,OutputStrings);
-                LhsVar(1) = Rhs+1 ;
-                C2F(putlhsvar)();
-
+                
                 freeArrayOfString(OutputStrings,m1n1);
                 freeArrayOfString(InputString_Parameter1,m1n1);
                 freeArrayOfString(InputString_Parameter2,m2n2);
+
+                LhsVar(1) = Rhs+1 ;
+                PutLhsVar();
             }
             else
             {
