@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- NO CHECK REF -->
 // <-- TEST WITH XCOS -->
 //
@@ -16,18 +15,13 @@
 // <-- Short Description -->
 // the non-empty block.doc field was not cleared on loading.
 //
-
 loadXcosLibs();
-
 // Check that importScicosDiagram perform block.doc clearing
 scs_m = importScicosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
 obj = scs_m.objs(1);
-if size(obj.doc) <> 0 then pause, end
-
+if size(obj.doc) <> 0 then bugmes();quit;end
 // check that the export will not fail
 tempFile = TMPDIR + "/6776temp.h5";
 ierr = export_to_hdf5(tempFile, "scs_m");
-if ierr <> %t then pause, end
-
+if ierr <> %t then bugmes();quit;end
 deletefile(tempFile);
-
