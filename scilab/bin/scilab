@@ -642,6 +642,9 @@ check_macosx_version()
         echo "Found MacOSX Version: $macosxVersion"
     fi
 
+    PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
+    PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
+
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
@@ -653,7 +656,9 @@ check_macosx_version()
 
                 6)
 		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
-		    LD_LIBRARY_PATH=$BINPATH/../lib/thirdparty/10.6/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+
                     if test $macosxBuildVersion -le 4; then
                         # Version <= 10.6.4
                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
@@ -661,9 +666,12 @@ check_macosx_version()
                     ;;
                  5)
                     # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
-                    LD_LIBRARY_PATH=$BINPATH/../lib/thirdparty/10.5/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    LD_LIBRARY_PATH=$BINPATH/../lib/thirdparty/10.6/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                     if test $macosxBuildVersion -ge 8; then
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+
+                     if test $macosxBuildVersion -le 7; then
                          # Version <= 10.5.8
                          osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
                          fi
