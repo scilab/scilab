@@ -10,7 +10,7 @@
 			<item title="Choose Font..."         icon="format-text-bold.png"         callScilabBridge='changeConsoleFont'/>
 			<item title="Print..."               icon="printer.png"                  callScilabBridge='printConsoleContents'/>
 			<item title="Launch SciNotes"        icon="accessories-text-editor.png"  script='editor();' />
-			<item title="Help Browser"           icon="help-browser.png.png"         script='help();' />
+			<item title="Help Browser"           icon="help-browser.png"         script='help();' />
 			<item title="Scilab Demonstrations"  icon="applications-system.png"      script='demo_gui();' />
 			<item title="Open a file"            icon="document-open.png"            script='
 		          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with SciNotes"));

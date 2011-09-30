@@ -19,6 +19,7 @@ import org.scilab.modules.preferences.XConfigManager;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 
 //import org.scilab.modules.gui.bridge.tab.SwingScilabScrollPane;
 // TODO how to set a container inside?
@@ -44,6 +45,7 @@ public class Scroll extends JScrollPane implements XComponent {
         super(component);
         insideContainer = (Container) component;
         insideContainer.setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(200,200));
         XConfigManager.setDimension(this, peer);
         XConfigManager.drawConstructionBorders(this);
     }

@@ -123,9 +123,9 @@
 			<VBox>
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
+						<xsl:with-param name="text" select="'Use system font'"/>
 						<xsl:with-param name="attr-name" select="'system'"/>
 					</xsl:call-template>
-					Use system font
 					<Glue/>
 				</HBox>
 				<HBox>
@@ -164,7 +164,7 @@
 					Sample: 
 					<Glue/>
 				</HBox>
-				<Panel width="400" height="40">
+				<Panel>
 					<Label 
 						text="Puffins are cool!" 
 						font-family="{$desktop-font/@font-family}" 
@@ -192,17 +192,17 @@
 							<Glue/>	
 						</HBox>
 						<HBox>
-							<xsl:call-template name="BooleanCheckBox">
+							<xsl:call-template name="BooleanRadio">
+								<xsl:with-param name="text" select="'Desktop text font'"/>
 								<xsl:with-param name="attr-name" select="'desktop'"/>
 							</xsl:call-template>
-							Desktop text font
 							<Glue/>
 						</HBox>
 						<HBox>
-							<xsl:call-template name="InvertedCheckBox">
+							<xsl:call-template name="InvertedRadio">
+								<xsl:with-param name="text" select="'Custom:'"/>
 								<xsl:with-param name="attr-name" select="'desktop'"/>
 							</xsl:call-template>
-							Custom:
 							<Glue/>
 						</HBox>
 						<xsl:choose>
@@ -238,7 +238,7 @@
 							Sample
 							<Glue/>
 						</HBox>
-						<Panel width="300" height="40">
+						<Panel>
 							<xsl:choose>
 								<xsl:when test="@desktop='true'">
 									<Label 

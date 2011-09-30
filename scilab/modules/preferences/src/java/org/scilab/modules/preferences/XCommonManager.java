@@ -133,9 +133,11 @@ public abstract class XCommonManager {
        printTimeStamp("SWING refreshed");
        dialog.pack();
        printTimeStamp("Packing done");
-
-       /* TODO contextual help */
-
+       /*
+        *     Control outputs
+        */
+//C       System.out.println(viewDOM());
+//C       System.out.println(swingComposite());
        return true;
     }
     
@@ -352,7 +354,7 @@ public abstract class XCommonManager {
                     System.out.println(" hits " + context);
                 }
                 Element element           = getElementByContext(context);            
-                String insertValue             = XCommonManager.getAttribute(action, "insert");
+                String insertValue        = XCommonManager.getAttribute(action, "insert");
                 int insert = 0;
                 try {
                     insert = Integer.decode(insertValue);
@@ -363,7 +365,20 @@ public abstract class XCommonManager {
                     insertValue        = chooser.choose();
                     insert = Integer.decode(insertValue) + 1;
                 }
-                Node   hook               = element.getChildNodes().item(insert);
+                Node hook = null;
+                NodeList nodelist = element.getChildNodes();
+                for (int xi=0; xi < nodelist.getLength(); xi++) {
+                   Node node = nodelist.item(xi);
+                   if (node.getNodeName() != "#text" 
+                    && node.getNodeName() != "#comment"
+                    ) {
+                        if (insert == 1) {
+                            hook = node;
+                            break;
+                        }
+                       insert --;
+                   }
+                }
                 DocumentFragment fragment = document.createDocumentFragment();
                 while (action.hasChildNodes()) {
                     Node transferred = action.getFirstChild();
@@ -395,25 +410,37 @@ public abstract class XCommonManager {
                   
                 }
                 catch (NumberFormatException e) {
+                    if (source==null) {
+                        System.out.println(" lost! ");
+                        return false;
+                    }
                     XChooser chooser   = (XChooser) source;
                     xDelete            = chooser.choose();
                     delete = Integer.decode(xDelete);
                 }
-                System.out.println("[DEBUG] delete = "+delete);
-                Node   deleted            = element.getChildNodes().item(delete);
-                if (!(element == null)) {
+                Node deleted = null;
+                NodeList nodelist = element.getChildNodes();
+                for (int xi=0; xi < nodelist.getLength(); xi++) {
+                   Node node = nodelist.item(xi);
+                   if (node.getNodeName() != "#text" 
+                    && node.getNodeName() != "#comment"
+                    ) {
+                        if (delete == 1) {
+                            deleted = node;
+                            break;
+                        }
+                        delete --;
+                    }
+                }
+                if (!(element == null) && !(deleted == null)) {
                     element.removeChild(deleted);
+                } else {
+                    System.out.println(" lost! " + delete);
                 }
             }
             refreshDisplay();
             updated = true;
             return true;
-        }
-
-        
-        if (source==null) {
-            System.out.println(" lost! ");
-            return false;
         }
         
         if (!getAttribute(action, "choose").equals(NAV)) {
@@ -422,6 +449,10 @@ public abstract class XCommonManager {
                 System.out.println(" hits " + context);
             }
             Element element  = getElementByContext(context);
+            if (source==null) {
+                System.out.println(" lost! ");
+                return false;
+            }
             if (source instanceof XChooser) {
                 XChooser chooser   = (XChooser) source;
                 String   value     = chooser.choose();

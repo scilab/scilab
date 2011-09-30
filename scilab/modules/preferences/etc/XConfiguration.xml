@@ -133,22 +133,13 @@
 			</body>
 		</autosave>		
 	</scinotes>
-	<help>
-		<body maturity="I">
-			<TBD/>
-		</body>
-	</help>
-	<variable-browser>
+	<variables>
 		<body maturity="B">
 			<variable-browser maximum-array-size="500000"/>
-		</body>
-	</variable-browser>
-	<variable-editor>
-		<body maturity="B">
 			<variable-editor default-array-format="short" move-selection-after-enter="true"
 				direction="Down" decimal-separator=","/>
 		</body>
-	</variable-editor>
+	</variables>
 	<xcos>
 		<body maturity="B">
 			<xcos/>
@@ -157,15 +148,15 @@
 	<toolbar>
 		<body maturity="I">
 			<toolbars select="scilab">
-				<toolbar title="scilab" position="1" item="0">
+				<toolbar title="scilab" position="1" selection="0">
 					<item title="Cut"/>
 					<separator/>
 					<item title="Paste"/>
 				</toolbar>
-				<toolbar title="scinotes" position="2" item="2">
+				<toolbar title="scinotes" position="2" selection="2">
 					<item title="Cut"/>
 					<separator/>
-					<item title="Paste"/>
+					<item title="Copy"/>
 				</toolbar>
 			</toolbars>
 		</body>

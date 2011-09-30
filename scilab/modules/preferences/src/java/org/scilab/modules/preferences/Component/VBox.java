@@ -13,12 +13,15 @@
 package org.scilab.modules.preferences.Component;
 
 import org.scilab.modules.preferences.XComponent;
+
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import org.w3c.dom.Node;
 import org.scilab.modules.preferences.XConfigManager;
+
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 /** Implementation of Panel compliant with extended management.
 *
@@ -47,43 +50,31 @@ public class VBox extends JPanel implements XComponent {
     */
     public VBox(final Node peer) {
         super();
-        setLayout(new GridBagLayout());
+        BoxLayout box = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        setLayout(box);
         XConfigManager.setDimension(this, peer);
         XConfigManager.drawConstructionBorders(this);
-    }
-
-    /** Translation of constraints.
-    *
-    */
-    void setConstraints(GridBagConstraints gbc, Object constraints) {
+        refresh(peer);
     }
 
     /** Overloaded add method to embed grid layout.
     *
     */
     public void add(Component child, Object constraints, int index) {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = index;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        setConstraints(gbc, constraints);
-        super.add(child, gbc);
+        if (child instanceof JComponent) {
+            ((JComponent)child).setAlignmentX(TOP_ALIGNMENT);
+        }
+        super.add(child, constraints, index);
     }
 
     /** Overloaded add method to embed grid layout.
     *
     */
     public void add(Component child, Object constraints) {
-        int index = getComponentCount();
-        add(child, constraints, index);
-    }
-
-    //TODO:
-    public void remove(Component child) {
-        getLayout().removeLayoutComponent(child);
+        if (child instanceof JComponent) {
+            ((JComponent)child).setAlignmentX(TOP_ALIGNMENT);
+        }
+        super.add(child, constraints);
     }
 
     /** Refresh the component by the use of actuators.
@@ -91,8 +82,18 @@ public class VBox extends JPanel implements XComponent {
     * @param peer the corresponding view DOM node
     */
     public void refresh(final Node peer) {
+        String background = XConfigManager.getAttribute(peer , "background");
+        if (background.equals(XConfigManager.NAV)) {
+            setOpaque(false);
+            setBackground(null);
+        } else {
+            Color color = XConfigManager.getColor(background);
+            setOpaque(true);
+            setBackground(color);
+        }
     }
 
+    
     /** Developer serialization method.
     *
     * @return equivalent signature.

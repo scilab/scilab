@@ -39,7 +39,7 @@ public class Button extends SwingScilabPushButton implements XComponent {
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {"text", "status"};
+        String [] actuators = {"enable", "text"};
         return actuators;
     }
 
@@ -49,16 +49,7 @@ public class Button extends SwingScilabPushButton implements XComponent {
      */
     public Button(final Node peer) {
         super();
-        String text = XCommonManager.getAttribute(
-                peer ,
-                "text",
-                XCommonManager.NAV);
-        String status = XCommonManager.getAttribute(
-                peer ,
-                "status",
-                cachedStatus);
-        setText(text);
-        setEnabled(status.equals("enabled"));
+        refresh(peer);
     }
 
     /** Refresh the component by the use of actuators.
@@ -66,21 +57,13 @@ public class Button extends SwingScilabPushButton implements XComponent {
     * @param peer the corresponding view DOM node
     */
     public final void refresh(final Node peer) {
-        String text = XCommonManager.getAttribute(
-               peer ,
-               "text",
-               XCommonManager.NAV);
-        String status = XCommonManager.getAttribute(
-                peer ,
-                "status",
-                cachedStatus);
-
+        String text = XCommonManager.getAttribute(peer, "text", XCommonManager.NAV);
         if (!text.equals(text())) {
             text(text);
         }
-        if (!status.equals(status())) {
-            status(status);
-        }
+        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
+        setEnabled(enable.equals("true"));
+
     }
 
     /** Sensor for 'text' attribute.
@@ -91,14 +74,6 @@ public class Button extends SwingScilabPushButton implements XComponent {
         return getText();
     }
 
-    /** Sensor for 'status' attribute.
-    *
-    * @return the attribute value.
-    */
-    public final String status() {
-    	return cachedStatus;
-    }
-
     /** Actuator for 'text' attribute.
      *
      * @param text : the attribute value.
@@ -107,16 +82,7 @@ public class Button extends SwingScilabPushButton implements XComponent {
         setText(text);
     }
 
-    /** Actuator for 'status' attribute.
-    *
-    * @param text : the attribute value.
-    */
-   public final void status(final String status) {
-	   cachedStatus = status;
-       setEnabled(status.equals("enabled"));
-   }
-
-    /** Developer serialization method.
+   /** Developer serialization method.
      *
      * @return equivalent signature.
      */
@@ -125,10 +91,6 @@ public class Button extends SwingScilabPushButton implements XComponent {
 
         if (!text().equals(XConfigManager.NAV)) {
             signature += " text='" + text() + "'";
-        }
-
-        if (!status().equals(XConfigManager.NAV)) {
-            signature += " status='" + status() + "'";
         }
 
         return signature;

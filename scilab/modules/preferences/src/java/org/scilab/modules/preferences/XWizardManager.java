@@ -103,7 +103,7 @@ public final class XWizardManager extends XCommonManager {
         }
         
         if (actions.length==0) {
-            System.out.println("No actions processed!");
+//C            System.out.println("No actions processed!");
             return false;
         }
         Node action = actions[0];

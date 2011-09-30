@@ -16,6 +16,7 @@ import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XConfigManager;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -90,7 +91,7 @@ public class Label extends JLabel implements XComponent {
         }
 
         String background = XConfigManager.getAttribute(peer , "background");
-        if (!background.equals(foreground())) {
+        if (!background.equals(background())) {
             background(background);
         }
 
@@ -112,6 +113,14 @@ public class Label extends JLabel implements XComponent {
         String fontSize = XConfigManager.getAttribute(peer , "font-size", fontSize());
         if (!fontSize.equals(fontSize())) {
         	fontSize(fontSize);
+        }
+
+        String halign     = XConfigManager.getAttribute(peer , "halign", "left");
+        if (halign.equals("left")) {
+            setHorizontalAlignment(SwingConstants.LEFT);
+        }
+        if (halign.equals("right")) {
+            setHorizontalAlignment(SwingConstants.RIGHT);
         }
 
     }

@@ -5,35 +5,26 @@
 
 	<xsl:template match="scinotes-preferences">
 		<Title text="Open files in Scinotes">
-			<HBox>
-				<xsl:call-template name="BooleanCheckBox">
-					<xsl:with-param name="attr-name" select="'restart-reopen'"/>
-				</xsl:call-template>
-				On restart reopen files from previous scilab session
-				<Glue/>
-			</HBox>
+			<xsl:call-template name="BooleanCheckBox">
+				<xsl:with-param name="attr-name" select="'restart-reopen'"/>
+				<xsl:with-param name="text" select="'On restart reopen files from previous scilab session'"/>
+			</xsl:call-template>
 		</Title>
 		<Title text="Automatic File changes">
-			<HBox>
-				<xsl:call-template name="BooleanCheckBox">
-					<xsl:with-param name="attr-name" select="'reload-unedited'"/>
-				</xsl:call-template>
-				Reload unedited files that have been externally modified
-				<Glue/>
-			</HBox>
-			<HBox>
-				<xsl:call-template name="BooleanCheckBox">
-					<xsl:with-param name="attr-name" select="'add-line-termination'"/>
-				</xsl:call-template>
-				Add line termination at end of file.
-				<Glue/>
-			</HBox>
+			<xsl:call-template name="BooleanCheckBox">
+				<xsl:with-param name="attr-name" select="'reload-unedited'"/>
+				<xsl:with-param name="text" select="'Reload unedited files that have been externally modified'"/>
+			</xsl:call-template>
+		
+			<xsl:call-template name="BooleanCheckBox">
+				<xsl:with-param name="attr-name" select="'add-line-termination'"/>
+				<xsl:with-param name="text" select="'Add line termination at end of file.'"/>
+			</xsl:call-template>
 		</Title>
 		<Title text="Recently used file list">
-			<VBox>
-				<VSpace height="20"/>
-				<HBox>
-					Number of entries:
+			<Grid>
+				<Label text="Number of entries:"/>
+				<Panel gridx="2">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option number-of-entries="1"/>
@@ -51,32 +42,26 @@
 							<option number-of-entries="80"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-				<VSpace height="20"/>
-			</VBox>
+				</Panel>
+			</Grid>
 		</Title>
 		<Title text="File encoding">
-			<VBox>
-				<VSpace height="20"/>
-				<HBox>
-					File encoding:
+			<Grid>
+				<Label text="File encoding:"/>
+				<Panel gridx="2">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option encoding="utf-8"/>
 							<option encoding="iso-8859-1"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-				<VSpace height="20"/>
-			</VBox>
+				</Panel>
+			</Grid>
 		</Title>
 		<Title text="End of file">
-			<VBox>
-				<VSpace height="20"/>
-				<HBox>
-					End of line:
+			<Grid>
+				<Label text="End of line:"/>
+				<Panel gridx="2">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option eol="Unix(LF)"/>
@@ -84,10 +69,8 @@
 							<option eol="Mac Classic(CR)"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-				<VSpace height="20"/>
-			</VBox>
+				</Panel>
+			</Grid>
 		</Title>
 	</xsl:template>
 
@@ -98,10 +81,14 @@
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'highlight-current-line'"/>
+						<xsl:with-param name="text">
+							<xsl:choose>
+								<xsl:when test="@highlight-current-line='true'">Highlight current line with</xsl:when>
+								<xsl:otherwise>Highlight current line</xsl:otherwise>
+							</xsl:choose>
+						</xsl:with-param>
 					</xsl:call-template>
-					Highlight current line 
 					<xsl:if test="@highlight-current-line='true'">
-						<HSpace width="1"/> with <HSpace width="3"/>
 						<Color color="{@current-line-color}" listener="ActionListener">
 							<actionPerformed choose="current-line-color">
 								<xsl:call-template name="context"/>
@@ -114,29 +101,27 @@
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'show-line-numbers'"/>
+						<xsl:with-param name="text" select="'Show line numbers'"/>
 					</xsl:call-template>
-				 Show line numbers
 					<Glue/>
 				</HBox>
 				<VSpace height="20"/>
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'wrap-lines'"/>
+						<xsl:with-param name="text" select="'Wrap line'"/>
 					</xsl:call-template>
-					Wrap line
 					<Glue/>
 				</HBox>
 				<VSpace height="20"/>
-				<HBox>
-					View
-					<HSpace width="3"/> 
-					<Label listener="MouseListener" text="custom font" foreground="#0000ff">
+				<Grid insets="large" anchor="west">
+					<Label text="View"/>
+					<Label gridx="2" listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;custom font&lt;/U&gt;&lt;/HTML&gt;" foreground="#0000ff">
 						<mouseClicked callback="customScinotesFonts"/>
 					</Label>
-					<HSpace width="3"/> 
-					preferences to change scinotes font.
-					<Glue/>
-				</HBox>
+					<Label gridx="3" text="preferences to change scinotes font."/>
+				</Grid>
+					
 			</VBox>
 		</Title>
 		<VSpace height="200"/>
@@ -149,11 +134,11 @@
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'highlight'"/>
+						<xsl:with-param name="text" select="'Enable syntax highlighting'"/>
 					</xsl:call-template>
-					Enable syntax highlighting
 					<xsl:if test="@highlight='true'">
-						<Glue/>
-						<Label listener="MouseListener" text="Set syntax Colors" 
+						<HSpace width="30"/>
+						<Label listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;Set syntax Colors&lt;/U&gt;"
 							foreground="#0000ff">
 							<mouseClicked callback="customScinotesColors"/>
 						</Label>
@@ -164,17 +149,17 @@
 				<HBox>
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'hightlight-brackets'"/>
+						<xsl:with-param name="text" select="'Highlight corresponding brackets'"/>
 					</xsl:call-template>
-				  Highlight corresponding brackets
 					<Glue/>
 				</HBox>
 			</VBox>
 		</Title>
 		<VSpace height="20"/>
 		<Title text="Tabs &amp; Indents">
-			<VBox>
-				<HBox>
-					Tab size:
+			<Grid ipady="30" insets="large">
+				<Label text="Tab size:"/>
+				<Panel gridx="2" >
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option tab-size="2"/>
@@ -182,26 +167,23 @@
 							<option tab-size="8"/>
 						</xsl:with-param>
 					</xsl:call-template>
+				</Panel>
+				<Panel gridx="3">
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'use-spaces'"/>
-					</xsl:call-template>Tab key insert spaces
-					<Glue/>
-				</HBox>
-				<VSpace height="20"/>
-				<HBox>
+						<xsl:with-param name="text" select="'Tab key insert spaces'"/>
+					</xsl:call-template>
+				</Panel>
+				<HBox gridy="2" gridwidth="3">
 						View
 						<HSpace width="2"/>
-						<Label listener="MouseListener" text="Scinotes tab keys" 
+						<Label listener="MouseListener" text="&lt;HTML&gt;&lt;U&gt;Scinotes tab keys preferences&lt;/U&gt;&lt;/HTML&gt;" 
 							foreground="#0000ff">
 							<mouseClicked callback="customScinotesColors"/>
 						</Label>
-						<HSpace width="2"/>
-						preferences
-						<Glue/>
 				</HBox>
-				<VSpace height="20"/>
-				<HBox>
-					Indent size:
+				<Label gridy="3" text="Indent size:"/>
+				<Panel gridy="3" gridx="2" >
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option indent-size="2"/>
@@ -209,19 +191,16 @@
 							<option indent-size="8"/>
 						</xsl:with-param>
 					</xsl:call-template>
-				</HBox>
-				<VSpace height="20"/>
-				<HBox>
+				</Panel>
+				<HBox gridy="4" gridwidth="3">
 					<xsl:call-template name="BooleanCheckBox">
 						<xsl:with-param name="attr-name" select="'automatic-indent'"/>
+						<xsl:with-param name="text" select="' Enable automatic indenting'"/>
 					</xsl:call-template>
-				  Enable automatic indenting
 					<Glue/>
 				</HBox>
-				<VSpace height="20"/>
-			</VBox>
+			</Grid>
 		</Title>
-		<VSpace height="40"/>		
 	</xsl:template>
 
 	<xsl:template match="scinotes-autosave">
@@ -265,78 +244,53 @@
 					</HBox>
 				</Title>
 				<Title text="File name">
-					<VBox>
-						<xsl:if test="@append-flag='false'">
-							<VSpace height="15"/>
-						</xsl:if>
-						<HBox>
-							<xsl:call-template name="BooleanCheckBox">
+					<Grid>
+						<Panel>
+							<xsl:call-template name="BooleanRadio">
 								<xsl:with-param name="attr-name" select="'append-flag'"/>
+								<xsl:with-param name="text" select="'Append filename with'"/>
 							</xsl:call-template>
-							<Label text="Append filename"/>
-							<xsl:if test="@append-flag='true'">
-								<Label text=" with "/>
-								<Entry text="{@append-with}" listener="ActionListener">
-									<actionPerformed choose="append-with">
-										<xsl:call-template name="context"/>
-									</actionPerformed>							
-								</Entry>
-							</xsl:if>
-							<Glue/>
-						</HBox>
-						<HBox>
-							<xsl:call-template name="InvertedCheckBox">
+						</Panel>
+						<Entry gridx="2" enable="{@append-flag='true'}" text="{@append-with}" listener="ActionListener">
+							<actionPerformed choose="append-with">
+								<xsl:call-template name="context"/>
+							</actionPerformed>							
+						</Entry>
+						<Panel gridy="2">
+							<xsl:call-template name="InvertedRadio">
 								<xsl:with-param name="attr-name" select="'append-flag'"/>
+								<xsl:with-param name="text" select="'Replace extension with'"/>
 							</xsl:call-template>
-							<Label text="Replace extension"/>
-							<xsl:if test="@append-flag='false'">
-								<Label text=" with "/>
-								<Entry text="{@replace-with}" listener="ActionListener">
-									<actionPerformed choose="replace-with">
-										<xsl:call-template name="context"/>
-									</actionPerformed>							
-								</Entry>
-							</xsl:if>
-							<Glue/>
-						</HBox>
-						<xsl:if test="@append-flag='true'">
-							<VSpace height="15"/>
-						</xsl:if>
-					</VBox>
+						</Panel>
+						<Entry gridy="2" gridx="2" enable="{@append-flag='false'}" text="{@replace-with}" listener="ActionListener">
+							<actionPerformed choose="replace-with">
+								<xsl:call-template name="context"/>
+							</actionPerformed>							
+						</Entry>
+					</Grid>
 				</Title>
 				<Title text="Location">
-					<VBox>
-						<xsl:if test="@source-flag='false'">
-							<VSpace height="10"/>
-						</xsl:if>
-						<HBox>
-							<xsl:call-template name="BooleanCheckBox">
+					<Grid>
+						<Panel>
+							<xsl:call-template name="BooleanRadio">
 								<xsl:with-param name="attr-name" select="'source-flag'"/>
+								<xsl:with-param name="text" select="'Source file directory'"/>
 							</xsl:call-template>
-							<Label text="Source file directory"/>
-							<Glue/>
-						</HBox>
-						<HBox>
-							<xsl:call-template name="InvertedCheckBox">
+						</Panel>
+						<Panel gridy="2" >
+							<xsl:call-template name="InvertedRadio">
 								<xsl:with-param name="attr-name" select="'source-flag'"/>
+								<xsl:with-param name="text" select="'Single directory:'"/>
 							</xsl:call-template>
-							<Label text="Single directory"/>
-							<xsl:if test="@source-flag='false'">
-								<Label text=": "/>
-								<File href="{@single-directory}" mask="*" 
-										desc="Choose an autosave directory" 
-										listener="ActionListener">
-									<actionPerformed choose="single-directory">
-										<xsl:call-template name="context"/>
-									</actionPerformed>
-								</File>
-							</xsl:if>
-							<Glue/>
-						</HBox>
-						<xsl:if test="@source-flag='true'">
-							<VSpace height="10"/>
-						</xsl:if>
-					</VBox>
+						</Panel>
+						<File gridx="2" gridy="2" enable="{@source-flag='false'}" href="{@single-directory}" mask="*" 
+								desc="Choose an autosave directory" 
+								listener="ActionListener">
+							<actionPerformed choose="single-directory">
+								<xsl:call-template name="context"/>
+							</actionPerformed>
+						</File>
+					</Grid>
 				</Title>
 			</xsl:when>
 			<xsl:otherwise>

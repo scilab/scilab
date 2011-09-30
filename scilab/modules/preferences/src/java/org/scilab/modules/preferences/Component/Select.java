@@ -40,7 +40,7 @@ public class Select extends JComboBox implements XComponent, XChooser {
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {""};
+        String [] actuators = {"enable"};
         return actuators;
     }
 

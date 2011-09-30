@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XChooser;
+import org.scilab.modules.preferences.XConfigManager;
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 
@@ -44,7 +45,7 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {"href", "desc", "mask"};
+        String [] actuators = {"enable", "href", "desc", "mask"};
         return actuators;
     }
 
@@ -63,9 +64,10 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
     * @param peer the corresponding view DOM node
     */
     public final void refresh(final Node peer) {
-        String href = XCommonManager.getAttribute(peer , "href");
-        String mask = XCommonManager.getAttribute(peer , "mask");
-        String desc = XCommonManager.getAttribute(peer , "desc");
+        String href   = XCommonManager.getAttribute(peer , "href");
+        String mask   = XCommonManager.getAttribute(peer , "mask");
+        String desc   = XCommonManager.getAttribute(peer , "desc");
+        
         if (!href.equals(href())) {
             href(href);
         }
@@ -75,6 +77,8 @@ public class File extends JTextField implements XComponent, XChooser, MouseListe
         if (!desc.equals(desc())) {
             desc(desc);
         }
+        String enable     = XConfigManager.getAttribute(peer , "enable", "true");
+        setEnabled(enable.equals("true"));
     }
 
     String jMask, jDesc;

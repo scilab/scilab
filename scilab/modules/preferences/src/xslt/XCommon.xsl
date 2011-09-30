@@ -110,16 +110,17 @@
     -->
 	<xsl:template name="BooleanCheckBox">
 		<xsl:param name="attr-name"/>
+		<xsl:param name="text" select="''"/>
 		<xsl:choose>
 			<xsl:when test="@*[local-name()=$attr-name]='true'">
-				<Checkbox checked="checked" listener="ActionListener">
+				<Checkbox checked="checked" listener="ActionListener" text="{$text}">
 					<actionPerformed set="{$attr-name}" value="false">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
 				</Checkbox>
 			</xsl:when>
 			<xsl:otherwise>
-				<Checkbox checked="unchecked" listener="ActionListener">
+				<Checkbox checked="unchecked" listener="ActionListener" text="{$text}">
 					<actionPerformed set="{$attr-name}" value="true">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
@@ -130,20 +131,63 @@
 
 	<xsl:template name="InvertedCheckBox">
 		<xsl:param name="attr-name"/>
+		<xsl:param name="text" select="''"/>
 		<xsl:choose>
 			<xsl:when test="@*[local-name()=$attr-name]='false'">
-				<Checkbox checked="checked" listener="ActionListener">
+				<Checkbox checked="checked" listener="ActionListener" text="{$text}">
 					<actionPerformed set="{$attr-name}" value="true">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
 				</Checkbox>
 			</xsl:when>
 			<xsl:otherwise>
-				<Checkbox checked="unchecked" listener="ActionListener">
+				<Checkbox checked="unchecked" listener="ActionListener" text="{$text}">
 					<actionPerformed set="{$attr-name}" value="false">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
 				</Checkbox>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="BooleanRadio">
+		<xsl:param name="attr-name"/>
+		<xsl:param name="text" select="''"/>
+		<xsl:choose>
+			<xsl:when test="@*[local-name()=$attr-name]='true'">
+				<Radiobutton checked="checked" listener="ActionListener" text="{$text}">
+					<actionPerformed set="{$attr-name}" value="false">
+						<xsl:call-template name="context"/>
+					</actionPerformed>
+				</Radiobutton>
+			</xsl:when>
+			<xsl:otherwise>
+				<Radiobutton checked="unchecked" listener="ActionListener" text="{$text}">
+					<actionPerformed set="{$attr-name}" value="true">
+						<xsl:call-template name="context"/>
+					</actionPerformed>
+				</Radiobutton>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template name="InvertedRadio">
+		<xsl:param name="attr-name"/>
+		<xsl:param name="text" select="''"/>
+		<xsl:choose>
+			<xsl:when test="@*[local-name()=$attr-name]='false'">
+				<Radiobutton checked="checked" listener="ActionListener" text="{$text}">
+					<actionPerformed set="{$attr-name}" value="true">
+						<xsl:call-template name="context"/>
+					</actionPerformed>
+				</Radiobutton>
+			</xsl:when>
+			<xsl:otherwise>
+				<Radiobutton checked="unchecked" listener="ActionListener" text="{$text}">
+					<actionPerformed set="{$attr-name}" value="false">
+						<xsl:call-template name="context"/>
+					</actionPerformed>
+				</Radiobutton>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>

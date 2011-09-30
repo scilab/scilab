@@ -47,12 +47,10 @@
 			</xsl:apply-templates>
 			<Glue/>
 		</VBox>
-		<Panel border-side="Center" width="640" height="420">
-			<VBox>
-				<xsl:apply-templates mode="main-panel">
-					<xsl:with-param name="path" select="$path"/>
-				</xsl:apply-templates>
-			</VBox>
+		<Panel border-side="Center" width="640" height="530">
+			<xsl:apply-templates mode="main-panel">
+				<xsl:with-param name="path" select="$path"/>
+			</xsl:apply-templates>
 		</Panel>
 		<HBox border-side="South">
 			<!--Button text="Help"    listener="ActionListener"> 
@@ -117,7 +115,7 @@
 					</xsl:choose>
 				</xsl:attribute>
 			</Icon>
-			<Label>	
+			<Label listener="MouseListener">	
 				<xsl:attribute name="text">
 					<xsl:if test="body/@maturity">&lt;HTML&gt;&lt;<xsl:value-of select="body/@maturity"/>&gt;</xsl:if>
 					<xsl:value-of select="local-name()"/>
@@ -134,7 +132,6 @@
 						<xsl:if test="not($tooltip='')">
 							<xsl:attribute name="tooltip"><xsl:value-of select="$tooltip"/></xsl:attribute>
 						</xsl:if>
-						<xsl:attribute name="listener">MouseListener</xsl:attribute>
 						<mouseClicked set="path" context="{$top-id}" value="{$local-path}"/>
 					</xsl:otherwise>
 				</xsl:choose>
@@ -183,7 +180,11 @@
 	</xsl:variable>
 
 	<xsl:if test="substring($local-path, 1, string-length($path))=$path and substring-after($local-path, $path)=''">
-		<xsl:apply-templates/>
+			<Grid>
+				<VBox insets="large" anchor="north" path="$path">
+					<xsl:apply-templates/>
+				</VBox>
+			</Grid>
 	</xsl:if>
 </xsl:template>
 

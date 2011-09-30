@@ -13,12 +13,13 @@
 package org.scilab.modules.preferences.Component;
 
 import org.scilab.modules.preferences.XComponent;
+
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import org.w3c.dom.Node;
 import org.scilab.modules.preferences.XConfigManager;
 import java.awt.Component;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
 /** Implementation of Panel compliant with extended management.
 *
@@ -47,38 +48,30 @@ public class HBox extends JPanel implements XComponent {
     */
     public HBox(final Node peer) {
         super();
-        setLayout(new GridBagLayout());
+        BoxLayout box = new BoxLayout(this, BoxLayout.LINE_AXIS);
+        setLayout(box);
         XConfigManager.setDimension(this, peer);
         XConfigManager.drawConstructionBorders(this);
-    }
-
-    /** Translation of constraints.
-    *
-    */
-    void setConstraints(GridBagConstraints gbc, Object constraints) {
     }
 
     /** Overloaded add method to embed grid layout.
     *
     */
     public void add(Component child, Object constraints, int index) {
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = index;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        setConstraints(gbc, constraints);
-        super.add(child, gbc);
+        if (child instanceof JComponent) {
+             ((JComponent)child).setAlignmentX(LEFT_ALIGNMENT);
+        }
+        super.add(child, constraints, index);
     }
 
     /** Overloaded add method to embed grid layout.
     *
     */
     public void add(Component child, Object constraints) {
-        int index = getComponentCount();
-        add(child, constraints, index);
+        if (child instanceof JComponent) {
+            ((JComponent)child).setAlignmentX(LEFT_ALIGNMENT);
+        }
+        super.add(child, constraints);
     }
 
     /** Refresh the component by the use of actuators.

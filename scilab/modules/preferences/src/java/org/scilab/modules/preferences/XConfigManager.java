@@ -152,6 +152,10 @@ public final class XConfigManager extends XCommonManager {
         if (generixEvent(actions, source)) {
             return true;
         }
+        if (actions.length==0) {
+//C            System.out.println("No actions processed!");
+            return false;
+        }
         Node action = actions[0];
         String callback = getAttribute(action, "callback");
         /** help deprecated

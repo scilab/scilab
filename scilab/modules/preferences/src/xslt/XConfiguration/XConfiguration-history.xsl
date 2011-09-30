@@ -7,15 +7,15 @@
 	<Title text="Saving">
 		<VBox>
 				<HBox>
-				<Checkbox listener="ActionListener">
+				<Radiobutton listener="ActionListener" text="Save after">
 					<xsl:if test="@kind='save'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:if>
 					<actionPerformed set="kind" value="save">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
-				</Checkbox>
-				Save after
+				</Radiobutton>
+				
 				<xsl:variable name="enable">
 				</xsl:variable>
 				<xsl:call-template name="Select">
@@ -45,37 +45,34 @@
 				<Glue/>
 			</HBox>
 			<HBox>
-				<Checkbox listener="ActionListener">
+				<Radiobutton listener="ActionListener" text="Save history file on quit">
 					<xsl:if test="@kind='quit'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:if>
 					<actionPerformed set="kind" value="quit">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
-				</Checkbox>
-				Save history file on quit
+				</Radiobutton>
 				<Glue/>
 			</HBox>
 			<HBox>
-				<Checkbox listener="ActionListener">
+				<Radiobutton listener="ActionListener" text="Disable history management">
 					<xsl:if test="@kind='disable'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:if>
 					<actionPerformed set="kind" value="disable">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
-				</Checkbox>
-				Disable history management
+				</Radiobutton>
 				<Glue/>
 			</HBox>
 			<VSpace height="20"/>
 			<HBox>
-				<Checkbox listener="ActionListener" checked="{@consecutive}">
+				<Checkbox listener="ActionListener" checked="{@consecutive}" text="Save consecutive duplicate commands">
 					<actionPerformed choose="consecutive">
 						<xsl:call-template name="context"/>
 					</actionPerformed>
 				</Checkbox>
-				Save consecutive duplicate commands
 				<Glue/>
 			</HBox>
 		</VBox>
@@ -84,18 +81,15 @@
 
 <xsl:template match="history-settings">
 	<Title text="Settings">
-		<VBox>
-			<HBox>
-				History file:
-				<File href="{@history-file}" mask="*.scilab" desc="Choose a history file" listener="ActionListener">
-					<actionPerformed choose="history-file">
-						<xsl:call-template name="context"/>
-					</actionPerformed>
-				</File>	
-			</HBox>
-			<VSpace height="30"/>
-			<HBox>
-				History lines:
+		<Grid>
+			<Label gridx="1" gridy="1" text="History file:"/>	
+			<File gridx="2" gridy="1" href="{@history-file}" mask="*.scilab" desc="Choose a history file" listener="ActionListener">
+				<actionPerformed choose="history-file">
+					<xsl:call-template name="context"/>
+				</actionPerformed>
+			</File>	
+			<Label gridx="1" gridy="2" text="History lines:"/>	
+			<Panel gridx="2" gridy="2" >
 				<xsl:call-template name="Select">
 					<xsl:with-param name="among">
 						<option history-line="250"/>
@@ -105,8 +99,8 @@
 						<option history-line="4000"/>
 					</xsl:with-param>
 				</xsl:call-template>
-			</HBox>
-		</VBox>
+			</Panel>
+		</Grid>
 	</Title>
 	<VSpace height="120"/>
 </xsl:template>

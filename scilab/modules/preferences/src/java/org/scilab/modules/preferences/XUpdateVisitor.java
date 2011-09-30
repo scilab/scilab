@@ -98,19 +98,18 @@ public class XUpdateVisitor {
         Component component;
         XSentinel sentinel = null;
         String indent;
-        // Show update:
-        // System.out.println(tab + peer.getNodeName());
+//C        System.out.println(tab + peer.getNodeName());
         while (allIndex < nodes.getLength()) {
             Node item = nodes.item(allIndex);
             if (isVisible(item)) {
-                /* TODO: correct these lines.
+                /* TODO: these lines should be correct !
                 while (visibleIndex < view.getComponentCount()) {
                     component = view.getComponent(visibleIndex);
                     if (component instanceof XComponent) {
                         break;
                     }
                     visibleIndex++;
-                } */                 
+                } */
                 if (visibleIndex < view.getComponentCount()) {
                     component = view.getComponent(visibleIndex);
                     sentinel  = (XSentinel) correspondance.get(component);
@@ -129,7 +128,7 @@ public class XUpdateVisitor {
                     indent = "+ ";
                     component = build(view, peer, item, -1);
                 }
-                if (component instanceof Container) {
+                if (component instanceof XComponent) {
                     // Rebuild container children.
                     Container container = (Container) component;
                     visit(container, item, tab + indent);
@@ -138,15 +137,22 @@ public class XUpdateVisitor {
             }
             allIndex += 1;
         }
-        // Clean children list.
+        // Clean children tail.
         while (visibleIndex < view.getComponentCount()) {
             component = view.getComponent(visibleIndex);
             if (component instanceof XComponent) {
+                /*
+                 *  Clean XComponent at the tail
+                 */
                 forget(view, component);
-            } else {
-                // hidden swing node (Table, Select, ...)
-                visibleIndex++;
+                continue;
             }
+/*            if ((component instanceof Box) && !(view instanceof XComponent)) {
+                forget(view, component);
+                continue;
+            }
+*/            // hidden swing node (Scroll, Table, Select, ...)
+            visibleIndex++;
         }
         // Sentinel sets watch.
         sentinel  = (XSentinel) correspondance.get(view);
@@ -164,8 +170,6 @@ public class XUpdateVisitor {
             XComponent xView = (XComponent) view;
             xView.refresh(peer);
         }
-        //view.setAlignmentX(0.0);
-        //view.setAlignmentY(0.0);
     }
 
     /** Builds the layout constraint object.
@@ -178,7 +182,9 @@ public class XUpdateVisitor {
         if (XConfigManager.getAttribute(parent, "layout").equals("border")) {
             return XConfigManager.getAttribute(current, "border-side");
         }
-        //TODO: grid bag constraints!
+        if (parent.getNodeName().equals("Grid")) {
+            return current;
+        }
         return null;
         }
 
@@ -223,9 +229,11 @@ public class XUpdateVisitor {
             final Node node,
             final XSentinel sentinel
             ) {
+
         String listener = XCommonManager.getAttribute(node, "listener");
         //System.out.println("... " + listener + " on " + node);
         if (listener.equals("MouseListener")) {
+             //component.addKeyListener(sentinel); Provide focus with proper focus policy.
              component.addMouseListener(sentinel);
              return;
         }
@@ -279,7 +287,7 @@ public class XUpdateVisitor {
             return new Scroll(node, container);
         }
 
-            if (tag.equals("HBox")) {
+/*            if (tag.equals("HBox")) {
                 Box hbox = Box.createHorizontalBox();
                 XConfigManager.drawConstructionBorders(hbox);
                 XConfigManager.setDimension(hbox, node);
@@ -300,8 +308,7 @@ public class XUpdateVisitor {
                 XConfigManager.setDimension(vbox, node);
                 return vbox;
             }
-
-
+*/
         //1. Find the class with the same name.
         Class<Component> componentClass;
         try {

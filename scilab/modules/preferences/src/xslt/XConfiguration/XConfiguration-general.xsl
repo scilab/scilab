@@ -10,98 +10,86 @@
 	<xsl:template match="environment">
 		<VSpace height="25"/>
 		<Title text="Environment">
-			<HBox>
-				<VBox>
-					<HBox>
-						Floating point exception:
-						<xsl:call-template name="Select">
-							<xsl:with-param name="among">
-								<option floating-point-exception="Produces an error"/>
-								<option floating-point-exception="Produces a warning"/>
-								<option floating-point-exception="Produces Inf or Nan"/>
-							</xsl:with-param>
-						</xsl:call-template>
-						<Glue/>
-					</HBox>
-					<VSpace height="25"/>
-					<HBox>
-						Printing format:
-						<xsl:call-template name="Select">
-							<xsl:with-param name="among">
-								<option printing-format="short"/>
-								<option printing-format="long"/>
-								<option printing-format="short e"/>
-								<option printing-format="long e"/>
-								<option printing-format="short g"/>
-								<option printing-format="long g"/>
-								<option printing-format="variable format"/>
-							</xsl:with-param>
-						</xsl:call-template>
-						<Glue/>
-						Width:
-						<xsl:call-template name="Select">
-							<xsl:with-param name="among">
-								<option printing-font-size="8"/>
-								<option printing-font-size="9"/>
-								<option printing-font-size="10"/>
-								<option printing-font-size="11"/>
-								<option printing-font-size="12"/>
-								<option printing-font-size="14"/>
-								<option printing-font-size="16"/>
-								<option printing-font-size="18"/>
-								<option printing-font-size="20"/>
-								<option printing-font-size="22"/>
-								<option printing-font-size="24"/>
-								<option printing-font-size="28"/>
-								<option printing-font-size="32"/>
-								<option printing-font-size="36"/>
-								<option printing-font-size="40"/>
-								<option printing-font-size="44"/>
-								<option printing-font-size="48"/>
-								<option printing-font-size="96"/>
-							</xsl:with-param>
-						</xsl:call-template>
-						<Glue/>
-					</HBox>
-				</VBox>
-				<Glue/>
-			</HBox>
+			<Grid>
+				<Label gridx="1" gridy="1" text="Floating point exception:"/>
+				<Panel gridx="2" gridy="1">
+					<xsl:call-template name="Select">
+						<xsl:with-param name="among">
+							<option floating-point-exception="Produces an error"/>
+							<option floating-point-exception="Produces a warning"/>
+							<option floating-point-exception="Produces Inf or Nan"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</Panel>
+				<Label gridx="1" gridy="2" text="Printing format:"/>
+				<Panel gridx="2" gridy="2">
+					<xsl:call-template name="Select">
+						<xsl:with-param name="among">
+							<option printing-format="short"/>
+							<option printing-format="long"/>
+							<option printing-format="short e"/>
+							<option printing-format="long e"/>
+							<option printing-format="short g"/>
+							<option printing-format="long g"/>
+							<option printing-format="variable format"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</Panel>
+				<Label gridx="1" gridy="3" text="Width:"/>
+				<Panel gridx="2" gridy="3">
+					<xsl:call-template name="Select">
+						<xsl:with-param name="among">
+							<option printing-font-size="8"/>
+							<option printing-font-size="9"/>
+							<option printing-font-size="10"/>
+							<option printing-font-size="11"/>
+							<option printing-font-size="12"/>
+							<option printing-font-size="14"/>
+							<option printing-font-size="16"/>
+							<option printing-font-size="18"/>
+							<option printing-font-size="20"/>
+							<option printing-font-size="22"/>
+							<option printing-font-size="24"/>
+							<option printing-font-size="28"/>
+							<option printing-font-size="32"/>
+							<option printing-font-size="36"/>
+							<option printing-font-size="40"/>
+							<option printing-font-size="44"/>
+							<option printing-font-size="48"/>
+							<option printing-font-size="96"/>
+						</xsl:with-param>
+					</xsl:call-template>
+				</Panel>
+			</Grid>
 		</Title>
 	</xsl:template>
 
   <xsl:template match="java-heap-memory" mode="tooltip"> and java heap size.</xsl:template>
 	<xsl:template match="java-heap-memory">
+		<xsl:variable name="heap-size">
+				<option heap-size="128"/>
+				<option heap-size="256"/>
+				<option heap-size="512"/>
+				<option heap-size="768"/>
+				<option heap-size="1024"/>
+		</xsl:variable>
 		<VSpace height="25"/>
 		<Title text="Java Heap Memory">	
-			<VBox>
-				<VSpace height="25"/>
-				<HBox>&lt;HTML&gt;The Java Heap Memory is the memory available for Java Objects (default value: 128 MB). Increasing this value may help you avoid "&lt;i&gt;OutOfMemoryError: Java Heap Space&lt;/I&gt;" 
-				errors.<Glue/>
-				</HBox>
-				<VSpace height="5"/>
-				<HBox>
-					<xsl:variable name="heap-size">
-							<option heap-size="128"/>
-							<option heap-size="256"/>
-							<option heap-size="512"/>
-							<option heap-size="768"/>
-							<option heap-size="1024"/>
-					</xsl:variable>
-					<Glue/>
+			<Grid>
+				<Label gridx="1" gridy="1" gridwidth="3" text="&lt;HTML&gt;The Java Heap Memory is the memory available for Java Objects (default value: 128 MB). Increasing this value may help you avoid '&lt;i&gt;OutOfMemoryError: Java Heap Space&lt;/I&gt;' errors."/>
+				<Panel gridx="1" gridy="2">
 					<xsl:call-template name="Slider">
 						<xsl:with-param name="among" select="$heap-size">
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
+				</Panel>
+				<Panel gridx="2" gridy="2">
 					<xsl:call-template name="Select">
-						<xsl:with-param name="among" select="$heap-size">
-						</xsl:with-param>
+						<xsl:with-param name="among" select="$heap-size"/>
 					</xsl:call-template>
-					MB
-					<Glue/>
-				</HBox>	
-				<VSpace height="25"/>
-			</VBox>	
+				</Panel>
+				<Label gridx="3" gridy="2" text="MB"/>
+			</Grid>
 		</Title>
 		<Glue/>
 		<VSpace height="25"/>
@@ -123,55 +111,53 @@
 			</HBox>
 
 			<Title text="Confirmation dialogs">
-				<VBox>
-					<HBox>&lt;HTML&gt;&lt;B&gt;Dialog box description
-						<HSpace width="150"/>
-						<Glue/>&lt;HTML&gt;&lt;B&gt;Tool
-						<HSpace width="15"/>
-						<Icon listener="MouseListener">
-							<xsl:attribute name="src">
+				<Grid>
+					<Label gridy="1" gridx="1" text="&lt;HTML&gt;&lt;B&gt;Dialog box description"/>
+					<Label gridy="1" gridx="2" text="&lt;HTML&gt;&lt;B&gt;Tool"/>
+					<Icon  gridy="1" gridx="3" listener="MouseListener">
+						<xsl:attribute name="src">
+							<xsl:choose>
+								<xsl:when test="@order='ascending'">
+									<xsl:text>go-up.png</xsl:text>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:text>go-down.png</xsl:text>
+								</xsl:otherwise>
+							</xsl:choose>		
+						</xsl:attribute>					
+						<mouseClicked set="order">
+							<xsl:attribute name="value">
 								<xsl:choose>
 									<xsl:when test="@order='ascending'">
-										<xsl:text>go-up.png</xsl:text>
+										<xsl:text>descending</xsl:text>
 									</xsl:when>
 									<xsl:otherwise>
-										<xsl:text>go-down.png</xsl:text>
+										<xsl:text>ascending</xsl:text>
 									</xsl:otherwise>
-								</xsl:choose>		
-							</xsl:attribute>					
-							<mouseClicked set="order">
-								<xsl:attribute name="value">
-									<xsl:choose>
-										<xsl:when test="@order='ascending'">
-											<xsl:text>descending</xsl:text>
-										</xsl:when>
-										<xsl:otherwise>
-											<xsl:text>ascending</xsl:text>
-										</xsl:otherwise>
-									</xsl:choose>				
-								</xsl:attribute>			
-								<xsl:call-template name="context"/>								
-							</mouseClicked>
-						</Icon>
-					</HBox>
+								</xsl:choose>				
+							</xsl:attribute>			
+							<xsl:call-template name="context"/>								
+						</mouseClicked>
+					</Icon>
 					<xsl:for-each select="tool">
 						<xsl:sort order="{@order}" select="@name"/>
-						<HBox>
-							<Checkbox 
-								listener="ActionListener" 
-								checked="{@state}" 
-								text="{@description}"
-								>
-								<actionPerformed choose="state">
-									<xsl:call-template name="context"/>
-								</actionPerformed>
-							</Checkbox>
-							<Glue/>
-							<Label text="{@name}"/>
-						</HBox>
+						<Checkbox 
+							gridy    = "{position() + 1}"
+							gridx    = "1"
+							listener = "ActionListener" 
+							checked  = "{@state}" 
+							text     = "{@description}"
+							>
+							<actionPerformed choose="state">
+								<xsl:call-template name="context"/>
+							</actionPerformed>
+						</Checkbox>
+						<Label
+							gridy    = "{position() + 1}"
+							gridx    = "2"
+							text     = "{@name}"/>
 					</xsl:for-each>
-					<Glue/>
-				</VBox>
+				</Grid>
 			</Title>
 			<Glue/>
 			<HBox>
@@ -197,43 +183,33 @@
 	</xsl:template>
 
 	<xsl:template match="actions">
-		<HBox>
-			<Label text="Active settings: "/>
-			<HSpace width="1"/>
-			<xsl:call-template name="Select">
-				<xsl:with-param name="among">
-					<option active="scilab"/>
-					<option active="emacs"/>
-					<option active="browse..."/>
-				</xsl:with-param>
-			</xsl:call-template>
-			<Glue/>	
-		</HBox>
-		<xsl:choose>
-			<xsl:when test="@active='browse...'">
-				<HBox>
-					<File href="{@browse}" mask="*.xml" desc="Choose a shortcut description file" listener="ActionListener">
-						<actionPerformed choose="browse">
-							<xsl:call-template name="context"/>
-						</actionPerformed>
-					</File>	
-					<Glue/>	
-				</HBox>
-			</xsl:when>
-			<xsl:otherwise>
-				<VSpace height="38"/>
-			</xsl:otherwise>
-		</xsl:choose>
-		<HBox>
-			Strike return to search by action name or shortcut:
-			<Glue/>	
-		</HBox>
-		<Entry text="{@filter}" listener="ActionListener">
-			<actionPerformed choose="filter">
-				<xsl:call-template name="context"/>
-			</actionPerformed>							
-		</Entry>
-		<Title width="650" height="250" background="#ffffff" text="General shortcuts preferences">
+		<Grid>
+			<Label gridy="1" gridx="1" text="Active settings: "/>
+			<Panel gridy="1" gridx="2">
+				<xsl:call-template name="Select">
+					<xsl:with-param name="among">
+						<option active="scilab"/>
+						<option active="emacs"/>
+						<option active="browse..."/>
+					</xsl:with-param>
+				</xsl:call-template>
+			</Panel>
+			<File gridy="2" gridx="1" gridwidth="2" href="{@browse}" mask="*.xml" desc="Choose a shortcut description file" listener="ActionListener">
+				<xsl:if test="not(@active='browse...')">
+					<xsl:attribute name="enable">false</xsl:attribute>
+				</xsl:if>
+				<actionPerformed choose="browse">
+					<xsl:call-template name="context"/>
+				</actionPerformed>
+			</File>	
+			<Label gridy="3" gridx="1" gridwidth="2" text="Strike return to search by action name or shortcut:"/>
+			<Entry gridy="4" gridx="1" gridwidth="2" text="{@filter}" listener="ActionListener">
+				<actionPerformed choose="filter">
+					<xsl:call-template name="context"/>
+				</actionPerformed>							
+			</Entry>
+		</Grid>
+		<Title background="#ffffff" text="General shortcuts preferences">
 			<VBox>
 				<xsl:variable name="filtered-actions" 
 					select="action-folder/action[contains(
@@ -248,62 +224,58 @@
 				<xsl:variable name="filtered-folder" 
 					select="action-folder[action [@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]]"/>
 				<HBox>&lt;HTML&gt;&lt;B&gt;Action name 
-					<HSpace width="150"/>
 					<Glue/>
-					<xsl:text>&lt;HTML&gt;&lt;B&gt;Shortcut</xsl:text>
+					<Label halign="right" text="&lt;HTML&gt;&lt;B&gt;Shortcut"/>
 				</HBox>
+				<VBox width="200" height="300">
 				<Scroll>
-					<VBox>
-						<xsl:for-each select="$filtered-folder">
-							<HBox>
-								<Icon listener="MouseListener">
-									<xsl:attribute name="src">
-										<xsl:choose>
-											<xsl:when test="@state='close'">
-												<xsl:text>list-add.png</xsl:text>
-											</xsl:when>
-											<xsl:otherwise>
-												<xsl:text>list-remove.png</xsl:text>
-											</xsl:otherwise>
-										</xsl:choose>
-									</xsl:attribute>
-									<mouseClicked set="state">
-										<xsl:attribute name="value">
+					<Grid >
+						<VBox anchor="north">
+							<xsl:for-each select="$filtered-folder">
+								<HBox>
+									<Icon listener="MouseListener">
+										<xsl:attribute name="src">
 											<xsl:choose>
 												<xsl:when test="@state='close'">
-													<xsl:text>open</xsl:text>
+													<xsl:text>list-add.png</xsl:text>
 												</xsl:when>
 												<xsl:otherwise>
-													<xsl:text>close</xsl:text>
+													<xsl:text>list-remove.png</xsl:text>
 												</xsl:otherwise>
-											</xsl:choose>				
-										</xsl:attribute>											
-										<xsl:call-template name="context"/>
-									</mouseClicked>
-								</Icon>				
-								<Label text="  {@name}"/>
-								<Glue/>	
-							</HBox>
-							<xsl:if test="@state='open'">
-								<xsl:for-each select="action[@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]">
-									<HBox>
-										<HSpace width="30"/>
-										<Label text="{@description}"/>
-										<HSpace width="100"/>							
-										<Glue/>
-										<Label  text="{concat('CTRL + ', @ctrl)}"/>
-									</HBox>
-								</xsl:for-each>
-							</xsl:if>
-						</xsl:for-each>
-						<xsl:variable name="count" select="count($filtered-actions[ ../@state='open']) + count($filtered-folder)"/>
-						<xsl:variable name="vspace" select="250 - (25 * $count)"/>
-						<xsl:if test="$vspace &gt; 0">
-							<VSpace height="{$vspace}"/>
-						</xsl:if>
-					</VBox>				
-				</Scroll>
-			<Glue/>	
+											</xsl:choose>
+										</xsl:attribute>
+										<mouseClicked set="state">
+											<xsl:attribute name="value">
+												<xsl:choose>
+													<xsl:when test="@state='close'">
+														<xsl:text>open</xsl:text>
+													</xsl:when>
+													<xsl:otherwise>
+														<xsl:text>close</xsl:text>
+													</xsl:otherwise>
+												</xsl:choose>				
+											</xsl:attribute>											
+											<xsl:call-template name="context"/>
+										</mouseClicked>
+									</Icon>				
+									<Label text="  {@name}"/>
+									<Glue/>	
+								</HBox>
+								<xsl:if test="@state='open'">
+									<xsl:for-each select="action[@description=$filtered-actions/@description][@ctrl=$filtered-actions/@ctrl]">
+										<HBox>
+											<HSpace width="30"/>
+											<Label text="{@description}"/>
+											<Glue/>
+											<Label font-family="Courier 10 Pitch" text="{concat('CTRL + ', @ctrl)}"/>
+										</HBox>
+									</xsl:for-each>
+								</xsl:if>
+							</xsl:for-each>
+						</VBox>				
+					</Grid>			</Scroll>
+				</VBox>
+
 			</VBox>
 		</Title>
 		<HBox>

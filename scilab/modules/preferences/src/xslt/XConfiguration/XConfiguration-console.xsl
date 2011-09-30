@@ -10,16 +10,15 @@
 
 	<xsl:template match="display">
 		<Title text="Display">
-			<VBox>
-				<HBox>
+			<Grid>
+				<Panel gridx="1" gridy="1" gridwidth="2">
 					<xsl:call-template name="BooleanCheckBox">
+						<xsl:with-param name="text" select="'Wrap lines'"/>
 						<xsl:with-param name="attr-name" select="'wrap-lines'"/>
 					</xsl:call-template>
-					Wrap Lines
-					<Glue/>
-				</HBox>
-				<HBox>
-					Lines to display:
+				</Panel>
+				<Label gridx="1" gridy="2" text="Lines to display:"/>
+				<Panel gridx="2" gridy="2">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option lines-to-display="25"/>
@@ -29,8 +28,9 @@
 							<option lines-to-display="400"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<HSpace width="70"/>
-					Columns to display:
+				</Panel>
+				<Label gridx="1" gridy="3" text="Columns to display:"/>
+				<Panel gridx="2" gridy="3">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option columns-to-display="25"/>
@@ -40,10 +40,9 @@
 							<option columns-to-display="400"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-				<HBox>
-					Tab size:
+				</Panel>
+				<Label gridx="1" gridy="4" text="Tab size:"/>
+				<Panel gridx="2" gridy="4">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option tab-size="2"/>
@@ -51,10 +50,9 @@
 							<option tab-size="8"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-				<HBox>
-					Number of lines in console scroll buffer:
+				</Panel>
+				<Label gridx="1" gridy="5" text="Number of lines in console scroll buffer:"/>
+				<Panel gridx="2" gridy="5">
 					<xsl:call-template name="Select">
 						<xsl:with-param name="among">
 							<option scroll-size="750"/>
@@ -64,10 +62,8 @@
 							<option scroll-size="12000"/>
 						</xsl:with-param>
 					</xsl:call-template>
-					<Glue/>
-				</HBox>
-
-			</VBox>
+				</Panel>
+			</Grid>
 		</Title>
 	</xsl:template>
 

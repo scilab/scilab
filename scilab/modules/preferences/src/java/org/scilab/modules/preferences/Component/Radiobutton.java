@@ -12,22 +12,19 @@
 
 package org.scilab.modules.preferences.Component;
 
-import javax.swing.JTextField;
-
-import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XChooser;
 import org.scilab.modules.preferences.XConfigManager;
-import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 
 import org.w3c.dom.Node;
 
-/** Implementation of Entry compliant with extended management.
+/** Implementation of Radiobutton compliant with extended management.
 *
 * @author Pierre GRADIT
 *
 */
-public class Entry extends JTextField implements XComponent, XChooser {
+public class Radiobutton extends SwingScilabRadioButton implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -39,7 +36,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
     * @return array of actuator names.
     */
     public final String [] actuators() {
-        String [] actuators = {"enable", "text", "columns"};
+        String [] actuators = {"enable", "text", "checked"};
         return actuators;
     }
 
@@ -47,7 +44,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
     *
     * @param peer : associated view DOM node.
     */
-    public Entry(final Node peer) {
+    public Radiobutton(final Node peer) {
         super();
         refresh(peer);
     }
@@ -57,16 +54,18 @@ public class Entry extends JTextField implements XComponent, XChooser {
     * @param peer the corresponding view DOM node
     */
     public final void refresh(final Node peer) {
-        String text = XCommonManager.getAttribute(peer , "text");
-        String columns = XCommonManager.getAttribute(peer , "columns");
+        String text = XConfigManager.getAttribute(peer , "text");
         if (!text.equals(text())) {
             text(text);
         }
-        if (!columns.equals(columns())) {
-        	columns(columns);
+
+        String checked = XConfigManager.getAttribute(peer , "checked");
+        if (!checked.equals(checked())) {
+            checked(checked);
         }
         String enable     = XConfigManager.getAttribute(peer , "enable", "true");
         setEnabled(enable.equals("true"));
+
     }
 
     /** Sensor for 'text' attribute.
@@ -74,26 +73,12 @@ public class Entry extends JTextField implements XComponent, XChooser {
     * @return the attribute value.
     */
     public final String text() {
-        return getText();
-    }
-
-    /** Actuator for 'text' attribute.
-    *
-    * @param text : the attribute value.
-    */
-    public final void columns(final String columns) {
-        if (! (columns.equals(XCommonManager.NAV))) {
-            int jColumns = Integer.parseInt(columns);
-            setColumns(jColumns);
+        String text = getText();
+        if (text != null) {
+            return text;
+        } else {
+            return XConfigManager.NAV;
         }
-    }
-
-    /** Sensor for 'columns' attribute.
-    *
-    * @return the attribute value.
-    */
-    public final String columns() {
-        return "" + getColumns();
     }
 
     /** Actuator for 'text' attribute.
@@ -101,16 +86,44 @@ public class Entry extends JTextField implements XComponent, XChooser {
     * @param text : the attribute value.
     */
     public final void text(final String text) {
-        setText(text);
+	if (text!=XConfigManager.NAV) {
+            setText(text);
+        } else {
+            setText(null);
+        }
     }
 
-    
+    /** Sensor for 'checked' attribute.
+    *
+    * @return the attribute value.
+    */
+    public final String checked() {
+        boolean state = isSelected();
+        if (state) {
+            return "checked";
+        } else {
+            return "unchecked";
+        }
+    }
+
+    /** Actuator for 'checked' attribute.
+    *
+    * @param text : the attribute value.
+    */
+    public final void checked(final String checked) {
+        boolean state =  checked.equals("checked");
+        setSelected(state);
+    }
+
     /** Actual response read by the listener.
     *
     * @return response read by the listener.
     */
     public final String choose() {
-        return text();
+        if (isSelected()) {
+            return "checked";
+        }
+        return "unchecked";
     }
 
     /** Developer serialization method.
@@ -118,9 +131,12 @@ public class Entry extends JTextField implements XComponent, XChooser {
     * @return equivalent signature.
     */
     public final String toString() {
-        String signature = "Entry";
-        if (!text().equals(XCommonManager.NAV)) {
+        String signature = "RadioButton";
+        if (!text().equals(XConfigManager.NAV)) {
             signature += " text='" + text() + "'";
+        }
+        if (!checked().equals(XConfigManager.NAV)) {
+            signature += " checked='" + checked() + "'";
         }
         return signature;
     }

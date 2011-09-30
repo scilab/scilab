@@ -15,8 +15,11 @@ package org.scilab.modules.preferences;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+
 import java.util.Arrays;
 import java.util.EventObject;
 
@@ -40,7 +43,7 @@ import org.w3c.dom.NodeList;
  * @author Pierre GRADIT
  *
  **/
-class XSentinel implements MouseListener, ActionListener, TableModelListener {
+class XSentinel implements MouseListener, ActionListener, TableModelListener, KeyListener {
     /** Associated DOM Node.
      * TODO Add accessors for this attribute. */
     protected Node      peer;
@@ -65,7 +68,9 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
         if (component instanceof XComponent) {
             XComponent  xComponent = (XComponent) component;
             actuators = xComponent.actuators();
+            Arrays.sort(actuators);
         } else {
+//C            System.out.println("Default sentinel -->"+component);
             actuators = new String[0];
         }
     }
@@ -78,14 +83,21 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
      * reachability through actuators.
      */
     public static String signature(final Node node, final String [] actuators) {
-        String signature        = "";
+        String signature        = node.getNodeName();
         if (!node.hasAttributes()) {
-                return "";
+//C                System.out.println("\\" + signature);
+                return signature;
         }
+        /*
+         *  Filtering attributes against actuators (and grid layout constraint).
+         */
         NamedNodeMap attributes = node.getAttributes();
         int size                = attributes.getLength();
         String [] keys          = new String[size];
-
+        
+//C        for (int i = 0; i < actuators.length; i++) System.out.print("/" + actuators[i]); System.out.print("/");
+//C        for (int i = 0; i < attributes.getLength(); i++) System.out.print("\\" + attributes.item(i).getNodeName()); System.out.print("\\");
+        
         for (int i = 0; i < size; i++) {
             Node item = attributes.item(i);
             keys[i]   = item.getNodeName();
@@ -94,18 +106,26 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
         /* as DOM attributes are not ordered,
          *   sort is needed to achieve proper reduction.
          */
-        signature += node.getNodeName();
+        String [] layout        = {"listener", "gridx", "gridy", "gridwidth", "gridheight", "weightx", "weighty"};
+        Arrays.sort(layout);
+        /*
+         */
         for (int i = 0; i < size; i++) {
             String attrName = keys[i];
-            if (Arrays.binarySearch(actuators, attrName) == -1 ) {
-            	/* As actuators can be performed without deleting node
-            	 * their value is removed from signature.
-            	 */
+//C            System.out.print("\\" + attrName +"(" + Arrays.binarySearch(layout, attrName) + "<0, " + Arrays.binarySearch(actuators, attrName) + "<0)");
+            if (Arrays.binarySearch(layout, attrName)    < 0
+            &&  Arrays.binarySearch(actuators, attrName) < 0
+            ) {
+                /* As "actuators" can be performed without deleting node
+                 * their value is removed from signature,
+                 * grid layout manages "layout"...
+                 */
                 Node item    = attributes.getNamedItem(attrName);
                 String value = item.getNodeValue().replaceAll("[ \t\n]+", " ");
                 signature   += " " + attrName + "='" + value + "'";
             }
         }
+//C        System.out.println("\\" + signature);
         return signature;
     }
 
@@ -120,10 +140,16 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
      */
     public boolean checks(final Node next) {
         String checker  = signature(next, actuators);
+        boolean check;
         if (reduced == null) {
+            /*
+             *  Cache reduced form.
+             */
             reduced  = signature(peer, actuators);
         }
-        return reduced.equals(checker);
+        check = reduced.equals(checker);
+//C        System.out.print("[" + checker + "]<-[" + reduced + "]");
+        return check;
     }
     /** Process event node through component.
      *  (must be updated if a new manager is created)
@@ -223,6 +249,17 @@ class XSentinel implements MouseListener, ActionListener, TableModelListener {
                 System.out.println(" |  dummy actionPerformed discarded!");
             }
         }
+    }
+
+    /** Mouse listener callback. @param e : event*/
+    public void keyPressed(final KeyEvent e) {
+         
+    }
+    /** Mouse listener callback. @param e : event*/
+    public void keyReleased(final KeyEvent e) {
+    }
+    /** Mouse listener callback. @param e : event*/
+    public void keyTyped(final KeyEvent e) {
     }
 
     /** Table listener callback. @param e : event*/
