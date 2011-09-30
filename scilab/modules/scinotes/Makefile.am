@@ -112,5 +112,7 @@ libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
 
 if GUI
+if BUILD_HELP
     USEANT=1
+endif
 endif

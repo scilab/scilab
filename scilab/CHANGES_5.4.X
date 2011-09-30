@@ -386,6 +386,8 @@ Compilation:
 
 * bug 9782 fixed - configure with --without-gui was failing.
 
+* bug 9883 fixed - Build with --disable-build-help was failing.
+
 
 Dynamic link:
 =============

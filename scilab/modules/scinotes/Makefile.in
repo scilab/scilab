@@ -565,7 +565,7 @@ libsciscinotes_la_LIBADD = libsciscinotes-algo.la
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciscinotes_la_sci_gateway_DATA = sci_gateway/scinotes_gateway.xml
-@GUI_TRUE@USEANT = 1
+@BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
