@@ -136,6 +136,9 @@ void ScilabView::deleteObject(char* pstId)
             }
         }
     }
+
+    // Remove the corresponding handle.
+    m_handleList.erase(pstId);
 }
 
 void ScilabView::updateObject(char* pstId, char* pstProperty)
