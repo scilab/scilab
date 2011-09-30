@@ -6,14 +6,13 @@
 // =============================================================================
 // <-- TEST WITH XCOS -->
 // <-- TEST WITH GRAPHIC -->
-// test scope values 
+// test scope values
 loadXcosLibs();
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cmatview3d.xcos"));
 xcos_simulate(scs_m, 4);
 f=gcf();
 a=f.children(1);
 g=a.children(1);
-assert_checkequal(f.figure_id, 20012);
 assert_checkequal(a.data_bounds, [0 0 -100; 81 81 100]);
 assert_checkequal(a.x_label.text, "x");
 assert_checkequal(a.y_label.text, "y");
