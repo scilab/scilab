@@ -35,6 +35,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
+import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 
@@ -42,11 +43,11 @@ import org.scilab.modules.graphic_objects.vectfield.Segs;
  * GraphicModel class
  * @author Bruno JOFRET
  */
-public class GraphicModel {
-
-    private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
+public final class GraphicModel {
 
     private static GraphicModel me;
+
+    private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
 
     /**
      * Default constructor
@@ -188,12 +189,15 @@ public class GraphicModel {
                 return new Segs();
             case TEXT:
                 return new Text();
+            /* UICONTROLS */
             case IMAGERENDERER:
                 return new ImageRenderer();
             case PUSHBUTTON:
                 return new PushButton();
             case TABLE:
                 return new Table();
+            case UITEXT:
+                return new UiText();
             case UNKNOWNOBJECT:
                 return null;
             default:

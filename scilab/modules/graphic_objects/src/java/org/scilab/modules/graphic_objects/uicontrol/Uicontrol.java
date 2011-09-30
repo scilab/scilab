@@ -44,6 +44,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLEDATA_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_UNITS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
@@ -143,7 +144,8 @@ public class Uicontrol extends GraphicObject {
 	private enum UicontrolStyle {
 		IMAGERENDERER,
 		PUSHBUTTON,
-		TABLE
+		TABLE,
+		TEXT
 	};
 
 	/**
@@ -168,6 +170,9 @@ public class Uicontrol extends GraphicObject {
 		if (style == UicontrolStyle.PUSHBUTTON) {
 			return __GO_UI_PUSHBUTTON__;
 		}
+        if (style == UicontrolStyle.TEXT) {
+            return __GO_UI_TEXT__;
+        }
 		return null;
 	}
 
@@ -186,6 +191,9 @@ public class Uicontrol extends GraphicObject {
 		if (style.equals(__GO_UI_PUSHBUTTON__)) {
 			return UicontrolStyle.PUSHBUTTON;
 		}
+        if (style.equals(__GO_UI_TEXT__)) {
+            return UicontrolStyle.TEXT;
+        }
 		return null;
 	}
 	
