@@ -10,8 +10,10 @@
 if HDF5
 
 if GUI
+if XCOS
 # No GUI. Disable the Java build
 USEANT=1
+endif
 endif
 
 

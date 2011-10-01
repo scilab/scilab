@@ -388,6 +388,8 @@ Compilation:
 
 * bug 9883 fixed - Build with --disable-build-help was failing.
 
+* bug 9991 fixed - ./configure --without-xcos failed to build
+
 
 Dynamic link:
 =============
