@@ -46,7 +46,7 @@ function formatStr = getW2Fformat(scs_m, idxBlock)
 //      ipar(5:4+lfil) ............. character codes for filename
 //      ipar(5+lfil:4+lfil+lfmt) ... character codes for format if any
 //
-//    Tip: convert from ASCII to human-readable => code2str(ipar)
+//    Tip: convert from ASCII to human-readable => _code2str(ipar)
 //                                                                          
 //  2008/03/31  Laurent Vaylet    Creation
 //  YYYY/MM/DD  ???               Modification: ???
@@ -54,6 +54,6 @@ function formatStr = getW2Fformat(scs_m, idxBlock)
 
 //-- Retrieve format and convert to human-readable string
 ipar = scs_m.objs(idxBlock).model.ipar
-formatStr = code2str(ipar(5+ipar(1):4+ipar(1)+ipar(2)))
+formatStr = _code2str(ipar(5+ipar(1):4+ipar(1)+ipar(2)))
 endfunction
 

@@ -135,7 +135,7 @@ txt=mgetl(fil);
 m2sci_info(gettext("M-file reading: Done"),-1);
 
 //Replace TAB by SPACE
-txt=strsubst(txt,code2str(-40),"")
+txt=strsubst(txt, ascii(9), "");
 
 if txt==[] then
   m2sci_infos(msprintf(gettext("File %s is an empty file.\n"),fil),-1);

@@ -86,7 +86,7 @@ case 'set' then
     end
 
     if ok then
-      ipar=[length(fname1);length(frmt1);0;N;str2code(fname1);str2code(frmt1)]
+      ipar=[length(fname1);length(frmt1);0;N;_str2code(fname1);_str2code(frmt1)]
       if prod(size(dstate))<>(nin+1)*N+2 then
 	dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
@@ -110,7 +110,7 @@ case 'define' then
   model.in=in
   model.evtin=1
   model.dstate=[-1;lunit;zeros((nin+1)*N,1)]
-  model.ipar=[length(fname);length(frmt);0;N;str2code(fname);str2code(frmt)]
+  model.ipar=[length(fname);length(frmt);0;N;_str2code(fname);_str2code(frmt)]
   model.blocktype='d'
   model.dep_ut=[%t %f]
   

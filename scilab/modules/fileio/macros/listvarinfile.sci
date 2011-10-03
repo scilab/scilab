@@ -250,14 +250,14 @@ function v=code2var(id)
       ch=idl-256*k
       if ch==40 then
         n=i-1
-        v=code2str(str)
+        v=_code2str(str)
         return
       end
       idl=k
       str(i)=ch
     end
     i1=i1+4
-    v=code2str(str)
+    v=_code2str(str)
   end
 endfunction
 

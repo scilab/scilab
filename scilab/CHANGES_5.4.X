@@ -785,6 +785,9 @@ Obsolete Functions
 * 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
    removed in Scilab 5.4.1.
 
+* 'code2str' and 'str2code' are obsolete and will be removed on 5.4.1, please use
+  'ascii' instead.
+
 
 Removed Functions (previously declared as obsolete)
 ====================================================
@@ -1269,7 +1272,6 @@ Bug Fixes
 * Bug #9963 fixed - The assert_computedigits function was not vectorized.
 
 * Bug #9966 fixed - The default value of comptype in assert_checkalmostequal
-                   was wrongly chosen.
 
 * Bug #9971 fixed - GLoad macro not used and not documented has been removed.
 

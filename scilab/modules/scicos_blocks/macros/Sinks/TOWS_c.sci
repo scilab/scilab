@@ -68,7 +68,7 @@ case 'set' then
         else
           model.blocktype = 'd';
         end
-        model.ipar=[nz;length(varnam);str2code(varnam)]
+        model.ipar=[nz;length(varnam);_str2code(varnam)]
         graphics.exprs=exprs
         x.graphics=graphics;
         x.model=model;
@@ -91,7 +91,7 @@ case 'define' then
   model.evtin     = [1];
   model.evtout    = [];
   model.rpar      = [];
-  model.ipar      = [nz;length(varnam);str2code(varnam)];
+  model.ipar      = [nz;length(varnam);_str2code(varnam)];
   model.blocktype = 'd';
   model.firing    = [];
   model.dep_ut    = [%f %f];
