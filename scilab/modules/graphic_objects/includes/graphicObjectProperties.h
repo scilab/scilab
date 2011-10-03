@@ -289,6 +289,7 @@
 
 #define __GO_STYLE__                       "Style"
 #define __GO_UI_CHECKBOX__                 "checkbox"
+#define __GO_UI_EDIT__                     "edit"
 #define __GO_UI_FRAME__                    "frame"
 #define __GO_UI_IMAGERENDERER__            "imagerenderer"
 #define __GO_UI_PUSHBUTTON__               "pushbutton"

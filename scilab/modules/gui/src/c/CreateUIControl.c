@@ -50,6 +50,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_CHECKBOX__);
     }
+    else if (strcmp(style,"edit")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_EDIT__);
+    }
     else if (strcmp(style,"imagerenderer")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);

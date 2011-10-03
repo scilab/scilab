@@ -290,6 +290,7 @@ public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 
 public static final String __GO_STYLE__ =                  "Style";
 public static final String __GO_UI_CHECKBOX__ =            "checkbox";
+public static final String __GO_UI_EDIT__ =                "edit";
 public static final String __GO_UI_FRAME__ =               "frame";
 public static final String __GO_UI_IMAGERENDERER__ =       "imagerenderer";
 public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";

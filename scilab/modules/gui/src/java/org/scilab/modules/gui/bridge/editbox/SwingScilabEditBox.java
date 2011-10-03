@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,6 +21,8 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -37,10 +40,12 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
+public class SwingScilabEditBox extends JTextField implements SwingViewObject, SimpleEditBox {
 	
 	private static final long serialVersionUID = 1L;
 	
+    private String uid;
+
 	private CallBack callback;
 
 	private FocusListener focusListener;
@@ -208,7 +213,7 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
+		// NOTHING TO DO HERE UNTIL WE HAVE MULTI-LINE EDIT UICONTROLS
 	}
 	
 	/**
@@ -244,4 +249,28 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }
