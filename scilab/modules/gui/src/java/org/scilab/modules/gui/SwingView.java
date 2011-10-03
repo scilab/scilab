@@ -34,6 +34,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
@@ -65,6 +66,7 @@ import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -121,6 +123,7 @@ public final class SwingView implements GraphicView {
         ImageRenderer,
         PushButton,
         RadioButton,
+        Slider,
         Table,
         Text
     } 
@@ -198,6 +201,8 @@ public final class SwingView implements GraphicView {
             return UielementType.PushButton;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
             return UielementType.RadioButton;
+        } else if (style.equals(__GO_UI_SLIDER__)) {
+            return UielementType.Slider;
         } else if (style.equals(__GO_UI_TABLE__)) {
             return UielementType.Table;
         } else if (style.equals(__GO_UI_TEXT__)) {
@@ -287,6 +292,11 @@ public final class SwingView implements GraphicView {
             radioButton.setId(id);
             setDefaultProperties(radioButton, id);
             return radioButton;
+        case Slider:
+            SwingScilabSlider slider = new SwingScilabSlider();
+            slider.setId(id);
+            setDefaultProperties(slider, id);
+            return slider;
         case Table:
             SwingScilabUiTable table = new SwingScilabUiTable();
             table.setId(id);

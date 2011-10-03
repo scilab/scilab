@@ -42,6 +42,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ROWNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCALE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SHEAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
@@ -151,6 +152,7 @@ public class Uicontrol extends GraphicObject {
         IMAGERENDERER,
         PUSHBUTTON,
         RADIOBUTTON,
+        SLIDER,
         TABLE,
         TEXT
     };
@@ -172,8 +174,10 @@ public class Uicontrol extends GraphicObject {
         switch(style) {
         case CHECKBOX:
             stringStyle = __GO_UI_CHECKBOX__;
+            break;
         case EDIT:
             stringStyle = __GO_UI_EDIT__;
+            break;
         case IMAGERENDERER:
             stringStyle = __GO_UI_IMAGERENDERER__;
             break;
@@ -182,6 +186,9 @@ public class Uicontrol extends GraphicObject {
             break;
         case RADIOBUTTON:
             stringStyle = __GO_UI_RADIOBUTTON__;
+            break;
+        case SLIDER:
+            stringStyle = __GO_UI_SLIDER__;
             break;
         case TABLE:
             stringStyle = __GO_UI_TABLE__;
@@ -205,7 +212,7 @@ public class Uicontrol extends GraphicObject {
         UicontrolStyle enumStyle = null;
         if (style.equals(__GO_UI_CHECKBOX__)) {
             enumStyle = UicontrolStyle.CHECKBOX;
-        } else if(style.equals(__GO_UI_EDIT__)) {
+        } else if (style.equals(__GO_UI_EDIT__)) {
             enumStyle = UicontrolStyle.EDIT;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             enumStyle = UicontrolStyle.IMAGERENDERER;
@@ -213,7 +220,9 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.PUSHBUTTON;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
             enumStyle = UicontrolStyle.RADIOBUTTON;
-        } else if(style.equals(__GO_UI_TABLE__)) {
+        } else if (style.equals(__GO_UI_SLIDER__)) {
+            enumStyle = UicontrolStyle.SLIDER;
+        } else if (style.equals(__GO_UI_TABLE__)) {
             enumStyle = UicontrolStyle.TABLE;
         } else if (style.equals(__GO_UI_TEXT__)) {
             enumStyle = UicontrolStyle.TEXT;

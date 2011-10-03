@@ -294,6 +294,7 @@
 #define __GO_UI_IMAGERENDERER__            "imagerenderer"
 #define __GO_UI_PUSHBUTTON__               "pushbutton"
 #define __GO_UI_RADIOBUTTON__              "radiobutton"
+#define __GO_UI_SLIDER__                   "slider"
 #define __GO_UI_TABLE__                    "table"
 #define __GO_UI_TEXT__                     "text"
 

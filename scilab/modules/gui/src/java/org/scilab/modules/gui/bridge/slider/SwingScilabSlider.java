@@ -18,6 +18,8 @@ import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollBar;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
@@ -34,13 +36,15 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
+public class SwingScilabSlider extends JScrollBar implements SwingViewObject, SimpleSlider {
 
 	private static final long serialVersionUID = -4262320156090829309L;
 	
 	private static final int MIN_KNOB_SIZE = 40;
 
-	private CallBack callback;
+    private String uid;
+
+    private CallBack callback;
 	
 	private AdjustmentListener adjustmentListener;
 	
@@ -183,7 +187,7 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
+		// Nothing to do here
 	}
 
 	/**
@@ -191,7 +195,7 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
+        // Nothing to do here
 	}
 	
 	/**
@@ -334,4 +338,28 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 		}
 	}
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }

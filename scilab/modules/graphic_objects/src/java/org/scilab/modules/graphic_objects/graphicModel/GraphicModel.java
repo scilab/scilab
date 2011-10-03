@@ -37,6 +37,7 @@ import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
 import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
+import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
@@ -203,6 +204,8 @@ public final class GraphicModel {
                 return new PushButton();
             case RADIOBUTTON:
                 return new RadioButton();
+            case SLIDER:
+                return new Slider();
             case TABLE:
                 return new Table();
             case UITEXT:

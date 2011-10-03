@@ -62,6 +62,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_RADIOBUTTON__);
     }
+    else if (strcmp(style,"slider")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_SLIDER__);
+    }
     else if (strcmp(style,"table")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_TABLE__);
