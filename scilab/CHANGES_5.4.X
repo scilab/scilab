@@ -673,6 +673,8 @@ Bug fixes:
 
 * bug 9950 fixed - It was possible to select several texts in the console.
 
+* bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
+
 * bug 9966 fixed - The default value of comptype in assert_checkalmostequal 
                    was wrongly chosen.
 
