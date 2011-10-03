@@ -36,6 +36,7 @@ import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
+import org.scilab.modules.graphic_objects.uicontrol.listbox.ListBox;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
@@ -203,6 +204,8 @@ public final class GraphicModel {
                 return new Frame();
             case IMAGERENDERER:
                 return new ImageRenderer();
+            case LISTBOX:
+                return new ListBox();
             case PUSHBUTTON:
                 return new PushButton();
             case RADIOBUTTON:

@@ -32,6 +32,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
@@ -66,6 +67,7 @@ import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
@@ -124,6 +126,7 @@ public final class SwingView implements GraphicView {
         Frame,
         Figure,
         ImageRenderer,
+        ListBox,
         PushButton,
         RadioButton,
         Slider,
@@ -202,6 +205,8 @@ public final class SwingView implements GraphicView {
             return UielementType.Frame;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             return UielementType.ImageRenderer;
+        } else if (style.equals(__GO_UI_LISTBOX__)) {
+            return UielementType.ListBox;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
             return UielementType.PushButton;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
@@ -291,6 +296,10 @@ public final class SwingView implements GraphicView {
             SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
             imageRenderer.setId(id);
             return imageRenderer;
+        case ListBox:
+            SwingScilabListBox listBox = new SwingScilabListBox();
+            listBox.setId(id);
+            return listBox;
         case PushButton:
             SwingScilabPushButton pushButton = new SwingScilabPushButton();
             pushButton.setId(id);

@@ -292,6 +292,7 @@
 #define __GO_UI_EDIT__                     "edit"
 #define __GO_UI_FRAME__                    "frame"
 #define __GO_UI_IMAGERENDERER__            "imagerenderer"
+#define __GO_UI_LISTBOX__                  "listbox"
 #define __GO_UI_PUSHBUTTON__               "pushbutton"
 #define __GO_UI_RADIOBUTTON__              "radiobutton"
 #define __GO_UI_SLIDER__                   "slider"

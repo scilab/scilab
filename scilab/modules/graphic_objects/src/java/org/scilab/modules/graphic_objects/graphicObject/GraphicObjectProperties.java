@@ -293,6 +293,7 @@ public static final String __GO_UI_CHECKBOX__ =            "checkbox";
 public static final String __GO_UI_EDIT__ =                "edit";
 public static final String __GO_UI_FRAME__ =               "frame";
 public static final String __GO_UI_IMAGERENDERER__ =       "imagerenderer";
+public static final String __GO_UI_LISTBOX__ =             "listbox";
 public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";
 public static final String __GO_UI_RADIOBUTTON__ =         "radiobutton";
 public static final String __GO_UI_SLIDER__ =              "slider";

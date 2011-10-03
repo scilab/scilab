@@ -31,6 +31,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
@@ -152,6 +153,7 @@ public class Uicontrol extends GraphicObject {
         EDIT,
         FRAME,
         IMAGERENDERER,
+        LISTBOX,
         PUSHBUTTON,
         RADIOBUTTON,
         SLIDER,
@@ -185,6 +187,9 @@ public class Uicontrol extends GraphicObject {
             break;
         case IMAGERENDERER:
             stringStyle = __GO_UI_IMAGERENDERER__;
+            break;
+        case LISTBOX:
+            stringStyle = __GO_UI_LISTBOX__;
             break;
         case PUSHBUTTON:
             stringStyle = __GO_UI_PUSHBUTTON__;
@@ -223,6 +228,8 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.FRAME;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             enumStyle = UicontrolStyle.IMAGERENDERER;
+        } else if (style.equals(__GO_UI_LISTBOX__)) {
+            enumStyle = UicontrolStyle.LISTBOX;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
             enumStyle = UicontrolStyle.PUSHBUTTON;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {

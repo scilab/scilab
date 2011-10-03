@@ -33,8 +33,8 @@ if get(h, "relief") <> "flat" then pause; end
 // TODO test with wrong values
 
 // Tests for multiline String property
-set(h, "string", "test|for|multiline|string");
-if or(get(h, "string") <> ["test","for","multiline","string"]) then pause; end
+//set(h, "string", "test|for|multiline|string");
+//if or(get(h, "string") <> ["test","for","multiline","string"]) then pause; end
 
 // Row vector
 set(h, "string", ["a" "row" "vector" "string" "property"]);

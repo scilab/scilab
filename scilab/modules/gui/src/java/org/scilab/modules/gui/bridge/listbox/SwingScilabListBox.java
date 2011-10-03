@@ -27,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -43,9 +45,11 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
+public class SwingScilabListBox extends JScrollPane implements SwingViewObject, SimpleListBox {
 	
 	private static final long serialVersionUID = 3507396207331058895L;
+
+    private String uid;
 
 	private CallBack callback;
 	
@@ -333,7 +337,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
+		// Nothing to do here
 	}
 
 	/**
@@ -341,7 +345,7 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		throw new UnsupportedOperationException();
+	   // Nothing to do here
 	}
 	
 	/**
@@ -467,4 +471,28 @@ public class SwingScilabListBox extends JScrollPane implements SimpleListBox {
 		return getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
 	}
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }
