@@ -46,6 +46,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
     }
+    else if (strcmp(style,"checkbox")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_CHECKBOX__);
+    }
     else if (strcmp(style,"imagerenderer")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
@@ -54,13 +58,13 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_RADIOBUTTON__);
     }
-    else if (strcmp(style,"text")==0)
-    {
-        pobjUID = createGraphicObject(__GO_UI_TEXT__);
-    }
     else if (strcmp(style,"table")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_TABLE__);
+    }
+    else if (strcmp(style,"text")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_TEXT__);
     }
 
 #if 0

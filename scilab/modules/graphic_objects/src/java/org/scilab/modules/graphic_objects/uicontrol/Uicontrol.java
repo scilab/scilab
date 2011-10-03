@@ -17,6 +17,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
@@ -144,6 +145,7 @@ public class Uicontrol extends GraphicObject {
      * All uicontrol styles
      */
     private enum UicontrolStyle {
+        CHECKBOX,
         IMAGERENDERER,
         PUSHBUTTON,
         RADIOBUTTON,
@@ -166,6 +168,8 @@ public class Uicontrol extends GraphicObject {
     private String styleEnumToString(UicontrolStyle style) {
         String stringStyle = null;
         switch(style) {
+        case CHECKBOX:
+            stringStyle = __GO_UI_CHECKBOX__;
         case TABLE:
             stringStyle = __GO_UI_TABLE__;
             break;
@@ -205,6 +209,8 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.RADIOBUTTON;
         } else if (style.equals(__GO_UI_TEXT__)) {
             enumStyle = UicontrolStyle.TEXT;
+        } else if (style.equals(__GO_UI_CHECKBOX__)) {
+            enumStyle = UicontrolStyle.CHECKBOX;
         }
         return enumStyle;
     }

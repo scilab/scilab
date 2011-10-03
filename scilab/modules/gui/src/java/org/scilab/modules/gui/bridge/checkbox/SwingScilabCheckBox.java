@@ -15,6 +15,8 @@ package org.scilab.modules.gui.bridge.checkbox;
 
 import javax.swing.JCheckBox;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.checkbox.SimpleCheckBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -31,11 +33,13 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
+public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, SimpleCheckBox {
 
 	private static final long serialVersionUID = 3435428345694647542L;
 	
-	private CallBack callback;
+    private String uid;
+
+    private CallBack callback;
 
 	/**
 	 * Constructor
@@ -217,4 +221,28 @@ public class SwingScilabCheckBox extends JCheckBox implements SimpleCheckBox {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }

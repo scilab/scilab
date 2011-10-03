@@ -32,6 +32,7 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.imagerenderer.ImageRenderer;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
@@ -191,6 +192,8 @@ public final class GraphicModel {
             case TEXT:
                 return new Text();
             /* UICONTROLS */
+            case CHECKBOX:
+                return new CheckBox();
             case IMAGERENDERER:
                 return new ImageRenderer();
             case PUSHBUTTON:

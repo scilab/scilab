@@ -21,6 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -57,6 +58,7 @@ import org.flexdock.view.View;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
@@ -111,6 +113,7 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
+        CheckBox,
         Figure,
         ImageRenderer,
         PushButton,
@@ -180,7 +183,9 @@ public final class SwingView implements GraphicView {
 
     private UielementType StyleToEnum(String style) {
         DEBUG("SwingView", "StyleToEnum(" + style + ")");
-        if (style.equals(__GO_FIGURE__)) {
+        if (style.equals(__GO_UI_CHECKBOX__)) {
+            return UielementType.CheckBox;
+        } else if (style.equals(__GO_FIGURE__)) {
             return UielementType.Figure;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             return UielementType.ImageRenderer;
@@ -203,6 +208,11 @@ public final class SwingView implements GraphicView {
 
     private SwingViewObject CreateObjectFromType(UielementType type, String id) {
         switch (type) {
+        case CheckBox:
+            SwingScilabCheckBox checkBox = new SwingScilabCheckBox();
+            checkBox.setId(id);
+            setDefaultProperties(checkBox, id);
+            return checkBox;
         case Figure:
             Figure figure = (Figure) GraphicController.getController().getObjectFromId(id);
             String figureTitle = figure.getName();

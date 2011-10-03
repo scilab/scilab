@@ -34,7 +34,7 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Graphic objects types */
     public enum Type { ARC, AXES, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, GRAYPLOT,
-        LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, IMAGERENDERER, PUSHBUTTON, RADIOBUTTON, TABLE, UITEXT, UNKNOWNOBJECT 
+        LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, IMAGERENDERER, PUSHBUTTON, RADIOBUTTON, TABLE, UITEXT, UNKNOWNOBJECT 
     };
 
     /** GraphicObject properties */
@@ -89,6 +89,7 @@ public abstract class GraphicObject implements Cloneable {
 
     public GraphicObject clone() {
         GraphicObject copy = null;
+
         try {
             copy = (GraphicObject) super.clone();
         } catch (CloneNotSupportedException e) {
@@ -159,6 +160,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.SEGS;
         } else if (typeName.equals(__GO_TEXT__)) {
             return Type.TEXT;
+        } else if (typeName.equals(__GO_UI_CHECKBOX__)) {
+            return Type.CHECKBOX;
         } else if (typeName.equals(__GO_UI_IMAGERENDERER__)) {
             return Type.IMAGERENDERER;
         } else if (typeName.equals(__GO_UI_PUSHBUTTON__)) {
