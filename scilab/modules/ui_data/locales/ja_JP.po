@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ja\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: ans は編集できません.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: 未定義の変数 %s.\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -25,25 +49,11 @@ msgstr "%s: Java メモリに問題があります,  %s　を編集できませ�
 msgid "%s: Type not handle yet"
 msgstr "%s: 型を処理できません"
 
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: 未定義の変数 %s.\n"
+msgid "&File"
+msgstr "ファイル(&F)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: ans は編集できません.\n"
+msgid "&Close"
+msgstr "閉じる(&C)"
 
 msgid "&?"
 msgstr "&?"
@@ -51,94 +61,38 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "Scilabバージョン情報(&A)..."
 
-msgid "&Close"
-msgstr "閉じる(&C)"
-
-msgid "&File"
-msgstr "ファイル(&F)"
-
-msgid "Boolean"
-msgstr "論理値"
-
-msgid "Bytes"
-msgstr "バイト数"
-
-msgid "Close"
-msgstr "閉じる"
-
-msgid "Compiled function"
-msgstr "コンパイル済みの関数"
-
-msgid "Copy"
-msgstr "コピー"
-
-msgid "Cut"
-msgstr "切り取る"
-
-msgid "Double"
-msgstr "二重化"
-
-msgid "File"
-msgstr "ファイル"
-
-msgid "Filter"
-msgstr "フィルタ"
-
-msgid "Function library"
-msgstr "関数ライブラリ"
-
-msgid "Global variables can not be edited."
-msgstr "グローバル変数は編集できません"
-
-msgid "Graphic handles"
-msgstr "グラフィックハンドル"
-
 msgid "Icon"
 msgstr "アイコン"
-
-msgid "Implicit polynomial"
-msgstr "陰的多項式"
-
-msgid "Integer"
-msgstr "整数"
-
-msgid "Intrinsic function"
-msgstr "固有関数"
-
-msgid "List"
-msgstr "リスト"
-
-msgid "Matlab sparse"
-msgstr "Matlab疎行列"
-
-msgid "Mlist"
-msgstr "mlist"
 
 msgid "Name"
 msgstr "名前"
 
-msgid "Paste"
-msgstr "貼り付け"
+msgid "Bytes"
+msgstr "バイト数"
 
-msgid "Pointer"
-msgstr "ポインタ"
+msgid "Type"
+msgstr "型"
+
+msgid "Visibility"
+msgstr "可視性"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Filter"
+msgstr "フィルタ"
+
+msgid "Double"
+msgstr "二重化"
 
 msgid "Polynomial"
 msgstr "多項式"
 
-msgid "Redo"
-msgstr "やり直す"
-
-msgid "Refresh the variable "
-msgstr "変数を確認 "
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilabモジュール '%s' はインストールされていません.\n"
+msgid "Boolean"
+msgstr "論理値"
 
 msgid "Sparse"
 msgstr "疎"
@@ -146,26 +100,72 @@ msgstr "疎"
 msgid "Sparse boolean"
 msgstr "疎論理値"
 
+msgid "Integer"
+msgstr "整数"
+
+msgid "Graphic handles"
+msgstr "グラフィックハンドル"
+
 msgid "String"
 msgstr "文字列"
-
-msgid "Tlist"
-msgstr "tlist"
-
-msgid "Type"
-msgstr "型"
 
 msgid "Un-compiled function"
 msgstr "未コンパイルの関数"
 
-msgid "Undo"
-msgstr "元に戻す"
+msgid "Compiled function"
+msgstr "コンパイル済みの関数"
 
-msgid "Variable Browser"
-msgstr "変数ブラウザ"
+msgid "Function library"
+msgstr "関数ライブラリ"
+
+msgid "List"
+msgstr "リスト"
+
+msgid "Tlist"
+msgstr "tlist"
+
+msgid "Mlist"
+msgstr "mlist"
+
+msgid "Pointer"
+msgstr "ポインタ"
+
+msgid "Intrinsic function"
+msgstr "固有関数"
+
+msgid "Matlab sparse"
+msgstr "Matlab疎行列"
+
+msgid "Implicit polynomial"
+msgstr "陰的多項式"
 
 msgid "Variable Editor"
 msgstr "変数エディタ"
 
-msgid "Visibility"
-msgstr "可視性"
+msgid "Variable Browser"
+msgstr "変数ブラウザ"
+
+msgid "Global variables can not be edited."
+msgstr "グローバル変数は編集できません"
+
+msgid "Refresh the variable "
+msgstr "変数を確認 "
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Cut"
+msgstr "切り取る"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Redo"
+msgstr "やり直す"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilabモジュール '%s' はインストールされていません.\n"

@@ -14,8 +14,35 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: ans не можна редагувати.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: невизначена змінна %s.\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -25,28 +52,11 @@ msgstr "%s: проблема з пам’яттю у Java, не вдалося �
 msgid "%s: Type not handle yet"
 msgstr "%s: цей тип ще не обробляється"
 
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: невизначена змінна %s.\n"
+msgid "&File"
+msgstr "&Файл"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: ans не можна редагувати.\n"
+msgid "&Close"
+msgstr "За&крити"
 
 msgid "&?"
 msgstr "&Довідка"
@@ -54,94 +64,38 @@ msgstr "&Довідка"
 msgid "&About Scilab..."
 msgstr "П&ро Scilab..."
 
-msgid "&Close"
-msgstr "За&крити"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "Boolean"
-msgstr "Булівське"
-
-msgid "Bytes"
-msgstr "Байти"
-
-msgid "Close"
-msgstr "Закрити"
-
-msgid "Compiled function"
-msgstr "Компільована функція"
-
-msgid "Copy"
-msgstr "Копіювати"
-
-msgid "Cut"
-msgstr "Вирізати"
-
-msgid "Double"
-msgstr "Подвійний"
-
-msgid "File"
-msgstr "Файл"
-
-msgid "Filter"
-msgstr "Фільтр"
-
-msgid "Function library"
-msgstr "Бібліотека функцій"
-
-msgid "Global variables can not be edited."
-msgstr "Не можна редагувати загальні змінні."
-
-msgid "Graphic handles"
-msgstr "Графічні елементи керування"
-
 msgid "Icon"
 msgstr "Піктограма"
-
-msgid "Implicit polynomial"
-msgstr "Неявний поліном"
-
-msgid "Integer"
-msgstr "Ціле"
-
-msgid "Intrinsic function"
-msgstr "Внутрішня функція"
-
-msgid "List"
-msgstr "Список"
-
-msgid "Matlab sparse"
-msgstr "Розріджена Matlab"
-
-msgid "Mlist"
-msgstr "M-список"
 
 msgid "Name"
 msgstr "Назва"
 
-msgid "Paste"
-msgstr "Вставити"
+msgid "Bytes"
+msgstr "Байти"
 
-msgid "Pointer"
-msgstr "Вказівник"
+msgid "Type"
+msgstr "Тип"
+
+msgid "Visibility"
+msgstr "Видимість"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Filter"
+msgstr "Фільтр"
+
+msgid "Double"
+msgstr "Подвійний"
 
 msgid "Polynomial"
 msgstr "Поліном"
 
-msgid "Redo"
-msgstr "Повторити"
-
-msgid "Refresh the variable "
-msgstr "Освіжити змінну "
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Модуль «%s» Scilab не встановлено.\n"
+msgid "Boolean"
+msgstr "Булівське"
 
 msgid "Sparse"
 msgstr "Розріджена"
@@ -149,26 +103,72 @@ msgstr "Розріджена"
 msgid "Sparse boolean"
 msgstr "Розріджена булівська"
 
+msgid "Integer"
+msgstr "Ціле"
+
+msgid "Graphic handles"
+msgstr "Графічні елементи керування"
+
 msgid "String"
 msgstr "Рядок"
-
-msgid "Tlist"
-msgstr "T-список"
-
-msgid "Type"
-msgstr "Тип"
 
 msgid "Un-compiled function"
 msgstr "Некомпільована функція"
 
-msgid "Undo"
-msgstr "Вернути"
+msgid "Compiled function"
+msgstr "Компільована функція"
 
-msgid "Variable Browser"
-msgstr "Перегляд змінних"
+msgid "Function library"
+msgstr "Бібліотека функцій"
+
+msgid "List"
+msgstr "Список"
+
+msgid "Tlist"
+msgstr "T-список"
+
+msgid "Mlist"
+msgstr "M-список"
+
+msgid "Pointer"
+msgstr "Вказівник"
+
+msgid "Intrinsic function"
+msgstr "Внутрішня функція"
+
+msgid "Matlab sparse"
+msgstr "Розріджена Matlab"
+
+msgid "Implicit polynomial"
+msgstr "Неявний поліном"
 
 msgid "Variable Editor"
 msgstr "Редактор змінних"
 
-msgid "Visibility"
-msgstr "Видимість"
+msgid "Variable Browser"
+msgstr "Перегляд змінних"
+
+msgid "Global variables can not be edited."
+msgstr "Не можна редагувати загальні змінні."
+
+msgid "Refresh the variable "
+msgstr "Освіжити змінну "
+
+msgid "Copy"
+msgstr "Копіювати"
+
+msgid "Paste"
+msgstr "Вставити"
+
+msgid "Cut"
+msgstr "Вирізати"
+
+msgid "Undo"
+msgstr "Вернути"
+
+msgid "Redo"
+msgstr "Повторити"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» Scilab не встановлено.\n"

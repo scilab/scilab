@@ -7,35 +7,43 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-01 09:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: pt_BR\n"
 
 #, c-format
-msgid "%s: Cannot open Windows registry.\n"
-msgstr "%s: Não foi possível abrir o registro do Windows.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Não foi possível abrir o arquivo %s.\n"
-
-#, c-format
-msgid "%s: Cannot query value of this type.\n"
-msgstr "%s: Não é possível consultar o valor desse tipo.\n"
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "Apenas no Modo Windows, não no modo Console.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memória esgotada.\n"
+msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada: esperava-se números "
+"inteiros não negativos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada: esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -44,23 +52,13 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada: esperava-se um escalar.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
@@ -68,41 +66,43 @@ msgstr ""
 "%s: Tipo incorreto para os argumentos de entrada: esperava-se textos.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada: %s.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada: esperava-se números "
-"inteiros não negativos.\n"
-
-msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr "Apenas no Modo Windows, não no modo Console.\n"
-
-msgid "Scilab Console"
-msgstr "Console do Scilab"
 
 msgid "see help"
 msgstr "veja a ajuda"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Não foi possível abrir o arquivo %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open Windows registry.\n"
+msgstr "%s: Não foi possível abrir o registro do Windows.\n"
+
+#, c-format
+msgid "%s: Cannot query value of this type.\n"
+msgstr "%s: Não é possível consultar o valor desse tipo.\n"
+
+msgid "Scilab Console"
+msgstr "Console do Scilab"
 
 msgid "Error(s) : see help powershell"
 msgstr "Erro(s): veja a ajuda do Powershell"
 
-msgid "Only for Microsoft Windows."
-msgstr "Apenas para Microsoft Windows."
-
 msgid "Please verify your powershell command without Scilab."
 msgstr "Por favor, verifique seu comando Powershell sem o Scilab."
 
+msgid "Only for Microsoft Windows."
+msgstr "Apenas para Microsoft Windows."
+
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 não foi encontrado."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"

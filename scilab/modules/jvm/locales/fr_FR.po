@@ -14,16 +14,62 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: fr\n"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "L'interface JVM est désactivée en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr ""
+"%s : Impossible d'ajouter l'URL au chargeur de classes du système : %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s : Impossible d'ajouter un chemin à java.library.path : %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d ou n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid ""
 "\n"
-"Could not load JVM dynamic library (libjava).\n"
+"Scilab cannot open JVM library.\n"
 msgstr ""
 "\n"
-"Impossible de charger la bibliothèque dynamique JVM (libjava).\n"
+"Scilab ne peut pas ouvrir la bibliothèque JVM.\n"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab ne peut pas créer la classe principale Java Scilab (Impossible de "
+"trouver la classe Scilab principale. Vérifiez si les paquets Scilab et "
+"thirdparty sont accessibles).\n"
+
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+"Si Scilab est utilisé à partir de Java, assurez-vous que votre IDE (ex: "
+"Netbeans, etc) n'ajoute les dépendances supplémentaires qui n'ont pas pu "
+"être trouvé à l'exécution.\n"
 
 #, c-format
 msgid ""
@@ -47,50 +93,6 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-"Impossible to read %s.\n"
-msgstr ""
-"\n"
-"Impossible de lire %s.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Incorrect version JNI (needs at least JDK 1.4).\n"
-msgstr ""
-"\n"
-"La version JNI est incorrecte (besoin d'au moins JDK 1.4).\n"
-
-#, c-format
-msgid ""
-"\n"
-"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
-msgstr ""
-"\n"
-"Erreur JVM dans AttachCurrentThread : Impossible d'attacher le thread "
-"courant.\n"
-
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
-"the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available).\n"
-msgstr ""
-"\n"
-"Scilab ne peut pas créer la classe principale Java Scilab (Impossible de "
-"trouver la classe Scilab principale. Vérifiez si les paquets Scilab et "
-"thirdparty sont accessibles).\n"
-
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilab ne peut pas ouvrir la bibliothèque JVM.\n"
-
-#, c-format
-msgid ""
-"\n"
 "Weird error. Calling from Java but haven't been able to find the already "
 "existing JVM.\n"
 msgstr ""
@@ -99,84 +101,16 @@ msgstr ""
 "existante.\n"
 
 #, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr ""
-"%s : Impossible d'ajouter l'URL au chargeur de classes du système : %s.\n"
-
-#, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s : Impossible d'ajouter un chemin à java.library.path : %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d ou n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-msgid "Could not access to the Main Scilab Class:\n"
-msgstr "Impossible d'accéder à la classe principale de Scilab :\n"
-
-msgid "Could not access to the constructor of the Main Scilab Class:\n"
-msgstr ""
-"Impossible d'accéder au constructeur de la classe principale de Scilab :\n"
-
-msgid "Could not create a Scilab main class. Error:\n"
-msgstr "Impossible de créer une classe principale de Scilab. Erreur :\n"
-
-msgid "Error"
-msgstr "Erreur"
-
-#, c-format
 msgid ""
-"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
 msgstr ""
-"Erreur : Fichier classpath %s invalide (encodage pas 'utf-8') Encodage '%s' "
-"trouvé\n"
-
-#, c-format
-msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr ""
-"Erreur : Chemin %s invalide (encodage pas 'utf-8') Encodage '%s' trouvé\n"
-
-#, c-format
-msgid "Error in the creation of the Java VM: %s\n"
-msgstr "Erreur lors de la création de la Machine Virtuelle Java : %s\n"
+"\n"
+"Impossible de charger la bibliothèque dynamique JVM (libjava).\n"
 
 #, c-format
 msgid "Error: %s\n"
 msgstr "Erreur : %s\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "Erreur : Impossible d'analyser (parser) le fichier %s.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
-"found.\n"
-msgstr ""
-"Erreur : Fichier de configuration %s invalide (l'encodage n'est pas '%s') "
-"Encodage '%s' trouvé.\n"
-
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr "Erreur : Impossible d'analyser (parser) le fichier %s\n"
-
-msgid ""
-"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
-"not adding extra dependencies which could not be found at runtime.\n"
-msgstr ""
-"Si Scilab est utilisé à partir de Java, assurez-vous que votre IDE (ex: "
-"Netbeans, etc) n'ajoute les dépendances supplémentaires qui n'ont pas pu "
-"être trouvé à l'exécution.\n"
 
 #, c-format
 msgid ""
@@ -194,21 +128,9 @@ msgstr ""
 "Si vous avez compilé votre propre version de Scilab, veuillez mettre à jour "
 "le script bin/scilab pour indiquer le chemin vers la JVM.\n"
 
-msgid "JNI version error"
-msgstr "Erreur de version JNI"
-
-msgid "JNI: invalid arguments"
-msgstr "JNI : Arguments invalides"
-
-msgid "JNI: not enough memory"
-msgstr "JNI : Pas assez de mémoire"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "L'interface JVM est désactivée en mode -nogui ou -nwni.\n"
-
 #, c-format
-msgid "Options:\n"
-msgstr "Options :\n"
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr "Le problème doit venir de SELinux. Essayez de le désactiver.\n"
 
 #, c-format
 msgid ""
@@ -218,8 +140,106 @@ msgstr ""
 "Veuillez vérifier que vous ne lancez pas Scilab 64 bits sur un système 32 "
 "bits (ou l'inverse).\n"
 
-msgid "Scilab Java module not installed.\n"
-msgstr "Le module Java de Scilab n'est pas installé.\n"
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+"\n"
+"Impossible de lire %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+"\n"
+"La version JNI est incorrecte (besoin d'au moins JDK 1.4).\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Erreur lors de la création de la Machine Virtuelle Java : %s\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "Options :\n"
+
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
+msgstr ""
+"\n"
+"Erreur JVM dans AttachCurrentThread : Impossible d'attacher le thread "
+"courant.\n"
+
+msgid "Unknown JNI error"
+msgstr "Erreur JNI inconnue"
+
+msgid "Thread detached from the VM"
+msgstr "Thread détaché de la machine virtuelle"
+
+msgid "JNI version error"
+msgstr "Erreur de version JNI"
+
+msgid "JNI: not enough memory"
+msgstr "JNI : Pas assez de mémoire"
+
+msgid "VM already created"
+msgstr "VM déjà créée"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI : Arguments invalides"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Code d'erreur indéfini dans la JNI. Problème à vérifier."
+
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Attention : Impossible de trouver le package Java '%s'.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Impossible d'accéder à la classe principale de Scilab :\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr ""
+"Impossible d'accéder au constructeur de la classe principale de Scilab :\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Impossible de créer une classe principale de Scilab. Erreur :\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Erreur : Impossible d'analyser (parser) le fichier %s.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"Erreur : Fichier de configuration %s invalide (l'encodage n'est pas '%s') "
+"Encodage '%s' trouvé.\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Erreur : Impossible d'analyser (parser) le fichier %s\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Format erroné de %s.\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Erreur : Fichier classpath %s invalide (encodage pas 'utf-8') Encodage '%s' "
+"trouvé\n"
+
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr ""
+"Attention : Impossible de trouver le fichier de déclaration classpath  %s.\n"
 
 #, c-format
 msgid ""
@@ -232,30 +252,10 @@ msgstr ""
 "Veuillez vérifier le fichier SCI/etc/classpath.xml.\n"
 
 #, c-format
-msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr "Le problème doit venir de SELinux. Essayez de le désactiver.\n"
-
-msgid "Thread detached from the VM"
-msgstr "Thread détaché de la machine virtuelle"
-
-msgid "Undefined error code in the JNI. Weird problem"
-msgstr "Code d'erreur indéfini dans la JNI. Problème à vérifier."
-
-msgid "Unknown JNI error"
-msgstr "Erreur JNI inconnue"
-
-msgid "VM already created"
-msgstr "VM déjà créée"
-
-#, c-format
-msgid "Warning: Could not find Java package '%s'.\n"
-msgstr "Attention : Impossible de trouver le package Java '%s'.\n"
-
-#, c-format
-msgid "Warning: could not find classpath declaration file %s.\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
-"Attention : Impossible de trouver le fichier de déclaration classpath  %s.\n"
+"Erreur : Chemin %s invalide (encodage pas 'utf-8') Encodage '%s' trouvé\n"
 
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr "Format erroné de %s.\n"
+msgid "Scilab Java module not installed.\n"
+msgstr "Le module Java de Scilab n'est pas installé.\n"

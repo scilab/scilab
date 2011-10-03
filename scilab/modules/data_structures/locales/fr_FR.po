@@ -7,27 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: fr\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr " Une extraction d'hypermatrice doit avoir au moins 2 arguments. "
 
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr " Une insertion d'hypermatrice doit avoir au moins 3 arguments. "
-
 msgid " Argument is not an hypermatrix. "
 msgstr " L'argument n'est pas une hypermatrice. "
-
-msgid " Bad hypermatrix insertion. "
-msgstr " Insertion erronée dans une hypermatrice. "
 
 msgid " Incompatible hypermatrix extraction. "
 msgstr " Extraction d'une hypermatrice incompatible. "
@@ -36,41 +30,15 @@ msgstr " Extraction d'une hypermatrice incompatible. "
 msgid "Bad (%d th) index in hypermatrix extraction. "
 msgstr "Index erroné (%d ième) dans l'extraction d'une hypermatrice. "
 
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " Une insertion d'hypermatrice doit avoir au moins 3 arguments. "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " Insertion erronée dans une hypermatrice. "
+
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Trop d'arguments dans la pile, éditez stack.h et augmentez intersiz.\n"
-
-#, c-format
-msgid "%s: 'dims' can not be used as a field name.\n"
-msgstr "%s: 'dims' ne peut etre utilisé comme nom de champs.\n"
-
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
-msgstr "%s: Le nombre d'entrées ne correspond pas au produit des dimensions"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument d'entrée(s) : Un nombre pair est attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une structure attendue.\n"
 
 #, c-format
 msgid ""
@@ -79,6 +47,38 @@ msgid ""
 msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
 "être des entiers positifs.\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr "%s: Le nombre d'entrées ne correspond pas au produit des dimensions"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une structure attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument d'entrée(s) : Un nombre pair est attendu.\n"
+
+#, c-format
+msgid "%s: 'dims' can not be used as a field name.\n"
+msgstr "%s: 'dims' ne peut etre utilisé comme nom de champs.\n"
 
 #, c-format
 msgid "%s: field name '%s' defined twice.\n"

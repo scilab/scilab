@@ -7,69 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-01 09:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: fr\n"
-
-#, c-format
-msgid "                        nonpositive pivot in column %d\n"
-msgstr "                        pivot non positif dans la colonne %d\n"
-
-msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr "    Factorisation CC^T : La matrice n'est pas définie positive.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s : Une erreur s'est produite : %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s : Une erreur s'est produite : %s : %s\n"
-
-#, c-format
-msgid "%s: No more memory (n=%d, nnz=%d).\n"
-msgstr "%s : Plus de mémoire disponible (n=%d, nnz=%d).\n"
-
-#, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s : Plus de mémoire disponible : Augmentez stacksize %d mots "
-"supplémentaires sont requis.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Pas compatible avec la "
-"factorisation de Cholesky.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -78,11 +24,30 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
-"LU factors.\n"
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être une référence "
-"valide vers(umf) des facteurs LU.\n"
+"valide vers des facteurs de Cholesky\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice définie "
+"positive symétrique attendue."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s : Une erreur s'est produite : %s\n"
+
+msgid "factorization"
+msgstr "Factorisation"
 
 #, c-format
 msgid ""
@@ -94,11 +59,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
-"matrix."
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice définie "
-"positive symétrique attendue."
+"%s : Plus de mémoire disponible : Augmentez stacksize %d mots "
+"supplémentaires sont requis.\n"
 
 #, c-format
 msgid ""
@@ -109,56 +73,65 @@ msgstr ""
 "valide vers des facteurs de Cholesky"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors.\n"
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être une référence "
-"valide vers des facteurs de Cholesky\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Pas compatible avec la "
+"factorisation de Cholesky.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s : Pas assez de mémoire disponible.\n"
 
-msgid "GENMMD ordering only works on symmetric matrices.\n"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
 msgstr ""
-"Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être une référence "
+"valide vers(umf) des facteurs LU.\n"
 
-msgid "Matrix is not compatible with the given LU factors"
-msgstr "La matrice n'est pas compatible avec les facteurs LU donnés"
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s : Une erreur s'est produite : %s : %s\n"
 
-msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Le module UMFPACK de Scilab n'est pas installé.\n"
+msgid "symbolic factorization"
+msgstr "Factorisation symbolique"
 
 msgid "The (square) matrix appears to be singular."
 msgstr "La matrice (carrée) semble être singulière."
 
-msgid "The lower part of the matrix must be represented.\n"
-msgstr "La partie inférieure de la matrice doit être représentée.\n"
-
-msgid "This is a factorisation of a singular matrix"
-msgstr "C'est une factorisation d'une matrice singulière"
-
-msgid "This is not a factorisation of a square matrix"
-msgstr "Ce n'est pas une factorisation d'une matrice carrée"
-
 msgid "Warning"
 msgstr "Attention"
-
-msgid "factorization"
-msgstr "Factorisation"
-
-msgid "internal error"
-msgstr "Erreur interne"
-
-msgid "invalid matrix"
-msgstr "Matrice invalide"
 
 msgid "no place to store the LU pointer in ListNumeric."
 msgstr "Espace insuffisant pour stocker le pointeur LU dans ListNumeric"
 
-msgid "not enough memory"
-msgstr "Mémoire insuffisante"
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s : Une erreur s'est produite : %s.\n"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "Ce n'est pas une factorisation d'une matrice carrée"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "C'est une factorisation d'une matrice singulière"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %s.\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "La matrice n'est pas compatible avec les facteurs LU donnés"
 
 msgid "numeric factorization"
 msgstr "Factorisation numérique"
@@ -166,8 +139,77 @@ msgstr "Factorisation numérique"
 msgid "singular matrix"
 msgstr "Matrice singulière"
 
-msgid "symbolic factorization"
-msgstr "Factorisation symbolique"
+msgid "not enough memory"
+msgstr "Mémoire insuffisante"
+
+msgid "internal error"
+msgstr "Erreur interne"
+
+msgid "invalid matrix"
+msgstr "Matrice invalide"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr ""
+"Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "La partie inférieure de la matrice doit être représentée.\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s : Plus de mémoire disponible (n=%d, nnz=%d).\n"
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    Factorisation CC^T : La matrice n'est pas définie positive.\n"
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        pivot non positif dans la colonne %d\n"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Le module UMFPACK de Scilab n'est pas installé.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice creuse attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+msgid "Choose a sparse matrix"
+msgstr "Choisissez une matrice creuse"
+
+msgid "   then click on OK   "
+msgstr "   ensuite cliquez sur Ok   "
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s : Le fichier contient un rhs mais ne sera pas lu !"
+
+#, c-format
+msgid "%s: currently don't read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s : Impossible de lire actuellement les matrices creuses non assemblées "
+"(élémentaires)."
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s : Pas de valeurs pour cette matrice (uniquement des motifs non nuls) : "
+"mettez quelques 1."
 
 msgid ""
 "\n"
@@ -176,6 +218,22 @@ msgstr ""
 "\n"
 " approxime (lM,vM) avec la méthode des puissances itérées \n"
 
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " itération %3d : lM = %e  \n"
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Attention : pour la convergence lM à rtol = %e \n"
+
+#, c-format
+msgid "           don't reached after %d iterations (got only %e) \n"
+msgstr ""
+"           n'est pas atteinte après %d itérations (seules %e obtenues) \n"
+
 msgid ""
 "\n"
 " approximate (lm,vm) with the inverse iterative power method \n"
@@ -183,94 +241,20 @@ msgstr ""
 "\n"
 " approxime (lm,vm) avec la méthode inverse des puissances itérées \n"
 
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               CLIQUEZ POUR CONTINUER                    "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-#, c-format
-msgid "           don't reached after %d iterations (got only %e) \n"
-msgstr ""
-"           n'est pas atteinte après %d itérations (seules %e obtenues) \n"
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           ensuite re-saisissez scisptdemo()                "
-
-msgid "   then click on OK   "
-msgstr "   ensuite cliquez sur Ok   "
-
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr ""
-" Pour cette démonstration la dimension actuelle de la pile n'est pas "
-"suffisante. "
-
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " Attention : pour la convergence lM à rtol = %e \n"
-
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " Attention : pour la convergence lm à rtol = %e \n"
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " entrez ce qui suit au prompt de Scilab :          "
-
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr " itération %3d : lM = %e  \n"
 
 #, c-format
 msgid " iteration %3d : lm = %e  \n"
 msgstr " itération %3d : lm = %e  \n"
 
 #, c-format
-msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s : Type et/ou dimension et/ou valeur invalide pour le second argument.\n"
-
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s : Pas de valeurs pour cette matrice (uniquement des motifs non nuls) : "
-"mettez quelques 1."
-
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s : Le fichier contient un rhs mais ne sera pas lu !"
-
-#, c-format
-msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s : La matrice et les facteurs LU n'ont pas la même dimension !\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Attention : pour la convergence lm à rtol = %e \n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice creuse "
-"carrée attendue.\n"
 
 #, c-format
 msgid ""
@@ -280,33 +264,49 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice creuse "
+"carrée attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice creuse attendue.\n"
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s : La matrice et les facteurs LU n'ont pas la même dimension !\n"
 
 #, c-format
-msgid "%s: currently don't read unassembled (elemental) sparse matrix."
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
-"%s : Impossible de lire actuellement les matrices creuses non assemblées "
-"(élémentaires)."
+"%s : Type et/ou dimension et/ou valeur invalide pour le second argument.\n"
 
-msgid "Choose a sparse matrix"
-msgstr "Choisissez une matrice creuse"
+msgid " For this demo the current stack size is not enough "
+msgstr ""
+" Pour cette démonstration la dimension actuelle de la pile n'est pas "
+"suffisante. "
 
-msgid "Click to choose a demo"
-msgstr "Cliquez pour choisir une démonstration"
+msgid " enter the following at the scilab prompt :          "
+msgstr " entrez ce qui suit au prompt de Scilab :          "
 
-msgid "display a speed comparison test"
-msgstr "Afficher un test comparatif de vitesse"
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           ensuite re-saisissez scisptdemo()                "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               CLIQUEZ POUR CONTINUER                    "
 
 msgid "how to use this stuff"
 msgstr "Comment l'utiliser"
 
+msgid "display a speed comparison test"
+msgstr "Afficher un test comparatif de vitesse"
+
 msgid "small tests for condestsp"
 msgstr "Petits tests pour condestsp"
+
+msgid "Click to choose a demo"
+msgstr "Cliquez pour choisir une démonstration"

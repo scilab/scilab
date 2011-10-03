@@ -7,52 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-01 10:13+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: \n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
-msgstr "%s：输入参数#%d的类型错误：未知的类型。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s：输入参数#%d的值错误。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'或者'%s'。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
 
 #, c-format
 msgid ""
@@ -61,282 +36,62 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s：输入参数#%d的值错误。\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
+msgstr "%s：输入参数#%d的类型错误：未知的类型。\n"
 
 #, c-format
-msgid "%s: Log of a singular matrix.\n"
-msgstr "%s：一个奇异矩阵的指数。\n"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
-msgid "%s: Matrix is not diagonalisable.\n"
-msgstr "%s：矩阵不是对角阵。\n"
-
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr "%s：不能对角化。\n"
-
-#, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s：参数#%d错误：应该为正整数。\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
-msgstr "%s：输入参数#%d错误：应该为一个无符号整数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d或%d。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s：输入参数的数目错误：最多应该%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected."
-msgstr "%s：输入参数的数目错误：应该为%d。"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong number of output arguments vs. input arguments: Same number "
-"expected.\n"
-msgstr "%s：输出参数和输入参数的个数错误：应该数目相同。\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该至少%d个。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为向量。\n"
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个正整数。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
-msgstr "%s：输入参数#%d的大小错误：大小应该为输入参数#%d的大小。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s：输入参数#%d的大小错误：必须小于等于%d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr "%s：输入参数#%d的大小错误：必须少于%d个字符。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为向量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为稀疏向量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr "%s：输入参数的大小错误：大小不兼容。\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样的大小。\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr "%s：参数的类型错误#%d：应该为实数。\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个正整数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个正实数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为Cell。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数或复数矩阵。\n"
+"%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为['g' 'r' 'c' 'lc' 'lr']。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr "%s：输入参数#%d的类型错误：所有Cell的内容应该为同一类型。"
+msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为['d' 'i']。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
+msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为稀疏向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: integer expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为整 数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
-msgstr "%s：输入参数#%d的值错误：应该为%d、'%s'、%d或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
-msgstr "%s：输入参数#%d的值错误：应该为0或1。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected"
-msgstr "%s：输入参数#%d的值错误：应该为一个正整数。"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该 >= %d。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
-msgstr "%s：输入参数#%d的值错误：矩阵不可对角化。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
-"ones expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为由0和1组成的字符串矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr "%s：输入参数#%d的值错误：应该介于%d与%d之间。"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d。\n"
 
 #, c-format
 msgid ""
@@ -344,62 +99,29 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非Hermite矩阵。\n"
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integer matrix "
-"expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+"%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数或复数矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为实数矩阵。\n"
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正整数标量。\n"
+msgid "%s: Matrix is not diagonalisable.\n"
+msgstr "%s：矩阵不是对角阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
-"integers expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正整数为标量/向量/矩阵。\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
-"positive integers expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正整数标量/向量/矩阵/超矩阵。\n"
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为整 数。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
-"or %s expected"
-msgstr "%s：输入参数#%d的值错误：未知的文件扩展名，应该为'%s'、'%s'、'%s'或'%s'。"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
-"expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正确的十六进制表示。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid octal representations "
-"expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正确的八进制表示。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为['d' 'i']。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为['g' 'r' 'c' 'lc' 'lr']。\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr "%s：输入参数#%d的值错误：应该介于%d与%d之间。"
 
 #, c-format
 msgid ""
@@ -409,6 +131,288 @@ msgstr "%s：输入参数的值错误：应该为正确的基于%d进制的表�
 
 #, c-format
 msgid ""
+"%s: Wrong value for input argument #%d: Matrix of strings made of zeros and "
+"ones expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为由0和1组成的字符串矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr "%s：输入参数#%d的大小错误：必须少于%d个字符。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该 >= %d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样的大小。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
+msgstr "%s：输入参数#%d错误：应该为一个无符号整数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
+msgstr "%s：输入参数#%d的值错误：应该为0或1。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个正实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为Cell。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same type expected for all cell "
+"contents"
+msgstr "%s：输入参数#%d的类型错误：所有Cell的内容应该为同一类型。"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+msgstr "%s：输入参数#%d的大小错误：必须小于等于%d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr "%s：输入参数#%d的值错误：矩阵不可对角化。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d或%d。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
+"integers expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为正整数为标量/向量/矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected"
+msgstr "%s：输入参数#%d的值错误：应该为一个正整数。"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer matrix "
+"expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为正整数标量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
+"positive integers expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为正整数标量/向量/矩阵/超矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个正整数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个正整数。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为实数矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid hexadecimal representations "
+"expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为正确的十六进制表示。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
+msgstr "%s：输入参数#%d的值错误：应该为%d、'%s'、%d或'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s：输入参数的数目错误：最多应该%d个。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
+
+#, c-format
+msgid "%s: Log of a singular matrix.\n"
+msgstr "%s：一个奇异矩阵的指数。\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s：不能对角化。\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of output arguments vs. input arguments: Same number "
+"expected.\n"
+msgstr "%s：输出参数和输入参数的个数错误：应该数目相同。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr "%s：参数的类型错误#%d：应该为实数。\n"
+
+#, c-format
+msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr "%s：参数#%d错误：应该为正整数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid octal representations "
+"expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为正确的八进制表示。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为向量。\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
+msgstr "%s：输入参数#%d的大小错误：大小应该为输入参数#%d的大小。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong number of output matrix dimensions required: %d expected for "
+"sparse matrices.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非Hermite矩阵。\n"
+
+#, c-format
+msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
 msgstr "%s：输入参数#%d和#%d的值错误：c(1)必须等于r(1)。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s：输入参数的大小错误：大小不兼容。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected."
+#~ msgstr "%s：输入参数的数目错误：应该为%d。"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Unknown file extension, %s, %s, %s "
+#~ "or %s expected"
+#~ msgstr "%s：输入参数#%d的值错误：未知的文件扩展名，应该为'%s'、'%s'、'%s'或'%s'。"

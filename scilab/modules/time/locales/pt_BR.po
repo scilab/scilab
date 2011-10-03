@@ -7,19 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2011-09-01 09:37+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: pt_BR\n"
 
 #, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: Ocorreu um erro.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgstr ""
+"%s: Tipo incorreto para os argumentos de entrada: esperava-se valores "
+"escalares.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -32,15 +40,15 @@ msgstr ""
 "inteiro ou '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se valores "
-"escalares.\n"
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
+"inteiros não negativos.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser < %d.\n"
+msgid "%s: An error occurred.\n"
+msgstr "%s: Ocorreu um erro.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
@@ -48,20 +56,107 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be < %d.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
-"%d.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser < %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong type for input arguments: Must be scalars.\n"
 msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
-"inteiros não negativos.\n"
+"%s: Tipo incorreto para os argumentos de entrada: devem ser escalares.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada: deve estar entre %d e %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Feb"
+msgstr "Fev"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Abr"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Sep"
+msgstr "Set"
+
+msgid "Oct"
+msgstr "Out"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dez"
 
 msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "   Seg Ter Qua Qui Sex Sáb Dom"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada  #%d: esperava-se uma "
+"matriz m*3 ou m*6.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
+"e%d.\n"
+
+msgid "Month"
+msgstr "Mês"
+
+msgid "Day"
+msgstr "Dia"
+
+msgid "Hour"
+msgstr "Hora"
+
+msgid "Minute"
+msgstr "Minuto"
+
+msgid "Second"
+msgstr "Segundo"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: Tipo incorreto para os argumentos de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanho "
+"iguais.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -72,13 +167,22 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanhos "
+"iguais.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Wrong type for input arguments: Integer expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+"%s: Tipo incorreto para os argumentos de entrada: esperava-se números "
+"inteiros.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
+"números reais.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -87,23 +191,9 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada  #%d: esperava-se uma "
-"matriz m*3 ou m*6.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanhos "
-"iguais.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanho "
-"iguais.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid ""
@@ -113,139 +203,49 @@ msgstr ""
 "matriz de números reais constantes.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
-"números reais.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: Tipo incorreto para os argumentos de entrada.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
-msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se números "
-"inteiros.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: devem ser escalares.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
-msgstr ""
-"%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
-"e%d.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
 "'%s'.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada: deve estar entre %d e %d.\n"
-
-msgid "Apr"
-msgstr "Abr"
-
-msgid "Aug"
-msgstr "Ago"
-
-msgid "Day"
-msgstr "Dia"
-
-msgid "Dec"
-msgstr "Dez"
-
-msgid "Feb"
-msgstr "Fev"
-
-msgid "Fri"
-msgstr "Sex"
-
-msgid "Friday"
-msgstr "Sexta-feira"
-
-msgid "Hour"
-msgstr "Hora"
-
-msgid "Jan"
-msgstr "Jan"
-
-msgid "Jul"
-msgstr "Jul"
-
-msgid "Jun"
-msgstr "Jun"
-
-msgid "Mar"
-msgstr "Mar"
-
-msgid "May"
-msgstr "Mai"
-
-msgid "Minute"
-msgstr "Minuto"
-
-msgid "Mon"
-msgstr "Seg"
-
-msgid "Monday"
-msgstr "Segunda-feira"
-
-msgid "Month"
-msgstr "Mês"
-
-msgid "Nov"
-msgstr "Nov"
-
-msgid "Oct"
-msgstr "Out"
-
 msgid "Sat"
 msgstr "Sáb"
-
-msgid "Saturday"
-msgstr "Sábado"
-
-msgid "Second"
-msgstr "Segundo"
-
-msgid "Sep"
-msgstr "Set"
 
 msgid "Sun"
 msgstr "Dom"
 
-msgid "Sunday"
-msgstr "Domingo"
-
-msgid "Thu"
-msgstr "Qui"
-
-msgid "Thursday"
-msgstr "Quinta-feira"
+msgid "Mon"
+msgstr "Seg"
 
 msgid "Tue"
 msgstr "Ter"
 
-msgid "Tuesday"
-msgstr "Terça-feira"
-
 msgid "Wed"
 msgstr "Qua"
 
+msgid "Thu"
+msgstr "Qui"
+
+msgid "Fri"
+msgstr "Sex"
+
+msgid "Saturday"
+msgstr "Sábado"
+
+msgid "Sunday"
+msgstr "Domingo"
+
+msgid "Monday"
+msgstr "Segunda-feira"
+
+msgid "Tuesday"
+msgstr "Terça-feira"
+
 msgid "Wednesday"
 msgstr "Quarta-feira"
+
+msgid "Thursday"
+msgstr "Quinta-feira"
+
+msgid "Friday"
+msgstr "Sexta-feira"

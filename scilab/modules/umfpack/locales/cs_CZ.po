@@ -7,68 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-02 15:17+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
-
-#, c-format
-msgid "                        nonpositive pivot in column %d\n"
-msgstr "                        nekladná osa ve sloupci %d\n"
-
-msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr "    Faktorizace CC^T: Matice není kladně konečná.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Vyskytla se chyba: %s\n"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s: Vyskytla se chyba: %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s: Vyskytla se chyba: %s: %s\n"
-
-#, c-format
-msgid "%s: No more memory (n=%d, nnz=%d).\n"
-msgstr "%s: Žádná další paměť (n=%d, nnz=%d).\n"
-
-#, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s: Žádná další paměť : potřeba zvýšit velikost zásobníku o %d dodatečných "
-"slov.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Žádná další paměť.\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: není kompatibilní s Choleskiho "
-"faktorizací.\n"
+"X-Generator: Launchpad (build 14071)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -77,11 +23,30 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
-"LU factors.\n"
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí být platný odkaz na (umf) "
-"faktory LU.\n"
+"%s: Špatná velikost vstupního argumentu #%d: není platný odkaz na Choleskiho "
+"faktory.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Musí být symetrická kladně "
+"konečná matice,"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Žádná další paměť.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Vyskytla se chyba: %s\n"
+
+msgid "factorization"
+msgstr "faktorizace"
 
 #, c-format
 msgid ""
@@ -93,11 +58,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
-"matrix."
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí být symetrická kladně "
-"konečná matice,"
+"%s: Žádná další paměť : potřeba zvýšit velikost zásobníku o %d dodatečných "
+"slov.\n"
 
 #, c-format
 msgid ""
@@ -108,55 +72,65 @@ msgstr ""
 "faktory"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors.\n"
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: není platný odkaz na Choleskiho "
-"faktory.\n"
+"%s: Špatná velikost vstupního argumentu #%d: není kompatibilní s Choleskiho "
+"faktorizací.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s: není dostatek paměti.\n"
 
-msgid "GENMMD ordering only works on symmetric matrices.\n"
-msgstr "Seřazení GENMMD funguje pouze v symetrických maticích.\n"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Musí být platný odkaz na (umf) "
+"faktory LU.\n"
 
-msgid "Matrix is not compatible with the given LU factors"
-msgstr "Matice není kompatibilní se zadanými faktory LU"
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: Vyskytla se chyba: %s: %s\n"
 
-msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Scilab modul UMFPACK není nainstalován.\n"
+msgid "symbolic factorization"
+msgstr "symbolická faktorizace"
 
 msgid "The (square) matrix appears to be singular."
 msgstr "(Čtvercová) matice se zdá být jednoduchá."
 
-msgid "The lower part of the matrix must be represented.\n"
-msgstr "Nižší čas matice musí být zastoupena.\n"
-
-msgid "This is a factorisation of a singular matrix"
-msgstr "Toto je faktorizace jednoduché matice"
-
-msgid "This is not a factorisation of a square matrix"
-msgstr "Toto není faktorizace jednoduché matice"
-
 msgid "Warning"
 msgstr "Varování"
-
-msgid "factorization"
-msgstr "faktorizace"
-
-msgid "internal error"
-msgstr "vnitřní chyba"
-
-msgid "invalid matrix"
-msgstr "neplatná matice"
 
 msgid "no place to store the LU pointer in ListNumeric."
 msgstr "žádné místo pro umístění ukazatele LU v ListNumeric."
 
-msgid "not enough memory"
-msgstr "nedostatek paměti"
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: Vyskytla se chyba: %s.\n"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "Toto není faktorizace jednoduché matice"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "Toto je faktorizace jednoduché matice"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: %s.\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "Matice není kompatibilní se zadanými faktory LU"
 
 msgid "numeric factorization"
 msgstr "číselná faktorizace"
@@ -164,8 +138,70 @@ msgstr "číselná faktorizace"
 msgid "singular matrix"
 msgstr "jednoduchá matice"
 
-msgid "symbolic factorization"
-msgstr "symbolická faktorizace"
+msgid "not enough memory"
+msgstr "nedostatek paměti"
+
+msgid "internal error"
+msgstr "vnitřní chyba"
+
+msgid "invalid matrix"
+msgstr "neplatná matice"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "Seřazení GENMMD funguje pouze v symetrických maticích.\n"
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "Nižší čas matice musí být zastoupena.\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s: Žádná další paměť (n=%d, nnz=%d).\n"
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    Faktorizace CC^T: Matice není kladně konečná.\n"
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        nekladná osa ve sloupci %d\n"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Scilab modul UMFPACK není nainstalován.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Špatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: očekávána řídká matice.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+msgid "Choose a sparse matrix"
+msgstr "Zvolte řídkou matici"
+
+msgid "   then click on OK   "
+msgstr "   pak klikněte na OK   "
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: Soubor obsahuje rhs, ale nebude přečten !"
+
+#, c-format
+msgid "%s: currently don't read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: v současnosti nelze přečíst nesestavenou (elementární) řídkou matici."
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: Žádné hodnoty pro tuto matici (pouze nenulový model) : zadejte nějaké 1."
 
 msgid ""
 "\n"
@@ -174,6 +210,21 @@ msgstr ""
 "\n"
 " přibližné (IM,vM) s metodou opakovaného výkonu \n"
 
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " opakování %3d : lM = %e  \n"
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Varování : pro konvergenci IM v rtol = %e \n"
+
+#, c-format
+msgid "           don't reached after %d iterations (got only %e) \n"
+msgstr "           nedosaženo po %d opakování (získáno pouze %e) \n"
+
 msgid ""
 "\n"
 " approximate (lm,vm) with the inverse iterative power method \n"
@@ -181,82 +232,26 @@ msgstr ""
 "\n"
 " přibližné (lm,vm) s metodou inverzního opakovaného výkonu \n"
 
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               KLIKNĚTE PRO POKRAČOVÁNÍ                    "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              velikostzásobníku(3000000);                    "
-
-#, c-format
-msgid "           don't reached after %d iterations (got only %e) \n"
-msgstr "           nedosaženo po %d opakování (získáno pouze %e) \n"
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           pak znovu zadejte scisptdemo()                "
-
-msgid "   then click on OK   "
-msgstr "   pak klikněte na OK   "
-
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "
-
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " Varování : pro konvergenci IM v rtol = %e \n"
-
-#, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " Varování : pro konvergenci lm v rtol = %e \n"
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " zadejte následující na příkazovém řádku scilab :          "
-
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr " opakování %3d : lM = %e  \n"
 
 #, c-format
 msgid " iteration %3d : lm = %e  \n"
 msgstr " opakování %3d : lm = %e  \n"
 
 #, c-format
-msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
-
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr ""
-"%s: Žádné hodnoty pro tuto matici (pouze nenulový model) : zadejte nějaké 1."
-
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s: Soubor obsahuje rhs, ale nebude přečten !"
-
-#, c-format
-msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Varování : pro konvergenci lm v rtol = %e \n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
 
 #, c-format
 msgid ""
@@ -266,35 +261,40 @@ msgstr ""
 "matice.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
+"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid " For this demo the current stack size is not enough "
+msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: očekávána řídká matice.\n"
+msgid " enter the following at the scilab prompt :          "
+msgstr " zadejte následující na příkazovém řádku scilab :          "
 
-#, c-format
-msgid "%s: currently don't read unassembled (elemental) sparse matrix."
-msgstr ""
-"%s: v současnosti nelze přečíst nesestavenou (elementární) řídkou matici."
+msgid "                                                     "
+msgstr "                                                     "
 
-msgid "Choose a sparse matrix"
-msgstr "Zvolte řídkou matici"
+msgid "              stacksize(3000000);                    "
+msgstr "              velikostzásobníku(3000000);                    "
 
-msgid "Click to choose a demo"
-msgstr "Klikněte pro zvolení ukázky"
+msgid "           then re enter scisptdemo()                "
+msgstr "           pak znovu zadejte scisptdemo()                "
 
-msgid "display a speed comparison test"
-msgstr "zobrazit test porovnání rychlosti"
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               KLIKNĚTE PRO POKRAČOVÁNÍ                    "
 
 msgid "how to use this stuff"
 msgstr "jak toto používat"
 
+msgid "display a speed comparison test"
+msgstr "zobrazit test porovnání rychlosti"
+
 msgid "small tests for condestsp"
 msgstr "malý test pro condestsp"
+
+msgid "Click to choose a demo"
+msgstr "Klikněte pro zvolení ukázky"
