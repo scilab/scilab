@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-10-03 10:34+0100\n"
+"Revision-Date: 2011-10-03 17:58+0100\n"
 
 # File: demos/arma/arma1.dem.sce, line: 29
 msgid "Simulation of an ARMAX process:"
@@ -638,14 +638,9 @@ msgstr ""
 #
 # File: macros/window.sci, line: 50
 # File: macros/window.sci, line: 53
-#, c-format
-msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
-msgstr ""
-
-#
 # File: macros/window.sci, line: 58
 #, c-format
-msgid "%s: Wrong value for input argument #%d: incorrect element #d\n"
+msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
 
 #
