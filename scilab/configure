@@ -9727,7 +9727,7 @@ fi
 
 
 
-if test "$with_gui" != no; then
+if test "$with_gui" = no; then
    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: GUI is disabled. Disabling then xcos" >&5
 $as_echo "$as_me: WARNING: GUI is disabled. Disabling then xcos" >&2;}
    with_xcos=no

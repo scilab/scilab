@@ -739,7 +739,7 @@ AC_ARG_WITH(modelica,
     AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
 
 
-if test "$with_gui" != no; then
+if test "$with_gui" = no; then
    AC_MSG_WARN([GUI is disabled. Disabling then xcos])
    with_xcos=no
 fi
