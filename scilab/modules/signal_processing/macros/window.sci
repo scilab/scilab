@@ -55,7 +55,7 @@ if or(wtype==["kr","ch"]) then
             unknown='df';
         else
             if df<=0 then
-                error(msprintf(_("%s: Wrong value for input argument #%d: incorrect element #d\n"),"window",3,2))
+                error(msprintf(_("%s: Wrong value for input argument #%d: incorrect element #%d\n"),"window",3,2))
             end
             unknown='dp';
         end
