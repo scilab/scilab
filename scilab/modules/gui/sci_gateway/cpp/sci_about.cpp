@@ -36,7 +36,7 @@ int sci_about(char *fname, unsigned long fname_len)
     }
     catch(const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.whatStr().c_str());
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;
     }
 

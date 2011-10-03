@@ -263,7 +263,7 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
 
 #, c-format
 msgid ""
-"%s: A Java exception arised:\n"
+"%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
 

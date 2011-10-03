@@ -29,7 +29,7 @@ msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid ""
-"%s: A Java exception arised:\n"
+"%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
 

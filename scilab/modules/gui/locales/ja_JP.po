@@ -286,7 +286,7 @@ msgstr "%s: 入力引数 #%dの大きさが間違っています: 文字列の %
 
 #, c-format
 msgid ""
-"%s: A Java exception arised:\n"
+"%s: A Java exception arisen:\n"
 "%s"
 msgstr ""
 
