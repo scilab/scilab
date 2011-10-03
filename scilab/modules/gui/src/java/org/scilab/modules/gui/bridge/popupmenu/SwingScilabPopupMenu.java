@@ -17,6 +17,8 @@ import java.util.StringTokenizer;
 
 import javax.swing.JComboBox;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
@@ -33,9 +35,12 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
+public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, SimplePopupMenu {
 
 	private static final long serialVersionUID = -4366581303317502544L;
+
+	private String uid;
+
 	private CallBack callback;
 	
 	/**
@@ -157,8 +162,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
 	 */
 	public void setText(String text) {
-		/* Unimplemented for PopupMenus */
-		throw new UnsupportedOperationException();
+        // Nothing to do here
 	}
 
 	/**
@@ -166,9 +170,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		/* Unimplemented for PopupMenus */
-		throw new UnsupportedOperationException();
-		
+		// Nothing to do here
 	}
 
 	/**
@@ -176,8 +178,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		/* Unimplemented for PopupMenus */
-		throw new UnsupportedOperationException();
+        // Nothing to do here
 	}
 	
 	/**
@@ -340,6 +341,31 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	        return textOfItem;
 	    }
 	}
+
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }
 
 

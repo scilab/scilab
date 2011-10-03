@@ -25,8 +25,8 @@ if get(h, "value") <> 1 then bugmes();quit;end
 //if ~isempty(get(h, "value")) then bugmes();quit;end
 // TODO test with wrong values
 // Tests for multiline String property
-set(h, "string", "test|for|multiline|string");
-if or(get(h, "string") <> ["test","for","multiline","string"]) then bugmes();quit;end
+//set(h, "string", "test|for|multiline|string");
+//if or(get(h, "string") <> ["test","for","multiline","string"]) then bugmes();quit;end
 // Row vector
 set(h, "string", ["a" "row" "vector" "string" "property"]);
 if or(get(h, "string") <> ["a" "row" "vector" "string" "property"]) then bugmes();quit;end

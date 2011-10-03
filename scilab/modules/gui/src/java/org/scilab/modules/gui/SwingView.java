@@ -33,6 +33,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
@@ -68,6 +69,7 @@ import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
@@ -127,6 +129,7 @@ public final class SwingView implements GraphicView {
         Figure,
         ImageRenderer,
         ListBox,
+        PopupMenu,
         PushButton,
         RadioButton,
         Slider,
@@ -207,6 +210,8 @@ public final class SwingView implements GraphicView {
             return UielementType.ImageRenderer;
         } else if (style.equals(__GO_UI_LISTBOX__)) {
             return UielementType.ListBox;
+        } else if (style.equals(__GO_UI_POPUPMENU__)) {
+            return UielementType.PopupMenu;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
             return UielementType.PushButton;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
@@ -300,6 +305,11 @@ public final class SwingView implements GraphicView {
             SwingScilabListBox listBox = new SwingScilabListBox();
             listBox.setId(id);
             return listBox;
+        case PopupMenu:
+            SwingScilabPopupMenu popupMenu = new SwingScilabPopupMenu();
+            popupMenu.setId(id);
+            setDefaultProperties(popupMenu, id);
+            return popupMenu;
         case PushButton:
             SwingScilabPushButton pushButton = new SwingScilabPushButton();
             pushButton.setId(id);

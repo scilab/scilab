@@ -66,6 +66,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
     }
+    else if (strcmp(style,"popupmenu")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_POPUPMENU__);
+    }
     else if (strcmp(style,"radiobutton")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_RADIOBUTTON__);

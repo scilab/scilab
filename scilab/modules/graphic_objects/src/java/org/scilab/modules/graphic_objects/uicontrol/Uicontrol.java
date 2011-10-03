@@ -36,6 +36,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RAISED_RELIEF__;
@@ -154,6 +155,7 @@ public class Uicontrol extends GraphicObject {
         FRAME,
         IMAGERENDERER,
         LISTBOX,
+        POPUPMENU,
         PUSHBUTTON,
         RADIOBUTTON,
         SLIDER,
@@ -190,6 +192,9 @@ public class Uicontrol extends GraphicObject {
             break;
         case LISTBOX:
             stringStyle = __GO_UI_LISTBOX__;
+            break;
+        case POPUPMENU:
+            stringStyle = __GO_UI_POPUPMENU__;
             break;
         case PUSHBUTTON:
             stringStyle = __GO_UI_PUSHBUTTON__;
@@ -230,6 +235,8 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.IMAGERENDERER;
         } else if (style.equals(__GO_UI_LISTBOX__)) {
             enumStyle = UicontrolStyle.LISTBOX;
+        } else if (style.equals(__GO_UI_POPUPMENU__)) {
+            enumStyle = UicontrolStyle.POPUPMENU;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
             enumStyle = UicontrolStyle.PUSHBUTTON;
         } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
