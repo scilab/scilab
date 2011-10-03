@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graphic_objects.uicontrol.uitext;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FLAT_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
@@ -21,13 +22,13 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
  */
 public class UiText extends Uicontrol {
 
-	/**
-	 * Constructor
-	 */
-	public UiText() {
-		super();
-		setStyle(__GO_UI_TEXT__);
-		setRelief("flat");
-	}
+    /**
+     * Constructor
+     */
+    public UiText() {
+        super();
+        setStyle(__GO_UI_TEXT__);
+        setRelief(__GO_UI_FLAT_RELIEF__);
+    }
 
 }

@@ -332,4 +332,11 @@ public static final String __GO_UI_INCHES_UNITS__ =        "inches";
 public static final String __GO_UI_CENTIMETERS_UNITS__ =   "centimeters";
 public static final String __GO_UI_PIXELS_UNITS__ =        "pixels";
 
+public static final String __GO_UI_FLAT_RELIEF__ =         "flat";
+public static final String __GO_UI_RAISED_RELIEF__ =       "raised";
+public static final String __GO_UI_SUNKEN_RELIEF__ =       "sunken";
+public static final String __GO_UI_GROOVE_RELIEF__ =       "groove";
+public static final String __GO_UI_RIDGE_RELIEF__ =        "ridge";
+public static final String __GO_UI_SOLID_RELIEF__ =        "solid";
+
 }

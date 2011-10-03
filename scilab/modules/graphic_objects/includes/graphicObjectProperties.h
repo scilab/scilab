@@ -331,4 +331,11 @@
 #define __GO_UI_CENTIMETERS_UNITS__        "centimeters"
 #define __GO_UI_PIXELS_UNITS__             "pixels"
 
+#define __GO_UI_FLAT_RELIEF__              "flat"
+#define __GO_UI_RAISED_RELIEF__            "raised"
+#define __GO_UI_SUNKEN_RELIEF__            "sunken"
+#define __GO_UI_GROOVE_RELIEF__            "groove"
+#define __GO_UI_RIDGE_RELIEF__             "ridge"
+#define __GO_UI_SOLID_RELIEF__             "solid"
+
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
