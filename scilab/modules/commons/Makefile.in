@@ -72,9 +72,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/commons
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -125,10 +126,7 @@ libscicommons_disable_la_OBJECTS =  \
 libscicommons_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscicommons_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscicommons_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/fileio/libscifileio.la
+libscicommons_la_LIBADD =
 am__libscicommons_la_SOURCES_DIST = src/jni/ScilabCommons_wrap.c \
 	src/fortran/empty.f src/jni/GiwsException.cpp
 am__objects_1 = libscicommons_la-ScilabCommons_wrap.lo
@@ -522,10 +520,6 @@ INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabCommons.i
 BUILT_SOURCES = $(am__append_4) $(am__append_5)
-libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/fileio/libscifileio.la
-
 
 #### commons : gateway declaration ####
 libscicommons_la_sci_gatewaydir = $(mydatadir)/sci_gateway
