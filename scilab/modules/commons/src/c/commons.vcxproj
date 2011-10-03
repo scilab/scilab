@@ -248,9 +248,7 @@ lib /DEF:"$(ProjectDir)commons_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <None Include="commons_f_Import.def" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\commons.iss" />
-    <None Include="..\..\sci_gateway\commons_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="commons.rc" />
