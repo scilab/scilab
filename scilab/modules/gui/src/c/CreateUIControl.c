@@ -45,15 +45,18 @@ char *CreateUIControl(char *style)
     if (style == NULL || strcmp(style, "pushbutton")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_PUSHBUTTON__);
-        //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
-    }
-    else if (strcmp(style,"text")==0)
-    {
-        pobjUID = createGraphicObject(__GO_UI_TEXT__);
     }
     else if (strcmp(style,"imagerenderer")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);
+    }
+    else if (strcmp(style,"radiobutton")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_RADIOBUTTON__);
+    }
+    else if (strcmp(style,"text")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_TEXT__);
     }
     else if (strcmp(style,"table")==0)
     {

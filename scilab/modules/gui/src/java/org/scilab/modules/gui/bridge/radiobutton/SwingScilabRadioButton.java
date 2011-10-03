@@ -15,6 +15,8 @@ package org.scilab.modules.gui.bridge.radiobutton;
 
 import javax.swing.JRadioButton;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
@@ -32,189 +34,215 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabRadioButton extends JRadioButton implements SimpleRadioButton {
+public class SwingScilabRadioButton extends JRadioButton implements SwingViewObject, SimpleRadioButton {
 
-	private static final long serialVersionUID = -4094092157137686082L;
+    private static final long serialVersionUID = -4094092157137686082L;
 
-	private CallBack callback;
+    private String uid;
 
-	/**
-	 * Constructor
-	 */
-	public SwingScilabRadioButton() {
-		super();
-		/* Avoid the L&F to erase user background settings */
-		setContentAreaFilled(false);
-		setOpaque(true);
-	}
-	
-	/**
-	 * Draws a swing Scilab RadioButton
-	 * @see org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		this.setVisible(true);
-		this.doLayout();
-	}
-	
-	/**
-	 * Gets the dimensions (width and height) of a swing Scilab RadioButton
-	 * @return the dimensions of the RadioButton
-	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
-	 */
-	public Size getDims() {
-		return new Size(super.getSize().width, super.getSize().height);
-	}
+    private CallBack callback;
 
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
-	 * @return the position of the RadioButton
-	 * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
-	 */
-	public Position getPosition() {
-		return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
-	}
-	
-	/**
-	 * Sets the dimensions (width and height) of a swing Scilab RadioButton
-	 * @param newSize the dimensions to set to the RadioButton
-	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		super.setSize(newSize.getWidth(), newSize.getHeight());
-	}
+    /**
+     * Constructor
+     */
+    public SwingScilabRadioButton() {
+        super();
+        /* Avoid the L&F to erase user background settings */
+        setContentAreaFilled(false);
+        setOpaque(true);
+    }
 
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
-	 * @param newPosition the position to set to the RadioButton
-	 * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
-		setLocation(javaPosition.getX(), javaPosition.getY());
-	}
+    /**
+     * Draws a swing Scilab RadioButton
+     * @see org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+        this.setVisible(true);
+        this.doLayout();
+    }
 
-	/**
-	 * Add a callback to the RadioButton
-	 * @param callback the callback to set.
-	 */
-	public void setCallback(CallBack callback) {
-		if (this.callback != null) {
-			removeActionListener(this.callback);
-		}
-		this.callback = callback;
-		addActionListener(this.callback);
-	}
+    /**
+     * Gets the dimensions (width and height) of a swing Scilab RadioButton
+     * @return the dimensions of the RadioButton
+     * @see org.scilab.modules.gui.uielement.UIElement#getDims()
+     */
+    public Size getDims() {
+        return new Size(super.getSize().width, super.getSize().height);
+    }
 
-	/**
-	 * Setter for MenuBar
-	 * @param menuBarToAdd the MenuBar associated to the Tab.
-	 */
-	public void addMenuBar(MenuBar menuBarToAdd) {
-		/* Unimplemented for RadioButtones */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
+     * @return the position of the RadioButton
+     * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
+     */
+    public Position getPosition() {
+        return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
+    }
 
-	/**
-	 * Setter for ToolBar
-	 * @param toolBarToAdd the ToolBar associated to the Tab.
-	 */
-	public void addToolBar(ToolBar toolBarToAdd) {
-		/* Unimplemented for RadioButtones */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Sets the dimensions (width and height) of a swing Scilab RadioButton
+     * @param newSize the dimensions to set to the RadioButton
+     * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+        super.setSize(newSize.getWidth(), newSize.getHeight());
+    }
 
-	/**
-	 * Getter for MenuBar
-	 * @return MenuBar: the MenuBar associated to the Tab.
-	 */
-	public MenuBar getMenuBar() {
-		/* Unimplemented for RadioButtones */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
+     * @param newPosition the position to set to the RadioButton
+     * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+        Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+        setLocation(javaPosition.getX(), javaPosition.getY());
+    }
 
-	/**
-	 * Getter for ToolBar
-	 * @return ToolBar: the ToolBar associated to the Tab.
-	 */
-	public ToolBar getToolBar() {
-		/* Unimplemented for RadioButtones */
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Set the horizontal alignment for the RadioButton text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setHorizontalAlignment(String alignment) {
-		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
-	}
+    /**
+     * Add a callback to the RadioButton
+     * @param callback the callback to set.
+     */
+    public void setCallback(CallBack callback) {
+        if (this.callback != null) {
+            removeActionListener(this.callback);
+        }
+        this.callback = callback;
+        addActionListener(this.callback);
+    }
 
-	/**
-	 * Set the vertical alignment for the RadioButton text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setVerticalAlignment(String alignment) {
-		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
-	}
-	
-	/**
-	 * Set if the RadioButton is checked or not
-	 * @param status true to set the RadioButton checked
-	 */
-	public void setChecked(boolean status) {
-		/* Remove the listener to avoid the callback to be executed */
-		if (this.callback != null) {
-			removeActionListener(this.callback);
-		}
+    /**
+     * Setter for MenuBar
+     * @param menuBarToAdd the MenuBar associated to the Tab.
+     */
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        /* Unimplemented for RadioButtones */
+        throw new UnsupportedOperationException();
+    }
 
-		setSelected(status);
+    /**
+     * Setter for ToolBar
+     * @param toolBarToAdd the ToolBar associated to the Tab.
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+        /* Unimplemented for RadioButtones */
+        throw new UnsupportedOperationException();
+    }
 
-		/* Put back the listener */
-		if (this.callback != null) {
-			addActionListener(this.callback);
-		}
-	}
-	
-	/**
-	 * Get the status of the RadioButton
-	 * @return true if the RadioButton is checked
-	 */
-	public boolean isChecked() {
-		return isSelected();
-	}
+    /**
+     * Getter for MenuBar
+     * @return MenuBar: the MenuBar associated to the Tab.
+     */
+    public MenuBar getMenuBar() {
+        /* Unimplemented for RadioButtones */
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set the Relief of the RadioButton
-	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
-	 */
-	public void setRelief(String reliefType) {
-		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
-	}
+    /**
+     * Getter for ToolBar
+     * @return ToolBar: the ToolBar associated to the Tab.
+     */
+    public ToolBar getToolBar() {
+        /* Unimplemented for RadioButtones */
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Destroy the RadioButton
-	 */
-	public void destroy() {
-		ScilabSwingUtilities.removeFromParent(this);
-	}
-	
-	/**
-	 * Setter for InfoBar
-	 * @param infoBarToAdd the InfoBar associated to the RadioButton.
-	 */
-	public void addInfoBar(TextBox infoBarToAdd) {
-		/* Unimplemented for RadioButtons */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set the horizontal alignment for the RadioButton text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setHorizontalAlignment(String alignment) {
+        setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+    }
 
-	/**
-	 * Getter for InfoBar
-	 * @return the InfoBar associated to the RadioButton.
-	 */
-	public TextBox getInfoBar() {
-		/* Unimplemented for RadioButtons */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set the vertical alignment for the RadioButton text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setVerticalAlignment(String alignment) {
+        setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+    }
 
+    /**
+     * Set if the RadioButton is checked or not
+     * @param status true to set the RadioButton checked
+     */
+    public void setChecked(boolean status) {
+        /* Remove the listener to avoid the callback to be executed */
+        if (this.callback != null) {
+            removeActionListener(this.callback);
+        }
+
+        setSelected(status);
+
+        /* Put back the listener */
+        if (this.callback != null) {
+            addActionListener(this.callback);
+        }
+    }
+
+    /**
+     * Get the status of the RadioButton
+     * @return true if the RadioButton is checked
+     */
+    public boolean isChecked() {
+        return isSelected();
+    }
+
+    /**
+     * Set the Relief of the RadioButton
+     * @param reliefType the type of the relief to set (See ScilabRelief.java)
+     */
+    public void setRelief(String reliefType) {
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    }
+
+    /**
+     * Destroy the RadioButton
+     */
+    public void destroy() {
+        ScilabSwingUtilities.removeFromParent(this);
+    }
+
+    /**
+     * Setter for InfoBar
+     * @param infoBarToAdd the InfoBar associated to the RadioButton.
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+        /* Unimplemented for RadioButtons */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Getter for InfoBar
+     * @return the InfoBar associated to the RadioButton.
+     */
+    public TextBox getInfoBar() {
+        /* Unimplemented for RadioButtons */
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        SwingScilabWidget.update(this, property, value);
+    }
 }

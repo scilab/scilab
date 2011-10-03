@@ -292,6 +292,7 @@ public static final String __GO_STYLE__ =                  "Style";
 public static final String __GO_UI_FRAME__ =               "frame";
 public static final String __GO_UI_IMAGERENDERER__ =       "imagerenderer";
 public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";
+public static final String __GO_UI_RADIOBUTTON__ =         "radiobutton";
 public static final String __GO_UI_TABLE__ =               "table";
 public static final String __GO_UI_TEXT__ =                "text";
 

@@ -30,6 +30,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGERENDERER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
@@ -59,6 +60,7 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -112,6 +114,7 @@ public final class SwingView implements GraphicView {
         Figure,
         ImageRenderer,
         PushButton,
+        RadioButton,
         Table,
         Text
     } 
@@ -179,17 +182,15 @@ public final class SwingView implements GraphicView {
         DEBUG("SwingView", "StyleToEnum(" + style + ")");
         if (style.equals(__GO_FIGURE__)) {
             return UielementType.Figure;
-        }
-        if (style.equals(__GO_UI_IMAGERENDERER__)) {
+        } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             return UielementType.ImageRenderer;
-        }
-        if (style.equals(__GO_UI_PUSHBUTTON__)) {
+        } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
             return UielementType.PushButton;
-        }
-        if (style.equals(__GO_UI_TABLE__)) {
+        } else if (style.equals(__GO_UI_RADIOBUTTON__)) {
+            return UielementType.RadioButton;
+        } else if (style.equals(__GO_UI_TABLE__)) {
             return UielementType.Table;
-        }
-        if (style.equals(__GO_UI_TEXT__)) {
+        } else if (style.equals(__GO_UI_TEXT__)) {
             return UielementType.Text;
         }
         return null;
@@ -257,23 +258,15 @@ public final class SwingView implements GraphicView {
             imageRenderer.setId(id);
             return imageRenderer;
         case PushButton:
-            SwingScilabPushButton button = new SwingScilabPushButton();
-            button.setId(id);
-            SwingScilabWidget.update(button, __GO_UI_BACKGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
-            SwingScilabWidget.update(button, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-            SwingScilabWidget.update(button, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-            SwingScilabWidget.update(button, __GO_UI_FONTANGLE__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
-            SwingScilabWidget.update(button, __GO_UI_FONTNAME__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
-            SwingScilabWidget.update(button, __GO_UI_FONTSIZE__, (Double) GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
-            SwingScilabWidget.update(button, __GO_UI_FONTWEIGHT__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
-            SwingScilabWidget.update(button, __GO_UI_FOREGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
-            SwingScilabWidget.update(button, __GO_UI_HORIZONTALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
-            SwingScilabWidget.update(button, __GO_UI_RELIEF__, (String) GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
-            SwingScilabWidget.update(button, __GO_UI_STRING__, (String[]) GraphicController.getController().getProperty(id, __GO_UI_STRING__));
-            SwingScilabWidget.update(button, __GO_UI_VERTICALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
-            SwingScilabWidget.update(button, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
-            SwingScilabWidget.update(button, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
-            return button;
+            SwingScilabPushButton pushButton = new SwingScilabPushButton();
+            pushButton.setId(id);
+            setDefaultProperties(pushButton, id);
+            return pushButton;
+        case RadioButton:
+            SwingScilabRadioButton radioButton = new SwingScilabRadioButton();
+            radioButton.setId(id);
+            setDefaultProperties(radioButton, id);
+            return radioButton;
         case Table:
             SwingScilabUiTable table = new SwingScilabUiTable();
             table.setId(id);
@@ -281,24 +274,47 @@ public final class SwingView implements GraphicView {
         case Text:
             SwingScilabLabel text = new SwingScilabLabel();
             text.setId(id);
-            SwingScilabWidget.update(text, __GO_UI_BACKGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
-            SwingScilabWidget.update(text, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-            SwingScilabWidget.update(text, __GO_UI_ENABLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-            SwingScilabWidget.update(text, __GO_UI_FONTANGLE__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
-            SwingScilabWidget.update(text, __GO_UI_FONTNAME__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
-            SwingScilabWidget.update(text, __GO_UI_FONTSIZE__, (Double) GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
-            SwingScilabWidget.update(text, __GO_UI_FONTWEIGHT__, (String) GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
-            SwingScilabWidget.update(text, __GO_UI_FOREGROUNDCOLOR__, (Double[]) GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
-            SwingScilabWidget.update(text, __GO_UI_HORIZONTALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
-            SwingScilabWidget.update(text, __GO_UI_RELIEF__, (String) GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
-            SwingScilabWidget.update(text, __GO_UI_STRING__, (String[]) GraphicController.getController().getProperty(id, __GO_UI_STRING__));
-            SwingScilabWidget.update(text, __GO_UI_VERTICALALIGNMENT__, (String) GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
-            SwingScilabWidget.update(text, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
-            SwingScilabWidget.update(text, __GO_VISIBLE__, (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));
+            setDefaultProperties(text, id);
             return text;
         default:
             return null;
         }
+    }
+    
+    /**
+     * Initialize all poperties according to model
+     * @param uicontrolObject the uicontrol
+     * @param id the uicontrol id
+     */
+    private void setDefaultProperties(SwingViewObject uicontrolObject, String id) {
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_BACKGROUNDCOLOR__, 
+                (Double[]) GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_ENABLE__, 
+                (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_ENABLE__, 
+                (Boolean) GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_FONTANGLE__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_FONTNAME__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_FONTSIZE__, 
+                (Double) GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_FONTWEIGHT__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_FOREGROUNDCOLOR__, 
+                (Double[]) GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_HORIZONTALALIGNMENT__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_RELIEF__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_STRING__, 
+                (String[]) GraphicController.getController().getProperty(id, __GO_UI_STRING__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_UI_VERTICALALIGNMENT__, 
+                (String) GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_POSITION__, 
+                (Double[]) GraphicController.getController().getProperty(id, __GO_POSITION__));
+        SwingScilabWidget.update((Widget) uicontrolObject, __GO_VISIBLE__, 
+                (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__));   
     }
 
     @Override
