@@ -686,4 +686,8 @@ Bug fixes:
 
 * bug 10016 fixed - The damp function unit test failed under windows.
 
+* bug 10019 fixed - 'exec' crashed with error 113 for too long lines.
+
 * bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
+
+

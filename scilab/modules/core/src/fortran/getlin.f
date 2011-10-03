@@ -108,7 +108,9 @@ c     .     end of file encountered
          if(info.eq.-1) goto 50
          if(info.eq.2) then
             call error(113)
-         return
+c     .     stop reading file
+            fin=-2 
+            return
          endif
          n=n-1
          n=lnblnk(buf(1:n))
