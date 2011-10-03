@@ -54,7 +54,7 @@ GUI_FILES="etc/*.xml"
 FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
 # Gettext arg
-XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --sort-output --no-wrap "
+XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --no-wrap --sort-by-file"
 
 process_XML_files() {
 # First expression => remove line which does NOT contain label
@@ -121,7 +121,7 @@ function process_module {
     fi
     if test ! -d $TARGETDIR; then mkdir $TARGETDIR; fi
 
-    FILES=`eval $FILESCMD|tr "\n" " "|sort`
+    FILES=`eval $FILESCMD|tr "\n" " "`
 
     if test "$MODULE" = "core" -o "$MODULE" = "./core"; then
         # We want some strings from the ROOTDIR when it is the core module
@@ -132,6 +132,9 @@ function process_module {
     if test -n "$(ls $GUI_FILES 2>/dev/null)" -a $IS_MACROS -ne 1; then
         FILES="$FILES `ls $GUI_FILES`"
     fi
+
+    FILES=$(echo $FILES|sort)
+
     MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
 
     if test $IS_MACROS -eq 1; then
@@ -181,7 +184,7 @@ function process_module {
         sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
 
-    msguniq -u $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
+    msguniq -u $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US 2> /dev/null
 
     rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
 
