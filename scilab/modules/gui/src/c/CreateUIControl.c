@@ -54,6 +54,10 @@ char *CreateUIControl(char *style)
     {
         pobjUID = createGraphicObject(__GO_UI_EDIT__);
     }
+    else if (strcmp(style,"frame")==0)
+    {
+        pobjUID = createGraphicObject(__GO_UI_FRAME__);
+    }
     else if (strcmp(style,"imagerenderer")==0)
     {
         pobjUID = createGraphicObject(__GO_UI_IMAGERENDERER__);

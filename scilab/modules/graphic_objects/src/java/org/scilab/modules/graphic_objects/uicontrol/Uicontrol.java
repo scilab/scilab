@@ -21,6 +21,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_COLUMNNAMES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -149,6 +150,7 @@ public class Uicontrol extends GraphicObject {
     private enum UicontrolStyle {
         CHECKBOX,
         EDIT,
+        FRAME,
         IMAGERENDERER,
         PUSHBUTTON,
         RADIOBUTTON,
@@ -177,6 +179,9 @@ public class Uicontrol extends GraphicObject {
             break;
         case EDIT:
             stringStyle = __GO_UI_EDIT__;
+            break;
+        case FRAME:
+            stringStyle = __GO_UI_FRAME__;
             break;
         case IMAGERENDERER:
             stringStyle = __GO_UI_IMAGERENDERER__;
@@ -214,6 +219,8 @@ public class Uicontrol extends GraphicObject {
             enumStyle = UicontrolStyle.CHECKBOX;
         } else if (style.equals(__GO_UI_EDIT__)) {
             enumStyle = UicontrolStyle.EDIT;
+        } else if (style.equals(__GO_UI_FRAME__)) {
+            enumStyle = UicontrolStyle.FRAME;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             enumStyle = UicontrolStyle.IMAGERENDERER;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {

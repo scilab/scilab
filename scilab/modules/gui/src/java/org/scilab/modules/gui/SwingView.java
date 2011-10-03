@@ -24,6 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
@@ -62,6 +63,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
+import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
@@ -119,6 +121,7 @@ public final class SwingView implements GraphicView {
     private enum UielementType {
         CheckBox,
         Edit,
+        Frame,
         Figure,
         ImageRenderer,
         PushButton,
@@ -195,6 +198,8 @@ public final class SwingView implements GraphicView {
             return UielementType.CheckBox;
         } else if (style.equals(__GO_UI_EDIT__)) {
             return UielementType.Edit;
+        } else if (style.equals(__GO_UI_FRAME__)) {
+            return UielementType.Frame;
         } else if (style.equals(__GO_UI_IMAGERENDERER__)) {
             return UielementType.ImageRenderer;
         } else if (style.equals(__GO_UI_PUSHBUTTON__)) {
@@ -278,6 +283,10 @@ public final class SwingView implements GraphicView {
             tab.update(__GO_AXES_SIZE__, (Integer[]) GraphicController.getController().getProperty(id, __GO_AXES_SIZE__));
             // TODO set other default properties
             return tab;
+        case Frame:
+            SwingScilabFrame frame = new SwingScilabFrame();
+            frame.setId(id);
+            return frame;
         case ImageRenderer:
             SwingScilabImageRenderer imageRenderer = new SwingScilabImageRenderer();
             imageRenderer.setId(id);

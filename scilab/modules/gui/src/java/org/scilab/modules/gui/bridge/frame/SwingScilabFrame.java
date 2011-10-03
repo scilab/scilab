@@ -15,6 +15,8 @@ package org.scilab.modules.gui.bridge.frame;
 
 import javax.swing.JPanel;
 
+import org.scilab.modules.gui.SwingScilabWidget;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -54,9 +56,11 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabFrame extends JPanel implements SimpleFrame {
+public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleFrame {
 
 	private static final long serialVersionUID = -7401084975837285447L;
+
+    private String uid;
 
 	/**
 	 * Constructor
@@ -544,4 +548,28 @@ public class SwingScilabFrame extends JPanel implements SimpleFrame {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * Set the UID
+     * @param id the UID
+     */
+    public void setId(String id) {
+        uid = id;
+    }
+    
+    /**
+     * Get the UID
+     * @return the UID
+     */
+    public String getId() {
+        return uid;
+    }
+
+    /**
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
+    public void update(String property, Object value) {
+        //SwingScilabWidget.update(this, property, value);
+    }
 }
