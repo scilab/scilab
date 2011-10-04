@@ -69,7 +69,7 @@ public final class SwingScilabWidget {
     private static final String ITALICFONT = "italic";
     private static final String BOLDFONT = "bold";
     private static final int COLORS_COEFF = 255;
-    
+
     /**
      * Constructor
      */
@@ -183,7 +183,14 @@ public final class SwingScilabWidget {
         } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
         } else if (property.equals(__GO_STYLE__)) {
         } else if (property.equals(__GO_UI_STRING__)) {
-            uiControl.setText(((String[]) value)[0]);
+            // Listboxes & Popupmenus manage string vectors
+            if (uiControl instanceof SwingScilabListBox) {
+                ((SwingScilabListBox) uiControl).setText((String[]) value);
+            } else if (uiControl instanceof SwingScilabPopupMenu) {
+                ((SwingScilabPopupMenu) uiControl).setText((String[]) value);
+            } else {
+                uiControl.setText(((String[]) value)[0]);
+            }
         } else if (property.equals(__GO_TAG__)) {
             /* Nothing to do */ 
         } else if (property.equals(__GO_UI_TABLEDATA__)) {
