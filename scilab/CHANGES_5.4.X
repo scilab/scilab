@@ -344,6 +344,8 @@ Statistics:
 
 * bug 9846 fixed - stdevf() gives zero result when a single row matrix is evaluated.
 
+* bug 7387 fixed - The help page of the rand function gave a wrong advice.
+                   The help page of the grand function gave a wrong advice.
 
 Linear Algebra:
 ==============
