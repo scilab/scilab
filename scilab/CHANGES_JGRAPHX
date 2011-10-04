@@ -1,9 +1,10 @@
        Changes between version 5.3 branch and jgrapĥx branch of Scilab
        ===============================================================
 
-On the merge commit please remove this file and uncomment the 
-"AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx]" line on configure.ac with the right
-version.
+On the merge commit :
+    - remove this file
+    - uncomment the "AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx]" line on configure.ac
+    - uncomment the version checking on Xcos.java
 
 Xcos:
 =====
