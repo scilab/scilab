@@ -98,8 +98,9 @@ public class H5RWHandler {
 			H5Read.closeFile(fileId);
 
 			instance = element.decode(data, into);
-			StyleMap style = new StyleMap(instance.getStyle());
-			style.put(instance.getInterfaceFunctionName(), null);
+			StyleMap style = new StyleMap(instance.getInterfaceFunctionName());
+			style.putAll(instance.getStyle());
+			
 			instance.setStyle(style.toString());
 
 		} catch (HDF5Exception e) {

@@ -10,8 +10,10 @@
 if HDF5
 
 if GUI
+if XCOS
 # No GUI. Disable the Java build
 USEANT=1
+endif
 endif
 
 
@@ -20,15 +22,12 @@ src/c/h5_writeDataToFile.c \
 src/c/h5_readDataFromFile.c
 
 if NEED_JAVA
-HDF5_CPP_SOURCES =  src/jni/GiwsException.hxx \
-src/jni/GiwsException.cpp
 
 # This is due to an ugly hack for bug #5481
 FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp \
 src/jni/jhdf5load.hxx \
 src/jni/jhdf5load.cpp
 else
-HDF5_CPP_SOURCES = 
 
 # This is due to an ugly hack for bug #5481
 FORCE_LOAD_SOURCES = 
@@ -76,6 +75,7 @@ libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/jvm/includes/ \
+                -I$(top_srcdir)/modules/commons/src/jni/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
@@ -111,7 +111,7 @@ endif
 
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CPP_SOURCES)
+libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
 libscihdf5_algo_la_CFLAGS = $(libscihdf5_la_CFLAGS)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)

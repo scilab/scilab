@@ -214,18 +214,18 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 */
 	private void decodeGraphics(OutputPort port) {
 		// protection against previously stored blocks
-		if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX) {
+		if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX || graphics.get(GRAPHICS_OUTSTYLE_INDEX).isEmpty()) {
 			return;
 		}
 		
 		final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
-		if (styles.getData() != null) {
+		if (styles.getData() != null
+				&& alreadyDecodedCount < styles.getHeight()
+				&& 0 < styles.getWidth()) {
 			final String style;
 
-			try {
-				style = styles.getData()[alreadyDecodedCount][0];
-				port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
-			} catch (ArrayIndexOutOfBoundsException e) { }
+			style = styles.getData()[alreadyDecodedCount][0];
+			port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
 		}
 	}
 	

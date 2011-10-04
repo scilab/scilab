@@ -100,7 +100,7 @@ libscistatistics_algo_la_CFLAGS = $(libscistatistics_la_CFLAGS)
 CHECK_SRC= $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
 
-libscistatistics_la_LIBADD = libscistatistics-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscistatistics_la_LIBADD = libscistatistics-algo.la 
 
 #### Target ######
 modulename=statistics

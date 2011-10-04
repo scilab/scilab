@@ -23,6 +23,7 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
@@ -80,7 +81,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // Input command line is not editable when created
         this.setEditable(false);
-        ScilabCaret caret = new ScilabCaret(this);
+        ScilabCaret caret = new ScilabCaret(this) {
+                public void mousePressed(MouseEvent e) {
+                    ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+                    super.mousePressed(e);
+                }
+            };
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
@@ -113,6 +119,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             }
         }
         return result;
+    }
+
+    /**
+     * Unselect text if selected one exists
+     */
+    public void removeSelection() {
+        if (getSelectionStart() != getSelectionEnd()) {
+            setSelectionStart(getSelectionEnd());
+        }
     }
 
     /**
@@ -223,6 +238,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+
         String str = getText().substring(0, e.getDot());
         int lastPos = str.lastIndexOf("\"$");
         if (lastPos != -1) {

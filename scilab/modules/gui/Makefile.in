@@ -73,9 +73,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -214,7 +215,6 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-CallClipboard.lo \
 	libscigui_algo_la-exportUserInterface.lo \
 	libscigui_algo_la-LookAndFeelManager.lo \
-	libscigui_algo_la-GiwsException.lo \
 	libscigui_algo_la-Juigetfile.lo \
 	libscigui_algo_la-CallJuigetfile.lo \
 	libscigui_algo_la-displaytree.lo \
@@ -230,10 +230,7 @@ libscigui_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscigui_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscigui_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-libscigui_la_DEPENDENCIES = libscigui-algo.la \
-	$(top_builddir)/modules/renderer/libscirenderer.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigui_la_DEPENDENCIES = libscigui-algo.la
 am__objects_4 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_x_mdialog.lo libscigui_la-sci_x_dialog.lo \
 	libscigui_la-sci_x_choose.lo \
@@ -729,7 +726,6 @@ src/cpp/GetScreenProperty.cpp \
 src/cpp/CallClipboard.cpp \
 src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
-src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
@@ -812,6 +808,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
@@ -846,9 +843,7 @@ libscigui_algo_la_CPPFLAGS = $(libscigui_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
-
-#  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
-libscigui_la_LIBADD = libscigui-algo.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigui_la_LIBADD = libscigui-algo.la
 
 #### gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -1058,7 +1053,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectForegroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectTag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUiobjectVisible.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-InitProgressionBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-InitWaitBar.Plo@am__quote@
@@ -2054,13 +2048,6 @@ libscigui_algo_la-LookAndFeelManager.lo: src/jni/LookAndFeelManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-LookAndFeelManager.lo `test -f 'src/jni/LookAndFeelManager.cpp' || echo '$(srcdir)/'`src/jni/LookAndFeelManager.cpp
 
-libscigui_algo_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-GiwsException.Tpo -c -o libscigui_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-GiwsException.Tpo $(DEPDIR)/libscigui_algo_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscigui_algo_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-
 libscigui_algo_la-Juigetfile.lo: src/jni/Juigetfile.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-Juigetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-Juigetfile.Tpo -c -o libscigui_algo_la-Juigetfile.lo `test -f 'src/jni/Juigetfile.cpp' || echo '$(srcdir)/'`src/jni/Juigetfile.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-Juigetfile.Tpo $(DEPDIR)/libscigui_algo_la-Juigetfile.Plo
@@ -2544,6 +2531,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

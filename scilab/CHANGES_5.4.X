@@ -82,6 +82,13 @@ Graphical User Interface:
 * The variable browser now refresh itself automatically (See bug 9446).
 
 
+Call_Scilab:
+============
+
+* bug 10006 fixed - Unrelevant C-comment in the example of ScilabHaveAGraph
+                    removed.
+
+
 Xcos:
 =====
 
@@ -90,6 +97,8 @@ Xcos:
 * scilab -f file.xcos opens xcos diagram in xcos.
 
 * Error reporting has been improved to print warnings on blocks into Xcos.
+
+* The style of the block can be changed on the interface function.
 
 * bug 7985 fixed - dmmul.c did not use dgemm routine optimized by BLAS.
 
@@ -135,6 +144,8 @@ Xcos:
 * bug 9988 fixed - CLKSOMV_f has a wrong interface function after loading from
                    a file.
 
+* bug 10003 fixed - The MAXMIN block did not update its display according to 
+                    the settings.
 
 Localization:
 =============
@@ -219,6 +230,11 @@ Optimization:
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
+* Bug 7892 fixed - The neldermead component did not provide a default 
+                   output function.
+                   The new function neldermead_defaultoutput was created
+                   to print a simple one-line output message by iteration.
+
 * Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used
                    the output function.
 
@@ -237,11 +253,18 @@ Optimization:
 
 * Bug 8547 fixed - The neldermead function called f outside the constraints.
 
+* Bug 8549 fixed - The neldermead function did not help to debug 
+                   the cost function.
+
 * Bug 8552 fixed - Improved fminsearch to provide Extra Parameters.
                    Help page updated with new section "The cost function".
                    Help page updated with new example "Passing extra parameters".
 
 * Bug 8676 fixed - The pack/unpack functions had no help pages.
+
+* Bug 8777 fixed - The neldermead function failed to restart with bounds.
+                   Added examples of restarts with/without bounds in the 
+                   neldermead help page.
 
 * Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
                    Same changes applied to optimbase_checkx0.
@@ -309,6 +332,9 @@ Documentation:
 
 * Bug 9790 fixed - windows_tools help were not available on all platforms.
 
+* Bug 9983 fixed - The xclick help page did not clearly specify the axes used for 
+                   coordinates
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -345,6 +371,10 @@ Compilation:
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
 
+* Under GNU/Linux and Mac OS X, for each module, get ride of the list of 
+  the explicit dependencies on the other libraries. Use libscilab-cli.so or
+  libscilab.so to link against Scilab.
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
@@ -355,6 +385,12 @@ Compilation:
                    checking tool happy.
 
 * bug 9782 fixed - configure with --without-gui was failing.
+
+* bug 9793 fixed - --without-gui disables also Xcos.
+
+* bug 9883 fixed - Build with --disable-build-help was failing.
+
+* bug 9991 fixed - ./configure --without-xcos failed to build
 
 
 Dynamic link:
@@ -395,6 +431,10 @@ ATOMS:
 
 * bug 9967 fixed - windows UAC causing trouble with atomsRepositorySetOfl (internal function)
 
+* bug 10025 fixed - wrong url in some examples from help files
+
+* bug 10031 fixed - atomsDisp did not work with Verbose option set to True and "\n" in messages.
+
 
 Javasci:
 ========
@@ -406,6 +446,35 @@ returns the value of the ScilabTypeEnum enum.
 
 * bug 9544 fixed - Calling graphic with Javasci from a SWING application from
                    EDT was crashing the execution of a java program.
+
+
+CACSD and Signal processing
+==========================
+
+* bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
+
+* bug 7901 fixed - besselh.tst failed on Windows.
+
+* bug 8684 fixed - 'wfir' function produced an error message when used interactively.
+
+* bug 9098 fixed - demo CACSD --> Robust control failed on Windows 64 bit.
+
+* bug 9214 fixed - abaque replaced by nicholschart in the black.sci comments
+
+* bug 9266 fixed - fftw crashed on Windows when using MKL wrapper.
+
+* bug 9647 fixed - On Scilab startup, the variable fft was declared by default
+                   while it should not.
+
+* bug 9675 fixed - iir generated bad results.
+
+* bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
+
+* bug 9719 fixed - delip.tst execution froze under Windows.
+
+* bug 9725 fixed - syredi.tst execution froze under Windows.
+
+* bug 9321 fixed - missing tests and help info for some CACSD functions
 
 
 Misc:
@@ -431,6 +500,8 @@ Bug fixes:
 
 * bug 3291 fixed - SCI/modules/tclsci/tcl/BWidget-1.8.0/ moved as prerequirements.
 
+* bug 4240 fixed - Some unexpected blank lines was displayed with the "dir" function.
+
 * bug 4576 fixed - An example of ilib_build with "cflags" argument was missing.
 
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
@@ -454,9 +525,8 @@ Bug fixes:
 
 * bug 7745 fixed - add_demo moved in demo_tools module.
 
-* bug 7895 fixed - fft2() was broken on Windows with MKL wrapper.
-
-* bug 7901 fixed - besselh.tst failed on Windows.
+* bug 8086 fixed - Some functions displayed a wrong error message when called 
+                   without input argument.
 
 * Bug 8243 fixed - xgeom demonstration renamed to geom3d.
 
@@ -464,8 +534,6 @@ Bug fixes:
 
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
-
-* bug 8684 fixed - 'wfir' function produced an error message when used interactively.
 
 * bug 8688 fixed - fillMatrixOfString did not check available memory on stack.
 
@@ -476,8 +544,6 @@ Bug fixes:
 * bug 8963 fixed - mtlb_mode test failed on Windows.
 
 * bug 9045 fixed - plot2d did not support overloading.
-
-* bug 9098 fixed - demo CACSD --> Robust control failed on Windows 64 bit.
 
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
 
@@ -491,12 +557,8 @@ Bug fixes:
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
-* bug 9214 fixed - abaque replaced by nicholschart in the black.sci comments
-
 * bug 9253 fixed - fscanfMat failed to read a file with some lines
                    of text at the end (backward compatibility).
-
-* bug 9266 fixed - fftw crashed on Windows when using MKL wrapper.
 
 * bug 9268 fixed - Scilab was overridding a predefined variable JAVA_HOME.
 
@@ -505,6 +567,8 @@ Bug fixes:
 * bug 9339 fixed - 'tbx_build_help' function did not manage languages correctly.
 
 * bug 9354 fixed - 'savematfile' could not save imbricated structures.
+
+* bug 9414 fixed - 'SCI' and 'SCIHOME' variables were not documented.
 
 * bug 9452 fixed - It was impossible to download Intel MKL throw a proxy.
 
@@ -540,23 +604,21 @@ Bug fixes:
 
 * bug 9659 fixed - "error(246)" returned a bad message for overloading.
 
-* bug 9675 fixed - iir generated bad results.
-
 * bug 9682 fixed - 3D assignment into a 2D array of integers issued an error.
 
 * bug 9696 fixed - An error in an if expression inside a try make Scilab froze
+
+* bug 9699 fixed - A single $ as text in a text ui led to a segfault.
 
 * bug 9707 fixed - createNamedXXX did not check variable name.
 
 * bug 9708 fixed - createNamedXXX did not check length of variable name.
 
+* bug 9712 fixed - help of StartScilab had a error about Stacksize argument type.
+
 * bug 9716 fixed - amell.tst execution froze under Windows with reference lapack library.
 
 * bug 9717 fixed - dllinfo.tst failed with Windows binary versions.
-
-* bug 9719 fixed - delip.tst execution froze under Windows.
-
-* bug 9725 fixed - syredi.tst execution froze under Windows.
 
 * bug 9728 fixed - SCI/modules/special_functions/src/fortran/special_functions_f.def
                    was not ignored (generated file)
@@ -609,8 +671,23 @@ Bug fixes:
 
 * bug 9920 fixed - winqueryreg did not manage HKEY_CURRENT_CONFIG.
 
+* bug 9950 fixed - It was possible to select several texts in the console.
+
+* bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
+
+* bug 9966 fixed - The default value of comptype in assert_checkalmostequal 
+                   was wrongly chosen.
+
+* bug 9971 fixed - GLoad macro not used and not documented is removed.
+
 * bug 9979 fixed - The who_user() function printed a wrong message.
 
 * bug 9980 fixed - Frozen console when one tryes to complete an empty string.
 
 * bug 10016 fixed - The damp function unit test failed under windows.
+
+* bug 10019 fixed - 'exec' crashed with error 113 for too long lines.
+
+* bug 10037 fixed - checkalmostequal.tst unitary test failed under Linux x64.
+
+

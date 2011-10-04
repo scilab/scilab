@@ -7,47 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-13 22:50+0000\n"
 "Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: Invalid library %s.\n"
-msgstr "%s: Некорректная библиотека %s.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
 
 #, c-format
 msgid ""
@@ -56,21 +28,8 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожиадось «errcatch».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «m» или «n».\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -78,60 +37,77 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожиадось «errcatch».\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Неверные значения входных параметров.\n"
 
 #, c-format
-msgid "%s is already compiled for profiling.\n"
-msgstr "%s уже скомпилирован для профилирования.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s is already compiled.\n"
-msgstr "%s уже скомпилирован.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s is already noncompiled.\n"
-msgstr "%s уже не скомпилирован.\n"
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «m» или «n».\n"
 
 #, c-format
-msgid "%s: %s file cannot be created\n"
-msgstr "%s: не удалось создать файл %s\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: %s file compilation forced\n"
-msgstr "%s: Вынужденная компиляция файла %s\n"
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: Некорректная библиотека %s.\n"
 
 #, c-format
-msgid "%s: File %s does not contain any function.\n"
-msgstr "%s: Файл %s не содержит ни одной функции.\n"
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: File %s doesn't exist.\n"
-msgstr "%s: Файл %s не существует.\n"
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип входного параметра №%d.\n"
 
 #, c-format
-msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s: Не удалось найти файлов с расширением %s в %s\n"
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: устаревший код операции %d.\n"
 
 #, c-format
-msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s: Не удалось открыть файл %s для записи\n"
-
-#, c-format
-msgid "%s: Incorrect function in file %s.\n"
-msgstr "%s: Неверная функция в файле %s.\n"
-
-#, c-format
-msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s: Файлы с расширением %s не найдены в %s\n"
+msgid "Checking: %s.\n"
+msgstr "Проверяется: %s.\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: Проверьте: %s\n"
 
 #, c-format
-msgid "%s: Private function: cannot access to this function directly.\n"
-msgstr "%s: Частная функция: невозможен прямой доступ к этой функции.\n"
+msgid "%s: File %s doesn't exist.\n"
+msgstr "%s: Файл %s не существует.\n"
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- Создание [%s] (Макросы) --\n"
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s: Файлы с расширением %s не найдены в %s\n"
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s: Вынужденная компиляция файла %s\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -142,76 +118,8 @@ msgid "%s: Regenerate names and lib\n"
 msgstr "%s: Обновляются файлы names и lib\n"
 
 #, c-format
-msgid "%s: The function has not been built for profiling"
-msgstr "%s: Функция не подготовлена к профилированию"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Переменная %s не определена.\n"
-
-#, c-format
-msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr "%s: Внимание: ошибка в файле %s: %s. Файл проигнорирован\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось имя функции Scilab.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
-"%s: Неверные значения входного аргумента: функция не подготовлена к "
-"профилированию\n"
-
-#, c-format
-msgid "%s: obsolete op-code %d.\n"
-msgstr "%s: устаревший код операции %d.\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Создание [%s] (Макросы) --\n"
-
-msgid "?"
-msgstr "Справка"
-
-#, c-format
-msgid "Checking: %s.\n"
-msgstr "Проверяется: %s.\n"
-
-msgid "Click to get corresponding line, move with a-z."
-msgstr "Нажатие - получить соответствующую строку, a-z - перемещение."
-
-msgid "Complexity"
-msgstr "Сложность"
-
-msgid "Edit"
-msgstr "Правка"
-
-msgid "Exit"
-msgstr "Выход"
-
-#, c-format
-msgid "Feature %s is obsolete."
-msgstr "Функция %s устарела."
+msgid "%s: %s file cannot be created\n"
+msgstr "%s: не удалось создать файл %s\n"
 
 #, c-format
 msgid ""
@@ -222,23 +130,73 @@ msgstr ""
 "но не может быть загружен в Scilab, потому что %s является защищённой "
 "переменной.\n"
 
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s: Внимание: ошибка в файле %s: %s. Файл проигнорирован\n"
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s: Не удалось открыть файл %s для записи\n"
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s: Файл %s не содержит ни одной функции.\n"
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s: Не удалось найти файлов с расширением %s в %s\n"
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: Неверная функция в файле %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Переменная %s не определена.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
+
 msgid "No comment available.\n"
 msgstr "Нет доступных комментариев.\n"
 
 #, c-format
-msgid "No variable named: %s.\n"
-msgstr "Нет переменной с именем: %s.\n"
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось имя функции Scilab.\n"
 
 #, c-format
-msgid "Please use %s instead."
-msgstr "Используйте %s."
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr ""
+"%s: Неверные значения входного аргумента: функция не подготовлена к "
+"профилированию\n"
 
-#, c-format
-msgid "This feature will be permanently removed in Scilab %s"
-msgstr "Эта функция будет окончательно удалена в Scilab %s"
+msgid "Complexity"
+msgstr "Сложность"
 
 msgid "Tools"
 msgstr "Инструменты"
+
+msgid "Edit"
+msgstr "Правка"
+
+msgid "?"
+msgstr "Справка"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr "Нажатие - получить соответствующую строку, a-z - перемещение."
 
 #, c-format
 msgid "line %s [%s call, %s sec] :: "
@@ -247,3 +205,45 @@ msgstr "строка %s [%s вызов, %s с] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "строка %s [%s вызовов, %s с] :: "
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: Функция не подготовлена к профилированию"
+
+#, c-format
+msgid "No variable named: %s.\n"
+msgstr "Нет переменной с именем: %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
+
+#, c-format
+msgid "%s is already noncompiled.\n"
+msgstr "%s уже не скомпилирован.\n"
+
+#, c-format
+msgid "%s is already compiled.\n"
+msgstr "%s уже скомпилирован.\n"
+
+#, c-format
+msgid "%s is already compiled for profiling.\n"
+msgstr "%s уже скомпилирован для профилирования.\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr "%s: Частная функция: невозможен прямой доступ к этой функции.\n"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "Функция %s устарела."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Используйте %s."
+
+#, c-format
+msgid "This feature will be permanently removed in Scilab %s"
+msgstr "Эта функция будет окончательно удалена в Scilab %s"

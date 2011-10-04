@@ -24,7 +24,6 @@ import org.scilab.modules.xcos.block.positionning.Product;
 import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.Summation;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxICell;
 /**
@@ -48,34 +47,10 @@ public final class BlockFactory {
 		DSUPER(new SuperBlock(true)),
 		/** @see SuperBlock */
 		SUPER_f(new SuperBlock()),
-		/** @see ConstBlock */
-		CONST_m(new ConstBlock()),
-		/** @see ConstBlock */
-		CONST(CONST_m.getSharedInstance()),
-		/** @see ConstBlock */
-		CONST_f(CONST_m.getSharedInstance()),
-		/** @see PrintBlock */
-		FROM(new PrintBlock(XcosMessages.BLOCK_FROM)),
-		/** @see PrintBlock */
-		GOTO(new PrintBlock(XcosMessages.BLOCK_GOTO)),
-		/** @see PrintBlock */
-		CLKFROM(FROM.getSharedInstance()),
-		/** @see PrintBlock */
-		CLKGOTO(GOTO.getSharedInstance()),
-		/** @see PrintBlock */
-		FROMMO(FROM.getSharedInstance()),
-		/** @see PrintBlock */
-		GOTOMO(GOTO.getSharedInstance()),
 		/** @see AfficheBlock */
 		AFFICH_m(new AfficheBlock()),
 		/** @see AfficheBlock */
 		AFFICH_f(AFFICH_m.getSharedInstance()),
-		/** @see GainBlock */
-		GAINBLK_f(new GainBlock()),
-		/** @see GainBlock */
-		GAINBLK(GAINBLK_f.getSharedInstance()),
-		/** @see GainBlock */
-		GAIN_f(GAINBLK_f.getSharedInstance()),
 		/** @see ExplicitInBlock */
 		IN_f(new ExplicitInBlock()),
 		/** @see ExplicitOutBlock */

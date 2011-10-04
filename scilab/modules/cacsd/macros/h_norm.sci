@@ -1,14 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [hinfnorm,frequency]=h_norm(Sl,rerr)
-// produces the infinitynorm  of a state-space system 
+// produces the infinitynorm  of a state-space system
 // (the maximum over all frequencies of the maximum singular value).
 //      [hinfnorm [,frequency]]=h_norm(Sl,rerr)
 //      [hinfnorm [,frequency]]=h_norm(Sl)
@@ -21,25 +21,39 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
 //  see also: linfn, linf
 //!
 //  Version 3.2, 09-27-1990
-//  Adapted from 
+//  Adapted from
 //  N.A. Bruinsma   T.U.Delft/Philips Research Eindhoven, see also
 //  Systems & Control Letters, vol. 14 pp. 287-293.
-  
+  if argn(2)<1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
+                   "h_norm",1))
+  end
+
   sltyp=typeof(Sl)
   if and(sltyp<>['rational','state-space']) then
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),..
-		    "h_norm",1))
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),..
+                   "h_norm",1))
   end
   if sltyp=='rational' then Sl=tf2ss(Sl);end
-
+  if argn(2)==1 then
+    rerr=1e-8; 
+  else
+    if type(rerr)<>1|size(rerr,'*')<>1 then
+      error(msprintf(gettext("%s: Wrong type for input argument: Scalar expected.\n"),"h_norm",2))
+    end
+     if ~isreal(rerr)|rerr<=0 then
+       error(msprintf(gettext( "%s: Input argument #%d must be strictly positive.\n"),"h_norm",2))
+     end
+  end;
+  
   eps=1.d-8;
-  if Sl.dt=='d'|type(Sl.dt)==1 then 
+  if Sl.dt=='d'|type(Sl.dt)==1 then
     hinfnorm=dhnorm(Sl);frequency=[];
     return;
   end
-  [a,b,c,d]=Sl(2:5);
+  [a,b,c,d]=abcd(Sl);
   eiga=spec(a);
-  if max(real(eiga)) >= -1e-12 then 
+  if max(real(eiga)) >= -1e-12 then
     warning(msprintf(_("%s: System is not stable.\n"),"h_norm"))
   end
   if argn(2)==1 then rerr=1e-8; end;
@@ -49,7 +63,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   dtd = diag(d'*d); ddt = diag(d*d'); dtc = d' * c;
   aj = sqrt(-1)*eye(ns); R1 = ones(ni,1); S1 = ones(no,1);
   l = [];
- 
+
   // compute starting value
   q = ((imag(eiga) + 0.01 * ones(eiga)) ./ real(eiga)) ./ abs(eiga);
   [q,i] = max(q); w = abs(eiga(i));
@@ -62,10 +76,10 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   // enlarged to at least (1+1e-3)*lb;
   if lb == svdd then lb=1.001*lb+eps;end;
   for it = 1:15,
-     gam = (1 + 2 * rerr) * lb; gam2 = gam * gam;
+    gam = (1 + 2 * rerr) * lb; gam2 = gam * gam;
     Rinv = diag(R1./(dtd - gam2 * R1));
     Sinv = diag(S1./(ddt - gam2 * S1));
- 
+
     H11 = a-b*Rinv*dtc;
     evH = spec([H11 -gam*b*Rinv*b'; gam*c'*Sinv*c  -H11']);
     idx = find(abs(real(evH)) < 1e-8 & imag(evH) >= 0);
@@ -80,7 +94,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
       M =  0.5 * (imev(1:q-1) + imev(2:q)); M = M(1:isiso:q-1);
       sv=[];
       for j = 1:max(size(M)),
-	sv = [sv max(svd(d + c*((M(j)*aj*eye() - a)\b)))];
+        sv = [sv max(svd(d + c*((M(j)*aj*eye() - a)\b)))];
       end;
       lb = max(sv);l=[l;lb];
     end;
@@ -104,7 +118,7 @@ function gama=dhnorm(Sl,tol,gamamax)
   n=0;
   while %T
     gama=(gamamin+gamamax)/2;n=n+1;
-    if n>1000 then 
+    if n>1000 then
       warning(msprintf(gettext("%s: More than %d iterations.\n"),"dhnorm" ,1000));
       return;
     end
@@ -118,7 +132,7 @@ endfunction
 
 function ok=dhtest(Sl,gama)
 //test if discrete hinfinity norm of Sl is < gama
-  [A,B,C,D]=Sl(2:5);B=B/sqrt(gama);C=C/sqrt(gama);D=D/gama;
+  [A,B,C,D]=abcd(Sl);B=B/sqrt(gama);C=C/sqrt(gama);D=D/gama;
   R=eye()-D'*D;
   [n,n]=size(A);Id=eye(n,n);Z=0*Id;
   Ak=A+B*inv(R)*D'*C;

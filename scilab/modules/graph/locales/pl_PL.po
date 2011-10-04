@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: pl\n"
 
 msgid "Copy"
@@ -23,14 +23,11 @@ msgstr "Kopiuj"
 msgid "Cut"
 msgstr "Wytnij"
 
-msgid "Delete"
-msgstr "Usuń"
-
 msgid "Group"
 msgstr "Grupuj"
 
-msgid "Invert selection"
-msgstr "Odwróć zaznaczenie"
+msgid "UnGroup"
+msgstr ""
 
 msgid "Paste"
 msgstr "Wklej"
@@ -38,20 +35,23 @@ msgstr "Wklej"
 msgid "Redo"
 msgstr "Ponów"
 
-msgid "Select all"
-msgstr "Zaznacz wszystko"
-
-msgid "UnGroup"
-msgstr ""
-
 msgid "Undo"
 msgstr "Cofnij"
-
-msgid "Untitled"
-msgstr "Bez nazwy"
 
 msgid "Zoom In"
 msgstr "Powiększ"
 
 msgid "Zoom Out"
 msgstr "Pomniejsz"
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Select all"
+msgstr "Zaznacz wszystko"
+
+msgid "Invert selection"
+msgstr "Odwróć zaznaczenie"
+
+msgid "Untitled"
+msgstr "Bez nazwy"

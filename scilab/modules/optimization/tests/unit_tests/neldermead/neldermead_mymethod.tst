@@ -376,7 +376,7 @@ nm = neldermead_configure(nm,"-mymethod",neldermead_constraints);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-3 );
+assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-3, 1e-3 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , -44.0 , 1e-5 );

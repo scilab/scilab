@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2011-09-02 07:49+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ru\n"
 
-msgid " -- View Code -- "
-msgstr " -- Просмотр кода -- "
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
-msgid "&?"
-msgstr "&Справка"
-
-msgid "&Edit"
-msgstr "&Правка"
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
 
 msgid "&File"
 msgstr "&Файл"
@@ -32,14 +32,23 @@ msgstr "&Файл"
 msgid "&Tools"
 msgstr "&Инструменты"
 
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&?"
+msgstr "&Справка"
+
+msgid "File"
+msgstr "Файл"
+
 msgid "Close"
 msgstr "Закрыть"
 
 msgid "Demos"
 msgstr "Примеры"
 
-msgid "File"
-msgstr "Файл"
+msgid " -- View Code -- "
+msgstr " -- Просмотр кода -- "
 
 msgid "Open in Editor"
 msgstr "Открыть в Редакторе"

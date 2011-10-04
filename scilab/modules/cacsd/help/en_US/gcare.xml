@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>gcare</refname>
-    <refpurpose> control Riccati equation</refpurpose>
+    <refpurpose>Continuous time control Riccati equation</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>a continuous time linear dynamical system in state-space representation</para>
         </listitem>
       </varlistentry>
       <varlistentry>

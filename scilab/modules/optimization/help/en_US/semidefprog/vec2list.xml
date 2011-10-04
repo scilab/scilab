@@ -10,7 +10,7 @@
   <refnamediv>
     <refname>vec2list</refname>
 
-    <refpurpose>list2vec reciprocal function</refpurpose>
+    <refpurpose>Inverse function of list2vec.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

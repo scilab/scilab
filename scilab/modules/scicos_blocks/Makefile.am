@@ -345,7 +345,6 @@ src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CPP_SOURCES = \
-src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
 GIWS_WRAPPERS = \
@@ -429,6 +428,7 @@ libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
@@ -487,16 +487,6 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
     $(srcdir)/macros/*/models \
 	$(srcdir)/macros/Hydraulics/*.moc \
 	$(BASE_PATH)/linenum.ml
-
-
-
-
-# cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-if GUI
-libsciscicos_blocks_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/renderer/libscirenderer.la
-endif
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)

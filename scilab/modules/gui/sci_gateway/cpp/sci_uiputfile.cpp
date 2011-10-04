@@ -35,6 +35,7 @@ extern "C"
 #include "BOOL.h"
 }
 using namespace org_scilab_modules_gui_filechooser;
+
 /*--------------------------------------------------------------------------*/
 
 int sci_uiputfile(char *fname, unsigned long fname_len)
@@ -50,9 +51,9 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     char *optName = NULL;
 
     char **mask = NULL;
-    char ** description = NULL;
+    char **description = NULL;
     char **titleBox = NULL, *selectionPathName = NULL;
-    char ** initialDirectory = NULL;
+    char **initialDirectory = NULL;
     int multipleSelection = 0;
 
     char **selection = NULL;
@@ -62,10 +63,10 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
     char *menuCallback = NULL;
 
-    CheckRhs(0,3);
-    CheckLhs(1,3);
+    CheckRhs(0, 3);
+    CheckLhs(1, 3);
 
-    if ((optName = (char*)MALLOC(sizeof(char*)*(strlen("title") + 1))) == NULL)
+    if ((optName = (char *)MALLOC(sizeof(char *) * (strlen("title") + 1))) == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
@@ -77,7 +78,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     {
         if (VarType(1) != sci_strings)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"),fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
             FREE(optName);
             return 0;
         }
@@ -94,15 +95,15 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
             // mask contains both the masks for files and the description of each mask
             // in the sequence [m1, m2,..., mn, d1, d2,...,dn].
             // So description is at the middle of the array.
-            description = (char**)MALLOC( sizeof(char*) * nbRow);
-            for (int i = 0;i < nbRow; i++)
+            description = (char **)MALLOC(sizeof(char *) * nbRow);
+            for (int i = 0; i < nbRow; i++)
             {
                 description[i] = strdup(mask[nbRow + i]);
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"),fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"), fname, 1);
             FREE(optName);
             return 0;
         }
@@ -115,7 +116,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
         if (VarType(2) != sci_strings)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
             FREE(optName);
             return 0;
         }
@@ -124,7 +125,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
         if (nbCol2 != 1 || nbRow2 != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"),fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 2);
             FREE(optName);
             return 0;
         }
@@ -139,7 +140,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     {
         if (VarType(3) != sci_strings)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
             FREE(optName);
             return 0;
         }
@@ -148,7 +149,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
         if (nbCol3 != 1 || nbRow3 != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"),fname, 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 3);
             FREE(optName);
             return 0;
         }
@@ -195,9 +196,9 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         filterIndex = getJuigetfileFilterIndex();
         menuCallback = getJuigetfileMenuCallback();
     }
-    catch (const GiwsException::JniException & e)
+    catch(const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return 0;
     }
 
@@ -212,19 +213,20 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
         // "" is returned as filename
         CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-        LhsVar(1) = Rhs + 1 ;
+        LhsVar(1) = Rhs + 1;
 
         if (Lhs > 1)
         {
             // "" is returned as pathname
             CreateVarFromPtr(Rhs + 2, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-            LhsVar(2) = Rhs + 2 ;
+            LhsVar(2) = Rhs + 2;
         }
 
         if (Lhs > 2)
         {
             // 0 is returned as pathname
-            double *tmp = (double*)MALLOC(sizeof(double));
+            double *tmp = (double *)MALLOC(sizeof(double));
+
             if (tmp == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), fname);
@@ -232,8 +234,9 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
             }
             tmp[0] = 0;
             CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutSelection, &nbColOutSelection, &tmp);
-            FREE(tmp); tmp = NULL;
-            LhsVar(3) = Rhs + 3 ;
+            FREE(tmp);
+            tmp = NULL;
+            LhsVar(3) = Rhs + 3;
         }
         PutLhsVar();
         return 0;
@@ -243,7 +246,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     if (Lhs == 1)
     {
         CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-        LhsVar(1) = Rhs + 1 ;
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
         return 0;
     }
@@ -252,13 +255,14 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selectionFileNames);
 
     nbColOutPath = (int)strlen(selectionPathName);
-    CreateVarFromPtr(Rhs + 2, STRING_DATATYPE, &nbColOutPath,&nbRowOutPath, &selectionPathName);
+    CreateVarFromPtr(Rhs + 2, STRING_DATATYPE, &nbColOutPath, &nbRowOutPath, &selectionPathName);
 
-    LhsVar(1) = Rhs + 1 ;
-    LhsVar(2) = Rhs + 2 ;
+    LhsVar(1) = Rhs + 1;
+    LhsVar(2) = Rhs + 2;
     if (Lhs > 2)
     {
-        double *tmp = (double*)MALLOC(sizeof(double));
+        double *tmp = (double *)MALLOC(sizeof(double));
+
         if (tmp == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
@@ -266,11 +270,13 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         }
         tmp[0] = filterIndex;
         CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutFilterIndex, &nbColOutFilterIndex, &tmp);
-        FREE(tmp); tmp = NULL;
-        LhsVar(3) = Rhs + 3 ;
+        FREE(tmp);
+        tmp = NULL;
+        LhsVar(3) = Rhs + 3;
     }
 
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

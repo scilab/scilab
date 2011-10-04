@@ -71,7 +71,6 @@ assert_checkalmostequal (wn,wnref);
 assert_checkalmostequal (zeta(2:$),zetaref(2:$));
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
 
-
 //transfer function
 [wn,zeta]=damp(syslin('c',ones(1,3),P));
 wnref=[0;1;sqrt(2);sqrt(2);2;sqrt(13);sqrt(13)];
@@ -79,7 +78,6 @@ zetaref=[-1;-1;-sqrt(2)/2;-sqrt(2)/2;-1;-2/sqrt(13);-2/sqrt(13)];
 assert_checkalmostequal (wn,wnref);
 assert_checkalmostequal (zeta(2:$),zetaref(2:$));
 assert_checktrue(abs(abs(zeta(1))-1)<100*%eps);
-
 
 dt=1;
 [wn,zeta]=damp(syslin(dt,ones(1,3),P));

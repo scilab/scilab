@@ -72,7 +72,8 @@ function [xm,fr]=frmag(num,den,npts)
       error(msprintf(_("%s: Wrong size for input argument #%d: A polynomial expected.\n"),'frmag',2));
     end,
   end
-  fr=linspace(0,1/2,npts)
+  fr=linspace(0,1/2,npts+1);
+  fr($)=[];
   dfr=exp(2*%i*%pi*fr);
   xm=abs(freq(num,den,dfr));
 endfunction

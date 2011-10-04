@@ -26,14 +26,16 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
+
 /*--------------------------------------------------------------------------*/
 int callXcos(char **_filenames, int _nbfiles)
 {
     try
     {
-        if ( (_filenames) && (_nbfiles > 0) )
+        if ((_filenames) && (_nbfiles > 0))
         {
             int i = 0;
+
             for (i = 0; i < _nbfiles; i++)
             {
                 Xcos::xcos(getScilabJavaVM(), _filenames[i]);
@@ -44,28 +46,30 @@ int callXcos(char **_filenames, int _nbfiles)
             Xcos::xcos(getScilabJavaVM());
         }
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", "xcos", exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", "xcos", exception.what());
+        Scierror(999, "%s: %s\n", "xcos", exception.whatStr().c_str());
         return 0;
     }
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
-int callXcosW(wchar_t **_wcfilenames, int _nbfiles)
+int callXcosW(wchar_t ** _wcfilenames, int _nbfiles)
 {
     try
     {
-        if ( (_wcfilenames) && (_nbfiles > 0) )
+        if ((_wcfilenames) && (_nbfiles > 0))
         {
             int i = 0;
-            char **filesname = (char**)MALLOC(sizeof(wchar_t*) * _nbfiles);
+            char **filesname = (char **)MALLOC(sizeof(wchar_t *) * _nbfiles);
+
             if (filesname)
             {
                 for (i = 0; i < _nbfiles; i++)
@@ -77,17 +81,18 @@ int callXcosW(wchar_t **_wcfilenames, int _nbfiles)
             }
         }
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", "xcos", exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", "xcos", exception.what());
+        Scierror(999, "%s: %s\n", "xcos", exception.whatStr().c_str());
         return 0;
     }
 
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

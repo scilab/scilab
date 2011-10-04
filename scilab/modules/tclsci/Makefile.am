@@ -70,9 +70,7 @@ libscitclsci_algo_la_CFLAGS = $(libscitclsci_la_CFLAGS)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 
-libscitclsci_la_LIBADD = libscitclsci-algo.la $(top_builddir)/modules/fileio/libscifileio.la \
-							$(top_builddir)/libs/MALLOC/libscimalloc.la \
-							$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitclsci_la_LIBADD = libscitclsci-algo.la 
 #### Target ######
 modulename=tclsci
 

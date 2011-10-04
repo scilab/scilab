@@ -30,8 +30,7 @@ src/cpp/GL2PSConstant.cpp \
 src/cpp/GL2PSWrapping.cpp \
 src/cpp/JoGLInterface.cpp  \
 src/jni/GL2PSToJOGL.cpp \
-src/jni/JOGLConstant.cpp \
-src/jni/GiwsException.cpp
+src/jni/JOGLConstant.cpp
 
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 src/jni/GL2PSConstant_wrap.c \
@@ -63,6 +62,7 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 # All the sources needed by libscigraphic_export.la
@@ -77,7 +77,7 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \

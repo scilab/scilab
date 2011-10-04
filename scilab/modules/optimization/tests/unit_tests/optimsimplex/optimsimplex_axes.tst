@@ -24,7 +24,7 @@ expected = [
     0.  -0.2    1.  
     0.  -1.2    2.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
@@ -37,7 +37,7 @@ expected = [
     93.6  -0.2    1.  
     36.2  -1.2    2.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
@@ -50,7 +50,7 @@ expected = [
     13.      0.8    1.  
     248.2  -1.2    3.  
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
@@ -63,7 +63,7 @@ expected = [
 93.6 -0.2 1.
 248.2 -1.2 3.
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
@@ -82,7 +82,7 @@ expected = [
 93.6 -0.2 1.0
 36.2 -1.2 2.0
 ];
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 10*%eps );
 assert_checkequal ( myobj.nb , 3 );
 nbve = optimsimplex_getnbve ( s1 );
 assert_checkequal ( nbve , 3 );

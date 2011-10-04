@@ -25,17 +25,18 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
+
 /*--------------------------------------------------------------------------*/
-int sci_about( char * fname, unsigned long fname_len )
+int sci_about(char *fname, unsigned long fname_len)
 {
 
     try
     {
         CallScilabBridge::scilabAboutBox(getScilabJavaVM());
     }
-    catch (const GiwsException::JniException & e)
+    catch(const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;
     }
 
@@ -45,4 +46,5 @@ int sci_about( char * fname, unsigned long fname_len )
     return TRUE;
 
 }
+
 /*--------------------------------------------------------------------------*/

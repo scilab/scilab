@@ -14,8 +14,32 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: \n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s： 無法編輯ans。\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: %s 變數未被定義.\n"
 
 #, c-format
 msgid "%s: Java memory problem, cannot edit %s\n"
@@ -25,25 +49,11 @@ msgstr "%s Java程式的記憶體有問題，無法編輯 %s\n"
 msgid "%s: Type not handle yet"
 msgstr "%s：還未處理的形式"
 
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: %s 變數未被定義.\n"
+msgid "&File"
+msgstr "檔案(&F)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s： 無法編輯ans。\n"
+msgid "&Close"
+msgstr "&關閉"
 
 msgid "&?"
 msgstr "&?"
@@ -51,94 +61,38 @@ msgstr "&?"
 msgid "&About Scilab..."
 msgstr "有關 Scilab( &A)"
 
-msgid "&Close"
-msgstr "&關閉"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "Boolean"
-msgstr "布林值"
-
-msgid "Bytes"
-msgstr "位元組"
-
-msgid "Close"
-msgstr "關閉"
-
-msgid "Compiled function"
-msgstr "已編譯的函式"
-
-msgid "Copy"
-msgstr "複製"
-
-msgid "Cut"
-msgstr "剪下"
-
-msgid "Double"
-msgstr "雙倍"
-
-msgid "File"
-msgstr ""
-
-msgid "Filter"
-msgstr ""
-
-msgid "Function library"
-msgstr ""
-
-msgid "Global variables can not be edited."
-msgstr ""
-
-msgid "Graphic handles"
-msgstr ""
-
 msgid "Icon"
-msgstr ""
-
-msgid "Implicit polynomial"
-msgstr ""
-
-msgid "Integer"
-msgstr ""
-
-msgid "Intrinsic function"
-msgstr ""
-
-msgid "List"
-msgstr ""
-
-msgid "Matlab sparse"
-msgstr ""
-
-msgid "Mlist"
 msgstr ""
 
 msgid "Name"
 msgstr ""
 
-msgid "Paste"
+msgid "Bytes"
+msgstr "位元組"
+
+msgid "Type"
 msgstr ""
 
-msgid "Pointer"
+msgid "Visibility"
 msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Filter"
+msgstr ""
+
+msgid "Double"
+msgstr "雙倍"
 
 msgid "Polynomial"
 msgstr ""
 
-msgid "Redo"
-msgstr ""
-
-msgid "Refresh the variable "
-msgstr ""
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr ""
+msgid "Boolean"
+msgstr "布林值"
 
 msgid "Sparse"
 msgstr ""
@@ -146,26 +100,72 @@ msgstr ""
 msgid "Sparse boolean"
 msgstr ""
 
+msgid "Integer"
+msgstr ""
+
+msgid "Graphic handles"
+msgstr ""
+
 msgid "String"
-msgstr ""
-
-msgid "Tlist"
-msgstr ""
-
-msgid "Type"
 msgstr ""
 
 msgid "Un-compiled function"
 msgstr ""
 
-msgid "Undo"
+msgid "Compiled function"
+msgstr "已編譯的函式"
+
+msgid "Function library"
 msgstr ""
 
-msgid "Variable Browser"
+msgid "List"
+msgstr ""
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Intrinsic function"
+msgstr ""
+
+msgid "Matlab sparse"
+msgstr ""
+
+msgid "Implicit polynomial"
 msgstr ""
 
 msgid "Variable Editor"
 msgstr ""
 
-msgid "Visibility"
+msgid "Variable Browser"
+msgstr ""
+
+msgid "Global variables can not be edited."
+msgstr ""
+
+msgid "Refresh the variable "
+msgstr ""
+
+msgid "Copy"
+msgstr "複製"
+
+msgid "Paste"
+msgstr ""
+
+msgid "Cut"
+msgstr "剪下"
+
+msgid "Undo"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""

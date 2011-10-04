@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #include "LookAndFeelManager.hxx"
 
 extern "C"
@@ -22,61 +22,61 @@ extern "C"
 #include "localization.h"
 #include "GiwsException.hxx"
 /*--------------------------------------------------------------------------*/
-int sci_getinstalledlookandfeels(char *fname,unsigned long fname_len)
-{
-	CheckRhs(0,0);
-	CheckLhs(1,1);
-	
-	org_scilab_modules_gui_utils::LookAndFeelManager *lnf = 0;
-	try
-	{
-	    lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
-	}
-	catch (const GiwsException::JniException & e)
-	{
-	    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
-	    return 0;
-	}
+    int sci_getinstalledlookandfeels(char *fname, unsigned long fname_len)
+    {
+        CheckRhs(0, 0);
+        CheckLhs(1, 1);
 
-	if (lnf)
-	{
-		char **lookandfeels = NULL;
-		int nbElems = 0;
-		int nbCol = 0;
+        org_scilab_modules_gui_utils::LookAndFeelManager * lnf = 0;
+        try
+        {
+            lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
+        }
+        catch(const GiwsException::JniException & e)
+        {
+            Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
+            return 0;
+        }
 
-		lookandfeels = lnf->getInstalledLookAndFeels();
-		nbElems = lnf->numbersOfInstalledLookAndFeels();
+        if (lnf)
+        {
+            char **lookandfeels = NULL;
+            int nbElems = 0;
+            int nbCol = 0;
 
-		nbCol = 1;
-		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &nbElems, &nbCol,lookandfeels );
+            lookandfeels = lnf->getInstalledLookAndFeels();
+            nbElems = lnf->numbersOfInstalledLookAndFeels();
 
-		if (lookandfeels)
-		{
-			int i = 0;
-			for (i = 0;i<nbElems;i++)
-			{
-				if (lookandfeels[i])
-				{
-					delete [] lookandfeels[i];
-				}
-			}
-			delete [] lookandfeels;
-			lookandfeels = NULL;
-		}
-		delete lnf;
+            nbCol = 1;
+            CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbElems, &nbCol, lookandfeels);
 
-		LhsVar(1)=Rhs+1;
-		PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: No more memory.\n"),fname);
-	}
-	return 0;
-}
+            if (lookandfeels)
+            {
+                int i = 0;
+
+                for (i = 0; i < nbElems; i++)
+                {
+                    if (lookandfeels[i])
+                    {
+                        delete[]lookandfeels[i];
+                    }
+                }
+                delete[]lookandfeels;
+                lookandfeels = NULL;
+            }
+            delete lnf;
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
+        }
+        else
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+        }
+        return 0;
+    }
 /*--------------------------------------------------------------------------*/
 }
+
 /* END OF extern "C" */
 /*--------------------------------------------------------------------------*/
-
-

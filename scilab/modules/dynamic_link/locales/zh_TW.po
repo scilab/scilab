@@ -2,28 +2,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-01 09:39+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
-#
-# File: sci_gateway/c/sci_link.c, line: 81
 #, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s : 第 %d 個輸入參數型態錯誤: %s\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: String vector < %d  才對.\n"
 
 #
-# File: sci_gateway/c/sci_link.c, line: 64
+# File: sci_gateway/c/sci_link.c, line: 92
+# File: sci_gateway/c/sci_addinter.c, line: 87
 #, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr "%s : 第 %d 個輸入參數數值錯誤: %s\n"
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
 
 #
 # File: sci_gateway/c/sci_c_link.c, line: 46
@@ -33,30 +40,83 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s : 第二參數必須為共用程式庫之唯一 id.\n"
 
 #
+# File: macros/ilib_compile.sci, line: 29
+# File: sci_gateway/c/sci_c_link.c, line: 103
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 64
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : 第 %d 個輸入參數數值錯誤: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 64
+msgid "Unique id of a shared library expected."
+msgstr "共用程式庫之 id 必須唯一."
+
+#
+# File: sci_gateway/c/sci_link.c, line: 81
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : 第 %d 個輸入參數型態錯誤: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 81
+msgid "Unique dynamic library name expected."
+msgstr "動態程式庫之名稱必須唯一."
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr "%s: 輸入參數型態錯誤. 應為字串向量.\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: 輸入參數型態錯誤. 應為字串.\n"
+
+#
 # File: sci_gateway/c/sci_link.c, line: 131
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s' .\n"
 
 #
-# File: src/c/dynamic_link.c, line: 370
+# File: sci_gateway/c/sci_ulink.c, line: 51
 #, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s 不是一進入點(Entry point).\n"
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "錯誤: 不是一個有效的internal routine number %d.\n"
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 37
+# File: src/c/addinter.c, line: 237
 #, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: 已經從程式庫 %s 中載入\n"
+msgid "Interface %s not linked.\n"
+msgstr "介面 %s 未聯結.\n"
 
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 72
-# File: macros/ilib_gen_Make_unix.sci, line: 119
-# File: src/c/dl_genErrorMessage.c, line: 43
+# File: src/c/dl_genErrorMessage.c, line: 25
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: 錯誤產生: %s\n"
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: 共用程式庫尚未載入: %s\n"
 
 #
 # File: src/c/dl_genErrorMessage.c, line: 29
@@ -70,87 +130,83 @@ msgstr "%s: 無法開啟共用程式庫. 已到達最大進入點(Entry point)�
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr "%s: 公用程式庫 %s 不存在.\n"
 
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: 在 PATH 系統環境參數中未定義 檔案 %s.\n"
-
 #
-# File: src/c/dl_genErrorMessage.c, line: 25
+# File: src/c/dl_genErrorMessage.c, line: 37
 #, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: 共用程式庫尚未載入: %s\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: String vector < %d  才對.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串向量.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
-
-#
-# File: macros/ilib_compile.sci, line: 29
-# File: sci_gateway/c/sci_c_link.c, line: 103
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: A 應為字串.\n"
-
-#
-# File: sci_gateway/c/sci_ulink.c, line: 51
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
-
-#
-# File: sci_gateway/c/sci_link.c, line: 115
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: 輸入參數型態錯誤. 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr "%s: 輸入參數型態錯誤. 應為字串向量.\n"
-
-#
-# File: sci_gateway/c/sci_link.c, line: 92
-# File: sci_gateway/c/sci_addinter.c, line: 87
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s: 無法在 x86(32位元) 的環境中載入 x64位元 的 dll.\n"
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s: 無法在 x64位元 的環境中載入 x86(32位元) 的 dll.\n"
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: 已經從程式庫 %s 中載入\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
 
 #
+# File: macros/ilib_gen_Make_unix.sci, line: 72
+# File: macros/ilib_gen_Make_unix.sci, line: 119
+# File: src/c/dl_genErrorMessage.c, line: 43
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr "%s: 無法在 x64位元 的環境中載入 x86(32位元) 的 dll.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr "%s: 無法在 x86(32位元) 的環境中載入 x64位元 的 dll.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist in PATH environment.\n"
+msgstr "%s: 在 PATH 系統環境參數中未定義 檔案 %s.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 96
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "聯結動態程式庫 '%s' 時失敗.\n"
+
+#
 # File: src/c/dynamic_link.c, line: 97
 #, c-format
 msgid "An error occurred: %s\n"
 msgstr "錯誤產生: %s\n"
+
+#
+# File: src/c/dynamic_link.c, line: 104
+msgid "Shared archive loaded.\n"
+msgstr "共用庫已載入.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 105
+msgid "Link done.\n"
+msgstr "聯結完成.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 265
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"進入點(Entry point)數目 %d.\n"
+"共用程式庫 :\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : %d 函式庫.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 271
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] :  %d 程式庫.\n"
+
+#
+# File: src/c/dynamic_link.c, line: 275
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "進入點(Entry point) %s (位於公用程式庫 %d).\n"
 
 #
 # File: src/c/dynamic_link.c, line: 320
@@ -165,31 +221,10 @@ msgid "Entry name %s.\n"
 msgstr "進入點(Entry point)名稱 %s.\n"
 
 #
-# File: src/c/dynamic_link.c, line: 275
+# File: src/c/dynamic_link.c, line: 370
 #, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "進入點(Entry point) %s (位於公用程式庫 %d).\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "錯誤: 不是一個有效的internal routine number %d.\n"
-
-#
-# File: src/c/addinter.c, line: 237
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "介面 %s 未聯結.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 105
-msgid "Link done.\n"
-msgstr "聯結完成.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 96
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "聯結動態程式庫 '%s' 時失敗.\n"
+msgid "%s is not an entry point.\n"
+msgstr "%s 不是一進入點(Entry point).\n"
 
 #
 # File: src/c/dynamic_link.c, line: 376
@@ -197,173 +232,27 @@ msgstr "聯結動態程式庫 '%s' 時失敗.\n"
 msgid "Linking %s.\n"
 msgstr "聯結 %s.\n"
 
-#
-# File: src/c/dynamic_link.c, line: 265
-#, c-format
-msgid ""
-"Number of entry points %d.\n"
-"Shared libraries :\n"
-msgstr ""
-"進入點(Entry point)數目 %d.\n"
-"共用程式庫 :\n"
-
-#
-# File: src/c/dynamic_link.c, line: 104
-msgid "Shared archive loaded.\n"
-msgstr "共用庫已載入.\n"
-
-#
-# File: sci_gateway/c/sci_link.c, line: 81
-msgid "Unique dynamic library name expected."
-msgstr "動態程式庫之名稱必須唯一."
-
-#
-# File: sci_gateway/c/sci_link.c, line: 64
-msgid "Unique id of a shared library expected."
-msgstr "共用程式庫之 id 必須唯一."
-
-#
-# File: src/c/dynamic_link.c, line: 271
-#, c-format
-msgid "] : %d libraries.\n"
-msgstr "] :  %d 程式庫.\n"
+msgid "Dynamic link"
+msgstr "動態連結"
 
 #, c-format
-msgid "] : %d library.\n"
-msgstr "] : %d 函式庫.\n"
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 輸入參數之數目錯誤(s).\n"
 
-#, c-format
-msgid "   %s: Command: %s\n"
-msgstr "   %s: 指令: %s\n"
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 90
-#, c-format
-msgid "   %s: Copy %s to TMPDIR\n"
-msgstr "   %s: 複製 %s 到 TMPDIR 子目錄\n"
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 49
-#, c-format
-msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr "   %s: 複製編譯工具檔 (Makefile*, libtool...) 到 TMPDIR 子目錄\n"
-
-#, c-format
-msgid ""
-"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr "   %s: 不行複製 %s: 來源和目的目錄是一樣的 (%s).\n"
-
-#, c-format
-msgid "   %s: File %s ignored.\n"
-msgstr "   %s: 檔案 %s 忽略.\n"
-
-#
-# File: macros/ilib_gen_Make_unix.sci, line: 127
-#, c-format
-msgid "   %s: Modification of the Makefile in TMPDIR.\n"
-msgstr "   %s: 修改 TMPDIR 子目錄內之 Makefile.\n"
-
-#, c-format
-msgid "   %s: Need to run the compiler detection (configure).\n"
-msgstr "   %s: 必須執行編譯器偵測 (組態).\n"
-
-#, c-format
-msgid "   %s: Substitute the reference by the actual file.\n"
-msgstr "   %s: 將實際檔案的參考替換掉.\n"
-
-#, c-format
-msgid "   %s: Use the previous detection of compiler.\n"
-msgstr "   %s: 使用編譯器的上一個偵測.\n"
-
-#, c-format
-msgid "   %s: configure : Generate Makefile.\n"
-msgstr "   %s: 組態 : 產生 Makefile.\n"
-
-msgid "   Building shared library (be patient)\n"
-msgstr "   建構 shared library (請有耐心)\n"
-
-#, c-format
-msgid "   Command: %s\n"
-msgstr "   命令: %s\n"
-
-msgid "   Compilation of "
-msgstr "   編譯 "
-
-msgid "   Generate a Makefile\n"
-msgstr "   生成 Makefile\n"
-
-msgid "   Generate a cleaner file\n"
-msgstr "   生成一個 cleaner 檔\n"
-
-msgid "   Generate a gateway file\n"
-msgstr "   生成一個 gateway 檔\n"
-
-msgid "   Generate a loader file\n"
-msgstr "   生成一個 loader 檔\n"
-
-#, c-format
-msgid "   Output: %s\n"
-msgstr "   輸出: %s\n"
-
-msgid "   Running the Makefile\n"
-msgstr "   正在執行 Makefile\n"
-
-msgid "   Running the makefile\n"
-msgstr "   正在執行 makefile\n"
-
-#, c-format
-msgid "   stderr: %s\n"
-msgstr "   stderr: %s\n"
-
-#, c-format
-msgid "%s: %s already loaded in scilab."
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
 #, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: 要求 Fortran or C 編譯器.\n"
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s:  Windows上的這項特性已經實作了.\n"
 
 #, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
-
-#, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: An error occurred during the compilation:\n"
-msgstr "%s: 編譯過程中發生錯誤:\n"
-
-#, c-format
-msgid ""
-"%s: An error occurred during the detection of the compiler(s). Set "
-"ilib_verbose(2) for more information.\n"
-msgstr "%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資訊.\n"
-
-#, c-format
-msgid "%s: Build command: %s\n"
-msgstr "%s: 建立(Build) 指令: %s\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: 檔案 %s 不存在.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: 無法開啟 %s 檔案.\n"
-
-#, c-format
-msgid "%s: Could not find the built library '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while executing %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while modifying the reference Makefile:\n"
-msgstr "%s: 修改參考的 Makefile時產生錯誤:\n"
-
-#, c-format
-msgid "%s: Failed to add include path : %s"
-msgstr ""
 
 #
 # File: macros/gencompilationflags_unix.sci, line: 14
@@ -371,70 +260,13 @@ msgstr ""
 msgid "%s: Feature not available under Microsoft Windows.\n"
 msgstr "%s: 在  Microsoft Windows 環境上缺少此功能.\n"
 
-#
-# File: macros/ilib_compile.sci, line: 85
-#, c-format
-msgid "%s: The command was:\n"
-msgstr "%s: 指令為:\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: 檔案 %s 不存在.\n"
-
-#, c-format
-msgid "%s: This feature has been implemented for Windows.\n"
-msgstr "%s:  Windows上的這項特性已經實作了.\n"
-
-#, c-format
-msgid "%s: This feature required Microsoft visual studio C compiler.\n"
-msgstr "%s: 這項特性要求 Microsoft visual studio C compiler.\n"
-
-#, c-format
-msgid ""
-"%s: Warning: No error code returned by the compilation but the error output "
-"is not empty:\n"
-msgstr "%s: 注意: 編譯後無錯誤代碼傳回,但是有關錯誤的輸出卻不是空的:\n"
-
-#, c-format
-msgid ""
-"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
-"Please submit a bug report on http://bugzilla.scilab.org/\n"
-msgstr ""
-"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on "
-"http://bugzilla.scilab.org/\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 輸入參數之數目錯誤(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: 輸入參數個數有誤: %d,%d or %d 才對.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s: 參數個數有誤: 至少要 %d 才對.\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤: 應為 %d 個.\n"
 
-#
-# File: macros/ilib_gen_Make.sci, line: 33
-# File: macros/ilib_gen_loader.sci, line: 24
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
-
-# File: macros/ilib_gen_gateway.sci, line: 54
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
-msgstr "%s: 第 #%d個輸入參數長度有誤: matrix of strings < 999 才對.\n"
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: 要求 Fortran or C 編譯器.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -446,8 +278,13 @@ msgid ""
 msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr "%s: 第 #%d個參數型別有誤: String matrix 才對.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr "%s: 第 #%d個輸入參數長度有誤: matrix of strings < 999 才對.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
@@ -457,27 +294,190 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+
+msgid "You need to unload this library before."
+msgstr ""
+
+msgid "   Generate a gateway file\n"
+msgstr "   生成一個 gateway 檔\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   生成一個 loader 檔\n"
+
+msgid "   Generate a Makefile\n"
+msgstr "   生成 Makefile\n"
+
+msgid "   Running the makefile\n"
+msgstr "   正在執行 makefile\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   生成一個 cleaner 檔\n"
+
 #
 # File: macros/ilib_compile.sci, line: 20
 msgid "A Fortran or C compiler is required."
 msgstr "須要 Fortran  或 C 編譯器."
 
-msgid "Dynamic link"
-msgstr "動態連結"
-
-msgid "F2C cannot build fortran 90"
-msgstr "F2C 不能build fortran 90"
-
-msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
+"%s: 注意: Scilab 還沒發現Scilab 的源碼所在. 請提交 bug report on "
+"http://bugzilla.scilab.org/\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: 建立(Build) 指令: %s\n"
 
 #, c-format
 msgid "Output: %s\n"
 msgstr "輸出: %s\n"
 
-msgid "You need to unload this library before."
-msgstr ""
-
 #, c-format
 msgid "stderr: %s\n"
 msgstr "stderr: %s\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: 編譯過程中發生錯誤:\n"
+
+#
+# File: macros/ilib_compile.sci, line: 85
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: 指令為:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr "%s: 注意: 編譯後無錯誤代碼傳回,但是有關錯誤的輸出卻不是空的:\n"
+
+#, c-format
+msgid "%s: Could not find the built library '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr ""
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C 不能build fortran 90"
+
+msgid "   Running the Makefile\n"
+msgstr "   正在執行 Makefile\n"
+
+#
+# File: macros/ilib_gen_Make.sci, line: 33
+# File: macros/ilib_gen_loader.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 49
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr "   %s: 複製編譯工具檔 (Makefile*, libtool...) 到 TMPDIR 子目錄\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 90
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: 複製 %s 到 TMPDIR 子目錄\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr "   %s: 不行複製 %s: 來源和目的目錄是一樣的 (%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: 檔案 %s 忽略.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: 必須執行編譯器偵測 (組態).\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: 使用編譯器的上一個偵測.\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 127
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: 修改 TMPDIR 子目錄內之 Makefile.\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: 將實際檔案的參考替換掉.\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   命令: %s\n"
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: 修改參考的 Makefile時產生錯誤:\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: 組態 : 產生 Makefile.\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: 指令: %s\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   輸出: %s\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   stderr: %s\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr "%s:  偵測 the compiler(s)時，有錯誤發生. 設定 ilib_verbose(2) 以取得更多資訊.\n"
+
+# File: macros/ilib_gen_gateway.sci, line: 54
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr "%s: 輸入參數個數有誤: %d,%d or %d 才對.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr "%s: 第 #%d個參數型別有誤: String matrix 才對.\n"
+
+#, c-format
+msgid "%s: Failed to add include path : %s"
+msgstr ""
+
+msgid "   Compilation of "
+msgstr "   編譯 "
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   建構 shared library (請有耐心)\n"
+
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr "%s: 這項特性要求 Microsoft visual studio C compiler.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: 參數個數有誤: 至少要 %d 才對.\n"

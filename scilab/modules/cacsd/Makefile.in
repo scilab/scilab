@@ -62,9 +62,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/cacsd
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -135,15 +136,7 @@ am__objects_2 = sb04pd.lo ib01ad.lo tb01wd.lo ib01py.lo mb01rx.lo \
 	polmc.lo ssxmc.lo ZB03OD.lo riccpack.lo Ex-schur.lo
 am_libscicacsd_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscicacsd_algo_la_OBJECTS = $(am_libscicacsd_algo_la_OBJECTS)
-libscicacsd_la_DEPENDENCIES = libscicacsd-algo.la \
-	$(top_builddir)/modules/mexlib/libmx.la \
-	$(top_builddir)/modules/mexlib/libmat.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscicacsd_la_DEPENDENCIES = libscicacsd-algo.la
 am__objects_3 = libscicacsd_la-sci_f_hinf.lo \
 	libscicacsd_la-sci_f_zrankqr.lo libscicacsd_la-sci_f_tzer.lo \
 	libscicacsd_la-sci_f_residu.lo libscicacsd_la-sci_f_sylv.lo \
@@ -658,9 +651,7 @@ libscicacsd_algo_la_CFLAGS = $(libscicacsd_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
-
-# cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscicacsd_la_LIBADD = libscicacsd-algo.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscicacsd_la_LIBADD = libscicacsd-algo.la 
 
 #### Target ######
 modulename = cacsd
@@ -1854,6 +1845,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

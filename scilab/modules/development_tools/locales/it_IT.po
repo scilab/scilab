@@ -14,21 +14,97 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: it\n"
 
 #, c-format
-msgid "%s is not an installed module"
-msgstr "%s non è un modulo installato"
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a %d."
 
 #, c-format
-msgid "%s is not an installed module or toolbox"
-msgstr "%s non è un modulo o un toolbox installato"
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"di stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice %d-per-%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'insieme {%s}.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni.\n"
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr ""
 "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attesi gli "
+"stessi tipi.\n"
+
+#, c-format
+msgid "%s: Computed is real, but expected is complex."
+msgstr "%s: Il valore calcolato è reale, ma ne era atteso uno complesso."
+
+#, c-format
+msgid "%s: Computed is complex, but expected is real."
+msgstr "%s: Il valore calcolato è complesso, ma ne era atteso uno reale."
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attesi degli "
+"interi non negativi.\n"
+
+#, c-format
+msgid "%s: No error was produced while evaluating %s."
+msgstr "%s: Non è stato prodotto alcun errore nel valutare %s."
+
+#, c-format
+msgid "%s: Error while formatting the error message: %s"
+msgstr "%s: Errore durante la formattazione del messaggio di errore: %s"
 
 #, c-format
 msgid ""
@@ -47,44 +123,16 @@ msgstr ""
 "calcolato = %d."
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"di valori booleani.\n"
+
+#, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
 msgstr ""
 "%s: Affermazione fallita: è stata trovata una voce falsa nella condizione = "
 "%s."
-
-#, c-format
-msgid "%s: Cannot close file %s.\n"
-msgstr "%s: Impossibile chiudere il file %s.\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Non è possibile aprire il file %s.\n"
-
-#, c-format
-msgid "%s: Computed is complex, but expected is real."
-msgstr "%s: Il valore calcolato è complesso, ma ne era atteso uno reale."
-
-#, c-format
-msgid "%s: Computed is real, but expected is complex."
-msgstr "%s: Il valore calcolato è reale, ma ne era atteso uno complesso."
-
-#, c-format
-msgid "%s: Error while formatting the error message: %s"
-msgstr "%s: Errore durante la formattazione del messaggio di errore: %s"
-
-#, c-format
-msgid ""
-"%s: Expected %d columns in input argument #%d, but found %d columns instead."
-msgstr ""
-"%s: Erano attese %d colonne nell'argomento in ingresso #%d, ma ve ne sono %d "
-"invece."
-
-#, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr ""
-"%s: Erano attese %d righe nell'argomento in ingresso #%d, ma ve ne sono %d "
-"invece."
 
 #, c-format
 msgid ""
@@ -94,20 +142,12 @@ msgstr ""
 "stato dato %s invece."
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
-"stesse dimensioni.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Il file %s non esiste.\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
-msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attesi gli "
-"stessi tipi.\n"
-
-#, c-format
-msgid "%s: No error was produced while evaluating %s."
-msgstr "%s: Non è stato prodotto alcun errore nel valutare %s."
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Non è possibile aprire il file %s.\n"
 
 #, c-format
 msgid ""
@@ -118,8 +158,14 @@ msgstr ""
 "di riferimento %s."
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Il file %s non esiste.\n"
+msgid "%s: Cannot close file %s.\n"
+msgstr "%s: Impossibile chiudere il file %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid ""
@@ -130,109 +176,63 @@ msgstr ""
 "quelli in ingresso %d."
 
 #, c-format
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr ""
+"%s: Erano attese %d righe nell'argomento in ingresso #%d, ma ve ne sono %d "
+"invece."
+
+#, c-format
+msgid ""
+"%s: Expected %d columns in input argument #%d, but found %d columns instead."
+msgstr ""
+"%s: Erano attese %d colonne nell'argomento in ingresso #%d, ma ve ne sono %d "
+"invece."
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s non è un modulo installato"
+
+msgid "error : Input argument sizes are not valid"
+msgstr "errore: le dimensioni dell'argomento in ingresso non sono valide"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Il test %s non è disponibile dal modulo %s"
+
+#, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 "%s: Il primo argomento in ingresso è sbagliato: era atteso un file con "
 "estensione .dia."
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected."
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a %d."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice %d-per-%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument."
-msgstr "%s: La grandezza dell'argomento in ingresso è sbagliata."
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
-"di valori booleani.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell'insieme {%s}.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attesi degli "
-"interi non negativi.\n"
-
-#, c-format
-msgid "No variable %s_ref in reference file"
-msgstr "Nessuna variabile %s_ref è presente nel file di riferimento"
-
-#, c-format
-msgid "Test Failed. See : diff -wu  %s"
-msgstr "Il test è fallito. Vedere: diff -wu %s"
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "Il test è fallito, RISCONTRATO UN ERRORE mentre si eseguiva %s"
 
 #, c-format
 msgid "Test Failed. See : fc /L /N  %s"
 msgstr "Il test è fallito. Vedere: fc /L /N %s"
 
 #, c-format
-msgid "Test failed ERROR DETECTED while executing %s"
-msgstr "Il test è fallito, RISCONTRATO UN ERRORE mentre si eseguiva %s"
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "Il test è fallito. Vedere: diff -wu %s"
 
 msgid "Test passed"
 msgstr "Il test è stato superato"
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: La grandezza dell'argomento in ingresso è sbagliata."
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s non è un modulo o un toolbox installato"
 
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "Il file di rif. (%s) non esiste"
 
 #, c-format
-msgid "The test %s is not available from the %s module"
-msgstr "Il test %s non è disponibile dal modulo %s"
-
-msgid "error : Input argument sizes are not valid"
-msgstr "errore: le dimensioni dell'argomento in ingresso non sono valide"
+msgid "No variable %s_ref in reference file"
+msgstr "Nessuna variabile %s_ref è presente nel file di riferimento"

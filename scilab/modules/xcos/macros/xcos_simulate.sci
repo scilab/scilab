@@ -29,7 +29,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         return
       end
       catch
-      disp(_("Error occured in pre_xcos_simulate: Cancelling simulation."))
+      disp(_("Error occurred in pre_xcos_simulate: Cancelling simulation."))
       %cpr = []
       return
       end

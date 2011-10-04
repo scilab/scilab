@@ -7,30 +7,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-09-06 06:03+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13980)\n"
+"X-Generator: Launchpad (build 14071)\n"
+
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr "rozptýlení: panika v souboru '%s' na řádku %d.\n"
+
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr "%s: Na diagonále matice byla zjištěna nula.\n"
+
+#, c-format
+msgid "Reordering,  Step = %1d\n"
+msgstr "Seřazuji, Krok = %1d\n"
+
+#, c-format
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr "Počet operací pro vnitřní smyčku faktorizace = %d.\n"
+
+#, c-format
+msgid "Pivot found at %1d,%1d using "
+msgstr "Osa nalezena v %1d,%1d použitím "
 
 #, c-format
 msgid ""
+"MATRIX SUMMARY\n"
 "\n"
-"Density = %2.2lf%%.\n"
 msgstr ""
+"PŘEHLED MATICE\n"
 "\n"
-"Hustota = %2.2lf%%.\n"
 
 #, c-format
-msgid ""
-"\n"
-"Largest diagonal element = %-1.4lg.\n"
-msgstr ""
-"\n"
-"Největší diagonální prvek = %-1.4lg.\n"
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr "Velikost matice = %1u x %1u.\n"
+
+#, c-format
+msgid "Matrix has been reordered.\n"
+msgstr "Matice byla seřazena.\n"
+
+#, c-format
+msgid "Matrix after factorization:\n"
+msgstr "Matice po faktorizaci:\n"
+
+#, c-format
+msgid "Matrix before factorization:\n"
+msgstr "Matice před faktorizací:\n"
+
+#, c-format
+msgid "Columns %1d to %1d.\n"
+msgstr "Sloupce %1d až %1d.\n"
 
 #, c-format
 msgid ""
@@ -41,6 +73,22 @@ msgstr ""
 "Největší prvek v matici = %-1.4lg.\n"
 
 #, c-format
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr "Nejmenší prvek matice = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Největší diagonální prvek = %-1.4lg.\n"
+
+#, c-format
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr "Nejmenší diagonální prvek = %-1.4lg.\n"
+
+#, c-format
 msgid ""
 "\n"
 "Largest pivot element = %-1.4lg.\n"
@@ -49,40 +97,80 @@ msgstr ""
 "Největší prvek osy = %-1.4lg.\n"
 
 #, c-format
-msgid "     Absolute Threshold = %e\n"
-msgstr "     Absolutní práh = %e\n"
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr "Nejmenší prvek osy = %-1.4lg.\n"
 
 #, c-format
-msgid "     Average number of elements per row = %lf\n"
-msgstr "     Průměrný počet prvků na řádek = %lf\n"
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+"\n"
+"Hustota = %2.2lf%%.\n"
 
 #, c-format
-msgid "     Average number of fill-ins per row = %lf%%\n"
-msgstr "     Průměrný počet vyplnění na řádek = %lf%%\n"
+msgid "Number of fill-ins = %1d.\n"
+msgstr "Počet vyplnění = %1d.\n"
 
 #, c-format
-msgid "     Density = %lf%%\n"
-msgstr "     Hustota = %lf%%\n"
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr "Varování : Následující matice zapracována do formy LU.\n"
 
 #, c-format
-msgid "     Fill-ins = %d\n"
-msgstr "     Vyplnění = %d\n"
+msgid "Matrix has not been factored.\n"
+msgstr "Matice nebyla zapracována.\n"
 
 #, c-format
-msgid "     Initial average number of elements per row = %lf\n"
-msgstr "     Počáteční průměrný počet prvků na řádek = %lf\n"
+msgid "|||  Starting new matrix  |||\n"
+msgstr "||| Začínám novou matici |||\n"
+
+#, c-format
+msgid "Matrix is complex.\n"
+msgstr "Matice je komplexní.\n"
+
+#, c-format
+msgid "Matrix is real.\n"
+msgstr "Matice je reálná.\n"
 
 #, c-format
 msgid "     Initial number of elements = %d\n"
 msgstr "     Počáteční počet prvků = %d\n"
 
 #, c-format
-msgid "     Largest Element = %e\n"
-msgstr "     Největší Prvek = %e\n"
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr "     Počáteční průměrný počet prvků na řádek = %lf\n"
+
+#, c-format
+msgid "     Fill-ins = %d\n"
+msgstr "     Vyplnění = %d\n"
+
+#, c-format
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr "     Průměrný počet vyplnění na řádek = %lf%%\n"
+
+#, c-format
+msgid "     Total number of elements = %d\n"
+msgstr "     Celkový počet prvků = %d\n"
+
+#, c-format
+msgid "     Average number of elements per row = %lf\n"
+msgstr "     Průměrný počet prvků na řádek = %lf\n"
+
+#, c-format
+msgid "     Density = %lf%%\n"
+msgstr "     Hustota = %lf%%\n"
 
 #, c-format
 msgid "     Relative Threshold = %e\n"
 msgstr "     Relativní Práh = %e\n"
+
+#, c-format
+msgid "     Absolute Threshold = %e\n"
+msgstr "     Absolutní práh = %e\n"
+
+#, c-format
+msgid "     Largest Element = %e\n"
+msgstr "     Největší Prvek = %e\n"
 
 #, c-format
 msgid ""
@@ -95,136 +183,16 @@ msgstr ""
 "\n"
 
 #, c-format
-msgid "     Total number of elements = %d\n"
-msgstr "     Celkový počet prvků = %d\n"
-
-#, c-format
-msgid "%s: A zero was encountered on the diagonal the matrix.\n"
-msgstr "%s: Na diagonále matice byla zjištěna nula.\n"
-
-#, c-format
-msgid "Columns %1d to %1d.\n"
-msgstr "Sloupce %1d až %1d.\n"
-
-#, c-format
-msgid ""
-"MATRIX SUMMARY\n"
-"\n"
-msgstr ""
-"PŘEHLED MATICE\n"
-"\n"
-
-#, c-format
-msgid "Matrix after factorization:\n"
-msgstr "Matice po faktorizaci:\n"
-
-#, c-format
-msgid "Matrix before factorization:\n"
-msgstr "Matice před faktorizací:\n"
-
-#, c-format
-msgid "Matrix has been reordered.\n"
-msgstr "Matice byla seřazena.\n"
-
-#, c-format
-msgid "Matrix has not been factored.\n"
-msgstr "Matice nebyla zapracována.\n"
-
-#, c-format
-msgid "Matrix is complex.\n"
-msgstr "Matice je komplexní.\n"
-
-#, c-format
-msgid "Matrix is real.\n"
-msgstr "Matice je reálná.\n"
-
-#, c-format
-msgid "Number of fill-ins = %1d.\n"
-msgstr "Počet vyplnění = %1d.\n"
-
-#, c-format
-msgid "Operation count for inner loop of factorization = %d.\n"
-msgstr "Počet operací pro vnitřní smyčku faktorizace = %d.\n"
-
-#, c-format
-msgid "Pivot found at %1d,%1d using "
-msgstr "Osa nalezena v %1d,%1d použitím "
-
-#, c-format
-msgid "Reordering,  Step = %1d\n"
-msgstr "Seřazuji, Krok = %1d\n"
-
-#, c-format
-msgid "Size of matrix = %1u x %1u.\n"
-msgstr "Velikost matice = %1u x %1u.\n"
-
-#, c-format
-msgid "Smallest diagonal element = %-1.4lg.\n"
-msgstr "Nejmenší diagonální prvek = %-1.4lg.\n"
-
-#, c-format
-msgid "Smallest element in matrix = %-1.4lg.\n"
-msgstr "Nejmenší prvek matice = %-1.4lg.\n"
-
-#, c-format
-msgid "Smallest pivot element = %-1.4lg.\n"
-msgstr "Nejmenší prvek osy = %-1.4lg.\n"
-
-#, c-format
-msgid "Warning : The following matrix is factored in to LU form.\n"
-msgstr "Varování : Následující matice zapracována do formy LU.\n"
-
-#, c-format
-msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "rozptýlení: panika v souboru '%s' na řádku %d.\n"
-
-#, c-format
-msgid "|||  Starting new matrix  |||\n"
-msgstr "||| Začínám novou matici |||\n"
-
-#, c-format
-msgid "  Iteration #%s/%s residual : %s\n"
-msgstr "  Opakování #%s/%s zbytkové : %s\n"
-
-#, c-format
-msgid "  New residual = %s < tol = %s => break\n"
-msgstr "  Nové zbytkové = %s < tol = %s => break\n"
-
-#, c-format
-msgid "  Type of preconditionning #1 : %d\n"
-msgstr "  Typ stabilizace #1 : %d\n"
-
-#, c-format
-msgid "  Type of preconditionning #2 : %d\n"
-msgstr "  Typ stabilizace #2 : %d\n"
-
-#, c-format
-msgid "%s: Convergence error.\n"
-msgstr "%s: Chyba konvergence.\n"
-
-#, c-format
-msgid "%s: Did not converge.\n"
-msgstr "%s: Nesblížili se.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 
 #, c-format
 msgid ""
@@ -232,6 +200,46 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: %s má velikost %d, ale "
 "očekáváno %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, ale očekávána kladná "
+"hodnota.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: %s=%s, ale je očekáváno celé "
+"číslo s plovoucí čárkou.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, což se neshoduje s %s: "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, což se neshoduje s "
+"velikostí %s: %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
@@ -251,17 +259,17 @@ msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgid "%s: Did not converge.\n"
+msgstr "%s: Nesblížili se.\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "Argumenty:\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -272,9 +280,53 @@ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr "Norma vpravo : %s\n"
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr "Zvláštní zpracování, kde pravá strana je nula.\n"
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  Typ stabilizace #1 : %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  Typ stabilizace #2 : %d\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr "  Nové zbytkové = %s < tol = %s => break\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  Opakování #%s/%s zbytkové : %s\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "Konečný zbytkový = %s > tol =%s\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "Algoritmus selhal.\n"
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: Chyba konvergence.\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "Algoritmus proveden\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
 
 #, c-format
 msgid ""
@@ -282,47 +334,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána transpozice funkce %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, ale očekávána kladná "
-"hodnota.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, což se neshoduje s %s: "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: %s=%d, což se neshoduje s "
-"velikostí %s: %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: %s=%s, ale je očekáváno celé "
-"číslo s plovoucí čárkou.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
 msgid ""
@@ -337,25 +348,14 @@ msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván vektor.\n"
 
 #, c-format
-msgid "Algorithm fails\n"
-msgstr "Algoritmus selhal.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
-msgid "Algorithm pass\n"
-msgstr "Algoritmus proveden\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "Arguments:\n"
-msgstr "Argumenty:\n"
-
-#, c-format
-msgid "Final residual = %s > tol =%s\n"
-msgstr "Konečný zbytkový = %s > tol =%s\n"
-
-#, c-format
-msgid "Norm of right-hand side : %s\n"
-msgstr "Norma vpravo : %s\n"
-
-#, c-format
-msgid "Special processing where the right-hand side is zero.\n"
-msgstr "Zvláštní zpracování, kde pravá strana je nula.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', nebo '%s'.\n"

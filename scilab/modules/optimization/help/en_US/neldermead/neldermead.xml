@@ -26,8 +26,7 @@
     <refname>neldermead</refname>
 
     <refpurpose>
-      Provides several direct search optimization algorithms based
-      on the simplex method.
+      Provides direct search optimization algorithms.
     </refpurpose>
   </refnamediv>
 
@@ -43,6 +42,7 @@
       this = neldermead_search ( this )
       this = neldermead_restart ( this )
       [ this , result ] = neldermead_function ( this , x )
+      stop = neldermead_defaultoutput(state, data)
     </synopsis>
   </refsynopsisdiv>
 
@@ -711,44 +711,6 @@
                       <para>
                         a 1-by-1 matrix of doubles, positive, the absolute tolerance on the difference between
                         the highest and the lowest function values (default toldeltafv = %eps).
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
-                    <term>-tolvarianceflag</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of booleans, set to %t to enable the termination
-                        criteria based on the variance of the function value (default tolvarianceflag=%f).
-                        If this criteria is triggered, the status of the
-                        optimization is set to "tolvariance".
-                      </para>
-                      <para>
-                        This criteria is suggested by Nelder and Mead.
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
-                    <term>-tolabsolutevariance</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of doubles, the absolute tolerance on the variance
-                        of the function values of the simplex (default tolabsolutevariance = 0).
-                      </para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
-                    <term>-tolrelativevariance</term>
-
-                    <listitem>
-                      <para>
-                        a 1-by-1 matrix of doubles, the relative tolerance on the variance
-                        of the function values of the simplex (default tolrelativevariance = %eps).
                       </para>
                     </listitem>
                   </varlistentry>
@@ -1573,6 +1535,28 @@
           </variablelist>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term xml:id="neldermead_defaultoutput">stop = neldermead_defaultoutput(state, data)</term>
+
+        <listitem>
+          <para>
+		  Prints messages at an iteration. 
+		  </para>
+          <para>
+		  This function provides a default implementation for the output function. 
+		  There is one line by iteration, presenting the number of iterations, the 
+		  number of function evaluations, the current function value and the 
+		  current algorithm step.
+		  </para>
+          <para>
+		  See "The output function" section below for a description of the input and 
+		  output arguments. 
+		  See in the Examples section below for examples of this function.
+		  </para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 
@@ -2277,176 +2261,6 @@
   </refsection>
 
   <refsection>
-    <title>Spendley et al. implementation notes</title>
-
-    <para>
-      The original paper may be implemented with several variations, which
-      might lead to different results. This section defines what algorithmic
-      choices have been used.
-    </para>
-
-    <para>The paper states the following rules.</para>
-
-    <itemizedlist>
-      <listitem>
-        <para>
-          "Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
-          a new simplex Sp by excluding the point Vp corresponding to y, and
-          replacing it by V* defined as above."
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          "Rule 2. If a result has occurred in (k + 1) successive
-          simplexes, and is not then eliminated by application of Rule 1, do not
-          move in the direction indicated by Rule 1, or at all, but discard the
-          result and replace it by a new observation at the same point."
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          "Rule 3. If y is the lowest reading in So , and if the next
-          observation made, y* , is the lowest reading in the new simplex S , do
-          not apply Rule 1 and return to So from Sp . Move out of S, by
-          rejecting the second lowest reading (which is also the second lowest
-          reading in So)."
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      We implement the following "rules" of the Spendley et al.
-      method.
-    </para>
-
-    <itemizedlist>
-      <listitem>
-        <para>
-          Rule 1 is strictly applied, but the reflection is done by
-          reflection the high point, since we minimize a function instead of
-          maximizing it, like Spendley.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          Rule 2 is NOT implemented, as we expect that the function
-          evaluation is not subject to errors.
-        </para>
-      </listitem>
-
-      <listitem>
-        <para>
-          Rule 3 is applied, ie reflection with respect to next to high
-          point.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      The original paper does not mention any shrink step. When the
-      original algorithm cannot improve the function value with reflection
-      steps, the basic algorithm stops. In order to make the current
-      implementation of practical value, a shrink step is included, with
-      shrinkage factor sigma. This perfectly fits into to the spirit of the
-      original paper. Notice that the shrink step make the rule #3 (reflection
-      with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
-      required steps are the reflection and shrinkage. Never the less, the rule
-      #3 has been kept in order to make the algorithm as close as it can be to
-      the original.
-    </para>
-  </refsection>
-
-  <refsection>
-    <title>Nelder-Mead implementation notes</title>
-
-    <para>
-      The purpose of this section is to analyse the current implementation of Nelder-Mead's algorithm.
-    </para>
-
-    <para>
-      The algorithm that we use is described in "Iterative Methods for Optimization" by C. T. Kelley.
-    </para>
-
-    <para>
-      The original paper uses a "greedy" expansion, in which the expansion point
-      is accepted whatever its function value. The current implementation,
-      as most implementations, uses the expansion point only if it improves
-      over the reflection point, that is,
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          if fe&lt;fr, then the expansion point is accepted,
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          if not, the reflection point is accepted.
-        </para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      The termination criteria suggested by Nelder and Mead is based on an
-      absolute tolerance on the standard deviation of the function values in the simplex.
-      We provide this original termination criteria with the <literal>-tolvarianceflag</literal>
-      option, which is disabled by default.
-    </para>
-
-  </refsection>
-
-  <refsection>
-    <title>Box's complex algorithm implementation notes</title>
-
-    <para>
-      In this section, we analyse the current implementation of Box's complex method.
-    </para>
-
-    <para>
-      The initial simplex can be computed as in Box's paper, but this may not
-      be safe. In his paper, Box suggest that if a vertex of the initial simplex
-      does not satisfy the non linear constraints, then it should be "moved halfway
-      toward the centroid of those points already selected". This behaviour
-      is available when the <literal>-scalingsimplex0</literal> option is set to
-      <literal>"tocenter"</literal>. It may happen, as suggested by Guin, that
-      the centroid is not feasible. This may happen if the constraints are not
-      convex. In this case, the initial simplex cannot be computed. This is why
-      we provide the <literal>"tox0"</literal> option, which allows to compute the
-      initial simplex by scaling toward the initial guess, which is always feasible.
-    </para>
-
-    <para>
-      In Box's paper, the scaling into the non linear constraints is performed
-      "toward" the centroid, that is, by using a scaling factor equal to 0.5.
-      This default scaling factor might be sub-optimal in certain situations.
-      This is why we provide the <literal>-boxineqscaling</literal> option,
-      which allows to configure the scaling factor.
-    </para>
-
-    <para>
-      In Box's paper, whether we are concerned with the initial simplex or with the
-      simplex at a given iteration, the scaling for the non linear constraints is performed
-      without end. This is because Box's hypothesis is that "ultimately, a satisfactory
-      point will be found". As suggested by Guin, if the process fails, the algorithm
-      goes into an infinite loop. In order to avoid this, we perform the scaling until
-      a minimum scaling value is reached, as defined by the <literal>-guinalphamin</literal>
-      option.
-    </para>
-
-    <para>
-      We have taken into account for the comments by Guin, but it should be emphasized
-      that the current implementation is still as close as possible to Box's
-      algorithm and is not Guin's algorithm. More precisely, during the iterations,
-      the scaling for the non linear constraints is still performed toward the centroid,
-      be it feasible or not.
-    </para>
-
-  </refsection>
-
-  <refsection>
     <title>User-defined algorithm</title>
     <para>
       The <literal>-mymethod</literal> option allows to configure a user-defined
@@ -2554,8 +2368,8 @@ nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt")
 nm = neldermead_destroy(nm);
@@ -2588,24 +2402,32 @@ plot(xopt(1),xopt(2),"r*");
     <screen>
       <![CDATA[ 
 [...]
-=================================================================
 Iteration #156 (total = 156)
-Function Eval #297
-Xopt : 1 1
-Fopt : 6.871176e-027
-DeltaFv : 2.880999e-026
-Center : 1 1
-Size : 2.548515e-013
-Vertex #1/3 : fv=0.000000, x=1.000000 1.000000
-Vertex #2/3 : fv=0.000000, x=1.000000 1.000000
-Vertex #3/3 : fv=0.000000, x=1.000000 1.000000
-nmplot_outputcmd (1)
+Function Eval #299
+Xopt : [1 1]
+Fopt : 6.871D-27
+DeltaFv : 2.881D-26
+Center : [1 1]
+Size : 2.549D-13
+Optim Simplex Object:
+=====================
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
+  > Termination ?
+  > iterations=156 >= maxiter=200
+  > funevals=299 >= maxfunevals=300
+  > e(x)=8.798D-15 < 2.220D-15 * 1.4142136 + 0
+  > Terminate = F, status = continue
+  > simplex size=2.549D-13 < 0 + 2.220D-16 * 1
+  > Terminate = F, status = continue
 Reflect
 xbar=1 1
-Function Evaluation #298 is [1.155D-25] at [1 1]
+Function Evaluation #300, index=2, x= [1 1]
 xr=[1 1], f(xr)=0.000000
 Contract - inside
-Function Evaluation #299 is [6.023D-27] at [1 1]
+Function Evaluation #301, index=2, x= [1 1]
 xc=1 1, f(xc)=0.000000
   > Perform Inside Contraction
 Sort
@@ -2618,20 +2440,68 @@ Sort
     <title>Example #3: use output function</title>
 
     <para>
-      In the following example, we show how to use the output command to
-      create specialized outputs. These outputs may be used to create specific
-      data files or make interactive graphic outputs.
+      There are several ways to print intermediate messages or plots during the 
+	  optimization process. 
+	  The first method is to set the "-verbose" option to 1, 
+	  which prints a lot of detailed informations. 
+	  The other method is to use the <literal>"-outputcommand"</literal> option. 
+	  We can either set it to the <literal>neldermead_defaultoutput</literal> or 
+	  define our own function. 
+	  In this section, we present the methods based on the <literal>"-outputcommand"</literal> option. 
     </para>
 
     <para>
-      We define the function "myoutputcmd", which takes the current state
+	In the following example, we use the <literal>"-outputcommand"</literal>option and 
+	set it to the <literal>neldermead_defaultoutput</literal> 
+	default output function. 
+	This function prints one line by iteration, with the main optimization informations.
+	</para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function [ f , index ] = quadratic ( x , index )
+  f = x(1)^2 + x(2)^2;
+endfunction
+x0 = [1.0 1.0].';
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",quadratic);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-outputcommand",neldermead_defaultoutput);
+nm = neldermead_search(nm);
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+    <para>
+	The previous script produces the following output.
+	</para>
+
+    <screen>
+Initialization
+Iter. #0, Feval #5, Fval = 2 -- init
+Iter. #1, Feval #5, Fval = 2 -- init
+Iter. #2, Feval #6, Fval = 2 -- reflection
+Iter. #3, Feval #8, Fval = 0.5 -- expansion
+Iter. #4, Feval #9, Fval = 0.5 -- reflection
+[...]
+Iter. #48, Feval #92, Fval = 8.557D-13 -- reflection
+Iter. #49, Feval #94, Fval = 7.893D-13 -- insidecontraction
+Iter. #50, Feval #96, Fval = 1.601D-13 -- insidecontraction
+Iter. #51, Feval #98, Fval = 1.291D-13 -- insidecontraction
+Iter. #52, Feval #100, Fval = 3.139D-14 -- outsidecontraction
+=================================
+End of Optimization
+Iter. #52, Feval #100, Fval = 3.139D-14 -- done
+    </screen>
+
+    <para>
+      In the following example, we define our own output function "myoutputcmd", which takes the current state
       as its first argument. The state is a string which can contain "init",
       "iter" or "done", depending on the status of the optimization. The data
       input argument is a tlist, which contains the data associated with the
       current iteration. In this case, we use the fields to print a message in
-      the console. As another example of use, we could format the message so
-      that it uses LaTeX formatting rules, which may allow the user to directly
-      copy and paste the output into a LaTeX report.
+      the console. 
     </para>
 
     <programlisting role="example">
@@ -2640,23 +2510,6 @@ function [ f , index ] = rosenbrock ( x , index )
   f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
-//
-// myoutputcmd --
-//  This command is called back by the Nelder-Mead
-//  algorithm.
-// Arguments
-//  state : the current state of the algorithm
-//    "init", "iter", "done"
-//  data : the data at the current state
-//    This is a tlist with the following entries:
-//    * x : the optimal vector of parameters
-//    * fval : the minimum function value
-//    * simplex : the simplex, as a simplex object
-//    * iteration : the number of iterations performed
-//    * funccount : the number of function evaluations
-//    * step : the type of step in the previous iteration
-//  stop : set to true to stop the optimization
-//
 function stop = myoutputcmd ( state , data )
   iter = data.iteration
   if ( state == "init" ) then
@@ -2678,7 +2531,6 @@ function stop = myoutputcmd ( state , data )
   stop = %f
 endfunction
 
-
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
@@ -2698,7 +2550,9 @@ nm = neldermead_destroy(nm);
  ]]>
     </programlisting>
 
-    <para>The previous script produces the following output.</para>
+    <para>
+	The previous script produces the following output.
+	</para>
 
     <screen>
       =================================
@@ -2717,6 +2571,13 @@ nm = neldermead_destroy(nm);
       End of Optimization
       Iter. #157, Feval #301, Fval = 6.0e-027, x = 1 1, S = 2.8e-013
     </screen>
+
+    <para>
+      As another example of use, we could format the message so
+      that it uses LaTeX formatting rules, which may allow the user to directly
+      copy and paste the output into a LaTeX report.
+	</para>
+
   </refsection>
 
   <refsection>
@@ -2910,10 +2771,169 @@ nm = neldermead_destroy(nm);
   </refsection>
 
   <refsection>
-    <title>Changes in Scilab 5.4.1</title>
+    <title>Example #7: Restarting without bounds</title>
 
     <para>
-      Many changes have been done in Scilab 5.4.1, which simplify the use of the
+      In the following example, we reproduce the experiment 
+      published by Ken McKinnon in 1998. 
+      For this particular function and this particular initial simplex,
+	  the Nelder-Mead algorithm converges to a nonstationnary point. 
+    </para>
+    <para>
+	  We first define the objective function, the initial simplex 
+	  and the expected solution of this unconstrained optimization problem.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function [ f , index ] = mckinnon ( x , index )
+  tau = 3
+  theta = 6
+  phi = 400
+  if ( x(1) <= 0 )
+    f = theta*phi*abs(x(1))^tau+x(2)*(1+x(2))
+  else
+    f = theta*x(1)^tau+x(2)*(1+x(2))
+  end
+endfunction
+
+// The initial simplex
+lambda1 = (1.0 + sqrt(33))/8;
+lambda2 = (1.0 - sqrt(33))/8;
+coords0 = [
+1  1
+0  0 
+lambda1 lambda2
+];
+
+// The expected solution
+xstar = [0;-0.5];
+fstar = -0.25;
+ ]]>
+    </programlisting>
+
+    <para>
+	  Then we run the algorithm two times in sequence. 
+	  At the end of the first optimization process, the algorithm has 
+	  converged to the point [0,0] which is nonstationnary. 
+	  This is why we restart the algorithm and get the correct minimum.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm, "-maxiter",200);
+nm = neldermead_configure(nm, "-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+// Search #1: fails
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+status = neldermead_get(nm,"-status")
+// Search #2: succeeds
+nm = neldermead_restart ( nm );
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+	<para>
+	  We can also use the automatic stagnation detection method 
+	  created by Kelley, so that the algorithm automatically restart 
+	  the algorithm when needed.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm, "-maxiter",200);
+nm = neldermead_configure(nm, "-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","kelley");
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+iterations = neldermead_get(nm,"-iterations")
+restartnb = neldermead_get ( nm , "-restartnb" )
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+	<para>
+	  See the demonstrations to get a graphical plot of the 
+	  intermediate simplices in Mc Kinnon's experiment.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Example #8: Restarting with bounds</title>
+	
+	<para>
+	  In the following experiment, we solve an optimization problem 
+	  with bounds. 
+	  We use Box's algorithm, which is the only algorithm which manages bounds.
+	  We use the randomized bounds simplex both for the initial simplex and 
+	  for the restart simplex.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+function [ f , index ] = myquad ( x , index )
+    f = x(1)^2 + x(2)^2 + x(3)^2
+endfunction
+x0 = [1.2 1.9,1.5].';
+// The solution
+xstar = [1;1;1];
+fstar = 3;
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",3);
+nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-boundsmin",[1 1 1]);
+nm = neldermead_configure(nm,"-boundsmax",[2 2 2]);
+nm = neldermead_configure(nm,"-simplex0method","randbounds");
+nm = neldermead_search(nm);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",200);
+nm = neldermead_configure(nm,"-restartsimplexmethod","randbounds");
+nm = neldermead_restart(nm);
+xopt = neldermead_get(nm,"-xopt")
+fopt = neldermead_get(nm,"-fopt")
+status = neldermead_get(nm,"-status")
+nm = neldermead_destroy(nm);
+ ]]>
+    </programlisting>
+
+
+  </refsection>
+
+  <refsection>
+    <title>Changes in Scilab 5.4</title>
+
+    <para>
+      Many changes have been done in Scilab 5.4, which simplify the use of the
       neldermead component.
     </para>
 
@@ -3118,6 +3138,176 @@ nm = neldermead_configure(nm,"-outputcommand",stopfun);
   </refsection>
 
   <refsection>
+    <title>Spendley et al. implementation notes</title>
+
+    <para>
+      The original paper may be implemented with several variations, which
+      might lead to different results. This section defines what algorithmic
+      choices have been used.
+    </para>
+
+    <para>The paper states the following rules.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          "Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
+          a new simplex Sp by excluding the point Vp corresponding to y, and
+          replacing it by V* defined as above."
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          "Rule 2. If a result has occurred in (k + 1) successive
+          simplexes, and is not then eliminated by application of Rule 1, do not
+          move in the direction indicated by Rule 1, or at all, but discard the
+          result and replace it by a new observation at the same point."
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          "Rule 3. If y is the lowest reading in So , and if the next
+          observation made, y* , is the lowest reading in the new simplex S , do
+          not apply Rule 1 and return to So from Sp . Move out of S, by
+          rejecting the second lowest reading (which is also the second lowest
+          reading in So)."
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      We implement the following "rules" of the Spendley et al.
+      method.
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          Rule 1 is strictly applied, but the reflection is done by
+          reflection the high point, since we minimize a function instead of
+          maximizing it, like Spendley.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Rule 2 is NOT implemented, as we expect that the function
+          evaluation is not subject to errors.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          Rule 3 is applied, ie reflection with respect to next to high
+          point.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      The original paper does not mention any shrink step. When the
+      original algorithm cannot improve the function value with reflection
+      steps, the basic algorithm stops. In order to make the current
+      implementation of practical value, a shrink step is included, with
+      shrinkage factor sigma. This perfectly fits into to the spirit of the
+      original paper. Notice that the shrink step make the rule #3 (reflection
+      with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
+      required steps are the reflection and shrinkage. Never the less, the rule
+      #3 has been kept in order to make the algorithm as close as it can be to
+      the original.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Nelder-Mead implementation notes</title>
+
+    <para>
+      The purpose of this section is to analyse the current implementation of Nelder-Mead's algorithm.
+    </para>
+
+    <para>
+      The algorithm that we use is described in "Iterative Methods for Optimization" by C. T. Kelley.
+    </para>
+
+    <para>
+      The original paper uses a "greedy" expansion, in which the expansion point
+      is accepted whatever its function value. The current implementation,
+      as most implementations, uses the expansion point only if it improves
+      over the reflection point, that is,
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          if fe&lt;fr, then the expansion point is accepted,
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          if not, the reflection point is accepted.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      The termination criteria suggested by Nelder and Mead is based on an
+      absolute tolerance on the standard deviation of the function values in the simplex.
+      We provide this original termination criteria with the <literal>-tolvarianceflag</literal>
+      option, which is disabled by default.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Box's complex algorithm implementation notes</title>
+
+    <para>
+      In this section, we analyse the current implementation of Box's complex method.
+    </para>
+
+    <para>
+      The initial simplex can be computed as in Box's paper, but this may not
+      be safe. In his paper, Box suggest that if a vertex of the initial simplex
+      does not satisfy the non linear constraints, then it should be "moved halfway
+      toward the centroid of those points already selected". This behaviour
+      is available when the <literal>-scalingsimplex0</literal> option is set to
+      <literal>"tocenter"</literal>. It may happen, as suggested by Guin, that
+      the centroid is not feasible. This may happen if the constraints are not
+      convex. In this case, the initial simplex cannot be computed. This is why
+      we provide the <literal>"tox0"</literal> option, which allows to compute the
+      initial simplex by scaling toward the initial guess, which is always feasible.
+    </para>
+
+    <para>
+      In Box's paper, the scaling into the non linear constraints is performed
+      "toward" the centroid, that is, by using a scaling factor equal to 0.5.
+      This default scaling factor might be sub-optimal in certain situations.
+      This is why we provide the <literal>-boxineqscaling</literal> option,
+      which allows to configure the scaling factor.
+    </para>
+
+    <para>
+      In Box's paper, whether we are concerned with the initial simplex or with the
+      simplex at a given iteration, the scaling for the non linear constraints is performed
+      without end. This is because Box's hypothesis is that "ultimately, a satisfactory
+      point will be found". As suggested by Guin, if the process fails, the algorithm
+      goes into an infinite loop. In order to avoid this, we perform the scaling until
+      a minimum scaling value is reached, as defined by the <literal>-guinalphamin</literal>
+      option.
+    </para>
+
+    <para>
+      We have taken into account for the comments by Guin, but it should be emphasized
+      that the current implementation is still as close as possible to Box's
+      algorithm and is not Guin's algorithm. More precisely, during the iterations,
+      the scaling for the non linear constraints is still performed toward the centroid,
+      be it feasible or not.
+    </para>
+
+  </refsection>
+
+  <refsection>
     <title>Bibliography</title>
 
     <para>
@@ -3163,6 +3353,11 @@ nm = neldermead_configure(nm,"-outputcommand",stopfun);
     <para>
       "Nelder Mead's User Manual", Consortium Scilab - Digiteo, Michael
       Baudin, 2010
+    </para>
+
+    <para>
+      Ken McKinnon, Convergence of the Nelder-Mead simplex method to a nonstationary point, 
+      SIAM Journal on Optimization, Volume 9, Number 1, 1998, pages 148-158.
     </para>
 
   </refsection>

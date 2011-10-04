@@ -36,6 +36,7 @@ import com.mxgraph.model.mxCell;
  */
 public class BasicBlockCodec extends XcosObjectCodec {
 
+	private static final String BASIC_BLOCK = BasicBlock.class.getSimpleName();
 	private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
 	private static final String[] IGNORED_FIELDS = new String[] {SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS"};
 	private static final Log LOG = LogFactory.getLog(BasicBlockCodec.class);
@@ -80,6 +81,15 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
 		codec.exclude.add("printTimer");
 		codec.exclude.add("updateAction");
+		
+		/*
+		 * Compat. to remove old specific implementations
+		 * 
+		 * These implementation was available from Scilab-5.2.0 to Scilab-5.3.3.
+		 */
+		mxCodecRegistry.addAlias("ConstBlock", BASIC_BLOCK);
+		mxCodecRegistry.addAlias("GainBlock", BASIC_BLOCK);
+		mxCodecRegistry.addAlias("PrintBlock", BASIC_BLOCK);
 	}
 	
 	/**
@@ -98,6 +108,19 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * Shortcut method to avoid old-XML-compat (before jgraphx-1.4) from {@link mxCellCodec}.
+	 * 
+	 * Without this shortcut, alias does not works (Class name String comparaison).
+	 * @see http://forum.jgraph.com/questions/1467/aliases-are-not-handled-on-mxcellcodecbeforedecode
+	 */
+	@Override
+	public Node beforeDecode(mxCodec dec, Node node, Object obj) {
+		return node;
+	}
+	
+	/**
 	 * Apply compatibility pattern to the decoded object
 	 * @param dec Codec that controls the decoding process.
 	 * @param node XML node to decode the object from.
@@ -111,22 +134,23 @@ public class BasicBlockCodec extends XcosObjectCodec {
 			LOG.error("Unable to decode " + obj);
 			return obj;
 		}
-		
-	    ((BasicBlock) obj).setSimulationFunctionType(SimulationFunctionType.DEFAULT);
+	    final BasicBlock block = (BasicBlock) obj;
+	    
+		block.setSimulationFunctionType(SimulationFunctionType.DEFAULT);
 
 	    String functionType = (((Element) node).getAttribute(SIMULATION_FUNCTION_TYPE));
 	    if (functionType != null && functionType.compareTo("") != 0) {
 		SimulationFunctionType type = BasicBlock.SimulationFunctionType.valueOf(functionType);
 		if (type != null) {
-		    ((BasicBlock) obj).setSimulationFunctionType(type);
+		    block.setSimulationFunctionType(type);
 		}
 	    }
 
 	    // Re associate the diagram container
-	    if (obj instanceof SuperBlock) {
-	    	final SuperBlock block = (SuperBlock) obj;
-	    	if (block.getChild() != null) {
-	    		block.getChild().setContainer(block);
+	    if (block instanceof SuperBlock) {
+	    	final SuperBlock superBlock = (SuperBlock) block;
+	    	if (superBlock.getChild() != null) {
+	    		superBlock.getChild().setContainer(superBlock);
 	    	}
 	    }
 	    
@@ -134,8 +158,35 @@ public class BasicBlockCodec extends XcosObjectCodec {
 	    // default style if absent
 	    StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));
 	    formatStyle(map, (BasicBlock) obj);
-		((BasicBlock) obj).setStyle(map.toString());
-	    ((BasicBlock) obj).updateFieldsFromStyle();
+		block.setStyle(map.toString());
+	    block.updateFieldsFromStyle();
+	    
+	    
+		/*
+		 * Compat. to remove old specific implementations
+		 * 
+		 * These implementation was available from Scilab-5.2.0 to Scilab-5.3.3.
+		 * 
+		 * Set default values stolen from the old implementation in case of default value.
+		 */
+	    if (map.containsKey("CONST_m")) {
+	    	if (block.getInterfaceFunctionName().equals(BasicBlock.DEFAULT_INTERFACE_FUNCTION)) {
+	    		block.setInterfaceFunctionName("CONST_m");
+	    	}
+	    	if (block.getSimulationFunctionName().equals(BasicBlock.DEFAULT_SIMULATION_FUNCTION)) {
+	    		block.setSimulationFunctionName("cstblk4");
+	    	}
+	    	if (block.getValue() == null) {
+	    		block.setValue("1");
+	    	}
+	    }
+	    if (map.containsKey("GAINBLK_f")) {
+	    	if (block.getInterfaceFunctionName().equals(BasicBlock.DEFAULT_INTERFACE_FUNCTION)) {
+	    		block.setInterfaceFunctionName("GAINBLK_f");
+	    	}
+	    }
+	    // PrintBlock has not default values
+	    
 	    
 	    return super.afterDecode(dec, node, obj);
 	}

@@ -7,6 +7,38 @@
 
 // <-- JVM NOT MANDATORY -->
 
+Z = [
+1 2 0 0 0 0
+2 3 0 0 0 0
+0 0 4 5 6 0
+0 0 5 7 8 0
+0 0 6 8 9 0
+0 0 0 0 0 10
+];
+blocksizes=[2,3,1];
+Z1 = Z(1:2,1:2);
+Z2 = Z(3:5,3:5);
+Z3 = Z(6,6);
+A = list2vec(list(Z1,Z2,Z3));
+[CA,sel] = pack(A,blocksizes);
+CA_expected = [
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+];
+sel_expected = [1,2,4,5,6,7,9,10,13,14];
+assert_checkequal(CA,CA_expected);
+assert_checkequal(sel,sel_expected);
+
+
+//
 // Define 3 symmetric block-diagonal matrices: F0, F1, F2
 F0=[2,1,0,0;
     1,2,0,0;

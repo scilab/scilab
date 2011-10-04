@@ -1970,7 +1970,6 @@ sub2ind
 acotd
 erf
 isempty
-GLoad
 complex
 primes
 asinh

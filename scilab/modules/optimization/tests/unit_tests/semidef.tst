@@ -1,29 +1,31 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2011 - DIGITEO - INRIA
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
+// <-- NO CHECK REF -->
 
 // 1. Define the initial guess
-x0=[0;0]
+x0=[0;0];
 //
 // 2. Create a compressed representation of F
 // Define 3 symmetric block-diagonal matrices: F0, F1, F2
 F0=[2,1,0,0;
     1,2,0,0;
     0,0,3,1;
-    0,0,1,3]
+    0,0,1,3];
 F1=[1,2,0,0;
     2,1,0,0;
     0,0,1,3;
-    0,0,3,1]
+    0,0,3,1];
 F2=[2,2,0,0;
     2,2,0,0;
     0,0,3,4;
-    0,0,4,4]
+    0,0,4,4];
 // Define the size of the two blocks:
 // the first block has size 2, 
 // the second block has size 2.
@@ -37,12 +39,12 @@ F21=F2(1:2,1:2);
 F22=F2(3:4,3:4);
 // Create 3 column vectors, containing nonzero entries 
 // in F0, F1, F2.
-F0nnz = [F01(:);F02(:)];
-F1nnz = [F11(:);F12(:)];
-F2nnz = [F21(:);F22(:)];
+F0nnz = list2vec(list(F01,F02));
+F1nnz = list2vec(list(F11,F12));
+F2nnz = list2vec(list(F21,F22));
 // Create a 16-by-3 matrix, representing the 
 // nonzero entries of the 3 matrices F0, F1, F2.
-FF=[F0nnz,F1nnz,F2nnz]
+FF=[F0nnz,F1nnz,F2nnz];
 // Compress FF
 CFF = pack(FF,blocksizes);
 //
@@ -69,7 +71,7 @@ tv = 0;
 maxiters = 50;
 options=[nu,abstol,reltol,tv,maxiters];
 // 6. Solve the problem
-[x,CZ,ul,info]=semidef(x0,CZZ0,CFF,blocksizes,c,options)
+[x,CZ,ul,info]=semidef(x0,CZZ0,CFF,blocksizes,c,options);
 //
 // 7. Check the output
 // Unpack CZ

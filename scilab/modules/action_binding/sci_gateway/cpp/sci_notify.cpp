@@ -27,99 +27,101 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_action_binding_utils;
+
 /*--------------------------------------------------------------------------*/
-int sci_notify(char *fname,unsigned long fname_len)
+int sci_notify(char *fname, unsigned long fname_len)
 {
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-	int m1 = 0, n1 = 0;
-	int *piAddressVarOne = NULL;
-	char **pStVarOne = NULL;
-	int *lenStVarOne = NULL;
-	int iType = 0;
-	SciErr sciErr;
+    int m1 = 0, n1 = 0;
+    int *piAddressVarOne = NULL;
+    char **pStVarOne = NULL;
+    int *lenStVarOne = NULL;
+    int iType = 0;
+    SciErr sciErr;
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if ( iType != sci_strings )
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-		return 0;
-	}
+    if (iType != sci_strings)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
 
-	/* get dimensions */
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    /* get dimensions */
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if ( m1 * n1 != 1 )
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-		return 0;
-	}
+    if (m1 * n1 != 1)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
 
-	lenStVarOne = (int*)MALLOC(sizeof(int));
-	if (lenStVarOne == NULL)
-	{
-		Scierror(999, _("%s: No more memory.\n"), fname);
-		return 0;
-	}
+    lenStVarOne = (int *)MALLOC(sizeof(int));
+    if (lenStVarOne == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
-	/* get lengths */
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    /* get lengths */
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	pStVarOne = (char **)MALLOC(sizeof(char*));
-	if (pStVarOne == NULL)
-	{
-		Scierror(999, _("%s: No more memory.\n"), fname);
-		return 0;
-	}
+    pStVarOne = (char **)MALLOC(sizeof(char *));
+    if (pStVarOne == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
-	pStVarOne[0] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[0] + 1));
+    pStVarOne[0] = (char *)MALLOC(sizeof(char *) * (lenStVarOne[0] + 1));
 
-	/* get strings */
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-	if (sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    /* get strings */
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	try
-	{
-	    Signal::notify(getScilabJavaVM(), pStVarOne[0]);
-	}
-	catch (const GiwsException::JniException & e)
-	{
-	    Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
-	    return 0;
-	}
+    try
+    {
+        Signal::notify(getScilabJavaVM(), pStVarOne[0]);
+    }
+    catch(const GiwsException::JniException & e)
+    {
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
+        return 0;
+    }
 
-	freeArrayOfString(pStVarOne, 1);
+    freeArrayOfString(pStVarOne, 1);
 
-	LhsVar(1) = 0;
-	PutLhsVar();
-	return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
+
 /*--------------------------------------------------------------------------*/

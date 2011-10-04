@@ -28,8 +28,9 @@ extern "C"
 }
 
 using namespace org_scilab_modules_gui_filechooser;
+
 /*--------------------------------------------------------------------------*/
-int sci_uigetdir(char *fname,unsigned long l)
+int sci_uigetdir(char *fname, unsigned long l)
 {
     int nbRow = 0, nbCol = 0;
 
@@ -42,8 +43,8 @@ int sci_uigetdir(char *fname,unsigned long l)
 
     char *expandedpath = NULL;
 
-    CheckRhs(0,2);
-    CheckLhs(1,1);
+    CheckRhs(0, 2);
+    CheckLhs(1, 1);
 
     if (Rhs >= 1)
     {
@@ -51,7 +52,7 @@ int sci_uigetdir(char *fname,unsigned long l)
         if (VarType(1) == sci_strings)
         {
             GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
-            if (nbCol !=1)
+            if (nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
                 FREE(expandedpath);
@@ -64,7 +65,11 @@ int sci_uigetdir(char *fname,unsigned long l)
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-            if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
+            if (expandedpath)
+            {
+                FREE(expandedpath);
+                expandedpath = NULL;
+            }
             return FALSE;
         }
 
@@ -76,10 +81,14 @@ int sci_uigetdir(char *fname,unsigned long l)
         if (VarType(2) == sci_strings)
         {
             GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-            if (nbCol !=1)
+            if (nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-                if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
+                if (expandedpath)
+                {
+                    FREE(expandedpath);
+                    expandedpath = NULL;
+                }
                 return FALSE;
             }
             title = cstk(titleAdr);
@@ -87,7 +96,11 @@ int sci_uigetdir(char *fname,unsigned long l)
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
+            if (expandedpath)
+            {
+                FREE(expandedpath);
+                expandedpath = NULL;
+            }
             return FALSE;
         }
     }
@@ -115,29 +128,30 @@ int sci_uigetdir(char *fname,unsigned long l)
         /* Read the selection */
         userSelection = getJuigetfileSelection();
     }
-    catch (const GiwsException::JniException & e)
+    catch(const GiwsException::JniException & e)
     {
-        Scierror(999, _("%s: A Java exception arised:\n%s"), fname, e.what());
+        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return FALSE;
     }
 
-    if (nbRow !=0 )
+    if (nbRow != 0)
     {
         /* The user selected a file --> returns the files names */
         nbCol = 1;
 
-        CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
+        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
         if (userSelection)
         {
-            for(int i = 0; i < nbRow;i++)
+            for (int i = 0; i < nbRow; i++)
             {
                 if (userSelection[i])
                 {
                     delete userSelection[i];
+
                     userSelection[i] = NULL;
                 }
             }
-            delete [] userSelection;
+            delete[]userSelection;
             userSelection = NULL;
         }
     }
@@ -146,13 +160,18 @@ int sci_uigetdir(char *fname,unsigned long l)
         /* The user canceled the selection --> returns an empty matrix */
         nbRow = 1;
         nbCol = 1;
-        CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, NULL);
+        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, NULL);
     }
 
-    LhsVar(1)=Rhs+1;
+    LhsVar(1) = Rhs + 1;
 
-    if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
+    if (expandedpath)
+    {
+        FREE(expandedpath);
+        expandedpath = NULL;
+    }
     PutLhsVar();
     return TRUE;
 }
+
 /*--------------------------------------------------------------------------*/

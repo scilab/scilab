@@ -33,141 +33,159 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void displayFigure(int figureId)
 {
-  startGraphicDataReading();
-  sciPointObj * curFig = getFigureFromIndex(figureId) ;
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *curFig = getFigureFromIndex(figureId);
 
-  if ( curFig == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  try 
-  {
-	  startFigureDataDisplaying(curFig);
-	  (sciGraphics::getFigureDrawer(curFig))->display() ;
-	  endFigureDataDisplaying(curFig);
-  } catch (const GiwsException::JniException& e)
-  {
-	  Scierror(999, "A native error occurred during the drawing of the figure.\nDescription: %s\nException Name: %s\nScilab's graphic may become unstable.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
-  } catch (const std::exception& e)
-  {
-	  sciprint("Error: %s\n",e.what());
-	  Scierror(999, "An error occurred during the drawing of the figure.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
-  }
+    if (curFig == NULL)
+    {
+        return;
+    }
+
+    try
+    {
+        startFigureDataDisplaying(curFig);
+        (sciGraphics::getFigureDrawer(curFig))->display();
+        endFigureDataDisplaying(curFig);
+    }
+    catch(const GiwsException::JniException & e)
+    {
+        Scierror(999,
+                 "A native error occurred during the drawing of the figure.\nDescription: %s\nException Name: %s\nScilab's graphic may become unstable.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",
+                 e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+    } catch(const std::exception & e)
+    {
+        sciprint("Error: %s\n", e.what());
+        Scierror(999,
+                 "An error occurred during the drawing of the figure.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
+    }
 }
+
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void redrawFigure(int figureId)
 {
-  startGraphicDataReading();
-  sciPointObj * curFig = getFigureFromIndex(figureId) ;
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *curFig = getFigureFromIndex(figureId);
 
-  if ( curFig == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  startFigureDataDisplaying(curFig);
-  (sciGraphics::getFigureDrawer(curFig))->familyHasChanged();
-  endFigureDataDisplaying(curFig);
+    if (curFig == NULL)
+    {
+        return;
+    }
+
+    startFigureDataDisplaying(curFig);
+    (sciGraphics::getFigureDrawer(curFig))->familyHasChanged();
+    endFigureDataDisplaying(curFig);
 }
-/*--------------------------------------------------------------------------*/
 
+/*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void redrawSubwins(int figureId)
 {
-  startGraphicDataReading();
-  sciPointObj * curFig = getFigureFromIndex(figureId) ;
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *curFig = getFigureFromIndex(figureId);
 
-  if ( curFig == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  startFigureDataDisplaying(curFig);
-  (sciGraphics::getFigureDrawer(curFig))->redrawSubwins() ;
-  endFigureDataDisplaying(curFig);
+    if (curFig == NULL)
+    {
+        return;
+    }
+
+    startFigureDataDisplaying(curFig);
+    (sciGraphics::getFigureDrawer(curFig))->redrawSubwins();
+    endFigureDataDisplaying(curFig);
 }
+
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void rotateSubwin(long long subwinHandle, double deltaAlpha, double deltaTheta)
 {
-	startGraphicDataReading();
-	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
-	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *pSubwin = sciGetPointerFromHandle((long)subwinHandle);
+    sciPointObj *parentFigure = sciGetParentFigure(pSubwin);
 
-  if ( pSubwin == NULL || parentFigure == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  startFigureDataWriting(parentFigure);
-	updateViewingAngles(pSubwin, deltaAlpha, deltaTheta);
-  endFigureDataWriting(parentFigure);
+    if (pSubwin == NULL || parentFigure == NULL)
+    {
+        return;
+    }
+
+    startFigureDataWriting(parentFigure);
+    updateViewingAngles(pSubwin, deltaAlpha, deltaTheta);
+    endFigureDataWriting(parentFigure);
 }
+
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 long long getClickedSubwinHandle(int figureId, int clickXCoord, int clickYCoord)
 {
-	startGraphicDataReading();
-	sciPointObj * curFig = getFigureFromIndex(figureId) ;
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *curFig = getFigureFromIndex(figureId);
 
-  if ( curFig == NULL )
-  {
-    return 0;
-  }
+    endGraphicDataReading();
 
-  startFigureDataReading(curFig);
-	sciPointObj * clickedSubwin = getClickedSubwin(curFig, clickXCoord, clickYCoord);
-  endFigureDataReading(curFig);
+    if (curFig == NULL)
+    {
+        return 0;
+    }
 
-	// Will return 0 if clicked subwin is null or the handle otherwise
-	return sciGetHandle(clickedSubwin);
+    startFigureDataReading(curFig);
+    sciPointObj *clickedSubwin = getClickedSubwin(curFig, clickXCoord, clickYCoord);
+
+    endFigureDataReading(curFig);
+
+    // Will return 0 if clicked subwin is null or the handle otherwise
+    return sciGetHandle(clickedSubwin);
 
 }
+
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 void zoomObject(long long objectHandle, int x1, int y1, int x2, int y2)
 {
-	startGraphicDataReading();
-	sciPointObj * pObj = sciGetPointerFromHandle((long) objectHandle) ;
-	sciPointObj * parentFigure = sciGetParentFigure(pObj);
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *pObj = sciGetPointerFromHandle((long)objectHandle);
+    sciPointObj *parentFigure = sciGetParentFigure(pObj);
 
-  if ( pObj == NULL || parentFigure == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  startFigureDataWriting(parentFigure);
-	sciZoomObject(pObj, x1, y1, x2, y2);
-  endFigureDataWriting(parentFigure);
+    if (pObj == NULL || parentFigure == NULL)
+    {
+        return;
+    }
+
+    startFigureDataWriting(parentFigure);
+    sciZoomObject(pObj, x1, y1, x2, y2);
+    endFigureDataWriting(parentFigure);
 }
+
 /*--------------------------------------------------------------------------*/
 void unzoomSubwinHandle(long long subwinHandle)
 {
-	startGraphicDataReading();
-	sciPointObj * pSubwin = sciGetPointerFromHandle((long) subwinHandle) ;
-	sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
-  endGraphicDataReading();
+    startGraphicDataReading();
+    sciPointObj *pSubwin = sciGetPointerFromHandle((long)subwinHandle);
+    sciPointObj *parentFigure = sciGetParentFigure(pSubwin);
 
-	if ( pSubwin == NULL || parentFigure == NULL )
-  {
-    return ;
-  }
+    endGraphicDataReading();
 
-  startFigureDataWriting(parentFigure);
-	unzoomSubwin(pSubwin);
-  endFigureDataWriting(parentFigure);
+    if (pSubwin == NULL || parentFigure == NULL)
+    {
+        return;
+    }
+
+    startFigureDataWriting(parentFigure);
+    unzoomSubwin(pSubwin);
+    endFigureDataWriting(parentFigure);
 }
+
 /*--------------------------------------------------------------------------*/

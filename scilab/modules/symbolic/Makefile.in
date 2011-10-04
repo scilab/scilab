@@ -66,9 +66,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/symbolic
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -117,10 +118,7 @@ am__objects_1 = sci_f_addsubf.lo sci_f_mulf.lo sci_f_ldivf.lo \
 	sci_f_rdivf.lo
 am_libscisymbolic_algo_la_OBJECTS = $(am__objects_1)
 libscisymbolic_algo_la_OBJECTS = $(am_libscisymbolic_algo_la_OBJECTS)
-libscisymbolic_la_DEPENDENCIES = libscisymbolic-algo.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_DEPENDENCIES = libscisymbolic-algo.la
 am__objects_2 = libscisymbolic_la-gw_symbolic.lo \
 	libscisymbolic_la-sci_mulf.lo libscisymbolic_la-sci_ldivf.lo \
 	libscisymbolic_la-sci_addsubf.lo \
@@ -433,7 +431,7 @@ libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
-libscisymbolic_la_LIBADD = libscisymbolic-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 
 #### Target ######
 modulename = symbolic
@@ -1015,6 +1013,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
