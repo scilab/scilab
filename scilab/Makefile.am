@@ -133,7 +133,7 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
-iconsdir=$(pkgdatadir)/icons/
+iconsdir=$(pkgdatadir)/desktop/
 icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
 $(top_srcdir)/desktop/puffin_128.xpm \
 $(top_srcdir)/desktop/puffin_256.xpm \
