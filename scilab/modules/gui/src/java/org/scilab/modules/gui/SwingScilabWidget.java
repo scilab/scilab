@@ -164,6 +164,14 @@ public final class SwingScilabWidget {
             /* Set dimensions before position because position is adjusted according to size */
             uiControl.setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
             uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
+            /* Manage sliders orientation */
+            if (uiControl instanceof SwingScilabSlider) {
+                if (dblValues[2].intValue() > dblValues[3].intValue()) {
+                    ((SwingScilabSlider) uiControl).setHorizontal();
+                } else {
+                    ((SwingScilabSlider) uiControl).setVertical();
+                }
+            }
         } else if (property.equals(__GO_UI_RELIEF__)) {
             uiControl.setRelief((String) value);
         } else if (property.equals(__GO_UI_ROWNAMES__)) {
