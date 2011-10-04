@@ -643,6 +643,12 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.svg"/>
   </add>
   <!-- SIGNAL ROUTING -->
+  <add as="SELF_SWITCH_ON" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Self_Switch_on.svg"/>
+  </add>
+  <add as="SELF_SWITCH_OFF" extend="Icon">
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/Self_Switch_off.svg"/>
+  </add>
   <add as="ISELECT_m" extend="blockWithLabel">
     <add as="displayedLabel" value="Selector"/>
   </add>

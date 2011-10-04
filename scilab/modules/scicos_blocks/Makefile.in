@@ -887,7 +887,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
-libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
+libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 #### Target ######
 modulename = scicos_blocks
@@ -1396,7 +1396,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### scicos_blocks : Conf files ####
 @XCOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
-@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt 
+@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt
 
 #### scicos_blocks : init scripts ####
 @XCOS_TRUE@libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -1624,6 +1624,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/SWITCH2_m.h5 \
 @XCOS_TRUE@blocks/SWITCH_f.h5 \
 @XCOS_TRUE@blocks/Switch.h5 \
+@XCOS_TRUE@blocks/SELF_SWITCH.h5 \
 @XCOS_TRUE@blocks/TANBLK_f.h5 \
 @XCOS_TRUE@blocks/TCLSS.h5 \
 @XCOS_TRUE@blocks/TEXT_f.h5 \
@@ -5035,7 +5036,7 @@ distclean-local:
 @XCOS_TRUE@	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 @XCOS_TRUE@$(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
-@XCOS_TRUE@	@echo "-- Generates build/Fblocknames --" 
+@XCOS_TRUE@	@echo "-- Generates build/Fblocknames --"
 @XCOS_TRUE@	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
 @XCOS_TRUE@	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
@@ -5045,7 +5046,7 @@ distclean-local:
 @XCOS_TRUE@	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
 @XCOS_TRUE@		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
 @XCOS_TRUE@	fi
-@XCOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h 
+@XCOS_TRUE@	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
 
