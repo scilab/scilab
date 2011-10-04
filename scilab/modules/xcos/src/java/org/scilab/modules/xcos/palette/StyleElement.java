@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,8 @@ import static java.util.Arrays.asList;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +30,9 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxStylesheet;
 
 /**
@@ -112,15 +117,11 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
                         styleSheet.getCellStyle("Icon",
                                 styleSheet.getDefaultVertexStyle()));
 
-                // Translate Paths to URLs
-                String path = (String) style.get("image");
-                if (path != null && !path.isEmpty()) {
-                    try {
-                        style.put("image", new File(path).toURI().toURL()
-                                .toString());
-                    } catch (MalformedURLException e) {
-                        throw new RuntimeException(e);
-                    }
+                // Translate Paths to URLs and check validity
+                if (style.containsKey(mxConstants.STYLE_IMAGE)) {
+                    String url = (String) style.get(mxConstants.STYLE_IMAGE);
+                    url = validateURL(url);
+                    style.put(mxConstants.STYLE_IMAGE, url);
                 }
 
                 styleSheet.putCellStyle(blockNames[i][j], style);
@@ -131,6 +132,41 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Validate the path URI.
+     * 
+     * @param url
+     *            the path to validate
+     * @return the non-null valid path
+     * @throws RuntimeException
+     *             in case of invalid path argument
+     */
+    private String validateURL(final String url) {
+        URL u;
+        File f;
+        try {
+            u = new URL(url);
+
+            try {
+                f = new File(u.toURI());
+            } catch (URISyntaxException e) {
+                f = new File(u.getPath());
+            }
+        } catch (MalformedURLException e1) {
+            throw new RuntimeException(e1);
+        }
+
+        if (f.exists()) {
+            return u.toString();
+        } else {
+            throw new RuntimeException(String.format(
+                    XcosMessages.IMAGE_URL_DOESNT_EXIST, url));
+        }
+    }
+
+    /**
+>>>>>>> 55f54ae... Xcos: validate the image URI.
      * Validate the current data.
      * 
      * This method doesn't pass the metrics because it perform many test.

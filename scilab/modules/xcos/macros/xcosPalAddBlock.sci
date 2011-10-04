@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Clément DAVID
+// Copyright (C) - 2011 - Scilab Enterprises - Clément DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -152,7 +153,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     if ~exists("style", 'l') | isempty(style) then
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
-        style = "noLabel=1;image=" + block_img + ";";
+        style = "noLabel=1;image=file://" + block_img + ";";
         status = generateBlockImage(scs_m, TMPDIR, imageType="svg", withPort=%f);
         if ~status then
             error(msprintf(gettext("%s: Unable to generate the image ""%s"".\n"), "xcosPalAddBlock", block_img));
@@ -176,7 +177,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             style = formattedStyle;
         elseif typeof(style) == "string" then
             if isfile(style) then
-                style = "shape=label;image=" + style + ";";
+                style = "shape=label;image=file://" + style + ";";
 //          else
 //              assume a well formatted string, do nothing
             end

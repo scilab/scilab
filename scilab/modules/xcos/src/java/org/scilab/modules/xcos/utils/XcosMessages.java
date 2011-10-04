@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -186,6 +187,9 @@ public final class XcosMessages {
             .gettext("Diagram has been modified since last save.<br/> Do you want to save it?");
     public static final String FILE_DOESNT_EXIST = Messages
             .gettext("The file %s doesn't exist\n Do you want to create it?");
+
+    public static final String IMAGE_URL_DOESNT_EXIST = Messages
+            .gettext("Unable to decode the URI : %s .");
 
     public static final String OK = Messages.gettext("Ok");
     public static final String CANCEL = Messages.gettext("Cancel");
