@@ -383,6 +383,13 @@ Documentation:
 * Bug 9983 fixed - The xclick help page did not clearly specify the axes used for
                    coordinates
 
+Obsolete Functions:
+===================
+
+* 'oemtochar' and 'chartooem' functions (windows_tools) are obsolete and will be
+   removed on 5.4.1
+
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
