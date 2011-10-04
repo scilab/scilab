@@ -300,7 +300,6 @@ lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\boolean.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="boolean.rc" />

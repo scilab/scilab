@@ -262,7 +262,6 @@ lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
     <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc" />

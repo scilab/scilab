@@ -245,7 +245,6 @@
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">

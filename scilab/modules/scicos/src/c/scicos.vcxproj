@@ -381,7 +381,6 @@ lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos.iss" />
     <None Include="..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc" />

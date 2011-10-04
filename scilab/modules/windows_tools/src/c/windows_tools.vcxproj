@@ -283,7 +283,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="localization_Import.def" />
     <None Include="scilab_windows_Import.def" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\windows_tools.iss" />
     <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
   </ItemGroup>

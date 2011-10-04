@@ -263,7 +263,6 @@ lib /DEF:"$(ProjectDir)interpolation_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <None Include="..\..\interpolation.iss" />
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="interpolation.rc" />

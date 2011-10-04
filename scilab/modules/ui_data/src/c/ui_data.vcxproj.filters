@@ -72,7 +72,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\ui_data.iss" />
     <None Include="..\..\sci_gateway\ui_data_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ui_data.rc">

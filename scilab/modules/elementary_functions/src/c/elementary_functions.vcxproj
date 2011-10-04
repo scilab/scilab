@@ -343,7 +343,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc" />

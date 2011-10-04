@@ -294,7 +294,6 @@ lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sparse.iss" />
     <None Include="..\..\sci_gateway\sparse_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sparse.rc" />

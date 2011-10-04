@@ -249,7 +249,6 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\symbolic.iss" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
-    <None Include="..\..\version.xml" />
     <None Include="symbolic_f_Import.def" />
   </ItemGroup>
   <ItemGroup>

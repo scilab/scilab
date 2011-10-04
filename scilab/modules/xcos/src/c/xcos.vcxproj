@@ -264,7 +264,6 @@
     <None Include="..\..\locales\en_US\xcos.pot" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\xcos.iss" />
     <None Include="..\..\sci_gateway\xcos_gateway.xml" />
   </ItemGroup>

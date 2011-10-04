@@ -301,7 +301,6 @@ lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\double.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="double.rc" />

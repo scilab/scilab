@@ -258,7 +258,6 @@ lib /DEF:"$(ProjectDir)optimization_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\optimization.iss" />
     <None Include="..\..\sci_gateway\optimization_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="optimization.rc" />

@@ -66,7 +66,6 @@
     <None Include="..\..\helptools.iss" />
     <None Include="..\..\sci_gateway\helptools_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="helptools.rc">

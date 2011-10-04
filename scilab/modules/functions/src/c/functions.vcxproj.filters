@@ -102,7 +102,6 @@
     <None Include="..\..\functions.iss" />
     <None Include="..\..\sci_gateway\functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="functions.rc">

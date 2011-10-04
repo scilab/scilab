@@ -623,7 +623,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <None Include="String_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos_blocks.iss" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos_blocks.rc" />

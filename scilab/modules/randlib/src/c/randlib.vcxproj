@@ -264,7 +264,6 @@ lib /DEF:"$(ProjectDir)randlib_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\randlib.iss" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="randlib.rc" />

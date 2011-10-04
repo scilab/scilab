@@ -283,7 +283,6 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <None Include="..\localization.iss" />
     <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
-    <None Include="..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\charEncoding.c" />

@@ -259,7 +259,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scinotes.iss" />
     <None Include="..\..\sci_gateway\scinotes_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scinotes.rc" />

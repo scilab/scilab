@@ -281,7 +281,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <None Include="..\..\differential_equations.iss" />
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="differential_equations.rc" />

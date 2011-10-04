@@ -343,7 +343,6 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <None Include="..\..\integer.iss" />
     <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
