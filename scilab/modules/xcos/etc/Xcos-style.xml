@@ -605,6 +605,7 @@
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
   </add>
+  <add as="CLKOUT_f" extend="CLKOUTV_f"/>
   <add as="CLKSOMV_f" extend="blockWithLabel">
     <add as="shape" value="ellipse"/>
     <add as="displayedLabel" value="+"/>
