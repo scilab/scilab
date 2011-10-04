@@ -100,6 +100,8 @@ Xcos:
 
 * The style of the block can be changed on the interface function.
 
+* BARXY Block added to help 2D Mechanics system visualization.
+
 * bug 7985 fixed - dmmul.c did not use dgemm routine optimized by BLAS.
 
 * bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"
@@ -144,7 +146,7 @@ Xcos:
 * bug 9988 fixed - CLKSOMV_f has a wrong interface function after loading from
                    a file.
 
-* bug 10003 fixed - The MAXMIN block did not update its display according to 
+* bug 10003 fixed - The MAXMIN block did not update its display according to
                     the settings.
 
 Localization:
@@ -230,7 +232,7 @@ Optimization:
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
-* Bug 7892 fixed - The neldermead component did not provide a default 
+* Bug 7892 fixed - The neldermead component did not provide a default
                    output function.
                    The new function neldermead_defaultoutput was created
                    to print a simple one-line output message by iteration.
@@ -253,7 +255,7 @@ Optimization:
 
 * Bug 8547 fixed - The neldermead function called f outside the constraints.
 
-* Bug 8549 fixed - The neldermead function did not help to debug 
+* Bug 8549 fixed - The neldermead function did not help to debug
                    the cost function.
 
 * Bug 8552 fixed - Improved fminsearch to provide Extra Parameters.
@@ -263,7 +265,7 @@ Optimization:
 * Bug 8676 fixed - The pack/unpack functions had no help pages.
 
 * Bug 8777 fixed - The neldermead function failed to restart with bounds.
-                   Added examples of restarts with/without bounds in the 
+                   Added examples of restarts with/without bounds in the
                    neldermead help page.
 
 * Bug 9323 fixed - The messages in optimbase_checkbounds were not localized.
@@ -284,7 +286,7 @@ Optimization:
 
 * Bug 9698 fixed - The optim/"gc" algorithm does not support imp=-1
 
-* Bug 9822 fixed - The value ind=1 of optim is not supported by 
+* Bug 9822 fixed - The value ind=1 of optim is not supported by
                    all algorithms.
 
 
@@ -332,7 +334,7 @@ Documentation:
 
 * Bug 9790 fixed - windows_tools help were not available on all platforms.
 
-* Bug 9983 fixed - The xclick help page did not clearly specify the axes used for 
+* Bug 9983 fixed - The xclick help page did not clearly specify the axes used for
                    coordinates
 
 
@@ -371,7 +373,7 @@ Compilation:
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
 
-* Under GNU/Linux and Mac OS X, for each module, get ride of the list of 
+* Under GNU/Linux and Mac OS X, for each module, get ride of the list of
   the explicit dependencies on the other libraries. Use libscilab-cli.so or
   libscilab.so to link against Scilab.
 
@@ -521,11 +523,11 @@ Bug fixes:
 * bug 7358 fixed - Help pages of type and typeof have now links to the actual
                    description pages.
 
-* bug 7700 fixed - Bad proposition in the console history when a char is added 
+* bug 7700 fixed - Bad proposition in the console history when a char is added
 
 * bug 7745 fixed - add_demo moved in demo_tools module.
 
-* bug 8086 fixed - Some functions displayed a wrong error message when called 
+* bug 8086 fixed - Some functions displayed a wrong error message when called
                    without input argument.
 
 * Bug 8243 fixed - xgeom demonstration renamed to geom3d.
@@ -675,7 +677,7 @@ Bug fixes:
 
 * bug 9957 fixed - msprintf("%d\r", 2) returned '2r'.
 
-* bug 9966 fixed - The default value of comptype in assert_checkalmostequal 
+* bug 9966 fixed - The default value of comptype in assert_checkalmostequal
                    was wrongly chosen.
 
 * bug 9971 fixed - GLoad macro not used and not documented is removed.
