@@ -46,7 +46,12 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
+import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
+import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -54,24 +59,44 @@ import org.scilab.modules.gui.utils.UnitsConverter;
 import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
 import org.scilab.modules.gui.widget.Widget;
 
-public class SwingScilabWidget {
+/**
+ * @author Bruno JOFRET
+ * @author Vincent COUVERT
+ */
+public final class SwingScilabWidget {
 
     private static final String OBLIQUEFONT = "oblique";
     private static final String ITALICFONT = "italic";
     private static final String BOLDFONT = "bold";
+    private static final int COLORS_COEFF = 255;
+    
+    /**
+     * Constructor
+     */
+    private SwingScilabWidget() {
+        throw new UnsupportedOperationException();
+    }
 
+    /**
+     * Update the component in the view
+     * @param uiControl the component
+     * @param property the property name
+     * @param value the property value
+     */
     public static void update(Widget uiControl, String property, Object value) {
-    	if (property.equals(__GO_UI_BACKGROUNDCOLOR__)) {
-    		Double[] allColors = ((Double[]) value);
-    		uiControl.setBackground(new Color((int) (allColors[0]*255), (int) (allColors[1]*255), (int) (allColors[2]*255)));
-    	} else if (property.equals(__GO_UI_COLUMNNAMES__)) {
-    		((SwingScilabUiTable) uiControl).setColumnNames((String[]) value);
-    	} else if (property.equals(__GO_UI_ENABLE__)) {
-    		uiControl.setEnabled(((Boolean) value).booleanValue());
-    	} else if (property.equals(__GO_UI_FONTANGLE__)) {
+        if (property.equals(__GO_UI_BACKGROUNDCOLOR__)) {
+            Double[] allColors = ((Double[]) value);
+            uiControl.setBackground(new Color((int) (allColors[0] * COLORS_COEFF),
+                    (int) (allColors[1] * COLORS_COEFF),
+                    (int) (allColors[2] * COLORS_COEFF)));
+        } else if (property.equals(__GO_UI_COLUMNNAMES__)) {
+            ((SwingScilabUiTable) uiControl).setColumnNames((String[]) value);
+        } else if (property.equals(__GO_UI_ENABLE__)) {
+            uiControl.setEnabled(((Boolean) value).booleanValue());
+        } else if (property.equals(__GO_UI_FONTANGLE__)) {
             Font font = uiControl.getFont();
             String angle = (String) value;
-            
+
             if (angle.equalsIgnoreCase(ITALICFONT) || angle.equalsIgnoreCase(OBLIQUEFONT)) {
                 if (font.isBold()) {
                     font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
@@ -87,26 +112,26 @@ public class SwingScilabWidget {
             }
 
             uiControl.setFont(font);
-    	} else if (property.equals(__GO_UI_FONTNAME__)) {
+        } else if (property.equals(__GO_UI_FONTNAME__)) {
             Font font = uiControl.getFont();
             String name = (String) value;
-            
+
             font = new Font(name, font.getStyle(), font.getSize());
-            
+
             uiControl.setFont(font);
-    	} else if (property.equals(__GO_UI_FONTSIZE__)) {
+        } else if (property.equals(__GO_UI_FONTSIZE__)) {
             Font font = uiControl.getFont();
             int size = ((Double) value).intValue();
-            
+
             font = new Font(font.getName(), font.getStyle(), size);
-            
+
             uiControl.setFont(font);
-    	} else if (property.equals(__GO_UI_FONTUNITS__)) {
-    		/* TO BE DONE */
-    	} else if (property.equals(__GO_UI_FONTWEIGHT__)) {
+        } else if (property.equals(__GO_UI_FONTUNITS__)) {
+            /* TO BE DONE */
+        } else if (property.equals(__GO_UI_FONTWEIGHT__)) {
             Font font = uiControl.getFont();
             String weight = (String) value;
-            
+
             if (weight.equalsIgnoreCase(BOLDFONT)) {
                 if (font.isItalic()) {
                     font = new Font(font.getName(), Font.ITALIC + Font.BOLD, font.getSize());
@@ -122,57 +147,88 @@ public class SwingScilabWidget {
             }
 
             uiControl.setFont(font);
-    	} else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
-    		Double[] allColors = ((Double[]) value);
-    		uiControl.setForeground(new Color((int) (allColors[0]*255), (int) (allColors[1]*255), (int) (allColors[2]*255)));
-    	} else if (property.equals(__GO_UI_HORIZONTALALIGNMENT__)) {
-    		uiControl.setHorizontalAlignment((String) value);
-    	} else if (property.equals(__GO_UI_LISTBOXTOP__)) {
-    	} else if (property.equals(__GO_UI_MAX__)) {
-    	} else if (property.equals(__GO_UI_MIN__)) {
-    	} else if (property.equals(__GO_POSITION__)) {
-    		/* Convert value according to units */
-    		UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_UNITS__));
-    		Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl, false);
-    		/* Set dimensions before position because position is adjusted according to size */
-    		uiControl.setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
-    		uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
-    	} else if (property.equals(__GO_UI_RELIEF__)) {
-    		uiControl.setRelief((String) value);
-    	} else if (property.equals(__GO_UI_ROWNAMES__)) {
-    		((SwingScilabUiTable) uiControl).setRowNames((String[]) value);
-    	} else if (property.equals(__GO_UI_SCALE__)) {
-    		Double[] scale = ((Double[]) value);
-    		double[] convertedScale = new double[2];
-    		convertedScale[0] = scale[0].doubleValue();
-    		convertedScale[1] = scale[1].doubleValue();
-    		((SwingScilabImageRenderer) uiControl).setScale(convertedScale);
-    	} else if (property.equals(__GO_UI_SHEAR__)) {
-    		Double[] shear = ((Double[]) value);
-    		double[] convertedShear = new double[2];
-    		convertedShear[0] = shear[0].doubleValue();
-    		convertedShear[1] = shear[1].doubleValue();
-    		((SwingScilabImageRenderer) uiControl).setShear(convertedShear);
-    	} else if (property.equals(__GO_UI_SLIDERSTEP__)) {
-    	} else if (property.equals(__GO_STYLE__)) {
-    	} else if (property.equals(__GO_UI_STRING__)) {
-    		uiControl.setText(((String[]) value)[0]);
+        } else if (property.equals(__GO_UI_FOREGROUNDCOLOR__)) {
+            Double[] allColors = ((Double[]) value);
+            uiControl.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
+                    (int) (allColors[1] * COLORS_COEFF),
+                    (int) (allColors[2] * COLORS_COEFF)));
+        } else if (property.equals(__GO_UI_HORIZONTALALIGNMENT__)) {
+            uiControl.setHorizontalAlignment((String) value);
+        } else if (property.equals(__GO_UI_LISTBOXTOP__)) {
+        } else if (property.equals(__GO_UI_MAX__)) {
+        } else if (property.equals(__GO_UI_MIN__)) {
+        } else if (property.equals(__GO_POSITION__)) {
+            /* Convert value according to units */
+            UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_UNITS__));
+            Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl, false);
+            /* Set dimensions before position because position is adjusted according to size */
+            uiControl.setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
+            uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
+        } else if (property.equals(__GO_UI_RELIEF__)) {
+            uiControl.setRelief((String) value);
+        } else if (property.equals(__GO_UI_ROWNAMES__)) {
+            ((SwingScilabUiTable) uiControl).setRowNames((String[]) value);
+        } else if (property.equals(__GO_UI_SCALE__)) {
+            Double[] scale = ((Double[]) value);
+            double[] convertedScale = new double[2];
+            convertedScale[0] = scale[0].doubleValue();
+            convertedScale[1] = scale[1].doubleValue();
+            ((SwingScilabImageRenderer) uiControl).setScale(convertedScale);
+        } else if (property.equals(__GO_UI_SHEAR__)) {
+            Double[] shear = ((Double[]) value);
+            double[] convertedShear = new double[2];
+            convertedShear[0] = shear[0].doubleValue();
+            convertedShear[1] = shear[1].doubleValue();
+            ((SwingScilabImageRenderer) uiControl).setShear(convertedShear);
+        } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
+        } else if (property.equals(__GO_STYLE__)) {
+        } else if (property.equals(__GO_UI_STRING__)) {
+            uiControl.setText(((String[]) value)[0]);
         } else if (property.equals(__GO_TAG__)) {
             /* Nothing to do */ 
-    	} else if (property.equals(__GO_UI_TABLEDATA__)) {
-    		((SwingScilabUiTable) uiControl).setData((String[]) value);
-    	} else if (property.equals(__GO_UI_UNITS__)) {
-    	} else if (property.equals(__GO_UI_VALUE__)) {
-    	} else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {
-    		uiControl.setVerticalAlignment((String) value);
-    	} else if (property.equals(__GO_VISIBLE__)) {
-        	uiControl.setVisible(((Boolean) value).booleanValue());
-    	} else if (property.equals(__GO_PARENT__)) {
-    		/* Update position */
-    		SwingScilabWidget.update(uiControl, __GO_POSITION__, (Double[]) GraphicController.getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_POSITION__));
-    	} else {
-    		System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
-    	}
+        } else if (property.equals(__GO_UI_TABLEDATA__)) {
+            ((SwingScilabUiTable) uiControl).setData((String[]) value);
+        } else if (property.equals(__GO_UI_UNITS__)) {
+        } else if (property.equals(__GO_UI_VALUE__)) {
+
+            Integer[] integerValue = ((Integer[]) value);
+            int[] intValue = new int[integerValue.length];
+            for (int k = 0; k < integerValue.length; k++) {
+                intValue[k] = integerValue[k].intValue();
+            }
+
+            if (uiControl instanceof SwingScilabListBox) {
+                // Update selected items in the listbox
+                ((SwingScilabListBox) uiControl).setSelectedIndices(intValue);
+            } else if (uiControl instanceof SwingScilabPopupMenu) {
+                // Update selected items in the popupmenu
+                ((SwingScilabPopupMenu) uiControl).setSelectedIndex(intValue[0]);
+            } else if (uiControl instanceof SwingScilabCheckBox) {
+                // Check the checkbox if the value is equal to MAX property
+                int maxValue = ((Integer) GraphicController.getController()
+                        .getProperty(((SwingScilabCheckBox) uiControl).getId(), __GO_UI_MAX__)).intValue();
+                ((SwingScilabCheckBox) uiControl).setChecked(maxValue == intValue[0]);
+            } else if (uiControl instanceof SwingScilabRadioButton) {
+                // Check the radiobutton if the value is equal to MAX property
+                int maxValue = ((Integer) GraphicController.getController()
+                        .getProperty(((SwingScilabRadioButton) uiControl).getId(), __GO_UI_MAX__)).intValue();
+                ((SwingScilabRadioButton) uiControl).setChecked(maxValue == intValue[0]);
+            } else if (uiControl instanceof SwingScilabSlider) {
+                // Update the slider value
+                ((SwingScilabSlider) uiControl).setValue(intValue[0]);
+            }
+        } else if (property.equals(__GO_UI_VERTICALALIGNMENT__)) {
+            uiControl.setVerticalAlignment((String) value);
+        } else if (property.equals(__GO_VISIBLE__)) {
+            uiControl.setVisible(((Boolean) value).booleanValue());
+        } else if (property.equals(__GO_PARENT__)) {
+            /* Update position */
+            SwingScilabWidget.update(uiControl, __GO_POSITION__,
+                    (Double[]) GraphicController.getController()
+                    .getProperty(((SwingViewObject) uiControl).getId(), __GO_POSITION__));
+        } else {
+            System.err.println("[SwingScilabWidget.update] Property not mapped: " + property);
+        }
     }
 }
 

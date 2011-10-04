@@ -22,8 +22,10 @@ extern "C"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 }
 
 #endif /* __SET_UICONTROL_VALUE_HXX__ */
