@@ -9,13 +9,29 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef		INIT_TC_SHELL_H_
-# define	INIT_TC_SHELL_H_
+#ifndef	INIT_TC_SHELL_H_
+#define	INIT_TC_SHELL_H_
 
+/* Indicate to setAttr and initConsoleMode what mode to set */
+
+/* set Canonic mode */
 #define		CANON	1
+
+/* set Raw mode */
 #define		RAW	0
 
-int			init_shell(int);
-void			set_attr(int bin);
+/**
+ * Initialise the command line. Console mode and Termcaps
+ * @param Mode that will be set (Canonic or Raw)
+ * @return -1 in case of error, else 0.
+ */
+int initConsoleMode(int);
 
-#endif	/* !INIT_TC_SHELL_H_ */
+/**
+ * Set only console mode.
+ * @param Mode that will be set (Canonic or Raw)
+ * @return -1 in case of error, else 0.
+ */
+int setAttr(int bin);
+
+#endif /* !INIT_TC_SHELL_H_ */

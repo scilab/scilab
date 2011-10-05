@@ -9,13 +9,34 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 */
 
-#ifndef		CHAR_CTL_H_
-# define	CHAR_CTL_H_
+#ifndef	CHAR_CTL_H_
+#define	CHAR_CTL_H_
 
 #include	"reader.h"
 
-int		add_letter(t_list_cmd **cmd, int key);
-int		rm_letter(t_list_cmd **cmd, int key);
-int		delete_line_from_curs(t_list_cmd **cmd, int key);
+/**
+ * Add a character in the command line at the cursor position.
+ * @param current edited line.
+ * @param user input.
+ * @return user input.
+ */
+int addChar(t_list_cmd ** cmd, int key);
 
-#endif	/* !CHAR_CTL_H_*/
+/**
+ * Remove a character in the command line at the cursor position if SCI_DELETE is passed as key.
+ * Remove a character in the command line at the cursor position if SCI_BACKSPACE is passed as key.
+ * @param current edited line.
+ * @param user input.
+ * @return user input.
+ */
+int rmChar(t_list_cmd ** cmd, int key);
+
+/**
+ * Add a character in the command line at the cursor position.
+ * @param current edited line.
+ * @param user input.
+ * @return user input.
+ */
+int deleteLineFromCurs(t_list_cmd ** cmd, int key);
+
+#endif /* !CHAR_CTL_H_ */

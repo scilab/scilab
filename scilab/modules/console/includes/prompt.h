@@ -22,6 +22,12 @@
 #endif
 #define SCIPROMPT "-->"
 
+/* Define prompt with wide char string */
+#ifdef WSCIPROMPT
+#undef WSCIPROMPT
+#endif
+#define WSCIPROMPT L"-->"
+
 #ifdef SCIPROMPT_PAUSE
 #undef SCIPROMPT_PAUSE
 #endif

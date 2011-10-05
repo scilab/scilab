@@ -112,10 +112,10 @@ static void getCommandLine(void)
     }
     else
     {
-        init_shell(RAW);
+        initConsoleMode(RAW);
         /* Call Term Management for NW and NWNI to get a string */
-        __CommandLine = reader(&listCmd);
-        init_shell(CANON);
+        __CommandLine = getCmdLine(&listCmd);
+        initConsoleMode(CANON);
     }
 }
 

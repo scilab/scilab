@@ -10,8 +10,15 @@
 */
 
 #ifndef		GET_SIGNAL_H_
-# define	GET_SIGNAL_H_
+#define	GET_SIGNAL_H_
 
-void		get_new_term(int signum);
+/**
+ * Clear screen and get new terminfo,
+ * This is a sighandler_t used when SIGWINCH is caught
+ * @param signal caught.
+ */
+void getNewTerm(int signum);
 
-#endif		/* !SIGNAL_H_ */
+void get_new_term(int signum);
+
+#endif /* !SIGNAL_H_ */

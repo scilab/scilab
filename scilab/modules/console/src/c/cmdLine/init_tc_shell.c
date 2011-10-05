@@ -18,58 +18,57 @@
 #include		<locale.h>
 #include		"init_tc_shell.h"
 
-int			canonic_mode(struct termios *t)
+void canonicMode(struct termios *t)
 {
-  t->c_lflag |= ICANON;
-  t->c_lflag |= ECHO;
-  return (0);
+    t->c_lflag |= ICANON;
+    t->c_lflag |= ECHO;
 }
 
-int			raw_mode(struct termios *t)
+void rawMode(struct termios *t)
 {
-  t->c_lflag &= ~ICANON;
-  t->c_lflag &= ~ECHO;
-  t->c_cc[VMIN] = 1;
-  t->c_cc[VTIME] = 0;
-  return (0);
+    t->c_lflag &= ~ICANON;
+    t->c_lflag &= ~ECHO;
+    t->c_cc[VMIN] = 1;
+    t->c_cc[VTIME] = 0;
 }
 
-void			set_attr(int bin)
+/* Set Raw mode or Canonic Mode */
+int setAttr(int bin)
 {
-  struct termios	t;
+    struct termios t;
 
-  if (tcgetattr(0, &t) == -1)
+    if (tcgetattr(0, &t) == -1)
     {
-      puts("Cannot access to the term attributes.");
-      exit(EXIT_FAILURE);
+        fprintf(stderr, "Cannot access to the term attributes.");
+        return (-1);
     }
-  if (bin == CANON)
-    canonic_mode(&t);
-  else
-    raw_mode(&t);
-  if (tcsetattr(0, 0, &t) == -1)
+    if (bin == CANON)
+        canonicMode(&t);
+    else if (bin == RAW)
+        rawMode(&t);
+    if (tcsetattr(0, 0, &t) == -1)
     {
-      puts("Cannot change the term attributes.");
-      exit(EXIT_FAILURE);
+        fprintf(stderr, "Cannot change the term attributes.");
+        return (-1);
     }
+    return (0);
 }
 
-int			init_shell(int bin)
+/* Initialise console mode */
+int initConsoleMode(int bin)
 {
-  if (tgetent(NULL, getenv("TERM")) == ERR
-      && tgetent(NULL, "xterm") == ERR
-      && tgetent(NULL, "linux") == ERR)
+    if (tgetent(NULL, getenv("TERM")) == ERR && tgetent(NULL, "xterm") == ERR)
+/* What about kfreebsd, bsd, mac os ? */
     {
-      puts("Cannot init termcaps");
-      return (2);
+        fprintf(stderr, "Cannot init termcaps");
+        return (-1);
     }
-  set_attr(bin);
-
-  if (setlocale(LC_CTYPE, "") == NULL)
+    if (setlocale(LC_CTYPE, "") == NULL)
     {
-      puts("Cannot set wide char.");
-      return (2);
+/* Please use fprintf(stderr) */
+        fprintf(stderr, "Cannot set wide char.");
+        return (-1);
     }
 
-  return (0);
+    return setAttr(bin);
 }

@@ -18,40 +18,46 @@
 #include	<wctype.h>
 #include	<curses.h>
 
+#include        "reader.h"
 #include	"aff_prompt.h"
+#include	"prompt.h"
 
 /*
  * If there's a string, the function save it.
  * The function return the current saved prompt.
  */
 
-wchar_t		*setPrompt(wchar_t *wcs)
+wchar_t *setPrompt(wchar_t * wcs)
 {
-  static wchar_t	*prompt = NULL;
+    static wchar_t *prompt = NULL;
 
-  if (wcs != NULL)
-    prompt = wcs;
-  return (prompt);
+    if (wcs != NULL)
+    {
+        return wcs;
+    }
+    return prompt;
 }
 
 /*
  * The function get the current prompt
- * If none are set, function set it to the basic prompt ("-->")
+ * If none are set, function set it to the basic prompt SCIPROMPT ("-->") using wchar.
  * If Argument pass is WRT_PRT (1), it write prompt (NOWRT_PRT (-1) not to write prompt)
  * Function return size of the prompt.
  */
 
-int		getPrompt(int token)
+int getPrompt(int token)
 {
-  wchar_t		*prompt;
+    wchar_t *prompt;
 
-  prompt = setPrompt(NULL);
-  if (prompt == NULL)
-    prompt = setPrompt(L"-->");
-  if (token == WRT_PRT)
+    prompt = setPrompt(NULL);
+    if (prompt == NULL)
     {
-      printf("%ls", prompt);
-      fflush(stdout);
+        prompt = setPrompt(WSCIPROMPT);
     }
-  return (wcslen(prompt));
+    if (token == WRT_PRT)
+    {
+        printf(SCI_PRINT_WSTRING, prompt);
+        fflush(stdout);
+    }
+    return (wcslen(prompt));
 }

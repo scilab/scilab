@@ -20,82 +20,105 @@
 #include	"cap_func.h"
 #include	"goto_func.h"
 #include	"aff_prompt.h"
+#include	"charctl.h"
 
-static void	_set_cmd(t_list_cmd **cmd, int prompt_size)
+/* Add a character to a command line */
+int addChar(t_list_cmd ** cmd, int key)
 {
-  int		save_line;
+    int indexToMoveChar = 0;
+    int promptSize;
+    int saveLine;
 
-  save_line = (*cmd)->nbr_line;
-  (*cmd)->line++;
-  (*cmd)->nbr_line = 1 + ((*cmd)->line + prompt_size + 1) / tgetnum("co");
-  (*cmd)->cmd[(*cmd)->line] = L'\0';
-  (*cmd)->index++;
-}
-
-int		add_letter(t_list_cmd **cmd, int key)
-{
-  int		i_max_decr;
-  int		prompt_size;
-
-  prompt_size = getPrompt(NOWRT_PRT);
-  if (32 <= key)
+    promptSize = getPrompt(NOWRT_PRT);
+    if (' ' <= key)
     {
-      if ((*cmd)->line && !((*cmd)->line % 1023))
-        (*cmd)->cmd = realloc((*cmd)->cmd, (*(*cmd)->cmd) * (*cmd)->line + 1025);
-      i_max_decr = (*cmd)->line;
-      while (i_max_decr > (*cmd)->index)
-	{
-	  (*cmd)->cmd[i_max_decr] = (*cmd)->cmd[i_max_decr - 1];
-	  i_max_decr--;
-	}
-      (*cmd)->cmd[(*cmd)->index] = (wchar_t)key;
-      printf("%lc", (*cmd)->cmd[(*cmd)->index]);
-      _set_cmd(cmd, prompt_size);
-      i_max_decr++;
-      cap_str("sc");
-      printf("%ls", &(*cmd)->cmd[i_max_decr]);
-      fflush(stdout);
-      cap_str("rc");
-      if (!(((*cmd)->index + prompt_size) % tgetnum("co")))
-	cap_str("do");
+        if ((*cmd)->line && !((*cmd)->line % 1024))
+        {
+            (*cmd)->cmd = realloc((*cmd)->cmd, (*(*cmd)->cmd) * (*cmd)->line + 1024);
+        }
+        indexToMoveChar = (*cmd)->line;
+        /* move each character to the next place */
+        while (indexToMoveChar > (*cmd)->index)
+        {
+            (*cmd)->cmd[indexToMoveChar] = (*cmd)->cmd[indexToMoveChar - 1];
+            indexToMoveChar--;
+        }
+        /* Add the new character to the command line. */
+        (*cmd)->cmd[(*cmd)->index] = (wchar_t) key;
+        printf(SCI_PRINT_WCHAR, (*cmd)->cmd[(*cmd)->index]);
+        saveLine = (*cmd)->nbr_line;
+        (*cmd)->line++;
+        /*
+         * Nummber of line is equal to :
+         * the size of the command line plus the size of the prompt
+         * divided by the number of column in the window
+         * Plus one.
+         */
+        (*cmd)->nbr_line = 1 + ((*cmd)->line + promptSize + 1) / tgetnum("co");
+        (*cmd)->cmd[(*cmd)->line] = L'\0';
+        (*cmd)->index++;
+        indexToMoveChar++;
+        capStr("sc");
+        printf(SCI_PRINT_WSTRING, &(*cmd)->cmd[indexToMoveChar]);
+        fflush(stdout);
+        capStr("rc");
+        if (!(((*cmd)->index + promptSize) % tgetnum("co")))
+        {
+            capStr("do");
+        }
     }
-  return (key);
+    return (key);
 }
 
-int		rm_letter(t_list_cmd **cmd, int key)
+/* Delete a character in the command line */
+int rmChar(t_list_cmd ** cmd, int key)
 {
-  int		i_incr;
-  int		prompt_size;
+    int indexToMoveChar;
+    int promptSize;
 
-  prompt_size = getPrompt(NOWRT_PRT);
-  if (((*cmd)->index && key == SHRD_BACKSPACE)
-      || (((*cmd)->line != (*cmd)->index) && key == SHRD_DELETE))
+    promptSize = getPrompt(NOWRT_PRT);
+/*
+ * Case Backspace is pressed -> cursor must not be at the beginning of the command line
+ * Case Delete is pressed -> cursor must not be at the end of line
+ */
+    if (((*cmd)->index && key == SCI_BACKSPACE) || (((*cmd)->line != (*cmd)->index) && key == SCI_DELETE))
     {
-      if (key == SHRD_BACKSPACE)
-	goto_left(cmd, key);
-      i_incr = (*cmd)->index;
-      cap_str("sc");
-      while (i_incr < (*cmd)->line)
-	{
-	  (*cmd)->cmd[i_incr] = (*cmd)->cmd[i_incr + 1];
-	  printf("%lc", (*cmd)->cmd[i_incr]);
-	  i_incr++;
-	}
-      fflush(stdout);
-      (*cmd)->cmd[i_incr] = L'\0';
-      (*cmd)->line--;
-      (*cmd)->nbr_line = 1 + ((*cmd)->line + prompt_size) / tgetnum("co");
-      putchar(' ');
-      cap_str("rc");
+        if (key == SCI_BACKSPACE)
+        {
+            gotoLeft(cmd, key);
+        }
+        indexToMoveChar = (*cmd)->index;
+        capStr("sc");
+        while (indexToMoveChar < (*cmd)->line)
+        {
+            /* move each character to the previous place and print it */
+            (*cmd)->cmd[indexToMoveChar] = (*cmd)->cmd[indexToMoveChar + 1];
+            printf(SCI_PRINT_WCHAR, (*cmd)->cmd[indexToMoveChar]);
+            indexToMoveChar++;
+        }
+        fflush(stdout);
+        (*cmd)->cmd[indexToMoveChar] = L'\0';
+        (*cmd)->line--;
+        /*
+         * Number of line is equal to :
+         * the size of the command line plus the size of the prompt
+         * divided by the number of column in the window
+         * Plus one.
+         */
+        (*cmd)->nbr_line = 1 + ((*cmd)->line + promptSize) / tgetnum("co");
+        putchar(' ');
+        capStr("rc");
     }
-  key = 0;
-  return (key);
+    key = 0;
+    return (key);
 }
 
-int		delete_line_from_curs(t_list_cmd **cmd, int key)
+/* Delete all characters from cursor to the end. */
+int deleteLineFromCurs(t_list_cmd ** cmd, int key)
 {
-  while ((*cmd)->cmd[(*cmd)->index])
-    rm_letter(cmd, SHRD_DELETE);
-  key = 0;
-  return (key);
+    /* The character at the cursor is '\0' mean this is the last */
+    while ((*cmd)->cmd[(*cmd)->index])
+        rmChar(cmd, SCI_DELETE);
+    key = 0;
+    return (key);
 }

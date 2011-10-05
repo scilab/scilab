@@ -13,31 +13,17 @@
 #include		<stdlib.h>
 #include		<wchar.h>
 #include		<wctype.h>
+#include                "MALLOC.h"
 
-wchar_t			*catstr(wchar_t *wcs1, wchar_t *wcs2)
+/* Concatenate 2 wide char string then return it */
+wchar_t *catStr(wchar_t * _wcs1, wchar_t * _wcs2)
 {
-  wchar_t		*wcs;
-  int			i;
-  int			n;
+    wchar_t *catWcs = NULL;
+    int sizeOfCatWcs = (1 + wcslen(_wcs1) + wcslen(_wcs2));
 
-  wcs = malloc(sizeof(*wcs) * (1 + wcslen(wcs1) + wcslen(wcs2)));
-  if (wcs == NULL)
-    exit(EXIT_FAILURE);
-  n = 0;
-  i = 0;
-  while (wcs1[i])
-    {
-      wcs[n] = wcs1[i];
-      i++;
-      n++;
-    }
-  i = 0;
-  while (wcs2[i])
-    {
-      wcs[n] = wcs2[i];
-      i++;
-      n++;
-    }
-  wcs[n] = '\0';
-  return (wcs);
+    catWcs = MALLOC(sizeof(*catWcs) * sizeOfCatWcs);
+    catWcs = wcscpy(catWcs, _wcs1);
+    catWcs = wcscat(catWcs, _wcs2);
+    catWcs[sizeOfCatWcs] = L'\0';
+    return (catWcs);
 }
