@@ -720,33 +720,33 @@
             f = 0.5 * norm(x - xref)^2;
             g = x - xref;
             endfunction
-            
+
             // Simplest call
             x0 = [1; -1; 1];
             [fopt, xopt] = optim(cost, x0)
-            
+
             // Use "gc" algorithm
             [fopt, xopt, gopt] = optim(cost, x0, "gc")
-            
+
             // Use "nd" algorithm
             [fopt, xopt, gopt] = optim(cost, x0, "nd")
-            
+
             // Upper and lower bounds on x
             [fopt, xopt, gopt] = optim(cost, "b", [-1;0;2], [0.5;1;4], x0)
-            
+
             // Upper and lower bounds on x and setting up the algorithm to "gc"
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
-            
+
             // Bound on the number of calls to the objective function
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
-            
+
             // Set max number of calls to the objective function (3)
             // Set max number of iterations (100)
             // Set stopping threshold on the value of f (1e-6),
             // on the value of the norm of the gradient of the objective function (1e-6)
             // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
-            
+
             // Additional messages are printed in the console.
             [fopt, xopt] = optim(cost, x0, imp = 3)
         </programlisting>
@@ -773,7 +773,7 @@
             mprintf("f(x) = %s, |g(x)|=%s\n", string(f), string(norm(g)))
             end
             endfunction
-            
+
             x0 = [1; -1; 1];
             [fopt, xopt] = optim(cost, x0, imp = -1)
         </programlisting>
@@ -803,14 +803,14 @@
             g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
             g(2) = 200. * ( x(2) - x(1)**2 )
             endfunction
-            
+
             // 2. Define rosenbrock for contouring
             function f = rosenbrockC ( x1 , x2 )
             x = [x1 x2]
             ind = 4
             [ f , g , ind ] = rosenbrock ( x , ind )
             endfunction
-            
+
             // 3. Define Rosenbrock for plotting
             function [ f , g , ind ] = rosenbrockPlot ( x , ind )
             [ f , g , ind ] = rosenbrock ( x , ind )
@@ -818,7 +818,7 @@
             plot ( x(1) , x(2) , "g." )
             end
             endfunction
-            
+
             // 4. Draw the contour of Rosenbrock's function
             x0 = [-1.2 1.0];
             xopt = [1.0 1.0];
@@ -827,7 +827,7 @@
             contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
             plot(x0(1) , x0(2) , "b.")
             plot(xopt(1) , xopt(2) , "r*")
-            
+
             // 5. Plot the optimization process, during optimization
             [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
         </programlisting>
@@ -837,20 +837,20 @@
             g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
             g(2) = 200. * ( x(2) - x(1)**2 )
             endfunction
-            
+
             function f=rosenbrockC(x1, x2)
             x = [x1 x2]
             ind = 4
             [ f , g , ind ] = rosenbrock ( x , ind )
             endfunction
-            
+
             function [f, g, ind]=rosenbrockPlot(x, ind)
             [ f , g , ind ] = rosenbrock ( x , ind )
             if (ind == 1) then
             plot ( x(1) , x(2) , "g." )
             end
             endfunction
-            
+
             x0 = [-1.2 1.0];
             xopt = [1.0 1.0];
             xdata = linspace(-2,2,100);
@@ -860,47 +860,30 @@
             plot(xopt(1) , xopt(2) , "r*")
             [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Example: Optimizing with numerical derivatives</title>
         <para>It is possible to optimize a problem without an explicit knowledge
             of the derivative of the cost function. For this purpose, we can use the
-            numdiff or derivative function to compute a numerical derivative of the
+            <literal>numderivative</literal> function to compute a numerical derivative of the
             cost function.
         </para>
-        <para>In the following example, we use the numdiff function to solve
+        <para>In the following example, we use the <literal>numderivative</literal> function to solve
             Rosenbrock's problem.
         </para>
         <programlisting role="example">function f = rosenbrock ( x )
             f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
             endfunction
-            
+
             function [ f , g , ind ] = rosenbrockCost ( x , ind )
             f = rosenbrock ( x );
-            g= numdiff ( rosenbrock , x );
+            g = numderivative ( rosenbrock , x );
             endfunction
-            
+
             x0 = [-1.2 1.0];
-            
+
             [ fopt , xopt ] = optim ( rosenbrockCost , x0 )
-        </programlisting>
-        <para>In the following example, we use the derivative function to solve
-            Rosenbrock's problem. Given that the step computation strategy is not the
-            same in numdiff and derivative, this might lead to improved
-            results.
-        </para>
-        <programlisting role="example">function f = rosenbrock ( x )
-            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-            endfunction
-            
-            function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
-            f = rosenbrock ( x );
-            g = derivative ( rosenbrock , x.' , order = 4 );
-            endfunction
-            
-            x0 = [-1.2 1.0];
-            [fopt , xopt] = optim ( rosenbrockCost2 , x0 )
         </programlisting>
     </refsection>
     <refsection>
@@ -973,7 +956,7 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             g(1) = 2 * a * ( x(1) - c )
             g(2) = 2 * b * ( x(2) - d )
             endfunction
-            
+
             x0 = [1 1];
             a = 1.0;
             b = 2.0;
@@ -1001,7 +984,7 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             g(1) = 2 * a * ( x(1) - c )
             g(2) = 2 * b * ( x(2) - d )
             endfunction
-            
+
             x0 = [1 1];
             a = 1.0;
             b = 2.0;
@@ -1015,7 +998,7 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             "c"
             "d"
             ]);
-            
+
             parameters.a = a;
             parameters.b = b;
             parameters.c = c;
@@ -1083,11 +1066,11 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
         </para>
         <para>In the following example, we give a false implementation of
             Rosenbrock's gradient. In order to check the computation of the
-            derivatives, we use the <literal>derivative</literal> function. We define
+            derivatives, we use the <literal>numderivative</literal> function. We define
             the <literal>simplified</literal> function, which delegates the
             computation of <literal>f</literal> to the rosenbrock function. The
             <literal>simplified</literal> function is passed as an input argument of
-            the <literal>derivative</literal> function.
+            the <literal>numderivative</literal> function.
         </para>
         <programlisting role="example">function [ f , g , index ] = rosenbrock ( x , index )
             f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -1097,16 +1080,16 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             g(1) = - 1200. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
             g(2) = 200. * ( x(2) - x(1)**2 )
             endfunction
-            
+
             function f = simplified ( x )
             index = 1;
             [ f , g , index ] = rosenbrock ( x , index )
             endfunction
-            
+
             x0 = [-1.2 1];
             index = 1;
             [ f , g , index ] = rosenbrock ( x0 , index );
-            gnd = derivative ( simplified , x0.' );
+            gnd = numderivative ( simplified , x0.' );
             mprintf("Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
             mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));
         </programlisting>
@@ -1156,13 +1139,13 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             '}'];
             cd TMPDIR;
             mputl(C, TMPDIR+'/rosenc.c')
-            
+
             // compile the C code
             l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');
-            
+
             // incremental linking
             link(l, 'rosenc', 'c')
-            
+
             //solve the problem
             x0 = [40; 10; 50];
             p = 100;
@@ -1201,13 +1184,13 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             '      end'];
             cd TMPDIR;
             mputl(F, TMPDIR+'/rosenf.f')
-            
+
             // compile the Fortran code
             l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
-            
+
             // incremental linking
             link(l, 'rosenf', 'f')
-            
+
             //solve the problem
             x0 = [40; 10; 50];
             p = 100;
@@ -1288,13 +1271,13 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             '      end'];
             cd TMPDIR;
             mputl(fortransource, TMPDIR + '/rosenf.f')
-            
+
             // compile the C code
             libpath = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
-            
+
             // incremental linking
             linkid = link(libpath, 'rosenf', 'f');
-            
+
             x0 = 1.2 * ones(1, 5);
             //
             // Solve the problem
@@ -1413,23 +1396,23 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             x0 = 0.12 * bs;
             epsx = 1.e-15 * x0;
             xopt = .1*bs;
-            
+
             // 'ti' and 'td' always at the end of the output sequence
             [f, x, ti, td]                           = optim('rosenf', x0, 'in', 'si', 'sd')
             [f, x, g, ti, td]                        = optim('rosenf', x0, 'in', 'si', 'sd')
             [f, x, g, w, ti, td]                     = optim('rosenf', x0, 'in', 'si', 'sd')
             [f, x, g, w, niter, nevals, ti, td]      = optim('rosenf', x0, 'in', 'si', 'sd')
             [f, x, g, w, niter, nevals, err, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
-            
+
             // With input argument 'in', ti and td will be initialized by rosenf function.
             [f, x, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
             // Reuses the last ti and td for the next call and return it again.
             [f, x, ti, td] = optim('rosenf', x0, 'ti', ti, 'td', td, 'si', 'sd')
-            
+
             // Initializes ti and td but return only ti
             [f, x, ti] = optim('rosenf', x0, 'in', 'si')
             [f, x, ti] = optim('rosenf', x0, 'ti', ti, 'si')
-            
+
             // Initializes ti and td but return only td
             [f, x, td] = optim('rosenf', x0, 'in', 'sd')
             [f, x, td] = optim('rosenf', x0, 'td', td, 'sd')
@@ -1451,10 +1434,7 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
                 <link linkend="leastsq">leastsq</link>
             </member>
             <member>
-                <link linkend="numdiff">numdiff</link>
-            </member>
-            <member>
-                <link linkend="derivative">derivative</link>
+                <link linkend="numderivative">numderivative</link>
             </member>
             <member>
                 <link linkend="NDcost">NDcost</link>

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 3770 -->
 //
 // <-- Bugzilla URL -->
@@ -24,7 +25,7 @@ function [y]=objf4(x)
      -11.d0)^2+10.d0*x(5)^6+7.d0*x(6)^2+x(7)^4-4.d0*x(6) ...
      *x(7)-10.d0*x(6)-8.d0*x(7);
 endfunction
-// =============================================================================
+// ============================================================================= 
 function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
   n = length(x);
   x = max(x,lb);
@@ -33,9 +34,9 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
   fx = objf(x);
   g = numdiff(objf,x)';
   H = eye(n,n);
-  if (ni > 0) then
+  if (ni > 0) then 
     ci = cif(x)
-    if (length(ci) ~= ni) then
+    if (length(ci) ~= ni) then 
       error('Ci pas de longueur ni')
     end
     A = numdiff(cif,x)
@@ -53,7 +54,7 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
   logic_t2 = and(ci >= -tol);
   logic_t3 = and(lambda >=0);
   t4 = norm(lambda .*ci);
-  if( logic_t2 & logic_t3 & max(t0,t4) < tol) then
+  if( logic_t2 & logic_t3 & max(t0,t4) < tol) then 
     break
   end
   eta = 0.25;
@@ -62,7 +63,7 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
     dinf = lb-x;
     dsup = ub-x;
     [d,lambda_qp,info_qp]=qld(H,g,-A,ci,dinf,dsup,0,tol);
-    if (info_qp ~=0) then
+    if (info_qp ~=0) then 
       info = 1000 + info_qp;
       break
     end
@@ -78,15 +79,15 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
       cia_new = ci_new(ci_new < -tol);
       phi_new = obj_new + norm(cia_new,1)/mu;
       phi_armijo = phi + eta*alpha*D_phi;
-      if (phi_new <= phi_armijo) then
+      if (phi_new <= phi_armijo) then 
         break
       else
         alpha = 0.45*alpha;
     end
   end
   lambda = lambda + alpha*(lambda_qp(1:ni) - lambda);
-  g_new = numdiff(objf,x_new)';
-  if(ni>0) then
+  g_new = numdiff(objf,x_new)'; 
+  if(ni>0) then 
     A_new = numdiff(cif,x_new);
   else
     A_new = [];
@@ -99,7 +100,7 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
     break
   end
   y = g_new - g;
-  if(~isempty(A)) then
+  if(~isempty(A)) then 
     t = ((A_new-A)'*lambda);
     y = y - t;
   end
@@ -118,7 +119,7 @@ function [x,fx,ci,lambda,info,iter]=sqp(x,objf,cif,lb,ub,ni,maxiter,tol)
   end
   r = theta*y + (1-theta)*H*delx;
   d2 = delx'*r;
-  if (d1==0 | d2 ==0) then
+  if (d1==0 | d2 ==0) then 
     info = 102;
     break
   end
@@ -143,6 +144,70 @@ maxit = 20;
 tol = 1e-3;
 // =============================================================================
 [x,fx,ci,lambda_qp,info,iter]=sqp(x,objf4,cif4,lb,ub,ni,maxit,tol);
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
+
 if size(x) <> [7 1] then bugmes();quit;end
 if size(fx) <> [1 1] then bugmes();quit;end
 if size(ci) <> [4 1] then bugmes();quit;end

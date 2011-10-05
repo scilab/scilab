@@ -12,9 +12,9 @@ function [f, g, ind] = NDcost(x, ind, fun, varargin)
     // Computes the gradient of 'fun' at 'x' using code differentiation
     if argn(2) < 4 then
         f = fun(x);
-        g = derivative(fun, x);
+        g = numderivative(fun, x);
     else
         f = fun(x, varargin(:));
-        g = derivative(list(fun, varargin(:)), x);
+        g = numderivative(list(fun, varargin(:)), x);
     end
 endfunction

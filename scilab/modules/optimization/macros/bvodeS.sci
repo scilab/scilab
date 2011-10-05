@@ -129,7 +129,7 @@ endfunction
 
 function J=%dfsub(x,z)
     sz=size(z);if sz(1)==1, z=z'; end
-    J=derivative(list(%fsubT,x),z)
+    J=numderivative(list(%fsubT,x),z)
 endfunction
 
 function J=%dfsub1(x,z)
@@ -146,7 +146,7 @@ endfunction
 
 function dg=%dgsub(i,z)
     sz=size(z);if sz(1)==1, z=z'; end
-    dg=derivative(list(%gsubT,i),z)
+    dg=numderivative(list(%gsubT,i),z)
 endfunction
 
 function dg=%dgsub1(i,z)

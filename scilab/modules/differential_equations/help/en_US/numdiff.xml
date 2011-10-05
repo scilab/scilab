@@ -25,7 +25,8 @@
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>an external, Scilab function or list. See below for calling
+                    <para>
+                        an external, Scilab function or list. See below for calling
                         sequence, see also <link linkend="external">external</link> for
                         details about external functions.
                         f: R<superscript>n</superscript> --> R<superscript>p</superscript>
@@ -43,7 +44,8 @@
             <varlistentry>
                 <term>dx</term>
                 <listitem>
-                    <para>a vector, the finite difference step. Default value is
+                    <para>
+                        a vector, the finite difference step. Default value is
                         <code>dx = sqrt(%eps)*(1+1d-3*abs(x))</code>.
                     </para>
                 </listitem>
@@ -65,10 +67,13 @@
             R<superscript>n</superscript> to R<superscript>p</superscript> computes the <code>p x n</code> matrix
             <varname>g</varname> such that
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <programlisting role="no-scilab-exec">
+            <![CDATA[
 g(i,j) = [(df_i)/(dx_j)](x)
- ]]></programlisting>
-        <para>using finite difference methods.
+ ]]>
+        </programlisting>
+        <para>
+            using finite difference methods.
             Uses an order 1 formula.
         </para>
         <para>
@@ -81,14 +86,15 @@ g(i,j) = [(df_i)/(dx_j)](x)
             <literal>g = numdiff(list(fun, param_1, param_2, ..., param_q), x)</literal>.
         </para>
         <para>
-            See the 
-            <link linkend="derivative">derivative</link> with respect to numerical accuracy 
+            See the
+            <link linkend="derivative">derivative</link> with respect to numerical accuracy
             issues and comparison between the two algorithms.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example">
+            <![CDATA[
 // Example 1 (without parameters)
 // myfun is a function from R^2 to R: (x(1), x(2)) |--> myfun(x)
 function f = myfun(x)
@@ -135,7 +141,67 @@ g = numdiff(myfun, x)
 //    df_3/dx_1  df_3/dx_2  df_3/dx_3 ; ]
 exact3 = [2*x(1) 0 0  ;  x(2)*x(3) x(1)*x(3) x(1)*x(2)  ;  2 2 2]
 
- ]]></programlisting>
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <para>
+            Starting from Scilab 5.5.0, the <literal>numdiff</literal> function is
+            obsolete. It will be removed in Scilab 6.0.0.
+            Please use the <literal>numderivative</literal> function instead.
+        </para>
+        <para>
+            We now discuss how a script using the <literal>numdiff</literal> function can be
+            updated to use the <literal>numderivative</literal> function.
+        </para>
+        <para>
+            Consider the function:
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+function f = myfun(x)
+  f = x(1)*x(1)+x(1)*x(2)
+endfunction
+]]>
+        </programlisting>
+        <para>
+            and the point:
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+x = [5 8]
+]]>
+        </programlisting>
+        <para>
+            Therefore, the statement:
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+g1 = numdiff(myfun, x)
+]]>
+        </programlisting>
+        <para>
+            can be replaced with
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+g2 = numderivative(myfun, x)
+]]>
+        </programlisting>
+        <para>
+            If having exactly the same step is important, we force the step to the same value as in
+            <literal>numdiff</literal>:
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+x = [5 8];
+h = sqrt(%eps)*(1+1d-3*abs(x))
+g1 = numdiff(myfun, x)
+g2 = numderivative(myfun, x, h)
+g1 == g2
+]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -160,6 +226,9 @@ exact3 = [2*x(1) 0 0  ;  x(2)*x(3) x(1)*x(3) x(1)*x(2)  ;  2 2 2]
             </member>
             <member>
                 <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="numderivative">numderivative</link>
             </member>
             <member>
                 <link linkend="external">external</link>

@@ -90,8 +90,8 @@ SEP #090: New function to access to numerical data in HDF5 files
 SEP #091: New function daskr
 SEP #092: New special functions
 SEP #093: New function cov
-SEP #095: New functions: ismatrix, isrow,iscolumn and issquare.
-SEP #096: cross function.
+SEP #095: New functions: ismatrix, isrow, iscolumn and issquare
+SEP #096: cross function
 SEP #097: New argument added at strtod function (decimalseparator)
 SEP #098: New output argument for qp_solve function
 SEP #099: Matrices of strings as input argument for clear
@@ -125,3 +125,4 @@ SEP #126: New function unwrap
 SEP #127: jmat tagged as obsolete. New input argument to flipdim to replace jmat.
 SEP #128: nanreglin.
 SEP #129: HTLM parsing functions.
+SEP #129: Replace obsolete numdiff and derivative with new function numderivative.

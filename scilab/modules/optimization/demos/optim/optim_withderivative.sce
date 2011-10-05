@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -24,7 +25,7 @@ function demo_derivative()
         end
 
         if ((ind == 1) | (ind == 4)) then
-            g = derivative ( rosenbrock , x.' , order = 4 );
+            g = numderivative ( rosenbrock , x.' , order = 4 );
         end
 
     endfunction
@@ -52,10 +53,3 @@ endfunction
 
 demo_derivative();
 clear demo_derivative;
-
-
-
-
-
-
-
