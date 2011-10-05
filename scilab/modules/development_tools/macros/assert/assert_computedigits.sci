@@ -21,11 +21,11 @@ function d = assert_computedigits ( varargin )
   //
   // Check types of variables
   if ( typeof(computed) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_computedigits" , 1 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_computedigits" , 1 )
     error(errmsg)
   end
   if ( typeof(expected) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_computedigits" , 2 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_computedigits" , 2 )
     error(errmsg)
   end
   //

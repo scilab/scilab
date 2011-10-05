@@ -33,7 +33,7 @@ function y = f(x)
     error(errmsg)
   end
   if ( typeof(x) <> "constant" ) then
-    lstr=gettext("%s: Wrong type for argument %d: Matrix expected.\n")
+    lstr=gettext("%s: Wrong type for input argument #%d: Matrix expected.\n")
     errmsg = sprintf ( lstr , "f" , 1 )
     error(errmsg,123456789)
   end
@@ -56,7 +56,7 @@ instr = "f(""aa"")";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 123456789 );
 lerr = lasterror();
-ferrmsg = msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"f",1);
+ferrmsg = msprintf(gettext("%s: Wrong type for input argument #%d: Matrix expected.\n"),"f",1);
 MY_assert_equal ( lerr , ferrmsg );
 //
 ///////////////////////////////////////////////
@@ -82,21 +82,21 @@ instr = "assert_checkerror ( 1 , """" )";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 lerr = lasterror();
-MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkerror" , 1 ) );
+MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 1 ) );
 //
 // Check error message when type of 2nd argument of assert_checkerror is false
 instr = "assert_checkerror ( """" , 1 )";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 lerr = lasterror();
-MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkerror" , 2 ) );
+MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 2 ) );
 //
 // Check error message when type of 3d argument of assert_checkerror is false
 instr = "assert_checkerror ( """" , """" , """" )";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 lerr = lasterror();
-MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkerror" , 3 ) );
+MY_assert_equal ( lerr , sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkerror" , 3 ) );
 //
 // Check error message when size of 1st argument of assert_checkerror is false
 instr = "assert_checkerror ( ["""" """"], """" )";
@@ -153,7 +153,7 @@ MY_assert_equal ( lerr , sprintf( gettext ( "%s: Error while formatting the erro
 // Typical use-cases : the test pass
 //
 msg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"f",1);
-msg2=msprintf(gettext("%s: Wrong type for argument %d: Matrix expected.\n"),"f",1);
+msg2=msprintf(gettext("%s: Wrong type for input argument #%d: Matrix expected.\n"),"f",1);
 assert_checkerror ( "y=f()"      , msg1 );
 assert_checkerror ( "y=f(""a"")" , msg2 );
 assert_checkerror ( "y=f()"      , msg1                  , 10000 );
@@ -184,7 +184,7 @@ MY_assert_equal ( errmsg , "" );
 //
 // Let assert_checkerror localize the message
 lcl1="%s: Wrong number of input argument: %d expected.\n";
-lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
+lcl2="%s: Wrong type for input argument #%d: Matrix expected.\n";
 assert_checkerror ( "y=f()"      , lcl1 , [] , "f" , 1);
 assert_checkerror ( "y=f(""a"")" , lcl2 , [] , "f" , 1);
 //

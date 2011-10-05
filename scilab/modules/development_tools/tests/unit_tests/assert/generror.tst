@@ -35,7 +35,7 @@ instr = "assert_generror ( 12 )";
 ierr=execstr(instr,"errcatch");
 lerr = lasterror();
 MY_assert_equal ( ierr , 10000 );
-refmsg = msprintf( gettext( "%s: Wrong type for argument %d: Matrix of strings expected.\n" ) , "assert_generror" , 1 );
+refmsg = msprintf( gettext( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n" ) , "assert_generror" , 1 );
 MY_assert_equal ( lerr , refmsg );
 //
 instr = "assert_generror ( )";
