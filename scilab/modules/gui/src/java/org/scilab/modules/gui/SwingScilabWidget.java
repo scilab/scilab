@@ -120,6 +120,7 @@ public final class SwingScilabWidget {
 
             uiControl.setFont(font);
         } else if (property.equals(__GO_UI_FONTSIZE__)) {
+            // TODO Manage FontUnits property for conversion
             Font font = uiControl.getFont();
             int size = ((Double) value).intValue();
 
@@ -155,6 +156,9 @@ public final class SwingScilabWidget {
         } else if (property.equals(__GO_UI_HORIZONTALALIGNMENT__)) {
             uiControl.setHorizontalAlignment((String) value);
         } else if (property.equals(__GO_UI_LISTBOXTOP__)) {
+            if (uiControl instanceof SwingScilabListBox) {
+                ((SwingScilabListBox) uiControl).setListBoxTop(((Double) value).intValue());
+            }
         } else if (property.equals(__GO_UI_MAX__)) {
         } else if (property.equals(__GO_UI_MIN__)) {
         } else if (property.equals(__GO_POSITION__)) {
