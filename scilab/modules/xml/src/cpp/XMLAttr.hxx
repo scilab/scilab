@@ -14,7 +14,7 @@
 #define __XMLATTR_HXX__
 
 #include <string>
-
+#include "dynlib_xml_scilab.h"
 #include "xml.h"
 
 namespace org_modules_xml
@@ -22,7 +22,7 @@ namespace org_modules_xml
     class XMLElement;
     class XMLObject;
 
-    class XMLAttr:public XMLObject
+    class XML_SCILAB_IMPEXP XMLAttr : public XMLObject
     {
         const XMLElement & elem;
 
@@ -147,6 +147,11 @@ public:
          * @param size the number of names
          */
         static void setAttributeValue(xmlNode * node, const char **prefix, const char **name, const char **value, int size);
+
+        /**
+         * @return the names of the attributes
+         */
+        const char ** getNames() const;
 
         /**
          * Gets the element associated with this object

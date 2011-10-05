@@ -27,6 +27,10 @@ src/c/getCommonPart.c \
 src/c/completeLine.c \
 src/c/completeLine_wrap_java.c
 
+COMPLETION_CPP_SOURCES = src/cpp/FieldsManager.cpp \
+                         src/cpp/XMLFieldsGetter.cpp \
+                         src/cpp/getfields.cpp
+
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
 sci_gateway/c/gw_completion.c
@@ -42,6 +46,17 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
+libscicompletion_la_CPPFLAGS = -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/xml/includes \
+    -I$(top_srcdir)/modules/xml/src/cpp \
+    $(XML_FLAGS) \
+    $(COMPLETION_FLAGS)
+
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
@@ -50,9 +65,10 @@ noinst_LTLIBRARIES = libscicompletion-algo.la
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
-libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES)
+libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(COMPLETION_CPP_SOURCES)
 libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
+libscicompletion_algo_la_CPPFLAGS = $(libscicompletion_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
