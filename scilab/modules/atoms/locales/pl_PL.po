@@ -646,11 +646,11 @@ msgid "%s: Error: Createfile.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Error: Invalid File size\n"
+msgid "%s: Error: Invalid File size.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Error: Internet Read file\n"
+msgid "%s: Error: Internet Read file.\n"
 msgstr ""
 
 #, c-format

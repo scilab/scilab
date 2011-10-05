@@ -1194,13 +1194,13 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 196
 #, c-format
-msgid "%s: Error: Invalid File size\n"
+msgid "%s: Error: Invalid File size.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 197
 #, c-format
-msgid "%s: Error: Internet Read file\n"
+msgid "%s: Error: Internet Read file.\n"
 msgstr ""
 
 #
