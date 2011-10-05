@@ -176,16 +176,18 @@ namespace types
         pContext->put(symbol::Symbol(L"nargin"), *new Double(static_cast<double>(in.size())));
         pContext->put(symbol::Symbol(L"nargout"), *new Double(static_cast<double>(_iRetCount)));
 
+        //save current prompt mode
+        int oldVal = ConfigVariable::getPromptMode();
         try
         {
             //m_body->mute();
             //MuteVisitor mute;
             //m_body->accept(mute);
 
-            int oldVal = ConfigVariable::getPromptMode();
             ConfigVariable::setPromptMode(-1);
             m_body->returnable_set();
             m_body->accept(*execFunc);
+            //restore previous prompt mode
             ConfigVariable::setPromptMode(oldVal);
             if(m_body->is_return())
             {
@@ -243,6 +245,8 @@ namespace types
         }
         catch(ast::ScilabMessage se)
         {
+            //restore previous prompt mode
+            ConfigVariable::setPromptMode(oldVal);
             //close the current scope
             pContext->scope_end();
             for (int j = 0; j < out.size(); ++j)
@@ -253,7 +257,9 @@ namespace types
         }
         catch(ast::InternalAbort sa)
         {
-           //close the current scope
+            //restore previous prompt mode
+            ConfigVariable::setPromptMode(oldVal);
+            //close the current scope
             pContext->scope_end();
             for (int j = 0; j < out.size(); ++j)
             {
