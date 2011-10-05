@@ -519,7 +519,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
                     if (fac3d.getHiddenColor() > 0) {
-                        return FaceCullingMode.CCW;
+                        return axesDrawer.getFrontFaceCullingMode();
                     }
                     else {
                         return FaceCullingMode.BOTH;
@@ -561,7 +561,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.CW;
+                    return axesDrawer.getBackFaceCullingMode();
                 }
             };
 
@@ -685,7 +685,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
                     if (plot3d.getHiddenColor() > 0) {
-                        return FaceCullingMode.CCW;
+                        return axesDrawer.getFrontFaceCullingMode();
                     }
                     else {
                         return FaceCullingMode.BOTH;
@@ -727,7 +727,7 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
 
                 @Override
                 public FaceCullingMode getFaceCullingMode() {
-                    return FaceCullingMode.CW;
+                    return axesDrawer.getBackFaceCullingMode();
                 }
             };
 

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.geometry.Geometry.FaceCullingMode;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -43,6 +45,12 @@ public class AxesDrawer {
     private final Geometries geometries;
 
     private final AxesRulerDrawer rulerDrawer;
+
+    /** The front face culling mode. */
+    private FaceCullingMode frontFaceCullingMode;
+
+    /** The back face culling mode. */
+    private FaceCullingMode backFaceCullingMode;
 
     /**
      * Default constructor.
@@ -120,6 +128,9 @@ public class AxesDrawer {
             plane.setTransformation(drawingTools.getTransformationManager().getTransformation());
             plane.setEnable(true);
         }
+
+        /* Compute the front and back culling modes */
+        computeFaceCullingModes(axes);
 
         visitor.askAcceptVisitor(axes.getChildren());
         modelViewStack.pop();
@@ -349,6 +360,40 @@ public class AxesDrawer {
         transformation = transformation.leftTimes(isoScale);
 
         return transformation;
+    }
+
+    /**
+     * Computes the culling modes respectively corresponding to front and back faces
+     * of the given Axes' child objects as a function of its {X,Y,Z} reverse properties.
+     * It must be called by draw prior to rendering any child object.
+     * @param axes the given {@see Axes}.
+     */
+    private void computeFaceCullingModes(Axes axes) {
+        if (axes.getAxes()[0].getReverse() ^ axes.getAxes()[1].getReverse() ^ axes.getAxes()[2].getReverse()) {
+            /* Front: CW */
+            this.frontFaceCullingMode = FaceCullingMode.CW;
+            this.backFaceCullingMode = FaceCullingMode.CCW;
+        } else {
+            /* Front: CCW */
+            this.frontFaceCullingMode = FaceCullingMode.CCW;
+            this.backFaceCullingMode = FaceCullingMode.CW;
+        }
+    }
+
+    /**
+     * Returns the culling mode corresponding to front faces.
+     * @return the front face culling mode.
+     */
+    public FaceCullingMode getFrontFaceCullingMode() {
+        return this.frontFaceCullingMode;
+    }
+
+    /**
+     * Returns the culling mode corresponding to back faces.
+     * @return the back face culling mode.
+     */
+    public FaceCullingMode getBackFaceCullingMode() {
+        return this.backFaceCullingMode;
     }
 
     public void disposeAll() {
