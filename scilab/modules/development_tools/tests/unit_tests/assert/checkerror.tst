@@ -236,9 +236,10 @@ instr = "assert_checkerror ( ""y=f()"" , "+sci2exp(msg1)+" , 12 )";
 ierr = execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 lerr = lasterror();
-MY_assert_equal ( lerr , "assert_checkerror: Assertion failed: expected error number = 12 while computed error number = 10000." );
+refmsg = msprintf( gettext( "%s: Assertion failed: expected error number = %d while computed error number = %d." ) , "assert_checkerror" , 12 , 10000 );
+MY_assert_equal ( lerr , refmsg );
 //
 [flag,errmsg]=assert_checkerror ( "y=f()" , msg1 , 12 );
 MY_assert_equal ( flag , %f );
-MY_assert_equal ( errmsg , "assert_checkerror: Assertion failed: expected error number = 12 while computed error number = 10000." );
+MY_assert_equal ( errmsg , refmsg );
 
