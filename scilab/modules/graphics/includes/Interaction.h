@@ -3,6 +3,7 @@
  * Copyright (C) 2001 - 2002 - INRIA - Mathieu Philipe
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -45,7 +46,7 @@ GRAPHICS_IMPEXP int sciSetCallbackMouseEvent (sciPointObj * pthis, int mevent); 
 GRAPHICS_IMPEXP char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
 GRAPHICS_IMPEXP int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
-GRAPHICS_IMPEXP int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
+GRAPHICS_IMPEXP int Objmove(char* pobjUID, double d[], int m, BOOL opt); /* INTERACTION */
 
 /**
  * Call rubber box on a figure in pixels

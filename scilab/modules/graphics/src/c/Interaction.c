@@ -32,8 +32,13 @@
 #include "math_graphics.h"
 #include "HandleManagement.h"
 
+#include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+
+
 /*-------------------------------------------------------------------------------------*/
-static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);
+static int moveObj(char* pobjUID, double displacement[], int displacementSize);
 /*-------------------------------------------------------------------------------------*/
 
 /**sciAddCallback
@@ -398,13 +403,94 @@ sciDelCallback (sciPointObj * pthis)
 /* move a handle in the graphic window                                                             */
 /*----------------------------------------------------------------------------------------*/
 
-static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize)
+static int moveObj(char* pobjUID, double displacement[], int displacementSize)
 {
-  int i,n;
-  double x = displacement[0];
-  double y = displacement[1];
-  double z = (displacementSize == 3? displacement[2] : 0.0);
+    int i,n;
+    double x = displacement[0];
+    double y = displacement[1];
+    double z = (displacementSize == 3? displacement[2] : 0.0);
 
+    int iNum;
+    int *piNum = &iNum;
+    double* pdblData;
+    char* pstType;
+
+    int iChildrenCount = 0;
+    int *piChildrenCount = &iChildrenCount;
+    char **pstChildrenUID;
+
+    // Iterate on children.
+    getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, &piChildrenCount);
+
+    if (iChildrenCount != 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_CHILDREN__, jni_string_vector, &pstChildrenUID);
+        for (i = 0 ; i < iChildrenCount ; ++i)
+        {
+            moveObj(pstChildrenUID[i], displacement, displacementSize);
+        }
+    }
+
+    // Get type
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, &pstType);
+
+    // Rectangle.
+    if (strcmp(pstType, __GO_RECTANGLE__) == 0)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &pdblData);
+        pdblData[0] += x;
+        pdblData[1] += y;
+        pdblData[2] += z;
+        setGraphicObjectProperty(pobjUID, __GO_UPPER_LEFT_POINT__, pdblData, jni_double_vector, 3);
+
+        return 0;
+    }
+
+    if (strcmp(pstType, __GO_COMPOUND__) == 0)
+    {
+        // Children already moved: Done.
+        return 0;
+    }
+
+// Default error.
+    Scierror(999, _("This object can not be moved.\n"));
+    return -1;
+/*
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
+
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+
+    // X
+    for (i = 0 ; i < iNumX ; ++i)
+    {
+        dataX[i] += x;
+    }
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, dataX, jni_double_vector, iNumX);
+
+    // Y
+    for (i = 0 ; i < iNumY ; ++i)
+    {
+        dataY[i] += y;
+    }
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, dataY, jni_double_vector, iNumY);
+
+    // Z if needed
+    if (displacementSize == 3)
+    {
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Z__, jni_int, &piNumZ);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+        for (i = 0 ; i < iNumZ ; ++i)
+        {
+            dataZ[i] += z;
+        }
+    }
+
+    return 0;
+*/
+
+#if 0
   switch (sciGetEntityType (pobj))
   {
   case SCI_SUBWIN:
@@ -448,64 +534,90 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
       pSEGS_FEATURE(pobj)->vx[i] += x;
       pSEGS_FEATURE(pobj)->vy[i] += y;
     }
-    if (displacementSize == 3) {
-      if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL) {
-        if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL) return -1;
-        for (i=0;i<n;i++)
-          pSEGS_FEATURE(pobj)->vz[i] = z;
-      }
-      else
-        for (i=0;i<n;i++)
-          pSEGS_FEATURE(pobj)->vz[i] += z;
+    if (displacementSize == 3)
+    {
+        if  (pSEGS_FEATURE(pobj)->vz == (double *)NULL)
+        {
+            if ((pSEGS_FEATURE(pobj)->vz = MALLOC (n * sizeof (double)))==NULL)
+            {
+                return -1;
+            }
+            for (i=0;i<n;i++)
+            {
+                pSEGS_FEATURE(pobj)->vz[i] = z;
+            }
+        }
+        else
+            for (i=0;i<n;i++)
+            {
+                pSEGS_FEATURE(pobj)->vz[i] += z;
+            }
     }
     break;
   case SCI_POLYLINE:
-    n=pPOLYLINE_FEATURE(pobj)->n1;
-    for (i=0;i<n;i++) {
-      pPOLYLINE_FEATURE(pobj)->pvx[i] += x;
-      pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
-    }
-    if (displacementSize == 3) {
-      if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL) {
-        if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL) return -1;
-        for (i=0;i<n;i++)
-          pPOLYLINE_FEATURE(pobj)->pvz[i] = z;
+      n=pPOLYLINE_FEATURE(pobj)->n1;
+      for (i=0;i<n;i++)
+      {
+          pPOLYLINE_FEATURE(pobj)->pvx[i] += x;
+          pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
+      }
+      if (displacementSize == 3)
+      {
+          if  (pPOLYLINE_FEATURE(pobj)->pvz == (double *)NULL)
+          {
+              if ((pPOLYLINE_FEATURE(pobj)->pvz = MALLOC (n * sizeof (double)))==NULL)
+              {
+                  return -1;
+              }
+              for (i=0;i<n;i++)
+              {
+                  pPOLYLINE_FEATURE(pobj)->pvz[i] = z;
+              }
+          }
+          else
+          {
+              for (i=0;i<n;i++)
+              {
+                  pPOLYLINE_FEATURE(pobj)->pvz[i] += z;
+              }
+          }
+      }
+      break;
+  case SCI_FEC:
+      for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++)
+      {
+          pFEC_FEATURE(pobj)->pvecx[i] += x;
+          pFEC_FEATURE(pobj)->pvecy[i] += y;
+      }
+      break;
+  case SCI_GRAYPLOT:
+      if (pGRAYPLOT_FEATURE(pobj)->type == 2)
+      {
+          /* Matplot 1, it is not possible to move a Matplot*/
+          pGRAYPLOT_FEATURE(pobj)->pvecx[0] += x;
+          pGRAYPLOT_FEATURE(pobj)->pvecx[2] += x;
+          pGRAYPLOT_FEATURE(pobj)->pvecx[1] += y;
+          pGRAYPLOT_FEATURE(pobj)->pvecx[3] += y;
+      }
+      else if (pGRAYPLOT_FEATURE(pobj)->type == 0)
+      {
+          /* Grayplot */
+          for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
+          {
+              pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x;
+          }
+          for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
+          {
+              pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+          }
       }
       else
-        for (i=0;i<n;i++)
-          pPOLYLINE_FEATURE(pobj)->pvz[i] += z;
-    }
-    break;
-  case SCI_FEC:
-    for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++) {
-      pFEC_FEATURE(pobj)->pvecx[i] += x;
-      pFEC_FEATURE(pobj)->pvecy[i] += y;
-    }
-    break;
-  case SCI_GRAYPLOT:
-    if (pGRAYPLOT_FEATURE(pobj)->type == 2)
-    {
-      /* Matplot 1, it is not possible to move a Matplot*/
-      pGRAYPLOT_FEATURE(pobj)->pvecx[0] += x;
-      pGRAYPLOT_FEATURE(pobj)->pvecx[2] += x;
-      pGRAYPLOT_FEATURE(pobj)->pvecx[1] += y;
-      pGRAYPLOT_FEATURE(pobj)->pvecx[3] += y;
-    }
-    else if (pGRAYPLOT_FEATURE(pobj)->type == 0)
-    {
-      /* Grayplot */
-      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
-        pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x;
-      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
-        pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
-    }
-    else
-    {
-      Scierror(999, _("This object can not be moved.\n"));
-      return -1;
-    }
+      {
+          Scierror(999, _("This object can not be moved.\n"));
+          return -1;
+      }
 
-    break;
+      break;
   case SCI_SURFACE:
     switch(pSURFACE_FEATURE (pobj)->typeof3d)
     {
@@ -568,31 +680,31 @@ static int moveObj(sciPointObj * pobj, double displacement[], int displacementSi
   }
 
   /* update the object */
-  forceMove(pobj, x, y, z);
-
+  forceMove(pobjUID, x, y, z);
+#endif
   return 0;
 }
 
-int Objmove (sciPointObj * pobj, double d[], int m,BOOL opt)
+int Objmove (char *pobjUID, double d[], int m,BOOL opt)
 {
-  int status = moveObj(pobj, d, m);
-
+    int status = moveObj(pobjUID, d, m);
+#if 0
 	if (status < 0)
 	{
 		return status;
 	}
 
-  if (opt)
-  {
-    /* should be sci draw single obj */
-    sciDrawSingleObj(pobj);
-  }
-  else
-  {
-    sciDrawObj(sciGetParentFigure(pobj));
-  }
-
-  return status;
+    if (opt)
+    {
+        /* should be sci draw single obj */
+        sciDrawSingleObj(pobj);
+    }
+    else
+    {
+        sciDrawObj(sciGetParentFigure(pobj));
+    }
+#endif
+    return status;
 }
 
 /*---------------------------------------------------------------------------------*/
