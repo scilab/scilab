@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Vincent COUVERT
  * Sets the min property of an uicontrol object
  *
  * This file must be used under the terms of the CeCILL.
@@ -18,6 +18,11 @@ int SetUicontrolMin(char* sciObjUID, size_t stackPointer, int valueType, int nbR
 {
     int minValue = 0;
     BOOL status = FALSE;
+    int value = 0;
+    int* piValue = &value;
+    int maxValue = 0;
+    int* piMaxValue = &maxValue;
+    char* objectStyle = NULL;
 
     if (valueType != sci_matrix)
     {
@@ -36,6 +41,23 @@ int SetUicontrolMin(char* sciObjUID, size_t stackPointer, int valueType, int nbR
     /* Store the value in Scilab */
     minValue = (int) getDoubleFromStack(stackPointer);
 
+    /*
+     * For Checkboxes and Radiobuttons: display a warning if the value is neither equal to Min nor Max
+     */
+    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_STYLE__), jni_string, (void**) &objectStyle);
+    if ((strcmp(objectStyle, __GO_UI_CHECKBOX__) == 0) || (strcmp(objectStyle, __GO_UI_RADIOBUTTON__)) == 0)
+    {
+        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_VALUE__), jni_int, (void**) &piValue);
+        getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MAX__), jni_int, (void**) &piMaxValue);
+
+        if ((value != minValue) && (value != maxValue))
+        {
+            sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), objectStyle, "Min", "Max");
+        }
+
+    }
+    free(objectStyle);
+
     status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_MIN__), &minValue, jni_int, 1);
 
     if (status == TRUE)
@@ -48,4 +70,3 @@ int SetUicontrolMin(char* sciObjUID, size_t stackPointer, int valueType, int nbR
         return SET_PROPERTY_ERROR;
     }
 }
-
