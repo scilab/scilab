@@ -157,7 +157,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
     if ( hdl > 0 )
     {
         LhsVar(1)=0;
-        C2F(putlhsvar)();
+       PutLhsVar();
     }
     return 0;
 }

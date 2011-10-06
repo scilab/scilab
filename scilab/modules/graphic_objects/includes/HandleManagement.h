@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,7 +24,6 @@
 #ifndef __HANDLE_MANAGEMENT_H__
 #define __HANDLE_MANAGEMENT_H__
 
-#include <stdlib.h>
 #include "dynlib_graphic_objects.h"
 
 /* Handle functions */
