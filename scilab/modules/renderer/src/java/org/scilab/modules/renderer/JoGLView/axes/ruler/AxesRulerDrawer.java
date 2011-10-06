@@ -116,30 +116,33 @@ public class AxesRulerDrawer {
             rulerModel.setValues(bounds[1], bounds[0]);
         }
 
-        rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
-        values = rulerDrawingResult.getTicksValues();
-        axes.setXAxisTicksLocations(toDoubleArray(values));
-        axes.setXAxisTicksLabels(toStringArray(values));
-        axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+        if (axes.getXAxisVisible()) {
+            rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
+            values = rulerDrawingResult.getTicksValues();
+            axes.setXAxisTicksLocations(toDoubleArray(values));
+            axes.setXAxisTicksLabels(toStringArray(values));
+            axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
 
-        // Draw Y ruler
 
-        if (axes.getXAxisGridColor() != -1) {
-            FloatBuffer vertexData = getXGridData(values, rulerModel);
-            vertexBuffer.setData(vertexData, 4);
+            // Draw Y ruler
 
-            Transformation mirror = TransformationFactory.getScaleTransformation(
-                    1,
-                    matrix[6] < 0 ? gridPosition : -gridPosition,
-                    matrix[10] < 0 ? gridPosition : -gridPosition
-            );
+            if (axes.getXAxisGridColor() != -1) {
+                FloatBuffer vertexData = getXGridData(values, rulerModel);
+                vertexBuffer.setData(vertexData, 4);
 
-            gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
-            drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-            drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
-            drawingTools.getTransformationManager().getModelViewStack().pop();
+                Transformation mirror = TransformationFactory.getScaleTransformation(
+                        1,
+                        matrix[6] < 0 ? gridPosition : -gridPosition,
+                                matrix[10] < 0 ? gridPosition : -gridPosition
+                );
+
+                gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
+                drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
+                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                drawingTools.getTransformationManager().getModelViewStack().pop();
+            }
+
         }
-
 
 
         if (axes.getAxes()[1].getAxisLocation().equals(AxisProperty.AxisLocation.LEFT)) {
@@ -172,26 +175,28 @@ public class AxesRulerDrawer {
         } else {
             rulerModel.setValues(bounds[3], bounds[2]);
         }
-        rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
-        values = rulerDrawingResult.getTicksValues();
-        axes.setYAxisTicksLocations(toDoubleArray(values));
-        axes.setYAxisTicksLabels(toStringArray(values));
-        axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
+        if (axes.getYAxisVisible()) {
+            rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
+            values = rulerDrawingResult.getTicksValues();
+            axes.setYAxisTicksLocations(toDoubleArray(values));
+            axes.setYAxisTicksLabels(toStringArray(values));
+            axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
 
-        if (axes.getYAxisGridColor() != -1) {
-            FloatBuffer vertexData = getYGridData(values, rulerModel);
-            vertexBuffer.setData(vertexData, 4);
+            if (axes.getYAxisGridColor() != -1) {
+                FloatBuffer vertexData = getYGridData(values, rulerModel);
+                vertexBuffer.setData(vertexData, 4);
 
-            Transformation mirror = TransformationFactory.getScaleTransformation(
-                    matrix[2] < 0 ? gridPosition : -gridPosition,
-                    1,
-                    matrix[10] < 0 ? gridPosition : -gridPosition
-            );
+                Transformation mirror = TransformationFactory.getScaleTransformation(
+                        matrix[2] < 0 ? gridPosition : -gridPosition,
+                                1,
+                                matrix[10] < 0 ? gridPosition : -gridPosition
+                );
 
-            gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
-            drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-            drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
-            drawingTools.getTransformationManager().getModelViewStack().pop();
+                gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
+                drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
+                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                drawingTools.getTransformationManager().getModelViewStack().pop();
+            }
         }
 
         // Draw Z ruler
@@ -218,26 +223,29 @@ public class AxesRulerDrawer {
             } else {
                 rulerModel.setValues(bounds[5], bounds[4]);
             }
-            rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
-            values = rulerDrawingResult.getTicksValues();
-            axes.setZAxisTicksLocations(toDoubleArray(values));
-            axes.setZAxisTicksLabels(toStringArray(values));
-            axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
 
-            if (axes.getZAxisGridColor() != -1) {
-                FloatBuffer vertexData = getZGridData(values, rulerModel);
-                vertexBuffer.setData(vertexData, 4);
+            if (axes.getZAxisVisible()) {
+                rulerDrawingResult = rulerDrawer.draw(drawingTools, rulerModel);
+                values = rulerDrawingResult.getTicksValues();
+                axes.setZAxisTicksLocations(toDoubleArray(values));
+                axes.setZAxisTicksLabels(toStringArray(values));
+                axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity() - 1);
 
-                Transformation mirror = TransformationFactory.getScaleTransformation(
-                        matrix[2] < 0 ? gridPosition : -gridPosition,
-                        matrix[6] < 0 ? gridPosition : -gridPosition,
-                        1
-                );
+                if (axes.getZAxisGridColor() != -1 || axes.getZAxisVisible() == false) {
+                    FloatBuffer vertexData = getZGridData(values, rulerModel);
+                    vertexBuffer.setData(vertexData, 4);
 
-                gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
-                drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
-                drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
-                drawingTools.getTransformationManager().getModelViewStack().pop();
+                    Transformation mirror = TransformationFactory.getScaleTransformation(
+                            matrix[2] < 0 ? gridPosition : -gridPosition,
+                                    matrix[6] < 0 ? gridPosition : -gridPosition,
+                                            1
+                    );
+
+                    gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
+                    drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
+                    drawingTools.draw(new GeometryImpl(Geometry.DrawingMode.SEGMENTS, vertexBuffer), gridAppearance);
+                    drawingTools.getTransformationManager().getModelViewStack().pop();
+                }
             }
         }
 
@@ -282,18 +290,18 @@ public class AxesRulerDrawer {
      */
     private FloatBuffer getXGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
-            int limit = 0;
-            for (double value : values) {
-                float p = (float) rulerModel.getPosition(value).getX();
-                if ((p != -1) && (p!=1)) {
-                    vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(p); vertexData.put(-1); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(p); vertexData.put(+1); vertexData.put(-1); vertexData.put(1);
-                    limit += 16;
-                }
+        int limit = 0;
+        for (double value : values) {
+            float p = (float) rulerModel.getPosition(value).getX();
+            if ((p != -1) && (p!=1)) {
+                vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(p); vertexData.put(-1); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(p); vertexData.put(+1); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(p); vertexData.put(+1); vertexData.put(-1); vertexData.put(1);
+                limit += 16;
             }
-            vertexData.limit(limit);
+        }
+        vertexData.limit(limit);
         return vertexData;
     }
 
@@ -305,18 +313,18 @@ public class AxesRulerDrawer {
      */
     private FloatBuffer getYGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
-            int limit = 0;
-            for (double value : values) {
-                float p = (float) rulerModel.getPosition(value).getY();
-                if ((p != -1) && (p!=1)) {
-                    vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(-1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
-                    vertexData.put(+1); vertexData.put(p); vertexData.put(-1); vertexData.put(1);
-                    limit += 16;
-                }
+        int limit = 0;
+        for (double value : values) {
+            float p = (float) rulerModel.getPosition(value).getY();
+            if ((p != -1) && (p!=1)) {
+                vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(-1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(+1); vertexData.put(p); vertexData.put(+1); vertexData.put(1);
+                vertexData.put(+1); vertexData.put(p); vertexData.put(-1); vertexData.put(1);
+                limit += 16;
             }
-            vertexData.limit(limit);
+        }
+        vertexData.limit(limit);
         return vertexData;
     }
 
@@ -328,18 +336,18 @@ public class AxesRulerDrawer {
      */
     private FloatBuffer getZGridData(double[] values, RulerModel rulerModel) {
         FloatBuffer vertexData = FloatBuffer.allocate(values.length * 16);
-            int limit = 0;
-            for (double value : values) {
-                float p = (float) rulerModel.getPosition(value).getZ();
-                if ((p != -1) && (p!=1)) {
-                    vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-                    vertexData.put(-1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-                    vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
-                    vertexData.put(+1); vertexData.put(-1); vertexData.put(p); vertexData.put(1);
-                    limit += 16;
-                }
+        int limit = 0;
+        for (double value : values) {
+            float p = (float) rulerModel.getPosition(value).getZ();
+            if ((p != -1) && (p!=1)) {
+                vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
+                vertexData.put(-1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
+                vertexData.put(+1); vertexData.put(+1); vertexData.put(p); vertexData.put(1);
+                vertexData.put(+1); vertexData.put(-1); vertexData.put(p); vertexData.put(1);
+                limit += 16;
             }
-            vertexData.limit(limit);
+        }
+        vertexData.limit(limit);
         return vertexData;
     }
 
