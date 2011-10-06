@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -47,7 +47,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private String uid;
 
-    private CallBack callback;
+    private CommonCallBack callback;
 
     /**
      * Constructor
@@ -108,7 +108,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * Add a callback to the PopupMenu
      * @param callback the callback to set.
      */
-    public void setCallback(CallBack callback) {
+    public void setCallback(CommonCallBack callback) {
         if (this.callback != null) {
             removeActionListener(this.callback);
         }

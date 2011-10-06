@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 
 /**
  * Interface for SimpleFrame the associated object to Scilab GUIs Frame
@@ -92,7 +92,7 @@ public interface SimpleFrame extends Container {
 	 * Set the callback of the Frame
 	 * @param callback the callback to set
 	 */
-	void setCallback(CallBack callback);
+	void setCallback(CommonCallBack callback);
 	
 	/**
 	 * Set the Relief of the Frame

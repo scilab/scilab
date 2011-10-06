@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.ScilabWidget;
@@ -181,7 +181,7 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
 	 * Add a callback to the ListBox
 	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		ScilabBridge.setCallback(this, callback);
 	}
 	

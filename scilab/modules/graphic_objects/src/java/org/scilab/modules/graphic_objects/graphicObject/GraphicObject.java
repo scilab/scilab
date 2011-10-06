@@ -40,7 +40,7 @@ public abstract class GraphicObject implements Cloneable {
 
     /** GraphicObject properties */
     public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
-        PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, UNKNOWNPROPERTY 
+        PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY 
     };
 
     /** Identifier */
@@ -67,6 +67,9 @@ public abstract class GraphicObject implements Cloneable {
     /** Tag */
     private String tag;
 
+    /** Callback */
+    private CallBack callback;
+
     /**
      * Identifier of the selected child
      * This was previously implemented as a list, but is used in practice
@@ -86,8 +89,14 @@ public abstract class GraphicObject implements Cloneable {
         referenced = false;
         selectedChild = "";
         tag = "";
+        callback = new CallBack("");
     }
 
+    /**
+     * Clone
+     * @return clone
+     * @see java.lang.Object#clone()
+     */
     public GraphicObject clone() {
         GraphicObject copy = null;
 
@@ -228,6 +237,10 @@ public abstract class GraphicObject implements Cloneable {
             return GraphicObjectPropertyType.DATA;
         }  else if (propertyName.equals(__GO_TAG__)) {
             return GraphicObjectPropertyType.TAG;
+        }  else if (propertyName.equals(__GO_CALLBACK__)) {
+            return GraphicObjectPropertyType.CALLBACK;
+        }  else if (propertyName.equals(__GO_CALLBACKTYPE__)) {
+            return GraphicObjectPropertyType.CALLBACKTYPE;
         }  else {
             return GraphicObjectPropertyType.UNKNOWNPROPERTY;
         }
@@ -267,6 +280,10 @@ public abstract class GraphicObject implements Cloneable {
             return getIdentifier();
         }  else if (property == GraphicObjectPropertyType.TAG) {
             return getTag();
+        }  else if (property == GraphicObjectPropertyType.CALLBACK) {
+            return getCallbackString();
+        }  else if (property == GraphicObjectPropertyType.CALLBACKTYPE) {
+            return getCallbackType();
         }  else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
             return null;
         } else {
@@ -297,6 +314,10 @@ public abstract class GraphicObject implements Cloneable {
             return true;
         } else if (property == GraphicObjectPropertyType.TAG) {
             setTag((String) value);
+        } else if (property == GraphicObjectPropertyType.CALLBACK) {
+            setCallbackString((String) value);
+        } else if (property == GraphicObjectPropertyType.CALLBACKTYPE) {
+            setCallbackType((Integer) value);
         } else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
             return false;
         }
@@ -426,6 +447,35 @@ public abstract class GraphicObject implements Cloneable {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    /**
+     * @return the callback
+     */
+    public String getCallbackString() {
+        return callback.getCommand();
+    }
+
+    /**
+     * @param callback the callback to set
+     */
+    public void setCallbackString(String callback) {
+        this.callback.setCommand(callback);
+    }
+
+    /**
+     * @return the callbackType
+     */
+    public Integer getCallbackType() {
+        return callback.getCommandType();
+    }
+
+    /**
+     * @param callbackType the callbackType to set
+     */
+    public void setCallbackType(Integer callbackType) {
+        this.callback.setCommandType(callbackType);
+    }
+
     /**
      * Get parent Figure method
      * Returns the identifier of the object's parent Figure

@@ -13,27 +13,26 @@
 package org.scilab.modules.scinotes.utils;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -43,37 +42,36 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.tree.TreePath;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.text.Element;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.text.Element;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeExpansionEvent;
+import javax.swing.tree.TreePath;
 
-import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.defaults.DockingSplitPane;
-
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.flexdock.docking.event.DockingEvent;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 
 /**
  *
@@ -454,7 +452,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
         parentWindow.pack();
         parentWindow.setVisible(true);
 
-        CallBack callback = new CallBack(null) {
+        CommonCallBack callback = new CommonCallBack(null) {
                 public void callBack() {
                     NavigatorWindow.this.closeNavigator();
                 }
@@ -479,7 +477,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
         orderMenu.setText(SciNotesMessages.ORDER);
         orderMenu.setMnemonic('O');
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
+        menu.setCallback(new CommonCallBack(null) {
                 public void callBack() {
                     doc.setAlphaOrderInTree(true);
                     updateTree();
@@ -494,7 +492,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
         orderMenu.add(menu);
 
         menu = ScilabMenuItem.createMenuItem();
-        menu.setCallback(new CallBack(null) {
+        menu.setCallback(new CommonCallBack(null) {
                 public void callBack() {
                     doc.setAlphaOrderInTree(false);
                     updateTree();

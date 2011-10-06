@@ -889,8 +889,8 @@ function %h_p(h)
             "Value = "+sci2exp(h.value,0)
             "VerticalAlignment = "+h.verticalalignment
             "Visible = "+sci2exp(h.visible)
-            //"Callback = "+h.callback
-            //"CallbackType = "+sci2exp(h.callback_type,0)
+            "Callback = "+h.callback
+            "CallbackType = "+sci2exp(h.callback_type,0)
             //"Handle_visible = "+sci2exp(h.handle_visible)
             //"Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag

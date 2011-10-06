@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.Position;
@@ -210,7 +210,7 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 	 * Add a callback to the ContextMenu, this callback is a Scilab command
 	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		ScilabBridge.setCallback(this, callback);
 	}
 

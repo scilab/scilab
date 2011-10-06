@@ -54,12 +54,10 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
@@ -71,7 +69,6 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.window.SimpleWindow;
 import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
@@ -84,16 +81,16 @@ import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
+import org.scilab.modules.scinotes.actions.SetColorsAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
-import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
-import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
 import org.scilab.modules.scinotes.utils.SciNotesContents;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
+import org.scilab.modules.scinotes.utils.SearchFile;
 
 /**
  * Main SciNotes class.
@@ -495,7 +492,7 @@ public class SciNotes extends SwingScilabTab {
         final SciNotes editorInstance = new SciNotes(mainWindow);
 
         SciNotesGUI.init(mainWindow, editorInstance, SCINOTES);
-        editorInstance.setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
+        editorInstance.setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
                 /**
                  * serialVersionUID
                  */

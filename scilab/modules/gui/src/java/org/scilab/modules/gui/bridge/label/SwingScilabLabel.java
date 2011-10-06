@@ -35,7 +35,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -225,7 +225,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * Add a callback to the Label
      * @param callback the callback to set.
      */
-    public void setCallback(CallBack callback) {
+    public void setCallback(CommonCallBack callback) {
         // Nothing to do...
     }
 

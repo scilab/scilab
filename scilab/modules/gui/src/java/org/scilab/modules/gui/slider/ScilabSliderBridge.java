@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -135,7 +135,7 @@ public class ScilabSliderBridge {
 	 * @param slider the Slider we want to set the callback of
 	 * @param callback the callback to set.
 	 */
-	public static void setCallback(Slider slider, CallBack callback) {
+	public static void setCallback(Slider slider, CommonCallBack callback) {
 		slider.getAsSimpleSlider().setCallback(callback);
 	}
 	

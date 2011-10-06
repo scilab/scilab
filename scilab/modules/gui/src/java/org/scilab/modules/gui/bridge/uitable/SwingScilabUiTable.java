@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -173,7 +173,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
 	 * Add a callback to the UiTable
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		// Nothing to do...
 	}
 

@@ -53,6 +53,8 @@
 #define __GO_HAS_LEGEND_CHILD__            "HasLegendChild"
 #define __GO_LEGEND_CHILD__                "LegendChild"
 #define __GO_SELECTED_CHILD__              "SelectedChild"
+#define __GO_CALLBACK__                    "Callback"
+#define __GO_CALLBACKTYPE__                "CallbackType"
 
 #define __GO_DATA_MODEL_COORDINATES__      "DataModelCoordinates"
 #define __GO_DATA_MODEL_X__                "DataModelX"

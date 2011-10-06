@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -136,7 +136,7 @@ public class ScilabListBoxBridge {
 	 * @param listBox the ListBox we want to set the callback of
 	 * @param callback the callback to set.
 	 */
-	public static void setCallback(ListBox listBox, CallBack callback) {
+	public static void setCallback(ListBox listBox, CommonCallBack callback) {
 		listBox.getAsSimpleListBox().setCallback(callback);
 	}
 	

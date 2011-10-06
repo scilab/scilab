@@ -15,8 +15,8 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -38,26 +38,24 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.defaults.DockingSplitPane;
-
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
-
-import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesGUI;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SearchManager;
 
 /**
@@ -445,7 +443,7 @@ public class SearchFile extends SwingScilabTab {
             tab.updateUI();
 
             final SearchFile ftab = tab;
-            CallBack callback = new CallBack(null) {
+            CommonCallBack callback = new CommonCallBack(null) {
                     public void callBack() {
                         ftab.closeCurrent();
                     }

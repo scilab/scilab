@@ -20,7 +20,7 @@ import javax.swing.JMenu;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -42,7 +42,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 public class SwingScilabMenu extends JMenu implements SimpleMenu {
 
     private static final long serialVersionUID = 1L;
-    private CallBack callback;
+    private CommonCallBack callback;
     private MouseListener[] nativeMouseListeners;
     private MouseListener customedMouseListener;
     private boolean checkedState = false;
@@ -224,7 +224,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
      * Add a callback to the menu, this callback is a Scilab command
      * @param cb the callback to set.
      */
-    public void setCallback(CallBack cb) {
+    public void setCallback(CommonCallBack cb) {
 	this.callback = cb;
 		
 	/* Remove Java MouseListeners if not already done */
@@ -365,7 +365,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
      * Retrieve the CallBack associated to this MenuItem
      * @return the CallBack
      */
-    public CallBack getCallback() {
+    public CommonCallBack getCallback() {
 	return callback;
     }
 }

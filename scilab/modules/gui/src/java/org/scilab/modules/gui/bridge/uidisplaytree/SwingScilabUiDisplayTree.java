@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 
 import java.util.StringTokenizer;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -162,7 +162,7 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
 	 * Add a callback to the UiTable
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		// Nothing to do...
 	}
 

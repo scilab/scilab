@@ -18,7 +18,7 @@ import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -240,7 +240,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param callback the CallBack to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		ScilabBridge.setCallback(this, callback);
 	}
 
@@ -302,7 +302,7 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	 * Retrieve the CallBack associated to this MenuItem
 	 * @return the CallBack
 	 */
-	public CallBack getCallback() {
+	public CommonCallBack getCallback() {
 		return ScilabBridge.getCallback(this);
 	}
 

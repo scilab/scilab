@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -134,7 +134,7 @@ public class ScilabCheckBoxBridge {
 	 * @param checkBox the CheckBox we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(CheckBox checkBox, CallBack callback) {
+	public static void setCallback(CheckBox checkBox, CommonCallBack callback) {
 		checkBox.getAsSimpleCheckBox().setCallback(callback);
 	}
 	

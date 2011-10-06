@@ -26,7 +26,7 @@ import javax.swing.JButton;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -49,7 +49,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
 	
 	private String uid;
 
-	private CallBack callback;
+	private CommonCallBack callback;
 	private String text = "";
 	private boolean isLaTeX;
 	private int fontSize;
@@ -167,7 +167,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
 	 * Add a callback to the pushbutton
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		if (this.callback != null) {
 			removeActionListener(this.callback);
 		}

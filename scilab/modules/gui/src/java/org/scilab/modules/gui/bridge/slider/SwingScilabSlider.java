@@ -20,7 +20,7 @@ import javax.swing.JScrollBar;
 
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -44,7 +44,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
 
     private String uid;
 
-    private CallBack callback;
+    private CommonCallBack callback;
 	
 	private AdjustmentListener adjustmentListener;
 	
@@ -108,7 +108,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
 	 * Add a callback to the Slider
 	 * @param cb the callback to set.
 	 */
-	public void setCallback(CallBack cb) {
+	public void setCallback(CommonCallBack cb) {
 		/* Create a callback */
 		this.callback = cb;
 		

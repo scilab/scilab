@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -135,7 +135,7 @@ public class ScilabPushButtonBridge {
 	 * @param pushButton the PushButton we want to set the callback of
 	 * @param callback the callback to set.
 	 */
-	public static void setCallback(PushButton pushButton, CallBack callback) {
+	public static void setCallback(PushButton pushButton, CommonCallBack callback) {
 		pushButton.getAsSimplePushButton().setCallback(callback);
 	}
 

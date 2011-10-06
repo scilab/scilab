@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -90,7 +91,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             helpTab.addMember(instance);
             /* Action when the Browser tab is closed */
             helpTab.setCallback(ScilabCallBack
-                                .createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
+                                .createCallback("org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser", CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
 
             MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
             helpTab.addMenuBar(menubar);

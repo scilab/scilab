@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.radiobutton.SimpleRadioButton;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -40,7 +40,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
 
     private String uid;
 
-    private CallBack callback;
+    private CommonCallBack callback;
 
     /**
      * Constructor
@@ -102,7 +102,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
      * Add a callback to the RadioButton
      * @param callback the callback to set.
      */
-    public void setCallback(CallBack callback) {
+    public void setCallback(CommonCallBack callback) {
         if (this.callback != null) {
             removeActionListener(this.callback);
         }

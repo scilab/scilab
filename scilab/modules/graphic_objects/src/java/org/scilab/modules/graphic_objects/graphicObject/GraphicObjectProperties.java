@@ -54,6 +54,8 @@ public static final String __GO_PARENT_AXES__ =            "ParentAxes";
 public static final String __GO_HAS_LEGEND_CHILD__ =       "HasLegendChild";
 public static final String __GO_LEGEND_CHILD__ =           "LegendChild";
 public static final String __GO_SELECTED_CHILD__ =         "SelectedChild";
+public static final String __GO_CALLBACK__ =               "Callback";
+public static final String __GO_CALLBACKTYPE__ =           "CallbackType";
 
 public static final String __GO_DATA_MODEL_COORDINATES__ = "DataModelCoordinates";
 public static final String __GO_DATA_MODEL_X__ =           "DataModelX";

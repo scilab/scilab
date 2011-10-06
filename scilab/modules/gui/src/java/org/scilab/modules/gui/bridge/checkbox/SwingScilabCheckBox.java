@@ -18,7 +18,7 @@ import javax.swing.JCheckBox;
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.checkbox.SimpleCheckBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -39,7 +39,7 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
 	
     private String uid;
 
-    private CallBack callback;
+    private CommonCallBack callback;
 
 	/**
 	 * Constructor
@@ -101,7 +101,7 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
 	 * Add a callback to the CheckBox
 	 * @param callback the callback to set
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		if (this.callback != null) {
 			removeActionListener(this.callback);
 		}

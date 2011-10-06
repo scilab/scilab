@@ -30,7 +30,7 @@ import javax.swing.ListSelectionModel;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -54,7 +54,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
     private String uid;
 
-    private CallBack callback;
+    private CommonCallBack callback;
 
     private MouseListener mouseListener;
 
@@ -198,7 +198,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * Add a callback to the CheckBox
      * @param cb the callback to set.
      */
-    public void setCallback(CallBack cb) {
+    public void setCallback(CommonCallBack cb) {
         if (mouseListener != null) {
             getList().removeMouseListener(mouseListener);
         }

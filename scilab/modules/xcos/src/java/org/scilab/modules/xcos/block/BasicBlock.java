@@ -52,7 +52,7 @@ import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -1340,7 +1340,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	    MenuItem addTo = ScilabMenuItem.createMenuItem();
 
 	    addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
-	    addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
+	    addTo.setCallback(new CommonCallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
 		@Override
 		public void callBack() {
 			
@@ -1364,7 +1364,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 
 	    addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
 	    final XcosDiagram theDiagram = allDiagrams.get(0);
-	    addTo.setCallback(new CallBack(theDiagram.getTitle()) {
+	    addTo.setCallback(new CommonCallBack(theDiagram.getTitle()) {
 		private static final long serialVersionUID = -99601763227525686L;
 
 		@Override
@@ -1391,7 +1391,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		MenuItem diagram = ScilabMenuItem.createMenuItem();
 		final XcosDiagram theDiagram = allDiagrams.get(i);
 		diagram.setText(allDiagrams.get(i).getParentTab().getName());
-		diagram.setCallback(new CallBack(theDiagram.getTitle()) {
+		diagram.setCallback(new CommonCallBack(theDiagram.getTitle()) {
 		    private static final long serialVersionUID = 3345416658377835057L;
 
 			@Override
@@ -1415,7 +1415,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 
 	MenuItem help = ScilabMenuItem.createMenuItem();
 	help.setText(XcosMessages.BLOCK_DOCUMENTATION);
-	help.setCallback(new CallBack(XcosMessages.BLOCK_DOCUMENTATION) {
+	help.setCallback(new CommonCallBack(XcosMessages.BLOCK_DOCUMENTATION) {
 	    private static final long serialVersionUID = -1480947262397441951L;
 
 		@Override

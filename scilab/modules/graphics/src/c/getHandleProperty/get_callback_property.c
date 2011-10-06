@@ -20,35 +20,31 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "Interaction.h"
 #include "returnProperty.h"
-#include "GetProperty.h"
-#include "MALLOC.h"
+#include "Scierror.h"
+#include "localization.h"
+
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int get_callback_property(char *pobjUID)
 {
-    //
-    // FIXME
-    //
-#if 0
-  if(sciGetEntityType(pobj) == SCI_UIMENU || sciGetEntityType(pobj) == SCI_UICONTROL)
+    char* callback = NULL;
+    int status = 0;
+
+    getGraphicObjectProperty(pobjUID,  __GO_CALLBACK__, jni_string, (void**) &callback);
+
+    if (callback == NULL)
     {
-      return GetUiobjectCallback(pobj);
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "Callback");
+        return FALSE;
     }
-  else
+    else
     {
-        char * callBack = sciGetCallback(pobj);
-        if (callBack == NULL)
-        {
-            return sciReturnString("");
-        }
-        else
-        {
-            return sciReturnString( sciGetCallback( pobj ) ) ;
-        }
+        status = sciReturnString(callback);
+        free(callback);
+        return status;
     }
-#endif
-  return sciReturnString("");
 }
 /*------------------------------------------------------------------------*/

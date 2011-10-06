@@ -14,6 +14,7 @@ package org.scilab.modules.gui.events.callback;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 
 /**
  * ScilabCallback abstract class to easily manage callbacks
@@ -22,68 +23,70 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  * @author Bruno JOFRET
  *
  */
-public abstract class ScilabCallBack extends CallBack {
+public abstract class ScilabCallBack extends CommonCallBack {
 
-	/**
-	 * Constructor
-	 * @param command : the command to execute.
-	 */
-	private ScilabCallBack(String command) {
-		super(command);
-	}
+    private static final long serialVersionUID = -4923246233703990342L;
 
-	/**
-	 * Callback Factory to easily create a callback
-	 * just like in scilab.
-	 * @param command : the command to execute.
-	 * @return a usable Scilab callback
-	 */
-	public static ScilabCallBack create(String command) {
-		return (new ScilabCallBack(command) {
+    /**
+     * Constructor
+     * @param command : the command to execute.
+     */
+    private ScilabCallBack(String command) {
+        super(command, CallBack.UNTYPED);
+    }
 
-			private static final long serialVersionUID = -7286803341046313407L;
+    /**
+     * Callback Factory to easily create a callback
+     * just like in scilab.
+     * @param command : the command to execute.
+     * @return a usable Scilab callback
+     */
+    public static ScilabCallBack create(String command) {
+        return (new ScilabCallBack(command) {
 
-			public void callBack() {
-				Thread launchMe = new Thread() {
-					public void run() {
-						InterpreterManagement.putCommandInScilabQueue(getCommand());
-					}
-				};
-				launchMe.start();
-			}
-		});
-	}
+            private static final long serialVersionUID = -7286803341046313407L;
 
-	/**
-	 * Callback Factory to easily create a callback
-	 * just like in scilab.
-	 * WARNING : this callback will be ignored by xclick & xgetmouse
-	 * @param command : the command to execute.
-	 * @return a usable Scilab callback
-	 */
-	public static ScilabCallBack createOutOfXclickAndXgetmouse(String command) {
-		return (new ScilabCallBack(command) {
-		   		    
-			private static final long serialVersionUID = -7286803341046313407L;
+            public void callBack() {
+                Thread launchMe = new Thread() {
+                    public void run() {
+                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                    }
+                };
+                launchMe.start();
+            }
+        });
+    }
 
-			public void callBack() {
-				Thread launchMe = new Thread() {
-					public void run() {
-						InterpreterManagement.putCommandInScilabQueue(getCommand());
-					}
-				};
-				launchMe.start();
-			}
-			
-			/**
-			 * To match the standard Java Action management.
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-			 * @param e The event that launch the callback.
-			 */
-			public void actionPerformed(ActionEvent e) {
-			    callBack();
-			}
-		});
-	}
-	
+    /**
+     * Callback Factory to easily create a callback
+     * just like in scilab.
+     * WARNING : this callback will be ignored by xclick & xgetmouse
+     * @param command : the command to execute.
+     * @return a usable Scilab callback
+     */
+    public static ScilabCallBack createOutOfXclickAndXgetmouse(String command) {
+        return (new ScilabCallBack(command) {
+
+            private static final long serialVersionUID = -7286803341046313407L;
+
+            public void callBack() {
+                Thread launchMe = new Thread() {
+                    public void run() {
+                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                    }
+                };
+                launchMe.start();
+            }
+
+            /**
+             * To match the standard Java Action management.
+             * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+             * @param e The event that launch the callback.
+             */
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
+    }
+
 }

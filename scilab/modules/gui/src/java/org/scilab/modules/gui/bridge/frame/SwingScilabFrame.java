@@ -33,7 +33,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
@@ -445,7 +445,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 	 * Add a callback to the Frame
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		// Nothing to do...
 	}
 

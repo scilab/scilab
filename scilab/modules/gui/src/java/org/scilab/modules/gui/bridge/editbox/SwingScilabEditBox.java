@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import org.scilab.modules.gui.SwingScilabWidget;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -46,7 +46,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
 	
     private String uid;
 
-	private CallBack callback;
+	private CommonCallBack callback;
 
 	private FocusListener focusListener;
 	private ActionListener actionListener;
@@ -108,7 +108,7 @@ public class SwingScilabEditBox extends JTextField implements SwingViewObject, S
 	 * Add a callback to the EditBox
 	 * @param cb the callback to set.
 	 */
-	public void setCallback(CallBack cb) {
+	public void setCallback(CommonCallBack cb) {
 		
 		// Remove previous callback
 		if (focusListener != null) {

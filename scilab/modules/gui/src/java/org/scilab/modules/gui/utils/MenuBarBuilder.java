@@ -31,7 +31,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -261,7 +262,7 @@ public final class MenuBarBuilder {
 								}
 							}
 							if (command != null && commandType != CallBack.UNTYPED) {
-							menuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
+							menuItem.setCallback(CommonCallBack.createCallback(replaceFigureID(command), commandType));
 							}
 						} else if (callback.getNodeName() == SUBMENU) {
 							addSubMenuItem(menuItem, callback);
@@ -312,7 +313,7 @@ public final class MenuBarBuilder {
 						}
 					}
 					if (command != null && commandType != CallBack.UNTYPED) {
-						subMenuItem.setCallback(CallBack.createCallback(replaceFigureID(command), commandType));
+						subMenuItem.setCallback(CommonCallBack.createCallback(replaceFigureID(command), commandType));
 					}
 				} else if (callback.getNodeName() == SUBMENU) {
 					addSubMenuItem(subMenuItem, callback);

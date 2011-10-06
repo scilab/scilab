@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -135,7 +135,7 @@ public class ScilabPopupMenuBridge {
 	 * @param popupMenu the PopupMenu we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PopupMenu popupMenu, CallBack callback) {
+	public static void setCallback(PopupMenu popupMenu, CommonCallBack callback) {
 		popupMenu.getAsSimplePopupMenu().setCallback(callback);
 	}
 	

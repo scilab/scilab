@@ -45,7 +45,7 @@ import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBoxBridge;
 import org.scilab.modules.gui.editbox.SimpleEditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooserBridge;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
@@ -559,7 +559,7 @@ public class ScilabBridge {
 	 * @param frame the Frame we want to set the callback of
 	 * @param callback the callback to set
 	 */
-	public static void setCallback(Frame frame, CallBack callback) {
+	public static void setCallback(Frame frame, CommonCallBack callback) {
 		ScilabFrameBridge.setCallback(frame, callback);
 	}
 
@@ -998,7 +998,7 @@ public class ScilabBridge {
 	 * @param tab the tab which we want to set the callback of
 	 * @param callback the CallBack to set
 	 */
-	public static void setCallback(Tab tab, CallBack callback) {
+	public static void setCallback(Tab tab, CommonCallBack callback) {
 		ScilabTabBridge.setCallback(tab, callback);
 	}
 	
@@ -1642,7 +1642,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem which we want to add the mnemonic to
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(MenuItem menuItem, CallBack callback) {
+	public static void setCallback(MenuItem menuItem, CommonCallBack callback) {
 		ScilabMenuItemBridge.setCallback(menuItem, callback);
 	}
 
@@ -1822,7 +1822,7 @@ public class ScilabBridge {
 	 * @param menuItem the MenuItem
 	 * @return the CallBack
 	 */
-	public static CallBack getCallback(MenuItem menuItem) {
+	public static CommonCallBack getCallback(MenuItem menuItem) {
 		return ScilabMenuItemBridge.getCallback(menuItem);
 	}
 	
@@ -1897,7 +1897,7 @@ public class ScilabBridge {
 	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to add the mnemonic to
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(CheckBoxMenuItem checkBoxMenuItem, CallBack callback) {
+	public static void setCallback(CheckBoxMenuItem checkBoxMenuItem, CommonCallBack callback) {
 		ScilabCheckBoxMenuItemBridge.setCallback(checkBoxMenuItem, callback);
 	}
 
@@ -2077,7 +2077,7 @@ public class ScilabBridge {
 	 * @param checkBoxMenuItem the CheckBoxMenuItem
 	 * @return the CallBack
 	 */
-	public static CallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
+	public static CommonCallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
 		return ScilabCheckBoxMenuItemBridge.getCallback(checkBoxMenuItem);
 	}
 
@@ -2116,7 +2116,7 @@ public class ScilabBridge {
 	 * @param menu the Menu
 	 * @return the CallBack
 	 */
-	public static CallBack getCallback(Menu menu) {
+	public static CommonCallBack getCallback(Menu menu) {
 		return ScilabMenuBridge.getCallback(menu);
 	}
 	
@@ -2279,7 +2279,7 @@ public class ScilabBridge {
 	 * @param menu the menu we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(Menu menu, CallBack callback) {
+	public static void setCallback(Menu menu, CommonCallBack callback) {
 		ScilabMenuBridge.setCallback(menu, callback);
 	}
 
@@ -2489,7 +2489,7 @@ public class ScilabBridge {
 	 * @param contextMenu the contextMenu we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(ContextMenu contextMenu, CallBack callback) {
+	public static void setCallback(ContextMenu contextMenu, CommonCallBack callback) {
 		ScilabContextMenuBridge.setCallback(contextMenu, callback);
 	}
 
@@ -2655,7 +2655,7 @@ public class ScilabBridge {
 	 * @param pushButton the PushButton we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PushButton pushButton, CallBack callback) {
+	public static void setCallback(PushButton pushButton, CommonCallBack callback) {
 		ScilabPushButtonBridge.setCallback(pushButton, callback);
 	}
 
@@ -2960,7 +2960,7 @@ public class ScilabBridge {
 	 * @param textBox the TextBox we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(TextBox textBox, CallBack callback) {
+	public static void setCallback(TextBox textBox, CommonCallBack callback) {
 		ScilabTextBoxBridge.setCallback(textBox, callback);
 	}
 
@@ -3183,7 +3183,7 @@ public class ScilabBridge {
 	 * @param editBox the EditBox we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(EditBox editBox, CallBack callback) {
+	public static void setCallback(EditBox editBox, CommonCallBack callback) {
 		ScilabEditBoxBridge.setCallback(editBox, callback);
 	}
 
@@ -3406,7 +3406,7 @@ public class ScilabBridge {
 	 * @param label the Label we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(Label label, CallBack callback) {
+	public static void setCallback(Label label, CommonCallBack callback) {
 		ScilabLabelBridge.setCallback(label, callback);
 	}
 
@@ -3629,7 +3629,7 @@ public class ScilabBridge {
 	 * @param checkBox the CheckBox we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(CheckBox checkBox, CallBack callback) {
+	public static void setCallback(CheckBox checkBox, CommonCallBack callback) {
 		ScilabCheckBoxBridge.setCallback(checkBox, callback);
 	}
 
@@ -3870,7 +3870,7 @@ public class ScilabBridge {
 	 * @param radioButton the RadioButton we want to set the callback of
 	 * @param callback the callback to set.
 	 */
-	public static void setCallback(RadioButton radioButton, CallBack callback) {
+	public static void setCallback(RadioButton radioButton, CommonCallBack callback) {
 		ScilabRadioButtonBridge.setCallback(radioButton, callback);
 	}
 
@@ -4111,7 +4111,7 @@ public class ScilabBridge {
 	 * @param slider the Slider we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(Slider slider, CallBack callback) {
+	public static void setCallback(Slider slider, CommonCallBack callback) {
 		ScilabSliderBridge.setCallback(slider, callback);
 	}
 
@@ -4404,7 +4404,7 @@ public class ScilabBridge {
 	 * @param listBox the ListBox we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ListBox listBox, CallBack callback) {
+	public static void setCallback(ListBox listBox, CommonCallBack callback) {
 		ScilabListBoxBridge.setCallback(listBox, callback);
 	}
 
@@ -4712,7 +4712,7 @@ public class ScilabBridge {
 	 * @param popupMenu the PopupMenu we want to set the callback of
 	 * @param callback the CallBack to set.
 	 */
-	public static void setCallback(PopupMenu popupMenu, CallBack callback) {
+	public static void setCallback(PopupMenu popupMenu, CommonCallBack callback) {
 		ScilabPopupMenuBridge.setCallback(popupMenu, callback);
 	}
 
@@ -5575,7 +5575,7 @@ public class ScilabBridge {
 	 * @param imageRenderer the ImageRenderer we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(ImageRenderer imageRenderer, CallBack callback) {
+	public static void setCallback(ImageRenderer imageRenderer, CommonCallBack callback) {
 		ScilabImageRendererBridge.setCallback(imageRenderer, callback);
 	}
 	
@@ -5825,7 +5825,7 @@ public class ScilabBridge {
 	 * @param uiTable the UiTable we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(UiTable uiTable, CallBack callback) {
+	public static void setCallback(UiTable uiTable, CommonCallBack callback) {
 		ScilabUiTableBridge.setCallback(uiTable, callback);
 	}
 	
@@ -6076,7 +6076,7 @@ public class ScilabBridge {
 	 * @param uiTree the UiDisplayTree we want to set the callback of
 	 * @param callback the Callback to set.
 	 */
-	public static void setCallback(UiDisplayTree uiTree, CallBack callback) {
+	public static void setCallback(UiDisplayTree uiTree, CommonCallBack callback) {
 		ScilabUiDisplayTreeBridge.setCallback(uiTree, callback);
 	}
 	

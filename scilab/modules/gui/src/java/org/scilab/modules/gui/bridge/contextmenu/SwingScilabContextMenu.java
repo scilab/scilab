@@ -22,7 +22,7 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.events.BlockingResult;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -170,7 +170,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * Add a callback to the menu, this callback is a Scilab command
 	 * @param callback the callback to set.
 	 */
-	public void setCallback(CallBack callback) {
+	public void setCallback(CommonCallBack callback) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -285,7 +285,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	 * Retrieve the CallBack associated to this ContextMenu
 	 * @return the CallBack
 	 */
-	public CallBack getCallback() {
+	public CommonCallBack getCallback() {
 		throw new UnsupportedOperationException();
 	}
 	

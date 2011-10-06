@@ -21,7 +21,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.scinotes.SciNotes;
@@ -50,7 +50,7 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
         setState(true);
         editorBackup = editor;
 
-        setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
+        setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
                 public void callBack() {
                     doAction();
                 }
@@ -72,7 +72,7 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
         setText(label);
         setState(true);
         editorBackup = editor;
-        setCallback(new CallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
+        setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
                 public void callBack() {
                     doAction();
                 }

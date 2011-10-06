@@ -92,7 +92,6 @@ set(h, "backgroundcolor", "0.2|0.3|0.4");
 assert_checkequal(get(h, "backgroundcolor"), [0.2 0.3 0.4]);
 // TODO Test with wrong format values: 'aze', '', [], ...
 
-if 0 // TODO Activate this test
 // --- Callback tests ---
 // Default values
 assert_checkequal(get(h, "callback"), "");
@@ -111,7 +110,6 @@ set(h, "callback", "");
 assert_checkequal(get(h, "callback"), "");
 assert_checkequal(get(h, "callback_type"), -1);
 // TODO tests with wrong callbackType ??
-end
 
 // --- Enable ---
 assert_checkequal(get(h, "enable"), "on"); // Default value

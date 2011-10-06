@@ -18,7 +18,7 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -462,7 +462,7 @@ public class ScilabTabBridge {
 	 * @param tab the tab which we want to set the callback of
 	 * @param callback the CallBack to set
 	 */
-	public static void setCallback(Tab tab, CallBack callback) {
+	public static void setCallback(Tab tab, CommonCallBack callback) {
 		tab.getAsSimpleTab().setCallback(callback);
 	}
 

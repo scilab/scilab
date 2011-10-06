@@ -25,7 +25,7 @@ import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.BlockingResult;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -48,7 +48,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 
     private static final long serialVersionUID = 1L;
-    private CallBack callback;
+    private CommonCallBack callback;
     private Menu meAsAMenu;
     private CheckBoxMenuItem meAsACheckBoxMenuItem;
     private boolean checkedState;
@@ -106,7 +106,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
      * Add a callback to the MenuItem, this callback is a Scilab command
      * @param callback the callback to set.
      */
-    public void setCallback(CallBack callback) {
+    public void setCallback(CommonCallBack callback) {
         this.callback = callback;
         addActionListener(this.callback);
         if (meAsACheckBoxMenuItem != null) {
@@ -322,7 +322,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
      * Retrieve the CallBack associated to this MenuItem
      * @return the CallBack
      */
-    public CallBack getCallback() {
+    public CommonCallBack getCallback() {
         return callback;
     }
 

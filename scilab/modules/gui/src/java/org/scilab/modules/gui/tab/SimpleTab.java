@@ -18,7 +18,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -345,7 +345,7 @@ public interface SimpleTab {
 	 * Set the callback of the tab
 	 * @param callback the CallBack to set
 	 */
-	void setCallback(CallBack callback);
+	void setCallback(CommonCallBack callback);
 
 	/**
 	 * Set this tab as the current tab of its parent Window
