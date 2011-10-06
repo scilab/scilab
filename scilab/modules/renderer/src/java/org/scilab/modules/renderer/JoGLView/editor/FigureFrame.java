@@ -23,10 +23,8 @@ import java.awt.*;
  * @author Pierre Lando
  */
 public class FigureFrame extends JFrame {
-    private final String id;
     private final TreeModel treeModel;
     public FigureFrame(String id) {
-        this.id = id;
         treeModel = new SciTreeModel(id);
         initialize();
     }

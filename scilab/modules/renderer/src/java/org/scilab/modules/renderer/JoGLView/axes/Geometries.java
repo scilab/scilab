@@ -23,8 +23,6 @@ import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 class Geometries {
     private static final int ELEMENT_SIZE = 4;
 
-    private final Canvas canvas;
-
     private final Geometry cubeGeometry;
     private final Geometry boxBorderGeometry;
     private final Geometry frontBoxBorderGeometry;
@@ -61,7 +59,6 @@ class Geometries {
     };
 
     public Geometries(Canvas canvas) {
-        this.canvas = canvas;
 
         boxBorderVertices = canvas.getBuffersManager().createElementsBuffer();
         boxBorderVertices.setData(boxBorderVerticesData, ELEMENT_SIZE);
