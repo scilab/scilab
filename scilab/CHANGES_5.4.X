@@ -139,6 +139,8 @@ Xcos:
 * bug 9732 fixed - code generation failed on compilation on Windows with
                    "unresolved external symbol dset_".
 
+* bug 9750 fixed - Minor error in the help page of scicos_debug fixed.
+
 * bug 9810 fixed - MATINV wrong simulation values errors has been improved.
 
 * bug 9947 fixed - VARIABLE_DELAY block could not be dragged to a diagram.
