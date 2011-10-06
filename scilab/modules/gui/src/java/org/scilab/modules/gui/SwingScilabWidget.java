@@ -69,6 +69,10 @@ public final class SwingScilabWidget {
     private static final String ITALICFONT = "italic";
     private static final String BOLDFONT = "bold";
     private static final int COLORS_COEFF = 255;
+    private static final int X_INDEX = 0;
+    private static final int Y_INDEX = 1;
+    private static final int WIDTH_INDEX = 2;
+    private static final int HEIGHT_INDEX = 3;
 
     /**
      * Constructor
@@ -120,15 +124,15 @@ public final class SwingScilabWidget {
 
             uiControl.setFont(font);
         } else if (property.equals(__GO_UI_FONTSIZE__)) {
-            // TODO Manage FontUnits property for conversion
+            UicontrolUnits fontUnitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController()
+                .getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_FONTUNITS__));
+            Double dblFontSize = UnitsConverter.convertToPoint((Double) value, fontUnitsProperty, uiControl, false);
             Font font = uiControl.getFont();
-            int size = ((Double) value).intValue();
-
+            int size = dblFontSize.intValue();
             font = new Font(font.getName(), font.getStyle(), size);
-
             uiControl.setFont(font);
         } else if (property.equals(__GO_UI_FONTUNITS__)) {
-            /* TO BE DONE */
+            /* Nothing to do here, this property is used when setting position */
         } else if (property.equals(__GO_UI_FONTWEIGHT__)) {
             Font font = uiControl.getFont();
             String weight = (String) value;
@@ -209,14 +213,15 @@ public final class SwingScilabWidget {
             }
         } else if (property.equals(__GO_POSITION__)) {
             /* Convert value according to units */
-            UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_UNITS__));
+            UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController
+                    .getController().getProperty(((SwingViewObject) uiControl).getId(), __GO_UI_UNITS__));
             Double[] dblValues = UnitsConverter.convertPositionToPixels((Double[]) value, unitsProperty, uiControl, false);
             /* Set dimensions before position because position is adjusted according to size */
-            uiControl.setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
-            uiControl.setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
+            uiControl.setDims(new Size(dblValues[WIDTH_INDEX].intValue(), dblValues[HEIGHT_INDEX].intValue()));
+            uiControl.setPosition(new Position(dblValues[X_INDEX].intValue(), dblValues[Y_INDEX].intValue()));
             /* Manage sliders orientation */
             if (uiControl instanceof SwingScilabSlider) {
-                if (dblValues[2].intValue() > dblValues[3].intValue()) {
+                if (dblValues[WIDTH_INDEX].intValue() > dblValues[HEIGHT_INDEX].intValue()) {
                     ((SwingScilabSlider) uiControl).setHorizontal();
                 } else {
                     ((SwingScilabSlider) uiControl).setVertical();
@@ -253,6 +258,7 @@ public final class SwingScilabWidget {
                 }
             }         
         } else if (property.equals(__GO_STYLE__)) {
+            /* Nothing to do unless we want to change style interactively */
         } else if (property.equals(__GO_UI_STRING__)) {
             // Listboxes & Popupmenus manage string vectors
             if (uiControl instanceof SwingScilabListBox) {
@@ -267,6 +273,7 @@ public final class SwingScilabWidget {
         } else if (property.equals(__GO_UI_TABLEDATA__)) {
             ((SwingScilabUiTable) uiControl).setData((String[]) value);
         } else if (property.equals(__GO_UI_UNITS__)) {
+            /* Nothing to do here, this property is used when setting position */
         } else if (property.equals(__GO_UI_VALUE__)) {
 
             Integer[] integerValue = ((Integer[]) value);
