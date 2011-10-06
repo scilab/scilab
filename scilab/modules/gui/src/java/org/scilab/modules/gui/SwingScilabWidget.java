@@ -239,6 +239,19 @@ public final class SwingScilabWidget {
             convertedShear[1] = shear[1].doubleValue();
             ((SwingScilabImageRenderer) uiControl).setShear(convertedShear);
         } else if (property.equals(__GO_UI_SLIDERSTEP__)) {
+            Double[] sliderStep = ((Double[]) value);
+            if (uiControl instanceof SwingScilabSlider) {
+                // Update the slider properties
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                int minValue = (Integer) GraphicController.getController().getProperty(((SwingScilabSlider) uiControl).getId(), __GO_UI_MIN__);
+                int maxValue = (Integer) GraphicController.getController().getProperty(((SwingScilabSlider) uiControl).getId(), __GO_UI_MAX__);
+                ((SwingScilabSlider) uiControl).setMinimumValue(minValue);
+                if (minValue <= maxValue) {
+                    ((SwingScilabSlider) uiControl).setMinorTickSpacing((int) (minorSliderStep * (maxValue - minValue)));
+                    ((SwingScilabSlider) uiControl).setMajorTickSpacing((int) (majorSliderStep * (maxValue - minValue)));
+                }
+            }         
         } else if (property.equals(__GO_STYLE__)) {
         } else if (property.equals(__GO_UI_STRING__)) {
             // Listboxes & Popupmenus manage string vectors
