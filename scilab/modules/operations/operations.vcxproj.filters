@@ -139,6 +139,9 @@
     <None Include="linear_algebra_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

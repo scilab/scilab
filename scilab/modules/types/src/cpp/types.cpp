@@ -42,7 +42,7 @@ namespace types
 
 	int GenericType::getSize()
 	{
-		return m_iSize;
+ 		return m_iSize;
 	}
 
     std::wstring GenericType::DimToString()

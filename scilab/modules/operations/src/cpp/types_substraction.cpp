@@ -626,7 +626,18 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
 
             for(int j = 0 ; j < pRankOut[i] ; j++)
 			{
-				pOutR[j]        = p1R[j] - p2R[j];
+                if(j >= pRank1[0])
+                {
+				    pOutR[j] = - p2R[j];
+                }
+                else if(j >= pRank2[i])
+                {
+				    pOutR[j] = p1R[j];
+                }
+                else
+                {
+				    pOutR[j] = p1R[j] - p2R[j];
+                }
 			}
 
 			if((*_pPolyOut)->isComplex())
@@ -680,7 +691,18 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
 
             for(int j = 0 ; j < pRankOut[i] ; j++)
 			{
-				pOutR[j]        = p1R[j] - p2R[j];
+                if(j >= pRank1[j])
+                {
+				    pOutR[j] = - p2R[j];
+                }
+                else if(j >= pRank2[0])
+                {
+				    pOutR[j] = p1R[j];
+                }
+                else
+                {
+				    pOutR[j] = p1R[j] - p2R[j];
+                }
 			}
 
 			if((*_pPolyOut)->isComplex())
@@ -762,6 +784,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
 				pTemp       = p2R;
 				iCoef       = -1;
 			}
+
 			for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
 			{
 		        pOutR[j]    = pTemp[j] * iCoef;

@@ -33,7 +33,7 @@ Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, types::type
 {
     int iMode = 0;
 
-    if(in.size() < 1 && in.size() > 3)
+    if(in.size() < 1 || in.size() > 3)
     {
         Scierror(999,_("%s: Wrong number of input arguments: %d or %d expected.\n"), L"sum", 1, 2);
         return Function::Error;

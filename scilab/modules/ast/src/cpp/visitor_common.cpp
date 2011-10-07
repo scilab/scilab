@@ -336,6 +336,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 				}
 
 				poResult->getAs<types::Polynom>()->setCoef(iCurRow, iCurCol, _poSource->getAs<types::Polynom>()->get(0)->getCoef());
+                *_piRows = _poSource->getAsGenericType()->getRows();
+                *_piCols = _poSource->getAsGenericType()->getCols();
 			}
 			break;
 		case types::GenericType::RealPoly :
@@ -346,6 +348,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 				pPolyOut->setRank(1);
                 pPolyOut->setCoef(_poSource->getAs<types::Double>());
+                *_piRows = _poSource->getAsGenericType()->getRows();
+                *_piCols = _poSource->getAsGenericType()->getCols();
 			}
 			break;
 		default:

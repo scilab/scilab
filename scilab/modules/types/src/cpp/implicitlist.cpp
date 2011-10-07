@@ -180,24 +180,39 @@ namespace types
 
                 m_pDblEnd = m_poEnd->getAs<Double>();
                 double dblEnd	= m_pDblEnd->get(0);
-
-                if(dblStep > 0)
+                // othe way to compute
+                
+                double dblVal = dblStart; // temp value
+                double dblEps = getRelativeMachinePrecision();
+                double dblPrec = 2 * Max(abs(dblStart), abs(dblEnd)) * dblEps;
+                while(dblStep * (dblVal - dblEnd) < 0)
                 {
-                    m_iSize = static_cast<int>(floor((dblEnd - dblStart) / dblStep)) + 1;
-                }
-                else if(dblStep < 0)
-                {
-                    m_iSize = static_cast<int>(floor((dblStart - dblEnd) / -dblStep)) + 1;
-                }
-                else
-                {
-                    m_iSize = 0;
+                    m_iSize++;
+                    dblVal = dblStart + m_iSize * dblStep;
                 }
 
-                if(m_iSize < 0)
+                if(abs(dblVal - dblEnd) < dblPrec)
                 {
-                    m_iSize = 0;
+                    m_iSize++;
                 }
+
+                //if(dblStep > 0)
+                //{
+                //    m_iSize = static_cast<int>(floor((dblEnd - dblStart) / dblStep)) + 1;
+                //}
+                //else if(dblStep < 0)
+                //{
+                //    m_iSize = static_cast<int>(floor((dblStart - dblEnd) / -dblStep)) + 1;
+                //}
+                //else
+                //{
+                //    m_iSize = 0;
+                //}
+
+                //if(m_iSize < 0)
+                //{
+                //    m_iSize = 0;
+                //}
 //                m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
             }
             else //m_eOutType == RealInt
@@ -408,7 +423,11 @@ namespace types
         InternalType* pIT = NULL;
         if(compute())
         {
-            if(m_eOutType == RealInt8)
+            if(getSize() == 0)
+            {
+                pIT = Double::Empty();
+            }
+            else if(m_eOutType == RealInt8)
             {
                 pIT	= new Int8(1, m_iSize);
                 extractFullMatrix(pIT->getAs<Int8>()->get());
@@ -463,10 +482,9 @@ namespace types
         double dblStart = m_poStart->getAs<Double>()->get(0);
         double dblStep  = m_poStep->getAs<Double>()->get(0);
 
-        _pdbl[0] = dblStart;
-        for(int i = 1 ; i < m_iSize ; i++)
+        for(int i = 0 ; i < m_iSize ; i++)
         {
-            _pdbl[i] = _pdbl[i - 1] + dblStep;
+            _pdbl[i] = dblStart + i * dblStep;
         }
     }
 
@@ -476,10 +494,9 @@ namespace types
         T tStart = static_cast<T>(convert_input(m_poStart));
         T tStep	= static_cast<T>(convert_input(m_poStep));
 
-        _pT[0] = tStart;
-        for(int i = 1 ; i < m_iSize ; i++)
+        for(int i = 0 ; i < m_iSize ; i++)
         {
-            _pT[i] = _pT[i - 1] + tStep;
+            _pT[i] = tStart + i *tStep;
         }
     }
 }

@@ -11,6 +11,7 @@
 */
 
 #include "types_power.hxx"
+#include "types_multiplication.hxx"
 #include "scilabexception.hxx"
 
 extern "C"
@@ -48,10 +49,16 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         Polynom *pL			= _pLeftOperand->getAs<Polynom>();
         Double *pR			= _pRightOperand->getAs<Double>();
 
-        int iResult = PowerPolyByDouble(pL, pR, (Polynom**)&pResult);
-        if(iResult)
+        int iResult = PowerPolyByDouble(pL, pR, &pResult);
+        switch(iResult)
         {
+        case 1 :
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        case 2 :
+            throw ast::ScilabError(_W("Invalid exponent.\n"));
+        default:
+            //OK
+            break;
         }
 
         return pResult;
@@ -91,12 +98,17 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         Polynom *pL			= _pLeftOperand->getAs<Polynom>();
         Double *pR			= _pRightOperand->getAs<Double>();
 
-        int iResult = PowerPolyByDouble(pL, pR, (Polynom**)&pResult);
-        if(iResult)
+        int iResult = PowerPolyByDouble(pL, pR, &pResult);
+        switch(iResult)
         {
+        case 1 :
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        case 2 :
+            throw ast::ScilabError(_W("Invalid exponent.\n"));
+        default:
+            //OK
+            break;
         }
-
         return pResult;
     }
 
@@ -259,8 +271,85 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 	return 0;
 }
 
-int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
+int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 {
+	bool bComplex1  = _pPoly->isComplex();
+	bool bComplex2  = _pDouble->isComplex();
+    bool bScalar1   = _pPoly->isScalar();
+    bool bScalar2   = _pDouble->isScalar();
+    bool bIdentity2 = _pDouble->isIdentity();
+
+    int iComplex = 1;
+
+    if(bComplex2)
+    {//invalid exponent.
+        return 2;
+    }
+
+    if(_pDouble->isEmpty())
+    {//p ** []
+        *_pOut = Double::Empty();
+        return 0;
+    }
+    
+    if(bScalar1)
+    {//p ^ x or p ^ X
+        int iRank   = 0;
+        int* piRank = new int[_pDouble->getSize()];
+
+        _pPoly->getRank(&iRank);
+        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        {
+            piRank[i] = ((iRank - 1) * (int)_pDouble->get(i)) + 1;
+        }
+
+        Polynom* pOut = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pDouble->getCols(), piRank);
+        pOut->setComplex(bComplex1);
+
+        Polynom* pP = _pPoly->clone()->getAs<Polynom>();
+        for(int i = 0 ; i < _pDouble->getSize() ; i++)
+        {
+            Double* pCoeff = _pPoly->get(0)->getCoef();
+            Double* pCoeffOut = pOut->get(i)->getCoef();
+
+            int iCurrentRank    = 0;
+            int iLoop           = (int)_pDouble->get(i);
+
+            //initialize Out to 1
+            pCoeffOut->set(0, 1);
+            //get a copy of p
+            Polynom* pP = _pPoly->clone()->getAs<Polynom>();
+            pP->setComplex(_pPoly->isComplex());
+
+            while(iLoop)
+            {
+                if(iLoop % 2)
+                {
+                    int iRank = pP->getMaxRank() - 1;
+                    if(bComplex1)
+                    {
+                        C2F(wpmul1)(pCoeffOut->get(), pCoeffOut->getImg(), &iCurrentRank, pP->getCoef()->get(), pP->getCoef()->getImg(), &iRank, pCoeffOut->get(), pCoeffOut->getImg());
+                    }
+                    else
+                    {
+                        C2F(dpmul1)(pCoeffOut->get(), &iCurrentRank, pP->getCoef()->get(), &iRank, pCoeffOut->get());
+                    }
+                    iCurrentRank += iRank;
+                }
+
+                iLoop /= 2;
+                if(iLoop)
+                {
+                    //p = p * p
+                    Polynom* pTemp = NULL;
+                    MultiplyPolyByPoly(pP, pP, &pTemp);
+                    delete pP;
+                    pP = pTemp;
+                }
+            }
+        }
+        *_pOut = pOut;
+    }
 	return 0;
 }
 

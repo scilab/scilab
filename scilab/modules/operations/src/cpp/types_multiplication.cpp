@@ -711,7 +711,29 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                     Double *TimeDouble = NULL; //(pPolyCoef->getRows(), pPolyCoef->getCols(), bComplexOut);
                     MultiplyDoubleByDouble(pPolyCoef, pDouble, &TimeDouble);
                     Double *pAddDouble = NULL;
-                    AddDoubleToDouble(TimeDouble, (*_pPolyOut)->get(iRow1, iCol2)->getCoef(), &pAddDouble);
+
+                    //Adjust size to allow vector multiplication
+                    Double* pCoef = (*_pPolyOut)->get(iRow1, iCol2)->getCoef();
+
+                    if(TimeDouble->getRows() > pCoef->getRows())
+                    {
+                        pCoef->resize(TimeDouble->getRows(), pCoef->getCols());
+                    }
+                    else if(TimeDouble->getRows() < pCoef->getRows())
+                    {
+                        TimeDouble->resize(pCoef->getRows(), TimeDouble->getCols());
+                    }
+
+                    if(TimeDouble->getCols() > pCoef->getCols())
+                    {
+                        pCoef->resize(pCoef->getRows(), TimeDouble->getCols());
+                    }
+                    else if(TimeDouble->getCols() < pCoef->getCols())
+                    {
+                        TimeDouble->resize(TimeDouble->getRows(), pCoef->getCols());
+                    }
+
+                    AddDoubleToDouble(TimeDouble, pCoef, &pAddDouble);
                     (*_pPolyOut)->setCoef(iRow1, iCol2, pAddDouble);
 
                     delete pAddDouble;

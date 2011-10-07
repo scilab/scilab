@@ -157,6 +157,7 @@ namespace types
         getRank(piRank);
 
         Polynom* pMP = new Polynom(getVariableName(), getDims(), getDimsArray(), piRank);
+        pMP->setComplex(isComplex());
         for(int i = 0 ; i < getSize() ; i++)
         {
             pMP->set(i, get(i));
