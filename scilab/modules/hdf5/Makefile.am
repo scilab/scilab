@@ -96,8 +96,9 @@ libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 
 pkglib_LTLIBRARIES = libscihdf5.la
+if HDF5
 noinst_LTLIBRARIES = libscihdf5-algo.la
-
+endif
 
 if HDF5
 # When Scilab is built with HDF5, we need some libraries for a workaround
@@ -121,9 +122,13 @@ CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order
+if HDF5
 libscihdf5_la_LIBADD = libscihdf5-algo.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
 				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+else
+libscihdf5_la_LIBADD =
+endif
 
 #### Target ######
 modulename=hdf5

@@ -129,6 +129,7 @@ libscihdf5_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscihdf5_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@HDF5_TRUE@am_libscihdf5_algo_la_rpath =
 libscihdf5_forceload_disable_la_LIBADD =
 am__libscihdf5_forceload_disable_la_SOURCES_DIST =  \
 	src/cpp/forceJHDF5load-jvmdisable.cpp
@@ -157,9 +158,9 @@ libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$@
 @HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath = -rpath \
 @HDF5_TRUE@@NEED_JAVA_TRUE@	$(pkglibdir)
-libscihdf5_la_DEPENDENCIES = libscihdf5-algo.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+@HDF5_TRUE@libscihdf5_la_DEPENDENCIES = libscihdf5-algo.la \
+@HDF5_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@HDF5_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscihdf5_la_SOURCES_DIST = sci_gateway/cpp/sci_no_hdf5.cpp \
 	sci_gateway/cpp/sci_export_to_hdf5.cpp \
 	sci_gateway/cpp/sci_import_from_hdf5.cpp \
@@ -345,7 +346,6 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
-PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -518,7 +518,7 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
-noinst_LTLIBRARIES = libscihdf5-algo.la
+@HDF5_TRUE@noinst_LTLIBRARIES = libscihdf5-algo.la
 libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES)
 libscihdf5_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) 
@@ -528,11 +528,12 @@ libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
+@HDF5_FALSE@libscihdf5_la_LIBADD = 
 
 # pb of order
-libscihdf5_la_LIBADD = libscihdf5-algo.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+@HDF5_TRUE@libscihdf5_la_LIBADD = libscihdf5-algo.la \
+@HDF5_TRUE@				$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@HDF5_TRUE@				$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### Target ######
@@ -684,7 +685,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscihdf5-algo.la: $(libscihdf5_algo_la_OBJECTS) $(libscihdf5_algo_la_DEPENDENCIES) 
-	$(libscihdf5_algo_la_LINK)  $(libscihdf5_algo_la_OBJECTS) $(libscihdf5_algo_la_LIBADD) $(LIBS)
+	$(libscihdf5_algo_la_LINK) $(am_libscihdf5_algo_la_rpath) $(libscihdf5_algo_la_OBJECTS) $(libscihdf5_algo_la_LIBADD) $(LIBS)
 libscihdf5-forceload-disable.la: $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_DEPENDENCIES) 
 	$(libscihdf5_forceload_disable_la_LINK) $(am_libscihdf5_forceload_disable_la_rpath) $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_LIBADD) $(LIBS)
 libscihdf5-forceload.la: $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_DEPENDENCIES) 
