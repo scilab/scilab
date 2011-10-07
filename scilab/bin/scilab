@@ -624,11 +624,7 @@ cd "$LOCALOLDPWD"
 #export PVM_ARCH
 
 
-#
-# Scilab will not work on some Mac OSX version
-# Check version number and ask user if he wants to go on.
-#
-check_macosx_version()
+detect_macosx_version()
 {
     macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
     if test "${macosxVersion}" = ""; then
@@ -642,8 +638,41 @@ check_macosx_version()
         echo "Found MacOSX Version: $macosxVersion"
     fi
 
+}
+
+set_macox_specific_path()
+{
+
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
     PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                6)
+		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                 5)
+                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+            esac
+            ;;
+    esac
+
+}
+
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
 
     case $macosxMajorVersion in
         10)
@@ -655,9 +684,6 @@ check_macosx_version()
                    ;;
 
                 6)
-		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
 
                     if test $macosxBuildVersion -le 4; then
                         # Version <= 10.6.4
@@ -665,12 +691,6 @@ check_macosx_version()
                     fi
                     ;;
                  5)
-                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-
                      if test $macosxBuildVersion -le 7; then
                          # Version <= 10.5.8
                          osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
@@ -712,6 +732,10 @@ case $OS in
         # display a standard window
         BINPATH=$(dirname $0)
         # Do not perform the check with Scilab is started in CLI mode
+
+        detect_macosx_version
+        set_macox_specific_path
+
         if test "$SCILAB_MODE" = "gui"; then
             check_macosx_version
         fi
