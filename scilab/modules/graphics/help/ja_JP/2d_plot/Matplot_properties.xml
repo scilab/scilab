@@ -76,7 +76,7 @@
 		Matplot は軸ボックスの外側でクリップされます.</para>
             </listitem>
             <listitem>
-              <para><literal>"on"</literal> 7
+              <para><literal>"on"</literal>
 		Matplot はclip_boxで指定された矩形の外側でクリップされます.</para>
             </listitem>
           </itemizedlist>

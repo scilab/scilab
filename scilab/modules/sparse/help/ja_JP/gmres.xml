@@ -46,13 +46,13 @@
       <varlistentry>
         <term>M</term>
         <listitem>
-          <para>プリコンディショナ: 行列または <literal>M*x</literal>を返す関数 (前者のデフォルト値: eye(n,n))</para>
+          <para>プリコンディショナ: 行列（デフォルト: eye(n,n)）または <literal>M*x</literal>を返す関数</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rstr</term>
         <listitem>
-          <para>リスタートまえの反復回数 (デフォルト: 10)</para>
+          <para>リスタートまでの反復回数 (デフォルト: 10)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
