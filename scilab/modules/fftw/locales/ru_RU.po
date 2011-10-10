@@ -6,19 +6,51 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2010-02-21 16:10+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2011-09-13 14:48+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: ru\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
+msgid "FFTW Library %s not found.\n"
+msgstr "Библиотека FFTW %s не найдена.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "Библиотека FFTW не найдена.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное или "
+"комплексное число.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Неверные значения входного параметра №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась целочисленная матрица.\n"
 
 #, c-format
 msgid ""
@@ -32,46 +64,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное или "
-"комплексное число.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась целочисленная матрица.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s: Неверные значения входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr "%s: Неверные значения входного параметра №%d: ожидался флаг FFTW.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
@@ -79,14 +71,39 @@ msgstr ""
 "целые числа.\n"
 
 #, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr "Библиотека FFTW %s не найдена.\n"
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: Неверные значения входного параметра №%d: ожидался флаг FFTW.\n"
 
-msgid "FFTW Library not found.\n"
-msgstr "Библиотека FFTW не найдена.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип входного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
 
 msgid "FFTW can't read wisdom."
 msgstr "FFTW не может прочитать файл оптимизации (см. fftw-wisdom)."
 
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Модуль Scilab FFTW не установлен.\n"
+
+msgid "You choose to install scilab with fftw module."
+msgstr "Вы выбрали установку scilab с модулем fftw."
+
+msgid "This module requires : "
+msgstr "Этот модуль требует: "
+
+msgid ""
+"Scilab will use standard fft by default until you install this library."
+msgstr ""
+"Scilab будет использовать по умолчанию стандартное быстрое преобразование "
+"Фурье до тех пор, пока вы не установите эту библиотеку."
+
+msgid "See help fftw for more informations."
+msgstr ""
+"Дополнительную информацию можно получить с помощью команды  \"help fftw\"."

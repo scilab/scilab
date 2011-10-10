@@ -19,7 +19,6 @@
 ;
 Source: modules\{#TYPES}\jar\org.scilab.modules.{#TYPES}.jar;DestDir: {app}\modules\{#TYPES}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#TYPES}\VERSION.xml; DestDir: {app}\modules\{#TYPES}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#TYPES}\license.txt; DestDir: {app}\modules\{#TYPES}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#TYPES}\etc\{#TYPES}.quit; DestDir: {app}\modules\{#TYPES}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

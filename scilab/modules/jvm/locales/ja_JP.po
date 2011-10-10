@@ -6,27 +6,81 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-13 15:36+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-06-10 13:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "JVMインターフェイスは -nogui または -nwni モードでは無効です.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr "%s: システムのクラスローダにURLを追加できませんでした: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
 #
-# File: src/c/JVM.c, line: 117
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s:  java.library.pathにpathを追加できませんでした。: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 42
 #, c-format
 msgid ""
 "\n"
-"Could not load JVM dynamic library (libjava).\n"
+"Scilab cannot open JVM library.\n"
 msgstr ""
 "\n"
-"JVMダイナミックライブラリ(libjava)をロードできません。\n"
+"Scilabは JVMライブラリを開けません。\n"
+
+#
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 53
+# File: src/c/JVM.c, line: 68
+# File: src/c/JVM.c, line: 83
+# File: src/c/JVM.c, line: 146
+# File: src/c/JVM.c, line: 180
+# File: src/c/JVM.c, line: 207
+msgid "Error"
+msgstr "エラー"
+
+#
+# File: src/c/InitializeJVM.c, line: 53
+# File: src/c/InitializeJVM.c, line: 55
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab Java "
+"メイン・クラスを生成できません(私達は、主なScilabクラスを見つけることができません。Scilabとサードパーティパッケージが利用できるかどうか確かめ"
+"て下さい)\n"
+
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+"javaからScilabを使用する場合, IDE (Netbeansなど)が実行時に解決できない外部への依存性を付加しないようにしてください.\n"
 
 #, c-format
 msgid ""
@@ -49,6 +103,51 @@ msgstr ""
 "エラー: Scilab Java環境(jvm_SCILAB)から戻れません: "
 "JVMがこのファンクションを呼ぶ前にScilabによってロードされたかどうか確かめて下さい。\n"
 
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"奇妙なエラー. Java からコールされましたが, 実行中のJVMを見つけることができませんでした.\n"
+
+#
+# File: src/c/JVM.c, line: 117
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"JVMダイナミックライブラリ(libjava)をロードできません。\n"
+
+#, c-format
+msgid "Error: %s\n"
+msgstr "エラー: %s\n"
+
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr "バイナリ版のScilabを使用している場合, http://bugzilla.scilab.org/ にバグを報告してください.\n"
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
+msgstr "独自に構築したScilabを使用している場合, bin/scilab スクリプトを更新し, JVMのパスを指定してください.\n"
+
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr "この問題はSELinuxに関係する可能性があります. SELinuxを無効にしてみてください.\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr "Scilab 64ビット版を32ビットシステムで実行しようとしていないかについても確認してください.\n"
+
 #
 # File: src/c/JVM.c, line: 152
 #, c-format
@@ -68,6 +167,14 @@ msgstr ""
 "JNIのバージョンが正しくありません (JDK 1.4以上が必要です).\n"
 
 #, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Java VM生成時にエラーを発生しました: %s\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "オプション:\n"
+
+#, c-format
 msgid ""
 "\n"
 "JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
@@ -76,57 +183,41 @@ msgstr ""
 "AttachCurrentThread で JVM エラーを発生しました : カレントのスレッドにアタッチできませんでした.\n"
 
 #
-# File: src/c/InitializeJVM.c, line: 53
-# File: src/c/InitializeJVM.c, line: 55
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
-"the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available).\n"
-msgstr ""
-"\n"
-"Scilab Java "
-"メイン・クラスを生成できません(私達は、主なScilabクラスを見つけることができません。Scilabとサードパーティパッケージが利用できるかどうか確かめ"
-"て下さい)\n"
+# File: src/c/JVM_commons.c, line: 82
+msgid "Unknown JNI error"
+msgstr "未知の JNI エラー"
 
 #
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 42
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilabは JVMライブラリを開けません。\n"
-
-#, c-format
-msgid ""
-"\n"
-"Weird error. Calling from Java but haven't been able to find the already "
-"existing JVM.\n"
-msgstr ""
-"\n"
-"奇妙なエラー. Java からコールされましたが, 実行中のJVMを見つけることができませんでした.\n"
-
-#, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr "%s: システムのクラスローダにURLを追加できませんでした: %s.\n"
+# File: src/c/JVM_commons.c, line: 85
+msgid "Thread detached from the VM"
+msgstr "スレッドはVMから離されました"
 
 #
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
-#, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s:  java.library.pathにpathを追加できませんでした。: %s\n"
+# File: src/c/JVM_commons.c, line: 88
+msgid "JNI version error"
+msgstr "JNI バージョンエラー"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+#
+# File: src/c/JVM_commons.c, line: 93
+msgid "JNI: not enough memory"
+msgstr "JNI: メモリが足りません"
 
+#
+# File: src/c/JVM_commons.c, line: 99
+msgid "VM already created"
+msgstr "VMはすでに生成されています"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: 引数に誤りがあります"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "JNIで未定義のエラーコード. 奇妙な問題"
+
+#
+# File: src/c/addToClasspath.c, line: 59
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "警告: Javaパッケージ '%s' が見つかりません。\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Main Scilabクラスにアクセスできませんでした.\n"
@@ -136,43 +227,6 @@ msgstr "Main Scilabクラスのコンストラクタにアクセスできませ�
 
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr "Scilab Mainクラスを作成できませんでした. エラー:\n"
-
-#
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 53
-# File: src/c/JVM.c, line: 68
-# File: src/c/JVM.c, line: 83
-# File: src/c/JVM.c, line: 146
-# File: src/c/JVM.c, line: 180
-# File: src/c/JVM.c, line: 207
-msgid "Error"
-msgstr "エラー"
-
-#
-# File: src/c/loadClasspath.c, line: 178
-#, c-format
-msgid ""
-"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-"エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' "
-"が見つかりました\n"
-
-#
-# File: src/c/loadLibrarypath.c, line: 127
-#, c-format
-msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr ""
-"エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
-
-#, c-format
-msgid "Error in the creation of the Java VM: %s\n"
-msgstr "Java VM生成時にエラーを発生しました: %s\n"
-
-#, c-format
-msgid "Error: %s\n"
-msgstr "エラー: %s\n"
 
 #
 # File: src/c/getJvmOptions.c, line: 51
@@ -197,38 +251,30 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "エラー: ファイル %s の解析ができません\n"
 
+#
+# File: src/c/loadClasspath.c, line: 166
+# File: src/c/loadLibrarypath.c, line: 114
+# File: src/c/loadOnUseClassPath.c, line: 112
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "%s でフォーマットが不正です。\n"
+
+#
+# File: src/c/loadClasspath.c, line: 178
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
-msgstr "バイナリ版のScilabを使用している場合, http://bugzilla.scilab.org/ にバグを報告してください.\n"
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' "
+"が見つかりました\n"
 
+#
+# File: src/c/loadClasspath.c, line: 184
+# File: src/c/loadOnUseClassPath.c, line: 123
 #, c-format
-msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
-msgstr "独自に構築したScilabを使用している場合, bin/scilab スクリプトを更新し, JVMのパスを指定してください.\n"
-
-#
-# File: src/c/JVM_commons.c, line: 88
-msgid "JNI version error"
-msgstr "JNI バージョンエラー"
-
-msgid "JNI: invalid arguments"
-msgstr "JNI: 引数に誤りがあります"
-
-#
-# File: src/c/JVM_commons.c, line: 93
-msgid "JNI: not enough memory"
-msgstr "JNI: メモリが足りません"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "JVMインターフェイスは -nogui または -nwni モードでは無効です.\n"
-
-#
-# File: src/nojvm/nojvm.c, line: 27
-msgid "Scilab Java module not installed.\n"
-msgstr "Scilab Java モジュールはインストールされていません。\n"
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "警告: classpath定義ファイル %s が見つかりません。\n"
 
 #
 # File: src/c/loadClasspath.c, line: 188
@@ -242,45 +288,15 @@ msgstr ""
 "これは、一貫性がない挙動をするかもしれません。\n"
 "どうぞ　SCI/etc/classpath.xml を確認してください。\n"
 
+#
+# File: src/c/loadLibrarypath.c, line: 127
 #, c-format
-msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr "この問題はSELinuxに関係する可能性があります. SELinuxを無効にしてみてください.\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
 
 #
-# File: src/c/JVM_commons.c, line: 85
-msgid "Thread detached from the VM"
-msgstr "スレッドはVMから離されました"
-
-msgid "Undefined error code in the JNI. Weird problem"
-msgstr "JNIで未定義のエラーコード. 奇妙な問題"
-
-#
-# File: src/c/JVM_commons.c, line: 82
-msgid "Unknown JNI error"
-msgstr "未知の JNI エラー"
-
-#
-# File: src/c/JVM_commons.c, line: 99
-msgid "VM already created"
-msgstr "VMはすでに生成されています"
-
-#
-# File: src/c/addToClasspath.c, line: 59
-#, c-format
-msgid "Warning: Could not find Java package '%s'.\n"
-msgstr "警告: Javaパッケージ '%s' が見つかりません。\n"
-
-#
-# File: src/c/loadClasspath.c, line: 184
-# File: src/c/loadOnUseClassPath.c, line: 123
-#, c-format
-msgid "Warning: could not find classpath declaration file %s.\n"
-msgstr "警告: classpath定義ファイル %s が見つかりません。\n"
-
-#
-# File: src/c/loadClasspath.c, line: 166
-# File: src/c/loadLibrarypath.c, line: 114
-# File: src/c/loadOnUseClassPath.c, line: 112
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr "%s でフォーマットが不正です。\n"
+# File: src/nojvm/nojvm.c, line: 27
+msgid "Scilab Java module not installed.\n"
+msgstr "Scilab Java モジュールはインストールされていません。\n"

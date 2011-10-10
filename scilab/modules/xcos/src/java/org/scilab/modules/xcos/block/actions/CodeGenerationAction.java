@@ -16,10 +16,10 @@ package org.scilab.modules.xcos.block.actions;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.logging.LogFactory;
@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -85,8 +86,8 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 				/*
 				 * Prepare data
 				 */
-				final File tempOutput = FileUtils.createTempFile();
-				final File tempInput = FileUtils.createTempFile();
+				final String tempOutput = FileUtils.createTempFile();
+				final String tempInput = FileUtils.createTempFile();
 				
 			    /*
 			     * Export data
@@ -97,14 +98,14 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 			     * Prepare command and callback
 			     */
 				String cmd = buildCall("xcosCodeGeneration",
-						tempOutput.getAbsolutePath(),
-						tempInput.getAbsolutePath());
+						tempOutput,
+						tempInput);
 				
 				final ActionListener callback = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						
-						if (!tempInput.exists()) {
+						if (!exists(tempInput)) {
 							((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 							return;
 						}
@@ -153,16 +154,21 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      * @param tempInput Input file
      */
     private static void doAction(final SuperBlock block,
-			final File tempInput) {
-	    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-	    block.updateBlockSettings(modifiedBlock);
-	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-	    block.setChild(null);
-	    
-	    block.setStyle(block.getStyle() + ";blockWithLabel");
-	    block.setValue(block.getSimulationFunctionName());
-	    BlockPositioning.updateBlockView(block);
+			final String tempInput) {
+		try {
+			BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+			
+		    block.updateBlockSettings(modifiedBlock);
+		    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+		    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+		    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+		    block.setChild(null);
+		    
+		    block.setStyle(block.getStyle() + ";blockWithLabel");
+		    block.setValue(block.getSimulationFunctionName());
+		    BlockPositioning.updateBlockView(block);
+		} catch (ScicosFormatException e) {
+			LogFactory.getLog(CodeGenerationAction.class).error(e);
+		}
 	}
 }

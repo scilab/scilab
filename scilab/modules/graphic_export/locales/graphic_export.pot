@@ -8,125 +8,106 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-10-03 10:33+0100\n"
 
-# File: macros/xend.sci, line: 18
-#, c-format
-msgid "%s: %s must be called before any action.\n"
+# File: sci_gateway/c/gw_graphic_export.c, line: 64
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr ""
-#
-# File: macros/xs2emf.sci, line: 48
-#, c-format
-msgid "%s: EMF format only available under Microsoft Windows OS.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 196
-# File: src/c/xs2file.c, line: 202
-#, c-format
-msgid "%s: GL2PS error during export.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 187
-#, c-format
-msgid "%s: OpenGL error during export.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 199
-#, c-format
-msgid "%s: Unable to create export file, figure is too big.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 193
-#, c-format
-msgid "%s: Unable to create export file, invalid file.\n"
-msgstr ""
-#
-# File: macros/xs2emf.sci, line: 94
-# File: macros/xs2fig.sci, line: 108
-# File: src/c/xs2file.c, line: 190
-#, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr ""
-#
-# File: macros/xs2emf.sci, line: 105
-# File: macros/xs2fig.sci, line: 120
-#, c-format
-msgid "%s: Unable to execute pstoedit.\n"
-msgstr ""
-#
-# File: macros/xs2emf.sci, line: 72
-#, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr ""
-#
-# File: macros/xs2fig.sci, line: 63
-#, c-format
-msgid ""
-"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
-"to be able to use this feature.\n"
-msgstr ""
-#
-# File: macros/xinit.sci, line: 27
-#, c-format
-msgid ""
-"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
-"''%s'' or ''%s'' drivers.\n"
-msgstr ""
-#
-# File: macros/xs2emf.sci, line: 16
-# File: macros/xs2fig.sci, line: 17
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-#
-# File: macros/xinit.sci, line: 21
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments: Function has no input argument with "
-"''%s'' or ''%s'' drivers.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 99
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 77
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-#
-# File: src/c/xs2file.c, line: 168
-# File: src/c/xs2file.c, line: 212
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single character string expected.\n"
-msgstr ""
+
 #
 # File: src/c/xs2file.c, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
 msgstr ""
+
 #
-# File: macros/xs2emf.sci, line: 22
-# File: macros/xs2fig.sci, line: 23
+# File: src/c/xs2file.c, line: 78
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+
 #
-# File: src/c/xs2file.c, line: 137
-# File: src/c/xs2file.c, line: 218
+# File: src/c/xs2file.c, line: 96
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 132
+# File: src/c/xs2file.c, line: 211
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
 msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 155
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 163
+# File: src/c/xs2file.c, line: 205
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 174
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+
+#
+# File: src/c/xs2file.c, line: 198
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#
+# File: src/nographic_export/nographic_export.c, line: 20
+msgid "Scilab Graphic export module not installed.\n"
+msgstr ""
+
+# File: macros/driver.sci, line: 26
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/xend.sci, line: 18
+#, c-format
+msgid "%s: %s must be called before any action.\n"
+msgstr ""
+
+#
+# File: macros/xinit.sci, line: 21
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: Function has no input argument with "
+"'%s' or '%s' drivers.\n"
+msgstr ""
+
+#
+# File: macros/xinit.sci, line: 27
+#, c-format
+msgid ""
+"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
+"'%s' drivers.\n"
+msgstr ""
+
 #
 # File: macros/xinit.sci, line: 33
 # File: macros/xs2emf.sci, line: 28
@@ -134,41 +115,66 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+
 #
-# File: src/c/xs2file.c, line: 160
+# File: macros/xs2emf.sci, line: 16
+# File: macros/xs2fig.sci, line: 17
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+
 #
-# File: macros/xs2emf.sci, line: 39
-# File: macros/xs2fig.sci, line: 40
+# File: macros/xs2emf.sci, line: 22
+# File: macros/xs2fig.sci, line: 23
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
+
 #
-# File: macros/driver.sci, line: 26
+# File: macros/xs2emf.sci, line: 48
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
+msgid "%s: EMF format only available under Microsoft Windows OS.\n"
 msgstr ""
+
+#
+# File: macros/xs2emf.sci, line: 72
+#, c-format
+msgid "%s: Unable to find pstoedit.\n"
+msgstr ""
+
+#
+# File: macros/xs2emf.sci, line: 94
+# File: macros/xs2fig.sci, line: 108
+#, c-format
+msgid "%s: Unable to create export file, permission denied.\n"
+msgstr ""
+
+#
+# File: macros/xs2emf.sci, line: 105
+# File: macros/xs2fig.sci, line: 120
+#, c-format
+msgid "%s: Unable to execute pstoedit.\n"
+msgstr ""
+
 #
 # File: macros/xs2fig.sci, line: 52
 msgid "Please install Ghostscript 32 bits to export an .FIG file."
 msgstr ""
-#
-# File: src/nographic_export/nographic_export.c, line: 20
-msgid "Scilab Graphic export module not installed.\n"
-msgstr ""
+
 #
 # File: macros/xs2fig.sci, line: 55
 msgid "Scilab error"
 msgstr ""
-#
-# File: sci_gateway/c/gw_graphic_export.c, line: 64
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr ""
+
 #
 # File: macros/xs2fig.sci, line: 55
 msgid "error"
+msgstr ""
+
+#
+# File: macros/xs2fig.sci, line: 63
+#, c-format
+msgid ""
+"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
+"to be able to use this feature.\n"
 msgstr ""

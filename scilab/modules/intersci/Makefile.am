@@ -42,18 +42,13 @@ libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 CHECK_SRC= $(libsciintersci_la_SOURCES)
 INCLUDE_FLAGS = $(libsciintersci_la_CFLAGS)
 
-libsciintersci_la_LIBADD = \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
-
 #### Target ######
 modulename=intersci
 
 
 #### intersci : Conf files ####
 libsciintersci_la_rootdir = $(mydatadir)
-libsciintersci_la_root_DATA =  license.txt version.xml
+libsciintersci_la_root_DATA =  license.txt 
 
 
 #### intersci : init scripts ####

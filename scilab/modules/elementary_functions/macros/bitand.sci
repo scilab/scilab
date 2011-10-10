@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function z = bitand(x,y)
+function z = bitand(x, y)
 	
 	// BITAND function
 	// Given x,y two positives integers this function returns the decimal

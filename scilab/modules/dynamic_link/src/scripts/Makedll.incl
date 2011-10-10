@@ -1,6 +1,5 @@
-#--- see examples/addinter-tutorial-so ----------
 
-DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
+DUMPEXTS="$(SCIDIR)\bin\dumpexts"
 SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 all :: $(LIBRARY).dll
@@ -22,9 +21,3 @@ clean	::
 	-del $(LIBRARY).lib
 
 distclean:: 	clean
-
-tests	: $(LIBRARY).dll $(LIBRARY).tst
-	@"$(SCIDIR1)\bin\scilex.exe" -nwni  -e scitest('$(LIBRARY).tst',%t);quit;
-
-#	@"$(SCIDIR1)\bin\scilex.exe" -f $(LIBRARY).tst 
-

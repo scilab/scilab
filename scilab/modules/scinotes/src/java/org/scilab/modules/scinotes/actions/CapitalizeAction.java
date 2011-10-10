@@ -32,6 +32,8 @@ import org.scilab.modules.scinotes.ScilabDocument;
  */
 public final class CapitalizeAction extends DefaultAction {
 
+    private static final long serialVersionUID = 1531881688147993338L;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -53,7 +55,13 @@ public final class CapitalizeAction extends DefaultAction {
 
         if (start == end) {
             try {
-                str = doc.getText(start, 1).toUpperCase();
+                String letter = doc.getText(start, 1);
+                char c = letter.charAt(0);
+                if (Character.isUpperCase(c)) {
+                    str = letter.toLowerCase();
+                } else {
+                    str = letter.toUpperCase();
+                }
                 doc.mergeEditsBegin();
                 ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
                 sep.select(start, start + 1);
@@ -69,7 +77,11 @@ public final class CapitalizeAction extends DefaultAction {
                 char c = buf[i];
                 if (Character.isLetter(c)) {
                     if (nonLetter) {
-                        buf[i] = Character.toUpperCase(c);
+                        if (Character.isLowerCase(c)) {
+                            buf[i] = Character.toUpperCase(c);
+                        } else {
+                            buf[i] = Character.toLowerCase(c);
+                        }
                         nonLetter = false;
                     }
                 } else {

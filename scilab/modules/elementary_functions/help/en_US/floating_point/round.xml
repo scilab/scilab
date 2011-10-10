@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,7 +25,7 @@
   <refnamediv>
     <refname>round</refname>
 
-    <refpurpose>rounding</refpurpose>
+    <refpurpose>round to nearest integer</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -58,18 +59,33 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>round(x)</literal> rounds the elements of
-    <literal>x</literal> to the nearest integers.</para>
-  </refsection>
+    <para>
+    <literal>round(x)</literal> rounds the elements of
+    <literal>x</literal> to the nearest integers.
+    </para>
+
+    <para>
+    In case of tie, this function rounds to infinities. 
+    That is, if <literal>x</literal> is positive and is halfway between two 
+    integers, then <literal>round(x)</literal> is rounded toward <literal>%inf</literal>.
+    If <literal>x</literal> is negative and is halfway between two 
+    integers, then <literal>round(x)</literal> is rounded toward <literal>-%inf</literal>.
+    In other words, if <literal>x</literal> is positive, then <literal>round(x)</literal>
+    is equal to <literal>int(x+0.5)</literal>, and if <literal>x</literal> is negative, 
+    then <literal>round(x)</literal> is equal to <literal>int(x-0.5)</literal>
+    </para>
+
+</refsection>
 
   <refsection>
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
-round([1.9 -2.5])-[2,-3]
-round(1.6+2.1*%i)-(2+2*%i)
-round(-%inf)
-x=rand()*10^20;round(x)-x
+// Notice that round(1.5)==2
+round([1.3 1.5 1.7 2.5 3.7])
+// Notice the result for x negative
+// Notice that round(-1.5)==-2
+round([-1.3 -1.5 -1.7 -2.5 -3.7])
  ]]></programlisting>
   </refsection>
 

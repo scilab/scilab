@@ -1,9 +1,0 @@
-a=1;
-A=2;
-a+A
-//Two commands on the same line
-c=[1 2];b=1.5
-//A command on several lines
-u=1000000*(a*sin(A))^2+...
-     2000000*a*b*sin(A)*cos(A)+... 
-     1000000*(b*cos(A))^2

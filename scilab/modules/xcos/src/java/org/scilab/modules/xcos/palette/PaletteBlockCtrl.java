@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -46,13 +47,6 @@ import com.mxgraph.util.mxConstants;
  * operations there are used to render, load and put (on a diagram) a block.
  */
 public final class PaletteBlockCtrl {
-	private static final double BLOCK_DEFAULT_POSITION = 10.0;
-	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
-	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
-	
-	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
-	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
-	
 	/**
 	 * Internal graph used to render each block.
 	 */
@@ -61,6 +55,13 @@ public final class PaletteBlockCtrl {
 		INTERNAL_GRAPH = new XcosDiagram();
 		INTERNAL_GRAPH.installListeners();
 	}
+	
+	private static final double BLOCK_DEFAULT_POSITION = 10.0;
+	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
+	private static final Log LOG = LogFactory.getLog(PaletteBlockCtrl.class);
+	
+	private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+	private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
 	
 	private static PaletteBlockCtrl previouslySelected;
 	
@@ -105,18 +106,25 @@ public final class PaletteBlockCtrl {
 	/**
 	 * This function is the only access to get the block.
 	 * @return the transferable object
+	 * @throws ScicosFormatException on decoding error
 	 */
-	public Transferable getTransferable() {
+	public Transferable getTransferable() throws ScicosFormatException {
 		if (transferable == null) {
 			/* Load the block from the H5 file */
-			BasicBlock block = loadBlock();
+			BasicBlock block;
+			try {
+				block = loadBlock();
+			} catch (ScicosFormatException ex) {
+				getView().setEnabled(false);
+				throw ex;
+			}
 			if (block == null) {
 				if (LOG.isInfoEnabled()) {
 					LOG.info(String.format(UNABLE_TO_LOAD_BLOCK,
 							getModel().getData().getEvaluatedPath()));
 				}
 				getView().setEnabled(false);
-				return null;
+				throw new InvalidDnDOperationException();
 			}
 			getView().setEnabled(true);
 			
@@ -140,8 +148,9 @@ public final class PaletteBlockCtrl {
 
 	/**
 	 * @return the loaded block.
+	 * @throws ScicosFormatException on error
 	 */
-	private BasicBlock loadBlock() {
+	private BasicBlock loadBlock() throws ScicosFormatException {
 		BasicBlock block;
 		if (model.getName().compareTo("TEXT_f") != 0) {
 			// Load the block from the file
@@ -170,7 +179,12 @@ public final class PaletteBlockCtrl {
 	 * @return a rendered block
 	 */
 	public BasicBlock getBlock() {
-		return (BasicBlock) ((mxGraphTransferable) getTransferable()).getCells()[0];
+		try {
+			return (BasicBlock) ((mxGraphTransferable) getTransferable()).getCells()[0];
+		} catch (ScicosFormatException e) {
+			LogFactory.getLog(PaletteBlockCtrl.class).error(e);
+			return null;
+		}
 	}
 	
 	/**
@@ -215,10 +229,13 @@ public final class PaletteBlockCtrl {
 						event.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 								transfer, null);
 					} else {
-						throw new NullPointerException();
+						throw new InvalidDnDOperationException();
 					}
 				} catch (InvalidDnDOperationException exception) {
 					ScilabModalDialog.show(winView, msg,
+							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+				} catch (ScicosFormatException ex) {
+					ScilabModalDialog.show(winView, ex.getMessage(),
 							XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 				} finally {
 					winView.setInfo(XcosMessages.EMPTY_INFO);

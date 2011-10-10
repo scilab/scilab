@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -18,42 +19,7 @@
 // The restart allows to compute a new simplex and makes the 
 // optimization converge toward the good point.
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 
 //% MCKINNON computes the McKinnon function.
 //
@@ -153,24 +119,22 @@ nm = neldermead_configure(nm,"-function",mckinnon3);
 nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_search(nm);
-// Check optimum point
 // This is not the real, absolute optimum,
 // but this is the expected result of the Nelder-Mead
 // algorithm.
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;0.0], 1e-6 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;0.0], 1e-6 );
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , 0.0 , 1e-6 );
-// Check status
+assert_checkalmostequal ( fopt , 0.0 , 1e-6 );
+
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "tolsize" );
+assert_checkequal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 
 //
@@ -183,25 +147,19 @@ nm = neldermead_configure(nm,"-function",mckinnon3);
 nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_search(nm);
 nm = neldermead_restart ( nm );
-// Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-5 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-3 , 1.e-3 );
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-6 );
-// Check status
+assert_checkalmostequal ( fopt , -0.25 , 1e-6 );
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "tolsize" );
-// Check iterations
-iterations = neldermead_get(nm,"-iterations");
-assert_equal ( iterations > 200 , %t );
+assert_checkequal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
 
 //
@@ -220,15 +178,14 @@ nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "kelleystagnation" );
+assert_checkequal ( status , "kelleystagnation" );
 nm = neldermead_destroy(nm);
 
 //
 // Test with auto-restart, Kelley stagnation detection and Kelley restart method
 // Uses oriented simplex for restart.
-// There are 3 restarts and final status is "maxrestart".
+// There are 2 restarts and final status is "tolx".
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
@@ -237,28 +194,22 @@ nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
 nm = neldermead_configure(nm,"-simplex0method","given");
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","kelley");
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "maxrestart" );
-// Check optimum point
+assert_checkequal ( status , "tolx" );
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-5 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-5 , 1.e-6 );
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-6 );
-// Check iterations
+assert_checkalmostequal ( fopt , -0.25 , 1e-6 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 100 ) , %t );
-// Check number of restarts
+assert_checkequal ( ( iterations > 100 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 3 );
+assert_checkequal ( restartnb , 2 );
 nm = neldermead_destroy(nm);
 
 //
@@ -276,25 +227,20 @@ nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "tolsize" );
-// Check optimum point
+assert_checkequal ( status , "tolsize" );
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-1 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-4 , 1.e-3);
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-4 );
-// Check iterations
+assert_checkalmostequal ( fopt , -0.25 , 1e-4 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 40 ) , %t );
-// Check number of restarts
+assert_checkequal ( ( iterations > 40 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
@@ -309,7 +255,7 @@ nm = neldermead_configure(nm,"-function",mckinnon3);
 nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
@@ -319,21 +265,16 @@ nm = neldermead_configure(nm,"-restartdetection","kelley");
 nm = neldermead_configure(nm,"-restartsimplexmethod","axes");
 nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "tolsize" );
-// Check optimum point
+assert_checkequal ( status , "tolsize" );
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-5 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-3 , 1.e-2 );
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-4 );
-// Check iterations
+assert_checkalmostequal ( fopt , -0.25 , 1e-4 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 50 ) , %t );
-// Check number of restarts
+assert_checkequal ( ( iterations > 30 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
@@ -348,7 +289,7 @@ nm = neldermead_configure(nm,"-function",mckinnon3);
 nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
@@ -358,30 +299,24 @@ nm = neldermead_configure(nm,"-restartdetection","kelley");
 nm = neldermead_configure(nm,"-restartsimplexmethod","spendley");
 nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "tolsize" );
-// Check optimum point
+assert_checkequal ( status , "tolsize" );
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-4 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-2, 1.e-2 );
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-4 );
-// Check iterations
+assert_checkalmostequal ( fopt , -0.25 , 1e-4 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 50 ) , %t );
-// Check number of restarts
+assert_checkequal ( ( iterations > 30 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
 // Test with auto-restart, Kelley stagnation detection and Kelley restart method
 // Use pfeffer simplex for restart.
 // Use a reduced alpha0 so that restart occur earlier (test is faster).
-// Pfeffer's initial simplex is the best for restart, since it 
-// respects the optimal point computed so far. It saves tens of iterations.
-// There are 3 restarts with "maxrestart" final status.
+// Pfeffer's initial simplex may be the better for restart, since it 
+// respects the optimal point computed so far. 
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
@@ -389,7 +324,7 @@ nm = neldermead_configure(nm,"-function",mckinnon3);
 nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
@@ -397,23 +332,18 @@ nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","kelley");
 nm = neldermead_configure(nm,"-restartsimplexmethod","pfeffer");
-nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);
+nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-1);
 nm = neldermead_search(nm);
-// Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "maxrestart" );
-// Check optimum point
+assert_checkequal ( status , "tolsize" );
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-5 );
-// Check optimum point value
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-5 , 1.e-4);
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , -0.25 , 1e-4 );
-// Check iterations
+assert_checkalmostequal ( fopt , -0.25 , 1e-4 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 110 ) , %t );
-// Check number of restarts
+assert_checkequal ( ( iterations > 50 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 3 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
@@ -432,17 +362,17 @@ nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_configure(nm,"-restartstep", 0.5 );
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-1 );
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-3, 1.e-3 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 40 ) , %t );
+assert_checkequal ( ( iterations > 40 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
@@ -461,17 +391,17 @@ nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_configure(nm,"-restartstep", [0.5 0.1]');
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-1 );
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-3, 1.e-3 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 40 ) , %t );
+assert_checkequal ( ( iterations > 40 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
 
 //
@@ -490,17 +420,16 @@ nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-2);
 nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_configure(nm,"-restarteps", 0.1);
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [0.0;-0.5], 1e-1 );
+assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-3, 1.e-3 );
 iterations = neldermead_get(nm,"-iterations");
-assert_equal ( ( iterations > 40 ) , %t );
+assert_checkequal ( ( iterations > 40 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_equal ( restartnb , 1 );
+assert_checkequal ( restartnb , 1 );
 nm = neldermead_destroy(nm);
-
 

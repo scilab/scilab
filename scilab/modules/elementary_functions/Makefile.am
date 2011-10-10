@@ -164,7 +164,6 @@ src/fortran/watan.f \
 src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/wdpow1.f \
-src/fortran/zbesjg.f \
 src/fortran/dmsum.f \
 src/fortran/dlgama.f \
 src/fortran/exch.f \
@@ -172,7 +171,6 @@ src/fortran/wsign.f \
 src/fortran/kronr.f \
 src/fortran/wrscal.f \
 src/fortran/pythag.f \
-src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
 src/fortran/wmmul.f \
@@ -199,13 +197,11 @@ src/fortran/ddrdiv.f \
 src/fortran/dipow.f \
 src/fortran/wshrsl.f \
 src/fortran/wwrdiv.f \
-src/fortran/zbeshg.f \
 src/fortran/coshin.f \
 src/fortran/iwamax.f \
 src/fortran/dipowe.f \
 src/fortran/getorient.f \
 src/fortran/cusum.f \
-src/fortran/dbesig.f \
 src/fortran/d1mach.f \
 src/fortran/wbdiag.f \
 src/fortran/ddpow1.f \
@@ -217,11 +213,9 @@ src/fortran/getdimfromvar.f \
 src/fortran/gdcp2i.f \
 src/fortran/drdiv.f \
 src/fortran/wmsum.f \
-src/fortran/dbesyg.f \
 src/fortran/corth.f \
 src/fortran/mtran.f \
 src/fortran/wwpow.f \
-src/fortran/zbeskg.f \
 src/fortran/dvmul.f \
 src/fortran/wclmat.f \
 src/fortran/dsort.f \
@@ -248,14 +242,11 @@ src/fortran/wipow.f \
 src/fortran/wlog.f \
 src/fortran/infinity.f \
 src/fortran/dwpow1.f \
-src/fortran/zbesig.f \
 src/fortran/wmul.f \
 src/fortran/dad.f \
-src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
 src/fortran/i1mach.f \
-src/fortran/zbesyg.f \
 src/fortran/dclmat.f \
 src/fortran/ortran.f \
 src/fortran/bdiag.f \
@@ -264,10 +255,6 @@ src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
 src/fortran/israt.f \
 src/fortran/rat.f \
-src/fortran/ribesl.f \
-src/fortran/rjbesl.f \
-src/fortran/rkbesl.f \
-src/fortran/rybesl.f \
 src/fortran/sdot.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
@@ -372,7 +359,7 @@ sci_gateway/fortran/sci_f_exp.f
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
-noinst_LTLIBRARIES = libdummy-elementary_functions.la
+noinst_LTLIBRARIES = libdummy-elementary_functions.la 
 
 libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
@@ -408,18 +395,19 @@ libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
+noinst_LTLIBRARIES += libscielementary_functions-algo.la
 
 libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
+libscielementary_functions_algo_la_CFLAGS = $(libscielementary_functions_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
-# Commented because it is one of the first module to be compiled
-#libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
+libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la libscielementary_functions-algo.la
 
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
@@ -445,7 +433,7 @@ modulename=elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA =  license.txt version.xml
+libscielementary_functions_la_root_DATA =  license.txt 
 
 
 

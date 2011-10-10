@@ -12,7 +12,6 @@
 
 package org.scilab.modules.console;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -21,8 +20,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.Writer;
@@ -31,15 +28,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import javax.swing.BorderFactory;
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
-import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.StyleContext;
@@ -86,7 +80,6 @@ public class SciOutputView extends JEditorPane implements OutputView {
     private int insertPosition;
 
     private int maxNumberOfLines;
-    private int numberOfLines;
 
     /**
      * Constructor
@@ -114,6 +107,8 @@ public class SciOutputView extends JEditorPane implements OutputView {
          * @author Vincent COUVERT
          */
         final class FixedCaret extends ScilabCaret {
+
+            private static final long serialVersionUID = 8230195712653828841L;
 
             /**
              * Constructor
@@ -157,12 +152,26 @@ public class SciOutputView extends JEditorPane implements OutputView {
                     super.mouseClicked(e);
                 }
             }
+
+            public void mousePressed(MouseEvent e) {
+                ((SciInputCommandView) console.getConfiguration().getInputCommandView()).removeSelection();
+                super.mousePressed(e);
+            }
         }
 
         // Set the caret
         setCaret(new FixedCaret());
         // Selection is forced to be visible because the component is not editable
         getCaret().setSelectionVisible(true);
+    }
+
+    /**
+     * Unselect text if selected one exists
+     */
+    public void removeSelection() {
+        if (getSelectionStart() != getSelectionEnd()) {
+            setSelectionEnd(getSelectionStart());
+        }
     }
 
     /**

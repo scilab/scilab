@@ -41,7 +41,7 @@ code=['#include ""stack-c.h""'
 ' return 0;'
 '}'];
 mputl(code,'intchangetype.c');
-ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
+ilib_build('libtest',['changetype','intchangetype'],'intchangetype.c',[]);
 exec('loader.sce');
 cd(cur);
 

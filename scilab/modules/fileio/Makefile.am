@@ -54,7 +54,8 @@ src/c/copyfile_others.c \
 src/c/getFullFilename.c \
 src/c/mputl.c \
 src/c/fscanfMat.c \
-src/c/fprintfMat.c
+src/c/fprintfMat.c \
+src/c/createtempfilename.c
 
 
 GATEWAY_SOURCES = \
@@ -102,7 +103,8 @@ sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c \
-sci_gateway/c/sci_mputl.c
+sci_gateway/c/sci_mputl.c \
+sci_gateway/c/sci_tempname.c
 
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
@@ -120,30 +122,29 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes
 
+noinst_LTLIBRARIES = libscifileio-algo.la
 pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
+libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifileio_algo_la_CFLAGS = $(libscifileio_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
-# pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD = \
-				$(top_builddir)/modules/string/libscistring.la \
-				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-				$(top_builddir)/libs/MALLOC/libscimalloc.la \
-				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-				$(top_builddir)/libs/libst/libscilibst.la
+# pb of order $(top_builddir)/modules/console/libsciconsole.la
+libscifileio_la_LIBADD = libscifileio-algo.la
+
 #### Target ######
 modulename=fileio
 
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA =  license.txt version.xml
+libscifileio_la_root_DATA =  license.txt 
 
 
 #### fileio : init scripts ####

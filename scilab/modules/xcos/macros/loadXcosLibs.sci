@@ -11,24 +11,8 @@
 //
 //
 function loadXcosLibs()
-
-  if ~isdef('scicos_menuslib') then
-    load('SCI/modules/scicos/macros/scicos_menus/lib')
-  end
- 
-
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-
-    
-     [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-
-    clear initial_scicos_tables
-  end
+  // Extracted from initial_scicos_tables
+  scicos_pal_libs = ['Branching','Events','Misc','Sinks','Threshold','Linear','MatrixOp','NonLinear','Sources','Electrical','Hydraulics','PDE','IntegerOp'];
 
   // list of scicos libraries that we need at xcos launch
   listlibsname = [];
@@ -41,11 +25,6 @@ function loadXcosLibs()
   end
   clear theLib;
 
-  if isfile('SCI/modules/scicos/macros/scicos_menus/lib') then
-    load('SCI/modules/scicos/macros/scicos_menus/lib');
-    listlibsname = [listlibsname, 'scicos_menus'];
-  end
-
   if isfile('SCI/modules/scicos/macros/scicos_scicos/lib') then
     load('SCI/modules/scicos/macros/scicos_scicos/lib');
     listlibsname = [listlibsname, 'scicos_scicos'];
@@ -57,8 +36,45 @@ function loadXcosLibs()
   listlibsname(listlibsname == 'IntegerOp') = 'Integerop';
   
   if listlibsname <> [] then
-    execline = '[' + strcat(listlibsname + 'lib',', ') + '] = resume(' + strcat(listlibsname + 'lib',', ')+ ');'
-    execstr(execline);
+    resumedLibs = listlibsname + 'lib';
+  else
+    resumedLibs = string([]);
   end
 
+  // Compatibility interface functions
+  function [x,y,typ]=COMPAT_BLOCK(job,arg1,arg2)
+  // Throw an error on block access
+      x=[];y=[];typ=[]
+      if ~exists("arg1") then
+          arg1 = mlist(['Block', "gui"], "COMPAT_BLOCK");
+      end
+      error(msprintf(gettext("%s: the block ""%s"" is no more available, please update the diagram with a compatible one."), "loadXcosLibs", arg1.gui));
+  endfunction
+
+  // removed blocks
+  removed = [
+"AFFICH_f"
+"RFILE"
+"WFILE"];
+  prot = funcprot();
+  funcprot(0);
+  execstr(strcat(removed + "=COMPAT_BLOCK; "));
+  funcprot(prot);
+  
+  resumedBlocks = removed';
+
+  [modelica_libs, scicos_pal_libs, ..
+   %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+   
+  resumedVars = [
+"modelica_libs"
+"scicos_pal_libs"
+"%scicos_with_grid"
+"%scs_wgrid"]';
+
+
+  // put all resumed symbols into the parent scope
+  prot = funcprot();
+  execstr("funcprot(0); [" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks resumedVars], ", ") + "); funcprot(" + string(prot) + ");");
 endfunction
+

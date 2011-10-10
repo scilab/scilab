@@ -20,6 +20,7 @@ c
       integer sadr
 c     job is used for try catch
       integer job
+      character tmpbuf * (bsiz)
 
       data else/236721422,nz1*673720360/
       data cas/236718604,nz1*673720360/
@@ -30,10 +31,12 @@ c
       l=comp(1)
       r = rstk(pt)-800
       if (ddt .eq. 4) then
-         write(buf(1:20),'(2i4,2i6)') pt,rstk(pt),l,comp(2)
-         call basout(io,wte,' compcl pt:'//buf(1:4)//' rstk(pt):'
-     &              //buf(5:8)//' comp(1):'//buf(9:14)//' comp(2):'
-     &              //buf(15:20))
+         write(tmpbuf(1:20),'(2i4,2i6)') pt,rstk(pt),l,comp(2)
+         call basout(io,wte,' compcl pt:'
+     &              //tmpbuf(1:4)//' rstk(pt):'
+     &              //tmpbuf(5:8)//' comp(1):'
+     &              //tmpbuf(9:14)//' comp(2):'
+     &              //tmpbuf(15:20))
       endif
 
       if(ids(1,pt).eq.iselect) goto 10

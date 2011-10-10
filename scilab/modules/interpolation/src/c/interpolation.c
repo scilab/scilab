@@ -88,7 +88,7 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
 
   /*  get the 3d field */
   if ( !( *istk(il3) == 1 && *istk(il3+3)==0) )
-    goto err;;
+    goto err;
 
   H->size = (*istk(il3+1))*(*istk(il3+2));
   H->R = stk(sadr(il3+4));
@@ -133,9 +133,9 @@ int get_rhs_scalar_string(int num, int *length, int **tabchar)
 static int equal_scistring_and_string(int length, int *scistr,  char *str)
 {
   /* compare a scistring with a classic C string */
-  int i, res;
+  int i = 0, res = 0;
 
-  if ( strlen(str) != length )
+  if ( (int)strlen(str) != length )
     return 0;
 
   res = 1; i = 0;

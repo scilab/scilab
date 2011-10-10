@@ -10,7 +10,7 @@
 function  barh(varargin)
 
 	// barh(x,y,width,style,color) 
-	// Intput :
+	// Input :
 	// x : a scalar or a vector of reals
 	// y : a sclar, a vector or a matrix of reals
 	// width : a double, the bar width, it's the percentage (0<width<1) of the max width of one bar which is wanted (default: width=0.8)

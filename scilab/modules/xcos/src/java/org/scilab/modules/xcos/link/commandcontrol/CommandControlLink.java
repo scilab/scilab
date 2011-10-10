@@ -13,12 +13,10 @@
 package org.scilab.modules.xcos.link.commandcontrol;
 
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
 
 /**
- * An command control link connect an {@link ControlPort} to an
- * {@link CommandPort}.
+ * An command control link connect an {@link org.scilab.modules.xcos.port.control.ControlPort} to an
+ * {@link org.scilab.modules.xcos.port.command.CommandPort}.
  */
 public class CommandControlLink extends BasicLink {
     

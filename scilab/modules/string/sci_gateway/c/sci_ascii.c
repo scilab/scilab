@@ -139,8 +139,8 @@ static int asciiStrings(char *fname)
 	CreateVarFromPtr(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&nbOutput_IntMatrix,&Output_IntMatrix);
 
 	LhsVar(1) = Rhs + 1 ;
-	C2F(putlhsvar)();
 	if (Output_IntMatrix) { FREE(Output_IntMatrix); Output_IntMatrix=NULL;}
+    PutLhsVar();
 	return 0;
 */
 
@@ -277,7 +277,7 @@ static int asciiMatrix(char *fname)
 	}
 	
 	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 
@@ -319,7 +319,7 @@ static int asciiIntMatrix(char *fname)
 	}
 	
 	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 

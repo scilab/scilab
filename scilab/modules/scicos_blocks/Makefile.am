@@ -341,19 +341,16 @@ src/c/scoSetProperty.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
 src/c/scoWindowScope.c \
-src/c/affich.c \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CPP_SOURCES = \
-src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
 GIWS_WRAPPERS = \
 src/jni/Blocks.giws.xml
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
-src/fortran/affich.f \
 src/fortran/csslti.f \
 src/fortran/cstblk.f \
 src/fortran/delay.f \
@@ -413,14 +410,6 @@ src/fortran/writef.f \
 src/fortran/zcross.f
 
 
-
-#### scicos_blocks : GATEWAY_C_SOURCES ####
-
-#### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
-
-
-
-
 libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
@@ -439,6 +428,7 @@ libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
@@ -455,9 +445,6 @@ $(SCICOS_BLOCKS_CPP_SOURCES)
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
-
-
-#$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
@@ -501,16 +488,9 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 	$(srcdir)/macros/Hydraulics/*.moc \
 	$(BASE_PATH)/linenum.ml
 
-
-
-
-# cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA =  license.txt version.xml
+libsciscicos_blocks_la_root_DATA =  license.txt 
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -547,7 +527,6 @@ TESTS_DIREXT= tests/unit_tests/Linear
 #### xcos : hdf5 blocks files ####
 libsciscicos_blocks_la_hdf5blocksdir=$(mydatadir)/
 nobase_libsciscicos_blocks_la_hdf5blocks_DATA = blocks/ABS_VALUE.h5 \
-blocks/ABSBLK_f.h5 \
 blocks/AFFICH_m.h5 \
 blocks/ANDBLK.h5 \
 blocks/ANDLOG_f.h5 \
@@ -560,10 +539,10 @@ blocks/BITSET.h5 \
 blocks/BOUNCE.h5 \
 blocks/BOUNCEXY.h5 \
 blocks/BPLATFORM.h5 \
-blocks/c_block.h5 \
-blocks/CANIMXY.h5 \
 blocks/CANIMXY3D.h5 \
+blocks/CANIMXY.h5 \
 blocks/Capacitor.h5 \
+blocks/c_block.h5 \
 blocks/CBLOCK.h5 \
 blocks/CCS.h5 \
 blocks/CEVENTSCOPE.h5 \
@@ -573,27 +552,23 @@ blocks/CLKFROM.h5 \
 blocks/CLKGOTO.h5 \
 blocks/CLKGotoTagVisibility.h5 \
 blocks/CLKINV_f.h5 \
-blocks/CLKOUT_f.h5 \
 blocks/CLKOUTV_f.h5 \
-blocks/CLKSOM_f.h5 \
 blocks/CLKSOMV_f.h5 \
-blocks/CLKSPLIT_f.h5 \
 blocks/CLOCK_c.h5 \
-blocks/CLOCK_f.h5 \
 blocks/CLR.h5 \
 blocks/CLSS.h5 \
 blocks/CMAT3D.h5 \
 blocks/CMATVIEW.h5 \
 blocks/CMSCOPE.h5 \
-blocks/CONST_m.h5 \
 blocks/ConstantVoltage.h5 \
-blocks/CONSTRAINT_f.h5 \
+blocks/CONST_m.h5 \
+blocks/CONSTRAINT_c.h5 \
 blocks/CONVERT.h5 \
 blocks/COSBLK_f.h5 \
 blocks/Counter.h5 \
 blocks/CSCOPE.h5 \
-blocks/CSCOPXY.h5 \
 blocks/CSCOPXY3D.h5 \
+blocks/CSCOPXY.h5 \
 blocks/CUMSUM.h5 \
 blocks/CurrentSensor.h5 \
 blocks/CURV_f.h5 \
@@ -603,31 +578,27 @@ blocks/DEBUG_SCICOS.h5 \
 blocks/DELAY_f.h5 \
 blocks/DELAYV_f.h5 \
 blocks/DEMUX.h5 \
-blocks/DEMUX_f.h5 \
 blocks/DERIV.h5 \
 blocks/DFLIPFLOP.h5 \
 blocks/DIFF_f.h5 \
 blocks/Diode.h5 \
 blocks/DLATCH.h5 \
-blocks/DLR.h5 \
 blocks/DLRADAPT_f.h5 \
+blocks/DLR.h5 \
 blocks/DLSS.h5 \
 blocks/DOLLAR_f.h5 \
-blocks/DOLLAR_m.h5 \
 blocks/EDGE_TRIGGER.h5 \
-blocks/EDGETRIGGER.h5 \
-blocks/END_c.h5 \
 blocks/ENDBLK.h5 \
+blocks/END_c.h5 \
 blocks/ESELECT_f.h5 \
 blocks/EVTDLY_c.h5 \
-blocks/EVTDLY_f.h5 \
 blocks/EVTGEN_f.h5 \
 blocks/EVTVARDLY.h5 \
 blocks/EXPBLK_m.h5 \
 blocks/EXPRESSION.h5 \
-blocks/EXTRACT.h5 \
 blocks/Extract_Activation.h5 \
 blocks/EXTRACTBITS.h5 \
+blocks/EXTRACT.h5 \
 blocks/EXTRACTOR.h5 \
 blocks/EXTTRI.h5 \
 blocks/fortran_block.h5 \
@@ -635,10 +606,8 @@ blocks/freq_div.h5 \
 blocks/FROM.h5 \
 blocks/FROMMO.h5 \
 blocks/FROMWSB.h5 \
-blocks/GAINBLK.h5 \
 blocks/GAINBLK_f.h5 \
 blocks/GENERAL_f.h5 \
-blocks/generic_block.h5 \
 blocks/generic_block3.h5 \
 blocks/GENSIN_f.h5 \
 blocks/GENSQR_f.h5 \
@@ -652,8 +621,8 @@ blocks/HALT_f.h5 \
 blocks/HYSTHERESIS.h5 \
 blocks/IdealTransformer.h5 \
 blocks/IFTHEL_f.h5 \
-blocks/IN_f.h5 \
 blocks/Inductor.h5 \
+blocks/IN_f.h5 \
 blocks/INIMPL_f.h5 \
 blocks/INTEGRAL_f.h5 \
 blocks/INTEGRAL_m.h5 \
@@ -664,11 +633,9 @@ blocks/INVBLK.h5 \
 blocks/ISELECT_m.h5 \
 blocks/JKFLIPFLOP.h5 \
 blocks/LOGBLK_f.h5 \
-blocks/LOGIC.h5 \
 blocks/LOGICAL_OP.h5 \
+blocks/LOGIC.h5 \
 blocks/LOOKUP_f.h5 \
-blocks/M_freq.h5 \
-blocks/M_SWITCH.h5 \
 blocks/MATBKSL.h5 \
 blocks/MATCATH.h5 \
 blocks/MATCATV.h5 \
@@ -692,12 +659,12 @@ blocks/MAX_f.h5 \
 blocks/MAXMIN.h5 \
 blocks/MBLOCK.h5 \
 blocks/MCLOCK_f.h5 \
-blocks/MEMORY_f.h5 \
 blocks/MFCLCK_f.h5 \
+blocks/M_freq.h5 \
 blocks/MIN_f.h5 \
 blocks/Modulo_Count.h5 \
+blocks/M_SWITCH.h5 \
 blocks/MUX.h5 \
-blocks/MUX_f.h5 \
 blocks/NEGTOPOS_f.h5 \
 blocks/NMOS.h5 \
 blocks/NPN.h5 \
@@ -718,7 +685,6 @@ blocks/PRODUCT.h5 \
 blocks/PuitsP.h5 \
 blocks/QUANT_f.h5 \
 blocks/RAMP.h5 \
-blocks/RAND_f.h5 \
 blocks/RAND_m.h5 \
 blocks/RATELIMITER.h5 \
 blocks/READAU_f.h5 \
@@ -732,10 +698,8 @@ blocks/RICC.h5 \
 blocks/ROOTCOEF.h5 \
 blocks/SAMPHOLD_m.h5 \
 blocks/SampleCLK.h5 \
-blocks/SAT_f.h5 \
 blocks/SATURATION.h5 \
 blocks/SAWTOOTH_f.h5 \
-blocks/SCALAR2VECTOR.h5 \
 blocks/scifunc_block_m.h5 \
 blocks/SELECT_m.h5 \
 blocks/SHIFT.h5 \
@@ -744,7 +708,6 @@ blocks/SIGNUM.h5 \
 blocks/SINBLK_f.h5 \
 blocks/SineVoltage.h5 \
 blocks/SourceP.h5 \
-blocks/SPLIT_f.h5 \
 blocks/SQRT.h5 \
 blocks/SRFLIPFLOP.h5 \
 blocks/STEP_FUNCTION.h5 \
@@ -752,11 +715,12 @@ blocks/SUBMAT.h5 \
 blocks/SUM_f.h5 \
 blocks/SUMMATION.h5 \
 blocks/SUPER_f.h5 \
-blocks/Switch.h5 \
 blocks/SWITCH2_m.h5 \
 blocks/SWITCH_f.h5 \
+blocks/Switch.h5 \
 blocks/TANBLK_f.h5 \
 blocks/TCLSS.h5 \
+blocks/TEXT_f.h5 \
 blocks/TIME_DELAY.h5 \
 blocks/TIME_f.h5 \
 blocks/TKSCALE.h5 \

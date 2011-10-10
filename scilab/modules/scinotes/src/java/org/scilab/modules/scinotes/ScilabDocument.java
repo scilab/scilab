@@ -43,6 +43,8 @@ import org.scilab.modules.console.utils.ScilabLaTeXViewer;
  */
 public class ScilabDocument extends PlainDocument implements DocumentListener {
 
+    private static final long serialVersionUID = -1227880612912063687L;
+
     /**
      * The EOL in mac OS
      */
@@ -63,10 +65,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private static final int INITFUNCTIONSNUMBER = 128;
 
     private View view;
-    private List<String> saved = new Vector();
+    private List<String> saved = new Vector<String>();
     private FunctionScanner funScanner;
 
-    private Set<String> functions = new HashSet(INITFUNCTIONSNUMBER);
+    private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
     private boolean contentModified;
     private boolean alphaOrder;
@@ -360,7 +362,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return a list containing all the infos about functions available in this document
      */
     public List<FunctionScanner.FunctionInfo> getFunctionInfo() {
-        List list = new ArrayList();
+        List<FunctionScanner.FunctionInfo> list = new ArrayList<FunctionScanner.FunctionInfo>();
         Element root = getDefaultRootElement();
         for (int i = 0; i < root.getElementCount(); i++) {
             Element e = root.getElement(i);
@@ -407,7 +409,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
-            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+            Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
                     public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
                         ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
                         ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
@@ -415,7 +417,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                         if (n != 0) {
                             return n;
                         }
-                        return l1.getStart() - l2.getStart();
+                        return l1.getStartOffset() - l2.getStartOffset();
                     }
 
                     public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
@@ -461,7 +463,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
-            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+            Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
                     public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
                         ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
                         ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
@@ -469,7 +471,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                         if (n != 0) {
                             return n;
                         }
-                        return l1.getStart() - l2.getStart();
+                        return l1.getStartOffset() - l2.getStartOffset();
                     }
 
                     public boolean equals(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
@@ -620,7 +622,11 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 break;
             case ScilabLeafElement.FUN :
                 if (compt == 0) {
-                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), e.getFunctionInfo().functionName, line - index);
+                    String str = e.getFunctionInfo().functionName;
+                    if (str == null) {
+                        str = SciNotesMessages.UNKNOWN_FUNCTION;
+                    }
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), str, line - index);
                 } else {
                     compt++;
                 }
@@ -695,14 +701,15 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if ((added != null && added.length > 0) || (removed != null && removed.length > 0)) {
                 for (int i = 0; i < removed.length; i++) {
                     String name = ((ScilabLeafElement) removed[i]).getFunctionName();
-                    if (name.length() != 0) {
+                    if (name != null && name.length() != 0) {
                         functions.remove(name);
                     }
                 }
                 for (int i = 0; i < added.length; i++) {
+                    ((ScilabLeafElement) added[i]).resetType();
                     ((ScilabLeafElement) added[i]).resetTypeWhenBroken();
                     String name = ((ScilabLeafElement) added[i]).getFunctionName();
-                    if (name.length() != 0) {
+                    if (name != null && name.length() != 0) {
                         functions.add(name);
                     }
                 }
@@ -764,6 +771,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      */
     public class ScilabLeafElement extends LeafElement {
 
+        private static final long serialVersionUID = 4389590345677765643L;
+
         /**
          * Nothing in this line
          */
@@ -787,7 +796,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private boolean visible = true;
         private int type;
         private FunctionScanner.FunctionInfo info;
-        private int start;
         private boolean broken;
         private boolean brokenString;
 
@@ -803,7 +811,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public ScilabLeafElement(Element parent, AttributeSet a, int p0, int p1) {
             super(parent, a, p0, p1);
-            start = p0;
             type = funScanner.getLineType(p0, p1);
             if ((type & BROKEN) == BROKEN) {
                 broken = true;
@@ -836,9 +843,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
 
             if (type == FUN) {
                 info = funScanner.getFunctionInfo();
-                if (!info.functionName.equals(oldName)) {
+                if (info.functionName != null) {
+                    if (!info.functionName.equals(oldName)) {
+                        functions.remove(oldName);
+                        functions.add(info.functionName);
+                    }
+                } else {
                     functions.remove(oldName);
-                    functions.add(info.functionName);
                 }
             }
 
@@ -933,13 +944,6 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if (b) {
                 broken = true;
             }
-        }
-
-        /**
-         * @return the position of the beginning of this element
-         */
-        public int getStart() {
-            return start;
         }
 
         /**

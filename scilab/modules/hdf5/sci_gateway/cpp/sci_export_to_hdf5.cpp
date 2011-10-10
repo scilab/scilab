@@ -21,6 +21,7 @@ extern "C"
 #include "localization.h"
 #include "sciprint.h"
 #include "api_scilab.h"
+#include "deleteafile.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
@@ -60,11 +61,8 @@ static char fname[]			= "export_to_hdf5";
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
-    int iRet            = 0;
     int iNbVar          = 0;
-    int iLen            = 0;
     int** piAddrList    = NULL;
-    char* pstFilename   = NULL;
     char** pstNameList	= NULL;
     bool bExport        = false;
 
@@ -134,6 +132,10 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
     //close hdf5 file
     closeHDF5File(iH5File);
+    if(bExport == false)
+    {//remove file
+        deleteafile(pstNameList[0]);
+    }
 
     //create boolean return value
     int *piReturn = NULL;
@@ -532,7 +534,6 @@ static bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
     int iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
 
@@ -562,7 +563,6 @@ static bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
     int iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
     double* pdblReal		= NULL;
@@ -606,7 +606,7 @@ static bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
 static bool export_matlab_sparse(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
@@ -717,7 +717,7 @@ static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
 static bool export_handles(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 static bool export_strings(int _iH5File, int *_piVar, char* _pstName)
@@ -774,25 +774,25 @@ static bool export_strings(int _iH5File, int *_piVar, char* _pstName)
 static bool export_u_function(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 static bool export_c_function(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 static bool export_lib(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 static bool export_lufact_pointer(int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 
 void print_type(char* _pstType)

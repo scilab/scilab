@@ -44,7 +44,6 @@ src/fortran/spt.f \
 src/fortran/lcompa.f \
 src/fortran/wspmat.f \
 src/fortran/iperm.f \
-src/fortran/mycmatptr.f \
 src/fortran/wspful.f \
 src/fortran/spif1b.f \
 src/fortran/spextr.f \
@@ -133,29 +132,29 @@ sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \
 sci_gateway/c/sci_mspget.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_spcompa.f \
-sci_gateway/fortran/sci_sparse.f \
-sci_gateway/fortran/sci_full.f \
-sci_gateway/fortran/sci_blkslvi.f \
-sci_gateway/fortran/sci_inpnvi.f \
-sci_gateway/fortran/sci_nnz.f \
-sci_gateway/fortran/sci_ludel.f \
-sci_gateway/fortran/sci_bfinit.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_spcompa.f \
+sci_gateway/fortran/sci_f_sparse.f \
+sci_gateway/fortran/sci_f_full.f \
+sci_gateway/fortran/sci_f_blkslvi.f \
+sci_gateway/fortran/sci_f_inpnvi.f \
+sci_gateway/fortran/sci_f_nnz.f \
+sci_gateway/fortran/sci_f_ludel.f \
+sci_gateway/fortran/sci_f_bfinit.f \
 sci_gateway/fortran/spops.f \
-sci_gateway/fortran/sci_spmatrix.f \
-sci_gateway/fortran/sci_blkfc1i.f \
-sci_gateway/fortran/sci_lufact.f \
-sci_gateway/fortran/sci_symfcti.f \
-sci_gateway/fortran/sci_luget.f \
-sci_gateway/fortran/sci_ordmmd.f \
-sci_gateway/fortran/sci_spget.f \
-sci_gateway/fortran/sci_spclean.f \
-sci_gateway/fortran/sci_spchol.f \
-sci_gateway/fortran/sci_spmax.f \
-sci_gateway/fortran/sci_lusolve.f \
-sci_gateway/fortran/sci_fadj2sp.f \
-sci_gateway/fortran/sci_sfinit.f \
-sci_gateway/fortran/sci_ta2lpd.f
+sci_gateway/fortran/sci_f_spmatrix.f \
+sci_gateway/fortran/sci_f_blkfc1i.f \
+sci_gateway/fortran/sci_f_lufact.f \
+sci_gateway/fortran/sci_f_symfcti.f \
+sci_gateway/fortran/sci_f_luget.f \
+sci_gateway/fortran/sci_f_ordmmd.f \
+sci_gateway/fortran/sci_f_spget.f \
+sci_gateway/fortran/sci_f_spclean.f \
+sci_gateway/fortran/sci_f_spchol.f \
+sci_gateway/fortran/sci_f_spmax.f \
+sci_gateway/fortran/sci_f_lusolve.f \
+sci_gateway/fortran/sci_f_fadj2sp.f \
+sci_gateway/fortran/sci_f_sfinit.f \
+sci_gateway/fortran/sci_f_ta2lpd.f
 
 libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -163,17 +162,19 @@ libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la
+noinst_LTLIBRARIES = libscisparse-algo.la
 
 libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisparse_algo_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES)
+libscisparse_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscisparse_algo_la_CFLAGS = $(libscisparse_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisparse_la_CFLAGS)
 
-libscisparse_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la   $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
-
+libscisparse_la_LIBADD = libscisparse-algo.la
 
 #### Target ######
 modulename=sparse
@@ -181,7 +182,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA =  license.txt version.xml
+libscisparse_la_root_DATA =  license.txt 
 
 
 #### sparse : init scripts ####

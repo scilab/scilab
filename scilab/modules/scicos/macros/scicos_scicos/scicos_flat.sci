@@ -113,15 +113,7 @@ for k=1:n //loop on all objects
 	  if (ksup==0)|flgcdgen<>-1  then
 	    hilite_path([path,k],"There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
 	  else
-	    gh_wins = gcf();
-	    mxwin=max(winsid());
-	    scs_show(scs_m,mxwin+1);
-	    hilite_obj(k);
-	    messagebox("There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''","modal");
-	    gh_del = scf(mxwin+1);
-	    unhilite_obj(k);
-	    delete(gh_del);
-	    scf(gh_wins);
+	    hilite_path([path,k], "There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
 	  end
 	  ok=%f;return
 	end
@@ -166,13 +158,13 @@ for k=1:n //loop on all objects
       //may be we can handle this blocks just as blocks_to_remove
       if ksup==0 then 
 	scs_m=scs_m_s
-	hilite_path([path,k],'Port blocks must be only used in a Super Block',%f)
+	hilite_path([path,k],gettext('Port blocks must be only used in a Super Block'),%f)
 	ok=%f;return
       end
       connected=get_connected(scs_m,k)
       if connected==[] then
 	scs_m=scs_m_s
-	hilite_path([path,k],'This Super Block Input port is unconnected',%t)
+	hilite_path([path,k],gettext('This Super block input port is not connected.'),%t)
 	ok=%f;return
       end
       if or(o.gui==['IN_f','INIMPL_f']) then

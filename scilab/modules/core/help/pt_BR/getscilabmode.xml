@@ -20,7 +20,7 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>mode = getscilabmode()</synopsis>
+    <synopsis>m = getscilabmode()</synopsis>
   </refsynopsisdiv>
 
   <refsection>

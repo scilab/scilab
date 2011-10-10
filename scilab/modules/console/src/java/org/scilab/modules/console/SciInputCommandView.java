@@ -19,10 +19,11 @@ import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.regex.Matcher;
@@ -36,15 +37,14 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.commons.gui.ScilabCaret;
+import org.scilab.modules.console.utils.ScilabLaTeXViewer;
+
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.interfaces.ui.OutputView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
-
-import org.scilab.modules.commons.gui.ScilabCaret;
-import org.scilab.modules.console.utils.ScilabLaTeXViewer;
-import org.scilab.modules.history_manager.HistoryManagement;
 
 /**
  * Scilab UI that contains the line edited by the user
@@ -61,7 +61,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
     // A clearest pattern: ['"] \$ [^\\\$'"]* (( [\\].? | ['"]{2} ) [^\\\$'"]* )+
     private static final Pattern latexPattern = Pattern.compile("[\'\"]\\$[^\\\\\\$\'\"]*(?:(?:[\\\\].?|[\'\"]{2})[^\\\\\\$\'\"]*)*");
-    private static final int INSET = 3;
 
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
@@ -82,7 +81,12 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // Input command line is not editable when created
         this.setEditable(false);
-        ScilabCaret caret = new ScilabCaret(this);
+        ScilabCaret caret = new ScilabCaret(this) {
+                public void mousePressed(MouseEvent e) {
+                    ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+                    super.mousePressed(e);
+                }
+            };
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
@@ -115,6 +119,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
             }
         }
         return result;
+    }
+
+    /**
+     * Unselect text if selected one exists
+     */
+    public void removeSelection() {
+        if (getSelectionStart() != getSelectionEnd()) {
+            setSelectionStart(getSelectionEnd());
+        }
     }
 
     /**
@@ -197,12 +210,16 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         this.addKeyListener(new KeyListener() {
                 public void keyPressed (KeyEvent e) {
-                    if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+                    if (e.getKeyCode() != KeyEvent.VK_UP && e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_LEFT && e.getKeyCode() != KeyEvent.VK_RIGHT) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                            //console.getConfiguration().getInputParsingManager().reset();
-                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
                             console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
+                    }
+                    if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
+                        && e.getKeyCode() == KeyEvent.VK_DELETE
+                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                        // Fix for bug 7238
+                        e.setKeyCode(KeyEvent.VK_DECIMAL);
                     }
                 }
 
@@ -221,6 +238,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
+        ((SciOutputView) console.getConfiguration().getOutputView()).removeSelection();
+
         String str = getText().substring(0, e.getDot());
         int lastPos = str.lastIndexOf("\"$");
         if (lastPos != -1) {
@@ -277,7 +296,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * {@inheritDoc}
      */
     public Dimension getPreferredSize() {
-        Dimension dim = super.getPreferredSize();
+        Dimension dim;
+        try {
+            dim = super.getPreferredSize();
+        } catch (Exception e) {
+            // workaround bug 9442
+            // Should be removed with JDK 7
+            dim = new Dimension(0, 0);
+        }
+
         if (height != -1) {
             dim.height = Math.max(height, dim.height);
         }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TBX_SUM_c">
+  <refnamediv>
+    <refname>TBX_SUM_c</refname>
+    <refpurpose>Simple sum with 2 inputs and 1 output.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../images/gif/TBX_SUM_c.gif" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_TBX_SUM_c">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TBX_SUM_c">TBX_SUM_c block</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Description_TBX_SUM_c">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_TBX_SUM_c">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_TBX_SUM_c">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="SeeAlso_TBX_SUM_c">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_TBX_SUM_c">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_TBX_SUM_c">
+    <title>Description</title>
+    <para>Perform the sum of the two inputs.</para>
+  </refsection>
+  <refsection id="Interfacingfunction_TBX_SUM_c">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para>macros/TBX_SUM_c.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_TBX_SUM_c">
+    <title>Computational function</title>
+    <itemizedlist>
+      <listitem>
+        <para>src/c/block_sum.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_TBX_SUM_c">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding scilab functionnality</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_TBX_SUM_c">
+    <title>Authors</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

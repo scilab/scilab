@@ -16,26 +16,31 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a representation on the Scilab Double datatype<br />
- * Note that double is the default datatype in Scilab
+ * This class provides a representation on the Scilab Double datatype<br>
+ * Note that double is the default datatype in Scilab.<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example (real):<br />
  * <code>
  * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
  * ScilabDouble aMatrix = new ScilabDouble(a);<br />
- * </code>
- * <br>
+ * </code> <br>
  * Example (complex):<br />
  * <code>
  * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
  * double [][]aImg={{210.2, 220.0, 420.0, 390.0},{230.2, 240.0, 440.0, 400.0}};<br />
-
  * ScilabDouble aMatrix = new ScilabDouble(a, aImg);
  * </code>
+ * 
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabDouble implements ScilabType {
 
+	private static final long serialVersionUID = 879624048944109684L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_matrix;
+	
 	private double[][] realPart;
 	private double[][] imaginaryPart;
 
@@ -91,10 +96,21 @@ public class ScilabDouble implements ScilabType {
 		imaginaryPart = imagData;
 	}
 
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    @Override
+	public ScilabTypeEnum getType() {
+        return type;
+    }
+
 	/**
 	 * Check the emptiness of the associated data.
 	 * @return true, if the associated data array is empty. 
 	 */
+	@Override
 	public boolean isEmpty() {
 		return (realPart == null && imaginaryPart == null);
 	}
@@ -192,6 +208,7 @@ public class ScilabDouble implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabDouble) {
 			ScilabDouble sciDouble = ((ScilabDouble)obj);

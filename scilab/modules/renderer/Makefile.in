@@ -68,7 +68,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/renderer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -80,10 +81,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -115,8 +115,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_etcdir)" \
 	"$(DESTDIR)$(libscirenderer_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscirenderer_la_DEPENDENCIES = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscirenderer_la_LIBADD =
 am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-DrawableSubwin.lo \
 	libscirenderer_la-DrawableFigureJoGL.lo \
@@ -367,7 +366,6 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-UserDefLogSubticksComputer.lo \
 	libscirenderer_la-UserDefinedSubticksComputer.lo \
 	libscirenderer_la-AxesSubticksComputer.lo \
-	libscirenderer_la-GiwsException.lo \
 	libscirenderer_la-rendererBasicAlgos.lo \
 	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
 	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
@@ -408,6 +406,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -508,6 +507,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -556,11 +556,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -667,7 +662,7 @@ modulename = renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = license.txt version.xml
+libscirenderer_la_root_DATA = license.txt 
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -925,7 +920,6 @@ src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
 src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
 src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-src/jni/GiwsException.cpp \
 src/cpp/rendererBasicAlgos.cpp \
 src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
@@ -938,6 +932,7 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/cpp/ \
 				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -950,15 +945,11 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
-CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
-
-# cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
-libscirenderer_la_LIBADD = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
 GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
@@ -1288,7 +1279,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FullBoxDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-FullBoxDrawerJoGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GetJavaProperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GlobalSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-GraphicSynchronizerBridgeFactory.Plo@am__quote@
@@ -3199,13 +3189,6 @@ libscirenderer_la-AxesSubticksComputer.lo: src/cpp/axesDrawing/AxesSubticksCompu
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-AxesSubticksComputer.lo `test -f 'src/cpp/axesDrawing/AxesSubticksComputer.cpp' || echo '$(srcdir)/'`src/cpp/axesDrawing/AxesSubticksComputer.cpp
 
-libscirenderer_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-GiwsException.Tpo -c -o libscirenderer_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-GiwsException.Tpo $(DEPDIR)/libscirenderer_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscirenderer_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-
 libscirenderer_la-rendererBasicAlgos.lo: src/cpp/rendererBasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-rendererBasicAlgos.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo -c -o libscirenderer_la-rendererBasicAlgos.lo `test -f 'src/cpp/rendererBasicAlgos.cpp' || echo '$(srcdir)/'`src/cpp/rendererBasicAlgos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Tpo $(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo
@@ -3548,6 +3531,11 @@ check-code:
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 		echo "Error : Cannot build $< : Scilab has not been built"; \
@@ -3694,10 +3682,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-#### renderer : gateway declaration ####
-#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

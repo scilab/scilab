@@ -126,8 +126,8 @@ while %t do
   for %kk=1:%nn
     %vv=%vv_list(%kk)
     %ierr=%ierr_vec(%kk)
-    select part(%typ(2*%kk-1),1:3)
-    case 'mat'
+    select part(%typ(2*%kk-1),1:6)
+    case 'mat   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -143,7 +143,7 @@ while %t do
 	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
 	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
-    case 'vec'
+    case 'vec   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -154,7 +154,17 @@ while %t do
       %ssss=string(%sz(1))
       %nnnnn=prod(size(%vv))
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case 'pol'
+    case 'intvec'
+      if %ierr<>0  then 
+	%noooo=-%kk,break,
+      end
+      //the type of %vv is accepted if it is constant or integer
+      if and(type(%vv)<>[1 8]) then %nok=-%kk,break,end
+      %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
+      %ssss=string(%sz(1))
+      %nnnnn=prod(size(%vv))
+      if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
+    case 'pol   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -164,7 +174,7 @@ while %t do
       %ssss=string(%sz(1))
       %nnnnn=prod(size(%vv))
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case 'row'
+    case 'row   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -180,7 +190,7 @@ while %t do
       [%mmmm,%nnnnn]=size(%vv)
       if %mmmm<>1 then %noooo=%kk,break,end,
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case 'col'
+    case 'col   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -196,7 +206,7 @@ while %t do
       [%mmmm,%nnnnn]=size(%vv)
       if %nnnnn<>1 then %noooo=%kk,break,end,
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case 'str'
+    case 'str   '
       clear %vv
       %vv=%str(%kk)
       if type(%vv)<>10 then %noooo=-%kk,break,end
@@ -204,7 +214,7 @@ while %t do
       %ssss=string(%sz(1))
       %nnnnn=prod(size(%vv))
       if %sz(1)>=0 then if %nnnnn<>1 then %noooo=%kk,break,end,end
-    case 'lis'
+    case 'lis   '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -213,7 +223,7 @@ while %t do
       %ssss=string(%sz(1))
       %nnnnn=size(%vv)
       if %sz(1)>=0 then if %nnnnn<>%sz(1) then %noooo=%kk,break,end,end
-    case 'r  '
+    case 'r     '
       if %ierr<>0  then 
 	%noooo=-%kk,break,
       end
@@ -228,23 +238,27 @@ while %t do
 	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
 	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
-    case 'gen'
+    case 'gen   '
       //accept all
     else
-      error('Incorrect type :'+%typ(2*%kk-1))
+      str = gettext("%s: Type %s is not implemented.\n");
+      mess = msprintf(str, 'setvalue', %typ(2*%kk-1));
+      warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
+      error(mess);
     end
     execstr('%'+string(%kk)+'=%vv')
     clear %vv
   end
-  if %noooo>0 then 
-    messagebox(['answer given for  '+%lables(%noooo);
-             'has invalid dimension: ';
-             'waiting for dimension  '+%ssss],'modal')
+  if %noooo>0 then
+    str = gettext("%s: invalid dimension for ''%s'', waiting for %s");
+    mess = msprintf(str, 'setvalue', %lables(%noooo), %ssss);
+    warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
-    messagebox(['answer given for  '+%lables(-%noooo);
-             'has incorrect type :'+ %typ(-2*%noooo-1)],'modal')
+    str = gettext("%s: incorrect type for ''%s'', getting %s");
+    mess = msprintf(str, 'setvalue', %lables(-%noooo), %typ(-2*%noooo-1));
+    warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
     %ini=%str
     %ok=%f;break
   else

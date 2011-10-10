@@ -43,7 +43,8 @@ host_triplet = @host@
 subdir = contrib
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -55,10 +56,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -70,6 +70,7 @@ DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -170,6 +171,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -218,11 +220,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -378,7 +375,42 @@ toolbox_skeleton/macros/scilab_sum.sci \
 toolbox_skeleton/macros/buildmacros.sce \
 toolbox_skeleton/macros/cleanmacros.sce \
 toolbox_skeleton/toolbox_skeleton_redist.iss \
-toolbox_skeleton/toolbox_skeleton.iss
+toolbox_skeleton/toolbox_skeleton.iss \
+xcos_toolbox_skeleton/builder.sce \
+xcos_toolbox_skeleton/changelog.txt \
+xcos_toolbox_skeleton/cleaner.sce \
+xcos_toolbox_skeleton/demos/xcos_toolbox_skeleton.dem.gateway.sce \
+xcos_toolbox_skeleton/DESCRIPTION \
+xcos_toolbox_skeleton/DESCRIPTION-FUNCTIONS \
+xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.quit \
+xcos_toolbox_skeleton/etc/xcos_toolbox_skeleton.start \
+xcos_toolbox_skeleton/help/builder_help.sce \
+xcos_toolbox_skeleton/help/cleaner_help.sce \
+xcos_toolbox_skeleton/help/en_US/build_help.sce \
+xcos_toolbox_skeleton/help/en_US/TBX_SUM_c.xml \
+xcos_toolbox_skeleton/help/en_US/tbx_sum.xml \
+xcos_toolbox_skeleton/help/fr_FR/build_help.sce \
+xcos_toolbox_skeleton/images/gif/TBX_MUT_STYLE.gif \
+xcos_toolbox_skeleton/images/gif/TBX_SUM_c.gif \
+xcos_toolbox_skeleton/images/svg/TBX_MUT_STYLE.svg \
+xcos_toolbox_skeleton/images/svg/TBX_SUM_c.svg \
+xcos_toolbox_skeleton/license.txt \
+xcos_toolbox_skeleton/macros/buildmacros.sce \
+xcos_toolbox_skeleton/macros/cleanmacros.sce \
+xcos_toolbox_skeleton/macros/TBX_MUT_STYLE.sci \
+xcos_toolbox_skeleton/macros/TBX_SUM_c.sci \
+xcos_toolbox_skeleton/sci_gateway/builder_gateway.sce \
+xcos_toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
+xcos_toolbox_skeleton/sci_gateway/c/sci_tbx_sum.c \
+xcos_toolbox_skeleton/sci_gateway/loader_gateway.sce \
+xcos_toolbox_skeleton/src/builder_src.sce \
+xcos_toolbox_skeleton/src/c/block_sum.c \
+xcos_toolbox_skeleton/src/c/builder_c.sce \
+xcos_toolbox_skeleton/src/c/business.h \
+xcos_toolbox_skeleton/src/c/business_sum.c \
+xcos_toolbox_skeleton/src/cleaner_src.sce \
+xcos_toolbox_skeleton/tests/unit_tests/tbx_sum.tst \
+loader.sce
 
 all: all-am
 
@@ -569,6 +601,7 @@ uninstall-am:
 install-data-local:
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \
 	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/xcos_toolbox_skeleton; \
 	for file in $(SKELETON_FILES) ; do \
 		filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
 		echo "$(mkinstalldirs) -m 755 $$filePath/"; \

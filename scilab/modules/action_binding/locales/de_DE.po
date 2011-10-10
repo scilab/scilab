@@ -6,19 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2010-10-23 16:28+0000\n"
 "Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Kein weiterer Speicher verfügbar.\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -26,12 +23,22 @@ msgstr ""
 "%s: Falscher Typ des Eingangsarguments #%d: Es wird eine Zeichenkette "
 "erwartet.\n"
 
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Kein weiterer Speicher verfügbar.\n"
+
+#, c-format
+msgid ""
+"%s: A Java exception arisen:\n"
+"%s"
+msgstr ""
+
 msgid "Same command executed again"
 msgstr "Gleicher Befehl nochmals ausgeführt"
+
+msgid "Unable to communicate with the interpreter"
+msgstr "Kann nicht mit dem Interpreter kommunizieren"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
-
-msgid "Unable to communicate with the interpreter"
-msgstr "Kann nicht mit dem Interpreter kommunizieren"

@@ -43,7 +43,7 @@ int sci_xgraduate(char *fname,unsigned long fname_len)
   if (Lhs >= 6) { CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&lr); *stk(lr ) = (double) kMaxr;  }
   if (Lhs >= 7) { CreateVar(7,MATRIX_OF_DOUBLE_DATATYPE,&un,&un,&lr); *stk(lr ) = (double) ar;  }
   for (i= 1; i <= Lhs ; i++) { LhsVar(i) = i ; }
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

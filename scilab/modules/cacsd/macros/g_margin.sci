@@ -20,13 +20,21 @@ function [gm,fr]=g_margin(h)
     error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"g_margin",1))
   end
   //
-  eps=1.e-7;// threshold used for testing if complex numbers are real or pure imaginary
+  epsr=1.e-7;//used for testing if complex numbers are real
+  eps1=1.e-7;//used for testing if complex numbers have a modulus near 1
+  epssing=1e-10; //used for testing if arguments are not singular points of h
   if h.dt=='c' then  //continuous time case
     // get s such as h(s)=h(-s) and s=iw 
      s=%i*poly(0,"w");
-     w=roots(imag(horner(h.num,s)*conj(horner(h.den,s))),"e")
-     ws=real(w(abs(imag(w))<eps&real(w)<=0)) //points where phase is -180°
-     ws(abs(horner(h.den,%i*ws))==0)=[];
+     //compute h(s)-h(-s)=num/den
+     num=imag(horner(h.num,s)*conj(horner(h.den,s)))
+     den=real(horner(h.den,s)*conj(horner(h.den,s)))
+     //necessary condition
+     w=roots(num,"e");
+     ws=real(w(abs(imag(w))<epsr&real(w)<=0)) //points where phase is -180°
+                                             
+     //remove nearly singular points     
+     ws(abs(horner(num,ws))>=epssing*abs(horner(den,ws)))=[]
      if ws==[] then gm=%inf,fr=[],return,end
      mingain=real(freq(h.num,h.den,%i*ws))
   else  //discrete time case
@@ -37,12 +45,17 @@ function [gm,fr]=g_margin(h)
     sm=simp_mode();simp_mode(%f);hh=h-horner(h,1/z);simp_mode(sm)
     //find the numerator roots
     z=roots(hh.num,"e");
-    z(abs(abs(z)-1)>eps)=[]// retain only roots with modulus equal to 1
+    z(abs(abs(z)-1)>eps1)=[]// retain only roots with modulus equal to 1
+    
+    //remove nearly singular points                                       
+    z(abs(horner(hh.num,z))>=epssing*abs(horner(hh.den,z)))=[];
+
     w=log(z)/(%i*dt)
-    ws=real(w(abs(imag(w))<eps)) //points where phase is -180°
+    ws=real(w(abs(imag(w))<epsr)) //points where phase is -180°
     if ws==[] then gm=%inf,fr=[],return,end
     mingain=real(horner(h,exp(%i*ws*dt)))
   end
+  
   k=find(mingain<0)
   if k==[] then gm=%inf,fr=[],return,end
   mingain=abs(mingain(k));

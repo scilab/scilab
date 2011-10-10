@@ -153,7 +153,7 @@ std::wstring getUniqueFilename(std::wstring _wfilename)
 		wchar_t wcdirectory[PATH_MAX];
 		wchar_t wcname[PATH_MAX];
 		wchar_t wcext [PATH_MAX];
-		unsigned int id = -1;
+		unsigned int id = (unsigned int)(-1);
 
 		std::wstring prefixFilename;
 

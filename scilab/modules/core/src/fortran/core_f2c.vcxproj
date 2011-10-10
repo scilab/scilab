@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>core_f</ProjectName>
+    <ProjectGuid>{C352587B-F5E4-457C-80EE-A1AEAB176C8E}</ProjectGuid>
+    <RootNamespace>core_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)libs\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Message>Build core_f.vcdef</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Message>Build core_f.vcdef</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Message>Build core_f.vcdef</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(SolutionDir)libs\$(ProjectName).lib</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Message>Build core_f.vcdef</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def core_f.def &gt;nul
+copy core_f.def ..\..\..\..\..\libs\core_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_comp.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_debug.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dispbpt.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_exists.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_global.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ieee.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_intppty.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_iserror.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lines.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_predef.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_resume.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c" />
+    <ClCompile Include="allops.c" />
+    <ClCompile Include="allowptr.c" />
+    <ClCompile Include="atome.c" />
+    <ClCompile Include="basin.c" />
+    <ClCompile Include="basnms.c" />
+    <ClCompile Include="bexec.c" />
+    <ClCompile Include="btof.c" />
+    <ClCompile Include="btofm.c" />
+    <ClCompile Include="chkvar.c" />
+    <ClCompile Include="clause.c" />
+    <ClCompile Include="clunit.c" />
+    <ClCompile Include="cmdstr.c" />
+    <ClCompile Include="cmplxt.c" />
+    <ClCompile Include="command.c" />
+    <ClCompile Include="compcl.c" />
+    <ClCompile Include="compil.c" />
+    <ClCompile Include="copyvar.c" />
+    <ClCompile Include="createref.c" />
+    <ClCompile Include="cvdm.c" />
+    <ClCompile Include="cvname.c" />
+    <ClCompile Include="cvwm.c" />
+    <ClCompile Include="dbasin.c" />
+    <ClCompile Include="defmat.c" />
+    <ClCompile Include="dtosci.c" />
+    <ClCompile Include="errmgr.c" />
+    <ClCompile Include="error.c" />
+    <ClCompile Include="expsum.c" />
+    <ClCompile Include="extlarg.c" />
+    <ClCompile Include="fact.c" />
+    <ClCompile Include="find.c" />
+    <ClCompile Include="findequal.c" />
+    <ClCompile Include="folhp.c" />
+    <ClCompile Include="ftob.c" />
+    <ClCompile Include="funnam.c" />
+    <ClCompile Include="funs.c" />
+    <ClCompile Include="getch.c" />
+    <ClCompile Include="getfun.c" />
+    <ClCompile Include="getfunction.c" />
+    <ClCompile Include="getlin.c" />
+    <ClCompile Include="getnum.c" />
+    <ClCompile Include="getstr.c" />
+    <ClCompile Include="getsym.c" />
+    <ClCompile Include="hmcreate.c" />
+    <ClCompile Include="hndlops.c" />
+    <ClCompile Include="indxg.c" />
+    <ClCompile Include="inisci.c" />
+    <ClCompile Include="intstr.c" />
+    <ClCompile Include="isany.c" />
+    <ClCompile Include="isbrk.c" />
+    <ClCompile Include="iseye.c" />
+    <ClCompile Include="isinstring.c" />
+    <ClCompile Include="isnum.c" />
+    <ClCompile Include="istrue.c" />
+    <ClCompile Include="itosci.c" />
+    <ClCompile Include="logops.c" />
+    <ClCompile Include="lst2vars.c" />
+    <ClCompile Include="macro.c" />
+    <ClCompile Include="majmin.c" />
+    <ClCompile Include="matc.c" />
+    <ClCompile Include="matz.c" />
+    <ClCompile Include="matzs.c" />
+    <ClCompile Include="misops.c" />
+    <ClCompile Include="mkindx.c" />
+    <ClCompile Include="mklist.c" />
+    <ClCompile Include="mname.c" />
+    <ClCompile Include="mrknmd.c" />
+    <ClCompile Include="nextj.c" />
+    <ClCompile Include="prompt.c" />
+    <ClCompile Include="ptover.c" />
+    <ClCompile Include="ptrback.c" />
+    <ClCompile Include="putid.c" />
+    <ClCompile Include="ref2val.c" />
+    <ClCompile Include="savlod.c" />
+    <ClCompile Include="seteol.c" />
+    <ClCompile Include="setgetmode.c" />
+    <ClCompile Include="setippty.c" />
+    <ClCompile Include="setlnb.c" />
+    <ClCompile Include="showstack.c" />
+    <ClCompile Include="sigbas.c" />
+    <ClCompile Include="skpins.c" />
+    <ClCompile Include="stack.c" />
+    <ClCompile Include="stackc2i.c" />
+    <ClCompile Include="stackg.c" />
+    <ClCompile Include="stackgl.c" />
+    <ClCompile Include="stacki2d.c" />
+    <ClCompile Include="stackp.c" />
+    <ClCompile Include="stackr2d.c" />
+    <ClCompile Include="storeglobal.c" />
+    <ClCompile Include="termf.c" />
+    <ClCompile Include="tradsl.c" />
+    <ClCompile Include="typ2cod.c" />
+    <ClCompile Include="varfunptr.c" />
+    <ClCompile Include="whatln.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\where.c" />
+    <ClCompile Include="xerbla.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\callinter.h" />
+    <ClInclude Include="..\..\includes\stack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_comp.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_debug.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dispbpt.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_exists.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_global.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ieee.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_intppty.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_iserror.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lines.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_predef.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_resume.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f" />
+    <f2c_rule Include="allops.f" />
+    <f2c_rule Include="allowptr.f" />
+    <f2c_rule Include="atome.f" />
+    <f2c_rule Include="basin.f" />
+    <f2c_rule Include="basnms.f" />
+    <f2c_rule Include="bexec.f" />
+    <f2c_rule Include="btof.f" />
+    <f2c_rule Include="btofm.f" />
+    <f2c_rule Include="chkvar.f" />
+    <f2c_rule Include="clause.f" />
+    <f2c_rule Include="clunit.f" />
+    <f2c_rule Include="cmdstr.f" />
+    <f2c_rule Include="cmplxt.f" />
+    <f2c_rule Include="command.f" />
+    <f2c_rule Include="compcl.f" />
+    <f2c_rule Include="compil.f" />
+    <f2c_rule Include="copyvar.f" />
+    <f2c_rule Include="createref.f" />
+    <f2c_rule Include="cvdm.f" />
+    <f2c_rule Include="cvname.f" />
+    <f2c_rule Include="cvwm.f" />
+    <f2c_rule Include="dbasin.f" />
+    <f2c_rule Include="defmat.f" />
+    <f2c_rule Include="dtosci.f" />
+    <f2c_rule Include="errmgr.f" />
+    <f2c_rule Include="error.f" />
+    <f2c_rule Include="expsum.f" />
+    <f2c_rule Include="extlarg.f" />
+    <f2c_rule Include="fact.f" />
+    <f2c_rule Include="find.f" />
+    <f2c_rule Include="findequal.f" />
+    <f2c_rule Include="folhp.f" />
+    <f2c_rule Include="ftob.f" />
+    <f2c_rule Include="funnam.f" />
+    <f2c_rule Include="funs.f" />
+    <f2c_rule Include="getch.f" />
+    <f2c_rule Include="getfun.f" />
+    <f2c_rule Include="getfunction.f" />
+    <f2c_rule Include="getlin.f" />
+    <f2c_rule Include="getnum.f" />
+    <f2c_rule Include="getstr.f" />
+    <f2c_rule Include="getsym.f" />
+    <f2c_rule Include="hmcreate.f" />
+    <f2c_rule Include="hndlops.f" />
+    <f2c_rule Include="indxg.f" />
+    <f2c_rule Include="inisci.f" />
+    <f2c_rule Include="intstr.f" />
+    <f2c_rule Include="isany.f" />
+    <f2c_rule Include="isbrk.f" />
+    <f2c_rule Include="iseye.f" />
+    <f2c_rule Include="isinstring.f" />
+    <f2c_rule Include="isnum.f" />
+    <f2c_rule Include="istrue.f" />
+    <f2c_rule Include="itosci.f" />
+    <f2c_rule Include="logops.f" />
+    <f2c_rule Include="lst2vars.f" />
+    <f2c_rule Include="macro.f" />
+    <f2c_rule Include="majmin.f" />
+    <f2c_rule Include="matc.f" />
+    <f2c_rule Include="matz.f" />
+    <f2c_rule Include="matzs.f" />
+    <f2c_rule Include="misops.f" />
+    <f2c_rule Include="mkindx.f" />
+    <f2c_rule Include="mklist.f" />
+    <f2c_rule Include="mname.f" />
+    <f2c_rule Include="mrknmd.f" />
+    <f2c_rule Include="nextj.f" />
+    <f2c_rule Include="prompt.f" />
+    <f2c_rule Include="ptover.f" />
+    <f2c_rule Include="ptrback.f" />
+    <f2c_rule Include="putid.f" />
+    <f2c_rule Include="ref2val.f" />
+    <f2c_rule Include="savlod.f" />
+    <f2c_rule Include="seteol.f" />
+    <f2c_rule Include="setgetmode.f" />
+    <f2c_rule Include="setippty.f" />
+    <f2c_rule Include="setlnb.f" />
+    <f2c_rule Include="showstack.f" />
+    <f2c_rule Include="sigbas.f" />
+    <f2c_rule Include="skpins.f" />
+    <f2c_rule Include="stack.f" />
+    <f2c_rule Include="stackc2i.f" />
+    <f2c_rule Include="stackg.f" />
+    <f2c_rule Include="stackgl.f" />
+    <f2c_rule Include="stacki2d.f" />
+    <f2c_rule Include="stackp.f" />
+    <f2c_rule Include="stackr2d.f" />
+    <f2c_rule Include="storeglobal.f" />
+    <f2c_rule Include="termf.f" />
+    <f2c_rule Include="tradsl.f" />
+    <f2c_rule Include="typ2cod.f" />
+    <f2c_rule Include="varfunptr.f" />
+    <f2c_rule Include="whatln.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\where.f" />
+    <f2c_rule Include="xerbla.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\sci_gateway\core_gateway.xml" />
+    <None Include="..\..\sci_gateway\fundef" />
+    <None Include="..\..\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

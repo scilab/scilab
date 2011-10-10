@@ -1,5 +1,0 @@
-//exec('group.1.ex')
-[h w]=ffir('pb',7,.2,'hm');
- h
-[tg,fr]=group(100,h);
-plot(fr,tg)

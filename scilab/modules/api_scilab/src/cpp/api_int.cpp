@@ -479,8 +479,14 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
 	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
 	int iTotalSize	= iDouble + iMod;
 
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfInteger");
+        return sciErr;
+    }
+
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    Top = Top + Nbvars + 1;
 
 	int iMemSize = iTotalSize + 2;
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
@@ -988,7 +994,6 @@ int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usDat
 int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData)
 {
 	SciErr sciErr;
-	unsigned int* puiData = NULL;
 
 	sciErr = createMatrixOfUnsignedInteger32(_pvCtx, _iVar, 1, 1, &_uiData);
 	if(sciErr.iErr)

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,46 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
-
-
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 //
 // Here, the cost function is OK
@@ -73,10 +34,9 @@ opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
 opt = optimbase_configure(opt,"-function",rosenbrock2);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: Cannot evaluate cost function from costf(x0,1).";
-assert_equal ( computed , expected );
+lclmsg = "%s: Cannot evaluate cost function with ""%s"": %s";
+scimsg = msprintf(_("Undefined variable: %s\n"), "fdsmklqfjdsf");
+assert_checkerror(cmd,lclmsg,[],"optimbase_checkcostfun","[f,index]=costf(x0,1)", scimsg);
 opt = optimbase_destroy(opt);
 
 //
@@ -91,10 +51,7 @@ opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
 opt = optimbase_configure(opt,"-function",rosenbrock3);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix f from costf(x0,2) has 10 rows, instead of 1.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","f",2,10,1);
 opt = optimbase_destroy(opt);
 
 //
@@ -126,6 +83,18 @@ opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
 
 //
+// Test a wrong configuration: we forgot to configure "-nbineqconst"
+//
+opt = optimbase_new ();
+opt = optimbase_configure(opt,"-numberofvariables",4);
+opt = optimbase_configure(opt,"-function",optimtestcase);
+opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
+cmd="opt = optimbase_checkcostfun(opt)";
+errmsg = "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.";
+assert_checkerror(cmd,errmsg,[], "optimbase_checkcostfun" , "index" , 1 , 0 , 1);
+opt = optimbase_destroy(opt);
+
+//
 // Test with wrong  non linear constraints f(x0,2) is not a row vector
 //
 function [ f , c , index ] = optimtestcase2 ( x , index )
@@ -151,10 +120,7 @@ opt = optimbase_configure(opt,"-function",optimtestcase2);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 3 rows, instead of 1.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","c",5,3,1);
 opt = optimbase_destroy(opt);
 
 //
@@ -183,10 +149,7 @@ opt = optimbase_configure(opt,"-function",optimtestcase3);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 5 columns, instead of 3.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d.",[],"optimbase_checkcostfun","c",5,5,3);
 opt = optimbase_destroy(opt);
 
 //
@@ -215,10 +178,7 @@ opt = optimbase_configure(opt,"-function",optimtestcase4);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 3 rows, instead of 1.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","c",5,3,1);
 opt = optimbase_destroy(opt);
 
 //
@@ -247,10 +207,7 @@ opt = optimbase_configure(opt,"-function",optimtestcase5);
 opt = optimbase_configure(opt,"-x0",[0.0 0.0 0.0 0.0]');
 opt = optimbase_configure(opt,"-nbineqconst",3);
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix c from costf(x0,5) has 4 columns, instead of 3.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d.",[],"optimbase_checkcostfun","c",5,4,3);
 opt = optimbase_destroy(opt);
 
 
@@ -285,9 +242,6 @@ opt = optimbase_configure(opt,"-function", rosenbrock4 );
 opt = optimbase_configure(opt,"-withderivatives",%t);
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
 cmd = "opt = optimbase_checkcostfun(opt);";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimbase_checkcostfun: The matrix g from costf(x0,3) has 2 rows, instead of 1.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d.",[],"optimbase_checkcostfun","g",3,2,1);
 opt = optimbase_destroy(opt);
 

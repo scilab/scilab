@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,42 +10,6 @@
 
 // <-- JVM NOT MANDATORY -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // Test with 3 vertices
 s1 = optimsimplex_new ();
@@ -54,25 +19,16 @@ simplex = [
 36. -3.0 2.0
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
-str = optimsimplex_tostring ( s1 );
-if getos() == 'Windows' then
+str = string ( s1 );
 expected = [
 "Optim Simplex Object:"
 "====================="
-"Vertex #1/3 : fv=2.400000e+001, x=-2.000000e+000 1.000000e+000"
-"Vertex #2/3 : fv=9.300000e+001, x=-1.000000e+000 3.000000e+000"
-"Vertex #3/3 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000"
+"nbve: 3"
+"n: 2"
+"x: 3-by-2 matrix"
+"fv: 3-by-1 matrix"
 ];
-else
-expected = [
-"Optim Simplex Object:"
-"====================="
-"Vertex #1/3 : fv=2.400000e+01, x=-2.000000e+00 1.000000e+00"
-"Vertex #2/3 : fv=9.300000e+01, x=-1.000000e+00 3.000000e+00"
-"Vertex #3/3 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00"
-];
-end
-assert_equal ( str , expected );
+assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 
 // Test with 4 vertices
@@ -84,26 +40,15 @@ simplex = [
 36. -3.0 2.0
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
-str = optimsimplex_tostring ( s1 );
-if getos() == 'Windows' then
+str = string ( s1 );
 expected = [
 "Optim Simplex Object:"
 "====================="
-"Vertex #1/4 : fv=2.400000e+001, x=-2.000000e+000 1.000000e+000" 
-"Vertex #2/4 : fv=9.300000e+001, x=-1.000000e+000 3.000000e+000" 
-"Vertex #3/4 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000" 
-"Vertex #4/4 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000" 
+"nbve: 4"
+"n: 2"
+"x: 4-by-2 matrix"
+"fv: 4-by-1 matrix"
 ];
-else
-expected = [
-"Optim Simplex Object:"
-"====================="
-"Vertex #1/4 : fv=2.400000e+01, x=-2.000000e+00 1.000000e+00" 
-"Vertex #2/4 : fv=9.300000e+01, x=-1.000000e+00 3.000000e+00" 
-"Vertex #3/4 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00" 
-"Vertex #4/4 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00" 
-];
-end
-assert_equal ( str , expected );
+assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 

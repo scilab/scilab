@@ -187,7 +187,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 			}
 
 			LhsVar(1) = Rhs + 1;
-			C2F(putlhsvar)();	
+			PutLhsVar();	
 		}
 		else
 		{
@@ -201,7 +201,7 @@ int sci_getenv(char *fname,unsigned long fname_len)
 				}
 
 				LhsVar(1) = Rhs + 1;
-				C2F(putlhsvar)();	
+				PutLhsVar();
 			}
 			else
 			{

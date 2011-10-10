@@ -6,221 +6,65 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-10-11 12:33+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: Kenet Jervet <newelevenken@yahoo.com.cn>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: zh_CN\n"
 
 #, c-format
-msgid "\t - ''%s - %s''\n"
-msgstr "\t - “%s - %s”\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目出错，应该为 %d 个。\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is already loaded\n"
-msgstr "\t - “%s - %s”已经被加载。\n"
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个。\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
-msgstr "\t - “%s - %s”需要“%s - %s”\n"
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为字符串数组。\n"
 
 #, c-format
-msgid "\t - ''%s - %s'' is needed by ''%s''\n"
-msgstr "\t - “%s”需要“%s - %s”\n"
+msgid ""
+"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
+"expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1，mx2 或 mx3 大小的字符矩阵。\n"
 
 #, c-format
-msgid "\t - Local location : ''%s''\n"
-msgstr "\t - 本地地址：“%s”\n"
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为一个单字符串。\n"
 
 #, c-format
-msgid "\t - MD5SUM expected : ''%s''\n"
-msgstr "\t - MD5SUM 值希望是：“%s”\n"
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”。\n"
 
 #, c-format
-msgid "\t - MD5SUM watched  : ''%s''\n"
-msgstr "\t - MD5SUM 值被查看到为：“%s”\n"
+msgid "%s: You haven't write access on this directory : %s.\n"
+msgstr "%s:您没有读取路径：%s。\n"
 
 #, c-format
-msgid "\t - URL            : ''%s''\n"
-msgstr "\t - URL            ：“%s”\n"
-
-#, c-format
-msgid "\t - You''ve asked ''%s - %s''\n"
-msgstr "\t - 你已经被要求“%s - %s”\n"
-
-#, c-format
-msgid "\t - destination : ''%s''\n"
-msgstr "\t - 目的：“%s”\n"
-
-#, c-format
-msgid "\t - file            : ''%s''\n"
-msgstr "\t - 文件            ：“%s”\n"
-
-#, c-format
-msgid "\t - source      : ''%s''\n"
-msgstr "\t - 源      ：“%s”\n"
-
-#, c-format
-msgid "%s: %s (%s) isn''t installed.\n"
-msgstr "%s：%s （%s）没有安装。\n"
-
-#, c-format
-msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
-msgstr "%s：“%s - %s” （“%s”节） 没有安装。\n"
-
-#, c-format
-msgid "%s: ''%s - %s'' is not installed.\n"
-msgstr "%s：“%s - %s”没有安装。\n"
-
-#, c-format
-msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
-msgstr "%s：“%s” （“%s”节） 没有安装。\n"
-
-#, c-format
-msgid "%s: ''%s'' isn''t installed.\n"
-msgstr "%s：“%s”没有安装。\n"
-
-#, c-format
-msgid "%s: An error occurred while loading ''%s-%s'':\n"
-msgstr "%s: 读取“%s-%s”时出现错误：\n"
-
-#, c-format
-msgid "%s: Another version of the package %s is already loaded : %s\n"
-msgstr "%s：包 %s 的另一个版本已被加载：%s\n"
-
-#, c-format
-msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
-msgstr "%s：DESCRIPTION 文件不能在包“%s”中找到\n"
-
-#, c-format
-msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
-msgstr "%s：复制文件“%s”到路径“%s”时出错。\n"
-
-#, c-format
-msgid "%s: Error while creating the directory ''%s''.\n"
-msgstr "%s：创建路径“%s”时出错。\n"
-
-#, c-format
-msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
-msgstr "%s：解压 DESCRIPTION 文件 （“%s”） 失败。\n"
-
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s：输入参数 #%d 和 #%d 不兼容：应该为相同的大小。\n"
-
-#, c-format
-msgid "%s: Module ''%s - %s'' is not installed.\n"
-msgstr "%s：模块“%s - %s”没有安装。\n"
-
-#, c-format
-msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgid "%s: Module '%s' is not installed ('%s' section).\n"
 msgstr "%s：模块“%s”没有安装 （“%s” 节）。\n"
 
 #, c-format
-msgid "%s: Module ''%s'' is not installed.\n"
-msgstr "%s：模块“%s”没有安装。\n"
-
-#, c-format
-msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr "%s：既没找到 Wget 也没找到 Curl：请安装二者之一\n"
-
-#, c-format
-msgid ""
-"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
-"session :\n"
-msgstr "%s：在同一个 scilab 节里包 （%s） 的多个版本不能被加载：\n"
-
-#, c-format
-msgid "%s: The config file (''%s'') is not well formated at line %d\n"
-msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
-
-#, c-format
-msgid "%s: The dependency tree cannot be resolved.\n"
-msgstr "%s：依存关系树不能被处理。\n"
-
-#, c-format
-msgid "%s: The description is not well formated at line %d\n"
-msgstr "%s：description 在第 %d 行不能很好地被格式化\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上写了访问。\n"
-
-#, c-format
-msgid "%s: The directory %s doesn''t exist.\n"
-msgstr "%s：路径 %s 不存在。\n"
-
-#, c-format
-msgid ""
-"%s: The directory ''%s'' cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr "%s：路径“%s”不能被创建，请检查您是否在这个路径上写了访问。\n"
-
-#, c-format
-msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
-msgstr "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS 拒绝删除这个路径。\n"
-
-#, c-format
-msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
-msgstr "%s：下载的文件没有检查 MD5SUM 值：\n"
-
-#, c-format
-msgid "%s: The extraction of the archive ''%s'' has failed.\n"
-msgstr "%s：文档“%s”的解压失败。\n"
-
-#, c-format
-msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
-msgstr "%s：文件 %s 不存在或不能被读取。\n"
-
-#, c-format
-msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-"the %s field\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The file ''%s'' cannot be written.\n"
-msgstr "%s：文件“%s”不能被写入。\n"
-
-#, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
-msgstr "%s：文件“%s”不存在或不能被读取\n"
-
-#, c-format
-msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s：文件“%s”不粗奶或不能被读取。\n"
-
-#, c-format
-msgid "%s: The file ''%s'' is not well formated at line %d\n"
-msgstr ""
-
-#, c-format
-msgid "%s: The following file hasn''t been copied:\n"
-msgstr "%s：下一个文件不能被复制：\n"
-
-#, c-format
-msgid "%s: The following file hasn''t been downloaded:\n"
-msgstr "%s：下一个文件不能被下载：\n"
+msgid "%s: Module '%s - %s' is not installed.\n"
+msgstr "%s：模块“%s - %s”没有安装。\n"
 
 #, c-format
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
 msgstr "%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列表：\n"
+
+#, c-format
+msgid "\t - '%s - %s'\n"
+msgstr "\t - “%s - %s”\n"
 
 #, c-format
 msgid "%s: The following module is not installed:\n"
@@ -231,57 +75,31 @@ msgid "%s: The following modules are not installed:\n"
 msgstr "%s：下面的模块不能被安装：\n"
 
 #, c-format
-msgid "%s: The package %s is not available.\n"
-msgstr "%s：包 %s 不可用。\n"
-
-#, c-format
-msgid "%s: The package ''%s'' is not present in the struct.\n"
-msgstr "%s：包“%s”现在不在这个结构里。\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应为布尔型或字符串型变量。\n"
 
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
-msgstr "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
-
-#, c-format
-msgid ""
-"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
-msgstr "%s：包“%s”的版本“%s”现在不在这个结构里。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong length for input argument #%d: String which has 32-characters "
-"length expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s：输入参数的数目出错：应该为 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个。\n"
+"%s: Wrong value for input argument #%d: 'user','allusers' or 'all' "
+"expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s：输入参数的数目出错：应该至多是 %d 个。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目出错，应该为 %d 个。\n"
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数数目错误：应为%d或%d。\n"
+msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
+msgstr "%s：第%d个输入参数值错误：应为“all”或“main”。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s：输入参数的数目出错：应该至多是 %d 个。\n"
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s：输入参数的数目出错：应该为 %d 个。\n"
 
 #, c-format
 msgid ""
@@ -289,36 +107,8 @@ msgid ""
 msgstr "%s：输入参数 #%d 的大小出错：应该为 1x1 或 1x2 大小的字符矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 1x2 大小的字符矩阵。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
-msgstr "%s：第%d个输入参数的规格错误：应为1x1或1x2的字符串数组。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s：第%d个输入参数的规格错误：应为布尔型变量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：第%d个输入参数的规格错误：应为字符串型变量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1 或 mx2 大小的字符矩阵。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1，mx2 或 mx3 大小的字符矩阵。\n"
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
+msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
 
 #, c-format
 msgid ""
@@ -327,50 +117,328 @@ msgid ""
 msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1，mx2 或 mx3 大小的字符矩阵。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个。\n"
+
+#, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 mx2 或 mx3 大小的字符矩阵。\n"
+"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1 或 mx2 大小的字符矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 mx2 大小的字符矩阵。\n"
+msgid ""
+"%s: The directory '%s' cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr "%s：路径“%s”不能被创建，请检查您是否在这个路径上写了访问。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
-msgstr "%s：输入参数 #%d 的大小出错：应该为 mx3 大小的字符矩阵。\n"
+msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
+msgstr "%s：文件“%s”不存在或不能被读取\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个布尔型的。\n"
+msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
+msgstr "%s：DESCRIPTION 文件不能在包“%s”中找到\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上写了访问。\n"
+
+#, c-format
+msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
+msgstr "%s：复制文件“%s”到路径“%s”时出错。\n"
+
+#, c-format
+msgid "%s: Error while creating the directory '%s'.\n"
+msgstr "%s：创建路径“%s”时出错。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应为%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应为字符串型变量。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为布尔值。\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：第%d个输入参数的规格错误：应为字符串型变量。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Module '%s' is not installed.\n"
+msgstr "%s：模块“%s”没有安装。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应为布尔型或字符串型变量。\n"
+"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
+"session :\n"
+msgstr "%s：在同一个 scilab 节里包 （%s） 的多个版本不能被加载：\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数 #%d 的类型错误：应该为一个单字符串。\n"
+msgid "\t - You've asked '%s - %s'\n"
+msgstr "\t - 你已经被要求“%s - %s”\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s：输入参数 #%d 的类型错误：应该为字符串数组。\n"
+msgid "%s: Another version of the package %s is already loaded : %s\n"
+msgstr "%s：包 %s 的另一个版本已被加载：%s\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
+msgid "\t - '%s - %s' is already loaded\n"
+msgstr "\t - “%s - %s”已经被加载。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为结构体。\n"
+msgid "\t - '%s - %s' is needed by '%s - %s'\n"
+msgstr "\t - “%s - %s”需要“%s - %s”\n"
+
+#, c-format
+msgid "\t - '%s - %s' is needed by '%s'\n"
+msgstr "\t - “%s”需要“%s - %s”\n"
+
+#, c-format
+msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
+msgstr "%s：文件“%s”不粗奶或不能被读取。\n"
+
+#, c-format
+msgid "%s: An error occurred while loading '%s-%s':\n"
+msgstr "%s: 读取“%s-%s”时出现错误：\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
+"expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”或“all”。\n"
+
+#, c-format
+msgid "%s: You have not enough rights to remove the package %s (%s).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: You have not enough rights to remove any version of the package %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
+"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+msgstr "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS 拒绝删除这个路径。\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) cannot been deleted, please check "
+"if you have write access on this directory : %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The root directory of this package (%s-%s) cannot been deleted, please "
+"check if you have write access on this directory : %s.\n"
+msgstr "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: This ("
+msgstr "%s：输入参数 #%d 的值出错：This （"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'all','user','allusers' or "
+"'official' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s：输入参数 #%d 和 #%d 不兼容：应该为相同的大小。\n"
+
+#, c-format
+msgid "%s: The package %s is not available.\n"
+msgstr "%s：包 %s 不可用。\n"
+
+msgid "Package"
+msgstr "包"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Depend"
+msgstr "依赖"
+
+msgid "Category(ies)"
+msgstr "类别"
+
+msgid "Author(s)"
+msgstr "作者"
+
+msgid "Maintainer(s)"
+msgstr "维护人员"
+
+msgid "Entity"
+msgstr "实体"
+
+msgid "WebSite"
+msgstr "网站"
+
+msgid "License"
+msgstr "授权协议"
+
+msgid "Scilab Version"
+msgstr "Scilab 版本"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Automatically Installed"
+msgstr "已自动安装"
+
+msgid "Install Directory"
+msgstr "安装目录"
+
+msgid "Description"
+msgstr "描述"
+
+msgid ""
+"Option offLine of ATOMS configuration is set to True. atomsSystemUpdate did "
+"not check the latest modules availables."
+msgstr ""
+
+#, c-format
+msgid "%s: '%s - %s' is not installed.\n"
+msgstr "%s：“%s - %s”没有安装。\n"
+
+#, c-format
+msgid "%s: '%s' ('%s' section) is not installed.\n"
+msgstr "%s：“%s” （“%s”节） 没有安装。\n"
+
+#, c-format
+msgid "%s: '%s - %s' ('%s' section) is not installed.\n"
+msgstr "%s：“%s - %s” （“%s”节） 没有安装。\n"
+
+#, c-format
+msgid "%s: '%s' isn't installed.\n"
+msgstr "%s：“%s”没有安装。\n"
+
+msgid "ATOMS error"
+msgstr ""
+
+msgid ""
+"No ATOMS module is available. Please, check your Internet connection or make "
+"sure that your OS is compatible with ATOMS."
+msgstr ""
+
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+
+msgid "ATOMS"
+msgstr ""
+
+msgid "&File"
+msgstr "文件(&F)"
+
+msgid "&Tools"
+msgstr "工具(&T)"
+
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "File"
+msgstr "文件"
+
+msgid "Installed modules"
+msgstr ""
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "?"
+msgstr "？"
+
+msgid "Atoms Help..."
+msgstr "Atoms Help..."
+
+msgid "List of installed modules"
+msgstr ""
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Installing"
+msgstr ""
+
+msgid "Installation failed!"
+msgstr "安装失败！"
+
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr "安装完成！请重新运行Scilab，以使改动生效。"
+
+msgid "Removing"
+msgstr ""
+
+msgid "Remove failed!"
+msgstr "删除失败！"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "删除完成！请重新运行Scilab，以使改变生效。 "
+
+msgid "Updating"
+msgstr ""
+
+msgid "Update failed!"
+msgstr "更新失败！"
+
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr "更新完成！请重新运行Scilab，以使改变生效。"
+
+msgid "Download size"
+msgstr "下载大小"
+
+msgid "See also"
+msgstr ""
+
+msgid "Release date"
+msgstr ""
+
+#, c-format
+msgid "A new version ('%s') of '%s' is available"
+msgstr ""
+
+msgid "Bytes"
+msgstr "字节"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'user', 'allusers' or 'all' "
+"expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 mx3 大小的字符矩阵。\n"
 
 #, c-format
 msgid ""
@@ -378,92 +446,14 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型出错：应该为一个矩阵原始的打印列表。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
-
-#, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
-msgstr "%s：第%d个输入参数值错误：“%s”类别尚未注册。"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
-msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
-msgstr "%s：第%d个输入参数值错误：应为“all”或“main”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
-"''session'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
-"''official'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“system”或“install”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“user”或“allusers”或“all”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“user”，“allusers”或“all”。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为 ASC 或 DESC。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr "%s：输入参数 #%d 的值出错：所有模块的版本都应当设置。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: It should have a field named "
-"''%s''.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
 
 #, c-format
 msgid ""
@@ -471,27 +461,21 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：必须是一个 atoms 的包名。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为结构体。\n"
+
+#, c-format
+msgid "%s: The package '%s' is not present in the struct.\n"
+msgstr "%s：包“%s”现在不在这个结构里。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
-msgstr ""
+"%s: The version '%s' of the package '%s' is not present in the struct.\n"
+msgstr "%s：包“%s”的版本“%s”现在不在这个结构里。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
+"%s: Wrong value for input argument #%d: It should have a field named '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -501,13 +485,220 @@ msgid ""
 msgstr "%s：输入参数 #%d 的值出错：矩阵原始的打印列表没有被很好地格式化。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This ("
-msgstr "%s：输入参数 #%d 的值出错：This （"
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为布尔值。\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: gzip not found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
+msgstr "%s：解压 DESCRIPTION 文件 （“%s”） 失败。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
-msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
+"%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
+"'DESCRIPTION' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"the %s field\n"
+msgstr ""
+
+#, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The file '%s' is not well formated at line %d\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' is not a registered category"
+msgstr "%s：第%d个输入参数值错误：“%s”类别尚未注册。"
+
+#, c-format
+msgid "%s: The file '%s' cannot be written.\n"
+msgstr "%s：文件“%s”不能被写入。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that start with "
+"'http://','ftp://' or 'file://' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong length for input argument #%d: String which has 32-characters "
+"length expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Neither Wget or Curl found: Please install one of them\n"
+msgstr "%s：既没找到 Wget 也没找到 Curl：请安装二者之一\n"
+
+#, c-format
+msgid "%s: Error: Invalid URL.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Internet Open.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: URL Open.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Createfile.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Invalid File size.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Internet Read file.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Write file.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Failure.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error: Out Of Memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The following file hasn't been downloaded:\n"
+msgstr "%s：下一个文件不能被下载：\n"
+
+#, c-format
+msgid "\t - URL      : '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "\t - Local location : '%s'\n"
+msgstr "\t - 本地地址：“%s”\n"
+
+#, c-format
+msgid "%s: The following file hasn't been copied:\n"
+msgstr "%s：下一个文件不能被复制：\n"
+
+#, c-format
+msgid "\t - source    : '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "\t - destination : '%s'\n"
+msgstr "\t - 目的：“%s”\n"
+
+#, c-format
+msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
+msgstr "%s：下载的文件没有检查 MD5SUM 值：\n"
+
+#, c-format
+msgid "\t - file      : '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "\t - MD5SUM expected : '%s'\n"
+msgstr "\t - MD5SUM 值希望是：“%s”\n"
+
+#, c-format
+msgid "\t - MD5SUM watched  : '%s'\n"
+msgstr "\t - MD5SUM 值被查看到为：“%s”\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“error”或“warning”。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The file %s doesn't exist or is not read accessible.\n"
+msgstr "%s：文件 %s 不存在或不能被读取。\n"
+
+#, c-format
+msgid "%s: The directory %s doesn't exist.\n"
+msgstr "%s：路径 %s 不存在。\n"
+
+#, c-format
+msgid "%s: The extraction of the archive '%s' has failed.\n"
+msgstr "%s：文档“%s”的解压失败。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr "%s：第%d个输入参数的规格错误：应为1x1或1x2的字符串数组。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为一个布尔型的。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr "%s：第%d个输入参数的规格错误：应为布尔型变量。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 1x2 大小的字符矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 mx2 或 mx3 大小的字符矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr "%s：输入参数 #%d 的值出错：所有模块的版本都应当设置。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
+msgstr "%s：输入参数 #%d 的大小出错：应该为 mx2 大小的字符矩阵。\n"
+
+msgid "All modules"
+msgstr ""
+
+msgid "Main categories"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be an available atoms "
+"package name.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s：输入参数的数目出错：应该至多是 %d 个。\n"
+
+#, c-format
+msgid "%s: The dependency tree cannot be resolved.\n"
+msgstr "%s：依存关系树不能被处理。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
 
 #, c-format
 msgid ""
@@ -517,185 +708,62 @@ msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本或依�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“error”或“warning”。\n"
+"%s: Wrong value for input argument #%d: 'system' or 'install' expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“system”或“install”。\n"
 
 #, c-format
 msgid ""
-"%s: You have not enough rights to remove any version of the package %s.\n"
+"%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
+"expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
+"expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: You have not enough rights to remove the package %s (%s).\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
+msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
 #, c-format
-msgid "%s: You haven''t write access on this directory : %s.\n"
-msgstr "%s:您没有读取路径：%s。\n"
+msgid "%s: The description is not well formated at line %d\n"
+msgstr "%s：description 在第 %d 行不能很好地被格式化\n"
 
 #, c-format
-msgid "%s: name and version are not both defined\n"
-msgstr ""
+msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
+msgstr "%s：输入参数 #%d 的值出错：“%s”不是有效的 URL。\n"
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgid "%s: the package '%s' doesn't exist.\n"
+msgstr "%s：包“%s”不存在。\n"
+
+#, c-format
+msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
 msgstr "%s：包“%s”不包含域“%s”。\n"
 
 #, c-format
-msgid "%s: the package ''%s'' doesn''t exist.\n"
-msgstr "%s：包“%s”不存在。\n"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "编辑(&E)"
-
-msgid "&File"
-msgstr "文件(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
-msgid "?"
-msgstr "？"
+msgid "%s: %s (%s) isn't installed.\n"
+msgstr "%s：%s （%s）没有安装。\n"
 
 #, c-format
-msgid "A new version (''%s'') of ''%s'' is available"
-msgstr ""
-
-msgid "ATOMS"
-msgstr ""
-
-msgid "ATOMS error"
-msgstr ""
-
-msgid "All modules"
-msgstr ""
-
-msgid "Atoms Help..."
-msgstr "Atoms Help..."
-
-msgid "Author(s)"
-msgstr "作者"
-
-msgid "Automatically Installed"
-msgstr "已自动安装"
-
-msgid "Bytes"
-msgstr "字节"
-
-msgid "Category(ies)"
-msgstr "类别"
-
-msgid "Close"
-msgstr "关闭"
-
-msgid "Depend"
-msgstr "依赖"
-
-msgid "Description"
-msgstr "描述"
-
-msgid "Download size"
-msgstr "下载大小"
-
-msgid "Entity"
-msgstr "实体"
-
-msgid "File"
-msgstr "文件"
-
-msgid "Home"
-msgstr ""
-
-msgid "Install"
-msgstr "安装"
-
-msgid "Install Directory"
-msgstr "安装目录"
-
 msgid ""
-"Installation done! Please restart Scilab to take changes into account."
-msgstr "安装完成！请重新运行Scilab，以使改动生效。"
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 
-msgid "Installation failed!"
-msgstr "安装失败！"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为 ASC 或 DESC。\n"
 
-msgid "Installing"
-msgstr ""
+#, c-format
+#~ msgid "\t - URL            : '%s'\n"
+#~ msgstr "\t - URL            ：“%s”\n"
 
-msgid "KB"
-msgstr "KB"
+#, c-format
+#~ msgid "\t - file            : '%s'\n"
+#~ msgstr "\t - 文件            ：“%s”\n"
 
-msgid "License"
-msgstr "授权协议"
-
-msgid "List of installed modules"
-msgstr ""
-
-msgid "MB"
-msgstr "MB"
-
-msgid "Main categories"
-msgstr ""
-
-msgid "Maintainer(s)"
-msgstr "维护人员"
-
-msgid "No ATOMS module is available. Please, check your Internet connection."
-msgstr ""
-
-msgid "No ATOMS module is available: your repository list is empty."
-msgstr ""
-
-msgid "Package"
-msgstr "包"
-
-msgid "Release date"
-msgstr ""
-
-msgid "Remove"
-msgstr "删除"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr "删除完成！请重新运行Scilab，以使改变生效。 "
-
-msgid "Remove failed!"
-msgstr "删除失败！"
-
-msgid "Removing"
-msgstr ""
-
-msgid "Scilab Version"
-msgstr "Scilab 版本"
-
-msgid "See also"
-msgstr ""
-
-msgid "Status"
-msgstr "状态"
-
-msgid "Summary"
-msgstr "概要"
-
-msgid "Title"
-msgstr "标题"
-
-msgid "Update"
-msgstr "更新"
-
-msgid "Update done! Please restart Scilab to take changes into account."
-msgstr "更新完成！请重新运行Scilab，以使改变生效。"
-
-msgid "Update failed!"
-msgstr "更新失败！"
-
-msgid "Updating"
-msgstr ""
-
-msgid "Version"
-msgstr "版本"
-
-msgid "WebSite"
-msgstr "网站"
+#, c-format
+#~ msgid "\t - source      : '%s'\n"
+#~ msgstr "\t - 源      ：“%s”\n"

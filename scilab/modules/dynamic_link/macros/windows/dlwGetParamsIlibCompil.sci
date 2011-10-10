@@ -1,6 +1,6 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,18 +11,10 @@
 //=============================================================================
 function [make_command, lib_name_make, lib_name, path, makename, files] = ..
              dlwGetParamsIlibCompil(lib_name, makename, files)
-
-  managed_ext = ['.obj', '.o'];
-  for i=1:size(files,'*') // compatibility scilab 4.x
-    [path_f, file_f, ext_f] = fileparts(files(i));
-    if or(managed_ext == ext_f) then
-      files(i) = path_f + file_f;
-    else
-      files(i) = path_f + file_f + ext_f;
-    end
-  end
-
+  
+  files = unique(files);
   k = strindex(makename,['/','\']);
+  
 
   if k~=[] then
     path = part(makename,1:k($));
@@ -34,12 +26,6 @@ function [make_command, lib_name_make, lib_name, path, makename, files] = ..
   lib_name = lib_name+getdynlibext();
   lib_name_make = lib_name;
 
-  FILES = [];
-  for x = files(:)'
-    [ptmp,ftmp,fext] = fileparts(x);
-    FILES = [FILES,ptmp+ftmp];
-  end
-
   if (makename <> [] & makename <> '') then
     makename = makename + dlwGetMakefileExt() ;
   else
@@ -47,10 +33,6 @@ function [make_command, lib_name_make, lib_name, path, makename, files] = ..
   end
 
   make_command = 'nmake /Y /nologo /f ';
-
-  if FILES <> [] then
-    files = FILES + '.obj' ;
-  end
 
 endfunction
 //=============================================================================

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1d690322-2fae-40c4-a31c-b41a7516809f}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{94f9e428-7935-491d-8284-bd32c835573b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{a5f6aed8-c58f-469c-b078-9404d7a8c9b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{a17607c6-f802-4c84-a9f1-ddca76f4aa8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Export">
+      <UniqueIdentifier>{0edb7486-ea9b-43b0-bc43-5da2b2315a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b6b33bea-52e4-4a55-8f6d-1053dedc7a72}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1daa6384-ae22-4e62-ac89-c45f7f649300}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\includes\charEncoding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\dynlib_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLcidString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLocaleInfo_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\gw_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\InitializeLocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\LanguagePreferences_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\LocaleNameToLCID_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\localizationJava.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\setgetlanguage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\locales\en_US\localization.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="io_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="localization_export.def">
+      <Filter>Libraries Dependencies\Export</Filter>
+    </None>
+    <None Include="..\localization.iss" />
+    <None Include="..\sci_gateway\localization_gateway.xml" />
+    <None Include="..\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="c\charEncoding.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\DllmainLocalization.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\getLcidString.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\getLocaleInfo_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\gw_localization.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\InitializeLocalization.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\LanguagePreferences_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\LocaleNameToLCID_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\LocaleToLCID_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\Messages_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_gettext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_setdefaultlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_setlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\setgetlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="localization.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

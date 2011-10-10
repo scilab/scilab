@@ -68,12 +68,17 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_DELAY_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_DELAY_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="DELAY_f">Compiled Super Block content</link>
+              <xref linkend="Authors_DELAY_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
@@ -96,14 +101,23 @@
 This compiled super-block implements a discretized delay It is build with a shift register and a clock. The value of the delay is given by the discretization time step multiplied by the number-1 of state of the register.  
 </para>
     <para>
-</para>
+      <latex><![CDATA[
+\left\{
+    \begin{array}{l l}
+        T_0=length(Register)                                                  \\
+        y(t) = Register(n)      & \text{when}\ t < nT_0                     \\
+        y(t) = x(n*(T - T_0))   & \text{when}\ t\in[n;n+1]*(T - T_0)
+    \end{array}
+\right.
+]]></latex>
+    </para>
   </refsection>
   <refsection id="Dialogbox_DELAY_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/DELAY_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/discrete_pal/en_US/DELAY_f_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -181,22 +195,52 @@ This compiled super-block implements a discretized delay It is build with a shif
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_DELAY_f">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_en_US.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_diagram_en_US.png" align="center"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/en_US/DELAY_f_scope_en_US.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
+  </refsection>
   <refsection id="Interfacingfunction_DELAY_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Linear/DELAY_f.sci</para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Linear/DELAY_f.sci">SCI/modules/scicos_blocks/macros/Linear/DELAY_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="CompiledSuperBlockcontent_DELAY_f">
-    <title>Compiled Super Block content</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/DELAY_f_img3_eng.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
+  <refsection id="Authors_DELAY_f">
+    <title>Authors</title>
+    <para>INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

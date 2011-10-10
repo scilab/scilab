@@ -28,9 +28,9 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
+
 /*--------------------------------------------------------------------------*/
-int
-sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
+int sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
 {
     CheckRhs(3, 3);
     CheckLhs(0, 1);
@@ -40,21 +40,19 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     int iRows1 = 0;
     int iCols1 = 0;
     int iLen1 = 0;
-    int* piAddr1 = NULL;
-    char* pstXcosFile = NULL;
-
-    int iVarType2 = 0;
+    int *piAddr1 = NULL;
+    char *pstXcosFile = NULL;
 
     int iRows2 = 0;
     int iCols2 = 0;
     int iLen2 = 0;
-    int* piAddr2 = NULL;
-    char* pstH5File = NULL;
+    int *piAddr2 = NULL;
+    char *pstH5File = NULL;
 
     int iRows3 = 0;
     int iCols3 = 0;
-    int* piAddr3 = NULL;
-    int* piForceWrite = NULL;
+    int *piAddr3 = NULL;
+    int *piForceWrite = NULL;
 
     bool bForceWrite = false;
 
@@ -80,18 +78,16 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     }
 
     //get xcos filename length
-    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1,
-            NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    pstXcosFile = (char*) MALLOC(sizeof(char*) * (iLen1 + 1));//+ 1 for null termination
+    pstXcosFile = (char *)MALLOC(sizeof(char *) * (iLen1 + 1)); //+ 1 for null termination
     //get xcos filename
-    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1,
-            &pstXcosFile);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, &pstXcosFile);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -120,18 +116,16 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     }
 
     //get xcos filename length
-    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2,
-            NULL);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    pstH5File = (char*) MALLOC(sizeof(char*) * (iLen2 + 1));//+ 1 for null termination
+    pstH5File = (char *)MALLOC(sizeof(char *) * (iLen2 + 1));   //+ 1 for null termination
     //get xcos filename
-    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2,
-            &pstH5File);
+    sciErr = getMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &iLen2, &pstH5File);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -154,8 +148,7 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    sciErr = getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3,
-            &piForceWrite);
+    sciErr = getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, &piForceWrite);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -173,19 +166,19 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
      * Call the Java implementation
      */
     int iRet = 0;
+
     try
     {
-        iRet = Xcos::xcosDiagramToHDF5(getScilabJavaVM(), pstXcosFile,
-                pstH5File, bForceWrite);
+        iRet = Xcos::xcosDiagramToHDF5(getScilabJavaVM(), pstXcosFile, pstH5File, bForceWrite);
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.what());
+        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
@@ -208,4 +201,5 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

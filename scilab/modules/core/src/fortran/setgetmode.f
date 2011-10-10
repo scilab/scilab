@@ -14,6 +14,7 @@ c
       include 'stack.h'
 c
       integer plus,minus,comma,rparen
+      character tmpbuf * (bsiz)
       external allowptr
       logical allowptr
       data plus/45/,minus/46/,comma/52/,rparen/42/
@@ -44,9 +45,9 @@ c     variable is an argument of a function
       if (allowptr(ifun).or.ifun.lt.0) then
          if(ddt.ge.4) then
             call cvname(id,buf,1)
-            write(buf(nlgh+1:nlgh+16),'(2i8)') ifun,rstk(ip)
-            call basout(io,wte,' setgetmode '//buf(1:nlgh)//' '//
-     $           buf(nlgh+1:nlgh+16))
+            write(tmpbuf(nlgh+1:nlgh+16),'(2i8)') ifun,rstk(ip)
+            call basout(io,wte,' setgetmode '//tmpbuf(1:nlgh)//' '//
+     $           tmpbuf(nlgh+1:nlgh+16))
          endif
          imode=-4
       endif

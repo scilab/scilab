@@ -4,7 +4,7 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2010 - Bruno JOFRET
+# Copyright (C) DIGITEO - 2010-2011 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -283,12 +283,19 @@ detect_scilab_path() {
     export SCI
 }
 
-detect_java_vm() {
 
-    JAVA_SHLIB="libjava.so"
+set_macosx_java_vm () {
+    # For Mac OS X, Since path are different from the JVM normal tree,
+    # don't need to detect the CPU
+    JAVA_SHLIB="libjava.jnilib"
+    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+    DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
-    if test $IS_SCILAB_BINARY -eq 1; then
-        # Scilab binary => no Java detection since we are using the embeded JRE
+}
+
+set_embedded_java_vm () {
+
+       # Scilab binary => no Java detection since we are using the embeded JRE
         # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit,
         # Mac OS X
         case $OS in
@@ -308,20 +315,24 @@ detect_java_vm() {
                 esac
                 ;;
             *darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree,
-        # don't need to detect the CPU
-                JAVA_SHLIB="libjava.jnilib"
-        JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                set_macosx_java_vm
                 ;;
-
             *)
-                echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
-                echo "Fallback on the model <${MODEL}> found by uname -m"
-                proc=$MODEL
-                ;;
-        esac
-        JRE_HOME="$SCIBINARYBASE/thirdparty/java/"
+            echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+            echo "Fallback on the model <${MODEL}> found by uname -m"
+            proc=$MODEL
+            ;;
+    esac
+    JRE_HOME="$SCIBINARYBASE/thirdparty/java/"
+
+}
+
+detect_java_vm() {
+
+    JAVA_SHLIB="libjava.so"
+
+    if test $IS_SCILAB_BINARY -eq 1; then
+        set_embedded_java_vm
     else  # NOT IS_SCILAB_BINARY
 
 ############# JAVA DETECTION ##############
@@ -345,7 +356,7 @@ detect_java_vm() {
 # uname -m Darwin
 
 # If the user has the variable JAVA_HOME in the ENV
-        if test -n "$JAVA_HOME" ; then
+    if test -n "$JAVA_HOME" ; then
             if test $SCIVERBOSE -ne 0; then
                 echo "Using specified vm: $JAVA_HOME"
             fi
@@ -353,17 +364,11 @@ detect_java_vm() {
                 echo "Cannot find $JAVA_HOME/bin/java"
                 exit 1
             fi
-        fi
+        else
 
         case $OS in
             *darwin* | *Darwin*)
-        if test -z "$JAVA_HOME"; then
-                    # Apple thinks and does things different (it would be too easy otherwise)
-                    # They provide a script which returns the JAVA_HOME path
-                    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-        fi
-                LD_LIBRARY_PATH="$JAVA_HOME/../Libraries${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                set_macosx_java_vm
                 if test $SCIVERBOSE -ne 0; then
                     echo "Using default Mac OS X vm: $JAVA_HOME"
                     echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
@@ -377,7 +382,7 @@ detect_java_vm() {
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
         if test -z "$JAVA_HOME"; then
-            JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+            JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
             for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
                 if test $SCIVERBOSE -ne 0; then
                     echo "Trying to find Java in $JAVA_HOME "
@@ -425,18 +430,17 @@ detect_java_vm() {
             done
             IFS=$as_save_IFS
         fi
+    fi
         if test ! -z "$JAVA_HOME"; then
             if test $SCIVERBOSE -ne 0; then
                 echo "JAVA_HOME : $JAVA_HOME"
             fi
-
 # Manage JRE & JDK because libjava.so and others are stored in the JRE
             if test -d $JAVA_HOME/jre; then
                 JRE_HOME=$JAVA_HOME/jre
             else
                 JRE_HOME=$JAVA_HOME
             fi
-
 # Configuring LD_LIBRARY_PATH for libjava.so libhpi.so and libxxxx.so
 
             case $OS in
@@ -465,8 +469,8 @@ detect_java_vm() {
                         "ia64")
                             proc="ia64"
                             ;;
-                        "mips"|"mipsel") # under mipsel, uname -m is
-                    # usually returning mips ...
+                        mips*) # under mipsel, uname -m is
+                    # usually returning mips or mips64...
                     # but binary are in mipsel
                             if test -d ${JRE_HOME}/lib/mipsel ; then
                                 proc="mipsel"
@@ -515,11 +519,7 @@ detect_java_vm() {
                     JAVA_SHLIB="jvm.dll"
                     ;;
                 *darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree,
-        # don't need to detect the CPU
-                    JAVA_SHLIB="libjava.jnilib"
-                    # Need to set DYLD_LIBRARY_PATH for Mac.
-            DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                    set_macosx_java_vm
                     ;;
                 *FreeBSD*)
                     proc=$MODEL
@@ -555,6 +555,7 @@ if test $SCIVERBOSE -ne 0; then
     echo "IS_SCILAB_BINARY : $IS_SCILAB_BINARY"
 fi
 
+
 # If we are calling scilab-cli, no need to detect java.
 if test $DISABLE_JAVA_DETECTION -ne 1; then
     detect_java_vm
@@ -575,12 +576,12 @@ if test $IS_SCILAB_BINARY -eq 1; then
     export Tk_LIBRARY
 
     case $OS in
-    *darwin* | *Darwin*)
-        DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-        export DYLD_LIBRARY_PATH
-        PATH="/sw/bin:/sw64/bin:$PATH"
-        export PATH
-        ;;
+        *darwin* | *Darwin*)
+            DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+            export DYLD_LIBRARY_PATH
+            PATH="/sw/bin:/sw64/bin:$PATH"
+            export PATH
+            ;;
     esac
 
 else
@@ -612,15 +613,59 @@ cd "$LOCALOLDPWD"
 #fi
 #export DISPLAY
 
-#if test "$PVM_ROOT" = ""; then
-#  PVM_ROOT="@PVMROOTR@"
-#fi
-#export PVM_ROOT
 
-#if test "$PVM_ARCH" = ""; then
-#  PVM_ARCH=$($PVM_ROOT/lib/pvmgetarch)
-#fi
-#export PVM_ARCH
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
+    macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
+    if test "${macosxVersion}" = ""; then
+      macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*'`
+    fi
+    macosxMajorVersion=`echo $macosxVersion | cut -d . -f 1`
+    macosxMinorVersion=`echo $macosxVersion | cut -d . -f 2`
+    macosxBuildVersion=`echo $macosxVersion | cut -d . -f 3`
+
+    if test $SCIVERBOSE -ne 0; then
+        echo "Found MacOSX Version: $macosxVersion"
+    fi
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                7)
+                   # We force to install JRE on Lion
+                   /usr/libexec/java_home --request
+
+                   # We remove if it exists with 10.7
+		               rm -rf $BINPATH/../lib/thirdparty/libiconv.2.4.0.dylib
+                   ;;
+
+                6)
+                    if test $macosxBuildVersion -le 4; then
+                        # Version <= 10.6.4
+                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    fi
+                    ;;
+# Does not work under 10.5 binary for now. Fail by default
+#                 5)
+#                     if test $macosxBuildVersion -ge 8; then
+#                         # Version <= 10.5.8
+#                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
+#                         fi
+#                    ;;
+                *)
+                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    ;;
+            esac
+            ;;
+        *)
+            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+            ;;
+    esac
+}
 
 SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
@@ -643,6 +688,13 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+        # Now, check that I can run Scilab on this version of Mac OS X and
+        # display a standard window
+        BINPATH=$(dirname $0)
+        # Do not perform the check with Scilab is started in CLI mode
+        if test "$SCILAB_MODE" = "gui"; then
+            check_macosx_version
+        fi
         ;;
     *)
 esac
@@ -665,7 +717,6 @@ fi
 do_scilex()
 {
     "$SCILABBIN" "$@"
-
 }
 
 do_help()
@@ -693,22 +744,29 @@ do_help()
     echo     "      -h/--help       : display help about this command."
     echo     "      --texmacs       : reserved for TeXMacs."
     echo     " "
-if test $IS_SCILAB_BINARY -eq 0; then
-    echo     "Developer arguments:"
-    echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-    echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-    echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-    echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-    echo     "                        valgrind (and override the existing valgrind arguments)."
-    echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-    echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-    echo     "                        callgrind (and override the existing callgrind arguments)."
-    echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-    echo     " "
-fi
+    if test $IS_SCILAB_BINARY -eq 0; then
+        echo     "Developer arguments:"
+        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        valgrind (and override the existing valgrind arguments)."
+        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        callgrind (and override the existing callgrind arguments)."
+        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+        echo     "      -disable-exception-catching : Disable Scilab exception catching system."
+        echo     " "
+    fi
     echo     "      All these arguments can be retrieved by the Scilab function sciargs."
     echo     " "
+    echo     "      Several environment variables can be declared."
+    echo     "      SCIVERBOSE               Provides debugging information of the startup"
+    echo     "      JAVA_HOME                Declares which Java Virtual Machine to use"
+    echo     "      SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
+    echo     "      SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+
     exit
 }
 
@@ -805,7 +863,19 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
+            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+                ;;
+            -nw)
+                if test "$SCILAB_MODE" = "nwni"; then
+                    echo "Cannot use scilab-cli with option -nw"
+                    exit 5
+                fi
+                ;;
+            -nwni)
+                if test "$SCILAB_MODE" = "nw"; then
+                    echo "Cannot use scilab-adv-cli with option -nwni"
+                    exit 5
+                fi
                 ;;
             -psn_*)
         # Under Mac OS X, .app is adding the arg -psn_0_xxxx
@@ -831,6 +901,10 @@ if test "$rest" = "yes"; then
                 ;;
             -electric-fence)
                 ELECTRIC_FENCE="-electric-fence"
+                ;;
+            -disable-exception-catching)
+                SCI_DISABLE_EXCEPTION_CATCHING=1
+                export SCI_DISABLE_EXCEPTION_CATCHING
                 ;;
             -h|--help)
                 do_help

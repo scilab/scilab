@@ -32,13 +32,6 @@
 #include "sundials_extension.h"
 
 /*=================================================================*/
-/*             Macros                                              */
-/*=================================================================*/
-
-/* Macro: loop */
-#define loop for(;;)
-
-/*=================================================================*/
 /*             CVODE Private Constants                             */
 /*=================================================================*/
 
@@ -1552,7 +1545,7 @@ int CVode(void *cvode_mem, realtype tout, N_Vector yout,
    */
 
   nstloc = 0;
-  loop {
+  for(;;) {
    
     next_h = h;
     next_q = q;
@@ -2080,9 +2073,9 @@ static int CVInitialSetup(CVodeMem cv_mem)
 
 static int CVHin(CVodeMem cv_mem, realtype tout)
 {
-  int retval, sign, count1, count2;
-  realtype tdiff, tdist, tround, hlb, hub;
-  realtype hg, hgs, hs, hnew, hrat, h0, yddnrm;
+  int retval = 0, sign = 0, count1 = 0, count2 = 0;
+  realtype tdiff = 0., tdist = 0., tround = 0., hlb = 0., hub = 0.;
+  realtype hg = 0., hgs = 0., hs = 0., hnew = 0., hrat = 0., h0 = 0., yddnrm = 0.;
   booleantype hgOK, hnewOK;
 
   /* If tout is too close to tn, give up */
@@ -2284,7 +2277,7 @@ static int CVStep(CVodeMem cv_mem)
   if ((nst > 0) && (hprime != h)) CVAdjustParams(cv_mem);
   
   /* Looping point for attempts to take a step */
-  loop {  
+  for(;;) {  
 
     CVPredict(cv_mem);  
     CVSet(cv_mem);
@@ -2848,7 +2841,7 @@ static int CVNlsFunctional(CVodeMem cv_mem)
 
   /* Loop until convergence; accumulate corrections in acor */
 
-  loop {
+  for(;;) {
 
     nni++;
 
@@ -2932,7 +2925,7 @@ static int CVNlsNewton(CVodeMem cv_mem, int nflag)
      Evaluate f at the predicted y, call lsetup if indicated, and
      call CVNewtonIteration for the Newton iteration itself.      */
   
-  loop {
+  for(;;) {
 
     retval = f(tn, zn[0], ftemp, f_data);
     nfe++; 
@@ -2994,7 +2987,7 @@ static int CVNewtonIteration(CVodeMem cv_mem)
   del = delp = ZERO;
 
   /* Looping point for Newton iteration */
-  loop {
+  for(;;) {
 
     /* Evaluate the residual of the nonlinear system*/
     N_VLinearSum(rl1, zn[1], ONE, acor, tempv);
@@ -4151,7 +4144,7 @@ static int CVRootfindStd(CVodeMem cv_mem)
   /* A sign change was found.  Loop to locate nearest root. */
 
   side = 0;  sideprev = -1;
-  loop {                                    /* Looping point */
+  for(;;) {                                    /* Looping point */
 
     /* Set weight alpha.
        On the first two passes, set alpha = 1.  Thereafter, reset alpha
@@ -4663,7 +4656,7 @@ static int CVRootfindExt(CVodeMem cv_mem)
 	/* A sign change was found.  Loop to locate nearest root. */
 
 	side = 0;  sideprev = -1;
-	loop {                                    /* Looping point */
+	for(;;) {                                    /* Looping point */
 
 		/* Set weight alpha.
 		On the first two passes, set alpha = 1.  Thereafter, reset alpha

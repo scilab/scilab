@@ -13,13 +13,6 @@ MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
 
-
-MEXLIB_DEP =  \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/data_structures/libscidata_structures.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-    $(top_builddir)/modules/string/libscistring.la
-
 pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
@@ -55,7 +48,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
-libmex_la_root_DATA =  license.txt version.xml
+libmex_la_root_DATA =  license.txt 
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc

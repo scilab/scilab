@@ -3,53 +3,54 @@
 
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-mprintf("Start Toolbox skeleton\n");
+function toolbox_skeletonlib = startModule()
+   
+  toolbox_name="Toolbox skeleton"
 
-if isdef("toolbox_skeletonlib") then
-	warning("Toolbox skeleton library is already loaded");
-	return;
-end
+  mprintf("Start " + toolbox_name + "\n");
 
-etc_tlbx  = get_absolute_file_path("toolbox_skeleton.start");
-etc_tlbx  = getshortpathname(etc_tlbx);
-root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+  if isdef("toolbox_skeletonlib") then
+    warning("Toolbox skeleton library is already loaded");
+    return;
+  end
+
+  etc_tlbx  = get_absolute_file_path("toolbox_skeleton.start");
+  etc_tlbx  = getshortpathname(etc_tlbx);
+  root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 
 //Load  functions library
 // =============================================================================
-mprintf("\tLoad macros\n");
-pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-toolbox_skeletonlib = lib(pathmacros);
-clear pathmacros;
-
+  mprintf("\tLoad macros\n");
+  pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
+  toolbox_skeletonlib = lib(pathmacros);
+  
 // load gateways
 // =============================================================================
-mprintf("\tLoad gateways\n");
-verboseMode = ilib_verbose();
-ilib_verbose(0);
-exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
-ilib_verbose(verboseMode);
-clear verboseMode;
+  mprintf("\tLoad gateways\n");
+  verboseMode = ilib_verbose();
+  ilib_verbose(0);
+  exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
+  ilib_verbose(verboseMode);
 
 // Load and add help chapter
 // =============================================================================
-if or(getscilabmode() == ["NW";"STD"]) then
-	mprintf("\tLoad help\n");
-	path_addchapter = pathconvert(root_tlbx+"/jar");
-	if ( isdir(path_addchapter) <> [] ) then
-		add_help_chapter("Toolbox skeleton", path_addchapter, %F);
-		clear add_help_chapter;
-	end
-	clear path_addchapter;
-end
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad help\n");
+    path_addchapter = pathconvert(root_tlbx+"/jar");
+    if ( isdir(path_addchapter) <> [] ) then
+      add_help_chapter(toolbox_name, path_addchapter, %F);
+    end
+  end
 
 // Load demos
 // =============================================================================
-if or(getscilabmode() == ["NW";"STD"]) then
-	mprintf("\tLoad demos\n");
-	pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce",%F,%T);
-	add_demo("Toolbox skeleton",pathdemos);
-	clear pathdemos add_demo;
-end
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad demos\n");
+    pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce", %F, %T);
+    add_demo(toolbox_name, pathdemos);
+  end
 
-clear root_tlbx;
-clear etc_tlbx;
+endfunction
+
+toolbox_skeletonlib = startModule();
+clear startModule; // remove startModule on stack

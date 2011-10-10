@@ -46,7 +46,7 @@ int sci_swap_handles( char * fname, unsigned long fname_len )
   swapHandles( (unsigned long) *hstk( firstHdlStkIndex  ),
                (unsigned long) *hstk( secondHdlStkIndex ) ) ;
   LhsVar(1) = 0 ;
-	C2F(putlhsvar)();
+  PutLhsVar();
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/

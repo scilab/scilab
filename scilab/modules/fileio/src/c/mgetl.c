@@ -16,6 +16,7 @@
 #include "mopen.h"
 #include "MALLOC.h"
 #include "BOOL.h"
+#include "strsubst.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -29,6 +30,8 @@
 static char *removeEOL(char *_inString);
 static char *convertAnsiToUtf(char *_inString);
 static char *getNextLine(FILE *stream);
+/*--------------------------------------------------------------------------*/
+static const unsigned char UTF8BOM_BYTEORDER_MARK[3] = {0xEF,0xBB,0xBF};
 /*--------------------------------------------------------------------------*/
 char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
@@ -63,6 +66,17 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             }
 
             Line = getNextLine(fa);
+            if (Line)
+            {
+                /* UTF-8 BOM */
+                if (strncmp(Line, (const char*)UTF8BOM_BYTEORDER_MARK, strlen((const char*)UTF8BOM_BYTEORDER_MARK)) == 0)
+                {
+                    /* we skip first characters */
+                    char *tmpLine = strsub(Line, (const char*)UTF8BOM_BYTEORDER_MARK, "");
+                    FREE(Line);
+                    Line = tmpLine;
+                }
+            }
             while ( Line != NULL )
             {
                 nbLines++;
@@ -123,7 +137,23 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     if (nbLines < nbLinesIn)
                     {
-                        Line = getNextLine(fa);
+                        if ((double) ftell(fa) == 0)
+                        {
+                            Line = getNextLine(fa);
+                            /* UTF-8 BOM */
+                            if (Line && (strncmp(Line, (const char*)UTF8BOM_BYTEORDER_MARK, strlen((const char*)UTF8BOM_BYTEORDER_MARK)) == 0))
+                            {
+                                /* we skip first characters */
+                                char *tmpLine = strsub(Line, (const char*)UTF8BOM_BYTEORDER_MARK, "");
+                                FREE(Line);
+                                Line = tmpLine;
+                            }
+                        }
+                        else
+                        {
+                            Line = getNextLine(fa);
+                        }
+
                         if (Line != NULL)
                         {
                             nbLines++;

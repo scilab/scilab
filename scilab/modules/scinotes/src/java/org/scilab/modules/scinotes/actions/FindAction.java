@@ -27,6 +27,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -78,7 +79,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-public final class FindAction extends DefaultAction {
+public final class FindAction extends DefaultAction implements WindowFocusListener {
 
     /**
      * serialVersionUID
@@ -255,6 +256,24 @@ public final class FindAction extends DefaultAction {
     }
 
     /**
+     * {@inheritedDoc}
+     */
+    public void windowGainedFocus(WindowEvent e) {
+        if (e.getWindow() == getEditor().getSwingParentWindow()) {
+            frame.setAlwaysOnTop(true);
+        }
+    }
+
+    /**
+     * {@inheritedDoc}
+     */
+    public void windowLostFocus(WindowEvent e) {
+        if (e.getOppositeWindow() != frame && e.getOppositeWindow() != getEditor().getSwingParentWindow()) {
+            frame.setAlwaysOnTop(false);
+        }
+    }
+
+    /**
      * findReplaceBox
      */
     public void findReplaceBox() {
@@ -273,6 +292,9 @@ public final class FindAction extends DefaultAction {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.FIND_REPLACE);
         frame.setResizable(false);
+
+        getEditor().getSwingParentWindow().addWindowFocusListener(this);
+        frame.addWindowFocusListener(this);
 
         buttonGroup1 = new ButtonGroup();
         buttonGroup2 = new ButtonGroup();
@@ -555,7 +577,13 @@ public final class FindAction extends DefaultAction {
 
                     Pattern pattern = SearchManager.generatePattern(oldWord, caseSelected, wholeWordSelected, regexpSelected);
                     Matcher matcher = pattern.matcher(text);
-                    String replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
+                    String replacedText;
+                    if (regexpSelected) {
+                        newWord = newWord.replaceAll("\\\\r\\\\n|\\\\n", "\n").replaceAll("\\\\t", "\t");
+                        replacedText = matcher.replaceAll(newWord);
+                    } else {
+                        replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
+                    }
                     if (replacedText.compareTo(text) != 0 && text.length() > 0) {
                         // only touch document if any replacement took place
                         try {
@@ -575,7 +603,7 @@ public final class FindAction extends DefaultAction {
                             buttonReplace.setEnabled(false);
                             buttonReplaceFind.setEnabled(false);
                             buttonReplaceAll.setEnabled(false);
-                            scinotesTextPane.setCaretPosition(currentCaretPos);
+                            scinotesTextPane.setCaretPosition(Math.min(currentCaretPos, doc.getLength()));
                         } catch (BadLocationException e1) {
                             e1.printStackTrace();
                         }
@@ -780,7 +808,6 @@ public final class FindAction extends DefaultAction {
      */
     protected void updateFindReplaceButtonStatus() {
         String textFind = (String) comboFind.getEditor().getItem();
-        String textReplace = (String) comboReplace.getEditor().getItem();
         if (textFind.compareTo("") != 0) {
             buttonFind.setEnabled(true);
             buttonReplace.setEnabled(true);
@@ -989,7 +1016,6 @@ public final class FindAction extends DefaultAction {
         setPreviousSearch(wordToFind);
 
         JEditorPane scinotesTextPane = getEditor().getTextPane();
-        Document doc = scinotesTextPane.getDocument();
 
         if (generateOffsets()) {
             addHighlighters(false);
@@ -1085,14 +1111,17 @@ public final class FindAction extends DefaultAction {
      * replaceText
      */
     private void replaceText() {
-        boolean forwardSearch = radioForward.isSelected();
-        boolean backwardSearch = radioBackward.isSelected();
         boolean caseSensitive = checkCase.isSelected();
         boolean wholeWord = checkWhole.isSelected() && checkWhole.isEnabled();
         boolean useRegexp = checkRegular.isSelected();
 
         String find = (String) comboFind.getEditor().getItem();
         String replace = (String) comboReplace.getEditor().getItem();
+        if (useRegexp) {
+            replace = replace.replaceAll("\\\\r\\\\n|\\\\n", "\n").replaceAll("\\\\t", "\t");
+        } else {
+            replace = Matcher.quoteReplacement(replace);
+        }
 
         if (find.compareTo("") == 0 || (startFind == endFind)) {
             return;
@@ -1110,7 +1139,7 @@ public final class FindAction extends DefaultAction {
         try {
             Pattern pattern = SearchManager.generatePattern(find, caseSensitive, wholeWord, useRegexp);
             Matcher matcher = pattern.matcher(scinotesTextPane.getText(startFind, endFind - startFind + 1));
-            String replacedText = matcher.replaceAll(Matcher.quoteReplacement(replace));
+            String replacedText = matcher.replaceAll(replace);
             ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
             doc.setFocused(true);
             doc.replace(startFind, endFind - startFind + 1, replacedText, null);
@@ -1138,6 +1167,8 @@ public final class FindAction extends DefaultAction {
                 int end = scinotesTextPane.getSelectionEnd();
                 scinotesTextPane.select(start, end);
             }
+            getEditor().getSwingParentWindow().removeWindowFocusListener(this);
+            frame.removeWindowFocusListener(this);
             frame.dispose();
             windowAlreadyExist = false;
         }

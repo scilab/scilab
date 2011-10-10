@@ -29,8 +29,12 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
         [str,n,line,func]=lasterror();
         printf('do_eval: error %d - %s in %s at line %d\n', n, str, func, line); 
     endfunction
-    %scicos_prob = %f
     funcprot(%mprt)
+
+    // define scicos variables
+    %scicos_prob = %f
+    %scicos_debug_gr = %f
+    needcompile = 4;
 
     // allocate the context
     import_from_hdf5(hdf5ContextFile);

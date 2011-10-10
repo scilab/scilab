@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -33,16 +33,15 @@ function Makename = ilib_gen_Make(name, ..
     fflags = '';
     cc = '';
   end
-
+  
+  if ~isempty(files) & ~and(isfile(files)) then
+     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
+  end  
+  
+  // remove duplicate files
+  files = unique(files);
+  
   if getos() <> 'Windows' then
-    for i=1:size(files,'*') // compatibility scilab 4.x
-      [path_f, file_f, ext_f] = fileparts(files(i));
-      if or(ext_f == ['.o','.obj']) then
-        files(i) = path_f + file_f;
-      else
-        files(i) = path_f + file_f + ext_f;
-      end
-    end
 
     // change table if necessary
     if typeof(tables)<>'list' then

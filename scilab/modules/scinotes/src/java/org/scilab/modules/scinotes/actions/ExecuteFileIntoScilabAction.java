@@ -34,12 +34,14 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Calixte DENIZET
  *
  */
-public final class ExecuteFileIntoScilabAction extends DefaultAction {
+public class ExecuteFileIntoScilabAction extends DefaultAction {
 
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = -8625083632641564277L;
+
+    protected boolean saveBefore;
 
     /**
      * Constructor
@@ -54,8 +56,7 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
      * Execute the file into Scilab
      * @param editor the Scilab editor
      */
-    private void executeFile(SciNotes editor) {
-        String filePath = editor.getTextPane().getName();
+    protected void executeFile(SciNotes editor, String filePath) {
         if (filePath == null) {
             return;
         }
@@ -79,16 +80,15 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
      */
     public void doAction() {
         SciNotes editor = getEditor();
-
         if (((ScilabDocument) getEditor().getTextPane().getDocument()).isContentModified()) {
-            if (ScilabModalDialog.show(getEditor(), SciNotesMessages.EXECUTE_WARNING, SciNotesMessages.EXECUTE_FILE_INTO_SCILAB,
-                                       IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
+            if (saveBefore || ScilabModalDialog.show(getEditor(), SciNotesMessages.EXECUTE_WARNING, SciNotesMessages.EXECUTE_FILE_INTO_SCILAB,
+                                                     IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
                 if (editor.save(getEditor().getTabPane().getSelectedIndex(), true)) {
-                    this.executeFile(editor);
+                    this.executeFile(editor, editor.getTextPane().getName());
                 }
             }
         } else {
-            this.executeFile(editor);
+            this.executeFile(editor, editor.getTextPane().getName());
         }
     }
 

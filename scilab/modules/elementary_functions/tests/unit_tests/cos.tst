@@ -31,9 +31,9 @@ if ( cos(-0) <> 1 ) then pause, end
 // The variable v contains correctly rounded values of the exact value of cos 
 // on the exact double representing the various values of x.
 // For example, the floating point number which is closest to %pi/2 is 
-// 7074237752028440 * 2^(0-53+1), which can be written with the decimal string 
+// 7074237752028440 * 2^-52, which can be written with the decimal string 
 // 1.570796326794896558D+00. 
-// We have cos(7074237752028440 * 2^(0-53+1)) = 6.123233995736765886...*10^-17
+// We have cos(7074237752028440 * 2^-52) = 6.123233995736765886...*10^-17
 // exactly.
 // If Scilab had support for hex, we would have used it. 
 // The exact values are computed in Wolfram Alpha.

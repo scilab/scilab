@@ -6,6 +6,7 @@
 FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
+	src/c/isScilabFunction.c \
 	src/c/searchmacroinlibraries.c
 
 FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
@@ -36,20 +37,20 @@ libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/localization/includes
 
 pkglib_LTLIBRARIES = libscifunctions.la
+noinst_LTLIBRARIES = libscifunctions-algo.la
 
 libscifunctions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscifunctions_algo_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES)
+libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscifunctions_algo_la_CFLAGS = $(libscifunctions_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
 
 libscifunctions_la_LIBADD =   \
-$(top_builddir)/modules/string/libscistring.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la
+	libscifunctions-algo.la
 
 #### Target ######
 modulename=functions
@@ -57,7 +58,7 @@ modulename=functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(mydatadir)
-libscifunctions_la_root_DATA =  license.txt version.xml
+libscifunctions_la_root_DATA =  license.txt 
 
 
 #### functions : init scripts ####

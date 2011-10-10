@@ -6,49 +6,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-08-10 18:33+0100\n"
-"PO-Revision-Date: 2009-03-31 01:41+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2011-09-01 09:44+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: es\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Módulo de gráficos de Scilab deshabilitado en modo -nogui o -nwni.\n"
 
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Módulo de exportación gráficos de Scilab no instalado.\n"
-
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero o un "
+"manejador.\n"
 
 #, c-format
-msgid "%s: OpenGL error during export.\n"
-msgstr "%s: Error OpenGL durante la exportación.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s: No se pudo crear un archivo de exportación, permiso denegado.\n"
-
-#, c-format
-msgid "%s: GL2PS error during export.\n"
-msgstr "%s: Error de GL2PS durante la exportación.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, figure is too complex.\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: No se pudo crear un archivo de exportación, la figura es muy compleja.\n"
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero "
-"positivo.\n"
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un manejador "
+"gráfico.\n"
 
 #, c-format
 msgid ""
@@ -58,8 +46,38 @@ msgstr ""
 "caracteres.\n"
 
 #, c-format
-msgid "%s has been replaced by %s"
-msgstr "%s fue reemplazado por %s"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string de "
+"un caracter.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un real "
+"entre 0 y 1.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Módulo de exportación gráficos de Scilab no instalado.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s', "
+"'%s', '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -68,18 +86,18 @@ msgstr "%s: %s debe ser llamada antes de cualquier acción.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
-"''%s'' or ''%s'' drivers.\n"
+"'%s' or '%s' drivers.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: La funcioón no tiene "
-"argumentos de entrada con controladores ''%s'' o ''%s''.\n"
+"argumentos de entrada con controladores '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
-"''%s'' or ''%s'' drivers.\n"
+"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
+"'%s' drivers.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaba un un string con "
-"''%s'', ''%s'', ''%s'' o ''%s'' controladores.\n"
+"'%s', '%s', '%s' o '%s' controladores.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -97,25 +115,29 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'' o "
-"''%s''.\n"
-
-#, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
 msgstr "%s: El formato EMF solo está disponible para Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Unable to find pstoedit.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create export file, permission denied.\n"
+msgstr "%s: No se pudo crear un archivo de exportación, permiso denegado.\n"
 
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: Incapaz de ejecutar pstoedit.\n"
 
-msgid ""
-"xbasimp has been replaced by toprint for printing and by xs2ps for the file "
-"export"
+msgid "Please install Ghostscript 32 bits to export an .FIG file."
 msgstr ""
-"xbasimp fue reemplazado por toprint para imprimir y por xs2ps para exportar "
-"a un archivo"
+
+msgid "Scilab error"
+msgstr ""
+
+msgid "error"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -124,11 +146,3 @@ msgid ""
 msgstr ""
 "%s: Incapaz de localizar pstoedit. Por favor instale pstoedit o agréguelo a "
 "PATH para poder usar esta función.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'', "
-"''%s'', ''%s'', ''%s'', ''%s'' o ''%s''.\n"

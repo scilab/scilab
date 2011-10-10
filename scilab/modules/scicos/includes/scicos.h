@@ -134,6 +134,7 @@ void end_scicos_sim(void);
 /**
 *
 */
-void Coserror(char *fmt, ...);
+void Coserror(const char *fmt, ...);
+
 
 #endif 

@@ -61,7 +61,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/io
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -73,10 +74,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -108,19 +108,16 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciio_la_etcdir)" \
 	"$(DESTDIR)$(libsciio_la_rootdir)" \
 	"$(DESTDIR)$(libsciio_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciio_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libsciio_la-getpidc.lo libsciio_la-setenvc.lo \
-	libsciio_la-systemc.lo libsciio_la-getenvc.lo \
-	libsciio_la-GetenvB.lo libsciio_la-v2cuniterror.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libsciio_algo_la_LIBADD =
+am__objects_1 = libsciio_algo_la-getpidc.lo \
+	libsciio_algo_la-setenvc.lo libsciio_algo_la-systemc.lo \
+	libsciio_algo_la-getenvc.lo libsciio_algo_la-GetenvB.lo \
+	libsciio_algo_la-v2cuniterror.lo
 am__objects_2 = v2unit.lo newsave.lo v2cunit.lo
+am_libsciio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libsciio_algo_la_OBJECTS = $(am_libsciio_algo_la_OBJECTS)
+libsciio_la_DEPENDENCIES = libsciio-algo.la
 am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_readb.lo libsciio_la-sci_host.lo \
 	libsciio_la-sci_file.lo libsciio_la-sci_getenv.lo \
@@ -131,8 +128,7 @@ am__objects_3 = libsciio_la-sci_read4b.lo libsciio_la-sci_getio.lo \
 	libsciio_la-sci_unix.lo libsciio_la-sci_save.lo
 am__objects_4 = intwrite4b.lo intwritb.lo intwrite.lo intread4b.lo \
 	intread.lo intreadb.lo intfile.lo
-am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+am_libsciio_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
 libsciio_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -157,8 +153,8 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciio_la_SOURCES)
-DIST_SOURCES = $(libsciio_la_SOURCES)
+SOURCES = $(libsciio_algo_la_SOURCES) $(libsciio_la_SOURCES)
+DIST_SOURCES = $(libsciio_algo_la_SOURCES) $(libsciio_la_SOURCES)
 DATA = $(libsciio_la_etc_DATA) $(libsciio_la_root_DATA) \
 	$(libsciio_la_sci_gateway_DATA)
 ETAGS = etags
@@ -166,6 +162,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -266,6 +263,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -314,11 +312,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -468,20 +461,23 @@ libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libsciio.la
+noinst_LTLIBRARIES = libsciio-algo.la
 libsciio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_algo_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES)
+libsciio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_algo_la_CFLAGS = $(libsciio_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciio_la_CFLAGS)
-libsciio_la_LIBADD = $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciio_la_LIBADD = libsciio-algo.la
 
 #### Target ######
 modulename = io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA = license.txt version.xml
+libsciio_la_root_DATA = license.txt 
 
 ####io : init scripts ####
 libsciio_la_etcdir = $(mydatadir)/etc
@@ -587,6 +583,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -618,6 +623,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libsciio-algo.la: $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libsciio_algo_la_OBJECTS) $(libsciio_algo_la_LIBADD) $(LIBS)
 libsciio.la: $(libsciio_la_OBJECTS) $(libsciio_la_DEPENDENCIES) 
 	$(libsciio_la_LINK) -rpath $(pkglibdir) $(libsciio_la_OBJECTS) $(libsciio_la_LIBADD) $(LIBS)
 
@@ -627,9 +634,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-GetenvB.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-getenvc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-getpidc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-GetenvB.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-getenvc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-getpidc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-setenvc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-systemc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-gw_io.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_getenv.Plo@am__quote@
@@ -646,9 +656,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_write4b.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_writeb.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-setenvc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-systemc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-v2cuniterror.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -671,47 +678,47 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsciio_la-getpidc.lo: src/c/getpidc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-getpidc.lo -MD -MP -MF $(DEPDIR)/libsciio_la-getpidc.Tpo -c -o libsciio_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-getpidc.Tpo $(DEPDIR)/libsciio_la-getpidc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getpidc.c' object='libsciio_la-getpidc.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-getpidc.lo: src/c/getpidc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-getpidc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-getpidc.Tpo -c -o libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-getpidc.Tpo $(DEPDIR)/libsciio_algo_la-getpidc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getpidc.c' object='libsciio_algo_la-getpidc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-getpidc.lo `test -f 'src/c/getpidc.c' || echo '$(srcdir)/'`src/c/getpidc.c
 
-libsciio_la-setenvc.lo: src/c/setenvc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-setenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_la-setenvc.Tpo -c -o libsciio_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-setenvc.Tpo $(DEPDIR)/libsciio_la-setenvc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setenvc.c' object='libsciio_la-setenvc.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-setenvc.lo: src/c/setenvc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-setenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-setenvc.Tpo -c -o libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-setenvc.Tpo $(DEPDIR)/libsciio_algo_la-setenvc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setenvc.c' object='libsciio_algo_la-setenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-setenvc.lo `test -f 'src/c/setenvc.c' || echo '$(srcdir)/'`src/c/setenvc.c
 
-libsciio_la-systemc.lo: src/c/systemc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-systemc.lo -MD -MP -MF $(DEPDIR)/libsciio_la-systemc.Tpo -c -o libsciio_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-systemc.Tpo $(DEPDIR)/libsciio_la-systemc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/systemc.c' object='libsciio_la-systemc.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-systemc.lo: src/c/systemc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-systemc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-systemc.Tpo -c -o libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-systemc.Tpo $(DEPDIR)/libsciio_algo_la-systemc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/systemc.c' object='libsciio_algo_la-systemc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-systemc.lo `test -f 'src/c/systemc.c' || echo '$(srcdir)/'`src/c/systemc.c
 
-libsciio_la-getenvc.lo: src/c/getenvc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-getenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_la-getenvc.Tpo -c -o libsciio_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-getenvc.Tpo $(DEPDIR)/libsciio_la-getenvc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getenvc.c' object='libsciio_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-getenvc.lo: src/c/getenvc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-getenvc.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-getenvc.Tpo -c -o libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-getenvc.Tpo $(DEPDIR)/libsciio_algo_la-getenvc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getenvc.c' object='libsciio_algo_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
 
-libsciio_la-GetenvB.lo: src/c/GetenvB.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-GetenvB.lo -MD -MP -MF $(DEPDIR)/libsciio_la-GetenvB.Tpo -c -o libsciio_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-GetenvB.Tpo $(DEPDIR)/libsciio_la-GetenvB.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetenvB.c' object='libsciio_la-GetenvB.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-GetenvB.lo: src/c/GetenvB.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-GetenvB.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-GetenvB.Tpo -c -o libsciio_algo_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-GetenvB.Tpo $(DEPDIR)/libsciio_algo_la-GetenvB.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetenvB.c' object='libsciio_algo_la-GetenvB.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-GetenvB.lo `test -f 'src/c/GetenvB.c' || echo '$(srcdir)/'`src/c/GetenvB.c
 
-libsciio_la-v2cuniterror.lo: src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-v2cuniterror.lo -MD -MP -MF $(DEPDIR)/libsciio_la-v2cuniterror.Tpo -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_la-v2cuniterror.Tpo $(DEPDIR)/libsciio_la-v2cuniterror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/v2cuniterror.c' object='libsciio_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
+libsciio_algo_la-v2cuniterror.lo: src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -MT libsciio_algo_la-v2cuniterror.lo -MD -MP -MF $(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo -c -o libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo $(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/v2cuniterror.c' object='libsciio_algo_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciio_algo_la_CFLAGS) $(CFLAGS) -c -o libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
 
 libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_read4b.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
@@ -1048,7 +1055,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1125,14 +1132,15 @@ uninstall-am: uninstall-libsciio_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciio_la_etcDATA install-libsciio_la_rootDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciio_la_etcDATA \
+	install-libsciio_la_rootDATA \
 	install-libsciio_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1197,6 +1205,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

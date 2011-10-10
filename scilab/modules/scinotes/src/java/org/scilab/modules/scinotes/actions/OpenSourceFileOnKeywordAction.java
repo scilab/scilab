@@ -228,7 +228,9 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
                 public void keyReleased(KeyEvent e) {
                     int code = e.getKeyCode();
                     if (code == KeyEvent.VK_ENTER) {
-                        comboComplete.setSelectedIndex(0);
+                        if (comboComplete.getSelectedIndex() == -1 && comboComplete.getItemCount() > 0) {
+                            comboComplete.setSelectedIndex(0);
+                        }
                         comboComplete.hidePopup();
                         okButton.requestFocus();
                     } else if (code == KeyEvent.VK_ESCAPE) {

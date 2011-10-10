@@ -15,14 +15,14 @@ package org.scilab.modules.console;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 
+import org.scilab.modules.completion.AbstractSciCompletionWindow;
 import org.scilab.modules.completion.Completion;
-import org.scilab.modules.localization.Messages;
 
 /**
  * Class used when Scilab user asks for completion on the current edited line
@@ -45,11 +45,14 @@ public class CompletionAction extends AbstractConsoleAction {
          * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
          */
         public void actionPerformed(ActionEvent e) {
+	        int caretPosition = configuration.getInputParsingManager().getCaretPosition();
+		if (caretPosition == 0) {
+		    return;
+		}
+
                 Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
                 List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
                 AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
-
-                int caretPosition = configuration.getInputParsingManager().getCaretPosition();
 
                 if (completionItems != null && completionItems.size() == 1) {
                         /* Only one item returned, autoselected and appended to command line */

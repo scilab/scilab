@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - Calixte DENIZET
+* Copyright (C) 2010-2011 - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -17,8 +17,8 @@
 #include "MALLOC.h"
 #include "getfieldsdictionary.h"
 #include "getPartLine.h"
-/*--------------------------------------------------------------------------*/
-extern char **completionOnHandleGraphicsProperties(char *, int *);
+#include "completion.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int cmpNames(const void *a, const void *b)
 {
@@ -31,7 +31,6 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     int *piAddr = NULL;
     int *piLen = NULL;
     int piType = 0;
-    int nbItem = 0;
     int rows = 0;
     int cols = 0;
     int rc = 0;
@@ -80,6 +79,11 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
 
         rc = rows * cols;
+        if (rc == 1)
+        {
+            return NULL;
+        }
+
         piLen = (int*)MALLOC(sizeof(int) * rc);
         sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, piLen, NULL);
         if (sciErr.iErr)
@@ -89,6 +93,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
 
         pstData = (char**)MALLOC(sizeof(char*) * (rc + 1));
+        pstData[rc] = NULL;
         for (i = 0 ; i < rc ; i++)
         {
             pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));
@@ -98,13 +103,33 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         if (sciErr.iErr)
         {
             FREE(piLen);
-            FREE(pstData);
+            piLen = NULL;
+            freeArrayOfString(pstData, rc);
             return NULL;
         }
+        FREE(piLen);
 
         // We remove all the entries which don't begin with fieldpart
         // and the first entry (and the second if it is a struct)
-        if (!strcmp(pstData[0], "st")) i = 2; else i = 1;
+        if (!strcmp(pstData[0], "st"))
+        {
+            FREE(pstData[0]);
+            pstData[0] = NULL;
+            FREE(pstData[1]);
+            pstData[1] = NULL;
+            if (rc == 2)
+            {
+                FREE(pstData);
+                return NULL;
+            }
+            i = 2;
+        }
+        else
+        {
+            FREE(pstData[0]);
+            pstData[0] = NULL;
+            i = 1;
+        }
 
         for (; i < rc ; i++)
         {
@@ -123,7 +148,6 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 
         *size = last;
         qsort(pstData, *size, sizeof(char*), cmpNames);
-        FREE(piLen);
     }
     else
     {

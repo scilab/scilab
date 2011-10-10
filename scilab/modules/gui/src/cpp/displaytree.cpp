@@ -78,7 +78,7 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 		szCurLvl += ".";
 		std::ostringstream out;
 		out << i-1;
-		szCurLvl += out.str();;
+		szCurLvl += out.str();
 
 		_pvStructList->push_back(szCurLvl);
 
@@ -133,7 +133,7 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 		_pvStructList->push_back(szCallBack);
 		FREE(szCallBack);
 
-		bool nRet = bParseListItem(_iVar, piChildItem, _pvStructList, szCurLvl);
+		bParseListItem(_iVar, piChildItem, _pvStructList, szCurLvl);
 	}
 	return true;
 }

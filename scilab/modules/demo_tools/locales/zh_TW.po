@@ -6,24 +6,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-12-04 16:29+0100\n"
-"PO-Revision-Date: 2009-11-12 05:18+0000\n"
-"Last-Translator: TzuYuan Lin <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2011-09-02 07:50+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: \n"
 
-msgid " -- View Code -- "
-msgstr " -- 檢視程式碼 -- "
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
-msgid "&?"
-msgstr "說明(&?)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
 
 msgid "&File"
 msgstr "檔案(&F)"
@@ -31,11 +32,23 @@ msgstr "檔案(&F)"
 msgid "&Tools"
 msgstr "工具(&T)"
 
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+msgid "&?"
+msgstr "說明(&?)"
+
+msgid "File"
+msgstr "檔案"
+
 msgid "Close"
 msgstr "關閉"
 
 msgid "Demos"
 msgstr "展示"
 
-msgid "File"
-msgstr "檔案"
+msgid " -- View Code -- "
+msgstr " -- 檢視程式碼 -- "
+
+msgid "Open in Editor"
+msgstr "開啟文字編輯器"

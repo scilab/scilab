@@ -55,7 +55,7 @@ int set_view_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
   else
   {
     Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "view", "'2d'", "'3d'");
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 }

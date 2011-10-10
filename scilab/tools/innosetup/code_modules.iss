@@ -23,7 +23,7 @@ function CreateModulesFile: Boolean;
         setArrayLength(ModulesXmlFileLines, 256);
         for d := 0 to GetArrayLength(ModulesXmlFileLines)-1 do
           begin
-            ModulesXmlFileLines[i] := '';
+            ModulesXmlFileLines[d] := '';
           end;
 
         ModuleFileName := ExpandConstant('{app}') +'\etc\modules.xml';
@@ -75,14 +75,12 @@ function CreateModulesFile: Boolean;
                 ModulesXmlFileLines[i] := '<module name="boolean" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="cacsd" activate="yes"/>'; i := i + 1;
                 ModulesXmlFileLines[i] := '<module name="data_structures" activate="yes"/>'; i := i + 1;
-                ModulesXmlFileLines[i] := '<module name="shell" activate="yes"/>'; i := i + 1;
-
+                ModulesXmlFileLines[i] := '<module name="console" activate="yes"/>'; i := i + 1;
             end;
 
         if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then
             begin
                 ModulesXmlFileLines[i] := '<module name="action_binding" activate="yes"/>'; i := i + 1;
-                ModulesXmlFileLines[i] := '<module name="console" activate="yes"/>'; i := i + 1;
             end;
 
         if (IsComponentSelected( ExpandConstant('{#COMPN_SCILAB}') )) then
@@ -263,11 +261,6 @@ function CreateModulesFile: Boolean;
 
         ModulesXmlFileLines[i] := '<!-- comments -->'; i := i + 1;
 
-        if IsComponentSelected( ExpandConstant('{#COMPN_PVM}') ) then
-            begin
-                ModulesXmlFileLines[i] := '<module name="pvm" activate="yes"/>'; i := i + 1;
-            end;
-
         if IsComponentSelected( ExpandConstant('{#COMPN_FFTW}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
@@ -313,11 +306,13 @@ function CreateModulesFile: Boolean;
             begin
                 ModulesXmlFileLines[i] := '<module name="scinotes" activate="yes"/>'; i := i + 1;
             end;
-
+            
+#ifndef SCILAB_F2C
         if IsComponentSelected( ExpandConstant('{#COMPN_PARALLEL}') ) then
             begin
                 ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
             end;
+#endif
 
         ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 

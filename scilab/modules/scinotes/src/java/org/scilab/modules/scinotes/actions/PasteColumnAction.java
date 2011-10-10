@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.StringTokenizer;
 
 import javax.swing.KeyStroke;
@@ -25,7 +26,9 @@ import javax.swing.text.Element;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.CompoundUndoManager;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorKit;
 
 /**
  * Class for paste action
@@ -53,17 +56,28 @@ public class PasteColumnAction extends DefaultAction {
         String str = null;
         try {
             str = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this).getTransferData(DataFlavor.stringFlavor);
+            if (str != null) {
+                str = ((ScilabEditorKit) getEditor().getEditorKit()).read(new StringReader(str)).content;
+            }
         } catch (UnsupportedFlavorException ex1) {
             System.err.println(ex1);
         } catch (IOException ex2) {
             System.err.println(ex2);
         }
         if (str != null) {
+            SciNotesCaret caret = (SciNotesCaret) getEditor().getTextPane().getCaret();
+            int pos;
+            if (caret.isEmptySelection()) {
+                pos = getEditor().getTextPane().getSelectionStart();
+            } else {
+                int[][] positions = caret.getSelectedPositions();
+                pos = positions[0][0];
+            }
+            int spos = pos;
             ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
             doc.mergeEditsBegin();
+            getEditor().getTextPane().replaceSelection("");
             StringTokenizer tokens = new StringTokenizer(str, CR);
-            int pos = getEditor().getTextPane().getCaretPosition();
-            int spos = pos;
             int index = root.getElementIndex(pos);
             String crs = initString(tokens.countTokens() - root.getElementCount() + index, '\n');
             if (crs.length() > 0) {

@@ -28,7 +28,7 @@ int sci_opentk(char *fname,unsigned long l)
     Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

@@ -27,7 +27,6 @@ SCICOS_BLOCKS_IMPEXP void submatz(scicos_block *block,int flag)
 	int i = 0,j = 0;
 
 	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
 	int *r = GetIparPtrs(block);
 	double *ur = GetRealInPortPtrs(block,1);
 	double *ui = GetImagInPortPtrs(block,1);

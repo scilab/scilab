@@ -1,3 +1,0 @@
-xinit('analog1.ps')
-exec('SCI/doc/signal/Nsource_diary/Sanalog1.code')
-xend()

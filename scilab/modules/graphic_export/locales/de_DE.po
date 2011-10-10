@@ -6,47 +6,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-08-10 18:33+0100\n"
-"PO-Revision-Date: 2008-11-12 10:08+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2011-09-01 09:51+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafisches Modul von Scilab deaktiviert: -nogui oder -nwni Modus.\n"
 
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Grafischer Exportmodus von Scilab nicht installiert.\n"
-
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
-msgid "%s: OpenGL error during export.\n"
-msgstr "%s: Fehler von OpenGL während des Exportierens.\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Falsche Größe für Eingangsargument #%d: Skalar erwartet.\n"
 
 #, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s: kann keine Datei zum Exportieren erzeugen, Vorgang abgelehnt.\n"
-
-#, c-format
-msgid "%s: GL2PS error during export.\n"
-msgstr "%s: GL2PS Fehler während des Exportierens.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, figure is too complex.\n"
-msgstr "%s: kann keine Datei zum Exportieren erzeugen, Form zu komplex.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: positive Integerzahl erwartet.\n"
+"%s: Falsche Größe für Eingangsargument #%d: Grafische Handhabung erwartet.\n"
 
 #, c-format
 msgid ""
@@ -55,8 +41,37 @@ msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: ein einzelnes Zeichen erwartet.\n"
 
 #, c-format
-msgid "%s has been replaced by %s"
-msgstr "%s wurde durch %s ersetzt"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: Einzelne Zeichenfolge erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Kommazahl zwischen 0 und 1 "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Grafischer Exportmodus von Scilab nicht installiert.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s', '%s', '%s', '%s', '%s' "
+"oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -65,17 +80,17 @@ msgstr "%s: %s muß vor jedem Vorgang aufgerufen werden.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
-"''%s'' or ''%s'' drivers.\n"
+"'%s' or '%s' drivers.\n"
 msgstr ""
 "%s: falsche Anzahl an Eingangsargumenten: Funktion hat keine "
-"Eingangsargumente mit ''%s'' oder ''%s'' Treibern.\n"
+"Eingangsargumente mit '%s' oder '%s' Treibern.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
-"''%s'' or ''%s'' drivers.\n"
+"%s: Wrong number of input argument: String expected with '%s', '%s', '%s' or "
+"'%s' drivers.\n"
 msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: Zeichenkette mit ''%s'', ''%s'', ''%s'' "
+"%s: falsche Anzahl an Eingangsargumenten: Zeichenkette mit '%s', '%s', '%s' "
 "oder '%s' Treibern erwartet.\n"
 
 #, c-format
@@ -91,24 +106,29 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' erwartet.\n"
-
-#, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
 msgstr "%s: EMF Format nur unter MS Windows Betriebssystemen verfügbar.\n"
+
+#, c-format
+msgid "%s: Unable to find pstoedit.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create export file, permission denied.\n"
+msgstr "%s: kann keine Datei zum Exportieren erzeugen, Vorgang abgelehnt.\n"
 
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
 msgstr "%s: kann pstoedit nicht ausführen.\n"
 
-msgid ""
-"xbasimp has been replaced by toprint for printing and by xs2ps for the file "
-"export"
+msgid "Please install Ghostscript 32 bits to export an .FIG file."
 msgstr ""
-"Xbasimp wurde für das Drucken durch toprint und durch xs2ps für den "
-"Dateiexport ersetzt."
+
+msgid "Scilab error"
+msgstr ""
+
+msgid "error"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -117,11 +137,3 @@ msgid ""
 msgstr ""
 "%s: kann pstoedit nicht lokalisieren. Installieren Sie pstoedit oder fügen "
 "Sie dies zu PFAD hinzu, um diese Funktionalität zu verwenden.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' "
-"oder ''%s'' erwartet.\n"

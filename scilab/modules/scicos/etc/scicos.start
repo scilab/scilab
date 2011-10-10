@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - INRIA
+// Copyright (C) - 2011 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,10 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-clear  scicos_pal // explicitly clear %helps scicos_pal variables
-
 //Load functions libraries
 // =============================================================================
 load('SCI/modules/scicos/macros/scicos_utils/lib');
 load('SCI/modules/scicos/macros/scicos_auto/lib')
-// =============================================================================
+

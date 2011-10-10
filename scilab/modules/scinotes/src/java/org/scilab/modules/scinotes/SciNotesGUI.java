@@ -31,6 +31,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -72,13 +73,13 @@ public final class SciNotesGUI {
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static Map<String, KeyStroke> map = new HashMap();
+    private static Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
     private static Document menuConf;
 
-    private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap();
-    private static Map<SciNotes, ToolBar> mapToolBar = new HashMap();
-    private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap();
-    private static Map<SciNotes, TextBox> mapInfoBar = new HashMap();
+    private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap<SciNotes, MenuBar>();
+    private static Map<SciNotes, ToolBar> mapToolBar = new HashMap<SciNotes, ToolBar>();
+    private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap<SciNotes, JPopupMenu>();
+    private static Map<SciNotes, TextBox> mapInfoBar = new HashMap<SciNotes, TextBox>();
 
     static {
         ConfigSciNotesManager.addMapActionNameKeys(map);
@@ -233,7 +234,7 @@ public final class SciNotesGUI {
 
         try {
             if (menuConf == null) {
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
                 docBuilder = factory.newDocumentBuilder();
                 xml = new File(MENU_CONF);
                 menuConf = docBuilder.parse(xml);
@@ -293,6 +294,7 @@ public final class SciNotesGUI {
     private static Object getMenuItem(String action, String label, SciNotes editor) {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         String className = "";
+        Method method = null;
         try {
             if (action.lastIndexOf(DOT) != -1)  {
                 className = action;
@@ -300,17 +302,33 @@ public final class SciNotesGUI {
                 className = DEFAULTACTIONPATH + DOT + action;
             }
             Class clazz = loader.loadClass(className);
-            Method method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
-            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+            method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {
             System.err.println("No valid method createMenu in action: " + className);
+        }
+
+        if (method == null) {
+            return null;
+        }
+
+        try {
+            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+        } catch (InvocationTargetException e) {
+            System.err.println("Warning: problem to create the menu for action: " + className);
+            System.err.println("The menu label is: " + Messages.gettext(label));
+            System.err.println("English version will be used instead.");
+            System.err.println("Please report a bug at: http://bugzilla.scilab.org");
+            try {
+                return method.invoke(null, new Object[]{label, editor, map.get(action)});
+            } catch (InvocationTargetException ex) {
+                System.err.println("Problem to create menu of the action: " + className);
+            } catch (IllegalAccessException ex) {
+                System.err.println("The method createMenu must be public: " + className);
+            }
         } catch (IllegalAccessException e) {
             System.err.println("The method createMenu must be public: " + className);
-        } catch (InvocationTargetException e) {
-            System.err.println("The method createMenu in " + className + " threw an exception :");
-            e.printStackTrace();
         }
 
         return null;

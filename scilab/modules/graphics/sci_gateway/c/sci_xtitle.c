@@ -141,7 +141,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   sciDrawObj(pFigure);
 
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 }
 

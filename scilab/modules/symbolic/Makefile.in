@@ -65,7 +65,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/symbolic
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -77,10 +78,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -112,20 +112,22 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisymbolic_la_etcdir)" \
 	"$(DESTDIR)$(libscisymbolic_la_rootdir)" \
 	"$(DESTDIR)$(libscisymbolic_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscisymbolic_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
-am__objects_1 = libscisymbolic_la-gw_symbolic.lo \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscisymbolic_algo_la_LIBADD =
+am__objects_1 = sci_f_addsubf.lo sci_f_mulf.lo sci_f_ldivf.lo \
+	sci_f_rdivf.lo
+am_libscisymbolic_algo_la_OBJECTS = $(am__objects_1)
+libscisymbolic_algo_la_OBJECTS = $(am_libscisymbolic_algo_la_OBJECTS)
+libscisymbolic_la_DEPENDENCIES = libscisymbolic-algo.la
+am__objects_2 = libscisymbolic_la-gw_symbolic.lo \
 	libscisymbolic_la-sci_mulf.lo libscisymbolic_la-sci_ldivf.lo \
 	libscisymbolic_la-sci_addsubf.lo \
 	libscisymbolic_la-sci_rdivf.lo
-am__objects_2 = sci_addsubf.lo sci_mulf.lo sci_ldivf.lo sci_rdivf.lo
-am_libscisymbolic_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscisymbolic_la_OBJECTS = $(am__objects_2)
 libscisymbolic_la_OBJECTS = $(am_libscisymbolic_la_OBJECTS)
-libscisymbolic_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+libscisymbolic_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscisymbolic_la_CFLAGS) $(CFLAGS) \
 	$(libscisymbolic_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -147,8 +149,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscisymbolic_la_SOURCES)
-DIST_SOURCES = $(libscisymbolic_la_SOURCES)
+SOURCES = $(libscisymbolic_algo_la_SOURCES) \
+	$(libscisymbolic_la_SOURCES)
+DIST_SOURCES = $(libscisymbolic_algo_la_SOURCES) \
+	$(libscisymbolic_la_SOURCES)
 DATA = $(libscisymbolic_la_etc_DATA) $(libscisymbolic_la_root_DATA) \
 	$(libscisymbolic_la_sci_gateway_DATA)
 ETAGS = etags
@@ -156,6 +160,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -256,6 +261,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -304,11 +310,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -415,10 +416,10 @@ sci_gateway/c/sci_ldivf.c \
 sci_gateway/c/sci_addsubf.c \
 sci_gateway/c/sci_rdivf.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_addsubf.f \
-sci_gateway/fortran/sci_mulf.f \
-sci_gateway/fortran/sci_ldivf.f \
-sci_gateway/fortran/sci_rdivf.f
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_addsubf.f \
+sci_gateway/fortran/sci_f_mulf.f \
+sci_gateway/fortran/sci_f_ldivf.f \
+sci_gateway/fortran/sci_f_rdivf.f
 
 libscisymbolic_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -426,20 +427,22 @@ libscisymbolic_la_CFLAGS = -I$(srcdir)/includes/ \
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
+noinst_LTLIBRARIES = libscisymbolic-algo.la
 libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-
+libscisymbolic_algo_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES)
+libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
-libscisymbolic_la_LIBADD = $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 
 #### Target ######
 modulename = symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(mydatadir)
-libscisymbolic_la_root_DATA = license.txt version.xml
+libscisymbolic_la_root_DATA = license.txt 
 
 #### symbolic : init scripts ####
 libscisymbolic_la_etcdir = $(mydatadir)/etc
@@ -545,6 +548,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -576,6 +588,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscisymbolic-algo.la: $(libscisymbolic_algo_la_OBJECTS) $(libscisymbolic_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libscisymbolic_algo_la_OBJECTS) $(libscisymbolic_algo_la_LIBADD) $(LIBS)
 libscisymbolic.la: $(libscisymbolic_la_OBJECTS) $(libscisymbolic_la_DEPENDENCIES) 
 	$(libscisymbolic_la_LINK) -rpath $(pkglibdir) $(libscisymbolic_la_OBJECTS) $(libscisymbolic_la_LIBADD) $(LIBS)
 
@@ -656,17 +670,17 @@ libscisymbolic_la-sci_rdivf.lo: sci_gateway/c/sci_rdivf.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-sci_addsubf.lo: sci_gateway/fortran/sci_addsubf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_addsubf.lo `test -f 'sci_gateway/fortran/sci_addsubf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_addsubf.f
+sci_f_addsubf.lo: sci_gateway/fortran/sci_f_addsubf.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_addsubf.lo `test -f 'sci_gateway/fortran/sci_f_addsubf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_addsubf.f
 
-sci_mulf.lo: sci_gateway/fortran/sci_mulf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_mulf.lo `test -f 'sci_gateway/fortran/sci_mulf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_mulf.f
+sci_f_mulf.lo: sci_gateway/fortran/sci_f_mulf.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_mulf.lo `test -f 'sci_gateway/fortran/sci_f_mulf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_mulf.f
 
-sci_ldivf.lo: sci_gateway/fortran/sci_ldivf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ldivf.lo `test -f 'sci_gateway/fortran/sci_ldivf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ldivf.f
+sci_f_ldivf.lo: sci_gateway/fortran/sci_f_ldivf.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ldivf.lo `test -f 'sci_gateway/fortran/sci_f_ldivf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ldivf.f
 
-sci_rdivf.lo: sci_gateway/fortran/sci_rdivf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_rdivf.lo `test -f 'sci_gateway/fortran/sci_rdivf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_rdivf.f
+sci_f_rdivf.lo: sci_gateway/fortran/sci_f_rdivf.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_rdivf.lo `test -f 'sci_gateway/fortran/sci_f_rdivf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rdivf.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -852,7 +866,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -929,14 +943,14 @@ uninstall-am: uninstall-libscisymbolic_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscisymbolic_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscisymbolic_la_etcDATA \
 	install-libscisymbolic_la_rootDATA \
 	install-libscisymbolic_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1003,6 +1017,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.utils;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -42,7 +41,7 @@ public enum XcosFileType {
 		 * @return The HDF5 formatted file
 		 */
 		@Override
-		public File exportToHdf5(File arg0) {
+		public String exportToHdf5(String arg0) {
 			return loadScicosDiagram(arg0);
 		}
 	},
@@ -56,7 +55,7 @@ public enum XcosFileType {
 		 * @return The HDF5 formatted file
 		 */
 		@Override
-		public File exportToHdf5(File arg0) {
+		public String exportToHdf5(String arg0) {
 			return loadScicosDiagram(arg0);
 		}
 	},
@@ -70,12 +69,14 @@ public enum XcosFileType {
 		 * @return The HDF5 formatted file
 		 */
 		@Override
-		public File exportToHdf5(File arg0) {
+		public String exportToHdf5(String arg0) {
 			return arg0;
 		}
 	};
 	
-	
+	private static final String BEFORE_EXT = " (*.";	
+	private static final String AFTER_EXT = ")";
+
 	private String extension;
 	private String description;
 	
@@ -86,7 +87,7 @@ public enum XcosFileType {
 	 */
 	XcosFileType(String extension, String description) {
 		this.extension = extension;
-		this.description = description + " (*." + extension + ")";
+		this.description = description + BEFORE_EXT + extension + AFTER_EXT;
 	}
 	
 	/**
@@ -122,13 +123,13 @@ public enum XcosFileType {
 	 * @param theFile Current file
 	 * @return The determined filetype
 	 */
-	public static XcosFileType findFileType(File theFile) {
-		int dotPos = theFile.getName().lastIndexOf('.');
+	public static XcosFileType findFileType(String theFile) {
+		int dotPos = theFile.lastIndexOf('.');
 		String extension = "";
 		XcosFileType retValue = null;
 
-		if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
-			extension = theFile.getName().substring(dotPos + 1);
+		if (dotPos > 0 && dotPos <= theFile.length() - 2) {
+			extension = theFile.substring(dotPos + 1);
 		}
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
@@ -139,32 +140,44 @@ public enum XcosFileType {
 		}
 		
 		/* Validate xml header */
-		if (retValue == XcosFileType.XCOS) {
-			byte[] xmlMagic = "<?xml".getBytes();
-			byte[] readMagic = new byte[xmlMagic.length];
+		if (retValue == XCOS) {
+			retValue = checkXmlHeader(theFile);
+		}
+		
+		return retValue;
+	}
 
-			FileInputStream stream = null;
-			try {
-				stream = new FileInputStream(theFile);
-				int length;
-				length = stream.read(readMagic);
-				if (length != xmlMagic.length
-						|| !Arrays.equals(xmlMagic, readMagic)) {
-					retValue = null;
-				}
-			} catch (IOException e) {
-				retValue = null;
-			} finally {
-				if (stream != null) {
-					try {
-						stream.close();
-					} catch (IOException e) {
-						LogFactory.getLog(XcosFileType.class).error(e);
-					}
+	/**
+	 * Check the XML header
+	 * @param theFile the file to check
+	 * @return the found file type
+	 */
+	private static XcosFileType checkXmlHeader(String theFile) {
+		XcosFileType retValue = null;
+		
+		final byte[] xmlMagic = "<?xml".getBytes();
+		final byte[] readMagic = new byte[xmlMagic.length];
+
+		FileInputStream stream = null;
+		try {
+			stream = new FileInputStream(theFile);
+			int length;
+			length = stream.read(readMagic);
+			if (length == xmlMagic.length
+					&& Arrays.equals(xmlMagic, readMagic)) {
+				retValue = XCOS;
+			}
+		} catch (IOException e) {
+			retValue = null;
+		} finally {
+			if (stream != null) {
+				try {
+					stream.close();
+				} catch (IOException e) {
+					LogFactory.getLog(XcosFileType.class).error(e);
 				}
 			}
 		}
-		
 		return retValue;
 	}
 	
@@ -187,7 +200,7 @@ public enum XcosFileType {
 	 * @param file The file to convert
 	 * @return The created file
 	 */
-	public File exportToHdf5(File file) {
+	public String exportToHdf5(String file) {
 	    throw new Error("Not implemented operation");
 	}
 	
@@ -228,7 +241,7 @@ public enum XcosFileType {
 	    String[] result = new String[XcosFileType.values().length - 1];
 	    
 	    for (int i = 0; i < result.length; i++) {
-		result[i] = XcosFileType.values()[i].getDescription() + " (*." + XcosFileType.values()[i].getExtension() + ")";
+		result[i] = XcosFileType.values()[i].getDescription() + BEFORE_EXT + XcosFileType.values()[i].getExtension() + AFTER_EXT;
 	    }
 	    
 	    return result;
@@ -239,21 +252,21 @@ public enum XcosFileType {
 	 * @param filename The file to execute in scilab.
 	 * @return The exported data in hdf5.
 	 */
-	public static File loadScicosDiagram(File filename) {
-	    File tempOutput = null;
+	public static String loadScicosDiagram(String filename) {
+	    String tempOutput = null;
 	    try {
 		tempOutput = FileUtils.createTempFile();
 		
 		StringBuilder cmd = new StringBuilder();
 		cmd.append("scs_m = importScicosDiagram(\"");
-		cmd.append(filename.getAbsolutePath());
+		cmd.append(filename);
 		cmd.append("\");");
 		cmd.append("result = export_to_hdf5(\"");
-		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append(tempOutput);
 		cmd.append("\", \"scs_m\");");
 		
 		cmd.append("if result <> %t then deletefile(\"");
-		cmd.append(tempOutput.getAbsolutePath());
+		cmd.append(tempOutput);
 		cmd.append("\"); end; ");
 		
 		try {

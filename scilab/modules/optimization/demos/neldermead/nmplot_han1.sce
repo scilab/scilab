@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,6 +10,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function demo_nmplot_1()
+
+  filename = 'nmplot_han1.sce';
+  dname = get_absolute_file_path(filename);
 
   mprintf(_("Illustrates the 1st counter example given by Han et al.\n"));
 
@@ -26,6 +30,9 @@ function demo_nmplot_1()
   
   function [ f , index ] = han1 ( x , index )
     f = x(1)^2 + x(2) * (x(2) + 2.0) * (x(2) - 0.5) * (x(2) - 2.0);
+  endfunction
+  function y = han1C ( x1 , x2 )
+    y = han1 ( [x1 , x2] , 2 )
   endfunction
 
 
@@ -55,30 +62,34 @@ function demo_nmplot_1()
   //
   mprintf(_("Setup output files...\n"));
   simplexfn = TMPDIR + filesep() + "history.simplex.txt";
-  fbarfn = TMPDIR + filesep() + "history.fbar.txt";
-  foptfn = TMPDIR + filesep() + "history.fopt.txt";
-  sigmafn = TMPDIR + filesep() + "history.sigma.txt";
   nm = nmplot_configure(nm, "-simplexfn", simplexfn);
-  nm = nmplot_configure(nm, "-fbarfn", fbarfn);
-  nm = nmplot_configure(nm, "-foptfn", foptfn);
-  nm = nmplot_configure(nm, "-sigmafn", sigmafn);
   
   //
   // Perform optimization
   //
   mprintf(_("Searching (please wait)...\n"));
   nm = nmplot_search(nm);
-  nmplot_display(nm);
+    //
+    // Print a summary
+    //
+    exec(fullfile(dname,"nmplot_summary.sci"),-1);
+    nmplot_summary(nm)
   
   //
   // Plot the history of the simplex
   //
   mprintf(_("Plotting contour (please wait)...\n"));
-  [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+  xmin = -0.2 ; 
+  xmax = 1.2 ; 
+  ymin = -2.0 ; 
+  ymax = 2.0 ; 
+  nx = 50 ; 
+  ny = 50;
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
+  scf();
   drawlater();
-  contour ( xdata , ydata , zdata , [-5 -4 -2 -1 0 1 1.5] )
+  contour ( xdata , ydata , han1C , [-5 -4 -2 -1 0 1 1.5] )
   nmplot_simplexhistory ( nm );
   drawnow();
   
@@ -86,17 +97,12 @@ function demo_nmplot_1()
   // Clean-up
   //
   deletefile(simplexfn);
-  deletefile(fbarfn);
-  deletefile(foptfn);
-  deletefile(sigmafn);
   nm = nmplot_destroy(nm);
   mprintf(_("End of demo.\n"));
   
   //
   // Load this script into the editor
   //
-  filename = 'nmplot_han1.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction

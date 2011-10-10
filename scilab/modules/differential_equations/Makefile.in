@@ -61,7 +61,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/differential_equations
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -73,10 +74,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -108,25 +108,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_etcdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscidifferential_equations_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscidifferential_equations_la-dassl.lo \
-	libscidifferential_equations_la-feval.lo \
-	libscidifferential_equations_la-fevaltable.lo \
-	libscidifferential_equations_la-fydottable.lo \
-	libscidifferential_equations_la-impltable.lo \
-	libscidifferential_equations_la-colnewtable.lo \
-	libscidifferential_equations_la-intgtable.lo \
-	libscidifferential_equations_la-int2dtable.lo \
-	libscidifferential_equations_la-int3dtable.lo \
-	libscidifferential_equations_la-fydot2table.lo \
-	libscidifferential_equations_la-dassltable.lo \
-	libscidifferential_equations_la-arnol.lo \
-	libscidifferential_equations_la-rk4.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscidifferential_equations_algo_la_LIBADD =
+am__objects_1 = libscidifferential_equations_algo_la-dassl.lo \
+	libscidifferential_equations_algo_la-feval.lo \
+	libscidifferential_equations_algo_la-fevaltable.lo \
+	libscidifferential_equations_algo_la-fydottable.lo \
+	libscidifferential_equations_algo_la-impltable.lo \
+	libscidifferential_equations_algo_la-colnewtable.lo \
+	libscidifferential_equations_algo_la-intgtable.lo \
+	libscidifferential_equations_algo_la-int2dtable.lo \
+	libscidifferential_equations_algo_la-int3dtable.lo \
+	libscidifferential_equations_algo_la-fydot2table.lo \
+	libscidifferential_equations_algo_la-dassltable.lo \
+	libscidifferential_equations_algo_la-arnol.lo \
+	libscidifferential_equations_algo_la-rk4.lo
 am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
 	lsoda.lo lsodar.lo ainvg.lo lsode.lo svcom1.lo quarul.lo \
 	solsy.lo lsodi.lo ddassl.lo order.lo epsalg.lo cfode.lo \
@@ -137,6 +133,12 @@ am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
 	prepj.lo lsdisc.lo fnorm.lo ddasrt.lo stodi.lo xsetun.lo \
 	intdy.lo ewset.lo roots2.lo prepji.lo svcma1.lo lsrgk.lo \
 	odeint.lo rkqc.lo writbufode.lo
+am_libscidifferential_equations_algo_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2)
+libscidifferential_equations_algo_la_OBJECTS =  \
+	$(am_libscidifferential_equations_algo_la_OBJECTS)
+libscidifferential_equations_la_DEPENDENCIES =  \
+	libscidifferential_equations-algo.la
 am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-sci_int3d.lo \
 	libscidifferential_equations_la-sci_intg.lo \
@@ -149,15 +151,15 @@ am__objects_3 = libscidifferential_equations_la-sci_int2d.lo \
 	libscidifferential_equations_la-gw_differential_equations4.lo \
 	libscidifferential_equations_la-sci_bvode.lo \
 	libscidifferential_equations_la-gw_differential_equations6.lo
-am__objects_4 = sci_dasrt.lo sci_feval.lo sci_odedc.lo sci_bvode.lo \
-	sci_impl.lo sci_dassl.lo sci_ode.lo bsurf.lo bsurfd.lo \
-	bydot.lo bydot2.lo bresd.lo bresid.lo bjac.lo bjacd.lo badd.lo \
-	bj2.lo bfeval.lo int2d.lo bint2d.lo bint3d.lo bintg.lo \
-	int3d.lo intg.lo Ex-odedc.lo Ex-ode.lo Ex-impl.lo Ex-int2d.lo \
-	Ex-int3d.lo Ex-intg.lo Ex-dasrt.lo Ex-dassl.lo Ex-bvode.lo \
-	bbvode.lo
-am_libscidifferential_equations_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3) $(am__objects_4)
+am__objects_4 = sci_f_dasrt.lo sci_f_feval.lo sci_f_odedc.lo \
+	sci_f_bvode.lo sci_f_impl.lo sci_f_dassl.lo sci_f_ode.lo \
+	bsurf.lo bsurfd.lo bydot.lo bydot2.lo bresd.lo bresid.lo \
+	bjac.lo bjacd.lo badd.lo bj2.lo bfeval.lo int2d.lo bint2d.lo \
+	bint3d.lo bintg.lo int3d.lo intg.lo Ex-odedc.lo Ex-ode.lo \
+	Ex-impl.lo Ex-int2d.lo Ex-int3d.lo Ex-intg.lo Ex-dasrt.lo \
+	Ex-dassl.lo Ex-bvode.lo bbvode.lo
+am_libscidifferential_equations_la_OBJECTS = $(am__objects_3) \
+	$(am__objects_4)
 libscidifferential_equations_la_OBJECTS =  \
 	$(am_libscidifferential_equations_la_OBJECTS)
 libscidifferential_equations_la_LINK = $(LIBTOOL) --tag=F77 \
@@ -184,8 +186,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscidifferential_equations_la_SOURCES)
-DIST_SOURCES = $(libscidifferential_equations_la_SOURCES)
+SOURCES = $(libscidifferential_equations_algo_la_SOURCES) \
+	$(libscidifferential_equations_la_SOURCES)
+DIST_SOURCES = $(libscidifferential_equations_algo_la_SOURCES) \
+	$(libscidifferential_equations_la_SOURCES)
 DATA = $(libscidifferential_equations_la_etc_DATA) \
 	$(libscidifferential_equations_la_root_DATA) \
 	$(libscidifferential_equations_la_sci_gateway_DATA)
@@ -194,6 +198,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -294,6 +299,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -342,11 +348,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -534,13 +535,13 @@ sci_gateway/c/sci_bvode.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_dasrt.f \
-sci_gateway/fortran/sci_feval.f \
-sci_gateway/fortran/sci_odedc.f \
-sci_gateway/fortran/sci_bvode.f \
-sci_gateway/fortran/sci_impl.f \
-sci_gateway/fortran/sci_dassl.f \
-sci_gateway/fortran/sci_ode.f \
+sci_gateway/fortran/sci_f_dasrt.f \
+sci_gateway/fortran/sci_f_feval.f \
+sci_gateway/fortran/sci_f_odedc.f \
+sci_gateway/fortran/sci_f_bvode.f \
+sci_gateway/fortran/sci_f_impl.f \
+sci_gateway/fortran/sci_f_dassl.f \
+sci_gateway/fortran/sci_f_ode.f \
 sci_gateway/fortran/bsurf.f \
 sci_gateway/fortran/bsurfd.f \
 sci_gateway/fortran/bydot.f \
@@ -576,20 +577,23 @@ libscidifferential_equations_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
+noinst_LTLIBRARIES = libscidifferential_equations-algo.la
 libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES)
+libscidifferential_equations_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
-libscidifferential_equations_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la
 
 #### Target ######
 modulename = differential_equations
 
 #### differential_equations : Conf files ####
 libscidifferential_equations_la_rootdir = $(mydatadir)
-libscidifferential_equations_la_root_DATA = license.txt version.xml
+libscidifferential_equations_la_root_DATA = license.txt 
 
 #### differential_equations : init scripts ####
 libscidifferential_equations_la_etcdir = $(mydatadir)/etc
@@ -695,6 +699,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -726,6 +739,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscidifferential_equations-algo.la: $(libscidifferential_equations_algo_la_OBJECTS) $(libscidifferential_equations_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libscidifferential_equations_algo_la_OBJECTS) $(libscidifferential_equations_algo_la_LIBADD) $(LIBS)
 libscidifferential_equations.la: $(libscidifferential_equations_la_OBJECTS) $(libscidifferential_equations_la_DEPENDENCIES) 
 	$(libscidifferential_equations_la_LINK) -rpath $(pkglibdir) $(libscidifferential_equations_la_OBJECTS) $(libscidifferential_equations_la_LIBADD) $(LIBS)
 
@@ -735,24 +750,24 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-arnol.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-colnewtable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassl.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-dassltable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-feval.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fevaltable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fydot2table.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-fydottable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-arnol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-colnewtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-dassl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-dassltable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-feval.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-fevaltable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-fydot2table.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-fydottable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-impltable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-int2dtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-int3dtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-intgtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_algo_la-rk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations3.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-gw_differential_equations6.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-impltable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-int2dtable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-int3dtable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-intgtable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-rk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-sci_bvode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-sci_feval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidifferential_equations_la-sci_int2d.Plo@am__quote@
@@ -782,96 +797,96 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscidifferential_equations_la-dassl.lo: src/c/dassl.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-dassl.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-dassl.Tpo -c -o libscidifferential_equations_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-dassl.Tpo $(DEPDIR)/libscidifferential_equations_la-dassl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dassl.c' object='libscidifferential_equations_la-dassl.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-dassl.lo: src/c/dassl.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-dassl.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-dassl.Tpo -c -o libscidifferential_equations_algo_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-dassl.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-dassl.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dassl.c' object='libscidifferential_equations_algo_la-dassl.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c
 
-libscidifferential_equations_la-feval.lo: src/c/feval.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-feval.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-feval.Tpo -c -o libscidifferential_equations_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-feval.Tpo $(DEPDIR)/libscidifferential_equations_la-feval.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/feval.c' object='libscidifferential_equations_la-feval.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-feval.lo: src/c/feval.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-feval.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-feval.Tpo -c -o libscidifferential_equations_algo_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-feval.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-feval.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/feval.c' object='libscidifferential_equations_algo_la-feval.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-feval.lo `test -f 'src/c/feval.c' || echo '$(srcdir)/'`src/c/feval.c
 
-libscidifferential_equations_la-fevaltable.lo: src/c/fevaltable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-fevaltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-fevaltable.Tpo -c -o libscidifferential_equations_la-fevaltable.lo `test -f 'src/c/fevaltable.c' || echo '$(srcdir)/'`src/c/fevaltable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-fevaltable.Tpo $(DEPDIR)/libscidifferential_equations_la-fevaltable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fevaltable.c' object='libscidifferential_equations_la-fevaltable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-fevaltable.lo: src/c/fevaltable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-fevaltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-fevaltable.Tpo -c -o libscidifferential_equations_algo_la-fevaltable.lo `test -f 'src/c/fevaltable.c' || echo '$(srcdir)/'`src/c/fevaltable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-fevaltable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-fevaltable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fevaltable.c' object='libscidifferential_equations_algo_la-fevaltable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-fevaltable.lo `test -f 'src/c/fevaltable.c' || echo '$(srcdir)/'`src/c/fevaltable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-fevaltable.lo `test -f 'src/c/fevaltable.c' || echo '$(srcdir)/'`src/c/fevaltable.c
 
-libscidifferential_equations_la-fydottable.lo: src/c/fydottable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-fydottable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-fydottable.Tpo -c -o libscidifferential_equations_la-fydottable.lo `test -f 'src/c/fydottable.c' || echo '$(srcdir)/'`src/c/fydottable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-fydottable.Tpo $(DEPDIR)/libscidifferential_equations_la-fydottable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fydottable.c' object='libscidifferential_equations_la-fydottable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-fydottable.lo: src/c/fydottable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-fydottable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-fydottable.Tpo -c -o libscidifferential_equations_algo_la-fydottable.lo `test -f 'src/c/fydottable.c' || echo '$(srcdir)/'`src/c/fydottable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-fydottable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-fydottable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fydottable.c' object='libscidifferential_equations_algo_la-fydottable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-fydottable.lo `test -f 'src/c/fydottable.c' || echo '$(srcdir)/'`src/c/fydottable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-fydottable.lo `test -f 'src/c/fydottable.c' || echo '$(srcdir)/'`src/c/fydottable.c
 
-libscidifferential_equations_la-impltable.lo: src/c/impltable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-impltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-impltable.Tpo -c -o libscidifferential_equations_la-impltable.lo `test -f 'src/c/impltable.c' || echo '$(srcdir)/'`src/c/impltable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-impltable.Tpo $(DEPDIR)/libscidifferential_equations_la-impltable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/impltable.c' object='libscidifferential_equations_la-impltable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-impltable.lo: src/c/impltable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-impltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-impltable.Tpo -c -o libscidifferential_equations_algo_la-impltable.lo `test -f 'src/c/impltable.c' || echo '$(srcdir)/'`src/c/impltable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-impltable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-impltable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/impltable.c' object='libscidifferential_equations_algo_la-impltable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-impltable.lo `test -f 'src/c/impltable.c' || echo '$(srcdir)/'`src/c/impltable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-impltable.lo `test -f 'src/c/impltable.c' || echo '$(srcdir)/'`src/c/impltable.c
 
-libscidifferential_equations_la-colnewtable.lo: src/c/colnewtable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-colnewtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-colnewtable.Tpo -c -o libscidifferential_equations_la-colnewtable.lo `test -f 'src/c/colnewtable.c' || echo '$(srcdir)/'`src/c/colnewtable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-colnewtable.Tpo $(DEPDIR)/libscidifferential_equations_la-colnewtable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/colnewtable.c' object='libscidifferential_equations_la-colnewtable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-colnewtable.lo: src/c/colnewtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-colnewtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-colnewtable.Tpo -c -o libscidifferential_equations_algo_la-colnewtable.lo `test -f 'src/c/colnewtable.c' || echo '$(srcdir)/'`src/c/colnewtable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-colnewtable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-colnewtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/colnewtable.c' object='libscidifferential_equations_algo_la-colnewtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-colnewtable.lo `test -f 'src/c/colnewtable.c' || echo '$(srcdir)/'`src/c/colnewtable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-colnewtable.lo `test -f 'src/c/colnewtable.c' || echo '$(srcdir)/'`src/c/colnewtable.c
 
-libscidifferential_equations_la-intgtable.lo: src/c/intgtable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-intgtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-intgtable.Tpo -c -o libscidifferential_equations_la-intgtable.lo `test -f 'src/c/intgtable.c' || echo '$(srcdir)/'`src/c/intgtable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-intgtable.Tpo $(DEPDIR)/libscidifferential_equations_la-intgtable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/intgtable.c' object='libscidifferential_equations_la-intgtable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-intgtable.lo: src/c/intgtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-intgtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-intgtable.Tpo -c -o libscidifferential_equations_algo_la-intgtable.lo `test -f 'src/c/intgtable.c' || echo '$(srcdir)/'`src/c/intgtable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-intgtable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-intgtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/intgtable.c' object='libscidifferential_equations_algo_la-intgtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-intgtable.lo `test -f 'src/c/intgtable.c' || echo '$(srcdir)/'`src/c/intgtable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-intgtable.lo `test -f 'src/c/intgtable.c' || echo '$(srcdir)/'`src/c/intgtable.c
 
-libscidifferential_equations_la-int2dtable.lo: src/c/int2dtable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-int2dtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-int2dtable.Tpo -c -o libscidifferential_equations_la-int2dtable.lo `test -f 'src/c/int2dtable.c' || echo '$(srcdir)/'`src/c/int2dtable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-int2dtable.Tpo $(DEPDIR)/libscidifferential_equations_la-int2dtable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/int2dtable.c' object='libscidifferential_equations_la-int2dtable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-int2dtable.lo: src/c/int2dtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-int2dtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-int2dtable.Tpo -c -o libscidifferential_equations_algo_la-int2dtable.lo `test -f 'src/c/int2dtable.c' || echo '$(srcdir)/'`src/c/int2dtable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-int2dtable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-int2dtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/int2dtable.c' object='libscidifferential_equations_algo_la-int2dtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-int2dtable.lo `test -f 'src/c/int2dtable.c' || echo '$(srcdir)/'`src/c/int2dtable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-int2dtable.lo `test -f 'src/c/int2dtable.c' || echo '$(srcdir)/'`src/c/int2dtable.c
 
-libscidifferential_equations_la-int3dtable.lo: src/c/int3dtable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-int3dtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-int3dtable.Tpo -c -o libscidifferential_equations_la-int3dtable.lo `test -f 'src/c/int3dtable.c' || echo '$(srcdir)/'`src/c/int3dtable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-int3dtable.Tpo $(DEPDIR)/libscidifferential_equations_la-int3dtable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/int3dtable.c' object='libscidifferential_equations_la-int3dtable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-int3dtable.lo: src/c/int3dtable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-int3dtable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-int3dtable.Tpo -c -o libscidifferential_equations_algo_la-int3dtable.lo `test -f 'src/c/int3dtable.c' || echo '$(srcdir)/'`src/c/int3dtable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-int3dtable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-int3dtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/int3dtable.c' object='libscidifferential_equations_algo_la-int3dtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-int3dtable.lo `test -f 'src/c/int3dtable.c' || echo '$(srcdir)/'`src/c/int3dtable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-int3dtable.lo `test -f 'src/c/int3dtable.c' || echo '$(srcdir)/'`src/c/int3dtable.c
 
-libscidifferential_equations_la-fydot2table.lo: src/c/fydot2table.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-fydot2table.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-fydot2table.Tpo -c -o libscidifferential_equations_la-fydot2table.lo `test -f 'src/c/fydot2table.c' || echo '$(srcdir)/'`src/c/fydot2table.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-fydot2table.Tpo $(DEPDIR)/libscidifferential_equations_la-fydot2table.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fydot2table.c' object='libscidifferential_equations_la-fydot2table.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-fydot2table.lo: src/c/fydot2table.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-fydot2table.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-fydot2table.Tpo -c -o libscidifferential_equations_algo_la-fydot2table.lo `test -f 'src/c/fydot2table.c' || echo '$(srcdir)/'`src/c/fydot2table.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-fydot2table.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-fydot2table.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fydot2table.c' object='libscidifferential_equations_algo_la-fydot2table.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-fydot2table.lo `test -f 'src/c/fydot2table.c' || echo '$(srcdir)/'`src/c/fydot2table.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-fydot2table.lo `test -f 'src/c/fydot2table.c' || echo '$(srcdir)/'`src/c/fydot2table.c
 
-libscidifferential_equations_la-dassltable.lo: src/c/dassltable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-dassltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-dassltable.Tpo -c -o libscidifferential_equations_la-dassltable.lo `test -f 'src/c/dassltable.c' || echo '$(srcdir)/'`src/c/dassltable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-dassltable.Tpo $(DEPDIR)/libscidifferential_equations_la-dassltable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dassltable.c' object='libscidifferential_equations_la-dassltable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-dassltable.lo: src/c/dassltable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-dassltable.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-dassltable.Tpo -c -o libscidifferential_equations_algo_la-dassltable.lo `test -f 'src/c/dassltable.c' || echo '$(srcdir)/'`src/c/dassltable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-dassltable.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-dassltable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/dassltable.c' object='libscidifferential_equations_algo_la-dassltable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-dassltable.lo `test -f 'src/c/dassltable.c' || echo '$(srcdir)/'`src/c/dassltable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-dassltable.lo `test -f 'src/c/dassltable.c' || echo '$(srcdir)/'`src/c/dassltable.c
 
-libscidifferential_equations_la-arnol.lo: src/c/arnol.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-arnol.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-arnol.Tpo -c -o libscidifferential_equations_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-arnol.Tpo $(DEPDIR)/libscidifferential_equations_la-arnol.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/arnol.c' object='libscidifferential_equations_la-arnol.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-arnol.lo: src/c/arnol.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-arnol.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-arnol.Tpo -c -o libscidifferential_equations_algo_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-arnol.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-arnol.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/arnol.c' object='libscidifferential_equations_algo_la-arnol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-arnol.lo `test -f 'src/c/arnol.c' || echo '$(srcdir)/'`src/c/arnol.c
 
-libscidifferential_equations_la-rk4.lo: src/c/rk4.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-rk4.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-rk4.Tpo -c -o libscidifferential_equations_la-rk4.lo `test -f 'src/c/rk4.c' || echo '$(srcdir)/'`src/c/rk4.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_la-rk4.Tpo $(DEPDIR)/libscidifferential_equations_la-rk4.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/rk4.c' object='libscidifferential_equations_la-rk4.lo' libtool=yes @AMDEPBACKSLASH@
+libscidifferential_equations_algo_la-rk4.lo: src/c/rk4.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_algo_la-rk4.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_algo_la-rk4.Tpo -c -o libscidifferential_equations_algo_la-rk4.lo `test -f 'src/c/rk4.c' || echo '$(srcdir)/'`src/c/rk4.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidifferential_equations_algo_la-rk4.Tpo $(DEPDIR)/libscidifferential_equations_algo_la-rk4.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/rk4.c' object='libscidifferential_equations_algo_la-rk4.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_la-rk4.lo `test -f 'src/c/rk4.c' || echo '$(srcdir)/'`src/c/rk4.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_algo_la_CFLAGS) $(CFLAGS) -c -o libscidifferential_equations_algo_la-rk4.lo `test -f 'src/c/rk4.c' || echo '$(srcdir)/'`src/c/rk4.c
 
 libscidifferential_equations_la-sci_int2d.lo: sci_gateway/c/sci_int2d.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidifferential_equations_la_CFLAGS) $(CFLAGS) -MT libscidifferential_equations_la-sci_int2d.lo -MD -MP -MF $(DEPDIR)/libscidifferential_equations_la-sci_int2d.Tpo -c -o libscidifferential_equations_la-sci_int2d.lo `test -f 'sci_gateway/c/sci_int2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_int2d.c
@@ -1137,26 +1152,26 @@ rkqc.lo: src/fortran/rkqc.f
 writbufode.lo: src/fortran/writbufode.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writbufode.lo `test -f 'src/fortran/writbufode.f' || echo '$(srcdir)/'`src/fortran/writbufode.f
 
-sci_dasrt.lo: sci_gateway/fortran/sci_dasrt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_dasrt.lo `test -f 'sci_gateway/fortran/sci_dasrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_dasrt.f
+sci_f_dasrt.lo: sci_gateway/fortran/sci_f_dasrt.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_dasrt.lo `test -f 'sci_gateway/fortran/sci_f_dasrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dasrt.f
 
-sci_feval.lo: sci_gateway/fortran/sci_feval.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_feval.lo `test -f 'sci_gateway/fortran/sci_feval.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_feval.f
+sci_f_feval.lo: sci_gateway/fortran/sci_f_feval.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_feval.lo `test -f 'sci_gateway/fortran/sci_f_feval.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_feval.f
 
-sci_odedc.lo: sci_gateway/fortran/sci_odedc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_odedc.lo `test -f 'sci_gateway/fortran/sci_odedc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_odedc.f
+sci_f_odedc.lo: sci_gateway/fortran/sci_f_odedc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_odedc.lo `test -f 'sci_gateway/fortran/sci_f_odedc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_odedc.f
 
-sci_bvode.lo: sci_gateway/fortran/sci_bvode.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_bvode.lo `test -f 'sci_gateway/fortran/sci_bvode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_bvode.f
+sci_f_bvode.lo: sci_gateway/fortran/sci_f_bvode.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_bvode.lo `test -f 'sci_gateway/fortran/sci_f_bvode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_bvode.f
 
-sci_impl.lo: sci_gateway/fortran/sci_impl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_impl.lo `test -f 'sci_gateway/fortran/sci_impl.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_impl.f
+sci_f_impl.lo: sci_gateway/fortran/sci_f_impl.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_impl.lo `test -f 'sci_gateway/fortran/sci_f_impl.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_impl.f
 
-sci_dassl.lo: sci_gateway/fortran/sci_dassl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_dassl.lo `test -f 'sci_gateway/fortran/sci_dassl.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_dassl.f
+sci_f_dassl.lo: sci_gateway/fortran/sci_f_dassl.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_dassl.lo `test -f 'sci_gateway/fortran/sci_f_dassl.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dassl.f
 
-sci_ode.lo: sci_gateway/fortran/sci_ode.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ode.lo `test -f 'sci_gateway/fortran/sci_ode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ode.f
+sci_f_ode.lo: sci_gateway/fortran/sci_f_ode.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ode.lo `test -f 'sci_gateway/fortran/sci_f_ode.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ode.f
 
 bsurf.lo: sci_gateway/fortran/bsurf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bsurf.lo `test -f 'sci_gateway/fortran/bsurf.f' || echo '$(srcdir)/'`sci_gateway/fortran/bsurf.f
@@ -1423,7 +1438,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1501,13 +1516,14 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am \
 	install-libscidifferential_equations_la_etcDATA \
 	install-libscidifferential_equations_la_rootDATA \
 	install-libscidifferential_equations_la_sci_gatewayDATA \
@@ -1575,6 +1591,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

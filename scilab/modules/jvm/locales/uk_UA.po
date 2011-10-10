@@ -6,23 +6,71 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-04-13 09:08+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-06-10 20:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: uk\n"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "Інтерфейс JVM у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr ""
+"%s: не вдалося додати адресу URL до списку системного завантажувача класів: "
+"%s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s: не вдалося додати шлях до java.library.path: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid ""
 "\n"
-"Could not load JVM dynamic library (libjava).\n"
+"Scilab cannot open JVM library.\n"
 msgstr ""
 "\n"
-"Не вдалося завантажити динамічну бібліотеку JVM (libjava).\n"
+"Scilab не вдалося відкрити бібліотеку JVM.\n"
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab не вдалося створити головний клас Java Scilab (не вдається знайти "
+"головний клас Scilab. Перевірте, чи належно встановлено Scilab та сторонні "
+"пакунки).\n"
+
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+"Якщо Scilab використовується з середовища Java, переконайтеся, що ваше "
+"комплексне середовище розробки (наприклад, Netbeans) не додає залежностей, "
+"які не можна завантажити під час виконання.\n"
 
 #, c-format
 msgid ""
@@ -47,6 +95,58 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Дивна помилка. Виклик надійшов з Java, але виявити вже запущену віртуальну "
+"машину Java.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"Не вдалося завантажити динамічну бібліотеку JVM (libjava).\n"
+
+#, c-format
+msgid "Error: %s\n"
+msgstr "Помилка: %s\n"
+
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr ""
+"Якщо ви користуєтеся бінарною версією Scilab, будь ласка, повідомте про ваду "
+"за адресою http://bugzilla.scilab.org/.\n"
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
+msgstr ""
+"Якщо ви збирали Scilab власноруч, оновіть скрипт bin/scilab так, щоб шлях до "
+"віртуальної машини Java було вказано належним чином.\n"
+
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr ""
+"Проблему може бути пов’язано з використанням SELinux. Спробуйте вимкнути цю "
+"систему.\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+"Також вам варто перевірити, чи не намагаєтеся ви запустити 64-бітову версію "
+"Scilab у 32-бітовій системі (і навпаки).\n"
+
+#, c-format
+msgid ""
+"\n"
 "Impossible to read %s.\n"
 msgstr ""
 "\n"
@@ -61,6 +161,14 @@ msgstr ""
 "Помилкова версія JNI (слід використовувати принаймні JDK версії 1.4).\n"
 
 #, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Помилка під час спроби створення віртуальної машини Java: %s\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "Параметри:\n"
+
+#, c-format
 msgid ""
 "\n"
 "JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
@@ -69,57 +177,30 @@ msgstr ""
 "Помилка JVM у AttachCurrentThread: не вдалося долучитися до поточного потоку "
 "виконання.\n"
 
-#, c-format
-msgid ""
-"\n"
-"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
-"the main Scilab class. Check if the Scilab and thirdparty packages are "
-"available).\n"
-msgstr ""
-"\n"
-"Scilab не вдалося створити головний клас Java Scilab (не вдається знайти "
-"головний клас Scilab. Перевірте, чи належно встановлено Scilab та сторонні "
-"пакунки).\n"
+msgid "Unknown JNI error"
+msgstr "Невідома помилка JNI"
+
+msgid "Thread detached from the VM"
+msgstr "Потік від’єднано від віртуальної машини"
+
+msgid "JNI version error"
+msgstr "Помилка у версії JNI"
+
+msgid "JNI: not enough memory"
+msgstr "JNI: не вистачає пам’яті"
+
+msgid "VM already created"
+msgstr "Віртуальну машину вже створено"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: некоректні параметри"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Невизначений код помилки у JNI."
 
 #, c-format
-msgid ""
-"\n"
-"Scilab cannot open JVM library.\n"
-msgstr ""
-"\n"
-"Scilab не вдалося відкрити бібліотеку JVM.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Weird error. Calling from Java but haven't been able to find the already "
-"existing JVM.\n"
-msgstr ""
-"\n"
-"Дивна помилка. Виклик надійшов з Java, але виявити вже запущену віртуальну "
-"машину Java.\n"
-
-#, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr ""
-"%s: не вдалося додати адресу URL до списку системного завантажувача класів: "
-"%s.\n"
-
-#, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s: не вдалося додати шлях до java.library.path: %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Попередження: не вдалося знайти пакунка Java з назвою «%s».\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Не вдалося отримати доступ до головного класу Scilab:\n"
@@ -130,32 +211,6 @@ msgstr "Не вдалося отримати доступ до конструк�
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr ""
 "Не вдалося створити головний клас Scilab. Повідомлення про помилку:\n"
-
-msgid "Error"
-msgstr "Помилка"
-
-#, c-format
-msgid ""
-"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-"Помилка: некоректний файл шляху до класу %s (кодування відмінне від «utf-"
-"8»). Виявлено кодування «%s».\n"
-
-#, c-format
-msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr ""
-"Помилка: некоректний файл шляху %s (кодування, відмінне від «utf-8»). "
-"Виявлено кодування «%s».\n"
-
-#, c-format
-msgid "Error in the creation of the Java VM: %s\n"
-msgstr "Помилка під час спроби створення віртуальної машини Java: %s\n"
-
-#, c-format
-msgid "Error: %s\n"
-msgstr "Помилка: %s\n"
 
 #, c-format
 msgid "Error: Could not parse file %s.\n"
@@ -174,35 +229,20 @@ msgid "Error: could not parse file %s\n"
 msgstr "Помилка: не вдалося розібрати файл %s\n"
 
 #, c-format
-msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
-msgstr ""
-"Якщо ви користуєтеся бінарною версією Scilab, будь ласка, повідомте про ваду "
-"за адресою http://bugzilla.scilab.org/.\n"
+msgid "Wrong format for %s.\n"
+msgstr "Помилка у форматуванні %s.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
 msgstr ""
-"Якщо ви збирали Scilab власноруч, оновіть скрипт bin/scilab так, щоб шлях до "
-"віртуальної машини Java було вказано належним чином.\n"
+"Помилка: некоректний файл шляху до класу %s (кодування відмінне від «utf-"
+"8»). Виявлено кодування «%s».\n"
 
-msgid "JNI version error"
-msgstr "Помилка у версії JNI"
-
-msgid "JNI: invalid arguments"
-msgstr "JNI: некоректні параметри"
-
-msgid "JNI: not enough memory"
-msgstr "JNI: не вистачає пам’яті"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "Інтерфейс JVM у режимі -nogui або -nwni вимкнено.\n"
-
-msgid "Scilab Java module not installed.\n"
-msgstr "Модуль Java Scilab не встановлено.\n"
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "Попередження: не вдалося знайти файл оголошення шляхів класів %s.\n"
 
 #, c-format
 msgid ""
@@ -215,31 +255,11 @@ msgstr ""
 "Будь ласка, перевірте, чи немає помилок у SCI/etc/classpath.xml.\n"
 
 #, c-format
-msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
-"Проблему може бути пов’язано з використанням SELinux. Спробуйте вимкнути цю "
-"систему.\n"
+"Помилка: некоректний файл шляху %s (кодування, відмінне від «utf-8»). "
+"Виявлено кодування «%s».\n"
 
-msgid "Thread detached from the VM"
-msgstr "Потік від’єднано від віртуальної машини"
-
-msgid "Undefined error code in the JNI. Weird problem"
-msgstr "Невизначений код помилки у JNI."
-
-msgid "Unknown JNI error"
-msgstr "Невідома помилка JNI"
-
-msgid "VM already created"
-msgstr "Віртуальну машину вже створено"
-
-#, c-format
-msgid "Warning: Could not find Java package '%s'.\n"
-msgstr "Попередження: не вдалося знайти пакунка Java з назвою «%s».\n"
-
-#, c-format
-msgid "Warning: could not find classpath declaration file %s.\n"
-msgstr "Попередження: не вдалося знайти файл оголошення шляхів класів %s.\n"
-
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr "Помилка у форматуванні %s.\n"
+msgid "Scilab Java module not installed.\n"
+msgstr "Модуль Java Scilab не встановлено.\n"

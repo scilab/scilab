@@ -61,7 +61,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/statistics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -73,10 +74,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -108,11 +108,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistatistics_la_etcdir)" \
 	"$(DESTDIR)$(libscistatistics_la_rootdir)" \
 	"$(DESTDIR)$(libscistatistics_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscistatistics_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscistatistics_la-CdfBase.lo \
-	libscistatistics_la-ipmpar1.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscistatistics_algo_la_LIBADD =
+am__objects_1 = libscistatistics_algo_la-CdfBase.lo \
+	libscistatistics_algo_la-ipmpar1.lo
 am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
 	cdfpoi.lo bcorr.lo cumchi.lo apser.lo gamln1.lo cdft.lo \
 	gaminv.lo cumnbn.lo cdffnc.lo rlog1.lo cdfchn.lo dt1.lo \
@@ -124,6 +123,11 @@ am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
 	dinvr.lo brcomp.lo devlpl.lo cdfnbn.lo dzror.lo gsumln.lo \
 	algdiv.lo cumgam.lo grat1.lo brcmp1.lo cdfbin.lo bup.lo \
 	cdfbet.lo
+am_libscistatistics_algo_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2)
+libscistatistics_algo_la_OBJECTS =  \
+	$(am_libscistatistics_algo_la_OBJECTS)
+libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la
 am__objects_3 = libscistatistics_la-gw_statistics.lo \
 	libscistatistics_la-sci_cdfchi.lo \
 	libscistatistics_la-sci_cdft.lo \
@@ -136,11 +140,11 @@ am__objects_3 = libscistatistics_la-gw_statistics.lo \
 	libscistatistics_la-sci_cdfbet.lo \
 	libscistatistics_la-sci_cdfnbn.lo \
 	libscistatistics_la-sci_cdfnor.lo
-am_libscistatistics_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+am_libscistatistics_la_OBJECTS = $(am__objects_3)
 libscistatistics_la_OBJECTS = $(am_libscistatistics_la_OBJECTS)
-libscistatistics_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+libscistatistics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscistatistics_la_CFLAGS) $(CFLAGS) \
 	$(libscistatistics_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -162,8 +166,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscistatistics_la_SOURCES)
-DIST_SOURCES = $(libscistatistics_la_SOURCES)
+SOURCES = $(libscistatistics_algo_la_SOURCES) \
+	$(libscistatistics_la_SOURCES)
+DIST_SOURCES = $(libscistatistics_algo_la_SOURCES) \
+	$(libscistatistics_la_SOURCES)
 DATA = $(libscistatistics_la_etc_DATA) \
 	$(libscistatistics_la_root_DATA) \
 	$(libscistatistics_la_sci_gateway_DATA)
@@ -172,6 +178,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -272,6 +279,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -320,11 +328,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -509,22 +512,24 @@ libscistatistics_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
-#-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
+noinst_LTLIBRARIES = libscistatistics-algo.la
 libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscistatistics_algo_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES)
+libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscistatistics_algo_la_CFLAGS = $(libscistatistics_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
-libscistatistics_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscistatistics_la_LIBADD = libscistatistics-algo.la 
 
 #### Target ######
 modulename = statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(mydatadir)
-libscistatistics_la_root_DATA = license.txt version.xml
+libscistatistics_la_root_DATA = license.txt 
 
 #### statistics : init scripts ####
 libscistatistics_la_etcdir = $(mydatadir)/etc
@@ -630,6 +635,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -661,6 +675,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscistatistics-algo.la: $(libscistatistics_algo_la_OBJECTS) $(libscistatistics_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libscistatistics_algo_la_OBJECTS) $(libscistatistics_algo_la_LIBADD) $(LIBS)
 libscistatistics.la: $(libscistatistics_la_OBJECTS) $(libscistatistics_la_DEPENDENCIES) 
 	$(libscistatistics_la_LINK) -rpath $(pkglibdir) $(libscistatistics_la_OBJECTS) $(libscistatistics_la_LIBADD) $(LIBS)
 
@@ -670,9 +686,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-CdfBase.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-gw_statistics.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-ipmpar1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo@am__quote@
@@ -706,19 +722,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscistatistics_la-CdfBase.lo: src/c/CdfBase.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -MT libscistatistics_la-CdfBase.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-CdfBase.Tpo -c -o libscistatistics_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistatistics_la-CdfBase.Tpo $(DEPDIR)/libscistatistics_la-CdfBase.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CdfBase.c' object='libscistatistics_la-CdfBase.lo' libtool=yes @AMDEPBACKSLASH@
+libscistatistics_algo_la-CdfBase.lo: src/c/CdfBase.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_algo_la_CFLAGS) $(CFLAGS) -MT libscistatistics_algo_la-CdfBase.lo -MD -MP -MF $(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo -c -o libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistatistics_algo_la-CdfBase.Tpo $(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CdfBase.c' object='libscistatistics_algo_la-CdfBase.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_algo_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_algo_la-CdfBase.lo `test -f 'src/c/CdfBase.c' || echo '$(srcdir)/'`src/c/CdfBase.c
 
-libscistatistics_la-ipmpar1.lo: src/c/ipmpar1.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -MT libscistatistics_la-ipmpar1.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-ipmpar1.Tpo -c -o libscistatistics_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistatistics_la-ipmpar1.Tpo $(DEPDIR)/libscistatistics_la-ipmpar1.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ipmpar1.c' object='libscistatistics_la-ipmpar1.lo' libtool=yes @AMDEPBACKSLASH@
+libscistatistics_algo_la-ipmpar1.lo: src/c/ipmpar1.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_algo_la_CFLAGS) $(CFLAGS) -MT libscistatistics_algo_la-ipmpar1.lo -MD -MP -MF $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo -c -o libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Tpo $(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ipmpar1.c' object='libscistatistics_algo_la-ipmpar1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_algo_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_algo_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
 
 libscistatistics_la-gw_statistics.lo: sci_gateway/c/gw_statistics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -MT libscistatistics_la-gw_statistics.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-gw_statistics.Tpo -c -o libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
@@ -1183,7 +1199,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1261,14 +1277,14 @@ uninstall-am: uninstall-libscistatistics_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscistatistics_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscistatistics_la_etcDATA \
 	install-libscistatistics_la_rootDATA \
 	install-libscistatistics_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1335,6 +1351,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -30,12 +30,9 @@ function str = %TNMPLOT_string ( this )
     /////////////////////////////////////////////////////
     // Nelder Mead Object
     k = k + 1
-    str(k) = ""
-    strnmb = string ( this.nmbase );
-    for i =1:size(strnmb,"r")
-        k = k + 1
-        str(k) = strnmb(i)
-    end
+    str(k) = "";
+    k = k + 1
+    str(k) = sprintf("nmbase: <%s Object>\n", typeof(this.nmbase));
 endfunction
 
 //

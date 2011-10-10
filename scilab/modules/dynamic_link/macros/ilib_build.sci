@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -52,7 +52,7 @@ function ilib_build(ilib_name, ..
   end
 
   if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-    warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
+    error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
   end
 
   if rhs > 4 then
@@ -60,6 +60,11 @@ function ilib_build(ilib_name, ..
       warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_build", 5));
     end
   end
+
+  if ~isempty(files) & ~and(isfile(files)) then
+    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_build", 3));
+  end  
+
 
   if rhs <= 5 then ldflags = ""; end
   if rhs <= 6 then cflags  = ""; end
@@ -104,17 +109,11 @@ function ilib_build(ilib_name, ..
 
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then
-      if getos() == "Windows"
-        mprintf(_("   Generate a Makefile: %s\n"), makename);
-      else
-        mprintf(_("   Generate a Makefile\n"));
-      end
+    mprintf(_("   Generate a Makefile\n"));  
   end
 
-  if getos() <> "Windows" then // Needs to copy the libfoo.c which contains important stuff
-    files = files(:)';
-    files = [files, ilib_name + ".c"];
-  end
+  files = files(:)';
+  files = unique([files, file_gw_name]);
 
   ilib_gen_Make(ilib_name, table, files, libs, makename, %t, ldflags, cflags, fflags, cc);
 

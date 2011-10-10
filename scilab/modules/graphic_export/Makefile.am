@@ -16,7 +16,7 @@ modulename=graphic_export
 
 #### graphic_export : Conf files ####
 libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA =  license.txt version.xml
+libscigraphic_export_la_root_DATA =  license.txt 
 
 #### graphic_export : init scripts ####
 libscigraphic_export_la_etcdir = $(mydatadir)/etc
@@ -30,8 +30,7 @@ src/cpp/GL2PSConstant.cpp \
 src/cpp/GL2PSWrapping.cpp \
 src/cpp/JoGLInterface.cpp  \
 src/jni/GL2PSToJOGL.cpp \
-src/jni/JOGLConstant.cpp \
-src/jni/GiwsException.cpp
+src/jni/JOGLConstant.cpp
 
 GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
 src/jni/GL2PSConstant_wrap.c \
@@ -63,11 +62,14 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
-				
 
 # All the sources needed by libscigraphic_export.la
-libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
+libscigraphic_export_algo_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
+libscigraphic_export_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscigraphic_export_algo_la_CFLAGS = $(libscigraphic_export_la_CFLAGS)
+libscigraphic_export_algo_la_CPPFLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -75,7 +77,7 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscigraphic_export_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD = libscigraphic_export-algo.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
@@ -89,7 +91,8 @@ BUILT_SOURCES=giws
 endif
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
+SWIG_WRAPPERS = src/jni/GL2PSConstant.i \
+src/jni/GL2PSWrapping.i
 
 if SWIG
 BUILT_SOURCES=swig
@@ -109,6 +112,7 @@ pkglib_LTLIBRARIES = libscigraphic_export-disable.la
 if GUI
 USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
+noinst_LTLIBRARIES = libscigraphic_export-algo.la 
 endif
 
 libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)

@@ -16,7 +16,10 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a representation on the Scilab boolean datatype<br />
+ * This class provides a representation on the Scilab boolean datatype<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -26,6 +29,9 @@ import java.util.Arrays;
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabBoolean implements ScilabType {
+
+	private static final long serialVersionUID = 6511497080095473901L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_boolean;
 
 	/* the boolean data */
 	private boolean[][] data;
@@ -74,11 +80,22 @@ public class ScilabBoolean implements ScilabType {
 		return data;
 	}
 
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    @Override
+	public ScilabTypeEnum getType() {
+        return type;
+    }
+
 	/**
 	 * Return the height (number of element) of the stored data
 	 *
 	 * @return the height
 	 */
+	@Override
 	public int getHeight() {
 		if (data == null) {
 			return 0;
@@ -91,6 +108,7 @@ public class ScilabBoolean implements ScilabType {
 	 *
 	 * @return the width
 	 */
+	@Override
 	public int getWidth() {
 		if (data == null) {
 			return 0;
@@ -103,6 +121,7 @@ public class ScilabBoolean implements ScilabType {
 	 *
 	 * @return true if empty
 	 */
+	@Override
 	public boolean isEmpty() {
 		return (data == null);
 	}
@@ -111,6 +130,7 @@ public class ScilabBoolean implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabBoolean) {
 			return Arrays.deepEquals(this.getData(), ((ScilabBoolean)obj).getData());
@@ -125,6 +145,7 @@ public class ScilabBoolean implements ScilabType {
      *
 	 * @return the pretty print
 	 */
+	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		

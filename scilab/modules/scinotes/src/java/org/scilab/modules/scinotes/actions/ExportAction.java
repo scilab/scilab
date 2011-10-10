@@ -13,29 +13,29 @@
 package org.scilab.modules.scinotes.actions;
 
 import java.awt.Cursor;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.filechooser.Juigetfile;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
+import org.scilab.modules.jvm.LoadClassPath;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.CodeExporter;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.localization.Messages;
 
 /**
  * Class Export action for SciNotes
@@ -43,9 +43,12 @@ import org.scilab.modules.localization.Messages;
  */
 public class ExportAction extends DefaultAction {
 
+    private static final long serialVersionUID = 7796680521955058413L;
+
     private static final String DOT = ".";
 
     private boolean codeConverterLoaded;
+    private File currentFile;
 
     /**
      * Default constructor
@@ -77,7 +80,7 @@ public class ExportAction extends DefaultAction {
         SciFileFilter epsFilter = new SciFileFilter("*.eps", null, 2);
         SciFileFilter rtfFilter = new SciFileFilter("*.rtf", null, 3);
 
-        SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+        final SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
         fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
         fileChooser.setAcceptAllFileFilterUsed(false);
@@ -95,15 +98,47 @@ public class ExportAction extends DefaultAction {
         fileChooser.setFileFilter(pdfFilter);
         fileChooser.setTitle(title);
 
+        fileChooser.addPropertyChangeListener(JFileChooser.FILE_FILTER_CHANGED_PROPERTY, new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    Object val = e.getNewValue();
+                    if (val != null && (val instanceof SciFileFilter)) {
+                        String filter = ((SciFileFilter) val).getDescription();
+                        String file = currentFile.getName();
+                        int dotpos = file.lastIndexOf(".");
+                        if (dotpos != -1) {
+                            file = file.substring(0, dotpos);
+                        }
+                        dotpos = filter.lastIndexOf(".");
+                        if (dotpos != -1) {
+                            filter = filter.substring(dotpos, filter.length() - 1);
+                        }
+                        fileChooser.setSelectedFile(new File(file + filter));
+                    }
+                }
+            });
+
+        fileChooser.addPropertyChangeListener(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY , new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    Object val = e.getNewValue();
+                    if (val != null && (val instanceof File)) {
+                        currentFile = (File) val;
+                    }
+                }
+            });
+
         String name = getEditor().getTextPane().getName();
         if (name == null) {
             name = ((ScilabDocument) getEditor().getTextPane().getDocument()).getFirstFunctionName();
-            if (name != null) {
-                name += ".pdf";
+            if (name == null) {
+                name = "";
             }
         }
-
+        int dotpos = name.lastIndexOf(".");
+        if (dotpos != -1) {
+            name = name.substring(0, dotpos);
+        }
         if (name != null) {
+            name += ".pdf";
             fileChooser.setSelectedFile(new File(name));
         }
 

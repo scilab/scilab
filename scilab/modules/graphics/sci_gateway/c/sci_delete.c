@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,142 +37,146 @@
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
-  int m1,n1,l1,m2,n2,l2,num, lw;
-  unsigned long hdl;
-  int nb_handles = 0, i, dont_overload = 0;
-  sciPointObj * pobj;
-  sciPointObj * parentFigure;
+    int m1 = 0,n1 = 0,l1 = 0,m2 = 0,n2 = 0,l2 = 0,num = 0, lw = 0;
+    unsigned long hdl = 0;
+    int nb_handles = 0, i = 0, dont_overload = 0;
+    sciPointObj * pobj = NULL;
+    sciPointObj * parentFigure = NULL;
 
-  CheckRhs(0,1);
-  CheckLhs(0,1);
-  
-  switch(VarType(1))
+    CheckRhs(0,1);
+    CheckLhs(0,1);
+
+    if (Rhs==0) /* Delete current object */
     {
-    case sci_handles: /* delete Entity given by a handle */
-      GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
-      nb_handles = m1*n1;
-
-      if (Rhs == 2)
-	{
-	  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
-	}
-      hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
-      break;
-    case sci_strings: /* delete("all") */
-      CheckRhs(1,1);
-      GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
-      if (strcmp(cstk(l2),"all") == 0)
-	{
-	  startGraphicDataWriting();
-	  sciClearFigure(sciGetCurrentFigure());
-	  endGraphicDataWriting();
-	  sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
-          dont_overload = 1;
-	}
-      else
-	{
-	  Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"all");
-	  return 0;
-	}
-      break;
-    default:
-      if (Rhs==0) /* Delete current object */
-	{
-	  hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
-	}
-      else
-	{
-	  // Overload
-	  lw = 1 + Top - Rhs;
-	  C2F(overload)(&lw,"delete",6);
-	  return 0;
-	}
-      break;
+        hdl = (unsigned long) sciGetHandle(sciGetCurrentObj());
+        dont_overload = 1;
+        nb_handles = 1;
     }
-  
-  for(i=0;i<nb_handles; i++)
+    else
     {
-      hdl = (unsigned long)*hstk(l1+i); /* Puts the value of the Handle to hdl */
+        switch(VarType(1))
+        {
+        case sci_handles: /* delete Entity given by a handle */
+            GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
+            nb_handles = m1*n1;
 
-      pobj = sciGetPointerFromHandle(hdl);
-      
-      if (pobj == NULL)
-	{
-	  Scierror(999,_("%s: The handle is not valid.\n"),fname);
-	  return 0;
-	}
-      
-      parentFigure = sciGetParentFigure(pobj);
-      
-      num = sciGetNumFigure( pobj ) ;
-      
-      if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
-	{
-	  startFigureDataWriting(parentFigure);
-	  sciDelCallback((sciPointObj *)pobj);
-	  endFigureDataWriting(parentFigure);
-	}
-      else
-	{
-	  
-	  sciEntityType objType = sciGetEntityType( pobj ) ;
-	  
-	  if (objType == SCI_UIMENU)
-	    {
-	      DestroyUimenu(pobj);
-	    }
-	  else if(objType == SCI_UICONTROL)
-	    {
-	      DestroyUicontrol(pobj);
-	    }
-	  else if (objType == SCI_WAITBAR || objType == SCI_PROGRESSIONBAR)
-	    {
-	      DestroyWaitBar(pobj);
-	    }
-	  else if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
-	    {
-	      BOOL selected = sciGetIsSelected( pobj ) ;
-	      sciPointObj * parentObj = sciGetParent(pobj);
-	      startFigureDataWriting(parentFigure);
-	      if (sciIsCurrentObject(pobj))
-		{
-		  /* If the object is the current one, modify the current object pointer */
-		  sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
-		}
-	      sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
-	      pobj = NULL ;
-	      
-	      /* test here: we could have deleted the selected subwindow, we must choose an other */
-	      /* We must always have one selected subwindow (if at least one subwindow exists) */
-	      if ( objType == SCI_SUBWIN && selected )
-		{
-		  /* we have to select antoher subwindow if one exists at least */
-		  sciSelectFirstSubwin( parentFigure ) ;
-		}
-	      
-	      endFigureDataWriting(parentFigure);
-	      
-	      /* redraw the window */
-	      sciDrawObj( parentObj ) ;
-	    }
-	  else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
-	    {
-	      sciDeleteWindow( num );
-	    }
-	}
+            if (Rhs == 2)
+            {
+                GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2); /* Gets the command name */
+            }
+            hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
+            break;
+        case sci_strings: /* delete("all") */
+            CheckRhs(1,1);
+            GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
+            if (strcmp(cstk(l2),"all") == 0)
+            {
+                startGraphicDataWriting();
+                sciClearFigure(sciGetCurrentFigure());
+                endGraphicDataWriting();
+                sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+                dont_overload = 1;
+            }
+            else
+            {
+                Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"all");
+                return 0;
+            }
+            break;
+        default:
+            // Overload
+            lw = 1 + Top - Rhs;
+            C2F(overload)(&lw,"delete",6);
+            return 0;
+        }
     }
 
-  if (!dont_overload)
+    for(i=0;i<nb_handles; i++)
     {
-      // Overload
-      lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"delete",6);
-    }
-  else
-    {
-      LhsVar(1) = 0;
-      C2F(putlhsvar)();
+        if (Rhs != 0)
+        {
+            hdl = (unsigned long)*hstk(l1+i); /* Puts the value of the Handle to hdl */
+        }
+
+        pobj = sciGetPointerFromHandle(hdl);
+
+        if (pobj == NULL)
+        {
+            Scierror(999,_("%s: The handle is not valid.\n"),fname);
+            return 0;
+        }
+
+        parentFigure = sciGetParentFigure(pobj);
+
+        num = sciGetNumFigure( pobj ) ;
+
+        if ((Rhs == 2) && (strcmp(cstk(l2),"callback") == 0))
+        {
+            startFigureDataWriting(parentFigure);
+            sciDelCallback((sciPointObj *)pobj);
+            endFigureDataWriting(parentFigure);
+        }
+        else
+        {
+
+            sciEntityType objType = sciGetEntityType( pobj ) ;
+
+            if (objType == SCI_UIMENU)
+            {
+                DestroyUimenu(pobj);
+            }
+            else if(objType == SCI_UICONTROL)
+            {
+                DestroyUicontrol(pobj);
+            }
+            else if (objType == SCI_WAITBAR || objType == SCI_PROGRESSIONBAR)
+            {
+                DestroyWaitBar(pobj);
+            }
+            else if ( sciGetParentFigure(pobj) != NULL && objType != SCI_FIGURE)
+            {
+                BOOL selected = sciGetIsSelected( pobj ) ;
+                sciPointObj * parentObj = sciGetParent(pobj);
+                startFigureDataWriting(parentFigure);
+                if (sciIsCurrentObject(pobj))
+                {
+                    /* If the object is the current one, modify the current object pointer */
+                    sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
+                }
+                sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
+                pobj = NULL ;
+
+                /* test here: we could have deleted the selected subwindow, we must choose an other */
+                /* We must always have one selected subwindow (if at least one subwindow exists) */
+                if ( objType == SCI_SUBWIN && selected )
+                {
+                    /* we have to select antoher subwindow if one exists at least */
+                    sciSelectFirstSubwin( parentFigure ) ;
+                }
+
+                endFigureDataWriting(parentFigure);
+
+                /* redraw the window */
+                sciDrawObj( parentObj ) ;
+            }
+            else if( sciGetEntityType(pobj) == SCI_FIGURE ) /* F.Leray 13.04.04: We delete the special object Figure !!*/
+            {
+                sciDeleteWindow( num );
+            }
+        }
     }
 
-  return 0;
+    if (!dont_overload)
+    {
+        // Overload
+        lw = 1 + Top - Rhs;
+        C2F(overload)(&lw,"delete",6);
+    }
+    else
+    {
+        LhsVar(1) = 0;
+        PutLhsVar();
+    }
+
+    return 0;
 }

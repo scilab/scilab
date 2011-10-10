@@ -58,7 +58,6 @@ SCICOS_IMPEXP int sci_scicosim(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_getscicosvars(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_curblockc(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_buildouttb(char *fname,unsigned long fname_len);
-SCICOS_IMPEXP int sci_permutobj(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_end_scicosim(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_haltscicos(char *fname,unsigned long fname_len);
 SCICOS_IMPEXP int sci_coserror(char *fname, unsigned long fname_len);

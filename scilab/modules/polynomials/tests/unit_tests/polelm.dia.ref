@@ -146,7 +146,7 @@ if or(coeff(p)<>c) then bugmes();quit;end
 if or(coeff([])<>c) then bugmes();quit;end
 if or(coeff(p,sel)<>c) then bugmes();quit;end
 if or(coeff([],sel)<>c) then bugmes();quit;end
-//sum
+//sum 
 a=[1+%s 2;-3 4;5 -6];
 if sum(a)<>3+%s then bugmes();quit;end
 if sum(a+0)<>3+%s then bugmes();quit;end

@@ -200,7 +200,7 @@ public class ScilabLexerConstants {
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(27);
+    public static final Map<String, Integer> TOKENS = new HashMap<String, Integer>(27);
 
     private static Map<Integer, String> idTokens;
 
@@ -241,7 +241,7 @@ public class ScilabLexerConstants {
      */
     public static String getStringRep(int id) {
         if (idTokens == null) {
-            idTokens = new HashMap(TOKENS.size());
+            idTokens = new HashMap<Integer, String>(TOKENS.size());
             Iterator<String> iterator = TOKENS.keySet().iterator();
             while (iterator.hasNext()) {
                 String key = iterator.next();
@@ -266,6 +266,24 @@ public class ScilabLexerConstants {
      */
     public static boolean isLaTeX(int type) {
         return type == LATEX;
+    }
+
+    /**
+     * Have we a piece of a Scilab string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a piece of Scilab string
+     */
+    public static boolean isString(int type) {
+        return type == STRING || type == WHITE_STRING || type == TAB_STRING;
+    }
+
+    /**
+     * Have we a LaTeX string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a LaTeX string
+     */
+    public static boolean isComment(int type) {
+        return type == COMMENT || type == AUTHORS || type == URL || type == MAIL || type == LATEX || type == WHITE_COMMENT || type == TAB_COMMENT;
     }
 
     /**

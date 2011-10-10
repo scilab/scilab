@@ -31,7 +31,8 @@ import com.artenum.rosetta.interfaces.core.InputParsingManager;
  */
 
 public class SciCompletionManager implements CompletionManager {
-        private List<CompletionItem> dictionnary;
+        
+        protected List<CompletionItem> dictionnary;
         private InputParsingManager inputParsingManager;
 
         /**

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Comment=Scientific software package for numerical computations
+Comment[fr]=Logiciel scientifique de calcul numérique
+Comment[de]=eine Wissenschaftssoftware für numerische Berechnungen
+Exec=scilab-cli
+GenericName=Scientific Software Package
+GenericName[fr]=Logiciel de calcul numérique
+GenericName[de]=Wissenschaftssoftware
+Icon=/usr/share/scilab-cli/icons/scilab.xpm
+Name=Scilab CLI
+Name[de]=Scilab CLI
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=Education;Science;Math;Development;Physics;

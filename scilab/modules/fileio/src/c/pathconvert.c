@@ -1,33 +1,33 @@
 /*
 * ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+#include <wctype.h>
 #include "pathconvert.h"
 #include "MALLOC.h"
 #include "expandPathVariable.h"
 #include "splitpath.h"
 #include "charEncoding.h"
 #include "BOOL.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #define CYGWINSTART L"/cygdrive/"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted);
 static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
 {
     wchar_t *convertedPath = NULL;
     if (wcpath)
     {
-        BOOL bOK = FALSE;
         BOOL bConvCyg = FALSE;
         wchar_t *expandedPath = NULL;
         PathConvertType PTypelocal = PType;
@@ -105,7 +105,7 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
     }
     return convertedPath;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
 {
     char *convertedPath = NULL;
@@ -125,7 +125,7 @@ char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType P
     }
     return convertedPath;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
 {
     wchar_t *windowspath = NULL;
@@ -151,7 +151,7 @@ static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
             {
                 if ( (lenPath > lenBegin) && iswalpha(cygwinpath[lenBegin]) )
                 {
-                    if ( (lenPath >= lenBegin + 1) && 
+                    if ( (lenPath >= lenBegin + 1) &&
                         ((cygwinpath[lenBegin + 1]== L'/') || (cygwinpath[lenBegin + 1]== L'\\')) )
                     {
                         windowspath[0] = cygwinpath[lenBegin];
@@ -194,7 +194,7 @@ static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
     }
     return windowspath;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
 {
     wchar_t *cygwinpath = NULL;
@@ -211,7 +211,7 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
         if (wcscmp(wcdrv, L"") != 0)
         {
             int len = (int)wcslen(CYGWINSTART) + (int)wcslen(wcdrv) +
-                (int)wcslen(wcdir) + (int)wcslen(wcname) + 
+                (int)wcslen(wcdir) + (int)wcslen(wcname) +
                 (int)wcslen(wcext) + 3;
 
             cygwinpath = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
@@ -224,14 +224,14 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
                 {
                     cygwinpath[len - 1] = L'\0';
                 }
-                if (wcscmp(wcdir, L"") != 0)	
+                if (wcscmp(wcdir, L"") != 0)
                 {
                     wcscat(cygwinpath, wcdir);
 
-                    if (wcscmp(wcname, L"") != 0)	
+                    if (wcscmp(wcname, L"") != 0)
                     {
                         wcscat(cygwinpath, wcname);
-                        if (wcscmp(wcext, L"") != 0)	
+                        if (wcscmp(wcext, L"") != 0)
                         {
                             wcscat(cygwinpath, wcext);
                         }
@@ -256,4 +256,4 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
     }
     return cygwinpath;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

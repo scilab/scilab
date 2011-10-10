@@ -164,6 +164,9 @@
 
     <para>voir la macro:
     SCI/modules/elementary_functions/macros/%_gsort.sci</para>
+    
+    <para>La surcharge pour les types autres que vecteur ou matrice de nombres réels,
+     entiers ou de chaînes de caractères ou vecteur creux est possible.</para>
 
     <para>Si <literal>A</literal> contient des <literal>%nan</literal> ou des
     <literal>%inf</literal> ceux ci seront placés en début avec l'argument

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,50 +11,13 @@
 // <-- JVM NOT MANDATORY -->
 
 
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 //
 // Test hasbounds method
 //
 // Case where there is no bound
 opt = optimbase_new ();
 [ opt , hasbounds ] = optimbase_hasbounds ( opt );
-assert_equal ( hasbounds , %F );
+assert_checkequal ( hasbounds , %F );
 opt = optimbase_destroy( opt );
 // Case where there are bounds
 opt = optimbase_new ();
@@ -61,6 +25,6 @@ opt = optimbase_configure(opt,"-numberofvariables",2);
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 [ opt , hasbounds ] = optimbase_hasbounds ( opt );
-assert_equal ( hasbounds , %T );
+assert_checkequal ( hasbounds , %T );
 opt = optimbase_destroy(opt);
 

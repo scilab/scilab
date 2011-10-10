@@ -22,9 +22,9 @@ void controlC_handler (int sig);
 
 
 /** 
- * TODO : comment
- * @return
+ * Set the CTRL+C behaviour (stop the current execution
+ * @return 0 if the signal has been set -1 otherwise
  */
-int C2F(csignal)(void);
+int csignal(void);
 
 #endif /* __CSIGNAL_H__ */

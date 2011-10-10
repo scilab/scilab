@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+assert_checkerror("coppercolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "coppercolormap", 1);
+
+assert_checkerror("coppercolormap(%t)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "coppercolormap", 1);
+
+assert_checkerror("coppercolormap(%i)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "coppercolormap", 1);
+
+assert_checkerror("coppercolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: An integer value expected.\n", 10000, "coppercolormap", 1);
+
+assert_checkequal(coppercolormap(0), []);
+
+assert_checkequal(coppercolormap(1), [1 0.8 0.5]);
+
+assert_checkequal(coppercolormap(2), [0 0 0;1 0.8 0.5]);
+
+assert_checkequal(coppercolormap(3), [0 0 0;0.625 0.4 0.25;1 0.8 0.5]);

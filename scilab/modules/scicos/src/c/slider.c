@@ -25,7 +25,8 @@
 #include "machine.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(getgeom)(double *);
+// fix for release 5.3.2
+//extern int C2F(getgeom)(double *);
 /*--------------------------------------------------------------------------*/
 /*----------------------------------------------------
  * changes the current window to win 
@@ -106,7 +107,9 @@ void slider(int *flag, int *nevprt, double *t, double *xd,
   case 4 : 
     /* initial case */ 
     z[0]= 0.0;
-    C2F(getgeom)(z+1);
+// fix for release 5.3.2
+    z[1] = 100.0;
+//    C2F(getgeom)(z+1);
     z[2] = z[2]+ t3d +th ; 
     z[4] -= t3d + 2*th  ;
     z[3] = z[3] + z[5] ;

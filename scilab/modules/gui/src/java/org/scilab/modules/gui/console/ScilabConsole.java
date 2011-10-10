@@ -105,7 +105,6 @@ public class ScilabConsole extends ScilabDockable implements Console {
     /**
      * Reads input data in the console
      * @return the data entered by the user
-     * @see org.scilab.modules.shell.HelpBrowser#readLine()
      */
     public String readLine() {
         return ScilabBridge.readLine(this);

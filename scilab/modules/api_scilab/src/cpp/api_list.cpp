@@ -182,13 +182,19 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
+    int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 	
@@ -471,7 +477,13 @@ SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piP
 	int iVarID[nsiz];
 	int iSaveTop = Top;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonListInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	sciErr = createCommonListInList(_pvCtx, Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
@@ -528,6 +540,12 @@ SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent,
     int* piEnd          = NULL;
     int* piChildAddr    = NULL;
 	int* piOffset       = NULL;
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createVoidInNamedList");
+        return sciErr;
+    }
 
     C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
     Top = Top + Nbvars + 1;
@@ -587,6 +605,12 @@ SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* _piPa
     int* piEnd          = NULL;
     int* piChildAddr    = NULL;
 	int* piOffset       = NULL;
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createUndefinedInNamedList");
+        return sciErr;
+    }
 
     C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
     Top = Top + Nbvars + 1;
@@ -814,7 +838,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstNam
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
+    int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
 	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
@@ -822,8 +846,14 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstNam
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createComplexZMatrixOfDoubleInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -870,8 +900,14 @@ SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName,
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommomMatrixOfDoubleInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -979,7 +1015,6 @@ static SciErr readCommonMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pst
 SciErr getMatrixOfStringInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iRet			= 0;
 	int* piAddr		= NULL;
 
 	sciErr = getListItemAddress(_pvCtx, _piParent, _iItemPos, &piAddr);
@@ -1094,6 +1129,12 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* 
 
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createMatrixOfStringInNamedList");
+        return sciErr;
+    }
 
     C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
@@ -1281,15 +1322,21 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int*
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
+	int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
 	int *piAddr				= NULL;
 	int* piBool				= NULL;
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createMatrixOfBooleanInNamedList");
+        return sciErr;
+    }
+    
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 	
@@ -1524,8 +1571,14 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, i
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonMatrixOfPolyInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -1825,14 +1878,20 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
+    int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonMatrixOfIntegerInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -2096,8 +2155,14 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, i
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonSparseMatrixInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -2347,8 +2412,14 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createBooleanSparseMatrixInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
@@ -2585,8 +2656,14 @@ SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* _piPare
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createPointerInNamedList");
+        return sciErr;
+    }
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
 
 	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 

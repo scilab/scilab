@@ -6,80 +6,95 @@
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib output_stream.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib output_stream.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib output_stream.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="sparse_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib elementary_functions_f.lib sparse.lib output_stream.lib elementary_functions.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n sparse_f.dll %%f &gt;nul
-copy *.def sparse_f.def &gt;nul
-copy sparse_f.def ..\sparse_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build sparse.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Libraries Dependencies">
+		<File RelativePath=".\Elementary_functions_f_Import.def"/>
+		<File RelativePath=".\Elementary_functions_Import.def"/>
 		<File RelativePath=".\LibScilab_Import.def"/>
+		<File RelativePath=".\Output_stream_Import.def"/>
 		<File RelativePath=".\Sparse_Import.def"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\sparse_f.rc"/></Filter>
@@ -131,30 +146,29 @@ lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="lsposp.f"/>
 		<File RelativePath="lspt.f"/>
 		<File RelativePath="lspxsp.f"/>
-		<File RelativePath="mycmatptr.f"/>
 		<File RelativePath="ordmmd.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_bfinit.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_blkfc1i.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_blkslvi.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_fadj2sp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_full.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_inpnvi.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ludel.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_lufact.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_luget.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_lusolve.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_nnz.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ordmmd.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_sfinit.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_sparse.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spchol.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spclean.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spcompa.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spget.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spmatrix.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_spmax.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_symfcti.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ta2lpd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bfinit.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_blkfc1i.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_blkslvi.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fadj2sp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_full.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_inpnvi.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ludel.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lufact.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_luget.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lusolve.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_nnz.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ordmmd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sfinit.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sparse.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spchol.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spclean.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spcompa.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spget.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spmatrix.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spmax.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_symfcti.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ta2lpd.f"/>
 		<File RelativePath="sp2col.f"/>
 		<File RelativePath="spcho1.f"/>
 		<File RelativePath="spcho2.f"/>

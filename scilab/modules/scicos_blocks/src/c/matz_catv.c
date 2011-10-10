@@ -32,7 +32,6 @@ SCICOS_BLOCKS_IMPEXP void matz_catv(scicos_block *block,int flag)
 	if ((flag==1) || (flag==6))
 	{
 		int j = 0;
-		int k = 0;
 		for(j=0;j<nu;j++)
 		{
 			int bk = 0;

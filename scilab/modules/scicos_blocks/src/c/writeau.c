@@ -29,11 +29,16 @@
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
+SCICOS_BLOCKS_IMPEXP void writeau(int *flag, int *nevprt,
+                                  double *t, double xd[],
+                                  double x[], int *nx,
+                                  double z[], int *nz,
+                                  double tvec[], int *ntvec,
+                                  double rpar[], int *nrpar,
+                                  int ipar[], int *nipar,
+                                  double *inptr[], int insz[],
+                                  int *nin, double *outptr[],
+                                  int outsz[], int *nout)
      /*
      ipar[1]   = lfil : file name length
      ipar[2:4] = fmt  : numbers type ascii code

@@ -72,16 +72,19 @@ libsciarnoldi_la_CFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 libsciarnoldi_la_FFLAGS= -I$(srcdir)/src/arpack/
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
+noinst_LTLIBRARIES = libsciarnoldi-algo.la
 
 libsciarnoldi_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS)
 
-libsciarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciarnoldi_algo_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES)
+libsciarnoldi_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciarnoldi_algo_la_CFLAGS = $(libsciarnoldi_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
 
-libsciarnoldi_la_LIBADD =  #
+libsciarnoldi_la_LIBADD =  libsciarnoldi-algo.la
 
 #### Target ######
 modulename=arnoldi
@@ -89,7 +92,7 @@ modulename=arnoldi
 
 #### arnoldi : Conf files ####
 libsciarnoldi_la_rootdir = $(mydatadir)
-libsciarnoldi_la_root_DATA =  license.txt version.xml
+libsciarnoldi_la_root_DATA =  license.txt 
 
 
 #### arnoldi : init scripts ####

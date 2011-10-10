@@ -101,7 +101,7 @@ public class ScilabCheckBoxMenuItemBridge {
 	 * @return the text of the menu
 	 */
 	public static String getText(CheckBoxMenuItem checkBoxMenuItem) {
-		return checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().getText();
+		return checkBoxMenuItem.getAsSimpleCheckBoxMenuItem().getBaseText();
 	}
 	
 	/**

@@ -16,10 +16,12 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
@@ -40,6 +42,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	
 	private static final int GRAPHICS_POUT_INDEX = 7;
 	private static final int GRAPHICS_OUTIMPL_INDEX = 13;
+	private static final int GRAPHICS_OUTSTYLE_INDEX = 15;
 	
 	private static final int MODEL_OUT_DATALINE_INDEX = 5;
 	private static final int MODEL_OUT_DATACOL_INDEX = 6;
@@ -98,7 +101,8 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		
 		port = beforeDecode(element, port);
 		
-		fillParameters(port);
+		decodeModel(port);
+		decodeGraphics(port);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
@@ -163,7 +167,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * Fill the port with the parameters from the model structure.
 	 * @param port the target instance 
 	 */
-	private void fillParameters(OutputPort port) {
+	private void decodeModel(OutputPort port) {
 		ScilabDouble dataLines = (ScilabDouble) model.get(MODEL_OUT_DATALINE_INDEX);
 		ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_OUT_DATACOL_INDEX);
 		ScilabDouble dataType = (ScilabDouble) model.get(MODEL_OUT_DATATYPE_INDEX);
@@ -204,6 +208,27 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		}
 	}
 
+	/**
+	 * Fill the port with the parameters from the graphics structure.
+	 * @param port the target instance 
+	 */
+	private void decodeGraphics(OutputPort port) {
+		// protection against previously stored blocks
+		if (graphics.size() <= GRAPHICS_OUTSTYLE_INDEX || graphics.get(GRAPHICS_OUTSTYLE_INDEX).isEmpty()) {
+			return;
+		}
+		
+		final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
+		if (styles.getData() != null
+				&& alreadyDecodedCount < styles.getHeight()
+				&& 0 < styles.getWidth()) {
+			final String style;
+
+			style = styles.getData()[alreadyDecodedCount][0];
+			port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+		}
+	}
+	
 	/**
 	 * Test if the current instance can be used to decode the element
 	 * 
@@ -307,12 +332,22 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		// pout
 		sciValues = (ScilabDouble) graphics.get(GRAPHICS_POUT_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getConnectedLinkId();
+		if (from.getEdgeCount() == 1) {
+			// only set on valid connection
+			values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
+		} else {
+			values[alreadyDecodedCount][0] = 0.0;
+		}
 		
 		// out_implicit
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTIMPL_INDEX);
 		strings = sciStrings.getData();
 		strings[alreadyDecodedCount][0] = from.getType().getAsString();
+		
+		// out_style
+		sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTSTYLE_INDEX);
+		strings = sciStrings.getData();
+		strings[alreadyDecodedCount][0] = from.getStyle();
 	}
 	
 	/**

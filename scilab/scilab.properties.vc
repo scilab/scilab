@@ -1,0 +1,6 @@
+; Definition ANT flags for Scilab
+
+build.debug=off
+library.vendor="The Scilab Consortium - DIGITEO"
+
+

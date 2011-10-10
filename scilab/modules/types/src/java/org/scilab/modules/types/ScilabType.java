@@ -15,9 +15,20 @@ package org.scilab.modules.types;
 import java.io.Serializable;
 
 /**
- * This interface specifies what is a Scilab types
+ * This interface specifies what is a Scilab types<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
+ * <br>
  */
 public interface ScilabType extends Serializable, Cloneable {
+
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    public ScilabTypeEnum getType();
 
 	/**
 	 * Return the width (number of elements) of the stored data

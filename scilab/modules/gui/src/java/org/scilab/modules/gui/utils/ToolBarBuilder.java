@@ -29,6 +29,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
@@ -156,7 +157,7 @@ public final class ToolBarBuilder {
 			}
 
 			// Build xml document for request
-			dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(xmlFile));
+			dom = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(xmlFile));
 		}
 
 		/**

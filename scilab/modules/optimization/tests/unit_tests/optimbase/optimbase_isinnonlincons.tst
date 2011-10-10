@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,42 +12,7 @@
 
 
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 //
 // gould.nonconvex --
 //   The Gould test case with additionnal inequality constraints.
@@ -127,11 +93,11 @@ opt = optimbase_configure(opt,"-verbose",1);
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [0.0 0.0] );
-assert_equal ( isfeasible , %t );
+assert_checkequal ( isfeasible , %t );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [-6.0 0.0] );
-assert_equal ( isfeasible , %t );
+assert_checkequal ( isfeasible , %t );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [0.0 6.0] );
-assert_equal ( isfeasible , %t );
+assert_checkequal ( isfeasible , %t );
 opt = optimbase_destroy(opt);
 //
 // Test with nonlinear inequality constraints
@@ -141,9 +107,9 @@ opt = optimbase_configure(opt,"-verbose",1);
 opt = optimbase_configure(opt,"-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [ 14.0950013 , 0.8429636 ] );
-assert_equal ( isfeasible , %t );
+assert_checkequal ( isfeasible , %t );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [ 14.0950013 , 0.0 ] );
-assert_equal ( isfeasible , %f );
+assert_checkequal ( isfeasible , %f );
 opt = optimbase_destroy(opt);
 //
 // Test with nonlinear inequality constraints and additionnal argument in cost function
@@ -157,11 +123,10 @@ opt = optimbase_new ();
 opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
 opt = optimbase_configure ( opt , "-nbineqconst",4);
-opt = optimbase_configure ( opt , "-function" , gouldnonconvex2 );
-opt = optimbase_configure ( opt , "-costfargument" , mystuff );
+opt = optimbase_configure ( opt , "-function" , list(gouldnonconvex2,mystuff) );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [ 14.0950013 , 0.8429636 ] );
-assert_equal ( isfeasible , %t );
+assert_checkequal ( isfeasible , %t );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [ 14.0950013 , 0.0 ] );
-assert_equal ( isfeasible , %f );
+assert_checkequal ( isfeasible , %f );
 opt = optimbase_destroy(opt);
 

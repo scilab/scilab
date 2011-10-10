@@ -89,7 +89,9 @@ char **searchHandleGraphicsPropertiesDictionary(char *somechars)
 	int nbrElements = 0;
 	if ( (somechars) && (strcmp(somechars,"")) ) 
 	{
-		return completionOnHandleGraphicsProperties(somechars,&nbrElements);
+	        char *pattern = somechars;
+		while (*(pattern++) == ' ');
+		return completionOnHandleGraphicsProperties(--pattern,&nbrElements);
 	}
 	return NULL;
 }

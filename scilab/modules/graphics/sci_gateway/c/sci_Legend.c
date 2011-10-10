@@ -58,7 +58,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
   {
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l1);
     LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
     return 0;
   }
   GetMatrixdims(2,&m2,&n2);
@@ -153,7 +153,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
   CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+1;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -65,17 +65,14 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
     {
         return sci_gstacksizeNoRhs(fname);
     }
-    else
-    {
-        /* setting the stack size moves the memory, which is not allowed in concurernt context */
-        return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
-    }
-    return 0;
+
+    /* setting the stack size moves the memory, which is not allowed in concurernt context */
+    return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
 }
 /*--------------------------------------------------------------------------*/
 static int sci_gstacksizeNoRhs(char *fname)
 {
-    int l1 = 0, n1 = 0, m1 = 0;
+    int n1 = 0, m1 = 0;
     int *paramoutINT = NULL;
     int total = 0;
     int used = 0;
@@ -91,9 +88,10 @@ static int sci_gstacksizeNoRhs(char *fname)
     CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
     LhsVar(1) = Rhs + 1;
-    C2F(putlhsvar)();
-
+    
     if (paramoutINT) {FREE(paramoutINT); paramoutINT = NULL;}
+
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -121,7 +119,7 @@ static int sci_gstacksizeOneRhs(char *fname)
                         if (setGStacksize(NEWMEMSTACKSIZE))
                         {
                             LhsVar(1) = 0;
-                            C2F(putlhsvar)();
+                            PutLhsVar();
                             return 0;
                         }
                         else
@@ -185,7 +183,7 @@ static int sci_gstacksizeMax(char *fname)
     if (setGStacksizeMax(fname))
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {
@@ -200,7 +198,7 @@ static int sci_gstacksizeMin(char *fname)
     if (setGStacksizeMin(fname))
     {
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {
@@ -212,7 +210,7 @@ static int sci_gstacksizeMin(char *fname)
 static int setGStacksizeMin(char *fname)
 {
     unsigned long memstackused = getUsedGStacksize();
-    unsigned long newminstack = getUsedGStacksize();
+    unsigned long newminstack;
 
     if (memstackused < MIN_GSTACKSIZE)
     {

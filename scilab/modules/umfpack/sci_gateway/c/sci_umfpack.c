@@ -266,7 +266,7 @@ int sci_umfpack(char* fname,unsigned long l)
 	}
 
 	LhsVar(1) = 5;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

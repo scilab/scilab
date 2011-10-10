@@ -1,0 +1,57 @@
+# French translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-07-06 11:56+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: fr\n"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Cut"
+msgstr "Couper"
+
+msgid "Group"
+msgstr "Grouper"
+
+msgid "UnGroup"
+msgstr "Dissocier"
+
+msgid "Paste"
+msgstr "Coller"
+
+msgid "Redo"
+msgstr "Rétablir"
+
+msgid "Undo"
+msgstr "Annuler"
+
+msgid "Zoom In"
+msgstr "Zoom avant"
+
+msgid "Zoom Out"
+msgstr "Zoom arrière"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Select all"
+msgstr "Sélectionner tout"
+
+msgid "Invert selection"
+msgstr "Inverser la sélection"
+
+msgid "Untitled"
+msgstr "Sans titre"

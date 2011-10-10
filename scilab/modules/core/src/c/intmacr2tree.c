@@ -36,7 +36,22 @@ static int last_eol_pos = 0;
 static int beginStorage = -10;
 
 /****************************************************************/
+static int CreateVariableTList(char **varname);
+static int CreateEOLList(void);
+static int AddVar(char *name);
+static int IsDefinedVar(char *name);
+static int GetInstruction(int *data,int *index,int *nblines,int *addinstr);
+static int GetControlInstruction(int *data,int *index,int *nblines);
+static int CreateCsteTList(char *type,int *data,int *index);
+static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr);
+static int CreateOperationTList(int *data,int *index);
+static int CreateFuncallTList(char *fromwhat,int *data,int *index);
+static int CreateEqualTList(char *fromwhat,int *data,int *index);
+static int CreateCommentTList(int *data,int *index);
 static int CreateRecursiveIndex2List(int *data,int *index2);
+static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length);
+static int complexity(int *data,int *index,int *lgth);
+static int isAComment(int stkPos);
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/
@@ -102,7 +117,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
     /* Verify good type for input: must be a compiled macro (type 13) */
     if(stkdata[0] != 13)
     {
-		Scierror(999,_("%s: Wrong type for input argument #%d: Compiled macro expected.\n"),"macr2tree",1);
+        Scierror(999,_("%s: Wrong type for input argument #%d: Compiled macro expected.\n"),"macr2tree",1);
         return 0;
     }
 
@@ -137,7 +152,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
     }
     if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
     {
-		Scierror(999,_("%s: No more memory.\n"),"macr2tree");
+        Scierror(999,_("%s: No more memory.\n"),"macr2tree");
         return 0;
     }
     (name[0])[nlgh]='\0';
@@ -339,6 +354,17 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 
 /****************************************************************
  Function name: CreateVariableTList
+ Decription:
+ Create on Scilab stack a "variable" tlist:
+  tlist(["variable","name"],variable_name)
+ Input:
+  - varname: pointer to a char array
+    varname[0]=pointer to variable name (ASCII character string)
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateVariableTList(char **varname)
 {
@@ -365,6 +391,16 @@ static int CreateVariableTList(char **varname)
 
 /****************************************************************
  Function name: CreateEOLList
+ Decription:
+ Create on Scilab stack a "EOL" list:
+  list("EOL")
+ Input:
+  - No input
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateEOLList(void)
 {
@@ -400,6 +436,16 @@ static int CreateEOLList(void)
 
 /****************************************************************
  Function name: AddVar
+ Decription:
+ Add a variable name in variable name table called varnames
+ (varnames is global variable for file intmacr2tree.c)
+ Input:
+  - name: name of variable to add to table
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int AddVar(char *name)
 {
@@ -413,6 +459,17 @@ static int AddVar(char *name)
 
 /****************************************************************
  Function name: IsDefinedVar
+ Decription:
+ Search for a variable name in variable name table called "varnames"
+ ("varnames" is global variable for file intmacr2tree.c)
+ Input:
+  - name: name of variable to add to table
+ Output:
+  - No output
+ Returned value:
+  - -1 if variable not does not exists in "varnames"
+  - if variable already exists in "varnames", returned value is 
+    equal to index where variable was find
 ****************************************************************/
 static int IsDefinedVar(char *name)
 {
@@ -446,6 +503,26 @@ static int IsDefinedVar(char *name)
 
 /****************************************************************
  Function name: GetInstruction
+ Decription: 
+ Create on Scilab stack an INSTRUCTION tlist:
+      tlist(["equal","expression","lhs"],...)
+   OR tlist(["for","expression","statements"],...)
+   OR tlist(["while","expression","statements"],...)
+   OR tlist(["selectcase","expression","cases","else"],...)
+   OR tlist(["ifthenelse","expression","then","elseifs","else"],...)
+ See CreateEqualTList and GetControlInstruction
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+  - nblines: pointer to number of lines in macro
+ Output:
+  - nblines: pointer to number of lines in macro
+  - addinstr:
+     0 if just a part of statement (For example "variable")
+     1 if statement to add to list (For example "equal")
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
 {
@@ -459,7 +536,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     /* Memory allocation */
     if((name=CALLOC(1,sizeof(char*)))==NULL)
     {
-		Scierror(999,_("%s: No more memory.\n"),"GetInstruction");
+        Scierror(999,_("%s: No more memory.\n"),"GetInstruction");
         return 0;
     }
     if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
@@ -472,7 +549,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     switch(data[*index2]) {
     case 0: /* Deleted operation */
         /* This code is ignored */
-        *index2 += data[*index2+1]-1;;
+        *index2 += data[*index2+1]-1;
         break;
     case 1: /* Stack put (Obsolete) */
         CreateEqualTList("code1",data,index2);
@@ -658,6 +735,21 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
 
 /****************************************************************
  Function name: GetControlInstruction
+ Decription: 
+ Create on Scilab stack an CONTROL INSTRUCTION tlist:
+      tlist(["for","expression","statements"],...)
+   OR tlist(["while","expression","statements"],...)
+   OR tlist(["selectcase","expression","cases","else"],...)
+   OR tlist(["ifthenelse","expression","then","elseifs","else"],...)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+  - nblines: pointer to number of lines in macro
+ Output:
+  - nblines: pointer to number of lines in macro
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int GetControlInstruction(int *data,int *index2,int *nblines)
 {
@@ -993,6 +1085,18 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 
 /****************************************************************
  Function name: CreateCsteTList
+ Decription: 
+ Create on Scilab stack a "cste" tlist:
+   tlist(["cste","value"],constant_value)
+ Input:
+  - type: type of constant ("number","string","code23" or "emptymatrix")
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateCsteTList(char *type,int *data,int *index2)
 {
@@ -1140,6 +1244,18 @@ static int CreateCsteTList(char *type,int *data,int *index2)
 
 /****************************************************************
  Function name: CreateInlineTList
+ Decription: 
+ Create on Scilab stack an "operation" tlist:
+   tlist(["inline","prototype","definition"],function_prototype,function_definition)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+  - nblines: pointer to number of lines in macro
+ Output:
+  - nblines: pointer to number of lines in macro
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
 {
@@ -1306,6 +1422,17 @@ static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
 
 /****************************************************************
  Function name: CreateOperationTList
+ Decription: 
+ Create on Scilab stack an "operation" tlist:
+   tlist(["operation","operands","operator"],list_of_operands,operator_symbol)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateOperationTList(int *data,int *index2)
 {
@@ -1449,6 +1576,18 @@ static int CreateOperationTList(int *data,int *index2)
 
 /****************************************************************
  Function name: CreateFuncallTList
+ Decription: 
+ Create on Scilab stack a "funcall" tlist:
+   tlist(["funcall","rhs","name","lhsnb"],function_name,list_of_rhs,list_of_lhs,number_of_lhs)
+ Input:
+  - fromwhat: from what it has to be made ("funptr","datacode" or "macro")
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 {
@@ -1628,6 +1767,18 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 
 /****************************************************************
  Function name: CreateEqualTList
+ Decription: 
+ Create on Scilab stack an "equal" tlist:
+   tlist(["equal","expression","lhs"],left_part_of_equal,list_of_lhs)
+ Input:
+  - fromwhat: from what it has to be made ("code29","code1" or "forexpr")
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 {
@@ -1948,7 +2099,18 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     return 0;
 }
 /****************************************************************
- Function name: CreateCommentTList
+ Function name:  CreateCommentTList
+ Decription: 
+  Create on Scilab stack a "comment" tlist:
+  tlist(["comment","text"],text_of_comment)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
 ****************************************************************/
 static int CreateCommentTList(int *data,int *index2)
 {
@@ -2023,14 +2185,21 @@ static int CreateRecursiveIndex2List(int *data,int *index2)
     return 0;
 }
 
-/***********************************************************
- Copy an object in Scilab stack
-
- fname: name of function from where VCopyObj was called
- orig: position of object to copy
- dest: position where object has to be copied
- fname_length: length of character string fname
-***********************************************************/
+/****************************************************************
+ Function name: VCopyObj
+ Decription: 
+  Copy an object in Scilab stack
+ Input:
+  - fname: name of calling function for error message
+  - orig: position of object to copy
+  - dest: position where object has to be copied
+  - fname_length: length of character string fname
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
+****************************************************************/
 static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length)
 {
     C2F(vcopyobj)(fname,orig,dest,fname_length);
@@ -2040,8 +2209,19 @@ static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length)
 
 /****************************************************************
  Function name: complexity
+ Decription: 
+  Eval number of statements (which give addinstr==1 in GetInstruction)
+  in a compiled macro code or a part of this code
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+  - lgth: length of code to eval
+ Output:
+  - No output
+ Returned value:
+  - number of list items corresponding to code
 ****************************************************************/
-int complexity(int *data,int *index2,int *lgth)
+static int complexity(int *data,int *index2,int *lgth)
 {
     int count = 0;
     int countSave = 0;
@@ -2261,39 +2441,50 @@ int complexity(int *data,int *index2,int *lgth)
 
 }
 
-int isAComment(int stkPos)
+/****************************************************************
+ Function name: isAComment
+ Description:
+  Determine if a variable is a "comment" tlist
+ Input:
+  - stkPos: position on Scilab stack
+ Output:
+  - No output
+ Returned value:
+  - 1 if the variable at position stkPos is a "comment" tlist and 0 else
+****************************************************************/
+static int isAComment(int stkPos)
 {
-	int nbElements = 0;
-	int firstElementAdr = 0;
-	int firstChar = 0;
-	int secondChar = 0;
-	int thirdChar = 0;
-	int fourthChar = 0;
-	int il = iadr(*Lstk(stkPos));
+    int nbElements = 0;
+    int firstElementAdr = 0;
+    int firstChar = 0;
+    int secondChar = 0;
+    int thirdChar = 0;
+    int fourthChar = 0;
+    int il = iadr(*Lstk(stkPos));
 
-	/* If not a tlist then cannot be a comment */
-	if (*istk(il) != 16)
-	{
-		return 0;
-	}
+    /* If not a tlist then cannot be a comment */
+    if (*istk(il) != 16)
+    {
+        return 0;
+    }
 
-	/* If tlist size not equal to two then cannot be a comment */
-	if (*istk(il + 1) != 2)
-	{
-		return 0;
-	}
+    /* If tlist size not equal to two then cannot be a comment */
+    if (*istk(il + 1) != 2)
+    {
+        return 0;
+    }
 
-	/* Now the tlist can be a comment or a cste */
-	nbElements = *istk(il + 1);
-	firstElementAdr = iadr(sadr(il + 3 + nbElements));
-	firstChar = *istk(firstElementAdr + 7);
-	secondChar = *istk(firstElementAdr + 8);
-	thirdChar = *istk(firstElementAdr + 9);
-	fourthChar = *istk(firstElementAdr + 10);
+    /* Now the tlist can be a comment or a cste */
+    nbElements = *istk(il + 1);
+    firstElementAdr = iadr(sadr(il + 3 + nbElements));
+    firstChar = *istk(firstElementAdr + 7);
+    secondChar = *istk(firstElementAdr + 8);
+    thirdChar = *istk(firstElementAdr + 9);
+    fourthChar = *istk(firstElementAdr + 10);
 
-	/* 12 = Scilab code for 'c' */
-	/* 24 = Scilab code for 'o' */
-	/* 22 = Scilab code for 'm' */
-	return firstChar==12 && secondChar==24 && thirdChar==22 && fourthChar==22;
+    /* 12 = Scilab code for 'c' */
+    /* 24 = Scilab code for 'o' */
+    /* 22 = Scilab code for 'm' */
+    return firstChar==12 && secondChar==24 && thirdChar==22 && fourthChar==22;
 
 }

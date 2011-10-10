@@ -1,4 +1,3 @@
-package org.scilab.modules.hdf5.write;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
@@ -10,6 +9,7 @@ package org.scilab.modules.hdf5.write;
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+package org.scilab.modules.hdf5.write;
 
 import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.HDF5Constants;

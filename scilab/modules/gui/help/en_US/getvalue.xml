@@ -61,6 +61,12 @@
                     </listitem>
                   </varlistentry>
                   <varlistentry>
+                    <term>"intvec"  </term>
+                    <listitem>
+                      <para>for  constant vector with integer values i.e int(x) == x</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
                     <term>"str"  </term>
                     <listitem>
                       <para>for string</para>
@@ -117,7 +123,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 labels=["magnitude";"frequency";"phase    "];
 [ok,mag,freq,ph]=getvalue("define sine signal",labels,...
      list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])

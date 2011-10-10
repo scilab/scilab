@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,46 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 
-
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -67,21 +29,21 @@ s1 = optimsimplex_setx(s1,3,[0.0 2.0]);
 s1 = optimsimplex_setfv(s1,3,14.0);
 // Now check the data
 computed = optimsimplex_getn(s1);
-assert_equal ( computed , 2 );
+assert_checkequal ( computed , 2 );
 computed = optimsimplex_getx( s1 , 1);
-assert_equal ( computed , [0.0 0.0] );
+assert_checkequal ( computed , [0.0 0.0] );
 computed = optimsimplex_getx( s1 , 2);
-assert_equal ( computed , [1.0 0.0] );
+assert_checkequal ( computed , [1.0 0.0] );
 computed = optimsimplex_getx( s1 , 3);
-assert_equal ( computed , [0.0 2.0] );
+assert_checkequal ( computed , [0.0 2.0] );
 computed = optimsimplex_getfv( s1 , 1);
-assert_equal ( computed , 12.0 );
+assert_checkequal ( computed , 12.0 );
 computed = optimsimplex_getfv( s1 , 2);
-assert_equal ( computed , 13.0 );
+assert_checkequal ( computed , 13.0 );
 computed = optimsimplex_getfv( s1 , 3);
-assert_equal ( computed , 14.0 );
+assert_checkequal ( computed , 14.0 );
 // Print the simplex
-optimsimplex_print ( s1 );
+disp ( s1 );
 // We are done !
 s1 = optimsimplex_destroy(s1);
 
@@ -103,9 +65,9 @@ expected = [
 0.0 0.0
 1.0 0.0 
 0.0 2.0];
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 computed = optimsimplex_getallfv (s1);
-assert_equal ( computed , [12.0 13.0 14.0]' );
+assert_checkequal ( computed , [12.0 13.0 14.0]' );
 // setallx, setallfv
 newsimplex = [
 1.0 2.0
@@ -113,10 +75,10 @@ newsimplex = [
 5.0 6.0];
 s1 = optimsimplex_setallx ( s1 , newsimplex );
 computed = optimsimplex_getallx (s1);
-assert_equal ( computed , newsimplex );
+assert_checkequal ( computed , newsimplex );
 s1 = optimsimplex_setallfv ( s1 , [3.0 4.0 5.0]' );
 computed = optimsimplex_getallfv (s1);
-assert_equal ( computed , [3.0 4.0 5.0]' );
+assert_checkequal ( computed , [3.0 4.0 5.0]' );
 s1 = optimsimplex_destroy(s1);
 
 //
@@ -133,21 +95,21 @@ expected = [
 0.0 0.0
 1.0 0.0  
 0.0 2.0];
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 computed = optimsimplex_getallfv ( s1 );
-assert_equal ( computed , [13.0 14.0 15.0]' );
+assert_checkequal ( computed , [13.0 14.0 15.0]' );
 ve1 = optimsimplex_getve ( s1 , 1 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [0.0 0.0] );
-assert_equal ( ve1.fv , 13.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [0.0 0.0] );
+assert_checkequal ( ve1.fv , 13.0 );
 ve2 = optimsimplex_getve ( s1 , 2 );
-assert_equal ( ve2.n , 2 );
-assert_equal ( ve2.x , [1.0 0.0] );
-assert_equal ( ve2.fv , 14.0 );
+assert_checkequal ( ve2.n , 2 );
+assert_checkequal ( ve2.x , [1.0 0.0] );
+assert_checkequal ( ve2.fv , 14.0 );
 ve3 = optimsimplex_getve ( s1 , 3 );
-assert_equal ( ve3.n , 2 );
-assert_equal ( ve3.x , [0.0 2.0] );
-assert_equal ( ve3.fv , 15.0 );
+assert_checkequal ( ve3.n , 2 );
+assert_checkequal ( ve3.x , [0.0 2.0] );
+assert_checkequal ( ve3.fv , 15.0 );
 s1 = optimsimplex_destroy(s1);
 //
 // optimsimplex_getall, optimsimplex_setall
@@ -164,7 +126,7 @@ expected = [
     14.    1.    0.  
     15.    0.    2.  
 ];
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 simplex = [
 10.0 1.0 2.0
 11.0 3.0 4.0
@@ -172,17 +134,17 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 ve1 = optimsimplex_getve ( s1 , 1 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [1.0 2.0] );
-assert_equal ( ve1.fv , 10.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [1.0 2.0] );
+assert_checkequal ( ve1.fv , 10.0 );
 ve1 = optimsimplex_getve ( s1 , 2 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [3.0 4.0] );
-assert_equal ( ve1.fv , 11.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [3.0 4.0] );
+assert_checkequal ( ve1.fv , 11.0 );
 ve1 = optimsimplex_getve ( s1 , 3 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [5.0 6.0] );
-assert_equal ( ve1.fv , 12.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [5.0 6.0] );
+assert_checkequal ( ve1.fv , 12.0 );
 s1 = optimsimplex_destroy(s1);
 //
 // Test setall with wrong simplex : 
@@ -196,10 +158,7 @@ simplex = [
 12.0 5.0 6.0 12.0
 ];
 cmd = "s1 = optimsimplex_setall ( s1 , simplex );";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimsimplex_setall: The number of vertices (i.e. the number of rows) is 3 which is smaller than the number of columns 4 (i.e. n+1).";
-assert_equal ( computed , expected );
+assert_checkerror ( cmd , "%s: The number of vertices (i.e. the number of rows) is %d which is smaller than the number of columns %d (i.e. n+1)." , [], "optimsimplex_setall",3,4);
 s1 = optimsimplex_destroy(s1);
 
 //
@@ -221,7 +180,7 @@ expected = [
     16.    1.    3.  
     17.    2.    4.  
 ];
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 simplex = [
 10.0 1.0 2.0
 11.0 3.0 4.0
@@ -231,25 +190,25 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 ve1 = optimsimplex_getve ( s1 , 1 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [1.0 2.0] );
-assert_equal ( ve1.fv , 10.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [1.0 2.0] );
+assert_checkequal ( ve1.fv , 10.0 );
 ve1 = optimsimplex_getve ( s1 , 2 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [3.0 4.0] );
-assert_equal ( ve1.fv , 11.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [3.0 4.0] );
+assert_checkequal ( ve1.fv , 11.0 );
 ve1 = optimsimplex_getve ( s1 , 3 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [5.0 6.0] );
-assert_equal ( ve1.fv , 12.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [5.0 6.0] );
+assert_checkequal ( ve1.fv , 12.0 );
 ve1 = optimsimplex_getve ( s1 , 4 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [6.0 7.0] );
-assert_equal ( ve1.fv , 13.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [6.0 7.0] );
+assert_checkequal ( ve1.fv , 13.0 );
 ve1 = optimsimplex_getve ( s1 , 5 );
-assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [7.0 8.0] );
-assert_equal ( ve1.fv , 14.0 );
+assert_checkequal ( ve1.n , 2 );
+assert_checkequal ( ve1.x , [7.0 8.0] );
+assert_checkequal ( ve1.fv , 14.0 );
 s1 = optimsimplex_destroy(s1);
 //
 // Test optimsimplex_setallx, optimsimplex_setallfv, optimsimplex_getallx, optimsimplex_getallfv with 5 vertices
@@ -276,9 +235,9 @@ expected = [
     1.    3.  
     2.    4.  
 ];
-assert_equal ( computed , expected );
+assert_checkequal ( computed , expected );
 computed = optimsimplex_getallfv (s1);
-assert_equal ( computed , [12.0 13.0 14.0 15.0 16.0]' );
+assert_checkequal ( computed , [12.0 13.0 14.0 15.0 16.0]' );
 // setallx, setallfv
 newsimplex = [
     1.    2.   
@@ -289,9 +248,9 @@ newsimplex = [
 ];
 s1 = optimsimplex_setallx ( s1 , newsimplex );
 computed = optimsimplex_getallx (s1);
-assert_equal ( computed , newsimplex );
+assert_checkequal ( computed , newsimplex );
 s1 = optimsimplex_setallfv ( s1 , [3.0 4.0 5.0 6.0 7.0]' );
 computed = optimsimplex_getallfv (s1);
-assert_equal ( computed , [3.0 4.0 5.0 6.0 7.0]' );
+assert_checkequal ( computed , [3.0 4.0 5.0 6.0 7.0]' );
 s1 = optimsimplex_destroy(s1);
 

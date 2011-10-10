@@ -139,7 +139,7 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		freeArrayOfString(librariesResult, librariesResultSize);
 		if (pStVarOne){FREE(pStVarOne); pStVarOne = NULL;}
 
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

@@ -1,1 +1,0 @@
-lines(0);while(1),k=xgetmouse();if k<>-1 then disp(k);end;end;

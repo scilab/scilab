@@ -48,7 +48,7 @@ c
       dimension a(ia,*),ea(iea,*),wk(*),ipvt(*)
 c internal variables
       integer i,j,k,m,ndng,maxc,n2
-      double precision rcond,c,efact,two,zero,norm,one
+      double precision rcond,c,efact,two,zero,norm,one,w
       dimension c(41)
 c
 cDEC$ IF DEFINED (FORDLL)
@@ -56,7 +56,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /dcoeff/
 cDEC$ ENDIF
       common /dcoeff/ c, ndng
 c
-      data zero, one, two, maxc /0.0d+0,1.0d+0,2.0d+0,10/
+      data zero, one, two, maxc /0.0d+0,1.0d+0,2.0d+0,15/
       n2=n*n
 c
       if (ndng.ge.0) go to 10
@@ -66,16 +66,25 @@ c machine precision
 c
       call coef(ierr)
       if(ierr.ne.0) goto 170
+
+c     look for a power of 2 greater than alpha
    10 m = 0
       efact = one
       if (alpha.le.1.0d+0) go to 90
-      do 20 i=1,maxc
-         m = m + 1
-         efact = efact*two
-         if (alpha.le.efact) go to 60
-   20 continue
-      ierr = -4
-      go to 170
+c     
+      w=log(alpha)/log(2.0d0)
+      m=int(w)
+      if (dble(m).lt.w) m=m+1
+      efact=2.0d0**m
+      goto 60
+c$$$      do 20 i=1,maxc
+c$$$         m = m + 1
+c$$$         efact = efact*two
+c$$$         if (alpha.le.efact) go to 60
+c$$$   20 continue
+c$$$      
+c$$$      ierr = -4
+c$$$      go to 170
    30 m = m + 1
       efact = efact*two
       do 50 i=1,n
@@ -88,7 +97,8 @@ c
 c
 c we find a matrix a'=a*2-m whith a spectral radius smaller than one.
 c
-   60 do 80 i=1,n
+   60 continue
+      do 80 i=1,n
          do 70 j=1,n
             a(i,j) = a(i,j)/efact
    70    continue

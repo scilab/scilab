@@ -1,0 +1,171 @@
+# Russian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-02 21:20+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: ru\n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: Переменная «ans» не может быть изменена.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Переменная %s не определена.\n"
+
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr "%s: Проблема с памятью в Java, не удалось изменить %s\n"
+
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr "%s: Данный тип ещё не поддерживается"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Close"
+msgstr "&Закрыть"
+
+msgid "&?"
+msgstr "&Справка"
+
+msgid "&About Scilab..."
+msgstr "&О Scilab"
+
+msgid "Icon"
+msgstr "Значок"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Bytes"
+msgstr "Байт"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Visibility"
+msgstr "Видимость"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Double"
+msgstr "Числа с двойной точностью"
+
+msgid "Polynomial"
+msgstr "Полиномы"
+
+msgid "Boolean"
+msgstr "Логические значения"
+
+msgid "Sparse"
+msgstr "Разряженные матрицы"
+
+msgid "Sparse boolean"
+msgstr "Разряженные логические матрицы"
+
+msgid "Integer"
+msgstr "Целые числа"
+
+msgid "Graphic handles"
+msgstr "Графические дескрипторы"
+
+msgid "String"
+msgstr "Строки"
+
+msgid "Un-compiled function"
+msgstr "Нескомпилированные функции"
+
+msgid "Compiled function"
+msgstr "Скомпилированные функции"
+
+msgid "Function library"
+msgstr "Библиотеки функций"
+
+msgid "List"
+msgstr "Простые списки"
+
+msgid "Tlist"
+msgstr "Типизированные списки"
+
+msgid "Mlist"
+msgstr "Матричные типизированные списки"
+
+msgid "Pointer"
+msgstr "Указатели"
+
+msgid "Intrinsic function"
+msgstr "Внутренние функции"
+
+msgid "Matlab sparse"
+msgstr "Разряженные матрицы Matlab"
+
+msgid "Implicit polynomial"
+msgstr "Неявные полиномы"
+
+msgid "Variable Editor"
+msgstr "Редактор переменных"
+
+msgid "Variable Browser"
+msgstr "Обозреватель переменных"
+
+msgid "Global variables can not be edited."
+msgstr "Глобальные переменные не могут быть изменены."
+
+msgid "Refresh the variable "
+msgstr "Обновить список переменных "
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Redo"
+msgstr "Повторить"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"

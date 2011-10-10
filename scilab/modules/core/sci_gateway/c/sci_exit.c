@@ -87,7 +87,7 @@ int C2F(sci_exit)(char *fname,unsigned long fname_len)
 	C2F(com).fun = -999;
 
 	LhsVar(1) = 0; 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

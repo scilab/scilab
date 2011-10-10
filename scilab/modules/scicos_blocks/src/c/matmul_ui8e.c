@@ -37,7 +37,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui8e(scicos_block *block,int flag)
 		unsigned char *u1 = Getuint8InPortPtrs(block,1);
 		unsigned char *u2 = Getuint8InPortPtrs(block,2);
 		unsigned char *y = Getuint8OutPortPtrs(block,1);
-		int *ipar = GetIparPtrs(block);
 
 		double k = pow(2,8);
 		int l = 0;

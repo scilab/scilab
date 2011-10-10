@@ -24,6 +24,7 @@ if XCOS
 # Code not factorized with the one on the bottom since sundials must be
 # compiled first
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
+noinst_LTLIBRARIES = libsciscicos-algo.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/scicos_malloc.c \
@@ -78,7 +79,6 @@ sci_gateway/c/sci_getscicosvars.c \
 sci_gateway/c/sci_haltscicos.c \
 sci_gateway/c/sci_loadScicos.c \
 sci_gateway/c/sci_model2blk.c \
-sci_gateway/c/sci_permutobj.c \
 sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
 sci_gateway/c/sci_scicos_debug.c \
@@ -93,16 +93,16 @@ sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c
 
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
-sci_gateway/fortran/sci_curblock.f \
-sci_gateway/fortran/sci_debug_count.f \
-sci_gateway/fortran/sci_getblocklabel.f \
-sci_gateway/fortran/sci_scicos_debug.f \
-sci_gateway/fortran/sci_tree2.f \
-sci_gateway/fortran/sci_tree3.f \
-sci_gateway/fortran/sci_tree4.f \
-sci_gateway/fortran/sci_var2vec.f \
-sci_gateway/fortran/sci_vec2var.f
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
+sci_gateway/fortran/sci_f_curblock.f \
+sci_gateway/fortran/sci_f_debug_count.f \
+sci_gateway/fortran/sci_f_getblocklabel.f \
+sci_gateway/fortran/sci_f_scicos_debug.f \
+sci_gateway/fortran/sci_f_tree2.f \
+sci_gateway/fortran/sci_f_tree3.f \
+sci_gateway/fortran/sci_f_tree4.f \
+sci_gateway/fortran/sci_f_var2vec.f \
+sci_gateway/fortran/sci_f_vec2var.f
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
@@ -125,31 +125,24 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
 
 
-libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
+libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_CFLAGS = $(libsciscicos_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 
-libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la \
-$(top_builddir)/modules/mexlib/libmat.la \
-$(top_builddir)/modules/mexlib/libmx.la \
-$(top_builddir)/modules/intersci/libsciintersci.la \
-$(top_builddir)/modules/graphics/libscigraphics.la \
-$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-$(top_builddir)/modules/time/libscitime.la \
-$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-$(top_builddir)/modules/scicos/libscisundials.la \
-$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-$(top_builddir)/modules/mexlib/libmex.la \
- \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
+libsciscicos_la_LIBADD = libsciscicos-algo.la libscisundials.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la 
+
+if GUI
+libsciscicos_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la 
+endif
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA =  license.txt version.xml
+libsciscicos_la_root_DATA =  license.txt
 
 
 #### scicos : init scripts ####
@@ -189,7 +182,6 @@ palettes/Threshold.cosf
 
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \
-macros/scicos_menus \
 macros/scicos_scicos \
 macros/scicos_utils
 

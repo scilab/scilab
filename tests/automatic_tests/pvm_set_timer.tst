@@ -1,9 +1,0 @@
-getf SCI/util/testexamples.sci
-reinit_for_test()
-%U=mopen('SCI/tests/automatic_tests/pvm_set_timer_data.ref','rb');
-%ans = pvm_set_timer();
-if load_ref('%ans') then   pause,end,
-
-xdel_run(winsid());
-
-mclose(%U);

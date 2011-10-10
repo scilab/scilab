@@ -1,0 +1,776 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-09-01 15:19+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "overflow error"
+msgstr "помилка переповнення"
+
+msgid "Trigger block must have discrete time input."
+msgstr ""
+"Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
+"чисел."
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "Змінної «%s» не існує.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "Змінна некоректного типу.\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Непослідовна розмірність даних:\n"
+" Розмірність змінної=[%d,%d] \n"
+"Розмірність блоку виведення=[%d,%d].\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "Виведені дані мають належати до дійсних чисел.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "Виведені дані мають належати до комплексних чисел.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "Виведені дані мають належати до типу int8.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "Виведені дані мають належати до типу int16.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "Виведені дані мають належати до типу int32.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "Виведені дані мають належати до типу uint8.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "Виведені дані мають належати до типу uint16.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "Виведені дані мають належати до типу uint32.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+"Вектор часу має помилкову розмірність: мало бути — [%d, %d], маємо — [%d, "
+"%d].\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Тип вектора значень часу не збігається з double.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "Значення вектора часових даних має бути вказано за зростанням.\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "Проблема розподілу у сплайні.\n"
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr "Некоректний тип змінної: помилка у коді функції hypermat scilab.\n"
+
+#, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+
+msgid "Read error!\n"
+msgstr "Помилка читання!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Не вдалося відкрити файл!\n"
+
+msgid "Read error\n"
+msgstr "Помилка читання\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "ПОМИЛКА ДІАПАЗОНУ: помилка у scoReallocLongDraw()"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+"ПОМИЛКА ДІАПАЗОНУ: неможливо виконати sciDrawObj, pShortDraw дорівнює NULL з "
+"невідомої причини!\n"
+" Ймовірно, вами було знищено об’єкти вікон або батьківські об’єкти кривих.\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr ""
+"ПОМИЛКА ДІАПАЗОНУ: помилка під час спроби виконання malloc — чи достатньо "
+"пам’яті?\n"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "ПОМИЛКА ДІАПАЗОНУ: помилка з невідомим кодом!\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr "Неправильне значення параметра розмірності"
+
+msgid "This scope has the same window id than another."
+msgstr ""
+"Ідентифікатор вікна цієї області збігається з ідентифікатором вікна іншої"
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr "Не можна використовувати %s для цього типу об’єктів."
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "час затримки=%f, останній збережений час=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "Помилка під час спроби відкриття файла «%s».\n"
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Помилка під час спроби запису до файла «%s».\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "час затримки=%f, останній збережений час=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr "Спробуйте збільшити розмір буфера у блоці затримки змінної\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Не вдалося відкрити /dev/audio!\n"
+
+msgid "Clear a bit"
+msgstr "Спорожнити біт"
+
+#, c-format
+msgid "Set %s block parameters"
+msgstr "Визначити параметри блоку %s"
+
+#, c-format
+msgid "Data Type %s"
+msgstr "Тип даних %s"
+
+msgid "Index of Bit (0 is least significant)"
+msgstr "Позиція біта (0 — менший біт)"
+
+msgid "Index of Bit"
+msgstr "Номер біта"
+
+#, c-format
+msgid "Wrong type for '%s' parameter: %5.1f."
+msgstr "Помилковий тип параметра «%s»: %5.1f."
+
+msgid "Must be integer."
+msgstr "Має бути цілим значенням."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d."
+msgstr "Помилкове значення параметра «%s»: %d."
+
+#, c-format
+msgid "Must be in the interval %s."
+msgstr "Має належати проміжку %s."
+
+msgid "Data Type"
+msgstr "Тип даних"
+
+msgid "Set a bit"
+msgstr "Визначити біт"
+
+msgid "Type conversion"
+msgstr "Перетворення типів"
+
+msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Тип вхідних даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
+
+msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Тип виведених даних (1: double, 3: int32, 4: int16, 5: int8, ...)"
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr ""
+"Дія при переповненні (0: Нічого, 1: Доповнити, 2: Повідомити про помилку)"
+
+msgid "Do on Overflow"
+msgstr "Дія при переповненні"
+
+msgid "Input Type"
+msgstr "Вхідний тип"
+
+msgid "Output Type"
+msgstr "Тип вихідних даних"
+
+msgid "Bits Extraction"
+msgstr "Видобування бітів"
+
+msgid "&nbsp;- Bits to Extract:"
+msgstr "&nbsp;- Біти для видобування:"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 верхня половина"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 нижня половина"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 діапазон від старшого біта"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 діапазон до меншого біта"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 діапазон бітів"
+
+msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
+msgstr "&nbsp;- Кількість бітів або позиція біта: позиція 0 — менший біт"
+
+msgid ""
+"&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
+"[Start, End]"
+msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;Якщо значенням «Біти для видобування» є «Діапазон "
+"бітів»: [Початок, Кінець]"
+
+msgid "Bits to extract"
+msgstr "Біти для видобування"
+
+msgid "Number of Bits or Index of Bit"
+msgstr "Кількість бітів або позиція біта"
+
+msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
+msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
+
+msgid "Bits to Extract"
+msgstr "Біти, які слід видобути"
+
+msgid "Treat Bit Field as an Integer"
+msgstr "Вважати бітове поле цілим числом"
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %s."
+msgstr "Помилкова розмірність параметра «%s»: %s."
+
+msgid "Must be a single value."
+msgstr "Має бути однобітовим значенням."
+
+msgid "Must have this form: [Start, End]."
+msgstr "Повинне мати формат [Початок, Кінець]."
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %s."
+msgstr "Помилкове значення параметра «%s»: %s."
+
+msgid "'Start' must be less than 'End'."
+msgstr "Значення «Початок» має бути меншим за значення «Кінець»."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s."
+msgstr "Помилкове значення параметра «%s»: %s."
+
+#, c-format
+msgid "Indexes must be in the interval %s."
+msgstr "Позиції мають належати діапазону %s."
+
+msgid "Integer matrix multiplication"
+msgstr "Множення цілих матриць"
+
+msgid "JK flip-flop"
+msgstr "JK-тригер"
+
+msgid "The 'Initial Value' must be 0 or 1 of type int8"
+msgstr "«Початкове значення» має бути рівним 0 або 1 і належати до типу int8"
+
+msgid "&nbsp;- Negative values are considered as int8(0)"
+msgstr "&nbsp;- Вважається, що від’ємні дані належать до типу int8(0)"
+
+msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr "&nbsp;- Вважається, що додатні дані належать до типу int8(1)"
+
+msgid "Initial Value"
+msgstr "Початкове значення"
+
+msgid "Combinatorial logic"
+msgstr "Комбінаторна логіка"
+
+msgid "&nbsp; Number of rows must be a power of two."
+msgstr "&nbsp; Кількість рядків має бути рівною степеню двійки."
+
+msgid "&nbsp; Rows of the matrix are the output values"
+msgstr "&nbsp; Рядками матриці є виведені дані"
+
+msgid "&nbsp; Number of columns gives the number of outputs."
+msgstr "&nbsp; Кількість стовпчиків вказує на кількість виведених значень."
+
+msgid "Accepts Inherited Events (0:No, 1:Yes)"
+msgstr "Приймає успадковані події (0: Ні, 1: Так)"
+
+msgid "Truth Table (matrix of outputs)"
+msgstr "Таблиця істинності (матриця виведених даних)"
+
+msgid "Truth Table"
+msgstr "Таблиця істинності"
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %d."
+msgstr "Помилкова розмірність параметра «%s»: %d."
+
+msgid "Number of rows must be a power of two."
+msgstr "Кількість рядків має бути рівною степеню двійки."
+
+#, c-format
+msgid "Wrong value for '%s' parameter."
+msgstr "Помилкове значення параметра «%s»."
+
+#, c-format
+msgid "Elements must be in the interval %s."
+msgstr "Елементи мають належати інтервалу %s."
+
+msgid "Accepts Inherited Events"
+msgstr "Приймах успадковані події"
+
+msgid "Shift/Rotates bits"
+msgstr "Зсув/Циклічна перестановка бітів"
+
+msgid "Number of Bits to Shift Left (Negative number to shift right)"
+msgstr ""
+"Кількість бітів для зсування (від’ємне значення призведе до зсуву праворуч)"
+
+msgid "Shift Type (0:Arithmetic, 1:Circular)"
+msgstr "Тип зсуву (0: арифметичний, 1: циклічний)"
+
+msgid "Shift Type"
+msgstr "Тип зсуву"
+
+msgid "SR flip-flop"
+msgstr "SR-тригер"
+
+msgid "Invalid masked block."
+msgstr "Некоректно замаскований блок."
+
+msgid "Finite differences"
+msgstr "Скінченні різниці"
+
+msgid "Finite elements"
+msgstr "Скінченні елементи"
+
+msgid "negative"
+msgstr "від’ємний"
+
+msgid "null"
+msgstr "нульовий"
+
+msgid "positive"
+msgstr "додатний"
+
+msgid "PDE block"
+msgstr "Блок ДРЧП"
+
+msgid "Domain"
+msgstr "Область"
+
+msgid "PDE Specification"
+msgstr "Специфікація ДРЧП"
+
+msgid "PDE Expression:"
+msgstr "Вираз ДРЧП:"
+
+msgid "Display"
+msgstr "Показ"
+
+msgid "Discriminant type:"
+msgstr "Тип дискримінанта:"
+
+msgid "Constant discriminant"
+msgstr "Сталий дискримінант"
+
+msgid "Variable discriminant:"
+msgstr "Дискримінант змінної:"
+
+msgid "Spatial discretization method"
+msgstr "Спосіб просторової дискретизації"
+
+msgid "Choice:"
+msgstr "Вибір:"
+
+msgid "Automatic"
+msgstr "Автоматично"
+
+msgid "Manual"
+msgstr "Вручну"
+
+msgid "Type:"
+msgstr "Тип:"
+
+msgid "Ordering:"
+msgstr "Впорядкування:"
+
+msgid "degree:"
+msgstr "порядок:"
+
+msgid "Number of nodes:"
+msgstr "Кількість вузлів:"
+
+msgid "Display step value"
+msgstr "Показувати значення кроку"
+
+msgid "Initial conditions"
+msgstr "Початкові умови"
+
+msgid "Boundary condition on a"
+msgstr "Гранична умова на a"
+
+msgid "Boundary condition on b"
+msgstr "Гранична умова на b"
+
+msgid "Expression ="
+msgstr "Вираз ="
+
+msgid "Measurement points"
+msgstr "Точки вимірювання"
+
+msgid "The measurement points"
+msgstr "Точки вимірювання"
+
+msgid "Add"
+msgstr "Додати"
+
+msgid "Remove"
+msgstr "Вилучити"
+
+msgid "Validate"
+msgstr "Підтвердити"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Event output port"
+msgstr "Порт виведення даних подій"
+
+msgid "Port number"
+msgstr "Номер порту"
+
+#, c-format
+msgid "Wrong value for 'Port Number' parameter: %d."
+msgstr "Помилкове значення параметра «Номер порту»: %d."
+
+msgid "Strictly positive integer expected."
+msgstr "Слід вказати додатне ціле число."
+
+msgid "Implicit output port"
+msgstr "Неявний порт виведення даних"
+
+msgid "Regular output port"
+msgstr "Порт звичайного виведення даних"
+
+msgid "Write to output file"
+msgstr "Записати до файла вихідних даних"
+
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; — файл двійових даних, якщо не вказано формату"
+
+msgid "Write is done on:"
+msgstr "Запис здійснено:"
+
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr ""
+"&nbsp; — форматований текстовий файл, якщо вказано формат (тип Fortran)"
+
+msgid "Input Size"
+msgstr "Вхідна розмірність"
+
+msgid "Output File Name"
+msgstr "Назва файла вихідних даних"
+
+msgid "Buffer Size"
+msgstr "Розмір буфера"
+
+msgid "Output Format"
+msgstr "Формат вихідних даних"
+
+msgid "End current simulation first."
+msgstr "Спочатку завершіть поточне моделювання"
+
+msgid ""
+"Simulation running !!! You cannot switch<br />between formatted and "
+"unformatted when running"
+msgstr ""
+"Виконується імітація! Не можна перемикатися<br />між форматованим та "
+"неформатованим типом під час імітації."
+
+msgid "You cannot modify 'Output File Name' when running."
+msgstr ""
+"Не можна змінювати значення «Назва файла вихідних даних» під час виконання."
+
+msgid "Wrong value for 'Output File Name' parameter"
+msgstr "Помилкове значення параметра «Назва файла вихідних даних»"
+
+msgid "You must provide a filename."
+msgstr "Слід вказати назву файла."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Каталогу «%s» не існує"
+
+msgid "Input Format"
+msgstr "Формат вхідних даних"
+
+msgid "You must enclose the format's string between parentheses."
+msgstr "Рядок опису формату слід вказувати у дужках."
+
+msgid "Must be greater than 1."
+msgstr "Має бути більшим за 1."
+
+msgid "Swap Mode (0:No, 1:Yes)"
+msgstr "Режим переставляння (0 — ні, 1 — так)"
+
+msgid "Write '.au' sound file on audio device"
+msgstr "Запис файла звукових даних «.au» на пристрій відтворення"
+
+#, c-format
+msgid "You cannot modify '%s' when running."
+msgstr "Не можна змінювати «%s» під час виконання."
+
+msgid "End current simulation first"
+msgstr "Спочатку завершіть поточне моделювання"
+
+msgid "Swap Mode"
+msgstr "Режим переставляння"
+
+msgid "Write to C binary file"
+msgstr "Записати до файла двійкових даних C"
+
+msgid "Valid formats are: "
+msgstr "Можливі такі формати: "
+
+#, c-format
+msgid "You cannot modify '%s' when running"
+msgstr "Не можна змінювати «%s» під час виконання"
+
+msgid "You cannot modify 'Buffer Size' when running."
+msgstr "Не можна змінювати значення «Розмір буфера» під час виконання."
+
+msgid "Event input port"
+msgstr "Порт введення даних подій"
+
+#, c-format
+msgid "Wrong values for 'Port Number' parameter: %d."
+msgstr "Помилкові значення параметра «Номер порту»: %d."
+
+msgid "Event clock generator"
+msgstr "Породжувач подій годинника"
+
+msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
+msgstr "&nbsp; не починати, якщо «Час ініціалізації» є від’ємним"
+
+msgid "Initialisation Time"
+msgstr "Час ініціалізації"
+
+msgid "Period"
+msgstr "Період"
+
+msgid "Strictly positive number expected."
+msgstr "Мало бути вказано додатне число"
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %5.1e."
+msgstr "Помилкове значення параметра «%s»: %5.1e."
+
+msgid "Constant Value"
+msgstr "Значення сталої"
+
+msgid "Constant value generator"
+msgstr "Породжувач значень сталої"
+
+msgid "Constant value must have at least one element."
+msgstr "Стала має складатися принаймні з одного елемента."
+
+#, c-format
+msgid "Wrong size for '%s' parameter"
+msgstr "Помилкова розмірність параметра «%s»"
+
+#, c-format
+msgid "Wrong type for '%s' parameter"
+msgstr "Помилковий тип параметра «%s»"
+
+msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
+msgstr ""
+"Значення має належати до числового типу (double, complex, int, int8, ...)."
+
+msgid "Integer counter generator"
+msgstr "Породжувач цілого лічильника"
+
+msgid "Maximum"
+msgstr "Максимум"
+
+msgid "Minimum"
+msgstr "Мінімум"
+
+msgid "Rule (1:Increment, 2:Decrement)"
+msgstr "Правило (1: збільшення, 2: зменшення)"
+
+#, c-format
+msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
+msgstr "Помилкові значення параметрів «Максимум» і «Мінімум»: %d &lt; %d"
+
+msgid "'Minimum' must be less than 'Maximum'."
+msgstr "«Мінімум» має бути меншим за «Максимум»."
+
+#, c-format
+msgid "Wrong value for 'Rule' parameter: %d"
+msgstr "Помилкове значення параметра «Правило»: %d"
+
+msgid "Sine wave generator"
+msgstr "Генератор синусоїдальної хвилі"
+
+msgid "Frequency (rad/s)"
+msgstr "Частота (рад/с)"
+
+msgid "Magnitude"
+msgstr "Амплітуда"
+
+msgid "Phase (rad)"
+msgstr "Фаза (рад)"
+
+#, c-format
+msgid "Wrong value for 'Frequency' parameter: %e."
+msgstr "Помилкове значення параметра «Частота»: %e."
+
+msgid "Implicit input port"
+msgstr "Неявний порт введення даних"
+
+msgid "Regular input port"
+msgstr "Порт звичайного введення даних"
+
+msgid "Modulo counter (0 to N counter)"
+msgstr "Модульний лічильник (лічильник від 0 до N)"
+
+msgid "Initial State (zero or positive number)"
+msgstr "Початковий стан (нульове або додатне число)"
+
+msgid "Upper Limit (positive number)"
+msgstr "Верхня межа (додатне число)"
+
+#, c-format
+msgid "Wrong value for 'Initial State' parameter: %d."
+msgstr "Помилкове значення параметра «Початковий стан»: %d."
+
+msgid "Null or positive integer expected."
+msgstr "Слід вказати нульове або додатне ціле число."
+
+#, c-format
+msgid "Wrong values for 'Upper Limit' parameter: %d."
+msgstr "Помилкові значення параметра «Верхня межа»: %d."
+
+msgid "Ramp function"
+msgstr "Пилкоподібна функція"
+
+msgid "Slope"
+msgstr "Нахил"
+
+msgid "Start Time"
+msgstr "Час початку"
+
+#, c-format
+msgid "Wrong value for 'Start Time' parameter: %e."
+msgstr "Помилкове значення параметра «Час початку»: %e."
+
+msgid "(Read Audio File)"
+msgstr "(Читаих файл аудіоданих)"
+
+msgid "Read is done on a binary '.au' file"
+msgstr "Читання виконано з файла двійкових даних «.au»"
+
+msgid "Buffer size"
+msgstr "Розмір буфера"
+
+msgid "Input File Name"
+msgstr "Назва файла вхідних даних"
+
+msgid "Simulation running !!! You cannot modify Input file name"
+msgstr "Виконується імітація! Не можна змінювати назву файла вхідних даних."
+
+#, c-format
+msgid "Must be greater than %d."
+msgstr "Має бути більшим за %d."
+
+msgid "Outputs Record Selection"
+msgstr "Вибір вихідних записів"
+
+msgid "Read from C binary file"
+msgstr "Читати з бінарного файла C"
+
+msgid "Time Record Selection"
+msgstr "Вибір запису часу"
+
+msgid "Record Size"
+msgstr "Розмір запису"
+
+msgid "Initial Record Index"
+msgstr "Номер початкового запису"
+
+msgid "Must be a scalar or an empty matrix."
+msgstr "Має бути число або порожня матриця."
+
+msgid "You must provide a file name."
+msgstr "Вам слід вказати назву файла."
+
+#, c-format
+msgid "Wrong value for  '%s' parameter: %d."
+msgstr "Помилкове значення параметра «%s»: %d."
+
+msgid "[1, Record Size = "
+msgstr "[1, розмір запису = "
+
+#, c-format
+msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr "Помилкове значення номерів у параметрі «%s»: %s."
+
+msgid "Step Function"
+msgstr "Східчаста функція"
+
+msgid "Final Value"
+msgstr "Остаточне значення"
+
+msgid "Step Time"
+msgstr "Час сходинки"
+
+#, c-format
+msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
+msgstr ""
+"«Початкове значення» і «Остаточне значення» мають несумісні розмірності: %d "
+"і %d."
+
+msgid "Same sizes expected."
+msgstr "Розмірності мали збігатися."
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "І&нструменти"
+
+msgid "&Edit"
+msgstr "З&міни"
+
+msgid "&?"
+msgstr "&Довідка"

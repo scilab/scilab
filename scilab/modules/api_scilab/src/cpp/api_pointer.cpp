@@ -93,7 +93,7 @@ SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");
 		return sciErr;
 	}
 
@@ -129,6 +129,12 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
 	int iSaveTop	= Top;
 	void* pvPtr	= NULL;
 	int *piAddr	= NULL;
+
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedPointer");
+        return sciErr;
+    }
 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;

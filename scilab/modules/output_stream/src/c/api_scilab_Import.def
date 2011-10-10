@@ -12,3 +12,7 @@ getVarDimension
 getMatrixOfDouble
 getMatrixOfWideString
 createMatrixOfBoolean
+checkVarDimension
+getAllocatedSingleString
+createMatrixOfString
+freeAllocatedSingleString

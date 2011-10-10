@@ -6,62 +6,41 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-10-31 20:54+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"PO-Revision-Date: 2011-09-01 09:37+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: de\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
 " Eine Extraktion einer Hypermatrix muß mindesten zwei Argumente haben. "
 
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr ""
-
 msgid " Argument is not an hypermatrix. "
 msgstr " Argument ist keine Hypermatrix. "
-
-msgid " Bad hypermatrix insertion. "
-msgstr " Schlechtes Einfügen einer Hypermatrix. "
 
 msgid " Incompatible hypermatrix extraction. "
 msgstr " Inkompatible Extraktion einer Hypermatrix. "
 
 #, c-format
-msgid "%s: ''dims'' can not be used as a field name.\n"
-msgstr "%s: ''dims'' kann nicht als Feldname verwendet werden.\n"
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "Falscher (%d ter) Index in der Extraktion einer Hypermatrix. "
 
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " Eine Hypermatrix Umkehrung muß mindestens drei Argumente haben. "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " Schlechtes Einfügen einer Hypermatrix. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
-msgstr "%s: Falsche Anzahl Eingabeargumente: gerade Anzahl erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected"
-msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein strukturiertes Datenfeld "
-"erwartet.\n"
+"Zu viele Argumente im Stapel, editieren Sie stack.h und vergrößern Sie "
+"intersiz\n"
 
 #, c-format
 msgid ""
@@ -72,14 +51,37 @@ msgstr ""
 "ganze Zahlen sein.\n"
 
 #, c-format
-msgid "%s: field name ''%s'' defined twice.\n"
-msgstr "%s: Feldname ''%s'' doppelt definiert.\n"
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+"%s: Anzahl an Einträgen stimmt nicht mit dem Produkt der Dimensionen überein."
 
 #, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "Falscher (%d ter) Index in der Extraktion einer Hypermatrix. "
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet"
 
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
 msgstr ""
-"Zu viele Argumente im Stapel, editieren Sie stack.h und vergrößern Sie "
-"intersiz\n"
+"%s: falscher Typ für Eingangsargument #%d: ein strukturiertes Datenfeld "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr "%s: Falsche Anzahl Eingabeargumente: gerade Anzahl erwartet.\n"
+
+#, c-format
+msgid "%s: 'dims' can not be used as a field name.\n"
+msgstr "%s: 'dims' kann nicht als Feldname verwendet werden.\n"
+
+#, c-format
+msgid "%s: field name '%s' defined twice.\n"
+msgstr "%s: Feldname '%s' doppelt definiert.\n"

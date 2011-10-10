@@ -7,67 +7,52 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2010-01-16 18:49+0000\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-09-01 09:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: uk\n"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: не вдалося відкрити файл %s.\n"
-
-#, c-format
-msgid "%s: End of file.\n"
-msgstr "%s: кінець файла.\n"
-
-#, c-format
-msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr ""
-"%s: не вдалося прочитати потрібні дані, ймовірно, помилка у файлі xls.\n"
+msgid "The file %s does not exist.\n"
+msgstr "Файла з назвою %s не існує.\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
 msgstr "%s: файл %s не є файлом ole2.\n"
 
 #, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: помилковий або пошкоджений файл.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s: не є файлом ole2.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: можлива обробка лише файлів у форматі BIFF8.\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: у файлі не вказано каталогу робочої книги.\n"
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
 
 #, c-format
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: у файлі ole2 %s не виявлено потоку даних xls.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: не є файлом ole2.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: у файлі не вказано каталогу робочої книги.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: помилковий або пошкоджений файл.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: можлива обробка лише файлів у форматі BIFF8.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -76,61 +61,35 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgid "%s: Failed to read expected data, may be invalid xls file.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
+"%s: не вдалося прочитати потрібні дані, ймовірно, помилка у файлі xls.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
+msgid "%s: End of file.\n"
+msgstr "%s: кінець файла.\n"
 
 #, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: файла з назвою «%s» не існує.\n"
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr ""
+"LOGGER_set_logfile: ПОМИЛКА: не вдалося відкрити файл журналу «%s» (%s)"
 
 #, c-format
-msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
-"%s:%d: розбіжність у читанні байтів. Надіслано запит на %d, отримано %d\n"
+"LOGGER_set_logfile: ПОМИЛКА: не вдалося відкрити файл журналу «%s» (%s)\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment: ДІАГНОСТИКА: долучення %s:%s:%s розмір = "
-"%d\n"
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-Default: %s%s"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment: ДІАГНОСТИКА: надсилання запиту щодо назви "
-"файла"
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося створити рядок назви файла "
-"за «%s» і «%s»"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося відкрити %s для запису "
-"(%s)\n"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream: ПОПЕРЕДЖЕННЯ: записано лише %d з %d байтів до "
-"файла %s\n"
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d:OLE_set_debug: встановлено рівень діагностики %d"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
@@ -142,25 +101,21 @@ msgstr ""
 "%s:%d:OLE_get_block: ПОМИЛКА: не вдалося отримати %d байтів для блоку OLE"
 
 #, c-format
-msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
-msgstr "%s:%d:OLE_get_block: помилка: файл OLE закрито\n"
-
-#, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
 msgstr "%s:%d:OLE_get_block: ПОМИЛКА: невдале позиціювання (блок=%d:%d)"
 
 #, c-format
-msgid ""
-"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
 msgstr ""
-"%s:%d:OLE_get_miniblock: ПОМИЛКА: не вдалося отримати достатньо пам’яті для "
-"miniChain"
+"%s:%d: розбіжність у читанні байтів. Надіслано запит на %d, отримано %d\n"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr ""
-"%s:%d:OLE_load_FAT: ПОМИЛКА: перевищено обмеження файлової системи FAT %p >= "
-"%p"
+msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
+msgstr "%s:%d:OLE_get_block: помилка: файл OLE закрито\n"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d:OLE_load_FAT: ПОМИЛКА: не вдалося отримати %d байтів\n"
 
 #, c-format
 msgid ""
@@ -171,22 +126,27 @@ msgstr ""
 "сектора = 0x%x, позиція fat = 0x%x"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
-msgstr "%s:%d:OLE_load_FAT: ПОМИЛКА: не вдалося отримати %d байтів\n"
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr ""
+"%s:%d:OLE_load_FAT: ПОМИЛКА: перевищено обмеження файлової системи FAT %p >= "
+"%p"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr "%s:%d:OLE_load_FAT: ПОМИЛКА: запит на дані від’ємного сектора (%d)"
 
 #, c-format
+msgid ""
+"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgstr ""
+"%s:%d:OLE_get_miniblock: ПОМИЛКА: не вдалося отримати достатньо пам’яті для "
+"miniChain"
+
+#, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
 "%s:%d:OLE_load_chain: ПОМИЛКА: вихід підпрограми load-chain за межі "
 "доступної пам’яті"
-
-#, c-format
-msgid "%s:%d:OLE_open_directory:ERROR: %s"
-msgstr "%s:%d:OLE_open_directory: ПОМИЛКА: %s"
 
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
@@ -199,8 +159,8 @@ msgstr ""
 "%s:%d:OLE_open_file: ПОМИЛКА: не вдалося відкрити %s для читання (%s)\n"
 
 #, c-format
-msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr "%s:%d:OLE_set_debug: встановлено рівень діагностики %d"
+msgid "%s:%d:OLE_open_directory:ERROR: %s"
+msgstr "%s:%d:OLE_open_directory: ПОМИЛКА: %s"
 
 #, c-format
 msgid ""
@@ -220,6 +180,46 @@ msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
 "%s:%d:OLE_store_stream: ПОПЕРЕДЖЕННЯ: записано лише %d з %d байтів до файла "
 "%s"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося створити рядок назви файла "
+"за «%s» і «%s»"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream: ПОПЕРЕДЖЕННЯ: записано лише %d з %d байтів до "
+"файла %s\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося відкрити %s для запису "
+"(%s)\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment: ДІАГНОСТИКА: долучення %s:%s:%s розмір = "
+"%d\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment: ДІАГНОСТИКА: надсилання запиту щодо назви "
+"файла"
+
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr "Не вдалося декодувати потік з рядком елементів «%s»\n"
 
 #, c-format
 msgid ""
@@ -246,56 +246,27 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Не вдалося виявити файл вхідних даних «%s»"
-
-#, c-format
 msgid "Decoding filename=%s"
 msgstr "Декодування файла %s"
+
+#, c-format
+msgid "ripOLE requires an input file to decode.\n"
+msgstr "Для використання ripOLE слід декодувати файл вхідних даних.\n"
+
+msgid "ripOLE: Cannot allocate memory for OLE object."
+msgstr "ripOLE: не вдалося отримати пам’ять для об’єкта OLE."
+
+#, c-format
+msgid "Cannot locate input file '%s'"
+msgstr "Не вдалося виявити файл вхідних даних «%s»"
 
 #, c-format
 msgid "File '%s' is not OLE2 format"
 msgstr "Файл «%s» збережено не у форматі OLE2"
 
 #, c-format
-msgid "LOGGER-Default: %s%s"
-msgstr "LOGGER-Default: %s%s"
-
-#, c-format
-msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
-msgstr ""
-"LOGGER_set_logfile: ПОМИЛКА: не вдалося відкрити файл журналу «%s» (%s)"
-
-#, c-format
-msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
-msgstr ""
-"LOGGER_set_logfile: ПОМИЛКА: не вдалося відкрити файл журналу «%s» (%s)\n"
-
-#, c-format
 msgid "OLE input file '%s' is insane"
 msgstr "Помилковий файл вхідних даних OLE «%s»"
-
-msgid "Scilab spreadsheet module not installed.\n"
-msgstr "Модуль електронних таблиць Scilab не встановлено.\n"
-
-#, c-format
-msgid "The file %s does not exist.\n"
-msgstr "Файла з назвою %s не існує.\n"
-
-#, c-format
-msgid "Unable to decode stream with element string '%s'\n"
-msgstr "Не вдалося декодувати потік з рядком елементів «%s»\n"
-
-#, c-format
-msgid "ripOLE requires an input file to decode.\n"
-msgstr "Для використання ripOLE слід декодувати файл вхідних даних.\n"
-
-#, c-format
-msgid "ripOLE: %s\n"
-msgstr "ripOLE: %s\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: не вдалося отримати пам’ять для об’єкта OLE."
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"
@@ -304,3 +275,36 @@ msgstr "ripOLE: спроба декодування %s призвела до п�
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: спроба декодування %s призвела до помилки %d.\n"
+
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "Модуль електронних таблиць Scilab не встановлено.\n"
+
+msgid "Read a xls file"
+msgstr "Читання з файла xls"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: файла з назвою «%s» не існує.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"

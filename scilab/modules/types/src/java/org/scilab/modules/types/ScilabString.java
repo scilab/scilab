@@ -15,7 +15,10 @@ package org.scilab.modules.types;
 import java.util.Arrays;
 
 /**
- * This class provides a representation on the Scilab String datatype
+ * This class provides a representation on the Scilab String datatype<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -25,6 +28,9 @@ import java.util.Arrays;
  * @see org.scilab.modules.javasci.Scilab
  */
 public class ScilabString implements ScilabType {
+
+	private static final long serialVersionUID = 359802519980180085L;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_strings;
 
 	private String[][] data;
 
@@ -83,6 +89,16 @@ public class ScilabString implements ScilabType {
 		this.data = data;
 	}
 
+    /** 
+     * Return the type of Scilab 
+     * @return the type of Scilab
+     * @since 5.4.0
+     */
+    @Override
+	public ScilabTypeEnum getType() {
+        return type;
+    }
+
 	/**
 	 * @return the associated values
 	 */
@@ -94,6 +110,7 @@ public class ScilabString implements ScilabType {
 	 * @return the height of the data matrix
 	 * @see org.scilab.modules.types.ScilabType#getHeight()
 	 */
+	@Override
 	public int getHeight() {
 		if (data == null) {
 			return 0;
@@ -105,6 +122,7 @@ public class ScilabString implements ScilabType {
 	 * @return the width of the data matrix
 	 * @see org.scilab.modules.types.ScilabType#getWidth()
 	 */
+	@Override
 	public int getWidth() {
 		if (data == null) {
 			return 0;
@@ -116,6 +134,7 @@ public class ScilabString implements ScilabType {
 	 * Check the emptiness of the associated data.
 	 * @return true, if the associated data array is empty. 
 	 */
+	@Override
 	public boolean isEmpty() {
 		return (data == null);
 	}
@@ -123,6 +142,7 @@ public class ScilabString implements ScilabType {
 	/**
 	 * @see org.scilab.modules.types.ScilabType#equals(Object)
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof ScilabString) {
 			return Arrays.deepEquals(this.getData(), ((ScilabString)obj).getData());
@@ -138,6 +158,7 @@ public class ScilabString implements ScilabType {
 	 * @return a Scilab-like String representation of the data.
 	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString() {
 		StringBuffer result = new StringBuffer();
 		if (isEmpty()) {

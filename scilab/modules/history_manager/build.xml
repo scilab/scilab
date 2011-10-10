@@ -12,9 +12,8 @@
  -->
 <project name="history_manager" default="jar">
   <import file="../../build.incl.xml"/>
-
-  <property name="library.name" value="${library.history_manager.name}" />
-
+  <property name="library.name" value="${library.history_manager.name}"/>
+  <property name="library.title" value="Scilab history manager"/>
   <description>
 	Build "history_manager" Scilab module
   </description>

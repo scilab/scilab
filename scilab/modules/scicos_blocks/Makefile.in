@@ -68,7 +68,8 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 @GIWS_TRUE@@XCOS_TRUE@am__append_2 = giws
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -80,10 +81,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -117,18 +117,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@XCOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@XCOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
-@XCOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/renderer/libscirenderer.la \
-@XCOS_TRUE@	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@XCOS_TRUE@	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciscicos_blocks_la_LIBADD =
 am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/absolute_value.c src/c/acos_blk.c src/c/acosh_blk.c \
 	src/c/andlog.c src/c/asin_blk.c src/c/asinh_blk.c \
@@ -244,9 +233,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/tanh_blk.c src/c/tcslti4.c src/c/tcsltj4.c \
 	src/c/time_delay.c src/c/tows_c.c src/c/variable_delay.c \
 	src/c/whileiterator.c src/c/writeau.c src/c/writec.c \
-	src/c/zcross2.c src/fortran/affich.f src/fortran/csslti.f \
-	src/fortran/cstblk.f src/fortran/delay.f src/fortran/delayv.f \
-	src/fortran/demux.f src/fortran/diffblk.f src/fortran/dlradp.f \
+	src/c/zcross2.c src/fortran/csslti.f src/fortran/cstblk.f \
+	src/fortran/delay.f src/fortran/delayv.f src/fortran/demux.f \
+	src/fortran/diffblk.f src/fortran/dlradp.f \
 	src/fortran/dollar.f src/fortran/dsslti.f \
 	src/fortran/eselect.f src/fortran/evtdly.f \
 	src/fortran/expblk.f src/fortran/forblk.f src/fortran/fsv.f \
@@ -266,10 +255,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/fortran/tcsltj.f src/fortran/timblk.f src/fortran/trash.f \
 	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
-	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c \
+	src/c/scoMemoryScope.c src/c/scoWindowScope.c \
 	src/c/scicos_evalhermite.c src/c/scicos_indexfinder.c \
-	src/jni/GiwsException.cpp src/jni/AfficheBlock.cpp \
-	src/cpp/affich2.cpp
+	src/jni/AfficheBlock.cpp src/cpp/affich2.cpp
 @XCOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absblk.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-absolute_value.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-acos_blk.lo \
@@ -581,28 +569,26 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 @XCOS_TRUE@	libsciscicos_blocks_la-writeau.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-writec.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-zcross2.lo
-@XCOS_TRUE@am__objects_2 = affich.lo csslti.lo cstblk.lo delay.lo \
-@XCOS_TRUE@	delayv.lo demux.lo diffblk.lo dlradp.lo dollar.lo \
-@XCOS_TRUE@	dsslti.lo eselect.lo evtdly.lo expblk.lo forblk.lo \
-@XCOS_TRUE@	fsv.lo gensin.lo gensqr.lo hltblk.lo ifthel.lo \
-@XCOS_TRUE@	integr.lo intplt.lo intpol.lo intrp2.lo intrpl.lo \
-@XCOS_TRUE@	invblk.lo iocopy.lo logblk.lo lookup.lo lsplit.lo \
-@XCOS_TRUE@	lusat.lo maxblk.lo memo.lo mfclck.lo minblk.lo \
-@XCOS_TRUE@	mux.lo pload.lo powblk.lo qzcel.lo qzflr.lo \
-@XCOS_TRUE@	qzrnd.lo qztrn.lo readf.lo rndblk.lo samphold.lo \
-@XCOS_TRUE@	sawtth.lo sciblk.lo selblk.lo sinblk.lo sqrblk.lo \
-@XCOS_TRUE@	sum2.lo sum3.lo tanblk.lo tcslti.lo tcsltj.lo \
-@XCOS_TRUE@	timblk.lo trash.lo writef.lo zcross.lo
+@XCOS_TRUE@am__objects_2 = csslti.lo cstblk.lo delay.lo delayv.lo \
+@XCOS_TRUE@	demux.lo diffblk.lo dlradp.lo dollar.lo dsslti.lo \
+@XCOS_TRUE@	eselect.lo evtdly.lo expblk.lo forblk.lo fsv.lo \
+@XCOS_TRUE@	gensin.lo gensqr.lo hltblk.lo ifthel.lo integr.lo \
+@XCOS_TRUE@	intplt.lo intpol.lo intrp2.lo intrpl.lo invblk.lo \
+@XCOS_TRUE@	iocopy.lo logblk.lo lookup.lo lsplit.lo lusat.lo \
+@XCOS_TRUE@	maxblk.lo memo.lo mfclck.lo minblk.lo mux.lo \
+@XCOS_TRUE@	pload.lo powblk.lo qzcel.lo qzflr.lo qzrnd.lo \
+@XCOS_TRUE@	qztrn.lo readf.lo rndblk.lo samphold.lo sawtth.lo \
+@XCOS_TRUE@	sciblk.lo selblk.lo sinblk.lo sqrblk.lo sum2.lo \
+@XCOS_TRUE@	sum3.lo tanblk.lo tcslti.lo tcsltj.lo timblk.lo \
+@XCOS_TRUE@	trash.lo writef.lo zcross.lo
 @XCOS_TRUE@am__objects_3 = libsciscicos_blocks_la-scoGetProperty.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoSetProperty.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoMisc.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoMemoryScope.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
-@XCOS_TRUE@	libsciscicos_blocks_la-affich.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_evalhermite.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_indexfinder.lo
-@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-GiwsException.lo \
-@XCOS_TRUE@	libsciscicos_blocks_la-AfficheBlock.lo
+@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-AfficheBlock.lo
 @XCOS_TRUE@am__objects_5 = libsciscicos_blocks_la-affich2.lo
 @XCOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @XCOS_TRUE@	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -654,6 +640,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
+ALL_LINGUAS_DOC = @ALL_LINGUAS_DOC@
 AMTAR = @AMTAR@
 ANT = @ANT@
 ANTLR = @ANTLR@
@@ -754,6 +741,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -802,11 +790,6 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMGETARCH = @PVMGETARCH@
-PVM_ARCH = @PVM_ARCH@
-PVM_ENABLE = @PVM_ENABLE@
-PVM_INCLUDE = @PVM_INCLUDE@
-PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
 QDOX = @QDOX@
 RANLIB = @RANLIB@
@@ -1299,19 +1282,16 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/c/scoMisc.c \
 @XCOS_TRUE@src/c/scoMemoryScope.c\
 @XCOS_TRUE@src/c/scoWindowScope.c \
-@XCOS_TRUE@src/c/affich.c \
 @XCOS_TRUE@src/c/scicos_evalhermite.c \
 @XCOS_TRUE@src/c/scicos_indexfinder.c
 
 @XCOS_TRUE@NON_BLOCK_CPP_SOURCES = \
-@XCOS_TRUE@src/jni/GiwsException.cpp \
 @XCOS_TRUE@src/jni/AfficheBlock.cpp
 
 @XCOS_TRUE@GIWS_WRAPPERS = \
 @XCOS_TRUE@src/jni/Blocks.giws.xml
 
 @XCOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = \
-@XCOS_TRUE@src/fortran/affich.f \
 @XCOS_TRUE@src/fortran/csslti.f \
 @XCOS_TRUE@src/fortran/cstblk.f \
 @XCOS_TRUE@src/fortran/delay.f \
@@ -1370,10 +1350,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/fortran/writef.f \
 @XCOS_TRUE@src/fortran/zcross.f
 
-
-#### scicos_blocks : GATEWAY_C_SOURCES ####
-
-#### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
 @XCOS_TRUE@libsciscicos_blocks_la_CFLAGS = -I$(srcdir)/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
@@ -1392,6 +1368,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
+@XCOS_TRUE@	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 @XCOS_TRUE@	 		-I$(top_srcdir)/modules/scicos/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/localization/includes \
@@ -1409,8 +1386,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
 @XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
 
-#$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 @XCOS_TRUE@BUILT_SOURCES = includes/blocks.h $(am__append_2)
 @XCOS_TRUE@CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
@@ -1423,12 +1398,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@	$(BASE_PATH)/linenum.ml
 
 
-# cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-@XCOS_TRUE@libsciscicos_blocks_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
 #### scicos_blocks : Conf files ####
 @XCOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
-@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt version.xml
+@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt 
 
 #### scicos_blocks : init scripts ####
 @XCOS_TRUE@libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -1464,7 +1436,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 #### xcos : hdf5 blocks files ####
 @XCOS_TRUE@libsciscicos_blocks_la_hdf5blocksdir = $(mydatadir)/
 @XCOS_TRUE@nobase_libsciscicos_blocks_la_hdf5blocks_DATA = blocks/ABS_VALUE.h5 \
-@XCOS_TRUE@blocks/ABSBLK_f.h5 \
 @XCOS_TRUE@blocks/AFFICH_m.h5 \
 @XCOS_TRUE@blocks/ANDBLK.h5 \
 @XCOS_TRUE@blocks/ANDLOG_f.h5 \
@@ -1477,10 +1448,10 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/BOUNCE.h5 \
 @XCOS_TRUE@blocks/BOUNCEXY.h5 \
 @XCOS_TRUE@blocks/BPLATFORM.h5 \
-@XCOS_TRUE@blocks/c_block.h5 \
-@XCOS_TRUE@blocks/CANIMXY.h5 \
 @XCOS_TRUE@blocks/CANIMXY3D.h5 \
+@XCOS_TRUE@blocks/CANIMXY.h5 \
 @XCOS_TRUE@blocks/Capacitor.h5 \
+@XCOS_TRUE@blocks/c_block.h5 \
 @XCOS_TRUE@blocks/CBLOCK.h5 \
 @XCOS_TRUE@blocks/CCS.h5 \
 @XCOS_TRUE@blocks/CEVENTSCOPE.h5 \
@@ -1490,27 +1461,23 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/CLKGOTO.h5 \
 @XCOS_TRUE@blocks/CLKGotoTagVisibility.h5 \
 @XCOS_TRUE@blocks/CLKINV_f.h5 \
-@XCOS_TRUE@blocks/CLKOUT_f.h5 \
 @XCOS_TRUE@blocks/CLKOUTV_f.h5 \
-@XCOS_TRUE@blocks/CLKSOM_f.h5 \
 @XCOS_TRUE@blocks/CLKSOMV_f.h5 \
-@XCOS_TRUE@blocks/CLKSPLIT_f.h5 \
 @XCOS_TRUE@blocks/CLOCK_c.h5 \
-@XCOS_TRUE@blocks/CLOCK_f.h5 \
 @XCOS_TRUE@blocks/CLR.h5 \
 @XCOS_TRUE@blocks/CLSS.h5 \
 @XCOS_TRUE@blocks/CMAT3D.h5 \
 @XCOS_TRUE@blocks/CMATVIEW.h5 \
 @XCOS_TRUE@blocks/CMSCOPE.h5 \
-@XCOS_TRUE@blocks/CONST_m.h5 \
 @XCOS_TRUE@blocks/ConstantVoltage.h5 \
-@XCOS_TRUE@blocks/CONSTRAINT_f.h5 \
+@XCOS_TRUE@blocks/CONST_m.h5 \
+@XCOS_TRUE@blocks/CONSTRAINT_c.h5 \
 @XCOS_TRUE@blocks/CONVERT.h5 \
 @XCOS_TRUE@blocks/COSBLK_f.h5 \
 @XCOS_TRUE@blocks/Counter.h5 \
 @XCOS_TRUE@blocks/CSCOPE.h5 \
-@XCOS_TRUE@blocks/CSCOPXY.h5 \
 @XCOS_TRUE@blocks/CSCOPXY3D.h5 \
+@XCOS_TRUE@blocks/CSCOPXY.h5 \
 @XCOS_TRUE@blocks/CUMSUM.h5 \
 @XCOS_TRUE@blocks/CurrentSensor.h5 \
 @XCOS_TRUE@blocks/CURV_f.h5 \
@@ -1520,31 +1487,27 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/DELAY_f.h5 \
 @XCOS_TRUE@blocks/DELAYV_f.h5 \
 @XCOS_TRUE@blocks/DEMUX.h5 \
-@XCOS_TRUE@blocks/DEMUX_f.h5 \
 @XCOS_TRUE@blocks/DERIV.h5 \
 @XCOS_TRUE@blocks/DFLIPFLOP.h5 \
 @XCOS_TRUE@blocks/DIFF_f.h5 \
 @XCOS_TRUE@blocks/Diode.h5 \
 @XCOS_TRUE@blocks/DLATCH.h5 \
-@XCOS_TRUE@blocks/DLR.h5 \
 @XCOS_TRUE@blocks/DLRADAPT_f.h5 \
+@XCOS_TRUE@blocks/DLR.h5 \
 @XCOS_TRUE@blocks/DLSS.h5 \
 @XCOS_TRUE@blocks/DOLLAR_f.h5 \
-@XCOS_TRUE@blocks/DOLLAR_m.h5 \
 @XCOS_TRUE@blocks/EDGE_TRIGGER.h5 \
-@XCOS_TRUE@blocks/EDGETRIGGER.h5 \
-@XCOS_TRUE@blocks/END_c.h5 \
 @XCOS_TRUE@blocks/ENDBLK.h5 \
+@XCOS_TRUE@blocks/END_c.h5 \
 @XCOS_TRUE@blocks/ESELECT_f.h5 \
 @XCOS_TRUE@blocks/EVTDLY_c.h5 \
-@XCOS_TRUE@blocks/EVTDLY_f.h5 \
 @XCOS_TRUE@blocks/EVTGEN_f.h5 \
 @XCOS_TRUE@blocks/EVTVARDLY.h5 \
 @XCOS_TRUE@blocks/EXPBLK_m.h5 \
 @XCOS_TRUE@blocks/EXPRESSION.h5 \
-@XCOS_TRUE@blocks/EXTRACT.h5 \
 @XCOS_TRUE@blocks/Extract_Activation.h5 \
 @XCOS_TRUE@blocks/EXTRACTBITS.h5 \
+@XCOS_TRUE@blocks/EXTRACT.h5 \
 @XCOS_TRUE@blocks/EXTRACTOR.h5 \
 @XCOS_TRUE@blocks/EXTTRI.h5 \
 @XCOS_TRUE@blocks/fortran_block.h5 \
@@ -1552,10 +1515,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/FROM.h5 \
 @XCOS_TRUE@blocks/FROMMO.h5 \
 @XCOS_TRUE@blocks/FROMWSB.h5 \
-@XCOS_TRUE@blocks/GAINBLK.h5 \
 @XCOS_TRUE@blocks/GAINBLK_f.h5 \
 @XCOS_TRUE@blocks/GENERAL_f.h5 \
-@XCOS_TRUE@blocks/generic_block.h5 \
 @XCOS_TRUE@blocks/generic_block3.h5 \
 @XCOS_TRUE@blocks/GENSIN_f.h5 \
 @XCOS_TRUE@blocks/GENSQR_f.h5 \
@@ -1569,8 +1530,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/HYSTHERESIS.h5 \
 @XCOS_TRUE@blocks/IdealTransformer.h5 \
 @XCOS_TRUE@blocks/IFTHEL_f.h5 \
-@XCOS_TRUE@blocks/IN_f.h5 \
 @XCOS_TRUE@blocks/Inductor.h5 \
+@XCOS_TRUE@blocks/IN_f.h5 \
 @XCOS_TRUE@blocks/INIMPL_f.h5 \
 @XCOS_TRUE@blocks/INTEGRAL_f.h5 \
 @XCOS_TRUE@blocks/INTEGRAL_m.h5 \
@@ -1581,11 +1542,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/ISELECT_m.h5 \
 @XCOS_TRUE@blocks/JKFLIPFLOP.h5 \
 @XCOS_TRUE@blocks/LOGBLK_f.h5 \
-@XCOS_TRUE@blocks/LOGIC.h5 \
 @XCOS_TRUE@blocks/LOGICAL_OP.h5 \
+@XCOS_TRUE@blocks/LOGIC.h5 \
 @XCOS_TRUE@blocks/LOOKUP_f.h5 \
-@XCOS_TRUE@blocks/M_freq.h5 \
-@XCOS_TRUE@blocks/M_SWITCH.h5 \
 @XCOS_TRUE@blocks/MATBKSL.h5 \
 @XCOS_TRUE@blocks/MATCATH.h5 \
 @XCOS_TRUE@blocks/MATCATV.h5 \
@@ -1609,12 +1568,12 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/MAXMIN.h5 \
 @XCOS_TRUE@blocks/MBLOCK.h5 \
 @XCOS_TRUE@blocks/MCLOCK_f.h5 \
-@XCOS_TRUE@blocks/MEMORY_f.h5 \
 @XCOS_TRUE@blocks/MFCLCK_f.h5 \
+@XCOS_TRUE@blocks/M_freq.h5 \
 @XCOS_TRUE@blocks/MIN_f.h5 \
 @XCOS_TRUE@blocks/Modulo_Count.h5 \
+@XCOS_TRUE@blocks/M_SWITCH.h5 \
 @XCOS_TRUE@blocks/MUX.h5 \
-@XCOS_TRUE@blocks/MUX_f.h5 \
 @XCOS_TRUE@blocks/NEGTOPOS_f.h5 \
 @XCOS_TRUE@blocks/NMOS.h5 \
 @XCOS_TRUE@blocks/NPN.h5 \
@@ -1635,7 +1594,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/PuitsP.h5 \
 @XCOS_TRUE@blocks/QUANT_f.h5 \
 @XCOS_TRUE@blocks/RAMP.h5 \
-@XCOS_TRUE@blocks/RAND_f.h5 \
 @XCOS_TRUE@blocks/RAND_m.h5 \
 @XCOS_TRUE@blocks/RATELIMITER.h5 \
 @XCOS_TRUE@blocks/READAU_f.h5 \
@@ -1649,10 +1607,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/ROOTCOEF.h5 \
 @XCOS_TRUE@blocks/SAMPHOLD_m.h5 \
 @XCOS_TRUE@blocks/SampleCLK.h5 \
-@XCOS_TRUE@blocks/SAT_f.h5 \
 @XCOS_TRUE@blocks/SATURATION.h5 \
 @XCOS_TRUE@blocks/SAWTOOTH_f.h5 \
-@XCOS_TRUE@blocks/SCALAR2VECTOR.h5 \
 @XCOS_TRUE@blocks/scifunc_block_m.h5 \
 @XCOS_TRUE@blocks/SELECT_m.h5 \
 @XCOS_TRUE@blocks/SHIFT.h5 \
@@ -1661,7 +1617,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/SINBLK_f.h5 \
 @XCOS_TRUE@blocks/SineVoltage.h5 \
 @XCOS_TRUE@blocks/SourceP.h5 \
-@XCOS_TRUE@blocks/SPLIT_f.h5 \
 @XCOS_TRUE@blocks/SQRT.h5 \
 @XCOS_TRUE@blocks/SRFLIPFLOP.h5 \
 @XCOS_TRUE@blocks/STEP_FUNCTION.h5 \
@@ -1669,11 +1624,12 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/SUM_f.h5 \
 @XCOS_TRUE@blocks/SUMMATION.h5 \
 @XCOS_TRUE@blocks/SUPER_f.h5 \
-@XCOS_TRUE@blocks/Switch.h5 \
 @XCOS_TRUE@blocks/SWITCH2_m.h5 \
 @XCOS_TRUE@blocks/SWITCH_f.h5 \
+@XCOS_TRUE@blocks/Switch.h5 \
 @XCOS_TRUE@blocks/TANBLK_f.h5 \
 @XCOS_TRUE@blocks/TCLSS.h5 \
+@XCOS_TRUE@blocks/TEXT_f.h5 \
 @XCOS_TRUE@blocks/TIME_DELAY.h5 \
 @XCOS_TRUE@blocks/TIME_f.h5 \
 @XCOS_TRUE@blocks/TKSCALE.h5 \
@@ -1767,12 +1723,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absblk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absolute_value.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acos_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acosh_blk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-andlog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-asin_blk.Plo@am__quote@
@@ -4322,13 +4276,6 @@ libsciscicos_blocks_la-scoWindowScope.lo: src/c/scoWindowScope.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scoWindowScope.lo `test -f 'src/c/scoWindowScope.c' || echo '$(srcdir)/'`src/c/scoWindowScope.c
 
-libsciscicos_blocks_la-affich.lo: src/c/affich.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-affich.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-affich.Tpo -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-affich.Tpo $(DEPDIR)/libsciscicos_blocks_la-affich.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/affich.c' object='libsciscicos_blocks_la-affich.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
-
 libsciscicos_blocks_la-scicos_evalhermite.lo: src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicos_evalhermite.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo -c -o libsciscicos_blocks_la-scicos_evalhermite.lo `test -f 'src/c/scicos_evalhermite.c' || echo '$(srcdir)/'`src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Plo
@@ -4364,13 +4311,6 @@ libsciscicos_blocks_la-scicos_indexfinder.lo: src/c/scicos_indexfinder.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciscicos_blocks_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Tpo -c -o libsciscicos_blocks_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Tpo $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libsciscicos_blocks_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-
 libsciscicos_blocks_la-AfficheBlock.lo: src/jni/AfficheBlock.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-AfficheBlock.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Tpo -c -o libsciscicos_blocks_la-AfficheBlock.lo `test -f 'src/jni/AfficheBlock.cpp' || echo '$(srcdir)/'`src/jni/AfficheBlock.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Tpo $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Plo
@@ -4393,9 +4333,6 @@ libsciscicos_blocks_la-affich2.lo: src/cpp/affich2.cpp
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-affich.lo: src/fortran/affich.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o affich.lo `test -f 'src/fortran/affich.f' || echo '$(srcdir)/'`src/fortran/affich.f
 
 csslti.lo: src/fortran/csslti.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o csslti.lo `test -f 'src/fortran/csslti.f' || echo '$(srcdir)/'`src/fortran/csslti.f
@@ -4935,6 +4872,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

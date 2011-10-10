@@ -18,7 +18,6 @@ endif
 COMPLETION_C_SOURCES = src/c/completion.c \
 src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
-src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/getfieldsdictionary.c \
 src/c/toolsdictionary.c \
@@ -46,26 +45,28 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
+noinst_LTLIBRARIES = libscicompletion-algo.la
 
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
-libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES)
+libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
-## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
-#$(top_builddir)/modules/graphics/libscigraphics.la
+libscicompletion_la_LIBADD = libscicompletion-algo.la 
+
 #### Name of the module and the path ######
 modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA =  license.txt version.xml
+libscicompletion_la_root_DATA =  license.txt 
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc
@@ -89,6 +90,7 @@ libscicompletion_la_testutilitiesdir = $(mydatadir)/tests/utilities
 libscicompletion_la_testutilities_DATA = tests/utilities/build_primitives.sce \
 tests/utilities/sci_completeline.c \
 tests/utilities/sci_getcommonpart.c \
+tests/utilities/sci_getfields.c \
 tests/utilities/sci_getfilepartlevel.c \
 tests/utilities/sci_getpartlevel.c
 

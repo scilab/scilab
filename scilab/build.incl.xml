@@ -33,6 +33,8 @@
   <property file="${base.dir}/scilab-lib-doc.properties"/>
   <!-- Configure ANT flags -->
   <property file="${base.dir}/scilab.properties"/>
+  <!-- Set ${SCIVERSION} -->
+  <property file="${base.dir}/Version.incl"/>
   <path id="checkstyle.classpath">
     <pathelement location="${checkstyle.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
@@ -53,7 +55,6 @@
     <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
     <pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
     <pathelement location="${library.localization.dir}/${library.localization.name}"/>
-    <pathelement location="${library.shell.dir}/${library.shell.name}"/>
     <pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
     <pathelement location="${library.completion.dir}/${library.completion.name}"/>
     <pathelement location="${library.console.dir}/${library.console.name}"/>
@@ -81,6 +82,7 @@
     <pathelement location="${batik.jar}"/>
     <pathelement location="${xml_apis_ext.jar}"/>
     <pathelement location="${saxon.jar}"/>
+    <pathelement location="${xmlgraphics-commons.jar}"/>
     <pathelement location="${fop.jar}"/>
     <pathelement location="${jlatexmath-fop.jar}"/>
     <pathelement location="${avalon-framework.jar}"/>
@@ -127,6 +129,19 @@
     <!-- Empty target to be override by other build.xml -->
   </target>
   <target name="init">
+    <!-- Check the version of Java. If it changes after the configure
+         or if there is a mistake in the build system
+     -->
+    <fail message="JDK 1.6 or 1.7 required">
+      <condition>
+        <not>
+          <or>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+            <equals arg1="${ant.java.version}" arg2="1.7"/>
+          </or>
+        </not>
+      </condition>
+    </fail>
     <mkdir dir="${classes.dir}"/>
     <mkdir dir="${classes.test.dir}"/>
     <mkdir dir="${build.jar.dir}"/>
@@ -145,7 +160,7 @@
   </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources" depends="init">
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
   </target>
   <target name="existing-tests">
     <available property="test-present" file="${src.test.dir}"/>
@@ -153,7 +168,7 @@
   <!-- Compile test sources -->
   <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
     <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5">
+    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6">
       <classpath>
         <path refid="unittest.classpath"/>
         <path refid="compile.classpath"/>
@@ -164,6 +179,16 @@
   <target name="jar" description="Build the jar file" depends="compile">
     <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
       <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <section name="org/scilab/modules/${ant.project.name}/">
+          <attribute name="Specification-Title" value="${library.title}"/>
+          <attribute name="Specification-Version" value="${SCIVERSION}"/>
+          <attribute name="Specification-Vendor" value="${library.vendor}"/>
+          <attribute name="Implementation-Title" value="${library.name}"/>
+          <attribute name="Implementation-Version" value="${DSTAMP} ${TSTAMP}"/>
+          <attribute name="Implementation-Vendor" value="${library.vendor}"/>
+          <attribute name="Class-Path" value="${manifest.class-path}"/>
+        </section>
       </manifest>
     </jar>
   </target>

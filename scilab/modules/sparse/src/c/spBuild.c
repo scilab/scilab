@@ -65,6 +65,7 @@
 #include "spDefs.h"
 #include "spmalloc.h"
 #include "spBuild.h"
+#include "spAllocate.h"
 
 static void Translate( MatrixPtr Matrix, int *Row, int *Col );
 static int EnlargeMatrix( MatrixPtr Matrix, register int NewSize );
@@ -640,7 +641,7 @@ ElementPtr
 spcCreateElement( MatrixPtr Matrix, int Row, register int Col, register ElementPtr  * LastAddr, SPBOOLEAN Fillin )
 {
 register  ElementPtr  pElement, pLastElement;
-ElementPtr  pCreatedElement, spcGetElement(), spcGetFillin();
+ElementPtr  pCreatedElement;
 
 /* Begin `spcCreateElement'. */
 

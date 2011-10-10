@@ -7,11 +7,10 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
-//   in the case where the cost function is provided as a Fortran 
+//   in the case where the cost function is provided as a Fortran
 //   routine and the parameter is given as a scilab variable, using the "td" option.
 //
 //   Note : the following source code was copied from optimization/sci_gateway/fortran/Ex-optim.f
@@ -21,9 +20,9 @@
 
 ilib_verbose(0);
 
-Leps=10^12*%eps;
-n=3;
-xopt=ones(n,1);
+Leps = 10^12 * %eps;
+n = 3;
+xopt = ones(n, 1);
 // Move into the temporary directory to create the temporary files there
 cur_dir = pwd();
 chdir(TMPDIR);
@@ -58,30 +57,30 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 '      return'
 '      end'];
 
-mputl(F,'rosenf.f');
+
+mputl(F,TMPDIR + '/rosenf.f');
 // compile the Fortran code
-libpath=ilib_for_link('rosenf','rosenf.c',[],'f');
-// incremental linking
-linkid=link(libpath,'rosenf','f');
+ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+exec loader.sce;
 chdir(cur_dir);
 //solve the problem
-x0=1.2*ones(n,1);
-valtd=100;
-[f,xo,go]=optim('rosenf',x0,'td',valtd);
+x0 = 1.2*ones(n, 1);
+valtd = 100;
+[f, xo, go] = optim('rosenf', x0, 'td', valtd);
 // Test with all solvers
-solverlist=["gc" "qn" "nd"];
-for solver=solverlist
-  [f,x,g]=optim('rosenf',x0,solver,'td',valtd);
-  if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+solverlist = ["gc" "qn" "nd"];
+for solver = solverlist
+  [f, x, g] = optim('rosenf', x0, solver, 'td', valtd);
+  if abs(f - 1 + norm(x - xopt) ) > Leps then pause, end
 end
 // Test all verbose levels with all possible solvers
-verboselevels=[0];
-for verbose=verboselevels
-  for solver=solverlist
-    [f,x,g]=optim('rosenf',x0,solver,'td',valtd,imp=verbose);
-    if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+verboselevels = [0];
+for verbose = verboselevels
+  for solver = solverlist
+    [f,x,g] = optim('rosenf', x0, solver, 'td', valtd, imp = verbose);
+    if abs(f - 1 + norm(x - xopt) ) > Leps then pause,end
   end
 end
 // Clean-up
-ulink(linkid);
+ulink();
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU (add cc options)
-// Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -27,8 +27,12 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
   end
 
   if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-    warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
+    error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_mex_build", 3));
   end
+  
+  if ~isempty(files) & ~and(isfile(files)) then
+    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_mex_build", 3));
+  end  
   
   if rhs <= 5 then ldflags = ""; end
   if rhs <= 6 then cflags  = ""; end
@@ -51,5 +55,3 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
 
 endfunction
 //=============================================================================
-
-

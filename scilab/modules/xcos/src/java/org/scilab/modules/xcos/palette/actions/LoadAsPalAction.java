@@ -25,6 +25,7 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
@@ -37,7 +38,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Load a diagram on the palette.
  * 
  * It will load each block as an independent block and produce a visible panel
- * similar to {@link XcosPalette}.
+ * similar to {@link org.scilab.modules.xcos.palette.model.Palette}.
  */
 public final class LoadAsPalAction extends DefaultAction {
 	/** Name of the action */
@@ -97,6 +98,8 @@ public final class LoadAsPalAction extends DefaultAction {
 		fc.addChoosableFileFilter(allFilter);
 		fc.setFileFilter(xcosFilter);
 
+		ConfigurationManager.configureCurrentDirectory(fc);
+		
 		fc.setAcceptAllFileFilterUsed(false);
 		fc.displayAndWait();
 

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
--->
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2009 - INRIA - Michael Baudin
+ * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
 <refentry version="5.0-subset Scilab" xml:id="optimbase" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -9,7 +18,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-
   <refnamediv>
     <refname>optimbase</refname>
 
@@ -21,35 +29,35 @@
     <title>SYNOPSIS</title>
 
     <synopsis>
-newobj = optimbase_new ()
-this = optimbase_destroy (this)
-this = optimbase_configure (this,key,value)
-value = optimbase_cget (this,key)
-value = optimbase_get (this,key)
-this = optimbase_set ( this , key , value )
-[ this , isok ] = optimbase_checkbounds ( this )
-[ opt , isok ] = optimbase_checkx0 ( this )
-[ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
-[ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
-[ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
-[ this , f , g , c , gc , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )
-[ this , hasbounds ] = optimbase_hasbounds ( this )
-[ this , hascons ] = optimbase_hasconstraints ( this )
-[ this , hasnlcons ] = optimbase_hasnlcons ( this )
-value = optimbase_histget ( this , iter , key )
-this = optimbase_histset ( this , iter , key , value )
-this = optimbase_incriter ( this )
-[ this , isfeasible ] = optimbase_isfeasible ( this , x )
-this = optimbase_log (this,msg)
-optimbase_outputcmd ( this , state , data )
-data = optimbase_outstruct ( this )
-[ this , p ] = optimbase_proj2bnds ( this ,  x )
-this = optimbase_stoplog ( this , msg )
-[this , terminate , status] = optimbase_terminate (this , previousfopt , currentfopt , previousxopt , currentxopt )
-this = optimbase_checkcostfun ( this )
-[ this , isfeasible ] = optimbase_isinbounds ( this , x )
-[ this , isfeasible ] = optimbase_isinnonlinconst ( this , x )
-</synopsis>
+      newobj = optimbase_new ()
+      this = optimbase_destroy (this)
+      this = optimbase_configure (this,key,value)
+      value = optimbase_cget (this,key)
+      value = optimbase_get (this,key)
+      this = optimbase_set ( this , key , value )
+      this = optimbase_checkbounds ( this )
+      this = optimbase_checkx0 ( this )
+      [ this , f , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
+      [ this , f , c , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
+      [ this , f , g , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
+      [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index [ , a1, a2, ... ] )
+      [ this , hasbounds ] = optimbase_hasbounds ( this )
+      [ this , hascons ] = optimbase_hasconstraints ( this )
+      [ this , hasnlcons ] = optimbase_hasnlcons ( this )
+      value = optimbase_histget ( this , iter , key )
+      this = optimbase_histset ( this , iter , key , value )
+      this = optimbase_incriter ( this )
+      [ this , isfeasible ] = optimbase_isfeasible ( this , x )
+      this = optimbase_log (this,msg)
+      stop = optimbase_outputcmd ( this , state , data )
+      data = optimbase_outstruct ( this )
+      [ this , p ] = optimbase_proj2bnds ( this ,  x )
+      this = optimbase_stoplog ( this , msg )
+      [this , terminate , status] = optimbase_terminate (this , previousfopt , currentfopt , previousxopt , currentxopt )
+      this = optimbase_checkcostfun ( this )
+      [ this , isfeasible ] = optimbase_isinbounds ( this , x )
+      [ this , isfeasible ] = optimbase_isinnonlinconst ( this , x )
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -88,10 +96,6 @@ this = optimbase_checkcostfun ( this )
         <para>etc...</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection>
-    <title>Design</title>
 
     <para>This toolbox is designed with Oriented Object ideas in mind.</para>
   </refsection>
@@ -202,11 +206,11 @@ this = optimbase_checkcostfun ( this )
 
     <para>The optimization problem to solve is the following</para>
 
-    <programlisting role="example"> 
-min f(x)
-l_i &lt;= x_i &lt;= h_i, i = 1,n
-g_i(x) &lt;= 0, i = 1,nbineq
- </programlisting>
+    <programlisting role="example">
+      min f(x)
+      l_i &lt;= x_i &lt;= h_i, i = 1,n
+      g_i(x) &gt;= 0, i = 1,nbineq
+    </programlisting>
 
     <para>where</para>
 
@@ -236,7 +240,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
     <variablelist>
       <varlistentry>
-        <term>newobj = optimbase_new ()</term>
+        <term xml:id="optimbase_new">newobj = optimbase_new ()</term>
 
         <listitem>
           <para>Creates a new optimization object.</para>
@@ -254,7 +258,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_destroy (this)</term>
+        <term xml:id="optimbase_destroy">this = optimbase_destroy
+        (this)</term>
 
         <listitem>
           <para>Destroy the given object.</para>
@@ -272,7 +277,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_configure (this,key,value)</term>
+        <term xml:id="optimbase_configure">this = optimbase_configure
+        (this,key,value)</term>
 
         <listitem>
           <para>Configure the current object with the given value for the
@@ -299,8 +305,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-verbose</term>
 
                     <listitem>
-                      <para>set to 1 to enable verbose logging. (default is
-                      0)</para>
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, set to 1 to enable verbose logging (default
+                      verbose = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -308,8 +315,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-verbosetermination</term>
 
                     <listitem>
-                      <para>set to 1 to enable verbose termination logging.
-                      (default is 0)</para>
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, set to 1 to enable verbose termination logging
+                      (default verbosetermination = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -317,7 +325,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-x0</term>
 
                     <listitem>
-                      <para>the initial guess.</para>
+                      <para>a n-by-1 matrix of doubles, where n is the number
+                      of variables, the initial guess.</para>
+
+                      <para>There is no default value, i.e. the user must
+                      provide <literal>x0</literal>.</para>
                     </listitem>
                   </varlistentry>
 
@@ -325,9 +337,10 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-maxfunevals</term>
 
                     <listitem>
-                      <para>the maximum number of function evalutations
-                      (default is 100). If this criteria is triggered, the
-                      status of the optimization is set to
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, the maximum number of function evaluations
+                      (default maxfunevals = 100). If this criteria is
+                      triggered, the status of the optimization is set to
                       "maxfuneval".</para>
                     </listitem>
                   </varlistentry>
@@ -336,8 +349,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-maxiter</term>
 
                     <listitem>
-                      <para>the maximum number of iterations (default is 100).
-                      If this criteria is triggered, the status of the
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, the maximum number of iterations (default maxiter
+                      = 100). If this criteria is triggered, the status of the
                       optimization is set to "maxiter".</para>
                     </listitem>
                   </varlistentry>
@@ -346,8 +360,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfunabsolute</term>
 
                     <listitem>
-                      <para>the absolute tolerance for the function value
-                      (default is 0.0).</para>
+                      <para>a 1-by-1 matrix of doubles, positive, the absolute
+                      tolerance for the function value (default tolfunabsolute
+                      = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -355,8 +370,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfunrelative</term>
 
                     <listitem>
-                      <para>the relative tolerance for the function value
-                      (default is %eps).</para>
+                      <para>a 1-by-1 matrix of doubles, positive, the relative
+                      tolerance for the function value (default tolfunrelative
+                      = %eps).</para>
                     </listitem>
                   </varlistentry>
 
@@ -364,12 +380,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolfunmethod</term>
 
                     <listitem>
-                      <para>the method used for the tolerance on function
-                      value in the termination criteria.</para>
+                      <para>a 1-by-1 matrix of booleans, set to %t to enable
+                      termination with tolerance on function value (default
+                      tolfunmethod = %f).</para>
 
-                      <para>The following values are available : %t, %f
-                      (default is %f). If this criteria is triggered, the
-                      status of the optimization is set to "tolf".</para>
+                      <para>If this criteria is triggered, the status of the
+                      optimization is set to "tolf".</para>
                     </listitem>
                   </varlistentry>
 
@@ -377,8 +393,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolxabsolute</term>
 
                     <listitem>
-                      <para>the absolute tolerance on x (default is
-                      0.0).</para>
+                      <para>a 1-by-1 matrix of doubles, positive, the absolute
+                      tolerance on x (default tolxabsolute = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -386,8 +402,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolxrelative</term>
 
                     <listitem>
-                      <para>the relative tolerance on x (default is
-                      %eps).</para>
+                      <para>a 1-by-1 matrix of doubles, positive, the relative
+                      tolerance on x (default tolxrelative =
+                      sqrt(%eps)).</para>
                     </listitem>
                   </varlistentry>
 
@@ -395,12 +412,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-tolxmethod</term>
 
                     <listitem>
-                      <para>the method used for the tolerance on x in the
-                      termination criteria.</para>
+                      <para>a 1-by-1 matrix of booleans, set to %t to enable
+                      the tolerance on x in the termination criteria (default
+                      tolxmethod = %t).</para>
 
-                      <para>The following values are available : %t, %f
-                      (default is %t). If this criteria is triggered, the
-                      status of the optimization is set to "tolx".</para>
+                      <para>If this criteria is triggered, the status of the
+                      optimization is set to "tolx".</para>
                     </listitem>
                   </varlistentry>
 
@@ -408,9 +425,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-function</term>
 
                     <listitem>
-                      <para>the objective function, which computes the value
-                      of the cost and the non linear constraints, if
-                      any.</para>
+                      <para>a function or a list, the objective function. This
+                      function computes the value of the cost and the non
+                      linear constraints, if any.</para>
+
+                      <para>There is no default value, i.e. the user must
+                      provide <literal>f</literal>.</para>
 
                       <para>See below for the details of the communication
                       between the optimization system and the cost
@@ -419,19 +439,11 @@ g_i(x) &lt;= 0, i = 1,nbineq
                   </varlistentry>
 
                   <varlistentry>
-                    <term>-costfargument</term>
-
-                    <listitem>
-                      <para>an additionnal argument, passed to the cost
-                      function.</para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
                     <term>-outputcommand</term>
 
                     <listitem>
-                      <para>a command which is called back for output.</para>
+                      <para>a function or a list, a function which is called
+                      back for output.</para>
 
                       <para>See below for the details of the communication
                       between the optimization system and the output command
@@ -440,20 +452,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
                   </varlistentry>
 
                   <varlistentry>
-                    <term>-outputcommandarg</term>
-
-                    <listitem>
-                      <para>an additionnal argument, passed to the output
-                      command.</para>
-                    </listitem>
-                  </varlistentry>
-
-                  <varlistentry>
                     <term>-numberofvariables</term>
 
                     <listitem>
-                      <para>the number of variables to optimize (default is
-                      0).</para>
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, the number of variables to optimize (default
+                      numberofvariables = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -461,8 +465,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-storehistory</term>
 
                     <listitem>
-                      <para>set to %t to enable the history storing (default
-                      is %f).</para>
+                      <para>a 1-by-1 matrix of booleans, set to %t to enable
+                      the history storing (default storehistory = %f).</para>
                     </listitem>
                   </varlistentry>
 
@@ -470,8 +474,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-boundsmin</term>
 
                     <listitem>
-                      <para>the minimum bounds for the parameters, as an array
-                      of values (default is empty, i.e. there are no
+                      <para>a n-by-1 matrix of doubles, the minimum bounds for
+                      the parameters where n is the number of variables
+                      (default boundsmin = [], i.e. there are no minimum
                       bounds).</para>
                     </listitem>
                   </varlistentry>
@@ -480,8 +485,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-boundsmax</term>
 
                     <listitem>
-                      <para>the maximum bounds for the parameters, as an array
-                      of values (default is empty, i.e. there are no
+                      <para>a n-by-1 matrix of doubles, the maximum bounds for
+                      the parameters where n is the number of variables
+                      (default boundsmax = [], i.e. there are no maximum
                       bounds).</para>
                     </listitem>
                   </varlistentry>
@@ -490,8 +496,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-nbineqconst</term>
 
                     <listitem>
-                      <para>the number of inequality constraints (default is
-                      0)</para>
+                      <para>a 1-by-1 matrix of doubles, positive, integer
+                      value, the number of inequality constraints (default
+                      nbineqconst = 0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -507,8 +514,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-withderivatives</term>
 
                     <listitem>
-                      <para>set to %t if the algorithm uses derivatives.
-                      Default is %f.</para>
+                      <para>a 1-by-1 matrix of booleans, set to %t if the
+                      algorithm uses derivatives (default withderivatives =
+                      %f).</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -527,7 +535,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>value = optimbase_cget (this,key)</term>
+        <term xml:id="optimbase_cget">value = optimbase_cget (this,key)</term>
 
         <listitem>
           <para>Get the value for the given key. If the key is unknown,
@@ -556,12 +564,12 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , isok ] = optimbase_checkbounds ( this )</term>
+        <term xml:id="optimbase_checkbounds">this = optimbase_checkbounds (
+        this )</term>
 
         <listitem>
-          <para>Check if the bounds are consistent and puts an error message
-          if not. One could generate an error, but errors are not testable
-          with the current system.</para>
+          <para>Check if the bounds are consistent and produces an error
+          message if not.</para>
 
           <variablelist>
             <varlistentry>
@@ -576,11 +584,13 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ opt , isok ] = optimbase_checkx0 ( this )</term>
+        <term xml:id="optimbase_checkx0">opt = optimbase_checkx0 ( this
+        )</term>
 
         <listitem>
-          <para>Returns %T if the initial guess is consistent with the bounds
-          and the non linear inequality constraints, if any.</para>
+          <para>Check if the initial guess is consistent with the bounds and
+          the non linear inequality constraints, if any and produces an error
+          message if not.</para>
 
           <variablelist>
             <varlistentry>
@@ -595,20 +605,25 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , f , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
-
-        <term>[ this , f , c , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
-
-        <term>[ this , f , g , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
-
-        <term>[ this , f , g , c , gc , index [ , data ] ] = optimbase_function ( this , x , index [ , data ] )</term>
+        <term xml:id="optimbase_function">optimbase_function</term>
 
         <listitem>
           <para>Call the cost function and return the required results.</para>
 
           <para>If a cost function additionnal argument is defined in current
-          object, pass it to the function as the last argument. See below for
-          details.</para>
+          object, pass it to the function as the last argument.</para>
+
+          <para>The following calling sequences are available (see below for
+          more details).</para>
+
+          <programlisting role="example">
+            [ this , f , index ] = optimbase_function ( this , x , index )
+            [ this , f , c , index ] = optimbase_function ( this , x , index )
+            [ this , f , g , index ] = optimbase_function ( this , x , index )
+            [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
+          </programlisting>
+
+          <para></para>
 
           <variablelist>
             <varlistentry>
@@ -621,6 +636,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
             <varlistentry>
               <term>x</term>
+
               <listitem>
                 <para>the current point, as a column vector</para>
               </listitem>
@@ -628,54 +644,54 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
             <varlistentry>
               <term>index</term>
+
               <listitem>
                 <para>what value to compute.</para>
+
                 <para>See below in the section "Cost function" for details on
                 this index.</para>
               </listitem>
             </varlistentry>
-	    
+
             <varlistentry>
               <term>f</term>
+
               <listitem>
                 <para>the value of the cost function</para>
               </listitem>
             </varlistentry>
-	    
+
             <varlistentry>
               <term>g</term>
+
               <listitem>
                 <para>the gradient of the cost function</para>
               </listitem>
             </varlistentry>
-	    
+
             <varlistentry>
               <term>c</term>
+
               <listitem>
                 <para>the nonlinear, positive, inequality constraints</para>
               </listitem>
             </varlistentry>
-	    
+
             <varlistentry>
               <term>gc</term>
+
               <listitem>
-                <para>the gradient of the nonlinear, positive, inequality constraints</para>
+                <para>the gradient of the nonlinear, positive, inequality
+                constraints</para>
               </listitem>
             </varlistentry>
-	    
-            <varlistentry>
-              <term>data</term>
-              <listitem>
-                <para>an optionnal user-provided argument</para>
-              </listitem>
-            </varlistentry>
-	    
           </variablelist>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_set ( this , key , value )</term>
+        <term xml:id="optimbase_set">this = optimbase_set ( this , key , value
+        )</term>
 
         <listitem>
           <para>Set the value for the given key. If the key is unknown,
@@ -790,7 +806,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>value = optimbase_get (this,key)</term>
+        <term xml:id="optimbase_get">value = optimbase_get (this,key)</term>
 
         <listitem>
           <para>Get the value for the given key. If the key is unknown,
@@ -822,7 +838,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , hasbounds ] = optimbase_hasbounds ( this )</term>
+        <term xml:id="optimbase_hasbounds">[ this , hasbounds ] =
+        optimbase_hasbounds ( this )</term>
 
         <listitem>
           <para>Returns %T if current problem has bounds.</para>
@@ -840,7 +857,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , hascons ] = optimbase_hasconstraints ( this )</term>
+        <term xml:id="optimbase_hasconstraints">[ this , hascons ] =
+        optimbase_hasconstraints ( this )</term>
 
         <listitem>
           <para>Returns %T if current problem has bounds constraints, linear
@@ -859,7 +877,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , hasnlcons ] = optimbase_hasnlcons ( this )</term>
+        <term xml:id="optimbase_hasnlcons">[ this , hasnlcons ] =
+        optimbase_hasnlcons ( this )</term>
 
         <listitem>
           <para>Returns %T if current problem has non linear
@@ -878,7 +897,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_histset ( this , iter , key , value )</term>
+        <term xml:id="optimbase_histset">this = optimbase_histset ( this ,
+        iter , key , value )</term>
 
         <listitem>
           <para>Set the history value at given iteration for the given key. If
@@ -924,7 +944,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>value = optimbase_histget ( this , iter , key )</term>
+        <term xml:id="optimbase_histget">value = optimbase_histget ( this ,
+        iter , key )</term>
 
         <listitem>
           <para>Returns the history value at the given iteration number for
@@ -962,7 +983,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_incriter ( this )</term>
+        <term xml:id="optimbase_incriter">this = optimbase_incriter ( this
+        )</term>
 
         <listitem>
           <para>Increments the number of iterations.</para>
@@ -980,7 +1002,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , isfeasible ] = optimbase_isfeasible ( this , x )</term>
+        <term xml:id="optimbase_isfeasible">[ this , isfeasible ] =
+        optimbase_isfeasible ( this , x )</term>
 
         <listitem>
           <para>Returns 1 if the given point satisfies bounds constraints and
@@ -1009,7 +1032,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_log (this,msg)</term>
+        <term xml:id="optimbase_log">this = optimbase_log (this,msg)</term>
 
         <listitem>
           <para>If verbose logging is enabled, prints the given message in the
@@ -1039,10 +1062,55 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>optimbase_outputcmd ( this , state , data )</term>
+        <term xml:id="optimbase_outputcmd">stop = optimbase_outputcmd ( this ,
+        state , data )</term>
 
         <listitem>
-          <para>Calls back user's output command.</para>
+          <para>Calls back user's output command. See below for details, in
+          the "The output function" section.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>state</term>
+
+              <listitem>
+                <para>a 1-by-1 matrix of strings, the current state of the
+                algorithm</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>data</term>
+
+              <listitem>
+                <para>a data structure with type T_OPTDATA. This is typically
+                the output of the <literal>optimbase_outstruct</literal>
+                function, with potentially additionnal fields.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term xml:id="optimbase_outstruct">data = optimbase_outstruct ( this
+        )</term>
+
+        <listitem>
+          <para>Returns a data structure with type T_OPTDATA. This data
+          structure contains basic optimization fields. The output argument
+          <literal>data</literal> is designed to be the input of the
+          <literal>optimbase_outputcmd</literal> function which, in turn,
+          calls back the output function. This data structure may be enriched
+          by children (specialized) optimization methods.</para>
 
           <variablelist>
             <varlistentry>
@@ -1057,28 +1125,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>data = optimbase_outstruct ( this )</term>
-
-        <listitem>
-          <para>Returns a tlist with basic optimization fields. This tlist is
-          suitable for use as an input argument of the output function. This
-          tlist may be enriched by children (specialize) optimization
-          methods.</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
-
-              <listitem>
-                <para>The current object.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>[ this , p ] = optimbase_proj2bnds ( this , x )</term>
+        <term xml:id="optimbase_proj2bnds">[ this , p ] = optimbase_proj2bnds
+        ( this , x )</term>
 
         <listitem>
           <para>Returns a point, which is the projection of the given point
@@ -1105,7 +1153,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_stoplog ( this , msg )</term>
+        <term xml:id="optimbase_stoplog">this = optimbase_stoplog ( this , msg
+        )</term>
 
         <listitem>
           <para>Prints the given stopping rule message if verbose termination
@@ -1132,8 +1181,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[this , terminate , status] = optimbase_terminate (this ,
-        previousfopt , currentfopt , previousxopt , currentxopt )</term>
+        <term xml:id="optimbase_terminate">[this , terminate , status] =
+        optimbase_terminate (this , previousfopt , currentfopt , previousxopt
+        , currentxopt )</term>
 
         <listitem>
           <para>Returns 1 if the algorithm terminates. Returns 0 if the
@@ -1250,7 +1300,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimbase_checkcostfun ( this )</term>
+        <term xml:id="optimbase_checkcostfun">this = optimbase_checkcostfun (
+        this )</term>
 
         <listitem>
           <para>Check that the cost function is correctly connected. Generate
@@ -1275,7 +1326,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , isfeasible ] = optimbase_isinbounds ( this , x )</term>
+        <term xml:id="optimbase_isinbounds">[ this , isfeasible ] =
+        optimbase_isinbounds ( this , x )</term>
 
         <listitem>
           <para>Returns isfeasible = %t if the given point satisfies bounds
@@ -1303,8 +1355,8 @@ g_i(x) &lt;= 0, i = 1,nbineq
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , isfeasible ] = optimbase_isinnonlinconst ( this , x
-        )</term>
+        <term xml:id="optimbase_isinnonlinconst">[ this , isfeasible ] =
+        optimbase_isinnonlinconst ( this , x )</term>
 
         <listitem>
           <para>Returns isfeasible = %t if the given point satisfies the
@@ -1336,30 +1388,34 @@ g_i(x) &lt;= 0, i = 1,nbineq
   <refsection>
     <title>The cost function</title>
 
-    <para>The <literal>-function</literal> option  allows to configure the cost function. The cost
-    function is used, depending on the context, to compute the cost, the
-    nonlinear inequality positive constraints, the gradient of the function
-    and the gradient of the nonlinear inequality constraints.</para>
+    <para>The <literal>-function</literal> option allows to configure the cost
+    function. The cost function is used, depending on the context, to compute
+    the cost, the nonlinear inequality positive constraints, the gradient of
+    the function and the gradient of the nonlinear inequality
+    constraints.</para>
 
     <para>The cost function can also be used to produce outputs and to
     terminate an optimization algorithm.</para>
 
-    <para>In the following, the variables are </para>
+    <para>In the following, the variables are</para>
+
     <itemizedlist>
       <listitem>
         <para><literal>f</literal>: scalar, the objective,</para>
       </listitem>
-      
+
       <listitem>
-        <para><literal>g</literal>: row matrix, the gradient of the objective,</para>
+        <para><literal>g</literal>: row matrix, the gradient of the
+        objective,</para>
       </listitem>
-      
+
       <listitem>
         <para><literal>c</literal>: row matrix, the constraints,</para>
       </listitem>
-      
+
       <listitem>
-        <para><literal>gc</literal>: matrix, the gradient of the constraints.</para>
+        <para><literal>gc</literal>: matrix, the gradient of the
+        constraints.</para>
       </listitem>
     </itemizedlist>
 
@@ -1370,82 +1426,108 @@ g_i(x) &lt;= 0, i = 1,nbineq
     <itemizedlist>
       <listitem>
         <para>If the -withderivatives is false and there is no nonlinear
-        constraint, the calling sequence is </para>
-	<programlisting role="example"><![CDATA[ 
+        constraint, the calling sequence is</para>
+
+        <programlisting role="example">
+           
 [ this , f , index ] = optimbase_function ( this , x , index )
- ]]></programlisting> 
-	<para>which corresponds to the cost functions</para>
-	<programlisting role="example"><![CDATA[ 
-function [ f , index ] = costf ( x , index ) 
-function [ f , index , data ] = costf ( x , index , data ) // if there is a -costfargument
- ]]></programlisting>
+ 
+        </programlisting>
+
+        <para>which corresponds to the cost functions</para>
+
+        <programlisting role="example">
+           
+[ f , index ] = costf ( x , index ) 
+ 
+        </programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is false and there are nonlinear
-        constraints, the calling sequence is </para>
-	<programlisting role="example"><![CDATA[ 
+        constraints, the calling sequence is</para>
+
+        <programlisting role="example">
+           
 [ this , f , c , index ] = optimbase_function ( this , x , index )
- ]]></programlisting>
-	<para>which corresponds to the cost functions</para>
-	<programlisting role="example"><![CDATA[ 
-function [ f , c , index ] = costf ( x , index ) 
-function [ f , c , index , data ] = costf ( x , index , data ) // if there is a -costfargument
- ]]></programlisting>
+ 
+        </programlisting>
+
+        <para>which corresponds to the cost functions</para>
+
+        <programlisting role="example">
+           
+[ f , c , index ] = costf ( x , index ) 
+ 
+        </programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is true and there is no nonlinear
         constraint, the calling sequence is</para>
-	<programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example">
+           
 [ this , f , g , index ] = optimbase_function ( this , x , index )
- ]]></programlisting> 
-	<para>which corresponds to the cost functions</para>
-	<programlisting role="example"><![CDATA[ 
-function [ f , g , index ] = costf ( x , index ) 
-function [ f , g , index , data ] = costf ( x , index , data ) // if there is a -costfargument
- ]]></programlisting>
+ 
+        </programlisting>
+
+        <para>which corresponds to the cost functions</para>
+
+        <programlisting role="example">
+           
+[ f , g , index ] = costf ( x , index ) 
+ 
+        </programlisting>
       </listitem>
 
       <listitem>
         <para>If the -withderivatives is true and there is are nonlinear
         constraints, the calling sequence is</para>
-	<programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example">
+           
 [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
- ]]></programlisting> 
-	<para>which corresponds to the cost functions</para>
-	<programlisting role="example"><![CDATA[ 
-function [ f , g , c , gc , index ] = costf ( x , index ) 
-function [ f , g , c , gc , index , data ] = costf ( x , index , data ) // if there is a -costfargument
- ]]></programlisting>
+ 
+        </programlisting>
+
+        <para>which corresponds to the cost functions</para>
+
+        <programlisting role="example">
+           
+[ f , g , c , gc , index ] = costf ( x , index ) 
+ 
+        </programlisting>
       </listitem>
     </itemizedlist>
 
     <para>Each calling sequence corresponds to a particular class of
     algorithms, including for example</para>
+
     <itemizedlist>
       <listitem>
         <para>unconstrained, derivative-free algorithms,</para>
       </listitem>
-      
+
       <listitem>
         <para>nonlinearily constrained, derivative-free algorithms,</para>
       </listitem>
-      
+
       <listitem>
         <para>unconstrained, derivative-based algorithms,</para>
       </listitem>
-      
+
       <listitem>
         <para>nonlinearilyconstrained, derivative-based algorithms,</para>
       </listitem>
-      
+
       <listitem>
         <para>etc...</para>
       </listitem>
     </itemizedlist>
-    <para> The current component is designed in order to be able to
-      handle many situations.</para>
+
+    <para>The current component is designed in order to be able to handle many
+    situations.</para>
 
     <para>The index input parameter has the following meaning.</para>
 
@@ -1495,6 +1577,20 @@ function [ f , g , c , gc , index , data ] = costf ( x , index , data ) // if th
         <para>index &lt; 0: one function could not be avaluated.</para>
       </listitem>
     </itemizedlist>
+
+    <para>It might happen that the function requires additionnal arguments to
+    be evaluated. In this case, we can use the following feature. The argument
+    <literal>fun</literal> can also be the list
+    <literal>(f,a1,a2,...)</literal>. In this case <literal>f</literal>, the
+    first element in the list, must be a function and must have the header:
+    <programlisting>
+        [ f , index ] = f ( x , index , a1 , a2 , ... )
+        [ f , c , index ] = f ( x , index , a1 , a2 , ... )
+        [ f , g , index ] = f ( x , index , a1 , a2 , ... )
+        [ f , g , c , gc , index ] = f ( x , index , a1 , a2 , ... )
+      </programlisting> where the input arguments <literal>a1, a2,
+    ...</literal> are automatically appended at the end of the calling
+    sequence.</para>
   </refsection>
 
   <refsection>
@@ -1506,9 +1602,9 @@ function [ f , g , c , gc , index , data ] = costf ( x , index , data ) // if th
 
     <para>The output function must have the following header</para>
 
-    <programlisting role="example"> 
-function outputcmd(state, data, myobj)
- </programlisting>
+    <programlisting role="example">
+      stop = outputcmd(state, data)
+    </programlisting>
 
     <para>where</para>
 
@@ -1517,8 +1613,8 @@ function outputcmd(state, data, myobj)
         <term>state</term>
 
         <listitem>
-          <para>a string representing the current state of the algorithm.
-          Available values are "init", "iter", "done".</para>
+          <para>a 1-by-1 matrix of strings, the current state of the
+          algorithm. Available values are "init", "iter", "done".</para>
         </listitem>
       </varlistentry>
 
@@ -1526,7 +1622,8 @@ function outputcmd(state, data, myobj)
         <term>data</term>
 
         <listitem>
-          <para>a tlist containing at least the following entries</para>
+          <para>a data structure with type <literal>T_OPTDATA</literal>
+          containing at least the following fields</para>
 
           <variablelist>
             <varlistentry>
@@ -1565,28 +1662,26 @@ function outputcmd(state, data, myobj)
       </varlistentry>
 
       <varlistentry>
-        <term>myobj</term>
+        <term>stop</term>
 
         <listitem>
-          <para>a user-defined parameter.</para>
-
-          <para>This input parameter is defined with the -outputcommandarg
-          option.</para>
+          <para>a 1-by-1 matrix of booleans, stop is true if the optimization
+          algorithm must be stopped, stop is false if the optimization
+          algorithm must continue.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>The output function may be used when debugging the specialized
-    optimization algorithm, so that a verbose logging is produced. It may also
-    be used to write one or several report files in a specialized format
-    (ASCII, LaTeX, Excel, Hdf5, etc...). The user-defined parameter may be
-    used in that case to store file names or logging options.</para>
-
-    <para>The data tlist argument may contain more fields than the current
-    presented ones. These additionnal fields may contain values which are
-    specific to the specialized algorithm, such as the simplex in a
-    Nelder-Mead method, the gradient of the cost function in a BFGS method,
-    etc...</para>
+    <para>It might happen that the output function requires additionnal
+    arguments to be evaluated. In this case, we can use the following feature.
+    The argument <literal>outputcmd</literal> can also be the list
+    <literal>(outf,a1,a2,...)</literal>. In this case <literal>outf</literal>,
+    the first element in the list, must be a function and must have the
+    header: <programlisting>
+        stop = outf ( state, data, a1, a2, ... )
+      </programlisting> where the input arguments <literal>a1, a2,
+    ...</literal> are automatically appended at the end of the calling
+    sequence.</para>
   </refsection>
 
   <refsection>
@@ -1613,9 +1708,9 @@ function outputcmd(state, data, myobj)
         <para>The number of iterations is examined and compared to the
         -maxiter option : if the following condition</para>
 
-        <programlisting role="example"> 
-iterations &gt;= maxiter
- </programlisting>
+        <programlisting role="example">
+          iterations &gt;= maxiter
+        </programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
         set to %t.</para>
@@ -1625,9 +1720,9 @@ iterations &gt;= maxiter
         <para>The number of function evaluations and compared to the
         -maxfunevals option is examined : if the following condition</para>
 
-        <programlisting role="example"> 
-funevals &gt;= maxfunevals
- </programlisting>
+        <programlisting role="example">
+          funevals &gt;= maxfunevals
+        </programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
         set to %t.</para>
@@ -1652,9 +1747,9 @@ funevals &gt;= maxfunevals
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"> 
-abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
- </programlisting>
+              <programlisting role="example">
+                abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
+              </programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
               set to %t.</para>
@@ -1690,9 +1785,9 @@ abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example"> 
-norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
- </programlisting>
+              <programlisting role="example">
+                norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
+              </programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
               set to %t.</para>
@@ -1724,25 +1819,55 @@ norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabs
     the algorithm. After the optimization is performed, the optimum is
     retrieved with quiery features.</para>
 
-    <programlisting role="example"> 
-function [ f , index ] = rosenbrock ( x , index )
-  f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
-endfunction
+    <programlisting role="example">
+      function [ f , index ] = rosenbrock ( x , index )
+      f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+      endfunction
 
-opt = optimbase_new();
-opt = optimbase_configure(opt,"-numberofvariables",2);
-nbvar = optimbase_cget(opt,"-numberofvariables");
-opt = optimbase_configure(opt,"-function",rosenbrock);
-[ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
-opt
-opt = optimbase_destroy(opt);
- </programlisting>
+      opt = optimbase_new();
+      opt = optimbase_configure(opt,"-numberofvariables",2);
+      nbvar = optimbase_cget(opt,"-numberofvariables");
+      opt = optimbase_configure(opt,"-function",rosenbrock);
+      [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
+      expectedf = 1
+      disp(f)
+      opt = optimbase_destroy(opt);
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example : Passing extra parameters</title>
+
+    <para>In the following example, we consider a function which has two
+    additionnal parameters <literal>a</literal> and <literal>b</literal>. In
+    this case, we can configure the "-function" option as a list, where the
+    first element is the function and the two extra arguments are located at
+    the end of the list.</para>
+
+    <programlisting role="example">
+      function [ f , index ] = rosenbrock2 ( x , index , a , b )
+      f = a*(x(2)-x(1)^2)^2 + (b-x(1))^2;
+      endfunction
+
+      opt = optimbase_new();
+      opt = optimbase_configure(opt,"-numberofvariables",2);
+      nbvar = optimbase_cget(opt,"-numberofvariables");
+      a = 100;
+      b = 1;
+      opt = optimbase_configure(opt,"-function",list(rosenbrock2,a,b));
+      [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
+      expectedf = 1
+      disp(f)
+      opt = optimbase_destroy(opt);
+    </programlisting>
   </refsection>
 
   <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2010</para>
+    <para>Copyright (C) 2008-2009 - INRIA - Michael Baudin</para>
+
+    <para>Copyright (C) 2009-2011 - DIGITEO - Michael Baudin</para>
   </refsection>
 
   <refsection>
@@ -1775,10 +1900,6 @@ opt = optimbase_destroy(opt);
 
       <listitem>
         <para>manage linear equality constraints</para>
-      </listitem>
-
-      <listitem>
-        <para>rename -outputcommand to -outputfunction</para>
       </listitem>
     </itemizedlist>
   </refsection>

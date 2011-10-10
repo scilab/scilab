@@ -1,0 +1,171 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-23 06:51+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+"Language: \n"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s： 無法編輯ans。\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: %s 變數未被定義.\n"
+
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr "%s Java程式的記憶體有問題，無法編輯 %s\n"
+
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr "%s：還未處理的形式"
+
+msgid "&File"
+msgstr "檔案(&F)"
+
+msgid "&Close"
+msgstr "&關閉"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&About Scilab..."
+msgstr "有關 Scilab( &A)"
+
+msgid "Icon"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Bytes"
+msgstr "位元組"
+
+msgid "Type"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "Filter"
+msgstr ""
+
+msgid "Double"
+msgstr "雙倍"
+
+msgid "Polynomial"
+msgstr ""
+
+msgid "Boolean"
+msgstr "布林值"
+
+msgid "Sparse"
+msgstr ""
+
+msgid "Sparse boolean"
+msgstr ""
+
+msgid "Integer"
+msgstr ""
+
+msgid "Graphic handles"
+msgstr ""
+
+msgid "String"
+msgstr ""
+
+msgid "Un-compiled function"
+msgstr ""
+
+msgid "Compiled function"
+msgstr "已編譯的函式"
+
+msgid "Function library"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Intrinsic function"
+msgstr ""
+
+msgid "Matlab sparse"
+msgstr ""
+
+msgid "Implicit polynomial"
+msgstr ""
+
+msgid "Variable Editor"
+msgstr ""
+
+msgid "Variable Browser"
+msgstr ""
+
+msgid "Global variables can not be edited."
+msgstr ""
+
+msgid "Refresh the variable "
+msgstr ""
+
+msgid "Copy"
+msgstr "複製"
+
+msgid "Paste"
+msgstr ""
+
+msgid "Cut"
+msgstr "剪下"
+
+msgid "Undo"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""

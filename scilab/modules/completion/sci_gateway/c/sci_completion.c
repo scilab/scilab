@@ -23,7 +23,7 @@ static int putResultOnStack(int pos,char **result,int sizeresult);
 /*--------------------------------------------------------------------------*/
 int sci_completion(char *fname,unsigned long fname_len)
 {
-	int l1 = 0, m1 = 0, n1 = 0;
+	int m1 = 0, n1 = 0;
 	char *partOfWord = NULL;
 	char ** Inputs1 = NULL;
 
@@ -60,7 +60,7 @@ int sci_completion(char *fname,unsigned long fname_len)
 			Results = completion(partOfWord, &sizeResults);
 			putResultOnStack(1,Results,sizeResults);
 			freePointerDictionary(Results,sizeResults);
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else /* Rhs == 2 */
 		{
@@ -117,8 +117,12 @@ int sci_completion(char *fname,unsigned long fname_len)
 				}
 				putResultOnStack(1,Results,sizeResults);
 				freePointerDictionary(Results,sizeResults);
-				freeArrayOfString(Inputs2,m2*n2);
-				C2F(putlhsvar)();
+                freeArrayOfString(Inputs1,m1 * n1);
+                Inputs1 = NULL;
+
+				freeArrayOfString(Inputs2,m2 * n2);
+                Inputs2 = NULL;
+				PutLhsVar();
 
 			}
 			else
@@ -200,9 +204,9 @@ int sci_completion(char *fname,unsigned long fname_len)
 			freePointerDictionary(PathsList,sizePathsList);
 		}
 
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
-	freeArrayOfString(Inputs1,m1 * n1);
+	if (Inputs1) freeArrayOfString(Inputs1,m1 * n1);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt version.xml
+libscixcos_la_root_DATA =  license.txt 
 
 
 #### xcos : init scripts ####
@@ -40,7 +40,6 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp \
 			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
@@ -59,8 +58,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
-	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
-	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -85,6 +82,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/commons/src/jni \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
@@ -102,13 +100,17 @@ pkglib_LTLIBRARIES = libscixcos-disable.la
 
 if XCOS
 if GUI
+noinst_LTLIBRARIES = libscixcos-algo.la
 pkglib_LTLIBRARIES += libscixcos.la
 endif
 endif
 
 libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XCOS_CPP_SOURCES)
+libscixcos_algo_la_SOURCES = $(XCOS_C_SOURCES) $(XCOS_CPP_SOURCES)
+libscixcos_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscixcos_algo_la_CFLAGS = $(libscixcos_la_CFLAGS)
+libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -116,11 +118,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 
 
-libscixcos_la_LIBADD =  \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscixcos_la_LIBADD = libscixcos-algo.la
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -225,7 +223,7 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
-images/palettes/CONSTRAINT_f.png \
+images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \

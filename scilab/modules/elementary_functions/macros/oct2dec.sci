@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// 
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -15,31 +16,36 @@
 // octal representation of o.
 //
 // -Input :
-//    str : a string (or a vector/matrix of strings)
+//  str : a string (or a vector/matrix of strings)
 // -Output :
-//    y : a scalar/vector/matrix
+//  y : a scalar/vector/matrix
 //
 // =============================================================================
 
-function d=oct2dec(o)
-	
-	if type(o)<> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"oct2dec",1));
-	end
-	
-	[nr,nc] = size(o)
-	n       = length(o)
-	p       = cumprod([1,8*ones(1,max(n)-1)]);
-	d       = zeros(o);
-	
-	for i=1:nr
-		for j=1:nc
-			s = abs(str2code(o(i,j)));
-			if max(s)>7 then
-				error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid octal representations expected.\n"),"oct2dec",1));
-			end
-			d(i,j) = p(n(i,j):-1:1)*s;
-		end
-	end
-	
+function d = oct2dec(o)
+
+  [lhs, rhs] = argn(0);
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"oct2dec", 1));
+  end
+
+  if type(o) <>  10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "oct2dec", 1));
+  end
+
+  [nr, nc] = size(o);
+
+  d = [];
+
+  for i = 1:size(o, "*")
+    r = msscanf(o(i), "%o");
+    if r <> [] then
+      d(i) = r;
+    else
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid octal representations expected.\n"),"oct2dec",1));
+    end
+  end
+
+  d = matrix(d, nr, nc);
+
 endfunction

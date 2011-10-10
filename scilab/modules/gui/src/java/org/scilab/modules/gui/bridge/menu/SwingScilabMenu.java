@@ -41,323 +41,331 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
  */
 public class SwingScilabMenu extends JMenu implements SimpleMenu {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private CallBack callback;
+    private MouseListener[] nativeMouseListeners;
+    private MouseListener customedMouseListener;
+    private boolean checkedState = false;
+    private String text = "";
+	
+    /**
+     * Constructor
+     */
+    public SwingScilabMenu() {
+	super();
+	this.setFocusable(false);
+    }
 
-	private CallBack callback;
+    /**
+     * Get the base text used for the Menu
+     * @return the text
+     */
+    public String getBaseText() {
+	return this.text;
+    }
+
+    /**
+     * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
+     * a LaTeX string, in this case the setIcon method of this object is used.
+     */ 
+    public void setText(String text) {
+	this.text = text;
+	if (ScilabSpecialTextUtilities.setText(this, text)) {
+	    super.setText("");
+	} else {
+	    super.setText(text);
+	}
+    }
 	
-	private MouseListener[] nativeMouseListeners;
-	
-	private MouseListener customedMouseListener;
-	
-	private boolean checkedState = false;
-	
-	/**
-	 * Constructor
-	 */
-	public SwingScilabMenu() {
-		super();
-		this.setFocusable(false);
+    /**
+     * Append a CheckBoxMenuItem to a Scilab Menu
+     * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+     * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.CheckBoxMenuItem)
+     */
+    public void add(CheckBoxMenuItem newCheckBoxMenuItem) {
+	/* Back to Java Mouse Listeners */
+	if (customedMouseListener != null) {
+	    removeMouseListener(customedMouseListener);
+	}
+	if (nativeMouseListeners != null) {
+	    for (int i = 0; i < nativeMouseListeners.length; i++) {
+		addMouseListener(nativeMouseListeners[i]);
+	    }
+	    nativeMouseListeners = null;
 	}
 
-        /**
-	 * @param text to use for the menu, if it's enclosed between '$' then it's interpreted as
-	 * a LaTeX string, in this case the setIcon method of this object is used.
-	 */ 
-        public void setText(String text) {
-	    if (!ScilabSpecialTextUtilities.setText(this, text)) {
-		super.setText(text);
+	super.add((SwingScilabCheckBoxMenuItem) newCheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
+	super.repaint();
+    }
+	
+    /**
+     * Append a MenuItem to a Scilab Menu
+     * @param newMenuItem the MenuItem to add to the Menu
+     * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
+     */
+    public void add(MenuItem newMenuItem) {
+	/* Back to Java Mouse Listeners */
+	if (customedMouseListener != null) {
+	    removeMouseListener(customedMouseListener);
+	}
+	if (nativeMouseListeners != null) {
+	    for (int i = 0; i < nativeMouseListeners.length; i++) {
+		addMouseListener(nativeMouseListeners[i]);
+	    }
+	    nativeMouseListeners = null;
+	}
+
+	super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
+	super.repaint();
+    }
+	
+    /**
+     * Append a subMenu to a Scilab Menu
+     * @param newSubMenu the subMenu to append to the Menu
+     * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.ContextMenu)
+     */
+    public void add(Menu newSubMenu) {
+	/* Back to Java Mouse Listeners */
+	if (customedMouseListener != null) {
+	    removeMouseListener(customedMouseListener);
+	}
+	if (nativeMouseListeners != null) {
+	    for (int i = 0; i < nativeMouseListeners.length; i++) {
+		addMouseListener(nativeMouseListeners[i]);
+	    }
+	    nativeMouseListeners = null;
+	}
+		
+	super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
+	super.repaint();
+    }
+
+    /**
+     * Add a Scilab MenuBar to a Scilab menu
+     * @param menuBarToAdd the Scilab MenuBar to add to the Scilab menu
+     * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
+     */
+    public void addMenuBar(MenuBar menuBarToAdd) {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Add a Scilab Toolbar to a Scilab menu
+     * @param toolBarToAdd the Scilab ToolBar to add to the Scilab menu
+     * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.menubar.ToolBar)
+     */
+    public void addToolBar(ToolBar toolBarToAdd) {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Draws a swing Scilab menu
+     * @see org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Gets the dimensions (width and height) of a swing Scilab menu
+     * @return the dimensions of the menu
+     * @see org.scilab.modules.gui.UIElement#getDims()
+     */
+    public Size getDims() {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
+     * @return the position of the menu
+     * @see org.scilab.modules.gui.UIElement#getPosition()
+     */
+    public Position getPosition() {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets the dimensions (width and height) of a swing Scilab menu
+     * @param newSize the dimensions to set to the menu
+     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
+     * @param newPosition the position to set to the menu
+     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Get the id of the menu bar associated to the menu (not the parent menubar)
+     * @return the menubar
+     * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
+     */
+    public MenuBar getMenuBar() {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Get the id of the tool bar associated to the menu
+     * @return the toolbar
+     * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
+     */
+    public ToolBar getToolBar() {
+	throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Add a callback to the menu, this callback is a Scilab command
+     * @param cb the callback to set.
+     */
+    public void setCallback(CallBack cb) {
+	this.callback = cb;
+		
+	/* Remove Java MouseListeners if not already done */
+	/* Save them so that they can be put back */
+	if (nativeMouseListeners == null) {
+	    nativeMouseListeners = getMouseListeners();
+	    for (int i = 0; i < nativeMouseListeners.length; i++) {
+		removeMouseListener(nativeMouseListeners[i]);
 	    }
 	}
-	
-	/**
-	 * Append a CheckBoxMenuItem to a Scilab Menu
-	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.CheckBoxMenuItem)
-	 */
-	public void add(CheckBoxMenuItem newCheckBoxMenuItem) {
-		/* Back to Java Mouse Listeners */
-		if (customedMouseListener != null) {
-			removeMouseListener(customedMouseListener);
-		}
-		if (nativeMouseListeners != null) {
-			for (int i = 0; i < nativeMouseListeners.length; i++) {
-				addMouseListener(nativeMouseListeners[i]);
-			}
-			nativeMouseListeners = null;
-		}
-
-		super.add((SwingScilabCheckBoxMenuItem) newCheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
-		super.repaint();
-	}
-	
-	/**
-	 * Append a MenuItem to a Scilab Menu
-	 * @param newMenuItem the MenuItem to add to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.MenuItem)
-	 */
-	public void add(MenuItem newMenuItem) {
-		/* Back to Java Mouse Listeners */
-		if (customedMouseListener != null) {
-			removeMouseListener(customedMouseListener);
-		}
-		if (nativeMouseListeners != null) {
-			for (int i = 0; i < nativeMouseListeners.length; i++) {
-				addMouseListener(nativeMouseListeners[i]);
-			}
-			nativeMouseListeners = null;
-		}
-
-		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
-		super.repaint();
-	}
-	
-	/**
-	 * Append a subMenu to a Scilab Menu
-	 * @param newSubMenu the subMenu to append to the Menu
-	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.ContextMenu)
-	 */
-	public void add(Menu newSubMenu) {
-		/* Back to Java Mouse Listeners */
-		if (customedMouseListener != null) {
-			removeMouseListener(customedMouseListener);
-		}
-		if (nativeMouseListeners != null) {
-			for (int i = 0; i < nativeMouseListeners.length; i++) {
-				addMouseListener(nativeMouseListeners[i]);
-			}
-			nativeMouseListeners = null;
-		}
 		
-		super.add((SwingScilabMenu) newSubMenu.getAsSimpleMenu());
-		super.repaint();
+	/* Remove previous listener */
+	if (customedMouseListener != null) {
+	    removeMouseListener(customedMouseListener);
 	}
 
-	/**
-	 * Add a Scilab MenuBar to a Scilab menu
-	 * @param menuBarToAdd the Scilab MenuBar to add to the Scilab menu
-	 * @see org.scilab.modules.gui.window.Window#setMenuBar(org.scilab.modules.gui.menubar.MenuBar)
-	 */
-	public void addMenuBar(MenuBar menuBarToAdd) {
-		throw new UnsupportedOperationException();
-	}
+	/* Create a customed MouseListener */
+	customedMouseListener = new MouseListener() {
 
-	/**
-	 * Add a Scilab Toolbar to a Scilab menu
-	 * @param toolBarToAdd the Scilab ToolBar to add to the Scilab menu
-	 * @see org.scilab.modules.gui.window.Window#setToolBar(org.scilab.modules.gui.menubar.ToolBar)
-	 */
-	public void addToolBar(ToolBar toolBarToAdd) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Draws a swing Scilab menu
-	 * @see org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Gets the dimensions (width and height) of a swing Scilab menu
-	 * @return the dimensions of the menu
-	 * @see org.scilab.modules.gui.UIElement#getDims()
-	 */
-	public Size getDims() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
-	 * @return the position of the menu
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
-	 */
-	public Position getPosition() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets the dimensions (width and height) of a swing Scilab menu
-	 * @param newSize the dimensions to set to the menu
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab menu
-	 * @param newPosition the position to set to the menu
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Get the id of the menu bar associated to the menu (not the parent menubar)
-	 * @return the menubar
-	 * @see org.scilab.modules.gui.uielement.UIElement#getMenuBarId()
-	 */
-	public MenuBar getMenuBar() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Get the id of the tool bar associated to the menu
-	 * @return the toolbar
-	 * @see org.scilab.modules.gui.uielement.UIElement#getToolBarId()
-	 */
-	public ToolBar getToolBar() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add a callback to the menu, this callback is a Scilab command
-	 * @param cb the callback to set.
-	 */
-	public void setCallback(CallBack cb) {
-		this.callback = cb;
-		
-		/* Remove Java MouseListeners if not already done */
-		/* Save them so that they can be put back */
-		if (nativeMouseListeners == null) {
-			nativeMouseListeners = getMouseListeners();
-			for (int i = 0; i < nativeMouseListeners.length; i++) {
-				removeMouseListener(nativeMouseListeners[i]);
-			}
-		}
-		
-		/* Remove previous listener */
-		if (customedMouseListener != null) {
-			removeMouseListener(customedMouseListener);
+		public void mouseClicked(MouseEvent arg0) {
+		    /* Mouse button released over the menu */
+		    /* Deselect the menu and execute the callback */
+		    setSelected(false);
+		    if (callback != null) {
+			callback.actionPerformed(null);
+		    }
 		}
 
-		/* Create a customed MouseListener */
-		customedMouseListener = new MouseListener() {
+		public void mouseEntered(MouseEvent arg0) {
+		    /* Nothing to do */
+		}
 
-			public void mouseClicked(MouseEvent arg0) {
-				/* Mouse button released over the menu */
-				/* Deselect the menu and execute the callback */
-				setSelected(false);
-				if (callback != null) {
-					callback.actionPerformed(null);
-				}
-			}
+		public void mouseExited(MouseEvent arg0) {
+		    /* Nothing to do */
+		}
 
-			public void mouseEntered(MouseEvent arg0) {
-				/* Nothing to do */
-			}
+		public void mousePressed(MouseEvent arg0) {
+		    /* Select the menu */
+		    setSelected(true);
+		}
 
-			public void mouseExited(MouseEvent arg0) {
-				/* Nothing to do */
-			}
-
-			public void mousePressed(MouseEvent arg0) {
-				/* Select the menu */
-				setSelected(true);
-			}
-
-			public void mouseReleased(MouseEvent arg0) {
-				/* Mouse button released out of the menu */
-				/* Deselect the menu */
-				setSelected(false);
-			}
+		public void mouseReleased(MouseEvent arg0) {
+		    /* Mouse button released out of the menu */
+		    /* Deselect the menu */
+		    setSelected(false);
+		}
 			
-		};
+	    };
 		
-		/* Add the mouse listener */
+	/* Add the mouse listener */
+	addMouseListener(customedMouseListener);
+    }
+
+    /**
+     * Set the horizontal alignment for the Menu text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setHorizontalAlignment(String alignment) {
+	setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+    }
+
+    /**
+     * Set the vertical alignment for the Menu text
+     * @param alignment the value for the alignment (See ScilabAlignment.java)
+     */
+    public void setVerticalAlignment(String alignment) {
+	setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+    }
+	
+    /**
+     * Set the Relief of the Menu
+     * @param reliefType the type of the relief to set (See ScilabRelief.java)
+     */
+    public void setRelief(String reliefType) {
+	setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+    }
+	
+    /**
+     * Destroy the Menu
+     * @see org.scilab.modules.gui.menuitem.SimpleMenuItem#destroy()
+     */
+    public void destroy() {
+	ScilabSwingUtilities.removeFromParent(this);
+    }
+
+    /**
+     * Set if the menu is enabled or not
+     * @param status true if the menu is enabled
+     */
+    public void setEnabled(boolean status) {
+	super.setEnabled(status);
+	/* (Des)Activate the callback */ 
+	if (callback != null) {
+	    if (status) {
+		removeMouseListener(customedMouseListener); /* To be sure the callback is not added two times */
 		addMouseListener(customedMouseListener);
+	    } else {
+		removeMouseListener(customedMouseListener);
+	    }
 	}
-
-	/**
-	 * Set the horizontal alignment for the Menu text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setHorizontalAlignment(String alignment) {
-		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
-	}
-
-	/**
-	 * Set the vertical alignment for the Menu text
-	 * @param alignment the value for the alignment (See ScilabAlignment.java)
-	 */
-	public void setVerticalAlignment(String alignment) {
-		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
-	}
+    }
 	
-	/**
-	 * Set the Relief of the Menu
-	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
-	 */
-	public void setRelief(String reliefType) {
-		setBorder(ScilabRelief.getBorderFromRelief(reliefType));
-	}
-	
-	/**
-	 * Destroy the Menu
-	 * @see org.scilab.modules.gui.menuitem.SimpleMenuItem#destroy()
-	 */
-	public void destroy() {
-		ScilabSwingUtilities.removeFromParent(this);
-	}
+    /**
+     * Setter for InfoBar
+     * @param infoBarToAdd the InfoBar associated to the Menu.
+     */
+    public void addInfoBar(TextBox infoBarToAdd) {
+	/* Unimplemented for Menus */
+	throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set if the menu is enabled or not
-	 * @param status true if the menu is enabled
-	 */
-	public void setEnabled(boolean status) {
-		super.setEnabled(status);
-		/* (Des)Activate the callback */ 
-		if (callback != null) {
-			if (status) {
-				removeMouseListener(customedMouseListener); /* To be sure the callback is not added two times */
-				addMouseListener(customedMouseListener);
-			} else {
-				removeMouseListener(customedMouseListener);
-			}
-		}
-	}
-	
-	/**
-	 * Setter for InfoBar
-	 * @param infoBarToAdd the InfoBar associated to the Menu.
-	 */
-	public void addInfoBar(TextBox infoBarToAdd) {
-		/* Unimplemented for Menus */
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Getter for InfoBar
+     * @return the InfoBar associated to the Menu.
+     */
+    public TextBox getInfoBar() {
+	/* Unimplemented for Menus */
+	throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Getter for InfoBar
-	 * @return the InfoBar associated to the Menu.
-	 */
-	public TextBox getInfoBar() {
-		/* Unimplemented for Menus */
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Set if the Menu is checked or not
-	 * @param status true if the Menu is checked
-	 */
-	public void setChecked(boolean status) {
-		checkedState = status;
-	}
+    /**
+     * Set if the Menu is checked or not
+     * @param status true if the Menu is checked
+     */
+    public void setChecked(boolean status) {
+	checkedState = status;
+    }
 	
-	/**
-	 * Get if the Menu is checked or not
-	 * @return true if the Menu is checked
-	 */
-	public boolean isChecked() {
-		return checkedState;
-	}
+    /**
+     * Get if the Menu is checked or not
+     * @return true if the Menu is checked
+     */
+    public boolean isChecked() {
+	return checkedState;
+    }
 	
-	/**
-	 * Retrieve the CallBack associated to this MenuItem
-	 * @return the CallBack
-	 */
-	public CallBack getCallback() {
-		return callback;
-	}
+    /**
+     * Retrieve the CallBack associated to this MenuItem
+     * @return the CallBack
+     */
+    public CallBack getCallback() {
+	return callback;
+    }
 }

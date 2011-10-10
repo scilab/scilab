@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -64,7 +65,7 @@
 //roots(p)
 //
 //
-//Jean-Marc Sac-EpÃ©e on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
+//Jean-Marc Sac-Epée on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
 //France  September 27, 2000 at 9:18:17
 
 // 
@@ -89,14 +90,15 @@ endfunction
 // Arguments
 //   x : the array to sort
 //   compfun : the comparison function
+//   data : an optionnal data to pass to the comparison function
 // Bruno Pincon
-// "quelques tests de rapidit�e entre diff�erents logiciels matriciels"
+// "quelques tests de rapidité entre différents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
   [lhs,rhs]=argn();
-  if rhs<>1 & rhs<>2 then
-    errmsg = sprintf("Unexpected number of arguments : %d provided while 1 or 2 are expected.",rhs);
+  if ( ( rhs<>1 ) & ( rhs<>2 ) & ( rhs<>3 ) ) then
+    errmsg = sprintf("Unexpected number of arguments : %d provided while 1, 2 or 3 are expected.",rhs);
     error(errmsg)
   end
   // Get the array x
@@ -106,19 +108,31 @@ function [x] = sort_merge ( varargin )
     compfun = sort_merge_comparison;
   else
     compfun = varargin(2);
+    if ( rhs == 3 ) then
+	data = varargin(3);
+    end
   end
   // Proceed...
   n = length(x)
   if n > 1 then
     m = floor(n/2); 
     p = n-m
-    x1 = sort_merge ( x(1:m) , compfun )
-    x2 = sort_merge ( x(m+1:n) , compfun )
+    if ( rhs == 3 ) then
+      x1 = sort_merge ( x(1:m) , compfun , data )
+      x2 = sort_merge ( x(m+1:n) , compfun , data )
+    else
+      x1 = sort_merge ( x(1:m) , compfun )
+      x2 = sort_merge ( x(m+1:n) , compfun )
+    end
     i = 1; 
     i1 = 1;
     i2 = 1;
     for i = 1:n
-      order = compfun ( x1(i1) , x2(i2) );
+      if ( rhs == 3 ) then
+        order = compfun ( x1(i1) , x2(i2) , data );
+      else
+        order = compfun ( x1(i1) , x2(i2) );
+      end
       if order<=0 then
         x(i) = x1(i1)
         i1 = i1+1
@@ -138,60 +152,19 @@ function [x] = sort_merge ( varargin )
   end
 endfunction
 
-// 
-// compare_complexrealimag --
-//   Returns -1 if a < b, 
-//   returns 0 if a==b,
-//   returns +1 if a > b
-// Compare first by real parts, then by imaginary parts.
-//
-function order = compare_complexrealimag ( a , b )
- ar = real(a)
- br = real(b)
- if ar < br then
-   order = -1
- elseif ar > br then
-   order = 1
- else
-   ai = imag(a)
-   bi = imag(b)
-   if ai < bi then
-     order = -1
-   elseif ai == bi then
-     order = 0
-   else
-     order = 1
-    end
-  end
+
+function order = mycomparison ( x , y , data )
+  order = assert_comparecomplex(x,y,data(1),data(2))
 endfunction
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
+// There is no problem in this test: only the order of the 
+// eigenvalues change.
 t=poly(0,"t");
 p=t^14 - 15*t^12 - t^11 + 89*t^10 + 12*t^9 - 263*t^8 - 53*t^7 + 397*t^6 + 103*t^5 - 275*t^4 - 78*t^3 + 62*t^2 + 8*t - 7;
 myroots=roots(p);
 //computedroots = sort(myroots);
-computed = sort_merge ( myroots , compare_complexrealimag );
+computed = sort_merge ( myroots , mycomparison , [%eps,0] );
 expected  = [ 
 - 1.9914144710587742270747  
 - 1.89588904429592775003 
@@ -209,7 +182,4 @@ expected  = [
 1.9767819021883872299128 + 0.0347589196932355307124*%i  
 ];
 // Precision measured with experiments
-assert_close ( computed , expected , 10^4*%eps )
-
-
-
+assert_checkalmostequal ( computed , expected , 10^6*%eps );

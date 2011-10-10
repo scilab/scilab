@@ -47,16 +47,19 @@ libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
+noinst_LTLIBRARIES = libscirandlib-algo.la
 
 libscirandlib_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
+libscirandlib_algo_la_SOURCES = $(RANDLIB_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
+libscirandlib_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscirandlib_algo_la_CFLAGS = $(libscirandlib_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirandlib_la_CFLAGS)
 
-libscirandlib_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscirandlib_la_LIBADD =  libscirandlib-algo.la
 
 
 
@@ -67,7 +70,7 @@ modulename=randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(mydatadir)
-libscirandlib_la_root_DATA =  license.txt version.xml
+libscirandlib_la_root_DATA =  license.txt 
 
 
 #### randlib : init scripts ####

@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.block;
 
 import static org.scilab.modules.xcos.utils.FileUtils.delete;
+import static org.scilab.modules.xcos.utils.FileUtils.exists;
 
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
@@ -87,6 +88,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -105,158 +107,197 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
+/**
+ * A block on the diagram
+ */
+// CSOFF: ClassDataAbstractionCoupling
+// CSOFF: ClassFanOutComplexity
 public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
+	/*
+	 * Property names
+	 */
+
 	/**
-	 * Property name of {@link #interfaceFunctionName}
+	 * Property name of interfaceFunctionName
 	 */
 	public static final String INTERFACE_FUNCTION_NAME = "interfaceFunctionName";
 	/**
-	 * Property name of {@link #simulationFunctionName}
+	 * Property name of simulationFunctionName
 	 */
 	public static final String SIMULATION_FUNCTION_NAME = "simulationFunctionName";
 	/**
-	 * Property name of {@link #simulationFunctionType}
+	 * Property name of simulationFunctionType
 	 */
 	public static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
 	/**
-	 * Property name of {@link #realParameters}
+	 * Property name of realParameters
 	 */
 	public static final String REAL_PARAMETERS = "realParameters";
 	/**
-	 * Property name of {@link #integerParameters}
+	 * Property name of integerParameters
 	 */
 	public static final String INTEGER_PARAMETERS = "integerParameters";
 	/**
-	 * Property name of {@link #objectsParameters}
+	 * Property name of objectsParameters
 	 */
 	public static final String OBJECTS_PARAMETERS = "objectsParameters";
 	/**
-	 * Property name of {@link #dependsOnU}
+	 * Property name of dependsOnU
 	 */
 	public static final String DEPENDS_ON_U = "dependsOnU";
 	/**
-	 * Property name of {@link #dependsOnT}
+	 * Property name of dependsOnT
 	 */
 	public static final String DEPENDS_ON_T = "dependsOnT";
 	/**
-	 * Property name of {@link #blockType}
+	 * Property name of blockType
 	 */
 	public static final String BLOCK_TYPE = "blockType";
 	/**
-	 * Property name of {@link #ordering}
+	 * Property name of ordering
 	 */
 	public static final String ORDERING = "ordering";
 	/**
-	 * Property name of {@link #exprs}
+	 * Property name of exprs
 	 */
 	public static final String EXPRS = "exprs";
 	/**
-	 * Property name of {@link #nbZerosCrossing}
+	 * Property name of nbZerosCrossing
 	 */
 	public static final String NB_ZEROS_CROSSING = "nbZerosCrossing";
 	/**
-	 * Property name of {@link #nmode}
+	 * Property name of nmode
 	 */
 	public static final String NMODE = "nmode";
 	/**
-	 * Property name of {@link #state}
+	 * Property name of state
 	 */
 	public static final String STATE = "state";
 	/**
-	 * Property name of {@link #dState}
+	 * Property name of dState
 	 */
 	public static final String D_STATE = "dState";
 	/**
-	 * Property name of {@link #oDState}
+	 * Property name of oDState
 	 */
 	public static final String O_D_STATE = "oDState";
 	/**
-	 * Property name of {@link #equations}
+	 * Property name of equations
 	 */
 	public static final String EQUATIONS = "equations";
-	
+
+	/*
+	 * Default values
+	 */
+
+	/**
+	 * Default interface function name
+	 */
+	public static final String DEFAULT_INTERFACE_FUNCTION = "xcos_block";
+	/**
+	 * Default simulation function name
+	 */
+	public static final String DEFAULT_SIMULATION_FUNCTION = "xcos_simulate";
+
+	/*
+	 * Local constants
+	 */
+
+	private static final String PARENT_DIAGRAM_WAS_NULL = "Parent diagram was null";
 	private static final double DEFAULT_POSITION_X = 10.0;
 	private static final double DEFAULT_POSITION_Y = 10.0;
 	private static final double DEFAULT_WIDTH = 40.0;
 	private static final double DEFAULT_HEIGHT = 40.0;
-	
+
 	private static final PropertyChangeListener STYLE_UPDATER = new UpdateStyleFromInterfunction();
 	private static final Log LOG = LogFactory.getLog(BasicBlock.class);
-	
+
 	/**
 	 * Manage events for block parameters.
 	 * 
-	 * The property name is the field name, is one of:
-	 *     - "interfaceFunctionName"
-	 *     - "simulationFunctionName"
-	 *     - "simulationFunctionType"
-	 *     - "exprs"
-	 *     - "realParameters"
-	 *     - "integerParameters"
-	 *     - "objectsParameters"
-	 *     - "nbZerosCrossing"
-	 *     - "nmode"
-	 *     - "state"
-	 *     - "dState"
-	 *     - "oDState"
-	 *     - "equations"
-	 *     - "dependsOnU"
-	 *     - "dependsOnT"
-	 *     - "blockType"
-	 *     - "ordering"
-	 *  
-	 *  you can easily access to then by using property name constants.
+	 * The property name is the field name, is one of: - "interfaceFunctionName"
+	 * - "simulationFunctionName" - "simulationFunctionType" - "exprs" -
+	 * "realParameters" - "integerParameters" - "objectsParameters" -
+	 * "nbZerosCrossing" - "nmode" - "state" - "dState" - "oDState" -
+	 * "equations" - "dependsOnU" - "dependsOnT" - "blockType" - "ordering"
+	 * 
+	 * you can easily access to then by using property name constants.
 	 */
-	private PropertyChangeSupport parametersPCS = new PropertyChangeSupport(this);
-	
-    private String interfaceFunctionName = "xcos_block";
-    private String simulationFunctionName = "xcos_simulate";
-    private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
-    private transient XcosDiagram parentDiagram;   
-    
-    private int angle;
-    private boolean isFlipped;
-    private boolean isMirrored;
-    
+	private PropertyChangeSupport parametersPCS = new PropertyChangeSupport(
+			this);
 
-    // TODO : Must make this types evolve, but for now keep a strong link to Scilab
-    // !! WARNING !!
-    // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
+	private String interfaceFunctionName = DEFAULT_INTERFACE_FUNCTION;
+	private String simulationFunctionName = DEFAULT_SIMULATION_FUNCTION;
+	private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
+	private transient XcosDiagram parentDiagram;
 
-    //private List<String> exprs = new ArrayList<String>();
-    private ScilabType exprs;
-    //private List<Double> realParameters = new ArrayList<Double>();
-    private ScilabType realParameters;
-    //private List<Integer> integerParameters = new ArrayList<Integer>();
-    private ScilabType integerParameters;
-    //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters;
+	private int angle;
+	private boolean isFlipped;
+	private boolean isMirrored;
 
-    private ScilabType nbZerosCrossing = new ScilabDouble();
+	// TODO : Must make this types evolve, but for now keep a strong link to
+	// Scilab
+	// !! WARNING !!
+	// exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
-    private ScilabType nmode = new ScilabDouble();
+	// private List<String> exprs = new ArrayList<String>();
+	private ScilabType exprs;
+	// private List<Double> realParameters = new ArrayList<Double>();
+	private ScilabType realParameters;
+	// private List<Integer> integerParameters = new ArrayList<Integer>();
+	private ScilabType integerParameters;
+	// private List objectsParameters = new ArrayList();
+	private ScilabType objectsParameters;
 
-    private ScilabType state = new ScilabDouble();
-    private ScilabType dState = new ScilabDouble();
-    private ScilabType oDState = new ScilabDouble();
+	private ScilabType nbZerosCrossing = new ScilabDouble();
 
-    private ScilabType equations;
+	private ScilabType nmode = new ScilabDouble();
 
-    private boolean dependsOnU;
-    private boolean dependsOnT;
+	private ScilabType state = new ScilabDouble();
+	private ScilabType dState = new ScilabDouble();
+	private ScilabType oDState = new ScilabDouble();
 
-    private String blockType = "c";
+	private ScilabType equations;
 
-    private int ordering;
-    private boolean locked;
+	private boolean dependsOnU;
+	private boolean dependsOnT;
+
+	private String blockType = "c";
+
+	private int ordering;
+	private boolean locked;
 
 	/**
 	 * Represent a simulation function type compatible with Scilab/Scicos
 	 * function type descriptors.
 	 */
 	public static enum SimulationFunctionType {
-		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), DEBUG(99), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
+		/** event select; reduced at compilation */
+		ESELECT(-2.0),
+		/** if then else; reduced at compilation */
+		IFTHENELSE(-1.0),
+		/** first common block */
+		DEFAULT(0.0),
+		/** first native block */
+		TYPE_1(1.0),
+		/** second native block */
+		TYPE_2(2.0),
+		/** third native block */
+		TYPE_3(3.0),
+		/** forth native block */
+		C_OR_FORTRAN(4.0),
+		/** Scilab blocks */
+		SCILAB(5.0),
+		/** Debug blocks */
+		DEBUG(99),
+		/** Modelica {@link #C_OR_FORTRAN} blocks */
+		MODELICA(30004.0),
+		/** Magic types */
+		UNKNOWN(5.0),
+		/** Implicit {@link #TYPE_1} blocks */
+		OLDBLOCKS(10001.0),
+		/** Implicit {@link #C_OR_FORTRAN} blocks */
+		IMPLICIT_C_OR_FORTRAN(10004.0);
 
 		private double value;
 
@@ -297,49 +338,61 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	};
 
 	/**
-	 * Update the source block when the interfunction change. 
+	 * Update the source block when the interfunction change.
 	 */
-	private static final class UpdateStyleFromInterfunction implements PropertyChangeListener, Serializable {
+	private static final class UpdateStyleFromInterfunction implements
+			PropertyChangeListener, Serializable {
 
 		/**
 		 * Default constructor.
 		 */
 		public UpdateStyleFromInterfunction() {
 		}
-		
+
 		/**
 		 * Update the label on interfunction change.
 		 * 
-		 * @param evt the property change event.
+		 * @param evt
+		 *            the property change event.
 		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
 		 */
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-			BasicBlock source = (BasicBlock) evt.getSource();
-			
-			StyleMap style = new StyleMap(source.getStyle());
+			final BasicBlock source = (BasicBlock) evt.getSource();
+
+			/*
+			 * Put the interfunction at the start of the style map to preserve
+			 * style modification.
+			 * 
+			 * oldStyle="SUPER_f;fillColor=red" newStyle="DSUPER;fillColor=red"
+			 * 
+			 * and not newStyle="fillColor=red;DSUPER"
+			 */
+			final StyleMap style = new StyleMap((String) evt.getNewValue());
+			style.putAll(source.getStyle());
 			style.remove(evt.getOldValue());
-			style.put((String) evt.getNewValue(), null);
+
 			source.setStyle(style.toString());
 		}
-		
+
 	}
-	
+
 	/**
 	 * Trace the parameters change on the {@link Log}.
 	 * 
 	 * This listener is only installed if the trace is enable.
 	 */
-	private static final class TraceParametersListener implements PropertyChangeListener, Serializable {
+	private static final class TraceParametersListener implements
+			PropertyChangeListener, Serializable {
 		private static TraceParametersListener instance;
-		
+
 		/**
 		 * Default constructor.
 		 */
 		private TraceParametersListener() {
 			super();
 		}
-		
+
 		/**
 		 * @return the instance
 		 */
@@ -349,18 +402,21 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			}
 			return instance;
 		}
-		
+
 		/**
 		 * Trace.
-		 * @param evt the event
+		 * 
+		 * @param evt
+		 *            the event
 		 * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
 		 */
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-			LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", " + evt.getNewValue());
+			LOG.trace(evt.getPropertyName() + ": " + evt.getOldValue() + ", "
+					+ evt.getNewValue());
 		}
 	}
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -369,24 +425,26 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
-		
+
 		if (getStyle().isEmpty() && !getInterfaceFunctionName().isEmpty()) {
 			setStyle(getInterfaceFunctionName());
 		}
-		
+
 		parametersPCS.addPropertyChangeListener(INTERFACE_FUNCTION_NAME,
 				STYLE_UPDATER);
-		
+
 		/*
 		 * Trace block parameters change if applicable.
 		 */
 		if (LOG.isTraceEnabled()) {
-			parametersPCS.addPropertyChangeListener(TraceParametersListener.getInstance());
+			parametersPCS.addPropertyChangeListener(TraceParametersListener
+					.getInstance());
 		}
 	}
 
 	/**
-	 * @param label block label
+	 * @param label
+	 *            block label
 	 */
 	protected BasicBlock(String label) {
 		this();
@@ -394,8 +452,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	}
 
 	/**
-	 * @param label block label
-	 * @param style initial style
+	 * @param label
+	 *            block label
+	 * @param style
+	 *            initial style
 	 */
 	protected BasicBlock(String label, String style) {
 		this(label);
@@ -414,474 +474,511 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		setValue("");
 		setStyle("");
 	}
-	
-    /**
-     * @return parent diagram
-     */
-    public XcosDiagram getParentDiagram() {
-        return parentDiagram;
-    }
 
-    /**
-     * @param parentDiagram parent diagram
-     */
-    public void setParentDiagram(XcosDiagram parentDiagram) {
-        this.parentDiagram = parentDiagram;
-    }
+	/**
+	 * @return parent diagram
+	 */
+	public XcosDiagram getParentDiagram() {
+		return parentDiagram;
+	}
 
-    
-    /**
-     * @return interface function name
-     */
-    public String getInterfaceFunctionName() {
-	return interfaceFunctionName;
-    }
+	/**
+	 * @param parentDiagram
+	 *            parent diagram
+	 */
+	public void setParentDiagram(XcosDiagram parentDiagram) {
+		this.parentDiagram = parentDiagram;
+	}
 
-    /**
-     * @param interfaceFunctionName interface function name
-     */
-    public void setInterfaceFunctionName(String interfaceFunctionName) {
+	/**
+	 * @return interface function name
+	 */
+	public String getInterfaceFunctionName() {
+		return interfaceFunctionName;
+	}
+
+	/**
+	 * @param interfaceFunctionName
+	 *            interface function name
+	 */
+	public void setInterfaceFunctionName(String interfaceFunctionName) {
 		if ((this.interfaceFunctionName == null && interfaceFunctionName != null)
 				|| !this.interfaceFunctionName.equals(interfaceFunctionName)) {
-			
+
 			final String oldValue = this.interfaceFunctionName;
 			this.interfaceFunctionName = interfaceFunctionName;
 			parametersPCS.firePropertyChange(INTERFACE_FUNCTION_NAME, oldValue,
 					interfaceFunctionName);
 		}
-    }
+	}
 
-    /**
-     * @param simulationFunctionName sumulation function name
-     */
-    public void setSimulationFunctionName(String simulationFunctionName) {
+	/**
+	 * @param simulationFunctionName
+	 *            sumulation function name
+	 */
+	public void setSimulationFunctionName(String simulationFunctionName) {
 		if ((this.simulationFunctionName == null && simulationFunctionName != null)
 				|| !this.simulationFunctionName.equals(simulationFunctionName)) {
-			
-    		final String oldValue = this.simulationFunctionName;
-    		this.simulationFunctionName = simulationFunctionName;
-    		parametersPCS.firePropertyChange(SIMULATION_FUNCTION_NAME, oldValue, simulationFunctionName);
-    	}
-    }
 
-    /**
-     * @return sumulation function name
-     */
-    public String getSimulationFunctionName() {
-	return simulationFunctionName;
-    }
-
-    /**
-     * @param scilabValue simulation function type
-     */
-    public void setSimulationFunctionType(int scilabValue) {
-		SimulationFunctionType simFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
-		setSimulationFunctionType(simFunctionType);
-    }
-
-    /**
-     * @param simulationFunctionType simulation function type
-     */
-	public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
-		if ((this.simulationFunctionType == null && simulationFunctionType != null)
-				|| !this.simulationFunctionType.equals(simulationFunctionType)) {
-			
-			final SimulationFunctionType oldValue = this.simulationFunctionType;
-			this.simulationFunctionType = simulationFunctionType;
-			parametersPCS.firePropertyChange(SIMULATION_FUNCTION_TYPE, oldValue,
-					simulationFunctionType);
+			final String oldValue = this.simulationFunctionName;
+			this.simulationFunctionName = simulationFunctionName;
+			parametersPCS.firePropertyChange(SIMULATION_FUNCTION_NAME,
+					oldValue, simulationFunctionName);
 		}
 	}
 
-    /**
-     * @return simulation function type
-     */
-    public SimulationFunctionType getSimulationFunctionType() {
-	return simulationFunctionType;
-    }
+	/**
+	 * @return sumulation function name
+	 */
+	public String getSimulationFunctionName() {
+		return simulationFunctionName;
+	}
 
-    /**
-     * @return real parameter ( rpar )
-     */
-    public ScilabType getRealParameters() {
-	return realParameters;
-    }
+	/**
+	 * @param scilabValue
+	 *            simulation function type
+	 */
+	public void setSimulationFunctionType(int scilabValue) {
+		SimulationFunctionType simFunctionType = SimulationFunctionType
+				.convertScilabValue(scilabValue);
+		setSimulationFunctionType(simFunctionType);
+	}
 
-    /**
-     * @param realParameters reaL parameter ( rpar )
-     */
-    public void setRealParameters(ScilabType realParameters) {
+	/**
+	 * @param simulationFunctionType
+	 *            simulation function type
+	 */
+	public void setSimulationFunctionType(
+			SimulationFunctionType simulationFunctionType) {
+		if ((this.simulationFunctionType == null && simulationFunctionType != null)
+				|| !this.simulationFunctionType.equals(simulationFunctionType)) {
+
+			final SimulationFunctionType oldValue = this.simulationFunctionType;
+			this.simulationFunctionType = simulationFunctionType;
+			parametersPCS.firePropertyChange(SIMULATION_FUNCTION_TYPE,
+					oldValue, simulationFunctionType);
+		}
+	}
+
+	/**
+	 * @return simulation function type
+	 */
+	public SimulationFunctionType getSimulationFunctionType() {
+		return simulationFunctionType;
+	}
+
+	/**
+	 * @return real parameter ( rpar )
+	 */
+	public ScilabType getRealParameters() {
+		return realParameters;
+	}
+
+	/**
+	 * @param realParameters
+	 *            reaL parameter ( rpar )
+	 */
+	public void setRealParameters(ScilabType realParameters) {
 		if ((this.realParameters == null && realParameters != null)
 				|| !this.realParameters.equals(realParameters)) {
-			
+
 			final ScilabType oldValue = this.realParameters;
 			this.realParameters = realParameters;
-			parametersPCS.firePropertyChange(REAL_PARAMETERS, oldValue, realParameters);
+			parametersPCS.firePropertyChange(REAL_PARAMETERS, oldValue,
+					realParameters);
 		}
-    } 
+	}
 
-    /**
-     * @return integer parameter ( ipar )
-     */
-    public ScilabType getIntegerParameters() {
-	return integerParameters;
-    }
+	/**
+	 * @return integer parameter ( ipar )
+	 */
+	public ScilabType getIntegerParameters() {
+		return integerParameters;
+	}
 
-    /**
-     * @param integerParameters integer parameter ( ipar )
-     */
-    public void setIntegerParameters(ScilabType integerParameters) {
+	/**
+	 * @param integerParameters
+	 *            integer parameter ( ipar )
+	 */
+	public void setIntegerParameters(ScilabType integerParameters) {
 		if ((this.integerParameters == null && integerParameters != null)
 				|| !this.integerParameters.equals(integerParameters)) {
-			
+
 			final ScilabType oldValue = this.integerParameters;
 			this.integerParameters = integerParameters;
-			parametersPCS.firePropertyChange(INTEGER_PARAMETERS, oldValue, integerParameters);
+			parametersPCS.firePropertyChange(INTEGER_PARAMETERS, oldValue,
+					integerParameters);
 		}
-    }
+	}
 
-    /**
-     * @return object parameter ( opar )
-     */
-    public ScilabType getObjectsParameters() {
-	return objectsParameters;
-    }
+	/**
+	 * @return object parameter ( opar )
+	 */
+	public ScilabType getObjectsParameters() {
+		return objectsParameters;
+	}
 
-    /**
-     * @param objectsParameters object parameter ( opar )
-     */
-    public void setObjectsParameters(ScilabType objectsParameters) {
+	/**
+	 * @param objectsParameters
+	 *            object parameter ( opar )
+	 */
+	public void setObjectsParameters(ScilabType objectsParameters) {
 		if ((this.objectsParameters == null && objectsParameters != null)
 				|| !this.objectsParameters.equals(objectsParameters)) {
-			
+
 			final ScilabType oldValue = this.objectsParameters;
 			this.objectsParameters = objectsParameters;
-			parametersPCS.firePropertyChange(OBJECTS_PARAMETERS, oldValue, objectsParameters);
+			parametersPCS.firePropertyChange(OBJECTS_PARAMETERS, oldValue,
+					objectsParameters);
 		}
-    }
+	}
 
-    /**
-     * @param dependsOnU ?
-     */
-    public void setDependsOnU(boolean dependsOnU) {
+	/**
+	 * @param dependsOnU
+	 *            ?
+	 */
+	public void setDependsOnU(boolean dependsOnU) {
 		if (this.dependsOnU != dependsOnU) {
-			
+
 			final boolean oldValue = this.dependsOnU;
 			this.dependsOnU = dependsOnU;
-			parametersPCS.firePropertyChange(DEPENDS_ON_U, oldValue, dependsOnU);
+			parametersPCS
+					.firePropertyChange(DEPENDS_ON_U, oldValue, dependsOnU);
 		}
-    }
+	}
 
-    /**
-     * @return ?
-     */
-    public boolean isDependsOnU() {
-	return dependsOnU;
-    }
+	/**
+	 * @return ?
+	 */
+	public boolean isDependsOnU() {
+		return dependsOnU;
+	}
 
-    /**
-     * @param dependsOnT ?
-     */
-    public void setDependsOnT(boolean dependsOnT) {
+	/**
+	 * @param dependsOnT
+	 *            ?
+	 */
+	public void setDependsOnT(boolean dependsOnT) {
 		if (this.dependsOnT != dependsOnT) {
-			
+
 			final boolean oldValue = this.dependsOnT;
 			this.dependsOnT = dependsOnT;
-			parametersPCS.firePropertyChange(DEPENDS_ON_T, oldValue, dependsOnT);
+			parametersPCS
+					.firePropertyChange(DEPENDS_ON_T, oldValue, dependsOnT);
 		}
-    }
+	}
 
-    /**
-     * @return ?
-     */
-    public boolean isDependsOnT() {
-	return dependsOnT;
-    }
+	/**
+	 * @return ?
+	 */
+	public boolean isDependsOnT() {
+		return dependsOnT;
+	}
 
-    /**
-     * @param blockType block type
-     */
-    public void setBlockType(String blockType) {
+	/**
+	 * @param blockType
+	 *            block type
+	 */
+	public void setBlockType(String blockType) {
 		if ((this.blockType == null && blockType != null)
 				|| !this.blockType.equals(blockType)) {
-			
+
 			final String oldValue = this.blockType;
 			this.blockType = blockType;
 			parametersPCS.firePropertyChange(BLOCK_TYPE, oldValue, blockType);
 		}
-    }
+	}
 
-    /**
-     * @return block type
-     */
-    public String getBlockType() {
-	return blockType;
-    }
+	/**
+	 * @return block type
+	 */
+	public String getBlockType() {
+		return blockType;
+	}
 
-    /**
-     * @param ordering order value
-     */
-    public void setOrdering(int ordering) {
+	/**
+	 * @param ordering
+	 *            order value
+	 */
+	public void setOrdering(int ordering) {
 		if (this.ordering != ordering) {
-			
+
 			final int oldValue = this.ordering;
 			this.ordering = ordering;
 			parametersPCS.firePropertyChange(ORDERING, oldValue, ordering);
 		}
-    }
+	}
 
-    /**
-     * @return order value
-     */
-    public int getOrdering() {
-	return ordering;
-    }
+	/**
+	 * @return order value
+	 */
+	public int getOrdering() {
+		return ordering;
+	}
 
-    /**
-     * @param exprs expression
-     */
-    public void setExprs(ScilabType exprs) {
-		if ((this.exprs == null && exprs != null)
-				|| !this.exprs.equals(exprs)) {
-			
+	/**
+	 * @param exprs
+	 *            expression
+	 */
+	public void setExprs(ScilabType exprs) {
+		if ((this.exprs == null && exprs != null) || !this.exprs.equals(exprs)) {
+
 			final ScilabType oldValue = this.exprs;
 			this.exprs = exprs;
 			parametersPCS.firePropertyChange(EXPRS, oldValue, exprs);
 		}
-    }
+	}
 
-    /**
-     * @return expression
-     */
-    public ScilabType getExprs() {
-	return exprs;
-    }
+	/**
+	 * @return expression
+	 */
+	public ScilabType getExprs() {
+		return exprs;
+	}
 
-    /**
-     * @return the expression as a object array
-     */
-    public Object[] getExprsFormat() {
-    	// evaluate emptiness
+	/**
+	 * @return the expression as a object array
+	 */
+	public Object[] getExprsFormat() {
+		// evaluate emptiness
 		if (getExprs() == null || getExprs().isEmpty()
 				|| getExprs().getHeight() == 0 || getExprs().getWidth() == 0) {
 			return new String[0];
 		}
-    	
+
 		List<String[]> stack = getString(null, getExprs());
-		
+
 		int len = 0;
 		for (Object[] strings : stack) {
 			len += strings.length;
 		}
-		
+
 		final Object[] array = new Object[len];
 		int start = 0;
 		for (Object[] strings : stack) {
 			System.arraycopy(strings, 0, array, start, strings.length);
 			start += strings.length;
 		}
-		
+
 		return array;
-    }
-    
-    /**
-     * Append the data recursively to the stack
-     * @param stack the current stack
-     * @param data the data to append
-     * @return the stack
-     */
-    private List<String[]> getString(List<String[]> stack, ScilabType data)  {
-    	if (stack == null) {
-    		stack = new LinkedList<String[]>();
-    	}
-    		
-    	if (data instanceof List) {
-    		/*
-    		 * Container case (ScilabList, ScilabMList, ScilabTList) 
-    		 */
-    		
-    		@SuppressWarnings("unchecked")
+	}
+
+	/**
+	 * Append the data recursively to the stack
+	 * 
+	 * @param currentStack
+	 *            the current stack
+	 * @param data
+	 *            the data to append
+	 * @return the stack
+	 */
+	private List<String[]> getString(List<String[]> currentStack,
+			ScilabType data) {
+		final List<String[]> stack;
+
+		if (currentStack == null) {
+			stack = new LinkedList<String[]>();
+		} else {
+			stack = currentStack;
+		}
+
+		if (data instanceof List) {
+			/*
+			 * Container case (ScilabList, ScilabMList, ScilabTList)
+			 */
+
+			@SuppressWarnings("unchecked")
 			final List<ScilabType> list = (List<ScilabType>) data;
-    		
-    		for (final ScilabType scilabType : list) {
+
+			for (final ScilabType scilabType : list) {
 				getString(stack, scilabType);
 			}
-    	} else if (data instanceof ScilabString) {
-    		/*
-    		 * native case (only ScilabString supported)
-    		 */
-    		
-    		final String[][] scilabData = ((ScilabString) data).getData();
-    		final int height = data.getHeight();
-    		final int width = data.getWidth();
-    		
-    		final String[] array = new String[height * width];
-    		for (int i = 0; i < height; ++i) {
-    			System.arraycopy(scilabData[i], 0, array, i * width, width);
-    		}
-    		
-    		stack.add(array);
-    	}
-    	
-    	return stack;
-    }
-    
-    /**
-     * @return zero crossing value
-     */
-    public ScilabType getNbZerosCrossing() {
-	return nbZerosCrossing;
-    }
+		} else if (data instanceof ScilabString) {
+			/*
+			 * native case (only ScilabString supported)
+			 */
 
-    /**
-     * @param nbZerosCrossing zero crossing value
-     */
-    public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
+			final String[][] scilabData = ((ScilabString) data).getData();
+			final int height = data.getHeight();
+			final int width = data.getWidth();
+
+			final String[] array = new String[height * width];
+			for (int i = 0; i < height; ++i) {
+				System.arraycopy(scilabData[i], 0, array, i * width, width);
+			}
+
+			stack.add(array);
+		}
+
+		return stack;
+	}
+
+	/**
+	 * @return zero crossing value
+	 */
+	public ScilabType getNbZerosCrossing() {
+		return nbZerosCrossing;
+	}
+
+	/**
+	 * @param nbZerosCrossing
+	 *            zero crossing value
+	 */
+	public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
 		if ((this.nbZerosCrossing == null && nbZerosCrossing != null)
 				|| !this.nbZerosCrossing.equals(nbZerosCrossing)) {
-			
+
 			final ScilabType oldValue = this.nbZerosCrossing;
 			this.nbZerosCrossing = nbZerosCrossing;
-			parametersPCS.firePropertyChange(NB_ZEROS_CROSSING, oldValue, nbZerosCrossing);
+			parametersPCS.firePropertyChange(NB_ZEROS_CROSSING, oldValue,
+					nbZerosCrossing);
 		}
-    }
+	}
 
-    /**
-     * @return nmode
-     */
-    public ScilabType getNmode() {
-	return nmode;
-    }
+	/**
+	 * @return nmode
+	 */
+	public ScilabType getNmode() {
+		return nmode;
+	}
 
-    /**
-     * @param nmode nmode
-     */
-    public void setNmode(ScilabType nmode) {
-		if ((this.nmode == null && nmode != null)
-				|| !this.nmode.equals(nmode)) {
-			
+	/**
+	 * @param nmode
+	 *            nmode
+	 */
+	public void setNmode(ScilabType nmode) {
+		if ((this.nmode == null && nmode != null) || !this.nmode.equals(nmode)) {
+
 			final ScilabType oldValue = this.nmode;
 			this.nmode = nmode;
 			parametersPCS.firePropertyChange(NMODE, oldValue, nmode);
 		}
-    }
+	}
 
-    /**
-     * @return current state
-     */
-    public ScilabType getState() {
-	return state;
-    }
+	/**
+	 * @return current state
+	 */
+	public ScilabType getState() {
+		return state;
+	}
 
-    /**
-     * @param state new state
-     */
-    public void setState(ScilabType state) {
-		if ((this.state == null && state != null)
-				|| !this.state.equals(state)) {
-			
+	/**
+	 * @param state
+	 *            new state
+	 */
+	public void setState(ScilabType state) {
+		if ((this.state == null && state != null) || !this.state.equals(state)) {
+
 			final ScilabType oldValue = this.state;
 			this.state = state;
 			parametersPCS.firePropertyChange(STATE, oldValue, state);
 		}
-    }
+	}
 
-    /**
-     * @return current dstate
-     */
-    public ScilabType getDState() {
-	return dState;
-    }
+	/**
+	 * @return current dstate
+	 */
+	public ScilabType getDState() {
+		return dState;
+	}
 
-    /**
-     * @param dState new dstate
-     */
-    public void setDState(ScilabType dState) {
+	/**
+	 * @param dState
+	 *            new dstate
+	 */
+	public void setDState(ScilabType dState) {
 		if ((this.dState == null && dState != null)
 				|| !this.dState.equals(dState)) {
-			
+
 			final ScilabType oldValue = this.dState;
 			this.dState = dState;
 			parametersPCS.firePropertyChange(D_STATE, oldValue, dState);
 		}
-    }
+	}
 
-    /**
-     * @return current ostate
-     */
-    public ScilabType getODState() {
-	return oDState;
-    }
+	/**
+	 * @return current ostate
+	 */
+	public ScilabType getODState() {
+		return oDState;
+	}
 
-    /**
-     * @param oDState new odstate
-     */
-    public void setODState(ScilabType oDState) {
+	/**
+	 * @param oDState
+	 *            new odstate
+	 */
+	public void setODState(ScilabType oDState) {
 		if ((this.oDState == null && oDState != null)
 				|| !this.oDState.equals(oDState)) {
-			
+
 			final ScilabType oldValue = this.oDState;
 			this.oDState = oDState;
 			parametersPCS.firePropertyChange(O_D_STATE, oldValue, oDState);
 		}
-    }
+	}
 
-    /**
-     * @return equations
-     */
-    public ScilabType getEquations() {
-	return equations;
-    }
+	/**
+	 * @return equations
+	 */
+	public ScilabType getEquations() {
+		return equations;
+	}
 
-    /**
-     * @param equations equations
-     */
-    public void setEquations(ScilabType equations) {
+	/**
+	 * @param equations
+	 *            equations
+	 */
+	public void setEquations(ScilabType equations) {
 		if ((this.equations == null && equations != null)
 				|| !this.equations.equals(equations)) {
-			
+
 			final ScilabType oldValue = this.equations;
 			this.equations = equations;
 			parametersPCS.firePropertyChange(EQUATIONS, oldValue, equations);
 		}
-    }
-
-    /**
-     * @return locked status
-     */
-    public synchronized boolean isLocked() {
-        return locked;
-    }
-
-    /**
-     * @param locked change locked status
-     */
-    public synchronized void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
-    /**
-     * @param port to remove
-     */
-    public void removePort(BasicPort port) {
-	if (port.getEdgeCount() != 0 && getParentDiagram() != null) {
-	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
-	remove(port);
-    }
-    
-    /**
-     * Add a port on the block.
-     * 
-     * This call should only be used when a port reordering operation must be performed.
-     * 
-     * @param port The port to be added to the block
-     */
-    public void addPort(BasicPort port) {
-    	insert(port);
-    	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
-    	BlockPositioning.updateBlockView(this);
-    }
+
+	/**
+	 * @return locked status
+	 */
+	public synchronized boolean isLocked() {
+		return locked;
+	}
+
+	/**
+	 * @param locked
+	 *            change locked status
+	 */
+	public synchronized void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+	/**
+	 * @param port
+	 *            to remove
+	 */
+	public void removePort(BasicPort port) {
+		if (port.getEdgeCount() != 0 && getParentDiagram() != null) {
+			getParentDiagram().removeCells(new Object[] { port.getEdgeAt(0) });
+		}
+		remove(port);
+	}
+
+	/**
+	 * Add a port on the block.
+	 * 
+	 * This call should only be used when a port reordering operation must be
+	 * performed.
+	 * 
+	 * @param port
+	 *            The port to be added to the block
+	 */
+	public void addPort(BasicPort port) {
+		insert(port);
+		port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false,
+				port.getClass()).size());
+		BlockPositioning.updateBlockView(this);
+	}
 
 	/**
 	 * @return command ports initial state
@@ -901,31 +998,33 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		return new ScilabDouble(data);
 	}
 
-    /**
-     * @return name and type of the simulation function
-     */
-    public ScilabType getSimulationFunctionNameAndType() {
-	if (getSimulationFunctionType() == SimulationFunctionType.DEFAULT) {
-	    return new ScilabString(getSimulationFunctionName());
+	/**
+	 * @return name and type of the simulation function
+	 */
+	public ScilabType getSimulationFunctionNameAndType() {
+		if (getSimulationFunctionType() == SimulationFunctionType.DEFAULT) {
+			return new ScilabString(getSimulationFunctionName());
+		}
+		ScilabList data = new ScilabList();
+
+		data.add(new ScilabString(getSimulationFunctionName()));
+		data.add(new ScilabDouble(getSimulationFunctionType().getAsDouble()));
+
+		return data;
 	}
-	ScilabList data = new ScilabList();
 
-	data.add(new ScilabString(getSimulationFunctionName()));
-	data.add(new ScilabDouble(getSimulationFunctionType().getAsDouble()));
+	/**
+	 * Does the block update and register on the undo manager
+	 * 
+	 * @param modifiedBlock
+	 *            the new settings
+	 */
+	public void updateBlockSettings(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
 
-	return data;
-    }
-
-    /**
-     * Does the block update and register on the undo manager 
-     * @param modifiedBlock the new settings
-     */
-    public void updateBlockSettings(BasicBlock modifiedBlock) {
-    	if (modifiedBlock == null) {
-    		return;
-    	}
-    	
-    	/*
+		/*
 		 * Update the block settings
 		 */
 		updateFields(modifiedBlock);
@@ -943,29 +1042,30 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() instanceof SuperBlockDiagram) {
 			SuperBlock block = ((SuperBlockDiagram) getParentDiagram())
 					.getContainer();
-			
+
 			XcosDiagram graph = block.getParentDiagram();
 			if (graph == null) {
 				setParentDiagram(Xcos.findParent(block));
 				graph = block.getParentDiagram();
-				LogFactory.getLog(getClass()).error("Parent diagram was null");
+				LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 			}
-			
+
 			graph.fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-							XcosConstants.EVENT_BLOCK_UPDATED, block));
+					XcosConstants.EVENT_BLOCK_UPDATED, block));
 		}
-    }
+	}
 
 	/**
 	 * Update the instance field.
 	 * 
-	 * @param modifiedBlock the modified instance
+	 * @param modifiedBlock
+	 *            the modified instance
 	 */
 	private void updateFields(BasicBlock modifiedBlock) {
 		if (modifiedBlock == null) {
 			return;
 		}
-		
+
 		setDependsOnT(modifiedBlock.isDependsOnT());
 		setDependsOnU(modifiedBlock.isDependsOnU());
 		setExprs(modifiedBlock.getExprs());
@@ -979,40 +1079,42 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		setODState(modifiedBlock.getODState());
 
 		setEquations(modifiedBlock.getEquations());
+		setStyle(modifiedBlock.getStyle());
 	}
 
 	/**
 	 * Update the children of the block.
 	 * 
-	 * @param modifiedBlock the new block instance
+	 * @param modifiedBlock
+	 *            the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
 		if (modifiedBlock == null) {
 			return;
 		}
-		
+
 		XcosDiagram graph = getParentDiagram();
 		if (graph == null) {
 			setParentDiagram(Xcos.findParent(this));
 			graph = getParentDiagram();
-			LogFactory.getLog(getClass()).error("Parent diagram was null");
+			LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
 		}
-		
+
 		/*
 		 * Checked as port classes only
 		 */
 		@SuppressWarnings("unchecked")
-		Set<Class< ? extends mxICell>> types = new HashSet<Class< ? extends mxICell>>(
+		Set<Class<? extends mxICell>> types = new HashSet<Class<? extends mxICell>>(
 				Arrays.asList(InputPort.class, OutputPort.class,
 						ControlPort.class, CommandPort.class));
 
-		Map<Class< ? extends mxICell>, Deque<mxICell>> annotatedOlds = getTypedChildren(types);
-		Map<Class< ? extends mxICell>, Deque<mxICell>> annotatedNews = modifiedBlock
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedOlds = getTypedChildren(types);
+		Map<Class<? extends mxICell>, Deque<mxICell>> annotatedNews = modifiedBlock
 				.getTypedChildren(types);
 
 		getParentDiagram().getModel().beginUpdate();
 		try {
-			for (Class< ? extends mxICell> klass : types) {
+			for (Class<? extends mxICell> klass : types) {
 				final Deque<mxICell> olds = annotatedOlds.get(klass);
 				final Deque<mxICell> news = annotatedNews.get(klass);
 
@@ -1032,10 +1134,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 						modified.insertEdge(edge, isOutgoing);
 					}
 
-					getParentDiagram().removeCells(new Object[] {previous},
+					getParentDiagram().removeCells(new Object[] { previous },
 							false);
-					getParentDiagram().addCells(new Object[] {modified},
+					getParentDiagram().addCells(new Object[] { modified },
 							this, previousIndex);
+
+					// Clone the geometry to avoid empty geometry on new cells.
+					getParentDiagram().getModel().setGeometry(modified,
+							(mxGeometry) previous.getGeometry().clone());
+
 				}
 
 				// removed ports
@@ -1052,349 +1159,415 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			getParentDiagram().getModel().endUpdate();
 		}
 	}
-	
+
 	/**
 	 * Format the children as a typed map for the given class set.
 	 * 
-	 * @param types the classes to search for.
-	 * @return a map which linked foreach type the corresponding cell list. 
+	 * @param types
+	 *            the classes to search for.
+	 * @return a map which linked foreach type the corresponding cell list.
 	 */
-	private Map<Class< ? extends mxICell>, Deque<mxICell>> getTypedChildren(Set<Class< ? extends mxICell>> types) {
-		Map<Class< ? extends mxICell>, Deque<mxICell>> oldPorts = new HashMap<Class< ? extends mxICell>, Deque<mxICell>>();
-		
+	private Map<Class<? extends mxICell>, Deque<mxICell>> getTypedChildren(
+			Set<Class<? extends mxICell>> types) {
+		Map<Class<? extends mxICell>, Deque<mxICell>> oldPorts = new HashMap<Class<? extends mxICell>, Deque<mxICell>>();
+
 		// Allocate all types set
-		for (Class< ? extends mxICell> type : types) {
+		for (Class<? extends mxICell> type : types) {
 			oldPorts.put(type, new LinkedList<mxICell>());
 		}
-		
-		// sort children according to the ordering parameter (useful on scilab-5.2.x diagrams)
+
+		// sort children according to the ordering parameter (useful on
+		// scilab-5.2.x diagrams)
 		Collections.sort(children, new Comparator<Object>() {
 			@Override
 			public int compare(Object o1, Object o2) {
 				if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
-					return ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+					return ((BasicPort) o1).getOrdering()
+							- ((BasicPort) o2).getOrdering();
 				} else {
 					return 0;
 				}
 			}
 		});
-		
+
 		// children lookup
 		for (Object cell : children) {
-			
-			Class< ? extends Object> klass = cell.getClass();
+
+			Class<? extends Object> klass = cell.getClass();
 			while (klass != null) {
 				if (types.contains(klass)) {
 					break;
 				}
 				klass = klass.getSuperclass();
 			}
-			
+
 			final Deque<mxICell> current = oldPorts.get(klass);
 			if (current != null) {
 				current.add((mxICell) cell);
 			}
 		}
-		
+
 		return oldPorts;
 	}
 
-    /**
-     * @param context parent diagram context
-     */
-    public void openBlockSettings(String[] context) {
-	final XcosDiagram graph;
-	if (getParentDiagram() == null) {
-		setParentDiagram(Xcos.findParent(this));
-		graph = getParentDiagram();
-		LogFactory.getLog(getClass()).error("Parent diagram was null");
-	} else {
-		graph = getParentDiagram();
-	}
-	if (getParentDiagram() instanceof PaletteDiagram) {
-	    return;
-	}
-	
-	//prevent to open twice
-	if (isLocked()) {
-	    return;
-	}
-	
-	final File tempOutput;
-	final File tempInput;
-	final File tempContext;
-	final BasicBlock currentBlock = this;
-	
-	try {
-	    tempInput = FileUtils.createTempFile();
+	/**
+	 * @param context
+	 *            parent diagram context
+	 */
+	public void openBlockSettings(String[] context) {
+		final XcosDiagram graph;
+		if (getParentDiagram() == null) {
+			setParentDiagram(Xcos.findParent(this));
+			graph = getParentDiagram();
+			LogFactory.getLog(getClass()).error(PARENT_DIAGRAM_WAS_NULL);
+		} else {
+			graph = getParentDiagram();
+		}
+		if (getParentDiagram() instanceof PaletteDiagram) {
+			return;
+		}
 
-	    // Write scs_m
-	    tempOutput = exportBlockStruct();
-	    // Write context
-	    tempContext = exportContext(context);
-	    
-	    final ActionListener action = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (tempInput.exists()) {
-					LOG.trace("Updating data.");
-					
-				// Now read new Block
-			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-			    updateBlockSettings(modifiedBlock);
-			    
-			    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
-				    currentBlock));
-			    delete(tempInput);
-				} else {
-					LOG.trace("No needs to update data.");
+		if (context == null) {
+			throw new IllegalArgumentException();
+		}
+
+		// prevent to open twice
+		if (isLocked()) {
+			return;
+		}
+
+		final String tempOutput;
+		final String tempInput;
+		final String tempContext;
+		final BasicBlock currentBlock = this;
+
+		try {
+			tempInput = FileUtils.createTempFile();
+
+			// Write scs_m
+			tempOutput = exportBlockStruct();
+			// Write context
+			tempContext = exportContext(context);
+
+			final ActionListener action = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (exists(tempInput)) {
+						LOG.trace("Updating data.");
+
+						graph.getView().clear(this, true, true);
+
+						// Now read new Block
+						graph.getModel().beginUpdate();
+						try {
+
+							BasicBlock modifiedBlock = new H5RWHandler(
+									tempInput).readBlock();
+							updateBlockSettings(modifiedBlock);
+
+							graph.fireEvent(new mxEventObject(
+									XcosEvent.ADD_PORTS,
+									XcosConstants.EVENT_BLOCK_UPDATED,
+									currentBlock));
+						} catch (ScicosFormatException e1) {
+							LOG.error(e1);
+						} finally {
+							graph.getModel().endUpdate();
+						}
+
+						delete(tempInput);
+					} else {
+						LOG.trace("No needs to update data.");
+					}
+
+					delete(tempOutput);
+					delete(tempContext);
+					setLocked(false);
 				}
-				
-			    setLocked(false);
-			    delete(tempOutput);
-			    delete(tempContext);
+			};
+
+			try {
+				setLocked(true);
+				ScilabInterpreterManagement.asynchronousScilabExec(action,
+						"xcosBlockInterface", tempOutput, tempInput,
+						getInterfaceFunctionName().toCharArray(), "set",
+						tempContext);
+			} catch (InterpreterException e) {
+				LOG.error(e);
+				setLocked(false);
 			}
-		};
-		
-	    try {
-			ScilabInterpreterManagement.asynchronousScilabExec(action, 
-				"xcosBlockInterface", 
-				tempOutput.getAbsolutePath(),
-				tempInput.getAbsolutePath(),
-				getInterfaceFunctionName().toCharArray(),
-				"set",
-				tempContext.getAbsolutePath());
-		} catch (InterpreterException e) {
+
+		} catch (IOException e) {
 			LOG.error(e);
 		}
-	    setLocked(true);
-
-	} catch (IOException e) {
-	    LOG.error(e);
 	}
-    }
 
-    /**
-     * @return exported file
-     */
-    protected File exportBlockStruct() {
+	/**
+	 * @return exported file
+	 */
+	protected String exportBlockStruct() {
 
-	// Write scs_m
-	File tempOutput;
-	try {
-	    tempOutput = FileUtils.createTempFile();
-	    tempOutput.deleteOnExit();
-	    
-	    new H5RWHandler(tempOutput).writeBlock(this);
-	    return tempOutput;
-	} catch (IOException e) {
-	    e.printStackTrace();
+		// Write scs_m
+		String tempOutput;
+		try {
+			tempOutput = FileUtils.createTempFile();
+			File f = new File(tempOutput);
+			f.deleteOnExit();
+
+			new H5RWHandler(tempOutput).writeBlock(this);
+			return tempOutput;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	return null;
-    }
-    
-    /**
-     * @param context parent diagram context
-     * @return exported file
-     */
-    protected File exportContext(String[] context) {
 
-	// Write context
-	try {
-	    File tempContext = FileUtils.createTempFile();
-	    tempContext.deleteOnExit();
-	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
-	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
-	    H5Write.closeFile(contextFileId);
-	    return tempContext;
-	} catch (IOException e) {
-	    e.printStackTrace();
-	} catch (HDF5Exception e) {
-	    e.printStackTrace();
+	/**
+	 * @param context
+	 *            parent diagram context
+	 * @return exported file
+	 */
+	protected String exportContext(String[] context) {
+
+		// Write context
+		try {
+			String fileString = FileUtils.createTempFile();
+			File tempContext = new File(fileString);
+			tempContext.deleteOnExit();
+
+			int contextFileId = H5Write.createFile(tempContext
+					.getAbsolutePath());
+			H5Write.writeInDataSet(contextFileId, "context", new ScilabString(
+					context));
+			H5Write.closeFile(contextFileId);
+			return fileString;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (HDF5Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
-	return null;
-    }
-    
-    /**
-     * @return tooltip text
-     */
-    public String getToolTipText() {
-	StringBuilder result = new StringBuilder();
-	result.append(ScilabGraphConstants.HTML_BEGIN);
-	result.append("Block Name : " + getInterfaceFunctionName() + ScilabGraphConstants.HTML_NEWLINE);
-	result.append("Simulation : " + getSimulationFunctionName() + ScilabGraphConstants.HTML_NEWLINE);
 
-	if (getParentDiagram() instanceof PaletteDiagram) {
-	    if (getIntegerParameters() != null) {
-		result.append("Integer parameters : " + getIntegerParameters() + ScilabGraphConstants.HTML_NEWLINE);
-	    }
-	    
-	    if (getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
-		result.append("Real parameters : " + getRealParameters() + ScilabGraphConstants.HTML_NEWLINE);
-	    }
-	    
-	    if (getObjectsParameters() != null) {
-		result.append("Object parameters : " + getObjectsParameters() + ScilabGraphConstants.HTML_NEWLINE);
-	    }
-	} else {
-	    result.append("UID : " + getId() + ScilabGraphConstants.HTML_NEWLINE);
-		final int length = getStyle().length();
-		result.append("Style : ");
-		if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
-			result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
-			result.append(XcosMessages.DOTS);
+	/**
+	 * @return tooltip text
+	 */
+	public String getToolTipText() {
+		StringBuilder result = new StringBuilder();
+		result.append(ScilabGraphConstants.HTML_BEGIN);
+		result.append("Block Name : " + getInterfaceFunctionName()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+		result.append("Simulation : " + getSimulationFunctionName()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+
+		if (getParentDiagram() instanceof PaletteDiagram) {
+			if (getIntegerParameters() != null) {
+				result.append("Integer parameters : " + getIntegerParameters()
+						+ ScilabGraphConstants.HTML_NEWLINE);
+			}
+
+			if (getRealParameters() != null
+					&& getRealParameters().getHeight() != 0
+					&& getRealParameters().getWidth() != 0) {
+				result.append("Real parameters : " + getRealParameters()
+						+ ScilabGraphConstants.HTML_NEWLINE);
+			}
+
+			if (getObjectsParameters() != null) {
+				result.append("Object parameters : " + getObjectsParameters()
+						+ ScilabGraphConstants.HTML_NEWLINE);
+			}
 		} else {
-			result.append(getStyle());
+			result.append("UID : " + getId()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			final int length = getStyle().length();
+			result.append("Style : ");
+			if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
+				result.append(getStyle().substring(0,
+						XcosConstants.MAX_CHAR_IN_STYLE));
+				result.append(XcosMessages.DOTS);
+			} else {
+				result.append(getStyle());
+			}
+			result.append(ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Flip : " + getFlip()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Mirror : " + getMirror()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Input ports : "
+					+ BasicBlockInfo.getAllTypedPorts(this, false,
+							InputPort.class).size()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Output ports : "
+					+ BasicBlockInfo.getAllTypedPorts(this, false,
+							OutputPort.class).size()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Control ports : "
+					+ BasicBlockInfo.getAllTypedPorts(this, false,
+							ControlPort.class).size()
+					+ ScilabGraphConstants.HTML_NEWLINE);
+			result.append("Command ports : "
+					+ BasicBlockInfo.getAllTypedPorts(this, false,
+							CommandPort.class).size()
+					+ ScilabGraphConstants.HTML_NEWLINE);
 		}
-		result.append(ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Flip : " + getFlip() + ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Mirror : " + getMirror() + ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Input ports : "
-	    		+ BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Output ports : "
-	    		+ BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Control ports : "
-	    		+ BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-	    result.append("Command ports : "
-	    		+ BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
+
+		result.append("x : " + getGeometry().getX()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+		result.append("y : " + getGeometry().getY()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+		result.append("w : " + getGeometry().getWidth()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+		result.append("h : " + getGeometry().getHeight()
+				+ ScilabGraphConstants.HTML_NEWLINE);
+		result.append(ScilabGraphConstants.HTML_END);
+		return result.toString();
 	}
 
-	result.append("x : " + getGeometry().getX() + ScilabGraphConstants.HTML_NEWLINE);
-	result.append("y : " + getGeometry().getY() + ScilabGraphConstants.HTML_NEWLINE);
-	result.append("w : " + getGeometry().getWidth() + ScilabGraphConstants.HTML_NEWLINE);
-	result.append("h : " + getGeometry().getHeight() + ScilabGraphConstants.HTML_NEWLINE);
-	result.append(ScilabGraphConstants.HTML_END);
-	return result.toString();
-    }
-
-    /**
-     * @param graph parent graph
-     */
-    public void openContextMenu(ScilabGraph graph) {
-	ContextMenu menu = null;
-	if (getParentDiagram() instanceof PaletteDiagram) {
-	    menu = createPaletteContextMenu(graph);
-	} else {
-	    menu = createContextMenu(graph);
+	/**
+	 * @param graph
+	 *            parent graph
+	 */
+	public void openContextMenu(ScilabGraph graph) {
+		ContextMenu menu = null;
+		if (getParentDiagram() instanceof PaletteDiagram) {
+			menu = createPaletteContextMenu(graph);
+		} else {
+			menu = createContextMenu(graph);
+		}
+		menu.setVisible(true);
 	}
-	menu.setVisible(true);
-    }
 
-    /**
-     * @param graph parent graph
-     * @return context menu
-     */
-    public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
-	ContextMenu menu = ScilabContextMenu.createContextMenu();
+	/**
+	 * @param graph
+	 *            parent graph
+	 * @return context menu
+	 */
+	// CSOFF: JavaNCSS
+	public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
+		ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-	final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
+		final List<XcosDiagram> allDiagrams = Xcos.getInstance().getDiagrams();
 
-	if (allDiagrams.size() == 0) {
-	    // No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
-	    MenuItem addTo = ScilabMenuItem.createMenuItem();
+		if (allDiagrams.size() == 0) {
+			// No diagram opened: should never happen if Xcos opens an empty
+			// diagram when it is launched
+			MenuItem addTo = ScilabMenuItem.createMenuItem();
 
-	    addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
-	    addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
-		@Override
-		public void callBack() {
-			
-		    XcosDiagram theDiagram = new XcosDiagram();
-		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
-		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
-		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    setDefaultPosition(geom);
-		    theDiagram.getModel().setGeometry(block, geom);
-		    
-		    new XcosTab(theDiagram).setVisible(true);
-		    BlockPositioning.updateBlockView(block);
+			addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
+			addTo.setCallback(new CallBack(XcosMessages.ADDTO_NEW_DIAGRAM) {
+				@Override
+				public void callBack() {
+
+					XcosDiagram theDiagram = new XcosDiagram();
+					BasicBlock block = (BasicBlock) BlockFactory
+							.createClone(BasicBlock.this);
+					theDiagram.getModel().add(theDiagram.getDefaultParent(),
+							block, 0);
+					mxGeometry geom = BasicBlock.this.getGeometry();
+					setDefaultPosition(geom);
+					theDiagram.getModel().setGeometry(block, geom);
+
+					new XcosTab(theDiagram).setVisible(true);
+					BlockPositioning.updateBlockView(block);
+				}
+			});
+
+			menu.add(addTo);
+
+		} else if (allDiagrams.size() == 1) {
+			// A single diagram opened: add to this diagram
+			MenuItem addTo = ScilabMenuItem.createMenuItem();
+
+			addTo.setText(XcosMessages.ADDTO + " "
+					+ allDiagrams.get(0).getParentTab().getName());
+			final XcosDiagram theDiagram = allDiagrams.get(0);
+			addTo.setCallback(new CallBack(theDiagram.getTitle()) {
+				private static final long serialVersionUID = -99601763227525686L;
+
+				@Override
+				public void callBack() {
+					BasicBlock block = (BasicBlock) BlockFactory
+							.createClone(BasicBlock.this);
+					theDiagram.getModel().add(theDiagram.getDefaultParent(),
+							block, 0);
+					mxGeometry geom = BasicBlock.this.getGeometry();
+					setDefaultPosition(geom);
+					theDiagram.getModel().setGeometry(block, geom);
+					BlockPositioning.updateBlockView(block);
+					block.setParentDiagram(theDiagram);
+				}
+			});
+
+			menu.add(addTo);
+
+		} else {
+			// The user has to choose
+			Menu addTo = ScilabMenu.createMenu();
+
+			addTo.setText(XcosMessages.ADDTO);
+
+			for (int i = 0; i < allDiagrams.size(); i++) {
+				MenuItem diagram = ScilabMenuItem.createMenuItem();
+				final XcosDiagram theDiagram = allDiagrams.get(i);
+				diagram.setText(allDiagrams.get(i).getParentTab().getName());
+				diagram.setCallback(new CallBack(theDiagram.getTitle()) {
+					private static final long serialVersionUID = 3345416658377835057L;
+
+					@Override
+					public void callBack() {
+						BasicBlock block = (BasicBlock) BlockFactory
+								.createClone(BasicBlock.this);
+						theDiagram.getModel().add(
+								theDiagram.getDefaultParent(), block, 0);
+						mxGeometry geom = BasicBlock.this.getGeometry();
+						setDefaultPosition(geom);
+						theDiagram.getModel().setGeometry(block, geom);
+						BlockPositioning.updateBlockView(block);
+					}
+				});
+				addTo.add(diagram);
+			}
+
+			menu.add(addTo);
 		}
-	    });
 
-	    menu.add(addTo);
+		menu.getAsSimpleContextMenu().addSeparator();
 
-	} else if (allDiagrams.size() == 1) {
-	    // A single diagram opened: add to this diagram
-	    MenuItem addTo = ScilabMenuItem.createMenuItem();
-
-	    addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
-	    final XcosDiagram theDiagram = allDiagrams.get(0);
-	    addTo.setCallback(new CallBack(theDiagram.getTitle()) {
-		private static final long serialVersionUID = -99601763227525686L;
-
-		@Override
-		public void callBack() {
-		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
-		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
-		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    setDefaultPosition(geom);
-		    theDiagram.getModel().setGeometry(block, geom);
-		    BlockPositioning.updateBlockView(block);
-		    block.setParentDiagram(theDiagram);
-		}
-	    });
-
-	    menu.add(addTo);
-
-	} else {
-	    // The user has to choose
-	    Menu addTo = ScilabMenu.createMenu();
-
-	    addTo.setText(XcosMessages.ADDTO);
-
-	    for (int i = 0; i < allDiagrams.size(); i++) {
-		MenuItem diagram = ScilabMenuItem.createMenuItem();
-		final XcosDiagram theDiagram = allDiagrams.get(i);
-		diagram.setText(allDiagrams.get(i).getParentTab().getName());
-		diagram.setCallback(new CallBack(theDiagram.getTitle()) {
-		    private static final long serialVersionUID = 3345416658377835057L;
+		MenuItem help = ScilabMenuItem.createMenuItem();
+		help.setText(XcosMessages.BLOCK_DOCUMENTATION);
+		help.setCallback(new CallBack(XcosMessages.BLOCK_DOCUMENTATION) {
+			private static final long serialVersionUID = -1480947262397441951L;
 
 			@Override
-		    public void callBack() {
-			BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
-			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
-			mxGeometry geom = BasicBlock.this.getGeometry();
-		    setDefaultPosition(geom);
-			theDiagram.getModel().setGeometry(block, geom);
-			BlockPositioning.updateBlockView(block);
-		    }
+			public void callBack() {
+				InterpreterManagement.requestScilabExec("help "
+						+ getInterfaceFunctionName());
+			}
 		});
-		addTo.add(diagram);
-	    }
+		menu.add(help);
 
-	    menu.add(addTo);
+		menu.setVisible(true);
+
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+				MouseInfo.getPointerInfo().getLocation().x, MouseInfo
+						.getPointerInfo().getLocation().y);
+
+		return menu;
 	}
 
+	// CSON: JavaNCSS
 
-	menu.getAsSimpleContextMenu().addSeparator();
-
-	MenuItem help = ScilabMenuItem.createMenuItem();
-	help.setText(XcosMessages.BLOCK_DOCUMENTATION);
-	help.setCallback(new CallBack(XcosMessages.BLOCK_DOCUMENTATION) {
-	    private static final long serialVersionUID = -1480947262397441951L;
-
-		@Override
-	    public void callBack() {
-		InterpreterManagement.requestScilabExec("help " + getInterfaceFunctionName());
-	    }
-	});
-	menu.add(help);
-
-	menu.setVisible(true);
-
-	((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-		MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-	
-	return menu;
-    }
-
-    /**
-     * @param graph parent graph
-     * @return context menu
-     */
-    public ContextMenu createContextMenu(ScilabGraph graph) {
+	/**
+	 * @param graph
+	 *            parent graph
+	 * @return context menu
+	 */
+	// CSOFF: JavaNCSS
+	public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
-		Map<Class< ? extends DefaultAction>, Menu> menuList = new HashMap<Class< ? extends DefaultAction>, Menu>();
-		
+		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
+
 		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
 		menu.add(value);
@@ -1466,17 +1639,21 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
-		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, 
-			MouseInfo.getPointerInfo().getLocation().y);
-		
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+				MouseInfo.getPointerInfo().getLocation().x, MouseInfo
+						.getPointerInfo().getLocation().y);
+
 		customizeMenu(menuList);
-		
+
 		return menu;
-    }
-    
-    /**
-     * @param flip value
-     */
+	}
+
+	// CSON: JavaNCSS
+
+	/**
+	 * @param flip
+	 *            value
+	 */
 	public void setFlip(boolean flip) {
 		if (getParentDiagram() != null) {
 			isFlipped = flip;
@@ -1486,25 +1663,28 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		}
 	}
 
-    /**
-     * Override this to customize contextual menu
-     * @param menuList list of menu
-     */
-    protected void customizeMenu(Map<Class< ? extends DefaultAction>, Menu> menuList) {
-	// To be overridden by sub-classes
-    }
-    
+	/**
+	 * Override this to customize contextual menu
+	 * 
+	 * @param menuList
+	 *            list of menu
+	 */
+	protected void customizeMenu(
+			Map<Class<? extends DefaultAction>, Menu> menuList) {
+		// To be overridden by sub-classes
+	}
 
-    /**
-     * @return mirror value
-     */
-    public boolean getMirror() {
-	return isMirrored;
-    }
-    
-    /**
-     * @param mirror new mirror value
-     */
+	/**
+	 * @return mirror value
+	 */
+	public boolean getMirror() {
+		return isMirrored;
+	}
+
+	/**
+	 * @param mirror
+	 *            new mirror value
+	 */
 	public void setMirror(boolean mirror) {
 		if (getParentDiagram() != null) {
 			isMirrored = mirror;
@@ -1514,56 +1694,60 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		}
 	}
 
-    /**
-     * @return flip status
-     */
-    public boolean getFlip() {
-	return isFlipped;
-    }
+	/**
+	 * @return flip status
+	 */
+	public boolean getFlip() {
+		return isFlipped;
+	}
 
-    /**
-     * invert flip status
-     */
-    public void toggleFlip() {
-	BlockPositioning.toggleFlip(this);
-    }
+	/**
+	 * invert flip status
+	 */
+	public void toggleFlip() {
+		BlockPositioning.toggleFlip(this);
+	}
 
-    /**
-     * invert mirror value
-     */
-    public void toggleMirror() {
-	BlockPositioning.toggleMirror(this);
-    }
+	/**
+	 * invert mirror value
+	 */
+	public void toggleMirror() {
+		BlockPositioning.toggleMirror(this);
+	}
 
-    /**
+	/**
      * 
      */
-    public void toggleAntiClockwiseRotation() {
-	BlockPositioning.toggleAntiClockwiseRotation(this);
+	public void toggleAntiClockwiseRotation() {
+		BlockPositioning.toggleAntiClockwiseRotation(this);
 
-    }
-
-    /**
-     * @return current angle
-     */
-    public int getAngle() {
-	return angle;
-    }
-
-    /**
-     * @param angle new block angle
-     */
-    public void setAngle(int angle) {
-	this.angle = angle;
-	
-	if (getParentDiagram() != null) {
-	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, mxConstants.STYLE_ROTATION, Integer.toString(angle));
 	}
-    }
 
-    /**
-     * Useful when we need to update local properties with mxCell style properties 
-     */
+	/**
+	 * @return current angle
+	 */
+	public int getAngle() {
+		return angle;
+	}
+
+	/**
+	 * @param angle
+	 *            new block angle
+	 */
+	public void setAngle(int angle) {
+		this.angle = angle;
+
+		if (getParentDiagram() != null) {
+			mxUtils.setCellStyles(getParentDiagram().getModel(),
+					new Object[] { this }, mxConstants.STYLE_ROTATION,
+					Integer.toString(angle));
+		}
+	}
+
+	/**
+	 * Useful when we need to update local properties with mxCell style
+	 * properties
+	 */
 	public void updateFieldsFromStyle() {
 		StyleMap map = new StyleMap(getStyle());
 
@@ -1572,100 +1756,91 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		} else {
 			angle = 0;
 		}
-		
-		isFlipped = Boolean.parseBoolean(map.get(ScilabGraphConstants.STYLE_FLIP));
-		isMirrored = Boolean.parseBoolean(map.get(ScilabGraphConstants.STYLE_MIRROR));
+
+		isFlipped = Boolean.parseBoolean(map
+				.get(ScilabGraphConstants.STYLE_FLIP));
+		isMirrored = Boolean.parseBoolean(map
+				.get(ScilabGraphConstants.STYLE_MIRROR));
 	}
 
 	/**
 	 * Set the default block position on the geom
-	 * @param geom the current geom
+	 * 
+	 * @param geom
+	 *            the current geom
 	 */
 	private void setDefaultPosition(mxGeometry geom) {
 		geom.setX(DEFAULT_POSITION_X);
 		geom.setY(DEFAULT_POSITION_Y);
 	}
-	
+
 	/**
 	 * Get the parameters change support.
 	 * 
-	 * The property name for each event is the field name, so one of:
-	 *     - "interfaceFunctionName"
-	 *     - "simulationFunctionName"
-	 *     - "simulationFunctionType"
-	 *     - "exprs"
-	 *     - "realParameters"
-	 *     - "integerParameters"
-	 *     - "objectsParameters"
-	 *     - "nbZerosCrossing"
-	 *     - "nmode"
-	 *     - "state"
-	 *     - "dState"
-	 *     - "oDState"
-	 *     - "equations"
-	 *     - "dependsOnU"
-	 *     - "dependsOnT"
-	 *     - "blockType"
-	 *     - "ordering"
+	 * The property name for each event is the field name, so one of: -
+	 * "interfaceFunctionName" - "simulationFunctionName" -
+	 * "simulationFunctionType" - "exprs" - "realParameters" -
+	 * "integerParameters" - "objectsParameters" - "nbZerosCrossing" - "nmode" -
+	 * "state" - "dState" - "oDState" - "equations" - "dependsOnU" -
+	 * "dependsOnT" - "blockType" - "ordering"
 	 * 
 	 * @return the associated {@link PropertyChangeSupport} instance
 	 */
 	protected PropertyChangeSupport getParametersPCS() {
 		return parametersPCS;
 	}
-	
-    /*
-     * Overriden methods from jgraphx
-     */
-    
-    /**
-     * @return always false
-     * @see com.mxgraph.model.mxCell#isConnectable()
-     */
-    @Override
-    public boolean isConnectable() {
-    	return false;
-    }
-	
+
+	/*
+	 * Overriden methods from jgraphx
+	 */
+
+	/**
+	 * @return always false
+	 * @see com.mxgraph.model.mxCell#isConnectable()
+	 */
+	@Override
+	public boolean isConnectable() {
+		return false;
+	}
+
 	/**
 	 * Re-associate fields with the new instance.
 	 * 
 	 * @return a new clone instance
-	 * @throws CloneNotSupportedException never
+	 * @throws CloneNotSupportedException
+	 *             never
 	 * @see com.mxgraph.model.mxCell#clone()
 	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		BasicBlock clone = (BasicBlock) super.clone();
-		
+
 		/* Reinstall the PropertyChangeSupport and all of it listeners */
 		clone.parametersPCS = new PropertyChangeSupport(clone);
 		PropertyChangeSupport pcs = getParametersPCS();
 		for (PropertyChangeListener iter : pcs.getPropertyChangeListeners()) {
 			clone.parametersPCS.addPropertyChangeListener(iter);
 		}
-		
+
 		return clone;
 	}
-	
+
 	/**
-	 * Overriden to correct jgraphx bug fixed in 1.4.0.4
+	 * {@inheritDoc}
 	 * 
-	 * @param child the child to insert
-	 * @return the previous child
-	 * @see com.mxgraph.model.mxCell#insert(com.mxgraph.model.mxICell)
-	 * @see http://www.jgraphsupport.co.uk/bugzilla/show_bug.cgi?id=39
-	 * @deprecated Will be left after the switch to jgraphx >= 1.4.0.4
+	 * Sync the specific child {@link EditFormatAction#HASH_IDENTIFIER}
 	 */
-	@Deprecated
 	@Override
-	public mxICell insert(mxICell child) {
-		int index = getChildCount();
-		
-		if (child.getParent() == this) {
-			index--;
+	public mxICell insert(mxICell child, int index) {
+		/*
+		 * Update the id if this is an identifier cell (herited identifier)
+		 */
+		if (child.getId().endsWith(EditFormatAction.HASH_IDENTIFIER)) {
+			child.setId(getId() + EditFormatAction.HASH_IDENTIFIER);
 		}
-		
-		return insert(child, index);
+
+		return super.insert(child, index);
 	}
 }
+// CSON: ClassDataAbstractionCoupling
+// CSON: ClassFanOutComplexity

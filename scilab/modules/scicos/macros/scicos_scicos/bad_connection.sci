@@ -1,7 +1,8 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //                      - Alan Layec <alan.layec@inria.fr>
+//  Copyright (C) 2011 <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -71,136 +72,60 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
     path_in=inports(prt_in)
   end
 
-  //** save the current figure handle
-  gh_wins = gcf();
-
-  if path_in==-1 then
-    //** hilite_obj(scs_m.objs(path_out)); //**
-    hilite_obj(path_out); //** new
-    if typ==0 then
-      messagebox(['Highlighted block has connected ports ';'with  incompatible sizes'],"modal")
-    else
-      messagebox(['Highlighted block has connected ports ';'with  incompatible types'],"modal")
-    end
-    unhilite_obj(path_out); //** new
+  if type(path_out)==15 then //problem with implicit block
+    messagebox([gettext("Problem with the block generated from modelica blocks.")],"warning", "modal")
     return;
   end
 
-  //[lhs,rhs]=argn(0)
-  if prt_in <> -1 then  //two connected blocks
-    lp=min(size(path_out,'*'),size(path_in,'*'))
-    k=find(path_out(1:lp)<>path_in(1:lp))
-    path=path_out(1:k(1)-1) // common superbloc path
-    path_out=path_out(k(1)) // "from" block number
-    path_in=path_in(k(1))   // "to" block number
 
-    if path==[] then
-      //** hilite_obj(scs_m.objs(path_out)) //** set
-      hilite_obj(path_out); //**
-      if or(path_in<>path_out) then
-          //** hilite_obj(scs_m.objs(path_in))
-          hilite_obj(path_in)
-      end
-
-      if typ==0 then
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
-                 ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)],"modal");
-      else
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
-
-      end
-      unhilite_obj(path_out);
-      if or(path_in<>path_out) then unhilite_obj(path_in),end
-      //** hilite_obj(scs_m.objs(path_out))
-      //** if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-    else
-      mxwin=max(winsid())
-//*****************************************
-      for k=1:size(path,'*')
-	//** hilite_obj(scs_m.objs(path(k))) //**
-	hilite_obj(path(k)) ; //**
-	scs_m=scs_m.objs(path(k)).model.rpar;
-	scs_show(scs_m,mxwin+k)  //** WARNING !
-      end
-      //** hilite_obj(scs_m.objs(path_out)) //**
-      hilite_obj(path_out) ; //**
-      if or(path_in<>path_out) then
-        //** hilite_obj(scs_m.objs(path_in))
-        hilite_obj(path_in)
-      end
-//*****************************************
-      if typ==0 then
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 string(prt_out)+' output port size is :'+sci2exp(nout);
-                 string(prt_in)+' input port size is  :'+sci2exp(nin)],"modal");
-      else
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
-      end
-      for k=size(path,'*'):-1:1
-        //** select the mxwin+k window and get the handle
-        gh_del = scf(mxwin+k);
-        //** delete the window
-        delete(gh_del)
-        //xdel(mxwin+k) //** WARNING !
-      end
-
-      //** restore the active window
-      scf(gh_wins);
-
-      //scs_m=null()
-      //** unhilite_obj(scs_m.objs(path(1))) //** WARNING
-      unhilite_obj(path(1))
+// warn the output port block
+ if typ==0 then
+    msg = "<html><body>";
+    msg = msg + gettext("Block has connected output port<br />with incompatible size:");
+    msg = msg + "<ul>";
+    msg = msg + "<li>" + msprintf(gettext("Output port %s size is: %s"),string(prt_out), sci2exp(nout)) + "</li>";
+    if prt_in <> -1 then
+      msg = msg + "<li>" + msprintf(gettext("Input port %s size is: %s"),string(prt_in), sci2exp(nin)) + "</li>";
     end
-  else // connected links do not verify block contraints
-    mess=prt_out;
-    if type(path_out)==15 then //problem with implicit block
-      messagebox('Problem with the block generated from modelica blocks','modal')
+    msg = msg + "</ul>";
+    msg = msg + "</body></html>";
+  else
+    msg = "<html><body>";
+    msg = gettext("Block has connected output port<br />with incompatible type.");
+    msg = msg + "<ul>";
+    msg = msg + "<li>" + msprintf(gettext("Output port %s type is: %s"),string(prt_out), sci2exp(outtyp)) + "</li>";
+    if prt_in <> -1 then
+      msg = msg + "<li>" + msprintf(gettext("Input port %s type is: %s"),string(prt_in), sci2exp(intyp)) + "</li>";
+    end
+    msg = msg + "</ul>";
+    msg = msg + "</body></html>";
+  end
+  
+  hilite_path(path_out, msg);
+
+// warn the input port block
+  if prt_in <> -1 then
+    if typ==0 then
+      msg = "<html><body>";
+      msg = msg + gettext("Block has connected input port<br />with incompatible size:");
+      msg = msg + "<ul>";
+      msg = msg + "<li>" + msprintf(gettext("Output port %s size is: %s"),string(prt_out), sci2exp(nout)) + "</li>";
+      msg = msg + "<li>" + msprintf(gettext("Input port %s size is: %s"),string(prt_in), sci2exp(nin)) + "</li>";
+      msg = msg + "</ul>";
+      msg = msg + "</body></html>";
     else
-      path=path_out(1:$-1) // superbloc path
-      path_out=path_out($) //  block number
-      if path==[] then
-	//** hilite_obj(scs_m.objs(path_out)) ;//** set
-	hilite_obj(path_out) ;//** set
-	messagebox(mess,'modal')
-	//** hilite_obj(scs_m.objs(path_out)) //** clear
-        unhilite_obj(path_out) ;
-      else
-	mxwin=max(winsid())
-	for k=1:size(path,'*')
-	  //** hilite_obj(scs_m.objs(path(k))) //**
-	  hilite_obj(path(k)) ; //**
-	  scs_m=scs_m.objs(path(k)).model.rpar;
-	  scs_show(scs_m,mxwin+k) //**
-	end
-	//** hilite_obj(scs_m.objs(path_out)) //**
-	hilite_obj(path_out) ; //**
-	messagebox(mess,'modal')
-	for k=size(path,'*'):-1:1
-          //**WARNING: xdel(mxwin+k) //** delete (mxwin+k) graphic window
-          //** select the mxwin+k window and get the handle
-          gh_del = scf(mxwin+k);
-          //** delete the window
-          delete(gh_del)
-        end
+      msg = "<html><body>";
+      msg = msg + gettext("Block has connected input port<br />with incompatible type:");
+      msg = msg + "<ul>";
+      msg = msg + "<li>" + msprintf(gettext("Output port %s type is: %s"),string(prt_out), sci2exp(outtyp)) + "</li>";
+      msg = msg + "<li>" + msprintf(gettext("Input port %s type is: %s"),string(prt_in), sci2exp(intyp)) + "</li>";
+      msg = msg + "</ul>";
+      msg = msg + "</body></html>";
+    end
 
-        //** restore the active window
-        scf(gh_wins);
-
-        //scs_m=null()
-        //** unhilite_obj(scs_m.objs(path(1))) //**
-        unhilite_obj(path(1))
-      end
+    if or(path_in<>path_out) then
+      hilite_path(path_in, msg)
     end
   end
-
-  
 endfunction
+
