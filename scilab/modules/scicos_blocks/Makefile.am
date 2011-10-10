@@ -533,6 +533,7 @@ blocks/ANDLOG_f.h5 \
 blocks/AUTOMAT.h5 \
 blocks/Bache.h5 \
 blocks/BACKLASH.h5 \
+blocks/BARXY.h5 \
 blocks/BIGSOM_f.h5 \
 blocks/BITCLEAR.h5 \
 blocks/BITSET.h5 \

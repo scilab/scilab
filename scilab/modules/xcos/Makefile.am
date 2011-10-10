@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt 
+libscixcos_la_root_DATA =  license.txt
 
 
 #### xcos : init scripts ####
@@ -134,6 +134,7 @@ nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
+images/blocks/BARXY.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
