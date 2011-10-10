@@ -2440,7 +2440,7 @@ void SciWin(void)
 sciPointObj * createFullFigure(int * winNum)
 {
   sciPointObj * newFig = NULL;
-  sciPointObj * newSubwin = NULL;
+
 
   /* Check that environement is OK for creating a window */
   if (!sciGetIsAbleToCreateWindow())

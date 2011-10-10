@@ -29,11 +29,6 @@ c
 
       topk=top
       if (.not.checklhs(fname,1,2)) return
-      if (rhs.le.0) then 
-         buf = fname // ' rhs must be stricly positive'
-         call error(999)
-         return
-      endif
       itype=gettype(topk)
 c     ------list case 
       if(itype.eq.15) goto 200

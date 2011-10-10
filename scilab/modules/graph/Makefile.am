@@ -26,5 +26,7 @@ libscigraph_la_etc_DATA = etc/graph.quit \
 include $(top_srcdir)/Makefile.incl.am
 
 if GUI
+if XCOS
 USEANT=1
+endif
 endif

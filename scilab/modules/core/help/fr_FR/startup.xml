@@ -1,55 +1,45 @@
-<?xml version="1.0" encoding="windows-1251"?>
-<refentry version="5.0-subset Scilab" xml:id="startup" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="startup" xml:lang="fr">
   <info>
     <pubdate>January 2008</pubdate>
   </info>
-
   <refnamediv>
     <refname>startup</refname>
-
     <refpurpose>startup file</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Description</title>
-
-    <para>Les fichiers de d&#233;marrage <literal>SCIHOME/.scilab</literal> et
-    <literal>SCIHOME/scilab.ini</literal> sont automatiquement execut&#233;s
-    (s'ils existent) au d&#233;marrage de Scilab, ainsi que le fichier
-    SCI/etc/scilab.start pr&#233;sent dans le r&#233;pertoire de
-    Scilab.</para>
+    <para>Les fichiers de démarrage <link linkend="SCIHOME">SCIHOME</link>/.scilab et
+    <link linkend="SCIHOME">SCIHOME</link>/scilab.ini sont automatiquement executés
+    (s'ils existent) au démarrage de Scilab, ainsi que le fichier
+    <link linkend="SCI">SCI</link>/etc/scilab.start.</para>
   </refsection>
-
   <refsection>
     <title>Remark</title>
-
-    <para>les fichiers de d&#233;marrage doivent obligatoirement comporter une
-    nouvelle ligne en fin de fichier pour &#234;tre pris en compte.</para>
-
-    <para>D&#233;finition de SCIHOME : </para>
-
-    <para>Sous Windows : &lt;APPDATA&gt;/Scilab/&lt;Scilab-Version&gt; </para>
-
-    <para>avec sous XP : APPDATA=C:\Documents and
-    Settings\&lt;User&gt;\Application Data</para>
-
-    <para>sous Vista : APPDATA=C:\Users\&lt;User&gt;\AppData\Roaming</para>
-
-    <para>Sous Linux/Unix :
-    /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+    <para>les fichiers de démarrage doivent obligatoirement comporter une
+    nouvelle ligne en fin de fichier pour être pris en compte.</para>
   </refsection>
-
   <refsection role="see also">
-<title>Voir aussi</title>
-
+    <title>Voir aussi</title>
     <simplelist type="inline">
-      <member><link linkend="scilab">scilab</link></member>
+      <member>
+        <link linkend="scilab">scilab</link>
+      </member>
+    </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="SCIHOME">SCIHOME</link>
+      </member>
+    </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="SCI">SCI</link>
+      </member>
+    </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="TMPDIR">TMPDIR</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

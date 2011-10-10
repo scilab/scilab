@@ -35,7 +35,7 @@ libscisymbolic_algo_la_CFLAGS = $(libscisymbolic_la_CFLAGS)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
 
-libscisymbolic_la_LIBADD = libscisymbolic-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD = libscisymbolic-algo.la
 
 
 

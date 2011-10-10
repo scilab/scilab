@@ -175,6 +175,15 @@ int gw_dynamic_action_binding(void);
 */
 int gw_dynamic_preferences(void);
 
+/**
+* action_binding gateway
+* action_binding is loaded dynamically at runtime
+* load gw_action_binding in SCI/modules/xml/sci_gateway/gw_xml.c
+*/
+int gw_dynamic_xml(void);
+
+
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 

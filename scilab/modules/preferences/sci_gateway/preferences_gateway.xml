@@ -22,6 +22,6 @@
  Don't touch if you do not know what you are doing
 -->
 <!-- =================== -->
-<PRIMITIVE gatewayId="68" primitiveId="1" primitiveName="addToolboxInfos" />
-<PRIMITIVE gatewayId="68" primitiveId="2" primitiveName="removeToolboxInfos" />
+<PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="addToolboxInfos" />
+<PRIMITIVE gatewayId="69" primitiveId="2" primitiveName="removeToolboxInfos" />
 </GATEWAY>

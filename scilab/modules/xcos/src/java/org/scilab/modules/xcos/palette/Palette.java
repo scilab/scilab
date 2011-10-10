@@ -437,8 +437,8 @@ public final class Palette {
 		}
 
 		final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null,
-				scale, null, graphComponent.isAntiAlias(), null, graphComponent
-						.getCanvas());
+				scale, graphComponent.getBackground(), graphComponent.isAntiAlias(),
+				null, graphComponent.getCanvas());
 
 		final String extension = iconPath
 				.substring(iconPath.lastIndexOf('.') + 1);

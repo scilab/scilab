@@ -56,9 +56,6 @@
     <ClCompile Include="..\cpp\GetCharWithoutOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GuiManagement.c">
       <Filter>Source Files</Filter>
     </ClCompile>

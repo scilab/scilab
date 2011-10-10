@@ -244,9 +244,9 @@ function result = atomsInstall(packages,section)
     // =========================================================================
     for i=1:size(install_package_list(:,1),"*")
         if install_package_list(i,1) == "+" then
-            atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n\n",install_package_list(i,3),install_package_list(i,4),section));
+            atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n",install_package_list(i,3),install_package_list(i,4),section));
         elseif install_package_list(i,1) == "~" then
-            atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n\n",install_package_list(i,3),install_package_list(i,4),section));
+            atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n",install_package_list(i,3),install_package_list(i,4),section));
         end
     end
 
@@ -458,7 +458,7 @@ function result = atomsInstall(packages,section)
 
         // Sucess message if needed
         // =====================================================================
-        atomsDisp(msprintf(" success\n\n"));
+        atomsDisp(msprintf(" success"));
 
     end
 
@@ -486,7 +486,7 @@ function result = atomsInstall(packages,section)
 
         if ATOMSVERBOSE then
             for j=1:size(packages_out(:,1),"*")
-                atomsDisp(msprintf("\t%s (%s) will now use the version %s of the package %s\n\n",packages_out(j,1),packages_out(j,2),result(i,1),result(i,2)));
+                atomsDisp(msprintf("\t%s (%s) will now use the version %s of the package %s",packages_out(j,1),packages_out(j,2),result(i,1),result(i,2)));
             end
         end
 

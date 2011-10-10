@@ -65,17 +65,14 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
     {
         return sci_gstacksizeNoRhs(fname);
     }
-    else
-    {
-        /* setting the stack size moves the memory, which is not allowed in concurernt context */
-        return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
-    }
-    return 0;
+
+    /* setting the stack size moves the memory, which is not allowed in concurernt context */
+    return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
 }
 /*--------------------------------------------------------------------------*/
 static int sci_gstacksizeNoRhs(char *fname)
 {
-    int l1 = 0, n1 = 0, m1 = 0;
+    int n1 = 0, m1 = 0;
     int *paramoutINT = NULL;
     int total = 0;
     int used = 0;

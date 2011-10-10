@@ -104,10 +104,10 @@ opt = optimbase_configure(opt,"-verbose",1);
 opt = optimbase_configure(opt,"-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 [ opt , isfeasible ] = optimbase_isfeasible ( opt ,  [ 14.0950013 , 0.8429636 ] );
-Function Evaluation #1 at [14.095001 0.8429636]
+Function Evaluation #1, index=5, x= [14.095001 0.8429636]
 assert_checkequal ( isfeasible , 1 );
 [ opt , isfeasible ] = optimbase_isfeasible ( opt ,  [ 14.0950013 , 0.0 ] );
-Function Evaluation #2 at [14.095001 0]
+Function Evaluation #2, index=5, x= [14.095001 0]
 Inequality constraint #3/4 is not satisfied for x
 assert_checkequal ( isfeasible , -1 );
 opt = optimbase_destroy(opt);
@@ -126,10 +126,10 @@ opt = optimbase_configure ( opt , "-verbose",1);
 opt = optimbase_configure ( opt , "-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , list(gouldnonconvex2,mystuff) );
 [ opt , isfeasible ] = optimbase_isfeasible ( opt ,  [ 14.0950013 , 0.8429636 ] );
-Function Evaluation #1 at [14.095001 0.8429636]
+Function Evaluation #1, index=5, x= [14.095001 0.8429636]
 assert_checkequal ( isfeasible , 1 );
 [ opt , isfeasible ] = optimbase_isfeasible ( opt ,  [ 14.0950013 , 0.0 ] );
-Function Evaluation #2 at [14.095001 0]
+Function Evaluation #2, index=5, x= [14.095001 0]
 Inequality constraint #3/4 is not satisfied for x
 assert_checkequal ( isfeasible , -1 );
 opt = optimbase_destroy(opt);

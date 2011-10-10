@@ -17,8 +17,7 @@ ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the c++ file
 ACTION_BINDING_CPP_SOURCES = src/jni/Signal.cpp \
-src/jni/Signal.hxx \
-src/jni/GiwsException.cpp
+src/jni/Signal.hxx
 
 # List of the gateway c files
 CONSOLE_C_JNI_SOURCES = src/jni/InterpreterManagement_wrap.c
@@ -63,6 +62,7 @@ libsciaction_binding_la_CPPFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/commons/src/jni/ \
 -I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -88,12 +88,7 @@ CHECK_SRC= $(ACTION_BINDING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
 
 ## Libraries necessary
-## Change to include other Scilab modules/lib
-libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-									$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-# Cyclic dependancy
-#									$(top_builddir)/modules/jvm/libscijvm.la
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la
 
 #### Name of the module and the path ######
 modulename=action_binding

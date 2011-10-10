@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry version="5.0-subset Scilab" xml:id="xmlXPath" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xmlXPath</refname>
+    <refpurpose>Make an XPath query on a XML document</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+      xmlNodeSet = xmlXPath(xmlDoc, queryStr [, namespaces])
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xmlDoc</term>
+        <listitem>
+          <para>xmlDoc, a XML mlist typed XMLDoc</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>queryStr</term>
+        <listitem>
+          <para>queryStr, a string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>namespaces</term>
+        <listitem>
+          <para>namespaces, an optional matrix nx2 of strings</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Make an XPath query on a document. If you need to use namespaces, then you must define them in using the optional argument.</para>
+    <para>For more informations about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
+
+    // Retrieve the nodes with name equals to "note"
+    xp = xmlXPath(doc, "//note");
+    s = size(xp);
+    for i=1:s(2)
+        xmlDump(xp(i))
+    end
+
+    // Count the nodes with name equals to "note"
+    xp = xmlXPath(doc, "count(//note)")
+
+    // Retrieve the node with id="Philosophy"
+    xp = xmlXPath(doc, "//*[@id=""Philosophy""]");
+    s = size(xp);
+    if (s(2) <> 0) then
+        xmlDump(xp(1))
+    end
+
+    // Retrieve the nodes with an attribute num equals to the number 5
+    xp = xmlXPath(doc, "//*[number(@num)=5]");
+    s = size(xp);
+    if (s(2) <> 0) then
+        xmlDump(xp(1))
+    end
+
+    xmlClose(doc);
+
+    // Query using namespaces
+    doc = xmlReadStr("<root xmlns:scilab=""http://www.scilab.org""><scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>");
+
+    // We search for element named a
+    xmlXPath(doc, "//a") // => nothing
+    xmlXPath(doc, "//scilab:a") // => error
+    xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
+
+    xmlClose(doc);
+    ]]></programlisting>
+
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
+      </member>
+      <member>
+        <ulink url="http://www.w3schools.com/xpath/">XPath tutorial</ulink>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Author</title>
+    <para>Calixte DENIZET</para>
+  </refsection>
+</refentry>

@@ -110,13 +110,12 @@ BOOL create_hashtable_scilab_functions(void)
         table_t tmp(0);
         tmp.reserve( DEFAULT_ELEMENTFUNCTIONLIST );
         table.swap(tmp);
-        return TRUE;
     }
     catch( std::bad_alloc& e)
     {
         return FALSE;
     }
-    return FALSE;
+    return TRUE;
 }
 /*----------------------------------------------------------------------------*/
 /*

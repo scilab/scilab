@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- ENGLISH IMPOSED -->
 //
 // <-- JVM NOT MANDATORY -->
 //
@@ -20,7 +21,7 @@
 FILENAME_DIARY = TMPDIR +'/foo.log';
 fd = diary(FILENAME_DIARY, 'new','prefix=YYYY-MM-DD hh:mm:ss');
 warning("i like pizza very much")
-AVERTISSEMENT : i like pizza very much
+WARNING: i like pizza very much
 diary(fd, 'close');
 txt = mgetl(FILENAME_DIARY);
 s = strsplit(txt(2),' ');

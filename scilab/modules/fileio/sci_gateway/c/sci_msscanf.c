@@ -25,14 +25,14 @@
 /*--------------------------------------------------------------------------*/
 int sci_sscanf(char *fname,unsigned long fname_len)
 {
-	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
-	int args,retval,retval_s,err,n_count,lw,il1,ild1,skip;
-	int k;
+	static int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,iarg = 0,maxrow = 0,nrow = 0,rowcount = 0,ncol = 0;
+	int args = 0,retval = 0,retval_s = 0,err = 0,n_count = 0,lw = 0,il1 = 0,ild1 = 0,skip = 0;
+	int k = 0;
 
-	entry *data;
+	entry *data = NULL;
 	rec_entry buf[MAXSCAN];
 	sfdir  type[MAXSCAN],type_s[MAXSCAN];
-	char* str;
+	char* str = NULL;
 
 	Nbvars = 0;
 	CheckRhs(2,3);

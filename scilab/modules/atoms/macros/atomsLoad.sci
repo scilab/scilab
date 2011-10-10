@@ -198,7 +198,7 @@ function result = atomsLoad(packages)
         // Check if this toolbox is already loaded
         // =====================================================================
         if atomsIsLoaded([this_package_name this_package_version]) then
-            atomsDisp(msprintf("\tThe package %s (%s) is already loaded\n\n",this_package_name,this_package_version));
+            atomsDisp(msprintf("\tThe package %s (%s) is already loaded",this_package_name,this_package_version));
             continue;
         end
 

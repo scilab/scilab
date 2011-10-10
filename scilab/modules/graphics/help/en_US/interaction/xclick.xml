@@ -26,7 +26,7 @@
   <refnamediv>
     <refname>xclick</refname>
 
-    <refpurpose>Wait for a mouse click.</refpurpose>
+    <refpurpose>Wait for a mouse click or an event in a graphic window.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -43,7 +43,7 @@
         <term>ibutton</term>
 
         <listitem>
-          <para>Real scalar (integer value): mouse button number, key code...
+          <para>Real scalar (integer value): mouse button number, event code...
           (See description below).</para>
         </listitem>
       </varlistentry>
@@ -52,8 +52,9 @@
         <term>xcoord</term>
 
         <listitem>
-          <para>Real scalar: x-ccordinate of the mouse pointer when the clic
-          occured, in current graphic scale.</para>
+          <para>Real scalar: x-ccordinate of the mouse pointer when
+          the click or event occured, in current graphic scale (see <link
+    linkend="gca">gca()</link>).</para>
         </listitem>
       </varlistentry>
 
@@ -61,8 +62,9 @@
         <term>ycoord</term>
 
         <listitem>
-          <para>Real scalar: x-ccordinate of the mouse pointer when the clic
-          occured, in current graphic scale.</para>
+          <para>Real scalar: x-ccordinate of the mouse pointer when
+          the click or event occured, in current graphic scale (see <link
+    linkend="gca">gca()</link>).</para>
         </listitem>
       </varlistentry>
 
@@ -101,7 +103,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xclick</literal> waits for a mouse click in the graphics
+    <para><literal>xclick</literal> waits for a mouse click or other events in the graphics
     window.</para>
 
     <para>If it is called with 3 left hand side arguments, it waits for a
@@ -110,8 +112,12 @@
     <para>If it is called with 4 or 5 left hand side arguments, it waits for a
     mouse click in any graphics window.</para>
 
+    <para>Warning, the returned coordinates <literal>xcoord</literal>,
+    <literal>ycoord</literal> are relative to the current axes (see <link
+    linkend="gca">gca()</link>).
+    </para>
     <para>The values of <literal>ibutton</literal> are described below.</para>
-
+    
     <variablelist>
       <varlistentry>
         <term>ibutton==0</term>
@@ -246,6 +252,8 @@
 <title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="gca">gca</link></member>
+
       <member><link linkend="locate">locate</link></member>
 
       <member><link linkend="xgetmouse">xgetmouse</link></member>

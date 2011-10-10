@@ -43,7 +43,6 @@ int sci_regexp(char *fname,unsigned long fname_len)
 
 	int mn = 0; /* dimension parameter 1 m*n */
 
-	int m2 = 0,n2 = 0;
 	int mn2 = 0; /* m2*n2 */
 
 	int outIndex = 0;

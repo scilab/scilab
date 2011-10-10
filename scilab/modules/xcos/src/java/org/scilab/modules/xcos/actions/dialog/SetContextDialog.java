@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 //CSOFF: ClassFanOutComplexity
 //CSOFF: MagicNumber
 public class SetContextDialog extends JDialog {
+	private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
 	private static final String SHARED_NEW_LINE = "\n";
 
 	private final ScicosParameters parameters;
@@ -146,6 +147,8 @@ public class SetContextDialog extends JDialog {
 		add(buttonPane, gbc);
 		
 		installActionListeners(cancelButton, okButton);	
+		
+		setPreferredSize(PREFERRED_SIZE);
 	}
 
 	/**

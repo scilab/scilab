@@ -88,13 +88,11 @@ char *getLanguagePreferences(void)
         else
         {
             if (isValidLanguage(LanguageAllUsers)) return LanguageAllUsers;
-            else return strdup("");
         }
     }
     else
     {
         if (isValidLanguage(LanguageUser)) return LanguageUser;
-        else return strdup("");
     }
     return strdup("");
 }
@@ -113,7 +111,6 @@ static char *readRegistryLanguage(HKEY hKeyRoot,char *keyStringFormat)
 
         DWORD OpensKeyOptions = 0;
         HKEY hKey;
-        DWORD result = 0;
         int length = LENGTH_LANGUAGE_REGISTRY;
         wsprintf(keyString, keyStringFormat, SCI_VERSION_STRING);
 #ifdef _WIN64 /* Scilab x64 on x64 windows */

@@ -63,7 +63,6 @@ int set_text_box_mode_property( sciPointObj * pobj, size_t stackPointer, int val
   else
   {
     Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "text_box_mode", "off, centered, filled");
-    return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;
 

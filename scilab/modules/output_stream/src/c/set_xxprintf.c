@@ -11,6 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
+#include <string.h>
 #include "set_xxprintf.h"
 #include "sciprint.h"
 #include "scilabmode.h"
@@ -24,6 +26,8 @@ extern char sprintf_buffer[MAX_SPRINTF_SIZE];
 /*--------------------------------------------------------------------------*/
 void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 {
+    /* re-initialize value of sprintf_buffer */
+    strcpy(sprintf_buffer, "");
 	if (fp == (FILE *) 0)
 	{
 		/* sprintf */

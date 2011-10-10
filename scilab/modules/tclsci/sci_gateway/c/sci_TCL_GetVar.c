@@ -77,7 +77,7 @@ int sci_TCL_GetVar(char *fname,unsigned long l)
 
 		if (TCL_ArrayExist(TCLinterpreter,VarName))
 		{
-			int i=0,j=0, one=1;
+			int j = 0;
 			int nb_lines=0, nb_columns=0;
 			char **index_list = TCL_ArrayDim(TCLinterpreter,VarName, &nb_lines, &nb_columns);
 

@@ -89,7 +89,8 @@
 /* 65 */						#include "dynamic_gateways.h" /* action_binding */
 /* 66 */                        #include "dynamic_parallel.h" /* parallel */
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
-/* 68 */                        #include "dynamic_gateways.h" /* preferences */
+/* 68 */                        #include "dynamic_gateways.h" /* xml */
+/* 69 */                        #include "dynamic_gateways.h" /* preferences */
 
 
 

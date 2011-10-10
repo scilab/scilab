@@ -31,7 +31,7 @@ int sci_fileext(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		int n1 = 0, m1 = 0, l1 = 0;
+		int n1 = 0, m1 = 0;
 		int i = 0;
 
 		char **Input_filenames  = NULL;

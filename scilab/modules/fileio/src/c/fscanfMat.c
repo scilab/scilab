@@ -734,7 +734,7 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
     if (line)
     {
         char *pEnd = NULL;
-        double dValue = strtod(line, &pEnd);
+        strtod(line, &pEnd);
         if ((pEnd) && ((int)strlen(pEnd) == 0))
         {
             return TRUE;
@@ -768,7 +768,6 @@ static BOOL isOnlyBlankLine(const char *line)
 static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *format, char *separator)
 {
     char **linesReturned = NULL;
-    int nbLinesReturned = 0;
     int i = 0;
     int nbLinesToRemove = 0;
 

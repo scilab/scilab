@@ -50,7 +50,7 @@ int set_figure_style_property( sciPointObj * pobj, size_t stackPointer, int valu
   else
   {
     Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "figure_style", "'old'", "'new'");
-    return SET_PROPERTY_ERROR ;
+
   }
   return SET_PROPERTY_ERROR ;
 }

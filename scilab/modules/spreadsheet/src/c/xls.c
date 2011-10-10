@@ -433,10 +433,10 @@ static void getBOF(int *fd ,int* Data, int *err)
 
 static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err)
 {
-  int i,one=1;
+  int i = 0,one=1;
   /* SST data */
-  int ntot; /*total number of strings */
-  int nm;/*Number of following strings*/
+  int ntot = 0; /*total number of strings */
+  int nm = 0;/*Number of following strings*/
   short count=0;
 
   *ns=0;
@@ -478,13 +478,13 @@ static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err)
 static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,char **str,int *err)
 {
   short ln=0;
-  short Opcode;/* to store tag information */
-  int BytesToBeRead,one=1,strindex;
+  short Opcode = 0;/* to store tag information */
+  int BytesToBeRead = 0,one=1,strindex = 0;
   char OptionFlag=0;
-  int sz; /* for extended string data */
-  short rt;/* for rich string data */
-  int UTFEncoding,extendedString,richString;
-  int j,l1;
+  int sz = 0; /* for extended string data */
+  short rt = 0;/* for rich string data */
+  int UTFEncoding = 0,extendedString = 0,richString = 0;
+  int j = 0,l1 = 0;
 
   *str=(char *)NULL;
   *err=0;
@@ -545,7 +545,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
     /* all bytes are in the same record */
     C2F(mgetnc) (fd, (void*)*str, &BytesToBeRead, typ_char, err);
     if (*err > 0) goto ErrL;
-    *PosInRecord+=BytesToBeRead;
+    *PosInRecord+= (short)BytesToBeRead;
   }
   else {/* char stream contains at least one "continue" */
     int bytesRead = *RecordLen-*PosInRecord; /* number of bytes before continue */
@@ -555,7 +555,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
     C2F(mgetnc) (fd, (void*)(*str+strindex), &bytesRead, typ_char, err);
     if (*err > 0) goto ErrL;
     strindex+=bytesRead;
-    *PosInRecord+=bytesRead;
+    *PosInRecord+=(short)bytesRead;
     while (BytesToBeRead-bytesRead > 0){
       /*"continue" tag assumed, verify */
       C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
@@ -575,7 +575,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
 	if (*err > 0) goto ErrL;
 	bytesRead+=l1;
 	strindex+=l1;
-	*PosInRecord+=l1;
+	*PosInRecord+=(short)l1;
       }
       else if (UTFEncoding && (OptionFlag  == 0)) {
 	/* character  encoding changes from twobytes to a single byte*/
@@ -611,7 +611,7 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
 	if (*err > 0) goto ErrL;
 	bytesRead+=l1;
 	strindex+=l1;
-	*PosInRecord+=l1;
+	*PosInRecord+=(short)l1;
 	UTFEncoding =1;
       }
 
@@ -622,8 +622,16 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   /* For extended strings, skip over the extended string data*/
   /* may continuation records appear here? */
   l1=4*rt;
-  if (richString) {C2F(mseek) (fd, &l1, "cur", err);*PosInRecord+=l1;}
-  if (extendedString) {C2F(mseek) (fd, &sz, "cur", err);*PosInRecord+=sz;}
+  if (richString) 
+  {
+      C2F(mseek) (fd, &l1, "cur", err);
+      *PosInRecord+=(short)l1;
+  }
+  if (extendedString) 
+  {
+      C2F(mseek) (fd, &sz, "cur", err);
+      *PosInRecord+=(short)sz;
+  }
 
   /* add string terminaison */
   if (UTFEncoding) {

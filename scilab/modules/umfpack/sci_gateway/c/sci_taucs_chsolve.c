@@ -65,13 +65,13 @@ extern CellAdr *ListCholFactors;
 
 int sci_taucs_chsolve(char* fname, unsigned long l)
 {
-	int mb, nb, lb, lx, one=1, lv, lres;
-	int mC_ptr, nC_ptr, lC_ptr;
-	int mA, nA, i, j, n, it_flag, Refinement;
-	double *b, *x, *v, *res, norm_res, norm_res_bis;
+	int mb = 0, nb = 0, lb = 0, lx = 0, one=1, lv = 0, lres = 0;
+	int mC_ptr = 0, nC_ptr = 0, lC_ptr = 0;
+	int mA = 0, nA = 0, i = 0, j = 0, n = 0, it_flag = 0, Refinement = 0;
+	double *b = NULL, *x = NULL, *v = NULL, *res = NULL, norm_res = 0., norm_res_bis = 0.;
 	long double *wk = NULL;
-	int A_is_upper_triangular;
-	taucs_handle_factors * pC;
+	int A_is_upper_triangular = 0;
+	taucs_handle_factors * pC = NULL;
 	SciSparse A;
 
 	/* Check numbers of input/output arguments */

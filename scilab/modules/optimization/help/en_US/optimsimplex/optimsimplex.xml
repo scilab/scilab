@@ -31,6 +31,10 @@
   <refsynopsisdiv>
     <title>SYNOPSIS</title>
 
+    <para>
+	Creation/Destruction.
+	</para>
+	
     <synopsis>
       newobj = optimsimplex_new ( )
       newobj = optimsimplex_new ( coords )
@@ -42,6 +46,13 @@
       newobj = optimsimplex_new ( "oriented", ... )
       [newobj, data] = optimsimplex_new ( ... )
       this = optimsimplex_destroy (this)
+    </synopsis>
+
+    <para>
+	Set/Get.
+	</para>
+	
+    <synopsis>
       this = optimsimplex_setall ( this , simplex )
       this = optimsimplex_setallfv ( this , fv )
       this = optimsimplex_setallx ( this , x )
@@ -58,6 +69,13 @@
       nbve = optimsimplex_getnbve ( this )
       vertex = optimsimplex_getve ( this , ive )
       x = optimsimplex_getx ( this , ive )
+    </synopsis>
+
+    <para>
+	Methods.
+	</para>
+	
+    <synopsis>
       sicenter = optimsimplex_center ( this )
       optimsimplex_check ( this )
       [this [, data]] = optimsimplex_computefv ( this , fun [, data] )
@@ -252,8 +270,14 @@
   <refsection>
     <title>Functions</title>
 
-    <para>The following functions are available.</para>
+    <para>
+	The following functions are available.
+	</para>
 
+    <para>
+	Create/Destroy.
+	</para>
+	
     <variablelist>
       <varlistentry>
         <term xml:id="optimsimplex_new">optimsimplex_new</term>
@@ -720,7 +744,15 @@
           </variablelist>
         </listitem>
       </varlistentry>
+    </variablelist>
 
+	  
+    <para>
+	Set/Get.
+	</para>
+	
+
+    <variablelist>
       <varlistentry>
         <term xml:id="optimsimplex_setall">this = optimsimplex_setall ( this , simplex )</term>
 
@@ -1236,7 +1268,15 @@
           </variablelist>
         </listitem>
       </varlistentry>
+    </variablelist>
 
+
+    <para>
+	Methods.
+	</para>
+
+	
+    <variablelist>
       <varlistentry>
         <term xml:id="optimsimplex_center">sicenter = optimsimplex_center ( this )</term>
 

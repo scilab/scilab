@@ -192,8 +192,18 @@ ny=0; for k=pointo', ny=ny+size(state.outtb(k),'*'), end
 if rhs<3 then 
   x0=zeros(nx,1);u0=zeros(nu,1);
 else
-  if size(x0,'*')<>nx | size(u0,'*')<>nu then
-    error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d.\n"),"lincos", 2, 3))
+  if size(x0,'*')<>nx then
+      if nx == 0 then
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Empty matrix expected.\n"), "lincos", 2));
+      else
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lincos", 2, nx, 1))
+      end
+  elseif size(u0,'*')<>nu then
+      if nx == 0 then
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Empty matrix expected.\n"), "lincos", 3));
+      else
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lincos", 3, nx, 1))
+      end
   end
 end
 

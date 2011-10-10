@@ -739,9 +739,14 @@ AC_ARG_WITH(modelica,
     AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
 
 
+if test "$with_gui" = no; then
+   AC_MSG_WARN([GUI is disabled. Disabling then xcos])
+   with_xcos=no
+fi
+
 XCOS_ENABLE=no
 
-if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+if test "$with_xcos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_XCOS], [], [With XCOS])
 
    save_LIBS="$LIBS"
@@ -1362,8 +1367,8 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
-ALL_LINGUAS_DOC="fr_FR pt_BR ja_JP"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL cs_CZ"
+ALL_LINGUAS_DOC="en_US fr_FR pt_BR ja_JP"
 
 AC_ARG_ENABLE(build-localization,
         AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1715,7 +1720,6 @@ libs/hashtable/Makefile
 libs/libst/Makefile
 contrib/Makefile
 modules/helptools/Makefile
-modules/helptools/macros/xmlfiletohtml.sci
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
@@ -1788,6 +1792,7 @@ modules/parallel/Makefile
 modules/modules_manager/Makefile
 modules/history_browser/Makefile
 modules/preferences/Makefile
+modules/xml/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

@@ -34,7 +34,6 @@ int sci_createdir(char *fname,unsigned long l)
 		BOOL bOK = FALSE;
 		int m1 = 0, n1 = 0, l1 = 0;
 		char *expandedpath = NULL;
-		int out_n = 0;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 

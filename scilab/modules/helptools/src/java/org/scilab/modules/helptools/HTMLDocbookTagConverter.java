@@ -56,7 +56,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private static final String VERSION = Messages.gettext("Version");
     private static final String DESCRIPTION = Messages.gettext("Description");
 
-    private StringBuffer buffer = new StringBuffer(8192);
+    private StringBuilder buffer = new StringBuilder(8192);
     private int latexCompt;
     private String imageDir;
     private String outName;
@@ -162,7 +162,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     /**
      * @return the buffer used
      */
-    public StringBuffer getBuffer() {
+    public StringBuilder getBuffer() {
         return buffer;
     }
 

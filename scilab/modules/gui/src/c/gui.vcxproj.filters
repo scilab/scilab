@@ -191,9 +191,6 @@
     <ClCompile Include="..\cpp\GetUiobjectVisible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_gui.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -733,9 +730,6 @@
     <ClInclude Include="..\cpp\GetUiobjectVisible.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\GraphicWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -999,7 +993,6 @@
     <None Include="..\..\gui.iss" />
     <None Include="..\..\sci_gateway\gui_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="gui.rc">

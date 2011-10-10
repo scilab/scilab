@@ -68,9 +68,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/parameters
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -113,8 +114,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libparameters_la_etcdir)" \
 	"$(DESTDIR)$(libparameters_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciparameters_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+libsciparameters_la_LIBADD =
 am__objects_1 = libsciparameters_la-parameters.lo
 am_libsciparameters_la_OBJECTS = $(am__objects_1)
 libsciparameters_la_OBJECTS = $(am_libsciparameters_la_OBJECTS)
@@ -405,7 +405,6 @@ libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(libsciparameters_la_SOURCES)
 INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
-libsciparameters_la_LIBADD = $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 
 #### Target ######
 modulename = parameters
@@ -894,6 +893,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

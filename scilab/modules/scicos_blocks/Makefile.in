@@ -66,13 +66,13 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GIWS_TRUE@@XCOS_TRUE@am__append_2 = giws
-@GUI_TRUE@@XCOS_TRUE@am__append_3 = $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/renderer/libscirenderer.la
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -117,17 +117,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_hdf5blocksdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@XCOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@XCOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@XCOS_TRUE@	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(am__append_3)
+libsciscicos_blocks_la_LIBADD =
 am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/absolute_value.c src/c/acos_blk.c src/c/acosh_blk.c \
 	src/c/andlog.c src/c/asin_blk.c src/c/asinh_blk.c \
@@ -267,8 +257,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
 	src/c/scoMemoryScope.c src/c/scoWindowScope.c \
 	src/c/scicos_evalhermite.c src/c/scicos_indexfinder.c \
-	src/jni/GiwsException.cpp src/jni/AfficheBlock.cpp \
-	src/cpp/affich2.cpp
+	src/jni/AfficheBlock.cpp src/cpp/affich2.cpp
 @XCOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absblk.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-absolute_value.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-acos_blk.lo \
@@ -599,8 +588,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_evalhermite.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_indexfinder.lo
-@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-GiwsException.lo \
-@XCOS_TRUE@	libsciscicos_blocks_la-AfficheBlock.lo
+@XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-AfficheBlock.lo
 @XCOS_TRUE@am__objects_5 = libsciscicos_blocks_la-affich2.lo
 @XCOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @XCOS_TRUE@	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -1294,7 +1282,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/c/scicos_indexfinder.c
 
 @XCOS_TRUE@NON_BLOCK_CPP_SOURCES = \
-@XCOS_TRUE@src/jni/GiwsException.cpp \
 @XCOS_TRUE@src/jni/AfficheBlock.cpp
 
 @XCOS_TRUE@GIWS_WRAPPERS = \
@@ -1377,6 +1364,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
+@XCOS_TRUE@	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 @XCOS_TRUE@	 		-I$(top_srcdir)/modules/scicos/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/localization/includes \
@@ -1405,19 +1393,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@	$(srcdir)/macros/Hydraulics/*.moc \
 @XCOS_TRUE@	$(BASE_PATH)/linenum.ml
 
-
-# cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-@XCOS_TRUE@libsciscicos_blocks_la_LIBADD =  \
-@XCOS_TRUE@	$(top_builddir)/modules/cacsd/libscicacsd.la \
-@XCOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@XCOS_TRUE@	$(top_builddir)/modules/polynomials/libscipolynomials.la \
-@XCOS_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@XCOS_TRUE@	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-@XCOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@XCOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@XCOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@XCOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@XCOS_TRUE@	$(am__append_3)
 
 #### scicos_blocks : Conf files ####
 @XCOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
@@ -1744,7 +1719,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absblk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absolute_value.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acos_blk.Plo@am__quote@
@@ -4333,13 +4307,6 @@ libsciscicos_blocks_la-scicos_indexfinder.lo: src/c/scicos_indexfinder.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciscicos_blocks_la-GiwsException.lo: src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Tpo -c -o libsciscicos_blocks_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Tpo $(DEPDIR)/libsciscicos_blocks_la-GiwsException.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libsciscicos_blocks_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciscicos_blocks_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
-
 libsciscicos_blocks_la-AfficheBlock.lo: src/jni/AfficheBlock.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciscicos_blocks_la-AfficheBlock.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Tpo -c -o libsciscicos_blocks_la-AfficheBlock.lo `test -f 'src/jni/AfficheBlock.cpp' || echo '$(srcdir)/'`src/jni/AfficheBlock.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Tpo $(DEPDIR)/libsciscicos_blocks_la-AfficheBlock.Plo
@@ -4901,6 +4868,11 @@ check-code:
 @GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
+
+@GIWS_TRUE@giws-exception:
+@GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
+@GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

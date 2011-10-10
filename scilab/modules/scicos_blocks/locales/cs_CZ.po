@@ -1,0 +1,766 @@
+# Czech translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-09-07 16:07+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+
+msgid "overflow error"
+msgstr "chyba přetečení"
+
+msgid "Trigger block must have discrete time input."
+msgstr "Blok sepnutí musí mít diskrétní časový vstup."
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "Proměnná '%s' neexistuje.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "Neplatný typ proměnné.\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Rozměry dat jsou nekonzistentní:\n"
+" Velikost proměnné=[%d,%d] \n"
+"Velikost výstupu bloku=[%d,%d].\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "Výstup by měl být Reálného typu.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "Výstup by měl být komplexního typu.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "Výstup by měl být typu celoč.8.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "Výstup by měl být typu celoč.16.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "Výstup by měl být typu celoč.32.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "Výstup by měl být typu celoč.8 bez znaménka.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "Výstup by měl být typu celoč.16.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "Výstup by měl být typu celoč.32 bez znaménka.\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+"Časový vektor má špatnou velikost, očekáváno [%d, %d] a předáno [%d, %d].\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Typ Časového vektoru není dvojitá přesnost.\n"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "Časový vektor by měl být rostoucí vektor.\n"
+
+msgid "Allocation problem in spline.\n"
+msgstr "Problém přidělení ve křivce.\n"
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr "Neplatný typ proměnné : chyba v kódování hypermatice scilab.\n"
+
+#, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+
+msgid "Read error!\n"
+msgstr "Chyba čtení!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Nelze otevřít soubor!\n"
+
+msgid "Read error\n"
+msgstr "Chyba čtení\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "CHYBA ROZSAHU : Chyba ve scoReallocLongDraw()"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+"CHYBA ROZSAHU : sciDrawObj nelze provést, pShortDraw je z neznámého důvodu "
+"prázdný !\n"
+" Možná jste zničili okna nebo jakékoliv nadřazené křivek\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr "CHYBA ROZSAHU : Chyba při malloc - Zkontrolujte Paměť\n"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "CHYBA ROZSAHU : Neznámá chyba kódu !\n"
+
+msgid "Incorrect value for dimension argument."
+msgstr "Nesprávné hodnoty pro argument rozměru."
+
+msgid "This scope has the same window id than another."
+msgstr "Tento rozsah má stejné id okna jako jiný."
+
+#, c-format
+msgid "Cannot use %s with this type of object."
+msgstr "Nelze použít %s s tímto typem objektu."
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Zvažte zvýšení délky vyrovnávací paměti v bloku zpoždění \n"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "Chyba při otevírání souboru '%s'.\n"
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Chyba zápisu v souboru '%s'.\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "Velikost vyrovnávací paměti nebo vstupu se změnila!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+"Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Nelze otevřít /dev/audio!\n"
+
+msgid "Clear a bit"
+msgstr "Vyčistit bit"
+
+#, c-format
+msgid "Set %s block parameters"
+msgstr "Nastavit parametry bloku %s"
+
+#, c-format
+msgid "Data Type %s"
+msgstr "Datový Typ %s"
+
+msgid "Index of Bit (0 is least significant)"
+msgstr "Index Bitu (0 je nejméně významná)"
+
+msgid "Index of Bit"
+msgstr "Index Bitu"
+
+#, c-format
+msgid "Wrong type for '%s' parameter: %5.1f."
+msgstr "Špatný typ parametru '%s': %5.1f."
+
+msgid "Must be integer."
+msgstr "Musí být celé číslo."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d."
+msgstr "Špatná hodnota parametru '%s': %d."
+
+#, c-format
+msgid "Must be in the interval %s."
+msgstr "Musí být v intervalu %s."
+
+msgid "Data Type"
+msgstr "Datový Typ"
+
+msgid "Set a bit"
+msgstr "Nastavit bit"
+
+msgid "Type conversion"
+msgstr "Převody typu"
+
+msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Vstupní Typ (1:dvoj.přes., 3:cel.č.32,4:cel.č.16, 5:cel.č.8, ...)"
+
+msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Typ výstupu (1:dvoj.přes., 3:cel.č.32,4:cel.č.16, 5:cel.č.8, ...)"
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr "Provést při Přetečení (0:Nic, 1:Nasytit, 2:Chyba)"
+
+msgid "Do on Overflow"
+msgstr "Provést při Přetečení"
+
+msgid "Input Type"
+msgstr "Vstupní Typ"
+
+msgid "Output Type"
+msgstr "Typ výstupu"
+
+msgid "Bits Extraction"
+msgstr "Extrakce Bitů"
+
+msgid "&nbsp;- Bits to Extract:"
+msgstr "&nbsp;- Bity k Extrakci:"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 Horní Polovina"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 Dolní Polovina"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 Rozsah od MSB"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Rozsah do LSB"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 Rozsah Bitů"
+
+msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
+msgstr "&nbsp;- Počet Bitů nebo Index bitu : Index 0 je LSB"
+
+msgid ""
+"&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
+"[Start, End]"
+msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;Pokud 'Bity k Extrakci' jsou nastaveny na 'Rozsah "
+"Bitů': [Začátek, Konec]"
+
+msgid "Bits to extract"
+msgstr "Bity k extrakci"
+
+msgid "Number of Bits or Index of Bit"
+msgstr "Počet Bitů nebo Index Bitu"
+
+msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
+msgstr "Zacházet s Bitovým Polem jako s celým číslem (0:Ne, 1:Ano)"
+
+msgid "Bits to Extract"
+msgstr "Bity k Extrakci"
+
+msgid "Treat Bit Field as an Integer"
+msgstr "Zacházet s Bitovým Polem jako s celým číslem"
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %s."
+msgstr "Špatná velikost parametru '%s': %s."
+
+msgid "Must be a single value."
+msgstr "Musí být jedna hodnota."
+
+msgid "Must have this form: [Start, End]."
+msgstr "Musí mít tuto formu: [Začátek, Konec]."
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %s."
+msgstr "Špatné hodnoty parametru '%s': %s."
+
+msgid "'Start' must be less than 'End'."
+msgstr "'Začátek' musí být menší než 'Konec'."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s."
+msgstr "Špatná hodnota parametru '%s': %s."
+
+#, c-format
+msgid "Indexes must be in the interval %s."
+msgstr "Indexy musí být v intervalu %s."
+
+msgid "Integer matrix multiplication"
+msgstr "Násobení celočíselné matice"
+
+msgid "JK flip-flop"
+msgstr "JK Klopný obvod"
+
+msgid "The 'Initial Value' must be 0 or 1 of type int8"
+msgstr "'Počáteční Hodnota' musí být 0 nebo 1 typu celoč.8"
+
+msgid "&nbsp;- Negative values are considered as int8(0)"
+msgstr "&nbsp;- Záporné hodnoty jsou považovány za int8(0)"
+
+msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr "&nbsp;- Kladné hodnoty jsou považovány za int8(1)"
+
+msgid "Initial Value"
+msgstr "Počáteční Hodnota"
+
+msgid "Combinatorial logic"
+msgstr "Kombinatorická logika"
+
+msgid "&nbsp; Number of rows must be a power of two."
+msgstr "&nbsp; Počet řádků musí být násobkem dvou."
+
+msgid "&nbsp; Rows of the matrix are the output values"
+msgstr "&nbsp; Řádky matice jsou výstupní hodnoty"
+
+msgid "&nbsp; Number of columns gives the number of outputs."
+msgstr "&nbsp; Počet sloupců zadává počet výstupů."
+
+msgid "Accepts Inherited Events (0:No, 1:Yes)"
+msgstr "Přijímá Zděděné Události (0:Ne, 1:Ano)"
+
+msgid "Truth Table (matrix of outputs)"
+msgstr "Pravdivostní Tabulka (matice výstupů)"
+
+msgid "Truth Table"
+msgstr "Pravdivostní Tabulka"
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %d."
+msgstr "Špatná velikost parametru '%s': %d."
+
+msgid "Number of rows must be a power of two."
+msgstr "Počet řádků musí být násobek dvou."
+
+#, c-format
+msgid "Wrong value for '%s' parameter."
+msgstr "Špatná hodnota parametru '%s'."
+
+#, c-format
+msgid "Elements must be in the interval %s."
+msgstr "Prvky musí být v intervalu %s."
+
+msgid "Accepts Inherited Events"
+msgstr "Přijímá Zděděné Události"
+
+msgid "Shift/Rotates bits"
+msgstr "Posunuje/Otáčí bity"
+
+msgid "Number of Bits to Shift Left (Negative number to shift right)"
+msgstr "Počet Bitů k Posunu Vlevo (Záporné číslo k posunu vpravo)"
+
+msgid "Shift Type (0:Arithmetic, 1:Circular)"
+msgstr "Typ posunu (0:Aritmetický, 1:Kruhový)"
+
+msgid "Shift Type"
+msgstr "Typ posunu"
+
+msgid "SR flip-flop"
+msgstr "SR Klopný obvod"
+
+msgid "Invalid masked block."
+msgstr "Neplatný maskovaný blok."
+
+msgid "Finite differences"
+msgstr "Konečné rozdíly"
+
+msgid "Finite elements"
+msgstr "Konečné prvky"
+
+msgid "negative"
+msgstr "záporný"
+
+msgid "null"
+msgstr "nulový"
+
+msgid "positive"
+msgstr "kladný"
+
+msgid "PDE block"
+msgstr "Blok PDE"
+
+msgid "Domain"
+msgstr "Doména"
+
+msgid "PDE Specification"
+msgstr "Určení PDE"
+
+msgid "PDE Expression:"
+msgstr "Výraz PDE:"
+
+msgid "Display"
+msgstr "Zobrazení"
+
+msgid "Discriminant type:"
+msgstr "Typ diskriminantu:"
+
+msgid "Constant discriminant"
+msgstr "Konstantní diskriminant"
+
+msgid "Variable discriminant:"
+msgstr "Proměnný diskriminant:"
+
+msgid "Spatial discretization method"
+msgstr "Metoda prostorové diskretizace"
+
+msgid "Choice:"
+msgstr "Volba:"
+
+msgid "Automatic"
+msgstr "Automaticky"
+
+msgid "Manual"
+msgstr "Ručně"
+
+msgid "Type:"
+msgstr "Typ:"
+
+msgid "Ordering:"
+msgstr "Seřazení:"
+
+msgid "degree:"
+msgstr "stupeň:"
+
+msgid "Number of nodes:"
+msgstr "Počet uzlů:"
+
+msgid "Display step value"
+msgstr "Zobrazit hodnotu kroku"
+
+msgid "Initial conditions"
+msgstr "Počáteční podmínky"
+
+msgid "Boundary condition on a"
+msgstr "Hraniční podmínka na a"
+
+msgid "Boundary condition on b"
+msgstr "Hraniční podmínka na b"
+
+msgid "Expression ="
+msgstr "Výraz ="
+
+msgid "Measurement points"
+msgstr "Měřící body"
+
+msgid "The measurement points"
+msgstr "Měřící Body"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Remove"
+msgstr "Odstranit"
+
+msgid "Validate"
+msgstr "Ověřit"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Event output port"
+msgstr "Výstupní port události"
+
+msgid "Port number"
+msgstr "Číslo portu"
+
+#, c-format
+msgid "Wrong value for 'Port Number' parameter: %d."
+msgstr "Špatná hodnota parametru 'Číslo Portu': %d."
+
+msgid "Strictly positive integer expected."
+msgstr "Očekáváno striktně kladné celé číslo,"
+
+msgid "Implicit output port"
+msgstr "Impicitní výstupní port"
+
+msgid "Regular output port"
+msgstr "Normální výstupní port"
+
+msgid "Write to output file"
+msgstr "Zapsat do výstupního souboru"
+
+msgid "&nbsp; - A binary file if no format given"
+msgstr "&nbsp; - Binární soubor, pokud formát není zadán"
+
+msgid "Write is done on:"
+msgstr "Zápis je hotov na:"
+
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr ""
+"&nbsp; - Formátovaný textový soubor pokud je zadán formát (Typ Fortran)"
+
+msgid "Input Size"
+msgstr "Vstupní Velikost"
+
+msgid "Output File Name"
+msgstr "Název výstupního souboru"
+
+msgid "Buffer Size"
+msgstr "Velikost Vyrovnávací Paměti"
+
+msgid "Output Format"
+msgstr "Výstupní formát"
+
+msgid "End current simulation first."
+msgstr "Nejdříve ukončit současnou simulaci."
+
+msgid ""
+"Simulation running !!! You cannot switch<br />between formatted and "
+"unformatted when running"
+msgstr ""
+"Simulace běží !!! Nemůžete při běhu přepnout<br />mezi formátovaným a "
+"neformátovaným"
+
+msgid "You cannot modify 'Output File Name' when running."
+msgstr "Nemůžete při běhu změnit 'Název Výstupního Souboru'."
+
+msgid "Wrong value for 'Output File Name' parameter"
+msgstr "Špatná hodnota parametru 'Název Výstupního Souboru'"
+
+msgid "You must provide a filename."
+msgstr "Musíte zadat název souboru."
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr "Adresář '%s' neexistuje"
+
+msgid "Input Format"
+msgstr "Vstupní Formát"
+
+msgid "You must enclose the format's string between parentheses."
+msgstr "Musíte uzavřít řetězec formátu do závorek."
+
+msgid "Must be greater than 1."
+msgstr "Musí být větší než 1"
+
+msgid "Swap Mode (0:No, 1:Yes)"
+msgstr "Režim Výměny (0:Ne, 1:Ano)"
+
+msgid "Write '.au' sound file on audio device"
+msgstr "Zapsat zvukový soubor '.au' na zvukové zařízení"
+
+#, c-format
+msgid "You cannot modify '%s' when running."
+msgstr "Nemůžete při běhu změnit '%s'."
+
+msgid "End current simulation first"
+msgstr "Nejdříve ukončit současnou simulaci"
+
+msgid "Swap Mode"
+msgstr "Režim Výměny"
+
+msgid "Write to C binary file"
+msgstr "Zapsat do binárního souboru C"
+
+msgid "Valid formats are: "
+msgstr "Platné formáty jsou: "
+
+#, c-format
+msgid "You cannot modify '%s' when running"
+msgstr "Nemůžete při běhu změnit '%s'"
+
+msgid "You cannot modify 'Buffer Size' when running."
+msgstr "Nemůžete při běhu změnit 'Velikost vyrovnávací paměti'."
+
+msgid "Event input port"
+msgstr "Vstupní port události"
+
+#, c-format
+msgid "Wrong values for 'Port Number' parameter: %d."
+msgstr "Špatné hodnoty parametru 'Číslo Portu': %d."
+
+msgid "Event clock generator"
+msgstr "Generátor hodin události"
+
+msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
+msgstr "&nbsp; Nespouštět, pokud 'Čas Spuštění' je záporný"
+
+msgid "Initialisation Time"
+msgstr "Čas Spuštění"
+
+msgid "Period"
+msgstr "Perioda"
+
+msgid "Strictly positive number expected."
+msgstr "Očekáváno striktně kladné číslo,"
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %5.1e."
+msgstr "Špatné hodnoty parametru '%s': %5.1e,"
+
+msgid "Constant Value"
+msgstr "Konstantní Hodnota"
+
+msgid "Constant value generator"
+msgstr "Generátor konstantní hodnoty"
+
+msgid "Constant value must have at least one element."
+msgstr "Konstantní hodnota musí mít alespoň jeden prvek."
+
+#, c-format
+msgid "Wrong size for '%s' parameter"
+msgstr "Špatná velikost parametru '%s'"
+
+#, c-format
+msgid "Wrong type for '%s' parameter"
+msgstr "Špatný typ parametru '%s'"
+
+msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
+msgstr ""
+"Typ hodnoty musí být číselný (dvojitá přesnost, komplexní, celoč, celoč.8, "
+"...)."
+
+msgid "Integer counter generator"
+msgstr "Generátor počítadla celých čísel"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Rule (1:Increment, 2:Decrement)"
+msgstr "Pravidlo (1:Přírůstek, 2:Úbytek)"
+
+#, c-format
+msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
+msgstr "Špatné hodnoty parametrů 'Maximum' a 'Minimum': %d &lt; %d"
+
+msgid "'Minimum' must be less than 'Maximum'."
+msgstr "'Minimum' musí být menší než 'Maximum'."
+
+#, c-format
+msgid "Wrong value for 'Rule' parameter: %d"
+msgstr "Špatná hodnota parametru 'Pravidlo': %d"
+
+msgid "Sine wave generator"
+msgstr "Generátor sinusoidy"
+
+msgid "Frequency (rad/s)"
+msgstr "Frekvence (rad/s)"
+
+msgid "Magnitude"
+msgstr "Rozsah"
+
+msgid "Phase (rad)"
+msgstr "Fáze (rad)"
+
+#, c-format
+msgid "Wrong value for 'Frequency' parameter: %e."
+msgstr "Špatná hodnota parametru 'Frekvence': %e."
+
+msgid "Implicit input port"
+msgstr "Impicitní vstupní port"
+
+msgid "Regular input port"
+msgstr "Normální vstupní port"
+
+msgid "Modulo counter (0 to N counter)"
+msgstr "Počítadlo Modula (počítadlo 0 až N)"
+
+msgid "Initial State (zero or positive number)"
+msgstr "Počáteční Stav (nula nebo kladné číslo)"
+
+msgid "Upper Limit (positive number)"
+msgstr "Horní hranice (kladné číslo)"
+
+#, c-format
+msgid "Wrong value for 'Initial State' parameter: %d."
+msgstr "Špatná hodnota parametru 'Počáteční Stav': %d."
+
+msgid "Null or positive integer expected."
+msgstr "Očekáváno kladné celé číslo nebo nic."
+
+#, c-format
+msgid "Wrong values for 'Upper Limit' parameter: %d."
+msgstr "Špatné hodnoty parametru 'Horní Hranice': %d."
+
+msgid "Ramp function"
+msgstr "Funkce ramp"
+
+msgid "Slope"
+msgstr "Sklon"
+
+msgid "Start Time"
+msgstr "Čas Spuštění"
+
+#, c-format
+msgid "Wrong value for 'Start Time' parameter: %e."
+msgstr "Špatná hodnota parametru 'Čas Spuštění': %e."
+
+msgid "(Read Audio File)"
+msgstr "(Přečíst Zvukový Soubor)"
+
+msgid "Read is done on a binary '.au' file"
+msgstr "Čtení je provedeno na binárním souboru '.au'"
+
+msgid "Buffer size"
+msgstr "Velikost vyrovnávací paměti"
+
+msgid "Input File Name"
+msgstr "Název Vstupního Souboru"
+
+msgid "Simulation running !!! You cannot modify Input file name"
+msgstr "Simulace běží !!! Nemůžete změnit název Vstupního souboru"
+
+#, c-format
+msgid "Must be greater than %d."
+msgstr "Musí být větší než %d."
+
+msgid "Outputs Record Selection"
+msgstr "Výběr Záznamu Výstupů"
+
+msgid "Read from C binary file"
+msgstr "Přečíst z binárního souboru C"
+
+msgid "Time Record Selection"
+msgstr "Výběr Časového Záznamu"
+
+msgid "Record Size"
+msgstr "Velikost Záznamu"
+
+msgid "Initial Record Index"
+msgstr "Počáteční Záznam Indexů"
+
+msgid "Must be a scalar or an empty matrix."
+msgstr "Musí být skalár nebo prázdná matice."
+
+msgid "You must provide a file name."
+msgstr "Musíte zadat název souboru."
+
+#, c-format
+msgid "Wrong value for  '%s' parameter: %d."
+msgstr "Špatný hodnota parametru '%s': %d."
+
+msgid "[1, Record Size = "
+msgstr "[1, Velikost Záznamu = "
+
+#, c-format
+msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr "Špatná hodnota pro indexy v parametru '%s': %s."
+
+msgid "Step Function"
+msgstr "Skoková Funkce"
+
+msgid "Final Value"
+msgstr "Konečná hodnota"
+
+msgid "Step Time"
+msgstr "Skokový Čas"
+
+#, c-format
+msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
+msgstr ""
+"'Počáteční Hodnota' a 'Konečná Hodnota': nekompatibilní velikosti: %d a %d."
+
+msgid "Same sizes expected."
+msgstr "Očekávány stejné velikosti"
+
+msgid "&File"
+msgstr "&Soubor"
+
+msgid "&Tools"
+msgstr "&Nástroje"
+
+msgid "&Edit"
+msgstr "&Úpravy"
+
+msgid "&?"
+msgstr "&?"

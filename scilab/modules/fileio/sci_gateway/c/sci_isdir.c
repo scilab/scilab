@@ -37,7 +37,6 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	int m1 = 0, n1 = 0;
 
 	BOOL *results = NULL;
-	int m_out = 0, n_out = 0;
 	int i = 0;
 
 	/* Check Input & Output parameters */

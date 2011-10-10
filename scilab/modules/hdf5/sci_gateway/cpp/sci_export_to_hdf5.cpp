@@ -61,11 +61,8 @@ static char fname[]			= "export_to_hdf5";
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
-    int iRet            = 0;
     int iNbVar          = 0;
-    int iLen            = 0;
     int** piAddrList    = NULL;
-    char* pstFilename   = NULL;
     char** pstNameList	= NULL;
     bool bExport        = false;
 
@@ -537,7 +534,6 @@ static bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
     int iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
 
@@ -567,7 +563,6 @@ static bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
     int iRows						= 0;
     int iCols						= 0;
     int iNbItem					= 0;
-    int* piNbCoef				= NULL;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
     double* pdblReal		= NULL;

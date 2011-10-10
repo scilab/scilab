@@ -64,13 +64,13 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			File temp = FileUtils.createTempFile();
-			temp.deleteOnExit();
+			String temp = FileUtils.createTempFile();
+			new File(temp).deleteOnExit();
 			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
 			try {
-				String cmd = ScilabInterpreterManagement.buildCall("import_from_hdf5", temp.getAbsolutePath());
+				String cmd = ScilabInterpreterManagement.buildCall("import_from_hdf5", temp);
 				cmd += "tree_show(scs_m); ";
-				cmd += ScilabInterpreterManagement.buildCall("deletefile", temp.getAbsolutePath());
+				cmd += ScilabInterpreterManagement.buildCall("deletefile", temp);
 				ScilabInterpreterManagement.synchronousScilabExec(cmd);
 			} catch (InterpreterException e2) {
 				e2.printStackTrace();

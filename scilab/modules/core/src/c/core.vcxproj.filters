@@ -750,7 +750,6 @@
     <None Include="..\..\core.iss" />
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\includes\machine.h.vc" />

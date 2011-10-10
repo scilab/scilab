@@ -95,8 +95,8 @@ function varargout = optimbase_function ( this , x , index )
     end
     this.funevals = this.funevals + 1;
     if this.verbose == 1 then
-        msg = sprintf ( "Function Evaluation #%d at [%s]" , ...
-        this.funevals , strcat(string(x)," ") )
+        msg = sprintf ( "Function Evaluation #%d, index=%d, x= [%s]" , ...
+        this.funevals , index, strcat(string(x)," "))
         this = optimbase_log ( this , msg )
     end
     //

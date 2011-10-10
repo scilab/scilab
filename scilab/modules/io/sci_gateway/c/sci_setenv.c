@@ -37,7 +37,6 @@ int sci_setenv(char *fname,unsigned long fname_len)
 	int lenStVarTwo = 0;
 
 	int m_out1 = 0, n_out1 = 0;
-	int *pbAddressOut1 = NULL;
 
 	int result = 0;
 

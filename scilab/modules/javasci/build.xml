@@ -22,18 +22,18 @@
   <!-- Compile sources -->
   <target name="compile-v1" description="Build sources of Javasci v1" depends="init">
     <mkdir dir="${classes.dir}/v1/"/>
-    <javac srcdir="src/java/javasci/" destdir="${classes.dir}/v1/" classpathref="compile.classpath" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5"/>
+    <javac srcdir="src/java/javasci/" destdir="${classes.dir}/v1/" classpathref="compile.classpath" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
   </target>
   <!-- Compile sources -->
   <target name="compile" description="Build sources of Javasci v2" depends="init">
     <mkdir dir="${classes.dir}/v2/"/>
-    <javac srcdir="src/java/org/" destdir="${classes.dir}/v2/" classpathref="compile.classpath" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5"/>
+    <javac srcdir="src/java/org/" destdir="${classes.dir}/v2/" classpathref="compile.classpath" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
   </target>
   <property name="examples.classes.dir" location="${build.dir}/examples/"/>
   <target name="build-examples" description="Build the examples" depends="jar, jar-v1">
     <property name="examples.src.dir" location="examples/others/"/>
     <mkdir dir="${examples.classes.dir}"/>
-    <javac srcdir="${examples.src.dir}" destdir="${examples.classes.dir}" classpath="${library.javasci.dir}/${library.javasci-v1.name}" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5"/>
+    <javac srcdir="${examples.src.dir}" destdir="${examples.classes.dir}" classpath="${library.javasci.dir}/${library.javasci-v1.name}" deprecation="on" debug="off" verbose="off" listfiles="on" includeAntRuntime="no" source="5" target="6"/>
   </target>
   <target name="clean-examples" description="clean examples">
     <delete dir="${examples.classes.dir}"/>

@@ -23,6 +23,7 @@
 #include "strdup_windows.h"
 #endif
 #include "freeArrayOfString.h"
+#include "getfunctionslist.h"
 /*--------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
@@ -32,8 +33,6 @@ static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
 static int cmpfunctionnames( const void *a ,const void *b);
-/*--------------------------------------------------------------------------*/
-extern char **GetFunctionsList(int *sizeList);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_what)(char *fname,unsigned long fname_len)
 {
