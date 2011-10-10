@@ -390,6 +390,8 @@ Compilation:
   the explicit dependencies on the other libraries. Use libscilab-cli.so or
   libscilab.so to link against Scilab.
 
+* Enforce a minimal version of JRosetta (1.0.4).
+
 * Force the Java class version target to version 6 (or 1.6).
 
 * Add Java 7 in the Debian & Ubuntu search path under GNU/Linux.
