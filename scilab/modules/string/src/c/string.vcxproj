@@ -99,6 +99,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,6 +131,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,6 +165,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -199,6 +202,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

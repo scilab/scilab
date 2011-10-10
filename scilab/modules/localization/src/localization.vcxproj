@@ -105,6 +105,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -138,6 +139,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -170,6 +172,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -206,6 +209,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

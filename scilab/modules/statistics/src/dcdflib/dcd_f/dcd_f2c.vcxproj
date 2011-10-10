@@ -101,9 +101,10 @@ cd ..
       <ModuleDefinitionFile>dcd_f.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
@@ -141,9 +142,10 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
@@ -177,9 +179,10 @@ cd ..
       <ModuleDefinitionFile>dcd_f.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
@@ -217,9 +220,10 @@ cd ..
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\algdiv.c" />

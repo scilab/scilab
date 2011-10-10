@@ -102,9 +102,10 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -134,9 +135,10 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -168,9 +170,10 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -205,9 +208,10 @@ lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PostBuildEvent>
-      </PostBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainAction_Binding.c" />
