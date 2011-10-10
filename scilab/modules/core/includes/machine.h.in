@@ -497,9 +497,6 @@
 /* With OCAML */
 #undef WITH_OCAML
 
-/* With PVM */
-#undef WITH_PVM
-
 /* With TK */
 #undef WITH_TK
 

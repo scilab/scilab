@@ -42,5 +42,5 @@ xstar  = [
     0.1566571  
     0.2458183  
 ];
-assert_checkalmostequal ( xopt , xstar , 1.e-6 );
+assert_checkalmostequal ( xopt , xstar , 1.e-6, 1.e-6 );
 

@@ -48,7 +48,7 @@ int C2F(sci_getlanguagestable)(char *fname,unsigned long fname_len)
 	n1=2;
 	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,Output);
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
+	PutLhsVar();;	
 
 	if (Output) 
 	{

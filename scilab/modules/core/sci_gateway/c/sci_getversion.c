@@ -97,7 +97,7 @@ int getversion_no_rhs(char *fname)
 		}
 	}
 	
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }
@@ -162,7 +162,7 @@ int getversion_one_rhs(char *fname)
 							}
 
 							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
+							PutLhsVar();
 						}
 						else
 						{
@@ -268,7 +268,7 @@ int getversion_two_rhs(char *fname)
 							versionInfo = NULL;
 
 							LhsVar(1) = Rhs + 1;
-							C2F(putlhsvar)();
+							PutLhsVar();
 						}
 						else
 						{

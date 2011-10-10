@@ -47,7 +47,7 @@ int sci_prompt(char *fname,unsigned long fname_len)
             
 		LhsVar(1) = Rhs+1;
 		if (Lhs == 2) LhsVar(2) = Rhs+2;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else /* Tempory change of Scilab prompt */
 	{
@@ -70,7 +70,7 @@ int sci_prompt(char *fname,unsigned long fname_len)
 			SetTemporaryPrompt(cstk(l1));
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{

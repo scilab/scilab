@@ -41,7 +41,7 @@ public class H5RWHandler {
 	private static final String SCS_M = "scs_m";
 	private static final Log LOG = LogFactory.getLog(H5RWHandler.class);
 
-	private final File h5File;
+	private final String h5File;
 
 	/**
 	 * Constructor a new instance with a file.
@@ -50,7 +50,7 @@ public class H5RWHandler {
 	 *            the file path.
 	 */
 	public H5RWHandler(File hdf5file) {
-		h5File = hdf5file;
+		h5File = hdf5file.getAbsolutePath();
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class H5RWHandler {
 	 *            the file path.
 	 */
 	public H5RWHandler(String hdf5file) {
-		h5File = new File(hdf5file);
+		h5File = hdf5file;
 	}
 
 	/*
@@ -93,13 +93,14 @@ public class H5RWHandler {
 		}
 
 		try {
-			int fileId = H5Read.openFile(h5File.getAbsolutePath());
+			int fileId = H5Read.openFile(h5File);
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
 
 			instance = element.decode(data, into);
-			StyleMap style = new StyleMap(instance.getStyle());
-			style.put(instance.getInterfaceFunctionName(), null);
+			StyleMap style = new StyleMap(instance.getInterfaceFunctionName());
+			style.putAll(instance.getStyle());
+			
 			instance.setStyle(style.toString());
 
 		} catch (HDF5Exception e) {
@@ -128,7 +129,7 @@ public class H5RWHandler {
 		}
 
 		try {
-			int handle = H5Read.openFile(h5File.getAbsolutePath());
+			int handle = H5Read.openFile(h5File);
 			if (handle >= 0) {
 				H5Read.readDataFromFile(handle, list);
 			}
@@ -191,7 +192,7 @@ public class H5RWHandler {
 		}
 
 		try {
-			int fileId = H5Read.openFile(h5File.getAbsolutePath());
+			int fileId = H5Read.openFile(h5File);
 
 			H5Read.readDataFromFile(fileId, data);
 			H5Read.closeFile(fileId);
@@ -241,7 +242,7 @@ public class H5RWHandler {
 		}
 
 		try {
-			int fileId = H5Write.createFile(h5File.getAbsolutePath());
+			int fileId = H5Write.createFile(h5File);
 
 			H5Write.writeInDataSet(fileId, SCS_M, data);
 
@@ -275,7 +276,7 @@ public class H5RWHandler {
 		}
 
 		try {
-			int fileId = H5Write.createFile(h5File.getAbsolutePath());
+			int fileId = H5Write.createFile(h5File);
 
 			H5Write.writeInDataSet(fileId, CONTEXT, string);
 
@@ -304,7 +305,7 @@ public class H5RWHandler {
 		}
 
 		try {
-			int fileId = H5Write.createFile(h5File.getAbsolutePath());
+			int fileId = H5Write.createFile(h5File);
 
 			H5Write.writeInDataSet(fileId, SCS_M, data);
 

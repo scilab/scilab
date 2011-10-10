@@ -1,21 +1,17 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Sylvestre LEDRU
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2011 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- ENGLISH IMPOSED -->
+//
 // <-- JVM NOT MANDATORY -->
-
+//
+// =============================================================================
 //Here with give a complete example on adding new primitive to Scilab
-//create the procedure filese
-
-//creating the interface file
-
-
-i=['#include <string>'
+ilib_verbose(0);
+i = ['#include <string>'
 'extern ""C"" {'
 '#include ""stack-c.h""'
 'int sci_cppfind(char *fname) {'
@@ -46,19 +42,20 @@ i=['#include <string>'
 '}'
 '}'];
 
-mputl(i,'sci_cppfind.cxx');
+mkdir(TMPDIR, "ilib_build_cpp");
+cd(TMPDIR + "/ilib_build_cpp");
+mputl(i, TMPDIR + "/ilib_build_cpp/" + "sci_cppfind.cxx");
 
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
 
-files=['sci_cppfind.cxx'];
-ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
+files = ['sci_cppfind.cxx'];
+ilib_build('foo', ['cppfind', 'sci_cppfind'], files,[]);
 
 // load the shared library 
-
-exec loader.sce 
+exec loader.sce;
 
 // Small test to see if the function is actually working.
-if cppfind("my very long string","long") <> 8 pause, end
-if cppfind("my very long string","very") <> 3 pause, end
-if cppfind("my very long string","short") <> -1 pause, end
+assert_checkequal(cppfind("my very long string", "long"), 8);
+assert_checkequal(cppfind("my very long string","very"), 3);
+assert_checkequal(cppfind("my very long string","short"), -1);

@@ -60,7 +60,6 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 
 				if (CPUS_SPEC)
 				{
-					int i = 0;
 					wchar_t * blasdllname = getCpuDllFilename(CPUS_SPEC, sizeArray);
 					if (blasdllname)
 					{

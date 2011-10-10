@@ -27,8 +27,9 @@ files=['bug_2085.c'];
 ilib_build('bug',['ex2c_1','intex2c'],files,[]);
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
    Running the makefile
+   Compilation of bug.c
    Compilation of bug_2085.c
    Building shared library (be patient)
    Generate a cleaner file

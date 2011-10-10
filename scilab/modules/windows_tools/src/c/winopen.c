@@ -25,8 +25,6 @@ BOOL winopen(char *scilabfilename)
 	BOOL bOK = FALSE;
 	char *filename = NULL;
 	wchar_t *wcfilename = NULL;
-	int out_n = 0;
-	long int lout = 0;
 	HINSTANCE error = NULL;
 
 	filename = expandPathVariable(scilabfilename);

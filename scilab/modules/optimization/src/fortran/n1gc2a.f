@@ -175,7 +175,7 @@ c calcul de (g,g)
       goto 99999
       endif
       endif
-6001  format(4x,6h n1gc2,3x,i4,6h iters,3x,i4,7h simuls,3x,2hf=,d15.9)
+6001  format(4x,6h n1gc2,3x,i4,6h iters,3x,i4,7h simuls,3x,2hf=,d16.9)
 6002  format(4x,6h n1gc2,3x,i4,6h iters,3x,i4,7h simuls,
      / 33h necessite d'un redemarrage total)
 6003  format()

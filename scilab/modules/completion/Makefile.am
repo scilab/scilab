@@ -59,9 +59,8 @@ CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
-## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD = libscicompletion-algo.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
-#$(top_builddir)/modules/graphics/libscigraphics.la
+libscicompletion_la_LIBADD = libscicompletion-algo.la 
+
 #### Name of the module and the path ######
 modulename=completion
 
@@ -91,6 +90,7 @@ libscicompletion_la_testutilitiesdir = $(mydatadir)/tests/utilities
 libscicompletion_la_testutilities_DATA = tests/utilities/build_primitives.sce \
 tests/utilities/sci_completeline.c \
 tests/utilities/sci_getcommonpart.c \
+tests/utilities/sci_getfields.c \
 tests/utilities/sci_getfilepartlevel.c \
 tests/utilities/sci_getpartlevel.c
 

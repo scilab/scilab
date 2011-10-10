@@ -56,7 +56,7 @@ public final class ScilabSpecialTextUtilities {
      */
     public static boolean setText(JComponent component, String text) {
         Icon icon = null;
-        if (text != null && text.length() != 0) {
+        if (text != null && text.length() > 1) {
             if (text.startsWith("$") && text.endsWith("$")) {
                 icon = compileLaTeXExpression(text.substring(1, text.length() - 1), component.getFont().getSize());
             } else if (text.startsWith("<") && text.endsWith(">")) {

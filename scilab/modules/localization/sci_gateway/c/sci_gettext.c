@@ -117,10 +117,11 @@ int sci_gettext(char *fname,unsigned long fname_len)
 		n1 = 1;
 		m1 = (int)strlen(TranslatedString);
 		CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &TranslatedString);
-		LhsVar(1) = Rhs + 1;
-		C2F(putlhsvar)();
 
-		if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
+        if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
+
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
 		return 0;
 	}
 	else

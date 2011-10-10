@@ -84,7 +84,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
 
         deleteGraphicObject(pobjUID);
         LhsVar(1) = Rhs + 1;
-		PutLhsVar();
+        PutLhsVar();
     }
     else
     {

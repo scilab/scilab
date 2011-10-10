@@ -43,7 +43,7 @@ int sci_getsystemmetrics(char *fname,unsigned long l)
 		*istk(l1) = GetSystemMetrics(nIndex);
 		LhsVar(1) = Rhs+1;
 
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

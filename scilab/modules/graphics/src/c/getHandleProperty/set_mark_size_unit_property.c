@@ -53,7 +53,7 @@ int set_mark_size_unit_property(char* pobjUID, size_t stackPointer, int valueTyp
   else
   {
     Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "mark_size_unit", "'point'", "'tabulated'");
-    return SET_PROPERTY_ERROR ;
+
   }
 
   status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);

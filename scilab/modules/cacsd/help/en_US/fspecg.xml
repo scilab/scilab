@@ -16,19 +16,25 @@
   </info>
   <refnamediv>
     <refname>fspecg</refname>
-    <refpurpose> stable factorization</refpurpose>
+    <refpurpose>stable factorization of continuous time dynamical systems</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[gm]=fspecg(g).</synopsis>
+    <synopsis>gm=fspecg(g).</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
     <variablelist>
       <varlistentry>
-        <term>g,gm</term>
+        <term>g</term>
         <listitem>
-          <para> <literal>syslin</literal> lists (linear systems in state-space representation)</para>
+          <para> a continuous time linear dynamical system.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gm</term>
+        <listitem>
+          <para> a continuous time linear dynamical system.</para>
         </listitem>
       </varlistentry>
     </variablelist>

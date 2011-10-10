@@ -150,9 +150,6 @@
     <ClCompile Include="src\cpp\GetJavaProperty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\HandleDrawingObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -930,9 +927,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\GetJavaProperty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\jni\GiwsException.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\HandleDrawingObserver.h">

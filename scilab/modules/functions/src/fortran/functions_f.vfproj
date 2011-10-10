@@ -10,13 +10,14 @@
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions_f.dll %%f &gt;nul
-copy *.def functions_f.def &gt;nul
-copy functions_f.def ..\functions_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy functions_f_header.def+functions_f.vcdef functions_f.def &gt;nul" Description="Build functions.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -31,13 +32,14 @@ lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions_f.dll %%f &gt;nul
-copy *.def functions_f.def &gt;nul
-copy functions_f.def ..\functions_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy functions_f_header.def+functions_f.vcdef functions_f.def &gt;nul" Description="Build functions.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -52,13 +54,14 @@ lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions_f.dll %%f &gt;nul
-copy *.def functions_f.def &gt;nul
-copy functions_f.def ..\functions_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy functions_f_header.def+functions_f.vcdef functions_f.def &gt;nul" Description="Build functions.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -73,13 +76,14 @@ lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions_f.dll %%f &gt;nul
-copy *.def functions_f.def &gt;nul
-copy functions_f.def ..\functions_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy functions_f_header.def+functions_f.vcdef functions_f.def &gt;nul" Description="Build functions.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL

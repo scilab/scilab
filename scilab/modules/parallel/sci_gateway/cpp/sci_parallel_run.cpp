@@ -918,7 +918,6 @@ int sci_parallel_run(char *fname,unsigned long fname_len)
     if( !check_args())
     {
         Scierror(999,_("%s: Wrong number of input argument(s).\n"),fname);/* need a better error message */
-        PutLhsVar();
         return 0;
     }
 

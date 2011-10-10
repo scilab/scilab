@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>nehari</refname>
-    <refpurpose> Nehari approximant</refpurpose>
+    <refpurpose>Nehari approximant of continous time dynamical systems</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,19 +28,19 @@
       <varlistentry>
         <term>R</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>a continuous time linear dynamical system in state-space representation.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>a continuous time linear dynamical system in state-space representation.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol</term>
         <listitem>
-          <para>optional threshold</para>
+          <para>optional threshold, default value is 1e-6.</para>
         </listitem>
       </varlistentry>
     </variablelist>

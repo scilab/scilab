@@ -16,10 +16,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -286,6 +290,29 @@ public final class ConfigurationManager {
 		 */
 		firePropertyChange(ConfigurationConstants.RECENT_FILES_CHANGED,
 				oldElement, element);
+	}
+	
+	/**
+	 * Configure the file chooser to use the Xcos current directory 
+	 * (path of the last saved directory). 
+	 * @param fc any file chooser
+	 */
+	public static void configureCurrentDirectory(JFileChooser fc) {
+		final ConfigurationManager manager = ConfigurationManager.getInstance();
+		final Iterator<DocumentType> recentFiles = manager.getSettings()
+				.getRecentFiles().getDocument().iterator();
+
+		File lastFile = null;
+		if (recentFiles.hasNext()) {
+			try {
+				lastFile = new File(
+						new URL(recentFiles.next().getUrl()).toURI());
+			} catch (MalformedURLException e) {
+			} catch (URISyntaxException e) {
+			}
+		}
+
+		fc.setCurrentDirectory(lastFile);
 	}
 	
 	/*

@@ -10,7 +10,7 @@
 
 // <-- ENGLISH IMPOSED -->
 
-function [ y , index ] = rosenbrock ( x , index )
+function y = rosenbrock ( x )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
@@ -174,6 +174,18 @@ close(gcf());
 close(gcf());
 close(gcf());
 
+//
+// Use output function to stop the algorithm.
+// This sets the exitflag to -1.
+function stop = outfunStop ( x , optimValues , state )  
+  fv = optimValues.fval;
+  stop = ( fv < 1.e-5 )
+endfunction
+opt = optimset ( "OutputFcn" , outfunStop);
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_checkalmostequal ( x , [1.0 1.0], 1.e-2 );
+assert_checktrue ( fval < 1e-5 );
+assert_checkequal ( exitflag , -1 );
 
 
 

@@ -38,8 +38,8 @@ case 'set' then
     [ok,z0,exprs]=scicos_getvalue('Set delay parameters',..
 	'Register initial condition',list('vec',-1),exprs)
     if ~ok then break,end
-    if prod(size(z0))<2 then
-      message('Register length must be at least 2')
+    if prod(size(z0))<1 then
+      message('Register length must be at least 1')
       ok=%f
     end
     if ok then

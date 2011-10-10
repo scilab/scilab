@@ -54,8 +54,8 @@ int sci_system_setproperty(char *fname,unsigned long fname_len)
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 		}
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
 		if (previousValue) {FREE(previousValue); previousValue = NULL;}
+        PutLhsVar();
 	}
 	else
 	{

@@ -22,3 +22,5 @@ createvarfromptr_
 createvar_
 getrhsvar_
 gettype_
+funtab_
+cvname_

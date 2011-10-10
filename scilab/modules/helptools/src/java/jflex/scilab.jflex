@@ -170,7 +170,7 @@ structureKwds = "if" | "for" | "while" | "try" | "select" | "end" | "then" | "do
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
 break = ".."(".")*
-breakinstring = {break}[ \t]*{comment}?
+breakinstring = {break}[ \t]*({comment} | {eol})
 
 special = "$" | ":" | {break}
 

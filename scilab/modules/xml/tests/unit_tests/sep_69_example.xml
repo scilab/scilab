@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<root>
+  <hello lang="fr">bonjour</hello>
+  <hello lang="de">Hallo</hello>
+  <world lang="fr">monde</world>
+  <world lang="de">Welt</world>
+</root>

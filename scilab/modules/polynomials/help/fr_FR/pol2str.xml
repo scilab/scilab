@@ -9,7 +9,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>[str]=pol2str(p)</synopsis>
+    <synopsis>strs = pol2str(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>str  </term>
         <listitem>
-          <para>chaîne de caractères
+          <para>une matrix de chaîne de caractères
 </para>
         </listitem>
       </varlistentry>

@@ -145,6 +145,10 @@ if test $acx_blas_ok = no; then
 	AC_CHECK_LIB(blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Generic Blas"; BLAS_LIBS="-lblas"])
 fi
 
+if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
+BLAS_LIBS="$BLAS_LIBS -L$with_blas_library"
+fi
+
 AC_SUBST(BLAS_LIBS)
 
 LIBS="$acx_blas_save_LIBS"
@@ -248,6 +252,10 @@ for lapack in lapack lapack_rs6k; do
 done
 
 LDFLAGS="$saved_ldflags"
+
+if test "$with_lapack_library" != no -a "$with_lapack_library" != ""; then
+LAPACK_LIBS="$LAPACK_LIBS -L$with_lapack_library"
+fi
 
 AC_SUBST(LAPACK_LIBS)
 

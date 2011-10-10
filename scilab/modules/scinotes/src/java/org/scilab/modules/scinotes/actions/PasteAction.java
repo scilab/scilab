@@ -17,6 +17,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.io.StringReader;
+
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -24,6 +26,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorKit;
 
 /**
  * Class for paste action
@@ -49,6 +52,7 @@ public class PasteAction extends DefaultAction {
         try {
             String str = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this).getTransferData(DataFlavor.stringFlavor);
             if (str != null && !str.isEmpty()) {
+                str = ((ScilabEditorKit) getEditor().getEditorKit()).read(new StringReader(str)).content;
                 doc.mergeEditsBegin();
                 getEditor().getTextPane().replaceSelection(str);
                 doc.mergeEditsEnd();

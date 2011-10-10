@@ -43,7 +43,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   {
     /* dimension 0, 0 polyline to draw */
     LhsVar(1)=0 ;
-		C2F(putlhsvar)();
+		PutLhsVar();
     return 0 ;
   }
 
@@ -77,7 +77,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   sciDrawObjIfRequired(sciGetCurrentObj ());
 
   LhsVar(1)=0;
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 }
 

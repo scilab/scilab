@@ -33,7 +33,7 @@ int sci_ftree4(char *fname,unsigned long fname_len)
 	CheckLhs(2,2);
 	CheckRhs(5,5);
 	C2F(intree4)(fname, fname_len);
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

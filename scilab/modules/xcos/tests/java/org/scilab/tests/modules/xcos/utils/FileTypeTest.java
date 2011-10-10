@@ -55,9 +55,9 @@ public class FileTypeTest {
 			File tmp = File.createTempFile("xcosTest", type.getDottedExtension());
 			
 			if (type != XcosFileType.XCOS) {
-				assert type == XcosFileType.findFileType(tmp);
+				assert type == XcosFileType.findFileType(tmp.getAbsolutePath());
 			} else {
-				assert XcosFileType.findFileType(tmp) == null;
+				assert XcosFileType.findFileType(tmp.getAbsolutePath()) == null;
 			}
 			
 			tmp.delete();
@@ -72,7 +72,7 @@ public class FileTypeTest {
 		stream.write(XcosFileHeader.getBytes());
 		stream.close();
 		
-		assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
+		assert XcosFileType.XCOS == XcosFileType.findFileType(tmp.getAbsolutePath());
 		
 		tmp.delete();
 	}

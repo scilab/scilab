@@ -50,7 +50,7 @@ int C2F(sci_getos)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 		}
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

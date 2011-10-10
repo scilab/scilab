@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -199,10 +200,15 @@ fct(int *n, double x[],double v[],int *iflag)
 
     <programlisting role="example"><![CDATA[ 
 // A simple example with fsolve 
-a=[1,7;2,8];b=[10;11];
+a=[1,7;2,8];
+b=[10;11];
 
-deff('[y]=fsol1(x)','y=a*x+b');
-deff('[y]=fsolj1(x)','y=a');
+function y=fsol1(x)
+  y=a*x+b
+endfunction
+function y=fsolj1(x)
+  y=a
+endfunction
 
 [xres]=fsolve([100;100],fsol1);
 a*xres+b
@@ -237,8 +243,11 @@ disp(info); // The termination indicator
 disp(v); // The residual
 disp(info); // The termination indicator
 
-clf();x=linspace(0,1,1000);plot(x,feuler(x))
-a=gca();a.grid=[5 5];
+clf();
+x=linspace(0,1,1000);
+plot(x,feuler(x))
+a=gca();
+a.grid=[5 5];
  ]]></programlisting>
     <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
   </refsection>

@@ -99,8 +99,6 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block,int flag)
 	char *status = NULL;
 	int swap = 1;
 	double res = 0.;
-	int out_n = 0;
-	long int lout = 0;
 	char *filename = NULL;
 	char str[100];
 	int ierr = 1;

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ja\n"
 
 msgid "Copy"
@@ -23,14 +23,11 @@ msgstr "コピー"
 msgid "Cut"
 msgstr "切り取り"
 
-msgid "Delete"
-msgstr "削除"
-
 msgid "Group"
 msgstr "グループ化"
 
-msgid "Invert selection"
-msgstr "選択の反転"
+msgid "UnGroup"
+msgstr "グループ化を解除"
 
 msgid "Paste"
 msgstr "貼り付け"
@@ -38,20 +35,23 @@ msgstr "貼り付け"
 msgid "Redo"
 msgstr "やり直し"
 
-msgid "Select all"
-msgstr "全てを選択"
-
-msgid "UnGroup"
-msgstr "グループ化を解除"
-
 msgid "Undo"
 msgstr "元に戻す"
-
-msgid "Untitled"
-msgstr "タイトルなし"
 
 msgid "Zoom In"
 msgstr "拡大"
 
 msgid "Zoom Out"
 msgstr "縮小"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Select all"
+msgstr "全てを選択"
+
+msgid "Invert selection"
+msgstr "選択の反転"
+
+msgid "Untitled"
+msgstr "タイトルなし"

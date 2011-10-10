@@ -1,0 +1,86 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+//
+// Check behaviour with default output function.
+//
+function [ f , index ] = quadratic ( x , index )
+  f = x(1)^2 + x(2)^2;
+endfunction
+x0 = [1.0 1.0].';
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",quadratic);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-outputcommand",neldermead_defaultoutput);
+nm = neldermead_search(nm);
+Initialization
+Iter. #0, Feval #5, Fval = 2 -- init
+Iter. #1, Feval #5, Fval = 2 -- init
+Iter. #2, Feval #6, Fval = 2 -- reflection
+Iter. #3, Feval #8, Fval = 0.5 -- expansion
+Iter. #4, Feval #9, Fval = 0.5 -- reflection
+Iter. #5, Feval #11, Fval = 0.5 -- insidecontraction
+Iter. #6, Feval #13, Fval = 0.125 -- insidecontraction
+Iter. #7, Feval #15, Fval = 0.0390625 -- insidecontraction
+Iter. #8, Feval #17, Fval = 0.0390625 -- insidecontraction
+Iter. #9, Feval #18, Fval = 0.0390625 -- reflection
+Iter. #10, Feval #20, Fval = 0.0221252 -- insidecontraction
+Iter. #11, Feval #22, Fval = 0.0054417 -- insidecontraction
+Iter. #12, Feval #24, Fval = 0.0032459 -- insidecontraction
+Iter. #13, Feval #26, Fval = 0.0032459 -- outsidecontraction
+Iter. #14, Feval #28, Fval = 0.0003375 -- insidecontraction
+Iter. #15, Feval #29, Fval = 0.0003375 -- reflection
+Iter. #16, Feval #31, Fval = 0.0003375 -- insidecontraction
+Iter. #17, Feval #33, Fval = 0.0003375 -- outsidecontraction
+Iter. #18, Feval #35, Fval = 0.0001123 -- insidecontraction
+Iter. #19, Feval #36, Fval = 0.0001123 -- reflection
+Iter. #20, Feval #38, Fval = 0.0000555 -- insidecontraction
+Iter. #21, Feval #40, Fval = 0.0000332 -- insidecontraction
+Iter. #22, Feval #42, Fval = 0.0000075 -- insidecontraction
+Iter. #23, Feval #44, Fval = 0.0000075 -- insidecontraction
+Iter. #24, Feval #46, Fval = 0.0000061 -- outsidecontraction
+Iter. #25, Feval #48, Fval = 0.0000011 -- insidecontraction
+Iter. #26, Feval #50, Fval = 0.0000011 -- insidecontraction
+Iter. #27, Feval #51, Fval = 0.0000011 -- reflection
+Iter. #28, Feval #53, Fval = 0.0000002 -- insidecontraction
+Iter. #29, Feval #55, Fval = 0.0000002 -- insidecontraction
+Iter. #30, Feval #57, Fval = 0.0000002 -- insidecontraction
+Iter. #31, Feval #59, Fval = 5.056D-08 -- insidecontraction
+Iter. #32, Feval #61, Fval = 4.785D-08 -- insidecontraction
+Iter. #33, Feval #63, Fval = 1.380D-08 -- insidecontraction
+Iter. #34, Feval #65, Fval = 1.380D-08 -- insidecontraction
+Iter. #35, Feval #67, Fval = 3.535D-09 -- outsidecontraction
+Iter. #36, Feval #69, Fval = 1.198D-09 -- insidecontraction
+Iter. #37, Feval #71, Fval = 8.566D-10 -- outsidecontraction
+Iter. #38, Feval #73, Fval = 3.482D-10 -- insidecontraction
+Iter. #39, Feval #75, Fval = 1.984D-10 -- insidecontraction
+Iter. #40, Feval #77, Fval = 1.609D-10 -- insidecontraction
+Iter. #41, Feval #79, Fval = 1.898D-11 -- insidecontraction
+Iter. #42, Feval #81, Fval = 1.898D-11 -- insidecontraction
+Iter. #43, Feval #83, Fval = 1.898D-11 -- outsidecontraction
+Iter. #44, Feval #85, Fval = 5.578D-12 -- insidecontraction
+Iter. #45, Feval #87, Fval = 5.214D-12 -- insidecontraction
+Iter. #46, Feval #89, Fval = 3.361D-12 -- insidecontraction
+Iter. #47, Feval #91, Fval = 8.557D-13 -- insidecontraction
+Iter. #48, Feval #92, Fval = 8.557D-13 -- reflection
+Iter. #49, Feval #94, Fval = 7.893D-13 -- insidecontraction
+Iter. #50, Feval #96, Fval = 1.601D-13 -- insidecontraction
+Iter. #51, Feval #98, Fval = 1.291D-13 -- insidecontraction
+Iter. #52, Feval #100, Fval = 3.139D-14 -- outsidecontraction
+End of Optimization
+Iter. #52, Feval #100, Fval = 3.139D-14 -- done
+// Check optimum point
+xopt = neldermead_get(nm,"-xopt");
+assert_checkalmostequal ( xopt , [0;0], [], 1e-6 );
+// Check status
+status = neldermead_get(nm,"-status");
+assert_checkequal ( status , "maxfuneval" );
+nm = neldermead_destroy(nm);

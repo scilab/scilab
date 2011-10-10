@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>lcf</refname>
-    <refpurpose> normalized coprime factorization</refpurpose>
+    <refpurpose>Continuous time dynamical systems normalized coprime factorization</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,13 +28,19 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>linear system given in state space or transfer function (<literal>syslin</literal> list)</para>
+          <para>a continuous time linear dynamical system.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>N,M</term>
+        <term>N</term>
         <listitem>
-          <para>two linear systems (<literal>syslin</literal> list)</para>
+          <para>a continuous linear dynamical system.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>M</term>
+        <listitem>
+          <para>a continuous linear dynamical system.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -46,6 +52,11 @@
     system <literal>sl</literal>.</para>
     <para>
       <literal>sl = M^-1 N</literal>
+    </para>
+    <para>
+      <literal>M</literal> and <literal>N</literal> are returned in the same
+      representation (transfer function or state-space) than
+      <literal>sl</literal>.
     </para>
   </refsection>
   <refsection>

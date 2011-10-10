@@ -41,7 +41,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   if (m3 * n3 == 0) {
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 		return 0;
 	}
   if (m3 == 1 || n3 == 1) {
@@ -86,7 +86,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   }
   LhsVar(1)=Rhs+2;
   LhsVar(2)=Rhs+3;
-  C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

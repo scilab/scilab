@@ -142,7 +142,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\windows_tools.iss" />
     <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
   </ItemGroup>

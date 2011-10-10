@@ -45,7 +45,7 @@ int sci_end_scicosim(char *fname,unsigned long fname_len)
 	else 
 	{
 		end_scicos_sim();
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

@@ -125,9 +125,9 @@ function result = atomsRemove(packages,section)
             // Print a warning if the package isn't installed
 
             if isempty(package_versions(i)) then
-                atomsDisp(msprintf("\t%s isn''t installed\n\n",package_names(i)));
+                atomsDisp(msprintf("\t%s isn''t installed",package_names(i)));
             else
-                atomsDisp(msprintf("\t%s (%s) isn''t installed\n\n",package_names(i),package_versions(i)));
+                atomsDisp(msprintf("\t%s (%s) isn''t installed",package_names(i),package_versions(i)));
             end
 
         elseif (section=="user") & (~ isempty(package_versions(i)) ) then
@@ -163,9 +163,9 @@ function result = atomsRemove(packages,section)
     if ATOMSVERBOSE
         for i=1:size(remove_package_list(:,1),"*")
             if remove_package_list(i,1) == "-" then
-                atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section\n\n",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
             elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
-                atomsDisp(msprintf("\t%s (%s) cannot be removed from the ''%s'' section and will be broken\n\n",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                atomsDisp(msprintf("\t%s (%s) cannot be removed from the ''%s'' section and will be broken",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
             end
         end
     end
@@ -276,7 +276,7 @@ function result = atomsRemove(packages,section)
 
         // Sucess message if needed
         // =====================================================================
-        atomsDisp(msprintf(" success\n\n"));
+        atomsDisp(msprintf(" success"));
     end
 
     // Go to the initial location

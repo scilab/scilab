@@ -199,20 +199,38 @@ Ce bloc implémente un retard à temps discret. Il est construit avec un registr
     <title>Exemple</title>
     <para>
       <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/fr_FR/DELAY_f_fr_FR.xcos">
-          Ouvrir cet exemple dans Xcos
-        </link>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_diagram_fr_FR.png" align="center"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_scope_fr_FR.png" align="center"/>
+        </imageobject>
+      </inlinemediaobject>
     </para>
     <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_diagram_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_scope_fr_FR.png" align="center"/>
-      </imageobject>
-    </mediaobject>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+    </para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
   </refsection>
   <refsection id="Interfacingfunction_DELAY_f">
     <title>Fonction d'interfaçage</title>

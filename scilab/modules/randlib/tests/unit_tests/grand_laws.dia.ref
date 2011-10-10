@@ -349,7 +349,7 @@ function p = mycdfexp(X,A)
   p = 1 - exp(-(1/A)*X);
 endfunction
 A = 20;
-checkMeanVariance1arg ( 400 , 800 , 'exp' , A , A , A^2 , rtol );
+checkMeanVariance1arg ( 400 , 800 , 'exp' , A , A , A^2 , 2*rtol );
 //
 for A = linspace(0.1,50,10)
   checkLaw1arg ( "exp" , mycdfexp , N , NC , A , 2*rtol );
@@ -414,7 +414,7 @@ checkMeanVariance2arg ( 400 , 800 , 'bin' , A , B , A*B , A*B*(1-B) , rtol );
 //
 for A = floor(linspace(10,50,4))
 for B = linspace(0.1,0.9,4)
-  checkPieceLaw2arg ( 'bin' , mycdfbin , N , NC , A , B , rtol );
+  checkPieceLaw2arg ( 'bin' , mycdfbin , N , NC , A , B , 2*rtol );
 end
 end
 /////////////////////////////////////////////////////////////
@@ -528,7 +528,7 @@ B = [4,2,3;2,6,4;3,4,5];
   R=grand(n,"mn",A,B);
   assert_checkequal ( size(R) , [3,n] );
   assert_checkequal ( typeof(R) , "constant" );
-  assert_checkalmostequal ( mean(R,"c") , A , rtol );
+  assert_checkalmostequal ( mean(R,"c") , A , 2*rtol );
   assert_checkalmostequal ( variance(R,"c") , [4;6;5] , rtol );
 //
 // No CDF for this function => no histogram test. 

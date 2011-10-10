@@ -18,6 +18,37 @@ function this = neldermead_updatesimp ( this )
   simplex0 = optimsimplex_new ( );
   xopt = optimbase_get ( this.optbase , "-xopt" );
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
+  //
+  // Check the consistency between the initial simplex method
+  // and the restart simplex method.
+  simplex0method = neldermead_cget ( this , "-simplex0method" )
+  restartsimplexmethod = neldermead_cget ( this , "-restartsimplexmethod" )
+  select restartsimplexmethod
+  case "oriented" then
+    // An oriented restart is possible only if the initial simplex has n+1 vertices.
+    if ( simplex0method == "randbounds" ) then
+		lclmsg = gettext("%s: The initial simplex method ""%s"" is not compatible with the restart simplex method ""%s""")
+		errmsg = msprintf(lclmsg, "neldermead_updatesimp", simplex0method, restartsimplexmethod)
+		error(errmsg)
+	end
+  case "axes" then
+    
+  case "spendley" then
+    
+  case "pfeffer" then
+    
+  case "randbounds" then
+    if ( ~hasbounds ) then
+		lclmsg = gettext("%s: Randomized bounds restart simplex is not available without bounds." )
+      errmsg = msprintf ( lclmsg , "neldermead_updatesimp" )
+      error ( errmsg )
+    end    
+  else
+    errmsg = msprintf(gettext("%s: Unknown restart simplex method %s"), "neldermead_updatesimp", this.restartsimplexmethod)
+    error(errmsg)
+  end
+  //
+  // Update the simplex
   select this.restartsimplexmethod
   case "oriented" then
     [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , costf_transposex , this );
@@ -36,13 +67,10 @@ function this = neldermead_updatesimp ( this )
       this.simplex0deltazero , this );
   case "randbounds" then
     if ( this.boxnbpoints=="2n" ) then
-      this.boxnbpointseff = 2 * this.numberofvariables
+      nbvar=optimbase_cget(this.optbase,"-numberofvariables")
+      this.boxnbpointseff = 2*nbvar
     else
       this.boxnbpointseff = this.boxnbpoints
-    end
-    if ( ~hasbounds ) then
-      errmsg = msprintf ( gettext("%s: Randomized bounds initial simplex is not available without bounds." ) , "neldermead_updatesimp" )
-      error ( errmsg )
     end
     simplex0 = optimsimplex_destroy ( simplex0 )
     [ simplex0 , this ] = optimsimplex_new ( "randbounds" , xopt.' , ...
@@ -58,7 +86,6 @@ function this = neldermead_updatesimp ( this )
   // The initial simplex may be computed with an "axis-by-axis" simplex,
   // so that it does not satisfies bounds constraints.
   // The scaling should therefore take into accounts for bounds.
-  // TODO : project vertices into bounds
   //
   nbve = optimsimplex_getnbve ( simplex0 );
   this = neldermead_log (this,"Before scaling:");

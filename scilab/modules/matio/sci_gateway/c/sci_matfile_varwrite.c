@@ -134,11 +134,9 @@ int sci_matfile_varwrite(char *fname,unsigned long fname_len)
   var_type = (flag==0);
   createScalarBoolean(pvApiCtx, Rhs+1, var_type);
   
-  LhsVar(1) = Rhs+1;
-  
-  PutLhsVar();
-  
   freeAllocatedSingleString(varname);
+  LhsVar(1) = Rhs+1;
+  PutLhsVar();
   
   return TRUE;
 }

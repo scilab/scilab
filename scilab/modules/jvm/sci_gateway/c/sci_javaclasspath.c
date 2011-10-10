@@ -36,8 +36,8 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
 		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol,Strings );
 
 		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
 		freeArrayOfString(Strings,nbRow*nbCol);
+        PutLhsVar();
 	}
 	else
 	{
@@ -59,8 +59,8 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
 				}
 			}
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();	
 			freeArrayOfString(classPaths,m1*n1);
+            PutLhsVar();	
 		}
 		else
 		{

@@ -158,9 +158,6 @@
     <ClCompile Include="lspxsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mycmatptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ordmmd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -500,9 +497,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="lspxsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mycmatptr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ordmmd.f">

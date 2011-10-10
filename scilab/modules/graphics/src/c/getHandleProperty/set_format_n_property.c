@@ -65,6 +65,5 @@ int set_format_n_property(char* pobjUID, size_t stackPointer, int valueType, int
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"format_n");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

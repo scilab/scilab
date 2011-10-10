@@ -440,7 +440,7 @@ int sci_data2sig(char *fname, unsigned long fname_len)
 		LhsVar(1) = 2;
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

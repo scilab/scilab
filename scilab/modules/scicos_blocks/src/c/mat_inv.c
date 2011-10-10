@@ -18,76 +18,99 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "machine.h" /* C2F */
+
+#include "machine.h"            /* C2F */
 #include "MALLOC.h"
+#include "localization.h"
+
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-extern int C2F(dgetrf)();
-extern int C2F(dgetri)();
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+extern int C2F(dgetrf) ();
+extern int C2F(dgetri) ();
+
+/*--------------------------------------------------------------------------*/
 typedef struct
-{         
-	int *ipiv;
-	double *dwork;
-} mat_inv_struct ;
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block *block,int flag)
 {
- double *u = NULL;
- double *y = NULL;
- int nu = 0;
- int info = 0;
- int i = 0;
- mat_inv_struct *ptr = NULL;
- 
- nu =GetInPortRows(block,1);
- u=GetRealInPortPtrs(block,1);
- y=GetRealOutPortPtrs(block,1);
+    int *ipiv;
+    double *dwork;
+} mat_inv_struct;
 
-             /*init : initialization*/
-if (flag==4)
-   {if((*(block->work)=(mat_inv_struct*) scicos_malloc(sizeof(mat_inv_struct)))==NULL)
-	{set_block_error(-16);
-	 return;}
-    ptr=*(block->work);
-    if((ptr->ipiv=(int*) scicos_malloc(sizeof(int)*nu))==NULL)
-	{set_block_error(-16);
-	 scicos_free(ptr);
-	 return;}
-    if((ptr->dwork=(double*) scicos_malloc(sizeof(double)*nu))==NULL)
-	{set_block_error(-16);
-	 scicos_free(ptr->ipiv);
-	 scicos_free(ptr);
-	 return;}
-   }
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
+{
+    double *u = NULL;
+    double *y = NULL;
+    int nu = 0;
+    int info = 0;
+    int i = 0;
+    mat_inv_struct *ptr = NULL;
 
-       /* Terminaison */
-else if (flag==5)
-   {ptr=*(block->work);
-    if ((ptr->dwork)!=NULL){
-    	scicos_free(ptr->ipiv);
-    	scicos_free(ptr->dwork);
-    	scicos_free(ptr);
-    	return;}
-   }
+    nu = GetInPortRows(block, 1);
+    u = GetRealInPortPtrs(block, 1);
+    y = GetRealOutPortPtrs(block, 1);
 
-else
-   {
-    ptr=*(block->work);
-    for (i=0;i<(nu*nu);i++)   { y[i]=u[i];}
-    C2F(dgetrf)(&nu,&nu,&y[0],&nu,ptr->ipiv,&info);
-    if (info !=0)
-       {if (flag!=6)
-   	{set_block_error(-7);
-        return;}}
-    C2F (dgetri)(&nu,y,&nu,ptr->ipiv,ptr->dwork,&nu,&info);
-    
-   }
+    /*init : initialization */
+    if (flag == 4)
+    {
+        if ((*(block->work) = (mat_inv_struct *) scicos_malloc(sizeof(mat_inv_struct))) == NULL)
+        {
+            set_block_error(-16);
+            return;
+        }
+        ptr = *(block->work);
+        if ((ptr->ipiv = (int *)scicos_malloc(sizeof(int) * nu)) == NULL)
+        {
+            set_block_error(-16);
+            scicos_free(ptr);
+            return;
+        }
+        if ((ptr->dwork = (double *)scicos_malloc(sizeof(double) * nu)) == NULL)
+        {
+            set_block_error(-16);
+            scicos_free(ptr->ipiv);
+            scicos_free(ptr);
+            return;
+        }
+    }
+
+    /* Terminaison */
+    else if (flag == 5)
+    {
+        ptr = *(block->work);
+        if ((ptr->dwork) != NULL)
+        {
+            scicos_free(ptr->ipiv);
+            scicos_free(ptr->dwork);
+            scicos_free(ptr);
+            return;
+        }
+    }
+
+    else
+    {
+        ptr = *(block->work);
+        for (i = 0; i < (nu * nu); i++)
+        {
+            y[i] = u[i];
+        }
+        C2F(dgetrf) (&nu, &nu, &y[0], &nu, ptr->ipiv, &info);
+        if (info != 0)
+        {
+            if (flag != 6)
+            {
+                Coserror(_("The LU factorization has been completed, but the factor U is exactly singular : U(%d,%d) is exactly zero."), info, info);
+                return;
+            }
+        }
+        C2F(dgetri) (&nu, y, &nu, ptr->ipiv, ptr->dwork, &nu, &info);
+
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+
+/*--------------------------------------------------------------------------*/

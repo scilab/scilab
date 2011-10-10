@@ -32,9 +32,6 @@
     <ClCompile Include="DllmainSCINOTES.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_scinotes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
     <ClInclude Include="..\..\includes\dynlib_scinotes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\gw_scinotes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,7 +81,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scinotes.iss" />
     <None Include="..\..\sci_gateway\scinotes_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scinotes.rc">

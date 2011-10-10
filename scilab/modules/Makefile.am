@@ -52,7 +52,6 @@ cacsd \
 polynomials \
 boolean \
 double \
-pvm \
 io \
 intersci \
 signal_processing \
@@ -88,7 +87,8 @@ scinotes \
 parallel \
 modules_manager \
 ui_data \
-history_browser
+history_browser \
+xml
 
 #umfpack
 
@@ -193,9 +193,11 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/fftw/libscifftw.la
-
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/xml/libscixml.la \
+        $(top_builddir)/modules/statistics/libscistatistics.la \
+        $(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -204,12 +206,10 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/sound/libscisound.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \

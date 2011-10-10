@@ -68,7 +68,6 @@ pt_BR.DescriptionFortran2sci =Scilab to Fortran Toolbox
 pt_BR.DescriptionTclTK =TCL/TK in Scilab
 pt_BR.DescriptionScipad =Scipad Editor for Scilab
 pt_BR.DescriptionSpreadsheet =Spreadsheet Toolbox
-pt_BR.DescriptionPvm =PVM Parallel Toolbox
 pt_BR.DescriptionJVM =Java Runtime
 pt_BR.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
 pt_BR.DescriptionFftwModule = FFTW interface for Scilab

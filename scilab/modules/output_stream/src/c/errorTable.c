@@ -1382,13 +1382,9 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_6);
             if (NameVarOnStack)
             {
-                char msgErr[bsiz];
-                char msgTmp[bsiz];
-                strcpy(msgErr, _("Function not defined for given argument type(s),\n"));
-                sprintf(msgTmp, _("  check arguments or define function %s for overloading.\n"),NameVarOnStack);
-                strcat(msgErr, msgTmp);
-                iValueReturned = Scierror(iErr, msgErr);
-
+                char msgFormat[bsiz*2];
+                sprintf(msgFormat, "%s%s", _("Function not defined for given argument type(s),\n"), _("  check arguments or define function %s for overloading.\n"));
+                iValueReturned = Scierror(iErr, msgFormat, NameVarOnStack);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }

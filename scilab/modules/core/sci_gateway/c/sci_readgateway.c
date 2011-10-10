@@ -107,7 +107,7 @@ int C2F(sci_readgateway)(char *fname,unsigned long fname_len)
 					FREE(gateway_content);
 					gateway_content = NULL;
 				}
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else
 			{

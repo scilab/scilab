@@ -301,7 +301,7 @@ int sci_set(char *fname, unsigned long fname_len)
             {
                 /* An error occured */
                 LhsVar(1)=0;
-                C2F(putlhsvar)();
+                PutLhsVar();
                 return 0 ;
             }
 
@@ -374,7 +374,7 @@ int sci_set(char *fname, unsigned long fname_len)
         }
 
         LhsVar(1) = 0;
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     return 0;
 #endif

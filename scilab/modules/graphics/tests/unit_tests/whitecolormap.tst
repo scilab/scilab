@@ -1,0 +1,24 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+assert_checkerror("whitecolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "whitecolormap", 1);
+
+assert_checkerror("whitecolormap(%t)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "whitecolormap", 1);
+
+assert_checkerror("whitecolormap(%i)", "%s: Wrong type for input argument #%d: An integer value expected.\n", 10000, "whitecolormap", 1);
+
+assert_checkerror("whitecolormap([0 1 2 3])", "%s: Wrong size for input argument #%d: An integer value expected.\n", 10000, "whitecolormap", 1);
+
+assert_checkequal(whitecolormap(0), []);
+
+assert_checkequal(whitecolormap(1), ones(1,3));
+
+assert_checkequal(whitecolormap(2), ones(2,3));
+
+assert_checkequal(whitecolormap(3), ones(3,3));

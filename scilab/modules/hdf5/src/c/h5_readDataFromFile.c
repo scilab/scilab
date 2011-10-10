@@ -217,7 +217,7 @@ int getDatasetDimension(int _iDatasetId, int* _piRows, int * _piCols)
 {
     int iRet                = 0;
     int iDummy              = 0;
-    char *pstScilabClass    = NULL;
+
 
     *_piRows = readIntAttribute(_iDatasetId, g_SCILAB_CLASS_ROWS);
     *_piCols = readIntAttribute(_iDatasetId, g_SCILAB_CLASS_COLS);
@@ -229,7 +229,7 @@ int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbI
 {
     int iRet                = 0;
     int iDummy              = 0;
-    char *pstScilabClass    = NULL;
+
 
     //get number of item in the sparse matrix
     getDatasetDims(_iDatasetId, _piRows, _piCols);
@@ -990,8 +990,6 @@ int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
 
 int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,    int* _piColPos, double *_pdblReal, double *_pdblImg)
 {
-    int i               = 0;
-    int j               = 0;
     hid_t obj           = 0;
     hobj_ref_t *pRef    = (hobj_ref_t *)MALLOC(3 * sizeof (hobj_ref_t));
     herr_t status;
@@ -1055,8 +1053,6 @@ int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
 int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,    int* _piColPos)
 {
-    int i               = 0;
-    int j               = 0;
     hid_t obj           = 0;
     hobj_ref_t *pRef    = (hobj_ref_t *)MALLOC(2 * sizeof (hobj_ref_t));
     herr_t status;

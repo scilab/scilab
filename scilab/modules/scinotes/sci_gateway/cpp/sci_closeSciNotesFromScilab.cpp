@@ -24,29 +24,30 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_scinotes;
+
 /*--------------------------------------------------------------------------*/
-int
-sci_closeSciNotesFromScilab(char *fname, unsigned long fname_len)
+int sci_closeSciNotesFromScilab(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
     try
     {
-        JavaVM * jvm = getScilabJavaVM();
+        JavaVM *jvm = getScilabJavaVM();
+
         if (jvm)
         {
             SciNotes::closeSciNotesFromScilab(jvm);
         }
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch(GiwsException::JniCallMethodException exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch(GiwsException::JniException exception)
     {
-        Scierror(999, "%s: %s\n", fname, exception.what());
+        Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
@@ -54,4 +55,5 @@ sci_closeSciNotesFromScilab(char *fname, unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

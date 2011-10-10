@@ -1,7 +1,0 @@
-LIBRARY    interpolation_f.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; interpolation_f
-; --------------------------------------- 

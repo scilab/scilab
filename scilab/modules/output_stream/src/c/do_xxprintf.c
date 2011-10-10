@@ -36,6 +36,7 @@
 #define  PF_LD      3
 #define  PF_F       4
 #define  TAB_CHAR   9
+#define  CR_CHAR    13
 /*--------------------------------------------------------------------------*/
 #define  MAX_SPRINTF_SIZE  bsiz
 char sprintf_buffer[MAX_SPRINTF_SIZE];
@@ -280,6 +281,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
                         else if (*currentchar == 't')
                         {
                             *target++ = (char)TAB_CHAR;
+                            *currentchar++;
+                            retval++;
+                        }
+                        else if (*currentchar == 'r')
+                        {
+                            *target++ = (char)CR_CHAR;
                             *currentchar++;
                             retval++;
                         }

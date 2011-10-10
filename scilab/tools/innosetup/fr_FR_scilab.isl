@@ -69,7 +69,6 @@ fr_FR.DescriptionFortran2sci =Boite à outils Scilab vers Fortran
 fr_FR.DescriptionTclTK =TCL/TK pour Scilab
 fr_FR.DescriptionScipad =Scipad Editeur pour Scilab
 fr_FR.DescriptionSpreadsheet =Boite à outils Feuille de Calculs
-fr_FR.DescriptionPvm =Boite à outils PVM Calcul Parallele
 fr_FR.DescriptionJVM =Java Runtime
 fr_FR.DescriptionAtlas =Librairie Atlas 3.8.0 optimisée selon le CPU
 fr_FR.DescriptionFftwModule = Interface avec la librairie FFTW3 pour Scilab

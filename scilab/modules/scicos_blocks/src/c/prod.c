@@ -21,14 +21,16 @@
 /*--------------------------------------------------------------------------*/ 
 #include "dynlib_scicos_blocks.h"
 
-SCICOS_BLOCKS_IMPEXP void prod(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-		  ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-		  
-int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
-int *nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
-
+SCICOS_BLOCKS_IMPEXP void prod(int *flag, int *nevprt, 
+                               double *t, double xd[],
+                               double x[], int *nx,
+                               double z[], int *nz,
+                               double tvec[], int *ntvec, 
+                               double rpar[], int *nrpar, 
+                               int ipar[], double *inptr[],
+                               int insz[], int *nin,
+                               double *outptr[], int outsz[],
+                               int *nout)
 {
 	int n = outsz[0]; /* insz[0]==insz[1] .. ==insz[*nin]== outsz[0] */
 	double *y = (double *)outptr[0];

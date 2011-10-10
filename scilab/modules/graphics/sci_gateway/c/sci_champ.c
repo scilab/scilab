@@ -59,7 +59,7 @@ int sci_champ_G(char *fname,
 
     if (Rhs <= 0)
     {
-		sci_demo(fname, fname_len);
+        sci_demo(fname, fname_len);
         return 0;
     }
     else if ( Rhs < 4 )

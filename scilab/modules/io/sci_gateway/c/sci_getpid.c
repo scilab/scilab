@@ -28,7 +28,7 @@ int sci_getpid(char *fname,unsigned long fname_len)
 	*istk(l1) = (int) pid;
 
 	LhsVar(1)= Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

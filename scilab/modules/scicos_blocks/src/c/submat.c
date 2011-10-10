@@ -25,7 +25,6 @@
 SCICOS_BLOCKS_IMPEXP void submat(scicos_block *block,int flag)
 {
 	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
 	int *r = GetIparPtrs(block);
 	double *u = GetRealInPortPtrs(block,1);
 	double *y = GetRealOutPortPtrs(block,1);

@@ -96,9 +96,8 @@ libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
 
-# Many stuff depends on this one ... commented
 libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la 
-#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la
+
 #### Target ######
 modulename=output_stream
 

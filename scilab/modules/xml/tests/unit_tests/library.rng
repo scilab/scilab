@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <ref name="library"/>
+    </start>
+    <define name="library">
+        <element name="library">
+            <zeroOrMore>
+                <ref name="book"/>
+            </zeroOrMore>
+        </element>
+    </define>
+    <define name="book">
+        <element name="book">
+            <attribute name="title">
+                <text/>
+            </attribute>
+            <interleave>
+                <ref name="author"/>
+                <ref name="hero"/>
+            </interleave>
+        </element>
+    </define>
+    <define name="author">
+        <element name="author">
+            <text/>
+        </element>
+    </define>
+    <define name="hero">
+        <element name="hero">
+            <text/>
+        </element>
+    </define>
+</grammar>

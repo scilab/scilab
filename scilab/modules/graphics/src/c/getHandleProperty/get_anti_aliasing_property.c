@@ -66,6 +66,5 @@ int get_anti_aliasing_property(char *pobjUID)
     }
 
     return sciReturnString("off");
-
 }
 /*------------------------------------------------------------------------*/

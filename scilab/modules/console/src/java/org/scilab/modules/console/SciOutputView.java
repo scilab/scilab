@@ -108,9 +108,9 @@ public class SciOutputView extends JEditorPane implements OutputView {
          */
         final class FixedCaret extends ScilabCaret {
 
-			private static final long serialVersionUID = 8230195712653828841L;
+            private static final long serialVersionUID = 8230195712653828841L;
 
-			/**
+            /**
              * Constructor
              */
             private FixedCaret() {
@@ -152,12 +152,26 @@ public class SciOutputView extends JEditorPane implements OutputView {
                     super.mouseClicked(e);
                 }
             }
+
+            public void mousePressed(MouseEvent e) {
+                ((SciInputCommandView) console.getConfiguration().getInputCommandView()).removeSelection();
+                super.mousePressed(e);
+            }
         }
 
         // Set the caret
         setCaret(new FixedCaret());
         // Selection is forced to be visible because the component is not editable
         getCaret().setSelectionVisible(true);
+    }
+
+    /**
+     * Unselect text if selected one exists
+     */
+    public void removeSelection() {
+        if (getSelectionStart() != getSelectionEnd()) {
+            setSelectionEnd(getSelectionStart());
+        }
     }
 
     /**

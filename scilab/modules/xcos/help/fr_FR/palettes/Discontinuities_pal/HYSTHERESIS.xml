@@ -10,15 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:id="HYSTHERESIS"
-	  xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="HYSTHERESIS" xml:lang="fr">
   <refnamediv>
     <refname>HYSTHERESIS</refname>
     <refpurpose>Hystérèsis (relais)</refpurpose>
@@ -230,6 +222,16 @@
         <para> SCI/modules/scicos_blocks/src/c/hystheresis.c (Type 4)</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Example_HYSTERESIS">
+    <title>Exemple d'utilisation du relais Hystérèsis</title>
+    <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.xcos">
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/discontinuities_pal/HYSTERESIS_Example.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </link>
   </refsection>
   <refsection id="Authors_HYSTHERESIS">
     <title>Auteurs</title>

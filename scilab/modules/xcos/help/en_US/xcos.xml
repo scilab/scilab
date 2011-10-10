@@ -166,6 +166,10 @@ xcos(scs_m);]]></programlisting>
         <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
       </imageobject>
     </mediaobject>
+    
+    <para>Xcos requires a C compiler for simulation acceleration.</para>
+    <para>It is recommended that you install a supported compiler on your machine.</para>
+
   </refsection>
   <refsection id="SeeAlso_xcos">
     <title role="see also">See Also</title>
@@ -178,6 +182,9 @@ xcos(scs_m);]]></programlisting>
       </listitem>
       <listitem>
         <link linkend="xcos_menu_entries">Menu entries</link>
+      </listitem>
+      <listitem>
+        <link linkend="supported_compilers">Supported compilers</link>
       </listitem>
     </itemizedlist>
   </refsection>

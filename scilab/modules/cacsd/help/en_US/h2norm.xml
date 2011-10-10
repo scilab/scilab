@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>h2norm</refname>
-    <refpurpose> H2 norm</refpurpose>
+    <refpurpose> H2 norm of a continuous time proper dynamical system</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>linear system (<literal>syslin</literal> list)</para>
+          <para>continuous time proper linear dynamical system</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,5 +46,12 @@
     <para>
     (For <literal>Sl</literal> in state-space form <literal>h2norm</literal> uses the observability
     gramian and for <literal>Sl</literal> in transfer form <literal>h2norm</literal> uses a residue method)</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    h=syslin('c',(2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+    h2norm(h)
+    ]]></programlisting>
   </refsection>
 </refentry>

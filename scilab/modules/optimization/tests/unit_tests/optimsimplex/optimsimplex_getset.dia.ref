@@ -44,9 +44,10 @@ disp ( s1 );
  
 Optim Simplex Object:
 =====================
-Vertex #1/3 : fv=12, x=0 0
-Vertex #2/3 : fv=13, x=1 0
-Vertex #3/3 : fv=14, x=0 2
+nbve: 3
+n: 2
+x: 3-by-2 matrix
+fv: 3-by-1 matrix
 // We are done !
 s1 = optimsimplex_destroy(s1);
 //

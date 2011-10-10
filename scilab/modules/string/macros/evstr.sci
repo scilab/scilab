@@ -38,13 +38,14 @@ function [%val, %ierr] = evstr(%str)
       %t1(%l) = strcat(%str(%l, :), ',') + ';'
     end
     %t1(1) = '%val=[' + %t1(1);
-    %t1($) = part(%t1($), 1:length(%t1($)) - 1) + ']';
+    %t1($) = part(%t1($), 1:length(%t1($)) - 1);
+    %t1($+1)=']';
     if lhs == 2 then
       %ierr = execstr(%t1, 'errcatch');
     else
       execstr(%t1)
     end
-    
+
   case 15 then
     // list
     %sexp = %str(2),
@@ -55,8 +56,8 @@ function [%val, %ierr] = evstr(%str)
         [%w, %ierr] = evstr(%sexp(%k_));
         %(%k_) = %w;
         if %ierr <>0  then
-         %val = [];
-         return;
+          %val = [];
+          return;
         end
       end
       [%val, %ierr] = evstr(%str(1));
@@ -66,7 +67,7 @@ function [%val, %ierr] = evstr(%str)
       end
       %val = evstr(%str(1))
     end
-    
+
   case 1 then
     // real or complex constant matrix
     %val = %str;

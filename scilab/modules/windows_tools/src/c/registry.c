@@ -157,13 +157,14 @@ BOOL WindowsQueryRegistryList(char *ParamIn1, char *ParamIn2, int dimMax, char *
 /*--------------------------------------------------------------------------*/
 HKEY GetHkeyrootFromString(char *string)
 {
-    HKEY hkey=NULL;
+    HKEY hkey = NULL;
 
     if ( strcmp(string,"HKEY_CLASSES_ROOT") == 0 )  hkey = HKEY_CLASSES_ROOT;
     if ( strcmp(string,"HKEY_CURRENT_USER") == 0 )  hkey = HKEY_CURRENT_USER;
     if ( strcmp(string,"HKEY_LOCAL_MACHINE") == 0 ) hkey = HKEY_LOCAL_MACHINE;
     if ( strcmp(string,"HKEY_USERS") == 0 )         hkey = HKEY_USERS;
     if ( strcmp(string,"HKEY_DYN_DATA") == 0 )      hkey = HKEY_DYN_DATA;
+    if ( strcmp(string,"HKEY_CURRENT_CONFIG") == 0 )hkey = HKEY_CURRENT_CONFIG;
 
     return hkey;
 }

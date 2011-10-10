@@ -119,7 +119,7 @@ libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
 
-libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la
 
 #### Target ######
 modulename=polynomials

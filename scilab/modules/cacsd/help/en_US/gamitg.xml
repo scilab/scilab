@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>gamitg</refname>
-    <refpurpose> H-infinity gamma iterations</refpurpose>
+    <refpurpose>H-infinity gamma iterations for continuous time systems</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,7 +28,7 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para> <literal>syslin</literal> list (plant realization )</para>
+          <para>a continuous time dynamical system (plant realization).</para>
         </listitem>
       </varlistentry>
       <varlistentry>

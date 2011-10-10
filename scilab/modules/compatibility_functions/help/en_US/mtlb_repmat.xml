@@ -20,7 +20,7 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>There is no Scilab equivalent function for Matlab <literal>repmat</literal> but there are equivalent instructions.</para>
+    <para>Since version 5.3.1, <link linkend="repmat">repmat</link> is available into Scilab.</para>
     <para>
     The function <literal>mtlb_repmat(M,m[,n])</literal> is used by
     <literal>mfile2sci</literal> to replace <literal>repmat(M,m[,n])</literal> when it was not
@@ -72,7 +72,7 @@
     <para>Caution: <literal>mtlb_repmat</literal> has not to be used for hand coded functions.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ones">ones</link>
@@ -87,5 +87,14 @@
     <simplelist type="vert">
       <member>V.C.</member>
     </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <revhistory>
+      <revision>
+        <revnumber>5.4.0</revnumber>
+        <revremark>mtlb_repmat tagged as obsolete and replaced by <link linkend="repmat">repmat</link>. Will be removed in 5.4.1</revremark>
+      </revision>
+    </revhistory>
   </refsection>
 </refentry>

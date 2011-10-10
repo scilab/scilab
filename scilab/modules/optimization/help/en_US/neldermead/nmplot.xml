@@ -26,8 +26,7 @@
     <refname>nmplot</refname>
 
     <refpurpose>
-      Provides several direct search optimization algorithms based
-      on the simplex method.
+      Provides direct search optimization algorithms.
     </refpurpose>
   </refnamediv>
 

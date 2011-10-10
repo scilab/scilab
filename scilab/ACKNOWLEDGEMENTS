@@ -134,6 +134,9 @@ Scilab a better software.
     - Japanese localization
     - Misc patches on localization issues
 
+* Zbyněk Schwarz
+    - Czech localization
+
 * Enrico Segre
     - Bug reports
     - Bug fixes
@@ -215,9 +218,6 @@ optim: optimization routines (Modulopt library, INRIA).
 
 poly: Scilab polynomial library (INRIA).
 
-
-pvm: interface routines with PVM developed by ReMaP and Resedas projects 
-     at INRIA.
 
 qsort: qsort.c ( quicksort from the University of California Berkeley) 
        modified for Scilab.

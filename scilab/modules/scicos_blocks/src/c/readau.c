@@ -30,22 +30,26 @@
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-			ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-			/*
-			ipar[1]   = lfil : file name length
-			ipar[2:4] = fmt  : numbers type ascii code
-			ipar[5]   = void
-			ipar[6]   = n : buffer length in number of records
-			ipar[7]   = maxvoie : record size
-			ipar[8]   = swap
-			ipar[9]   = first : first record to read
-			ipar[10:9+lfil] = character codes for file name
-			*/
-int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar;
-int insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
+SCICOS_BLOCKS_IMPEXP void readau(int *flag, int *nevprt, 
+                                 double *t, double xd[],
+                                 double x[], int *nx,
+                                 double z[], int *nz,
+                                 double tvec[], int *ntvec,
+                                 double rpar[], int *nrpar, 
+                                 int ipar[], int *nipar,
+                                 double *inptr[], int insz[],
+                                 int *nin, double *outptr[], 
+                                 int outsz[], int *nout)			
+                                 /*
+                                 ipar[1]   = lfil : file name length
+                                 ipar[2:4] = fmt  : numbers type ascii code
+                                 ipar[5]   = void
+                                 ipar[6]   = n : buffer length in number of records
+                                 ipar[7]   = maxvoie : record size
+                                 ipar[8]   = swap
+                                 ipar[9]   = first : first record to read
+                                 ipar[10:9+lfil] = character codes for file name
+                                 */
 {
 	char str[100],type[4];
 	int job = 1,three=3;

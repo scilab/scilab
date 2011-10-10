@@ -65,10 +65,10 @@ int sci_getlongpathname(char *fname,unsigned long l)
 			LhsVar(2) = Rhs+2;
 		}
 
-		C2F(putlhsvar)();
-		
 		freeArrayOfString(LongNames, m1n1);
 		if (bOK) {FREE(bOK); bOK = NULL;}
+
+        PutLhsVar();
 	}
 	else
 	{

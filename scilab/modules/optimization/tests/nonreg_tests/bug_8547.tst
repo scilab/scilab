@@ -1,0 +1,52 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+//
+// <-- Non-regression test for bug 8547 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=8547
+//
+// <-- Short Description -->
+// The neldermead function may call f outside the constraints.
+//
+
+function [ f , c , index ] = myquad ( x , index )
+    f = []
+    c = []
+    if ( index==2 | index==6 ) then
+        if ( or(x < 1) | or(x > 2) ) then
+            error("Point not in bounds")
+        end
+        f = x(1)^2 + x(2)^2
+    end
+    if ( index==5 | index==6 ) then
+        c1 = x(1)-1
+        c2 = x(2)-1
+        c3 = 2-x(1)
+        c4 = 2-x(2)
+        c = [c1 c2 c3 c4]
+    end
+endfunction
+
+rand("seed" , 0)
+x0 = [1.2 1.9].';
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",myquad);
+nm = nmplot_configure(nm,"-x0",x0);
+nm = nmplot_configure(nm,"-method","box");
+nm = nmplot_configure(nm,"-boundsmin",[0 0]);
+nm = nmplot_configure(nm,"-boundsmax",[3 3]);
+nm = nmplot_configure(nm,"-nbineqconst",4);
+nm = nmplot_configure(nm,"-simplex0method","randbounds");
+nm = nmplot_search(nm);
+xopt = nmplot_get(nm,"-xopt");
+assert_checkalmostequal(xopt,[1;1],1.d-2);
+fopt = nmplot_get(nm,"-fopt");
+assert_checkalmostequal(fopt,2,1.d-2);
+nm = nmplot_destroy(nm);

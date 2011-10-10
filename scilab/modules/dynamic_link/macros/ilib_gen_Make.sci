@@ -38,6 +38,9 @@ function Makename = ilib_gen_Make(name, ..
      error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
   end  
   
+  // remove duplicate files
+  files = unique(files);
+  
   if getos() <> 'Windows' then
 
     // change table if necessary

@@ -55,6 +55,14 @@ nm = neldermead_configure(nm,"-tolxmethod",%f);
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
 nm = neldermead_configure(nm,"-myterminateflag",%t);
 nm = neldermead_configure(nm,"-myterminate",mystoppingrule2);
+//
+// Check cget
+value = neldermead_cget(nm,"-myterminateflag");
+assert_checktrue ( value );
+//
+value = neldermead_cget(nm,"-myterminate");
+assert_checkequal ( typeof(value) , "function" );
+//
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");

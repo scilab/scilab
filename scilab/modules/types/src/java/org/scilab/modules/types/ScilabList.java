@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * This class provides a representation on the Scilab List datatype
+ * This class provides a representation on the Scilab List datatype<br>
+ * <br>
+ * This class is {@link java.io.Serializable} and any modification could 
+ * impact load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
  * Example:<br />
  * <code>
@@ -29,7 +32,7 @@ import java.util.Collection;
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	
 	private static final long serialVersionUID = 6884293176289980909L;
-	private ScilabTypeEnum type = ScilabTypeEnum.sci_list;
+	private static final ScilabTypeEnum type = ScilabTypeEnum.sci_list;
 
 	/**
 	 * Construct an empty Scilab list.
@@ -66,7 +69,8 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
      * @return the type of Scilab
      * @since 5.4.0
      */
-    public ScilabTypeEnum getType() {
+    @Override
+	public ScilabTypeEnum getType() {
         return type;
     }
 

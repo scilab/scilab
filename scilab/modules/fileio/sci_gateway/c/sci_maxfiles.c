@@ -103,9 +103,9 @@ int DoOneLhs(void)
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
-
+	
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

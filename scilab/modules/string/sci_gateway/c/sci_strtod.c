@@ -103,7 +103,7 @@ int sci_strtod(char *fname,unsigned long fname_len)
 		}
 
 		freeArrayOfString(Input_StringMatrix_1,m1n1);
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

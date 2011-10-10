@@ -87,9 +87,9 @@ int sci_findfileassociation(char *fname,unsigned long l)
 		CreateVarFromPtr(Rhs+ 1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 	}
 		
-	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
 	if (Output) {FREE(Output);Output=NULL;}
+    LhsVar(1) = Rhs+1;
+    PutLhsVar();	
 
 	return 0;
 }

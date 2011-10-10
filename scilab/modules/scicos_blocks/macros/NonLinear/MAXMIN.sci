@@ -68,6 +68,15 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
 	  model.nmode=zcr
 	end
 	model.ipar=mm;
+
+        // Update the label of the block
+        if mm == 1 then
+          label="MIN";
+	else
+          label="MAX";           
+	end
+        graphics.style="MAXMIN;displayedLabel=" + label;
+
 	graphics.exprs=exprs;
 	x.graphics=graphics;x.model=model;
 	break
@@ -86,5 +95,7 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
 	  'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
     
     x=standard_define([2 2],model,exprs,gr_i)
+    x.graphics.style="MAXMIN;displayedLabel=MAX"
   end
 endfunction
+

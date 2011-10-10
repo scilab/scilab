@@ -66,7 +66,7 @@ public class PaletteDiagram extends XcosDiagram {
 		File theFile = new File(diagramFileName);
 
 		if (theFile.exists()) {
-			boolean loaded = transformAndLoadFile(theFile, true);
+			boolean loaded = transformAndLoadFile(diagramFileName, true);
 			if (!loaded) {
 				return false;
 			}

@@ -138,7 +138,6 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
     {
         if (Is_a_correct_function_name(pStVarOne))
         {
-            BOOL IdAlreadyExist = FALSE;
             int id[nsiz];
             int i = 0;
             int zero = 0;

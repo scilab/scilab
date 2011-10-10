@@ -60,7 +60,7 @@ static int sci_emptystr_no_rhs(void)
     /* With no input argument returns a zero length character string */
     createSingleString(pvApiCtx, Rhs + 1, "");
     LhsVar(1) = Rhs + 1;
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -81,7 +81,7 @@ static int sci_emptystr_one_rhs(char *fname)
             int l = 0;
             CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l);
             LhsVar(1) = Rhs + 1 ;
-            C2F(putlhsvar)();
+            PutLhsVar();
             return 0;
         }
     }
@@ -114,7 +114,7 @@ static int sci_emptystr_one_rhs(char *fname)
     /* m1 is the number of row ; n1 is the number of col*/
     CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, NULL);
     LhsVar(1) = Rhs + 1;
-    C2F(putlhsvar)();
+    PutLhsVar();
 
     return 0;
 }
@@ -158,7 +158,7 @@ static int sci_emptystr_two_rhs(char *fname)
         }
         LhsVar(1) = Rhs + 1;
 
-        C2F(putlhsvar)();
+        PutLhsVar();
     }
     else
     {

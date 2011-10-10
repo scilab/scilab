@@ -148,6 +148,12 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
 	int* piNbItemRow	= NULL;
 	int* piColPos		= NULL;
 
+    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedBooleanSparseMatrix");
+        return sciErr;
+    }
+
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 

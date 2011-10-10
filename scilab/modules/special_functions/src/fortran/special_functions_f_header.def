@@ -1,7 +1,0 @@
-LIBRARY    special_functions_f.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; special_functions_f
-; --------------------------------------- 

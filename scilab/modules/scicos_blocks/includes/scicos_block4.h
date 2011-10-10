@@ -36,103 +36,106 @@
 
 #include "scicos_math.h"
 
-typedef void (*voidg)();
+typedef void (*voidg) ();
 
 /* scicos_block structure definition
 * WARNING: take care that this sructure is
 * not the same as the one in scicos_block.h
 * i.e same name but inptr and outptr are void **
 */
-typedef struct {
-	int nevprt;
-	voidg funpt ;
-	int type;
-	int scsptr;
-	int nz;
-	double *z;
-	int noz;
-	int *ozsz;
-	int *oztyp;
-	void **ozptr;
-	int nx;
-	double *x;
-	double *xd;
-	double *res;
-	int *xprop;
-	int nin;
-	int *insz;
-	void **inptr;
-	int nout;
-	int *outsz;
-	void **outptr;
-	int nevout;
-	double *evout;
-	int nrpar;
-	double *rpar;
-	int nipar;
-	int *ipar;
-	int nopar;
-	int *oparsz;
-	int *opartyp;
-	void **oparptr;
-	int ng;
-	double *g;
-	int ztyp;
-	int *jroot;
-	char *label;
-	void **work;
-	int nmode;
-	int *mode;
+typedef struct
+{
+    int nevprt;
+    voidg funpt;
+    int type;
+    int scsptr;
+    int nz;
+    double *z;
+    int noz;
+    int *ozsz;
+    int *oztyp;
+    void **ozptr;
+    int nx;
+    double *x;
+    double *xd;
+    double *res;
+    int *xprop;
+    int nin;
+    int *insz;
+    void **inptr;
+    int nout;
+    int *outsz;
+    void **outptr;
+    int nevout;
+    double *evout;
+    int nrpar;
+    double *rpar;
+    int nipar;
+    int *ipar;
+    int nopar;
+    int *oparsz;
+    int *opartyp;
+    void **oparptr;
+    int ng;
+    double *g;
+    int ztyp;
+    int *jroot;
+    char *label;
+    void **work;
+    int nmode;
+    int *mode;
 } scicos_block;
 
 /** define scicos flag number */
-typedef enum {
-        /* Should not be used directly, set through the API. */
-        CosError                = -5,
-        
-        /* Valid simulation states */
-        DerivativeState         = 0,
-        OutputUpdate            = 1,
-        StateUpdate             = 2,
-        OutputEventTiming       = 3,
-        Initialization          = 4,
-        Ending                  = 5,
-        ReInitialization        = 6,
-        ZeroCrossing            = 9,
+typedef enum
+{
+    /* Should not be used directly, set through the API. */
+    CosError = -5,
+
+    /* Valid simulation states */
+    DerivativeState = 0,
+    OutputUpdate = 1,
+    StateUpdate = 2,
+    OutputEventTiming = 3,
+    Initialization = 4,
+    Ending = 5,
+    ReInitialization = 6,
+    ZeroCrossing = 9,
 } scicos_flag;
 
 /* utility function for block declaration */
 int get_block_error(void);
-int* get_pointer_xproperty();
+int *get_pointer_xproperty();
 int get_npointer_xproperty();
 double Get_Jacobian_cj(void);
 double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 
-int Convert_number (char *, double *);
+int Convert_number(char *, double *);
 void homotopy(double *);
 int hfjac_(double *, double *, int *);
-int rhojac_(double *, double *,double *,double *, int *, double *,int *);
-int rho_( double *, double *,double *,double *,double *, int *);
-int fx_( double *, double *);
-int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
-int write_xml_states(int,const char *, char **, double *);
+int rhojac_(double *, double *, double *, double *, int *, double *, int *);
+int rho_(double *, double *, double *, double *, double *, int *);
+int fx_(double *, double *);
+int read_xml_initial_states(int nvar, const char *xmlfile, char **ids, double *svars);
+int write_xml_states(int, const char *, char **, double *);
 
 /** Define scicos simulator data type number (_N) */
-typedef enum scicos_datatype_number {
-    SCSREAL_N               = 10,
-    SCSCOMPLEX_N            = 11,
-    SCSINT_N                = 80,
-    SCSINT8_N               = 81,
-    SCSINT16_N              = 82,
-    SCSINT32_N              = 84,
-    SCSUINT_N               = 800,
-    SCSUINT8_N              = 811,
-    SCSUINT16_N             = 812,
-    SCSUINT32_N             = 814,
-    SCSUNKNOW_N             = -1
-};
+typedef enum
+{
+    SCSREAL_N = 10,
+    SCSCOMPLEX_N = 11,
+    SCSINT_N = 80,
+    SCSINT8_N = 81,
+    SCSINT16_N = 82,
+    SCSINT32_N = 84,
+    SCSUINT_N = 800,
+    SCSUINT8_N = 811,
+    SCSUINT16_N = 812,
+    SCSUINT32_N = 814,
+    SCSUNKNOW_N = -1
+} scicos_datatype_number;
 
 /* Define scicos simulator data type C operators (_COP) */
 #define SCSREAL_COP double
@@ -681,6 +684,5 @@ typedef enum scicos_datatype_number {
 #ifndef min
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
-
 
 #endif /* __SCICOS_BLOCK_H__ */

@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - INRIA - Serge Steer
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+//
+// <-- Non-regression test for bug 9899 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=9899
+//
+// <-- Short Description -->
+// string(10*log10(1/10)) give -0 instead of -10
+//
+assert_checkequal(string(10*log10(1/10)),"-10");
+
+N=[0.000001 0.001 0.1 1 10 100 10000 1000000];
+Ns=["0.000001" "0.001" "0.1","1","10","100","10000","1000000"] ;
+for k=1:size(N,'*')
+  n=N(k);
+  E=n*[0.5:0.01:3]*%eps;
+  for e=E
+    assert_checkequal(string(n+e),Ns(k));
+  end  
+  for e=E
+    assert_checkequal(string(-n+e),"-"+Ns(k));
+  end
+end

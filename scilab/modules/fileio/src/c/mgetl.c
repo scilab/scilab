@@ -69,10 +69,10 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             if (Line)
             {
                 /* UTF-8 BOM */
-                if (strncmp(Line, UTF8BOM_BYTEORDER_MARK, strlen(UTF8BOM_BYTEORDER_MARK)) == 0)
+                if (strncmp(Line, (const char*)UTF8BOM_BYTEORDER_MARK, strlen((const char*)UTF8BOM_BYTEORDER_MARK)) == 0)
                 {
                     /* we skip first characters */
-                    char *tmpLine = strsub(Line, UTF8BOM_BYTEORDER_MARK, "");
+                    char *tmpLine = strsub(Line, (const char*)UTF8BOM_BYTEORDER_MARK, "");
                     FREE(Line);
                     Line = tmpLine;
                 }
@@ -141,10 +141,10 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                         {
                             Line = getNextLine(fa);
                             /* UTF-8 BOM */
-                            if (Line && (strncmp(Line, UTF8BOM_BYTEORDER_MARK, strlen(UTF8BOM_BYTEORDER_MARK)) == 0))
+                            if (Line && (strncmp(Line, (const char*)UTF8BOM_BYTEORDER_MARK, strlen((const char*)UTF8BOM_BYTEORDER_MARK)) == 0))
                             {
                                 /* we skip first characters */
-                                char *tmpLine = strsub(Line, UTF8BOM_BYTEORDER_MARK, "");
+                                char *tmpLine = strsub(Line, (const char*)UTF8BOM_BYTEORDER_MARK, "");
                                 FREE(Line);
                                 Line = tmpLine;
                             }

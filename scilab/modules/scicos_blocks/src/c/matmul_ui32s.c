@@ -33,7 +33,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32s(scicos_block *block,int flag)
 		unsigned long *u1 = Getuint32InPortPtrs(block,1);
 		unsigned long *u2 = Getuint32InPortPtrs(block,2);
 		unsigned long *y = Getuint32OutPortPtrs(block,1);
-		int *ipar = GetIparPtrs(block);
 
 		double k = pow(2,32);
 

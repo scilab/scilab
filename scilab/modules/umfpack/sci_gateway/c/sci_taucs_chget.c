@@ -116,6 +116,6 @@ int sci_taucs_chget(char* fname, unsigned long l)
 
 	LhsVar(1) = 2;
 	LhsVar(2) = 3;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

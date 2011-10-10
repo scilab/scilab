@@ -44,7 +44,7 @@ int sci_set_xproperty(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&one,&l1);
 		set_pointer_xproperty(istk(l1));
 		LhsVar(1)=0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

@@ -36,7 +36,7 @@ int sci_timer(char *fname,unsigned long fname_len)
 		*stk(l1) = (double)timerval;
 
 		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{

@@ -18,6 +18,7 @@ import java.util.WeakHashMap;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -55,7 +56,7 @@ public final class ScilabVariableEditor extends SwingScilabWindow {
         editorTab = new SwingScilabVariableEditor(variableName, type, data);
         tabPane = editorTab.getTabPane();
         editorTab.setCallback(ScilabCallBack.createCallback("org.scilab.modules.ui_data.EditVar.closeVariableEditor",
-                                                            ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
+                                                            CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
         MenuBar menubar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE);
         editorTab.addMenuBar(menubar);
 

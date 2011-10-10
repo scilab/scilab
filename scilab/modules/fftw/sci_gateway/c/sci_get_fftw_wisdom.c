@@ -103,11 +103,12 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	Str1[n1-1][0] = '\0';
 
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &n1, (j=1,&j), Str1);
-	LhsVar(1) = Rhs+1;
-	PutLhsVar();
 
 	freeArrayOfString(Str1,n1);
 	if (Str) {FREE(Str); Str = NULL;}
+
+    LhsVar(1) = Rhs+1;
+    PutLhsVar();
 
 	return(0);
 }

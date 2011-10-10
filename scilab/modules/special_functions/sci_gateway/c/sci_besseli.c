@@ -51,14 +51,14 @@ int sci_besseli(char *fname,unsigned long fname_len)
     { 
         /*besseli([],x) */
         LhsVar(1) = 1;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
     if (m2*n2 == 0) 
     { 
         /*besseli(alpha,[]) */
         LhsVar(1) = 2;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
     /* determine if the result is real or complex */
@@ -233,7 +233,7 @@ int sci_besseli(char *fname,unsigned long fname_len)
         }
     }
 
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }  
 /*--------------------------------------------------------------------------*/

@@ -35,9 +35,6 @@
     <ClCompile Include="DllmainHISTORY_BROWSER.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CommandHistory.hxx">
@@ -49,9 +46,6 @@
     <ClInclude Include="..\..\includes\dynlib_history_browser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="LibScilab_Import.def">
@@ -59,7 +53,6 @@
     </None>
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_browser.rc">

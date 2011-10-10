@@ -178,7 +178,7 @@ sciPointObj *sciGetPointerFromHandle (long handle)
 /*--------------------------------------------------------------------------*/
 unsigned long getHandleFromStack( size_t stackPointer )
 {
-	return 	-1;
+	return 	(unsigned long)(-1);
 }
 /*--------------------------------------------------------------------------*/
 int callSetProperty(char * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName )

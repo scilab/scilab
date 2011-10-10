@@ -24,6 +24,7 @@ function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 endfunction
 
 loadXcosLibs();
+ilib_verbose(0);
 // import a diagram of a Modelica demo in Scilab
 result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos");
 if ~result then pause,end

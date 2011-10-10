@@ -161,5 +161,4 @@ int sci_xrect( char *fname, unsigned long fname_len )
     }
     return 0;
 }
-
 /*--------------------------------------------------------------------------*/

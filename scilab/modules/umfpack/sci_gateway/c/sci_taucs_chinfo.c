@@ -90,6 +90,6 @@ int sci_taucs_chinfo(char* fname, unsigned long l)
 	LhsVar(1) = 2;
 	LhsVar(2) = 3;
 	LhsVar(3) = 4;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

@@ -11,8 +11,10 @@
 //=============================================================================
 function [make_command, lib_name_make, lib_name, path, makename, files] = ..
              dlwGetParamsIlibCompil(lib_name, makename, files)
-
+  
+  files = unique(files);
   k = strindex(makename,['/','\']);
+  
 
   if k~=[] then
     path = part(makename,1:k($));

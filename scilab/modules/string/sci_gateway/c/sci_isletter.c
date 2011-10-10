@@ -67,11 +67,12 @@ int sci_isletter(char *fname,unsigned long fname_len)
 			int m1 = 1;
 			int n1 = sizeValues;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &values);
-			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
 
 			freeArrayOfString(Input_StringMatrix,mn);
 			if (values) {FREE(values);values = NULL;}
+
+            LhsVar(1)=Rhs+1;
+            PutLhsVar();
 		}
 		else
 		{
@@ -80,9 +81,9 @@ int sci_isletter(char *fname,unsigned long fname_len)
 			int n1 = 0;
 			int l = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
 			freeArrayOfString(Input_StringMatrix,mn);
+            LhsVar(1) = Rhs+1 ;
+            PutLhsVar();
 			return 0;
 		}
 	}

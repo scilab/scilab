@@ -137,10 +137,10 @@ int sci_beep(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+    if (output) {FREE(output); output = NULL;}
 
-	if (output) {FREE(output); output = NULL;}
+	LhsVar(1) = Rhs+1;
+	PutLhsVar();
 
 	return 0;
 }

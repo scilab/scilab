@@ -679,20 +679,19 @@ int sci_fftw(char *fname,unsigned long fname_len)
   
   /* execute FFTW plan */
   call_fftw_execute_split_dft(p,ri,ii,ro,io);
-  
+
+  if (n_and_nspn_allocated)
+  {
+      FREE(n);
+      FREE(nspn);
+  }
+
   /***********************************
    * Return results in lhs argument *
    ***********************************/
   
   LhsVar(1) = 1;
-  
-  PutLhsVar();
-  
-  if (n_and_nspn_allocated)
-    {
-      FREE(n);
-      FREE(nspn);
-    }
+  PutLhsVar();  
 
   return(0);
 }

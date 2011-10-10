@@ -48,7 +48,6 @@ int set_y_ticks_property(char * pobjUID, size_t stackPointer, int valueType, int
     sciSubWindow * ppSubWin  = NULL ;
     int            nbTicsRow = 0    ;
     int            nbTicsCol = 0    ;
-    char        ** labels    = NULL ;
 
     double* userGrads = NULL;
     char** userLabels = NULL;

@@ -110,6 +110,6 @@ int sci_res_with_prec(char* fname, unsigned long l)
 
 	LhsVar(1) = 4;
 	LhsVar(2) = 5;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

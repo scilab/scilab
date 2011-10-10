@@ -61,6 +61,7 @@ int sci_basename(char *fname,unsigned long fname_len);
 int sci_pathconvert(char *fname,unsigned long fname_len);
 int sci_mgetl(char *fname,unsigned long fname_len);
 int sci_mputl(char *fname,unsigned long fname_len);
+int sci_tempname(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

@@ -41,8 +41,8 @@ case 'set' then
          'Datatype (1=double 3=int32 ...)'],..
           list('vec',-1,'vec',1),exprs)
     if ~ok then break,end
-    if prod(size(z0))<2 then
-      message('Register length must be at least 2')
+    if prod(size(z0))<1 then
+      message('Register length must be at least 1')
       ok=%f
     end
     if it==1 then

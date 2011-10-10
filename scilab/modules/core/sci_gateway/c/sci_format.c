@@ -94,9 +94,9 @@ static int sci_format_norhs(char *fname)
 	n1 = 1; m1 = 2;
 	CreateVarFromPtr(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
 
 	if (paramoutINT) {FREE(paramoutINT); paramoutINT = NULL;}
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -127,7 +127,7 @@ static int sci_format_onerhs(char *fname)
 			}
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -179,7 +179,7 @@ static int sci_format_onerhs(char *fname)
 		}
 
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else
 	{
@@ -239,7 +239,7 @@ static int sci_format_tworhs(char *fname)
 			setVariableMode();
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -322,7 +322,7 @@ static int sci_format_tworhs(char *fname)
 			}
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{

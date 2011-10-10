@@ -4,8 +4,10 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function toolbox_skeletonlib = startModule()
+   
+  toolbox_name="Toolbox skeleton"
 
-  mprintf("Start Toolbox skeleton\n");
+  mprintf("Start " + toolbox_name + "\n");
 
   if isdef("toolbox_skeletonlib") then
     warning("Toolbox skeleton library is already loaded");
@@ -36,7 +38,7 @@ function toolbox_skeletonlib = startModule()
     mprintf("\tLoad help\n");
     path_addchapter = pathconvert(root_tlbx+"/jar");
     if ( isdir(path_addchapter) <> [] ) then
-      add_help_chapter("Toolbox skeleton", path_addchapter, %F);
+      add_help_chapter(toolbox_name, path_addchapter, %F);
     end
   end
 
@@ -45,7 +47,7 @@ function toolbox_skeletonlib = startModule()
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf("\tLoad demos\n");
     pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce", %F, %T);
-    add_demo("Toolbox skeleton", pathdemos);
+    add_demo(toolbox_name, pathdemos);
   end
 
 endfunction

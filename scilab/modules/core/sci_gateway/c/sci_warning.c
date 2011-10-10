@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,84 +26,113 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_warning)(char *fname,unsigned long fname_len)
 {
-	static int l1 = 0,n1 = 0,m1 = 0;
+    static int l1 = 0,n1 = 0,m1 = 0;
 
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+    CheckRhs(1,1);
+    CheckLhs(1,1);
 
-	if ( GetType(1) == sci_strings )
-	{
-		char **Input_Strings = NULL;
+    if ( GetType(1) == sci_strings )
+    {
+        char **Input_Strings = NULL;
 
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_Strings);
+        GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_Strings);
 
-		if ( (m1*n1) == 1 )
-		{
-			if ( (strcmp(Input_Strings[0],"off") == 0) || (strcmp(Input_Strings[0],"on") == 0) )
-			{
-				if (strcmp(Input_Strings[0],"off") == 0)
-				{
-					setWarningMode(FALSE);
-				}
-				else  /* on */
-				{
-					setWarningMode(TRUE);
-				}
-				freeArrayOfString(Input_Strings,1);
-			}
-			else
-			{
-				if (strcmp(Input_Strings[0],"query") == 0)
-				{
-					char *Output = NULL;
+        if ( (m1*n1) == 1 )
+        {
+            if ( (strcmp(Input_Strings[0],"off") == 0) || (strcmp(Input_Strings[0],"on") == 0) )
+            {
+                if (strcmp(Input_Strings[0],"off") == 0)
+                {
+                    setWarningMode(FALSE);
+                }
+                else  /* on */
+                {
+                    setWarningMode(TRUE);
+                }
+                freeArrayOfString(Input_Strings,1);
+            }
+            else
+            {
+                if (strcmp(Input_Strings[0],"query") == 0)
+                {
+                    char *Output = NULL;
 
-					if (getWarningMode())
-					{
-						Output = strdup("on");
-					}
-					else
-					{
-						Output = strdup("off");
-					}
+                    if (getWarningMode())
+                    {
+                        Output = strdup("on");
+                    }
+                    else
+                    {
+                        Output = strdup("off");
+                    }
 
-					n1=1;
-					CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
-					LhsVar(1) = Rhs+1;
-					C2F(putlhsvar)();
-					if (Output) {FREE(Output);Output=NULL;}
-					freeArrayOfString(Input_Strings,n1);
-					return 0;
-				}
-				else if ( getWarningMode() )
-				{
-					sciprint(_("WARNING: %s"),Input_Strings[0]);
-					sciprint("\n");
-					freeArrayOfString(Input_Strings,n1);
-				}
-			}
-		}
-		else
-		{
-			int i = 0;
-			if ( getWarningMode() )
-			{
-				for (i = 0;i < m1*n1;i++)
-				{
-					sciprint(_("WARNING: %s\n"),Input_Strings[i]);
-				}
-				sciprint("\n");
-			}
-			freeArrayOfString(Input_Strings,m1*n1);
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
-		return 0;
-	}
-	LhsVar(1)=0;
-	C2F(putlhsvar)();
+                    n1=1;
+                    CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
+                    LhsVar(1) = Rhs+1;
 
-	return 0;
+                    if (Output) {FREE(Output);Output=NULL;}
+                    freeArrayOfString(Input_Strings,n1);
+
+                    PutLhsVar();
+                    return 0;
+                }
+                else if ( getWarningMode() )
+                {
+                    if (strlen(Input_Strings[0]) > 0)
+                    {
+                        if (Input_Strings[0][strlen(Input_Strings[0]) - 1] == '\n')
+                        {
+                            sciprint(_("WARNING: %s"),Input_Strings[0]);
+                        }
+                        else
+                        {
+                            sciprint(_("WARNING: %s\n"),Input_Strings[0]);
+                        }
+                    }
+                    else
+                    {
+                        sciprint(_("WARNING: %s\n"),"");
+                    }
+                    freeArrayOfString(Input_Strings,n1);
+                }
+            }
+        }
+        else
+        {
+            int i = 0;
+            if ( getWarningMode() )
+            {
+                for (i = 0;i < m1*n1;i++)
+                {
+                    if (strlen(Input_Strings[i]) > 0)
+                    {
+                        if (Input_Strings[i][strlen(Input_Strings[i]) - 1] == '\n')
+                        {
+                            sciprint(_("WARNING: %s"),Input_Strings[i]);
+                        }
+                        else
+                        {
+                            sciprint(_("WARNING: %s\n"),Input_Strings[i]);
+                        }
+                    }
+                    else
+                    {
+                        sciprint(_("WARNING: %s\n"),"");
+                    }
+                }
+                sciprint("\n");
+            }
+            freeArrayOfString(Input_Strings,m1*n1);
+        }
+    }
+    else
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
+        return 0;
+    }
+    LhsVar(1)=0;
+    PutLhsVar();
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -44,6 +44,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
@@ -115,6 +116,8 @@ public final class ExportAction extends DefaultAction {
 		for (String string : mask) {
 			fc.addChoosableFileFilter(new FileMask(string, string.toUpperCase()));
 		}
+
+		ConfigurationManager.configureCurrentDirectory(fc);
 		
 		JPanel panelPreview = new JPanel();
 		
@@ -249,7 +252,7 @@ public final class ExportAction extends DefaultAction {
 		
 		Color bg = null;
 
-		if ((!fileFormat.equalsIgnoreCase("gif") && !fileFormat.equalsIgnoreCase("png"))
+		if ((!fileFormat.equalsIgnoreCase("png"))
 			|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
 				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			bg = graphComponent.getBackground();

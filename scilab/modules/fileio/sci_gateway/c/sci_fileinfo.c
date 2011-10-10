@@ -79,7 +79,7 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 				LhsVar(2) = Rhs + 2;
 			}
 
-			C2F(putlhsvar)();
+			PutLhsVar();
 		}
 		else
 		{
@@ -136,7 +136,7 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 				freeArrayOfString(InputString_Parameter, mn);
 				if (results) {FREE(results); results = NULL;}
 
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else
 			{

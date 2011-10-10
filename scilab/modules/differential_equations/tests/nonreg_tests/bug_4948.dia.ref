@@ -18,7 +18,6 @@
 // differential equation have a strange behaviour.
 ///   VARIABLES DECLARATION   ///
 clear;
-clc;
 funcprot(0);
 v0 = 0;// INITIAL CONDITIONS OF THE DIFFERENTIAL EQUATION
 u0 = 0;// INITIAL CONDITIONS OF THE DIFFERENTIAL EQUATION

@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
@@ -27,7 +27,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * UndoAction class
  * @author Calixte DENIZET
  */
-public final class UndoAction extends CallBack {
+public final class UndoAction extends CommonCallBack {
 
     private static final String KEY = "ctrl Z";
     private static final String UNDO = "Undo";

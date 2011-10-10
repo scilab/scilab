@@ -7,27 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
 "PO-Revision-Date: 2011-04-02 15:48+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "%s: %s module is not installed.\n"
-msgstr "%s: модуль %s не установлен.\n"
-
-#, c-format
-msgid "%s: This function is forbidden in a concurrent execution context.\n"
-msgstr "%s: Параллельное выполнение этой функции запрещено.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Неверное количество входных параметров.\n"
 
 #, c-format
 msgid ""
@@ -39,3 +27,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: This function is forbidden in a concurrent execution context.\n"
+msgstr "%s: Параллельное выполнение этой функции запрещено.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s: модуль %s не установлен.\n"

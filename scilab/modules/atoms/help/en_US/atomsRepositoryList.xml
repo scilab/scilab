@@ -98,13 +98,13 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-atomsRepositoryAdd('http://scene1.atoms.scilab.org');
+atomsRepositoryAdd('http://scene1.test.atoms.scilab.org');
 atomsRepositoryList()
 atomsRepositoryList('all')
 atomsRepositoryList('official')
 atomsRepositoryList('allusers')
 atomsRepositoryList('user')
-atomsRepositoryDel('http://scene1.atoms.scilab.org');
+atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
  ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->

@@ -26,4 +26,4 @@ ierr = execstr("savematfile(my_mat_file,""x"")","errcatch");
 warning('on');
 
 if ierr == 0 then pause,end
-if lasterror()<>msprintf(gettext("%s: Mlists of type hm can not be written to Matlab binary files.\n"), "GetMlistVariable") then pause,end
+if lasterror()<>msprintf(gettext("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", "hm") then pause,end

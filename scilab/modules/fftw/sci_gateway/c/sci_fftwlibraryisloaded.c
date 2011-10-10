@@ -30,7 +30,7 @@ int sci_fftwlibraryisloaded(char *fname,unsigned long fname_len)
 	}
 
 	LhsVar(1)=Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return(0);
 }

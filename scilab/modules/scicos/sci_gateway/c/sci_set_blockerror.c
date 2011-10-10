@@ -46,7 +46,7 @@ int sci_set_blockerror(char *fname,unsigned long fname_len)
 		set_block_error(*istk(l1));
 
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

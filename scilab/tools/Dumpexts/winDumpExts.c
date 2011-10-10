@@ -232,7 +232,7 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 			{
 				if (pSymbolTable->N.Name.Short != 0) 
 				{
-					strncpy(symbol, pSymbolTable->N.ShortName, 8);
+					strncpy(symbol, (const char*)pSymbolTable->N.ShortName, 8);
 					symbol[8] = 0;
 				}
 				else 

@@ -21,27 +21,27 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
   expected = varargin(2)
   reltol = argindefault ( rhs , varargin , 3 , sqrt(%eps) )
   abstol = argindefault ( rhs , varargin , 4 , 0 )
-  comptype = argindefault ( rhs , varargin , 5 , "matrix" )
+  comptype = argindefault ( rhs , varargin , 5 , "element" )
   //
   // Check types of variables
   if ( typeof(computed) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
     error(errmsg)
   end
   if ( typeof(expected) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
     error(errmsg)
   end
   if ( typeof(reltol) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 3 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 3 )
     error(errmsg)
   end  
   if ( typeof(abstol) <> "constant" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkalmostequal" , 4 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 4 )
     error(errmsg)
   end  
   if ( typeof(comptype) <> "string" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkalmostequal" , 5 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkalmostequal" , 5 )
     error(errmsg)
   end  
   //
@@ -145,6 +145,10 @@ function areequal = assert_arealmostequal ( computed , expected , reltol , absto
   // This allows to solve the following issue:
   // if computed is %inf and expected is %inf, the difference is %nan,
   // which makes the computations fail.	
+  if ( computed == [] & expected == []) then
+      areequal = %t
+      return
+  end
   [kcpinf , kcninf , kcnan , kcreg , creg] = infnanindices ( computed )
   [kepinf , keninf , kenan , kereg , ereg] = infnanindices ( expected )
   //

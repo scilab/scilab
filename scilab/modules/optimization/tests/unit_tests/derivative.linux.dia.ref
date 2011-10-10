@@ -78,7 +78,7 @@ assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 // 2.8 Test order 4
 [Jcomputed , Hcomputed] = derivative(myfunction2,x,order=4);
 assert_checkalmostequal ( Jcomputed , Jexpected , %eps );
-assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-10 );
+assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-10, 1.e-10 );
 // 3. Test H_form
 // 3.1 Test H_form="default"
 Jexpected = [4.0 2.0];

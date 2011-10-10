@@ -42,7 +42,7 @@ int sci_TCL_ExistInterp(char *fname,unsigned long l)
       *istk(l1) = (int) existsSlaveInterp(InterpName);
 
       LhsVar(1)=Rhs+1;
-      C2F(putlhsvar)();
+      PutLhsVar();
     }
   else
     {

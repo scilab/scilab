@@ -43,12 +43,9 @@ BOOL setSCIHOME(void)
 	{
 		return defineSCIHOME();
 	}
-	else /* SCIHOME already defined */
-	{
-		strcpy(SCIHOMEPATH,SCIHOME);
-		return TRUE;
-	}
-	return FALSE;
+	/* SCIHOME already defined */
+    strcpy(SCIHOMEPATH,SCIHOME);
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 char *getSCIHOME(void)

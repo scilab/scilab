@@ -72,7 +72,7 @@
       <varlistentry>
         <term>flag :</term>
         <listitem>
-          <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
+          <para> a 1-by-1 matrix of boolean, %t if the correct error message was produced, %f if not</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -87,7 +87,7 @@
   <refsection>
     <title>Description</title>
     <para>
-      If the expression does not generate an error, then assert_checkerror generates an error.
+      If the expression does not generate an error, then <literal>assert_checkerror</literal> generates an error.
       Performs silently if the evaluated expression generates the expected error message.
       If the error number is provided, we additionnally check that the generated error number matches the
       expected one.
@@ -173,21 +173,25 @@ endfunction
       The two following tests pass: the error message is the expected one. 
       We let <literal>assert_checkerror</literal> manage the 
 	  localization, by providing only the localized message and 
-	  the extra parameter <literal>a1</literal>.
+	  the extra parameter <literal>"f"</literal> (the name of the function)
+	  and <literal>1</literal> (the index of the input argument).
+	  These two extra parameters are used by <literal>assert_checkerror</literal> 
+	  to format the message and to convert the "%s" and "%d" formats into 
+	  their actual values.
     </para>
     <programlisting role="example">
       <![CDATA[
 lcl1="%s: Wrong number of input argument: %d expected.\n";
-lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
 assert_checkerror ( "y=f()"      , lcl1 , [] , "f" , 1);
+lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
 assert_checkerror ( "y=f(""a"")" , lcl2 , [] , "f" , 1);
    ]]>
     </programlisting>
     <para>
-      Indeed, if we make the assumption that the current locale language 
+      On the other hand, if we make the assumption that the current locale language 
       is english, we could as well use the following statement. 
       But this is not a recommended practice, since the test will 
-      fail if the current locale is french, for example. 
+      fail if the current locale is French, for example. 
     </para>
     <programlisting role="example">
       <![CDATA[

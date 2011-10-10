@@ -52,7 +52,6 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 	static int l2 = 0, m2 = 0, n2 = 0;
 
 	char **Str3 = NULL;
-	int len = 0;
 
 	/* please update me ! */
 	static int nb_flag = 22;
@@ -217,11 +216,11 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 
 	n1=1;
 	CreateVarFromPtr( Rhs+3,MATRIX_OF_STRING_DATATYPE, &j, &n1, Str3);
+	freeArrayOfString(Str3,j);
+
 	LhsVar(1)=Rhs+2;
 	LhsVar(2)=Rhs+3;
 	PutLhsVar();
-
-	freeArrayOfString(Str3,j);
 	return(0);
 }
 /*--------------------------------------------------------------------------*/ 

@@ -8,8 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-clear scicos_pal // explicitly clear scicos_pal variable
-
 //Load functions libraries
 // =============================================================================
 load('SCI/modules/scicos/macros/scicos_utils/lib');

@@ -49,8 +49,6 @@ void DrawableAxesFactory::update( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
 {
-  sciPointObj * pAxes = axes->getDrawedObject();
-
   // create ticksDrawer
   TicksDrawer * ticksDrawer = new TicksDrawer();
   ticksDrawer->setTicksDrawer(new AxesTicksDrawerJoGL(axes));

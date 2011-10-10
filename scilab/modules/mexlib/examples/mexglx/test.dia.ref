@@ -10,7 +10,7 @@
  
 ilib_for_link("foo",['foo.o'],[],"c");
    generate a loader file
-   generate a Makefile: Makelib
+   generate a Makefile
    running the makefile
    compilation of foo
    building shared library (be patient)
@@ -29,19 +29,19 @@ host('cp libfoo.so foo.mexglx');
  
 ilib_for_link("mx",[],[],"c");
    generate a loader file
-   generate a Makefile: Makelib
+   generate a Makefile
    running the makefile
    building shared library (be patient)
  
 ilib_for_link("mex",[],[],"c");
    generate a loader file
-   generate a Makefile: Makelib
+   generate a Makefile
    running the makefile
    building shared library (be patient)
  
 ilib_for_link("mat",[],[],"c");
    generate a loader file
-   generate a Makefile: Makelib
+   generate a Makefile
    running the makefile
    building shared library (be patient)
  
@@ -78,7 +78,7 @@ Link done
  
 ilib_for_link("tst",['libtst.o'],[],"c");
    generate a loader file
-   generate a Makefile: Makelib
+   generate a Makefile
    running the makefile
    compilation of libtst
    building shared library (be patient)

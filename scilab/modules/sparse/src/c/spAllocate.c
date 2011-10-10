@@ -607,10 +607,7 @@ register  AllocationListPtr  ListPtr;
  *      in the allocation list.
  */
 
-void
-spDestroy( eMatrix )
-
-register char *eMatrix;
+void spDestroy(register char *eMatrix)
 {
 MatrixPtr Matrix = (MatrixPtr)eMatrix;
 register  AllocationListPtr  ListPtr, NextListPtr;

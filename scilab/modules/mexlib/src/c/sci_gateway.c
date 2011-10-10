@@ -31,7 +31,7 @@ int sci_gateway_without_putlhsvar(char *fname, GatefuncS F)
 static int callExternalFunction(char *fname, GatefuncS F,BOOL withPutLhsVar)
 {
 	(*F)(fname,(int)strlen(fname));
-	if (withPutLhsVar)PutLhsVar();
+	if (withPutLhsVar) PutLhsVar();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

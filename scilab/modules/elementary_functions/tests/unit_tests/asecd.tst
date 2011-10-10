@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2011 - DIGITEO - Michaël Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -1026,26 +1027,31 @@ refi=[1/100, 953.692625809887226326300030289/pi
 
 
      x=ref(:,1);
-     e=max(abs((ref(:,2)-asecd(x))./ref(:,2)));
-     if e>10*eps then pause,end
+	 y = asecd(x);
+	 e=ref(:,2);
+	 assert_checkalmostequal(y,e,10*%eps,[],"element");
+	//
      x=-ref(:,1);
-     e=max(abs((180-ref(:,2)-asecd(x))./(180-ref(:,2))));
-     if e>10*eps then pause,end
+	 y = asecd(x);
+	 e = 180-ref(:,2);
+	 assert_checkalmostequal(y,e,10*%eps,[],"element");
      
      
      x=refi(:,1);
-     e=max(abs((imult(refi(:,2))-asecd(x))./refi(:,2)));
-     if e>20*eps then pause,end
+	 y = asecd(x);
+	 e = imult(refi(:,2));
+	 assert_checkalmostequal(y,e,20*%eps,[],"element");
  
      x=-refi(:,1);
-     e=max(abs((180-imult(refi(:,2))-asecd(x))./(180-imult(refi(:,2)))));
-     if e>10*eps then pause,end
+	 y = asecd(x);
+	 e = 180-imult(refi(:,2));
+	 assert_checkalmostequal(y,e,20*%eps,[],"element");
  
     
-     if asecd(0)<>imult(Inf) then pause,end
-     if asecd(Inf)<>90 then pause,end
+     assert_checkequal(asecd(0),imult(Inf));
+     assert_checkalmostequal(asecd(Inf),90,%eps,[],"element");
 
-     if ~isnan(asecd(NaN)) then pause,end
+     assert_checkequal(asecd(NaN),%nan);
 
-     if asecd([])<>[] then pause,end
+     assert_checkequal(asecd([]),[]);
 

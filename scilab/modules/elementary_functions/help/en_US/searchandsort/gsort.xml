@@ -171,6 +171,9 @@
 
     <para>see macro:
     SCI/modules/elementary_functions/macros/%_gsort.sci</para>
+    
+    <para>Overloading for not managed type (others than a real, an integer or a character
+       string vector/matrix or a sparse vector.) is allowed.</para>
 
     <para>if <literal>v</literal> have <literal>%nan</literal> or
     <literal>%inf</literal> as elements. gsort places these at the beginning

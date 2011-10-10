@@ -35,7 +35,7 @@ int C2F(sci_diary)(char *fname,unsigned long fname_len)
 		closeAllDiaries();
 
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();;
 
 		return 0;
 	}
@@ -74,7 +74,7 @@ int C2F(sci_diary)(char *fname,unsigned long fname_len)
 			setDiaryId(fd_newdiary);
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();;
 		}
 		else
 		{
@@ -100,7 +100,7 @@ int C2F(sci_diary)(char *fname,unsigned long fname_len)
 			closeAllDiaries();
 
 			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+			PutLhsVar();;
 		}
 		else
 		{

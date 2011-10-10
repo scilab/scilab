@@ -75,28 +75,23 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
-cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double.dll %%f &gt;nul
-copy *.def doubletmp.def &gt;nul
-copy ..\double_header.def+doubletmp.def  ..\double_export.def &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
+cd ..
+
 
 </Command>
     </PreLinkEvent>
@@ -106,13 +101,18 @@ cd .. &gt;nul
       <ModuleDefinitionFile>double_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PreBuildEvent>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Make dependencies</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -122,24 +122,20 @@ cd .. &gt;nul
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
-cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double.dll %%f &gt;nul
-copy *.def doubletmp.def &gt;nul
-copy ..\double_header.def+doubletmp.def  ..\double_export.def &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
+cd ..
+
 
 </Command>
     </PreLinkEvent>
@@ -149,41 +145,41 @@ cd .. &gt;nul
       <ModuleDefinitionFile>double_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PreBuildEvent>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Make dependencies</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
-cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double.dll %%f &gt;nul
-copy *.def doubletmp.def &gt;nul
-copy ..\double_header.def+doubletmp.def  ..\double_export.def &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
+cd ..
+
 
 </Command>
     </PreLinkEvent>
@@ -195,45 +191,44 @@ cd .. &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PreBuildEvent>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Make dependencies</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DOUBLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
-cd $(IntDir) &gt;nul
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n double.dll %%f &gt;nul
-copy *.def doubletmp.def &gt;nul
-copy ..\double_header.def+doubletmp.def  ..\double_export.def &gt;nul
+      <Message>Build $(ProjectName).def</Message>
+      <Command>setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName)_Export.def &gt;nul
 del *.def &gt;nul
-cd .. &gt;nul
+cd ..
+
 
 </Command>
     </PreLinkEvent>
@@ -245,15 +240,18 @@ cd .. &gt;nul
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
     </Link>
+    <PreBuildEvent>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)double_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Make dependencies</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainDouble.c" />
@@ -265,7 +263,6 @@ cd .. &gt;nul
     <None Include="LibScilab_Import.def" />
     <None Include="..\..\double.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="double.rc" />

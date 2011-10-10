@@ -2138,7 +2138,9 @@ public class CallScilabBridge {
      */
     public static void setToolbarVisible(int figNum, boolean status) {
         if (figNum == -1) {
-            ScilabConsole.getConsole().getToolBar().setVisible(status);
+            if (ScilabConsole.isExistingConsole()) {
+                ScilabConsole.getConsole().getToolBar().setVisible(status);
+            }
         } else {
             ((ScilabRendererProperties) FigureMapper
              .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().setVisible(status);
@@ -2152,7 +2154,11 @@ public class CallScilabBridge {
      */
     public static boolean isToolbarVisible(int figNum) {
         if (figNum == -1) {
-            return ScilabConsole.getConsole().getToolBar().isVisible();
+           if (ScilabConsole.isExistingConsole()) {
+               return ScilabConsole.getConsole().getToolBar().isVisible();
+           } else {
+               return false;
+           }
         } else {
             return ((ScilabRendererProperties) FigureMapper
                     .getCorrespondingFigure(figNum).getRendererProperties()).getParentTab().getToolBar().isVisible();

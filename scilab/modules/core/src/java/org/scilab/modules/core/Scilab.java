@@ -22,10 +22,11 @@ import org.flexdock.docking.DockingConstants;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.jvm.LoadClassPath;
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -180,7 +181,7 @@ public class Scilab {
                 LoadClassPath.loadOnUse("Console");
                 consoleTab = new SwingScilabTab(Messages.gettext("Scilab Console"));
                 /* Exit Scilab when the console is closed */
-                consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
+                consoleTab.setCallback(CommonCallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
 
                 ScilabConsole.createConsole();
             } catch (NoClassDefFoundError exception) {

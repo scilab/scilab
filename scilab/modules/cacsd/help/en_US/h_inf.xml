@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>h_inf</refname>
-    <refpurpose> H-infinity (central) controller</refpurpose>
+    <refpurpose> Continuous time H-infinity (central) controller</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,7 +29,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para> <literal>syslin</literal> list : continuous-time linear system (``augmented'' plant given in state-space form  or in transfer form)</para>
+          <para>a continuous-time linear dynamical system ("augmented" plant given in state-space form  or in transfer form)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

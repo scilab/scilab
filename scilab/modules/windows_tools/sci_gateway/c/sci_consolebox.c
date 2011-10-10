@@ -97,9 +97,9 @@ int sci_consolebox(char *fname,unsigned long l)
 
 	n1=1;
 	CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
+    if (Output) {FREE(Output);Output=NULL;}
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();	
-	if (Output) {FREE(Output);Output=NULL;}
+	PutLhsVar();	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

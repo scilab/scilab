@@ -54,7 +54,7 @@ int sci_ctree3(char *fname,unsigned long fname_len)
 	LhsVar(1) = 9;
 	LhsVar(2) = 10;
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

@@ -59,7 +59,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     if (Rhs == 0)
     {
         // Set the parent property
-        setMenuParent(sciGetPointerFromHandle(GraphicHandle), -1, sci_handles, nbRow, nbCol);
+        setMenuParent(sciGetPointerFromHandle(GraphicHandle), (size_t)(-1), sci_handles, nbRow, nbCol);
     }
 
     /**
@@ -209,7 +209,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
     if (!parentDefined && (Rhs != 0))
     {
         // Set the parent property
-        setMenuParent(sciGetPointerFromHandle(GraphicHandle), -1, sci_handles, nbRow, nbCol);
+        setMenuParent(sciGetPointerFromHandle(GraphicHandle), (size_t)(-1), sci_handles, nbRow, nbCol);
     }
 
     /* Create return variable */
@@ -220,7 +220,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 
     LhsVar(1)=Rhs+1;
 
-    C2F(putlhsvar)();
+    PutLhsVar();
 #endif
     return TRUE;
 }

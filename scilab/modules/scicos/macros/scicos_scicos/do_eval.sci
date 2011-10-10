@@ -1,7 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+//  Copyright (C) DIGITEO - 2010 - JÃ©rÃ´me PICARD
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,6 +37,26 @@ function scicosmessage(txt)
   %scicos_prob = resume(%t)
 endfunction
 
+// overload message
+// This function is used to alert the user on setvalue
+// (invalid exprs we keep the previous parameters)
+function message(str)
+    uid = arg1.doc(1);
+    uid = [full_uids uid];
+
+    html = "<html><body>";
+    html = html + "<em>" + gettext("Evaluation problem: value not updated from context." + "<br/>") + "</em>";
+    html = html + strcat(str, "<br/>") + "<br/>"; 
+    html = html + "</body></html>";
+    warnBlockByUID(uid, html);
+
+    %scicos_prob = resume(%t)
+endfunction
+
+// path on do_eval hierarchy loop
+if ~isdef('full_uids') then
+    full_uids = [];
+end
 
 global %scicos_prob
 %scicos_prob=%f
@@ -75,8 +95,11 @@ for %kk=1:%nx
         scicosmessage(['Cannot evaluate a context';lasterror()])
     xset('window',%now_win)
       else
+        previous_full_uids = full_uids;
+        full_uids = [full_uids o.doc(1)];
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context1)
         needcompile1=max(needcompile1,needcompile2)
+	full_uids = previous_full_uids;
         if ok then
           scs_m.objs(%kk).model.rpar=sblock
     else

@@ -43,8 +43,8 @@ wchar_t ** strings_wcsrchr(const wchar_t **InputStrings, int Dim_InputStrings,
                 if (Dim_InputChar == 1) c = InputChar[0][0];
                 else  c = InputChar[i][0];
 
-                if (do_strchr) ptrStr = wcschr(InputStrings[i], c);
-                else ptrStr = wcsrchr(InputStrings[i], c);
+                if (do_strchr) ptrStr = wcschr(InputStrings[i], (wchar_t)c);
+                else ptrStr = wcsrchr(InputStrings[i], (wchar_t)c);
 
                 if (ptrStr)
                 {

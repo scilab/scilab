@@ -7,15 +7,10 @@
 
 load('SCI/modules/scicos/macros/scicos_scicos/lib');
 load('SCI/modules/scicos/macros/scicos_utils/lib');
-load('SCI/modules/scicos/macros/scicos_menus/lib');
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
+if ( ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
     
-     [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+     [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid]=initial_scicos_tables()
 end
   
 exec(loadpallibs,-1) 

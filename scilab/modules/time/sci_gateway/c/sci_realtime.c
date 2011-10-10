@@ -30,7 +30,7 @@ int sci_realtimeinit(char *fname,unsigned long fname_len)
 	C2F(realtimeinit)(&zer,stk(l1));
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/  
@@ -48,7 +48,7 @@ int sci_realtime(char *fname,unsigned long fname_len)
 	C2F(realtime)(stk(l1));
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }               
 /*--------------------------------------------------------------------------*/ 

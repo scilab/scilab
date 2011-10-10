@@ -31,19 +31,19 @@ x0 = [
 0.0820513
 ];
 [xopt,fopt]=karmarkar(Aeq,beq,c,x0);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-3 );
 assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 //
 // Configure the relative tolerance
 rtolf=1.e-6;
 [xopt,fopt]=karmarkar(Aeq,beq,c,x0,rtolf);
-assert_checkalmostequal ( xopt , xexpected , 1.e-4 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-4, 1.e-3  );
 assert_checkalmostequal ( fopt , fexpected , 1.e-5 );
 //
 // Configure the gamma
 gam = 0.1;
 [xopt,fopt]=karmarkar(Aeq,beq,c,x0,[],gam);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3, 1.e-2  );
 assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 ////////////////////////////////////////////////////////////
 //
@@ -51,13 +51,13 @@ assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 //
 // Check exit flag
 [xopt,fopt,exitflag]=karmarkar(Aeq,beq,c,x0);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3, 1.e-3 );
 assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 //
 // Check number of iterations
 [xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,x0);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3, 1.e-3 );
 assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter>10 , %t );
@@ -68,13 +68,13 @@ lambda.ineqlin = [];
 lambda.eqlin = [28/9;8/3];
 lambda.upper = [0;0;0;0];
 lambda.lower = [0;0;28/9;8/3];
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3, 1.e-3 );
 assert_checkalmostequal ( fopt , fexpected , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter>10 , %t );
 assert_checkequal ( yopt.ineqlin , lambda.ineqlin );
 assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , 1.e-8 );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-8 );
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-8, 1.e-7 );
 assert_checkequal ( yopt.upper , lambda.upper );
 //
 // Check number of iterations, with default options
@@ -90,18 +90,18 @@ function stop = myoutputfunction ( xopt , optimValues , state )
     stop = %f
 endfunction
 xopt=karmarkar(Aeq,beq,c,x0,[],[],[],myoutputfunction);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-3 );
 //
 // Check output function, without initial guess
 xopt=karmarkar(Aeq,beq,c,[],[],[],[],myoutputfunction);
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-3 );
 //
 // Check that the output function can stop the algorithm
 function stop = myoutputfunctionStop ( xopt , optimValues , state )
     stop = (iter >= 7)
 endfunction
 [xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,x0,[],[],[],myoutputfunctionStop);
-assert_checkalmostequal ( xopt , xexpected , 1.e-2 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-1 );
 assert_checkalmostequal ( fopt , fexpected , 1.e-3 );
 assert_checkequal ( exitflag , -4 );
 assert_checkequal ( iter , 7 );
@@ -113,7 +113,7 @@ function stop = myoutputfunction2 ( xopt , optimValues , state , myAeq , mybeq ,
     stop = %f
 endfunction
 xopt=karmarkar(Aeq,beq,c,x0,[],[],[],list(myoutputfunction2,Aeq,beq,c));
-assert_checkalmostequal ( xopt , xexpected , 1.e-3 );
+assert_checkalmostequal ( xopt , xexpected , 1.e-3 , 1.e-3 );
 //
 // References
 // "Practical Optimization", Antoniou, Lu, 2007
@@ -142,13 +142,13 @@ lambda.ineqlin = [];
 lambda.eqlin = [-3.5;-0.5];
 lambda.upper = [0;0;0;0;0];
 lambda.lower = [8.5;0;0;3.5;0.5];
-assert_checkalmostequal ( xopt , xstar , 1.e-4 );
+assert_checkalmostequal ( xopt , xstar , 1.e-4 , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter , 4 );
 assert_checkequal ( yopt.ineqlin , lambda.ineqlin );
-assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , 1.e-6 );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-6 );
+assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , 1.e-6 , 1.e-6 );
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-6 , 1.e-6 );
 assert_checkequal ( yopt.upper , lambda.upper );
 //
 // Minimize -x1 -x2
@@ -170,13 +170,13 @@ lambda.ineqlin = [];
 lambda.eqlin = [0;1];
 lambda.upper = [0;0;0];
 lambda.lower = [0;0;1];
-assert_checkalmostequal ( xopt , xstar , 1.e-4 );
+assert_checkalmostequal ( xopt , xstar , 1.e-4 , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
 assert_checkequal ( yopt.ineqlin , lambda.ineqlin );
-assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , 1.e-6 );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-6 );
+assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , 1.e-6 , 1.e-15);
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-6 , 1.e-6 );
 assert_checkequal ( yopt.upper , lambda.upper );
 //
 // Give a linear inequality A*x <= b.
@@ -201,7 +201,7 @@ lambda.ineqlin = 1;
 lambda.eqlin = 0;
 lambda.upper = [0;0];
 lambda.lower = [0;0];
-assert_checkalmostequal ( xopt , xstar , 1.e-4 );
+assert_checkalmostequal ( xopt , xstar , 1.e-4 , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
@@ -301,7 +301,7 @@ x0 = [0.2;0.7;1];
 [xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,x0,[],[],[],[],A,b);
 xstar = [0 1/3 1/3]';
 fstar = c'*xstar;
-assert_checkalmostequal ( xopt , xstar , 1.e-4 );
+assert_checkalmostequal ( xopt , xstar , 1.e-4 , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
@@ -310,7 +310,7 @@ assert_checkequal ( iter > 0 , %t );
 [xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,[],[],[],[],[],A,b);
 xstar = [0 1/3 1/3]';
 fstar = c'*xstar;
-assert_checkalmostequal ( xopt , xstar , 1.e-4 );
+assert_checkalmostequal ( xopt , xstar , 1.e-4 , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
@@ -359,7 +359,7 @@ assert_checkalmostequal ( xopt , xstar , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
-assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 );
+assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 , 1.e-10 );
 assert_checkequal ( yopt.eqlin , lambda.eqlin );
 assert_checkequal ( yopt.lower , lambda.lower );
 assert_checkequal ( yopt.upper , lambda.upper );
@@ -394,7 +394,7 @@ assert_checkalmostequal ( xopt , xstar , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
-assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 );
+assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 , 1.e-8 );
 assert_checkequal ( yopt.eqlin , lambda.eqlin );
 assert_checkequal ( yopt.lower , lambda.lower );
 assert_checkequal ( yopt.upper , lambda.upper );
@@ -422,9 +422,9 @@ assert_checkalmostequal ( xopt , xstar , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
-assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 );
+assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-8 );
 assert_checkequal ( yopt.eqlin , lambda.eqlin );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 );
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 , 1.e-8 );
 assert_checkequal ( yopt.upper , lambda.upper );
 //
 // Set lower bound and give x0.
@@ -449,9 +449,9 @@ assert_checkalmostequal ( xopt , xstar , 1.e-4 );
 assert_checkalmostequal ( fopt , fstar , 1.e-4 );
 assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
-assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 );
-assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , %eps );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 );
+assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , 1.e-9 , 1.e-8 );
+assert_checkalmostequal ( yopt.eqlin , lambda.eqlin , %eps , 1.e-8 );
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 , 1.e-8 );
 assert_checkalmostequal ( yopt.upper , lambda.upper , 1.e-9 );
 // References
 // LIPSOL is a set of Linear-programming Interior-Point SOLvers written 
@@ -495,8 +495,8 @@ assert_checkequal ( exitflag , 1 );
 assert_checkequal ( iter > 0 , %t );
 assert_checkalmostequal ( yopt.ineqlin , lambda.ineqlin , [] , 1.e-9 );
 assert_checkequal ( yopt.eqlin , lambda.eqlin );
-assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 );
-assert_checkalmostequal ( yopt.upper , lambda.upper , 1.e-9 );
+assert_checkalmostequal ( yopt.lower , lambda.lower , 1.e-9 , 1.e-10 );
+assert_checkalmostequal ( yopt.upper , lambda.upper , 1.e-9 , 1.e-10 );
 //
 // An unbounded problem.
 c = [-20 -24]';
@@ -558,6 +558,7 @@ A=-A;
 b=[1;2];
 b=-b;
 lb=[0;0];
+
 [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb);
 assert_checkequal ( exitflag , -2 );
 

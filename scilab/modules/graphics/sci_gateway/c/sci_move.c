@@ -57,10 +57,10 @@ int sci_move( char * fname, unsigned long fname_len )
     GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &m1, &n1, &l1); /* Gets the Handle passed as argument */
     pobjUID = getObjectFromHandle(getHandleFromStack(l1));
 
-	if (pobjUID == NULL)
-	{
-		Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-		return 0;
+    if (pobjUID == NULL)
+    {
+        Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+        return 0;
     }
 
     /* Get [x,y] or [x,y,z] vector */

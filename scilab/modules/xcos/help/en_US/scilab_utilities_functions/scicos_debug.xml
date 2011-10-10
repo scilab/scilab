@@ -86,16 +86,6 @@ level=scicos_debug()
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="SeeAlso_scicos_debug">
-    <title>See Also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="scicos_debug">DEBUG_SCICOS - Debug block (Scicos Block)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
   <refsection id="Authors_scicos_debug">
     <title>Authors</title>
     <para>

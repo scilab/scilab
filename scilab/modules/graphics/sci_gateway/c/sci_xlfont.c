@@ -61,7 +61,7 @@ static int xlfont_no_rhs(char * fname)
 	freeArrayOfString(fontsname,nbElements);
 
 	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -83,14 +83,14 @@ static int xlfont_one_rhs(char * fname)
 			freeArrayOfString(fontsname,nbElements);
 
 			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 		else if ( strcmp(cstk(l1),"reset")==0)
 		{
 			resetFontManager();
 			LhsVar(1) = 0 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			return 0;
 		}
 		else
@@ -104,7 +104,7 @@ static int xlfont_one_rhs(char * fname)
 				*istk(l1) = fontID ;
 
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 				return 0;
 			}
 			else if (FileExist(cstk(l1)))
@@ -116,7 +116,7 @@ static int xlfont_one_rhs(char * fname)
 				*istk(l1) = fontID ;
 
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 				return 0;
 			}
 			else
@@ -189,7 +189,7 @@ static int xlfont_n_rhs(char * fname)
 				*istk(l1) = Id ;
 
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else if ( isAvailableFontsName(fontname) )
 			{
@@ -199,7 +199,7 @@ static int xlfont_n_rhs(char * fname)
 				*istk(l1) = Id ;
 
 				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+				PutLhsVar();
 			}
 			else
 			{

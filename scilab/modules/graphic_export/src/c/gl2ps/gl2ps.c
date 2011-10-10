@@ -881,7 +881,7 @@ static int gl2psAddText(int type, const char *str, const char *fontname,
   joglGetCurrentRasterPosition(pos);
 
   prim = (GL2PSprimitive*)gl2psMalloc(sizeof(GL2PSprimitive));
-  prim->type = type;
+  prim->type = (short)type;
   prim->boundary = 0;
   prim->numverts = 1;
   prim->verts = (GL2PSvertex*)gl2psMalloc(sizeof(GL2PSvertex));
@@ -2172,7 +2172,7 @@ static void gl2psAddPolyPrimitive(short type, short numverts,
   prim->verts = (GL2PSvertex*)gl2psMalloc(numverts * sizeof(GL2PSvertex));
   memcpy(prim->verts, verts, numverts * sizeof(GL2PSvertex));
   prim->boundary = boundary;
-  prim->offset = offset;
+  prim->offset = (char)offset;
   prim->pattern = pattern;
   prim->factor = factor;
   prim->width = width;
@@ -2297,7 +2297,7 @@ static void gl2psParseFeedbackBuffer(int used)
       case GL2PS_END_OFFSET_TOKEN : offset = 0; break;
       case GL2PS_BEGIN_BOUNDARY_TOKEN : boundary = TRUE; break;
       case GL2PS_END_BOUNDARY_TOKEN : boundary = FALSE; break;
-      case GL2PS_END_STIPPLE_TOKEN : pattern = factor = 0; break;
+      case GL2PS_END_STIPPLE_TOKEN:pattern = factor = 0;break;
       case GL2PS_BEGIN_BLEND_TOKEN : gl2ps->blending = TRUE; break;
       case GL2PS_END_BLEND_TOKEN : gl2ps->blending = FALSE; break;
       case GL2PS_BEGIN_STIPPLE_TOKEN : 
@@ -2435,10 +2435,10 @@ static void gl2psWriteByte(unsigned char byte)
 
 static void gl2psPrintPostScriptPixmap(float x, float y, GL2PSimage *im)
 {
-  unsigned int nbhex, nbyte, nrgb, nbits;
-  unsigned int row, col, ibyte, icase;
-  float dr, dg, db, fgrey;
-  unsigned char red = 0, green = 0, blue = 0, b, grey;
+  unsigned int nbhex = 0, nbyte = 0, nrgb = 0, nbits = 0;
+  unsigned int row = 0, col = 0, ibyte = 0, icase = 0;
+  float dr = 0., dg = 0., db = 0., fgrey = 0.;
+  unsigned char red = 0, green = 0, blue = 0, b = 0, grey = 0;
   unsigned int width = (unsigned int)im->width;
   unsigned int height = (unsigned int)im->height;
 
@@ -6069,7 +6069,7 @@ GL2PSDLL_API int gl2psLineStipple(int factor, int pattern)
 {
   if(!gl2ps) return GL2PS_UNINITIALIZED;
 
-  gl2ps->lastpattern = pattern;
+  gl2ps->lastpattern = (unsigned short)pattern;
   gl2ps->lastfactor = factor;
 
   return GL2PS_SUCCESS;

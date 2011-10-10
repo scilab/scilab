@@ -19,10 +19,11 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>n=predef()
-oldnew=predef(n)
-oldnew=predef('all')
-oldnew=predef('clear')</synopsis>
+    <synopsis>n = predef()
+oldnew = predef(n)
+oldnew = predef('all')
+oldnew = predef('clear')
+variables_name = predef('names')</synopsis>
   </refsynopsisdiv>
 
   <refsection>

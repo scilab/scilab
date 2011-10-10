@@ -373,7 +373,11 @@ int PLD_strlower( unsigned char *convertme )
 
 	unsigned char *c = convertme;
 
-	while ( *c != '\0') {*c = tolower((int)*c); c++;}
+	while ( *c != '\0') 
+    {
+        *c = (unsigned char)tolower((int)*c);
+        c++;
+    }
 
 	return 0;
 }

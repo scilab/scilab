@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,9 +9,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function fprintf(fil,frmt,varargin)
+function fprintf(fil, frmt, varargin)
 // fprintf - Emulator of C language fprintf
 //
+
+  [lhs, rhs] = argn(0);
+  if rhs < 2 then
+    error(999, msprintf(_("%s: Wrong number of input argument(s).\n"), "fprintf"));
+  end
 
   if (type(frmt) <> 10) then
     error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A String expected.\n"),"fprintf",2));

@@ -60,22 +60,21 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
     hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY));
     if (hinstLib != NULL)
     { 
-        UINT LastErrorMode = 0;
         MYPROC1 Windows_Main = NULL;
 
         /* launch main */
         Windows_Main = (MYPROC1) GetProcAddress(hinstLib, MAIN_FUNCTION);
         if (NULL != Windows_Main) 
         {
-            fRunTimeLinkSuccess = TRUE;
 
 #ifndef _DEBUG
             /* catch system errors msgbox (release mode only) */
             /* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-            LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+            UINT LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
             _try
             {
 #endif
+                fRunTimeLinkSuccess = TRUE;
                 /* launch main */
                 iExitCode = (Windows_Main)(hInstance, hPrevInstance, szCmdLine, iCmdShow);
 

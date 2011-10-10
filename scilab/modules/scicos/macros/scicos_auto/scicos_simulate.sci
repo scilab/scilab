@@ -156,9 +156,6 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
   //** load the scicos function libraries
   //------------------------------------
-  if exists('scicos_menuslib')==0 then
-    load("SCI/modules/scicos/macros/scicos_menus/lib") ;
-  end
 
   if exists('scicos_scicoslib')==0 then
     load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
@@ -172,16 +169,11 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     load("SCI/modules/scicos/macros/scicos_utils/lib") ;
   end
 
-  //** Define Scicos data tables
-  //----------------------------
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-    [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-  end
+// Define Scicos data tables ===========================================
+if ( ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+end
   // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable

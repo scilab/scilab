@@ -61,11 +61,7 @@ function sys = lincos(scs_m,x0,u0,param)
 //** This function can be (ab)used from the Scilab command line and 
 //** inside a Scicos "context". In order to handle the different situations,
 //** the required library are loaded if not already present in the 
-//** "semiglobal-local-environment".       
-
-if ~isdef('scicos_menuslib') then
-  load('SCI/modules/scicos/macros/scicos_menus/lib')
-end
+//** "semiglobal-local-environment".
 
 if exists('scicos_scicoslib')==0 then
     load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
@@ -80,13 +76,9 @@ if exists('scicos_utilslib')==0 then
 end
 
 // Define Scicos data tables ===========================================
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+if ( ~isdef("modelica_libs") | ..
      ~isdef("scicos_pal_libs") ) then
-  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+  [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
 end
 // =====================================================================
 [lhs, rhs] = argn(0);
@@ -200,8 +192,18 @@ ny=0; for k=pointo', ny=ny+size(state.outtb(k),'*'), end
 if rhs<3 then 
   x0=zeros(nx,1);u0=zeros(nu,1);
 else
-  if size(x0,'*')<>nx | size(u0,'*')<>nu then
-    error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d.\n"),"lincos", 2, 3))
+  if size(x0,'*')<>nx then
+      if nx == 0 then
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Empty matrix expected.\n"), "lincos", 2));
+      else
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lincos", 2, nx, 1))
+      end
+  elseif size(u0,'*')<>nu then
+      if nx == 0 then
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: Empty matrix expected.\n"), "lincos", 3));
+      else
+          error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lincos", 3, nx, 1))
+      end
   end
 end
 

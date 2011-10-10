@@ -105,6 +105,5 @@ int set_tics_direction_property(char* pobjUID, size_t stackPointer, int valueTyp
         Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

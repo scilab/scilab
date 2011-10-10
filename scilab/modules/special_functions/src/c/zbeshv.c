@@ -107,7 +107,6 @@ static int zbeshg(double *x1r, double *x1i, double *alpha,
     double *wi, int *ierr)
 {
     int iOne = 1;
-    int iNegOne = -1;
     int iTwo = 2;
     double dNegOne = -1.;
 

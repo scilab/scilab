@@ -7,25 +7,30 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function cmap = whitecolormap(varargin)
-	
-	//whitecolormap
-	
-  // Check number of input argument
-  if size(varargin)<>1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "whitecolormap", 1));
-  end
-  n=varargin(1);
 
-  // Check size of input argument
-	if size(n,'*')<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"whitecolormap",1));
-	end
+    //whitecolormap
 
-  // Check value of input argument
-	if n<3 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"whitecolormap",1,3));
-	end
-	
-	cmap = ones(n,3);
-	
+    // Check number of input argument
+    if size(varargin)<>1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "whitecolormap", 1));
+    end
+    n=varargin(1);
+
+    // Check type of input argument
+    if typeof(n)<>"constant" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "whitecolormap", 1));
+    end
+
+    // Check if input argument is real
+    if ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "whitecolormap", 1));
+    end
+
+    // Check size of input argument
+    if size(n,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"), "whitecolormap", 1));
+    end
+
+    cmap = ones(n,3);
+
 endfunction

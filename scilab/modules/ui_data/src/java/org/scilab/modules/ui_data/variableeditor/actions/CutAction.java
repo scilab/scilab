@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
@@ -30,7 +30,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-public final class CutAction extends CallBack {
+public final class CutAction extends CommonCallBack {
 
     private static final String KEY = "ctrl X";
     private static final String CUT = "Cut";

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="library" type="TypeLibrary"/>
+    <xs:complexType name="TypeLibrary">
+        <xs:sequence maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="book" type="TypeBook"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TypeBook">
+        <xs:sequence>
+            <xs:element name="author" type="xs:string"/>
+            <xs:element name="hero" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:schema>

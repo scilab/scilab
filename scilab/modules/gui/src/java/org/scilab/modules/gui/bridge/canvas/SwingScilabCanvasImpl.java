@@ -88,9 +88,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	    if (noGLJPanel) {
 		/** Inform the users */
-		InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, "
-			+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
-			+ "Type \"\"help usecanvas\"\" for more information.\")"));
+		InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"));
 	    }
 
         }
@@ -166,17 +164,13 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
 	        if (noGLJPanel) {
                     /** Inform the users */
-                    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, "
-                        + "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
-                        + "Type \"\"help usecanvas\"\" for more information.\")"));
+                    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, Scilab switched in a mode where mixing uicontrols and graphics is not available. Type \"\"help usecanvas\"\" for more information.\")"));
 	        }
 	    }
 	    catch (GLException e) {
 	        noGLJPanel = true;
 	        /** Inform the users */
-	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, "
-	    	    + "that are not able to manage OpenGL, Scilab will not be able to draw any graphics. "
-	    	    + "Please update your driver.\")"));
+	        InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, that are not able to manage OpenGL, Scilab will not be able to draw any graphics. Please update your driver.\")"));
 	    }
 
         }
@@ -195,9 +189,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public static boolean switchToGLCanvas(boolean onOrOff) {
 	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	if(!onOrOff && noGLJPanel) {
-	    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Despite of our previous warning, "
-			+ "you chose to use Scilab with advanced graphics capabilities. "
-			+ "Type \"\"help usecanvas\"\" for more information.\")"));
+	    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Despite of our previous warning, you choose to use Scilab with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more information.\")"));
 	}
 	enableGLCanvas = onOrOff;
 	return enableGLCanvas;

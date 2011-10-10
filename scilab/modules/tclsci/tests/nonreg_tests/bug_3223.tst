@@ -13,5 +13,13 @@
 
 if getos() == 'Windows' then
   ierr = execstr("TCL_EvalStr(''package require registry'')",'errcatch');
-  if ierr <> 0 then pause,end
+  assert_checkequal(ierr, 999);
+  err_msg = lasterror();
+  tab_str = ascii(9) +"can''t find package registry"; 
+  ref_err = ["TCL_EvalStr,  at line 1" ; ..
+             tab_str; ..
+             "    while executing" ; ..
+             """package require registry"""];
+  // current version of assert_checkerror does not manage multiline error (bug 9572)
+  assert_checkequal(err_msg, ref_err);
 end

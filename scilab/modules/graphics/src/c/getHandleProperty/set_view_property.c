@@ -62,7 +62,7 @@ int set_view_property(char* pobjUID, size_t stackPointer, int valueType, int nbR
   else
   {
     Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "view", "'2d'", "'3d'");
-    return SET_PROPERTY_ERROR ;
+
   }
 
   status = setGraphicObjectProperty(pobjUID, __GO_VIEW__, &viewType, jni_int, 1);

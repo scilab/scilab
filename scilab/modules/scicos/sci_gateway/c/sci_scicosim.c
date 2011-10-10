@@ -2263,9 +2263,11 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	if (Lhs>=1) LhsVar(1) = 1; /*return state in LhsVar(1)*/
 	if (Lhs==2) LhsVar(2) = 2; /*return tcur in LhsVar(2)*/
 
-	C2F(putlhsvar)();
-	/* end */
-	freeparam;
+    /* end */
+    freeparam;
+
+	PutLhsVar();
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -7,30 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2011-10-03 10:34+0100\n"
 "PO-Revision-Date: 2011-05-27 12:59+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 13144)\n"
+"X-Generator: Launchpad (build 14071)\n"
 "Language: it\n"
 
-msgid "?"
-msgstr "_?"
+msgid "Command History"
+msgstr "Cronologia dei comandi"
 
-msgid "Cannot delete current session beginning line."
-msgstr "Impossile eliminare l'attuale linea di inizio sessione."
-
-msgid "Clear history"
-msgstr "Pulisci la cronologia"
+msgid "File"
+msgstr "_File"
 
 msgid "Close"
 msgstr "_Chiudi"
 
-msgid "Command History"
-msgstr "Cronologia dei comandi"
+msgid "Edit"
+msgstr "_Modifica"
 
 msgid "Copy"
 msgstr "_Copia"
@@ -41,8 +38,17 @@ msgstr "_Taglia"
 msgid "Delete"
 msgstr "Elimina"
 
-msgid "Edit"
-msgstr "_Modifica"
+msgid "Clear history"
+msgstr "Pulisci la cronologia"
+
+msgid "?"
+msgstr "_?"
+
+msgid "Scilab Help"
+msgstr "Aiuto di Scilab"
+
+msgid "Evaluate Selection"
+msgstr "_Valuta la selezione"
 
 msgid "Edit in SciNotes"
 msgstr "Modifica in SciNotes"
@@ -50,11 +56,5 @@ msgstr "Modifica in SciNotes"
 msgid "Error"
 msgstr "Errore"
 
-msgid "Evaluate Selection"
-msgstr "_Valuta la selezione"
-
-msgid "File"
-msgstr "_File"
-
-msgid "Scilab Help"
-msgstr "Aiuto di Scilab"
+msgid "Cannot delete current session beginning line."
+msgstr "Impossile eliminare l'attuale linea di inizio sessione."

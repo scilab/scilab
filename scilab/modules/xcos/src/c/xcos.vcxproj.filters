@@ -29,9 +29,6 @@
     <ClCompile Include="DllmainXCOS.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
     <ClInclude Include="..\..\includes\dynlib_xcos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\gw_xcos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -115,7 +109,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\xcos.iss" />
     <None Include="..\..\sci_gateway\xcos_gateway.xml" />
   </ItemGroup>

@@ -47,4 +47,4 @@ end
 
 // do not modify below
 // ----------------------------------------------
-ilib_mex_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags)
+ilib_mex_build(ilib_name,table,files,libs,'',ldflags,cflags,fflags)

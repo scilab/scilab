@@ -75,17 +75,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -98,13 +92,8 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <Link>
       <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -118,13 +107,8 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -137,13 +121,8 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <Link>
       <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -151,19 +130,13 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -177,17 +150,10 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <Link>
       <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -198,18 +164,13 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>.;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -223,17 +184,10 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <Link>
       <AdditionalDependencies>libscilab.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -283,7 +237,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="localization_Import.def" />
     <None Include="scilab_windows_Import.def" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\windows_tools.iss" />
     <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
   </ItemGroup>

@@ -35,7 +35,7 @@ int gw_linear_algebra(void)
 {  
 	Rhs = Max(0, Rhs);
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

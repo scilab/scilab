@@ -83,12 +83,13 @@ int sci_code2str(char *fname,unsigned long fname_len)
 	outIndex = 0 ;
 	CreateVar(Rhs+1,STRING_DATATYPE,&numRow,&numCol,&outIndex);
 	strncpy(cstk(outIndex), &Output_Matrix[0][0] ,numCol ) ;
+
+    /* free pointers */
+    freeArrayOfString(Output_Matrix, 1);
+
 	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-
-	/* free pointers */
-	freeArrayOfString(Output_Matrix, 1);
-
+	PutLhsVar();
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

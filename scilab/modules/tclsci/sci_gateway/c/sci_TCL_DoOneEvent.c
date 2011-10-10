@@ -23,7 +23,7 @@ int sci_TCL_DoOneEvent (char *fname,unsigned long l)
 	Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
 
 	LhsVar(1) = 0;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

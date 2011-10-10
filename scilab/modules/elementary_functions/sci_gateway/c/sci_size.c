@@ -10,31 +10,34 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsize)(int *id);
+extern int C2F(intsize) (int *id);
+
 /*--------------------------------------------------------------------------*/
-typedef enum { I_SIZE_ROW = 1,
-I_SIZE_COL = 2,
-I_SIZE_ROWCOL = 0,
+typedef enum
+{ I_SIZE_ROW = 1,
+    I_SIZE_COL = 2,
+    I_SIZE_ROWCOL = 0,
 } size_second_input_argument_int;
+
 /*--------------------------------------------------------------------------*/
 #define C_SIZE_ROW "r"
 #define C_SIZE_COL "c"
 #define C_SIZE_ROWCOL "*"
 /*--------------------------------------------------------------------------*/
-int sci_size(char *fname,unsigned long fname_len)
+int sci_size(char *fname, unsigned long fname_len)
 {
     static int id[6];
 
-    CheckRhs(1,2);
+    CheckRhs(1, 2);
 
-    /* 	bug 8296, we check second input argument, it must be r,c,* or 1,2,0 (compatibility) */
+    /*  bug 8296, we check second input argument, it must be r,c,* or 1,2,0 (compatibility) */
     if (Rhs == 2)
     {
         int iType = 0;
@@ -43,21 +46,22 @@ int sci_size(char *fname,unsigned long fname_len)
 
         /* get Address of inputs */
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-        if(sciErr.iErr)
+
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
 
         sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
@@ -65,14 +69,13 @@ int sci_size(char *fname,unsigned long fname_len)
 
         if (iType == sci_mlist)
         {
-            C2F(intsize)(id);
+            C2F(intsize) (id);
             return 0;
         }
 
-        if ( isDoubleType(pvApiCtx, piAddressVarTwo) ||
-            isStringType(pvApiCtx, piAddressVarTwo) )
+        if (isDoubleType(pvApiCtx, piAddressVarTwo) || isStringType(pvApiCtx, piAddressVarTwo))
         {
-            int iValue = -1; 
+            int iValue = -1;
 
             if (isScalar(pvApiCtx, piAddressVarTwo))
             {
@@ -85,16 +88,20 @@ int sci_size(char *fname,unsigned long fname_len)
                         iValue = (int)(dValue);
                     }
                 }
-                else // string
+                else            // string
                 {
                     char *pStr = NULL;
+
                     if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &pStr) == 0)
                     {
                         if (pStr)
                         {
-                            if (strcmp(pStr, C_SIZE_ROW) == 0) iValue = I_SIZE_ROW;
-                            if (strcmp(pStr, C_SIZE_COL) == 0) iValue = I_SIZE_COL; 
-                            if (strcmp(pStr, C_SIZE_ROWCOL) == 0) iValue = I_SIZE_ROWCOL;
+                            if (strcmp(pStr, C_SIZE_ROW) == 0)
+                                iValue = I_SIZE_ROW;
+                            if (strcmp(pStr, C_SIZE_COL) == 0)
+                                iValue = I_SIZE_COL;
+                            if (strcmp(pStr, C_SIZE_ROWCOL) == 0)
+                                iValue = I_SIZE_ROWCOL;
                             freeAllocatedSingleString(pStr);
                             pStr = NULL;
                         }
@@ -105,7 +112,7 @@ int sci_size(char *fname,unsigned long fname_len)
                 if ((iValue != I_SIZE_ROW) && (iValue != I_SIZE_COL) && (iValue != I_SIZE_ROWCOL))
                 {
                     /* compatilibity with previous error code 44 */
-                    Scierror(44, _("%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"),fname,2, "r", "c", "*");
+                    Scierror(44, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "r", "c", "*");
                     return 0;
                 }
             }
@@ -122,7 +129,8 @@ int sci_size(char *fname,unsigned long fname_len)
         }
     }
 
-    C2F(intsize)(id);
+    C2F(intsize) (id);
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/

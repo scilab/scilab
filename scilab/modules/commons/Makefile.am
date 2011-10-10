@@ -27,9 +27,15 @@ include $(top_srcdir)/Makefile.incl.am
 
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c
 
+COMMONS_CPP_SOURCES = 
+if NEED_JAVA
+COMMONS_CPP_SOURCES +=  src/jni/GiwsException.cpp
+endif
+
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
 libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE)
+libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) -Isrc/jni/
 
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
@@ -53,12 +59,14 @@ INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabCommons.i
 
+BUILT_SOURCES =
 if SWIG
-BUILT_SOURCES=swig
+BUILT_SOURCES += swig
 endif
 
-libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+if GIWS
+BUILT_SOURCES += giws-exception
+endif
 
 
 #### commons : gateway declaration ####

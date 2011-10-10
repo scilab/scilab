@@ -39,10 +39,12 @@ int sci_istssession(char *fname,unsigned long l)
 
 	m1 = 1;n1 = 1;
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &Status);
-	LhsVar(1)=Rhs+1;
 
-	C2F(putlhsvar)();
-	if (Status) {FREE(Status);Status=NULL;}
+    if (Status) {FREE(Status);Status=NULL;}
+
+	LhsVar(1)=Rhs+1;
+	PutLhsVar();
+	
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

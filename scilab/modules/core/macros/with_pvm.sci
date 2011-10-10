@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) DIGITEO - 2011 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,5 +10,6 @@
 
 
 function r = with_pvm()
-  r = with_module('pvm');
+  warnobsolete('getversion', '5.4.1');
+  r = %F;
 endfunction

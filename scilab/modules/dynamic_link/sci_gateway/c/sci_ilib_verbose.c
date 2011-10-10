@@ -73,7 +73,7 @@ int sci_ilib_verbose(char *fname,unsigned long fname_len)
 		}
 	}
 	
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -85,6 +85,4 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     PutLhsVar();
     return 0;
 }
-
-
 /*--------------------------------------------------------------------------*/

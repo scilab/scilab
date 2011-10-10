@@ -91,7 +91,7 @@ int sci_xchange( char * fname, unsigned long fname_len )
   LhsVar(1)=Rhs+1;
   LhsVar(2)=Rhs+2;
   LhsVar(3)=Rhs+3;
-	C2F(putlhsvar)();
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

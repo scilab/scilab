@@ -102,6 +102,7 @@ function atomsShow(package)
     // =========================================================================
 
     max_field_len = max( length(fields_map(:,2)) );
+    fields_map(:,2) = justify(fields_map(:,2),"r");
 
     for i=1:size(fields_map(:,1),"*")
 

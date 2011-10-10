@@ -15,7 +15,7 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 import javax.swing.KeyStroke;
 import javax.swing.JTable;
 
-import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -23,7 +23,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * SupprAction class
  * @author Calixte DENIZET
  */
-public final class SupprAction extends CallBack {
+public final class SupprAction extends CommonCallBack {
 
     private static final String KEY = "DELETE";
     private static final String SUPPR = "Suppr";

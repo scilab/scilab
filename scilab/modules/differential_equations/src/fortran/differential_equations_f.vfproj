@@ -10,13 +10,14 @@
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n differential_equations_f.dll %%f &gt;nul
-copy *.def differential_equations_f.def &gt;nul
-copy differential_equations_f.def ..\differential_equations_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy differential_equations_f_header.def+differential_equations_f.vcdef differential_equations_f.def &gt;nul" Description="Build differential_equations.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)differential_equations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)differential_equations.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -30,13 +31,14 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n differential_equations_f.dll %%f &gt;nul
-copy *.def differential_equations_f.def &gt;nul
-copy differential_equations_f.def ..\differential_equations_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy differential_equations_f_header.def+differential_equations_f.vcdef differential_equations_f.def &gt;nul" Description="Build differential_equations.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)differential_equations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)differential_equations.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -50,13 +52,14 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n differential_equations_f.dll %%f &gt;nul
-copy *.def differential_equations_f.def &gt;nul
-copy differential_equations_f.def ..\differential_equations_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy differential_equations_f_header.def+differential_equations_f.vcdef differential_equations_f.def &gt;nul" Description="Build differential_equations.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)differential_equations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)differential_equations.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
@@ -70,13 +73,14 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n differential_equations_f.dll %%f &gt;nul
-copy *.def differential_equations_f.def &gt;nul
-copy differential_equations_f.def ..\differential_equations_f.vcdef &gt;nul
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
+cd $(ConfigurationName)
+set LIST_OBJ=
+for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
+$(SolutionDir)bin\dumpexts -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
+copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
 del *.def &gt;nul
-cd ..
-copy differential_equations_f_header.def+differential_equations_f.vcdef differential_equations_f.def &gt;nul" Description="Build differential_equations.def"/>
+cd .." Description="Build $(ProjectName).def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)differential_equations_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)differential_equations.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL

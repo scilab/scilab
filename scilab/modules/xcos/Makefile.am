@@ -40,7 +40,6 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp \
 			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
@@ -83,6 +82,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/commons/src/jni \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
@@ -118,12 +118,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 
 
-libscixcos_la_LIBADD =  \
-libscixcos-algo.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/jvm/libscijvm.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscixcos_la_LIBADD = libscixcos-algo.la
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

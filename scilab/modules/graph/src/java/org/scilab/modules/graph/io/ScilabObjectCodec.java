@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graph.io;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.scilab.modules.types.ScilabBoolean;
@@ -78,7 +80,10 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 	public ScilabObjectCodec(Object template, String[] exclude,
 			String[] idrefs, Map<String, String> mapping) {
 		super(template, exclude, idrefs, mapping);
-
+		
+		final HashSet<String> newExclude = new HashSet<String>(this.exclude);
+		newExclude.add("type");
+		this.exclude = newExclude;
 	}
 
 	/**

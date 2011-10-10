@@ -193,20 +193,6 @@ function this = neldermead_configure (this,key,value)
     case "-mymethod" then
         nelmead_typefunction ( value , "value" , 3 );
         this.mymethod = value
-    case "-tolvarianceflag" then
-        nelmead_typeboolean ( value , "value" , 3 )
-        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
-        this.tolvarianceflag = value
-    case "-tolabsolutevariance" then
-        nelmead_typereal ( value , "value" , 3 );
-        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
-        nelmead_checkgreq ( "neldermead_configure" , value , "value" , 3 , 0 )
-        this.tolabsolutevariance = value
-    case "-tolrelativevariance" then
-        nelmead_typereal ( value , "value" , 3 );
-        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
-        nelmead_checkgreq ( "neldermead_configure" , value , "value" , 3 , 0 )
-        this.tolrelativevariance = value
     case "-greedy" then
         nelmead_typeboolean ( value , "value" , 3 )
         nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
@@ -222,6 +208,23 @@ function this = neldermead_configure (this,key,value)
         nelmead_warnoptobs ( "-myterminateflag" , "-outputcommand" , "5.4.1" )
         nelmead_typeboolean ( value , "value" , 3 );
         this.myterminateflag = value;
+    case "-tolvarianceflag" then
+        nelmead_warnoptobs ( "-tolvarianceflag" , "-outputcommand" , "5.4.1" )
+        nelmead_typeboolean ( value , "value" , 3 )
+        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
+        this.tolvarianceflag = value
+    case "-tolabsolutevariance" then
+        nelmead_warnoptobs ( "-tolabsolutevariance" , "-outputcommand" , "5.4.1" )
+        nelmead_typereal ( value , "value" , 3 );
+        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
+        nelmead_checkgreq ( "neldermead_configure" , value , "value" , 3 , 0 )
+        this.tolabsolutevariance = value
+    case "-tolrelativevariance" then
+        nelmead_warnoptobs ( "-tolrelativevariance" , "-outputcommand" , "5.4.1" )
+        nelmead_typereal ( value , "value" , 3 );
+        nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
+        nelmead_checkgreq ( "neldermead_configure" , value , "value" , 3 , 0 )
+        this.tolrelativevariance = value
     else
         // Delegate to the optimization object
         this.optbase = optimbase_configure ( this.optbase , key , value );

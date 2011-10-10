@@ -62,7 +62,8 @@ instr = "assert_checkequal ( [1 2], [3 4] )";
 ierr=execstr(instr,"errcatch");
 MY_assert_equal ( ierr , 10000 );
 errmsg = lasterror();
-MY_assert_equal ( errmsg , "assert_checkequal: Assertion failed: expected = [3 ...] while computed = [1 ...]" );
+refmsg = msprintf( gettext( "%s: Assertion failed: expected = %s while computed = %s" ) , "assert_checkequal" , "[3 ...]" , "[1 ...]" );
+MY_assert_equal ( errmsg , refmsg );
 //
 [flag , errmsg] = assert_checkequal ( %T , %T );
 checkassert ( flag , errmsg , "success" );
@@ -107,8 +108,3 @@ checkassert ( flag , errmsg , "success" );
 //
 [flag , errmsg] = assert_checkequal(complex(%inf,%nan),complex(%inf,%nan));
 checkassert ( flag , errmsg , "success" );
-
-
-
-
-

@@ -69,7 +69,7 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
 
         <listitem>
           <para>7個のエントリを有するベクトル
-          :<literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
+          :<literal>[compiler, tk, modelicac, release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -81,7 +81,7 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
     <para>Scilab バージョン名を<literal>version</literal>,
 	構築オプションを <literal>opts</literal>に返します.
 	この構築オプションは,
-	Scilabが pvm, tk または modelica を組み込んで構築されたかどうかを
+	Scilabが tk または modelica を組み込んで構築されたかどうかを
 	定義するために使用され, リリース日や時間も含まれます.</para>
   </refsection>
 

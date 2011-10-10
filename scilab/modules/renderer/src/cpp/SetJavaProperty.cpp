@@ -18,108 +18,128 @@
 #include "subwinDrawing/DrawableSubwin.h"
 #include "GiwsException.hxx"
 
-extern "C"{
+extern "C"
+{
 #include "Scierror.h"
 #include "sciprint.h"
 }
 
-using namespace sciGraphics ;
+using namespace sciGraphics;
 
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor )
+void sciSetJavaColormap(sciPointObj * pFigure, const double rgbMat[], int nbColor)
 {
-  getFigureDrawer(pFigure)->setColorMap( rgbMat, nbColor ) ;
+    getFigureDrawer(pFigure)->setColorMap(rgbMat, nbColor);
 }
+
 /*---------------------------------------------------------------------------------*/
-int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] )
+int sciSetJavaFigureSize(sciPointObj * pFigure, const int size[2])
 {
-  return getFigureDrawer(pFigure)->setSize(size);
+    return getFigureDrawer(pFigure)->setSize(size);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] )
+void sciSetJavaWindowSize(sciPointObj * pFigure, const int size[2])
 {
-  getFigureDrawer(pFigure)->setWindowSize(size) ;
+    getFigureDrawer(pFigure)->setWindowSize(size);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] )
+void sciSetJavaWindowPosition(sciPointObj * pFigure, const int pos[2])
 {
-  getFigureDrawer(pFigure)->setWindowPosition(pos) ;
+    getFigureDrawer(pFigure)->setWindowPosition(pos);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
+void sciSetJavaInfoMessage(sciPointObj * pFigure, const char *infoMessage)
 {
-  getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
+    getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality )
+void sciSetJavaAntialiasingQuality(sciPointObj * pFigure, int quality)
 {
-	getFigureDrawer(pFigure)->setAntialiasingQuality(quality);
+    getFigureDrawer(pFigure)->setAntialiasingQuality(quality);
 }
+
 /*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
-  if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
-  {
-    return TRUE;
-  }
-  else
-  {
-    return FALSE;
-  }
+    if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-  getSubwinDrawer(parentSubwin)->addTextToDraw(pText);
+    getSubwinDrawer(parentSubwin)->addTextToDraw(pText);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin)
 {
-  getSubwinDrawer(parentSubwin)->removeTextToDraw(pText);
+    getSubwinDrawer(parentSubwin)->removeTextToDraw(pText);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode)
 {
-  getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);
+    getFigureDrawer(pFigure)->setAutoResizeMode(resizeMode == TRUE);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4])
 {
-  getFigureDrawer(pFigure)->setViewport(viewport);
+    getFigureDrawer(pFigure)->setViewport(viewport);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaBackground(sciPointObj * pFigure, int backColor)
 {
-  getFigureDrawer(pFigure)->setBackgroundColor(backColor);
+    getFigureDrawer(pFigure)->setBackgroundColor(backColor);
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
 {
-	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
+    getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
+
 /*---------------------------------------------------------------------------------*/
-void sciSetJavaTitle( sciPointObj * pFigure, const char * title )
+void sciSetJavaTitle(sciPointObj * pFigure, const char *title)
 {
-	try {
-		getFigureDrawer(pFigure)->setTitle(title);
-	} catch (const GiwsException::JniException& e)
-	{
-		Scierror(999, "A native error occurred during the creation of the window.\nDescription: %s\nException Name: %s\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
-	} catch (const std::exception& e)
-	{
-		sciprint("Error: %s\n",e.what());
-		Scierror(999, "An error occurred during the creation of the window.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
-	}
+    try
+    {
+        getFigureDrawer(pFigure)->setTitle(title);
+    } catch(const GiwsException::JniException & e)
+    {
+        Scierror(999,
+                 "A native error occurred during the creation of the window.\nDescription: %s\nException Name: %s\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n",
+                 e.getJavaDescription().c_str(), e.getJavaExceptionName().c_str());
+    } catch(const std::exception & e)
+    {
+        sciprint("Error: %s\n", e.what());
+        Scierror(999,
+                 "An error occurred during the creation of the window.\nPlease report a bug on http://bugzilla.scilab.org/ with your example and the result of getdebuginfo().\n");
+    }
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciJavaUpdateSubwinScale(sciPointObj * pSubwin)
 {
-  getSubwinDrawer(pSubwin)->updateScale();
+    getSubwinDrawer(pSubwin)->updateScale();
 }
+
 /*---------------------------------------------------------------------------------*/
 void sciJavaUpdateTextBoundingBox(sciPointObj * pText)
 {
-  getTextDrawer(pText)->updateTextBox();
+    getTextDrawer(pText)->updateTextBox();
 }
-/*---------------------------------------------------------------------------------*/
 
+/*---------------------------------------------------------------------------------*/

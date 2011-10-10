@@ -15,8 +15,6 @@
 /*--------------------------------------------------------------------------*/
 BOOL FileExist(wchar_t  *wcfilename)
 {
-	BOOL exist = FALSE;	
-
 	WIN32_FIND_DATAW FindFileData;
 	HANDLE handle = FindFirstFileW (wcfilename, &FindFileData);
 	if (handle != INVALID_HANDLE_VALUE)

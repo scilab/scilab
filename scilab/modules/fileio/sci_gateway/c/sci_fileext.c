@@ -31,7 +31,7 @@ int sci_fileext(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		int n1 = 0, m1 = 0, l1 = 0;
+		int n1 = 0, m1 = 0;
 		int i = 0;
 
 		char **Input_filenames  = NULL;
@@ -62,9 +62,11 @@ int sci_fileext(char *fname,unsigned long fname_len)
 			}
 			CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_extensions );
 			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
+			
 			freeArrayOfString(Input_filenames, m1*n1);
 			freeArrayOfString(Output_extensions,m1*n1);
+
+            PutLhsVar();
 		}
 		else
 		{

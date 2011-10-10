@@ -230,6 +230,6 @@ int sci_umf_lusolve(char* fname,unsigned long l)
 	}
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

@@ -157,8 +157,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
     /* NG end */
     LhsVar(1)=0;
-	PutLhsVar();
+    PutLhsVar();
     return 0;
 }
-
 /*--------------------------------------------------------------------------*/

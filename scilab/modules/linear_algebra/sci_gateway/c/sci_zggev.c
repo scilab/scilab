@@ -134,7 +134,6 @@ static int intzggev_complex(char *fname)
 	int iRowsB = 0;
 	int iColsB = 0;
 	int ONE = 1;
-	int ZERO = 0;
 	int iWorkSize;
 	int INFO;
 	int iRWorkSize;
@@ -151,7 +150,6 @@ static int intzggev_complex(char *fname)
 	double *pdblFinalAlphaImg = NULL; //SCILAB return Var
 	double *pdblFinalBetaReal = NULL; //SCILAB return Var, in complex case
 	double *pdblFinalBetaImg = NULL; //SCILAB return Var, in complex case
-	double *pdblFinalBeta = NULL; //SCILAB return Var, in real-only case
 	double *pdblFinalRReal = NULL; //SCILAB return Var
 	double *pdblFinalRImg = NULL; //SCILAB return Var
 	double *pdblFinalLReal = NULL; //SCILAB return Var
@@ -397,9 +395,8 @@ static int intzggev_real(char *fname)
 	int iRowsB = 0;
 	int iColsB = 0;
 	int ONE = 1;
-	int ZERO = 0;
-	int iWorkSize;
-	int INFO;
+	int iWorkSize = 0;
+	int INFO = 0;
 
 	char JOBVR;
 	char JOBVL;
@@ -408,11 +405,8 @@ static int intzggev_real(char *fname)
 	double *pdblMatrixAImg = NULL;
 	double *pdblMatrixBReal = NULL;
 	double *pdblMatrixBImg = NULL;
-	double *pdblRWork = NULL; // Used by LAPACK
 	double *pdblFinalAlphaReal = NULL; //SCILAB return Var
 	double *pdblFinalAlphaImg = NULL; //SCILAB return Var
-	double *pdblFinalBetaReal = NULL; //SCILAB return Var, in complex case
-	double *pdblFinalBetaImg = NULL; //SCILAB return Var, in complex case
 	double *pdblFinalBeta = NULL; //SCILAB return Var, in real-only case
 	double *pdblFinalRReal = NULL; //SCILAB return Var
 	double *pdblFinalRImg = NULL; //SCILAB return Var
@@ -423,8 +417,6 @@ static int intzggev_real(char *fname)
 	doublecomplex *pdblMatrixB	= NULL;
 	doublecomplex *pdblLeftvectors = NULL; // Used by LAPACK
 	doublecomplex *pdblRightvectors = NULL; // Used by LAPACK
-	doublecomplex *pdblAlpha = NULL; //Used by LAPACK
-	doublecomplex *pdblBeta = NULL; //Used by LAPACK
 
 	CheckRhs(2,2) ;
 	CheckLhs(1,4) ;

@@ -48,7 +48,8 @@ CHECK_SRC=  $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
 
 # cyclic  
-libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la
+
 #### Target ######
 modulename=dynamic_link
 

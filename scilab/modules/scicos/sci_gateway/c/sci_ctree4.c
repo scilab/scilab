@@ -54,7 +54,7 @@ int sci_ctree4(char *fname,unsigned long fname_len)
 	/*      nbcols(7)=nr */
 	*istk(iadr(C2F(intersci).iwhere[6])+2) = nr;
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

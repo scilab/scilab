@@ -27,11 +27,11 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
   //
   // Check types of variables
   if ( typeof(filecomp) <> "string" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkfilesequal" , 1 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkfilesequal" , 1 )
     error(errmsg)
   end
   if ( typeof(fileref) <> "string" ) then
-    errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkfilesequal" , 2 )
+    errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkfilesequal" , 2 )
     error(errmsg)
   end
   if ( compfun <> [] ) then

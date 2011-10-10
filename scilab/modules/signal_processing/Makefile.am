@@ -109,7 +109,7 @@ libscisignal_processing_algo_la_CFLAGS = $(libscisignal_processing_la_CFLAGS)
 CHECK_SRC= $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisignal_processing_la_CFLAGS)
 
-libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la
 
 #### Target ######
 modulename=signal_processing

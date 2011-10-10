@@ -431,9 +431,6 @@
     <ClCompile Include="gainblk_ui8s.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hystheresis.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -997,9 +994,6 @@
     <ClInclude Include="..\..\includes\blocks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\scicos_block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1058,7 +1052,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos_blocks.iss" />
-    <None Include="..\..\version.xml" />
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>

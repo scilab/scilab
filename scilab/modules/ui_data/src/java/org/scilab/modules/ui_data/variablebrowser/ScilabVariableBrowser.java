@@ -13,6 +13,7 @@ package org.scilab.modules.ui_data.variablebrowser;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -40,7 +41,7 @@ public final class ScilabVariableBrowser extends SwingScilabWindow {
         super();
         browserTab = new SwingScilabVariableBrowser(columnNames);
         browserTab.setCallback(ScilabCallBack
-                               .createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", ScilabCallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
+                               .createCallback("org.scilab.modules.ui_data.BrowseVar.closeVariableBrowser", CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE));
 
         TextBox infobar = ScilabTextBox.createTextBox();
         browserTab.addInfoBar(infobar);

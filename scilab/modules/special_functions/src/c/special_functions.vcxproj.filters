@@ -90,7 +90,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\special_functions.iss" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="special_functions.rc">

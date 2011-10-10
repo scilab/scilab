@@ -49,14 +49,14 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
     if (Rhs <= 0)
     {
-		sci_demo(fname, fname_len);
+        sci_demo(fname, fname_len);
         return 0;
     }
     CheckRhs(3,7);
 
     if ( get_optionals(fname,opts) == 0)
     {
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0 ;
     }
 
@@ -74,7 +74,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     if (m3 * n3 == 0)
     {
         LhsVar(1)=0;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
 
@@ -114,7 +114,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
     Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
 
     LhsVar(1) = 0;
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

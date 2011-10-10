@@ -376,7 +376,7 @@ void residu_with_prec(SciSparse *A, double x[], double b[], double r[], double *
       r[i] = (double) temp;
       norm2 += temp*temp;
     }
-  *rn = (double) sqrt(norm2);
+  *rn = (double) sqrt((double)norm2);
   return;
 }
 
@@ -411,7 +411,7 @@ void residu_with_prec_for_chol(SciSparse *A, double x[], double b[], double r[],
 	  r[i] = (double) wk[i];
 	  norm2 += wk[i]*wk[i];
 	}
-      *rn = (double) sqrt(norm2);
+      *rn = (double) sqrt((double)norm2);
     }
   return;
 }
@@ -447,6 +447,6 @@ void cmplx_residu_with_prec(SciSparse *A,
       ri[i] = (double) tempi;
       norm2 += tempr*tempr + tempi*tempi;
     }
-  *rn = (double) sqrt(norm2);
+  *rn = (double) sqrt((double)norm2);
   return;
 }

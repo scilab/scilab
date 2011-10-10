@@ -110,7 +110,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
         return getStylePreferences();
     }
 
-   /**
+    /**
      * The read method is used to read the file and to write its contents
      * in the document at position pos
      * @param file the file to read
@@ -121,18 +121,21 @@ public class ScilabEditorKit extends DefaultEditorKit {
      * @throws BadLocationException if the pos is invalid
      */
     public void read(SciNotes editor, File file, Document doc, int pos) throws IOException, BadLocationException {
-	Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
-	try {
-	    charset = DefaultEncodingAction.tryToGuessEncoding(file);
-	} catch (CharacterCodingException e) {
-	    ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
-	}
-	((ScilabDocument) doc).setEncoding(charset.toString());
-	EncodingAction.updateEncodingMenu((ScilabDocument) doc);
-	FileInputStream fis = new FileInputStream(file);
-	InputStreamReader isr = new InputStreamReader(fis, charset);
-	BufferedReader br = new BufferedReader(isr);
-	read(br, doc, pos);
+        Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
+        try {
+            charset = DefaultEncodingAction.tryToGuessEncoding(file);
+        } catch (CharacterCodingException e) {
+            ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+        }
+        ((ScilabDocument) doc).setEncoding(charset.toString());
+        EncodingAction.updateEncodingMenu((ScilabDocument) doc);
+        FileInputStream fis = new FileInputStream(file);
+        InputStreamReader isr = new InputStreamReader(fis, charset);
+        BufferedReader br = new BufferedReader(isr);
+        read(br, doc, pos);
+        try {
+            br.close();
+        } catch (IOException e) { }
     }
 
     /**
@@ -145,6 +148,19 @@ public class ScilabEditorKit extends DefaultEditorKit {
      * @throws BadLocationException if the pos is invalid
      */
     public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
+        DocString docString = read(in);
+        ((ScilabDocument) doc).setEOL(docString.eol);
+        ((ScilabDocument) doc).setBinary(docString.isBinary);
+        doc.insertString(pos, docString.content, null);
+    }
+
+    /**
+     * The read method is used to read the Reader and to write its contents
+     * in the document at position pos
+     * @param in the Reader to read
+     * @throws IOException if a problem is encountered in reading the stream
+     */
+    public DocString read(Reader in) throws IOException {
         int nch;
         int i;
         int prev;
@@ -153,7 +169,8 @@ public class ScilabEditorKit extends DefaultEditorKit {
         boolean mac = false;
         boolean first = true;
         boolean binary = false;
-	StringBuilder sbuf = new StringBuilder(buffer.length);
+        DocString docString = new DocString();
+        StringBuilder sbuf = new StringBuilder(buffer.length);
         while ((nch = in.read(buffer, 0, buffer.length)) != -1) {
             if (first) {
                 /* We try to know if we have a binary file
@@ -181,12 +198,12 @@ public class ScilabEditorKit extends DefaultEditorKit {
                         if (buffer[i + 1] == '\n') {
                             i++;
                             if (!win && !mac) {
-                                ((ScilabDocument) doc).setEOL(ScilabDocument.EOLWIN);
+                                docString.eol = ScilabDocument.EOLWIN;
                                 win = true;
                             }
                         } else {
                             if (!win && !mac) {
-                                ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
+                                docString.eol = ScilabDocument.EOLMAC;
                                 mac = true;
                             }
                         }
@@ -198,7 +215,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
                 if (i == nch - 1) {
                     if (buffer[i] == '\r') {
                         if (!win && !mac) {
-                            ((ScilabDocument) doc).setEOL(ScilabDocument.EOLMAC);
+                            docString.eol = ScilabDocument.EOLMAC;
                         }
                         buffer[i] = '\n';
                     }
@@ -209,11 +226,21 @@ public class ScilabEditorKit extends DefaultEditorKit {
             }
         }
         if (!win && !mac) {
-            ((ScilabDocument) doc).setEOL(ScilabDocument.EOLUNIX);
+            docString.eol = ScilabDocument.EOLUNIX;
         }
 
-        ((ScilabDocument) doc).setBinary(inc == 2);
+        docString.isBinary = inc == 2;
+        docString.content = sbuf.toString();
 
-        doc.insertString(pos, sbuf.toString(), null);
+        return docString;
+    }
+
+    public static class DocString {
+
+        public String eol;
+        public boolean isBinary;
+        public String content;
+
+        DocString() { }
     }
 }

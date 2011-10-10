@@ -14,6 +14,8 @@
 
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
+#include "GiwsException.hxx"
+
 extern "C"
 {
 #include "api_scilab.h"

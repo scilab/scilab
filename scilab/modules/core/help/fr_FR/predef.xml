@@ -9,10 +9,12 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>n=predef()
-oldnew=predef(n)
-oldnew=predef('all')
-oldnew=predef('clear')</synopsis>
+    <synopsis>n = predef()
+oldnew = predef(n)
+oldnew = predef('all')
+oldnew = predef('clear')
+variables_name = predef('names')
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -37,6 +39,7 @@ oldnew=predef('clear')</synopsis>
       définies dernièrement. Renvoie l'ancien et le nouveau nombre de
       variables protégées.
     </para>
+    <para><literal>predef('names')</literal> retourne un vecteur de chaines de caracteres contenant les noms des variables protegées par predef.</para>
     <para>
     </para>
   </refsection>

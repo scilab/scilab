@@ -51,7 +51,7 @@ c
       endif
 1     format(19h entree dans n1gc2:,6x,22hdimension du probleme ,i3)
 11    format(2x,4hnrz=,i4,4x,6hniter=,i3,4x,5hnsim=,i4,4x,4himp=,i3)
-12    format(2x,7hepsrel=,d8.2,4x,4hdf1=,d8.2,4x,6hdxmin=,d8.2)
+12    format(2x,7hepsrel=,d9.2,4x,4hdf1=,d9.2,4x,6hdxmin=,d9.2)
       if ( n.le.0 .or. niter.le.0 .or. nsim.le.0 .or.
      / dxmin.le.zero .or. df1.le.zero
      / .or. epsrel.le.zero .or. epsrel.gt.un ) then
@@ -103,6 +103,6 @@ c
 2     format(38h n1gc2   rz insuffisamment dimensionne)
 3     format(25h n1gc2   appel incoherent)
 4     format(22h n1gc2   fin sur dxmin)
-5     format(16h sortie de n1gc2,7x,12hnorme de g =,d15.9)
+5     format(16h sortie de n1gc2,7x,12hnorme de g =,d16.9)
 51     format(9x, 6hniter=,i4,4x,5hnsim=,i5)
       end

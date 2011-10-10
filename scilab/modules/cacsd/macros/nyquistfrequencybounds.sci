@@ -62,13 +62,13 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     orient=[orient imag(repfreq(derivat(Hr),f))<0]
     frq=[frq;f];
   end
-
+ 
   // computing frequencies that make the nyquist locus to cross
   // the real part upper bound
   f=arg2freq(roots(numer(Hr-bounds(2,1))));
   f=real(f(real(f)>0&abs(imag(f)./abs(f))<eps));
   //keep only those that give imaginary parts inside the bounds
-  im==imag(repfreq(H,f));
+  im=imag(repfreq(H,f));
   f=f(im<=bounds(2,2)&im>=bounds(1,2))
   if f<>[] then
     orient=[orient imag(repfreq(derivat(Hr),f))>0]

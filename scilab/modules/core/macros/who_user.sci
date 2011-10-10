@@ -44,6 +44,6 @@ txt=[gettext("User variables are:");
     '';
     txt;
     '';
-    msprintf(gettext("Using %s elements ouf of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
+    msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
 write(%io(2),txt,'(1x,a)')
 endfunction

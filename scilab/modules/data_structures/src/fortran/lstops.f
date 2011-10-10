@@ -65,20 +65,3 @@ c     insertion
       return
 c
       end
-
-      integer function strpos(ptr,ns,chars,str,n)
-      integer ptr(ns+1),ns,chars(*),str(n),n
-      do 10 i=1,ns
-         i1=ptr(i)
-         i2=ptr(i+1)
-         if(i2-i1.eq.n) then
-            do 05 j=1,n
-               if(str(j).ne.chars(i1-1+j)) goto 10
- 05         continue
-            strpos=i
-            return
-         endif
- 10   continue
-      strpos=0
-      return
-      end

@@ -142,7 +142,7 @@ int sci_qld(char *fname,unsigned long fname_len)
 			LhsVar(3) = next+2;
 			*istk(inform) = ifail;
 		}
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	else if (ifail == 1)
 		Scierror(24,_("%s: Too many iterations (more than %d).\n"),fname,40*(n+m));

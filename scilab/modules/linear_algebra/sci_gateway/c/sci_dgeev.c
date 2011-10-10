@@ -44,7 +44,6 @@ int sci_dgeev(char *fname, unsigned long fname_len)
 	int iRows = 0;
 	int iCols = 0;
 	int ONE = 1;
-	int ZERO = 0;
 	int iWorkSize;
 
 	int INFO;
@@ -52,7 +51,6 @@ int sci_dgeev(char *fname, unsigned long fname_len)
 	char JOBVR;
 	char JOBVL;
 
-	double dlbZero = 0;
 
 	double *pdblWork = NULL;
 	double *pdblRealData	= NULL;

@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
@@ -16,14 +16,14 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
 // mumin,mumax = bounds on mu with mu=1/gama^2; (mumin=0  usually)
 // nmax = maximum number of iterations in the gama-iteration.
 // Two possible calling sequences:
-// [Sk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu and the central controller 
+// [Sk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu and the central controller
 // Sk in the same representation as P. (All calculations being done in state
 // space).
-// [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu 
+// [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax) returns mu
 //            and the parametrization of all stabilizing controllers:
 //  a stabilizing controller K is obtained by K=Fl(Sk,r,PHI) where
-//  PHI is a linear system with dimensions r' and satisfy h_norm(PHI) < gama. 
-//  rk (=r) is the size of the Sk22 block and mu = 1/gama^2 after nmax 
+//  PHI is a linear system with dimensions r' and satisfy h_norm(PHI) < gama.
+//  rk (=r) is the size of the Sk22 block and mu = 1/gama^2 after nmax
 //  iterations.
 //!
 //
@@ -31,9 +31,54 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
 // mu_inf upper bound on mu = gama^-2
 //P2 = normalized P.
 //
+  if argn(2)<>5 then
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"h_inf",5))
+  end
 
   if and(typeof(P)<>['rational','state-space']) then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"h_inf",1))
+  end
+  if P.dt<>"c" then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"h_inf",1))
+  end
+  if typeof(r)<>"constant"|~isreal(r) then
+    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",2))
+  end
+  if size(r,'*')<>2 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"h_inf",2,2))
+  end
+  r=int(r);
+  if or(r<=0) then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",2))
+  end
+  
+  
+  if typeof(mumin)<>"constant"|~isreal(mumin) then
+    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",3))
+  end
+  if size(mumin,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",3))
+  end
+  if or(mumin<=0) then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",3))
+  end
+
+  
+  if typeof(mumax)<>"constant"|~isreal(mumax) then
+    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",4))
+  end
+  if size(mumax,'*')<>1 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"h_inf",4))
+  end
+  if mumax<=0 then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"h_inf",4))
+  end
+  if typeof(nmax)<>"constant"|~isreal(nmax) then
+    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"h_inf",5))
+  end
+
+  if nmax<>int(nmax)|nmax<=0 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A positive integer expected.\n"),"h_inf",5))
   end
   [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,%t)
   //if mu_inf < mumax then write(%io(2),mu_inf,'(3x,''romax too big: max romax= '',f10.5)');end
@@ -41,7 +86,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   //
   //    Gama-iteration P6 = transformed P2 with D11 removed
   [P6,Finf,mu,Uc#i,Yc#i]=h_iter(P2,r,mumin,mumax,nmax)
-  if mu==0 then 
+  if mu==0 then
     warning(msprintf(_("%s : No feasible ro in bounds [%g  %g]\n"),"h_inf",mumin,mumax));
     rk=[];Sk=[];
     return,
@@ -60,12 +105,12 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
   Dk21=Dk21*Yci;
   //Convert to descriptor form:
   Sk=des2ss(Ak,[Bk1,Bk2],[Ck1;Ck2],[Dk11,Dk12;Dk21,Dk22],E);
-  if argn(1)<3 then 
+  if argn(1)<3 then
     Sk=Sk(1:r(2),1:r(1));rk=mu;
     //    Case D22 different from zero
     if norm(coeff(D22),1) <> 0 then Sk=Sk/.D22;end
   else
-     rk=r;
+    rk=r;
   end
   //    Sk in transfer representation if P is.
   if typeof(P)=='rational' then Sk=ss2tf(Sk);end;
@@ -81,7 +126,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
 //   [C1 D12]'*[C1 D12] = Q = [Q1 S;S' Q2]
 //   [B1;D21] *[B1;D21]'= R = [R1 L';L R2]
 //!
-  
+
   P1=P(1);
   if P1(1)=='r' then P=tf2ss(P);end
   [A,B1,B2,C1,C2,D11,D12,D21,D22]=smga(P,r);
@@ -97,22 +142,22 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   //Stabilizability/detectability of P22 ?
 
   P22=syslin('c',A,B2,C2);
-  
+
   [ns,Us,St]=st_ility(P22,1.d-10)
-  
-  if ns<>na then 
+
+  if ns<>na then
     warning(msprintf(gettext("%s:  %s is not stabilizable.\n"),"h_inf","P22"));
   end
-  if ns==na & info then 
+  if ns==na & info then
     mprintf(gettext("%s: %s is stabilizable.\n"),"h_inf","P22");
   end
 
   [nd,Ud,Sd]=dt_ility(P22,1.d-10)
 
-  if nd <> 0 then 
+  if nd <> 0 then
     warning(msprintf(gettext("%s:   %s is not detectable.\n"),"h_inf","P22"));
   end
-  if nd==0 & info then 
+  if nd==0 & info then
     mprintf(gettext("%s: %s is detectable.\n"),"h_inf","P22");
   end
 
@@ -120,7 +165,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   P12=syslin('c',A,B2,C1,D12);
   [nt,dt]=trzeros(P12),rzt=real(nt./dt),
   if size(nt,'*') > 0 then
-    if min(abs(rzt)) < sqrt(%eps) then 
+    if min(abs(rzt)) < sqrt(%eps) then
       warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P12")),
     end,
   end,
@@ -129,7 +174,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
   P21=syslin('c',A,B1,C2,D21);
   [nt,dt]=trzeros(P21),rzt=real(nt./dt),
   if size(nt,'*')>0 then
-    if min(abs(rzt)) < sqrt(%eps) then 
+    if min(abs(rzt)) < sqrt(%eps) then
       warning(msprintf(gettext("%s: %s has a zero on/close the imaginary axis.\n"),"h_inf","P21")),
     end,
   end,
@@ -138,18 +183,18 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
 
   //Row compression of D12 (bottom)
   [T1,r1]=rowcomp(D12),
-  if r1<>m2 then 
+  if r1<>m2 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d:  %s is not full rank.\n"),"h_inf",1,"D12"));
   end,
   T1=[T1(r1+1:p1,:);T1(1:r1,:)],
   D12=T1*D12,
   //Column compression of D21 (right)
   [S1,r2]=colcomp(D21),
-  if r2<>p2 then 
-   error(msprintf(gettext("%s: Wrong values for input argument #%d:  %s is not full rank.\n"),"h_inf",1,"D21"));
+  if r2<>p2 then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d:  %s is not full rank.\n"),"h_inf",1,"D21"));
   end,
   D21=D21*S1,
-  //Updating 
+  //Updating
   B1=B1*S1,C1=T1*C1,
   D11=T1*D11*S1,
 
@@ -166,7 +211,7 @@ function [P2,mu_inf,Uci,Yci,D22]=h_init(P,r,info)
 
   //P2=[A,B1,B2,C1,C2,D11,D12,D21,D22] with D12 and D21 scaled;
 
-  //Initialization  
+  //Initialization
 
   //Solve H-infinity problem at infinity
 
@@ -195,7 +240,7 @@ function [P6ad,Finfad,muad,Uc#iad,Yc#iad]=h_iter(P2,r,mumin,mumax,nmax)
     niter=niter+1;
     mu=(mumin+mumax)/2;
     [P6,Finf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
-    
+
     test=max(tv)
 
     if test > 0 then
@@ -250,7 +295,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
   C1=C1+D12*Kinf*C2;
   D11=D11+D12*Kinf*D21;
 
-  if norm(D11) >= gama then 
+  if norm(D11) >= gama then
     P6=[]; Kinf=[];Uc#i=[];Yc#i=[];
     error(msprintf(gettext("%s: gamma too small.\n"),"h_inf"));
   end
@@ -284,7 +329,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
   D12=Teta12*M*D12;
   D21=D21*N*Teta21;
 
-  //P4 =syslin('c',A,[B1,B2],[C1;C2],[D11,D12;D21,D22] 
+  //P4 =syslin('c',A,[B1,B2],[C1;C2],[D11,D12;D21,D22]
   //          with D11=0; P4=Fl(Teta,size(D11'),P3,r);
 
   D22=0*D22#;
@@ -293,14 +338,14 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
 
   //Row compression of D12
   [T1,r1]=rowcomp(D12);
-  if r1<>m2 then 
+  if r1<>m2 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d:  %s is not full rank.\n"),"h_inf",1,"D12"));
   end
   T1=[T1(r1+1:p1,:);T1(1:r1,:)],
   D12=T1*D12,
   //Column compression of D21
   [S1,r2]=colcomp(D21),
-  if r2<>p2 then 
+  if r2<>p2 then
     error(msprintf(gettext("%s: Wrong values for input argument #%d:  %s is not full rank.\n"),"h_inf",1,"D21"));
   end,
   D21=D21*S1,
@@ -325,7 +370,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
 
   //     Test of mu for P6  <=> Test of mu^-1 for P2
   //Optimal controller :
-  indic=0;     
+  indic=0;
 
   mu_test=1/mu;
 
@@ -350,7 +395,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
     [X1,X2,errx]=ric_desc(H);
     if errx > 1.d-4 then
       mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",errx);
-     end
+    end
     //Optimal observer :
 
     Q1=C1'*C1;
@@ -358,7 +403,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
     B1#=B1*(eye()-D21'*D21);
     Ay=A-L*C2;
     Qy=-B1#*B1#';
-    
+
     Ry=mu_test*Q1-C2'*C2;
 
     J=[Ay' Ry;
@@ -366,15 +411,15 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
     dy=min(abs(real(spec(J))));
     //write(%io(2),dy);
     if dy < 1.d-9 then
-      mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"+.. 
-		      "The distance to the imaginary axis is less than %g "),"h_inf","J",1.d-9);
+      mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"+..
+                      "The distance to the imaginary axis is less than %g "),"h_inf","J",1.d-9);
       write(%io(2),dy);
       indic=1 ;test=1;
     end
     if indic==0 then
       [Y1,Y2,erry]=ric_desc(J);
-      if erry > 1.d-4 then 
-	mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
+      if erry > 1.d-4 then
+        mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
       end
       //Tests
       //
@@ -403,18 +448,18 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
   comm1=_("Unfeasible (Hx hamiltonian)")
   comm2=_("Unfeasible (Hy hamiltonian)")
   comm3=_("Unfeasible (Hy hamiltonian)")
-  if exists('tv')==1 then 
-    if answer>0 then 
+  if exists('tv')==1 then
+    if answer>0 then
       // @TODO This stuff should be localized... To bored to understand it for now.
       select no
       case 1  then
-	fmt='('' gama = '',f18.10,'' '+_("Unfeasible (Hx hamiltonian)")+'   test = '',e15.5)'
+        fmt='('' gama = '',f18.10,'' '+_("Unfeasible (Hx hamiltonian)")+'   test = '',e15.5)'
       case 2 then
-	fmt='('' gama = '',f18.10,'' '+_("Unfeasible (Hy hamiltonian)")+'   test = '',e15.5)'
+        fmt='('' gama = '',f18.10,'' '+_("Unfeasible (Hy hamiltonian)")+'   test = '',e15.5)'
       case 3 then
-	fmt='('' gama = '',f18.10,'' '+_("Unfeasible (spectral radius)")+'  test = '',e15.5)'
-      else 
-	fmt='('' gama = '',f18.10,''             ok             )  test = '',e15.5)'
+        fmt='('' gama = '',f18.10,'' '+_("Unfeasible (spectral radius)")+'  test = '',e15.5)'
+      else
+        fmt='('' gama = '',f18.10,''             ok             )  test = '',e15.5)'
       end;
       write(%io(2),[1/sqrt(mu),answer],fmt);
     end
@@ -426,97 +471,97 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
 // ****************************
 // Computation of the optimal controller Sk for a standard
 // plant which satisfies the assumption D11=0
-// 
+//
 // F.D.
 //!
 //   [C1 D12]*[C1 D12]'=Q=[Q1 S;S' Q2]
 //   [B1;D21]*[B1;D21]'=R=[R1 L';L R2]
-// 
+//
 
   [A,B1,B2,C1,C2,D11,D12,D21,D22]=smga(P,r);
-  if norm(D11,1) > %eps then 
+  if norm(D11,1) > %eps then
     error('D11 <> 0'),
   end
 
-    [p2,m1]=size(D21),
-    [p1,m2]=size(D12),
-    l1=1:p1-m2;k1=1:m1-p2;
-    l2=1+p1-m2:p1;k2=1+m1-p2:m1;
+  [p2,m1]=size(D21),
+  [p1,m2]=size(D12),
+  l1=1:p1-m2;k1=1:m1-p2;
+  l2=1+p1-m2:p1;k2=1+m1-p2:m1;
 
-    //Initialization  : constants 
+  //Initialization  : constants
 
-    R1=B1*B1';
-    S=D12'*C1;
-    C1#=(eye()-D12*D12')*C1;
-    Ax=A-B2*S;
-    Qx=-C1#'*C1#;
+  R1=B1*B1';
+  S=D12'*C1;
+  C1#=(eye()-D12*D12')*C1;
+  Ax=A-B2*S;
+  Qx=-C1#'*C1#;
 
-    Q1=C1'*C1;
-    L=B1*D21';
-    B1#=B1*(eye()-D21'*D21);
-    Ay=A-L*C2;
-    Qy=-B1#*B1#';
+  Q1=C1'*C1;
+  L=B1*D21';
+  B1#=B1*(eye()-D21'*D21);
+  Ay=A-L*C2;
+  Qy=-B1#*B1#';
 
-    //mu-dependent part
+  //mu-dependent part
 
-    //Optimal controller
+  //Optimal controller
 
-    Rx=mu*R1-B2*B2';
+  Rx=mu*R1-B2*B2';
 
-    H=[Ax Rx;
-       Qx -Ax'];
-    polesH=spec(H);
-    dx=min(abs(real(polesH)));
-    //write(%io(2),dx);
-    if dx < 1.d-6 then
-      mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
+  H=[Ax Rx;
+     Qx -Ax'];
+  polesH=spec(H);
+  dx=min(abs(real(polesH)));
+  //write(%io(2),dx);
+  if dx < 1.d-6 then
+    mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
 
-    end
-    [X1,X2,errx]=ric_desc(H);
-    if errx > 1.d-4 then 
-      mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",errx);
-    end
+  end
+  [X1,X2,errx]=ric_desc(H);
+  if errx > 1.d-4 then
+    mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",errx);
+  end
 
-    //Optimal observer :
+  //Optimal observer :
 
-    Ry=mu*Q1-C2'*C2;
+  Ry=mu*Q1-C2'*C2;
 
-    J=[Ay' Ry;
-       Qy -Ay];
-    polesJ=spec(J);
-    dy=min(abs(real(polesJ)));
-    //write(%io(2),dy);
-    if dy < 1.d-6 then
-      mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");
-    end
-    [Y1,Y2,erry]=ric_desc(J);
-    if erry > 1.d-4 then 
-      mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
-    end
+  J=[Ay' Ry;
+     Qy -Ay];
+  polesJ=spec(J);
+  dy=min(abs(real(polesJ)));
+  //write(%io(2),dy);
+  if dy < 1.d-6 then
+    mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");
+  end
+  [Y1,Y2,erry]=ric_desc(J);
+  if erry > 1.d-4 then
+    mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
+  end
 
-    //Controller in descriptor form
+  //Controller in descriptor form
 
-    E=(Y2'*X2-mu*Y1'*X1);
-    A#=A-B2*S-L*C2;
-    Ak=Y2'*A#*X2+mu*Y1'*A#'*X1-Y2'*(mu*Qy+B2*B2')*X1-Y1'*(mu*Qx+C2'*C2)*X2;
-    Bk1=(Y2'*L+Y1'*C2');
-    Ck1=-(S*X2+B2'*X1);
+  E=(Y2'*X2-mu*Y1'*X1);
+  A#=A-B2*S-L*C2;
+  Ak=Y2'*A#*X2+mu*Y1'*A#'*X1-Y2'*(mu*Qy+B2*B2')*X1-Y1'*(mu*Qx+C2'*C2)*X2;
+  Bk1=(Y2'*L+Y1'*C2');
+  Ck1=-(S*X2+B2'*X1);
 
-    Bk2=Y2'*B2+Y1'*S'
-    Ck2=-(C2*X2+L'*X1)
+  Bk2=Y2'*B2+Y1'*S'
+  Ck2=-(C2*X2+L'*X1)
 
-    Dk11=0*Ck1*Bk1;
-    Dk22=0*Ck2*Bk2;
-    Dk12=eye(Ck1*Bk2);
-    Dk21=eye(Ck2*Bk1);
+  Dk11=0*Ck1*Bk1;
+  Dk22=0*Ck2*Bk2;
+  Dk12=eye(Ck1*Bk2);
+  Dk21=eye(Ck2*Bk1);
 
-    //Scaling back
+  //Scaling back
 
-    Bk1=Bk1*Y2i;
-    Ck1=U2i*Ck1;
-    Dk21=Dk21*Y2i;
-    Dk12=U2i*Dk12;
-    //  Dk11=U2i*Dk11*Y2i
+  Bk1=Bk1*Y2i;
+  Ck1=U2i*Ck1;
+  Dk21=Dk21*Y2i;
+  Dk12=U2i*Dk12;
+  //  Dk11=U2i*Dk11*Y2i
 
-    Sk=list(E,Ak,Bk1,Bk2,Ck1,Ck2,Dk11,Dk12,Dk21,Dk22);
+  Sk=list(E,Ak,Bk1,Bk2,Ck1,Ck2,Dk11,Dk12,Dk21,Dk22);
 endfunction

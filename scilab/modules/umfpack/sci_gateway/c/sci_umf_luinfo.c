@@ -107,6 +107,6 @@ int sci_umf_luinfo(char* fname, unsigned long l)
 	LhsVar(5) = 6;
 	LhsVar(6) = 7;
 	LhsVar(7) = 8;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }

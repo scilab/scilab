@@ -139,3 +139,19 @@ s1 = optimsimplex_new ( coords );
 s1
 s1 = optimsimplex_destroy(s1);
 
+// Check with empty function
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords , [] )
+computed = optimsimplex_getn(s1);
+assert_checkequal ( computed , 2 );
+computed = optimsimplex_getnbve (s1);
+assert_checkequal ( computed , 5 );
+computed = optimsimplex_getallx(s1);
+assert_checkequal ( computed , coords );
+s1 = optimsimplex_destroy(s1);

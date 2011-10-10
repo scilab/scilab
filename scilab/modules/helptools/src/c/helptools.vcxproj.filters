@@ -29,9 +29,6 @@
     <ClCompile Include="DllmainHelptools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\GiwsException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
     <ClInclude Include="..\..\includes\dynlib_helptools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\jni\GiwsException.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\gw_helptools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,7 +66,6 @@
     <None Include="..\..\helptools.iss" />
     <None Include="..\..\sci_gateway\helptools_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="helptools.rc">

@@ -14,38 +14,42 @@
 // Shambolic error management or parsing in slave Tcl interpreters
 
 // First command executed in main interpreter
-if execstr("TCL_EvalStr(""wrongcommand"");", "errcatch")==0 then pause; end
+ierr = execstr("TCL_EvalStr(""wrongcommand"");", "errcatch");
+assert_checkequal(ierr, 999);
 msg = lasterror();
-msg = strsubst(msg, ascii(9), "\n");
-msg = sprintf("%s", msg);
-msgref = ["TCL_EvalStr,  at line 1";"invalid command name ""wrongcommand""    while executing""wrongcommand"""];
-if or(msg<>msgref) then pause; end
+msgref = ["TCL_EvalStr,  at line 1" ; ..
+ascii(9)+ "invalid command name ""wrongcommand""" ; ..
+"    while executing" ; ..
+"""wrongcommand"""];
+assert_checkequal(msg, msgref);
 
 TCL_CreateSlave("slave");
 
 // Command executed in slave: error message returned must not depend on previous error in main
-if execstr("TCL_EvalStr(""wrongcommandinslave"",""slave"")", "errcatch")==0 then pause; end
+ierr = execstr("TCL_EvalStr(""wrongcommandinslave"",""slave"")", "errcatch");
+assert_checkequal(ierr, 999);
 msg = lasterror();
-msg = strsubst(msg, ascii(9), "\n");
-msg = sprintf("%s", msg);
-msgref = ["TCL_EvalStr, invalid command name ""wrongcommandinslave"" at line 1";"invalid command name ""wrongcommandinslave""    while executing""wrongcommandinslave"""];
-if or(msg<>msgref) then pause; end
+msgref = ["TCL_EvalStr, invalid command name ""wrongcommandinslave"" at line 1" ; ..
+ascii(9) + "invalid command name ""wrongcommandinslave""" ; ..
+"    while executing" ; ..
+"""wrongcommandinslave"""];
+assert_checkequal(msg, msgref);
 
 // Second command executed in main interpreter
-if execstr("TCL_EvalStr(""wrongcommand2"");", "errcatch")==0 then pause; end
+ierr = execstr("TCL_EvalStr(""wrongcommand2"");", "errcatch");
+assert_checkequal(ierr, 999);
 msg = lasterror();
-msg = strsubst(msg, ascii(9), "\n");
-msg = sprintf("%s", msg);
-msgref = ["TCL_EvalStr,  at line 1";"invalid command name ""wrongcommand2""    while executing""wrongcommand2"""];
-if or(msg<>msgref) then pause; end
+msgref = ["TCL_EvalStr,  at line 1" ; ..
+ascii(9) + "invalid command name ""wrongcommand2""" ; ..
+"    while executing" ; ..
+"""wrongcommand2"""];
+assert_checkequal(msg, msgref);
 
 // Command executed again in slave: must give the same error message
-if execstr("TCL_EvalStr(""wrongcommandinslave"",""slave"")", "errcatch")==0 then pause; end
+ierr = execstr("TCL_EvalStr(""wrongcommandinslave"",""slave"")", "errcatch");
 msg = lasterror();
-msg = strsubst(msg, ascii(9), "\n");
-msg = sprintf("%s", msg);
-msgref = ["TCL_EvalStr, invalid command name ""wrongcommandinslave"" at line 1";"invalid command name ""wrongcommandinslave""    while executing""wrongcommandinslave"""];
-if or(msg<>msgref) then pause; end
-
-
-
+msgref = ["TCL_EvalStr, invalid command name ""wrongcommandinslave"" at line 1" ; ..
+ascii(9) + "invalid command name ""wrongcommandinslave""" ; ..
+"    while executing" ; ..
+"""wrongcommandinslave"""];
+assert_checkequal(msg, msgref);

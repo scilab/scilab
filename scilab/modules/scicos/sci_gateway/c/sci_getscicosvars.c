@@ -528,10 +528,10 @@ int sci_getscicosvars(char *fname,unsigned long fname_len)
 
 	/* put new variable in lsh argument */
 	LhsVar(1) = 2;
-	C2F(putlhsvar)();
-
+	
 	/* end */
 	FREE(dyn_char);
+    PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -63,7 +63,7 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal(xopt,[1;1],1.d-2);
+assert_checkalmostequal(xopt,[1;1],1.d-1);
 nm = neldermead_destroy(nm);
 
 

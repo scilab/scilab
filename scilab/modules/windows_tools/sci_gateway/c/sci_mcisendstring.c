@@ -92,12 +92,12 @@ int sci_mcisendstring(char *fname,unsigned long l)
 			CreateVarFromPtr(Rhs+ 3,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(3)=Rhs+3;
 		}
-		
-		C2F(putlhsvar)();
 
 		if (Output) {FREE(Output);Output=NULL;}
 		if (BoolOutput) {FREE(BoolOutput);BoolOutput=NULL;}
 		if (CodeOutput) {FREE(CodeOutput);Output=NULL;}
+
+        PutLhsVar();
 
 		return 0;
 	}

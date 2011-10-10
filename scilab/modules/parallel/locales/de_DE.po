@@ -1,0 +1,39 @@
+# German translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2011-07-29 07:03+0000\n"
+"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 14071)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: This function is forbidden in a concurrent execution context.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Falsche Anzahl an Eingangsargument(en).\n"
+
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s: %s Modul ist nicht installiert.\n"

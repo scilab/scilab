@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine clause
@@ -38,32 +38,32 @@ c     ======================================================================
 
 
 
-c     
+c
       r = -fin-10
       fin = 0
       r1=0
       if(pt.gt.0) r1=rstk(pt)
-c     
+c
       if (ddt .eq. 4) then
          write(tmpbuf(1:12),'(3i4)') pt,r1,r
          call basout(io,wte,' clause pt:'//tmpbuf(1:4)//' rstk(pt):'//
      &        tmpbuf(5:8)//' -fin-10:'//tmpbuf(9:12))
       endif
-c     
+c
       if(r.le.0.and.pt.le.0) then
          call error(34)
          return
       endif
       go to (02,30,30,55,30,55,55,70,80),r
-c     
+c
       r = rstk(pt)
       ir=r/100
       if(ir.ne.8) goto 99
       goto(05,15,40,45,55,65,46,75),r-800
       goto 99
-c     
+c
 c     for
-c     
+c
  02   call getsym
       if ( eptover(2,psiz))  return
       pstk(pt-1)=0
@@ -132,12 +132,12 @@ c     .  for matlab compatiblity: for (k=1:n)
          call error(34)
          return
       endif
-c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
+c     on recherche le "end" pour s'assurer que toutes les lignes relatives
 c     sont chargee (pb des matrices sur plusieurs lignes)
-      call skpins(1) 
+      call skpins(1)
       if(err.gt.0.or.err1.gt.0) return
       first=.true.
- 10   if(top.ne.ids(1,pt-1)) then 
+ 10   if(top.ne.ids(1,pt-1)) then
          call error(115)
          return
       endif
@@ -153,7 +153,7 @@ c     *call* parse
       return
  15   continue
       if(err1.gt.0.and.catch.eq.0) then
-        
+
 c     .  remove variable associated to the expression and skip to the end
          top=ids(1,pt-1)-1
          goto 20
@@ -161,16 +161,16 @@ c     .  remove variable associated to the expression and skip to the end
       if(comp(1).eq.0) goto 10
       call compcl(0)
       if(err.gt.0.or.err1.gt.0) return
-c     
+c
 c     fin for
  20   continue
       pt = pt-2
       icall=7
 c      char1 = blank
       return
-c     
+c
 c     while  if  select/case or if/elseif
-c   
+c
  30   if ( eptover(1,psiz)) return
       if (eqid(syn,while))  then
          ids(1,pt)=iwhile
@@ -205,7 +205,13 @@ c     .  while, look for the end to be sure all lines are loaded
  37   icall=1
 c     *call* expr
       return
- 40   if (ids(1,pt).ne.iselect) goto 46
+ 40   if(err1.gt.0) then
+         call skpins(1)
+         goto 66
+      endif
+
+
+      if (ids(1,pt).ne.iselect) goto 46
 c     select expression evaluated
  41   continue
 c     skip following commas or semi columns if any
@@ -243,7 +249,7 @@ c     looking for the "case" keyword
          else
             call error(35)
             return
-         endif    
+         endif
       elseif(lin(lpt(3)-2).eq.blank) then
          sym=semi
          lpt(4)=lpt(3)-1
@@ -252,7 +258,7 @@ c     looking for the "case" keyword
       else
          call error(35)
          return
-      endif   
+      endif
 
  42   if(comp(1).eq.0) then
 c     recopie de la premiere expression
@@ -277,6 +283,10 @@ c     recopie de la premiere expression
 c     *call* expr
       return
  45   continue
+      if(err1.gt.0) then
+         call skpins(1)
+         goto 66
+      endif
       if(comp(2).ne.0) goto 46
       rstk(pt)=807
       fin = equal
@@ -284,7 +294,11 @@ c     *call* expr
       icall=4
 c     *call* allops(==)
       return
- 46   if (eqid(syn,do) .or. eqid(syn,thenn)
+ 46   if(err1.gt.0) then
+         call skpins(1)
+         goto 66
+      endif
+      if (eqid(syn,do) .or. eqid(syn,thenn)
      &     .or.sym.eq.comma.or.sym.eq.semi.or.sym.eq.eol) then
          sym = semi
       elseif(sym.eq.cmt) then
@@ -328,7 +342,7 @@ c     comparaison ...
  48   rstk(pt)=804
       call  compcl(0)
       if(err.gt.0.or.err1.gt.0) return
-c     
+c
 c     then
 c     --------
  50   toperr=top
@@ -355,7 +369,7 @@ c     *call* parse
          if(eqid(syn,cas))  goto 43
       endif
       goto 66
-c     
+c
 c     else
 c     ---------
  60   rstk(pt) = 806
@@ -367,14 +381,14 @@ c     *call parse*
          if(err.gt.0.or.err1.gt.0) return
       endif
       goto 66
-c     
+c
 c     fin if ou while ou select
 c------------------------------
  66   if(ids(1,pt).eq.iselect.and.comp(1).eq.0) top=top-1
       pt=pt-1
       icall=7
       return
-c     
+c
 c     try
 c---------
  70   continue
@@ -398,7 +412,7 @@ c     .  set error control mode
          imess=1
          errct=-((8*imess+imode)*100000+1)
       endif
-      
+
       ic=char1
       isym=sym
       call getsym
@@ -427,7 +441,7 @@ c     *call* parse (for the try instructions)
 
 c     end of try reached or an error occurred
       if (max(err2,err1).gt.0) then
-c     .  an error occured in the try part 
+c     .  an error occured in the try part
 c     .  skip remaining instructions up to catch or end keywords
          errct=-1
          call skpins(0)
@@ -465,7 +479,7 @@ c     .  end of try without error (or end of catch)
 c     *call* parse
       return
 
-c     
+c
 c     catch
 c---------
  80   continue
@@ -506,3 +520,4 @@ c
       if (err .gt. 0) return
       return
       end
+

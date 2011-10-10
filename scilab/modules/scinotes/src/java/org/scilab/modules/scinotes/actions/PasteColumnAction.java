@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.StringTokenizer;
 
 import javax.swing.KeyStroke;
@@ -27,6 +28,7 @@ import org.scilab.modules.scinotes.CompoundUndoManager;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorKit;
 
 /**
  * Class for paste action
@@ -54,6 +56,9 @@ public class PasteColumnAction extends DefaultAction {
         String str = null;
         try {
             str = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this).getTransferData(DataFlavor.stringFlavor);
+            if (str != null) {
+                str = ((ScilabEditorKit) getEditor().getEditorKit()).read(new StringReader(str)).content;
+            }
         } catch (UnsupportedFlavorException ex1) {
             System.err.println(ex1);
         } catch (IOException ex2) {

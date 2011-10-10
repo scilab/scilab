@@ -48,7 +48,7 @@ int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len)
 	if (output) {FREE(output);output=NULL;}
 
 	LhsVar(1) = Rhs+1;
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

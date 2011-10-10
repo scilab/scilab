@@ -66,7 +66,7 @@ libsciio_algo_la_CFLAGS = $(libsciio_la_CFLAGS)
 CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciio_la_CFLAGS)
 
-libsciio_la_LIBADD = libsciio-algo.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/integer/libsciinteger.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciio_la_LIBADD = libsciio-algo.la
 
 
 #### Target ######

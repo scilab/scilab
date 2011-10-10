@@ -13,6 +13,19 @@ function K=lqg(P,r)
   if and(typeof(P)<>['rational','state-space']) then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"lqg",1))
   end
+  
+  if typeof(r)<>"constant"|~isreal(r) then
+    error(msprintf(gettext("%s: Wrong type for argument %d: Real vector expected.\n"),"lqg",2))
+  end
+  if size(r,'*')<>2 then
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"lqg",2,2))
+  end
+  r=int(r);
+  if or(r<=0) then
+    error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be positive.\n"),"lqg",2))
+  end
+
+  
   if typeof(P)=='rational' then 
     P=tf2ss(P),flag=%f
   else

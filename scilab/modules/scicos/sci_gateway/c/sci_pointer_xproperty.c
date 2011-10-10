@@ -56,7 +56,7 @@ int sci_pointer_xproperty(char *fname,unsigned long fname_len)
 
 		CreateVarFromPtr(1,MATRIX_OF_INTEGER_DATATYPE,&n_pointer_xproperty,&one,&pointer_xproperty);
 		LhsVar(1) = 1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

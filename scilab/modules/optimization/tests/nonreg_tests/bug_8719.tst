@@ -30,5 +30,5 @@ x0 = [
 0.0820513
 ];
 xopt=karmarkar(a,b,c,x0);
-assert_checkalmostequal ( xopt , expected , 1.e-3 );
+assert_checkalmostequal ( xopt , expected , 1.e-3, 1.e-3 );
 

@@ -50,6 +50,7 @@ case 'set' then
     if ok then
       model.rpar = sgn(:)    ;
       graphics.exprs = exprs ;
+      
       x.graphics = graphics;
       x.model = model ;
       break

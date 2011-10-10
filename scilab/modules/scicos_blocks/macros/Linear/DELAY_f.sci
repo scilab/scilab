@@ -54,10 +54,10 @@ case 'set' then
 		    'Register initial state'],list('vec',1,'vec',-1),exprs)
     if ~ok then break,end
     mess=[]
-    if prod(size(z0))<2 then
-      mess=[mess;'Register length must be at least 2';' ']
+    if prod(size(z0))<1 then
+      mess=[mess;'Register length must be at least 1';' ']
       ok=%f
-    end    
+    end
     if dt<=0 then
       mess=[mess;'Discretisation time step must be positive';' ']
       ok=%f
@@ -74,7 +74,7 @@ case 'set' then
 	newpar($+1)=ppath(2) // notify clock changes
       end
       x.model.rpar.objs(ppath(2))=evtdly
-      
+
       //Change the register
       register.graphics.exprs=exprs(2)
       if or(register.model.dstate<>z0(:)) then //Register initial state
@@ -93,12 +93,12 @@ case 'define' then
     evtdly.graphics.orig=[243,296]
     evtdly.graphics.sz=[40,40]
     evtdly.graphics.flip=%t
-    evtdly.graphics.exprs=['0.1';'1']
+    evtdly.graphics.exprs=['0.1';'0']
     evtdly.graphics.pein=10
     evtdly.graphics.peout=7
     evtdly.model.rpar=0.1
     evtdly.model.firing=0
-    
+
   register=REGISTER_f('define')
     register.graphics.orig=[238,195]
     register.graphics.sz=[50,50]
@@ -107,7 +107,7 @@ case 'define' then
     register.graphics.pin=6
     register.graphics.pout=5
     register.graphics.pein=9
-    
+
   input_port=IN_f('define')
     input_port.graphics.orig=[92,210]
     input_port.graphics.sz=[20,20]
@@ -115,7 +115,7 @@ case 'define' then
     input_port.graphics.exprs=['1';'1']
     input_port.graphics.pout=6
     input_port.model.ipar=1
-    
+
   output_port=OUT_f('define')
     output_port.graphics.orig=[440,210]
     output_port.graphics.sz=[20,20]
@@ -123,12 +123,12 @@ case 'define' then
     output_port.graphics.exprs=['1';'1']
     output_port.graphics.pin=5
     output_port.model.ipar=1
-  
+
   split=CLKSPLIT_f('define')
     split.graphics.orig=[263;271.2]
     split.graphics.pein=7,
     split.graphics.peout=[9;10]
-    
+
   diagram=scicos_diagram();
     diagram.objs(1)=input_port
     diagram.objs(2)=output_port
@@ -145,12 +145,12 @@ case 'define' then
 				from=[8,1],to=[3,1])
     diagram.objs(10)=scicos_link(xx=[263;308.6;308.6;263;263],..
 				 yy=[271.2;271.2;367;367;341.7],..
-				 ct=[5,-1],from=[8,2],to=[4,1]) 
+				 ct=[5,-1],from=[8,2],to=[4,1])
   x=scicos_block()
     x.gui='DELAY_f'
     x.graphics.sz=[2,2]
     x.graphics.gr_i=list('xstringb(orig(1),orig(2),''Delay'',sz(1),s"+...
-			 "z(2),''fill'')',8) 
+			 "z(2),''fill'')',8)
     x.graphics.pin=0
     x.graphics.pout=0
     x.model.sim='csuper'
@@ -159,5 +159,9 @@ case 'define' then
     x.model.blocktype='h'
     x.model.dep_ut=[%f %f]
     x.model.rpar=diagram
+    x.graphics.in_implicit=["E"]
+    x.graphics.in_style=""
+    x.graphics.out_implicit=["E"]
+    x.graphics.out_style=""
 end
 endfunction

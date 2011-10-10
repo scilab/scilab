@@ -33,11 +33,12 @@ int sci_filesep(char *fname,unsigned long fname_len)
 	n1 = 1;
 	CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(separator), &m1),&n1,&separator);
 	LhsVar(1)=Rhs+1;
-	C2F(putlhsvar)();
 
-	if (separator) {FREE(separator);separator=NULL;}
+    if (separator) {FREE(separator);separator=NULL;}
 
-	return 0;
+	PutLhsVar();
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

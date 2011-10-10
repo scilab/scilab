@@ -226,7 +226,7 @@ expected = [
 ];
 grand('setsd',0);
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -273,14 +273,14 @@ assert_checkequal ( size(S) , [sdsize 1] );
 //
 // Check numbers
 expected = [
-0.0002874    0.9423555    0.0770725    0.0207832    0.4746445    0.1895302  
-0.8538282    0.5493145    0.3200836    0.4775516    0.2245108    0.6637360  
-0.0581523    0.6006782    0.8569004    0.0123565    0.7357421    0.5837571  
-0.5196679    0.2448867    0.2568304    0.4503826    0.9680347    0.5214808  
+    2.874450D-04    9.423555D-01    7.707249D-02    2.078324D-02    4.746445D-01    1.895302D-01  
+    8.538282D-01    5.493145D-01    3.200836D-01    4.775516D-01    2.245108D-01    6.637360D-01  
+    5.815227D-02    6.006782D-01    8.569004D-01    1.235649D-02    7.357421D-01    5.837571D-01  
+    5.196679D-01    2.448867D-01    2.568304D-01    4.503826D-01    9.680347D-01    5.214808D-01  
 ];
 grand('setsd',0,0,0,0);
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -333,7 +333,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-5 );
 //
 // Check integers
 expected = [
@@ -392,7 +392,7 @@ warning("off");
 grand('setsd',1,1,1,1);
 warning("on");
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -447,7 +447,7 @@ expected = [
 ];
 grand('setsd',1,1);
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
 // Check integers
 expected = [
@@ -497,7 +497,7 @@ expected = [
 ];
 grand('setsd',1);
 computed = grand(4,6,"def");
-assert_checkalmostequal ( computed , expected, 1.e-7 );
+assert_checkalmostequal ( computed , expected, 1.e-5 );
 //
 // Check integers
 expected = [

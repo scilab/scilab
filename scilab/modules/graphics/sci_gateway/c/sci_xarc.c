@@ -100,7 +100,7 @@ int sci_xarc(char *fname,unsigned long fname_len)
 #endif
 
     LhsVar(1)=0;
-	PutLhsVar();
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

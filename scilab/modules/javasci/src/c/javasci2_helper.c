@@ -189,7 +189,7 @@ byte * getByte(char* variableName, int *nbRow, int *nbCol) {
     matrixOfByte=(byte*)malloc(((*nbRow)*(*nbCol))*sizeof(byte));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, matrixOfByte);
+    sciErr = readNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, (char*)matrixOfByte);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -202,7 +202,7 @@ byte * getByte(char* variableName, int *nbRow, int *nbCol) {
 
 int putByte(char* variableName, byte *variable, int nbRow, int nbCol) {
     SciErr sciErr;
-    sciErr = createNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, variable);
+    sciErr = createNamedMatrixOfInteger8(pvApiCtx, variableName, nbRow, nbCol, (const char*)variable);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -374,13 +374,13 @@ unsigned int * getUnsignedInt(char* variableName, int *nbRow, int *nbCol) {
     matrixOfInt=(int*)malloc(((*nbRow)*(*nbCol))*sizeof(int));
 
     /* Load the matrix */
-    sciErr = readNamedMatrixOfUnsignedInteger32(pvApiCtx, variableName, nbRow, nbCol, matrixOfInt);
+    sciErr = readNamedMatrixOfUnsignedInteger32(pvApiCtx, variableName, nbRow, nbCol, (unsigned int*)matrixOfInt);
     if(sciErr.iErr)
     {
         printError(&sciErr, 0);
     }
 
-    return matrixOfInt;
+    return (unsigned int*)matrixOfInt;
 
 }
 

@@ -27,14 +27,14 @@ int inteval_cshep2d(char *fname,unsigned long fname_len)
    */
 
   int minrhs=3, maxrhs=3, minlhs=1, maxlhs=6;
-  int mx, nx, lx, my, ny, ly, mt, nt, lt;
-  char **Str;
-  int m1, n1, m2, n2, m3, n3, m4, n4, m5, n5, m6, n6, m7, n7, m8, n8;
-  int lxyz, lgrid, lrmax, lrw, la;
-  double *xp, *yp, *xyz, *grid, *f, *dfdx, *dfdy, *dffdxx, *dffdyy, *dffdxy;
-  int i, ier, n, np, nr, lf, ldfdx, ldfdy, ldffdxx, ldffdyy, ldffdxy;
+  int mx = 0, nx = 0, lx = 0, my = 0, ny = 0, ly = 0, mt = 0, nt = 0, lt = 0;
+  char **Str = NULL;
+  int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, m5 = 0, n5 = 0, m6 = 0, n6 = 0, m7 = 0, n7 = 0, m8 = 0, n8 = 0;
+  int lxyz = 0, lgrid = 0, lrmax = 0, lrw = 0, la = 0;
+  double *xp = NULL, *yp = NULL, *xyz = NULL, *grid = NULL, *f = NULL, *dfdx = NULL, *dfdy = NULL, *dffdxx = NULL, *dffdyy = NULL, *dffdxy = NULL;
+  int i = 0, ier = 0, n = 0, np = 0, nr = 0, lf = 0, ldfdx = 0, ldfdy = 0, ldffdxx = 0, ldffdyy = 0, ldffdxy = 0;
   SciIntMat Cell, Next;
-  int *cell, *next;
+  int *cell = NULL, *next = NULL;
 
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);

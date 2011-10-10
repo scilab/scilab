@@ -48,7 +48,7 @@ int sci_str2code(char *fname,unsigned long fname_len)
 			n1 = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			PutLhsVar();
 			
 			return 0;
 		}
@@ -71,11 +71,12 @@ int sci_str2code(char *fname,unsigned long fname_len)
 				{
 					stk(outIndex)[i] = (double)Output_Matrix[i] ;
 				}
-				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
 
 				/* free pointers */
 				FREE(Output_Matrix); Output_Matrix=NULL;
+
+                LhsVar(1) = Rhs+1 ;
+                PutLhsVar();
 			}
 			else
 			{

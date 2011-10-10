@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -253,10 +254,15 @@
 
     <programlisting role="example"><![CDATA[ 
 //generate the data
-function y=FF(x,p),y=p(1)*(x-p(2))+p(3)*x.*x,endfunction
+function y=FF(x,p)
+  y=p(1)*(x-p(2))+p(3)*x.*x
+endfunction
 X=[];Y=[];
 pg=[34;12;14] //parameter used to generate data
-for x=0:.1:3, Y=[Y,FF(x,pg)+100*(rand()-.5)];X=[X,x];end
+for x=0:.1:3
+  Y=[Y,FF(x,pg)+100*(rand()-.5)];
+  X=[X,x];
+end
 Z=[Y;X];
 
 //The criterion function
@@ -281,7 +287,8 @@ function s=DG(p,z),
 endfunction
 
 [p,err]=datafit(G,DG,Z,p0);
-scf(1);clf()
+scf(1);
+clf()
 plot2d(X,FF(X,pg),5) //the curve without noise
 plot2d(X,Y,-1)  // the noisy data
 plot2d(X,FF(X,p),12) //the solution
@@ -289,7 +296,8 @@ plot2d(X,FF(X,p),12) //the solution
 // Add some bounds on the estimate of the parameters
 // We want positive estimation (the result will not change)
 [p,err]=datafit(G,DG,Z,'b',[0;0;0],[%inf;%inf;%inf],p0,algo='gc');
-scf(1);clf()
+scf(1);
+clf()
 plot2d(X,FF(X,pg),5) //the curve without noise
 plot2d(X,Y,-1)  // the noisy data
 plot2d(X,FF(X,p),12) //the solution

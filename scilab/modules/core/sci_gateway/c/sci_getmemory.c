@@ -30,7 +30,7 @@ int C2F(sci_getmemory) (char *fname,unsigned long fname_len)
 		LhsVar(2) = Rhs+2;
 	}
 
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

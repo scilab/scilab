@@ -46,7 +46,7 @@ int sci_phase_simulation(char *fname,unsigned long fname_len)
 		CreateVar(1, MATRIX_OF_INTEGER_DATATYPE,(one=1,&one),(one=1,&one),&l1);
 		*istk(l1) = get_phase_simulation();
 		LhsVar(1) = 1;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 
 	return 0;

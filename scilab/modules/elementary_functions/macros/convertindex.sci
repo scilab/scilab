@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) DIGITEO - 2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [Newdims,I]=convertindex(dims,varargin)
+function [Newdims,I] = convertindex(dims, varargin)
 //convert N-D indexes given in varargin to 1-D index.
 //if indexes exceed matrix dimensions given in dims, dimensions are
 //extented and new dimensions are returned in Newdims
@@ -19,6 +20,11 @@ function [Newdims,I]=convertindex(dims,varargin)
 // else (EXTRACTION) is is a vector (vector of dimensions)
 
 // Modified files: %ce_i_ce.sci %st_i_st.sci %b_i_hm.sci %hm_i_b.sci %hm_i_hm.sci %hm_i_i.sci %hm_i_p.sci %hm_i_s.sci %i_i_hm.sci %p_i_hm.sci
+
+  rhs = argn(2);
+  if rhs < 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"convertindex", 1));
+  end
 
   if type(dims)==15 then // insertion
     Ndims=dims(2)

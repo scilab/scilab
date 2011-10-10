@@ -58,23 +58,12 @@ Pop = codage_func(Pop,'code',param);
 for i=1:length(Pop)
   FObj_Pop(i,:) = ga_f(Pop(i));
 end
-MO_FObj_Pop = FObj_Pop;
 
 // Compute the domination rank
-Index = 1:size(MO_FObj_Pop,1);
-Rank  = zeros(size(MO_FObj_Pop,1),1);
-Count = 1;
-while size(MO_FObj_Pop,1)>1
-  [tmp1,tmp2,Index_List]  = pareto_filter(MO_FObj_Pop);
-  Rank(Index(Index_List)) = Count;
-  Count = Count + 1;
-  MO_FObj_Pop(Index_List,:) = [];
-  Index(Index_List) = [];
-end
+Rank=DominationRank(FObj_Pop);
 
 // Compute the crowding distance 
 MO_FObj_Pop = FObj_Pop;
-
 Index    = 1:size(MO_FObj_Pop,1);
 Crowdist = zeros(size(MO_FObj_Pop,1),1);
 for i=1:size(FObj_Pop,2)
@@ -172,23 +161,11 @@ for It=1:nb_generation
   All_Pop  = lstcat(Pop, Indiv1, Indiv2);
   All_FObj = [FObj_Pop' FObj_Indiv1' FObj_Indiv2']';  
 
-  MO_All_FObj = All_FObj;
-
   // Compute the domination rank on all the population
-  Index = 1:size(MO_All_FObj,1);
-  Rank  = zeros(size(MO_All_FObj,1),1);
-  Count = 1;
-  while size(MO_All_FObj,1)>1
-    [tmp1,tmp2,Index_List]  = pareto_filter(MO_All_FObj);
-    Rank(Index(Index_List)) = Count;
-    Count = Count + 1;
-    MO_All_FObj(Index_List,:) = [];
-    Index(Index_List)          = [];
-  end
+  Rank=DominationRank(All_FObj);
 
   // Compute the crowding distance
   MO_All_FObj = All_FObj;
-  
   Index    = 1:size(MO_All_FObj,1);
   Crowdist = zeros(size(MO_All_FObj,1),1);
   for k=1:size(MO_All_FObj,2)

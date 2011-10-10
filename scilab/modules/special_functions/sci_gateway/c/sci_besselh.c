@@ -56,14 +56,14 @@ int sci_besselh(char *fname,unsigned long fname_len)
     { 
         /*besselh([],x) */
         LhsVar(1) = 1;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
     if (m2*n2 == 0) 
     {
         /*besselh(alpha,[]) */
         LhsVar(1) = rhs1;
-        C2F(putlhsvar)();
+        PutLhsVar();
         return 0;
     }
 
@@ -173,7 +173,7 @@ int sci_besselh(char *fname,unsigned long fname_len)
         }
     }
 
-    C2F(putlhsvar)();
+    PutLhsVar();
     return 0;
 }  
 /*--------------------------------------------------------------------------*/

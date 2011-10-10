@@ -144,7 +144,6 @@
     <None Include="..\..\differential_equations.iss" />
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="differential_equations.rc">

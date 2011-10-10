@@ -2293,7 +2293,7 @@ int sciInitSelectedSubWin( char * psubwinobj )
     // FIXME
     abort();
 #if 0
-        sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
+    sciSubWindow * ppSubWin = pSUBWIN_FEATURE ( psubwinobj ) ;
 
     sciInitSelectedObject( psubwinobj ) ;
 #endif

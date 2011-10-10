@@ -66,12 +66,12 @@ int sci_umf_luget(char* fname, unsigned long l)
 	 *      U is n     x n_col     n = min(n_row, n_col)
 	 */
 
-	int mLU_ptr, nLU_ptr, lLU_ptr;
-	void * Numeric;
-	int lnz, unz, n_row, n_col, n, nz_udiag, i, stat, do_recip, it_flag;
-	int *L_mnel, *L_icol, *L_ptrow, *U_mnel, *U_icol, *U_ptrow, *V_irow, *V_ptcol;
-	double *L_R, *L_I, *U_R, *U_I, *V_R, *V_I, *Rs;
-	int *p, *q, one=1, pl_miss, error_flag = 0 ;
+	int mLU_ptr = 0, nLU_ptr = 0, lLU_ptr = 0;
+	void * Numeric = NULL;
+	int lnz = 0, unz = 0, n_row = 0, n_col = 0, n = 0, nz_udiag = 0, i = 0, stat = 0, do_recip = 0, it_flag = 0;
+	int *L_mnel = NULL, *L_icol = NULL, *L_ptrow = NULL, *U_mnel = NULL, *U_icol = NULL, *U_ptrow = NULL, *V_irow = NULL, *V_ptcol = NULL;
+	double *L_R = NULL, *L_I = NULL, *U_R = NULL, *U_I = NULL, *V_R = NULL, *V_I = NULL, *Rs = NULL;
+	int *p = NULL, *q = NULL, one=1, pl_miss = 0, error_flag = 0 ;
 
 	SciSparse L, U;
 
@@ -220,7 +220,7 @@ int sci_umf_luget(char* fname, unsigned long l)
 				pl_miss);
 		break;
 	}
-	C2F(putlhsvar)();
+	PutLhsVar();
 	return 0;
 }
 

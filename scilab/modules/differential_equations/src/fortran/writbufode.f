@@ -29,8 +29,8 @@ c     ====================================
       double precision ho
       double precision hmax
       double precision hmin
-      write(buf,'(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
-     $       'e9.4,'' hmin = '',e9.4)')
+      write(buf,'(''tcrit= '',e11.4,'' h0= '',e11.4, '' hmax= '','//
+     $       'e11.4,'' hmin = '',e11.4)')
      $    tcrit,ho,hmax,hmin
       end
 c     ====================================           

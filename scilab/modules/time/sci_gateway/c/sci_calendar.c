@@ -99,9 +99,9 @@ int sci_calendar(char *fname,unsigned long fname_len)
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&CALMONTH);
 	LhsVar(1)=Rhs+1;
 
-	C2F(putlhsvar)();
+    if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 
-	if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

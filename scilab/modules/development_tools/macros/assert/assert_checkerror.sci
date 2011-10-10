@@ -22,15 +22,15 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkerror" , 1 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 1 )
         error(errmsg)
     end
     if ( typeof(expectedmsg) <> "string" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix of strings expected.\n") , "assert_checkerror" , 2 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 2 )
         error(errmsg)
     end
     if ( typeof(expectederrnb) <> "constant" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for argument %d: Matrix expected.\n") , "assert_checkerror" , 3 )
+        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkerror" , 3 )
         error(errmsg)
     end  
     //

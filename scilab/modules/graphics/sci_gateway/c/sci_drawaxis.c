@@ -71,10 +71,10 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     CheckLhs(minlhs,maxlhs) ;
 
     if ( get_optionals(fname,opts) == 0)
-	{
-		/* error */
-		return 0;
-	}
+    {
+        /* error */
+        return 0;
+    }
 
     psubwinUID = getOrCreateDefaultSubwin();
 

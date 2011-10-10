@@ -76,7 +76,6 @@
     <None Include="..\localization.iss" />
     <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
-    <None Include="..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\charEncoding.c">

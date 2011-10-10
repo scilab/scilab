@@ -95,7 +95,7 @@ int sci_coserror(char *fname, unsigned long fname_len)
 		}
 		set_block_error(-5);
 		LhsVar(1) = 0;
-		C2F(putlhsvar)();
+		PutLhsVar();
 	}
 	return 0;
 }

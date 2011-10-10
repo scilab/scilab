@@ -217,7 +217,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 
 	CreateVar(4,TYPED_LIST_DATATYPE,&nblklst,(j=1,&j),&l_tmp);
 	LhsVar(1) = 4;
-	C2F(putlhsvar)();
+	PutLhsVar();
 
 	return 0;
 }

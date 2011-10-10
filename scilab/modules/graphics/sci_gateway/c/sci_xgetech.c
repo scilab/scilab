@@ -37,7 +37,7 @@ int sci_xgetech( char *fname, unsigned long fname_len )
 
   getscale2d(W,F,L,A);
 	for ( i = 1 ; i <= Lhs ; i++) { LhsVar(i) = i; }
-	C2F(putlhsvar)();
+	PutLhsVar();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/
